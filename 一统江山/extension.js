@@ -7256,7 +7256,8 @@ trigger.num++
                     name:"huogong",
                     nature:"fire",
                     suit:"heart",
-                    number:12,
+                    number:13,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{"uncheck":[]},"suit":"heart","number":13,"name":"shan","_transform":"translateX(224px)","_mouseentercreated":false,"clone":{"name":"shan","suit":"heart","number":13,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2663},"timeout":2641,"original":"h"}],
                 },
                 viewAsFilter:function (player){
         if(!player.num('h',{color:'red'})) return false;
@@ -7391,20 +7392,19 @@ trigger.num++
                     player:"damageBefore",
                 },
                 forced:true,
-                unique:true,
                 filter:function (event){
-        return event.nature=='tunder';
+        return event.nature=='thunder';
     },
                 content:function (){
         trigger.untrigger();
         trigger.finish();
-        player.recover();
-        player.drwa();
+        player.recover(2);
+        player.draw();
     },
                 ai:{
                     effect:{
                         target:function (card){
-                if(get.tag(card,'fireDamage')){
+                if(get.tag(card,'thunderDamage')){
                     return [0,2];
                 }
             },
@@ -7424,7 +7424,8 @@ trigger.num++
                 viewAs:{
                     name:"wuxie",
                     suit:"spade",
-                    number:9,
+                    number:12,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{"uncheck":[]},"suit":"spade","number":12,"name":"guohe","_transform":"translateX(0px)","_mouseentercreated":false,"clone":{"name":"guohe","suit":"spade","number":12,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2303},"timeout":2289,"original":"h"}],
                 },
                 prompt:"将一张黑色手牌当无懈可击使用",
                 check:function (card){return 8-ai.get.value(card)},
@@ -11169,9 +11170,9 @@ if(trigger.num>2) trigger.num=2
             "ranhuo2":"燃火",
             "ranhuo2_info":"锁定技，你防止即将受到的火焰伤害，改为回复1点体力",
             "八卦":"八卦",
-            "八卦_info":"当你没装备防具时，始终视为你装备着【八卦阵】。你防止受到的雷电伤害，并回复1点体力摸一张牌",
+            "八卦_info":"当你没装备防具时，始终视为你装备着【八卦阵】。你防止受到的雷电伤害，并回复2点体力摸一张牌",
             "yiqunbagua2":"八卦",
-            "yiqunbagua2_info":"，改为回复1点体力",
+            "yiqunbagua2_info":"",
             "看穿":"看穿",
             "看穿_info":"你可以将你的任意一张♠或♣手牌当【无懈可击】使用。你使用或打出的黑色锦囊不能被无懈可击响应",
             "kanchuan2":"看穿",
@@ -11386,4 +11387,4 @@ if(trigger.num>2) trigger.num=2
             "使臣_info":"每当你拼点赢，你可以获得对方此次拼点的牌；每当你拼点没赢，你可以收回你此次拼点的牌， 你不能成为延迟类锦囊牌的目标",
         },
     },
-},files:{"character":["魏武东临.jpg","翩若惊鸿.jpg","魏武霸业.jpg","清流雅望.jpg","枪碎星河.jpg","龙吟九霄.jpg","仁爱神童.jpg","轻舞花烛.jpg","试尝百草.jpg","谑浪笑傲.jpg","逸群之才.jpg","业火红莲.jpg","白衣渡江.jpg","观星唤雨.jpg","狂傲不羁.jpg","雷霆之威.jpg","鬼谋乱世.jpg","计斩妙才.jpg","忠勇当先.jpg","持权贪贿.jpg","智擒严颜.jpg","西凉雄狮.jpg","侠义谋略.jpg","醉玉颓山.jpg","从征四方.jpg","恢拓洪业.jpg","烈帝后裔.jpg","武继先人.jpg","御驾亲征.jpg","烽火乱世.jpg","握筹布画.jpg","寒光凛然.jpg","空城退敌.jpg","猛击劈浪.jpg","精练策数.jpg","一统江山.jpg","战神金刚.jpg","魏王称帝.jpg","威震华夏.jpg","婉娩流逸.jpg","神兵天降.jpg","挥剑惊石.jpg","镇卫江夏.jpg","彪劲虎卫.jpg","采映荷灯.jpg","破羌攻胡.jpg","威重严整.jpg","抬棺决死.jpg","下辩扬威.jpg","势如破竹.jpg","平北将军.jpg","断石酬志.jpg","心系君魂.jpg","十二奇策.jpg","镇守魏南.jpg","破虏大将.jpg","挤眉弄眼.jpg","老骥伏枥.jpg","大展宏图.jpg","诗礼之训.jpg","立嗣陷危.jpg","绰约多姿.jpg","符檄擅声.jpg","虎将无双.jpg","绝色异彩.jpg","七步绝章.jpg","白眉智士.jpg","明以举贤.jpg","一世风华.jpg","单骑千里.jpg","单刀赴会.jpg","身先士卒.jpg","辅政平乱.jpg","浴火士元.jpg","猛勇精进.jpg","一言不发.jpg","舐犊情深.jpg","浴火蛮神.jpg","胸中兵甲.jpg","傲雪凌霜.jpg","佳期若梦.jpg"],"card":[],"skill":[]}})
+},files:{"character":["十二奇策.jpg","魏武霸业.jpg","虎将无双.jpg","雷霆之威.jpg","清流雅望.jpg","下辩扬威.jpg","立嗣陷危.jpg","魏武东临.jpg","醉玉颓山.jpg","白衣渡江.jpg","一统江山.jpg","狂傲不羁.jpg","观星唤雨.jpg","战神金刚.jpg","魏王称帝.jpg","绰约多姿.jpg","从征四方.jpg","烽火乱世.jpg","挤眉弄眼.jpg","猛击劈浪.jpg","浴火士元.jpg","龙吟九霄.jpg","一言不发.jpg","计斩妙才.jpg","白眉智士.jpg","平北将军.jpg","智擒严颜.jpg","老骥伏枥.jpg","绝色异彩.jpg","侠义谋略.jpg","寒光凛然.jpg","空城退敌.jpg","业火红莲.jpg","恢拓洪业.jpg","武继先人.jpg","彪劲虎卫.jpg","神兵天降.jpg","抬棺决死.jpg","握筹布画.jpg","镇卫江夏.jpg","破羌攻胡.jpg","镇守魏南.jpg","轻舞花烛.jpg","胸中兵甲.jpg","浴火蛮神.jpg","婉娩流逸.jpg","鬼谋乱世.jpg","翩若惊鸿.jpg","符檄擅声.jpg","枪碎星河.jpg","明以举贤.jpg","单骑千里.jpg","挥剑惊石.jpg","仁爱神童.jpg","七步绝章.jpg","精练策数.jpg","辅政平乱.jpg","破虏大将.jpg","御驾亲征.jpg","诗礼之训.jpg","逸群之才.jpg","忠勇当先.jpg","单刀赴会.jpg","持权贪贿.jpg","断石酬志.jpg","大展宏图.jpg","西凉雄狮.jpg","试尝百草.jpg","舐犊情深.jpg","一世风华.jpg","佳期若梦.jpg","烈帝后裔.jpg","威震华夏.jpg","傲雪凌霜.jpg","势如破竹.jpg","采映荷灯.jpg","心系君魂.jpg","猛勇精进.jpg","威重严整.jpg","身先士卒.jpg","谑浪笑傲.jpg"],"card":[],"skill":[]}})

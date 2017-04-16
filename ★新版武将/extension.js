@@ -6,12 +6,14 @@ game.import("extension",{name:"★新版武将",content:function (config,pack){
              new:{
             name:'装逼按钮',
             init:true,
-         }
-            
+         }            
 },
 package:{
         character:{
         character:{
+               new_menghuo:['male','shu',4,['huoshou','new_zaiqi']],
+               new_wangyun:['male','qun',4,['new_lianji','new_jiedao']],
+               new_pangde:['male','qun',4,['mashu','new_mengjin']],
               qibing:['male','qun',4,['mashu','dangxian','guding_skill']],
               dunpaibing:['male','wu',4,['renwang_skill','dangxian']],
               futoubing:['male','wei',4,['guanshi_skill','dangxian']],
@@ -100,9 +102,12 @@ package:{
             wujijiansheng:["male","wu",3,["jiandao","lianpo"],[]],
             manzuzhiwang:["male","wei",4,["baonu","baoji","nuqi"],[]],
             xunjiechihou:["male","shu",3,["zhimang","xunjie"],[]],
-            xiongnu:["male","wei",8,["mashu","boss_shisi","jielue"],["zhu","boss","bossallowed"]],
+            xiongnu:["male","wei",8,["mashu","boss_shisi","jielue"],["zhu","boss"]],
         },
-        characterIntro:{
+        characterIntro:{                
+                new_menghuo:'中国三国时期南中少数族首领。系东汉末益州建宁郡( 今云南晋宁东 )大姓，身材肥硕。生卒年不详。官至御史中丞。曾被诸葛亮七擒七纵，传为佳话。',
+                new_pangde:"庞德（？－219年），字令明，南安郡狟道县（今甘肃天水市武山县四门镇）人，约在初平年间，投奔马腾帐下，在平定羌民的征伐中屡立战功。建安年间，庞德跟随马超征战平阳，抵御袁将郭援、高干，在马上亲斩郭援首级。张白骑在弘农反叛时，庞德也参与战斗。每次出征常冲锋陷阵，勇冠凉州三军。后几经辗转，随张鲁归降于曹操麾下，被授官立义将军，封关内亭侯，食邑三百户。219年，庞德协助曹仁抵御关羽。两军对垒期间，常骑白马驰骋奔杀，曾一箭射中关羽前额，被关羽军称作“白马将军”。时值汉水暴溢，他率诸将与关羽殊死搏斗，箭镞射尽，又短兵相接。而他格斗益怒，胆气愈壮，力战多时后因小舟被洪水打翻为关羽军所擒。关羽敬重他的刚毅威武，以封将劝降，但他却怒目不跪，怒斥关羽，最终殒身殉节。",
+                new_wangyun:"王允（137年－192年），字子师，太原祁（今山西祁县）人（据《后汉书》）。东汉末年大臣。王允出身官宦世家。他十九岁就开始任公职，壮年时任豫州刺史。因为在和中常侍张让的斗争中失败，王允被迫去官隐居，在中平六年，何进掌权之后重新出仕，历任从事中郎和河南尹。在何进被宦官诛杀，董卓掌权时，他已经代替杨彪成为了司徒兼尚书令。身为地方官勤政爱民，由于朝廷腐败而被迫在此为官，从而密谋刺杀董卓。董卓死后，王允与吕布共执朝政，但是董卓余党李傕、郭汜、樊稠等率军攻破长安，吕布出逃，王允被处死，时年56岁。",
              		new_zhangchunhua:'西晋宣穆皇后张春华（189－247），河内平皋（今河南温县）人。她是晋宣帝司马懿之妻，晋景帝司马师、晋文帝司马昭的母亲。后被追尊为皇后。',
              new_lukang:'陆抗（226年－274年），字幼节，吴郡吴县（今江苏苏州）人。三国时期吴国名将，丞相陆逊次子。陆抗袭父爵为江陵侯，为建武校尉，领其父众五千人。后迁立节中郎将、镇军将军等。孙皓为帝，任镇军大将军、都督西陵、信陵、夷道、乐乡、公安诸军事，驻乐乡（今湖北江陵西南）。凤凰元年（272年），击退晋将羊祜进攻，并攻杀叛将西陵督步阐。后拜大司马、荆州牧，卒于官，终年49岁。与陆逊皆是吴国的中流砥柱，并称“逊抗”，被誉为吴国最后的名将。',
              new_guanping:'关平是关羽在战乱中所收之义子。关羽脱离曹军后，与刘备于关定家中重逢，关定欲使年仅十八岁的关平随关羽同行，刘备便主张让关羽与关平结为义父子。自此后关平随侍在关羽身边，一生东征西讨。他武勇过人，不逊乃父，曾跟随刘备出征西川，立下战功，后来又与曹魏猛将庞德大战三十回合，不分胜负。',
@@ -216,6 +221,10 @@ package:{
 		new_zhangliao:['zangba']
 	},
         translate:{
+            new_menghuo:"★孟获",
+            new_pangde:"★庞德",
+            new_wangyun:"★王允",
+            qibing:"骑兵",
             dunpaibing:"盾牌兵",
             futoubing:"斧头兵",
             new_szhugeliang:"★妖诸葛亮",
@@ -316,7 +325,173 @@ package:{
         list:[],
     },
     skill:{
-        skill:{
+        skill:{    
+new_zaiqi:{
+			audio:2,
+			trigger:{player:'phaseDrawBefore'},
+			filter:function(event,player){
+				return player.hp<player.maxHp;
+			},
+			check:function(event,player){
+				if(player.maxHp-player.hp<2){
+					return false;
+				}
+				else if(player.maxHp-player.hp==2){
+					return player.countCards('h')>=2;
+				}
+				return true;
+			},
+			content:function(){
+				"step 0"
+				trigger.untrigger();
+				trigger.finish();
+				event.cards=get.cards(player.maxHp-player.hp+Math.ceil(player.num('e')/2));
+				player.showCards(event.cards);
+				"step 1"
+				var num=0;
+				for(var i=0;i<event.cards.length;i++){
+					if(get.suit(event.cards[i])=='heart'){
+						num++;
+						ui.discardPile.appendChild(event.cards[i]);
+						event.cards.splice(i--,1);
+					}
+				}
+				if(num){
+					player.recover(num);
+				}
+				"step 2"
+				if(event.cards.length){
+					player.gain(event.cards);
+					player.$gain2(event.cards);
+					game.delay();
+				}
+			},
+			ai:{
+                    noe:true,                    
+                    effect:{
+                        target:function (card,player,target,current){
+                        if(get.type(card)=='equip') return [1,3];
+                  },
+                  
+               },          
+				threaten:function(player,target){
+					if(target.hp==1) return 2;
+					if(target.hp==2) return 1.5;         
+					return 1;
+				},
+			}
+		},
+     new_lianji:{
+			audio:1,
+			enable:'phaseUse',
+			usable:1,
+			filterTarget:function(card,player,target){
+				if(player==target) return false;
+				return target.num('h')>0;
+			},
+			selectTarget:2,
+			multitarget:true,
+			multiline:true,
+			filter:function(event,player){
+				return player.num('h')>0;
+			},
+			prepare:function(cards,player,targets){
+				player.$throw(cards);
+				player.line(targets);
+			},
+			discard:false,
+			filterCard:true,
+			check:function(card){
+				return 6-ai.get.value(card);
+			},
+			content:function(){
+				"step 0"
+				if(!player.storage.lianji){
+					player.storage.lianji=[];
+				}
+				if(targets[0].num('h')&&targets[1].num('h')){
+					targets[0].chooseToCompare(targets[1]);
+					player.storage.lianji.add(targets[0]);
+					player.storage.lianji.add(targets[1]);
+				}
+				else{
+					event.finish();
+				}
+				"step 1"
+				if(result.bool){
+					targets[0].gain(cards);
+					targets[0].$gain2(cards);
+					targets[1].damage(targets[0]);
+				}
+				else{
+					targets[1].gain(cards);
+        	targets[1].$gain2(cards);
+					targets[0].damage(targets[1]);
+				}
+				if(!player.skills.contains('yinmo')){
+					event.finish();
+				}
+				"step 2"
+				for(var i=0;i<game.players.length;i++){
+					if(game.players[i]!=player&&!player.storage.lianji.contains(game.players[i])){
+						event.finish();
+						return;
+					}}			
+			},
+			ai:{
+				expose:0.3,
+				threaten:1.8,
+				order:9,
+				result:{
+					target:-1
+				}
+			},
+		},
+     new_jiedao:{
+			audio:1,
+			filter:function(event,player){
+				return player.countCards('he',{suit:'club'})>0;
+			},
+			enable:'chooseToUse',
+			filterCard:function(card){
+				return get.suit(card)=='club';
+			},
+			position:'he',
+			viewAs:{name:'jiedao'},
+			prompt:'将一张♣牌当借刀杀人使用',
+			check:function(card){return 6-get.value(card)},
+			ai:{
+      order:8,
+				threaten:1.3
+			}
+		},
+     new_mengjin:{
+			audio:2,
+			trigger:{player:'shaMiss'},
+			priority:-1,
+			filter:function(event){
+				return event.target.countCards('he')>0;
+			},
+			check:function(event,player){
+				return get.attitude(player,event.target)<0;
+			},
+			content:function(){			player.gainPlayerCard('he',trigger.target,Math.max(1,player.maxHp-player.hp),true);
+			},
+    mod:{
+                    targetEnabled:function (card,player,target,now){
+                    if(card.name=='lebu') return false;
+                },
+                },
+     ai:{
+                    noe:true,
+                    threaten:1.3,
+                    effect:{
+                        target:function (card,player){
+                        if(card.name=='guashi') return -Infinity;
+                    },
+                    },
+                },
+            },
      new_shenji:{
 			audio:2,
 			trigger:{global:'judge'},
@@ -462,10 +637,11 @@ package:{
     forced:true,
     content:function(){
     "step 0" 
-  game.delay(1.35);
+  game.delay();
   player.chooseToDiscard(true,player.num('h'),'h');
     "step 1"
    player.draw(Math.min(4,player.maxHp));
+   player.update();
    },   
 ai:{
                     threaten:1.4,
@@ -474,8 +650,8 @@ ai:{
                         player:1,
                     },
                     effect:{
-                        player:function (card,player){
-                if(get.type(card)!='basic') return [1,3];
+                        player:function (card,player){                
+                if(card.name=='tao'||get.type(card)!='basic') return [1,3];
             },
                     },
                 },
@@ -782,7 +958,8 @@ ai:{
                 return true;
                },
                 content:function (){
-                game.delay(5);
+                game.delay(3.5);
+                player.line(target,'fire');
                 target.damage(2);
            },
       ai:{
@@ -1678,11 +1855,12 @@ mod:{
             qimen:{
                 audio:3,
                 trigger:{
-global:'gameDrawAfter',player:'phaseBegin',
+global:'gameDrawAfter',player:['damageBegin','loseHpBegin']
                 },
                 forced:true,
-                priority:20,                
+                priority:20,              
                 content:function (){
+               player.sex=['male','female'].randomGet();
                "step 0"              
                     var skills=[]; 
                     for(var i in lib.character){ 
@@ -1703,7 +1881,7 @@ global:'gameDrawAfter',player:'phaseBegin',
                     game.log(player,'获得技能','【'+get.translation(link)+'】');        
                 },
                 ai:{
-                    threaten:2.4,
+                    threaten:1.8,
                 },
             },
             sqianxun:{
@@ -1841,6 +2019,7 @@ global:'gameDrawAfter',player:'phaseBegin',
                 }
                 'step 4'
                 if(result&&result.cards){
+
                     event.card=result.cards[0];
                     event.current.lose(result.cards,ui.special);
                     game.broadcastAll(function(player){
@@ -5362,7 +5541,11 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             },
             jiandao:{
                 unique:true,
-                mod:{
+                mod:{   
+             cardUsable:function (card,player,num){
+                    if(card.name=='sha') return num+1;
+                },
+          
                     selectTarget:function (card,player,range){
             if(range[1]==-1) return;
             if(card.name=='sha'||card.name=='guohe') range[1]=4;
@@ -5615,8 +5798,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
            new_wuji:"武继",
            new_longyin:"龙吟",
            new_shenshi:"审势",
-           new_jueqing:"绝情",
-         
+           new_jueqing:"绝情",         
            new_jueqing1:"绝情",
            new_jueqing2:"绝情",
            new_jueqing3:"绝情",
@@ -5624,6 +5806,14 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
            new_shangshi:"伤逝",
            new_shenji:'神机',
            new_miaosuan:"妙算",
+           new_mengjin:"猛进",
+           new_jiedao:"借刀",
+           new_lianji:'连计',
+           new_zaiqi:"再起",
+           new_zaiqi_info:'摸牌阶段，若你已受伤，你可以改为展示牌堆顶的X张牌，X为你已损失的体力值+你装备区牌数的一半且向上取整，其中每有一张♥牌，你回复1点体力，然后弃掉这些♥牌，将其余的牌收入手牌。',
+		       new_lianji_info:'出牌阶段限一次，你可以选择一张手牌并指定两名角色进行拼点，拼点赢的角色获得此牌，并对没赢的角色造成一点伤害。',
+           new_jiedao_info:'你可以将一张♣牌当[借刀杀人]使用。',
+           new_mengjin_info:'当你使用的【杀】被【闪】抵消时，你获得对方X张牌，X为你已损失的体力值，且至少为1；锁定技，你不能成为[乐不思蜀]的目标。',
            new_miaosuan_info:"锁定技，每当其他角色使用或打出一张非转化的普通锦囊牌时，你可以摸一张牌。",
 	        	new_shenji_info:'任意一名角色的判定生效前，你可以打出一张牌替换之',
            new_shangshi_info:'锁定技，当你的手牌数小于X时，你立即将手牌补至X张（X为你已损失的体力值且最多为3）',
@@ -5640,7 +5830,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
            new_juejing_info:'锁定技，摸牌阶段，你摸牌的数量改为你已损失的体力值+2；你的手牌上限+3；你的回合外，其他角色受到伤害或回复体力时，你摸一张牌。',
            new_huangtian_info:'主公技，群雄角色可在他们各自的回合里给你一张♠或【闪电】。',
            new_xiongyi_info:'限定技，出牌阶段，你可以指定至多三名角色与你各摸三张牌，然后你增加一点体力上限并获得技能【猛进】；若你指定的角色数不超过2，你回复1点体力。',
-             xinqiangxix_info:'出牌阶段，你可以自减一点体力或弃一张武器牌(若你体力为1，则无需自减体力)，然后你对你攻击范围内的一名角色，弃置其装备区一张牌，并对其造成一点伤害，每回合限一次。',
+             xinqiangxix_info:'出牌阶段，你可以自减一点体力或弃一张武器牌(若此时你体力值为1，则无需自减体力)，然后你对你攻击范围内的一名角色，弃置其装备区一张牌，并对其造成一点伤害，每回合限一次。',
 	          	new_tianyi_info:'出牌阶段，你可以和一名角色拼点，若你赢，你获得以下技能直到回合结束：攻击范围无限；使用【杀】无数量限制；使用【杀】时可额外指定两个目标，若你没赢，你摸一张牌，你不能使用【杀】直到回合结束。每回合限一次。',
 		        new_liegong_info:'你的【杀】可选择手牌数大于等于你的角色为目标，当你使用【杀】指定一个目标后，你可以根据下列条件执行响应的效果，1、若目标的手牌数大于等于你的体力值，或体力值小于等于2，此【杀】不可被【闪】响应，2、其装备区牌数不小于你，此【杀】伤害*2。',
            xin_yongsi_info:'锁定技，摸牌阶段，你额外摸X张牌，X为场上现存势力数。弃牌阶段，你至少须弃置等同于场上现存势力数的手牌（不足则全弃）。',
@@ -5663,8 +5853,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             xinfenji:"奋击",
             "xinfenji_info":"每当一名角色的牌于回合外被弃置时，你可以受到一点伤害，然后该角色摸两张牌。",
             qimen:"修行",
-            "qimen_info":"锁定技，游戏开始阶段和回合开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。",
-
+            "qimen_info":"锁定技，受到伤害、流失体力和游戏开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。",
             dunjia:"六甲",
             "dunjia_info":"锁定技，你每次受到伤害时，最多承受1点伤害（防止多余的伤害)",
             sqianxun:"谦逊",
@@ -5682,7 +5871,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             xinzhaofu:"诏缚",
             xinzhaofu_info:"主公技，锁定技，其他吴国势力角色杀死目标后，你增加一点体力上限。",
             xinshenxian:"甚贤",
-            "xinshenxian_info":"每名其他角色的回合限一次，当有其他角色因弃置而失去牌时，你可以摸X张牌，X为其中基本牌的数量。",
+            "xinshenxian_info":"每名其他角色的回合限一次，当有其他角色因弃置而失去牌时，其中每有一张基本牌，你可以摸一张牌。",
             fengzhan:"风斩",
             "fengzhan_info":"你使用【杀】或【决斗】对目标造成伤害时，若你的疾风标记不少于3，你可以弃置3枚疾风标记令伤害+1，并弃置剩余疾风标记摸等量的牌，然后将受到此伤害的目标武将牌翻面(若目标武将牌背面朝上，则不会响应此次翻面)。",
 
@@ -5752,7 +5941,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             "xinpaoxiao_info":"锁定技，出牌阶段，你使用[杀]无数量限制，每当你使用或打出[杀]可亮出牌堆顶的两张牌，你获得其中的装备牌、[过河拆桥]和[杀]，并展示之。",
             "xinguanxing_info":"准备阶段，你可以观看牌堆顶的x张牌，并将其以任意顺序置于牌堆项或牌堆底，x为存活角色个数且不少于5。",
             "xinkongcheng_info":"锁定技，当你没有手牌时，不能成为[杀]、[决斗]、[万箭齐发]、[南蛮入侵]、[火烧连营]、[过河拆桥]、[顺手牵羊]和[水淹七军]的目标。",
-            "xinlongdan_info":"你可以将[杀]当[闪]，或[闪]当[杀]使用或打出，每当你发动技能“龙胆”时，可亮出牌堆顶的X张牌，X等于1加上你失去体力值一半且向下取整，且不超过3，然后你获得其中的基本牌并展示之。",
+            "xinlongdan_info":"你可以将[杀]当[闪]，或[闪]当[杀]使用或打出，每当你发动技能“龙胆”时，可亮出牌堆顶的X张牌，X等于1加上你已损失的体力值的一半且向下取整，且不超过3，然后你获得其中的基本牌并展示之。",
      
             "xintieji_info":"你使用一张[杀]指定目标时，你可以弃置其两张牌。",
             "xinjizhi_info":"每当你使用或打出一张非转化的锦囊牌，你可亮出牌堆顶的2~3张牌，然后获得其中的锦囊牌并展示之。",
@@ -5771,7 +5960,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             "xinxiaoji_info":"每当你失去一张装备牌，可以摸X张牌，X等于2加上你当前装备区牌的数量的一半且向上取整。",
             "xinjieyin_info":"出牌阶段，你可以弃置两张牌并选择1名已经受伤的男性角色，你与其各回复一点体力，若你未受伤，你可以摸一张牌，每阶段限一次。",
             "xinqingnang_info":"出牌阶段，你可以选择一名已受伤角色令其弃置一张牌，然后回复一点体力，每阶段限一次。",
-            xinjijiu_info:"你可以将一张♥牌当[桃]使用；当一名角色濒死时，你可以进行X次判定，若结果为♥或♦，则其回复一点体力，否则你摸一张牌(X为其求[桃]数量)。",
+            xinjijiu_info:"你可以将一张♥牌当[桃]使用；当一名角色濒死时，你可以进行X次判定，若结果为♥或♦，则其回复一点体力，否则你摸一张牌(X为其求[桃]的数量)。",
           
             "xinbiyue_info":"结束阶段，你可以摸1+X张牌，X为你装备区牌的数量的一半且向下取整。",
             "boss_shisi":"视死",
@@ -5781,7 +5970,7 @@ var str='获得了技能';    game.log(player,str,'【'+get.skillTranslation('wu
             shanbi:"闪避",
             "shanbi_info":"每当你即将受到伤害时，你可以进行一次判定，若结果为♠或♣，你防止受到此伤害，否则你摸两张牌。",
             jiandao:"剑道",
-            "jiandao_info":"你使用【杀】和【过河拆桥】指定目标数上限+3。",
+            "jiandao_info":"你使用【杀】和【过河拆桥】指定目标数上限+3，次数上限+1。",
             baoji:"暴击",
             "baoji_info":"锁定技，每当你使用[杀]或[决斗]即将对目标造成伤害时，你可以进行一次判定，若结果为♥或♦，则对其造成两倍伤害。",
             chenmo:"沉默",

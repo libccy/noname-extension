@@ -43,10 +43,10 @@ game.import("extension", {
                 rid = Math.floor(Math.random() * game.players.length);
             }
             if(game.players[rid].hp==0){
-            	game.players[rid].die()._triggered = null;
+                game.players[rid].die()._triggered = null;
             }else{
-            	var dmg = Math.ceil(game.players[rid].hp/2);
-            	game.players[rid].damage(dmg)._triggered = null;
+                var dmg = Math.ceil(game.players[rid].hp/2);
+                game.players[rid].damage(dmg)._triggered = null;
             }
         };
         game.letPlayerWin = function(pl) {
@@ -127,7 +127,7 @@ game.import("extension", {
                         dan_huacun:["male","dan",3,["huacun1","huacun2","huacun4"],[]],
                         dan_nuller:["male","dan",4,["nuller1","nuller2","nuller4"],[]],
                         dan_tianzhong:["male","dan",3,["tianzhong1","tianzhong2","tianzhong3"],[]],
-                        dan_xiaoquan:["female","dan",3,["xiaoquan1"],[]],
+                        dan_xiaoquan:["female","dan",3,["xiaoquan1","xiaoquan3"],[]],
                         dan_xiyuansi:["female","dan",2,["xiyuansi1","xiyuansi2"],[]],
                         dan_zhongyin:["female","dan",4,["zhongyin1","zhongyin2"],[]],
                         dan_zuoyou:["male","dan",3,["zuoyou1","zuoyou3","zuoyou4"],[]],
@@ -484,7 +484,6 @@ game.import("extension", {
                                         });
                                         next.set('ai', function() {
                                             var event = _status.event;
-                                            if (event.player.hp < 2) return 16;
                                             return (ai.get.attitude(event.player, event.source) - 2);
                                         });
                                         next.autochoose = lib.filter.autoRespondShan;
@@ -492,7 +491,7 @@ game.import("extension", {
                                     }
                                 }
                                 "step 1"
-                                if (result.bool) {
+                                if (result.bool && result.cards[0]) {
                                     player.$gain2(result.cards);
                                     player.gain(result.cards);
                                     event.current.popup('交闪');
@@ -2200,7 +2199,15 @@ game.import("extension", {
                                 result: {
                                     player: function(player, target) {
                                         var num = -ai.get.attitude(player, target);
-                                        if (num > 0 && target.hp < game.players.length - 3) num += 10;
+                                        if (num > 0){
+                                            if(player.get('h').length<3){
+                                                if(target.hp>1){
+                                                    num += target.hp;
+                                                }else{
+                                                    num = -1;
+                                                }
+                                            }
+                                        }
                                         return num;
                                     },
                                 },
@@ -2611,7 +2618,7 @@ game.import("extension", {
                                     filterCard:false,
                                     selectCard:1,
                                     filter:function (event, player){
-                                        return player.storage.huacun3>=2;
+                                        return player.storage.huacun3>=2 && player.countCards('h')>0;
                                     },
                                     onrespond:function(result,player){
                                         player.storage.huacun3-=2;
@@ -2712,6 +2719,7 @@ game.import("extension", {
                                         return (event.player.storage.nuller3 || event.player == player);
                                     },
                                     content: function() {
+                                        player.storage.nuller1target = null;
                                         if (trigger.player == player) {
                                             for (var i = 0; i < game.players.length; i++) {
                                                 game.players[i].storage.nuller3 = false;
@@ -2751,7 +2759,50 @@ game.import("extension", {
                                 },
                             },
                         },
+        
                         nuller2: {
+                            trigger:{player:'phaseEnd'},
+                            content:function(){
+                                "step 0"
+                                var check=player.countCards('h');
+                                player.chooseCardTarget({
+                                    selectCard:[1,Infinity],
+                                    filterTarget:function(card,player,target){
+                                        return player!=target;
+                                    },
+                                    ai1:function(card){
+                                        var player=_status.event.player;
+                                        if(player.maxHp-player.hp==1&&card.name=='du') return 30;
+                                        var check=_status.event.check;
+                                        if(check<1) return 0;
+                                        if(player.hp>1&&check<2) return 0;
+                                        return get.unuseful(card);
+                                    },
+                                    ai2:function(target){
+                                        var att=get.attitude(_status.event.player,target);
+                                        if(ui.selected.cards.length==1&&ui.selected.cards[0].name=='du') return 1-att;
+                                        return att-2;
+                                    },
+                                    prompt:'将至少1张手牌交给一名其他角色',
+                                }).set('check',check);
+                                "step 1"
+                                if(result.bool){
+                                    result.targets[0].gain(result.cards,event.player);
+                                    event.player.$give(result.cards.length,result.targets[0]);
+                                    player.line(result.targets,'green');
+                                    player.draw(result.cards.length);
+                                }
+                            },
+                            ai:{
+                                threaten:function(player,target){
+                                    return player.countCards('h');
+                                },
+                                effect:{
+                                    target:function(card,player,target){
+                                        if(get.tag(card,'recover')&&player.hp>=player.maxHp-1) return [0,0];
+                                    }
+                                }
+                            },
                             mod:{
                                 globalFrom:function(from,to,distance){
                                     return Math.abs(Math.floor(game.players.length/2)-distance);
@@ -2857,11 +2908,29 @@ game.import("extension", {
                             filter: function(event,player) {
                                 return event.source == player && event.player!=player;
                             },
-                            frequent: true,
                             content: function() {
+                                'step 0'
                                 game.playSe('tianzhongSkill1');
                                 player.popup('黑暗');
                                 trigger.source = trigger.player;
+                                if(trigger.player.countCards('h')==0){
+                                    event.finish();
+                                    return;
+                                }
+                                trigger.player.chooseCard(function(card){
+                                    return true;
+                                },'黑暗：交给'+get.translation(player)+'一张牌或使伤害+1',false).set('ai',function(card){
+                                    if(card.name=='tao') return -10;
+                                    if(card.name=='jiu'&&_status.event.player.hp<=2) return -10;
+                                    return get.unuseful(card)+2.5*(5-get.owner(card).hp);
+                                });
+                                'step 1'
+                                if(result.bool){
+                                    player.gain(result.cards,trigger.player);
+                                    trigger.player.$give(1,player);
+                                }else{
+                                    trigger.num++;
+                                }
                             },
                             priority: 0,
                         },
@@ -2932,6 +3001,16 @@ game.import("extension", {
                                 },
                             },
                         },
+                        xiaoquan3:{
+                            trigger:{player:'loseEnd'},
+                            forced:true,
+                            filter:function(event,player){
+                                return player.countCards('h')<player.hp;
+                            },
+                            content:function(){
+                                player.draw(player.hp-player.countCards('h'));
+                            }
+                        },
                         xiyuansi1: {
                             trigger: {
                                 player: "chooseToRespondBegin",
@@ -2970,6 +3049,7 @@ game.import("extension", {
                             direct:true,
                             force: true,
                             content: function() {
+                                player.popup('甩袖');
                                 game.playSe('xiyuansiSkill1');
                                 trigger.untrigger();
                                 trigger.finish();
@@ -3003,6 +3083,7 @@ game.import("extension", {
                                 player.updateMarks();
                                 if(lastAttacter && lastAttacter!=attacter){
                                     player.logSkill('zhongyin1');
+                                    player.draw();
                                     trigger.untrigger();
                                     trigger.finish();
                                     event.finish();
@@ -3232,9 +3313,9 @@ game.import("extension", {
                         erda3: "超载",
                         erda3_info: "你死亡时选择对一名角色造成足以致死的伤害，且不会触发技能效果。",
                         huacun1: "绝味",
-                        huacun1_info: "锁定技，你的桃额外恢复1点体力。",
+                        huacun1_info: "锁定技，你的桃额外恢复1点体力，并且同时拥有酒的效果。",
                         huacun2: "烹饪",
-                        huacun2_info: "你的回合结束时会获得x枚【美食】标记，你可以弃置2枚【美食】标记和一张手牌视为同时使用桃和酒。x为你已损失的体力值。",
+                        huacun2_info: "你的回合结束时会获得x枚【美食】标记，你可以弃置2枚【美食】标记和一张手牌视为使用一张桃。x为你已损失的体力值。",
                         huacun3: "美食",
                         huacun3_info: "",
                         huacun4: "快刀",
@@ -3242,7 +3323,7 @@ game.import("extension", {
                         nuller1: "伪装",
                         nuller1_info: "每回合一次，你可以指定一个目标，直至下次你发动这个技能为止，该目标不能对你出牌，你或目标受到伤害时进行一次判定，如果是红色则本次伤害由你承担，若为黑色则由目标承担。",
                         nuller2: "欺诈",
-                        nuller2_info: "锁定技，你的进攻距离会跟正常进攻距离相反。",
+                        nuller2_info: "锁定技，你的进攻距离会跟正常进攻距离相反，在你的回合结束时，你可以交给一名角色任意张牌，并摸等量的牌。",
                         nuller3: "伪装",
                         nuller3_info: "",
                         nuller4: "神秘",
@@ -3252,17 +3333,19 @@ game.import("extension", {
                         tianzhong2: "禁术",
                         tianzhong2_info: "出牌阶段，你可以将手牌或者装备区的马当做决斗使用。",
                         tianzhong3: "黑暗",
-                        tianzhong3_info: "你造成伤害时，可以使伤害来源算作目标自身。",
+                        tianzhong3_info: "你造成伤害时，可以使伤害来源算作目标自身，如果目标有手牌，你可以使其选择交给你一张牌或者使本次伤害+1。",
                         xiaoquan1: "底片",
                         xiaoquan1_info: "出牌阶段限一次，选择一名角色帮他拍照，直到下次你的回合开始，由该角色发起的效果需要其他角色打出闪时，视为强制出闪。",
                         xiaoquan2: "瞎了",
                         xiaoquan2_info: "",
+                        xiaoquan3: "坚强",
+                        xiaoquan3_info: "锁定技，你的手牌不会少于你的体力值。",
                         xiyuansi1: "翩翩",
                         xiyuansi1_info: "锁定技，当你需要打出一张【闪】时，进行一次判定，若为黑色，视为你打出一张闪，并对效果来源使用一张乐不思蜀。",
                         xiyuansi2: "甩袖",
-                        xiyuansi2_info: "锁定技，你不会受到来自你攻击范围以外的角色造成的伤害。",
+                        xiyuansi2_info: "锁定技，你不会受到没有来源和与你距离1以外的角色造成的伤害。",
                         zhongyin1: "矫健",
-                        zhongyin1_info: "锁定技，当你受到伤害时获得一枚标记，若本次获得的标记与上一次的标记不同，免疫这次伤害。",
+                        zhongyin1_info: "锁定技，当你受到伤害时获得一枚标记，若本次获得的标记与上一次的标记不同，免疫这次伤害并摸一张牌。",
                         zhongyin2: "嗜血",
                         zhongyin2_info: "锁定技，你的【杀】和【决斗】造成的伤害会使你获得等量的回复。",
                         zuoyou1: "瓦解",
@@ -3285,11 +3368,11 @@ game.import("extension", {
                 }
                 return danganPack;
             });
-			lib.config.all.characters.push('dangan');
+            lib.config.all.characters.push('dangan');
             if(!lib.config.characters.contains('dangan')){
                 lib.config.characters.push('dangan');
             }
-        	lib.translate['dangan_character_config'] = '弹丸杀';
+            lib.translate['dangan_character_config'] = '弹丸杀';
             var kamukuraSkill = {
                 trigger: {
                     global: ["gameDrawAfter","phaseBefore"],
@@ -3309,6 +3392,32 @@ game.import("extension", {
                 },
             };
             game.addGlobalSkill(kamukuraSkill);
+            lib.arenaReady.push(function(){
+				lib.rank.s.push('dan_kamukura');
+				lib.rank.s.push('dan_dunzi');
+				lib.rank.ap.push('dan_monokuma');
+				lib.rank.ap.push('dan_rixiangb');
+				lib.rank.a.push('dan_bozhi');
+				lib.rank.a.push('dan_rixianga');
+				lib.rank.a.push('dan_biangu');
+				lib.rank.a.push('dan_zuoyou');
+				lib.rank.a.push('dan_xiaoquan');
+				lib.rank.am.push('dan_xiyuansi');
+				lib.rank.am.push('dan_zhongyin');
+				lib.rank.am.push('dan_erdaa');
+				lib.rank.am.push('dan_erdab');
+	            lib.rank.am.push('dan_nuller');
+	            lib.rank.am.push('dan_huacun');
+	            lib.rank.am.push('dan_tianzhong');
+	            lib.rank.am.push('dan_lingtian');
+	            lib.rank.am.push('dan_zhaorinai');
+	            lib.rank.am.push('dan_wuqie');
+	            lib.rank.am.push('dan_zuimu');
+	            lib.rank.am.push('dan_sonia');
+	            lib.rank.am.push('dan_jiutoulong');
+	            lib.rank.bp.push('dan_qihai');
+	 			lib.rank.bp.push('dan_tumei');
+			});
         }
     },
     help: { '弹丸杀':'<ul><li>♥超级弹丸论破游戏登场人物乱入无名杀世界♥'+

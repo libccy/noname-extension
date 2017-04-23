@@ -1,4 +1,4 @@
-game.import("extension",{name:"战国七雄",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"战国七雄",content:function (config,pack){
     
 },precontent:function (){
     
@@ -23,6 +23,9 @@ game.import("extension",{name:"战国七雄",content:function (config,pack){
             "ex_xiangyan":["male","ex_chu",4,["ex_pojun","ex_rubi"],["des:项燕（？—前223年），下相（今江苏宿迁人）人，项燕家族世代为楚国将领，受封于项，后用为姓氏。  公元前224年，秦王倾全国兵力，以王翦为将，率六十万大军大举攻楚，楚国危亡在即。王翦攻取楚国陈以南至平舆之间的地域。楚国则倾一国兵力迎击秦军，以项燕为将，准备与秦军决一死战。王翦因势而变，采取坚壁固守的方针，避其锋芒。楚军多次挑战，秦军始终不出。两军相持日久，楚军以为秦军将长期驻守新占领土，于是撤军东归。王翦伺机起兵追击，令勇壮军士为先锋，突袭楚军。楚军猝不及防，仓促应战，结果大败，项燕在兵败之下自杀。秦军乘胜攻占了楚国大片地域。"]],
             "ex_linxiangru":["male","ex_zhao",3,["ex_wanbi","ex_qianren"],["des:蔺相如（生卒年不详），战国时期赵国著名的政治家、外交家。他生平最重要的事迹有完璧归赵、渑池之会与负荆请罪这三个事件。  蔺相如原为宦者令舍人。赵惠文王时，秦昭王写信给赵王，愿以十五个城池换取“和氏璧”。蔺相如奉命带“和氏璧”来到秦国，据理力争，机智周旋，终于完璧归赵。公元前279年，秦王与赵王相会于渑池（今河南渑池西），他随侍赵惠文王，当面斥责强大的秦国，不辱国体，使赵王没有受到屈辱，因其功，任为上卿，居官于廉颇之上。廉颇居功自恃，不服相如，耻居其下，并扬言要羞辱相如。蔺相如为保持将相和睦，不使外敌有隙可乘，始终回避忍让。蔺相如以国家利益为重、善自谦抑的精神感动了廉颇，于是亲自到蔺相如府上负荆请罪，二人成为刎颈之交。"]],
             "ex_lianpo":["male","ex_zhao",4,["ex_gushou","ex_laoyi"],["des:廉颇，生卒年不详，嬴姓，廉氏，名颇，山西太原（一说山西运城，山东德州）人。战国末期赵国的名将，与白起、王翦、李牧并称“战国四大名将”。曾率兵讨伐齐国，取得大胜，夺取了晋阳，赵王封他为上卿。廉颇因为勇猛果敢而闻名于诸侯各国。长平之战前期，他以固守的方式成功抵御了秦国军队。长平之战后，又击退了燕国的入侵，斩杀燕国的栗腹，并令对方割五城求和。公元前251年，他战胜燕军，任以为相国，封为信平君。至赵悼襄王时，由于不得志，他先后投奔魏国大梁和楚国，奔魏居大梁，后老死于楚，葬于寿春。"]],
+            "ex_zhaoyong":["male","ex_zhao",4,["ex_hufu","ex_qishe"],["des:赵雍（约公元前340年—前295年），即赵武灵王，嬴姓，赵国人，赵氏，名雍，赵肃侯之子，战国中后期赵国君主，政治家、改革家。生于赵国首都邯郸。  赵武灵王即位时，赵国国力不强，受中原大国欺侮。林胡、楼烦等游牧民族也不时骚扰，邻境较小的中山国也时常进犯。赵武灵王二十四年（前302年）颁布命令，推行的“胡服骑射”政策，改革军事装备和作战方法，赵国因而得以强盛。赵雍率将士攻击匈奴，占领今内蒙古南部黄河两岸之地，建立云中、九原两郡，又在阴山筑赵长城以抵御胡人。前296年吞并中山国。前314年，燕国发生子之之乱，国都被齐国、中山国攻破，赵武灵王扶植燕昭王回国即位。  赵雍晚年传位于子赵惠文王，自号为“主父”，公元前295年的沙丘宫变中被围困活活饿死于沙丘宫（在今河北广宗县），谥号为武灵王，赵武灵王墓位于今山西省大同市灵丘县。"]],
+            "ex_zhaosheng":["male","ex_zhao",3,["ex_nashi"],["des:赵胜（约前308年-前251年），战国四公子之一，赵国贵族。赵武灵王之子，赵惠文王之弟。因贤能而闻名。刻于东武（今山东武城），号平原君。  他礼贤下士，门下食客至数千人，和朋友关系处理的很好。但不注意礼貌对待平民，后在一名门客的建议下和平民搞好了关系，威名大震。  赵胜初为赵惠文王之相，赵惠文王死后，又为赵孝成王之相。赵孝成王七年（前259），长平之战后，秦军进围赵都邯郸（今属河北邯郸），形势十分危急。赵胜尽散家财，发动士兵，坚守城池，长达三年之久。赵王派赵胜向魏和楚求援。九年，食客毛遂自告奋勇，同赵胜去楚国求援，说服了楚王，派春申君率军救赵。此即“毛遂自荐”。援军到来之前，邯郸城内兵困粮尽，赵胜尽散家财，发动士兵坚守城池。直到楚军和魏信陵君援兵赶到，解邯郸之围。"]],
+            "ex_limu":["male","ex_zhao",4,["ex_quehu","ex_yuqin"],["des:李牧（？－公元前229年），嬴姓，李氏，名牧，赵国柏仁（今河北邢台）人，战国时期的赵国军事家，与白起、王翦、廉颇并称“战国四大名将”。战国末期，李牧是赵国赖以支撑危局的唯一良将，素有“李牧死，赵国亡”之称。   李牧生平事迹大致可划分为两个阶段，先是在赵国北部边境，抗击匈奴；后以抵御秦国为主，因在宜安之战重创秦军，得到武安君的封号。公元前229年，赵王迁中了秦国的离间计，听信谗言夺取了李牧的兵权，不久后将李牧杀害。  李牧是战国末年东方六国最杰出的将领。深得士兵和人民的爱戴，有着崇高的威望。在一系列的作战中，他屡次重创敌军而未尝败，显示了高超的军事指挥艺术。尤其是赵破匈奴之战和肥之战，前者是中国战争史中以步兵大兵团全歼骑兵大兵团的典型战例，后者则是围歼战的范例。他的无辜被害，使赵国自毁长城，令后人无不扼腕叹恨。"]],
         },
         translate:{
             "ex_qin":"秦",
@@ -57,6 +60,9 @@ game.import("extension",{name:"战国七雄",content:function (config,pack){
             "ex_xiangyan":"项燕",
             "ex_linxiangru":"蔺相如",
             "ex_lianpo":"廉颇",
+            "ex_zhaoyong":"赵雍",
+            "ex_zhaosheng":"赵胜",
+            "ex_limu":"李牧",
         },
     },
     card:{
@@ -371,41 +377,71 @@ player.gain(game.createCard(trigger.card),'gain2');
                 },
             },
             "ex_lianheng":{
+                global:"ex_lianheng_ai",
                 trigger:{
-                    player:"damageBefore",
+                    source:"damageBegin",
                 },
-                forced:true,
-                filter:function (event,player){
-        return event.source&&event.source.isAlive()&&event.source!=player&&event.source.isLinked();
+                check:function (event,player){
+        return event.player&&get.damageEffect(event.player,player,player)>0;
     },
+                filter:function (event){
+        return event.player&&event.player.isAlive()&&event.player.isLinked();
+    },
+                logTarget:"trigger.player",
                 content:function (){
-        trigger.untrigger();
-        trigger.finish();
-        player.recover(trigger.num);
-        player.draw();
-        trigger.source.link();
+        'step 0'
+        var target=trigger.player;
+        if(target.countCards('h')==0){
+            trigger.num++;
+            if(target.isLinked()){
+                target.link();
+            }
+            event.finish();
+        }
+        else{
+            target.chooseControl('discard_card','get_damage',function(){
+                if(get.damageEffect(target,player,target)>=0) return 'get_damage';
+                var nh=target.countCards('h');
+                if(nh<=3||target.hp<=3||target.hasSkillTag('noh')) return 'discard_card';
+                return 'get_damage';
+            })
+        }
+        'step 1'
+        var target=trigger.player;
+        if(result.control=='discard_card'){
+            target.discard(target.getCards('h'));
+            if(target.isLinked()){
+                target.link();
+            }
+            trigger.untrigger();
+            trigger.finish();
+        }
+        else{
+            trigger.num++;
+            if(target.isLinked()){
+                target.link();
+            }
+        }
     },
                 ai:{
-                    threaten:0.3,
+                    maixie:true,
+                    "maixie_hp":true,
                 },
                 group:"ex_lianheng_a",
                 subSkill:{
                     a:{
                         trigger:{
-                            source:"damageBegin",
+                            player:"damageBefore",
                         },
                         forced:true,
                         filter:function (event,player){
-        return event.player&&event.player.isLinked()&&event.player!=player&&!event.nature;
+        return event.source&&event.source.isAlive()&&event.source!=player&&event.source.isLinked();
     },
                         content:function (){
-                "step 0"
-        trigger.num++;
-                trigger.player.draw();
-                "step 1"
-                if(2>=trigger.player.hp-trigger.num){
-                        trigger.player.link();   
-                }
+        trigger.untrigger();
+        trigger.finish();
+        player.recover(trigger.num);
+        trigger.source.link();
     },
                         ai:{
                             threaten:0.3,
@@ -1287,10 +1323,10 @@ player.gain(game.createCard(trigger.card),'gain2');
                 },
                 forced:true,
                 filter:function (event,player){
-        return _status.currentPhase!=player&&(player.num('h')<Math.min(3));
+        return _status.currentPhase!=player&&(player.num('h')<Math.min(4));
     },
                 content:function (){
-     player.draw(Math.min(3)-player.num('h'));
+     player.draw(Math.min(4)-player.num('h'));
     },
             },
             "ex_qianren":{
@@ -1347,16 +1383,167 @@ player.gain(game.createCard(trigger.card),'gain2');
             },
             "ex_laoyi":{
                 trigger:{
-                    player:["damageEnd","loseHpEnd"],
+                    global:"phaseEnd",
                 },
                 forced:true,
-                priority:15,
                 filter:function (event,player){
-        return _status.currentPhase!=player;
+        return event.player&&event.player!=player&&event.player!=player.previous&&player.hp<player.maxHp;
     },
                 content:function (){
      player.phase();
     },
+            },
+            "ex_qishe":{
+                mod:{
+                    globalFrom:function (from,to,distance){
+            return distance-1;
+        },
+                    globalTo:function (from,to,distance){
+            return distance+1;
+        },
+                },
+            },
+            "ex_hufu":{
+                trigger:{
+                    player:"phaseBegin",
+                },
+                forced:true,
+                content:function (){
+        player.skip('phaseJudge');
+    },
+                mod:{
+                    selectTarget:function (card,player,range){
+            if(range[1]==-1) return;
+            if(card.name=='sha') range[1]+=1;
+        },
+                    cardUsable:function (card,player,num){
+            if(card.name=='sha') return num+1;
+        },
+                },
+            },
+            "ex_nashi":{
+                trigger:{
+                    global:"gameDrawAfter",
+                    player:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        "step 0"
+            player.chooseTarget('选择一名角色随机获得一个技能',true).ai=function(target){
+                if(player.hp==1){
+                    return ai.get.attitude(player,target)>=3&&player!=target;
+                }
+                return ai.get.attitude(player,target)+10;
+            }
+
+        "step 1"
+        var skills=[]; 
+        for(var i in lib.character){ 
+            for(var j=0;j<lib.character[i][3].length;j++){ 
+                var info=lib.skill[lib.character[i][3][j]];
+                if(info&&(info.gainable||!info.unique)){
+                    skills.add(lib.character[i][3][j]); 
+                }
+            } 
+        }
+        var link=skills.randomGet();
+        player.line(result.targets[0],'green');
+        result.targets[0].addSkill(link);
+        result.targets[0].mark(link,{
+            name:get.translation(link),
+            content:lib.translate[link+'_info']
+        });
+        game.log(result.targets[0],'获得技能','【'+get.translation(link)+'】');        
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "ex_quehu":{
+                trigger:{
+                    player:["useCard","respondAfter"],
+                },
+                direct:true,
+                filter:function (event){
+        return game.countPlayer()>1&&event.card&&event.card.name=='shan';
+    },
+                content:function (){
+        "step 0"
+        game.delay(0.5);
+        player.chooseCardTarget({
+            prompt:get.prompt('ex_quehu'),
+            filterCard:lib.filter.cardDiscardable,
+            position:'he',
+            filterTarget:function(card,player,target){
+                return target!=player;
+            },
+            ai1:function(card){
+                return 8-get.value(card);
+            },
+            ai2:function(target){
+                return get.damageEffect(target,player,player);
+            }
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('ex_quehu',result.targets);
+            player.discard(result.cards);
+            result.targets[0].damage();
+        }
+    },
+                ai:{
+                    expose:0.3,
+                    threaten:1.6,
+                },
+            },
+            "ex_yuqin":{
+                enable:["chooseToRespond"],
+                filterCard:function (card){
+        return get.type(card)=='basic';
+    },
+                viewAs:{
+                    name:"shan",
+                    suit:"diamond",
+                    number:5,
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('h',{type:'basic'})) return false;
+    },
+                prompt:"将一张基本牌当闪打出",
+                check:function (){return 1},
+                ai:{
+                    respondShan:true,
+                    skillTagFilter:function (player){
+            if(!player.countCards('h',{type:'basic'})) return false;
+        },
+                    effect:{
+                        target:function (card,player,target,current){
+                if(get.tag(card,'respondShan')&&current<0) return 0.6
+            },
+                    },
+                    basic:{
+                        useful:[7,2],
+                        value:[7,2],
+                    },
+                },
+                group:"ex_yuqin_a",
+                subSkill:{
+                    a:{
+                        trigger:{
+                            player:"phaseEnd",
+                        },
+                        frequent:true,
+                        filter:function (event,player){
+        return get.cardCount(true,player)>0;
+    },
+                        content:function (){
+        player.draw(get.cardCount(true,player));
+    },
+                        ai:{
+                            threaten:1.3,
+                        },
+                    },
+                },
             },
         },
         translate:{
@@ -1373,7 +1560,7 @@ player.gain(game.createCard(trigger.card),'gain2');
             "ex_bianfa":"变法",
             "ex_bianfa_info":"锁定技，场上所有角色在摸牌阶段不摸牌，在回合结束阶段摸两张牌，当有角色（可以为你）造成伤害时，你与其各获得一张牌（伤害来源为你则你摸两张牌）",
             "ex_lianheng":"连横",
-            "ex_lianheng_info":"锁定技，被连环的角色对你造成的伤害均视为体力回复，之后其解除连环，而你摸一张牌，当你对被伤害角色造成伤害时，此伤害+1，该角色摸一张牌，若因此技能使该角色的体力小于二，该角色解除连环",
+            "ex_lianheng_info":"当你造成伤害时，若被伤害角色处于横置状态，则其须选择<br>1.防止此伤害并弃置所有牌<br>2.令此伤害+1<br>当你受到伤害时，若伤害来源处于横置状态，则你防止此次伤害并回复相应的体力<br>此技能无论触发哪一种效果，该名处于横置状态的角色都会在这之后解除横置状态",
             "ex_qiaoshe":"巧舌",
             "ex_qiaoshe_info":"开始阶段，将体力不小于你的一名其他角色横置或者重置",
             "ex_wucheng":"武成",
@@ -1429,13 +1616,23 @@ player.gain(game.createCard(trigger.card),'gain2');
             "ex_rubi":"入壁",
             "ex_rubi_info":"当你的〔杀〕造成伤害后，你可以摸一张牌并视为对被伤害目标发起〔决斗〕",
             "ex_wanbi":"完璧",
-            "ex_wanbi_info":"当你于回合外失去牌时，若你的手牌数小于三，你将手牌补至三张",
+            "ex_wanbi_info":"当你于回合外失去牌时，若你的手牌数小于四，你将手牌补至四张",
             "ex_qianren":"谦忍",
             "ex_qianren_info":"锁定技，每当你体力减少时，你须摸一张牌并弃一张牌",
             "ex_gushou":"固守",
             "ex_gushou_info":"当其他角色的牌以你为目标时，你可以弃置一张牌取消之",
             "ex_laoyi":"老矣",
-            "ex_laoyi_info":"锁定技，你在回合外体力减少时，你立即执行一个额外的回合",
+            "ex_laoyi_info":"锁定技，其他角色的回合结束后，若你已受伤，则你开始你的回合，你的回合结束后，其他角色按原有顺序进行回合",
+            "ex_qishe":"骑射",
+            "ex_qishe_info":"锁定技，你的进攻距离+1，你的防御距离+1",
+            "ex_hufu":"胡服",
+            "ex_hufu_info":"锁定技，你不受延时判定类锦囊影响，出牌阶段，你的杀使用次数+1且可以额外指定一个目标",
+            "ex_nashi":"纳士",
+            "ex_nashi_info":"游戏开始前，或在你受到伤害后，你可以选择任意一名角色，使其获得随机一个技能",
+            "ex_quehu":"却胡",
+            "ex_quehu_info":"每当你打出一张〔闪〕，可以弃置一张牌并对一名角色造成一点伤害",
+            "ex_yuqin":"御秦",
+            "ex_yuqin_info":"你可以将一张基本牌当[闪]打出<br>回合结束时，你摸x张牌（x为你在该回合使用过的牌的数量）",
         },
     },
-},files:{"character":["ex_lianpo.jpg"],"card":[],"skill":[]}})
+},files:{"character":["ex_limu.jpg"],"card":[],"skill":[]}}})

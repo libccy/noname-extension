@@ -1,23 +1,25 @@
 ﻿game.import('extension',{
     name:'极略三国',
     content:function(config){
-		get.slimName=function(str){
-			var str2=lib.translate[str];
-			if(!str2) return '';
-			if(str2.indexOf('sp')==0){
-				str2=str2.slice(2);
+		if(config.simple_name=='hide'){
+			get.slimName=function(str){
+				var str2=lib.translate[str];
+				if(!str2) return '';
+				if(str2.indexOf('sp')==0){
+					str2=str2.slice(2);
+				}
+				else if(str2.indexOf('界sp')==0){
+					str2=str2.slice(3);
+				}
+				else if(str2.indexOf('SK')==0){
+					str2=str2.slice(2);
+				}
+				else if(str2.indexOf('SR')==0){
+					str2=str2.slice(2);
+				}
+				return get.verticalStr(str2,true);
 			}
-			else if(str2.indexOf('界sp')==0){
-				str2=str2.slice(3);
-			}
-			else if(str2.indexOf('SK')==0){
-				str2=str2.slice(2);
-			}
-			else if(str2.indexOf('SR')==0){
-				str2=str2.slice(2);
-			}
-			return get.verticalStr(str2,true);
-		}
+		}		
 		// ---------------------------------------SR武将------------------------------------------//
 		if(config.sgk_sr){
 			game.addCharacterPack({
@@ -103,6 +105,11 @@
 							}
 							'step 2'
 							player.removeSkill(result.control);
+							if(get.mode()=='guozhan'){
+								lib.character[event.deleting][3].remove(result.control);
+								player.hiddenSkills.remove(result.control);
+								player.removeSkillTrigger(result.control);
+							}
 							player.checkMarks();
 							'step 3'
 							for(var i=0;i<event.names.length;i++){
@@ -208,6 +215,7 @@
 						group:['sgk_yansha2'],
 						subSkill:{
 							cards:{
+								audio:false,
 								trigger:{player:'phaseEnd'},
 								filter:function(event,player){
 									return player.countCards('h')>0;
@@ -549,7 +557,7 @@
 						}
 					},
 					sgk_guicai:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{global:'judge'},
 						check:function(event,player){
@@ -619,7 +627,7 @@
 						}
 					},
 					sgk_langgu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
@@ -654,7 +662,7 @@
 						group:['sgk_langgu2']
 					},
 					sgk_langgu2:{
-						audio:1,
+						audio:true,
 						trigger:{source:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)<=0;
@@ -687,7 +695,7 @@
 						},
 					},
 					sgk_zhuizun:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'chooseToUse',
 						mark:true,
@@ -758,15 +766,16 @@
 						}
 					},
 					sgk_zhuizun2:{
+						audio:false,
 						trigger:{global:'phaseAfter'},
 						forced:true,
 						content:function(){
 							player.removeSkill('sgk_zhuizun2');
-							player.insertPhase();
+							player.insertPhase('sgk_zhuizun');
 						}
 					},
 					sgk_tianshang:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'dieBegin'},
 						direct:true,
@@ -801,12 +810,12 @@
 						},
 					},
 					sgk_yiji:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						inherit:'yiji'
 					},
 					sgk_huiqu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -979,14 +988,7 @@
 							player.addTempSkill('sgk_jiwu_buff3','phaseAfter');
 							
 						},
-						mod:{
-							selectTarget:function(card,player,range){
-								if(card.name!='sha') return;
-								if(range[1]==-1) return;
-								if(player.countCards('e')>0) return;
-									range[1]+=2;
-							}
-						},
+						group:'sgk_jiwu2',
 						subSkill:{
 							buff1:{
 								audio:'ext:极略三国:true',
@@ -1048,8 +1050,65 @@
 							}
 						}
 					},
+					sgk_jiwu2:{
+						audio:false,
+						trigger:{player:'useCard'},
+						filter:function(event,player){
+							if(player.countCards('e')>0) return false;
+							if(event.card.name!='sha') return false;
+							return game.hasPlayer(function(current){
+								return !event.targets.contains(current)&&player.canUse('sha',current);
+							});
+						},
+						direct:true,
+						content:function(){
+							'step 0'
+							player.chooseTarget(get.prompt('sgk_jiwu'),function(card,player,target){
+								return !_status.event.source.contains(target)&&player.canUse('sha',target);
+							},[1,2]).set('source',trigger.targets).set('ai',function(target){
+								var player=_status.event.player;
+								return get.effect(target,{name:'sha'},player,player);
+							});
+							'step 1'
+							if(result.bool){
+								if(!event.isMine()&&!_status.connectMode) game.delay(0.5);
+								event.targets=result.targets;
+							}
+							else{
+								event.finish();
+							}
+							'step 2'
+							player.logSkill('sgk_jiwu',event.target);
+							for(var i=0;i<event.targets.length;i++){
+								trigger.targets.push(event.targets[i]);
+							}
+							
+						},
+						ai:{
+							effect:{
+								player:function(card,player,target){
+									if(card.name=='sha'){
+										if(player._jiwutmp) return;
+										player._jiwutmp=true;
+										if(get.effect(target,{name:'sha'},player,player)<=0){
+											delete player._jiwutmp;
+											return;
+										}
+										if(game.hasPlayer(function(current){
+											return current!=target&&get.distance(player,current)<=1&&
+											player.canUse('sha',current)&&get.effect(current,{name:'sha'},player,player)>0;
+										})){
+											delete player._jiwutmp;
+											return [1,1];
+										}
+										delete player._jiwutmp;
+									}
+								}
+							}
+						}
+					},
 					sgk_sheji:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
@@ -1061,7 +1120,7 @@
 						direct:true,
 						content:function(){
 							'step 0'
-							var next=player.chooseToDiscard('he','是否发动【射戟】？弃置一张牌获得'+get.translation(trigger.source)+'的'+get.translation(trigger.source.get('e','1'))+'?');
+							var next=player.chooseToDiscard('he','是否发动【射戟】？弃置一张牌获得'+get.translation(trigger.source)+'的'+get.translation(trigger.source.getEquip(1))+'?');
 							next.logSkill=['sgk_sheji',trigger.source];
 							next.ai=function(card){
 								if(get.attitude(player,trigger.source)<0){
@@ -1078,7 +1137,7 @@
 						group:['sgk_sheji2','sgk_sheji_wushuang'],
 						subSkill:{
 							wushuang:{
-								audio:2,
+								audio:false,
 								trigger:{player:'shaBegin'},
 								forced:true,
 								filter:function(event,player){
@@ -1104,7 +1163,7 @@
 						}
 					},
 					sgk_sheji2:{
-						audio:1,
+						audio:true,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:{type:'equip'},
 						viewAs:{name:'sha'},
@@ -1130,7 +1189,7 @@
 						}
 					},
 					sgk_xingyi:{
-						audio:1,
+						audio:true,
 						enable:'phaseUse',
 						usable:1,
 						srlose:true,
@@ -1157,7 +1216,7 @@
 						}
 					},
 					sgk_guagu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{global:'dying'},
 						priority:6,
@@ -1202,7 +1261,7 @@
 						}
 					},
 					sgk_wuqin:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1243,7 +1302,7 @@
 						inherit:'lijian'
 					},
 					sgk_manwu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1277,7 +1336,7 @@
 						}
 					},
 					sgk_baiyue:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1302,6 +1361,7 @@
 						group:['sgk_baiyue_countGeneral'],
 						subSkill:{
 							countGeneral:{
+								audio:false,
 								trigger:{global:['useCardAfter','respondAfter','discardAfter']},
 								forced:true,
 								popup:false,
@@ -1325,6 +1385,7 @@
 								}
 							},
 							countJudge:{
+								audio:false,
 								trigger:{global:'judgeAfter'},
 								forced:true,
 								popup:false,
@@ -1344,7 +1405,7 @@
 						}
 					},
 					sgk_yinmeng:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -1396,6 +1457,7 @@
 						group:['sgk_yinmeng2']
 					},
 					sgk_yinmeng2:{
+						audio:false,
 						trigger:{player:'phaseBefore'},
 						forced:true,
 						silent:true,
@@ -1406,7 +1468,7 @@
 						}
 					},
 					sgk_xiwu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'shaMiss'},
 						priority:-1,
@@ -1421,7 +1483,7 @@
 						}
 					},
 					sgk_juelie:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1461,7 +1523,7 @@
 					},
 					sgk_fangxin:{
 						srlose:true,
-						audio:1,
+						audio:2,
 						enable:'chooseToUse',
 						position:'he',
 						viewAs:{name:'tao'},
@@ -1492,7 +1554,7 @@
 						}
 					},
 					sgk_xiyu:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -1519,7 +1581,7 @@
 						}
 					},
 					sgk_wanrou:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:['useCardAfter','respondAfter','discardAfter']},
 						direct:true,
@@ -1549,6 +1611,7 @@
 						group:'sgk_wanrou2'
 					},
 					sgk_wanrou2:{
+						audio:false,
 						trigger:{player:'loseEnd'},
 						filter:function(event,player){
 							for(var i=0;i<event.cards.length;i++){
@@ -1600,6 +1663,7 @@
 						},
 						subSkill:{
 							buff:{
+								audio:false,
 								trigger:{source:'damageAfter'},
 								forced:true,
 								popup:false,
@@ -1636,7 +1700,7 @@
 						}
 					},
 					sgk_zhaxiang:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						filterCard:true,
@@ -1698,7 +1762,7 @@
 						}
 					},
 					sgk_shixue:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						frequent:true,
@@ -1708,6 +1772,7 @@
 						}
 					},
 					sgk_shixue2:{
+						audio:false,
 						trigger:{player:'shaMiss'},
 						forced:true,
 						popup:false,
@@ -1716,7 +1781,7 @@
 						}
 					},
 					sgk_guoshi:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -1803,7 +1868,7 @@
 						}
 					},
 					sgk_guoshi2:{
-						audio:1,
+						audio:true,
 						trigger:{global:'phaseBegin'},
 						prompt:'是否发动【国士】观看牌顶的牌？',
 						frequent:true,
@@ -1987,7 +2052,7 @@
 						}
 					},
 					sgk_yingcai:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
@@ -2031,7 +2096,7 @@
 						}
 					},
 					sgk_weibao:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2091,7 +2156,7 @@
 						}
 					},
 					sgk_choulve:{
-						audio:1,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2170,7 +2235,7 @@
 						}
 					},
 					sgk_jiexi:{
-						audio:4,
+						audio:true,
 						srlose:true,
 						usable:1,
 						enable:'phaseUse',
@@ -4889,6 +4954,10 @@
 					sgk_yingbing:{
 						audio:2,
 						trigger:{global:'judgeEnd'},
+						check:function(event,player){
+							return get.effect(event.player,{name:'sha'},player,player)>0;
+						},
+						logTarget:'player',
 						filter:function(event,player){
 							if(event.nogain&&event.nogain(event.result.card)){
 								return false;
@@ -9216,7 +9285,7 @@
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:[1,Infinity],
-						filter:function(){
+						filter:function(event,player){
 							return player.countCards('h')&&game.hasPlayer(function(current){
 								return !current.storage.sgk_jizhao&&player!=current;
 							});
@@ -9808,8 +9877,7 @@
 							player.syncStorage('sgk_kuangbao');
 							event.targets=game.filterPlayer(function(current){
 								return player!=current;
-							});
-							event.targets.sortBySeat();
+							}).sortBySeat();
 							event.targets2=event.targets.slice(0);
 							"step 1"
 							if(event.targets.length){
@@ -9820,10 +9888,7 @@
 							if(event.targets2.length){
 								var cur=event.targets2.shift();
 								if(cur&&cur.countCards('he')){
-									if(cur.countCards('e')){
-										cur.discard(cur.getEquip());
-									}
-									cur.chooseToDiscard('h',true,4);
+									cur.discard(cur.get('he'));
 								}
 								event.redo();
 							}
@@ -10889,7 +10954,6 @@
 						audio:4,
 						enable:'phaseUse',
 						usable:1,
-						filterCard:true,
 						position:'he',
 						filterTarget:function(card,player,target){
 							return target.sex=='male'&&player!=target;
@@ -11372,6 +11436,9 @@
 					sgk_qinyin:{
 						audio:true,
 						trigger:{player:'phaseDiscardBegin'},
+						filter:function(event,player){
+							return player.countCards('h')>1;
+						},
 						check:function(){
 							return Math.random()<0.5;
 						},
@@ -11581,7 +11648,7 @@
 					sgk_kuangbao_info:'锁定技:游戏开始时，你获得两枚[暴]标记。每当你造成或受到伤害时，你获得等量的[暴]标记。',
 					sgk_wumou_info:'锁定技:当你使用非延时锦囊牌时，你须选择一项:1，弃置一枚[暴]标记；2，受到一点伤害。',
 					sgk_wuqian_info:'出牌阶段：你可以弃置两枚[暴]标记，若如此做，本回合内你视为拥有技能【无双】且你造成伤害后额外获得一枚[暴]标记。',
-					sgk_shenfen_info:'出牌阶段，弃6个暴怒标记，你对每名其他角色各造成一点伤害，其他角色先弃掉各自装备区里所有的牌，再各弃四张手牌，然后将你的武将牌翻面，每回合限一次。',
+					sgk_shenfen_info:'出牌阶段，弃6个暴怒标记，你对每名其他角色各造成一点伤害，其他角色弃掉所有牌，然后将你的武将牌翻面，每回合限一次。',
 					sgk_wushen_info:'锁定技，你的【杀】和【桃】均视为【决斗】。',
 					sgk_suohun_info:'锁定技，每当你受到1点伤害后，伤害来源(除你以外)获得一个“魂”标记。当你进入濒死状态时，减一半(向上取整)的体力上限并回复体力至体力上限，拥有“魂”标记的角色依次弃置所有的“魂”标记，然后受到与弃置的“魂”标记数量相同的伤害。',
 					sgk_juejing_info:'锁定技，一名角色的回合开始时，若你的体力值：为1，你摸一张牌；大于1，你失去1点体力，然后摸两张牌。',
@@ -11601,7 +11668,7 @@
 					sgk_xianzhu_info:'当一名角色回复体力后，或失去装备区里的牌后，你可以令其摸两张牌。',
 					sgk_liangyuan_info:'限定技，出牌阶段，你可以选择一名其他男性角色，则于本局游戏中，你的自然回合结束时，该角色进行一个额外的回合。',
 					sgk_tianzi_info:'摸牌阶段，你可以放弃摸牌，然后令所有其他角色依次选择一项：1、交给你一张牌；2、令你摸一张牌。',
-					sgk_meixin_info:'出牌阶段限一次，你可以弃置一张牌并选择一名其他男性角色，若如此做，本阶段当你使用一张基本牌后，你令其弃置一张牌；当你使用一张锦囊牌后，你获得其一张牌；当你使用一张装备牌后，你对其造成1点伤害。',
+					sgk_meixin_info:'出牌阶段限一次，你可以选择一名其他男性角色，若如此做，本阶段当你使用一张基本牌后，你令其弃置一张牌；当你使用一张锦囊牌后，你获得其一张牌；当你使用一张装备牌后，你对其造成1点伤害。',
 					sgk_shayi_info:'锁定技，出牌阶段开始时，你展示所有手牌，若有【杀】，你摸一张牌；若没有【杀】，你于本阶段可以将一张黑色牌当【杀】使用。你使用【杀】无距离限制、无次数限制。',
 					sgk_zhenhun_info:'出牌阶段限一次，你可以弃置一张牌令所有其他角色的非锁定技于本阶段内无效。',
 					sgk_zhitian_info:'锁定技，回合开始时，你须将所有手牌交给一名角色，并令其随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外），然后你失去1点体力。',
@@ -11625,14 +11692,12 @@
 					dengshizai:['male','wei',3,['zhenggong','toudu'],['die_audio']],
 					sup_yuji:['male','qun',3,['sup_guhuo'],['die_audio']],
 					sup_miheng:['male','qun',3,['sup_kuangcai','sup_shejian'],['die_audio']],
-					nos_jiling:['male','qun',4,['nos_shuangren'],['die_audio']],
-					nos_mateng:['male','qun',4,['mashu','nos_xiongyi'],['die_audio']],
 					nos_guanzhang:['male','shu',4,['nos_fuhun'],['die_audio']],
 					//nos_yuji:['male','qun',3,['nos_guhuo'],['die_audio']],
 				},
 				skill:{
 					sup_kuangcai:{
-						audio:2,
+						audio:3,
 						trigger:{
 							player:"phaseUseBegin",
 						},
@@ -12318,7 +12383,7 @@
 						},
 						content:function(){
 							'step 0'
-							player.insertPhase('zhenggong');
+							player.phase('zhenggong');
 							'step 1'
 							player.turnOver();
 						},
@@ -13047,8 +13112,6 @@
 					dengshizai:'邓士载',
 					sup_yuji:'于吉',
 					sup_miheng:'祢衡',
-					nos_jiling:'纪灵',
-					nos_mateng:'马腾',
 					nos_guanzhang:'关兴张苞',
 					nos_yuji:'于吉',
 					
@@ -13061,16 +13124,12 @@
 					sup_chanyuan:'缠怨',
 					sup_kuangcai:'狂才',
 					sup_shejian:'舌剑',
-					nos_xiongyi:'雄异',
-					nos_shuangren:'双刃',
 					nos_fuhun:'父魂',
 					nos_guhuo:'蛊惑',
 					nos_guhuo_backup:'蛊惑',
 					
 					nos_danshou_info:'每当你造成伤害后，你可摸一张牌，然后终止一切结算，结束当前回合。',
 					nos_guhuo_info:"你可以说出任何一种基本牌或非延时类锦囊牌，并正面朝下使用或打出一张手牌。体力值不为0的其他角色依次选择是否质疑。若无人质疑，则该牌按你所述之牌结算。若有人质疑则亮出验明：若为真，质疑者各失去1点体力；若为假，质疑者各摸一张牌。无论真假，弃置被质疑的牌。仅当被质疑的牌为红桃花色且为真时，该牌仍然可以进行结算。",
-					nos_xiongyi_info:'限定技，出牌阶段，你可令所有与你势力相同的角色摸三张牌，然后若你所属势力的角色是全场最少的（或之一），你回复一点体力。',
-					nos_shuangren_info:'出牌阶段开始时，你可以与一名其他角色拼点。若你赢，视为你对其或一名与其势力相同的其他角色使用一张【杀】（此【杀】不计入出牌阶段使用次数的限制）。若你没赢，你结束出牌阶段',
 					nos_fuhun_info:'摸牌阶段，你可以放弃摸牌，改为亮出牌堆顶的两张牌并获得之，若亮出的牌颜色不同，你获得技能“武圣”、“咆哮”，直到回合结束。',
 					
 					sup_kuangcai_info:"出牌阶段开始时，你可以令你此阶段内的出牌时间变为5秒，若如此做，你使用牌没有距离和次数限制，且每当你与此阶段内使用牌时，你摸一张牌并且出牌时间-1秒。",
@@ -13100,7 +13159,16 @@
 		supply:{
 			name:'武将补全',
 			init:true,
-		}
+		},
+		simple_name:{
+			name:'武将前缀',
+			intro:'选择是否显示SK、SR武将前缀',
+			init:'hide',
+			item:{
+				hide:'隐藏',
+				show:'显示',
+			}
+		},
     },
 	package:{
 		character:{character:{},translate:{}},

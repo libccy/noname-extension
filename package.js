@@ -162,7 +162,7 @@ window.noname_extension_list=[
         size:"2.1MB",
         netdisk:"https://pan.baidu.com/s/1jHDBGI6",
         forum:"https://tieba.baidu.com/p/4802167753",
-        version:6,
+        version:7,
         files:[
             "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
 			"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",

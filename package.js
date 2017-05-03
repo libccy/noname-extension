@@ -156,16 +156,23 @@ window.noname_extension_list=[
 			"ex_zouji.jpg"
         ]
     },{
-        name:"火影忍者",
-        author:"Demoon·Yu",
-        intro:"目前增添火影角色10名，火影模式未完成",
-        size:"2.2MB",
-        netdisk:"https://pan.baidu.com/s/1pLBFflx",
-        forum:"https://tieba.baidu.com/p/5078471870",
-        version:1,
+        name:"弹丸杀",
+        author:"fux2",
+        intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中",
+        size:"2.1MB",
+        netdisk:"https://pan.baidu.com/s/1jHDBGI6",
+        forum:"https://tieba.baidu.com/p/4802167753",
+        version:6,
         files:[
-            "六道鸣人.jpg","千手纲手.jpg","宇智波佐助.jpg","宇智波鼬.jpg","我爱罗.jpg",
-			"旗木卡卡西.jpg","日向雏田.jpg","春野樱.jpg","波风水门.jpg","自来也.jpg"
+            "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
+			"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",
+			"dan_kamukura.jpg","dan_lingtian.jpg","dan_monokuma.jpg","dan_nuller.jpg","dan_qihai.jpg",
+			"dan_rixianga.jpg","dan_rixiangb.jpg","dan_sonia.jpg","dan_tianzhong.jpg","dan_tumei.jpg",
+			"dan_wuqie.jpg","dan_xiaoquan.jpg","dan_xiyuansi.jpg","dan_zhaorinai.jpg","dan_zhongyin.jpg",
+			"dan_zuimu.jpg","dan_zuoyou.jpg","dunzi11.mp3","dunzi12.mp3","dunzi13.mp3",
+			"huacunSkill1.mp3","lingtianSkill1.mp3","monokuma11.mp3","monokuma12.mp3","monokuma2.mp3",
+			"tianzhongSkill1.mp3","wuqie1.mp3","wuqie2.mp3","xiaoquanSkill1.mp3","xiyuansiSkill1.mp3",
+			"zhaorinai1.mp3","zhaorinai2.mp3","zuoyouSkill1.mp3"
         ]
     },{
         name:"★新版武将",
@@ -254,23 +261,16 @@ window.noname_extension_list=[
 			"zhufeng2.mp3","zhufeng3.mp3","庞士元.jpg","贾文和.jpg"
         ]
     },{
-        name:"弹丸杀",
-        author:"fux2",
-        intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中",
-        size:"2.1MB",
-        netdisk:"https://pan.baidu.com/s/1mhXPoda",
-        forum:"https://pan.baidu.com/s/1gfwwy5d",
-        version:6,
+        name:"火影忍者",
+        author:"Demoon·Yu",
+        intro:"目前增添火影角色10名，火影模式未完成",
+        size:"2.2MB",
+        netdisk:"https://pan.baidu.com/s/1pLBFflx",
+        forum:"https://tieba.baidu.com/p/5078471870",
+        version:1,
         files:[
-            "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
-			"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",
-			"dan_kamukura.jpg","dan_lingtian.jpg","dan_monokuma.jpg","dan_nuller.jpg","dan_qihai.jpg",
-			"dan_rixianga.jpg","dan_rixiangb.jpg","dan_sonia.jpg","dan_tianzhong.jpg","dan_tumei.jpg",
-			"dan_wuqie.jpg","dan_xiaoquan.jpg","dan_xiyuansi.jpg","dan_zhaorinai.jpg","dan_zhongyin.jpg",
-			"dan_zuimu.jpg","dan_zuoyou.jpg","dunzi11.mp3","dunzi12.mp3","dunzi13.mp3",
-			"huacunSkill1.mp3","lingtianSkill1.mp3","monokuma11.mp3","monokuma12.mp3","monokuma2.mp3",
-			"tianzhongSkill1.mp3","wuqie1.mp3","wuqie2.mp3","xiaoquanSkill1.mp3","xiyuansiSkill1.mp3",
-			"zhaorinai1.mp3","zhaorinai2.mp3","zuoyouSkill1.mp3"
+            "六道鸣人.jpg","千手纲手.jpg","宇智波佐助.jpg","宇智波鼬.jpg","我爱罗.jpg",
+			"旗木卡卡西.jpg","日向雏田.jpg","春野樱.jpg","波风水门.jpg","自来也.jpg"
         ]
     },{
         name:"铜雀台",

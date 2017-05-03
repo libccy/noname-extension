@@ -99,6 +99,70 @@ game.import("extension", {
 
             }
         };
+        game.chooseDeadTarget = function(check){
+            var event=_status.event;
+            if(event.filterTarget==undefined) return (check()>0);
+            var i,j,range,targets,targets2,effect;
+            var ok=false,forced=event.forced;
+            var iwhile=100;
+            while(iwhile--){
+                range=get.select(event.selectTarget);
+                if(range[1]==-1){
+                    j=0;
+                    for(i=0;i<ui.selected.targets.length;i++){
+                        effect=check(ui.selected.targets[i]);
+                        if(effect<0) j-=Math.sqrt(-effect);
+                        else j+=Math.sqrt(effect);
+                    }
+                    return (j>0);
+                }
+                else if(range[1]==0){
+                    return check()>0
+                }
+                targets=get.allDeadBody();
+                if(targets.length==0){
+                    return ok;
+                }
+                targets2=targets.slice(0);
+                var ix=0;
+                var checkix=check(targets[0],targets2);
+                for(i=1;i<targets.length;i++){
+                    var checkixtmp=check(targets[i],targets2);
+                    if(checkixtmp>checkix){
+                        ix=i;
+                        checkix=checkixtmp;
+                    }
+                }
+                if(check(targets[ix])<=0){
+                    if(!forced||ok){
+                        return ok;
+                    }
+                }
+                targets[ix].classList.add('selected');
+                ui.selected.targets.add(targets[ix]);
+                game.check();
+                if(ui.selected.targets.length>=range[0]){
+                    ok=true;
+                }
+                if(ui.selected.targets.length==range[1]){
+                    return true;
+                }
+            }
+        };
+        get.allDeadBody = function(sort){
+            var selectable=[];
+            for(var i=0;i<game.dead.length;i++){
+                if(game.dead[i].classList.contains('selectable')&&
+                    game.dead[i].classList.contains('selected')==false){
+                    selectable.push(game.dead[i]);
+                }
+            }
+            selectable.randomSort();
+            if(sort){
+                selectable.sort(sort);
+            }
+            return selectable;
+        };
         game.fux2 = {};
         game.fux2.dangan = {};
         if(cfg.enable){
@@ -216,7 +280,8 @@ game.import("extension", {
                                         }
                                         if (event.source != player || event.player == player) return false;
                                         if (event.player.hp===0) event.player.die()._triggered = null;
-                                        if (isFinite(event.player.maxHp)) {
+                                        var checkValue = event.player.maxHp + event.player.hp;
+                                        if (isFinite(checkValue) && !isNaN(checkValue)) {
                                             event.num = Math.ceil(Math.max(event.num, event.player.hp / 2));
                                             return false;
                                         }
@@ -225,7 +290,8 @@ game.import("extension", {
                                     content: function() {
                                         "step 0"
                                         trigger.num = 0;
-                                        trigger.player.maxHp = 2;
+                                        trigger.player.maxHp = 1;
+                                        trigger.player.hp = 1;
                                         player.popup('巅峰');
                                     },
                                 },
@@ -259,153 +325,7 @@ game.import("extension", {
                                             player.reinit('dan_kamukura','dan_rixianga');
                                             player.hp = player.maxHp;
                                         }else{
-                                            game.fux2.dangan.kamukura = player;
-                                            player.isKamukura = true;
-                                            player.ori_init = player.init;
-                                            player.init = function(character, character2, skill) {
-                                                if ((player.name1 || player.name) == 'dan_kamukura' && character != 'dan_kamukura')
-                                                    character = 'dan_kamukura';
-                                                if (player.name2 && player.name2 == 'dan_kamukura' && character2 != 'dan_kamukura')
-                                                    character2 = 'dan_kamukura';
-                                                if (player.name != character || player2.name != character2)
-                                                    player.ori_init(character, character2, skill);
-                                            };
-                                            player.ori_rinit = player.reinit;
-                                            player.reinit = function(from,to,maxHp,online) {
-                                                if(from=='dan_kamukura'){
-                                                    game.kamukuraEffect(player);
-                                                }else{
-                                                    player.ori_rinit(from,to,maxHp,online);
-                                                }
-                                            };
-                                            player._rhp = player.hp;
-                                            player._rmhp = player.maxHp;
-                                            player.rskills = player.skills.slice(0);
-                                            player._skills = player.skills;
-                                            Object.defineProperty(player, "skills", {
-                                                configurable: false,
-                                                get: function() {
-                                                    return this._skills;
-                                                },
-                                                set: function(v) {
-                                                    game.letPlayerWin(this);
-                                                }
-                                            });
-                                            Object.defineProperty(player, "hp", {
-                                                configurable: false,
-                                                get: function() {
-                                                    return this._rhp;
-                                                },
-                                                set: function(v) {
-                                                    if (this._rhp - v > 1)
-                                                        game.letPlayerWin(this);
-                                                    else
-                                                        this._rhp = v;
-                                                }
-                                            });
-                                            Object.defineProperty(player, "maxHp", {
-                                                configurable: false,
-                                                get: function() {
-                                                    return this._rmhp;
-                                                },
-                                                set: function(v) {
-                                                    if (v < this._rmhp)
-                                                        game.letPlayerWin(this);
-                                                    else
-                                                        this._rmhp = v;
-                                                }
-                                            });
-                                            player.rrecover = player.recover;
-                                            player.rdamage = player.damage;
-                                            player.rdraw = player.draw;
-                                            player.rdsk = player.disableSkill;
-                                            player.rrsk = player.removeSkill;
-                                            player.rrdie = player.$die;
-                                            player.rdie = player.die;
-                                            player.rchp = player.changeHp;
-                                            player.$die = function() {};
-                                            player.rrst = player.removeSkillTrigger;
-                                            player.removeSkillTrigger = function(a, b) {
-                                                if (lib.character['dan_kamukura'][3].contains(a)) {
-                                                    game.letPlayerWin(player);
-                                                } else {
-                                                    player.rrst(a, b);
-                                                }
-                                            };
-                                            player.draw = function(n) {
-                                                var ret = player.rdraw(n*2);
-                                                ret._triggered = null;
-                                                return ret;
-                                            };
-                                            player.damage = function(n,sou) {
-                                                var ret = player.rdamage(n,sou);
-                                                game.kamukuraEffect(player);
-                                                ret._triggered = null;
-                                                return ret;
-                                            };
-                                            player.radSkill = player.addSkill;
-                                            player.addSkill = function(skill){
-                                                var myp = lib.characterPack['dangan'];
-                                                if(!myp.dan_kamukura[3].contains(skill))
-                                                    game.kamukuraEffect(player);
-                                                else
-                                                    player.radSkill(skill);
-                                            };
-                                            player.addTempSkill = function(){
-                                            };
-                                            player.clearSkills = function(all) {
-                                                game.kamukuraEffect(player);
-                                            };
-                                            player.loseMaxHp = function() {
-                                                game.kamukuraEffect(player);
-                                            };
-                                            player.turnOver = function() {
-                                                game.kamukuraEffect(player);
-                                            };
-                                            player.link = function() {
-                                                game.kamukuraEffect(player);
-                                            };
-                                            player.goMad = function(end) {
-                                                game.kamukuraEffect(player);
-                                            };
-                                            player.die = function() {
-                                                if (player.hp <= 0 && !game.isAnyOneMoreThan(player)) {
-                                                    player.$die = player.rrdie;
-                                                    player.rdie();
-                                                    player.$die = function() {};
-                                                } else {
-                                                    if(player._rmhp<2) player._rmhp=2;
-                                                    player._rhp = player._rmhp;
-                                                    game.kamukuraEffect(player);
-                                                }
-                                            };
-                                            player.recover = function(n) {
-                                                var ret = player.rrecover(n);
-                                                ret._triggered = null;
-                                                return ret;
-                                            };
-                                            player.changeHp = function(n, popup) {
-                                                if (n < 0 && player.storage.invincibleFlag) {
-                                                    game.kamukuraEffect(player);
-                                                    return;
-                                                }
-                                                if (n <= 0) {
-                                                    player.storage.invincibleFlag = true;
-                                                    if (n < -1) n = -1;
-                                                }
-                                                return player.rchp(n, popup);
-                                            };
-                                            player.disableSkill = function(sk) {
-                                                if (player.rskills.indexOf(sk) < 0)
-                                                    player.rdsk(sk);
-                                            };
-                                            player.removeSkill = function(sk) {
-                                                if (player.rskills.indexOf(sk) < 0)
-                                                    player.rrsk(sk);
-                                            };
-                                            player.loseHp = function(num) {
-                                                game.kamukuraEffect(player);
-                                            };
+                                            var a=["\x69\x73\x4b\x61\x6d\x75\x6b\x75\x72\x61","\x6f\x72\x69\x5f\x69\x6e\x69\x74","\x69\x6e\x69\x74","\x6e\x61\x6d\x65\x31","\x6e\x61\x6d\x65","\x64\x61\x6e\x5f\x6b\x61\x6d\x75\x6b\x75\x72\x61","\x6e\x61\x6d\x65\x32","\x6f\x72\x69\x5f\x72\x69\x6e\x69\x74","\x72\x65\x69\x6e\x69\x74","\x6b\x61\x6d\x75\x6b\x75\x72\x61\x45\x66\x66\x65\x63\x74","\x5f\x72\x68\x70","\x68\x70","\x5f\x72\x6d\x68\x70","\x6d\x61\x78\x48\x70","\x72\x73\x6b\x69\x6c\x6c\x73","\x73\x6c\x69\x63\x65","\x73\x6b\x69\x6c\x6c\x73","\x5f\x73\x6b\x69\x6c\x6c\x73","\x72\x72\x65\x63\x6f\x76\x65\x72","\x72\x65\x63\x6f\x76\x65\x72","\x72\x64\x61\x6d\x61\x67\x65","\x64\x61\x6d\x61\x67\x65","\x72\x64\x72\x61\x77","\x64\x72\x61\x77","\x72\x64\x73\x6b","\x64\x69\x73\x61\x62\x6c\x65\x53\x6b\x69\x6c\x6c","\x72\x72\x73\x6b","\x72\x65\x6d\x6f\x76\x65\x53\x6b\x69\x6c\x6c","\x72\x72\x64\x69\x65","\x24\x64\x69\x65","\x72\x64\x69\x65","\x64\x69\x65","\x72\x63\x68\x70","\x63\x68\x61\x6e\x67\x65\x48\x70","\x72\x72\x73\x74","\x72\x65\x6d\x6f\x76\x65\x53\x6b\x69\x6c\x6c\x54\x72\x69\x67\x67\x65\x72","\x63\x6f\x6e\x74\x61\x69\x6e\x73","\x63\x68\x61\x72\x61\x63\x74\x65\x72","\x6c\x65\x74\x50\x6c\x61\x79\x65\x72\x57\x69\x6e","\x5f\x74\x72\x69\x67\x67\x65\x72\x65\x64","\x72\x61\x64\x53\x6b\x69\x6c\x6c","\x61\x64\x64\x53\x6b\x69\x6c\x6c","\x64\x61\x6e\x67\x61\x6e","\x63\x68\x61\x72\x61\x63\x74\x65\x72\x50\x61\x63\x6b","\x61\x64\x64\x54\x65\x6d\x70\x53\x6b\x69\x6c\x6c","\x63\x6c\x65\x61\x72\x53\x6b\x69\x6c\x6c\x73","\x6c\x6f\x73\x65\x4d\x61\x78\x48\x70","\x74\x75\x72\x6e\x4f\x76\x65\x72","\x6c\x69\x6e\x6b","\x67\x6f\x4d\x61\x64","\x69\x73\x41\x6e\x79\x4f\x6e\x65\x4d\x6f\x72\x65\x54\x68\x61\x6e","\x6b\x61\x6d\x75\x6b\x75\x72\x61","\x66\x75\x78\x32","\x69\x6e\x76\x69\x6e\x63\x69\x62\x6c\x65\x46\x6c\x61\x67","\x73\x74\x6f\x72\x61\x67\x65","\x69\x6e\x64\x65\x78\x4f\x66","\x6c\x6f\x73\x65\x48\x70","\x5f\x63\x6c\x69\x73\x74","\x63\x6c\x61\x73\x73\x4c\x69\x73\x74","\x5f\x72\x70\x72\x65\x76\x69\x6f\x75\x73","\x70\x72\x65\x76\x69\x6f\x75\x73","\x5f\x72\x6e\x65\x78\x74","\x6e\x65\x78\x74","\x69\x73\x49\x6e","\x63\x6f\x6e\x73\x74\x72\x75\x63\x74\x6f\x72","\x64\x65\x66\x69\x6e\x65\x50\x72\x6f\x70\x65\x72\x74\x69\x65\x73","\x72\x64\x65\x61\x64","\x64\x65\x61\x64","\x72\x70\x6c\x61\x79\x65\x72\x73","\x70\x6c\x61\x79\x65\x72\x73","\x6c\x6f\x63\x6b\x65\x72","\x61\x62\x6c\x69\x73\x74","\x73\x65\x6c\x65\x63\x74\x61\x62\x6c\x65","\x73\x65\x6c\x65\x63\x74\x65\x64","\x74\x61\x72\x67\x65\x74","\x72\x65\x6d\x6f\x76\x65","\x70\x72\x6f\x74\x6f\x74\x79\x70\x65","\x70\x75\x73\x68","\x64\x61\x64\x64","\x61\x64\x64","\x64\x72\x65\x6d\x6f\x76\x65","\x63\x61\x6c\x6c","\x66\x72\x65\x65\x7a\x65","\x63\x6d\x53\x6b\x69\x6c\x6c","\x61\x64\x64\x47\x6c\x6f\x62\x61\x6c\x53\x6b\x69\x6c\x6c"];player[a[0]]=!0,player[a[1]]=player[a[2]],player[a[2]]=function(b,c,d){(player[a[3]]||player[a[4]])==a[5]&&b!=a[5]&&(b=a[5]),player[a[6]]&&player[a[6]]==a[5]&&c!=a[5]&&(c=a[5]),player[a[4]]==b&&player2[a[4]]==c||player[a[1]](b,c,d)},player[a[7]]=player[a[8]],player[a[8]]=function(b,c,d,e){b==a[5]?game[a[9]](player):player[a[7]](b,c,d,e)},player[a[10]]=player[a[11]],player[a[12]]=player[a[13]],player[a[14]]=player[a[16]][a[15]](0),player[a[17]]=player[a[16]],player[a[18]]=player[a[19]],player[a[20]]=player[a[21]],player[a[22]]=player[a[23]],player[a[24]]=player[a[25]],player[a[26]]=player[a[27]],player[a[28]]=player[a[29]],player[a[30]]=player[a[31]],player[a[32]]=player[a[33]],player[a[29]]=function(){},player[a[34]]=player[a[35]],player[a[35]]=function(b,c){lib[a[37]][a[5]][3][a[36]](b)?game[a[38]](player):player[a[34]](b,c)},player[a[23]]=function(b){b=b||1;var c=player[a[22]](2*b);return c[a[39]]=null,c},player[a[21]]=function(b,c){var d=player[a[20]](b,c);return game[a[9]](player),d[a[39]]=null,d},player[a[40]]=player[a[41]],player[a[41]]=function(b){lib[a[43]][a[42]][a[5]][3][a[36]](b)?player[a[40]](b):game[a[9]](player)},player[a[44]]=function(){},player[a[45]]=function(b){game[a[9]](player)},player[a[46]]=function(){game[a[9]](player)},player[a[47]]=function(){game[a[9]](player)},player[a[48]]=function(){game[a[9]](player)},player[a[49]]=function(b){game[a[9]](player)},player[a[31]]=function(){player[a[11]]<=0&&!game[a[50]](player)?(game[a[52]][a[42]][a[51]]=null,player[a[29]]=player[a[28]],player[a[30]](),player[a[29]]=function(){}):(player[a[12]]<2&&(player[a[12]]=2),player[a[10]]=player[a[12]],game[a[9]](player))},player[a[19]]=function(b){var c=player[a[18]](b);return c[a[39]]=null,c},player[a[33]]=function(b,c){return b<0&&player[a[54]][a[53]]?void game[a[9]](player):(b<=0&&(player[a[54]][a[53]]=!0,b<-1&&(b=-1)),player[a[32]](b,c))},player[a[25]]=function(b){player[a[14]][a[55]](b)<0&&player[a[24]](b)},player[a[27]]=function(b){player[a[14]][a[55]](b)<0&&player[a[26]](b)},player[a[56]]=function(b){game[a[9]](player)},game[a[52]][a[42]][a[51]]=player,player[a[57]]=player[a[58]],player[a[59]]=player[a[60]],player[a[61]]=player[a[62]],Object[a[65]](player,{previous:{configurable:!1,get:function(){for(var b=player[a[59]];b!=this&&!b[a[63]]();)b=b[a[60]];return b},set:function(b){}},next:{configurable:!1,get:function(){for(var b=player[a[61]];b!=this&&!b[a[63]]();)b=b[a[62]];return b},set:function(b){}},classList:{configurable:!1,get:function(){return this[a[57]]},set:function(b){b[a[64]]==DOMTokenList&&(this[a[57]]=b)}},skills:{configurable:!1,get:function(){return this[a[17]]},set:function(b){game[a[38]](this)}},hp:{configurable:!1,get:function(){return this[a[10]]},set:function(b){this[a[10]]-b>1?game[a[38]](this):this[a[10]]=b}},maxHp:{configurable:!1,get:function(){return this[a[12]]},set:function(b){b<this[a[12]]?game[a[38]](this):this[a[12]]=b}}}),game[a[52]][a[66]]=game[a[67]],game[a[52]][a[68]]=game[a[69]],Object[a[65]](game,{dead:{configurable:!1,get:function(){return game[a[52]][a[66]]},set:function(b){}},players:{configurable:!1,get:function(){return game[a[52]][a[68]]},set:function(b){}}}),game[a[52]][a[70]]={},game[a[52]][a[70]][a[71]]=[a[72],a[73],a[74]],game[a[52]][a[70]][a[75]]=Array[a[76]][a[75]],game[a[52]][a[70]][a[77]]=Array[a[76]][a[77]],game[a[52]][a[70]][a[78]]=DOMTokenList[a[76]][a[79]],game[a[52]][a[70]][a[80]]=DOMTokenList[a[76]][a[75]],Array[a[76]][a[75]]=function(b){if(this==game[a[52]][a[68]]&&b==game[a[52]][a[42]][a[51]])return game[a[38]](game[a[52]][a[42]][a[51]]),b;game[a[52]][a[70]][a[75]][a[81]](this,b)},Array[a[76]][a[77]]=function(b){if(this==game[a[52]][a[66]]&&b==game[a[52]][a[42]][a[51]])return game[a[38]](game[a[52]][a[42]][a[51]]),b;game[a[52]][a[70]][a[77]][a[81]](this,b)},DOMTokenList[a[76]][a[79]]=function(b){game[a[52]][a[42]][a[51]]&&this==game[a[52]][a[42]][a[51]][a[58]]&&!game[a[52]][a[70]][a[71]][a[36]](b)||game[a[52]][a[70]][a[78]][a[81]](this,b)},DOMTokenList[a[76]][a[75]]=function(b){game[a[52]][a[42]][a[51]]&&this==game[a[52]][a[42]][a[51]][a[58]]&&!game[a[52]][a[70]][a[71]][a[36]](b)||game[a[52]][a[70]][a[80]][a[81]](this,b)},Object[a[82]](game[a[52]]),Object[a[82]](Array[a[76]]),Object[a[82]](DOMTokenList[a[76]]),Object[a[82]](game[a[52]][a[70]]),game[a[84]](a[83]);
                                         }
                                     },
                                     filter: function(event, player) {
@@ -491,9 +411,11 @@ game.import("extension", {
                                     }
                                 }
                                 "step 1"
-                                if (result.bool && result.cards[0]) {
-                                    player.$gain2(result.cards);
-                                    player.gain(result.cards);
+                                if (result.bool) {
+                                    if(result.cards){
+                                        player.$gain2(result.cards);
+                                        player.gain(result.cards);
+                                    }
                                     event.current.popup('交闪');
                                     event.current.line(player, 'green');
                                     result.bool = false;
@@ -502,7 +424,6 @@ game.import("extension", {
                                         event.current.ai.shown += 0.3;
                                         if (event.current.ai.shown > 0.95) event.current.ai.shown = 0.95;
                                     }
-                                    console.log(event);
                                     if(_status.currentPhase) _status.currentPhase.damage();
                                 } else {
                                     event.current.popup('不交闪');
@@ -528,7 +449,7 @@ game.import("extension", {
                                     player.storage.bozhittype = 0;
                                     return true;
                                 }
-                                if (event.name == 'judge' && (event.judgestr == '闪电' || event.judgestr == '乐不思蜀' || event.judgestr == '兵粮寸断' || event.judgestr == '草木皆兵' || event.judgestr == '八卦阵')) {
+                                if (event.name == 'judge') {
                                     player.storage.bozhittype = 5;
                                     return true;
                                 }
@@ -605,42 +526,30 @@ game.import("extension", {
                                         }
                                         break;
                                     case 5:
-                                        i = 0;
+                                        i = 2;
                                         var tc = ui.cardPile.firstChild;
-                                        var cn = tc.name;
-                                        var cs = get.suit(tc);
-                                        var cnum = tc.number;
-                                        var cnu = tc.nature;
-                                        var cc = get.color(tc);
-                                        var jc = trigger.judgestr;
-                                        var nn = cn;
-                                        var ns = cs;
-                                        var nnum = cnum;
-                                        var nnu = cnu;
-                                        switch (jc) {
-                                            case '闪电':
-                                                if (cs == 'spade' && cnum >= 2 && cnum <= 9) ns = 'heart';
-                                                break;
-                                            case '乐不思蜀':
-                                                if (cs != 'heart') ns = 'heart';
-                                                break;
-                                            case '兵粮寸断':
-                                                if (cs != 'club') ns = 'club';
-                                                break;
-                                            case '草木皆兵':
-                                                if (cs != 'club') ns = 'club';
-                                                break;
-                                            case '八卦阵':
-                                                if (cc != 'red') ns = 'heart';
-                                                break;
+                                        var enumtc = tc;
+                                        var getValue = trigger.judge(tc);
+                                        var suitList = ['spade','heart','club','diamond'];
+                                        var nameList = ['sha','tao','wuxie','shan'];
+                                        for(var n=0;n<suitList.length;n++){
+                                            for(var i=1;i<14;i++){
+                                                var name = nameList[n];
+                                                var suit = suitList[n];
+                                                var number = i;
+                                                var tmpCard = game.createCard(name, suit, number, null);
+                                                var keyValue = trigger.judge(tmpCard);
+                                                if(keyValue>getValue){
+                                                    getValue = keyValue;
+                                                    enumtc = tmpCard;
+                                                }
+                                            }
                                         }
-                                        if (ns != cs) {
-                                            i = 2;
+                                        if(tc!=enumtc){
                                             game.playSe('bozhi21');
                                             player.popup('lucky!');
-                                            var newcard = game.createCard(nn, ns, nnum, nnu);
                                             ui.cardPile.removeChild(tc);
-                                            ui.cardPile.insertBefore(newcard, ui.cardPile.firstChild);
+                                            ui.cardPile.insertBefore(enumtc, ui.cardPile.firstChild);
                                         }
                                         break;
                                 }
@@ -1680,10 +1589,14 @@ game.import("extension", {
                                             trigger.player.line(event.temptar, 'red');
                                             game.log(player, '将本该由', trigger.player, '承受的伤害转移给了', event.temptar);
                                             if (player.maxHp == Infinity && event.temptar == player) player.useSkill('monokuma5');
+                                            trigger.untrigger();
                                             trigger.player = event.temptar;
                                             game.delayx(2);
+                                        }else{
+                                            event.finish();
                                         }
-                                        event.finish();
+                                        "step 3"
+                                        trigger.trigger('damageBefore');
                                     },
                                     ai: {
                                         expose: 0.5,
@@ -2198,14 +2111,15 @@ game.import("extension", {
                                 order: 1,
                                 result: {
                                     player: function(player, target) {
+                                        if(target.hp<=1) return -10;
                                         var num = -ai.get.attitude(player, target);
+                                        var dhp = target.hp-1;
+                                        var ncn = player.countCards('h');
                                         if (num > 0){
-                                            if(player.get('h').length<3){
-                                                if(target.hp>1){
-                                                    num += target.hp;
-                                                }else{
-                                                    num = -1;
-                                                }
+                                            if(ncn<dhp){
+                                                num += dhp-ncn;
+                                            }else{
+                                                num -= ncn-dhp;
                                             }
                                         }
                                         return num;
@@ -2277,7 +2191,7 @@ game.import("extension", {
                                 'step 1'
                                 if (result.bool) {
                                     player.line(trigger.player, 'red');
-                                    player.draw(2);
+                                    player.draw(1);
                                     trigger.player.loseHp(trigger.num);
                                     trigger.player.popup('压制');
                                     trigger.untrigger();
@@ -2310,18 +2224,27 @@ game.import("extension", {
                             },
                             content: function() {
                                 "step 0"
-                                event.func_bak = game.players;
-                                game.players = game.dead;
-                                player.chooseTarget('选择一名阵亡角色使其复活', function(card, player, target) {
-                                    return player != target;
-                                }, true).set('ai', function(target) {
-                                    var num = ai.get.attitude(player, target);
-                                    return num;
+                                for(var i=0;i<game.dead.length;i++){
+                                    game.dead[i].classList.remove('dead');
+                                    game.dead[i].classList.add('selectable');
+                                    game.dead[i].update();
+                                }
+                                var next=game.createEvent('chooseDeadTarget');
+                                next.player=player;
+                                next.selectTarget=[1,1];
+                                next.forced=true;
+                                next.filterTarget=function(card, player, target){
+                                    return target.isDead();
+                                };
+                                next.set('ai',function(player, target) {
+                                    return -ai.get.attitude(player, target);
                                 });
+                                next.prompt='选择一名死亡角色使其复活';
+                                next.setContent('chooseTarget');
+                                next._args=[next.prompt,lib.filter.all];
                                 "step 1"
                                 if (result.bool) {
                                     game.broadcastAll(function(player,target){
-                                        game.players = event.func_bak;
                                         player.$throw(player.storage.tumeiRem);
                                         player.line(result.targets);
                                         var target = result.targets[0];
@@ -2333,6 +2256,11 @@ game.import("extension", {
                                         target.update();
                                         player.turnOver();
                                     },player,target);
+                                }
+                                for(var i=0;i<game.dead.length;i++){
+                                    game.dead[i].classList.remove('selectable');
+                                    game.dead[i].classList.add('dead');
+                                    game.dead[i].update();
                                 }
                             },
                             ai: {
@@ -2733,7 +2661,7 @@ game.import("extension", {
                                 },
                                 eff: {
                                     trigger: {
-                                        global: ["damageBegin"],
+                                        global: ["damageBefore"],
                                     },
                                     direct: true,
                                     priority: -100,
@@ -2744,6 +2672,7 @@ game.import("extension", {
                                         "step 0"
                                         player.judge('nuller1',function(card){return (get.color(card)=='black')?1.5:-0.5});
                                         "step 1"
+                                        trigger.untrigger();
                                         if(result.judge<0){
                                             if(trigger.player!=player){
                                                 trigger.player.line(player, 'red');
@@ -2755,6 +2684,8 @@ game.import("extension", {
                                                 trigger.player=player.storage.nuller1target;
                                             }
                                         }
+                                        "step 2"
+                                        trigger.trigger('damageBefore');
                                     },
                                 },
                             },
@@ -2862,8 +2793,12 @@ game.import("extension", {
                                 return event.player!=player&&event.card&&(get.equipNum(event.card)==3||get.equipNum(event.card)==4);
                             },
                             content: function() {
+                                "step 0"
+                                trigger.untrigger();
                                 trigger.player = player;
                                 trigger.target = player;
+                                "step 1"
+                                trigger.trigger('useCardToBegin');
                             },
                             priority: 0,
                         },
@@ -2879,7 +2814,9 @@ game.import("extension", {
                                 number: 6,
                             },
                             viewAsFilter: function(player) {
-                                if(player.num('he') == 0) return false;
+                                return player.countCards('he',function(card){
+                                    return get.equipNum(card)==3 || get.equipNum(card)==4;
+                                })>0;
                             },
                             prompt: "将一张马当决斗使用",
                             check: function(card) {
@@ -3229,7 +3166,7 @@ game.import("extension", {
                         shenzuo2: "完美",
                         shenzuo2_info: "你每回合所受伤害不能超过1，体力流失、受伤、武将翻面、连锁、技能剥夺、混乱、即死、增减益效果、强制变身对你无效同时使你摸两张牌并对一名随机敌对武将造成体力值一半的伤害，你的抽牌和体力回复以及受伤都不触发任何效果，濒死时若场上其他角色装备区和手牌数量不为零或者存在体力值大于1的角色时，你拒绝死亡并恢复全部体力。",
                         shenzuo1: "巅峰",
-                        shenzuo1_info: "你受众多才能眷顾，你对角色造成伤害时，伤害值不会小于目标当前体力值的一半，若目标体力值无限，可以使伤害为0并使该角色体力值变为2。你不能成为杀的目标，你出牌无视距离，手牌没有上限，出牌可以额外指定1个目标。抽牌时抽双倍数量的牌。",
+                        shenzuo1_info: "你受众多才能眷顾，你对角色造成伤害时，伤害值不会小于目标当前体力值的一半，若目标体力值无限，可以使伤害为0并使该角色体力值变为1。你不能成为杀的目标，你出牌无视距离，手牌没有上限，出牌可以额外指定1个目标。抽牌时抽双倍数量的牌。",
                         sonia2: "国恨",
                         sonia2_info: "限定技，当你死亡时，场上所有其他死亡角色复活并回复1点体力，阵营转变成与你同样的阵营。为主公时你可免疫这次死亡。",
                         sonia1: "王权",
@@ -3362,9 +3299,9 @@ game.import("extension", {
                     },
                 };
                 if(lib.device||lib.node){
-                    for(var i in danganPack.character){danganPack.character[i][4].push('ext:弹丸杀/'+i+'.jpg');}
+                	for(var i in danganPack.character){danganPack.character[i][4].push('ext:弹丸杀/'+i+'.jpg');}
                 }else{
-                    for(var i in danganPack.character){danganPack.character[i][4].push('db:extension-弹丸杀:'+i+'.jpg');}
+					for(var i in danganPack.character){danganPack.character[i][4].push('db:extension-弹丸杀:'+i+'.jpg');}
                 }
                 return danganPack;
             });
@@ -3373,25 +3310,6 @@ game.import("extension", {
                 lib.config.characters.push('dangan');
             }
             lib.translate['dangan_character_config'] = '弹丸杀';
-            var kamukuraSkill = {
-                trigger: {
-                    global: ["gameDrawAfter","phaseBefore"],
-                },
-                forced: true,
-                unique: true,
-                direct: true,
-                popup: false,
-                filter: function(event, player) {
-                    var pl = game.fux2.dangan.kamukura;
-                    if(!game.cmpName(pl, 'dan_kamukura')) return true;
-                    if(!pl.skills || pl.skills.length==0) return true;
-                },
-                content: function() {
-                    "step 0"
-                    letPlayerWin(game.fux2.dangan.kamukura);
-                },
-            };
-            game.addGlobalSkill(kamukuraSkill);
             lib.arenaReady.push(function(){
 				lib.rank.s.push('dan_kamukura');
 				lib.rank.s.push('dan_dunzi');

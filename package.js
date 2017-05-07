@@ -111,15 +111,15 @@ window.noname_extension_list=[
         author:"何子风云",
         intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",
         size:"9.4MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=1963898795&uk=1079389979",
+        netdisk:"https://pan.baidu.com/share/link?shareid=841239829&uk=1079389979",
         forum:"https://tieba.baidu.com/p/5044759964",
-        version:5,
+        version:6,
         files:[
             "ex_baiqi.jpg","ex_fanju.jpg","ex_huangxie.jpg","ex_lianpo.jpg","ex_limu.jpg",
 			"ex_linxiangru.jpg","ex_lisi.jpg","ex_lvbuwei.jpg","ex_mengtian.jpg","ex_quyuan.jpg",
-			"ex_shangyang.jpg","ex_simacuo.jpg","ex_sunbin.jpg","ex_wangjian.jpg","ex_wuqi.jpg",
-			"ex_xiangyan.jpg","ex_yingzheng.jpg","ex_zhangyi.jpg","ex_zhaosheng.jpg","ex_zhaoyong.jpg",
-			"ex_zouji.jpg"
+			"ex_shangyang.jpg","ex_simacuo.jpg","ex_sunbin.jpg","ex_suqin.jpg","ex_tianji.jpg",
+			"ex_wangjian.jpg","ex_wuqi.jpg","ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg",
+			"ex_zhangyi.jpg","ex_zhaosheng.jpg","ex_zhaoyong.jpg","ex_zouji.jpg"
         ]
     },{
         name:"弹丸杀",

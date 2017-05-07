@@ -26,6 +26,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"战�
             "ex_zhaoyong":["male","ex_zhao",4,["ex_hufu","ex_qishe"],["des:赵雍（约公元前340年—前295年），即赵武灵王，嬴姓，赵国人，赵氏，名雍，赵肃侯之子，战国中后期赵国君主，政治家、改革家。生于赵国首都邯郸。  赵武灵王即位时，赵国国力不强，受中原大国欺侮。林胡、楼烦等游牧民族也不时骚扰，邻境较小的中山国也时常进犯。赵武灵王二十四年（前302年）颁布命令，推行的“胡服骑射”政策，改革军事装备和作战方法，赵国因而得以强盛。赵雍率将士攻击匈奴，占领今内蒙古南部黄河两岸之地，建立云中、九原两郡，又在阴山筑赵长城以抵御胡人。前296年吞并中山国。前314年，燕国发生子之之乱，国都被齐国、中山国攻破，赵武灵王扶植燕昭王回国即位。  赵雍晚年传位于子赵惠文王，自号为“主父”，公元前295年的沙丘宫变中被围困活活饿死于沙丘宫（在今河北广宗县），谥号为武灵王，赵武灵王墓位于今山西省大同市灵丘县。"]],
             "ex_zhaosheng":["male","ex_zhao",3,["ex_nashi"],["des:赵胜（约前308年-前251年），战国四公子之一，赵国贵族。赵武灵王之子，赵惠文王之弟。因贤能而闻名。刻于东武（今山东武城），号平原君。  他礼贤下士，门下食客至数千人，和朋友关系处理的很好。但不注意礼貌对待平民，后在一名门客的建议下和平民搞好了关系，威名大震。  赵胜初为赵惠文王之相，赵惠文王死后，又为赵孝成王之相。赵孝成王七年（前259），长平之战后，秦军进围赵都邯郸（今属河北邯郸），形势十分危急。赵胜尽散家财，发动士兵，坚守城池，长达三年之久。赵王派赵胜向魏和楚求援。九年，食客毛遂自告奋勇，同赵胜去楚国求援，说服了楚王，派春申君率军救赵。此即“毛遂自荐”。援军到来之前，邯郸城内兵困粮尽，赵胜尽散家财，发动士兵坚守城池。直到楚军和魏信陵君援兵赶到，解邯郸之围。"]],
             "ex_limu":["male","ex_zhao",4,["ex_quehu","ex_yuqin"],["des:李牧（？－公元前229年），嬴姓，李氏，名牧，赵国柏仁（今河北邢台）人，战国时期的赵国军事家，与白起、王翦、廉颇并称“战国四大名将”。战国末期，李牧是赵国赖以支撑危局的唯一良将，素有“李牧死，赵国亡”之称。   李牧生平事迹大致可划分为两个阶段，先是在赵国北部边境，抗击匈奴；后以抵御秦国为主，因在宜安之战重创秦军，得到武安君的封号。公元前229年，赵王迁中了秦国的离间计，听信谗言夺取了李牧的兵权，不久后将李牧杀害。  李牧是战国末年东方六国最杰出的将领。深得士兵和人民的爱戴，有着崇高的威望。在一系列的作战中，他屡次重创敌军而未尝败，显示了高超的军事指挥艺术。尤其是赵破匈奴之战和肥之战，前者是中国战争史中以步兵大兵团全歼骑兵大兵团的典型战例，后者则是围歼战的范例。他的无辜被害，使赵国自毁长城，令后人无不扼腕叹恨。"]],
+            "ex_suqin":["male","ex_zhao",3,["ex_hezong","ex_guoxiang"],["des:苏秦（？—前284年），字季子，雒阳（今河南洛阳）人，战国时期著名的纵横家、外交家和谋略家。  苏秦与张仪同出自鬼谷子门下，跟随鬼谷子学习纵横之术。学成后，外出游历多年，潦倒而归。随后刻苦攻读《阴符》，一年后游说列国，被燕文公赏识，出使赵国。苏秦到赵国后，提出合纵六国以抗秦的战略思想，并最终组建合纵联盟，任“从约长”，兼佩六国相印，使秦十五年不敢出函谷关。联盟解散后，齐国攻打燕国，苏秦说齐归还燕国城池。后自燕至齐，从事反间活动，被齐国任为客卿，齐国众大夫因争宠派人刺杀，苏秦死前献策诛杀了刺客。  《汉书·艺文志》纵横家有《苏子》31篇，早佚。帛书《战国纵横家书》存有其游说辞及书信十六篇，其中十一篇不见于现存传世古籍。"]],
+            "ex_tianji":["male","ex_qi",4,["ex_fengbin","ex_jianzao"],["des:田忌，生卒年不详，妫姓，田氏（亦作陈氏），名忌，字期，又曰期思，封于徐州（今山东滕州南），故又称徐州子期。战国时期齐国名将。  约为公元前340年，孙膑逃亡到齐国时，田忌赏识孙膑的才能，收为门客。在一次赛马时，孙膑向田忌提出了以下马对上马，以上马对中马，以中马对下马的田忌赛马法。  公元前354年，发生桂陵之战，魏国攻打赵国，齐国派兵相助，田忌为主将，孙膑为参谋，结果孙膑以“围魏救赵”的兵法大胜。  公元前341年，发生马陵之战，魏国攻打韩国，齐国派兵相助，仍由田忌为主将，孙膑为参谋，孙膑仍进军魏都大梁，用“减灶之计”，让魏军大将庞涓轻敌深入，结果庞涓被杀，齐国大胜。同年，被齐相邹忌用反间计陷害，田忌无法澄清，逃亡楚国。直到齐宣王即位，方才重回齐国。"]],
+            "ex_yueyi":["male","ex_yan",4,["ex_lianzhan","ex_lianke"],["des:乐毅（yuè yì），生卒年不详，子姓，乐氏，名毅，字永霸。中山灵寿人，战国后期杰出的军事家，魏将乐羊后裔，拜燕上将军，受封昌国君，辅佐燕昭王振兴燕国。  公元前284年，他统帅燕国等五国联军攻打齐国，连下70余城，创造了中国古代战争史上以弱胜强的著名战例，报了强齐伐燕之仇。后因受燕惠王猜忌，投奔赵国，被封于观津，号为望诸君。"]],
         },
         translate:{
             "ex_qin":"秦",
@@ -63,6 +66,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"战�
             "ex_zhaoyong":"赵雍",
             "ex_zhaosheng":"赵胜",
             "ex_limu":"李牧",
+            "ex_suqin":"苏秦",
+            "ex_tianji":"田忌",
+            "ex_yueyi":"乐毅",
         },
     },
     card:{
@@ -307,7 +313,7 @@ player.draw();
                 },
                 mod:{
                     maxHandcard:function (player,num){
-            return num=9;
+            return num=5;
         },
                 },
                 group:["ex_zulong_a","ex_zulong_b"],
@@ -361,8 +367,13 @@ player.gain(game.createCard(trigger.card),'gain2');
                 return event.source&&event.source.isIn();
             },
                         content:function (){
+                "step 0"
                 trigger.source.draw();
                 player.draw();
+                "step 1"
+                if(player.countCards('h')>5){
+                    player.chooseToDiscard(player.countCards('h')-5,'he',true);
+                }
             },
                     },
                     a:{
@@ -556,8 +567,12 @@ player.gain(game.createCard(trigger.card),'gain2');
                 content:function (){
         player.draw(player.hujia);
         player.changeHujia(-player.hujia);
-        player.skip('phaseDiscard');
     },
+                mod:{
+                    maxHandcard:function (player,num){
+            if(player.hp<player.maxHp) return num+player.maxHp-player.hp;
+        },
+                },
             },
             "ex_fenshu":{
                 trigger:{
@@ -621,7 +636,7 @@ player.gain(game.createCard(trigger.card),'gain2');
             },
             "ex_yuanjiao":{
                 trigger:{
-                    global:"phaseBegin",
+                    global:"damageAfter",
                 },
                 direct:true,
                 filter:function (event,player){
@@ -657,7 +672,7 @@ player.gain(game.createCard(trigger.card),'gain2');
         "step 0"
         var eff=ai.get.effect(player,trigger.card,trigger.player,trigger.player);
         trigger.player.chooseToDiscard(function(card){
-            return get.type(card)=='trick';
+            return get.color(card)=='black';
         }).set('ai',function(card){
             if(_status.event.eff>0){
                 return 10-ai.get.value(card);
@@ -668,7 +683,7 @@ player.gain(game.createCard(trigger.card),'gain2');
         if(result.bool==false){
             trigger.untrigger();
             trigger.finish();
-            trigger.player.damage();
+            player.draw();
         }
     },
                 ai:{
@@ -676,12 +691,12 @@ player.gain(game.createCard(trigger.card),'gain2');
                         target:function (card,player,target,current){
                 if(card.name=='sha'){
                     if(_status.event.name=='ex_jingong') return;
-                    var bs=player.getCards('h',{type:'trick'});
-                    if(bs.length<2) return 0;
+                    var sr=player.getCards('h',{color:'black'});
+                    if(sr.length<2) return 0;
                     if(player.hasSkill('jiu')||player.hasSkill('tianxianjiu')) return;
-                    if(bs.length<=3&&player.countCards('h','sha')<=1){
-                        for(var i=0;i<bs.length;i++){
-                            if(bs[i].name!='sha'&&ai.get.value(bs[i])<7){
+                    if(sr.length<=3&&player.countCards('h','sha')<=1){
+                        for(var i=0;i<sr.length;i++){
+                            if(sr[i].name!='sha'&&ai.get.value(sr[i])<7){
                                 return [1,0,1,-0.5];
                             }
                         }
@@ -1328,6 +1343,9 @@ player.gain(game.createCard(trigger.card),'gain2');
                 content:function (){
      player.draw(Math.min(4)-player.num('h'));
     },
+                ai:{
+                    threaten:1.8,
+                },
             },
             "ex_qianren":{
                 trigger:{
@@ -1392,6 +1410,9 @@ player.gain(game.createCard(trigger.card),'gain2');
                 content:function (){
      player.phase();
     },
+                ai:{
+                    threaten:1.9,
+                },
             },
             "ex_qishe":{
                 mod:{
@@ -1475,7 +1496,7 @@ player.gain(game.createCard(trigger.card),'gain2');
             filterCard:lib.filter.cardDiscardable,
             position:'he',
             filterTarget:function(card,player,target){
-                return target!=player;
+                return target!=player&&target.hp!=1;
             },
             ai1:function(card){
                 return 8-get.value(card);
@@ -1503,8 +1524,8 @@ player.gain(game.createCard(trigger.card),'gain2');
     },
                 viewAs:{
                     name:"shan",
-                    suit:"diamond",
-                    number:5,
+                    suit:"heart",
+                    number:3,
                 },
                 viewAsFilter:function (player){
         if(!player.countCards('h',{type:'basic'})) return false;
@@ -1545,6 +1566,160 @@ player.gain(game.createCard(trigger.card),'gain2');
                     },
                 },
             },
+            "ex_hezong":{
+                trigger:{
+                    player:"damageAfter",
+                },
+                forced:true,
+                filter:function (event,player){
+        return game.hasPlayer(function(current){
+            return current.isFriendOf(player)&&current.isDamaged();
+        });
+    },
+                content:function (){
+        var list=game.filterPlayer(function(current){
+            return current.isFriendOf(player)&&current.isDamaged();
+        });
+        if(list.length){
+            player.line(list,'green');
+            game.asyncDraw(list);
+        }
+    },
+                ai:{
+                    threaten:1.4,
+                },
+                group:["ex_hezong_a","ex_hezong_b"],
+                subSkill:{
+                    b:{
+                        trigger:{
+                            player:"linkBegin",
+                        },
+                        forced:true,
+                        filter:function (event,player){
+                return !player.isLinked();
+            },
+                        content:function (){
+                trigger.untrigger();
+                trigger.finish();
+            },
+                    },
+                    a:{
+                        trigger:{
+                            player:"recoverBegin",
+                        },
+                        forced:true,
+                        content:function (){
+        "step 0"
+        event.players=get.players(player);
+        event.players.remove(player);
+        "step 1"
+        if(event.players.length){
+            event.players.shift().recover();
+            event.redo();
+        }
+    },
+                    },
+                },
+            },
+            "ex_guoxiang":{
+                trigger:{
+                    global:"chooseToRespondBegin",
+                },
+                forced:true,
+                filter:function (event,player){
+        return event.player.isFriendOf(player)&&event.player.hp!=event.player.maxHp;
+    },
+                content:function (){
+        trigger.player.draw();
+    },
+                ai:{
+                    threaten:1.3,
+                },
+            },
+            "ex_fengbin":{
+                trigger:{
+                    player:"dying",
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.hp<=0;
+    },
+                content:function (){
+"step 0"
+player.maxHp=2;
+        player.update();
+"step 1"
+player.recover(player.maxHp-player.hp);
+ player.removeSkill('ex_fengbin');      
+
+    },
+                ai:{
+                    threaten:0.8,
+                },
+            },
+            "ex_jianzao":{
+                enable:"phaseUse",
+                usable:1,
+                position:"he",
+                filterCard:function (card){
+        return get.color(card)=='red';
+    },
+                viewAs:{
+                    name:"zengbin",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{color:'red'})) return false;
+    },
+                prompt:"将一张红色手牌当作增兵减灶使用",
+                check:function (card){return 7-get.value(card)},
+                ai:{
+                    threaten:1.4,
+                    order:9,
+                    basic:{
+                        order:7.2,
+                        useful:4,
+                        value:9.2,
+                    },
+                    result:{
+                        target:2,
+                    },
+                    tag:{
+                        draw:2,
+                    },
+                    useful:4,
+                    value:10,
+                },
+            },
+            "ex_lianzhan":{
+                trigger:{
+                    player:"useCardAfter",
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.hp<=3;
+    },
+                content:function (){
+        player.draw();
+    },
+                ai:{
+                    threaten:1.5,
+                },
+            },
+            "ex_lianke":{
+                trigger:{
+                    source:"dieAfter",
+                },
+                forced:true,
+                content:function (){
+        if(!player.isTurnedOver()){
+           player.turnOver();
+        }
+        player.draw(2);
+    },
+                ai:{
+                    threaten:1.1,
+                },
+            },
         },
         translate:{
             "ex_kengsha":"坑杀",
@@ -1556,9 +1731,9 @@ player.gain(game.createCard(trigger.card),'gain2');
             "ex_tunbing":"吞并",
             "ex_tunbing_info":"当你造成伤害时，可以获得被伤害角色的一张牌",
             "ex_zulong":"祖龙",
-            "ex_zulong_info":"每当你成为其他角色的卡牌的惟一目标时，你可以弃置两张手牌，将这张牌反弹，之后你获得这张牌，每回合一次，当其他角色使用的牌选定目标为其本身时，你获得一张相同的牌，此时若你的体力值不大于二，则你摸一张牌，若你的体力不大于二则你跳过你的判断阶段，你的手牌上限始终为九",
+            "ex_zulong_info":"每当你成为其他角色的卡牌的惟一目标时，你可以弃置两张手牌，将这张牌反弹，之后你获得这张牌，每回合一次，当其他角色使用的牌选定目标为其本身时，你获得一张相同的牌，此时若你的体力值不大于二，则你摸一张牌，若你的体力不大于二则你跳过你的判断阶段，你的手牌上限始终为五",
             "ex_bianfa":"变法",
-            "ex_bianfa_info":"锁定技，场上所有角色在摸牌阶段不摸牌，在回合结束阶段摸两张牌，当有角色（可以为你）造成伤害时，你与其各获得一张牌（伤害来源为你则你摸两张牌）",
+            "ex_bianfa_info":"锁定技，场上所有角色在摸牌阶段不摸牌，在回合结束阶段摸两张牌，当有角色（可以为你）造成伤害时，你与其各获得一张牌（伤害来源为你则你摸两张牌），若因此技能使你的手牌数超过五张，你须将牌弃至五张",
             "ex_lianheng":"连横",
             "ex_lianheng_info":"当你造成伤害时，若被伤害角色处于横置状态，则其须选择<br>1.防止此伤害并弃置所有牌<br>2.令此伤害+1<br>当你受到伤害时，若伤害来源处于横置状态，则你防止此次伤害并回复相应的体力<br>此技能无论触发哪一种效果，该名处于横置状态的角色都会在这之后解除横置状态",
             "ex_qiaoshe":"巧舌",
@@ -1570,15 +1745,15 @@ player.gain(game.createCard(trigger.card),'gain2');
             "ex_shushou":"戍守",
             "ex_shushou_info":"锁定技，其他角色在使用〔杀〕时，若目标不为你，则你获得一点护甲值，若为你，则你摸两张牌并弃置一张牌",
             "ex_zhiyi":"制狄",
-            "ex_zhiyi_info":"锁定技，回合开始阶段，你失去所有护甲，你每因为此技能失去一点护甲，你摸一张牌，且你跳过该回合弃牌阶段",
+            "ex_zhiyi_info":"锁定技，回合开始阶段，你失去所有护甲，你每因为此技能失去一点护甲，你摸一张牌，你的手牌上限始终等于你的体力上限",
             "ex_fenshu":"焚书",
             "ex_fenshu_info":"每当其他角色的某张卡牌有唯一目标时，你可以弃置一张手牌，视为你对牌原本的使用者使用了这张牌",
             "ex_fazhi":"法制",
             "ex_fazhi_info":"锁定技，回合结束阶段，你摸等于你已损失体力数的牌",
             "ex_yuanjiao":"远交",
-            "ex_yuanjiao_info":"在任意一名其他角色的开始阶段，若你已受伤，你可以选择一名角色，令你与其各摸一张牌",
+            "ex_yuanjiao_info":"在任意一名角色造成伤害后，若你已受伤，你可以选择一名角色，令你与其各摸一张牌",
             "ex_jingong":"近攻",
-            "ex_jingong_info":"锁定技，当其他角色对你使用〔杀〕时，需额外弃置一张锦囊牌，否则此〔杀〕无效且其受到一点伤害",
+            "ex_jingong_info":"锁定技，当其他角色对你使用〔杀〕时，需额外弃置一张黑色牌，否则此〔杀〕无效并且你摸一张牌",
             "ex_zhaoxian":"招贤",
             "ex_zhaoxian_info":"锁定技，游戏开始时、你处于濒死状态时，你获得一名随机武将的全部技能，若此技能在濒死阶段发动，你将体力回复至一并扣除一点体力上限，此技能在你的体力上限不大于二时失效",
             "ex_xiangcao":"香草",
@@ -1630,9 +1805,21 @@ player.gain(game.createCard(trigger.card),'gain2');
             "ex_nashi":"纳士",
             "ex_nashi_info":"游戏开始前，或在你受到伤害后，你可以选择任意一名角色，使其获得随机一个技能",
             "ex_quehu":"却胡",
-            "ex_quehu_info":"每当你打出一张〔闪〕，可以弃置一张牌并对一名角色造成一点伤害",
+            "ex_quehu_info":"每当你打出一张〔闪〕，可以弃置一张牌并对一名体力不为一的角色造成一点伤害",
             "ex_yuqin":"御秦",
             "ex_yuqin_info":"你可以将一张基本牌当[闪]打出<br>回合结束时，你摸x张牌（x为你在该回合使用过的牌的数量）",
+            "ex_hezong":"合纵",
+            "ex_hezong_info":"锁定技<br>当你受到伤害时，你令所有已受伤己方角色摸一张牌<br>当你回复体力时，你令场上其他角色同时回复一点体力<br>你不会被横置",
+            "ex_guoxiang":"国相",
+            "ex_guoxiang_info":"锁定技，当我方角色须打出牌时，若其已受伤，可以先从牌堆摸一张牌",
+            "ex_fengbin":"逢膑",
+            "ex_fengbin_info":"限定技，当你处于濒死状态时，你须将体力上限变更至二，之后回复体力至上限",
+            "ex_jianzao":"减灶",
+            "ex_jianzao_info":"出牌阶段限一次，你可以将一张红色牌当作增兵减灶使用",
+            "ex_lianzhan":"连战",
+            "ex_lianzhan_info":"锁定技，若你的体力不大于三，则你每使用一张牌便从牌堆摸一张牌",
+            "ex_lianke":"连克",
+            "ex_lianke_info":"锁定技，当你成功杀害一名角色时，你须将武将牌翻至背面并摸两张牌",
         },
     },
-},files:{"character":["ex_limu.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["ex_yueyi.jpg"],"card":[],"skill":[]}}})

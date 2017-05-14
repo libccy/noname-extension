@@ -269,7 +269,7 @@ window.noname_extension_list=[
         intro:"导入后在乱斗模式中即可找到此模式。规则在乱斗模式中被介绍。",
         size:"363kB",
         netdisk:"https://pan.baidu.com/share/link?shareid=2775216172&uk=292195496",
-        version:2,
+        version:3,
         files:[
             "jiangshi.jpg","xueqing.jpg"
         ]
@@ -277,16 +277,17 @@ window.noname_extension_list=[
         name:"战国七雄",
         author:"何子风云",
         intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",
-        size:"9.4MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=841239829&uk=1079389979",
+        size:"11.9MB",
+        netdisk:"https://pan.baidu.com/share/link?shareid=1912803373&uk=1079389979",
         forum:"https://tieba.baidu.com/p/5044759964",
-        version:6,
+        version:7,
         files:[
             "ex_baiqi.jpg","ex_fanju.jpg","ex_huangxie.jpg","ex_lianpo.jpg","ex_limu.jpg",
-			"ex_linxiangru.jpg","ex_lisi.jpg","ex_lvbuwei.jpg","ex_mengtian.jpg","ex_quyuan.jpg",
-			"ex_shangyang.jpg","ex_simacuo.jpg","ex_sunbin.jpg","ex_suqin.jpg","ex_tianji.jpg",
-			"ex_wangjian.jpg","ex_wuqi.jpg","ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg",
-			"ex_zhangyi.jpg","ex_zhaosheng.jpg","ex_zhaoyong.jpg","ex_zouji.jpg"
+			"ex_linxiangru.jpg","ex_lisi.jpg","ex_lvbuwei.jpg","ex_mengtian.jpg","ex_pangjuan.jpg",
+			"ex_quyuan.jpg","ex_shangyang.jpg","ex_simacuo.jpg","ex_sunbin.jpg","ex_suqin.jpg",
+			"ex_tiandan.jpg","ex_tianji.jpg","ex_wangjian.jpg","ex_weiwuji.jpg","ex_wuqi.jpg",
+			"ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg","ex_zhangyi.jpg","ex_zhaosheng.jpg",
+			"ex_zhaoyong.jpg","ex_zouji.jpg"
         ]
     },{
         name:"弹丸杀",

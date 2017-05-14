@@ -1,4 +1,4 @@
-game.import("extension",{name:"僵尸",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"僵尸",content:function (config,pack){
 	if ( lib.brawl ) {
 lib.brawl.jiangshimoshi = {
             name:'僵尸模式',
@@ -9,7 +9,7 @@ lib.brawl.jiangshimoshi = {
 			'<span class=\"bluetext\" style=\"color:#EE7621\">规则介绍：</span>',
 			'游戏开始时，除主公外的所有角色的势力变为忠臣（人类）；',
 			'主公的第二个回合开始时，夜幕降临；',
-			'在夜晚，除主公外的所有角色有60%概率变成僵尸（每局只能有一人因此变为僵尸）；',
+			'在夜晚，除主公外的所有角色有15*X%概率变成僵尸,X为角色所在的号位数-1（每局只能有一人因此变为僵尸且必定有一人因此变为僵尸）；',
 			'每当有势力为忠臣（人类）的角色死亡时，其弃置所有牌并摸4张牌，然后变为僵尸；',
 			'每当有势力为主公（人类）的角色死亡时，其选择一名势力为忠臣（人类）的角色，使其成为主公；',
 			'人类们可以互助；',
@@ -23,10 +23,12 @@ lib.brawl.jiangshimoshi = {
 						for(var i=0;i<list.length;i++){
                         list2.push(list[i]); 
                     }
-                        list2.push(["heart","161","xueqing"]);
+                        list2.push(["heart","1","xueqing"]);
 						return list2;
                 },				
                 gameStart:function(){
+					game.zhu.addSkill('jisuan');
+					game.zhu.addSkill('jisuan2');
                     for(var i=0;i<game.players.length;i++){
                         game.players[i].addSkill('huzhu');
                         game.players[i].addSkill('jiangshi');
@@ -92,7 +94,7 @@ lib.brawl.jiangshimoshi = {
 				priority:15,
 				filter:function(event,player){
 					if(player.identity!='zhong') return false;
-					if(Math.random()>0.6) return false;
+					if(Math.random()>game.zhu.storage.jisuan*0.15) return false;
 					if(game.zhu.storage.nojiangshi) return false;
 					return !player.storage.tuizhi&&game.zhu.storage.tuizhi==2;
 				},
@@ -100,6 +102,8 @@ lib.brawl.jiangshimoshi = {
 					for(var i=0;i<game.players.length;i++){
                         game.players[i].removeSkill('jiangshi2');
                     };
+					game.zhu.removeSkill('jisuan');
+					game.zhu.removeSkill('jisuan2');
 					game.log(player,'变成了【僵尸】失去了理智开始攻击人类！');
 					player.next.storage.id=player.next.identity;	
 					player.next.identity='nei';
@@ -260,6 +264,36 @@ lib.brawl.jiangshimoshi = {
 			}
 			lib.translate.huzhu='互助'
 			lib.translate.huzhu_info='出牌阶段限一次，人类玩家可以弃置一张【桃】令距离一的人类玩家恢复一点体力'
+			lib.translate.jisuan='概率'
+			lib.translate.jisuan2='概率'
+			lib.skill.jisuan={
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				priority:10,
+				content:function(){
+					if(player.storage.jisuan==undefined) player.storage.jisuan=0;
+					player.markSkill('jisuan');
+					player.syncStorage('jisuan');
+				},
+				intro:{
+					content:function (storage){
+                    return '下一名角色变为角色的概率为'+storage*15+'%'
+},
+				},
+			}
+			lib.skill.jisuan2={
+                trigger:{
+                global:"phaseEnd",
+                },
+				forced:true,
+				filter:function(event,player){
+				return player.storage.tuizhi==2;
+				},
+				content:function(){
+                player.storage.jisuan+=1;
+				player.syncStorage('jisuan');
+				},
+			}			
 			lib.skill.tuizhi={
 				trigger:{player:'phaseBegin'},
 				forced:true,
@@ -435,4 +469,4 @@ lib.brawl.jiangshimoshi = {
         translate:{
         },
     },
-},files:{"character":["jiangshi.jpg"],"card":["xueqing.jpg"],"skill":[]}})
+},files:{"character":["jiangshi.jpg"],"card":["xueqing.jpg"],"skill":[]}}})

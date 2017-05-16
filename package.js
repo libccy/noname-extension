@@ -308,9 +308,9 @@ window.noname_extension_list=[
         author:"fux2",
         intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中",
         size:"2.1MB",
-        netdisk:"https://pan.baidu.com/s/1jHDBGI6",
+        netdisk:"https://pan.baidu.com/s/1mhXRd9m",
         forum:"https://tieba.baidu.com/p/4802167753",
-        version:7,
+        version:8,
         files:[
             "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
 			"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",

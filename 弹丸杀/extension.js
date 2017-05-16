@@ -99,70 +99,6 @@ game.import("extension", {
 
             }
         };
-        game.chooseDeadTarget = function(check){
-            var event=_status.event;
-            if(event.filterTarget==undefined) return (check()>0);
-            var i,j,range,targets,targets2,effect;
-            var ok=false,forced=event.forced;
-            var iwhile=100;
-            while(iwhile--){
-                range=get.select(event.selectTarget);
-                if(range[1]==-1){
-                    j=0;
-                    for(i=0;i<ui.selected.targets.length;i++){
-                        effect=check(ui.selected.targets[i]);
-                        if(effect<0) j-=Math.sqrt(-effect);
-                        else j+=Math.sqrt(effect);
-                    }
-                    return (j>0);
-                }
-                else if(range[1]==0){
-                    return check()>0
-                }
-                targets=get.allDeadBody();
-                if(targets.length==0){
-                    return ok;
-                }
-                targets2=targets.slice(0);
-                var ix=0;
-                var checkix=check(targets[0],targets2);
-                for(i=1;i<targets.length;i++){
-                    var checkixtmp=check(targets[i],targets2);
-                    if(checkixtmp>checkix){
-                        ix=i;
-                        checkix=checkixtmp;
-                    }
-                }
-                if(check(targets[ix])<=0){
-                    if(!forced||ok){
-                        return ok;
-                    }
-                }
-                targets[ix].classList.add('selected');
-                ui.selected.targets.add(targets[ix]);
-                game.check();
-                if(ui.selected.targets.length>=range[0]){
-                    ok=true;
-                }
-                if(ui.selected.targets.length==range[1]){
-                    return true;
-                }
-            }
-        };
-        get.allDeadBody = function(sort){
-            var selectable=[];
-            for(var i=0;i<game.dead.length;i++){
-                if(game.dead[i].classList.contains('selectable')&&
-                    game.dead[i].classList.contains('selected')==false){
-                    selectable.push(game.dead[i]);
-                }
-            }
-            selectable.randomSort();
-            if(sort){
-                selectable.sort(sort);
-            }
-            return selectable;
-        };
         game.fux2 = {};
         game.fux2.dangan = {};
         if(cfg.enable){
@@ -229,6 +165,32 @@ game.import("extension", {
                         dan_jiutoulong:['dan_biangu'],
                     },
                     skill:{
+                    	cmSkill: {
+			                trigger: {
+			                    global: ["gameDrawAfter","phaseBefore"],
+			                },
+			                forced: true,
+			                unique: true,
+			                direct: true,
+			                popup: false,
+			                filter: function(event, player) {
+			                	if(game.fux2.dangan.kamukura && event.player==game.fux2.dangan.kamukura.next && event.player.previous!=game.fux2.dangan.kamukura){
+			                		event.player.previous = game.fux2.dangan.kamukura;
+			                	}
+			                	if(game.fux2.dangan.kamukura && event.player==game.fux2.dangan.kamukura.previous && event.player.next!=game.fux2.dangan.kamukura){
+			                		event.player.next = game.fux2.dangan.kamukura;
+			                	}
+			                    var pl = game.fux2.dangan.kamukura;
+			                    if(!pl) return false;
+			                    pl.node.count.innerHTML = pl.hp;
+			                    if(!game.cmpName(pl, 'dan_kamukura')) return true;
+			                    if(!pl.skills || pl.skills.length==0) return true;
+			                },
+			                content: function() {
+			                    "step 0"
+			                    letPlayerWin(game.fux2.dangan.kamukura);
+			                },
+			            },
                         shenzuo2: {
                             trigger: {
                                 player: "shaBefore",
@@ -1447,6 +1409,7 @@ game.import("extension", {
                                             targ2 = t2;
                                         if (player == targ1 || player == targ2)
                                             return [1, 4];
+                                        return effect;
                                     },
                                 },
                             },
@@ -1525,7 +1488,7 @@ game.import("extension", {
                                 },
                                 chaos: {
                                     trigger: {
-                                        global: "damageBegin",
+                                        global: "damageBefore",
                                     },
                                     direct: true,
                                     priority: -10,
@@ -1538,11 +1501,16 @@ game.import("extension", {
                                     },
                                     content: function() {
                                         "step 0"
-                                        player.chooseTarget(get.translation(trigger.player) + '即将受到伤害，是否发动【替罪】？', function(card, player, target) {
-                                            if (trigger.player == target) return false;
+                                        var next = player.chooseTarget(get.translation(trigger.player) + '即将受到伤害，是否发动【替罪】？', function(card, player, target) {
+                                            var event=_status.event;
+                                            if (event.triggerPlayer == target) return false;
                                             return true;
-                                        }).set('ai',function(target) {
-                                            var pl = trigger.player;
+                                        });
+                                        next.set('triggerPlayer',trigger.player);
+                                        next.set('triggerNum',trigger.num);
+                                        next.set('ai',function(target) {
+                                            var event=_status.event;
+                                            var pl = event.triggerPlayer;
                                             var ra1 = ai.get.attitude(player, pl);
                                             var ra2 = ai.get.attitude(player, target);
                                             var num = ra1;
@@ -1552,14 +1520,14 @@ game.import("extension", {
                                                 hc.sort(function(a, b) {
                                                     return ai.get.value(a, pl) > ai.get.value(b, pl) ? 1 : -1
                                                 });
-                                                hc = hc.slice(0, trigger.num);
+                                                hc = hc.slice(0, event.triggerNum);
                                                 var hcn = 0;
                                                 for (var i = 0; i < hc.length; i++) {
                                                     hcn += ai.get.value(hc[i], pl)
                                                 };
                                                 if (hcn > 2) num -= hcn - 2;
                                                 if (pl.hp < pl.maxHp / 2) num += 2;
-                                                num += trigger.num - 1;
+                                                num += event.triggerNum - 1;
                                             }
                                             return num;
                                         });
@@ -1861,7 +1829,7 @@ game.import("extension", {
                                 },
                                 eff: {
                                     trigger: {
-                                        global: ["damageBegin", "recoverBegin"],
+                                        global: ["damageBefore", "recoverBegin"],
                                     },
                                     direct: true,
                                     priority: -100,
@@ -1872,7 +1840,9 @@ game.import("extension", {
                                     content: function() {
                                         if (trigger.name == 'damage') {
                                             trigger.player.line(player, 'red');
+                                            trigger.untrigger();
                                             trigger.player = player;
+                                            trigger.trigger('damageBefore');
                                         } else {
                                             trigger.player.line(player, 'green');
                                             player.recover(trigger.num)._triggered = null;
@@ -2224,44 +2194,31 @@ game.import("extension", {
                             },
                             content: function() {
                                 "step 0"
-                                for(var i=0;i<game.dead.length;i++){
-                                    game.dead[i].classList.remove('dead');
-                                    game.dead[i].classList.add('selectable');
-                                    game.dead[i].update();
-                                }
-                                var next=game.createEvent('chooseDeadTarget');
-                                next.player=player;
-                                next.selectTarget=[1,1];
-                                next.forced=true;
-                                next.filterTarget=function(card, player, target){
-                                    return target.isDead();
-                                };
-                                next.set('ai',function(player, target) {
-                                    return -ai.get.attitude(player, target);
+                                var next=player.chooseButton();
+                                next.set('createDialog',['选择一名阵亡武将使其复活',game.dead]);
+                                next.set('ai',function(button){
+                                    return -ai.get.attitude(_status.event.player, button.link);
                                 });
-                                next.prompt='选择一名死亡角色使其复活';
-                                next.setContent('chooseTarget');
-                                next._args=[next.prompt,lib.filter.all];
                                 "step 1"
-                                if (result.bool) {
+                                if (result.bool&&result.links) {
+                                    player.$throw(player.storage.tumeiRem);
+                                    player.line(target);
+                                    player.logSkill('tumei1', target);
+                                    player.line(target, 'green');
+                                    player.turnOver();
                                     game.broadcastAll(function(player,target){
-                                        player.$throw(player.storage.tumeiRem);
-                                        player.line(result.targets);
-                                        var target = result.targets[0];
-                                        player.logSkill('tumei1', target);
-                                        player.line(target, 'green');
                                         target.revive();
-                                        target.recover();
-                                        target.draw(2);
                                         target.update();
-                                        player.turnOver();
-                                    },player,target);
+                                    },player,result.links[0]);
+                                    
+                                }else{
+                                    event.finish();
                                 }
-                                for(var i=0;i<game.dead.length;i++){
-                                    game.dead[i].classList.remove('selectable');
-                                    game.dead[i].classList.add('dead');
-                                    game.dead[i].update();
-                                }
+                                "step 2"
+                                var pl = result.links[0];
+                                pl.recover();
+                                pl.draw(2);
+                                game.delay();
                             },
                             ai: {
                                 basic: {
@@ -2672,27 +2629,23 @@ game.import("extension", {
                                         "step 0"
                                         player.judge('nuller1',function(card){return (get.color(card)=='black')?1.5:-0.5});
                                         "step 1"
-                                        trigger.untrigger();
                                         if(result.judge<0){
-                                            if(trigger.player!=player){
-                                                trigger.player.line(player, 'red');
-                                                trigger.player = player;
-                                            }
+                                            trigger.player.line(player, 'red');
+                                            player.loseHp(trigger.num);
                                         }else{
-                                            if(trigger.player==player){
-                                                player.line(player.storage.nuller1target,'red');
-                                                trigger.player=player.storage.nuller1target;
-                                            }
+                                            player.line(player.storage.nuller1target,'red');
+                                            player.storage.nuller1target.loseHp(trigger.num);
                                         }
-                                        "step 2"
-                                        trigger.trigger('damageBefore');
+                                        trigger.untrigger();
+                                        trigger.finish();
+                                        event.finish();
                                     },
                                 },
                             },
                         },
         
                         nuller2: {
-                            trigger:{player:'phaseEnd'},
+                            trigger:{player:'phaseDiscardBefore'},
                             content:function(){
                                 "step 0"
                                 var check=player.countCards('h');
@@ -3258,7 +3211,7 @@ game.import("extension", {
                         huacun4: "快刀",
                         huacun4_info: "锁定技，当你于回合外失去手牌时，你获得一枚【美食】标记。",
                         nuller1: "伪装",
-                        nuller1_info: "每回合一次，你可以指定一个目标，直至下次你发动这个技能为止，该目标不能对你出牌，你或目标受到伤害时进行一次判定，如果是红色则本次伤害由你承担，若为黑色则由目标承担。",
+                        nuller1_info: "每回合一次，你可以指定一个目标，直至下次你发动这个技能为止，该目标不能对你出牌，你或目标受到伤害时变为生命流失，并进行一次判定，如果是红色则本次伤害由你承担，若为黑色则由目标承担。",
                         nuller2: "欺诈",
                         nuller2_info: "锁定技，你的进攻距离会跟正常进攻距离相反，在你的回合结束时，你可以交给一名角色任意张牌，并摸等量的牌。",
                         nuller3: "伪装",
@@ -3299,9 +3252,9 @@ game.import("extension", {
                     },
                 };
                 if(lib.device||lib.node){
-                	for(var i in danganPack.character){danganPack.character[i][4].push('ext:弹丸杀/'+i+'.jpg');}
+                    for(var i in danganPack.character){danganPack.character[i][4].push('ext:弹丸杀/'+i+'.jpg');}
                 }else{
-					for(var i in danganPack.character){danganPack.character[i][4].push('db:extension-弹丸杀:'+i+'.jpg');}
+                    for(var i in danganPack.character){danganPack.character[i][4].push('db:extension-弹丸杀:'+i+'.jpg');}
                 }
                 return danganPack;
             });

@@ -29,9 +29,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"战�
             "ex_suqin":["male","ex_zhao",3,["ex_hezong","ex_guoxiang"],["des:苏秦（？—前284年），字季子，雒阳（今河南洛阳）人，战国时期著名的纵横家、外交家和谋略家。  苏秦与张仪同出自鬼谷子门下，跟随鬼谷子学习纵横之术。学成后，外出游历多年，潦倒而归。随后刻苦攻读《阴符》，一年后游说列国，被燕文公赏识，出使赵国。苏秦到赵国后，提出合纵六国以抗秦的战略思想，并最终组建合纵联盟，任“从约长”，兼佩六国相印，使秦十五年不敢出函谷关。联盟解散后，齐国攻打燕国，苏秦说齐归还燕国城池。后自燕至齐，从事反间活动，被齐国任为客卿，齐国众大夫因争宠派人刺杀，苏秦死前献策诛杀了刺客。  《汉书·艺文志》纵横家有《苏子》31篇，早佚。帛书《战国纵横家书》存有其游说辞及书信十六篇，其中十一篇不见于现存传世古籍。"]],
             "ex_tianji":["male","ex_qi",4,["ex_fengbin","ex_jianzao"],["des:田忌，生卒年不详，妫姓，田氏（亦作陈氏），名忌，字期，又曰期思，封于徐州（今山东滕州南），故又称徐州子期。战国时期齐国名将。  约为公元前340年，孙膑逃亡到齐国时，田忌赏识孙膑的才能，收为门客。在一次赛马时，孙膑向田忌提出了以下马对上马，以上马对中马，以中马对下马的田忌赛马法。  公元前354年，发生桂陵之战，魏国攻打赵国，齐国派兵相助，田忌为主将，孙膑为参谋，结果孙膑以“围魏救赵”的兵法大胜。  公元前341年，发生马陵之战，魏国攻打韩国，齐国派兵相助，仍由田忌为主将，孙膑为参谋，孙膑仍进军魏都大梁，用“减灶之计”，让魏军大将庞涓轻敌深入，结果庞涓被杀，齐国大胜。同年，被齐相邹忌用反间计陷害，田忌无法澄清，逃亡楚国。直到齐宣王即位，方才重回齐国。"]],
             "ex_yueyi":["male","ex_yan",4,["ex_lianzhan","ex_lianke"],["des:乐毅（yuè yì），生卒年不详，子姓，乐氏，名毅，字永霸。中山灵寿人，战国后期杰出的军事家，魏将乐羊后裔，拜燕上将军，受封昌国君，辅佐燕昭王振兴燕国。  公元前284年，他统帅燕国等五国联军攻打齐国，连下70余城，创造了中国古代战争史上以弱胜强的著名战例，报了强齐伐燕之仇。后因受燕惠王猜忌，投奔赵国，被封于观津，号为望诸君。"]],
-            "ex_weiwuji":["male","ex_wei",3,["ex_huitian3","ex_jiuse"],["des:魏无忌（？—前243年），即信陵君，魏国公子，与春申君黄歇、孟尝君田文、平原君赵胜并称为“战国四公子”。是战国时期魏国著名的军事家、政治家，魏昭王少子、魏安釐王的异母弟。公元前276年，被封于信陵（河南宁陵县），[1]所以后世皆称其为信陵君。[1] 魏无忌处于魏国走向衰落之时，他效仿孟尝君田文、平原君赵胜的辅政方法，延揽食客，养士数千人，自成势力。魏无忌礼贤下士、急人之困，曾在军事上两度击败秦军，分别挽救了赵国和魏国危局。但屡遭魏安釐王猜忌而未能予以重任。前243年，魏无忌因伤于酒色而死。十八年后，魏国为秦所灭。著有《魏公子兵法》。"]],
+            "ex_weiwuji":["male","ex_wei",3,["ex_zhenxing","ex_jiuse"],["des:魏无忌（？—前243年），即信陵君，魏国公子，与春申君黄歇、孟尝君田文、平原君赵胜并称为“战国四公子”。是战国时期魏国著名的军事家、政治家，魏昭王少子、魏安釐王的异母弟。公元前276年，被封于信陵（河南宁陵县），[1]所以后世皆称其为信陵君。[1] 魏无忌处于魏国走向衰落之时，他效仿孟尝君田文、平原君赵胜的辅政方法，延揽食客，养士数千人，自成势力。魏无忌礼贤下士、急人之困，曾在军事上两度击败秦军，分别挽救了赵国和魏国危局。但屡遭魏安釐王猜忌而未能予以重任。前243年，魏无忌因伤于酒色而死。十八年后，魏国为秦所灭。著有《魏公子兵法》。"]],
             "ex_pangjuan":["male","ex_wei",4,["ex_kuangjuan","ex_canxian"],["des:庞涓（？—前341年），战国初期魏国名将。相传与孙膑同拜于隐士鬼谷子门下，因嫉妒孙膑的才能，恐其贤于己，因而设计把他的膝盖骨刮去。  魏惠王二十八年（前342年），魏国进攻韩国，次年齐救韩，采用孙膑策略，直趋魏都大梁，旋即退兵，诱使庞涓兼程追击，在马陵（今河南范县西南）中伏大败，涓智穷，大叹“遂叫竖子成名”，自刎而死（一说被乱箭射死），史称马陵之战。"]],
-            "ex_tiandan":["male","ex_qi",4,["ex_huoniu","ex_keqiang"],["des:田单（tián dān）生卒年不详，妫姓，田氏，名单，临淄人，战国时田齐宗室远房的亲属，任齐都临淄的市掾（管理市场的小官）。齐国危亡之际，田单坚守即墨，以火牛阵击破燕军，收复七十余城，因功被任为相国，并得到安平君的封号。后来到赵国作将相，死后葬于安平城内。"]],
+            "ex_tiandan":["male","ex_qi",4,["ex_huoniu","ex_huitian3"],["des:田单（tián dān）生卒年不详，妫姓，田氏，名单，临淄人，战国时田齐宗室远房的亲属，任齐都临淄的市掾（管理市场的小官）。齐国危亡之际，田单坚守即墨，以火牛阵击破燕军，收复七十余城，因功被任为相国，并得到安平君的封号。后来到赵国作将相，死后葬于安平城内。"]],
         },
         translate:{
             "ex_qin":"秦",
@@ -88,14 +88,15 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"战�
         skill:{
             "ex_kengsha":{
                 trigger:{
-                    source:"damage",
+                    source:"dying",
                 },
                 forced:true,
+                priority:20,
                 filter:function (event,player){
         return event.player!=player&&event.player.hp<=0;
     },
                 content:function (){
-        trigger.player.die();
+        trigger.player.die()._triggered=null;
     },
             },
             "ex_xuetu":{
@@ -1979,22 +1980,22 @@ player.recover(player.maxHp-player.hp);
                 enable:"chooseToUse",
                 usable:1,
                 filterCard:function (card){
-        return get.suit(card)=='spade';
+        return get.color(card)=='black';
     },
                 viewAs:{
                     name:"jiu",
                 },
                 viewAsFilter:function (player){
-        if(!player.countCards('h',{suit:'spade'})) return false;
+        if(!player.countCards('h',{color:'black'})) return false;
     },
-                prompt:"将一张黑桃手牌当酒使用",
+                prompt:"将一张黑色手牌当酒使用",
                 check:function (card){
         if(_status.event.type=='dying') return 1;
         return 4-get.value(card);
     },
                 ai:{
                     skillTagFilter:function (player){
-            return player.countCards('h',{suit:'spade'})>0&&player.hp<=0;
+            return player.countCards('h',{color:'black'})>0&&player.hp<=0;
         },
                     threaten:1.5,
                     save:true,
@@ -2085,7 +2086,7 @@ player.recover(player.maxHp-player.hp);
         }
     },
             },
-            "ex_keqiang":{
+            "ex_zhenxing":{
                 trigger:{
                     player:"phaseEnd",
                 },
@@ -2100,6 +2101,7 @@ player.recover(player.maxHp-player.hp);
                 trigger:{
                     global:"phaseBegin",
                 },
+                forced:true,
                 filter:function (event,player){
         return event.player!=player&&event.player.hp==event.player.maxHp;
     },
@@ -2226,13 +2228,13 @@ player.recover(player.maxHp-player.hp);
             "ex_huitian3":"回天",
             "ex_huitian3_info":"锁定技，当你在一个回合阶段首次进入濒死状态时，将你区域内的牌与体力值恢复至上个回合你摸牌阶段结束后的状态",
             "ex_jiuse":"酒色",
-            "ex_jiuse_info":"一回合限一次，你可将你的任意一张♠手牌当【酒】使用。",
+            "ex_jiuse_info":"一回合限一次，你可将你的任意一张黑色手牌当【酒】使用。",
             "ex_huoniu":"火牛",
             "ex_huoniu_info":"锁定技，你的〔杀〕须两张〔闪〕才可闪避",
-            "ex_keqiang":"克强",
-            "ex_keqiang_info":"结束阶段，若你的手牌数不大于二，可以摸两张牌",
+            "ex_zhenxing":"振兴",
+            "ex_zhenxing_info":"结束阶段，若你的手牌数不大于二，可以摸两张牌",
             "ex_canxian":"残陷",
-            "ex_canxian_info":"其他角色开始阶段，若其未受伤，你可以令其受到一点伤害",
+            "ex_canxian_info":"锁定技，其他角色开始阶段，若其未受伤，你令其受到一点伤害",
         },
     },
-},files:{"character":["ex_pangjuan.jpg","ex_tiandan.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["ex_tiandan.jpg"],"card":[],"skill":[]}}})

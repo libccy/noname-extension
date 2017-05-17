@@ -294,7 +294,7 @@ window.noname_extension_list=[
         size:"11.9MB",
         netdisk:"https://pan.baidu.com/share/link?shareid=1912803373&uk=1079389979",
         forum:"https://tieba.baidu.com/p/5044759964",
-        version:7,
+        version:8,
         files:[
             "ex_baiqi.jpg","ex_fanju.jpg","ex_huangxie.jpg","ex_lianpo.jpg","ex_limu.jpg",
 			"ex_linxiangru.jpg","ex_lisi.jpg","ex_lvbuwei.jpg","ex_mengtian.jpg","ex_pangjuan.jpg",
@@ -310,7 +310,7 @@ window.noname_extension_list=[
         size:"2.1MB",
         netdisk:"https://pan.baidu.com/s/1mhXRd9m",
         forum:"https://tieba.baidu.com/p/4802167753",
-        version:8,
+        version:9,
         files:[
             "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
 			"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",

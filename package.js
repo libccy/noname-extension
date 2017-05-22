@@ -287,15 +287,13 @@ window.noname_extension_list=[
         name:"统率三军",
         author:"神原拓也V",
         intro:"帮助界面查看新将池。统率三军2017将池更新；2011~2014历史将池补全；武将补全、武将修复、武将优化。可在贴吧反馈bug和查看更新",
-        size:"617KB",
+        size:"388KB",
         netdisk:"http://pan.baidu.com/s/1c2zR3PI",
         forum:"https://tieba.baidu.com/p/5114471294",
-        version:1,
+        version:2,
         files:[
-            "vs_jiuzhu1.mp3","vs_jiuzhu11.mp3","vs_jiuzhu12.mp3","vs_jiuzhu2.mp3","vs_qice1.mp3",
-			"vs_qice2.mp3","vs_shenji1.mp3","vs_shenji2.mp3","vs_shensu1.mp3","vs_shensu2.mp3",
-			"vs_suzi1.mp3","vs_suzi2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3",
-			"vs_zhongyi2.mp3","测试.jpg"
+            "gameStart1.mp3","gameStart2.mp3","vs_jiuzhu1.mp3","vs_jiuzhu2.mp3","vs_shenji1.mp3",
+			"vs_shenji2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3","vs_zhongyi2.mp3"
         ]
     },{
         name:"战国七雄",

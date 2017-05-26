@@ -1,14 +1,13 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统率三军",content:function (config,pack){
     _status.mode=get.config('versus_mode');
-    _status.version=lib.config['extension_统率三军_version'];
-    lib.arenaReady.push(function(){
+    _status.season=lib.config['extension_统率三军_season'];
+    lib.arenaReady.push(function(){       
         lib.skill._gameStart={
             trigger:{global:'gameStart'},    			
             forced:true,	
             popup:false,					
             silent:true,	
-            filter:function (event,player){      
-                 
+            filter:function (event,player){                  
               return game.me==player;
             },
             content:function(){
@@ -16,25 +15,42 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
                 game.trySkillAudio('gameStart'); 
     			'step 1'
                 if(_status.mode=='three'&&lib.config['extension_统率三军_actdraw']==true){                     
-                    if(_status.color){ game.friendZhu.gain(get.cards());}
-                    else{game.enemyZhu.gain(get.cards());}                    
+                    if(_status.color){ game.friendZhu.gain(get.cards());
+                                     game.enemyZhu.addTempSkill('actlimit');}
+                    else{game.enemyZhu.gain(get.cards());
+                        game.friendZhu.addTempSkill('actlimit');}                    
                 }                                               
             }
         }    
-        lib.skill.gameStart={audio:"ext:统率三军:2",}  
-       /*lib.card.lebu.filter=function(event,player){
-					if(player.stat.length==1&&event.cards[0]&&event.cards[0]==event.card) return false;
-            return true;
-				}*/
+        lib.skill.gameStart={audio:"ext:统率三军:2",}
+        lib.skill.actlimit={
+    			mod:{
+    				cardEnabled:function(card){if(card.name=='lebu'&&(get.suit(card)=='heart'||get.suit(card)=='club'||get.suit(card)=='spade')) return false}
+    			}
+    		}
+    
     }
                        )
-    if(config.card){
+    if(config.card){        
         lib.arenaReady.push(function(){
+            lib.translate.zhuge_skill='连弩'
             lib.skill.zhuge_skill={
+                trigger:{
+        player:"useCard",
+    },
+    audio:true,
+    forced:true,    
+    filter:function (event,player){
+        if(_status.currentPhase!=player) return false;
+     
+        return (event.card.name=='sha'&&!player.hasSkill('ol_paoxiao')&&player.getStat().card.sha>1);
+    },
+    content:function (){        
+    },
                 mod:{
                     cardUsable:function(card,player,num){
                         if(card.name=='sha'){
-                            if(_status.mode=='three'&&_status.version!='2011'&&_status.version!='2012'){                                
+                            if(_status.mode=='three'&&_status.season!='2011'&&_status.season!='2012'){                                
 								return num+3;                                
 							}
 							return Infinity;
@@ -44,7 +60,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
 			}              
             
             lib.card.wuzhong.content=function (){				
-					if(_status.mode=='three'&&_status.version!="2011"&&_status.version!="2012"){                        
+					if(_status.mode=='three'&&_status.season!="2011"&&_status.season!="2012"){                        
 						if(game.friend.contains(target)){
 							if(game.friend.length<game.enemy.length){
 								target.draw(3);return;
@@ -118,12 +134,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
             lib.character.xiaoqiao[3]=["tianxiang","hongyan"]
             lib.character.zhugejin[3]=["vs_hongyuan","vs_huanshi","ol_mingzhe"]
             lib.character.sunquan[3]=["zhiheng"] 
+            lib.character.zhouyu[3]=["yingzi","ol_fanjian"]
             
                                       
         }
                            )
         'step 1'       
-        if(_status.version=="2011"){
+        if(_status.season=="2011"){
             lib.arenaReady.push(function(){
                 lib.choiceThree=[
                     'caocao','simayi','zhangliao','guojia','zhenji','xiahoudun','xiahouyuan','xuzhu','caoren',
@@ -141,7 +158,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
             }
                                )
         }
-        if(_status.version=="2012"){
+        if(_status.season=="2012"){
             lib.arenaReady.push(function(){
                 lib.choiceThree=[
                     'caocao','simayi','zhangliao','guojia','zhenji','xuhuang','xiahouyuan','xuzhu',
@@ -156,7 +173,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
             }
                                )
         }
-        if(_status.version=="2014"){
+        if(_status.season=="2014"){
             lib.arenaReady.push(function(){
                 lib.choiceThree=[
                     'caocao','simayi','zhangliao','guojia','zhenji','xiahoudun','xiahouyuan','xuhuang','wenpin',
@@ -165,17 +182,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
                     'huatuo','lvbu','diaochan','pangde','jiaxu',
                 ]
                 lib.translate.zhuge='连弩'
+                lib.translate.zhuge_skill_info='锁定技，出牌阶段，你使用杀的次数上限+3'
                 lib.character.xiahoudun[3]=["vs_ganglie"]
                 lib.character.xiahouyuan[3]=["shensu"]                     
                 lib.character.zhaoyun[3]=["longdan","vs_jiuzhu"]         
-                lib.character.guanyu[3]=["vs_zhongyi","wusheng"]  
-                lib.character.zhouyu[3]=["yingzi","ol_fanjian"]
+                lib.character.guanyu[3]=["vs_zhongyi","wusheng"]                 
                 lib.character.lvbu[3]=["vs_zhanshen","wushuang"]
                 lib.character.pangde[3]=["mashu","mengjin"]                                              
             }
                                )
         }        
-        if(_status.version=="2017"){
+        if(_status.season=="2017"){
             lib.arenaReady.push(function(){
                 lib.choiceThree=[
                     'wangyi','re_simayi','re_zhangliao','re_xuzhu','re_guojia','wangji','zhenji','dianwei','re_lidian','xunyou','zhongyao','yuejin',
@@ -189,9 +206,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
                                )
         }
         'step 2'                
-        if(_status.version=="2016"||_status.version=="2017"){            
+        if(_status.season=="2016"||_status.season=="2017"){            
             lib.arenaReady.push(function(){
                 lib.translate.zhuge='连弩'
+                 lib.translate.zhuge_skill_info='锁定技，出牌阶段，你使用杀的次数上限+3'
                 
                 lib.rank.s.push('re_huanggai');
                 lib.rank.s.push('re_huatuo');
@@ -259,44 +277,44 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
             }
                                )
         }
-        if(_status.version!="2016"&&_status.version!="2017"){
+        if(_status.season!="2016"&&_status.season!="2017"){
             lib.arenaReady.push(function(){
                
                 lib.rank.s.push('liubei');
                 lib.rank.s.push('zhangliao');
                 lib.rank.s.push('guojia');              
                 lib.rank.s.push('zhugeliang');                
-                
+               
                 lib.rank.ap.push('zhugejin');                           
                 lib.rank.ap.push('diaochan');
-                lib.rank.ap.push('huanggai');   
-                                                                             
-                lib.rank.a.push('sunquan');
+                lib.rank.ap.push('sunquan');                                                                              
+                
                 lib.rank.a.push('huangyueying');              
                 lib.rank.a.push('wenpin');                
                 lib.rank.a.push('huatuo');
+                lib.rank.a.push('guanyu');
+                lib.rank.a.push('jiaxu');
                 
-                lib.rank.bp.push('sp_zhangjiao');
-                lib.rank.bp.push('guanyu');
-                lib.rank.bp.push('jiaxu');
-                lib.rank.bp.push('jiangwei'); 
-                lib.rank.bp.push('daqiao');               
+                lib.rank.bp.push('huanggai');                  
+                lib.rank.bp.push('sp_zhangjiao');                                             
                 lib.rank.bp.push('sunshangxiang');
                 lib.rank.bp.push('zhenji');
+                lib.rank.bp.push('zhaoyun');  
                 
+                lib.rank.b.push('jiangwei'); 
+                lib.rank.b.push('daqiao');  
                 lib.rank.b.push('ganning');
                 lib.rank.b.push('zhangfei'); 
-                lib.rank.b.push('zhouyu');              
-                lib.rank.b.push('zhaoyun');       
-                                                      
+                                                   
+                lib.rank.bm.push('zhouyu');                                      
                 lib.rank.bm.push('xiaoqiao');                
-                lib.rank.bm.push('xuhuang');               
-                lib.rank.bm.push('machao');
+                lib.rank.bm.push('xuhuang');                               
                 lib.rank.bm.push('sunce');  
+                lib.rank.bm.push('simayi');
                 lib.rank.bm.push('sunjian');
                 
                 lib.rank.c.push('lvbu');
-                lib.rank.c.push('simayi');                                             
+                lib.rank.c.push('machao');                                             
                 lib.rank.c.push('xiahoudun');                                                                         
                 lib.rank.c.push('caocao')        
                 lib.rank.c.push('xiahouyuan');                                                         
@@ -432,7 +450,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"统�
 },precontent:function (){
     
     
-},help:{"统率将池":"<ul><li>2011：标准版武将+风包武将（去除于吉）<li>2012：在2011的基础上，【去除】吕蒙、夏侯惇、张角、曹仁、魏延；【加入】孙坚、孟获、徐晃、庞德、诸葛瑾。<li>2014：在2012的基础上，【去除】许褚、黄忠、孟获、周泰、陆逊；【加入】贾诩、姜维、孙策、文聘；【修改】赵云、关羽、吕布、夏侯惇。<li>2016：【魏】界李典、徐晃、荀攸、邓艾、界曹操、界司马懿、【蜀】界刘备、界张飞、诸葛亮、界赵云、界马超、黄月英、姜维、马谡、【吴】孙权、界甘宁、徐盛、界黄盖、界周瑜、界大乔、界陆逊、孙尚香、丁奉、孙坚、孙策、顾雍、诸葛瑾、小乔、凌统、【群】陈宫、界公孙瓒、界华佗、貂蝉、蔡夫人<li>2017：【魏】界张辽、王异、界许褚、界郭嘉、甄姬、典韦、界李典、荀攸、界司马懿、钟繇、王基、乐进、【蜀】界张飞、诸葛亮、界赵云、界马超、黄月英、姜维、刘谌、黄忠、糜竺、马岱、法正、界徐庶、李严、【吴】孙权、界甘宁、界大乔、孙尚香、丁奉、孙坚、孙策、顾雍、诸葛瑾、小乔、虞翻、韩当、【群】貂蝉、蔡夫人、公孙渊、庞德"},config:{"version":{"name":"版本","init":"2014","intro":"查看将池：其它-帮助-统率将池","item":{"2011":"2011","2012":"2012","2014":"2014","2016":"2016","2017":"2017"},"restart":true},"card":{"name":"卡牌还原","init":true,"intro":"青龙刀、无中、连弩","restart":true},"character":{"name":"武将还原","init":true,"intro":"ol版本：恂恂、秘计、旋风；标记提示：腹鳞、裸衣、奇制、诈降","restart":true},"actdraw":{"name":"暖主保护","init":true,"intro":"暖主起始手牌+1","restart":true}},package:{
+},help:{"统率将池":"<ul><li>2011：标准版武将+风包武将（去除于吉）<li>2012：在2011的基础上，【去除】吕蒙、夏侯惇、张角、曹仁、魏延；【加入】孙坚、孟获、徐晃、庞德、诸葛瑾。<li>2014：在2012的基础上，【去除】许褚、黄忠、孟获、周泰、陆逊；【加入】贾诩、姜维、孙策、文聘；【修改】赵云、关羽、吕布、夏侯惇。<li>2016：【魏】界李典、徐晃、荀攸、邓艾、界曹操、界司马懿、【蜀】界刘备、界张飞、诸葛亮、界赵云、界马超、黄月英、姜维、马谡、【吴】孙权、界甘宁、徐盛、界黄盖、界周瑜、界大乔、界陆逊、孙尚香、丁奉、孙坚、孙策、顾雍、诸葛瑾、小乔、凌统、【群】陈宫、界公孙瓒、界华佗、貂蝉、蔡夫人<li>2017：【魏】界张辽、王异、界许褚、界郭嘉、甄姬、典韦、界李典、荀攸、界司马懿、钟繇、王基、乐进、【蜀】界张飞、诸葛亮、界赵云、界马超、黄月英、姜维、刘谌、黄忠、糜竺、马岱、法正、界徐庶、李严、【吴】孙权、界甘宁、界大乔、孙尚香、丁奉、孙坚、孙策、顾雍、诸葛瑾、小乔、虞翻、韩当、【群】貂蝉、蔡夫人、公孙渊、庞德"},config:{"season":{"name":"赛季","init":"2014","intro":"查看将池：其它-帮助-统率将池","item":{"2011":"2011","2012":"2012","2014":"2014","2016":"2016","2017":"2017"},"restart":true},"card":{"name":"卡牌还原","init":true,"intro":"青龙刀、无中、连弩","restart":true},"character":{"name":"武将还原","init":true,"intro":"ol版本：恂恂、秘计、旋风；标记提示：腹鳞、裸衣、奇制、诈降","restart":true},"actdraw":{"name":"暖色保护","init":true,"intro":"暖主起始手牌+1；冷主首轮不能贴乐"}},package:{
     character:{
         character:{
         },
@@ -619,12 +637,16 @@ return get.color(card)=='red';
                         order:10,
                     },
                     result:{
-                        player:function (player,card){
-                for(var i=0;i<game.players.length;i++){
+                        player:function (event,player,card){
+                        for(var i=0;i<game.players.length;i++){
+                    if(!game.players[i].classList.contains('acted')&&game.players[i].isFriendOf(player)) return 1;
+             else if(game.players[i].classList.contains('acted')&&game.players[i].isFriendOf(player)) return -2;
+                }
+             /*   for(var i=0;i<game.players.length;i++){
                     if(game.players[i].stat.length<player.stat.length&&game.players[i].isFriendOf(player)) return 1;    
-              }
+              }*/
         if(player.countCards('h','sha')||player.countCards('h',{color:'red'})>1)   return 1;
-           return -5;
+           return -2;
             },
                     },
                 },
@@ -694,7 +716,7 @@ player.removeSkill('vs_zhongyi_lose');
         player.storage.vs_hunzi=true;
         game.createTrigger('phaseBegin','gzyinghun',player,trigger);
         'step 1'
-        if(_status.version=="2014"){
+        if(_status.season=="2014"){
              player.addSkill('yingzi');
         }
         else {
@@ -776,6 +798,17 @@ event.target.damage();
                 trigger:{
                     global:"judge",
                 },
+                check:function (event,player){
+        
+        var cards=player.getCards('he');
+        var judge=event.judge(event.player.judging[0]);
+        for(var i=0;i<cards.length;i++){
+            var judge2=event.judge(cards[i]);
+            if(_status.currentPhase!=player&&judge2==judge&&get.color(cards[i])=='red'&&get.useful(cards[i])<5) return true;
+            if(judge2>judge) return true;
+        }
+        return false;
+    },
                 direct:true,
                 filter:function (event,player){            
         if(event.player.isEnemyOf(player)){return false;}
@@ -788,18 +821,18 @@ event.target.damage();
             var trigger=_status.event.getTrigger();
             var player=_status.event.player;
             var judging=_status.event.judging;
-            var result=trigger.judge(card)-trigger.judge(judging);
-            var attitude=ai.get.attitude(player,trigger.player);
-            if(attitude==0||result==0) return 0;
-            if(attitude>0){
-                return result-ai.get.value(card)/2;
+            var result=trigger.judge(card)-trigger.judge(judging);          
+            if(result>0){return 20+result;}
+            if(result==0){
+                if(_status.currentPhase==player) return 0;   
+                return get.color(card)=='red'?7:0-get.value(card);       
             }
-            else{
-                return -result-ai.get.value(card)/2;
-            }
-        }).set('judging',trigger.player.judging[0]);
+            return get.color(card)=='red'?0:-10+result;       
+            }).set('judging',trigger.player.judging[0]);
         "step 1"
         if(result.bool){
+         player.line(trigger.player,'green');
+        player.logSkill('huanshi',trigger.player);
             player.respond(result.cards,'highlight');
         }
         else{
@@ -807,7 +840,7 @@ event.target.damage();
         }
         "step 2"
         if(result.bool){
-            player.logSkill('huanshi');
+            
             if(trigger.player.judging[0].clone){
                 trigger.player.judging[0].clone.classList.remove('thrownhighlight');
                 game.broadcast(function(card){
@@ -1313,6 +1346,7 @@ event.target.damage();
                 forced:true,
                 audioname:["zhangfei","re_zhangfei"],
                 filter:function (event,player){
+        if(_status.currentPhase!=player) return false;
         if (event.skill=='qinglong_skill') return false;
         return (event.card.name=='sha'&&player.hasSkill('ol_paoxiao')&&player.getStat().card.sha>1);
     },

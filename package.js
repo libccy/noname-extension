@@ -290,7 +290,7 @@ window.noname_extension_list=[
         size:"388KB",
         netdisk:"http://pan.baidu.com/s/1c2zR3PI",
         forum:"https://tieba.baidu.com/p/5114471294",
-        version:2,
+        version:3,
         files:[
             "gameStart1.mp3","gameStart2.mp3","vs_jiuzhu1.mp3","vs_jiuzhu2.mp3","vs_shenji1.mp3",
 			"vs_shenji2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3","vs_zhongyi2.mp3"

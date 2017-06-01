@@ -312,6 +312,18 @@ window.noname_extension_list=[
 			"ex_zhaoyong.jpg","ex_zouji.jpg"
         ]
     },{
+        name:"星际战甲",
+        author:"猫猫小面包",
+        intro:"游戏《星际战甲》的卡牌模式，理念出自游戏，详细技能由吧友“猫猫小面包”自行设计，由吧友“程序猿”实现。希望大家喜欢，玩的开心",
+        size:"1.1MB",
+        netdisk:"http://pan.baidu.com/share/link?shareid=3201340564&uk=1882141705",
+        forum:"https://tieba.baidu.com/p/5129409471",
+        version:1,
+        files:[
+            "冰雪霜寒.jpg","圣剑.jpg","圣装伏特.jpg","圣装磁力.jpg","洛基.jpg",
+			"狂野犀牛.jpg"
+        ]
+    },{
         name:"弹丸杀",
         author:"fux2",
         intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中",

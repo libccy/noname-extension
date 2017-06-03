@@ -312,6 +312,15 @@ window.noname_extension_list=[
 			"ex_zhaoyong.jpg","ex_zouji.jpg"
         ]
     },{
+        name:"勇斗地主",
+        author:"丶橙续缘",
+        intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",
+        size:"11KB",
+        netdisk:"https://pan.baidu.com/s/1skQqkiT",
+        forum:"https://tieba.baidu.com/p/5145171341",
+        version:1,
+        files:[]
+    },{
         name:"星际战甲",
         author:"猫猫小面包",
         intro:"游戏《星际战甲》的卡牌模式，理念出自游戏，详细技能由吧友“猫猫小面包”自行设计，由吧友“程序猿”实现。希望大家喜欢，玩的开心",

@@ -315,11 +315,13 @@ window.noname_extension_list=[
         name:"勇斗地主",
         author:"丶橙续缘",
         intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",
-        size:"11KB",
-        netdisk:"https://pan.baidu.com/s/1skQqkiT",
+        size:"314KB",
+        netdisk:"https://pan.baidu.com/s/1o8r0HOu",
         forum:"https://tieba.baidu.com/p/5145171341",
-        version:1,
-        files:[]
+        version:2,
+        files:[
+            "fal_ql.png","fal_simayi.jpg"
+        ]
     },{
         name:"星际战甲",
         author:"猫猫小面包",

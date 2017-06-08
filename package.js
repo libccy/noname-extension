@@ -315,12 +315,13 @@ window.noname_extension_list=[
         name:"勇斗地主",
         author:"丶橙续缘",
         intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",
-        size:"314KB",
-        netdisk:"https://pan.baidu.com/s/1o8r0HOu",
+        size:"2.2MB",
+        netdisk:"https://pan.baidu.com/s/1nuGplCP",
         forum:"https://tieba.baidu.com/p/5145171341",
-        version:2,
+        version:3,
         files:[
-            "fal_ql.png","fal_simayi.jpg"
+            "fal_guo.jpg","fal_mdxs.jpg","fal_piao.jpg","fal_qixingdao.jpg","fal_simayi.jpg",
+			"fal_syqj.png","fal_szbf.jpg","fal_xlcd.jpg"
         ]
     },{
         name:"星际战甲",
@@ -333,6 +334,16 @@ window.noname_extension_list=[
         files:[
             "冰雪霜寒.jpg","圣剑.jpg","圣装伏特.jpg","圣装磁力.jpg","洛基.jpg",
 			"狂野犀牛.jpg"
+        ]
+    },{
+        name:"虚空虫翼",
+        author:"Geonuxer",
+        intro:"一个星际争霸的扩展，更新合作模式的人物会多一些，偶尔也会更新一下暴雪的情怀人物",
+        size:"1.7MB",
+        netdisk:"https://github.com/LISPIER/nonameExtension",
+        version:1,
+        files:[
+            "Abathur.jpg","Fenix.jpg","Nova.jpg","Stukov.jpg","Swan.jpg"
         ]
     },{
         name:"弹丸杀",

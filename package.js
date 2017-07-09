@@ -312,6 +312,19 @@ window.noname_extension_list=[
 			"ex_zhaoyong.jpg","ex_zouji.jpg"
         ]
     },{
+        name:"诸子百家_战国",
+        author:"天气亏",
+        intro:"主要写了战国时期法家、儒家、道家、兵家、墨家的代表人物，历时两周，技术虽然不怎么高，但是因为只写了大概10余名武将，所以武将还是很可观的，不逆天也不差，技能配上了台词效果。",
+        size:"1.4MB",
+        netdisk:"https://pan.baidu.com/share/link?shareid=3477372559&uk=3060998652",
+        // forum:"https://tieba.baidu.com/p/5044759964",
+        version:1,
+        files:[
+            "儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙膑.jpg",
+			"兵家·白起.jpg","墨家·墨翟.jpg","法家·卫鞅.jpg","法家·韩非.jpg","纵横·鬼谷子.jpg",
+			"道家·庄周.jpg","阴阳·徐福.jpg"
+        ]
+    },{
         name:"勇斗地主",
         author:"丶橙续缘",
         intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",

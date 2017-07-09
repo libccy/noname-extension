@@ -1,7 +1,7 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸子百家_战国",content:function (config,pack){
-    
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸子百家",content:function (config,pack){
+
 },precontent:function (){
-    
+
 },help:{},config:{},package:{
     character:{
         character:{
@@ -98,7 +98,7 @@ var chat=['兼相爱，交相利！_《墨子》','吾为义驱驰！'].randomGe
     player.addSkill('kongcheng')
     player.addSkill('qianxun')
     var chat=['非攻自强，墨守成规！'].randomGet()
-                  player.say(chat);                                              
+                  player.say(chat);
 },
             },
             "梦蝶":{
@@ -134,7 +134,7 @@ var chat=['兼相爱，交相利！_《墨子》','吾为义驱驰！'].randomGe
                 selectCard:1,
                 filterTarget:true,
                 selectTarget:1,
-                content:function (){        
+                content:function (){
         target.damage();
         target.draw();
         var chat=['弱乱难为计，治强常有功！_《韩非子》'].randomGet()
@@ -174,15 +174,15 @@ var chat=['兼相爱，交相利！_《墨子》','吾为义驱驰！'].randomGe
     player.chooseToDiscard('裨阖:请弃置一张牌','he',true);
      var chat=['圣人之在天地间也！_《鬼谷子》','反以观彼,复以知己！_《鬼谷子》','知己反可知彼！'].randomGet()
                   player.say(chat);
-        
-        
-    
-     
-            
-        
-        
-            
-        
+
+
+
+
+
+
+
+
+
 },
             },
             "反应":{
@@ -434,7 +434,7 @@ trigger.player.turnOver();
         trigger.player.chooseToDiscard(true);
         var chat=['你中计了！','到此为止了！'].randomGet()
                   player.say(chat);
-        
+
 },
             },
             "佯敌":{

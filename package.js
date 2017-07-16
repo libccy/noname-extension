@@ -296,6 +296,19 @@ window.noname_extension_list=[
 			"vs_shenji2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3","vs_zhongyi2.mp3"
         ]
     },{
+        name:"诸子百家_战国",
+        author:"天气亏",
+        intro:"基于《诸子百家_战国》的更新，主要写了先秦时期的诸子百家人物，大概有25名左右，所有人物都是精心制作，强度较为平衡，适合像我这样的新手参考，武将基本原创，颇有创意。欢迎其他玩家二次制作，但前提是尊重包内所有历史人物。",
+        size:"1.4MB",
+        netdisk:"https://pan.baidu.com/share/link?shareid=3477372559&uk=3060998652",
+        // forum:"https://tieba.baidu.com/p/5044759964",
+        version:2,
+        files:[
+            "儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙膑.jpg",
+			"兵家·白起.jpg","墨家·墨翟.jpg","法家·卫鞅.jpg","法家·韩非.jpg","纵横·鬼谷子.jpg",
+			"道家·庄周.jpg","阴阳·徐福.jpg"
+        ]
+    },{
         name:"战国七雄",
         author:"何子风云",
         intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",
@@ -310,19 +323,6 @@ window.noname_extension_list=[
 			"ex_tiandan.jpg","ex_tianji.jpg","ex_wangjian.jpg","ex_weiwuji.jpg","ex_wuqi.jpg",
 			"ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg","ex_zhangyi.jpg","ex_zhaosheng.jpg",
 			"ex_zhaoyong.jpg","ex_zouji.jpg"
-        ]
-    },{
-        name:"诸子百家_战国",
-        author:"天气亏",
-        intro:"主要写了战国时期法家、儒家、道家、兵家、墨家的代表人物，历时两周，技术虽然不怎么高，但是因为只写了大概10余名武将，所以武将还是很可观的，不逆天也不差，技能配上了台词效果。",
-        size:"1.4MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=3477372559&uk=3060998652",
-        // forum:"https://tieba.baidu.com/p/5044759964",
-        version:1,
-        files:[
-            "儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙膑.jpg",
-			"兵家·白起.jpg","墨家·墨翟.jpg","法家·卫鞅.jpg","法家·韩非.jpg","纵横·鬼谷子.jpg",
-			"道家·庄周.jpg","阴阳·徐福.jpg"
         ]
     },{
         name:"勇斗地主",

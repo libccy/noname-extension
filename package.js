@@ -296,7 +296,7 @@ window.noname_extension_list=[
 			"vs_shenji2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3","vs_zhongyi2.mp3"
         ]
     },{
-        name:"诸子百家_战国",
+        name:"诸子百家",
         author:"天气亏",
         intro:"基于《诸子百家_战国》的更新，主要写了先秦时期的诸子百家人物，大概有25名左右，所有人物都是精心制作，强度较为平衡，适合像我这样的新手参考，武将基本原创，颇有创意。欢迎其他玩家二次制作，但前提是尊重包内所有历史人物。",
         size:"1.4MB",

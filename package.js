@@ -305,8 +305,8 @@ window.noname_extension_list=[
         version:2,
         files:[
             "儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙膑.jpg",
-			"兵家·白起.jpg","墨家·墨翟.jpg","法家·卫鞅.jpg","法家·韩非.jpg","纵横·鬼谷子.jpg",
-			"道家·庄周.jpg","阴阳·徐福.jpg"
+			"兵家·白起.jpg","墨家·墨翟.jpg","杂家·吕不韦.jpg","法家·卫鞅.jpg","法家·韩非.jpg",
+			"纵横·鬼谷子.jpg","道家·庄周.jpg","阴阳·徐福.jpg"
         ]
     },{
         name:"战国七雄",

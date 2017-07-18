@@ -299,14 +299,17 @@ window.noname_extension_list=[
         name:"诸子百家",
         author:"天气亏",
         intro:"基于《诸子百家_战国》的更新，主要写了先秦时期的诸子百家人物，大概有25名左右，所有人物都是精心制作，强度较为平衡，适合像我这样的新手参考，武将基本原创，颇有创意。欢迎其他玩家二次制作，但前提是尊重包内所有历史人物。",
-        size:"1.4MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=3477372559&uk=3060998652",
+        size:"2.8MB",
+        netdisk:"https://pan.baidu.com/share/link?shareid=772175842&uk=3060998652",
         // forum:"https://tieba.baidu.com/p/5044759964",
-        version:2,
+        version:3,
         files:[
-            "儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙膑.jpg",
-			"兵家·白起.jpg","墨家·墨翟.jpg","杂家·吕不韦.jpg","法家·卫鞅.jpg","法家·韩非.jpg",
-			"纵横·鬼谷子.jpg","道家·庄周.jpg","阴阳·徐福.jpg"
+            "儒家·孔丘.jpg","儒家·孟轲.jpg","儒家·荀况.jpg","兵家·乐毅.jpg","兵家·吴起.jpg",
+			"兵家·孙武.jpg","兵家·孙膑.jpg","兵家·尉缭.jpg","兵家·田禳苴.jpg","兵家·白起.jpg",
+			"农家·许行.jpg","名家·惠施.jpg","墨家·墨翟.jpg","杂家·吕不韦.jpg","法家·卫鞅.jpg",
+			"法家·子产.jpg","法家·李悝.jpg","法家·管仲.jpg","法家·韩非.jpg","纵横·鬼谷子.jpg",
+			"道家·列御寇.jpg","道家·庄周.jpg","道家·李耳.jpg","道家·杨朱.jpg","阴阳·徐福.jpg",
+			"阴阳·邹衍.jpg"
         ]
     },{
         name:"战国七雄",

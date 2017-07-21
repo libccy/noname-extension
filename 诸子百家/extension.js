@@ -13,7 +13,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸�
             "儒家·孟轲":["male","qi",4,["王霸","三迁"],["des:儒家亚圣，继孔子之后又一儒家大圣人，孟轲主张“民贵君轻”等思想，周游列国，传颂儒道，著有《孟子》。"]],
             "阴阳·徐福":["male","qin",8,["炼丹","噬魂"],["des:阴阳家人物，方士，相传为秦始皇寻找长生药而跑去日本，成了日本人的祖先，"]],
             "儒家·荀况":["male","zhao",3,["胜天","舟水"],["des:儒家代表人物之一，主张“人定胜天”、“人性本恶”等思想，并有著名论断“水能载舟，亦能覆舟”，警告为政者关爱百姓，著有《荀子》。"]],
-            "兵家·孙膑":["male","qi",3,["诱敌","伏袭"],["des:兵家代表人物之一，孙武之后，著有《孙膑兵法》，在兵家中享有极高地位，曾经几度击败魏国，功勋卓著，特别是“马陵之战”，“围魏救赵”等成语皆出自于孙膑。"]],
+            "兵家·孙膑":["male","qi",4,["诱敌","伏袭"],["des:兵家代表人物之一，孙武之后，著有《孙膑兵法》，在兵家中享有极高地位，曾经几度击败魏国，功勋卓著，特别是“马陵之战”，“围魏救赵”等成语皆出自于孙膑。"]],
             "兵家·吴起":["male","chu",4,["无敌","先机"],["des:兵家亚圣，地位仅次于孙武，吴起著有《吴起兵法》，且吴起儒法兼修，在军事上，吴起一生大小七十多战，胜利六十多场，其余近十场也并未败绩，有战神之称。"]],
             "兵家·白起":["male","qin",3,["佯敌","诈利"],["des:四名将之首，兵家代表人物之一，出身行伍，为秦国征战天下，所向披靡，因杀人无数而号称“人屠”，“长平之战”、“郢都之战”等为其戎马一生的代表，六国之军，无不畏惧白起，但后来白起为秦昭王赐死。"]],
             "兵家·乐毅":["male","yan",3,["元帅"],["des:兵家代表人物之一，曾在赵国为官，后来感激燕昭王之恩，遂辅佐燕昭王，使燕国强大起来，带领五国联军击败齐军之后，乐毅独自带领燕国军队乘胜追击，一举攻破齐国七十二座城池，几近灭亡齐国。"]],
@@ -31,8 +31,18 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸�
             "道家·杨朱":["male","yan",3,["贵己","不拔"],["des:杨朱主张“贵己” “重生” “人人不损一毫”的思想。是道家杨朱学派的创始人。他的见解散见于《列子》，《庄子》，《孟子》，《韩非子》，《吕氏春秋》等。在战国时期，有“天下之言不归杨则归墨的现象”，可见其学说影响之大。"]],
             "农家·许行":["male","chu",3,["饔飧","zz_ailei"],["des:东周战国时期著名农学家、思想家。华夏族，楚国之随人，生于楚宣王至楚怀王时期，约与孟子同一时代，在《孟子．滕文公上》记载有许行其人“为神农之言”，所以被归为农家，后世也将许行视为先秦时代农家的代表人物，但因没有著作流传于世，详细思想内容与其他事迹皆不可考。"]],
             "杂家·吕不韦":["male","zhao",3,["居货","千金"],["des:吕不韦主持编纂《吕氏春秋》（又名《吕览》），有八览、六论、十二纪共20余万言，汇合了先秦各派学说，“兼儒墨，合名法”，故史称“杂家”。书成之日，悬于国门，声称能改动一字者赏千金。此为“一字千金”。执政时曾攻取周、赵、卫的土地，立三川、太原、东郡，对秦王政兼并六国的事业有重大贡献。后因嫪毐集团叛乱事受牵连，被免除相邦职务，出居河南封地。不久，秦王政复命让其举家迁蜀，吕不韦担心被诛杀，于是饮鸩自尽"]],
+            "儒家·董仲舒":["male","Han",3,["天人","合一"],["des:西汉著名政治家，文学家，他的“罢逐百家，独尊儒术”，“天人合一”等思想影响了整个汉朝乃至整个封建王朝，董仲舒曾经有一段时间闭门不出，专门专研治国利民之术，后来终于学成，得到了武帝的赏识，推行了自己的主张，使得大汉帝国更加强盛；"]],
+            "兵家·韩信":["male","Han",3,["兵仙","因势"],["des:汉初三杰之一，号称“兵仙”，没落贵族，靠蹭饭过活，后来韩信投靠项羽，但是并未得到重用，于是韩信投靠了刘邦，几经波折后，韩信成为刘邦的大元帅，于是，韩信“暗度陈仓”，灭亡了赵国，战死了龙苴，攻灭了齐国，横扫四海，所向披靡，为刘邦一统天下，立下了赫赫战功；"]],
+            "zz_HYY":["female","shu",2,["zz_ML","zz_GY"],["des:诸葛亮之妻，诸葛瞻之母，有奇才，上通天文，下察地理，精通兵法，近乎诸略无所不晓，善于发明制造，传授诸葛亮很多学识，在诸葛亮病逝之后不久也随之仙逝，死前以“忠孝”勉励其子诸葛瞻；"]],
+            "zz_ZGL":["male","shu",2,["zz_WL","zz_JH"],["des:三国时期蜀国丞相，号卧龙(伏龙)，躬耕南阳，隐居隆中，后因徐庶举荐，刘备三顾出山，协助刘备三分天下，在刘备死后独掌大权，在平定南中之后数度北伐，病逝于五丈原"]],
+            "儒家·张良":["male","Han",3,["zz_QM","zz_CQ"],["des:汉初三杰之一，儒雅有胆识，曾经散尽家财，刺杀秦始皇，失败流亡，得到了黄石公的赏识，赐予他《六轁》《素书》等，并收他为徒，后来张良学成，拥有王佐之才，并且得到了刘邦的赏识，替刘邦运筹帷幄，谋功为高，在刘邦一统天下时，离开刘邦，保全了性命，相比之下，萧何，韩信皆惹来了杀身之祸，而张良独退山林；"]],
+            "兵家·曹操":["male","wei",4,["zz_JX"],["zhu","des:东汉末年著名的政治家，军事家，文学家，诗人，曹操被誉为“治世之能臣，乱世之奸雄”，曹操的一生是在马背上的，自古用兵者莫如曹操的评价也是因此而来，曹操还是当时的文学代表，富有文采，史称“三曹”，曹操未能统一中原，带着遗憾而死；"]],
+            "科学家·张衡":["male","Han",3,["木圣","zz_TY"],["des:东汉著名文学家和大科学家，大发明家，几乎涉及所有领域，科学上，张衡发明了“浑天仪”“地动仪”等领先世界的伟大发明，对许多科技品进行了改进和更新发展，文学上则精于汉赋，张衡因其宏伟之才而被人尊为“木(科)圣”；"]],
+            "名家·公孙龙":["male","zhao",3,["诡辩","非马"],["des:公孙龙能言善辩，曾经做过平原君的门客，其主要著作为《公孙龙子》，西汉时共有14篇，唐代时分为三卷，北宋时遗失了8篇，至今只残留6篇，共一卷。其中最重要的两篇是《白马论》和《坚白论》，提出了“白马非马”和“离坚白”等论点，认为对于 “坚白石”，“视不得其所坚而得其所白者，无坚也”；“拊不得其所白而得其所坚者，无白也”，强调视觉与触觉的差异故“坚白石二”。又分析一般与个别的关系，强调“白马”（个别）与“马”（一般）的区别，得出“白马非马”的结论。与他齐名的是另一名家惠施。"]],
         },
         translate:{
+            Han:"汉",
+            HanColor:"#000000",
             lu:"鲁",
             luColor:"#000000",
             qin:"秦",
@@ -75,6 +85,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸�
             "道家·杨朱":"道家·杨朱",
             "农家·许行":"农家·许行",
             "杂家·吕不韦":"杂家·吕不韦",
+            "儒家·董仲舒":"儒家·董仲舒",
+            "兵家·韩信":"兵家·韩信",
+            "zz_HYY":"兵家·黄月英",
+            "zz_ZGL":"兵家·诸葛亮",
+            "儒家·张良":"儒家·张良",
+            "兵家·曹操":"兵家·曹操",
+            "科学家·张衡":"科学家·张衡",
+            "名家·公孙龙":"名家·公孙龙",
         },
     },
     card:{
@@ -387,16 +405,16 @@ var chat=['水能载舟，亦能覆舟！_《荀子》'].randomGet()
             "诱敌":{
                 audio:"ext:诸子百家_战国:4",
                 enable:"phaseUse",
-                usable:2,
+                usable:1,
                 filterTarget:function (card,player,target){
         return target.canUse({name:'sha'},player)&&target.countCards('he');
     },
                 content:function (){
         "step 0"
-        target.chooseToUse({name:'sha'},player,-1,'诱敌：对'+get.translation(player)+'使用一张杀，或令其弃置你的一张牌').set('targetRequired',true);
+        target.chooseToUse({name:'sha'},player,-1,'诱敌：对'+get.translation(player)+'使用一张杀，或令其弃置你的两张牌').set('targetRequired',true);
         "step 1"
         if(result.bool==false&&target.countCards('he')>0){
-            player.discardPlayerCard(target,2,'he',true);
+            player.discardPlayerCard(target,2,'hej',true);
         }
         else{
             event.finish();
@@ -1455,6 +1473,692 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
         },
                 },
             },
+            "天人":{
+                trigger:{
+                    global:"judge",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.countCards('h')>player.hp;
+    },
+                content:function (){
+        "step 0"
+        player.chooseCard(get.translation(trigger.player)+'的'+(trigger.judgestr||'')+'判定为'+
+        get.translation(trigger.player.judging[0])+'，'+get.prompt('天人')).set('ai',function(card){
+            var trigger=_status.event.getTrigger();
+            var player=_status.event.player;
+            var judging=_status.event.judging;
+            var result=trigger.judge(card)-trigger.judge(judging);
+            var attitude=get.attitude(player,trigger.player);
+            if(attitude==0||result==0) return 0;
+            if(attitude>0){
+                return result-get.value(card)/2;
+            }
+            else{
+                return -result-get.value(card)/2;
+            }
+        }).set('judging',trigger.player.judging[0]);
+        "step 1"
+        if(result.bool){
+            player.respond(result.cards,'highlight');
+            var chat=['大道恒在，天命难违！'].randomGet()
+                  player.say(chat);
+        }
+        else{
+            event.finish();
+        }
+        "step 2"
+        if(result.bool){
+            player.logSkill('天人');
+            if(trigger.player.judging[0].clone){
+                trigger.player.judging[0].clone.classList.remove('thrownhighlight');
+                game.broadcast(function(card){
+                    if(card.clone){
+                        card.clone.classList.remove('thrownhighlight');
+                    }
+                },trigger.player.judging[0]);
+                game.addVideo('deletenode',player,get.cardsInfo([trigger.player.judging[0].clone]));
+            }
+            ui.discardPile.appendChild(trigger.player.judging[0]);
+            trigger.player.judging[0]=result.cards[0];
+            if(!get.owner(result.cards[0],'judge')){
+                trigger.position.appendChild(result.cards[0]);
+            }
+            game.log(trigger.player,'的判定牌改为',result.cards[0]);
+            game.delay(2);
+        }
+    },
+                ai:{
+                    tag:{
+                        rejudge:1,
+                    },
+                },
+                group:"天人_1",
+                subSkill:{
+                    "1":{
+                        trigger:{
+                            global:"judge",
+                        },
+                        direct:true,
+                        filter:function (event,player){
+        return player.countCards('h')<=player.hp;
+    },
+                        content:function (){
+        player.draw();
+        var chat=['时机未到！','修心养性，以待君命！'].randomGet()
+                  player.say(chat)
+    },
+                    },
+                },
+            },
+            "合一":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                filter:function (event,player){
+        return player.num('h')==player.hp;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('合一'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('合一',result.targets);
+            result.targets[0].draw(2);
+            result.targets[0].recover();
+            player.draw(2);
+            player.recover();
+            var chat=['君上，此即天人之际！'].randomGet()
+                  player.say(chat);
+            
+        };
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+},
+            },
+            "兵仙":{
+                enable:"phaseUse",
+                filterCard:true,
+                position:"hej",
+                usable:3,
+                viewAs:{
+                    name:"sha",
+                    suit:"club",
+                    number:11,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":11,"name":"huoshaolianying","nature":"fire","cardid":"1601941287","_transform":"translateX(0px)","clone":{"name":"huoshaolianying","suit":"club","number":11,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2321},"timeout":2086,"original":"h"}],
+                },
+                ai:{
+                    basic:{
+                        useful:[5,1],
+                        value:[5,1],
+                    },
+                    order:function (){
+            if(_status.event.player.hasSkillTag('presha',true,null,true)) return 10;
+            return 3;
+        },
+                    result:{
+                        target:function (player,target){
+                if(player.hasSkill('jiu')&&!target.getEquip('baiyin')){
+                    if(get.attitude(player,target)>0){
+                        return -6;
+                    }
+                    else{
+                        return -3;
+                    }
+                }
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        respond:1,
+                        respondShan:1,
+                        damage:function (card){
+                if(card.nature=='poison') return;
+                return 1;
+            },
+                        natureDamage:function (card){
+                if(card.nature) return 1;
+            },
+                        fireDamage:function (card,nature){
+                if(card.nature=='fire') return 1;
+            },
+                        thunderDamage:function (card,nature){
+                if(card.nature=='thunder') return 1;
+            },
+                        poisonDamage:function (card,nature){
+                if(card.nature=='poison') return 1;
+            },
+                    },
+                },
+            },
+            "因势":{
+                mod:{
+                    cardUsable:function (card,player,num){
+            if(card.name=='sha') return game.players.length;
+        },
+                },
+                ai:{
+                    unequip:true,
+                    skillTagFilter:function (player,tag,arg){
+            if(!get.zhu(player,'shouyue')) return false;
+            if(arg&&arg.name=='sha') return true;
+            return false;
+        },
+                },
+            },
+            "zz_ML":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                unique:true,
+                content:function (){
+    player.init('zz_ZGL')   
+    player.removeSkill('zz_GY')
+    player.removeSkill('zz_ML')
+    player.draw();                
+    var chat=['亮，让我们一起努力吧！'].randomGet()
+                  player.say(chat)
+    
+    
+    
+
+},
+            },
+            "zz_GY":{
+                trigger:{
+                    player:"phaseEnd",
+                },
+                content:function (){
+    player.chooseToDiscard([1,player.num('hej')],'hej',true)
+     var chat=['你别去归隐，不复奢望！'].randomGet()
+                  player.say(chat)
+
+},
+                mod:{
+                    targetEnabled:function (card,player,target){
+            if(_status.currentPhase==player&&target.num('hej')<player.num('hej')) return false;
+        },
+                },
+            },
+            "zz_WL":{
+                trigger:{
+                    player:"phaseUseAfter",
+                },
+                unique:true,
+                content:function (){
+    player.init('zz_HYY')
+    player.removeSkill('zz_WL')
+    player.removeSkill('zz_JH')   
+    player.changeHujia();        
+    var chat=['潜居待时，是为神智！'].randomGet()
+                  player.say(chat)
+    
+    
+    },
+            },
+            "zz_JH":{
+                trigger:{
+                    player:"huogongBegin",
+                },
+                content:function (){
+    player.draw();
+    var chat=['发火有日，起火有时——《孙武兵法》','齐备硫磺焰硝，待命引火！'].randomGet()
+                  player.say(chat)
+    
+
+},
+                group:"zz_JH_1",
+                subSkill:{
+                    "1":{
+                        enable:"phaseUse",
+                        filterCard:true,
+                        position:"hej",
+                        usable:1,
+                        viewAs:{
+                            name:"huogong",
+                            suit:"diamond",
+                            number:4,
+                            cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":4,"name":"sha","nature":"fire","cardid":"3739012253","_transform":"translateX(408px)","clone":{"name":"sha","suit":"diamond","number":4,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":697},"timeout":591,"original":"h"}],
+                        },
+                        ai:{
+                            basic:{
+                                order:4,
+                                value:[3,1],
+                                useful:1,
+                            },
+                            wuxie:function (target,card,player,current,state){
+                        if(get.attitude(current,player)>=0&&state>0) return false;
+                    },
+                            result:{
+                                player:function (player){
+                            var nh=player.countCards('h');
+                            if(nh<=player.hp&&nh<=4&&_status.event.name=='chooseToUse'){
+                                if(typeof _status.event.filterCard=='function'&&
+                                    _status.event.filterCard({name:'huogong'})){
+                                    return -10;
+                                }
+                                if(_status.event.skill){
+                                    var viewAs=get.info(_status.event.skill).viewAs;
+                                    if(viewAs=='huogong') return -10;
+                                    if(viewAs&&viewAs.name=='huogong') return -10;
+                                }
+                            }
+                            return 0;
+                        },
+                                target:function (player,target){
+                            if(target.hasSkill('huogong2')||target.countCards('h')==0) return 0;
+                            if(player.countCards('h')<=1) return 0;
+                            if(target==player){
+                                if(typeof _status.event.filterCard=='function'&&
+                                    _status.event.filterCard({name:'huogong'})){
+                                    return -1.5;
+                                }
+                                if(_status.event.skill){
+                                    var viewAs=get.info(_status.event.skill).viewAs;
+                                    if(viewAs=='huogong') return -1.5;
+                                    if(viewAs&&viewAs.name=='huogong') return -1.5;
+                                }
+                                return 0;
+                            }
+                            return -1.5;
+                        },
+                            },
+                            tag:{
+                                damage:1,
+                                fireDamage:1,
+                                natureDamage:1,
+                                norepeat:1,
+                            },
+                        },
+                    },
+                },
+            },
+            "zz_QM":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('zz_QM'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('zz_QM',result.targets);
+            result.targets[0].goMad({player:'phaseAfter'})
+            var chat=['谋当者胜，不当者亡！','谋者，帝王术也！'].randomGet()
+                  player.say(chat)
+            
+        };
+    
+    
+    
+    
+    
+    
+
+
+},
+            },
+            "zz_CQ":{
+                trigger:{
+                    player:"phaseEnd",
+                },
+                filter:function (event,player){
+        return player.num('h')>0&&player.num('e')>0;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('zz_CQ'),[1,2],function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.targets[0]){
+            player.logSkill('zz_CQ',result.targets);
+            player.chooseToDiscard(player.num('h'),'h',true)
+            player.chooseToDiscard(1,'e',true)
+            player.changeHujia();
+            var chat=['秦王政，我要你血债血偿！'].randomGet()
+                  player.say(chat)
+  
+                           
+            result.targets[0].changeHujia(-99) 
+            result.targets[0].damage();};
+        if(result.targets[1]){
+            
+            result.targets[1].changeHujia(-player.hujia);
+            result.targets[1].damage();
+          
+        };
+    
+   
+
+
+},
+            },
+            "zz_JX":{
+                trigger:{
+                    player:"damageEnd",
+                },
+                content:function (){
+       var n=[1,2,3,4].randomGet();
+            if(n==1) trigger.source.chooseToDiscard(1,'e',true);
+            if(n==2) trigger.source.chooseToDiscard(1,'h',true);
+            if(n==3) player.recover();
+            if(n==4) player.draw(2);
+       var chat=['宁我负人，毋人负我——《三国志》','混账，拖出去斩了！'].randomGet()
+                  player.say(chat)
+    
+    
+
+
+},
+            },
+            "zz_TY":{
+                srlose:true,
+                trigger:{
+                    global:"phaseBegin",
+                },
+                frequent:true,
+                content:function (){
+        "step 0"
+        if(player.isUnderControl()){
+            game.modeSwapPlayer(player);
+        }
+        var cards=get.cards(Math.min(2,game.players.length));
+        event.cards=cards;
+        var switchToAuto=function(){
+            _status.imchoosing=false;
+            if(event.dialog) event.dialog.close();
+            if(event.control) event.control.close();
+            var top=[];
+            if(event.triggername=='phaseBegin'){
+                var judges=player.node.judges.childNodes;
+                var stopped=false;
+                if(!player.countCards('h','wuxie')){
+                    for(var i=0;i<judges.length;i++){
+                        var judge=get.judge(judges[i]);
+                        cards.sort(function(a,b){
+                            return judge(b)-judge(a);
+                        });
+                        if(judge(cards[0])<0){
+                            stopped=true;break;
+                        }
+                        else{
+                            top.unshift(cards.shift());
+                        }
+                    }
+                }
+            }
+            else{
+                var judges=player.next.node.judges.childNodes;
+                var stopped=false;
+                if(get.attitude(player,player.next)>0){
+                    for(var i=0;i<judges.length;i++){
+                        var judge=get.judge(judges[i]);
+                        cards.sort(function(a,b){
+                            return judge(b)-judge(a);
+                        });
+                        if(judge(cards[0])<0){
+                            stopped=true;break;
+                        }
+                        else{
+                            top.unshift(cards.shift());
+                        }
+                    }
+                }
+            }
+            var bottom;
+            if(!stopped){
+                cards.sort(function(a,b){
+                    return get.value(b,player)-get.value(a,player);
+                });
+                while(cards.length){
+                    if(get.value(cards[0],player)<=5) break;
+                    top.unshift(cards.shift());
+                }
+            }
+            bottom=cards;
+            for(var i=0;i<top.length;i++){
+                ui.cardPile.insertBefore(top[i],ui.cardPile.firstChild);
+            }
+            for(i=0;i<bottom.length;i++){
+                ui.cardPile.appendChild(bottom[i]);
+            }
+            player.popup(get.cnNumber(top.length)+'上'+get.cnNumber(bottom.length)+'下');
+            game.log(player,'将'+get.cnNumber(top.length)+'张牌置于牌堆顶');
+            game.delay(2);
+        }
+        var chooseButton=function(online,player,cards){
+            var event=_status.event;
+            player=player||event.player;
+            cards=cards||event.cards;
+            event.top=[];
+            event.bottom=[];
+            event.status=true;
+            event.dialog=ui.create.dialog('按顺序选择置于牌堆顶的牌（先选择的在上）',cards);
+            event.switchToAuto=function(){
+                event._result='ai';
+                event.dialog.close();
+                event.control.close();
+                _status.imchoosing=false;
+            },
+            event.control=ui.create.control('ok','pileTop','pileBottom',function(link){
+                var event=_status.event;
+                if(link=='ok'){
+                    if(online){
+                        event._result={
+                            top:[],
+                            bottom:[]
+                        }
+                        for(var i=0;i<event.top.length;i++){
+                            event._result.top.push(event.top[i].link);
+                        }
+                        for(var i=0;i<event.bottom.length;i++){
+                            event._result.bottom.push(event.bottom[i].link);
+                        }
+                    }
+                    else{
+                        var i;
+                        for(i=0;i<event.top.length;i++){
+                            ui.cardPile.insertBefore(event.top[i].link,ui.cardPile.firstChild);
+                        }
+                        for(i=0;i<event.bottom.length;i++){
+                            ui.cardPile.appendChild(event.bottom[i].link);
+                        }
+                        for(i=0;i<event.dialog.buttons.length;i++){
+                            if(event.dialog.buttons[i].classList.contains('glow')==false&&
+                                event.dialog.buttons[i].classList.contains('target')==false)
+                            ui.cardPile.appendChild(event.dialog.buttons[i].link);
+                        }
+                        player.popup(get.cnNumber(event.top.length)+'上'+get.cnNumber(event.cards.length-event.top.length)+'下');
+                        game.log(player,'将'+get.cnNumber(event.top.length)+'张牌置于牌堆顶');
+                    }
+                    event.dialog.close();
+                    event.control.close();
+                    game.resume();
+                    _status.imchoosing=false;
+                }
+                else if(link=='pileTop'){
+                    event.status=true;
+                    event.dialog.content.childNodes[0].innerHTML='按顺序选择置于牌堆顶的牌';
+                }
+                else{
+                    event.status=false;
+                    event.dialog.content.childNodes[0].innerHTML='按顺序选择置于牌堆底的牌';
+                }
+            })
+            for(var i=0;i<event.dialog.buttons.length;i++){
+                event.dialog.buttons[i].classList.add('selectable');
+            }
+            event.custom.replace.button=function(link){
+                var event=_status.event;
+                if(link.classList.contains('target')){
+                    link.classList.remove('target');
+                    event.top.remove(link);
+                }
+                else if(link.classList.contains('glow')){
+                    link.classList.remove('glow');
+                    event.bottom.remove(link);
+                }
+                else if(event.status){
+                    link.classList.add('target');
+                    event.top.unshift(link);
+                }
+                else{
+                    link.classList.add('glow');
+                    event.bottom.push(link);
+                }
+            }
+            event.custom.replace.window=function(){
+                for(var i=0;i<_status.event.dialog.buttons.length;i++){
+                    _status.event.dialog.buttons[i].classList.remove('target');
+                    _status.event.dialog.buttons[i].classList.remove('glow');
+                    _status.event.top.length=0;
+                    _status.event.bottom.length=0;
+                }
+            }
+            game.pause();
+            game.countChoose();
+        }
+        event.switchToAuto=switchToAuto;
+        if(event.isMine()){
+            chooseButton();
+            event.finish();
+        }
+        else if(event.isOnline()){
+            event.player.send(chooseButton,true,event.player,event.cards);
+            event.player.wait();
+            game.pause();
+        }
+        else{
+            event.switchToAuto();
+            event.finish();
+        }
+        "step 1"
+        if(event.result=='ai'||!event.result){
+            event.switchToAuto();
+        }
+        else{
+            var top=event.result.top||[];
+            var bottom=event.result.bottom||[];
+            for(var i=0;i<top.length;i++){
+                ui.cardPile.insertBefore(top[i],ui.cardPile.firstChild);
+            }
+            for(i=0;i<bottom.length;i++){
+                ui.cardPile.appendChild(bottom[i]);
+            }
+            for(i=0;i<event.cards.length;i++){
+                if(!top.contains(event.cards[i])&&!bottom.contains(event.cards[i])){
+                    ui.cardPile.appendChild(event.cards[i]);
+                }
+            }
+            player.popup(get.cnNumber(top.length)+'上'+get.cnNumber(event.cards.length-top.length)+'下');
+            game.log(player,'将'+get.cnNumber(top.length)+'张牌置于牌堆顶');
+            game.delay(2);
+        }
+    },
+                ai:{
+                    threaten:1.2,
+                },
+            },
+            "木圣":{
+                enable:"chooseToRespond",
+                filterCard:true,
+                position:"he",
+                viewAs:{
+                    name:"shan",
+                },
+                ai:{
+                    basic:{
+                        useful:[7,2],
+                        value:[7,2],
+                    },
+                },
+            },
+            "非马":{
+                trigger:{
+                    target:"chooseToCompareBefore",
+                },
+                content:function (){
+trigger.untrigger();
+trigger.finish();
+    player.draw(2);
+    var chat=['此白马耶？此非马也！','白马非马，汝等非人！'].randomGet()
+                  player.say(chat);
+    
+    
+    
+},
+            },
+            "诡辩":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('诡辩'),[1,player.maxHp-player.hp],function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.targets[0]){
+            player.logSkill('诡辩',result.targets);
+            result.targets[0].chooseToCompare(player);
+            result.targets[0].chooseToDiscard(1,'h',true)};
+        if(result.targets[1]){
+            result.targets[1].chooseToCompare(player);
+            result.targets[1].chooseToDiscard(1,'h',true);};
+        if(result.targets[2]){
+              result.targets[2].chooseToCompare(player);
+            result.targets[2].chooseToDiscard(1,'h',true)};
+        if(result.targets[3]){
+            result.targets[3].chooseToCompare(player);
+            result.targets[3].chooseToDiscard(1,'h',true);};
+        if(result.target[4]){
+              result.targets[4].chooseToCompare(player);
+            result.targets[4].chooseToDiscard(1,'h',true)};
+          if(result.targets[5]){
+            result.targets[5].chooseToCompare(player);
+            result.targets[5].chooseToDiscard(1,'h',true);  };
+        if(result.targets[6]){
+            result.targets[6].chooseToCompare(player);
+            result.targets[6].chooseToDiscard(1,'h',true)};
+        var chat=['一较高下吧！'].randomGet()
+                  player.say(chat)
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    
+
+
+},
+            },
         },
         translate:{
             "图强":"图强",
@@ -1488,7 +2192,7 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
             "舟水":"舟水",
             "舟水_info":"锁定技：每当一名角色判定阶段开始时，若你的已受伤，其需要弃置一张牌，然后你摸取一张牌。",
             "诱敌":"诱敌",
-            "诱敌_info":"出牌阶段至多两次，你指定一名其他角色，令其对你使用一张杀，若其不对你使用，其弃置两张牌。",
+            "诱敌_info":"出牌阶段一次，你指定一名其他角色，令其对你使用一张杀，若其不对你使用，弃置其两张牌（包括判定区内的牌）。",
             "伏袭":"伏袭",
             "伏袭_info":"锁定技：当你于你的回合内被杀指定为目标后，你可以对目标造成一点伤害然后其弃置一张牌，并且由你摸牌一张。",
             "诈利":"诈利",
@@ -1512,7 +2216,7 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
             "zz_xinfa":"新法",
             "zz_xinfa_info":"你回合开始前，若你装备区内有牌，你摸取等同于装备区里牌数的牌，然后弃置等量的任意区域内的牌。",
             "zz_xinzheng":"新政",
-            "zz_xinzheng_info":"每当你在一次弃牌时，弃置大于一张的牌，那么你摸取一张牌并且立即开始一个出牌阶段。",
+            "zz_xinzheng_info":"每当你在一次弃牌时，弃置大于一张的牌，那么你摸取一张牌并且获得一个出牌阶段。",
             "zz_yanzhan":"言战",
             "zz_yanzhan_info":"每当你于回合内对一名其他角色造成伤害后，可以视为你对之使用了一张【杀】(出牌阶段仅限一次)。",
             "zz_zhanwei":"战威",
@@ -1559,6 +2263,36 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
             "居货_info":"每当一名角色的武将牌翻面或横置时，你可以发动此技能，立即摸一张牌。锁定技：你的手牌上限加2。",
             "千金":"千金",
             "千金_info":"锁定技：你不能成为红色锦囊牌的目标。",
+            "天人":"天人",
+            "天人_info":"在任意角色的判定牌生效前，若你的手牌大于当前体力值，你可以打出一张手牌代替之，在任意角色的判定时，若你的手牌数不大于当前体力值，你可以摸取一张牌。",
+            "合一":"合一",
+            "合一_info":"你的回合开始前，若你的手牌数等于当前体力值，那么你选择一名其他角色，令之回复体力一点然后你恢复体力一点，再摸取两张牌。",
+            "兵仙":"兵仙",
+            "兵仙_info":"出牌阶段限三次，你可以将任意的牌当【杀】使用。",
+            "因势":"因势",
+            "因势_info":"出牌阶段，你使用[杀]的次数为当前游戏人物数量。",
+            "zz_ML":"明亮",
+            "zz_ML_info":"<font color=#F0F>被动技能</font>：在你的回合开始之前，你可以变身为“兵家·诸葛亮” 并摸取一张牌，然后失去护甲，再将体力值补满。",
+            "zz_GY":"归隐",
+            "zz_GY_info":"你可以在你的回合结束后弃置任意张牌。锁定技，总牌数比你多的角色无法在回合内对你使用卡牌",
+            "zz_WL":"卧龙",
+            "zz_WL_info":"<font color=#F0F>被动技能</font> ：你可以在你的出牌阶段结束后变身为“兵家·黄月英”且获得一层护甲，变身后，体力值回复至满血。",
+            "zz_JH":"劫火",
+            "zz_JH_info":"每当你使用一张【火攻】时，可以摸取一张牌。出牌阶段限一次，你可以将任意一张牌当【火攻】使用。",
+            "zz_QM":"奇谋",
+            "zz_QM_info":"你的回合开始时，你可以指定一名角色，令之进入混乱状态，至其下个回合结束。",
+            "zz_CQ":"刺秦",
+            "zz_CQ_info":"当你的回合结束时，若你装备区内有牌和手牌不为零，那么你可以弃置所有的手牌和装备区内一张牌，然后选择至多两名其他角色，对他们造成一点伤害，然后你获得一层护甲,若目标角色有护甲，其先破除之。",
+            "zz_JX":"奸雄",
+            "zz_JX_info":"<font color=#F0F>被动技能</font> ：每当你受到伤害后，你随机进行一项：①伤害来源弃置一张手牌，②伤害来源弃置一张装备区内的牌，③你摸取两张牌，④你恢复一点体力。",
+            "zz_TY":"天仪",
+            "zz_TY_info":"每名角色回合开始阶段时，你可以观看牌堆顶的Ｘ张牌（Ｘ为存活角色的数量，且最多为2），将其中任意数量的牌以任意顺序置于牌堆顶，其余以任意顺序置于牌堆底。",
+            "木圣":"木圣",
+            "木圣_info":"在你需要打出【闪】响应时，你可以将任意一张装备区里的或手牌区里的牌当之打出。",
+            "非马":"非马",
+            "非马_info":"当你被指定为拼点目标即将拼点时，你取消之，然后摸取两张牌。",
+            "诡辩":"诡辩",
+            "诡辩_info":"在你的回合开始前，你可以指定一到x名其他角色（x为你已损失体力值），令之指定你为目标，同你拼点，然后其弃置一张手牌。",
         },
     },
-},files:{"character":["杂家·吕不韦.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["名家·公孙龙.jpg"],"card":[],"skill":[]}}})

@@ -15,7 +15,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"武�
             "军神·吴起":["male","wei",3,["wd","JS"],["des:吴起（前440年－前381年），中国战国初期军事家、政治家、改革家，兵家代表人物。卫国左氏（一说今山东省菏泽市曹县，一说今山东菏泽市定陶区）人。吴起一生历仕鲁、魏、楚三国，通晓兵家、法家、儒家三家思想，在内政、军事上都有极高的成就。在楚国时，曾主持“吴起变法”。后因变法得罪贵族，遭其杀害。唐肃宗时位列武成王庙内，被称为武庙十哲。"]],
             "义师·田禳苴":["male","qun",3,["RB","yb","CY"],["des:田穰苴（生卒不详），又称司马穰苴，春秋末期齐国人，是田完（陈完）的后代，齐田氏家族的支庶。田穰苴是齐国继姜尚之后一位承上启下的著名军事家，曾率齐军击退晋、燕入侵之军，因功被封为大司马，子孙后世称司马氏。后因齐景公听信谗言，田穰苴被罢黜，未几抑郁发病而死。由于年代久远，其事迹流传不多，但其军事思想却影响巨大。唐肃宗时将田穰苴等历史上十位武功卓著的名将供奉于武成王庙内，被称为武庙十哲。"]],
             "宗师·吕望":["male","qun",4,["宗师","YS","yx"],["des:姜子牙（约前1156年—约前1017年），亦作姜尚，中国著名历史人物，商末周初人。姜姓，吕氏，名尚，一名望，字子牙，或单呼牙，别号飞熊，因其先祖辅佐大禹平水土有功被封于吕，故以吕为氏，也称吕尚。 相传姜子牙72岁时在渭水之滨的磻溪垂钓，遇到了求贤若渴的周文王，被封为“太师”（武官名），称“太公望”，俗称太公，被周武王尊为“师尚父”。姜子牙辅佐武王伐纣建立了周朝，是齐国的缔造者，周文王倾商，武王克纣的首席谋主、最高军事统帅与西周的开国元勋，齐文化的创始人，亦是中国古代的一位影响久远的杰出的韬略家、军事家与政治家,为各家所推崇，视为祖先。吕望为《武庙》主祭对象，同《文庙》的孔子相辉映。"]],
-            "谋圣·张良":["male","qun",3,["SM","归林"],["des:张良（约前250—前186年），字子房，颍川城父人，秦末汉初杰出的谋士、大臣，与韩信、萧何并称为“汉初三杰”。 张良的祖父、父亲等先辈在韩国的首都阳翟（今河南禹州）任过五代韩王之相。 曾劝刘邦在鸿门宴上卑辞言和，保存实力，并疏通项羽叔父项伯，使刘邦得以脱身。后又以出色的智谋，协助汉高祖刘邦在楚汉战争中最终夺得天下，帮助吕后扶持刘盈登上太子之位，被封为留侯。 他精通黄老之道，不留恋权位，晚年据说跟随赤松子云游。张良去世后，谥为文成侯。《史记·留侯世家》专门记载了张良的生平。汉高祖刘邦在洛阳南宫评价他说：“夫运筹策帷帐之中，决胜于千里之外，吾不如子房。”，表现出张良的机智谋划、文韬武略。后世敬其谋略出众，称其为“谋圣”。"]],
+            "谋圣·张良":["male","qun",4,["SM","归林"],["des:张良（约前250—前186年），字子房，颍川城父人，秦末汉初杰出的谋士、大臣，与韩信、萧何并称为“汉初三杰”。 张良的祖父、父亲等先辈在韩国的首都阳翟（今河南禹州）任过五代韩王之相。 曾劝刘邦在鸿门宴上卑辞言和，保存实力，并疏通项羽叔父项伯，使刘邦得以脱身。后又以出色的智谋，协助汉高祖刘邦在楚汉战争中最终夺得天下，帮助吕后扶持刘盈登上太子之位，被封为留侯。 他精通黄老之道，不留恋权位，晚年据说跟随赤松子云游。张良去世后，谥为文成侯。《史记·留侯世家》专门记载了张良的生平。汉高祖刘邦在洛阳南宫评价他说：“夫运筹策帷帐之中，决胜于千里之外，吾不如子房。”，表现出张良的机智谋划、文韬武略。后世敬其谋略出众，称其为“谋圣”。"]],
             "卧龙·诸葛亮":["male","shu",3,["BJ"],["des:诸葛亮（181年－234年10月8日[1]），字孔明，号卧龙（也作伏龙），汉族，徐州琅琊阳都（今山东临沂市沂南县）人，三国时期蜀汉丞相，杰出的政治家、军事家、外交家、散文家、书法家、发明家、文学家。早年随叔父诸葛玄到荆州，诸葛玄死后，诸葛亮就在南阳郡耕种。后刘备三顾茅庐请出，辅佐刘备建立蜀汉。 蜀汉建立后，诸葛亮被封为丞相、武乡侯，对内抚百姓，示仪轨，约官职，从权制，开诚心，布公道，对外联吴抗魏，为实现兴复汉室的政治理想，数次北伐，但因各种不同因素而失败，最后病逝于五丈原。刘禅追谥其为忠武侯，后世常以武侯、诸葛武侯尊称诸葛亮。东晋政权因其军事才能特追封他为武兴王。 诸葛亮散文代表作有《出师表》、《诫子书》等。曾发明木牛流马、孔明灯等，并改造连弩，叫做诸葛连弩，可一弩十矢俱发。 诸葛亮一生“鞠躬尽瘁、死而后已”，是中国传统文化中忠臣与智者的代表人物。"]],
         },
         translate:{
@@ -133,6 +133,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"武�
         player.$damagepop(-1,'unknownx');
         player.storage.BX -=1;
         player.syncStorage('BX');
+        playwr.chooseToDiscard(true);
+        player.draw();
         player.addTempSkill('mashu');
         var chat=['销声匿迹，兵如天降！'].randomGet()
                   player.say(chat);
@@ -260,11 +262,11 @@ var chat=['寡者，备人者也——《孙武兵法》','昼战多旌旗，夜
                 enable:"phaseUse",
                 usable:1,
                 filter:function (event,player){
-        return player.storage.BS>4;
+        return player.storage.BS>5;
     },
                 content:function (){
-        player.$damagepop(-5,'unknownx');
-        player.storage.BS -=5;
+        player.$damagepop(-6,'unknownx');
+        player.storage.BS -=6;
         player.syncStorage('BS');
         player.addTempSkill('zhiheng');
         player.addTempSkill('wansha');
@@ -546,13 +548,13 @@ var chat=['寡者，备人者也——《孙武兵法》','昼战多旌旗，夜
             },
             ZW:{
                 enable:"phaseUse",
-                usable:false,
+                usable:3,
                 filter:function (event,player){
         return player.num('hej')>=2;
     },
                 content:function (){
         
-        player.chooseToDiscard(2,true);
+        player.chooseToDiscard(2,'hej',true);
         player.draw(player.maxHp-player.hp);
         var chat=['修军整武，备战待敌！','革新军制，则战无不胜！'].randomGet()
                   player.say(chat);
@@ -864,15 +866,15 @@ var chat=['寡者，备人者也——《孙武兵法》','昼战多旌旗，夜
             wd:{
                 unique:true,
                 trigger:{
-                    player:"damageBegin",
+                    player:"damageEnd",
                 },
                 forced:true,
                 filter:function (event,player){
-        return event.num<2;
+        return player.hp>0;
     },
                 content:function (){
-    trigger.untrigger();
-        trigger.finish();
+        player.recover()
+        player.draw();
         var chat=['垂死挣扎是无用的！','哼，毫无作用！','不动如山，难知如阴——《孙武兵法》'].randomGet()
                   player.say(chat);
 
@@ -1197,9 +1199,9 @@ var chat=['运筹帷幄之中，决胜千里之外！'].randomGet()
     },
                 viewAs:{
                     name:"wuxie",
-                    suit:"spade",
-                    number:6,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{"uncheck":[],"vanishtag":[]},"suit":"spade","number":6,"name":"sha","cardid":"2627642287","_transform":"translateX(560px)","clone":{"name":"sha","suit":"spade","number":6,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":791},"timeout":610,"original":"h"}],
+                    suit:"club",
+                    number:12,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":12,"name":"qijia","cardid":"3845195409","_transform":"translateX(112px)","clone":{"name":"qijia","suit":"club","number":12,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":8922},"timeout":8730,"original":"h"}],
                 },
                 prompt:"将一张牌当无懈可击使用",
                 check:function (card){return 8-ai.get.value(card)},
@@ -1234,7 +1236,7 @@ player.chooseTarget(get.prompt('BJ'),function(card,player,target){
 if(result.bool){
     player.logSkill('BJ',result.targets);
     player.changeHujia(-player.hujia);
-    result.targets[0].draw(player.hp);
+    result.targets[0].draw(player.hp+1);
      result.targets[0].skip('phaseDraw')
      result.targets[0].skip('phaseUse')
      result.targets[0].skip('phaseDiscard')
@@ -1282,7 +1284,7 @@ if(result.bool){
                 player.removeSkill('CS');
                 player.removeSkill('JH');
                 player.addSkill('BJ')  
-                player.draw(player.maxHp-player.hp)
+                player.draw(player.maxHp-player.hp+1)
             },
                     },
                 },
@@ -1396,7 +1398,7 @@ if(card.name=='huogong') range[1]+=1;
             QZ:"奇战",
             "QZ_info":"出牌阶段限一次，你可以利用“兵仙”值5点，然后获得【奇战】。【奇战】：当你对一名其他角色造成伤害后，若其有牌，那么视为你对之使用了一张【顺手牵羊】，持续到回合结束。",
             NX:"匿行",
-            "NX_info":"出牌阶段时一次，若你的“兵仙”值大于3，那么你可以利用一点，获得技能【马术】到回合结束。",
+            "NX_info":"出牌阶段时一次，若你的“兵仙”值大于3，那么你可以利用一点，弃置一张手牌然后摸取一张牌，再获得技能【马术】到回合结束。",
             DB:"点兵",
             "DB_info":"出牌阶段，你可以使用一点“兵仙”值，摸取一张牌然后弃置一张牌。",
             BS:"兵圣",
@@ -1406,7 +1408,7 @@ if(card.name=='huogong') range[1]+=1;
             XS:"虚实",
             "XS_info":"当你的被其他角色的【杀】指定为目标时，若你的“兵圣”值大于五，那么目标弃置x张牌，若不大于五，那么你摸取x张牌,x为你装备区内的牌数。",
             SJ:"始计",
-            "SJ_info":"出牌阶段限一次，若你的“兵圣”值不小于五，你可以使用五点“兵圣”值，然后获得技能【完杀】、【制衡】、【教战】到回合结束。",
+            "SJ_info":"出牌阶段限一次，若你的“兵圣”值不小于六，你可以使用六点“兵圣”值，然后获得技能【完杀】、【制衡】、【教战】到回合结束。",
             JIAOZHAN:"教战",
             "JIAOZHAN_info":"当你造成伤害后，获得一点“兵圣”并且摸取一张牌,你以此法造成伤害后，获得的“兵圣”值可以突破上限。",
             bs:"兵神",
@@ -1426,7 +1428,7 @@ if(card.name=='huogong') range[1]+=1;
             CG:"昌国",
             "CG_info":"每当你回合开始时或者结束时，你都可以令一名角色摸取一张牌。回合开始时，失去一点体力，获得技能【整武】到回合结束。",
             ZW:"整武",
-            "ZW_info":"出牌阶段，若你区域里的牌不小于2，你可以发动此技能，弃置两张牌后摸取x张牌(x为已损失体力值)。",
+            "ZW_info":"出牌阶段，若你区域里的牌不小于2，你可以发动此技能，弃置两张牌后摸取x张牌(x为已损失体力值)。出牌阶段至多三次。",
             LP:"连破",
             "LP_info":"当你造成伤害后，摸取x张牌(x你为已损失体力值)，然后获得一层护甲。当你的回合结束时，若你拥有护甲，那么你失去一层护甲，恢复一点体力值。",
             BD:"兵道",
@@ -1444,7 +1446,7 @@ if(card.name=='huogong') range[1]+=1;
             ZB:"制霸",
             "ZB_info":"<font color=#F0F>觉醒技</font> ：你的回合开始时，若你的“渊”到达12点，那么你失去所有的“渊”，回复体力至体力上限，摸取等同于游戏人数的卡牌，获得技能【神虑】、【骏途】、【匡威】，然后失去技能【制霸】和一点体力上限。",
             wd:"无敌",
-            "wd_info":"锁定技：当你受到伤害时，若伤害值小于2，你取消之。锁定技：在你已经受伤时，你的手牌上限始终加一。",
+            "wd_info":"锁定技：当你受到伤害后，若你未死亡，你恢复一点体力并摸取一张牌。锁定技：在你已经受伤时，你的手牌上限始终加一。",
             JS:"军神",
             "JS_info":"当你使用一张【杀】指定目标时，你可以失去一点体力，然后选择一名除你外的角色，令之受到来自于你的一点伤害（需要你的体力大于1）。",
             yx:"盈虚",
@@ -1470,13 +1472,13 @@ if(card.name=='huogong') range[1]+=1;
             DC:"洞察",
             "DC_info":"你可以将你的任意一张牌当【无懈可击】使用。",
             BJ:"抱居",
-            "BJ_info":"<font color=#F0F>准备技能</font> :在你的准备阶段开始时，你可以令自己跳过本回合并且摸取等同于当前体力值的牌，然后获得一层护甲（若你原本拥有护甲，需要失去之），再失去技能【抱居】，获得【洞察】、【出山】和【三分】。",
+            "BJ_info":"<font color=#F0F>准备技能</font> :在你的准备阶段开始时，你可以令自己跳过本回合并且摸取等同于当前体力值加一的牌，然后获得一层护甲（若你原本拥有护甲，需要失去之），再失去技能【抱居】，获得【洞察】、【出山】和【三分】。",
             CS:"出山",
-            "CS_info":"<font color=#F0F>准备技能</font> :你的回合开始之前，你摸取一张牌并且进行一个出牌阶段并且获得技能【劫火】。隐卧：<font color=#F0F>出山被动</font> ：在你受到伤害后，你失去所拥有的技能，然后获得技能【抱居】并摸取等同于已损失体力值的牌。",
+            "CS_info":"<font color=#F0F>准备技能</font> :你的回合开始之前，你摸取一张牌以及进行一个出牌阶段并且获得技能【劫火】。隐卧：<font color=#F0F>出山被动</font> ：在你受到伤害后，你失去所拥有的技能，然后获得技能【抱居】并摸取等同于已损失体力值加一的牌。",
             SF:"三分",
             "SF_info":"每当场上有角色在你的回合外使用【杀】时，若【杀】的目标体力值不大于使用者，你可以令使用者弃置一张牌然后你摸取一张牌。",
             JH:"劫火",
             "JH_info":"出牌阶段限一次，你将任意一张牌当火攻使用。你使用的火攻能够指定任意名角色。",
         },
     },
-},files:{"character":["卧龙·诸葛亮.jpg","国师·孙膑.jpg","元帅·乐毅.jpg","第一相·管仲.jpg","军神·吴起.jpg","兵神·李靖.jpg","人屠·白起.jpg","兵仙·韩信.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["卧龙·诸葛亮.jpg"],"card":[],"skill":[]}}})

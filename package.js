@@ -300,9 +300,9 @@ window.noname_extension_list=[
         author:"天气亏",
         intro:"根据唐代设立的《武成王庙》为背景设计的扩展包，其中有做了点修改，共计12名人物。由于这些角色都是军事史上影响深远的顶尖军事人才，所以强度偏高（但仍旧较为平衡，技能结构优于《诸子百家》），其中以姜子牙（因其为主祭）强度最高，特点为全场控（不是逆天的全场控），其次为配享张良和兵圣孙武。其余人物各有所长各有所短。已将所有角色分配给魏蜀吴群四大势力（供国战用）。允许玩家二次制作，但前提是不失整个大的框架和尊重其中所有人物，不要肆意。",
         size:"1.5MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=2150868507&uk=3060998652",
+        netdisk:"https://pan.baidu.com/share/link?shareid=1558786091&uk=3060998652",
         // forum:"https://tieba.baidu.com/p/5044759964",
-        version:1,
+        version:2,
         files:[
             "义师·田禳苴.jpg","人屠·白起.jpg","元帅·乐毅.jpg","兵仙·韩信.jpg","兵圣·孙武.jpg",
 			"兵神·李靖.jpg","军神·吴起.jpg","卧龙·诸葛亮.jpg","国师·孙膑.jpg","宗师·吕望.jpg",
@@ -313,17 +313,19 @@ window.noname_extension_list=[
         author:"天气亏",
         intro:"基于《诸子百家_战国》的更新，主要写了先秦时期的诸子百家人物，大概有25名左右，所有人物都是精心制作，强度较为平衡，适合像我这样的新手参考，武将基本原创，颇有创意。欢迎其他玩家二次制作，但前提是尊重包内所有历史人物。",
         size:"3.6MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=1039347103&uk=3060998652",
+        netdisk:"https://pan.baidu.com/share/link?shareid=2873567553&uk=3060998652",
         // forum:"https://tieba.baidu.com/p/5044759964",
-        version:4,
+        version:5,
         files:[
             "zz_HYY.jpg","zz_ZGL.jpg","儒家·孔丘.jpg","儒家·孟轲.jpg","儒家·张良.jpg",
 			"儒家·荀况.jpg","儒家·董仲舒.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙武.jpg",
 			"兵家·孙膑.jpg","兵家·尉缭.jpg","兵家·曹操.jpg","兵家·田禳苴.jpg","兵家·白起.jpg",
-			"兵家·韩信.jpg","农家·许行.jpg","名家·公孙龙.jpg","名家·惠施.jpg","墨家·墨翟.jpg",
-			"杂家·吕不韦.jpg","法家·卫鞅.jpg","法家·子产.jpg","法家·李悝.jpg","法家·管仲.jpg",
-			"法家·韩非.jpg","科学家·张衡.jpg","纵横·鬼谷子.jpg","道家·列御寇.jpg","道家·庄周.jpg",
-			"道家·李耳.jpg","道家·杨朱.jpg","阴阳·徐福.jpg","阴阳·邹衍.jpg"
+			"兵家·韩信.jpg","兵家·项羽.jpg","农家·许行.jpg","名家·公孙龙.jpg","名家·惠施.jpg",
+			"墨家·墨翟.jpg","墨家·禽滑离.jpg","杂家·吕不韦.jpg","法家·卫鞅.jpg","法家·子产.jpg",
+			"法家·屈原.jpg","法家·慎到.jpg","法家·李悝.jpg","法家·李斯.jpg","法家·申不害.jpg",
+			"法家·管仲.jpg","法家·西门豹.jpg","法家·韩非.jpg","科学家·张衡.jpg","纵横·苏张.jpg",
+			"纵横·鬼谷子.jpg","道家·列御寇.jpg","道家·庄周.jpg","道家·李耳.jpg","道家·杨朱.jpg",
+			"阴阳·徐福.jpg","阴阳·邹衍.jpg"
         ]
     },{
         name:"战国七雄",

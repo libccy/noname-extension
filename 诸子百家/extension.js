@@ -39,6 +39,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸�
             "兵家·曹操":["male","wei",4,["zz_JX"],["zhu","des:东汉末年著名的政治家，军事家，文学家，诗人，曹操被誉为“治世之能臣，乱世之奸雄”，曹操的一生是在马背上的，自古用兵者莫如曹操的评价也是因此而来，曹操还是当时的文学代表，富有文采，史称“三曹”，曹操未能统一中原，带着遗憾而死；"]],
             "科学家·张衡":["male","Han",3,["木圣","zz_TY"],["des:东汉著名文学家和大科学家，大发明家，几乎涉及所有领域，科学上，张衡发明了“浑天仪”“地动仪”等领先世界的伟大发明，对许多科技品进行了改进和更新发展，文学上则精于汉赋，张衡因其宏伟之才而被人尊为“木(科)圣”；"]],
             "名家·公孙龙":["male","zhao",3,["诡辩","非马"],["des:公孙龙能言善辩，曾经做过平原君的门客，其主要著作为《公孙龙子》，西汉时共有14篇，唐代时分为三卷，北宋时遗失了8篇，至今只残留6篇，共一卷。其中最重要的两篇是《白马论》和《坚白论》，提出了“白马非马”和“离坚白”等论点，认为对于 “坚白石”，“视不得其所坚而得其所白者，无坚也”；“拊不得其所白而得其所坚者，无白也”，强调视觉与触觉的差异故“坚白石二”。又分析一般与个别的关系，强调“白马”（个别）与“马”（一般）的区别，得出“白马非马”的结论。与他齐名的是另一名家惠施。"]],
+            "法家·屈原":["male","chu",4,["离骚","天问","zz_MZ"],["des:屈原（约公元前340或339年～公元前278年），战国时期楚国诗人、政治家，出生地楚国丹阳，湖北省宜昌市，芈姓，屈氏，名平，字原；又自云名正则，字灵均，战国时。楚武王熊通之子屈瑕的后代。少年时受过良好的教育，博闻强志，志向远大。早年受楚怀王信任，任左徒、三闾大夫，兼管内政外交大事。 他提倡“美政”，主张对内举贤任能，修明法度，对外力主联齐抗秦。因遭贵族排挤毁谤，被先后流放至汉北和沅湘流域。秦将白起攻破楚都郢（今湖北江陵）后，屈原自沉于汨罗江，以身殉国。 屈原是中国历史上第一位伟大的爱国诗人，中国浪漫主义文学的奠基人，“楚辞”的创立者和代表作者，开辟了“香草美人”的传统，被誉为“中华诗祖”、“辞赋之祖”。屈原的出现，标志着中国诗歌进入了一个由集体歌唱到个人独创的新时代。屈原的主要作品有《离骚》《九歌》《九章》《天问》等。以屈原作品为主体的《楚辞》是中国浪漫主义文学的源头，与《诗经》并称“风骚”，对后世诗歌产生了深远影响。"]],
+            "兵家·项羽":["male","chu",4,["神勇"],["zhu","des:项羽（公元前232年―公元前202年），项氏，芈姓，名籍，字羽，楚国下相（今江苏宿迁）人，楚国名将项燕之孙，他是中国军事思想“兵形势”代表人物（兵家四势：兵形势、兵权谋、兵阴阳、兵技巧） 的军事家，也是以个人武力出众而闻名的武将。李晚芳对其有“羽之神勇，千古无二”的评价。"]],
+            "墨家·禽滑离":["male","han",3,["圄城","守御"],["des:禽子，禽滑厘（qín gǔlí），本作禽滑口（㫥，上殹下康，lí），根据《汉语大字典》和《辞海》的解释，“㫥”同“釐（lí）”，用于人名。禽滑釐又作滑黎、骨釐、屈釐等。“釐”现今简化为“厘”。战国初人，传说是墨子的首席弟子，他的字为慎子。他的后代以他的字作为姓氏，形成慎姓。 禽滑釐曾是儒门弟子，学于子夏，自转投墨子后，便一直潜心墨学。禽滑釐与慎到不是同一个人，一个是魏国人墨子的弟子，另一个是赵国人学老子的学说。但从战国历史地理楚国、魏国、赵国相邻，试想慎邑、禽滑釐、慎到三者之间虽无历史文献记载，也并不能排除没有关系。"]],
+            "法家·李斯":["male","qin",3,["营党","焚书"],["des:李斯（约公元前284年—公元前208年），李氏，名斯，字通古。战国末期楚国上蔡（今河南省上蔡县芦冈乡李斯楼村人。秦代著名的政治家、文学家和书法家。秦始皇死后，他与赵高合谋，伪造遗诏，迫令始皇长子扶苏自杀，立少子胡亥为二世皇帝。后为赵高所忌，于秦二世二年（前208年）被腰斩于咸阳闹市，并夷三族。"]],
+            "法家·西门豹":["male","wei",3,["治邺","畯法"],["des:西门豹（生卒年不详），战国时期魏国安邑（今山西省运城市盐湖区安邑一带）人。魏文侯时任邺令，是著名的政治家、水利家，曾立下赫赫功勋。初到邺城 （今河南安阳北一带)）时，看到这里人烟稀少，田地荒芜萧条，一片冷清，百业待兴，于是立志改善现状。后来趁河伯娶妻的机会，惩治了地方恶霸势力，随后颁布律令，禁止巫风。教育了广大的百姓。原先出走人家也回到了自己的家园。同时，他又亲自率人勘测水源，发动百姓在漳河开围挖掘了12渠，使大片田地成为旱涝保收的良田。在发展农业生产的同时，还实行“寓兵于农、藏粮于民”的政策，很快就使邺城民富兵强，成为战国时期魏国的东北重镇。"]],
+            "法家·慎到":["male","qi",3,["因循","威德"],["des:慎到（约公元前395～约前315），先秦诸子之一。赵国人，早年曾“学黄老道德之术”，其学术倾向至今有争议，有人认为属于黄老道家，有人认为属于法家，也有人鉴于其道法结合的思想倾向，称之为道法家。他长期在齐国稷下讲学，是稷下学宫的学术领袖人物之一。《史记》说他有《十二论》，《汉书·艺文志》的法家类著录了《慎子》四十二篇。后来很多都失传了，《慎子》现存有《威德》、《因循》、《民杂》、《德立》、《君人》五篇，《群书治要》里有《知忠》、《君臣》两篇，清朝时，钱熙祚合编为七篇，刻入《守山阁丛书》。此外，还有佚文数十条。"]],
+            "法家·申不害":["male","han",3,["权术","辅法"],["des:申不害（公元前385－前337，或前420年－前337年），亦称申子，郑韩时期人物（今河南新郑）人。战国时期法家重要代表人物之一、思想家。以“术”著称，著有《申子》是春秋战国时期，百家争鸣中的代表人物。申不害原是郑国京邑（今郑州荥阳东南京襄城）人，曾为郑国小吏，公元前375年（韩哀侯二年），韩国灭掉郑国，遂成为韩人，并做了韩国的低级官员。公元前337年，申不害卒于韩都（今新郑）。"]],
+            "纵横·苏张":["male","qin",3,["合纵","连横"],["des:苏秦（？－前284年），字季子，东周雒阳（河南洛阳）人，战国时期著名的纵横家、外交家和谋略家。苏秦师从鬼谷子，学成后，外出游历多年，潦倒而归；随后刻苦攻读《阴符》，一年后游说列国，被燕文公赏识，出使赵国。苏秦到赵国后，提出合纵六国以抗秦的战略思想，并最终组建合纵联盟；任“从约长”，兼佩六国相印，使秦十五年不敢出函谷关；联盟解散后，齐国攻打燕国，苏秦说齐归还燕国城池；后自燕至齐，从事反间活动，被齐国任为客卿，齐国众大夫因争宠派人刺杀，苏秦死前献策诛杀了刺客。张仪（？－前309年），魏国安邑（今山西万荣）张仪村人，魏国贵族后裔，战国时期著名的纵横家、外交家和谋略家。张仪首创连横的外交策略，游说入秦。秦惠王封张仪为相，后来张仪出使游说各诸侯国，以“横”、破、“纵”，使各国纷纷由合纵抗秦转变为连横亲秦。张仪也因此被秦王封为武信君。秦惠王死后，因为即位的秦武王在当太子的时候就不喜欢张仪，张仪出逃魏国，并出任魏相，一年后去世。"]],
         },
         translate:{
             Han:"汉",
@@ -93,6 +101,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"诸�
             "兵家·曹操":"兵家·曹操",
             "科学家·张衡":"科学家·张衡",
             "名家·公孙龙":"名家·公孙龙",
+            "法家·屈原":"法家·屈原",
+            "兵家·项羽":"兵家·项羽",
+            "墨家·禽滑离":"墨家·禽滑离",
+            "法家·李斯":"法家·李斯",
+            "法家·西门豹":"法家·西门豹",
+            "法家·慎到":"法家·慎到",
+            "法家·申不害":"法家·申不害",
+            "纵横·苏张":"纵横·苏张",
         },
     },
     card:{
@@ -1595,9 +1611,9 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
                 usable:3,
                 viewAs:{
                     name:"sha",
-                    suit:"club",
-                    number:11,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":11,"name":"huoshaolianying","nature":"fire","cardid":"1601941287","_transform":"translateX(0px)","clone":{"name":"huoshaolianying","suit":"club","number":11,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2321},"timeout":2086,"original":"h"}],
+                    suit:"diamond",
+                    number:12,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":12,"name":"shan","cardid":"6021129382","original":"h","_transform":"translateX(0px)","clone":{"name":"shan","suit":"diamond","number":12,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":7604},"timeout":7394}],
                 },
                 ai:{
                     basic:{
@@ -1728,9 +1744,9 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
                         usable:1,
                         viewAs:{
                             name:"huogong",
-                            suit:"diamond",
-                            number:4,
-                            cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":4,"name":"sha","nature":"fire","cardid":"3739012253","_transform":"translateX(408px)","clone":{"name":"sha","suit":"diamond","number":4,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":697},"timeout":591,"original":"h"}],
+                            suit:"club",
+                            number:13,
+                            cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":13,"name":"sha","cardid":"4536044426","clone":{"name":"sha","suit":"club","number":13,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":10043},"timeout":9996,"original":"h"}],
                         },
                         ai:{
                             basic:{
@@ -1821,6 +1837,7 @@ var chat=['吾御风而行！','逍遥游一回！'].randomGet()
                 filter:function (event,player){
         return player.num('h')>0&&player.num('e')>0;
     },
+                nobracket:true,
                 content:function (){
         'step 0'
         player.chooseTarget(get.prompt('zz_CQ'),[1,2],function(card,player,target){
@@ -2132,7 +2149,7 @@ trigger.finish();
         if(result.targets[3]){
             result.targets[3].chooseToCompare(player);
             result.targets[3].chooseToDiscard(1,'h',true);};
-        if(result.target[4]){
+        if(result.targets[4]){
               result.targets[4].chooseToCompare(player);
             result.targets[4].chooseToDiscard(1,'h',true)};
           if(result.targets[5]){
@@ -2151,6 +2168,448 @@ trigger.finish();
         
         
     
+    
+    
+    
+    
+
+
+},
+            },
+            "离骚":{
+                mod:{
+                    judge:function (player,result){
+            if(_status.event.type=='phase'){
+                if(result.bool==false){
+                    result.bool=null;
+                }
+                else{
+                    result.bool=false;
+                }
+            }
+        },
+                },
+            },
+            "zz_MZ":{
+                enable:"phaseUse",
+                filter:function (event,player){
+        return player.hp>0;
+    },
+                filterTarget:function (card,player,target){
+        return target.num('hej')>0&&!target.hasSkill('zz_MZ2');
+    },
+                content:function (){
+        target.addTempSkill('zz_MZ2','phaseAfter');
+         target.chooseToDiscard(1,'hej',true)
+        target.draw();  
+                var chat=['忽奔走以先后兮，及前王之崇武——《离骚》','高余冠之岌岌兮，长余佩之陆离——《离骚》'].randomGet()
+                  player.say(chat);
+    },
+            },
+            "天问":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                content:function (){
+      "step 0"        
+        player.judge();
+            var chat=['欲少留此灵锁兮，日乎乎其将暮——《离骚》','应龙何画？河海何历？——《天问》','羲和之未杨，若华何光？——《天问》'].randomGet()
+                  player.say(chat);                      
+        "step 1"
+        switch(get.suit(result.card)){
+            case 'heart': player.recover();break;
+            case 'diamond':player.draw(2);break;
+            case 'club':player.chooseToDiscard('he',1,true);break;
+            case 'spade':player.damage();break;
+        }
+    },
+                ai:{
+                    expose:0.3,
+                },
+            },
+            "zz_MZ2":{
+            },
+            "神勇":{
+                trigger:{
+                    source:"damageEnd",
+                },
+                filter:function (event,player){
+        return player.hp>event.player.hp&&event.player.hp>0;
+    },
+                content:function (){
+           "step 0"
+        var att=get.attitude(trigger.player,player);
+        var bool=0;
+        if(att<0){
+            if(trigger.player.countCards('e')==0&&trigger.player.countCards('h')>2) bool=1;
+            else if(trigger.player.countCards('he')==0) bool=1;
+        }
+        else if(att==0&&trigger.player.countCards('he')==0){
+            bool=1;
+        }
+        player.chooseControl(function(){
+            return bool;
+        }).set('prompt','神勇').set('choiceList',['令其弃置所有手牌','令其弃置所有装备区里的牌']);
+        "step 1"
+        if(result.control=='选项一'){
+            trigger.player.chooseToDiscard(999,'h',true);
+            event.finish();
+            var chat=['无能之辈，也想阻挡我？'].randomGet()
+                  player.say(chat);
+        }
+        else if(trigger.player.countCards('he')){
+            var chat=['神当杀神，佛当杀佛！'].randomGet()
+                  player.say(chat)
+           trigger.player.chooseToDiscard(999,'e',true)
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    threaten:1.2,
+                },
+            },
+            "圄城":{
+                trigger:{
+                    player:"loseHpBefore",
+                },
+                forced:true,
+                unique:true,
+                content:function (){
+        trigger.untrigger();
+        trigger.finish();
+        player.draw();        
+    },
+                ai:{
+                    effect:{
+                        target:function (card){
+                if(get.tag(card,'loseHp')){
+                    return [0,2];
+                }
+            },
+                    },
+                },
+            },
+            "守御":{
+                trigger:{
+                    player:"phaseUseBefore",
+                },
+                filter:function (event,player){
+        return player.num('he')>5;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('守御'),[1,player.hp],function(card,player,target){
+            return true;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.targets[0]){
+            var chat=['足下放心，吾深得师父之法！','哪里有进攻，哪里就有我！'].randomGet()
+                  player.say(chat)
+            player.logSkill('守御',result.targets);
+            result.targets[0].draw();
+            player.chooseToDiscard(2,'he',true)
+            result.targets[0].changeHujia();
+        };
+    if(result.targets[1]){
+        player.chooseToDiscard(2,'he',true)
+        result.targets[1].draw()
+        result.targets[1].changeHujia();
+    };
+       if(result.targets[2]){
+           player.chooseToDiscard(2,'he',true)
+           result.targets[2].draw()
+           result.targets[2].changeHujia()
+       };},
+                mod:{
+                    maxHandcard:function (player,num){
+       return num+=game.players.length;
+        },
+                },
+            },
+            "营党":{
+                enable:"phaseUse",
+                usable:1,
+                filterCard:{
+                    name:"sha",
+                },
+                position:"h",
+                viewAs:{
+                    name:"tiesuo",
+                    suit:"club",
+                    number:11,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":11,"name":"sha","cardid":"1000233289","_transform":"translateX(336px)","clone":{"name":"sha","suit":"club","number":11,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":575},"timeout":550,"original":"h"}],
+                },
+                ai:{
+                    wuxie:function (){
+            if(Math.random()<0.5) return 0;
+        },
+                    basic:{
+                        useful:4,
+                        value:4,
+                        order:7,
+                    },
+                    result:{
+                        target:function (player,target){
+                if(target.isLinked()) return 1;
+                if(get.attitude(player,target)>=0) return -1;
+                if(ui.selected.targets.length) return -1;
+                if(game.hasPlayer(function(current){
+                    return get.attitude(player,current)<=-1&&current!=target&&!current.isLinked();
+                })){
+                    return -1;
+                }
+                return 0;
+            },
+                    },
+                    tag:{
+                        multitarget:1,
+                        multineg:1,
+                        norepeat:1,
+                    },
+                },
+            },
+            "焚书":{
+                enable:"phaseUse",
+                usable:1,
+                filter:function (event,player){
+        return player.hp>0&&player.num('e')>0;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('焚书'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('焚书',result.targets);
+            result.targets[0].damage('fire');
+            result.targets[0].chooseToDiscard(true)
+             player.loseHp()   
+            player.chooseToDiscard(1,'e',true)
+            var chat=['烧吧烧吧，让六国从此不存！'].randomGet()
+                  player.say(chat)
+            
+        };
+    
+
+
+},
+            },
+            "治邺":{
+                enable:"phaseUse",
+                usable:1,
+                filter:function (event,player){
+        return player.hp>0;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('治邺'),function(card,player,target){
+            return target!=player&&target.num('h')>player.num('h');
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('治邺',result.targets);      
+            result.targets[0].chooseToDiscard(2,'h',true)           
+            player.chooseToDiscard(1,'h',true)
+            var chat=['君上放心，吾必令邺大治！','大胆刁民,胆敢犯我大魏之法！'].randomGet()
+                  player.say(chat)
+            
+        };
+    
+
+
+},
+            },
+            "畯法":{
+                trigger:{
+                    global:"discardAfter",
+                },
+                usable:1,
+                filter:function (event,player){
+        return event.player!=player&& _status.currentPhase==player&&event.cards&&event.cards.length>1;;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('畯法'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('畯法',result.targets);
+            result.targets[0].damage();
+            player.chooseToDiscard(1,'he',true)
+            var chat=['刑法严明，才是兴国之道！','来人，把她给我丢下去！','妖言惑众，罪该诛！'].randomGet()
+                  player.say(chat);
+            
+        };
+    
+    
+
+
+},
+            },
+            "威德":{
+                trigger:{
+                    source:"damageBegin",
+                },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('威德'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('威德',result.targets);
+            result.targets[0].draw();
+            trigger.player.chooseToDiscard('he',true)
+            var chat=['君威之下，必出忠臣！','威者所以御下也，德者所以得人心也！'].randomGet()
+                  player.say(chat)
+        };
+    
+    
+    
+
+
+},
+            },
+            "因循":{
+                trigger:{
+                    player:"phaseDiscardBefore",
+                },
+                filter:function (event,player){
+        return player.num('h')>player.hp;
+    },
+                content:function (){
+    
+trigger.untrigger();
+trigger.finish();
+    player.draw();
+    var chat=['循循不可败也！','因其势，循其道！'].randomGet()
+                  player.say(chat);
+},
+            },
+            "权术":{
+                enable:"phaseUse",
+                usable:1,
+                filter:function (event,player){
+        return player.hp>0;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('权术'),function(card,player,target){
+            return target!=player&&target.num('hej')>0;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('权术',result.targets);      
+            result.targets[0].draw()           
+           player.gainPlayerCard(result.targets[0],2,true,'hej');
+          event.finish();
+            var chat=['不明权谋而国强者，未之有也！'].randomGet()
+                  player.say(chat)
+            
+        };
+    
+
+
+},
+            },
+            "辅法":{
+                trigger:{
+                    player:"gainEnd",
+                },
+                direct:true,
+                filter:function (event,player){
+        return event.cards&&event.cards.length>1;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('辅法'),function(card,player,target){
+            return true;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('辅法',result.targets);
+            result.targets[0].draw();
+            var chat=['法者，国之辅也！'].randomGet()
+                  player.say(chat)
+        }
+    },
+            },
+            "合纵":{
+                trigger:{
+                    player:"damageEnd",
+                },
+                filter:function (event,player){
+        return player.hp>0&&player.hujia<1;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('合纵'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('合纵',result.targets);
+            result.targets[0].draw();
+            result.targets[0].changeHujia();
+            player.draw();
+            player.changeHujia(2);
+            var chat=['欲抗秦国，非合纵不可！','一人之斗，不若二人也！'].randomGet()
+                  player.say(chat);
+        };
+    
+    
+    
+    
+    
+
+},
+            },
+            "连横":{
+                trigger:{
+                    player:"phaseBefore",
+                },
+                filter:function (event,player){
+        return player.hujia>0&&player.num('h')>0;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('连横'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('连横',result.targets);
+            result.targets[0].changeHujia(-999);
+            result.targets[0].damage();
+            result.targets[0].chooseToDiscard('he',true);
+            player.changeHujia(-999);
+            player.draw();
+            player.skip('phaseDraw');
+            var chat=['分而破之！','朋友，也是敌人！'].randomGet()
+                  player.say(chat);
+        };
     
     
     
@@ -2293,6 +2752,40 @@ trigger.finish();
             "非马_info":"当你被指定为拼点目标即将拼点时，你取消之，然后摸取两张牌。",
             "诡辩":"诡辩",
             "诡辩_info":"在你的回合开始前，你可以指定一到x名其他角色（x为你已损失体力值），令之指定你为目标，同你拼点，然后其弃置一张手牌。",
+            "离骚":"离骚",
+            "离骚_info":"每当你判定区内的牌的效果要生效时，你将之反转。",
+            "zz_MZ":"美政",
+            "zz_MZ_info":"出牌阶段每名角色限一次，若其区域内有牌，那么你令之弃置一张牌再摸取一张牌。",
+            "天问":"天问",
+            "天问_info":"你的回合开始前，你可以进行一次判定，若为♥：你恢复一点体力，若为♦：你摸取两张牌，若为♣：你弃置一张牌，若为♠：你受到一点伤害。",
+            "zz_MZ2":"美政",
+            "zz_MZ2_info":"你不能再成为【美政】的目标。",
+            "神勇":"神勇",
+            "神勇_info":"当一名角色受到你造成的伤害后，若其体力值小于你，你可以选择弃置其所有的手牌或装备区内的牌。",
+            "圄城":"圄城",
+            "圄城_info":"当你将要受到体力流失时，你取消之，并且摸取一张牌。",
+            "守御":"守御",
+            "守御_info":"若你的手牌数加上装备区里的牌不小于六，你可以在出牌阶段开始前发动此技能，选择至多三名角色，令之摸取一张牌并且获得一层护甲，每分配一名，你需要弃置两张牌。锁定技：你的手牌上限加x，x为当前游戏人数。",
+            "营党":"营党",
+            "营党_info":"出牌阶段时限一次，你可以将一张【杀】当【铁索连环】使用。",
+            "焚书":"焚书",
+            "焚书_info":"出牌阶段限一次，若你装备区内有牌，你可以自损体力一点并弃置一张装备区内的牌指定一名其他角色，令之受到一点火焰伤害和弃置一张牌。",
+            "治邺":"治邺",
+            "治邺_info":"出牌阶段限一次，你可以令一名手牌数大于你的其他角色弃置两张牌然后你弃置一张牌。",
+            "畯法":"畯法",
+            "畯法_info":"在你的回合内，若有其他角色一次弃置大于一张牌，你可以在此之后弃置一张牌，令一名其他角色受到一点伤害。每回合至多一次。",
+            "威德":"威德",
+            "威德_info":"每当你造成伤害前，目标需要弃置一张牌，然后你选择一名其他角色，令其摸取一张牌。",
+            "因循":"因循",
+            "因循_info":"当你的弃牌阶段开始前，若你的手牌数大于当前体力值，你可以跳过此弃牌阶段，并摸取一张牌。",
+            "权术":"权术",
+            "权术_info":"出牌阶段限一次，你可以令一名区域内有牌的其他角色摸取一张牌，然后你获得其两张牌（包括判定区）。",
+            "辅法":"辅法",
+            "辅法_info":"当你一次获得至少两张牌后，你可以令一名角色摸一张牌",
+            "合纵":"合纵",
+            "合纵_info":"当你受到伤害后，若你没有护甲，那么你可以选择一名其他角色，同之摸取一张牌并且其获得一层护甲，你获得两层。",
+            "连横":"连横",
+            "连横_info":"你的回合开始前，若你拥有护甲和手牌，则可以发动此技能，你选择一名其他角色，对之造成一点伤害，若其拥有护甲，其先破除之，然后他弃置一张牌，再由你摸取一张牌和失去所有护甲并跳过摸牌阶段。",
         },
     },
-},files:{"character":["名家·公孙龙.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["纵横·苏张.jpg"],"card":[],"skill":[]}}})

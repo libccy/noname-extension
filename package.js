@@ -274,6 +274,46 @@ window.noname_extension_list=[
 			"zhiheng_sgksoul_sunquan2.ogg"
         ]
     },{
+        name:"新斗地主",
+        author:"丶橙续缘",
+        intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",
+        size:"9.6MB",
+        netdisk:"https://pan.baidu.com/s/1c2Gkyic",
+        forum:"https://tieba.baidu.com/p/5242915325",
+        version:4,
+        files:[
+            "w_bazhen1.mp3","w_bazhen2.mp3","w_biyue1.mp3","w_biyue2.mp3","w_botu1.mp3",
+			"w_botu2.mp3","w_caoang.jpg","w_caocao.jpg","w_daqiao.jpg","w_diaochan.jpg",
+			"w_dujin1.mp3","w_dujin2.mp3","w_fanjian1.mp3","w_fanjian2.mp3","w_fankui1.mp3",
+			"w_fankui2.mp3","w_fenwei1.mp3","w_fenwei2.mp3","w_ganning.jpg","w_gongsunzan.jpg",
+			"w_guanyu.jpg","w_guicai1.mp3","w_guicai2.mp3","w_guojia.jpg","w_guose1.mp3",
+			"w_guose2.mp3","w_huanggai.jpg","w_huangyueying.jpg","w_huatuo.jpg","w_huaxiong.jpg",
+			"w_huoji1.mp3","w_huoji2.mp3","w_jianxiong1.mp3","w_jianxiong2.mp3","w_jianxiong3.mp3",
+			"w_jianxiong4.mp3","w_jianyan1.mp3","w_jianyan2.mp3","w_jianying1.mp3","w_jianying2.mp3",
+			"w_jieyin1.mp3","w_jieyin2.mp3","w_jizhi1.mp3","w_jizhi2.mp3","w_jushou.jpg",
+			"w_kaikang1.mp3","w_kaikang2.mp3","w_kanpo1.mp3","w_kanpo2.mp3","w_keji1.mp3",
+			"w_keji2.mp3","w_kurou1.mp3","w_kurou2.mp3","w_lianying1.mp3","w_lianying2.mp3",
+			"w_lidian.jpg","w_lijian1.mp3","w_lijian2.mp3","w_lingcao.jpg","w_liubei.jpg",
+			"w_liuli1.mp3","w_liuli2.mp3","w_liuxie.jpg","w_longdanSha1.mp3","w_longdanSha2.mp3",
+			"w_longdanShan1.mp3","w_longdanShan2.mp3","w_luoshen1.mp3","w_luoshen2.mp3","w_luoyi1.mp3",
+			"w_luoyi2.mp3","w_luxun.jpg","w_lvbu.jpg","w_lvmeng.jpg","w_machao.jpg",
+			"w_mizhao1.mp3","w_mizhao2.mp3","w_niufu.jpg","w_paoxiao1.mp3","w_paoxiao2.mp3",
+			"w_qianxun1.mp3","w_qianxun2.mp3","w_qingguo1.mp3","w_qingguo2.mp3","w_qixi1.mp3",
+			"w_qixi2.mp3","w_rende1.mp3","w_rende2.mp3","w_shenji1.mp3","w_shenji2.mp3",
+			"w_shibei_loseHp1.mp3","w_shibei_loseHp2.mp3","w_shibei_recover1.mp3","w_shibei_recover2.mp3","w_simayi.jpg",
+			"w_sunquan.jpg","w_sunshangxiang.jpg","w_tiandu1.mp3","w_tiandu2.mp3","w_tianming1.mp3",
+			"w_tianming2.mp3","w_tieqi1.mp3","w_tieqi2.mp3","w_tuxi1.mp3","w_tuxi2.mp3",
+			"w_wangping.jpg","w_wangxi1.mp3","w_wangxi2.mp3","w_wangyun.jpg","w_wangzi.mp3",
+			"w_weiwu.mp3","w_wusheng1.mp3","w_wusheng2.mp3","w_wushuang_juedou1.mp3","w_wushuang_juedou2.mp3",
+			"w_wushuang_sha1.mp3","w_wushuang_sha2.mp3","w_xiahoudun.jpg","w_xiaoji1.mp3","w_xiaoji2.mp3",
+			"w_xiaoqiu1.mp3","w_xiaoqiu2.mp3","w_xuchu.jpg","w_xunxun1.mp3","w_xunxun2.mp3",
+			"w_xushu.jpg","w_yiji1.mp3","w_yiji2.mp3","w_yijue1.mp3","w_yijue2.mp3",
+			"w_yingzi1.mp3","w_yingzi2.mp3","w_yongsi1.mp3","w_yongsi2.mp3","w_yuanshao.jpg",
+			"w_yuanshu.jpg","w_zhangfei.jpg","w_zhangliao.jpg","w_zhanshen1.mp3","w_zhanshen2.mp3",
+			"w_zhaoyun.jpg","w_zhaxiang1.mp3","w_zhaxiang2.mp3","w_zhenji.jpg","w_zhiheng1.mp3",
+			"w_zhiheng2.mp3","w_zhouyu.jpg","w_zhugeliang.jpg","w_zhuhai1.mp3","w_zhuhai2.mp3"
+        ]
+    },{
         name:"新英魂之刃",
         author:"极光",
         intro:"一个可以买皮肤的扩展。更多介绍请点击“参与讨论”",
@@ -375,31 +415,31 @@ window.noname_extension_list=[
         author:"天气亏",
         intro:"根据唐代设立的《武成王庙》为背景设计的扩展包，其中有做了点修改，共计12名人物。由于这些角色都是军事史上影响深远的顶尖军事人才，所以强度偏高（但仍旧较为平衡，技能结构优于《诸子百家》），其中以姜子牙（因其为主祭）强度最高，特点为全场控（不是逆天的全场控），其次为配享张良和兵圣孙武。其余人物各有所长各有所短。已将所有角色分配给魏蜀吴群四大势力（供国战用）。允许玩家二次制作，但前提是不失整个大的框架和尊重其中所有人物，不要肆意。",
         size:"1.5MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=1558786091&uk=3060998652",
-        // forum:"https://tieba.baidu.com/p/5044759964",
-        version:2,
+        netdisk:"https://pan.baidu.com/s/1boOJNrD",
+        forum:"https://tieba.baidu.com/p/5242169839",
+        version:4,
         files:[
-            "义师·田禳苴.jpg","人屠·白起.jpg","元帅·乐毅.jpg","兵仙·韩信.jpg","兵圣·孙武.jpg",
-			"兵神·李靖.jpg","军神·吴起.jpg","卧龙·诸葛亮.jpg","国师·孙膑.jpg","宗师·吕望.jpg",
-			"第一相·管仲.jpg","谋圣·张良.jpg"
+            "wm_bq.jpg","wm_gz.jpg","wm_hx.jpg","wm_lj.jpg","wm_lw.jpg",
+			"wm_sb.jpg","wm_sw.jpg","wm_trj.jpg","wm_wq.jpg","wm_yy.jpg",
+			"wm_zgl.jpg","wm_zl.jpg"
         ]
     },{
         name:"诸子百家",
         author:"天气亏",
         intro:"基于《诸子百家_战国》的更新，主要写了先秦时期的诸子百家人物，大概有25名左右，所有人物都是精心制作，强度较为平衡，适合像我这样的新手参考，武将基本原创，颇有创意。欢迎其他玩家二次制作，但前提是尊重包内所有历史人物。",
-        size:"3.6MB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=2873567553&uk=3060998652",
-        // forum:"https://tieba.baidu.com/p/5044759964",
-        version:5,
+        size:"4.1MB",
+        netdisk:"https://pan.baidu.com/share/link?shareid=3996888447&uk=3060998652",
+        forum:"https://tieba.baidu.com/p/5240973028",
+        version:6,
         files:[
-            "zz_HYY.jpg","zz_ZGL.jpg","儒家·孔丘.jpg","儒家·孟轲.jpg","儒家·张良.jpg",
-			"儒家·荀况.jpg","儒家·董仲舒.jpg","兵家·乐毅.jpg","兵家·吴起.jpg","兵家·孙武.jpg",
-			"兵家·孙膑.jpg","兵家·尉缭.jpg","兵家·曹操.jpg","兵家·田禳苴.jpg","兵家·白起.jpg",
-			"兵家·韩信.jpg","兵家·项羽.jpg","农家·许行.jpg","名家·公孙龙.jpg","名家·惠施.jpg",
-			"墨家·墨翟.jpg","墨家·禽滑离.jpg","杂家·吕不韦.jpg","法家·卫鞅.jpg","法家·子产.jpg",
-			"法家·屈原.jpg","法家·慎到.jpg","法家·李悝.jpg","法家·李斯.jpg","法家·申不害.jpg",
-			"法家·管仲.jpg","法家·西门豹.jpg","法家·韩非.jpg","科学家·张衡.jpg","纵横·苏张.jpg",
-			"纵横·鬼谷子.jpg","道家·列御寇.jpg","道家·庄周.jpg","道家·李耳.jpg","道家·杨朱.jpg",
+            "zz_GZ.jpg","zz_HX.jpg","zz_HYY.jpg","zz_KQ.jpg","zz_LE.jpg",
+			"zz_QY.jpg","zz_TRJ.jpg","zz_WQ.jpg","zz_XMB.jpg","zz_ZC.jpg",
+			"zz_ZGL.jpg","zz_ZH.jpg","zz_ZL.jpg","zz_bq.jpg","zz_caocao.jpg",
+			"zz_dzs.jpg","zz_gg.jpg","zz_gsl.jpg","zz_hf.jpg","zz_huishi.jpg",
+			"zz_lk.jpg","zz_lyk.jpg","zz_md.jpg","zz_mk.jpg","zz_sb.jpg",
+			"zz_sunwu.jpg","zz_sz.jpg","zz_wy.jpg","zz_xk.jpg","zz_xx.jpg",
+			"zz_yy.jpg","zz_yz.jpg","兵家·尉缭.jpg","兵家·项羽.jpg","墨家·禽滑离.jpg",
+			"杂家·吕不韦.jpg","法家·慎到.jpg","法家·李斯.jpg","法家·申不害.jpg","道家·庄周.jpg",
 			"阴阳·徐福.jpg","阴阳·邹衍.jpg"
         ]
     },{
@@ -408,7 +448,7 @@ window.noname_extension_list=[
         intro:"源自西汉刘向的《列女传》，以此为背景，进行人物设计，现今大约有10名角色，强度平衡，其中女娲颇为逆天。皮肤添加方式：下载完后，在手机文件管理中找到《无名杀》的所有文件，并从无名杀的文件中找到扩展文件，在扩展文件中找到《列女传》，打开《列女传》那个文件夹，将里面的《列女传人物皮肤》这个子文件夹打开，将里面的所有文件剪切放入到skin中，skin在《无名杀》所有文件中的那个image中，然后进入游戏，显示可换肤就可以了，建议开启自动换肤。",
         size:"4.2MB",
         netdisk:"https://pan.baidu.com/s/1skCMcFF",
-        // forum:"https://tieba.baidu.com/p/5044759964",
+        forum:"https://tieba.baidu.com/p/5245134957",
         version:1,
         files:[
             "ln_djj.jpg","ln_dmsj.jpg","ln_ehny.jpg","ln_fh.jpg","ln_fj.jpg",
@@ -430,18 +470,6 @@ window.noname_extension_list=[
 			"ex_tiandan.jpg","ex_tianji.jpg","ex_wangjian.jpg","ex_weiwuji.jpg","ex_wuqi.jpg",
 			"ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg","ex_zhangyi.jpg","ex_zhaosheng.jpg",
 			"ex_zhaoyong.jpg","ex_zouji.jpg"
-        ]
-    },{
-        name:"勇斗地主",
-        author:"丶橙续缘",
-        intro:"手机三国杀的欢乐斗地主模式。导入后在乱斗模式中找到此模式。规则在乱斗模式中被介绍",
-        size:"2.2MB",
-        netdisk:"https://pan.baidu.com/s/1nuGplCP",
-        forum:"https://tieba.baidu.com/p/5145171341",
-        version:3,
-        files:[
-            "fal_guo.jpg","fal_mdxs.jpg","fal_piao.jpg","fal_qixingdao.jpg","fal_simayi.jpg",
-			"fal_syqj.png","fal_szbf.jpg","fal_xlcd.jpg"
         ]
     },{
         name:"星际战甲",

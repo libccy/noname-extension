@@ -451,13 +451,13 @@ window.noname_extension_list=[
         author:"天气亏",
         intro:"是《列女传》的更新，做了较大更改，加入了新功能，可以在联机模式中玩，但需要主客双方皆有这个《扩展》才能一起用，《列女传》源自西汉刘向的《列女传》这本书，以此为背景，进行人物设计，现今大约有10名角色，强度较为平衡，其中女娲颇为逆天。皮肤添加方式：下载完后，在手机文件管理中找到《无名杀》的所有文件，并从无名杀的文件中找到扩展文件，在扩展文件中找到《列女传》，打开《列女传》那个文件夹，将里面的《列女传人物皮肤》这个子文件夹打开，将里面的所有文件剪切放入到skin中，skin在《无名杀》所有文件中的那个image中，然后进入游戏，显示可换肤就可以了，建议开启自动换肤，人物皮肤文件请到吧里我的帖子里下载。",
         size:"4.2MB",
-        netdisk:"https://pan.baidu.com/s/1skCMcFF",
+        netdisk:"http://pan.baidu.com/s/1nvfu56L",
         forum:"https://tieba.baidu.com/p/5245134957",
-        version:1,
+        version:2,
         files:[
             "ln_djj.jpg","ln_dmsj.jpg","ln_ehny.jpg","ln_fh.jpg","ln_fj.jpg",
 			"ln_hyy.jpg","ln_jhwj.jpg","ln_jtxn.jpg","ln_mm.jpg","ln_nw.jpg",
-			"ln_qj.jpg","ln_tss.jpg"
+			"ln_qj.jpg","ln_tss.jpg","ln_xs.jpg"
         ]
     },{
         name:"战国七雄",

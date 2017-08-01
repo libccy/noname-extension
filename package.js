@@ -393,16 +393,6 @@ window.noname_extension_list=[
 			"阴阳杀.png","黄钻石.png"
         ]
     },{
-        name:"僵尸",
-        author:"0墨色寒鸦0",
-        intro:"导入后在乱斗模式中即可找到此模式。规则在乱斗模式中被介绍。",
-        size:"363kB",
-        netdisk:"https://pan.baidu.com/share/link?shareid=2775216172&uk=292195496",
-        version:3,
-        files:[
-            "jiangshi.jpg","xueqing.jpg"
-        ]
-    },{
         name:"统率三军",
         author:"神原拓也V",
         intro:"帮助界面查看新将池。统率三军2017将池更新；2011~2014历史将池补全；武将补全、武将修复、武将优化。可在贴吧反馈bug和查看更新",

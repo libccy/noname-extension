@@ -1,4 +1,11 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新英魂之刃",content:function (config,pack){
+if (config.nyhzrlj){
+for (var i in lib.characterPack['nyhzrlj']) {
+if (lib.character[i][4].indexOf("forbidai")<0){
+lib.character[i][4].push("forbidai");
+}
+}
+};
 lib.config.jifen;
 if (lib.config.jifen==undefined){
 game.saveConfig('jifen',0);
@@ -63,10 +70,10 @@ lib.arenaReady.push(function(){
 			APet.style.width='50px';
 			APet.style.borderRadius='8px';
 			if (lib.config.PetGXJZ1==0){
-				if (lib.config.PetGXJZ!=1) APet.setBackgroundImage('extension/新英魂之刃/New宠物扩展.png');;
-				if (lib.config.PetGXJZ==1) APet.setBackgroundImage('extension/新英魂之刃/宠物扩展.png');; 
+				if (lib.config.PetGXJZ!=1) APet.setBackgroundImage('extension/新英魂之刃/New宠物扩展.png');
+				if (lib.config.PetGXJZ==1) APet.setBackgroundImage('extension/新英魂之刃/宠物扩展.png');
 			}else{
-				APet.setBackgroundImage('extension/新英魂之刃/New宠物扩展.png');;
+				APet.setBackgroundImage('extension/新英魂之刃/New宠物扩展.png');
 			};			
 			uiintro.add(APet);			
 
@@ -84,10 +91,10 @@ lib.arenaReady.push(function(){
 			Ajbms.style.width='50px';
 			Ajbms.style.borderRadius='8px';
 			if (lib.config.jbmsGXJZ1==0){
-				if (lib.config.jbmsGXJZ!=1) Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');;
-				if (lib.config.jbmsGXJZ==1) Ajbms.setBackgroundImage('extension/新英魂之刃/兼并模式.png');; 
+				if (lib.config.jbmsGXJZ!=1) Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');
+				if (lib.config.jbmsGXJZ==1) Ajbms.setBackgroundImage('extension/新英魂之刃/兼并模式.png'); 
 			}else{
-				Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');;
+				Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');
 			};			
 			uiintro.add(Ajbms);				
 
@@ -106,10 +113,10 @@ lib.arenaReady.push(function(){
 			Ajsms.style.width='50px';
 			Ajsms.style.borderRadius='8px';
 			if (lib.config.jsmsGXJZ1==0){
-				if (lib.config.jsmsGXJZ!=1) Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');;
-				if (lib.config.jsmsGXJZ==1) Ajsms.setBackgroundImage('extension/新英魂之刃/僵尸模式.png');; 
+				if (lib.config.jsmsGXJZ!=1) Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');
+				if (lib.config.jsmsGXJZ==1) Ajsms.setBackgroundImage('extension/新英魂之刃/僵尸模式.png');
 			}else{
-				Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');;
+				Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');
 			};			
 			uiintro.add(Ajsms);
 			
@@ -127,10 +134,10 @@ lib.arenaReady.push(function(){
 			Awzzzms.style.width='50px';
 			Awzzzms.style.borderRadius='8px';
 			if (lib.config.wzzzmsGXJZ1==0){
-				if (lib.config.wzzzmsGXJZ!=1) Awzzzms.setBackgroundImage('extension/新英魂之刃/New王者之战模式.png');;
-				if (lib.config.wzzzmsGXJZ==1) Awzzzms.setBackgroundImage('extension/新英魂之刃/王者之战模式.png');; 
+				if (lib.config.wzzzmsGXJZ!=1) Awzzzms.setBackgroundImage('extension/新英魂之刃/New王者之战模式.png');
+				if (lib.config.wzzzmsGXJZ==1) Awzzzms.setBackgroundImage('extension/新英魂之刃/王者之战模式.png'); 
 			}else{
-				Awzzzms.setBackgroundImage('extension/新英魂之刃/New王者之战模式.png');;
+				Awzzzms.setBackgroundImage('extension/新英魂之刃/New王者之战模式.png');
 			};			
 			uiintro.add(Awzzzms);
 			
@@ -149,10 +156,10 @@ lib.arenaReady.push(function(){
 			Ayys.style.width='50px';
 			Ayys.style.borderRadius='8px';
 			if (lib.config.yysGXJZ1==0){
-				if (lib.config.yysGXJZ!=1) Ayys.setBackgroundImage('extension/新英魂之刃/New阴阳杀.png');;
-				if (lib.config.yysGXJZ==1) Ayys.setBackgroundImage('extension/新英魂之刃/阴阳杀.png');; 
+				if (lib.config.yysGXJZ!=1) Ayys.setBackgroundImage('extension/新英魂之刃/New阴阳杀.png');
+				if (lib.config.yysGXJZ==1) Ayys.setBackgroundImage('extension/新英魂之刃/阴阳杀.png'); 
 			}else{
-				Ayys.setBackgroundImage('extension/新英魂之刃/New阴阳杀.png');;
+				Ayys.setBackgroundImage('extension/新英魂之刃/New阴阳杀.png');
 			};			
 			uiintro.add(Ayys);
 
@@ -170,10 +177,10 @@ lib.arenaReady.push(function(){
 			Amjtz.style.width='50px';
 			Amjtz.style.borderRadius='8px';
 			if (lib.config.mjtzGXJZ1==0){
-				if (lib.config.mjtzGXJZ!=1) Amjtz.setBackgroundImage('extension/新英魂之刃/New民间拓展.png');;
-				if (lib.config.mjtzGXJZ==1) Amjtz.setBackgroundImage('extension/新英魂之刃/民间拓展.png');; 
+				if (lib.config.mjtzGXJZ!=1) Amjtz.setBackgroundImage('extension/新英魂之刃/New民间拓展.png');
+				if (lib.config.mjtzGXJZ==1) Amjtz.setBackgroundImage('extension/新英魂之刃/民间拓展.png'); 
 			}else{
-				Amjtz.setBackgroundImage('extension/新英魂之刃/New民间拓展.png');;
+				Amjtz.setBackgroundImage('extension/新英魂之刃/New民间拓展.png');
 			};			
 			uiintro.add(Amjtz);		
 			
@@ -191,10 +198,10 @@ lib.arenaReady.push(function(){
 			Awsss.style.width='50px';
 			Awsss.style.borderRadius='8px';
 			if (lib.config.wsssGXJZ1==0){
-				if (lib.config.wsssGXJZ!=1) Awsss.setBackgroundImage('extension/新英魂之刃/New万世神兽.png');;
-				if (lib.config.wsssGXJZ==1) Awsss.setBackgroundImage('extension/新英魂之刃/万世神兽.png');; 
+				if (lib.config.wsssGXJZ!=1) Awsss.setBackgroundImage('extension/新英魂之刃/New万世神兽.png');
+				if (lib.config.wsssGXJZ==1) Awsss.setBackgroundImage('extension/新英魂之刃/万世神兽.png');
 			}else{
-				Awsss.setBackgroundImage('extension/新英魂之刃/New万世神兽.png');;
+				Awsss.setBackgroundImage('extension/新英魂之刃/New万世神兽.png');
 			};			
 			uiintro.add(Awsss);	
 
@@ -213,8 +220,8 @@ lib.arenaReady.push(function(){
 			Ajlsg.style.width='50px';
 			Ajlsg.style.borderRadius='8px';
 			if (lib.config.jlsgGXJZ1==0){
-				if (lib.config.jlsgGXJZ!=1) Ajlsg.setBackgroundImage('extension/新英魂之刃/New极略三国.png');;
-				if (lib.config.jlsgGXJZ==1) Ajlsg.setBackgroundImage('extension/新英魂之刃/极略三国.png');; 
+				if (lib.config.jlsgGXJZ!=1) Ajlsg.setBackgroundImage('extension/新英魂之刃/New极略三国.png');
+				if (lib.config.jlsgGXJZ==1) Ajlsg.setBackgroundImage('extension/新英魂之刃/极略三国.png');
 			}else{
 				Ajlsg.setBackgroundImage('extension/新英魂之刃/New极略三国.png');;
 			};			
@@ -234,10 +241,10 @@ lib.arenaReady.push(function(){
 			Adiywulj.style.width='50px';
 			Adiywulj.style.borderRadius='8px';
 			if (lib.config.diywuljGXJZ1==0){
-				if (lib.config.diywuljGXJZ!=1) Adiywulj.setBackgroundImage('extension/新英魂之刃/Newdiy武将联机.png');;
-				if (lib.config.diywuljGXJZ==1) Adiywulj.setBackgroundImage('extension/新英魂之刃/diy武将联机.png');; 
+				if (lib.config.diywuljGXJZ!=1) Adiywulj.setBackgroundImage('extension/新英魂之刃/Newdiy武将联机.png');
+				if (lib.config.diywuljGXJZ==1) Adiywulj.setBackgroundImage('extension/新英魂之刃/diy武将联机.png');
 			}else{
-				Adiywulj.setBackgroundImage('extension/新英魂之刃/Newdiy武将联机.png');;
+				Adiywulj.setBackgroundImage('extension/新英魂之刃/Newdiy武将联机.png');
 			};			
 			uiintro.add(Adiywulj);
 
@@ -255,10 +262,10 @@ lib.arenaReady.push(function(){
 			Ahxlj.style.width='50px';
 			Ahxlj.style.borderRadius='8px';
 			if (lib.config.hxljGXJZ1==0){
-				if (lib.config.hxljGXJZ!=1) Ahxlj.setBackgroundImage('extension/新英魂之刃/New华夏联机.png');;
-				if (lib.config.hxljGXJZ==1) Ahxlj.setBackgroundImage('extension/新英魂之刃/华夏联机.png');; 
+				if (lib.config.hxljGXJZ!=1) Ahxlj.setBackgroundImage('extension/新英魂之刃/New华夏联机.png');
+				if (lib.config.hxljGXJZ==1) Ahxlj.setBackgroundImage('extension/新英魂之刃/华夏联机.png');
 			}else{
-				Ahxlj.setBackgroundImage('extension/新英魂之刃/New华夏联机.png');;
+				Ahxlj.setBackgroundImage('extension/新英魂之刃/New华夏联机.png');
 			};			
 			uiintro.add(Ahxlj);
 
@@ -504,18 +511,6 @@ game.swapSeat(game.players[i],chengEnemy);
 }
 }
 };       
-lib.group.push('jin');
-lib.translate.jin='×';
-lib.translate.jinColor="#EAEAEA";
-lib.group.push('li');
-lib.translate.li='力';
-lib.translate.liColor="#FF0000";
-lib.group.push('min');
-lib.translate.min='敏';
-lib.translate.minColor="#76EE00";         
-lib.group.push('zhi');
-lib.translate.zhi='智';
-lib.translate.zhiColor="#1874CD";
 		if(config.xyhzr){
 game.addCardPack({	
 			skill:{          
@@ -2679,12 +2674,13 @@ player.removeSkill('nyhzr龙之吐息');
 		    "dnyhzr德古拉":["male","zhi",3,["nyhzr吸血鬼伯爵","nyhzr血虐暴风","nyhzr嗜血","nyhzr血蚀之河","nyhzr血祭启示录","nyhzr德古拉"],["des:<li>那座古堡矗立在林中已经很久，崩塌的外墙、腐朽的枯木、夜枭的啼叫，传说中的恶魔……一切令人生惧的元素仿佛都集中在它的身上。 <li>过去的这里并不是如此死气沉沉，令人生畏。德古拉伯爵一家是这片土地的主人。伯爵夫人虽然出身卑微，却颇受伯爵宠爱。浪漫的爱情故事也让无数人羡慕。 <li>平静的日子被教会的传令所打破。他带上家族精锐出发了。战斗几乎没有遭到抵抗，这种单纯的杀戮令伯爵的不满更加浓烈。当伯爵归来之时，迎接他的不是欢呼与鲜花，而是满目疮痍，尸横遍野……他这才明白出征不过是教会的幌子，隐藏在背后的目的是铲除异己。抱着爱人的尸体，德古拉的愤怒如同滔天巨焰，他诅咒神明，诅咒教会，发誓要让他们血债血偿！<li>自那之后，伯爵失去了踪迹。尽管教会四处搜寻，却毫无线索。<li>数月后，曾参与围剿的人皆以怪异的方式死去，死者无一例外被吸干鲜血！教会分支也在熊熊大火中化为灰烬。人们纷纷传言德古拉伯爵回来了，他将灵魂献给魔鬼，以换取复仇的永生之力。<li>他视教廷为永世之敌，仇恨不灭，直至那伪善的光明被彻底摧毁！"]],
 		    "knyhzr狂徒":["male","li",4,["nyhzr罪业狂屠","nyhzr腐蚀瘟疫","nyhzr腐肉吸噬","nyhzr血肉钩索","nyhzr致命啃咬","nyhzr狂徒"],["des:<li>在杀手这个行当，有个说法，如果你杀人过千，你的罪业就会在现世降临，报应不爽。大多数杀手都在第999单生意后金盆洗手。不过，并不是所有人都信这个邪。 <li>第一楼的杀手狂徒，就是这个不信邪的，他只相信他的屠刀“罪”和钩索“业”。<li>那一年的除夕夜，狂徒很兴奋。他的“业”钩从黑暗中窜出，如毒蛇般缠住兵马大元帅岳鹏，将他拉扯过来，沾满鲜血的“罪”刀干脆利落斩下头颅。“千人斩了！”狂屠浑身颤抖，“我是最强的……” <li>狂徒喝了很多酒。回到第一楼时，他突然感觉到浓郁如浆的杀气。不知何时，他已被无数黑衣人包围。喝下的酒在腐蚀内脏，狂屠的皮肉开始掉落。<li>他抽出“罪”刀和“业”钩，疯狂地厮杀着…… “第一楼杀手一夜间死绝，皆被刀斩钩戮，惨状骇人。千人斩狂徒化作肉泥，罪刀业钩不知去向。<li>”百晓生如是记载。"]],
 		    "snyhzr时空猎人":["male","zhi",3,["nyhzr时空英雄","nyhzr断裂时空","nyhzr超时空战斧","nyhzr时空道标","nyhzr逝时若光","nyhzr时空猎人"],["des:<li>奥古578纪年，诺米达王国的骑兵队摧毁了费沙联邦的民间商队，这成为奥古大陆第六次大战的导火索。一场贼喊捉贼的侵略伎俩，却揭开了长达数十年的战争序幕。 <li>大战进入第十个年头时，奥古大陆几乎已被诺米达国收入囊中，但是一位来去轨迹变幻莫测的战士，身覆咒符，手执战斧，穿梭于诺米达军的行军路线之中，轻松撕裂他们布下的天罗地网。 <li>奥古660纪年，在付出百万生命代价之后，费沙联邦与诺米达国签订永不侵犯条例。这标志着奥古大陆第五次黄金时期到来。 <li>奥古778纪年，第六次奥古大战资料解封。引领战局变化的战士身份终于确认——他来自更加遥远的未来，或是说，另一个时空。 <li>“时空猎人”，人们满怀敬意的称呼这位带来和平与繁荣的勇士，英雄的精神将一直鼓舞着人们，直至未来。"]],
-		    "lnyhzr龙骑士":["male","li",2,["nyhzr魔龙化身","nyhzr龙人血脉","nyhzr真龙化身","nyhzr龙之咆哮","nyhzr龙之吐息","nyhzr龙骑士"],["des:<li>边境的小酒馆里，老板略带神秘的说起这样一个传说：<li>好心的领主老爷和他的养子生活在一座美丽的庄园里。<li>然而，魔龙化身的养子本性嗜血又残暴。他魔性大发之后，重伤领主，焚毁庄园。据说他身覆鳞片，口中喷火，甚至还会吃人！ <li>——那段经历对流浪骑士来说就像噩梦一般，如果真是场梦就好了……<li>那一天，从血脉中涌出的能量仿佛要将身体撕成两半，难以忍受的巨大痛楚令他失去了理智。<li>清醒之后，看着血泊中的领主和自己可怕的身躯，他只能惶恐地逃离。 <li>这些年来，骑士独自一人在荒原上流浪，而根植于血脉中的力量也与日俱增。幸运的是，在旅途中磨练出的坚韧和勇气让骑士逐渐学会了如何在狂暴中保持清明。在一次从魔兽群的包围中救下落难的冒险者后，他第一次感到这股力量会是种恩赐。 <li>兴奋的流浪骑士马不停蹄地想要回到家乡，但迎接他的却不是领主慈祥的微笑，而是冲天的火光、村民的哀嚎以及大队的强盗…… <li>那天以后，王国又多了一个传说，关于龙骑士的传说。"]],
+		    "lnyhzr龙骑士":["male","li",3,["nyhzr魔龙化身","nyhzr龙人血脉","nyhzr真龙化身","nyhzr龙之咆哮","nyhzr龙之吐息","nyhzr龙骑士"],["des:<li>边境的小酒馆里，老板略带神秘的说起这样一个传说：<li>好心的领主老爷和他的养子生活在一座美丽的庄园里。<li>然而，魔龙化身的养子本性嗜血又残暴。他魔性大发之后，重伤领主，焚毁庄园。据说他身覆鳞片，口中喷火，甚至还会吃人！ <li>——那段经历对流浪骑士来说就像噩梦一般，如果真是场梦就好了……<li>那一天，从血脉中涌出的能量仿佛要将身体撕成两半，难以忍受的巨大痛楚令他失去了理智。<li>清醒之后，看着血泊中的领主和自己可怕的身躯，他只能惶恐地逃离。 <li>这些年来，骑士独自一人在荒原上流浪，而根植于血脉中的力量也与日俱增。幸运的是，在旅途中磨练出的坚韧和勇气让骑士逐渐学会了如何在狂暴中保持清明。在一次从魔兽群的包围中救下落难的冒险者后，他第一次感到这股力量会是种恩赐。 <li>兴奋的流浪骑士马不停蹄地想要回到家乡，但迎接他的却不是领主慈祥的微笑，而是冲天的火光、村民的哀嚎以及大队的强盗…… <li>那天以后，王国又多了一个传说，关于龙骑士的传说。"]],
 			"lnyhzr龙":["none","jin",4,[],["forbidai"]],
 			"anyhzr艾迪兰":["female","zhi",3,["nyhzr幻卡魔女","nyhzr三重卡组","nyhzr魔卡出击","nyhzr极速冲击","nyhzr强效魔卡","nyhzr艾迪兰"],["des:<li>聪明可爱的艾迪兰从小就特别向往神秘又强大的魔法。国王疼爱他的女儿，寻找到一位法力高强的女巫，但是艾迪兰太想学魔法了，女巫临走留下卡牌，一去无踪。<li>宫殿外的花开了又落，顽皮的少女也长成了端庄的公主，美名远扬的艾迪兰倾倒了无数人，而邻国一位英俊不凡、谈吐高雅的王子路易斯此时出现在她面前，获得了公主的芳心。<li>但路易斯并不像表面上那么美好，无助的公主被软禁在高塔，只要婚礼成功进行，王国即刻沦陷于野心家的奴役之下。艾迪兰知道如果自己死去，王子的打算就会落空。<li>“如果你真的有灵，请你帮我。“艾迪兰想起了魔女赠她的卡牌，她庄严地许下诺言：请拿走我最宝贵的东西，让我的王国远离浩劫。<li>房门被打开了，一位陌生的魔女出现在了王子眼前，没有人知道那晚发生了什么，只知道王子疯疯癫癫的从塔里跑出来，骑上自己的马，头也不回的冲出城堡，消失在幽暗的森林中。"]],
 			"bnyhzr布丁":["female","zhi",3,["nyhzr钻能使","nyhzr钻石能量","nyhzr钻能光球","nyhzr钻能保护","nyhzr钻能射线","nyhzr布丁"],["des:<li>α-蓝钻1号星是蓝钻布丁的家园。天赋出众的蓝钻布丁年纪轻轻就已成为了这个星球上最杰出的生物工程师之一。而与她在一起实验、生活并相互扶持的则是她的丈夫蓝钻布鲁，一位仁慈、可爱且有着超人智慧的空间能量科学家。 <li>蓝钻布丁花费了大约十年的时间，培养一种新型的生命体，被她称为“夏娃的种子”的超强抗氧化生命基因。这种微小的基因可以在充满氧气的环境里存活，并且有着极强的适应力和模仿力。她和他的丈夫把它们当做自己的孩子来对待。<li>然而，在实验接近最后成功时，一场车祸夺去了蓝钻布丁的生命。悲痛的丈夫蓝钻布鲁为了完成妻子的遗言，变卖了所有的家产，准备把实验继续做下去。 <li>蓝钻布丁曾在茫茫宇宙中为新生的基因觅得了一个绝佳的培养场所——被她取名为地球，意思是大地之母——用于之后发展的计划蓝图也存入了丈夫蓝钻布鲁的心脏起搏芯片上。密码则是：蓝钻布丁，吾爱。<li>他在水中放下基因，然后进入地下冬眠。在蓝钻布丁的计算中，大概一亿年后这种基因将演化为真正的具有个体思想的生命体。"]],
 			"cnyhzr超能企鹅":["male","min",3,["nyhzr第二人类","nyhzr企鹅导弹","nyhzr镭射光束","nyhzr冰上漫滑","nyhzr毁灭轰击","nyhzr超能企鹅"],["des:<li>宇宙历2157年，对于人类来说是悲剧的一年。核爆危机的阴云笼罩在每个人的头上。<li>造成这种局面的罪魁祸首竟然是一度被视为第二人类的智能机器人。最初的迹象仅是智能系统出现一些看似操作不灵便的故障，谁料到这点“小问题”犹如滚雪球般席卷了全球，智能机器人全面失控！<li>没有人知道向来温顺的智能机器人为何发生如此巨变，它们满怀敌意地将人类视为攻击对象，并不遗余力地动用一切武器启动了人类毁灭计划。 当人类的命运悬于一丝之际，一位英雄挺身而出！没有人知道它的来历，就像没有人知道它到底有多强。它毅然肩负起人类的未来，通过时空逆转转置返回了智能机器人研发之前。在那个时空里，它将查明隐藏在庞大的研究数据背后的真相——这是能阻止未来悲剧的唯一机会。 <li>人类满怀期待，期待着那个正义的化身能彻底扭转局面。超能企鹅，这是人们对它的称呼！<li>人们相信，它将带给地球以真正的安宁！"]],	
 			"bnyhzr布鲁":["male","min",3,["nyhzr钻能使","nyhzr钻石能量","nyhzr跃迁轰炸","nyhzr光钻尘雾","nyhzr量能投掷","nyhzr布鲁"],["des:<li>在被《死海古卷》称为圣者之城的遗迹上，贪婪的挖掘正在进行，人类的欲望像火一般燎过大地，留下不可磨灭的、耻辱的伤口。<li>然而，在某个刚刚裂开的伤口上，有人发现了什么，于是整片废墟上的人都如潮水般涌过去——像是黑色的漩涡向着中心聚合。<li>人们都在默念。古卷上的圣者此刻便躺在诸人面前——蓝钻晶能保护着他的身体，急冻冷却获得的长生使他看起来一如往昔。没有人注意到圣者的遗言：我是蓝钻布鲁，来自你们所无法想象的高等文明星球。但这里的高氧环境却非我能承受的。我在地底长眠，等你们找到我，按照我留下的方法使我苏醒。那时，我将把我的星球的高级文明传授给你们。<li>蓝钻布鲁身体致命的弱点被膜拜者忽略了！人们把他置于空气里膜拜，圣者可怜的躯体还未来得及苏醒就已被氧化。<li>混乱中，一名幼童从氧化发黑的蓝钻布鲁尸体中找到了一块闪亮的芯片，那是一块心脏起搏芯片，在背面印刻着一个也曾在《死海古卷》中出现的名字——蓝钻布丁。<li>但在下面，那个究竟是“爱”还是其它什么的字的部分却成为了一个无人可知的谜。"]],			
+			"gnyhzr宫本武藏":["female","min",3,["nyhzr黑暗中的剑客","nyhzr勾玉魂刀","nyhzr千叶斩","nyhzr乱刃影舞","nyhzr幻之分身","nyhzr宫本武藏"],["des:<li>黑夜深沉，参天宫殿伫立于阴影之中。传说中拥有巨大力量的天照宝珠就被魔王藏在这里。<li>女剑客静静潜伏在悬崖边上，隐藏在狐面下的冰冷双瞳远远向宫殿凝望。<li>几支巡逻队打着火把如往常一般在宫殿外巡视，她低下身子，轻巧地绕过他们潜入宫殿之中。阴森幽暗的建筑中遍布重重机关，稍一不慎就将死无葬身之地。上下摇摆的抡锤、瞬时淹没的流沙、地底渗出的剧毒、诡异的谜题之门……这些都难不倒这个美艳冷酷的女子。双刀在手，一路过关斩将。<li>暗夜中的潜伏者最终来到了她的终点——某个宫殿深处的密室，悄无声息地划开的机关门后，一片黑暗中的石台上，天照宝珠正在绽放光华。<li>目标就在眼前，她不由加快脚步，但突然觉察到什么又立即停下，双手交错反握刀柄，伏身露出戒备的神情。“真可惜，再往前一步，你就死了。”魔王鼓着掌，从黑暗中露出身形，嘴角扯出一道狰狞的笑。“重重关卡都被你闯过，真是精彩。宫本武藏，你果然不愧传说中的盛名……但你注定拿不到它，因为我会在你拿到之前毁掉它。”<li>“可惜我的目标不是它。”武藏冷冷一笑：“是你！”<li>刀光闪过，天照宝珠仍静静地光华四射，魔王还留存着讶异表情的人头已落地。<li>双刀入鞘，身形一晃，天照宝珠落入腰囊，而武藏，已重新隐入黑暗之中……"]],			
 			},
         translate:{
             "anyhzr艾迪兰":"艾迪兰",
@@ -2703,7 +2699,8 @@ player.removeSkill('nyhzr龙之吐息');
             "lnyhzr龙":"龙",
             "bnyhzr布丁":"布丁",
             "cnyhzr超能企鹅":"超能企鹅",
-            "bnyhzr布鲁":"布鲁",			
+            "bnyhzr布鲁":"布鲁",
+            "gnyhzr宫本武藏":"宫本武藏",			
         }
 },'新英魂之刃');
 };
@@ -2750,12 +2747,15 @@ player.removeSkill('nyhzr龙之吐息');
         }
 		else if(i=='bnyhzr布鲁'){	
 			lib.character[i][3]=["nyhzr钻石能量","nyhzr跃迁轰炸","nyhzr光钻尘雾","nyhzr量能投掷"];
+        }
+		else if(i=='gnyhzr宫本武藏'){	
+			lib.character[i][3]=["nyhzr勾玉魂刀","nyhzr千叶斩","nyhzr乱刃影舞","nyhzr幻之分身"];
         }		
 		}
 		};     
         if (config.UseNew) {
             for (var i in lib.characterPack['mode_extension_新英魂之刃']) {
-				if (i=='lnyhzr咯哩咯哩'||i=='bnyhzr布丁'||i=='cnyhzr超能企鹅'||i=='bnyhzr布鲁'||i=='lnyhzr莉莉姆.提露埃拉'||i=='hnyhzr后羿'||i=='nnyhzr妮娜'||i=='znyhzr贞德'||i=='snyhzr萨特'||i=='dnyhzr德古拉'||i=='knyhzr狂徒'||i=='snyhzr时空猎人'||i=='lnyhzr龙骑士'||i=='anyhzr艾迪兰')
+				if (i=='gnyhzr宫本武藏'||i=='lnyhzr咯哩咯哩'||i=='bnyhzr布丁'||i=='cnyhzr超能企鹅'||i=='bnyhzr布鲁'||i=='lnyhzr莉莉姆.提露埃拉'||i=='hnyhzr后羿'||i=='nnyhzr妮娜'||i=='znyhzr贞德'||i=='snyhzr萨特'||i=='dnyhzr德古拉'||i=='knyhzr狂徒'||i=='snyhzr时空猎人'||i=='lnyhzr龙骑士'||i=='anyhzr艾迪兰')
                 for (var j = 0; j < lib.character[i][4].length; j++) {
                     if (lib.character[i][4][j].indexOf('ext:') == 0) {
                         lib.character[i][4][j] = 'ext:新英魂之刃/New' + i + '.jpg'; break;
@@ -2763,9 +2763,9 @@ player.removeSkill('nyhzr龙之吐息');
                 }
             }
         };		
-		if(config.Pifu){					
+		if(config.Pifu){
 	game.addCharacterPack({
-		        translate:{
+       translate:{
             "Pifunyhzr魅魔公主1":"幽梦魔灵",
             "Pifunyhzr魅魔公主2":"祈愿之星",
 			"Pifunyhzr魅魔公主":"魅魔公主",
@@ -2884,7 +2884,8 @@ player.removeSkill('nyhzr龙之吐息');
             "Pifunyhzr自然之灵2":"暗黑小魔星",
             "Pifunyhzr自然之灵1jieshao":"皮肤介绍",
             "Pifunyhzr自然之灵1jieshao_info":"使用该皮肤，出牌阶段，你可以令妖精皮皮去治疗你选定的目标，每回合限一次",				
-			"nyhzr仙灵妙法":"仙灵妙法",
+			"nyhzr仙灵妙法1":"仙灵妙法",
+			"nyhzr仙灵妙法":"仙灵妙法",			
             "nyhzr仙灵妙法_info":"出牌阶段，你可以令妖精皮皮去治疗你选定的目标，每回合限一次",	
             "Pifunyhzr自然之灵2jieshao":"皮肤介绍",
             "Pifunyhzr自然之灵2jieshao_info":"使用该皮肤，所有人于其回合开始前进行一次判定，若判定结果为红色这该角色恢复一点体力并进入幸福童年（回合内无法使用任何牌）；为黑色则进入黑色童年（回合内手牌没有次数限制，回合结束后翻面）",	
@@ -2929,7 +2930,22 @@ player.removeSkill('nyhzr龙之吐息');
 			"Pifunyhzr第二人类3jieshao":"皮肤介绍",
             "Pifunyhzr第二人类3jieshao_info":"使用该皮肤，你的游戏界面会创建一个控制超能企鹅释放技能的按钮（电脑版可以拖动，手机版不行），每当你点击此按钮，你可以对一名除你以外的角色造成一点伤害（不会引爆企鹅导弹）<br>冷却：60秒",
             "nyhzr浪击1":"浪击",
-            "nyhzr浪击":"浪击",			
+            "nyhzr浪击":"浪击",				
+			"Pifunyhzr第二人类2jieshao":"皮肤介绍",
+            "Pifunyhzr第二人类2jieshao_info":"使用该皮肤，你会获得一颗黄钻石与技能【钻石力量】（出牌阶段，你可以弃置两张牌使你的黄钻石充满能量，持续30秒，若持续时间内【钻石力量】因为企鹅导弹的爆炸而失去，当【钻石力量】回来后，你将永久拥有【钻石力量】<br><span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>当黄钻石充满能量时，你造成的伤害+1）",
+			"nyhzr钻石力量0":"钻石力量",	
+			"nyhzr钻石力量1":"钻石力量",	
+			"nyhzr钻石力量":"钻石力量",				
+            "nyhzr钻石力量_info":"出牌阶段，你可以弃置两张牌使你的黄钻石充满能量，持续30秒，若持续时间内【钻石力量】因为企鹅导弹的爆炸而失去，当【钻石力量】回来后，你将永久拥有【钻石力量】<br><span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>当黄钻石充满能量时，你造成的伤害+1",			
+			"Pifunyhzr第二人类1jieshao":"皮肤介绍",
+            "Pifunyhzr第二人类1jieshao_info":"使用该皮肤，每当你弃牌后，你可以弃置一张手牌，然后在杀，闪，桃中随机选取一张并获得，每回合限一次",
+			"nyhzr探索":"探索",
+            "nyhzr探索_info":"每当你弃牌后，你可以弃置一张手牌，然后在杀，闪，桃中随机选取一张并获得，每回合限一次",
+            "Pifunyhzr狼蛛1":"紫魅毒姬",
+			"Pifunyhzr狼蛛1jieshao":"皮肤介绍",
+            "Pifunyhzr狼蛛1jieshao_info":"使用该皮肤，每次使用牌时，进行一次判定，若判定结果为黑色，你对目标加一个随机的负面效果",
+			"nyhzr紫魅":"紫魅",
+            "nyhzr紫魅_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每次使用牌时，进行一次判定，若判定结果为黑色，你对目标加一个随机的负面效果",
 			},
        character:{
             "Pifunyhzr魅魔公主1":["female","250金",'未购买',["Pifunyhzr魅魔公主1jieshao"],["forbidai"]],
@@ -2961,11 +2977,145 @@ player.removeSkill('nyhzr龙之吐息');
             "Pifunyhzr幻卡魔女3":["female","800金",'未购买',["Pifunyhzr幻卡魔女3jieshao"],["forbidai"]],
             "Pifunyhzr幻卡魔女4":["female","990金",'未购买',["Pifunyhzr幻卡魔女4jieshao"],["forbidai"]],
             "Pifunyhzr幻卡魔女5":["female","990金",'未购买',["Pifunyhzr幻卡魔女5jieshao"],["forbidai"]],
-            "Pifunyhzr第二人类1":["female","880金",'未购买',["Pifunyhzr第二人类1jieshao"],["forbidai"]],		
-            "Pifunyhzr第二人类2":["female","880金",'未购买',[""],["forbidai"]],		
-            "Pifunyhzr第二人类3":["female","800金",'未购买',["Pifunyhzr第二人类3jieshao"],["forbidai"]],					
+            "Pifunyhzr第二人类1":["male","880金",'未购买',["Pifunyhzr第二人类1jieshao"],["forbidai"]],		
+            "Pifunyhzr第二人类2":["male","880金",'未购买',["Pifunyhzr第二人类2jieshao"],["forbidai"]],		
+            "Pifunyhzr第二人类3":["male","800金",'未购买',["Pifunyhzr第二人类3jieshao"],["forbidai"]],	
+            "Pifunyhzr狼蛛1":["female","990金",'未购买',["Pifunyhzr狼蛛1jieshao"],["forbidai"]],				
 		},
 		skill:{
+			"Pifunyhzr狼蛛1jieshao":{
+						nobracket:true,				
+				 },
+			"_Pifunyhzr狼蛛":{
+                trigger:{
+                    global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+                },
+                priority:101,
+                direct:true,
+                filter:function (event,player){
+                return player.hasSkill('rnyhzr幽影之蜕')&&player.hasSkill('rnyhzr暗夜蛛毒')&&player.hasSkill('rnyhzr猎物锁定')&&player.hasSkill('nyhzr女皇神威')&&player.storage._Pifunyhzr狼蛛==undefined;
+                },			
+                content:function (){        
+    'step 0'
+    var list=[];
+	if (lib.config.coin>=990||lib.config.Pifunyhzr狼蛛1==true){
+	list.push('Pifunyhzr狼蛛1')	
+	}
+    if(list.length){
+    player.chooseButton(ui.create.dialog('选择/购买技能皮肤',[list,'character'],'<li>若未购买皮肤则购买并使用选定的技能皮肤<li>你可以无条件使用已购买或已解锁的技能皮肤<li>若按取消则不使用技能皮肤'),function(button){
+        var i=Math.floor(Math.random()*list.length);    
+        return list[i];
+    })}
+    'step 1'
+    if(result.bool){
+	if (result.buttons[0].link=='Pifunyhzr狼蛛1'){
+		if (player==game.me){
+		if (lib.config.Pifunyhzr狼蛛1!=true){
+		game.changeCoin(-990);
+		game.saveConfig('Pifunyhzr狼蛛1',true);
+		player.addSkill('nyhzr紫魅');
+		game.say1('购买成功');
+	}else{
+		player.addSkill('nyhzr紫魅');
+		}
+	}else{
+		player.addSkill('nyhzr紫魅');
+		}
+	}
+	game.log(player,'使用皮肤：',get.translation(result.buttons[0].link));
+    player.setAvatar('nnyhzr妮娜',result.buttons[0].link);
+	player.storage._Pifunyhzr狼蛛=0;
+    }else{
+	player.storage._Pifunyhzr狼蛛=0;		
+    }
+},
+            },
+			"nyhzr紫魅":{
+nobracket:true,	
+trigger:{
+player:"useCardToBegin",
+},
+forced:true,
+filter:function (event,player){
+return event.target;
+},
+check:function (event,player){
+return player.getEnemies().contains(event.target);
+},
+content:function (){
+"step 0"
+player.judge(function(card){return (get.color(card)=='red')?1.5:-0.5});
+"step 1"
+if(result.judge>0){}else{trigger.target.getDebuff()};
+},																				
+						},
+			"nyhzr探索":{
+				nobracket:true,	
+				trigger:{
+					player:"discardAfter",
+				},
+				usable:1,
+                filter:function (event,player){
+					return player.num('h')>0;
+                },					
+				content:function (){
+					player.chooseToDiscard(1,'h',true);
+					player.gain(game.createCard(['sha','shan','tao'].randomGet()));
+				},
+			},			
+			"nyhzr钻石力量":{
+nobracket:true,	
+enable:"phaseUse",
+filterCard:true,	
+selectCard:2,
+filter:function (event,player){
+return !player.hasSkill('nyhzr钻石力量1');
+},
+content:function (){	
+var nyhzr闪亮的黄钻石=ui.create.div();
+nyhzr闪亮的黄钻石.style.height='25px';
+nyhzr闪亮的黄钻石.style.width='25px';
+nyhzr闪亮的黄钻石.style.left='90px';
+nyhzr闪亮的黄钻石.style.top='5px';
+nyhzr闪亮的黄钻石.setBackgroundImage('extension/新英魂之刃/闪亮的黄钻石.gif');
+player.node.avatar.appendChild(nyhzr闪亮的黄钻石);
+player.addSkill('nyhzr钻石力量1');
+game.log(player,'的黄钻石发光了');
+setTimeout(function(){
+nyhzr闪亮的黄钻石.remove();
+player.removeSkill('nyhzr钻石力量1');
+},30000);
+},
+ai:{
+order:21,
+result:{
+player:function (player){
+return player.num('h')-2;
+},			
+},		
+},	
+			},
+			"nyhzr钻石力量0":{
+content:function (){
+var nyhzr黄钻石=ui.create.div();
+nyhzr黄钻石.style.height='25px';
+nyhzr黄钻石.style.width='25px';
+nyhzr黄钻石.style.left='90px';
+nyhzr黄钻石.style.top='5px';
+nyhzr黄钻石.setBackgroundImage('extension/新英魂之刃/黄钻石.png');
+player.node.avatar.appendChild(nyhzr黄钻石);
+game.log(player,'获得了一颗黄钻石');
+}				
+			},				
+			"nyhzr钻石力量1":{
+trigger:{
+source:'damageBegin'
+},
+forced:true,
+content:function (){
+trigger.num+=1;
+}				
+			},				
 			"nyhzr浪击1":{
 nobracket:true,	
 content:function (){
@@ -3021,7 +3171,7 @@ ui.nyhzr浪击1.style.top='calc(100% - 300px)';
 				},				 
 			"Pifunyhzr第二人类1jieshao":{
 						nobracket:true,				
-				 },			
+				 },
 			"Pifunyhzr第二人类2jieshao":{
 						nobracket:true,				
 				 },							 
@@ -3061,13 +3211,13 @@ ui.nyhzr浪击1.style.top='calc(100% - 300px)';
 		if (lib.config.Pifunyhzr第二人类1!=true){
 		game.changeCoin(-880);
 		game.saveConfig('Pifunyhzr第二人类1',true);
-		//player.useSkill('nyhzr浪击');
+		player.addSkill('nyhzr探索');
 		game.say1('购买成功');
 	}else{
-		//player.useSkill('nyhzr浪击');
+		player.addSkill('nyhzr探索');
 		}
 	}else{
-		//player.useSkill('nyhzr浪击');
+		player.addSkill('nyhzr探索');
 		}
 	}
 	if (result.buttons[0].link=='Pifunyhzr第二人类2'){
@@ -3075,13 +3225,16 @@ ui.nyhzr浪击1.style.top='calc(100% - 300px)';
 		if (lib.config.Pifunyhzr第二人类2!=true){
 		game.changeCoin(-880);
 		game.saveConfig('Pifunyhzr第二人类2',true);
-		player.addSkill('');
+		player.addSkill('nyhzr钻石力量');
+		player.useSkill('nyhzr钻石力量0');
 		game.say1('购买成功');
 	}else{
-		player.addSkill('');
+		player.addSkill('nyhzr钻石力量');
+		player.useSkill('nyhzr钻石力量0');
 		}
 	}else{
-		player.addSkill('');
+		player.addSkill('nyhzr钻石力量');
+		player.useSkill('nyhzr钻石力量0');
 		}
 	}
 	if (result.buttons[0].link=='Pifunyhzr第二人类3'){
@@ -3105,7 +3258,7 @@ ui.nyhzr浪击1.style.top='calc(100% - 300px)';
 	player.storage._Pifunyhzr第二人类=0;		
     }
 },
-            },				
+            },
 			"nyhzr炎炎夏日":{
 nobracket:true,	
 content:function (){
@@ -3823,7 +3976,7 @@ player.markSkill('nyhzr强化_暴击等级获得');
                 marktext:"暴",
                 intro:{
                     content:function (storage){
-return '<li>当前暴击等级为：'+storage+'级'+'<li>暴击一级=造成伤害1%+1'+'<li>暴击等级最高6级'+'<li>造成伤害暴击等级+1'
+return '<li>当前暴击等级为：'+storage+'级'+'<li>暴击一级=造成伤害后1%+1'+'<li>暴击等级最高6级'+'<li>造成伤害暴击等级+1'
 },
                 },
                     },		
@@ -4753,6 +4906,9 @@ player.recover();
                 }
             }
         };	
+//var 武将=['性别','势力',1,["技能"],['db:extension-扩展名:武将.jpg']];
+//lib.character.武将=武将;
+//lib.characterPack.standard.武将=lib.character.武将;	
         if (lib.config.Pifunyhzr魅魔公主1) {
 			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
 			if (i=='Pifunyhzr魅魔公主1'){		
@@ -4955,8 +5111,514 @@ player.recover();
 			lib.character[i][2]='已购买';
         }
 		}
+        };	
+		if (lib.config.Pifunyhzr狼蛛1) {
+			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
+			if (i=='Pifunyhzr狼蛛1'){		
+			lib.character[i][2]='已购买';
+        }
+		}
         };			
-		},precontent:function (){			
+		},precontent:function (nyhzrlj){
+        if(nyhzrlj.enable){		
+            game.import('character',function(){
+                var nyhzrlj = {
+                    name: 'nyhzrlj',
+                    connect:true,				
+                    character:{
+            "Newlnyhzr咯哩咯哩":["female","zhi",3,["nyhzr仙灵伙伴lj","nyhzr迷藏印记lj"],["des:<li>大多数生灵都逃不过时光的流逝，然而咯哩咯哩却不属于此类。作为自然万物之精华，咯哩咯哩拥有着一颗干净纯洁的心、永远不会长大的外形，以及与花草百兽沟通的奇妙能力，而她的名字则来源于她的口头禅：咯哩。<li>在大自然中独自生活许多年后，出于对人类世界的向往和对新朋友的渴望，咯哩咯哩带着她的小伙伴——妖精皮皮，一起来到了人类的城邦。咯哩咯哩带领孩子们玩耍，并用魔法暂时将桌椅变成花朵和动物来增添乐趣。但人们似乎并不领情——出于对魔法和力量的恐惧，大人们很快便让孩子们疏远了咯哩咯哩。<li>伤心的咯哩咯哩离开了这所城邦，重新寻找一个善良美好的新世界。途经决战之谷时，咯哩咯哩和皮皮遇到凶兽饕餮，它正准备吞噬最近的人类城邦。尽管遭到人类的疏远，但为了可爱的孩子们不受伤害，咯哩咯哩毅然与饕餮展开了战斗。然而饕餮实力强大，咯哩咯哩和皮皮陷入了险境。危急关头，一位来自异世界的男人“拳”突然出现，在他的帮助，饕餮终于败退离去。<li>咯哩咯哩对这个胸前有着北斗七星状伤疤的男人产生了浓厚的兴趣。面对这个好奇又天真的小家伙一个又一个的疑问，拳将自己的经历和扫除一切邪恶不公的决心告诉了她。听完拳的叙述，咯哩咯哩从他的身上感受到了巨大的勇气和信念的力量，她意识到，与其寻找一个虚无缥缈的新世界，不如从现在开始，创造并且守护现有的一切。于是，她决定成为拳的伙伴，和他一起踏上未知的冒险之路！<li>我才不会害怕呢！咯哩！<li>——咯哩咯哩"]],
+            "Newlnyhzr莉莉姆.提露埃拉":["female","li",3,["nyhzr恐惧镰刀lj","nyhzr恐惧结界lj"],["des:<li>恢弘的钟声和吟唱笼罩着整座城市，人们云集在教堂之中，进行着庄严而神圣的宗教仪式。而在教堂的穹顶，象征着神权的巨大十字架上，却坐着一个美丽而妖娆的身影，泛着宝石光芒的瞳仁和背后的翅膀昭示着她令人畏惧的身份——夜之魔女莉莉丝和魔王撒旦的女儿，地狱的公主——莉莉姆.提露埃拉。 <li>同她的姐妹们一样，莉莉姆. 提露埃拉身上永远散发着青春的活力，外表充满魅力却又让人心生畏惧，由血统赋予的强大魔力能让她在地狱和人间穿梭自如，并不断出现在人们的噩梦之中。但和她那些只顾享乐的姐妹们不同，莉莉姆.提露埃拉更加危险且具有野心：她想把所有的人类土地都变成充满滋生魔物的土壤。 <li>就在提露埃拉不断实施着她的邪恶计划之时，其他莉莉姆以及她们手下的魔物们纷纷遭到了猎杀，而所有的线索都指向了一个人：猎魔人露娜。<li>这场关于猎杀的游戏激起了提露埃拉心中的邪恶欲望，她追随着猎魔人的踪迹来到人类的城邦。看着脚下的城市和熙攘的人群，莉莉姆.提露埃拉站起身来，灵活地跳到十字架顶端，朝着面前的城市张开双手，像是要把整座城市收入怀中。<li>“这里，马上就要完全属于我了……到时候要做些什么呢?想想就……”<li>亢奋的情绪突然被她自己打断，注视着整座城市的瞳孔突然将视线锁定在一间普通到再也不能普通的屋顶上，像是发现了宝藏一样，莉莉姆. 提露埃拉眯起了眼睛，嘴角露出了摄人的微笑。<li>“找到你了，要开始享受游戏的乐趣了。”"]],
+		    "Newlnyhzr龙骑士":["male","li",4,["nyhzr龙人血脉lj"],["des:<li>边境的小酒馆里，老板略带神秘的说起这样一个传说：<li>好心的领主老爷和他的养子生活在一座美丽的庄园里。<li>然而，魔龙化身的养子本性嗜血又残暴。他魔性大发之后，重伤领主，焚毁庄园。据说他身覆鳞片，口中喷火，甚至还会吃人！ <li>——那段经历对流浪骑士来说就像噩梦一般，如果真是场梦就好了……<li>那一天，从血脉中涌出的能量仿佛要将身体撕成两半，难以忍受的巨大痛楚令他失去了理智。<li>清醒之后，看着血泊中的领主和自己可怕的身躯，他只能惶恐地逃离。 <li>这些年来，骑士独自一人在荒原上流浪，而根植于血脉中的力量也与日俱增。幸运的是，在旅途中磨练出的坚韧和勇气让骑士逐渐学会了如何在狂暴中保持清明。在一次从魔兽群的包围中救下落难的冒险者后，他第一次感到这股力量会是种恩赐。 <li>兴奋的流浪骑士马不停蹄地想要回到家乡，但迎接他的却不是领主慈祥的微笑，而是冲天的火光、村民的哀嚎以及大队的强盗…… <li>那天以后，王国又多了一个传说，关于龙骑士的传说。"]],
+            "Newnnyhzr妮娜":["female","min",3,["rnyhzr幽影之蜕lj","nyhzr女皇神威lj"],["des:<li>针对女王妮娜的政变在一个夜晚爆发。那些曾被赦免的贵族们带着士兵冲进王宫，将所见的人统统杀死。<li>“抓住妮娜！”熊熊火焰在王宫中肆虐，照亮一地冰冷的尸体与丑恶背叛。<li>“杀死她，她已不配为王！” <li>目标明确的叛军一路攻入寝宫，妮娜只得带着铁卫逃往王城北面。那里背靠人人恐惧的禁忌森林，叛军决不会在那设防。然而双方实力过于悬殊，当他们来到禁忌森林前，铁卫已悉数战死，只剩走投无路的妮娜一人被包围。 <li>贵族们轻蔑地嘲笑她：“你是要投降，还是逃入死地？” <li>女王的脸因恐惧而苍白，但她仍尊严地抬头走入森林：“以我的灵魂发誓，我会回来的！把你们全部杀死！” <li>叛军骚动地望向漆黑的森林，想要确定女王是否已死。而妮娜身陷密林深处，被冰冷黏丝束缚双脚。纷麻触感由四肢蔓延，骚动的剧毒螯爪遍布全身，一点点收割生命。曾经高傲的冰雪陷入地狱，死亡已如影随形，妮娜绝望地流出眼泪。 <li>“我不能死……”复仇的怒火涌上心头，被背叛的憎恨和被啃食的痛楚让她从灵魂深处发出嘶哑呐喊：“我绝不能死！” <li>“你要向那些背叛你的人复仇么？”甜腻诱惑的声音突然充斥在她耳边。"]], 
+		    "Newdnyhzr德古拉":["male","zhi",3,["nyhzr血虐暴风lj","nyhzr歃血为神lj"],["des:<li>那座古堡矗立在林中已经很久，崩塌的外墙、腐朽的枯木、夜枭的啼叫，传说中的恶魔……一切令人生惧的元素仿佛都集中在它的身上。 <li>过去的这里并不是如此死气沉沉，令人生畏。德古拉伯爵一家是这片土地的主人。伯爵夫人虽然出身卑微，却颇受伯爵宠爱。浪漫的爱情故事也让无数人羡慕。 <li>平静的日子被教会的传令所打破。他带上家族精锐出发了。战斗几乎没有遭到抵抗，这种单纯的杀戮令伯爵的不满更加浓烈。当伯爵归来之时，迎接他的不是欢呼与鲜花，而是满目疮痍，尸横遍野……他这才明白出征不过是教会的幌子，隐藏在背后的目的是铲除异己。抱着爱人的尸体，德古拉的愤怒如同滔天巨焰，他诅咒神明，诅咒教会，发誓要让他们血债血偿！<li>自那之后，伯爵失去了踪迹。尽管教会四处搜寻，却毫无线索。<li>数月后，曾参与围剿的人皆以怪异的方式死去，死者无一例外被吸干鲜血！教会分支也在熊熊大火中化为灰烬。人们纷纷传言德古拉伯爵回来了，他将灵魂献给魔鬼，以换取复仇的永生之力。<li>他视教廷为永世之敌，仇恨不灭，直至那伪善的光明被彻底摧毁！"]],
+            "Newhnyhzr后羿":["male","min",4,["nyhzr逐阳之弓lj"],["des:<li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
+						
+					},
+                    skill:{
+            "nyhzr仙灵伙伴lj":{
+                nobracket:true,
+                trigger:{
+                    player:"phaseBegin",
+                },
+                forced:true,
+                content:function (){
+                    if(player.storage.nyhzr仙灵伙伴lj==undefined) player.storage.nyhzr仙灵伙伴lj=0;
+                    player.markSkill('nyhzr仙灵伙伴lj');
+                    player.storage.nyhzr仙灵伙伴lj+=1;    
+                    player.syncStorage('nyhzr仙灵伙伴lj'); 
+                    game.log(player,'召唤一只妖精皮皮');
+                    player.marks.nyhzr仙灵伙伴lj.setBackgroundImage('extension/新英魂之刃/'+'nyhzr皮皮'+'.jpg')                   
+                },
+                intro:{
+                    content:function (storage){
+                        return '妖精皮皮为你作战！'+'<br>当前有'+storage+'只妖精皮皮'
+                    },
+                },
+            },
+            "nyhzr迷藏印记lj":{
+                nobracket:true,
+                trigger:{
+                    player:"damageBegin",
+                },
+                filter:function (event,player){
+                    return player.num('h')>=1&&player.storage.nyhzr仙灵伙伴lj>=2;
+                },
+                content:function (){
+                    player.storage.nyhzr仙灵伙伴lj-=2;    
+                    player.syncStorage('nyhzr仙灵伙伴lj'); 
+                    game.log(player,'躲避了对方的攻击'); 
+                    if (game.players.length<4){
+                        player.chooseToDiscard(1,'h',true);     
+                    };                                 
+                    trigger.num--;
+                },
+            },			
+            "nyhzr恐惧镰刀lj":{
+                nobracket:true,
+                group:["nyhzr恐惧镰刀lj_gainMark","nyhzr恐惧镰刀lj_Triggera"],
+                subSkill:{
+                    gainMark:{
+                        trigger:{
+                            source:"damageBegin",
+                        },
+                        forced:true,
+                        content:function (){
+                            if(player.storage.nyhzr恐惧镰刀lj_gainMark==undefined) player.storage.nyhzr恐惧镰刀lj_gainMark=0;
+                            player.markSkill('nyhzr恐惧镰刀lj_gainMark'); 
+                            player.storage.nyhzr恐惧镰刀lj_gainMark+=1;    
+                            player.syncStorage('nyhzr恐惧镰刀lj_gainMark'); 
+                            game.log(player,'造成的伤害为恐惧镰刀充能');                    
+                        },
+                        intro:{
+                            content:function (storage){
+                                return '当前有'+storage+'层夜魔之力'
+                            },
+                        },
+                    },
+                    Triggera:{
+                        trigger:{
+                            source:"damageEnd",
+                        },
+                        filter:function (event,player){
+                            return player.storage.nyhzr恐惧镰刀lj_gainMark>=3;
+                        },
+                        forced:true,
+                        content:function (){
+                            player.storage.nyhzr恐惧镰刀lj_gainMark=0;    
+                            player.syncStorage('nyhzr恐惧镰刀lj_gainMark');                     
+                            trigger.player.turnOver();
+                        },
+                    },
+                },
+            },
+            "nyhzr恐惧结界lj":{
+                nobracket:true,
+                unique:true,
+                global:"nyhzr恐惧lj",
+            },
+            "nyhzr恐惧lj":{
+                trigger:{
+                    source:"damageEnd",
+                },
+                filter:function (event,player){
+                    if(player.group!='li') return false;
+                    if(event.card&&event.card.name!='sha') return false;
+                    return game.hasPlayer(function(target){
+                        return player!=target&&target.hasSkill('nyhzr恐惧结界',player);
+                    });
+                },
+                direct:true,
+                content:function (){
+                    'step 0'
+                    var list=[];
+                    for(var i=0;i<game.players.length;i++){
+                    if(game.players[i]!=player&&game.players[i].hasSkill('nyhzr恐惧结界',player)){
+                            list.push(game.players[i]);
+                        };
+                    };
+                    event.list=list;
+                    'step 1'
+                    if(event.list.length){
+                        var current=event.list.shift();
+                        event.current=current;
+                        player.chooseBool('是否对'+get.translation(current)+'发动【恐惧结界】？').set('choice',ai.get.attitude(player,current)>0);
+                    }else{
+                        event.finish();
+                    }
+                    'step 2'
+                    if(result.bool){
+                        player.logSkill('nyhzr恐惧结界',event.current);
+                        event.current.recover();
+                        event.current.draw();
+                    }
+                    event.goto(1);
+                },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "nyhzr龙人血脉lj":{
+nobracket:true,
+intro:{
+content:function (storage){
+return '已激活血脉数量：'+storage;
+},
+},
+init:function (player){
+player.storage.nyhzr龙人血脉lj=0;
+},
+trigger:{
+global:"gameStart"
+},
+forced:true,
+silent:true,
+mark:true,
+popup:false,
+content:function (){
+'step 0'
+if(player.storage.nyhzr龙人血脉lj==undefined) player.storage.nyhzr龙人血脉lj=0;
+setTimeout(function(){
+player.useSkill('nyhzr龙人血脉lj');
+player.storage.nyhzr龙人血脉lj+=30;
+},60000);
+'step 2'
+if(player.storage.nyhzr龙人血脉lj==30){
+player.logSkill('nyhzr龙人血脉lj');
+player.gainMaxHp();
+player.recover();
+game.log(player,'血脉觉醒');
+}
+if(player.storage.nyhzr龙人血脉lj==90){
+player.logSkill('nyhzr龙人血脉lj');
+player.draw(2);
+game.log(player,'血脉觉醒');
+}if(player.storage.nyhzr龙人血脉lj==150){
+player.logSkill('nyhzr龙人血脉lj');
+player.addSkill('nyhzr龙人血脉lj_1');
+game.log(player,'血脉觉醒');
+}
+if(player.storage.nyhzr龙人血脉lj==240){
+player.logSkill('nyhzr龙人血脉lj');
+player.addSkill('nyhzr龙人血脉lj_2');
+game.log(player,'血脉觉醒');
+}
+if(player.storage.nyhzr龙人血脉lj==300){
+player.logSkill('nyhzr龙人血脉lj');
+player.addSkill('nyhzr龙人血脉lj_3');
+game.log(player,'血脉觉醒');       
+}
+},
+                subSkill:{
+                    "1":{
+trigger:{
+player:"phaseBefore",
+},
+forced:true,
+content:function (){
+player.draw();
+},
+                    },
+                    "2":{
+mod:{
+cardUsable:function (card){
+if(get.info(card)&&get.info(card).forceUsable) return;            
+return 2;    
+},
+targetInRange:function (){
+return true;
+},
+},
+                    },
+                    "3":{
+trigger:{
+source:"damageEnd",
+},
+filter:function (event,player){
+return player.num('h')>2;
+},
+content:function (){
+player.discard(player.get("h"));
+player.draw();
+trigger.player.removeSkill(trigger.player.skills.randomGet());    
+},
+check:function (event,player){                    
+if(player.num('h')>4) return false;                        
+if(player.hp<=1) return false;                    
+if(player.identity==event.player.identity) return false;
+if(event.player.identity=='zhu'&&player.identity=='zhong') return false;
+if(player.identity=='zhu'&&event.player.identity=='zhong') return false;   
+return true;
+},
+            },
+                },
+            },
+            "nyhzr女皇神威lj":{
+                nobracket:true,
+                enable:"phaseUse",
+                content:function (){
+					game.log(player,'释放神威');
+                    player.addTempSkill('nyhzr神威lj',{player:'phaseEnd'}); 
+                    player.removeSkill('nyhzr女皇神威lj');    
+                },
+                ai:{
+                    order:100,
+                    result:{
+                        player:function (player){
+                            return  player.num('h','sha')-0;
+                        },
+                    },
+                },
+            },
+            "nyhzr神威lj":{
+                marktext:"神",
+                intro:{},
+                mark:true,
+                trigger:{
+                    source:"damageAfter",
+                },
+                forced:true,
+                content:function (){
+                    game.log(player,'的神威震慑对手');
+                    trigger.player.chooseToDiscard(trigger.player.num('h'),'h',true);    
+                },
+            },
+            "rnyhzr幽影之蜕lj":{
+                nobracket:true,
+                marktext:"人",
+                intro:{},
+                mark:true,
+                trigger:{
+                    player:"damageAfter",
+                },
+                content:function (){
+					game.log(player,'转化蜘蛛形态');
+                    player.addSkill('znyhzr幽影之蜕lj');
+                    player.addSkill('nyhzr蛛壳硬化lj');               
+                    player.removeSkill('rnyhzr幽影之蜕lj');  
+                    player.removeSkill('nyhzr女皇神威lj');                              
+                },
+            },
+            "znyhzr幽影之蜕lj":{
+                nobracket:true,
+                marktext:"蛛",
+                intro:{},
+                mark:true,
+                trigger:{
+                    player:"damageAfter",
+                },
+                content:function (){
+					game.log(player,'转化人类形态');
+                    player.addSkill('rnyhzr幽影之蜕lj');
+                    player.addSkill('nyhzr女皇神威lj');               
+                    player.removeSkill('znyhzr幽影之蜕lj');  
+                    player.removeSkill('nyhzr蛛壳硬化lj');                              
+                },
+            },
+            "nyhzr蛛壳硬化lj":{
+                nobracket:true,
+                enable:"phaseUse",
+                content:function (){ 
+                    game.log(player,'硬化了自己的壳');
+                    player.addSkill('nyhzr硬化lj');
+                    player.removeSkill('nyhzr蛛壳硬化lj');
+                },
+                ai:{
+                    order:100,
+                    result:{
+                        player:function (player){
+                            return 1;
+                        },
+                    },
+                },
+				},
+            "nyhzr硬化lj":{
+                marktext:"硬",
+                intro:{},
+                mark:true,
+                trigger:{
+                    player:"damageBegin",
+                },
+                forced:true,
+                content:function (){
+                    player.removeSkill('nyhzr硬化lj');
+					game.log('硬化的蛛壳使',player,'免疫了攻击');
+                    trigger.untrigger();
+                    trigger.finish();
+                },
+            },
+            "nyhzr血虐暴风lj":{
+                nobracket:true,
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){     
+                    if (trigger.player.hp==0){
+                        player.gainMaxHp();
+                    };
+                    if (player.hp==0){
+                        trigger.player.loseHp();
+                    };
+                },
+            },
+            "nyhzr歃血为神lj":{
+                nobracket:true,
+                trigger:{
+                    source:"damageEnd",
+                },
+                filter:function (event,player){
+                    return player.num('h')>0;
+                },
+                content:function (){
+					"step 0"
+					player.chooseControl(["弃牌恢复体力","将现有体力转化为护盾值"]);
+					"step 1"
+					if (result.control=='弃牌恢复体力'){
+						player.chooseToDiscard(1,'h',true);      
+						player.recover();
+						if (player.hp==player.maxHp&&player.hasSkill('nyhzr血虐暴风lj')){
+							player.changeHujia();
+							player.update();
+							game.log(player,'获得1点护甲');
+						};
+					};
+					if (result.control=='将现有体力转化为护盾值'){
+						player.changeHujia(player.hp);
+						game.log(player,'获得',player.hp,'点护甲');
+						player.hp=0;
+						player.update();
+					};
+                },
+                check:function (event,player){
+                    if(player.hp==player.maxHp) return false;
+                    return true;
+                },
+            },
+            "nyhzr燎火之箭lj":{
+                nobracket:true,
+                trigger:{
+                    source:"damageBegin",
+                },
+				forced:true,
+                content:function (){                    
+                    trigger.nature='fire';
+                    trigger.player.discard(trigger.player.get('e'));
+                },
+            },
+            "nyhzr穿云箭lj":{
+                nobracket:true,
+                ai:{
+                    unequip:true,
+                    skillTagFilter:function (player,tag,arg){
+                        if(arg&&arg.name=='sha') return true;
+                        return false;
+                    },
+                },
+			},
+            "nyhzr逐阳之弓lj":{
+                nobracket:true,
+                mod:{
+                    globalFrom:function (from,to,distance){
+                        return distance-1;
+                    },
+                },
+				trigger:{
+                    player:"useCardBefore",
+				},
+				filter:function (event,player){
+                    return event.card.name=='sha'&&_status.currentPhase==player;
+				},
+				content:function (){
+					"step 0"
+					player.chooseControl(["穿云箭","燎火之箭"]);
+					"step 1"
+					if (result.control=='穿云箭'){
+						player.addTempSkill('nyhzr穿云箭lj',{player:'useCardAfter'});
+						game.log(player,'将穿云箭上弦');
+					};
+					if (result.control=='燎火之箭'){
+						player.addTempSkill('nyhzr燎火之箭lj',{player:'useCardAfter'});
+						game.log(player,'将燎火之箭上弦');
+					};
+                },
+                check:function (event,player){
+                    if(player.identity==event.player.identity) return false;
+                    if(event.player.identity=='zhu'&&player.identity=='zhong') return false;
+                    if(player.identity=='zhu'&&event.player.identity=='zhong') return false;   
+                    return true;
+                },				
+			},
+
+
+
+
+
+
+			
+					},
+                    translate:{
+            "Newlnyhzr咯哩咯哩":"◉咯哩咯哩",
+            "Newlnyhzr莉莉姆.提露埃拉":"◉莉莉姆·提露埃拉",
+            "Newlnyhzr龙骑士":"◉龙骑士 ",
+            "Newnnyhzr妮娜":"◉妮娜  ",
+            "Newdnyhzr德古拉":"◉德古拉 ",
+            "Newhnyhzr后羿":"◉后羿  ",
+            "nyhzr仙灵伙伴lj":"仙灵伙伴",
+            "nyhzr仙灵伙伴lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你召唤一只妖精皮皮",
+            "nyhzr迷藏印记lj":"迷藏印记",
+            "nyhzr迷藏印记lj_info":"每当你受到伤害时，若你有手牌，你可以牺牲两只妖精皮皮使伤害-1，若游戏人数小于4，你需要弃一张牌",	
+            "nyhzr恐惧镰刀lj":"恐惧镰刀",
+            "nyhzr恐惧镰刀lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每次造成伤害时会为自己的噩梦镰刀充能夜魔之力，达到三层时，造成伤害后使对方翻面",
+            "nyhzr恐惧结界lj":"恐惧结界",
+            "nyhzr恐惧结界lj_info":"当一名其他力量角色使用【杀】造成一次伤害后，该角色可令你摸一张牌并令你恢复一点体力",			
+            "nyhzr龙人血脉lj":"龙人血脉",
+            "nyhzr龙人血脉lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>游戏开始后，每一分钟激活30点血脉<br><br>当血脉数量：<br>为30时，你的体力上限+1并恢复一点体力<br>为90时，你摸两张牌<br>为150时，你获得技能（回合开始前摸一张牌）<br>为240时，你获得技能（回合内有使用次数限制的牌，其限制改为2；你使用的牌无距离限制）<br>为300时，你获得技能（当你造成伤害后，若你的手牌数大于2，你可以弃置所有手牌后摸一张牌，然后随机删除被伤害者一项技能）",
+            "nyhzr神威lj":"神威",
+            "nyhzr女皇神威lj":"女皇神威",			
+            "nyhzr女皇神威lj_info":"出牌阶段，你可以释放自己的女皇神威,使你于本回合内造成伤害后，被伤害者弃置所有手牌，使用后删除此技能",
+            "nyhzr硬化lj":"硬化",
+            "nyhzr蛛壳硬化lj":"蛛壳硬化",
+            "nyhzr蛛壳硬化lj_info":"出牌阶段，你可以硬化自己的壳,使你完全免疫下一次的伤害，使用后删除此技能",
+            "rnyhzr幽影之蜕lj":"幽影之蜕",
+            "rnyhzr幽影之蜕lj_info":"当你受到伤害后，你可以转化为蜘蛛形态，失去技能【女皇神威】，获得技能【蛛壳硬化】",
+            "znyhzr幽影之蜕lj":"幽影之蜕",
+            "znyhzr幽影之蜕lj_info":"当你受到伤害后，你可以转化为人类形态，失去技能【蛛壳硬化】，获得技能【女皇神威】",
+            "nyhzr血虐暴风lj":"血虐暴风",
+            "nyhzr血虐暴风lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每当你造成伤害后，若被伤害者体力值为0，你获得一点体力上限；若自身体力值为0，被伤害者流失一点体力<br>技能【嗜血】在自身满血时可以过量恢复，溢出的恢复值转化为护盾值",
+            "nyhzr歃血为神lj":"歃血为神",
+            "nyhzr歃血为神lj_info":"当你造成伤害后，你可以选择弃一张牌并恢复一点体力或者将将现有体力转化为护盾值",
+			"nyhzr歃血为神lj_append":"注：<br>体力值为零时受到任何伤害，会进入濒死阶段",
+            "nyhzr逐阳之弓lj":"逐阳之弓",
+            "nyhzr逐阳之弓lj_info":"当你使用杀前，你可以选择使用燎火之箭或穿云箭上弦",
+			"nyhzr逐阳之弓lj_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>手持弓的你进攻距离+1<br><br>燎火之箭：当你造成伤害时，伤害属性变为火属性并弃置对方装备区内的所有牌<br><br>穿云箭：你使用的杀无视对方防具<br><br>注：<br>燎火之箭不触发藤甲增加伤害效果",			
+			},
+                };				
+                if(lib.device||lib.node){
+                    for(var i in nyhzrlj.character){nyhzrlj.character[i][4].push('ext:新英魂之刃/'+i+'.jpg');}
+                }else{
+                    for(var i in nyhzrlj.character){nyhzrlj.character[i][4].push('db:extension-新英魂之刃:'+i+'.jpg');}
+                }
+                return nyhzrlj;
+            });		
+            lib.config.all.characters.push('nyhzrlj');
+            if(!lib.config.characters.contains('nyhzrlj')){
+                lib.config.characters.push('nyhzrlj');
+            }
+            lib.translate['nyhzrlj_character_config'] = '<span style=\"font-size:18px;font-weight:600\">英魂之刃联机</span>';			
+			lib.group.push('jin');
+			lib.translate.jin='×';
+			lib.translate.jinColor="#EAEAEA";
+			lib.group.push('li');
+			lib.translate.li='力';
+			lib.translate.liColor="#FF0000";
+			lib.group.push('min');
+			lib.translate.min='敏';
+			lib.translate.minColor="#76EE00";         
+			lib.group.push('zhi');
+			lib.translate.zhi='智';
+			lib.translate.zhiColor="#1874CD";
+        };      	
+
 game.say1=function(str){
 var dialog=ui.create.dialog('hidden');
 dialog.classList.add('static');
@@ -5010,14 +5672,16 @@ game.removeCard2=function(name){
                 list[i].remove();
             }
 };
+
 },help:{"皮肤解锁":"<li>血月会长：用拥有技能【血祭启示录】的武将在一局游戏中造成超过10点伤害（含10点），在此之后经过一个回合结束阶段即可解锁。<li>雪凝幻彩：联机比赛参赛者的奖品"},
 config:{	
-	"Pifu":{"name":"技能皮肤","intro":"拥有技能皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，贞德，萨特，德古拉，狂徒，时空猎人,龙骑士，艾迪兰，超能企鹅"},
-	"UseNew":{"name":"新版武将包皮肤","intro":"拥有新版皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，贞德，萨特，德古拉，狂徒，时空猎人,龙骑士，艾迪兰，布丁，超能企鹅，布鲁"},
-	"UsePifuNew":{"name":"新版技能皮肤皮肤","intro":"拥有新版皮肤的皮肤有：幽梦魔灵，祈愿之星，屠戮魔影，炼狱魂印，毁灭之翼，血色传说，血月会长，强弩神射，幻影射手，皎月王侯，黄金之翼，强袭龙魂，暗翼骨龙，星河雷爆，逆时者，强殖妖斧，妙法仙灵，暗黑小魔星，花牌魔后，雪凝幻彩，星钻仙后，晶钻星使，伊娃，趣海先锋"},
-	"NoUselessSkill":{"name":"关闭无用技能","intro":"关闭称号技能与死亡配音技能"},
+	"Pifu":{"name":"技能皮肤","init":true,"intro":"拥有技能皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，萨特，德古拉，时空猎人,龙骑士，艾迪兰，超能企鹅"},
+	"UseNew":{"name":"新版武将包皮肤","init":true,"intro":"拥有新版皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，贞德，萨特，德古拉，狂徒，时空猎人,龙骑士，艾迪兰，布丁，超能企鹅，布鲁，宫本武藏"},
+	"UsePifuNew":{"name":"新版技能皮肤皮肤","init":true,"intro":"拥有新版皮肤的皮肤有：幽梦魔灵，祈愿之星，屠戮魔影，炼狱魂印，毁灭之翼，血色传说，血月会长，强弩神射，幻影射手，皎月王侯，黄金之翼，强袭龙魂，暗翼骨龙，星河雷爆，逆时者，强殖妖斧，妙法仙灵，暗黑小魔星，花牌魔后，雪凝幻彩，星钻仙后，晶钻星使，伊娃，趣海先锋"},
+	"NoUselessSkill":{"name":"关闭无用技能","init":true,"intro":"关闭称号技能与死亡配音技能"},
 	"gongchengmoshi":{"name":"攻城模式","init":true},
 	"xyhzr":{"name":"新英魂之刃与技能卡包","init":true},
+	"nyhzrlj":{"name":"<span style=\"font-size:13px;font-weight:600\">将英魂之刃联机武将设为禁用</span>","init":false,"intro":"将英魂之刃联机武将设为禁用"},
 	},package:{
     character:{
         character:{
@@ -5027,7 +5691,7 @@ config:{
     },
     card:{},
     skill:{
-        skill:{		
+        skill:{
             "nyhzr自然之灵":{
                 nobracket:true,
             },
@@ -5054,7 +5718,7 @@ player.node.marks.childNodes[i].setBackgroundImage('extension/新英魂之刃/'+
 },
                 intro:{
                     content:function (storage){
- return '妖精皮皮为你作战！'+'<li>当前有'+storage+'只妖精皮皮'
+ return '妖精皮皮为你作战！'+'<br>当前有'+storage+'只妖精皮皮'
 },
                 },
             },
@@ -5584,9 +6248,10 @@ return -ai.get.attitude(player,target);
                 audio:"ext:新英魂之刃:1",
                 enable:"phaseUse",
                 usable:1,
+				nopop:true,
                 content:function (){          
 player.addSkill('nyhzr神威'); 
-player.removeSkill('nyhzr女皇神威');    
+player.removeSkill('nyhzr女皇神威');
 },
                 ai:{
                     order:100,
@@ -5612,7 +6277,7 @@ player.removeSkill('rnyhzr暗夜蛛毒');
 player.removeSkill('rnyhzr猎物锁定');          
 player.draw();        
 player.skip('phaseUse');        
-player.setAvatar('nnyhzr妮娜','znyhzr蜘蛛形态'); 
+player.setAvatar('nnyhzr妮娜','znyhzr蜘蛛形态');
 game.log(player,'转化蜘蛛形态');        
 },
                 check:function (event,player){
@@ -5634,7 +6299,8 @@ player.addSkill('rnyhzr暗夜蛛毒');
 player.addSkill('rnyhzr猎物锁定');          
 player.draw();        
 player.skip('phaseDraw');        
-player.setAvatar('nnyhzr妮娜','nnyhzr妮娜'); 
+player.setAvatar('nnyhzr妮娜','nnyhzr妮娜');
+if(player.hasSkill('nyhzr紫魅')) player.setAvatar('nnyhzr妮娜','Pifunyhzr狼蛛1');
 game.log(player,'转化人类形态');        
 },
                 check:function (event,player){
@@ -6123,7 +6789,7 @@ game.log(player,'获得一点护甲');
 };        
 },
                 check:function (event,player){      
-if(player.hp==player.maxHp&&!player.hasSkill('nyhzr血虐暴风')) return false;
+if(player.hp==player.maxHp) return false;
 return true;
 },
             },
@@ -6428,7 +7094,7 @@ if (game.players[i]!=player){
 game.players[i].out();    
 }    
 }
-game.log(player,'进入未知的时空中');
+game.log(player,'进入不稳定的时空中');
 player.addSkill('nyhzr断裂时空_0');
 player.addSkill('nyhzr断裂时空_1');
 player.addSkill('nyhzr断裂时空_2');
@@ -6601,7 +7267,7 @@ if (game.players[i]!=player){
 game.players[i].out();    
 }    
 }
-game.log(player,'进入未知的时空中');
+game.log(player,'进入不稳定的时空中');
 player.addSkill('nyhzr断裂时空_0');
 player.addSkill('nyhzr断裂时空_1');
 player.addSkill('nyhzr断裂时空_2');
@@ -7122,7 +7788,7 @@ game.removeCard2('KAnyhzr王牌');
                     order:0.5,
                 },						
       },           
-	  "nyhzr魔卡出击":{
+			"nyhzr魔卡出击":{
                 audio:"ext:新英魂之刃:3",
                 nobracket:true,				
     enable:"phaseUse",
@@ -7170,10 +7836,10 @@ return -ai.get.attitude(player,target);
                 content:function (){
 player.say('再见了，我挚爱的世界');                    
 },
-            },	
+            },
             "nyhzr钻能使":{
                 nobracket:true,				
-			},				
+			},
             "nyhzr第二人类":{
                 nobracket:true,				
 			},
@@ -7669,7 +8335,6 @@ player.say('晶火熄灭了，我将回归于晨雾');
                 var skills=info[3];
                 for(var j=0;j<skills.length;j++){
                     if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                        !lib.skill[skills[j]].unique&&
                         !pss.contains(skills[j])){
                         list.push(skills[j]);
                     }
@@ -7869,10 +8534,155 @@ return -ai.get.attitude(player,target);
 player.say('正义，终将胜利');                    
 },
             },	
+            "nyhzr黑暗中的剑客":{
+                nobracket:true,
+            },
+            "nyhzr千叶斩":{
+nobracket:true,
+audio:"ext:新英魂之刃:4",
+enable:"phaseUse",
+filterTarget:function (card,player,target){
+return player!=target;
+},
+filter:function (event,player){
+return player.num('h')>player.hp;
+},
+content:function (){
+"step 0"
+if(player.hasSkill('nyhzr勾玉魂刀')&&!player.hasSkill('nyhzr勾玉魂刀1')) player.addSkill('nyhzr勾玉魂刀1');
+var qyzsha=get.cardPile(function(card){return card.name=='sha'});
+if(qyzsha&&player.num('h')>player.hp){
+player.gain(qyzsha,'gain2');
+player.useCard(qyzsha,target);
+player.chooseToDiscard(1,'h',true);
+}else{
+event.finish();
+player.removeSkill('nyhzr勾玉魂刀1');
+if(player.hasSkill('nyhzr幻之分身2')){
+player.useCard(qyzsha,target);
+};
+};
+"step 1"
+event.goto(0);
+    },
+            },
+            "nyhzr勾玉魂刀1":{
+nobracket:true,
+trigger:{
+source:'damageAfter'
+},
+forced:true,
+content:function (){
+trigger.player.addTempSkill('fengyin',{player:'phaseAfter'});
+player.getBuff();
+}
+},			
+            "nyhzr勾玉魂刀":{
+nobracket:true,
+},
+            "nyhzr乱刃影舞":{
+nobracket:true,
+audio:"ext:新英魂之刃:4",
+unique:true,
+trigger:{
+player:"dyingBegin",
+},
+mark:true,
+skillAnimation:true,
+animationStr:"乱刃影舞",
+animationColor:"metal",
+init:function (player){
+player.storage.nyhzr乱刃影舞=false;
+},
+filter:function (event,player){
+if(player.storage.nyhzr乱刃影舞) return false;
+return true;
+},	
+content:function (){
+if(player.hasSkill('nyhzr勾玉魂刀')&&!player.hasSkill('nyhzr勾玉魂刀2')) player.addSkill('nyhzr勾玉魂刀2');
+player.awakenSkill('nyhzr乱刃影舞');
+player.storage.nyhzr乱刃影舞=true;
+player.recover();
+for(i=0;i<5;i++){
+player.useCard({name:'sha'},game.players.randomGet());
+};
+    },
+    intro:{
+        content:"limited",
+    },							
+                    
+
+},
+            "nyhzr勾玉魂刀2":{
+nobracket:true,
+trigger:{
+source:'damageBegin'
+},
+forced:true,
+content:function (){
+player.recover(2);
+player.removeSkill('nyhzr勾玉魂刀2');
+}
+},
+            "nyhzr幻之分身":{
+nobracket:true,
+group:["nyhzr幻之分身_1111","nyhzr幻之分身_2222"],
+subSkill:{
+1111:{
+audio:"ext:新英魂之刃:1",
+trigger:{
+player:"damageBegin",
+},
+content:function (){
+player.loseHp();
+trigger.untrigger();
+trigger.finish();
+}
+},
+2222:{
+audio:"ext:新英魂之刃:1",
+enable:"phaseUse",
+usable:1,
+content:function (){
+player.loseHp();
+player.addTempSkill('nyhzr幻之分身2',{player:'phaseAfter'});
+}
+},
+},
+	},
+            "nyhzr幻之分身2":{
+nobracket:true,
+marktext:"分",
+intro:{},
+mark:true,
+},
+            "nyhzr宫本武藏":{
+                audio:"ext:新英魂之刃:1",
+                trigger:{
+                    player:"dieBefore",
+                },
+                forced:true,
+                content:function (){
+player.say('燃烧的枫叶……凋零');
+},
+            },
 			},
-        translate:{ 
+        translate:{
+            "nyhzr黑暗中的剑客":"称号",
+            "nyhzr黑暗中的剑客_info":"<b><p align=center><span class=\"bluetext\" style=\"color:#080808\">——黑暗中的剑客</span></b>",
+            "nyhzr勾玉魂刀2":"勾玉魂刀",
+            "nyhzr勾玉魂刀1":"勾玉魂刀",
+            "nyhzr勾玉魂刀":"勾玉魂刀",
+            "nyhzr勾玉魂刀_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你使用【千叶斩】造成伤害后，你封印目标的技能，持续至其回合末，自身获得随机的正面效果<br>当你使用【乱刃影舞】后，下一次造成的伤害时，你会恢复两点体力",
+            "nyhzr千叶斩":"千叶斩",
+            "nyhzr千叶斩_info":"出牌阶段，若你的手牌数大于你的体力值，你可以在牌堆中获得一张【杀】并使用，此【杀】结算后，你弃置一张手牌。若你弃置手牌后，手牌数依然大于体力值，你再使用一次【千叶斩】",
+            "nyhzr乱刃影舞":"乱刃影舞",
+            "nyhzr乱刃影舞_info":"限定技，你进入濒死阶段前,你可以恢复一点体力并对五个随机目标使用【杀】",
+            "nyhzr幻之分身2":"幻之分身",
+            "nyhzr幻之分身":"幻之分身",
+            "nyhzr幻之分身_info":"当你受到伤害时，你可以创造分身来完全免疫此次伤害<br>出牌阶段，你可以创造分身，当你使用【千叶斩】时可以无条件地额外使用一张【杀】<br><br>注：<br>创造分身时会消耗一点体力",
             "nyhzr冰上漫滑":"冰上漫滑",
-            "nyhzr冰上漫滑_info":"出牌阶段，你可以令一名角色获得你的一项技能,持续至其回合末",			
+            "nyhzr冰上漫滑_info":"出牌阶段，你可以令一名角色获得你的一项技能,持续至其回合末",
             "nyhzr企鹅导弹1":"企鹅导弹",		
             "nyhzr企鹅导弹":"企鹅导弹",
             "nyhzr企鹅导弹_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每当你于回合内发动超能企鹅的技能时，你引爆自身的导弹，失去所有技能，持续至回合末",			
@@ -7935,7 +8745,7 @@ player.say('正义，终将胜利');
             "nyhzr闪耀之光":"闪耀之光",
             "nyhzr闪耀之光_info":"出牌阶段限一次，你可以流失一点体力并触发一次【仙灵伙伴】",
             "nyhzr迷藏印记":"迷藏印记",
-            "nyhzr迷藏印记_info":"每当你受到伤害时，若你有牌，你可以牺牲一只妖精皮皮时伤害-1，若游戏人数小于4，你需要弃一张牌",
+            "nyhzr迷藏印记_info":"每当你受到伤害时，若你有手牌，你可以牺牲一只妖精皮皮使伤害-1，若游戏人数小于4，你需要弃一张牌",
             "nyhzr奥妙冲击":"奥妙冲击",
             "nyhzr奥妙冲击_info":"出牌阶段限一次，你可以令一只妖精皮皮俯身在一名角色身上并诅咒他",
             "nyhzr仙灵伙伴1":"仙灵伙伴",
@@ -7943,7 +8753,7 @@ player.say('正义，终将胜利');
             "nyhzr魅魔公主":"称号",
             "nyhzr魅魔公主_info":"<b><p align=center><span class=\"bluetext\" style=\"color:#CD00CD\">——魅魔公主</span></b>",
             "nyhzr恐惧镰刀":"恐惧镰刀",
-            "nyhzr恐惧镰刀_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每次造成伤害时会为自己的噩梦镰刀充能夜魔智力，达到三层时，造成伤害后使对方翻面",
+            "nyhzr恐惧镰刀_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每次造成伤害时会为自己的噩梦镰刀充能夜魔之力，达到三层时，造成伤害后使对方翻面",
             "nyhzr恐惧结界":"恐惧结界",
             "nyhzr恐惧结界_info":"当一名其他力量角色使用【杀】造成一次伤害后，该角色可令你摸一张牌并令你恢复一点体力",
             "nyhzr恶魔冲锋":"恶魔冲锋",
@@ -7973,7 +8783,7 @@ player.say('正义，终将胜利');
             "znyhzr猎物锁定":"猎物锁定",
             "znyhzr猎物锁定_info":"出牌阶段限一次，你可以追猎一名角色，使其下一次受到的伤害+1",
             "nyhzr女皇神威":"女皇神威",
-            "nyhzr女皇神威_info":"出牌阶段，你可以施发自己的女皇神威,于本回合内造成伤害+1,造成伤害时恢复一点体力,使用后删除技能",
+            "nyhzr女皇神威_info":"出牌阶段，你可以释放自己的女皇神威,于本回合内造成伤害+1,造成伤害时恢复一点体力,使用后删除此技能",
             "rnyhzr幽影之蜕":"幽影之蜕",
             "rnyhzr幽影之蜕_info":"回合开始阶段，你可以摸一张牌并跳过出牌阶段，然后转化为蜘蛛形态",
             "znyhzr幽影之蜕":"幽影之蜕",
@@ -8051,7 +8861,7 @@ player.say('正义，终将胜利');
             "nyhzr狂徒":"狂徒",
             "nyhzr狂徒_info":"",
             "nyhzr断裂时空":"断裂时空",
-            "nyhzr断裂时空_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>濒死前，若你没有进入过未知的时空，你可以恢复体力至一点并进入未知的时空中疗养（每回合末恢复一点体力），3回合后你离开当前时空，回原时空中（原时空与未知时空交替进行）",
+            "nyhzr断裂时空_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>濒死前，若你没有进入过不稳定的时空，你可以恢复体力至一点并进入不稳定的时空中疗养（每回合末恢复一点体力），3回合后你离开当前时空，回原时空中（原时空与不稳定的时空交替进行）",
             "nyhzr时空英雄":"称号",
             "nyhzr时空英雄_info":"<b><p align=center><span class=\"bluetext\" style=\"color:#98F5FF\">——时空英雄</span></b>",
             "nyhzr时空道标":"时空道标",
@@ -8059,7 +8869,7 @@ player.say('正义，终将胜利');
             "nyhzr逝时若光":"逝时若光",
             "nyhzr逝时若光_info":"出牌阶段，你可以令场上【时空道标】标记小于或等于5的角色流失体力至这些角色最后一次被标记过的体力值，使用后删除此技能",
             "nyhzr超时空战斧":"超时空战斧",
-            "nyhzr超时空战斧_info":"你造成伤害时，若你的牌数大于或等于二，你可以弃两张牌触发超时空战斧效果：85%使伤害+1，否则劈开时空裂缝，进入未知的时空一个回合",
+            "nyhzr超时空战斧_info":"你造成伤害时，若你的牌数大于或等于二，你可以弃两张牌触发超时空战斧效果：85%使伤害+1，否则劈开时空裂缝，进入不稳定的时空一个回合",
             "nyhzr时空猎人":"时空猎人",
             "nyhzr时空猎人_info":"",						
         },

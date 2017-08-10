@@ -21,7 +21,15 @@ lib.config.lnzGXJZ1=0;
                     connect:true,				
                     
                     character:{
-                         "ln_hyy":["female","shu",3,["LX","dc","机巧"],["des:诸葛亮之妻，诸葛瞻之母，有奇才，上通天文，下察地理，精通兵法，近乎诸略无所不晓，善于发明制造，传授诸葛亮很多学识，在诸葛亮病逝之后不久也随之仙逝，死前以“忠孝”勉励其子诸葛瞻；"]],
+            "ln_cy" :["female",'Han',3,['LN_GH','LN_BG','LN_DUANC'],["des:中国四大才女之一，堪称三国时期第一才女，善于诗文和音乐，幼时便可以分辨出弦音，其父也精通音律，其父死后，蔡琰因战乱而为匈奴人所虏，后来为魏国花钱买回，终于再次回到了故乡，与曹操是忘隙之交；"]],
+            "ln_lz" :["female",'Han',3,['LN_ZHIXIN','LN_DUZHI'],["des:吕雉（公元前241年－公元前180年8月18日），字娥姁[é xū]，通称吕后，或称汉高后、吕太后等等。砀郡单父县（今山东菏泽市单县）人。汉高祖刘邦（前202年-前195年在位）的皇后，高祖死后，被尊为皇太后（前195年—前180年），是中国历史上有记载的第一位皇后和皇太后。同时吕雉也是秦始皇统一中国，实行皇帝制度之后，第一个临朝称制的女性，被司马迁列入记录帝王政事的本纪，后来班固作汉书仍然沿用。她开启了汉代外戚专权的先河。吕雉统治期间实行黄老之术与民休息的政策，废除挟书律，下令鼓励民间藏书、献书，恢复旧典。为后来的文景之治打下了很好的基础，司马迁在《史记·吕后本纪》中对她的评价是“政不出房户，天下晏然；刑罚罕用，罪人是希；民务稼穑，衣食滋殖。”给予吕后施政极大的肯定。"]],
+            "ln_wzf":["female",'Han',3,['LN_XHOU','LN_CN'],["des:卫子夫（？－前91年），名不详，字子夫，河东平阳（今山西临汾）人。卫子夫是汉武帝刘彻的第二任皇后，史称孝武卫皇后，也是中国历史上第一位拥有独立谥号的皇后，卫子夫原为平阳公主家歌女。于建元二年（前139年）入宫，建元三年（前138年）封为夫人，元朔元年（前128年）立为皇后，征和二年（前91年）在巫蛊之祸中自杀身亡。谥思后，葬桐柏亭。身驻汉宫凡49年，在皇后位38年，育有一男三女。"]],
+            "ln_ds":["female",'Han',3,['LN_XINGWEN','LN_JINGZI'],["des:邓绥（81年－121年4月17日），南阳新野人，东汉王朝著名的女政治家，东汉王朝第四代皇帝汉和帝的皇后。邓绥系出名门，其祖父正是以向光武帝刘秀进献了“图天下策”的东汉开国重臣、云台二十八将之首的太傅高密侯邓禹。邓绥15岁入宫，22岁被册封为皇后。东汉延平元年（公元106年），年仅27岁的汉和帝突然驾崩，面对着“主幼国危”的局面，25岁的邓绥临朝称制。邓绥执政期间，对内帮助东汉王朝度过了“水旱十年”的艰难局面，对外则坚决派兵镇压了西羌之乱，使得危机四伏的东汉王朝转危为安，被誉为“兴灭国，继绝世”。但另一方面，邓绥亦有专权之嫌，其废长立幼，临朝称制达十六年而不愿还政于刘氏，朝中多有非议。东汉永宁二年（公元121年），邓绥驾崩，谥号“和熹”，与汉和帝合葬于慎陵。"]],
+            "ln_bz":["female",'Han',4,['LN_CX','LN_JJ','LN_CJ'],["des:西汉史学家、文学家、思想家。以才学著称，曾经几度入宫传授学识，班昭继承兄长遗志，坚决修订完《汉书》，而也只有她才能修订完，故而十分得人敬佩，是皇太后邓绥之师，名望很高"]],
+            "ln_wzj":["female","Han",3,['LN_LY','LN_CQ'],["des:中国四大美女之一，年少之时以民间女子身份被选为宫女，之后，匈奴单于向元帝请求娶汉人为妻（其间又有两种说法，一种是从昭君入宫之后到出塞的这段时间内元帝从未见过昭君，因此当发现她是绝世美女后，颇为后悔。另一种则是，昭君入宫后，过了几年，为元帝发现，两人爱的死去活来，之所以后来送她出塞，则是元帝出于顾及大家的原因），遂许昭君与之，几年后，昭君丧夫（昭君请求回归大汉，但是为皇帝所拒绝），又按照匈奴习俗嫁给了另一个单于，过了11年，又再度丧夫，王昭君经历了悲苦的一生，最终无法忍受而服毒自杀；"]],         
+            "ln_zwy":["female",'qi',4,['LN_DZ','LN_MJ'],["des:齐国人，不学女工，好为治国之术，又名钟离春、钟无盐，相传相貌极丑，故而四十而未加，不甘心的她直谏齐王，使得齐王颇有建树。"]],
+            "ln_mjn":["female","qin",3,['LN_QT'],["des:秦王政时期人物，相传为寻未谋面的夫君而将长城哭倒。"]],
+            "ln_hyy":["female","shu",4,["LX","dc","机巧",'bazhen'],["des:诸葛亮之妻，诸葛瞻之母，有奇才，上通天文，下察地理，精通兵法，近乎诸略无所不晓，善于发明制造，传授诸葛亮很多学识，在诸葛亮病逝之后不久也随之仙逝，死前以“忠孝”勉励其子诸葛瞻；"]],
             "ln_nw":["female","G",4,["SD","SN"],["des:上古传说中的人物，华胥氏之女，人首蛇身，有圣德(五行属土德)，与伏羲兄妹通婚，创造婚姻制度，结束了只知其母不知其父的原始社会，有补天造人、治水平乱等的传说，和伏羲一起治理族人，制造乐器等物品，对后世产生了极大的影响（由于女娲伏羲属于一家人，故而“三皇”中只选取其中一人为代表）；"]],
             "ln_ehny":["female","SW",4,["DX","JF"],["des:娥皇女英，又称皇英。长曰娥皇，次曰女英，是中国古代神话传说中帝尧的两个女儿，姐妹同嫁帝舜为妻。舜父顽，母嚣，弟劣，曾多次欲置舜于死地，终因娥皇女英助之而脱险。舜继尧位，娥皇女英之其妃，后舜至南方巡视，死于苍梧。二妃往寻，得知舜帝已死，埋在九嶷山下，抱竹痛哭，泪染青竹，泪尽而死，因称“潇湘竹”或“湘妃竹”。自秦汉时起，湘江之神湘君与湘夫人的爱情神话，被演变成舜与娥皇、女英的传说。后世因附会称二女为“湘夫人”。"]],
             "ln_tss":["female","SW",4,["HX","启夏"],["des:大禹之妻，传说为狐仙化身，协助大禹，在禹治水之时，将内事管理得条条有理，特别是对于夏启的管教。民间流传许多关于夏禹和涂山氏的美好的爱情故事。"]],
@@ -30,14 +38,516 @@ lib.config.lnzGXJZ1=0;
             "ln_fj":["female","chu",3,["明辨","jinxian"],["des:樊姬，楚庄王的王后。樊姬为了劝阻楚庄王不要因打猎，玩物丧志，就不吃禽兽肉，以此来打动楚庄王。而楚庄王从此改过自新。张说曾说：“楚国所以霸，樊姬有力。”，除此之外，樊姬还有进贤之功、知人之明，孙叔敖可以说是她间接引进的。"]],
             "ln_mm":["female","qi",3,["严母","惟德"],["des:叔敖母，即孙叔敖之母，深知天道。叔敖见蛇，两头岐首，杀而埋之，泣恐不及。母曰阴德，不死必寿。孟母，仉氏，生卒年不可考，孟子的母亲。战国时人，以教子有方著称。孟子三岁丧父，靠母亲教养长大成人，并成为后世儒家追慕向往的亚圣，孟母也留下了“孟母三迁”、“断机教子”等教子佳话。"]],
             "ln_dmsj":["female","chu",3,["预谚","鉴师","识天"],["des:邓曼，曼姓，邓城（今湖北襄阳西北）人，春秋时邓侯之女，楚武王夫人。邓曼为人贤惠聪颖，常对楚武王的某些活动进行劝谋。生子熊赀，后为楚文王。羊舌叔姬，晋国大夫羊舌职之妻，叔向之母，以慧著称，多次准确预言其家人命运。"]],
-            "ln_djj":["female","lu",3,["LN_YH","LN_XJ","方绩"],["des:敬姜，齐侯之女，姜姓，谥曰敬，是鲁国大夫公父文伯的母亲。与孔子同时。世称贤母敬姜的《论劳逸》是春秋战国时期家训的代表之作。其事迹散见於《国语》、《列女传》、《韩诗外传》、《礼记·檀弓》。定姜，姜姓，定是跟从丈夫的谥号，春秋时期卫国国君卫定公的夫人，卫献公嫡母。"]],
+            "ln_djj":["female","qi",3,["LN_YH","LN_XJ","方绩"],["des:敬姜，齐侯之女，姜姓，谥曰敬，是鲁国大夫公父文伯的母亲。与孔子同时。世称贤母敬姜的《论劳逸》是春秋战国时期家训的代表之作。其事迹散见於《国语》、《列女传》、《韩诗外传》、《礼记·檀弓》。定姜，姜姓，定是跟从丈夫的谥号，春秋时期卫国国君卫定公的夫人，卫献公嫡母。"]],
             "ln_jhwj":["female","lu",3,["秩秩","罪谏","救卫"],["des:姜后，是西周第十一代天子周宣王的王后，齐国君主之女。她因为周宣王早卧晏起，于是在永巷待罪，将发簪耳环脱下，称君王耽色，源罪于自己。周宣王感动，励精图治，才有宣王中兴。齐桓卫姬，忠款诚信。公好淫乐，姬为修身。望色请罪，桓公加焉，厥使治内，立为夫人，曾经阻止齐桓公攻卫，并且颇有谏言。"]],
-            "ln_jtxn":["female","SW",4,["LN_SN"],["des:上古传说人物，鸟身人首。传说曾经在黄帝苦战蚩尤不胜之时，传授黄帝兵法，最终黄帝终于打败了蚩尤。"]],
-             "ln_xs":["female","chu",3,['LN_LY','LN_XS'],["des:春秋时期美女，为四大美女之一，曾经协助越王勾践，以美人计迷惑夫差，最终导致夫差败亡，吴国被灭，勾践一雪前耻，而且传说西施德才兼备，但最后的归宿不得而知，《墨子》中称其被丢进河中溺水而亡。"]]},
+            "ln_jtxn":["female","SW",5,["LN_SN"],["des:上古传说人物，鸟身人首。传说曾经在黄帝苦战蚩尤不胜之时，传授黄帝兵法，最终黄帝终于打败了蚩尤。"]],
+            "ln_xs":["female","chu",3,['LN_CY','LN_XS'],["des:春秋时期美女，为四大美女之一，曾经协助越王勾践，以美人计迷惑夫差，最终导致夫差败亡，吴国被灭，勾践一雪前耻，而且传说西施德才兼备，但最后的归宿不得而知，《墨子》中称其被丢进河中溺水而亡。"]]},
    
                              
                     
                     skill:{
+                        LN_BG:{
+                             trigger:{
+                    player:"loseHpEnd",
+                },
+                            filter:function (event,player){
+        return player.hp>0;
+    },
+                content:function (){
+     'step 0'
+        player.chooseTarget(get.prompt('LN_BG'),[1,player.maxHp-player.hp],function(card,player,target){
+            return target!=player;
+        }).set("ai",function(target){
+                return get.damageEffect(target,player,player);
+            
+        });
+        'step 1'
+          if(result.bool){
+            
+            for(var i=0;i<result.targets.length;i++){
+                player.logSkill('LN_BG',result.targets); 
+                if(result.targets[i].hp>2)result.targets[i].chooseToDiscard(2,'he',true);
+               result.targets[i].loseHp();            
+            var chat=['悲歌当泣，远望当归！','拟排忧，心转愁！'].randomGet()
+                  player.say(chat)
+        };}
+          
+    
+    
+    
+    
+    
+},
+   
+                
+                    
+                    
+                            
+                      },
+                        LN_GH:{
+                            trigger:{
+        player:"phaseEnd",
+    },
+    frequent:true,
+                            filter:function (event,player){
+        return player.hp>1;
+    },
+    content:function (){
+        player.chooseToDiscard(1,'he',true)
+        player.loseHp();
+        var chat=['欲死不能得,欲生无一可','不能相随兮愁断肠'].randomGet()
+                  player.say(chat);
+        
+    },
+                            
+                        },
+                        LN_DUANC:{
+                              forbid:["boss"],
+    trigger:{
+        player:"dieBegin",
+    },
+    forced:true,
+    filter:function (event){
+        return event.source&&event.source.isIn();
+    },
+    content:function (){
+        trigger.source.loseHp();
+        trigger.source.chooseToDiscard(999,'hej',true)
+        var chat=['此之长别兮断肠曲！'].randomGet()
+                  player.say(chat)
+    },
+    logTarget:"source",  
+                          ai:{
+        threaten:function (player,target){
+            if(target.hp==1) return 0.2;
+            return 1.5;
+        },
+        effect:{
+            target:function (card,player,target,current){
+                if(!target.hasFriend()) return;
+                if(target.hp<=1&&get.tag(card,'damage')) return [1,0,0,-2];
+            },
+        },
+    },},                 
+                        LN_DUZHI:{
+                            trigger:{
+                    global:"loseHpBegin",
+                },
+                            filter:function (event,player){
+        return event.player!=player&&_status.currentPhase==player&&player.num('h','sha')>0;
+    },
+                content:function (){
+                    'step 0'
+                    var card=player.num('h','sha');
+                    player.chooseToDiscard(card,true);
+                    'step 1'
+                    trigger.player.chooseToDiscard(trigger.player.num('h'),'h',true)
+                    var chat=['为了大汉天下，即使是你，也得死！'].randomGet()
+                  player.say(chat);
+                    
+                            
+                        },},
+                        LN_ZHIXIN:{
+                              trigger:{
+        source:"damageBefore",
+    },
+    forced:true,
+  
+    priority:16,
+    check:function (){return false;},
+    content:function (){
+        trigger.untrigger();
+        trigger.finish();
+        var chat=["汉家天下，终归是我们吕氏的！","不怕一万，就怕万一！"].randomGet()
+                  player.say(chat);
+        var ex=0;
+        if(trigger.card&&trigger.card.name=='sha'){
+            if(player.hasSkill('jiu')) ex++;
+            if(player.hasSkill('luoyi2')) ex++;
+            if(player.hasSkill('reluoyi2')) ex++;
+        }
+        trigger.player.loseHp(trigger.num+ex);
+    },
+    ai:{
+        jueqing:true,
+    },
+                            
+                        },
+                        LN_JINGZI:{
+                             trigger:{
+       global:"gainAfter",
+    },
+  
+    filter:function (event,player){
+        return event.player!=player&& _status.currentPhase==player&&event.cards&&event.cards.length>1;
+    },
+    content:function (){
+        player.gainPlayerCard(1,trigger.player,'hej',true);                
+    }, 
+                               mod:{
+        maxHandcard:function (player,num){
+            var list=['wei','shu','wu','qun','qi','qin','Han','SW','G','han','lu','zhao','yan','chu'];
+            var num2=game.countPlayer(function(current){
+                if(list.contains(current.group)){
+                    list.remove(current.group);
+                    return true;
+                }
+            });
+            return num+num2;
+        },
+    },
+                        },
+                        LN_XINGWEN:{
+                             enable:"phaseUse",
+                            usable:2,
+    filter:function (event,player){
+        return player.hp>0;
+    },
+    filterTarget:function (card,player,target){
+        return target.num('e')>0&&target!=player;
+ 
+    },
+    content:function (){
+         'step 0'
+         player.chooseToDiscard(5,'e',true);
+         'step 1'
+         target.chooseToDiscard(5,'e',true);
+         'step 2'
+          target.draw(2);
+       var chat=['经文治世，百姓不辛！','圣王以教化为先，汝等亦须修文！'].randomGet()
+             player.say(chat);
+    },
+                        },
+                        LN_CN:{
+                             trigger:{
+        player:"phaseBegin",
+    },
+    frequent:true,
+    filter:function (event,player){
+        return player.num('e')<1&&player.num('h','sha')<3;
+    },
+    content:function (){
+        "step 0"
+        player.draw(player.hp);
+        "step 1"
+        event.cards=result;
+        "step 2"
+        player.chooseCardTarget({
+            filterCard:function(card){
+                return _status.event.getParent().cards.contains(card);
+            },
+            selectCard:[1,event.cards.length],
+            filterTarget:function(card,player,target){
+                return player!=target;
+            },
+            ai1:function(card){
+                if(ui.selected.cards.length>0) return -1;
+                if(card.name=='du') return 20;
+                return (_status.event.player.countCards('h')-_status.event.player.hp);
+            },
+            ai2:function(target){
+                var att=get.attitude(_status.event.player,target);
+                if(ui.selected.cards.length&&ui.selected.cards[0].name=='du'){
+                    if(target.hasSkillTag('nodu')) return 0;
+                    return 1-att;
+                }
+                return att-4;
+            },
+            prompt:'请选择要送人的卡牌'
+        });
+         "step 3"
+        if(result.bool){
+            var chat=['陛下勿忧，凡事尽可交于子夫！'].randomGet()
+                  player.say(chat)
+            player.line(result.targets,'green');
+            result.targets[0].gain(result.cards,player);
+            player.$give(result.cards.length,result.targets[0]);
+            for(var i=0;i<result.cards.length;i++){
+                event.cards.remove(result.cards[i]);
+            }
+            if(event.cards.length) event.goto(2);
+        }
+    },
+    ai:{
+        maixie:true,
+        "maixie_hp":true,
+        effect:{
+            target:function (card,player,target){
+                if(get.tag(card,'damage')){
+                    if(player.hasSkillTag('jueqing',false,target)) return [1,-2];
+                    if(!target.hasFriend()) return;
+                    if(target.hp>=4) return [1,get.tag(card,'damage')*2];
+                    if(target.hp==3) return [1,get.tag(card,'damage')*1.5];
+                    if(target.hp==2) return [1,get.tag(card,'damage')*0.5];
+                }
+            },
+        },
+    },
+                        },
+                        LN_XHOU:{
+                            trigger:{
+                    target:["shaBegin","juedouBegin"],
+                },
+                            filter:function (event,player){
+        return player.hp>0&&player.num('h')>0&&player.num('e')<2;
+    },
+                content:function (){
+                    'step 0'
+                    player.draw();
+                    var chat=['大汉之仪不可有所失！','贤者自德，不肖者不久！'].randomGet()
+                  player.say(chat)
+                    'step 1'
+                    player.chooseToDiscard(1,'e',true);
+                    'step 2'
+                    trigger.player.chooseToDiscard(1,'h',true)
+                    trigger.player.chooseToDiscard(1,'e',true)
+                    trigger.player.chooseToDiscard(1,'j',true)
+                }
+                            
+                            
+                        },
+                        LN_HX:{
+                            enable:"phaseUse",
+    usable:3,
+    filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('h');
+    },
+    content:function (){
+        "step 0"
+        player.chooseCardButton(target,target.getCards('h')).set('filterButton',function(button){
+            return get.color(button.link)=='black';
+        });     
+        "step 1"
+        if(result.bool){
+            target.discard(result.links[0]);
+            var chat=['既学，当无拘','汝何至于此？','致汝迂腐不化，吾之过也！'].randomGet()
+                  player.say(chat);
+        }
+    },
+    ai:{
+        order:11,
+        result:{
+            target:function (player,target){
+                return -target.countCards('h');
+            },
+        },
+        threaten:1.1,
+    },
+                            
+                        },
+                        LN_CX:{
+                              trigger:{
+                    player:"phaseEnd",
+                },
+                            filter:function (event,player){
+        return player.hp>0;
+    },
+                content:function (){
+                     player.draw()            
+            var chat=['不学则无所成！','非学不才，非才不有功！'].randomGet()
+                  player.say(chat)                                      
+},
+     mod:{
+        maxHandcard:function (player,num){
+           return num+=1;
+        },
+    },
+                            
+                            
+                            
+                        },                      
+                          LN_JJ:{
+                              trigger:{
+                    player:"phaseBegin",
+                },
+                content:function (){
+     'step 0'
+        player.chooseTarget(get.prompt('LN_JJ'),[1,Infinity],function(card,player,target){
+            return target!=player&&target.sex=='female';
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+          if(result.bool){            
+            for(var i=0;i<result.targets.length;i++){
+                player.logSkill('LN_JJ',result.targets);            
+            player.discardPlayerCard(result.targets[i],'hej',true)        
+            var chat=['嫁鸡随鸡，嫁狗随狗！','三从者，此三从也！'].randomGet()
+                  player.say(chat)
+        };};
+          
+    
+    
+    
+    
+    
+},
+   
+                            
+                            
+                            
+                        },
+                        LN_CJ:{
+                            skillAnimation:true,  
+    unique:true,
+    derivation:"LN_HX",
+    mark:true,
+    intro:{
+        content:"limited",
+    },
+    trigger:{
+        player:"phaseBefore",
+    },
+    forced:true,
+    filter:function (event,player){
+        if(player.storage.LN_CJ) return false;
+       return player.num('h')>player.hp+2;        
+    },
+    content:function (){
+        player.storage.LN_CJ=true;
+        player.loseMaxHp();
+        player.addSkill('LN_HX');
+        player.awakenSkill("LN_CJ");
+        player.awakenSkill("LN_JJ");
+        var chat=['善学者，不止于学，不惑于所学！'].randomGet()
+                  player.say(chat);
+    },
+                        },
+                        LN_QT:{
+                              trigger:{
+                    player:["damageEnd","loseHp"],
+                },
+                            filter:function (event,player){
+        return player.hp>0;
+    },
+                content:function (){
+     'step 0'
+        player.chooseTarget(get.prompt('LN_QT'),[1,Infinity],function(card,player,target){
+            return target!=player&&target.num('he')>=0;
+        }).set("ai",function(target){
+                return get.damageEffect(target,player,player);
+            
+        });
+        'step 1'
+          if(result.bool){
+            
+            for(var i=0;i<result.targets.length;i++){
+                player.logSkill('LN_QT',result.targets);            
+               player.discardPlayerCard(player.maxHp-player.hp,result.targets[i],'he',true) 
+               if(player.num('h')<1)result.targets[i].loseHp();
+            var chat=['嗟我怀人，窴彼周行——《诗经》','我仆矣，云何吁矣——《诗经》'].randomGet()
+                  player.say(chat)
+        };};
+          
+    
+    
+    
+    
+    
+},
+   
+                            
+                        },
+                        
+                        LN_DZ:{
+                            trigger:{
+player:"damageBegin",
+},
+content:function (){
+    'step 0'
+    player.gain(game.createCard('wuzhong'));
+    'step 1'
+    player.discardPlayerCard(1,trigger.source,'he',true)
+    var chat=['不达吾志，决不罢休！'].randomGet()
+                  player.say(chat)                
+},
+                            
+                            
+                        },
+                        LN_MJ:{
+                            
+                           trigger:{
+player:"phaseDiscardBefore",
+},
+filter:function (event,player){
+        return player.num('h')>player.hp;
+    },                     
+    
+content:function (){
+    'step 0'
+    player.chooseTarget(get.prompt('LN_MJ'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('LN_MJ',result.targets);
+            result.targets[0].gainPlayerCard(player,player.num('h')-player.hp,'h',true)
+                     
+            var chat=['眼下之务，当在养民'].randomGet()
+                  player.say(chat)
+        }
+                      
+                            
+},                            
+                        },                              
+                             LN_CQ:{
+                            trigger:{
+player:"phaseEnd",
+},
+                            filter:function (event,player){
+        return player.hp>0;
+    },
+                              
+content:function (){
+    'step 0'
+    player.chooseTarget(get.prompt('LN_CQ'),function(card,player,target){
+            return target!=player&&target.maxHp>target.hp&&target.sex=='male';
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('LN_CQ',result.targets);
+            result.targets[0].draw();
+            result.targets[0].recover();
+            player.loseHp();
+            var chat=['天若有情天亦老！'].randomGet()
+                  player.say(chat)        }                         
+},                       
+                           
+                           },
+                        LN_LY:{
+                            
+                         trigger:{
+global:"phaseDiscardAfter",
+},
+filter:function (event,player){        
+                 return player.maxHp>player.hp&&event.player.sex=='male';
+    },
+content:function (){
+    'step 0'
+    player.draw();
+    'step 1'
+    trigger.player.chooseToDiscard(player.maxHp-player.hp,'he',true);            
+    var chat=['静女其姝——《诗经》'].randomGet()
+                  player.say(chat)
+
+                            
+},                        
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                          
+                            
+                            
+                            
+                        },
                         LN_XS:{
                             enable:"phaseUse",
     usable:1,
@@ -48,13 +558,16 @@ lib.config.lnzGXJZ1=0;
     check:function (card){
         return 6-get.value(card)
     },
+                            filterTarget:function (card,player,target){
+        return target.sex=='male'&&player!=target;
+    },
     content:function (){
         'step 0'
         player.chooseTarget(get.prompt('LN_XS'),function(card,player,target){
             return target!=player;
         }).set('ai',function(target){
             return get.attitude(player,target);
-        });
+        });U
         'step 1'
         if(result.bool){
             player.logSkill('LN_XS',result.targets);
@@ -74,7 +587,7 @@ lib.config.lnzGXJZ1=0;
     },
                             
                         },
-                        LN_LY:{
+                        LN_CY:{
                             trigger:{
 player:"phaseDrawBegin",
 },
@@ -275,7 +788,7 @@ if(player.maxHp>player.hp)player.draw();
                         forced:true,
                         content:function (){
         'step 0'
-        player.chooseTarget(get.prompt('SD'),function(card,player,target){
+        player.chooseTarget(get.prompt('SD'),'选择一名其他角色，令之受到一点伤害，然后你摸取等同于已损失体力值的牌',function(card,player,target){
             return target!=player;
         }).set("ai",function(target){
                 return get.damageEffect(target,player,player);
@@ -304,7 +817,7 @@ if(player.maxHp>player.hp)player.draw();
                         forced:true,
                         content:function (){
         'step 0'
-        player.chooseTarget(get.prompt('SD'),function(card,player,target){
+        player.chooseTarget(get.prompt('SD'),'选择一名其他角色，令之摸取两张牌，然后你摸取一张牌',function(card,player,target){
             return target!=player;
         }).set('ai',function(target){
             return ai.get.attitude(player,target);
@@ -328,7 +841,7 @@ if(player.maxHp>player.hp)player.draw();
                         forced:true,
                         content:function (){
         'step 0'
-        player.chooseTarget(get.prompt('SD'),function(card,player,target){
+        player.chooseTarget(get.prompt('SD'),'选择一名其他角色，将之翻面',function(card,player,target){
             return target!=player;
         }).set("ai",function(target){
                 return get.damageEffect(target,player,player);
@@ -401,17 +914,14 @@ var chat=['圣王重德，不为物扰！'].randomGet()
                 trigger:{
                     global:"damageEnd",
                 },
-                frequent:true,
-                filterTarget:function (card,player,target){
-        return target.sex=='male'&&player!=target;
-    },
+                frequent:true,            
                 checkx:function (event,player){
         var att1=get.attitude(player,event.player);
         var att2=get.attitude(player,event.source);
         return att1>0&&att2<=0;
     },
                 filter:function (event,player){
-        return player.num('hej')>0&&event.player.hp>0;
+        return player.num('hej')>0&&event.player.hp>0&&event.player.sex=='male';
     },
                 content:function (){
          "step 0"
@@ -552,7 +1062,7 @@ var chat=['圣王重德，不为物扰！'].randomGet()
     },
                 content:function (){
         "step 0"
-        player.chooseControl('①','②','cancel2',function(){
+        player.chooseControl('①','②',function(){
               var player=_status.event.player;
             if(player.countCards('h')>3&&player.countCards('h','sha')>1){
                 return '①';
@@ -563,13 +1073,14 @@ var chat=['圣王重德，不为物扰！'].randomGet()
             if(player.hp-player.countCards('h')>1){
                 return '②';
             }
-            return 'cancel2';
+            return true;
             
             });
           
         "step 1"
         if(result.control=='①'){
             player.loseHp();
+            if(player.hujia>0)player.changeHujia(-1);
             player.addTempSkill('LN_ZF','phaseEnd');
             player.logSkill('LN_JG');
             var chat=['见识见识我大商的力量吧！'].randomGet()
@@ -577,6 +1088,7 @@ var chat=['圣王重德，不为物扰！'].randomGet()
         }
         else if(result.control=='②'){
             player.recover();
+            if(player.hujia<1)player.changeHujia();
             player.addTempSkill('LN_LZ','phaseEnd');
             player.logSkill('LN_JG');
             var chat=['养民生息，备战待敌！'].randomGet()
@@ -1108,7 +1620,7 @@ trigger.num+=1;
         trigger.player.recover();
         trigger.player.changeHujia();
         if(trigger.player!=player)player.changeHujia();
-         trigger.finish();
+         
 
 },
                 ai:{
@@ -1326,23 +1838,67 @@ trigger.num+=1;
             "ln_djj":"定姜&敬姜",
             "ln_jhwj":"姜后&卫姬",
             "ln_jtxn":"九天玄女",
-                        'ln_xs':'西施',
-                        'LN_LY':'落雁',
-                        'LN_LY_info':'锁定技：场上每有一名男性角色，你的手牌上限便加一。当你的摸牌阶段开始时，你可以摸取一张牌并且若你已受伤，则额外多摸取一张牌。',
-                        'LN_XS':'献身',
-                        'LN_XS_info':"出牌阶段限一次，你可以弃置任意张牌（至少为二），然后令一名男性角色摸取等量的牌",
-                        LX:"灵心",
+            'ln_xs':'西施',
+            'ln_wzj':'王昭君',
+            'ln_zwy':'钟无艳',
+            'ln_mjn':'孟姜女',
+            'ln_bz':'班昭',
+            'ln_wzf':'卫子夫',
+            'ln_ds':'邓绥',
+            'ln_lz':'吕雉',
+            'ln_cy':'蔡琰',
+            'LN_GH':'孤魂',
+            'LN_GH_info':'你的回合结束时,若你体力值大于1，那么你须失去一点体力并且弃置一张牌（可以取消自动发动）。',
+            'LN_BG':'悲歌',
+            'LN_BG_info':'当你失去体力后，可以指定一到x名其他角色（x为你已损失体力值）,令这些角色各失去一点体力且若这些角色体力值大于2，将弃置两张牌。',
+            'LN_DUANC':'断肠',
+            'LN_DUANC_info':'当你死亡时（若存在伤害来源），杀死你的角色弃置所有牌并失去一点体力。',
+            'LN_DUZHI':'毒治',
+            'LN_ZHIXIN':'雉心',
+            'LN_ZHIXIN_info':'你造成的伤害均视为体力流失，',
+            'LN_DUZHI_info':'当场上有其他角色在你回合内流失体力时若你手中拥有【杀】，你可以先弃置等同于手中的【杀】数量的牌再令之弃置所有手牌。',
+            'LN_JINGZI':'经资',
+            'LN_JINGZI_info':'每当有其他角色在你回合内摸取不小于2张牌时，你可以获得其一张牌（包括判定区内的牌）。锁定技：场上每有一种势力，其中包括上古、三王、秦、齐、汉等等，你上升一点手牌上限。',
+            'LN_XINGWEN':'行文',
+            'LN_XINGWEN_info':'出牌阶段限2次，你可以弃置装备区内所有的牌并且令一名装备区内有牌的角色弃置其装备区内所有牌，然后其摸取两张牌。',
+            'LN_CN':'持内',
+            'LN_CN_info':'你的回合开始时，若你的装备区内没有牌及手中的【杀】小于3，那么你可以从牌顶堆中摸取x张牌，x为你当前体力值，然后可以将之任意分配给其他的角色。',          
+            'LN_XHOU':'贤后',
+            'LN_XHOU_info':'每当你于你拥有手牌及装备区内的牌不大于1时被指定为【杀】、【决斗】的目标，你可以摸取一张牌再弃置一张装备区里的牌，然后令来源弃置其手牌、装备、判定区里各一张牌。',           
+            'LN_CX':'才学',
+            'LN_CX_info':'锁定技：你的手牌上限以及你的防御距离加一。你的回合结束时，你摸取一张牌。',
+            'LN_JJ':'枷禁',
+            'LN_JJ_info':'你的回合开始时，可以指定任意名其他女性角色，令你弃置其一张牌',
+            'LN_CJ':'长卷',
+            'LN_CJ_info':'觉醒技：你的回合开始前，若你的手牌数大于体力值加二，那么你失去一点体力上限，并获得技能【会心】，再失去技能【枷禁】',
+            'LN_HX':'会心',
+            'LN_HX_info':'出牌阶段限三次，你可以观看一名其他角色的手牌，若其中有黑色牌，则你可以弃置其中一张。',
+            'LN_QT':'泣天',
+            'LN_QT_info':'当你受到伤害或者流失体力后，可以指定任意名其他角色，你依次弃置这些角色各x张牌，x为你已损失体力值,而且，若你没有手牌，还将令这些角色失去一点体力。',
+            'LN_DZ':'笃志',
+            'LN_DZ_info':'每当你受到伤害时，你获得一张【无中生有】并且弃置伤害来源一张牌。',                          
+            'LN_MJ':'明谏',
+            'LN_MJ_info':'你的弃牌阶段开始前，若你的手牌数大于体力值，那么你可以选择一名其他角色，令之获得你多出的那部分牌。',
+            'LN_CQ':'痴情',
+            'LN_CQ_info':'你的回合结束时，你可以指定一名已受伤的男性角色，令之摸取一张牌并且回血一点，然后你失去一点体力。',
+            'LN_LY':'落雁',
+            'LN_LY_info':'每当场上男性角色在你已受伤之时进行了弃牌阶段后（只要不跳过，你皆可发动此技能），你摸取一张牌并且令之弃置x张牌（x为你已损失体力值）。',
+            'LN_CY':'沉鱼',
+            'LN_CY_info':'锁定技：场上每有一名男性角色，你的手牌上限便加一。当你的摸牌阶段开始时，你可以摸取一张牌并且若你已受伤，则额外多摸取一张牌。',
+            'LN_XS':'献身',
+            'LN_XS_info':"出牌阶段限一次，你可以弃置任意张牌（至少为二），然后令一名男性角色摸取等量的牌",
+             LX:"灵心",
             "LX_info":"每当你使用一张非转化的普通锦囊牌，可以摸一张牌，且若你的装备区内有牌，你获得技能【奇才】到回合结束，若你装备区内的牌不小于2，额外多摸取一张牌。锁定技：你的手牌上限加x，x为你装备区内的牌。",
             dc:"洞察",
             "dc_info":"在你拥有手牌或者区域内有牌时，你可以将你的任意一张牌当【无懈可击】使用。",
             "机巧":"机巧",
-            "机巧_info":"每当一名其他角色的回合结束时，若你的装备区和手中有牌，则你可以选择两名角色，将其中一名的角色区域内的牌移动到另一名的相应区域内，然后你弃置一张手牌。",
+            "机巧_info":"每当一名其他角色的回合结束时，若你的装备区和手中有牌，则你可以选择一名角色，将其区域内的牌移动到另一名角色的相应区域内，然后你弃置一张手牌。",
             SD:"圣德",
             "SD_info":"<font color=#F0F>被动技能</font> :每当你回合开始或结束时，你随机将你的武将牌翻面或受到一点伤害或恢复一点体力或摸取两张牌。<font color=#F0F>平治</font> ：每当你武将牌翻面后，你可以选择一名其他角色，令之将武将牌翻面。<font color=#F0F>神音</font> :当你恢复体力后，可以选择一名其他角色，令之摸取两张牌然后你摸取一张牌。<font color=#F0F>补天</font> :当你受到伤害后，你摸取等同于已损失体力值的牌并指定一名其他角色，令之受到一点伤害。",
             DX:"德馨",
             "DX_info":"当你的武将牌将要被翻面时，你防止之，并且摸取两张牌。每当你将要体力流失时，你防止之，改为令你摸取两张牌。",
             JF:"鉴夫",
-            "JF_info":"每当场上有角色受到伤害后，若你区域里有牌以及其未死亡，那么你可以弃置一张牌，令该名角色进行一次判定，若为♠，你将武将牌翻面，若为♣，你受到一点体力流失，若为♥，目标角色摸取一张牌并且获得一层护甲，若为♦，目标角色摸取两张牌再弃置区域内的一张牌。",
+            "JF_info":"每当场上有男性角色受到伤害后，若你区域里有牌以及其未死亡，那么你可以弃置一张牌，令该名角色进行一次判定，若为♠，你将武将牌翻面，若为♣，你受到一点体力流失，若为♥，目标角色摸取一张牌并且获得一层护甲，若为♦，目标角色摸取两张牌再弃置区域内的一张牌。",
             SN:"圣女",
             "SN_info":"限定技，当你进入濒死状态时，可以指定一名其他角色，令之受到伤害一点以及翻面，然后你上升体力值至上限并摸两张牌，并且在当前游戏回合结束后，你开始一个新的回合。",
             HX:"狐仙",
@@ -1350,7 +1906,7 @@ trigger.num+=1;
             "启夏":"启夏",
             "启夏_info":"当你受到伤害后，可以令一名其他角色摸取等同于你当前体力值的牌。",
             "LN_JG":"巾帼",
-            "LN_JG_info":"在你的回合开始前，你可以选择一项：①：自损体力一点，获得技能【征伐】到回合结束。②：恢复一点体力，获得技能【理政】到回合结束时。",
+            "LN_JG_info":"在你的回合开始前，你可以选择一项：①：自损体力一点，获得技能【征伐】到回合结束,且若你当前拥有护甲，你失去一层。②：恢复一点体力，获得技能【理政】到回合结束时且若你没有护甲，获得一层。",
             "LN_ZF":"征伐",
             "LN_ZF_info":"出牌阶段限一次，你可以将一张手牌当【杀】使用。你使用的【杀】造成的伤害加一且当你如此造成伤害后，摸取一张牌。",
             "LN_LZ":"理政",

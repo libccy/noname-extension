@@ -6,11 +6,2754 @@ lib.character[i][4].push("forbidai");
 }
 }
 };
+//lib.extensionMenu['extension_新英魂之刃'].a={
+//name:'编辑此扩展',
+//clear:true,
+//onclick:function(){
+//game.say1('禁止编辑');
+//};
+//};
+	if(config.jiangshimoshi){
+	game.addCharacterPack({
+		character:{
+            jiangshifz:["male","qun",5,["xunmeng","zaibian","ganran","wansha","paoxiao"],["forbidai","des:僵尸模式配套武将"]],
+            jiangshinj:["male","qun",3,["baozou","wansha","xueji","shishi","ganran"],["forbidai","des:僵尸模式配套武将"]],
+		},
+		skill:{
+baozou:{
+    mod:{
+        cardUsable:function (card,player,num){
+            if(card.name=='sha') return Infinity;
+        },
+    },
+    ai:{
+        unequip:true,
+        skillTagFilter:function (player,tag,arg){
+            if(!get.zhu(player,'shouyue')) return false;
+            if(arg&&arg.name=='sha') return true;
+            return false;
+        },
+    },
+},
+            shishi:{
+				trigger:{source:'dieAfter'},
+				forced:true,
+				content:function(){
+					player.gainMaxHp(1);
+					player.recover();
+				}				
+			},
+            xunmeng:{
+				trigger:{source:'damageBegin'},
+				filter:function(event){
+					return event.card&&event.card.name=='sha'&&event.parent.name!='_lianhuan'&&event.parent.name!='_lianhuan2';
+				},
+				forced:true,
+				content:function(){
+					trigger.num++;
+					if(player.hp>1) player.loseHp();
+				}
+			},
+            zaibian:{
+				trigger:{player:'phaseUseBegin'},
+				filter:function(event,player){
+					return get.population('zhong')-get.population('fan')-get.population('nei')+2>0;
+				},
+				forced:true,
+				content:function(){
+					var num=get.population('zhong')-get.population('fan')-get.population('nei')+2;
+					player.draw(num);
+				}
+			},
+			ganran:{
+				mod:{
+					cardEnabled:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+					cardRespondable:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+					cardSavable:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+				},
+				enable:['chooseToUse'],
+				filterCard:{type:'equip'},
+				viewAsFilter:function(player){
+					return player.num('h',{type:'equip'})>0;
+				},
+				viewAs:{name:'tiesuo'},
+				check:function(){return 1},
+				group:'ganran2',
+				ai:{
+					order:4,
+					useful:-1,
+					value:-1
+				}
+			},
+			ganran2:{
+				enable:'phaseUse',
+				filter:function(event,player){
+					return player.num('h',{type:'equip'})>0;
+				},
+				filterCard:{type:'equip'},
+				prepare:function(cards,player){
+					player.$throw(cards,1000);
+				},
+				discard:false,
+				delay:0.5,
+				content:function(){
+					"step 0"
+					player.draw();
+					"step 1"
+					for(var i=0;i<cards.length;i++){
+						ui.discardPile.appendChild(cards[i]);
+					}
+				},
+				ai:{
+					order:3.5,
+					result:{
+						player:1
+					}
+				}
+			},
+			
+		},	
+		translate:{
+			jiangshifz:'僵尸',
+			jiangshinj:'僵尸',
+			baozou:'暴走',
+			baozou_info:' 锁定技，出牌阶段，你可以使用任意数量的【杀】。 ',
+			shishi:'噬尸',
+			shishi_info:' 锁定技，当你杀死一名角色后，你获得一点体力上限并回复一点体力。 ',
+			xunmeng:'迅猛',
+			xunmeng_info:' 锁定技，你的杀造成的伤害+1。你的杀造成伤害时，若你体力大于1，你流失1点体力。 ',
+			zaibian:'灾变',
+			zaibian_info:' 锁定技，你的出牌阶段开始时，若人类玩家数-僵尸玩家数+1大于0，则你摸取该数目的牌。 ' ,
+			ganran:'感染',
+			ganran_info:' 锁定技，你的装备牌都视为铁锁连环',
+			ganran2:'感染·重铸',
+		},
+},'僵尸模式');
+	if ( lib.brawl ) {
+lib.brawl.jiangshimoshi = {
+            name:'僵尸模式',
+            mode:'identity',			
+            intro:[
+			'当前人数：'+config.jiangshimoshiPlayerNumber+'人（游戏人数在扩展界面设置）',
+			'游戏中无法使用换位代码。',
+			'移植神杀的僵尸模式，规则有改动。<br><span class=\"bluetext\" style=\"color:#EE7621;font-size:20px\"><p align="center">规则介绍</p></span>',
+			'1.在此模式中主公、忠臣为人类，反贼、内奸为僵尸。',
+			'2.游戏开始时，所有角色的身份变为人类，主公获得退治印记（每回合开始时，退治印记+1）。',
+			'3.若主公死亡，则下一名人类玩家成为主公，生命与上限+1，并获取相当于原主公退治标记数-1的退治标记。',
+			'4.主公的第二个回合开始时，夜幕降临，此轮中会有X个人变为反贼僵尸（X为存活人数/6（向上整取））。以此法变为反贼僵尸时，体力上限变为5。',
+			'5.僵尸杀死人类后，人类与内奸僵尸组成双将。',
+			'6.人类死亡后与内奸僵尸组成双将。',
+			'7.内奸僵尸杀死人类后变为反贼僵尸。<br><span class=\"bluetext\" style=\"color:#EE7621;font-size:20px\"><p align="center">游戏结束条件</p></span>',
+			'1.退治成功，所有人类胜利，僵尸以及成为僵尸的人类失败：<br>任何玩家的回合开始时，主公退治印记到达8。<br>击杀所有僵尸。',
+			'2.退治失败，所有反贼僵尸胜利，非反贼僵尸以及人类失败：<br>主公阵亡并且场上没有可以代替主公的人类。'
+			],
+content:{
+gameStart:function(){
+for(var i=0;i<game.players.length;i++){
+if(game.players[i]!=game.zhu){
+game.players[i].identity='zhong';
+};
+};
+game.zhu.storage.fzjsNumber=0;
+game.showIdentity();
+game.swapSeat=function(all){};
+}
+},
+init:function(){
+if(lib.device){
+var zoom=function(num){
+var zoom=num;
+game.documentZoom=game.deviceZoom*zoom;
+document.documentElement.style.zoom=game.documentZoom;
+};
+zoom(0.8);
+};
+game.saveConfig('identity_mode','normal','identity');
+game.saveConfig('player_number',config.jiangshimoshiPlayerNumber,'identity');
+if(config.jiangshimoshiPlayerNumber=='9') lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='10') lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='11') lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='12') lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='13') lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='14') lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='15') lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+if(config.jiangshimoshiPlayerNumber=='16') lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong','zhong']);
+			lib.skill._jisuangailv={
+				trigger:{global:'phaseAfter'},
+				forced:true,
+				filter:function(event,player){
+					return player==game.zhu&&game.zhu.storage._tuizhi==2;
+				},
+				content:function(){
+					if(game.zhu.storage.jisuangailv==undefined) game.zhu.storage.jisuangailv=0;
+					game.zhu.storage.jisuangailv++;
+				},
+				intro:{
+					content:'mark'
+				},
+			};
+			lib.skill._tuizhi={
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				priority:10,
+				filter:function(event,player){
+					return player==game.zhu;
+				},
+				content:function(){
+					if(player.storage._tuizhi==undefined) player.storage._tuizhi=0;
+					player.storage._tuizhi++;
+					player.markSkill('_tuizhi');
+					player.syncStorage('_tuizhi');
+				},
+				intro:{
+					content:'mark'
+				},
+			};
+			lib.skill._tuizhi2={
+				skillAnimation:'epic',
+				animationStr:'人类胜利',
+				animationColor:'metal',
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				priority:5,
+				filter:function(event,player){
+					return game.zhu.storage._tuizhi>=8;
+				},
+				content:function(){
+					if(game.me.identity=='zhu'||game.me.identity=='zhong'){
+						game.over(true);
+					}else{
+						game.over(false);
+					};
+				}
+			};
+			lib.skill._jiangshi={
+				trigger:{player:'dieBegin'},
+				forced:true,
+				filter:function(event,player){
+					return player.identity=='zhong';
+				},
+				content:function(){
+					if(player.storage.fzjs==0){
+						player.draw(4);
+						player.discard(player.get("hej"));
+					    player.revive();
+						player.uninit;
+						player.init(player.name,'jiangshifz');
+						player.maxHp=5;
+						player.hp=player.maxHp;
+						player.identity='fan';
+					}else{
+						player.draw(4);
+						player.discard(player.get("hej"));
+					    player.revive();
+						player.uninit;
+						player.init(player.name,'jiangshinj');
+						player.hp=player.maxHp;
+						player.identity='nei';
+					};
+					game.showIdentity();
+					trigger.untrigger();
+					trigger.finish();
+				}
+			};
+			lib.skill._jiangshi2={
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				popup:false,
+				silent:true,
+				priority:15,
+				filter:function(event,player){
+					if(game.players.length<=6) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+					if(game.players.length>6&&game.players.length<=12) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv*2/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+					if(game.players.length>12&&game.players.length<=18) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv*3/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+				},
+				content:function(){
+					player.die();
+					player.identity='zhong';
+					player.storage.fzjs=0;
+					game.zhu.storage.fzjsNumber++;
+				}
+			}
+			lib.skill._jiangshi3={
+				trigger:{source:'dieBefore'},
+				forced:true,
+				filter:function(event,player){
+					return event.player.identity=='zhong'&&player.identity=='nei';
+				},
+				content:function(){
+					player.identity='fan';
+					player.init(player.name,'jiangshifz');
+					game.showIdentity();
+				},
+			};
+			lib.skill._jiangshi4={
+				skillAnimation:'epic',
+				animationStr:'主公阵亡',
+				animationColor:'metal',
+				trigger:{player:'dieBegin'},
+				forced:true,
+				filter:function(event,player){
+					return player.storage._tuizhi>0;
+				},
+				content:function(){
+					for(var i=0;i<game.players.length;i++){
+						if(game.players[i].identity=='zhong'){
+							event.target=game.players[i];
+							break;
+						}
+					}
+					if(event.target){
+						game.zhu.line(event.target,'thunder');
+						game.log(game.zhu,'死亡',event.target,'成为了新的主公！');
+						game.zhu=event.target;
+						event.target.identity='zhu';
+						event.target.gainMaxHp();
+						event.target.recover();
+						event.target.storage._tuizhi=player.storage._tuizhi-1;
+						event.target.markSkill('_tuizhi');
+						event.target.syncStorage('_tuizhi');
+						game.showIdentity();
+					}
+				}
+			}
+			lib.skill._jiangshiTx={
+				skillAnimation:'epic',
+				animationStr:'灵魂、献祭',
+				forced:true,		
+				trigger:{player:'dieBefore'},
+				filter:function(event,player){
+					return player.identity=='zhong';
+				},
+				content:function(){
+					game.log('灵魂、献祭');
+				}
+			};
+			lib.skill._jiangshiTx2={
+				audio:'jiangshidie',
+				skillAnimation:'epic',
+				animationStr:'僵尸、灭亡',
+				animationColor:'thunder',
+				forced:true,
+				trigger:{player:'dieBefore'},
+				filter:function(event,player){
+					return player.identity=='fan'||player.identity=='nei';
+				},
+				content:function(){
+					game.log('僵尸、灭亡');
+				}
+			};
+			lib.skill._jiangshiTx3={
+				skillAnimation:'epic',
+				animationStr:'暗夜、降临',
+				animationColor:'thunder',
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				filter:function(event,player){
+					return player.storage._tuizhi==2&&player.storage.ayjljs!=0;
+				},
+				content:function(){
+					for(var i=0;i<game.players.length;i++){
+						game.players[i].storage.ayjljs=0;
+					};
+					game.log('暗夜、降临');
+				}
+			}
+			lib.skill._huzhu={
+				enable:'phaseUse',
+				usable:1,
+				filterCard:function(card,player){
+					return card.name=='tao';
+				},
+				filter:function(event,player){
+					return player.identity=='zhong'||player.identity=='zhu';
+				},
+				filterTarget:function(card,player,target){
+					if(player==target) return false;
+					return get.distance(player,target)<=1&&target.isDamaged()&&(target.identity=='zhong'||target.identity=='zhu');
+				},
+				content:function(){
+					target.recover();
+				}
+			}
+			lib.translate._tuizhi='退治'
+			lib.translate._tuizhi2='退治'
+			lib.translate._jiangshi='僵尸'
+			lib.translate._jiangshi2='僵尸'
+			lib.translate._jiangshi3='僵尸'
+			lib.translate._jiangshi4='僵尸'
+			lib.translate._jiangshiTx='僵尸'
+			lib.translate._jiangshiTx2='僵尸'
+			lib.translate._jiangshiTx3='僵尸'
+			lib.translate._huzhu='互助'
+			lib.translate._huzhu_info='出牌阶段限一次，人类玩家可以弃置一张【桃】令距离一的人类玩家恢复一点体力'
+},
+};
+};
+};
+	if(config.jianbingmoshi){
+	if ( lib.brawl ) {
+lib.translate.unknown8='九号位';
+lib.translate.unknown9='十号位';
+lib.translate.unknown10='十一号位';
+lib.translate.unknown11='十二号位';
+lib.translate.unknown12='十三号位';
+lib.translate.unknown13='十四号位';
+lib.translate.unknown14='十五号位';
+lib.translate.unknown15='十六号位';
+lib.translate.chanceIdentity0='自立为国';
+lib.translate.chanceIdentity='自立为国';
+lib.translate.chanceIdentity1='自立为国';
+lib.translate.chanceIdentity2='自立为国';
+lib.translate.chanceIdentity3='自立为国';
+lib.translate.chanceIdentity4='自立为国';
+lib.translate.chanceIdentity5='自立为国';
+lib.translate.chanceIdentity6='自立为国';
+lib.translate.chanceIdentity7='自立为国';
+lib.translate.chanceIdentity8='自立为国';
+lib.translate.chanceIdentity9='自立为国';
+lib.translate.chanceIdentity10='自立为国';
+lib.translate.chanceIdentity11='自立为国';
+lib.translate.chanceIdentity12='自立为国';
+lib.translate.chanceIdentity13='自立为国';
+lib.translate.chanceIdentity14='自立为国';
+lib.translate.chanceIdentity15='自立为国';
+			lib.group.push('er');
+			lib.translate.er='国';		
+			lib.translate.erColor="#990099"		
+			lib.group.push('san');
+			lib.translate.san='国';		
+			lib.translate.sanColor="#990099"		
+			lib.group.push('si');
+			lib.translate.si='国';		
+			lib.translate.siColor="#990099"		
+			lib.group.push('wu1');
+			lib.translate.wu1='国';		
+			lib.translate.wu1Color="#990099"		
+			lib.group.push('liu');
+			lib.translate.liu='国';		
+			lib.translate.liuColor="#990099"		
+			lib.group.push('qi');
+			lib.translate.qi='国';		
+			lib.translate.qiColor="#990099"		
+			lib.group.push('ba');
+			lib.translate.ba='国';		
+			lib.translate.baColor="#990099"		
+			lib.group.push('jiu');
+			lib.translate.jiu='国';		
+			lib.translate.jiuColor="#990099"		
+			lib.group.push('shi');
+			lib.translate.shi='国';		
+			lib.translate.shiColor="#990099"		
+			lib.group.push('shiyi');
+			lib.translate.shiyi='国';		
+			lib.translate.shiyiColor="#990099"		
+			lib.group.push('shier');
+			lib.translate.shier='国';		
+			lib.translate.shierColor="#990099"		
+			lib.group.push('shisan');
+			lib.translate.shisan='国';		
+			lib.translate.shisanColor="#990099"		
+			lib.group.push('shisi');
+			lib.translate.shisi='国';		
+			lib.translate.shisiColor="#990099"		
+			lib.group.push('shiwu');
+			lib.translate.shiwu='国';		
+			lib.translate.shiwuColor="#990099"		
+			lib.group.push('shiliu');
+			lib.translate.shiliu='国';		
+			lib.translate.shiliuColor="#990099"		
+			lib.group.push('yi');
+			lib.translate.yi='国';		
+			lib.translate.yiColor="#990099"		
+lib.brawl.jianbingmoshi = {
+            name:'兼并模式',
+            mode:'guozhan',
+            intro:[
+			'游戏开始，每个玩家自立为国，各自为战。',
+			'每当有一个国家灭亡时，造成其灭亡的国家可以获得灭亡的国家的武将技能。',
+            ],
+content:{
+gameStart:function(){
+game.me.useSkill('chanceIdentity0');
+}
+},
+init:function(){
+game.saveConfig('onlyguozhan',false,'guozhan');
+if(lib.device){
+var zoom=function(num){
+var zoom=num;
+game.documentZoom=game.deviceZoom*zoom;
+document.documentElement.style.zoom=game.documentZoom;
+};
+zoom(0.8);
+};
+lib.skill.chanceIdentity={
+                content:function (){                    
+player.next.group='er';
+player.next.identity='er';
+player.next._group='er';
+player.next.node.identity.firstChild.innerHTML=get.translation('er');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>2){
+player.next.useSkill("chanceIdentity2")    
+}
+},
+            };
+lib.skill.chanceIdentity2={
+                content:function (){
+player.next.group='san';
+player.next.identity='san';
+player.next._group='san';
+player.next.node.identity.firstChild.innerHTML=get.translation('san');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>3){
+player.next.useSkill("chanceIdentity3")    
+}      
+},
+            };
+lib.skill.chanceIdentity3={
+                content:function (){
+player.next.group='si';
+player.next.identity='si';
+player.next._group='si';
+player.next.node.identity.firstChild.innerHTML=get.translation('si');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>4){
+player.next.useSkill("chanceIdentity4")    
+}   
+},
+            };
+lib.skill.chanceIdentity4={
+                content:function (){
+player.next.group='wu1';
+player.next.identity='wu1';
+player.next._group='wu1';
+player.next.node.identity.firstChild.innerHTML=get.translation('wu1');
+player.next.node.identity.dataset.color=player.next.identity;         
+if(game.players.length>5){
+player.next.useSkill("chanceIdentity5")    
+}   
+},
+            };
+lib.skill.chanceIdentity5={
+                content:function (){
+player.next.group='liu';
+player.next.identity='liu';
+player.next._group='liu';
+player.next.node.identity.firstChild.innerHTML=get.translation('liu');
+player.next.node.identity.dataset.color=player.next.identity;              
+if(game.players.length>6){
+player.next.useSkill("chanceIdentity6")    
+}    
+},
+            };
+lib.skill.chanceIdentity6={
+                content:function (){
+player.next.group='qi';
+player.next.identity='qi';
+player.next._group='qi';
+player.next.node.identity.firstChild.innerHTML=get.translation('qi');
+player.next.node.identity.dataset.color=player.next.identity;        
+if(game.players.length>7){
+player.next.useSkill("chanceIdentity7")    
+}   
+},
+            };
+lib.skill.chanceIdentity7={
+                content:function (){
+player.next.group='ba';
+player.next.identity='ba';
+player.next._group='ba';
+player.next.node.identity.firstChild.innerHTML=get.translation('ba');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>8){
+player.next.useSkill("chanceIdentity8")    
+}   
+},
+            };
+lib.skill.chanceIdentity8={
+                content:function (){
+player.next.group='jiu';
+player.next.identity='jiu';
+player.next._group='jiu';
+player.next.node.identity.firstChild.innerHTML=get.translation('jiu');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>9){
+player.next.useSkill("chanceIdentity9")    
+}   
+},
+            };
+lib.skill.chanceIdentity9={
+                content:function (){
+player.next.group='shi';
+player.next.identity='shi';
+player.next._group='shi';
+player.next.node.identity.firstChild.innerHTML=get.translation('shi');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>10){
+player.next.useSkill("chanceIdentity10")    
+}   
+},
+            };
+lib.skill.chanceIdentity10={
+                content:function (){
+player.next.group='shiyi';
+player.next.identity='shiyi';
+player.next._group='shiyi';
+player.next.node.identity.firstChild.innerHTML=get.translation('shiyi');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>11){
+player.next.useSkill("chanceIdentity11")    
+}   
+},
+            };
+lib.skill.chanceIdentity11={
+                content:function (){
+player.next.group='shier';
+player.next.identity='shier';
+player.next._group='shier';
+player.next.node.identity.firstChild.innerHTML=get.translation('shier');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>12){
+player.next.useSkill("chanceIdentity12")    
+}   
+},
+            };
+lib.skill.chanceIdentity12={
+                content:function (){
+player.next.group='shisan';
+player.next.identity='shisan';
+player.next._group='shisan';
+player.next.node.identity.firstChild.innerHTML=get.translation('shisan');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>13){
+player.next.useSkill("chanceIdentity13")    
+}   
+},
+            };
+lib.skill.chanceIdentity13={
+                content:function (){
+player.next.group='shisi';
+player.next.identity='shisi';
+player.next._group='shisi';
+player.next.node.identity.firstChild.innerHTML=get.translation('shisi');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>14){
+player.next.useSkill("chanceIdentity14")    
+}   
+},
+            };
+lib.skill.chanceIdentity14={
+                content:function (){
+player.next.group='shiwu';
+player.next.identity='shiwu';
+player.next._group='shiwu';
+player.next.node.identity.firstChild.innerHTML=get.translation('shiwu');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>15){
+player.next.useSkill("chanceIdentity15")    
+}   
+},
+            };
+lib.skill.chanceIdentity15={
+                content:function (){
+player.next.group='shiliu';
+player.next.identity='shiliu';
+player.next._group='shiliu';
+player.next.node.identity.firstChild.innerHTML=get.translation('shiliu');
+player.next.node.identity.dataset.color=player.next.identity;       
+if(game.players.length>16){
+player.next.useSkill("chanceIdentity16")    
+}   
+},
+            };
+lib.skill.chanceIdentity0={
+                content:function (){
+player.next.group='yi';
+player.next.identity='yi';
+player.next._group='yi';
+player.next.node.identity.firstChild.innerHTML=get.translation('yi');
+player.next.node.identity.dataset.color=player.next.identity;       
+player.next.useSkill("chanceIdentity")    
+},
+            };
+lib.skill._gainSkill={
+                trigger:{
+                    player:"dieBegin",
+                },
+                forced:true,
+                filter:function (event){
+                    return event.source&&event.source.isIn();
+                },
+                content:function (){
+					game.log(trigger.source,'获得了',player.getSkills());
+					trigger.source.addSkill(player.getSkills());
+				},
+            };
+}
+}
+}
+	};
+		game.addCharacterPack({
+		character:{
+            "hnyhzr后羿Chessboss":["male","min",11,["nyzhr逐阳Chessboss","nyhzr穿云箭Chessboss","nyhzr燎火之箭"],["ext:新英魂之刃/NewPifunyhzr射日英雄1.jpg","forbidai","chessboss","des:<li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
+            "gnyhzr宫本武藏Chessboss":["female","min",13,["nyhzr剑客横行Chessboss","nyhzr千叶斩Chessboss","nyhzr乱刃影舞"],["ext:新英魂之刃/Newgnyhzr宫本武藏.jpg","forbidai","chessboss","des:<li>黑夜深沉，参天宫殿伫立于阴影之中。传说中拥有巨大力量的天照宝珠就被魔王藏在这里。<li>女剑客静静潜伏在悬崖边上，隐藏在狐面下的冰冷双瞳远远向宫殿凝望。<li>几支巡逻队打着火把如往常一般在宫殿外巡视，她低下身子，轻巧地绕过他们潜入宫殿之中。阴森幽暗的建筑中遍布重重机关，稍一不慎就将死无葬身之地。上下摇摆的抡锤、瞬时淹没的流沙、地底渗出的剧毒、诡异的谜题之门……这些都难不倒这个美艳冷酷的女子。双刀在手，一路过关斩将。<li>暗夜中的潜伏者最终来到了她的终点——某个宫殿深处的密室，悄无声息地划开的机关门后，一片黑暗中的石台上，天照宝珠正在绽放光华。<li>目标就在眼前，她不由加快脚步，但突然觉察到什么又立即停下，双手交错反握刀柄，伏身露出戒备的神情。“真可惜，再往前一步，你就死了。”魔王鼓着掌，从黑暗中露出身形，嘴角扯出一道狰狞的笑。“重重关卡都被你闯过，真是精彩。宫本武藏，你果然不愧传说中的盛名……但你注定拿不到它，因为我会在你拿到之前毁掉它。”<li>“可惜我的目标不是它。”武藏冷冷一笑：“是你！”<li>刀光闪过，天照宝珠仍静静地光华四射，魔王还留存着讶异表情的人头已落地。<li>双刀入鞘，身形一晃，天照宝珠落入腰囊，而武藏，已重新隐入黑暗之中……"]],
+		},
+        skill:{
+            "nyzhr逐阳Chessboss":{
+                nobracket:true,
+    			mod:{
+    				chessMove:function(player,current){
+    					return current+3;
+    				},
+    			},
+    			enable:'phaseUse',
+    			usable:1,
+    			direct:true,
+    			delay:false,
+    			preservecancel:true,
+    			filter:function(event,player){
+    				if(!player.movable(0,1)&&!player.movable(0,-1)&&
+    					!player.movable(1,0)&&!player.movable(-1,0)){
+    					return false;
+    				}
+    				var move=2;
+    				move=game.checkMod(player,move,'chessMove',player);
+    				return move>0;
+    			},
+    			content:function(){
+    				"step 0"
+    				var move=2;
+    				move=game.checkMod(player,move,'chessMove',player);
+    				player.chooseToMove(move).phasing=true;
+    				"step 1"
+    				if(ui.confirm){
+    					ui.confirm.classList.add('removing');
+    				}
+    				if(!result.bool){
+    					var skill=player.getStat().skill;
+    					skill._chessmove--;
+    					if(typeof skill._chessmovetried=='number'){
+    						skill._chessmovetried++;
+    					}
+    					else{
+    						skill._chessmovetried=1;
+    					}
+    				}
+    			},
+    			ai:{
+    				order:5,
+    				result:{
+    					playerx:function(player){
+    						if(get.mode()=='tafang'&&_status.enemies.contains(player)){
+    							return 1;
+    						}
+    						var nh=player.countCards('h');
+    						if(!player.countCards('h','sha')&&
+    						!player.countCards('h','shunshou')&&
+    						!player.countCards('h','bingliang')){
+    							if(nh<=Math.min(3,player.hp)) return Math.random()-0.3;
+    							else if(nh<=Math.min(2,player.hp)) return Math.random()-0.4;
+    							return Math.random()-0.5;
+    						}
+    						var neighbour;
+    						neighbour=player.getNeighbour(0,1);
+    						if(neighbour&&game.players.contains(neighbour)&&neighbour.side!=player.side){
+    							if(get.distance(player,neighbour,'attack')<1) return 1;
+    							return 0;
+    						}
+    						neighbour=player.getNeighbour(0,-1);
+    						if(neighbour&&game.players.contains(neighbour)&&neighbour.side!=player.side){
+    							if(get.distance(player,neighbour,'attack')<1) return 1;
+    							return 0;
+    						}
+    						neighbour=player.getNeighbour(1,0);
+    						if(neighbour&&game.players.contains(neighbour)&&neighbour.side!=player.side){
+    							if(get.distance(player,neighbour,'attack')<1) return 1;
+    							return 0;
+    						}
+    						neighbour=player.getNeighbour(-1,0);
+    						if(neighbour&&game.players.contains(neighbour)&&neighbour.side!=player.side){
+    							if(get.distance(player,neighbour,'attack')<1) return 1;
+    							return 0;
+    						}
+    						return 1;
+    					},
+    					player:function(player){
+    						if(player.getStat().skill._chessmovetried>=10){
+    							return 0;
+    						}
+    						var x=lib.skill._chessmove.ai.result.playerx(player);
+    						if(player.isMad()) return -x;
+    						return x;
+    					}
+    				}
+    			}
+            },
+            "nyhzr穿云箭Chessboss":{
+				nobracket:true,
+    			enable:'phaseUse',
+    			usable:1,
+    			filter:function(event,player){
+					return player.num('h')>0;
+				},
+				filterCard:{name:'sha'},
+				selectCard:1,
+				content:function(){
+					'step 0'
+					player.chooseControl('上','下','左','右').set('ai',function(){
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]==xy2[0]&&xy1[1]>xy2[1]){
+								var aiChooseControl='上';
+							};
+        					if (xy1[0]==xy2[0]&&xy1[1]<xy2[1]){
+								var aiChooseControl='下';
+							};
+        					if (xy1[0]>xy2[0]&&xy1[1]==xy2[1]){
+								var aiChooseControl='左';
+							};
+        					if (xy1[0]<xy2[0]&&xy1[1]==xy2[1]){
+								var aiChooseControl='右';
+							};
+    					};
+						return aiChooseControl;
+					})
+					'step 1'
+					if (result.control=='上'){
+						game.log(player,'向上射出穿云箭');
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]==xy2[0]&&xy1[1]>xy2[1]){
+            					game.players[i].damage();
+								game.players[i].getDebuff();
+        					};
+    					};
+					};
+					if (result.control=='下'){
+						game.log(player,'向下射出穿云箭');
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]==xy2[0]&&xy1[1]<xy2[1]){
+            					game.players[i].damage();
+								game.players[i].getDebuff();
+        					};
+    					};
+					};
+					if (result.control=='左'){
+						game.log(player,'向左射出穿云箭');
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]>xy2[0]&&xy1[1]==xy2[1]){
+            					game.players[i].damage();
+								game.players[i].getDebuff();
+        					};
+    					};
+					};
+					if (result.control=='右'){
+						game.log(player,'向右射出穿云箭');
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]<xy2[0]&&xy1[1]==xy2[1]){
+            					game.players[i].damage();
+								game.players[i].getDebuff();
+        					};
+    					};
+					};
+				},
+				ai:{
+					result:{
+    					player:function(player){
+    					for(var i=0;i<game.players.length;i++){
+        					var xy1=player.getXY();
+							var xy2=game.players[i].getXY();
+        					if (xy1[0]==xy2[0]&&xy1[1]>xy2[1]){
+								var aiChooseControl='上';
+							};
+        					if (xy1[0]==xy2[0]&&xy1[1]<xy2[1]){
+								var aiChooseControl='下';
+							};
+        					if (xy1[0]>xy2[0]&&xy1[1]==xy2[1]){
+								var aiChooseControl='左';
+							};
+        					if (xy1[0]<xy2[0]&&xy1[1]==xy2[1]){
+								var aiChooseControl='右';
+							};
+    					};
+						if(aiChooseControl=='上'||aiChooseControl=='下'||aiChooseControl=='左'||aiChooseControl=='右') return 1;
+						return 0;
+    					},
+					},
+					order:4.8,
+				},
+			},
+            "nyhzr剑客横行Chessboss":{
+nobracket:true,
+    group:["nyhzr剑客横行Chessboss_1111","nyhzr剑客横行Chessboss_2222"],
+    subSkill:{
+        1111:{
+trigger:{
+player:"phaseAfter",
+},	
+forced:true,
+content:function (){
+if(game.me.hasSkill('nyhzr剑客横行Chessboss')){
+nyhzr上=ui.create.div('.menubutton.large','↑',function(){
+	if (game.me.storage.nyhzr上==undefined||game.me.storage.nyhzr上==1){
+		game.me.storage.nyhzr上=0;
+		game.me.moveUp();
+		setTimeout(function(){
+		game.me.storage.nyhzr上=1;
+	},1000);
+	};
+	});
+nyhzr上.style.height='30px';
+nyhzr上.style.width='30px';
+nyhzr上.style.left='17px';
+nyhzr上.style.top='0px';
+nyhzr下=ui.create.div('.menubutton.large','↓',function(){
+	if (game.me.storage.nyhzr下==undefined||game.me.storage.nyhzr下==1){
+		game.me.storage.nyhzr下=0;
+		game.me.moveDown();
+		setTimeout(function(){
+		game.me.storage.nyhzr下=1;
+	},1000);
+	};
+	});
+nyhzr下.style.height='30px';
+nyhzr下.style.width='30px';
+nyhzr下.style.right='39px';
+nyhzr下.style.top='90px';
+nyhzr左=ui.create.div('.menubutton.large','←',function(){
+	if (game.me.storage.nyhzr左==undefined||game.me.storage.nyhzr左==1){
+		game.me.storage.nyhzr左=0;
+		game.me.moveLeft();
+		setTimeout(function(){
+		game.me.storage.nyhzr左=1;
+	},1000);
+	};
+	});
+nyhzr左.style.height='30px';
+nyhzr左.style.width='30px';
+nyhzr左.style.right='135px';
+nyhzr左.style.top='45px';
+nyhzr右=ui.create.div('.menubutton.large','→',function(){
+	if (game.me.storage.nyhzr右==undefined||game.me.storage.nyhzr右==1){
+		game.me.storage.nyhzr右=0;
+		game.me.moveRight();
+		setTimeout(function(){
+		game.me.storage.nyhzr右=1;
+	},1000);
+	};
+	});
+nyhzr右.style.height='30px';
+nyhzr右.style.width='30px';
+nyhzr右.style.right='-2px';
+nyhzr右.style.top='-11px';
+ui.nyhzr控制器=ui.create.dialog('hidden');
+ui.nyhzr控制器.add(nyhzr上);
+ui.nyhzr控制器.add(nyhzr下);
+ui.nyhzr控制器.add(nyhzr左);
+ui.nyhzr控制器.add(nyhzr右);
+ui.window.appendChild(ui.nyhzr控制器);
+ui.nyhzr控制器.style.height='200px';
+ui.nyhzr控制器.style.width='200px';
+ui.nyhzr控制器.style.left='50px';
+ui.nyhzr控制器.style.top='calc(100% - 300px)';
+}else{
+player.storage.nyhzr剑客横行Chessboss=1;
+player.useSkill('nyhzr剑客横行Chessboss1');
+};			
+			},
+        },
+        2222:{
+trigger:{
+player:"phaseBefore",
+},	
+forced:true,
+content:function (){
+if(game.me.hasSkill('nyhzr剑客横行Chessboss')&&ui.nyhzr控制器){
+ui.nyhzr控制器.remove();
+};
+player.storage.nyhzr剑客横行Chessboss=0;
+			},
+        },
+    },
+	},
+            "nyhzr剑客横行Chessboss1":{
+nobracket:true,
+content:function (){
+if(Math.random()<=0.25){
+player.moveUp();
+}else if(Math.random()<=0.25){
+player.moveDown();
+}else if(Math.random()<=0.25){
+player.moveRight();
+}else{
+player.moveLeft();
+}
+if(player.storage.nyhzr剑客横行Chessboss==1){
+setTimeout(function(){
+player.useSkill('nyhzr剑客横行Chessboss1');
+},1500);	
+};
+},
+	},
+            "nyhzr千叶斩Chessboss":{
+nobracket:true,
+enable:"phaseUse",
+filterTarget:function (card,player,target){
+return player!=target;
+},
+filter:function (event,player){
+return player.num('h')>player.num('e');
+},
+content:function (){
+"step 0"
+if(player.hasSkill('nyhzr勾玉魂刀')&&!player.hasSkill('nyhzr勾玉魂刀1')) player.addSkill('nyhzr勾玉魂刀1');
+var qyzsha=get.cardPile(function(card){return card.name=='sha'});
+if(qyzsha&&player.num('h')>player.num('e')){
+player.gain(qyzsha,'gain2');
+player.useCard(qyzsha,target);
+player.chooseToDiscard(1,'h',true);
+}else{
+event.finish();
+player.removeSkill('nyhzr勾玉魂刀1');
+if(player.hasSkill('nyhzr幻之分身2')){
+player.useCard(qyzsha,target);
+};
+};
+"step 1"
+event.goto(0);
+    },
+ai:{
+result:{
+player:1,
+},
+order:31,
+},
+            },			
+
+			
+			
+			
+		},
+        translate:{
+            "hnyhzr后羿Chessboss":"后羿",
+            "gnyhzr宫本武藏Chessboss":"宫本武藏",
+    		"nyzhr逐阳Chessboss":"逐阳",
+    		"nyzhr逐阳Chessboss_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你回合内的移动距离+3<br>出牌阶段，你可以移动两次",
+    		"nyhzr穿云箭Chessboss":"穿云箭",
+    		"nyhzr穿云箭Chessboss_info":"出牌阶段，你可以弃置一张【杀】并选择穿云箭的释放方向，被穿云箭击中的人会获得一个随机的负面效果，每回合限一次",
+    		"nyhzr剑客横行Chessboss1":"剑客横行",
+    		"nyhzr剑客横行Chessboss":"剑客横行",
+    		"nyhzr剑客横行Chessboss_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合结束后，你可以点击按钮移动（移动冷却：1s）<br>回合开始前，你移除按钮",
+            "nyhzr千叶斩Chessboss":"千叶斩",
+            "nyhzr千叶斩Chessboss_info":"出牌阶段，若你的手牌数大于装备区内的牌数，你可以在牌堆中获得一张【杀】并使用，此【杀】结算后，你弃置一张手牌。若你弃置手牌后，手牌数依然大于装备区内的牌数，你再使用一次【千叶斩】",
+        },
+},'<span style=\"font-size:18px;font-weight:600\">英魂之刃战棋</span>');
+		if(config.IncreasePlayerNumber=='0'){
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','8','identity');
+					game.saveConfig('player_number','8','guozhan');
+				};
+			});
+		};
+		if(config.IncreasePlayerNumber=='1'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='9']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='2']{top:calc(100% / 3 - 70px);left:calc(85% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='3']{top:5px;left:calc(75% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='4']{top:0;left:calc(60% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='5']{top:0;left:calc(40% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='6']{top:5px;left:calc(25% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='7']{top:calc(100% / 3 - 70px);left:calc(15% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='8']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','9','identity');
+					game.saveConfig('player_number','9','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+				}
+			});
+			if(config.nineMan=='1'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','nei','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='2'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','nei','nei','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='3'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='4'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='2'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'10':'十人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'10':'十人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='10']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='2']{top:calc(100% / 3 - 120px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='3']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='4']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='5']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='6']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='7']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='8']{top:calc(100% / 3 - 120px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='9']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','10','identity');
+					game.saveConfig('player_number','10','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+				}
+			});
+			if(config.tenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan']);
+			}
+			if(config.tenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.tenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='3'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'11':'十一人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'11':'十一人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='11']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='4']{top:0;left:calc(77% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='5']{top:0;left:calc(59% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='6']{top:0;left:calc(41% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='7']{top:0;left:calc(23% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='8']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='9']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='10']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','11','identity');
+					game.saveConfig('player_number','11','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.elevenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='4'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'12':'十二人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'12':'十二人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='12']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='4']{top:0;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='5']{top:0;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='6']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='7']{top:0;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='8']{top:0;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='9']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='10']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='11']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','12','identity');
+					game.saveConfig('player_number','12','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.twelveMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.twelveMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.twelveMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='5'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'13':'十三人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'13':'十三人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='13']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='4']{top:0;left:calc(83% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='5']{top:0;left:calc(69.8% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='6']{top:0;left:calc(56.6% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='7']{top:0;left:calc(43.4% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='8']{top:0;left:calc(30.2% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='9']{top:0;left:calc(17% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='10']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='11']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='12']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','13','identity');
+					game.saveConfig('player_number','13','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.thirteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='6'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'14':'十四人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'14':'十四人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='14']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='5']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='6']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='7']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='8']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='9']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='10']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='11']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='12']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='13']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='15'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'){
+					game.saveConfig('player_number','14','identity');
+					game.saveConfig('player_number','14','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+				}
+			});
+			if(config.fourteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fourteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fourteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='7'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'15':'十五人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'15':'十五人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='15']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='5']{top:30px;left:calc(82.1% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='6']{top:5px;left:calc(69.25% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='7']{top:0;left:calc(56.4% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='8']{top:0;left:calc(43.55% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='9']{top:5px;left:calc(30.7% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='10']{top:30px;left:calc(17.85% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='11']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='12']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='13']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='14']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='16'||get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'){
+					game.saveConfig('player_number','15','identity');
+					game.saveConfig('player_number','15','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+					lib.translate.unknown14='十五号位';
+				}
+			});
+			if(config.fifteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='8'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'16':'十六人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'16':'十六人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='16']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='5']{top:30px;left:calc(83.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='6']{top:20px;left:calc(72.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='7']{top:5px;left:calc(61.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='8']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='9']{top:5px;left:calc(38.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='10']{top:20px;left:calc(27.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='11']{top:30px;left:calc(16.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='12']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='13']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='14']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='15']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();					
+			lib.arenaReady.push(function(){
+				if(get.config('player_number')=='9'||get.config('player_number')=='10'||get.config('player_number')=='11'||get.config('player_number')=='12'||get.config('player_number')=='13'||get.config('player_number')=='14'||get.config('player_number')=='15'){
+					game.saveConfig('player_number','16','identity');
+					game.saveConfig('player_number','16','guozhan');
+				};
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+					lib.translate.unknown14='十五号位';
+					lib.translate.unknown15='十六号位';
+				}
+			});
+			if(config.SixteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.SixteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.SixteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+		};
+		if(config.IncreasePlayerNumber=='all'){
+			game.saveConfig('player_height','short');
+			lib.mode.identity.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+				'10':'十人',
+				'11':'十一人',
+				'12':'十二人',
+				'13':'十三人',
+				'14':'十四人',
+				'15':'十五人',
+				'16':'十六人',
+			}
+			lib.mode.guozhan.config.player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+				'10':'十人',
+				'11':'十一人',
+				'12':'十二人',
+				'13':'十三人',
+				'14':'十四人',
+				'15':'十五人',
+				'16':'十六人',
+			}
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='9']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='2']{top:calc(100% / 3 - 70px);left:calc(85% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='3']{top:5px;left:calc(75% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='4']{top:0;left:calc(60% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='5']{top:0;left:calc(40% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='6']{top:5px;left:calc(25% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='7']{top:calc(100% / 3 - 70px);left:calc(15% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='8']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='10']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='2']{top:calc(100% / 3 - 120px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='3']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='4']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='5']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='6']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='7']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='8']{top:calc(100% / 3 - 120px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='9']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='11']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='4']{top:0;left:calc(77% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='5']{top:0;left:calc(59% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='6']{top:0;left:calc(41% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='7']{top:0;left:calc(23% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='8']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='9']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='10']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='12']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='4']{top:0;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='5']{top:0;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='6']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='7']{top:0;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='8']{top:0;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='9']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='10']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='11']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='13']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='4']{top:0;left:calc(83% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='5']{top:0;left:calc(69.8% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='6']{top:0;left:calc(56.6% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='7']{top:0;left:calc(43.4% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='8']{top:0;left:calc(30.2% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='9']{top:0;left:calc(17% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='10']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='11']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='12']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='14']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='5']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='6']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='7']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='8']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='9']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='10']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='11']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='12']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='13']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();	
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='15']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='5']{top:30px;left:calc(82.1% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='6']{top:5px;left:calc(69.25% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='7']{top:0;left:calc(56.4% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='8']{top:0;left:calc(43.55% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='9']{top:5px;left:calc(30.7% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='10']{top:30px;left:calc(17.85% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='11']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='12']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='13']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='14']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();	
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='16']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='5']{top:30px;left:calc(83.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='6']{top:20px;left:calc(72.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='7']{top:5px;left:calc(61.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='8']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='9']{top:5px;left:calc(38.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='10']{top:20px;left:calc(27.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='11']{top:30px;left:calc(16.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='12']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='13']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='14']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='15']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			if(get.config('player_number')=='9'){
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+				}
+			});
+			if(config.nineMan=='1'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','nei','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='2'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','nei','nei','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='3'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan']);
+			}
+			if(config.nineMan=='4'){
+				lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}				
+			};
+			if(get.config('player_number')=='10'){
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+				}
+			});
+			if(config.tenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan']);
+			}
+			if(config.tenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.tenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='11'){
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.elevenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan']);
+			}
+			if(config.elevenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],['zhu','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='12'){
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){			
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.twelveMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan']);
+			}
+			if(config.twelveMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.twelveMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='13'){
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+				}
+			});
+  			if(lib.device){
+				game.saveConfig('layout','long');
+  			}
+			if(config.thirteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.thirteenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='14'){
+			game.saveConfig('player_height','short');
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+				}
+			});
+			if(config.fourteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fourteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fourteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='15'){
+			game.saveConfig('player_height','short');				
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+					lib.translate.unknown14='十五号位';
+				}
+			});
+			if(config.fifteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.fifteenMan=='4'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			if(get.config('player_number')=='16'){
+			game.saveConfig('player_height','short');					
+			lib.arenaReady.push(function(){
+				if((get.mode()=='identity')||(get.mode()=='guozhan')){
+					if(lib.device){
+						var zoom=function(num){
+							var zoom=num;
+							game.documentZoom=game.deviceZoom*zoom;
+							document.documentElement.style.zoom=game.documentZoom;
+						};
+						zoom(0.8);
+					}
+					ui.arenalog.style.top='240px';
+					ui.arenalog.style.height='35%';
+					lib.translate.unknown8='九号位';
+					lib.translate.unknown9='十号位';
+					lib.translate.unknown10='十一号位';
+					lib.translate.unknown11='十二号位';
+					lib.translate.unknown12='十三号位';
+					lib.translate.unknown13='十四号位';
+					lib.translate.unknown14='十五号位';
+					lib.translate.unknown15='十六号位';
+				}
+			});
+			if(config.SixteenMan=='1'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.SixteenMan=='2'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			if(config.SixteenMan=='3'){
+				lib.config.mode_config.identity.identity.push([],[],[],[],[],[],[],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','zhong','fan','fan','fan','fan','fan','fan','fan','fan']);
+			}
+			};
+			};
+lib.mode.chess.config.chess_leader_save.item={
+save1:'一',
+save2:'二',
+save3:'三',
+save4:'四',
+save5:'五',
+save6:'英魂之刃',
+};
+if(get.config('chess_leader_save')=='save6'&&get.config('chess_mode')=='leader'){
+lib.rank.rarity.rare.push('lnyhzr咯哩咯哩');
+lib.rank.rarity.rare.push('nnyhzr妮娜');
+lib.rank.rarity.rare.push('lnyhzr莉莉姆.提露埃拉');
+lib.rank.rarity.rare.push('knyhzr狂徒');
+lib.rank.rarity.rare.push('bnyhzr布鲁');
+lib.rank.rarity.rare.push('lnyhzr龙骑士ol');
+lib.rank.rarity.rare.push('nnyhzr妮娜ol');
+lib.rank.rarity.epic.push('hnyhzr后羿');
+lib.rank.rarity.epic.push('znyhzr贞德');
+lib.rank.rarity.epic.push('snyhzr萨特');
+lib.rank.rarity.epic.push('snyhzr时空猎人');
+lib.rank.rarity.epic.push('cnyhzr超能企鹅');
+lib.rank.rarity.legend.push('dnyhzr德古拉');
+lib.rank.rarity.legend.push('anyhzr艾迪兰');
+lib.rank.rarity.legend.push('gnyhzr宫本武藏');
+lib.arenaReady.push(function(){
+//var nskzc=ui.create.control('逆时空战场','nozoom',function(){});
+var lqwj=ui.create.system('时空酒馆',null,true);
+lib.setPopped(lqwj,function(){
+var lqwj1=ui.create.dialog('hidden');
+lqwj1.listen(function(e){
+e.stopPropagation();
+});
+lqwj1.add('<span style=\"font-size:15px\">点击图片可以查看武将资料<br>招募成功后会在3秒后刷新游戏</span>');
+var lqwjlnyhzr咯哩咯哩=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr咯哩咯哩','')});
+lqwjlnyhzr咯哩咯哩.style.height='55px';
+lqwjlnyhzr咯哩咯哩.style.width='55px';
+lqwjlnyhzr咯哩咯哩.setBackground('lnyhzr咯哩咯哩','character');
+lqwj1.add(lqwjlnyhzr咯哩咯哩);
+var lqwjhnyhzr后羿=ui.create.div('.card.fullskin',function(){ui.click.charactercard('hnyhzr后羿','')});
+lqwjhnyhzr后羿.style.height='55px';
+lqwjhnyhzr后羿.style.width='55px';
+lqwjhnyhzr后羿.setBackground('hnyhzr后羿','character');
+lqwj1.add(lqwjhnyhzr后羿);
+var lqwjlnyhzr莉莉姆提露埃拉=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr莉莉姆.提露埃拉','')});
+lqwjlnyhzr莉莉姆提露埃拉.style.height='55px';
+lqwjlnyhzr莉莉姆提露埃拉.style.width='55px';
+lqwjlnyhzr莉莉姆提露埃拉.setBackground('lnyhzr莉莉姆.提露埃拉','character');
+lqwj1.add(lqwjlnyhzr莉莉姆提露埃拉);
+var lqwjlnyhzr咯哩咯哩buy=ui.create.div('','2116<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2116){
+game.data.character.push('lnyhzr咯哩咯哩');
+game.saveData();
+game.changeDust(-2116);
+game.say1('你招募了武将——咯哩咯哩');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr咯哩咯哩buy.style.height='10px';
+lqwjlnyhzr咯哩咯哩buy.style.width='55px';
+lqwj1.add(lqwjlnyhzr咯哩咯哩buy);
+var lqwjhnyhzr后羿buy=ui.create.div('','2767<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2767){
+game.data.character.push('hnyhzr后羿');
+game.saveData();
+game.changeDust(-2767);
+game.say1('你招募了武将——后羿');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjhnyhzr后羿buy.style.height='10px';
+lqwjhnyhzr后羿buy.style.width='55px';
+lqwj1.add(lqwjhnyhzr后羿buy);
+var lqwjlnyhzr莉莉姆提露埃拉buy=ui.create.div('','2437<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2437){
+game.data.character.push('lnyhzr莉莉姆.提露埃拉');
+game.saveData();
+game.changeDust(-2437);
+game.say1('你招募了武将——莉莉姆.提露埃拉');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr莉莉姆提露埃拉buy.style.height='10px';
+lqwjlnyhzr莉莉姆提露埃拉buy.style.width='55px';
+lqwj1.add(lqwjlnyhzr莉莉姆提露埃拉buy);
+
+var lqwjnnyhzr妮娜=ui.create.div('.card.fullskin',function(){ui.click.charactercard('nnyhzr妮娜','')});
+lqwjnnyhzr妮娜.style.height='55px';
+lqwjnnyhzr妮娜.style.width='55px';
+lqwjnnyhzr妮娜.setBackground('nnyhzr妮娜','character');
+lqwj1.add(lqwjnnyhzr妮娜);
+var lqwjznyhzr贞德=ui.create.div('.card.fullskin',function(){ui.click.charactercard('znyhzr贞德','')});
+lqwjznyhzr贞德.style.height='55px';
+lqwjznyhzr贞德.style.width='55px';
+lqwjznyhzr贞德.setBackground('znyhzr贞德','character');
+lqwj1.add(lqwjznyhzr贞德);
+var lqwjsnyhzr萨特=ui.create.div('.card.fullskin',function(){ui.click.charactercard('snyhzr萨特','')});
+lqwjsnyhzr萨特.style.height='55px';
+lqwjsnyhzr萨特.style.width='55px';
+lqwjsnyhzr萨特.setBackground('snyhzr萨特','character');
+lqwj1.add(lqwjsnyhzr萨特);
+var lqwjnnyhzr妮娜buy=ui.create.div('','1865<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1865){
+game.data.character.push('nnyhzr妮娜');
+game.saveData();
+game.changeDust(-1865);
+game.say1('你招募了武将——妮娜');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjnnyhzr妮娜buy.style.height='10px';
+lqwjnnyhzr妮娜buy.style.width='55px';
+lqwj1.add(lqwjnnyhzr妮娜buy);
+var lqwjznyhzr贞德buy=ui.create.div('','2663<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2663){
+game.data.character.push('znyhzr贞德');
+game.saveData();
+game.changeDust(-2663);
+game.say1('你招募了武将——贞德');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjznyhzr贞德buy.style.height='10px';
+lqwjznyhzr贞德buy.style.width='55px';
+lqwj1.add(lqwjznyhzr贞德buy);
+var lqwjsnyhzr萨特buy=ui.create.div('','3160<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=3160){
+game.data.character.push('snyhzr萨特');
+game.saveData();
+game.changeDust(-3160);
+game.say1('你招募了武将——萨特');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjsnyhzr萨特buy.style.height='10px';
+lqwjsnyhzr萨特buy.style.width='55px';
+lqwj1.add(lqwjsnyhzr萨特buy);
+
+var lqwjdnyhzr德古拉=ui.create.div('.card.fullskin',function(){ui.click.charactercard('dnyhzr德古拉','')});
+lqwjdnyhzr德古拉.style.height='55px';
+lqwjdnyhzr德古拉.style.width='55px';
+lqwjdnyhzr德古拉.setBackground('dnyhzr德古拉','character');
+lqwj1.add(lqwjdnyhzr德古拉);
+var lqwjknyhzr狂徒=ui.create.div('.card.fullskin',function(){ui.click.charactercard('knyhzr狂徒','')});
+lqwjknyhzr狂徒.style.height='55px';
+lqwjknyhzr狂徒.style.width='55px';
+lqwjknyhzr狂徒.setBackground('knyhzr狂徒','character');
+lqwj1.add(lqwjknyhzr狂徒);
+var lqwjsnyhzr时空猎人=ui.create.div('.card.fullskin',function(){ui.click.charactercard('snyhzr时空猎人','')});
+lqwjsnyhzr时空猎人.style.height='55px';
+lqwjsnyhzr时空猎人.style.width='55px';
+lqwjsnyhzr时空猎人.setBackground('snyhzr时空猎人','character');
+lqwj1.add(lqwjsnyhzr时空猎人);
+var lqwjdnyhzr德古拉buy=ui.create.div('','3567<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=3567){
+game.data.character.push('dnyhzr德古拉');
+game.saveData();
+game.changeDust(-3567);
+game.say1('你招募了武将——德古拉');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjdnyhzr德古拉buy.style.height='10px';
+lqwjdnyhzr德古拉buy.style.width='55px';
+lqwj1.add(lqwjdnyhzr德古拉buy);
+var lqwjknyhzr狂徒buy=ui.create.div('','1886<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1886){
+game.data.character.push('knyhzr狂徒');
+game.saveData();
+game.changeDust(-1886);
+game.say1('你招募了武将——狂徒');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjknyhzr狂徒buy.style.height='10px';
+lqwjknyhzr狂徒buy.style.width='55px';
+lqwj1.add(lqwjknyhzr狂徒buy);
+var lqwjsnyhzr时空猎人buy=ui.create.div('','3288<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=3288){
+game.data.character.push('snyhzr时空猎人');
+game.saveData();
+game.changeDust(-3288);
+game.say1('你招募了武将——时空猎人');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjsnyhzr时空猎人buy.style.height='10px';
+lqwjsnyhzr时空猎人buy.style.width='55px';
+lqwj1.add(lqwjsnyhzr时空猎人buy);
+
+var lqwjlnyhzr龙骑士=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr龙骑士','')});
+lqwjlnyhzr龙骑士.style.height='55px';
+lqwjlnyhzr龙骑士.style.width='55px';
+lqwjlnyhzr龙骑士.setBackground('lnyhzr龙骑士','character');
+lqwj1.add(lqwjlnyhzr龙骑士);
+var lqwjanyhzr艾迪兰=ui.create.div('.card.fullskin',function(){ui.click.charactercard('anyhzr艾迪兰','')});
+lqwjanyhzr艾迪兰.style.height='55px';
+lqwjanyhzr艾迪兰.style.width='55px';
+lqwjanyhzr艾迪兰.setBackground('anyhzr艾迪兰','character');
+lqwj1.add(lqwjanyhzr艾迪兰);
+var lqwjbnyhzr布丁=ui.create.div('.card.fullskin',function(){ui.click.charactercard('bnyhzr布丁','')});
+lqwjbnyhzr布丁.style.height='55px';
+lqwjbnyhzr布丁.style.width='55px';
+lqwjbnyhzr布丁.setBackground('bnyhzr布丁','character');
+lqwj1.add(lqwjbnyhzr布丁);
+var lqwjlnyhzr龙骑士buy=ui.create.div('','1569<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1569){
+game.data.character.push('lnyhzr龙骑士');
+game.saveData();
+game.changeDust(-1569);
+game.say1('你招募了武将——龙骑士');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr龙骑士buy.style.height='10px';
+lqwjlnyhzr龙骑士buy.style.width='55px';
+lqwj1.add(lqwjlnyhzr龙骑士buy);
+var lqwjanyhzr艾迪兰buy=ui.create.div('','4325<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=4325){
+game.data.character.push('anyhzr艾迪兰');
+game.saveData();
+game.changeDust(-4325);
+game.say1('你招募了武将——艾迪兰');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjanyhzr艾迪兰buy.style.height='10px';
+lqwjanyhzr艾迪兰buy.style.width='55px';
+lqwj1.add(lqwjanyhzr艾迪兰buy);
+var lqwjbnyhzr布丁buy=ui.create.div('','1678<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1678){
+game.data.character.push('bnyhzr布丁');
+game.saveData();
+game.changeDust(-1678);
+game.say1('你招募了武将——布丁');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjbnyhzr布丁buy.style.height='10px';
+lqwjbnyhzr布丁buy.style.width='55px';
+lqwj1.add(lqwjbnyhzr布丁buy);
+
+var lqwjcnyhzr超能企鹅=ui.create.div('.card.fullskin',function(){ui.click.charactercard('cnyhzr超能企鹅','')});
+lqwjcnyhzr超能企鹅.style.height='55px';
+lqwjcnyhzr超能企鹅.style.width='55px';
+lqwjcnyhzr超能企鹅.setBackground('cnyhzr超能企鹅','character');
+lqwj1.add(lqwjcnyhzr超能企鹅);
+var lqwjbnyhzr布鲁=ui.create.div('.card.fullskin',function(){ui.click.charactercard('bnyhzr布鲁','')});
+lqwjbnyhzr布鲁.style.height='55px';
+lqwjbnyhzr布鲁.style.width='55px';
+lqwjbnyhzr布鲁.setBackground('bnyhzr布鲁','character');
+lqwj1.add(lqwjbnyhzr布鲁);
+var lqwjgnyhzr宫本武藏=ui.create.div('.card.fullskin',function(){ui.click.charactercard('gnyhzr宫本武藏','')});
+lqwjgnyhzr宫本武藏.style.height='55px';
+lqwjgnyhzr宫本武藏.style.width='55px';
+lqwjgnyhzr宫本武藏.setBackground('gnyhzr宫本武藏','character');
+lqwj1.add(lqwjgnyhzr宫本武藏);
+var lqwjcnyhzr超能企鹅buy=ui.create.div('','2876<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2876){
+game.data.character.push('cnyhzr超能企鹅');
+game.saveData();
+game.changeDust(-2876);
+game.say1('你招募了武将——超能企鹅');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjcnyhzr超能企鹅buy.style.height='10px';
+lqwjcnyhzr超能企鹅buy.style.width='55px';
+lqwj1.add(lqwjcnyhzr超能企鹅buy);
+var lqwjbnyhzr布鲁buy=ui.create.div('','2235<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2235){
+game.data.character.push('bnyhzr布鲁');
+game.saveData();
+game.changeDust(-2235);
+game.say1('你招募了武将——布鲁');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjbnyhzr布鲁buy.style.height='10px';
+lqwjbnyhzr布鲁buy.style.width='55px';
+lqwj1.add(lqwjbnyhzr布鲁buy);
+var lqwjgnyhzr宫本武藏buy=ui.create.div('','3964<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=3964){
+game.data.character.push('gnyhzr宫本武藏');
+game.saveData();
+game.changeDust(-3964);
+game.say1('你招募了武将——宫本武藏');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjgnyhzr宫本武藏buy.style.height='10px';
+lqwjgnyhzr宫本武藏buy.style.width='55px';
+lqwj1.add(lqwjgnyhzr宫本武藏buy);
+
+var lqwjlnyhzr咯哩咯哩ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr咯哩咯哩ol','')});
+lqwjlnyhzr咯哩咯哩ol.style.height='55px';
+lqwjlnyhzr咯哩咯哩ol.style.width='55px';
+lqwjlnyhzr咯哩咯哩ol.setBackground('lnyhzr咯哩咯哩ol','character');
+lqwj1.add(lqwjlnyhzr咯哩咯哩ol);
+var lqwjlnyhzr莉莉姆提露埃拉ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr莉莉姆.提露埃拉ol','')});
+lqwjlnyhzr莉莉姆提露埃拉ol.style.height='55px';
+lqwjlnyhzr莉莉姆提露埃拉ol.style.width='55px';
+lqwjlnyhzr莉莉姆提露埃拉ol.setBackground('lnyhzr莉莉姆.提露埃拉ol','character');
+lqwj1.add(lqwjlnyhzr莉莉姆提露埃拉ol);
+var lqwjlnyhzr龙骑士ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('lnyhzr龙骑士ol','')});
+lqwjlnyhzr龙骑士ol.style.height='55px';
+lqwjlnyhzr龙骑士ol.style.width='55px';
+lqwjlnyhzr龙骑士ol.setBackground('lnyhzr龙骑士ol','character');
+lqwj1.add(lqwjlnyhzr龙骑士ol);
+var lqwjlnyhzr咯哩咯哩olbuy=ui.create.div('','1547<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1547){
+game.data.character.push('lnyhzr咯哩咯哩ol');
+game.saveData();
+game.changeDust(-1547);
+game.say1('你招募了武将——◉咯哩咯哩');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr咯哩咯哩olbuy.style.height='10px';
+lqwjlnyhzr咯哩咯哩olbuy.style.width='55px';
+lqwj1.add(lqwjlnyhzr咯哩咯哩olbuy);
+var lqwjlnyhzr莉莉姆提露埃拉olbuy=ui.create.div('','1124<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1124){
+game.data.character.push('lnyhzr莉莉姆.提露埃拉ol');
+game.saveData();
+game.changeDust(-1124);
+game.say1('你招募了武将——◉莉莉姆·提露埃拉');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr莉莉姆提露埃拉olbuy.style.height='10px';
+lqwjlnyhzr莉莉姆提露埃拉olbuy.style.width='55px';
+lqwj1.add(lqwjlnyhzr莉莉姆提露埃拉olbuy);
+var lqwjlnyhzr龙骑士olbuy=ui.create.div('','1964<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1964){
+game.data.character.push('lnyhzr龙骑士ol');
+game.saveData();
+game.changeDust(-1964);
+game.say1('你招募了武将——◉龙骑士');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjlnyhzr龙骑士olbuy.style.height='10px';
+lqwjlnyhzr龙骑士olbuy.style.width='55px';
+lqwj1.add(lqwjlnyhzr龙骑士olbuy);
+
+var lqwjnnyhzr妮娜ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('nnyhzr妮娜ol','')});
+lqwjnnyhzr妮娜ol.style.height='55px';
+lqwjnnyhzr妮娜ol.style.width='55px';
+lqwjnnyhzr妮娜ol.setBackground('nnyhzr妮娜ol','character');
+lqwj1.add(lqwjnnyhzr妮娜ol);
+var lqwjdnyhzr德古拉ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('dnyhzr德古拉ol','')});
+lqwjdnyhzr德古拉ol.style.height='55px';
+lqwjdnyhzr德古拉ol.style.width='55px';
+lqwjdnyhzr德古拉ol.setBackground('dnyhzr德古拉ol','character');
+lqwj1.add(lqwjdnyhzr德古拉ol);
+var lqwjhnyhzr后羿ol=ui.create.div('.card.fullskin',function(){ui.click.charactercard('hnyhzr后羿ol','')});
+lqwjhnyhzr后羿ol.style.height='55px';
+lqwjhnyhzr后羿ol.style.width='55px';
+lqwjhnyhzr后羿ol.setBackground('hnyhzr后羿ol','character');
+lqwj1.add(lqwjhnyhzr后羿ol);
+var lqwjnnyhzr妮娜olbuy=ui.create.div('','2364<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=2364){
+game.data.character.push('nnyhzr妮娜ol');
+game.saveData();
+game.changeDust(-2364);
+game.say1('你招募了武将——◉妮娜');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjnnyhzr妮娜olbuy.style.height='10px';
+lqwjnnyhzr妮娜olbuy.style.width='55px';
+lqwj1.add(lqwjnnyhzr妮娜olbuy);
+var lqwjdnyhzr德古拉olbuy=ui.create.div('','1124<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1124){
+game.data.character.push('dnyhzr德古拉ol');
+game.saveData();
+game.changeDust(-1124);
+game.say1('你招募了武将——◉德古拉');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjdnyhzr德古拉olbuy.style.height='10px';
+lqwjdnyhzr德古拉olbuy.style.width='55px';
+lqwj1.add(lqwjdnyhzr德古拉olbuy);
+var lqwjhnyhzr后羿olbuy=ui.create.div('','1647<span class=\"bluetext\" style=\"color:#98F5FF\">⚑</span><br>招募',function(){
+if(game.data.dust>=1647){
+game.data.character.push('hnyhzr后羿ol');
+game.saveData();
+game.changeDust(-1647);
+game.say1('你招募了武将——◉后羿');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('招募失败<br>招募令不足')};
+});
+lqwjhnyhzr后羿olbuy.style.height='10px';
+lqwjhnyhzr后羿olbuy.style.width='55px';
+lqwj1.add(lqwjhnyhzr后羿olbuy);
+
+
+var sxwj=ui.create.div('','50<span class=\"bluetext\" style=\"color:#FFD700\">㉤</span>  刷新挑战武将',function(){
+if(game.data.money>=50){
+game.data.challenge=game.getLeaderList();
+game.saveData();
+game.changeMoney(-50);
+sxwj.remove();
+lqwj1.hide();
+game.say1('刷新挑战武将成功');
+setTimeout(function(){
+game.say1('游戏将于3秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于2秒后刷新');
+setTimeout(function(){
+game.say1('游戏将于1秒后刷新');
+setTimeout(function(){
+game.reload();
+},1000);
+},1000);
+},1000);
+},1500);
+}else{game.say1('刷新失败<br>金币不足')};
+});
+sxwj.style.height='10px';
+sxwj.style.width='200px';
+lqwj1.add(sxwj);
+
+return lqwj1;
+},220);
+});
+};
 lib.config.jifen;
 if (lib.config.jifen==undefined){
 game.saveConfig('jifen',0);
 };
-lib.arenaReady.push(function(){	
+lib.arenaReady.push(function(){
 	ui.jifen=ui.create.system('<span>'+lib.config.jifen+'</span><span>积分</span>',null,true);
                 lib.setPopped(ui.jifen,function(){
                 var uiintro=ui.create.dialog('hidden');
@@ -77,49 +2820,7 @@ lib.arenaReady.push(function(){
 			};			
 			uiintro.add(APet);			
 
-			
-			var Ajbms=ui.create.div(function(){
-				var Djbms="http://pan.baidu.com/s/1dF5tikL";
-				if (lib.config.jbmsGXJZ1==0){
-					if (lib.config.jbmsGXJZ!=1) window.open(Djbms);
-					if (lib.config.jbmsGXJZ==1) alert("当前已是最新版"); 
-				}else{
-					window.open(Djbms);
-				};
-				});
-			Ajbms.style.height='50px';
-			Ajbms.style.width='50px';
-			Ajbms.style.borderRadius='8px';
-			if (lib.config.jbmsGXJZ1==0){
-				if (lib.config.jbmsGXJZ!=1) Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');
-				if (lib.config.jbmsGXJZ==1) Ajbms.setBackgroundImage('extension/新英魂之刃/兼并模式.png'); 
-			}else{
-				Ajbms.setBackgroundImage('extension/新英魂之刃/New兼并模式.png');
-			};			
-			uiintro.add(Ajbms);				
-
 			uiintro.add("单机版（修改）");
-			
-			var Ajsms=ui.create.div(function(){
-				var Djsms="http://pan.baidu.com/s/1boJuiYz";
-				if (lib.config.jsmsGXJZ1==0){
-					if (lib.config.jsmsGXJZ!=1) window.open(Djsms);
-					if (lib.config.jsmsGXJZ==1) alert("当前已是最新版"); 
-				}else{
-					window.open(Djsms);
-				};
-				});
-			Ajsms.style.height='50px';
-			Ajsms.style.width='50px';
-			Ajsms.style.borderRadius='8px';
-			if (lib.config.jsmsGXJZ1==0){
-				if (lib.config.jsmsGXJZ!=1) Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');
-				if (lib.config.jsmsGXJZ==1) Ajsms.setBackgroundImage('extension/新英魂之刃/僵尸模式.png');
-			}else{
-				Ajsms.setBackgroundImage('extension/新英魂之刃/New僵尸模式.png');
-			};			
-			uiintro.add(Ajsms);
-			
 						
 			var Awzzzms=ui.create.div(function(){
 				var Dwzzzms="http://pan.baidu.com/s/1nuS3hnb";
@@ -382,21 +3083,18 @@ player.discard(player.get("hej"),99999);
             shenglitiaojian4:"",
             "shenglitiaojian4_info":"",							
 		}	
-},'攻城模式');		
+},'攻城模式');
 	if ( lib.brawl ) {
 lib.brawl.gongchengmoshi = {
             name:'攻城模式',
-            mode:'chess',			
-            intro:"",
-showcase:function(init){
-gcms=ui.create.div();
-gcms.style.height='400px';
-gcms.style.width='500px';
-gcms.style.left='calc(50% - 250px)';
-gcms.style.top='0px';
-gcms.setBackgroundImage('extension/新英魂之刃/gcmsjm.png');
-this.appendChild(gcms);
-},			
+            mode:'chess',
+            intro:[
+			'红方城池位于右下角，蓝方城池位于左上角。',
+			'当一方的城池体力为零时，游戏结束。',
+			'蓝方城池开始时，若游戏人数为三，比较双方城池的体力值，体力值大的一方获胜。',
+			'回合开始前，若角色与自方城池距离小于或等于一，玩家恢复一点体力。',
+			'我方攻破敌方城池后，你获得三点积分。<br><br><br><br>注：<br>城池是自身技能驱动的，若城池技能被删除，规则也会被破坏。'
+            ],
 			    content:{
                 gameStart:function(){
                     for(var w=0;w<game.players.length;w++){					
@@ -511,8 +3209,7 @@ game.swapSeat(game.players[i],chengEnemy);
 }
 }
 };       
-		if(config.xyhzr){
-game.addCardPack({	
+		game.addCardPack({	
 			skill:{          
 	  "_KAnyhzr血肉钩索":{
                 group:["_KAnyhzr血肉钩索_1","_KAnyhzr血肉钩索_2"],
@@ -1994,9 +4691,11 @@ player.removeSkill('nyhzr血祭启示录');
                 },
             },
             "_KAnyhzr王牌":{
+				mode:["identity"],
                 group:["_KAnyhzr王牌_1","_KAnyhzr王牌_2"],
                 subSkill:{
                     "1":{
+						mode:["identity"],
                         mod:{
                             maxHandcard:function (player,num){
 return num+(player.num('h',{name:'KAnyhzr王牌'}));
@@ -2032,6 +4731,7 @@ pl.update();
 },
                     },
                     "2":{
+						mode:["identity"],
                         trigger:{
                             player:"loseEnd",
                         },
@@ -2569,7 +5269,7 @@ player.removeSkill('nyhzr龙之吐息');
         }, 
 		translate:{
             "KAnyhzr王牌":"王牌",
-            "KAnyhzr王牌_info":"此牌不计入手牌区；当你获得此牌时，若游戏人数（含死亡）小于8且你的手牌区中没有【王牌】，你拥有一个体力值为2的英魂之刃侍从；当你失去出牌时，若你手牌区中没有【王牌】，你失去所有英魂之刃侍从",
+            "KAnyhzr王牌_info":"此牌不计入手牌区；当你获得此牌前，若游戏模式为模式，游戏人数（含死亡）小于8且你的手牌区中没有【王牌】，你拥有一个体力值为2的英魂之刃侍从；当你失去出牌时，若你手牌区中没有【王牌】，你失去所有英魂之刃侍从",
             "KAnyhzr真龙形态":"真龙形态",
             "KAnyhzr真龙形态_info":"当此牌在你手牌区中，你拥有技能【真龙化身】；此牌不计入手牌区",
             "KAnyhzr龙之吐息":"龙之吐息",
@@ -2661,7 +5361,7 @@ player.removeSkill('nyhzr龙之吐息');
 		},
         list:[],
 },'技能卡包');			
-	game.addCharacterPack({
+		game.addCharacterPack({
        character:{
             "lnyhzr咯哩咯哩":["female","zhi",3,["nyhzr自然之灵","nyhzr仙灵伙伴","nyhzr闪耀之光","nyhzr迷藏印记","nyhzr奥妙冲击","nyhzr咯哩咯哩"],["des:<li>大多数生灵都逃不过时光的流逝，然而咯哩咯哩却不属于此类。作为自然万物之精华，咯哩咯哩拥有着一颗干净纯洁的心、永远不会长大的外形，以及与花草百兽沟通的奇妙能力，而她的名字则来源于她的口头禅：咯哩。<li>在大自然中独自生活许多年后，出于对人类世界的向往和对新朋友的渴望，咯哩咯哩带着她的小伙伴——妖精皮皮，一起来到了人类的城邦。咯哩咯哩带领孩子们玩耍，并用魔法暂时将桌椅变成花朵和动物来增添乐趣。但人们似乎并不领情——出于对魔法和力量的恐惧，大人们很快便让孩子们疏远了咯哩咯哩。<li>伤心的咯哩咯哩离开了这所城邦，重新寻找一个善良美好的新世界。途经决战之谷时，咯哩咯哩和皮皮遇到凶兽饕餮，它正准备吞噬最近的人类城邦。尽管遭到人类的疏远，但为了可爱的孩子们不受伤害，咯哩咯哩毅然与饕餮展开了战斗。然而饕餮实力强大，咯哩咯哩和皮皮陷入了险境。危急关头，一位来自异世界的男人“拳”突然出现，在他的帮助，饕餮终于败退离去。<li>咯哩咯哩对这个胸前有着北斗七星状伤疤的男人产生了浓厚的兴趣。面对这个好奇又天真的小家伙一个又一个的疑问，拳将自己的经历和扫除一切邪恶不公的决心告诉了她。听完拳的叙述，咯哩咯哩从他的身上感受到了巨大的勇气和信念的力量，她意识到，与其寻找一个虚无缥缈的新世界，不如从现在开始，创造并且守护现有的一切。于是，她决定成为拳的伙伴，和他一起踏上未知的冒险之路！<li>我才不会害怕呢！咯哩！<li>——咯哩咯哩"]],
             "lnyhzr莉莉姆.提露埃拉":["female","li",3,["nyhzr魅魔公主","nyhzr恐惧镰刀","nyhzr恐惧结界","nyhzr恶魔冲锋","nyhzr镰刀挥舞","nyhzr莉莉姆.提露埃拉"],["des:<li>恢弘的钟声和吟唱笼罩着整座城市，人们云集在教堂之中，进行着庄严而神圣的宗教仪式。而在教堂的穹顶，象征着神权的巨大十字架上，却坐着一个美丽而妖娆的身影，泛着宝石光芒的瞳仁和背后的翅膀昭示着她令人畏惧的身份——夜之魔女莉莉丝和魔王撒旦的女儿，地狱的公主——莉莉姆.提露埃拉。 <li>同她的姐妹们一样，莉莉姆. 提露埃拉身上永远散发着青春的活力，外表充满魅力却又让人心生畏惧，由血统赋予的强大魔力能让她在地狱和人间穿梭自如，并不断出现在人们的噩梦之中。但和她那些只顾享乐的姐妹们不同，莉莉姆.提露埃拉更加危险且具有野心：她想把所有的人类土地都变成充满滋生魔物的土壤。 <li>就在提露埃拉不断实施着她的邪恶计划之时，其他莉莉姆以及她们手下的魔物们纷纷遭到了猎杀，而所有的线索都指向了一个人：猎魔人露娜。<li>这场关于猎杀的游戏激起了提露埃拉心中的邪恶欲望，她追随着猎魔人的踪迹来到人类的城邦。看着脚下的城市和熙攘的人群，莉莉姆.提露埃拉站起身来，灵活地跳到十字架顶端，朝着面前的城市张开双手，像是要把整座城市收入怀中。<li>“这里，马上就要完全属于我了……到时候要做些什么呢?想想就……”<li>亢奋的情绪突然被她自己打断，注视着整座城市的瞳孔突然将视线锁定在一间普通到再也不能普通的屋顶上，像是发现了宝藏一样，莉莉姆. 提露埃拉眯起了眼睛，嘴角露出了摄人的微笑。<li>“找到你了，要开始享受游戏的乐趣了。”"]],
@@ -2703,7 +5403,6 @@ player.removeSkill('nyhzr龙之吐息');
             "gnyhzr宫本武藏":"宫本武藏",			
         }
 },'新英魂之刃');
-};
         if (config.NoUselessSkill) {
 			for (var i in lib.characterPack['mode_extension_新英魂之刃']) {
 			if (i=='lnyhzr咯哩咯哩'){	
@@ -2946,6 +5645,23 @@ player.removeSkill('nyhzr龙之吐息');
             "Pifunyhzr狼蛛1jieshao_info":"使用该皮肤，每次使用牌时，进行一次判定，若判定结果为黑色，你对目标加一个随机的负面效果",
 			"nyhzr紫魅":"紫魅",
             "nyhzr紫魅_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每次使用牌时，进行一次判定，若判定结果为黑色，你对目标加一个随机的负面效果",
+			"Pifunyhzr黑暗中的剑客1":"夜叉胧",
+			"Pifunyhzr黑暗中的剑客2":"幕府利刃",
+			"Pifunyhzr黑暗中的剑客3":"七海女王",
+			"Pifunyhzr黑暗中的剑客1jieshao":"皮肤介绍",
+            "Pifunyhzr黑暗中的剑客1jieshao_info":"使用该皮肤，你触发的任何事件都不会显示拖拽线，每当你触发此效果大于或等于三次时，你潜行直至你的回合开始前（特）",
+			"nyhzr隐匿":"隐匿",
+			"nyhzr隐匿1":"隐匿",
+            "nyhzr隐匿1_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动（特）：</span><br>你触发的任何事件都不会显示拖拽线，每当你触发此效果大于或等于三次时，你潜行直至你的回合开始前",
+            "Pifunyhzr黑暗中的剑客3jieshao":"皮肤介绍",
+            "Pifunyhzr黑暗中的剑客3jieshao_info":"使用该皮肤，每当你流失体力时，视为对自己使用一张【杀】（可响应）；每当你翻面时，若你有手牌，你弃置一张手牌（没有则不弃）并取消之（特）",
+			"nyhzr颠覆之海":"颠覆之海",
+			"nyhzr颠覆之海1":"颠覆之海",
+            "nyhzr颠覆之海1_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动（特）：</span><br>每当你流失体力时，视为对自己使用一张【杀】（可响应）<br>每当你翻面时,你弃置一张手牌（没有则不弃）并取消之（特）",
+            "Pifunyhzr黑暗中的剑客2jieshao":"皮肤介绍",
+            "Pifunyhzr黑暗中的剑客2jieshao_info":"使用该皮肤，你使用的【杀】，【南蛮入侵】和【万箭齐发】可以指定X个目标（X为回合内使用【杀】的数量）；出牌阶段，你使用的【杀】无数量限制",
+			"nyhzr幕府利刃":"幕府利刃",
+            "nyhzr幕府利刃_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你使用的【杀】，【南蛮入侵】和【万箭齐发】可以指定X个目标（X为回合内使用【杀】的数量）<br>出牌阶段，你使用的【杀】无数量限制",
 			},
        character:{
             "Pifunyhzr魅魔公主1":["female","250金",'未购买',["Pifunyhzr魅魔公主1jieshao"],["forbidai"]],
@@ -2979,10 +5695,140 @@ player.removeSkill('nyhzr龙之吐息');
             "Pifunyhzr幻卡魔女5":["female","990金",'未购买',["Pifunyhzr幻卡魔女5jieshao"],["forbidai"]],
             "Pifunyhzr第二人类1":["male","880金",'未购买',["Pifunyhzr第二人类1jieshao"],["forbidai"]],		
             "Pifunyhzr第二人类2":["male","880金",'未购买',["Pifunyhzr第二人类2jieshao"],["forbidai"]],		
-            "Pifunyhzr第二人类3":["male","800金",'未购买',["Pifunyhzr第二人类3jieshao"],["forbidai"]],	
-            "Pifunyhzr狼蛛1":["female","990金",'未购买',["Pifunyhzr狼蛛1jieshao"],["forbidai"]],				
+            "Pifunyhzr第二人类3":["male","800金",'未购买',["Pifunyhzr第二人类3jieshao"],["forbidai"]],
+            "Pifunyhzr狼蛛1":["female","990金",'未购买',["Pifunyhzr狼蛛1jieshao"],["forbidai"]],
+            "Pifunyhzr黑暗中的剑客1":["female","250金",'未购买',["Pifunyhzr黑暗中的剑客1jieshao"],["forbidai"]],
+            "Pifunyhzr黑暗中的剑客2":["female","990金",'未购买',["Pifunyhzr黑暗中的剑客2jieshao"],["forbidai"]],
+            "Pifunyhzr黑暗中的剑客3":["female","800金",'未购买',["Pifunyhzr黑暗中的剑客3jieshao"],["forbidai"]],
 		},
 		skill:{
+            "nyhzr幕府利刃":{
+				mod:{
+					cardUsable:function(card,player,num){
+						if(card.name=='sha') return Infinity;
+					},
+                    selectTarget:function (card,player,range){
+                        if(card.name=='wanjian'||card.name=='nanman'||card.name=='sha') range[1]=player.countUsed('sha')+1;
+                    },
+                },
+            },
+			"Pifunyhzr黑暗中的剑客2jieshao":{
+				nobracket:true,				
+			},
+			"Pifunyhzr黑暗中的剑客3jieshao":{
+				nobracket:true,				
+			},
+			"nyhzr颠覆之海":{
+				content:function (){
+					player.addSkill('nyhzr颠覆之海1');
+					player.loseHp=function(all){
+						player.useCard({name:'sha'},player);
+					};
+					player.turnOver=function(all){
+						if(player.num('h')>0) player.chooseToDiscard(1,'h',true);
+					};
+				},
+			},
+			"nyhzr颠覆之海1":{
+				nobracket:true,				
+			},
+			"Pifunyhzr黑暗中的剑客1jieshao":{
+				nobracket:true,				
+			},
+			"nyhzr隐匿":{
+				content:function (){
+					player.addSkill('nyhzr隐匿1')
+					player.line=function(all){
+						if(player.storage.nyhzr隐匿==undefined) player.storage.nyhzr隐匿=0;
+						player.storage.nyhzr隐匿+=1;
+						if(player.storage.nyhzr隐匿>=3){
+							player.addTempSkill('qianxing',{player:'phaseBefore'});
+							player.storage.nyhzr隐匿=0;
+						};
+					};
+				},
+			},
+			"nyhzr隐匿1":{
+				nobracket:true,				
+			},
+			"_Pifunyhzr黑暗中的剑客":{
+                trigger:{
+                    global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+                },
+                priority:101,
+                direct:true,
+                filter:function (event,player){
+                return player.hasSkill('nyhzr勾玉魂刀')&&player.hasSkill('nyhzr千叶斩')&&player.hasSkill('nyhzr乱刃影舞')&&player.hasSkill('nyhzr幻之分身')&&player.storage._Pifunyhzr黑暗中的剑客==undefined;
+                },			
+                content:function (){
+    'step 0'
+    var list=[];
+	if (lib.config.coin>=250||lib.config.Pifunyhzr黑暗中的剑客1==true){
+	list.push('Pifunyhzr黑暗中的剑客1')	
+	}
+	if (lib.config.coin>=990||lib.config.Pifunyhzr黑暗中的剑客2==true){
+	list.push('Pifunyhzr黑暗中的剑客2')	
+	}
+	if (lib.config.coin>=800||lib.config.Pifunyhzr黑暗中的剑客3==true){
+	list.push('Pifunyhzr黑暗中的剑客3')	
+	}
+    if(list.length){
+    player.chooseButton(ui.create.dialog('选择/购买技能皮肤',[list,'character'],'<li>若未购买皮肤则购买并使用选定的技能皮肤<li>你可以无条件使用已购买或已解锁的技能皮肤<li>若按取消则不使用技能皮肤'),function(button){
+        var i=Math.floor(Math.random()*list.length);    
+        return list[i];
+    })}
+    'step 1'
+    if(result.bool){
+	if (result.buttons[0].link=='Pifunyhzr黑暗中的剑客1'){
+		if (player==game.me){
+		if (lib.config.Pifunyhzr黑暗中的剑客1!=true){
+		game.changeCoin(-250);
+		game.saveConfig('Pifunyhzr黑暗中的剑客1',true);
+		player.useSkill('nyhzr隐匿');
+		game.say1('购买成功');
+	}else{
+		player.useSkill('nyhzr隐匿');
+		}
+	}else{
+		player.useSkill('nyhzr隐匿');
+		}
+	}
+	if (result.buttons[0].link=='Pifunyhzr黑暗中的剑客2'){
+		if (player==game.me){
+		if (lib.config.Pifunyhzr黑暗中的剑客2!=true){
+		game.changeCoin(-990);
+		game.saveConfig('Pifunyhzr黑暗中的剑客2',true);
+		player.addSkill('nyhzr幕府利刃');
+		game.say1('购买成功');
+	}else{
+		player.addSkill('nyhzr幕府利刃');
+		}
+	}else{
+		player.addSkill('nyhzr幕府利刃');
+		}
+	}
+	if (result.buttons[0].link=='Pifunyhzr黑暗中的剑客3'){
+		if (player==game.me){
+		if (lib.config.Pifunyhzr黑暗中的剑客3!=true){
+		game.changeCoin(-800);
+		game.saveConfig('Pifunyhzr黑暗中的剑客3',true);
+		player.useSkill('nyhzr颠覆之海');
+		game.say1('购买成功');
+	}else{
+		player.useSkill('nyhzr颠覆之海');
+		}
+	}else{
+		player.useSkill('nyhzr颠覆之海');
+		}
+	}
+	game.log(player,'使用皮肤：',get.translation(result.buttons[0].link));
+    player.setAvatar('gnyhzr宫本武藏',result.buttons[0].link);
+	player.storage._Pifunyhzr黑暗中的剑客=0;
+    }else{
+	player.storage._Pifunyhzr黑暗中的剑客=0;		
+    }
+},
+            },
 			"Pifunyhzr狼蛛1jieshao":{
 						nobracket:true,				
 				 },
@@ -3071,7 +5917,7 @@ selectCard:2,
 filter:function (event,player){
 return !player.hasSkill('nyhzr钻石力量1');
 },
-content:function (){	
+content:function (){
 var nyhzr闪亮的黄钻石=ui.create.div();
 nyhzr闪亮的黄钻石.style.height='25px';
 nyhzr闪亮的黄钻石.style.width='25px';
@@ -4898,7 +7744,7 @@ player.recover();
 };
         if (config.UsePifuNew) {
             for (var i in lib.characterPack['mode_extension_技能皮肤']) {
-				if (i=='Pifunyhzr第二人类1'||i=='Pifunyhzr第二人类3'||i=='Pifunyhzr魅魔公主1'||i=='Pifunyhzr魅魔公主2'||i=='Pifunyhzr暴君1'||i=='Pifunyhzr暴君2'||i=='Pifunyhzr暴君3'||i=='Pifunyhzr吸血鬼伯爵1'||i=='Pifunyhzr吸血鬼伯爵3'||i=='Pifunyhzr射日英雄1'||i=='Pifunyhzr射日英雄2'||i=='Pifunyhzr射日英雄4'||i=='Pifunyhzr射日英雄5'||i=='Pifunyhzr魔龙化身1'||i=='Pifunyhzr魔龙化身2'||i=='Pifunyhzr魔龙化身3'||i=='Pifunyhzr时空英雄1'||i=='Pifunyhzr时空英雄2'||i=='Pifunyhzr自然之灵1'||i=='Pifunyhzr自然之灵2'||i=='Pifunyhzr幻卡魔女1'||i=='Pifunyhzr幻卡魔女2'||i=='Pifunyhzr幻卡魔女3'||i=='Pifunyhzr幻卡魔女4')
+				if (i=='Pifunyhzr第二人类1'||i=='Pifunyhzr第二人类3'||i=='Pifunyhzr魅魔公主1'||i=='Pifunyhzr魅魔公主2'||i=='Pifunyhzr暴君1'||i=='Pifunyhzr暴君2'||i=='Pifunyhzr暴君3'||i=='Pifunyhzr吸血鬼伯爵1'||i=='Pifunyhzr吸血鬼伯爵3'||i=='Pifunyhzr射日英雄1'||i=='Pifunyhzr射日英雄2'||i=='Pifunyhzr射日英雄4'||i=='Pifunyhzr射日英雄5'||i=='Pifunyhzr魔龙化身1'||i=='Pifunyhzr魔龙化身2'||i=='Pifunyhzr魔龙化身3'||i=='Pifunyhzr时空英雄1'||i=='Pifunyhzr时空英雄2'||i=='Pifunyhzr自然之灵1'||i=='Pifunyhzr自然之灵2'||i=='Pifunyhzr幻卡魔女1'||i=='Pifunyhzr幻卡魔女2'||i=='Pifunyhzr幻卡魔女3'||i=='Pifunyhzr幻卡魔女4'||i=='Pifunyhzr黑暗中的剑客1'||i=='Pifunyhzr黑暗中的剑客3')
                 for (var j = 0; j < lib.character[i][4].length; j++) {
                     if (lib.character[i][4][j].indexOf('ext:') == 0) {
                         lib.character[i][4][j] = 'ext:新英魂之刃/New' + i + '.jpg'; break;
@@ -5118,36 +7964,94 @@ player.recover();
 			lib.character[i][2]='已购买';
         }
 		}
-        };			
-		},precontent:function (nyhzrlj){
-        if(nyhzrlj.enable){		
+        };
+		if (lib.config.Pifunyhzr黑暗中的剑客1) {
+			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
+			if (i=='Pifunyhzr黑暗中的剑客1'){		
+			lib.character[i][2]='已购买';
+        }
+		}
+        };
+		if (lib.config.Pifunyhzr黑暗中的剑客2) {
+			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
+			if (i=='Pifunyhzr黑暗中的剑客2'){		
+			lib.character[i][2]='已购买';
+        }
+		}
+        };
+		if (lib.config.Pifunyhzr黑暗中的剑客3) {
+			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
+			if (i=='Pifunyhzr黑暗中的剑客3'){		
+			lib.character[i][2]='已购买';
+        }
+		}
+        };
+		if(config.awakenShow){
+			game.saveConfig('awakenShow',true);
+		}else{
+			game.saveConfig('awakenShow',false);
+		};
+		if(config.awakenShowRandom=='0.1'){
+			game.saveConfig('awakenShowRandom',0.1);
+		};
+		if(config.awakenShowRandom=='0.25'){
+			game.saveConfig('awakenShowRandom',0.25);
+		};
+		if(config.awakenShowRandom=='0.5'){
+			game.saveConfig('awakenShowRandom',0.5);
+		};
+		if(config.awakenShowRandom=='0.75'){
+			game.saveConfig('awakenShowRandom',0.75);
+		};
+		if(config.awakenShowRandom=='1'){
+			game.saveConfig('awakenShowRandom',1);
+		};
+		},editable:false,
+		precontent:function (nyhzrlj){
+        if(nyhzrlj.enable){
+            if (lib.config.Pifunyhzr自然之灵1==true){
+	            lib.configOL.Pifunyhzr自然之灵1=true;
+            };
+            if (lib.config.Pifunyhzr自然之灵2==true){
+	            lib.configOL.Pifunyhzr自然之灵2=true;
+            };
             game.import('character',function(){
                 var nyhzrlj = {
                     name: 'nyhzrlj',
-                    connect:true,				
+                    connect:true,
                     character:{
-            "Newlnyhzr咯哩咯哩":["female","zhi",3,["nyhzr仙灵伙伴lj","nyhzr迷藏印记lj"],["des:<li>大多数生灵都逃不过时光的流逝，然而咯哩咯哩却不属于此类。作为自然万物之精华，咯哩咯哩拥有着一颗干净纯洁的心、永远不会长大的外形，以及与花草百兽沟通的奇妙能力，而她的名字则来源于她的口头禅：咯哩。<li>在大自然中独自生活许多年后，出于对人类世界的向往和对新朋友的渴望，咯哩咯哩带着她的小伙伴——妖精皮皮，一起来到了人类的城邦。咯哩咯哩带领孩子们玩耍，并用魔法暂时将桌椅变成花朵和动物来增添乐趣。但人们似乎并不领情——出于对魔法和力量的恐惧，大人们很快便让孩子们疏远了咯哩咯哩。<li>伤心的咯哩咯哩离开了这所城邦，重新寻找一个善良美好的新世界。途经决战之谷时，咯哩咯哩和皮皮遇到凶兽饕餮，它正准备吞噬最近的人类城邦。尽管遭到人类的疏远，但为了可爱的孩子们不受伤害，咯哩咯哩毅然与饕餮展开了战斗。然而饕餮实力强大，咯哩咯哩和皮皮陷入了险境。危急关头，一位来自异世界的男人“拳”突然出现，在他的帮助，饕餮终于败退离去。<li>咯哩咯哩对这个胸前有着北斗七星状伤疤的男人产生了浓厚的兴趣。面对这个好奇又天真的小家伙一个又一个的疑问，拳将自己的经历和扫除一切邪恶不公的决心告诉了她。听完拳的叙述，咯哩咯哩从他的身上感受到了巨大的勇气和信念的力量，她意识到，与其寻找一个虚无缥缈的新世界，不如从现在开始，创造并且守护现有的一切。于是，她决定成为拳的伙伴，和他一起踏上未知的冒险之路！<li>我才不会害怕呢！咯哩！<li>——咯哩咯哩"]],
-            "Newlnyhzr莉莉姆.提露埃拉":["female","li",3,["nyhzr恐惧镰刀lj","nyhzr恐惧结界lj"],["des:<li>恢弘的钟声和吟唱笼罩着整座城市，人们云集在教堂之中，进行着庄严而神圣的宗教仪式。而在教堂的穹顶，象征着神权的巨大十字架上，却坐着一个美丽而妖娆的身影，泛着宝石光芒的瞳仁和背后的翅膀昭示着她令人畏惧的身份——夜之魔女莉莉丝和魔王撒旦的女儿，地狱的公主——莉莉姆.提露埃拉。 <li>同她的姐妹们一样，莉莉姆. 提露埃拉身上永远散发着青春的活力，外表充满魅力却又让人心生畏惧，由血统赋予的强大魔力能让她在地狱和人间穿梭自如，并不断出现在人们的噩梦之中。但和她那些只顾享乐的姐妹们不同，莉莉姆.提露埃拉更加危险且具有野心：她想把所有的人类土地都变成充满滋生魔物的土壤。 <li>就在提露埃拉不断实施着她的邪恶计划之时，其他莉莉姆以及她们手下的魔物们纷纷遭到了猎杀，而所有的线索都指向了一个人：猎魔人露娜。<li>这场关于猎杀的游戏激起了提露埃拉心中的邪恶欲望，她追随着猎魔人的踪迹来到人类的城邦。看着脚下的城市和熙攘的人群，莉莉姆.提露埃拉站起身来，灵活地跳到十字架顶端，朝着面前的城市张开双手，像是要把整座城市收入怀中。<li>“这里，马上就要完全属于我了……到时候要做些什么呢?想想就……”<li>亢奋的情绪突然被她自己打断，注视着整座城市的瞳孔突然将视线锁定在一间普通到再也不能普通的屋顶上，像是发现了宝藏一样，莉莉姆. 提露埃拉眯起了眼睛，嘴角露出了摄人的微笑。<li>“找到你了，要开始享受游戏的乐趣了。”"]],
-		    "Newlnyhzr龙骑士":["male","li",4,["nyhzr龙人血脉lj"],["des:<li>边境的小酒馆里，老板略带神秘的说起这样一个传说：<li>好心的领主老爷和他的养子生活在一座美丽的庄园里。<li>然而，魔龙化身的养子本性嗜血又残暴。他魔性大发之后，重伤领主，焚毁庄园。据说他身覆鳞片，口中喷火，甚至还会吃人！ <li>——那段经历对流浪骑士来说就像噩梦一般，如果真是场梦就好了……<li>那一天，从血脉中涌出的能量仿佛要将身体撕成两半，难以忍受的巨大痛楚令他失去了理智。<li>清醒之后，看着血泊中的领主和自己可怕的身躯，他只能惶恐地逃离。 <li>这些年来，骑士独自一人在荒原上流浪，而根植于血脉中的力量也与日俱增。幸运的是，在旅途中磨练出的坚韧和勇气让骑士逐渐学会了如何在狂暴中保持清明。在一次从魔兽群的包围中救下落难的冒险者后，他第一次感到这股力量会是种恩赐。 <li>兴奋的流浪骑士马不停蹄地想要回到家乡，但迎接他的却不是领主慈祥的微笑，而是冲天的火光、村民的哀嚎以及大队的强盗…… <li>那天以后，王国又多了一个传说，关于龙骑士的传说。"]],
-            "Newnnyhzr妮娜":["female","min",3,["rnyhzr幽影之蜕lj","nyhzr女皇神威lj"],["des:<li>针对女王妮娜的政变在一个夜晚爆发。那些曾被赦免的贵族们带着士兵冲进王宫，将所见的人统统杀死。<li>“抓住妮娜！”熊熊火焰在王宫中肆虐，照亮一地冰冷的尸体与丑恶背叛。<li>“杀死她，她已不配为王！” <li>目标明确的叛军一路攻入寝宫，妮娜只得带着铁卫逃往王城北面。那里背靠人人恐惧的禁忌森林，叛军决不会在那设防。然而双方实力过于悬殊，当他们来到禁忌森林前，铁卫已悉数战死，只剩走投无路的妮娜一人被包围。 <li>贵族们轻蔑地嘲笑她：“你是要投降，还是逃入死地？” <li>女王的脸因恐惧而苍白，但她仍尊严地抬头走入森林：“以我的灵魂发誓，我会回来的！把你们全部杀死！” <li>叛军骚动地望向漆黑的森林，想要确定女王是否已死。而妮娜身陷密林深处，被冰冷黏丝束缚双脚。纷麻触感由四肢蔓延，骚动的剧毒螯爪遍布全身，一点点收割生命。曾经高傲的冰雪陷入地狱，死亡已如影随形，妮娜绝望地流出眼泪。 <li>“我不能死……”复仇的怒火涌上心头，被背叛的憎恨和被啃食的痛楚让她从灵魂深处发出嘶哑呐喊：“我绝不能死！” <li>“你要向那些背叛你的人复仇么？”甜腻诱惑的声音突然充斥在她耳边。"]], 
-		    "Newdnyhzr德古拉":["male","zhi",3,["nyhzr血虐暴风lj","nyhzr歃血为神lj"],["des:<li>那座古堡矗立在林中已经很久，崩塌的外墙、腐朽的枯木、夜枭的啼叫，传说中的恶魔……一切令人生惧的元素仿佛都集中在它的身上。 <li>过去的这里并不是如此死气沉沉，令人生畏。德古拉伯爵一家是这片土地的主人。伯爵夫人虽然出身卑微，却颇受伯爵宠爱。浪漫的爱情故事也让无数人羡慕。 <li>平静的日子被教会的传令所打破。他带上家族精锐出发了。战斗几乎没有遭到抵抗，这种单纯的杀戮令伯爵的不满更加浓烈。当伯爵归来之时，迎接他的不是欢呼与鲜花，而是满目疮痍，尸横遍野……他这才明白出征不过是教会的幌子，隐藏在背后的目的是铲除异己。抱着爱人的尸体，德古拉的愤怒如同滔天巨焰，他诅咒神明，诅咒教会，发誓要让他们血债血偿！<li>自那之后，伯爵失去了踪迹。尽管教会四处搜寻，却毫无线索。<li>数月后，曾参与围剿的人皆以怪异的方式死去，死者无一例外被吸干鲜血！教会分支也在熊熊大火中化为灰烬。人们纷纷传言德古拉伯爵回来了，他将灵魂献给魔鬼，以换取复仇的永生之力。<li>他视教廷为永世之敌，仇恨不灭，直至那伪善的光明被彻底摧毁！"]],
-            "Newhnyhzr后羿":["male","min",4,["nyhzr逐阳之弓lj"],["des:<li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
-						
+            "lnyhzr咯哩咯哩ol":["female","zhi",3,["nyhzr仙灵伙伴ol","nyhzr迷藏印记ol"],["ext:新英魂之刃/Newlnyhzr咯哩咯哩.jpg","des:<li>大多数生灵都逃不过时光的流逝，然而咯哩咯哩却不属于此类。作为自然万物之精华，咯哩咯哩拥有着一颗干净纯洁的心、永远不会长大的外形，以及与花草百兽沟通的奇妙能力，而她的名字则来源于她的口头禅：咯哩。<li>在大自然中独自生活许多年后，出于对人类世界的向往和对新朋友的渴望，咯哩咯哩带着她的小伙伴——妖精皮皮，一起来到了人类的城邦。咯哩咯哩带领孩子们玩耍，并用魔法暂时将桌椅变成花朵和动物来增添乐趣。但人们似乎并不领情——出于对魔法和力量的恐惧，大人们很快便让孩子们疏远了咯哩咯哩。<li>伤心的咯哩咯哩离开了这所城邦，重新寻找一个善良美好的新世界。途经决战之谷时，咯哩咯哩和皮皮遇到凶兽饕餮，它正准备吞噬最近的人类城邦。尽管遭到人类的疏远，但为了可爱的孩子们不受伤害，咯哩咯哩毅然与饕餮展开了战斗。然而饕餮实力强大，咯哩咯哩和皮皮陷入了险境。危急关头，一位来自异世界的男人“拳”突然出现，在他的帮助，饕餮终于败退离去。<li>咯哩咯哩对这个胸前有着北斗七星状伤疤的男人产生了浓厚的兴趣。面对这个好奇又天真的小家伙一个又一个的疑问，拳将自己的经历和扫除一切邪恶不公的决心告诉了她。听完拳的叙述，咯哩咯哩从他的身上感受到了巨大的勇气和信念的力量，她意识到，与其寻找一个虚无缥缈的新世界，不如从现在开始，创造并且守护现有的一切。于是，她决定成为拳的伙伴，和他一起踏上未知的冒险之路！<li>我才不会害怕呢！咯哩！<li>——咯哩咯哩"]],
+            "lnyhzr莉莉姆.提露埃拉ol":["female","li",3,["nyhzr恐惧镰刀ol","nyhzr恐惧结界ol"],["ext:新英魂之刃/Newlnyhzr莉莉姆.提露埃拉.jpg","des:<li>恢弘的钟声和吟唱笼罩着整座城市，人们云集在教堂之中，进行着庄严而神圣的宗教仪式。而在教堂的穹顶，象征着神权的巨大十字架上，却坐着一个美丽而妖娆的身影，泛着宝石光芒的瞳仁和背后的翅膀昭示着她令人畏惧的身份——夜之魔女莉莉丝和魔王撒旦的女儿，地狱的公主——莉莉姆.提露埃拉。 <li>同她的姐妹们一样，莉莉姆. 提露埃拉身上永远散发着青春的活力，外表充满魅力却又让人心生畏惧，由血统赋予的强大魔力能让她在地狱和人间穿梭自如，并不断出现在人们的噩梦之中。但和她那些只顾享乐的姐妹们不同，莉莉姆.提露埃拉更加危险且具有野心：她想把所有的人类土地都变成充满滋生魔物的土壤。 <li>就在提露埃拉不断实施着她的邪恶计划之时，其他莉莉姆以及她们手下的魔物们纷纷遭到了猎杀，而所有的线索都指向了一个人：猎魔人露娜。<li>这场关于猎杀的游戏激起了提露埃拉心中的邪恶欲望，她追随着猎魔人的踪迹来到人类的城邦。看着脚下的城市和熙攘的人群，莉莉姆.提露埃拉站起身来，灵活地跳到十字架顶端，朝着面前的城市张开双手，像是要把整座城市收入怀中。<li>“这里，马上就要完全属于我了……到时候要做些什么呢?想想就……”<li>亢奋的情绪突然被她自己打断，注视着整座城市的瞳孔突然将视线锁定在一间普通到再也不能普通的屋顶上，像是发现了宝藏一样，莉莉姆. 提露埃拉眯起了眼睛，嘴角露出了摄人的微笑。<li>“找到你了，要开始享受游戏的乐趣了。”"]],
+		    "lnyhzr龙骑士ol":["male","li",4,["nyhzr龙人血脉ol"],["ext:新英魂之刃/Newlnyhzr龙骑士.jpg","des:<li>边境的小酒馆里，老板略带神秘的说起这样一个传说：<li>好心的领主老爷和他的养子生活在一座美丽的庄园里。<li>然而，魔龙化身的养子本性嗜血又残暴。他魔性大发之后，重伤领主，焚毁庄园。据说他身覆鳞片，口中喷火，甚至还会吃人！ <li>——那段经历对流浪骑士来说就像噩梦一般，如果真是场梦就好了……<li>那一天，从血脉中涌出的能量仿佛要将身体撕成两半，难以忍受的巨大痛楚令他失去了理智。<li>清醒之后，看着血泊中的领主和自己可怕的身躯，他只能惶恐地逃离。 <li>这些年来，骑士独自一人在荒原上流浪，而根植于血脉中的力量也与日俱增。幸运的是，在旅途中磨练出的坚韧和勇气让骑士逐渐学会了如何在狂暴中保持清明。在一次从魔兽群的包围中救下落难的冒险者后，他第一次感到这股力量会是种恩赐。 <li>兴奋的流浪骑士马不停蹄地想要回到家乡，但迎接他的却不是领主慈祥的微笑，而是冲天的火光、村民的哀嚎以及大队的强盗…… <li>那天以后，王国又多了一个传说，关于龙骑士的传说。"]],
+            "nnyhzr妮娜ol":["female","min",3,["rnyhzr幽影之蜕ol","nyhzr女皇神威ol"],["ext:新英魂之刃/Newnnyhzr妮娜.jpg","des:<li>针对女王妮娜的政变在一个夜晚爆发。那些曾被赦免的贵族们带着士兵冲进王宫，将所见的人统统杀死。<li>“抓住妮娜！”熊熊火焰在王宫中肆虐，照亮一地冰冷的尸体与丑恶背叛。<li>“杀死她，她已不配为王！” <li>目标明确的叛军一路攻入寝宫，妮娜只得带着铁卫逃往王城北面。那里背靠人人恐惧的禁忌森林，叛军决不会在那设防。然而双方实力过于悬殊，当他们来到禁忌森林前，铁卫已悉数战死，只剩走投无路的妮娜一人被包围。 <li>贵族们轻蔑地嘲笑她：“你是要投降，还是逃入死地？” <li>女王的脸因恐惧而苍白，但她仍尊严地抬头走入森林：“以我的灵魂发誓，我会回来的！把你们全部杀死！” <li>叛军骚动地望向漆黑的森林，想要确定女王是否已死。而妮娜身陷密林深处，被冰冷黏丝束缚双脚。纷麻触感由四肢蔓延，骚动的剧毒螯爪遍布全身，一点点收割生命。曾经高傲的冰雪陷入地狱，死亡已如影随形，妮娜绝望地流出眼泪。 <li>“我不能死……”复仇的怒火涌上心头，被背叛的憎恨和被啃食的痛楚让她从灵魂深处发出嘶哑呐喊：“我绝不能死！” <li>“你要向那些背叛你的人复仇么？”甜腻诱惑的声音突然充斥在她耳边。"]], 
+		    "dnyhzr德古拉ol":["male","zhi",3,["nyhzr血虐暴风ol","nyhzr歃血为神ol"],["ext:新英魂之刃/Newdnyhzr德古拉.jpg","des:<li>那座古堡矗立在林中已经很久，崩塌的外墙、腐朽的枯木、夜枭的啼叫，传说中的恶魔……一切令人生惧的元素仿佛都集中在它的身上。 <li>过去的这里并不是如此死气沉沉，令人生畏。德古拉伯爵一家是这片土地的主人。伯爵夫人虽然出身卑微，却颇受伯爵宠爱。浪漫的爱情故事也让无数人羡慕。 <li>平静的日子被教会的传令所打破。他带上家族精锐出发了。战斗几乎没有遭到抵抗，这种单纯的杀戮令伯爵的不满更加浓烈。当伯爵归来之时，迎接他的不是欢呼与鲜花，而是满目疮痍，尸横遍野……他这才明白出征不过是教会的幌子，隐藏在背后的目的是铲除异己。抱着爱人的尸体，德古拉的愤怒如同滔天巨焰，他诅咒神明，诅咒教会，发誓要让他们血债血偿！<li>自那之后，伯爵失去了踪迹。尽管教会四处搜寻，却毫无线索。<li>数月后，曾参与围剿的人皆以怪异的方式死去，死者无一例外被吸干鲜血！教会分支也在熊熊大火中化为灰烬。人们纷纷传言德古拉伯爵回来了，他将灵魂献给魔鬼，以换取复仇的永生之力。<li>他视教廷为永世之敌，仇恨不灭，直至那伪善的光明被彻底摧毁！"]],
+            "hnyhzr后羿ol":["male","min",4,["nyhzr逐阳之弓ol"],["ext:新英魂之刃/Newhnyhzr后羿.jpg","des:<li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
+            "snyhzr苏尔肯ol":["male","zhi",3,["nyhzr颠倒灵魂ol"],["ext:新英魂之刃/snyhzr死灵法师.jpg","des:<li>自收留苏尔肯之后，普赛克再无来客。<li>有巫师大人为庆典燃放烟花，普赛克村落将迎来最美妙的夜晚！”村长握着白袍的手表示欢迎。人群外，苏尔肯若有所思。<li>普赛克村落不接纳外人，苏尔肯是第一个。那时他身负重伤，因脑中的魔法余震失去记忆，是阿芙洛的照料治愈了他。如今阿芙洛已成为他的妻子，安逸的农耕生活让他并不在意遗失的过去。只是乱世锤炼出的敏锐不断萦绕着他——白袍此行并不单纯。<li>绚烂的烟花让人心生矫情，狂欢后，妻子已沉沉睡去。苏尔肯轻抚爱人的发，门外急促的脚步声显得不合时宜。村长连夜召集了所有青年男子，白袍缓缓开口，“先生们，十年前龙骑士在荒原上剿灭魔族的时候，漏了一个，我追踪至附近成功解决遗患，近日却洞察到魔族部队正往此处进军，想必这里已经暴露，转移为时已晚。”巫师的话就是一颗炸弹，众人如惊弓之鸟，各种声音逼人发狂。苏尔肯低头抚摸婚戒，他只希望阿芙洛安全。脑中上演各种预想后，他决定赌一把，抬头迎上白袍意味深长的视线，“巫师，我能做些什么？”<li>苏尔肯紧紧追随白袍的魔能之球，在指引下找到了独行术士，乞求抵御魔军的力量。<li>“虽然我欠白胡子一个人情，可一切还要按我的心情来。”独行凑近苏尔肯，用两个没有眼球的黑洞“打量”苏尔肯，“你？哈哈哈，变味的臭虫确实能勾起我的兴致！白袍这手好棋，就让我来添添彩吧！”闻言同时，苏尔肯脑中呈现村长与一个村民被黑影绞死的画面。他仿佛知道独行要干什么，嘴上不停地哀求，心中不断地祈祷，直到阿芙洛的血染红被褥，他彻底崩溃。他感受到一股强大的力量开始流入他的身体，肉体被黑影腐蚀，碎骨畸生。苏尔肯听到来自独行的戏谑，“套了羊皮，真以为自己是羊了？”<li>苏尔肯被独行的魔法送回村落。魔军已至，白袍制造出巨大屏障包裹住村民，来不及等苏尔肯理清头绪，白袍吼道，“抓紧时间，要撑不住了。”苏尔肯需要答案，需要慰藉，至少他希望爱妻的死有价值。顷刻间，他的力量直逼而去，黑色迅速蔓延，瓦解了魔军的攻势。每倒下一个尸体，苏尔肯就摄入一丝灵力，他走过的每一寸土壤之中，都保留有亡魂的温度。魔军将领在弥留之际，质问道，“你也来自黑暗，为何要与我们为敌？”还未听到苏尔肯的回应，便化作灵力的祭品。<li>全灭魔军，苏尔肯回身走向屏障，熟悉的面孔唯少了三人。村民根本不在意淹没在黑影里的悲伤，此起彼伏的是对白袍的哀求，“巫师大人，昨日你说苏尔肯就是当年遗漏的魔族，他已不属普赛克，我们全村恳请你不要停止屏障。”<li>苏尔肯闻言颤抖着伸出手骨，啊，果然无法穿过屏障，他突然明白魔军将领和独行说的种种。他一直都是对的，妻子终究难逃厄运。村民怎么看他又有什么所谓？他沉默，走向自己的家。白袍转头打断空气里的恐惧与好奇，“走吧，我们撤离到安全的地方。”<li>从此普赛克村落仅剩下一抹孤独而漆黑的背影。他守着一副尸体，远离活着的人"]],						
+            "nnyhzr瓦尔基里ol":["female","min",4,["nyhzr困兽之斗ol"],["ext:新英魂之刃/Newnnyhzr女武神.jpg","des:<li>她是地上国王的女儿，她是被诸神选中的战士。<li>她的长矛由奥丁亲自赐下，神光闪烁。当那点光芒闪烁进敌人的眼眸，那便是向他们宣告死亡的来到。<li>她的容貌犹如初升的太阳，她的身姿轻盈曼妙。在吟游诗人的歌中，那些栖息在世界树的神鸟献出它们的羽毛，装点她的战袍。<li> “奥丁的侍女”，人们带着敬畏称呼着她。她的到来，不仅仅意味着战局的提前结束，也意味着神域的挑选开始。她将在战场上赐与勇敢的战亡者美妙的一吻，并引领他们带往英灵殿。在诸神的黄昏来临之前，需要完成的事情，还有很多。<li>她的名字是瓦尔基里，人们更愿意用另一个名字来形容她——“女武神”！"]],						
+            "knyhzr凯撒ol":["male","li",4,["nyhzr永恒之斩ol"],["ext:新英魂之刃/Newknyhzr凯撒大帝.jpg","des:<li>以我一生之力，征服我所见的土地；我来，我见，我征服。” 大帝如是说，于是他执起永恒之剑，挥剑所向，万众臣服——这就是凯撒，我们的王！<li>从他降生之时，神明就挥舞霞光为他伴礼。智慧、优雅、勇气、天赋，这是大帝身上永不或缺的荣光！<li>他是神明宠爱的圣子，优雅的白狮圣兽塞乌斯从神山来到吾王的身边。它带来神明的圣谕：惟有大帝，才是这世间真正的王！再长的诗篇也无法叙述大帝的英勇，由他带领的军队，永远没有人能够阻挡。他所立下的决议，带领我们走向辉煌的顶端。<li>他是最强的勇士，他是神明之子。他为神圣的罗马帝国立下了永恒的基石，当一切结束时，他放弃了大帝的尊荣。<li>在神圣的霞光中，他与圣兽塞乌斯悄然离去，神山才是他即将前往的方向。他将是永远以神光笼罩罗马的神明——永恒之王，大帝凯撒，尤利乌斯！"]],						
+            "xnyhzr小乔ol":["female","zhi",3,["nyhzr仙荷甘露ol","nyhzr凤求凰ol"],["ext:新英魂之刃/Newxnyhzr小乔.jpg","des:<li>当今大势，天下三分，英雄辈出。但凡英雄辈出之时，便少不了佳人斗艳，惹得祸水潮生。<li>其时，三国之间有江东二乔，美貌绝世。魏都霸主曹孟德曾慨叹：一愿扫平四海，以成帝业；一愿得江东二乔，置之铜雀台，以乐晚年，虽死无恨矣——仅以此言，便可知双姝绝色。<li>妙龄双姝各自嫁得了如意郎君。那小乔，嫁得是东吴美周郎。周郎者，东吴都督周瑜周公瑾是也，其人丰姿隽秀，胸有百万雄才。而小乔闭月羞花，心中亦自有锦绣。<li>二人琴瑟和鸣，夫妻和睦。但在这天下纷乱之时，周郎有天妒之才，岂能拘于小家，而是不顾大局？ 为随夫君左右，小乔褪下红妆换武装，紧随周郎左右，转战千里，坚强之处，不输男儿。<li>无奈相依相伴十一载，却终敌不过生老病死，一代英才周公瑾，年仅三十六而亡，自此独留红颜在人间。<li>只奈何小乔一代红颜，独留人间，终自黯然消色。正所谓红颜薄命，天妒英才也。"]],						
+            "dnyhzr狄娜ol":["female","zhi",3,["nyhzr火球术ol","nyhzr火之箭矢ol"],["ext:新英魂之刃/Newdnyhzr狄娜.jpg","des:<li>对狄娜来说，幼年的记忆从来都是灰暗无光的。<li>蜷缩在房间的一角，紧紧捂着耳朵，但也不能遮蔽传入耳中的尖叫与咒骂。“嘭”的轻微声音后，狄娜在指尖燃起了一朵小小的火花，明亮而温暖。明明这么漂亮的东西，妈妈为什么不喜欢呢？ 狄娜苦笑了一下，还记得妈妈第一次见到的时候，似乎吓坏了，不然怎么连手上端的汤锅都跌落在地上？之后妈妈还歇斯底里的打翻了好多东西，尖叫着说狄娜是怪物，不应该存在于世，又突然哭着抱住狄娜要求她千万别告诉任何人。<li>如果不是遇到法利亚斯老师，如果不是老师解释了这种与生俱来能力的独特之处，甚至带狄娜前往首都的法师高塔学院学习的话，可能就不会有今天被称为“炽焰火女”的存在了吧？<li>集结的钟声打断了狄娜的思绪。又要出战了吗？看来没空思考人生的意义了呢。<li>指尖的火花熊熊燃烧了起来，那就让他们欣赏这辈子第一次也是最后一次的漫天火雨的盛况吧！"]],
+            "snyhzr司马懿ol":["male","zhi",3,["nyhzr液态火ol","nyhzr元素转化ol"],["ext:新英魂之刃/Newsnyhzr司马懿.jpg","des:<li>他生于乱世，被称为有“狼顾”之相。<li>他善于奇策，多次征伐有功，曾两次率大军成功对抗诸葛亮北伐。 他还曾率领大军征伐辽东公孙渊，采用声东击西之计，出其不意包围辽东主城襄平，一举击破并斩杀辽东公孙渊，平定辽东之乱。数十年来辽东问题终于彻底解决。<li>他能文能武，无论战阵谋略还是领兵打战，都胜人一筹。<li>去世后，依然深得好评，应了那句“少有奇节，聪明多大略，博学治闻，伏膺儒教”。"]],						
+            "jnyhzr金乌ol":["male","min",3,["nyhzr炎阳胄ol","nyhzr业火ol"],["ext:新英魂之刃/Newjnyhzr金乌.jpg","des:<li>洪荒八年，天命自称弟臣，向他的哥哥，有穷氏的帝王后羿请命。<li>是年，十日并出，流民失所。一夜夜不停的击缶声，自后羿的宫里传出。缶声不停，天命就不眠。<li>七月，流火更炽。射日。<li>疆域。三千里繁华，三千里洪荒。后羿张弓，冰矢裂日，九只金乌堕为烈火。大地的伤口愈合，而天命却突然感到身后剧烈的灼痛。<li>金乌胁持了天命，逼迫后羿弃弓掷箭。天命依稀记得那时他喊，弟臣之命为轻，君请为社稷处。然而回应他的则是，帝王收弓……<li>烈火熏瞎后羿双目的时候，天命流泪了。他的绝痛之泪滴在烈焰上升起水雾，金乌哀嚎，凶日的火焰被天命牺牲自身精血所覆灭。<li>日灭了，天地各处黑暗。唯有天命的精魂还在发光。后羿不得已，只好用其精魂铸日，封其为世上最后的金乌。<li>千万年过去，天命金乌只是寂寞地在天空飞翔，日昼下，那如伤害般烙印在大地的阴影，有的只是那个叫后羿的帝王折箭，收弓的影像。"]],
+            "anyhzr阿努比斯ol":["male","zhi",3,["nyhzr善恶天秤ol"],["ext:新英魂之刃/Newanyhzr阿努比斯.jpg","des:<li>死去之人的灵魂沉默地排着队，他们正要前往亡者之殿。 <li>巨大的金质天平置于神殿正中，阿努比斯用它来决定灵魂们的去向。<li>审判之秤的一边放置着正义女神玛特的羽毛，另一头则放置着亡者的心脏。如果心脏与羽毛重量相当，那么这个高尚的灵魂便能进入天堂，与众神永生。如果象征正义的羽毛那端承受不了心脏的罪恶而高高翘起，地狱则是恶毒灵魂的最终归宿。卑劣的灵魂将遭到恶魔吞噬，永无转生。<li>阿努比斯见过数之不尽的灵魂，有洁白无垢的善者，也有漆黑如墨的恶人；有充满好奇的少年，也有饱经沧桑的老人；有地位显赫的贵族，也有一贫如洗的乞丐……只是无论哪种灵魂，在他这里都将接受裁决之刻的来临。<li>这里是绝对公平之所。<li>这片寂静的世界便是阿努比斯的国度。"]],
+            "xnyhzr玄武ol":["male","li",4,["nyhzr冰裂龟甲ol"],["ext:新英魂之刃/Newxnyhzr玄武.jpg","des:<li>仁慈的圣兽玄武是北方诸民的守护神。在人民遭受南方蛮族与圣兽白虎的攻击时，玄武曾多次挺身而出，力保北地家园不受侵凌。<li>玄武的大义并没有换来北方诸民的满足。他们开始对玄武产生不满，因为玄武从不杀死南蛮人为他们报仇。这种不满逐渐扩大，最终变成了仇恨。<li>为了报复玄武，这些愚民在进献给他的供品中放入了极寒冰珠——那是白虎赠予北地愚民的魔物。<li>玄武并没有产生疑心。它吃下了冰珠，立刻身中剧毒。为了不让冰珠渗出的寒气伤及自己守护的人民，它毫不犹豫地飞上天空，最终摔成无数碎冰。<li>玄武死后，北方诸民被白虎所统治，终年沉溺于杀戮之中。玄武遗骸中唯一完整的龟甲·冰霜河图，也在战乱中遗落。"]],
 					},
                     skill:{
-            "nyhzr仙灵伙伴lj":{
+            "nyhzr仙灵伙伴ol":{
                 nobracket:true,
                 trigger:{
                     player:"phaseBegin",
                 },
                 forced:true,
                 content:function (){
-                    if(player.storage.nyhzr仙灵伙伴lj==undefined) player.storage.nyhzr仙灵伙伴lj=0;
-                    player.markSkill('nyhzr仙灵伙伴lj');
-                    player.storage.nyhzr仙灵伙伴lj+=1;    
-                    player.syncStorage('nyhzr仙灵伙伴lj'); 
+                    if(player.storage.nyhzr仙灵伙伴ol==undefined) player.storage.nyhzr仙灵伙伴ol=0;
+                    player.markSkill('nyhzr仙灵伙伴ol');
                     game.log(player,'召唤一只妖精皮皮');
-                    player.marks.nyhzr仙灵伙伴lj.setBackgroundImage('extension/新英魂之刃/'+'nyhzr皮皮'+'.jpg')                   
+					game.broadcastAll(function(player){
+						player.marks.nyhzr仙灵伙伴ol.setBackgroundImage('extension/新英魂之刃/'+'nyhzr皮皮'+'.jpg');
+						player.storage.nyhzr仙灵伙伴ol+=1;
+						player.syncStorage('nyhzr仙灵伙伴ol'); 
+					},player);
                 },
                 intro:{
                     content:function (storage){
@@ -5155,17 +8059,18 @@ player.recover();
                     },
                 },
             },
-            "nyhzr迷藏印记lj":{
+            "nyhzr迷藏印记ol":{
                 nobracket:true,
+                audio:"ext:新英魂之刃:1",
                 trigger:{
                     player:"damageBegin",
                 },
                 filter:function (event,player){
-                    return player.num('h')>=1&&player.storage.nyhzr仙灵伙伴lj>=2;
+                    return player.num('h')>=1&&player.storage.nyhzr仙灵伙伴ol>=2;
                 },
                 content:function (){
-                    player.storage.nyhzr仙灵伙伴lj-=2;    
-                    player.syncStorage('nyhzr仙灵伙伴lj'); 
+                    player.storage.nyhzr仙灵伙伴ol-=2;    
+                    player.syncStorage('nyhzr仙灵伙伴ol'); 
                     game.log(player,'躲避了对方的攻击'); 
                     if (game.players.length<4){
                         player.chooseToDiscard(1,'h',true);     
@@ -5173,9 +8078,9 @@ player.recover();
                     trigger.num--;
                 },
             },			
-            "nyhzr恐惧镰刀lj":{
+            "nyhzr恐惧镰刀ol":{
                 nobracket:true,
-                group:["nyhzr恐惧镰刀lj_gainMark","nyhzr恐惧镰刀lj_Triggera"],
+                group:["nyhzr恐惧镰刀ol_gainMark","nyhzr恐惧镰刀ol_Triggera"],
                 subSkill:{
                     gainMark:{
                         trigger:{
@@ -5183,10 +8088,10 @@ player.recover();
                         },
                         forced:true,
                         content:function (){
-                            if(player.storage.nyhzr恐惧镰刀lj_gainMark==undefined) player.storage.nyhzr恐惧镰刀lj_gainMark=0;
-                            player.markSkill('nyhzr恐惧镰刀lj_gainMark'); 
-                            player.storage.nyhzr恐惧镰刀lj_gainMark+=1;    
-                            player.syncStorage('nyhzr恐惧镰刀lj_gainMark'); 
+                            if(player.storage.nyhzr恐惧镰刀ol_gainMark==undefined) player.storage.nyhzr恐惧镰刀ol_gainMark=0;
+                            player.markSkill('nyhzr恐惧镰刀ol_gainMark'); 
+                            player.storage.nyhzr恐惧镰刀ol_gainMark+=1;    
+                            player.syncStorage('nyhzr恐惧镰刀ol_gainMark'); 
                             game.log(player,'造成的伤害为恐惧镰刀充能');                    
                         },
                         intro:{
@@ -5200,23 +8105,23 @@ player.recover();
                             source:"damageEnd",
                         },
                         filter:function (event,player){
-                            return player.storage.nyhzr恐惧镰刀lj_gainMark>=3;
+                            return player.storage.nyhzr恐惧镰刀ol_gainMark>=3;
                         },
                         forced:true,
                         content:function (){
-                            player.storage.nyhzr恐惧镰刀lj_gainMark=0;    
-                            player.syncStorage('nyhzr恐惧镰刀lj_gainMark');                     
+                            player.storage.nyhzr恐惧镰刀ol_gainMark=0;    
+                            player.syncStorage('nyhzr恐惧镰刀ol_gainMark');                     
                             trigger.player.turnOver();
                         },
                     },
                 },
             },
-            "nyhzr恐惧结界lj":{
+            "nyhzr恐惧结界ol":{
                 nobracket:true,
                 unique:true,
-                global:"nyhzr恐惧lj",
+                global:"nyhzr恐惧ol",
             },
-            "nyhzr恐惧lj":{
+            "nyhzr恐惧ol":{
                 trigger:{
                     source:"damageEnd",
                 },
@@ -5257,15 +8162,16 @@ player.recover();
                     expose:0.2,
                 },
             },
-            "nyhzr龙人血脉lj":{
+            "nyhzr龙人血脉ol":{
 nobracket:true,
+audio:"ext:新英魂之刃:1",
 intro:{
 content:function (storage){
 return '已激活血脉数量：'+storage;
 },
 },
 init:function (player){
-player.storage.nyhzr龙人血脉lj=0;
+player.storage.nyhzr龙人血脉ol=0;
 },
 trigger:{
 global:"gameStart"
@@ -5276,35 +8182,36 @@ mark:true,
 popup:false,
 content:function (){
 'step 0'
-if(player.storage.nyhzr龙人血脉lj==undefined) player.storage.nyhzr龙人血脉lj=0;
+if(player.storage.nyhzr龙人血脉ol==undefined) player.storage.nyhzr龙人血脉ol=0;
 setTimeout(function(){
-player.useSkill('nyhzr龙人血脉lj');
-player.storage.nyhzr龙人血脉lj+=30;
+player.useSkill('nyhzr龙人血脉ol');
+player.storage.nyhzr龙人血脉ol+=30;
+player.syncStorage('nyhzr龙人血脉ol');
 },60000);
 'step 2'
-if(player.storage.nyhzr龙人血脉lj==30){
-player.logSkill('nyhzr龙人血脉lj');
+if(player.storage.nyhzr龙人血脉ol==30){
+player.logSkill('nyhzr龙人血脉ol');
 player.gainMaxHp();
 player.recover();
 game.log(player,'血脉觉醒');
 }
-if(player.storage.nyhzr龙人血脉lj==90){
-player.logSkill('nyhzr龙人血脉lj');
+if(player.storage.nyhzr龙人血脉ol==90){
+player.logSkill('nyhzr龙人血脉ol');
 player.draw(2);
 game.log(player,'血脉觉醒');
-}if(player.storage.nyhzr龙人血脉lj==150){
-player.logSkill('nyhzr龙人血脉lj');
-player.addSkill('nyhzr龙人血脉lj_1');
+}if(player.storage.nyhzr龙人血脉ol==150){
+player.logSkill('nyhzr龙人血脉ol');
+player.addSkill('nyhzr龙人血脉ol_1');
 game.log(player,'血脉觉醒');
 }
-if(player.storage.nyhzr龙人血脉lj==240){
-player.logSkill('nyhzr龙人血脉lj');
-player.addSkill('nyhzr龙人血脉lj_2');
+if(player.storage.nyhzr龙人血脉ol==240){
+player.logSkill('nyhzr龙人血脉ol');
+player.addSkill('nyhzr龙人血脉ol_2');
 game.log(player,'血脉觉醒');
 }
-if(player.storage.nyhzr龙人血脉lj==300){
-player.logSkill('nyhzr龙人血脉lj');
-player.addSkill('nyhzr龙人血脉lj_3');
+if(player.storage.nyhzr龙人血脉ol==300){
+player.logSkill('nyhzr龙人血脉ol');
+player.addSkill('nyhzr龙人血脉ol_3');
 game.log(player,'血脉觉醒');       
 }
 },
@@ -5352,13 +8259,14 @@ return true;
             },
                 },
             },
-            "nyhzr女皇神威lj":{
+            "nyhzr女皇神威ol":{
                 nobracket:true,
+                audio:"ext:新英魂之刃:1",
                 enable:"phaseUse",
                 content:function (){
 					game.log(player,'释放神威');
-                    player.addTempSkill('nyhzr神威lj',{player:'phaseEnd'}); 
-                    player.removeSkill('nyhzr女皇神威lj');    
+                    player.addTempSkill('nyhzr神威ol',{player:'phaseEnd'}); 
+                    player.removeSkill('nyhzr女皇神威ol');    
                 },
                 ai:{
                     order:100,
@@ -5369,7 +8277,7 @@ return true;
                     },
                 },
             },
-            "nyhzr神威lj":{
+            "nyhzr神威ol":{
                 marktext:"神",
                 intro:{},
                 mark:true,
@@ -5382,7 +8290,7 @@ return true;
                     trigger.player.chooseToDiscard(trigger.player.num('h'),'h',true);    
                 },
             },
-            "rnyhzr幽影之蜕lj":{
+            "rnyhzr幽影之蜕ol":{
                 nobracket:true,
                 marktext:"人",
                 intro:{},
@@ -5392,13 +8300,13 @@ return true;
                 },
                 content:function (){
 					game.log(player,'转化蜘蛛形态');
-                    player.addSkill('znyhzr幽影之蜕lj');
-                    player.addSkill('nyhzr蛛壳硬化lj');               
-                    player.removeSkill('rnyhzr幽影之蜕lj');  
-                    player.removeSkill('nyhzr女皇神威lj');                              
+                    player.addSkill('znyhzr幽影之蜕ol');
+                    player.addSkill('nyhzr蛛壳硬化ol');               
+                    player.removeSkill('rnyhzr幽影之蜕ol');  
+                    player.removeSkill('nyhzr女皇神威ol');                              
                 },
             },
-            "znyhzr幽影之蜕lj":{
+            "znyhzr幽影之蜕ol":{
                 nobracket:true,
                 marktext:"蛛",
                 intro:{},
@@ -5408,19 +8316,19 @@ return true;
                 },
                 content:function (){
 					game.log(player,'转化人类形态');
-                    player.addSkill('rnyhzr幽影之蜕lj');
-                    player.addSkill('nyhzr女皇神威lj');               
-                    player.removeSkill('znyhzr幽影之蜕lj');  
-                    player.removeSkill('nyhzr蛛壳硬化lj');                              
+                    player.addSkill('rnyhzr幽影之蜕ol');
+                    player.addSkill('nyhzr女皇神威ol');               
+                    player.removeSkill('znyhzr幽影之蜕ol');  
+                    player.removeSkill('nyhzr蛛壳硬化ol');                              
                 },
             },
-            "nyhzr蛛壳硬化lj":{
+            "nyhzr蛛壳硬化ol":{
                 nobracket:true,
                 enable:"phaseUse",
                 content:function (){ 
                     game.log(player,'硬化了自己的壳');
-                    player.addSkill('nyhzr硬化lj');
-                    player.removeSkill('nyhzr蛛壳硬化lj');
+                    player.addSkill('nyhzr硬化ol');
+                    player.removeSkill('nyhzr蛛壳硬化ol');
                 },
                 ai:{
                     order:100,
@@ -5431,7 +8339,8 @@ return true;
                     },
                 },
 				},
-            "nyhzr硬化lj":{
+            "nyhzr硬化ol":{
+                audio:"ext:新英魂之刃:1",
                 marktext:"硬",
                 intro:{},
                 mark:true,
@@ -5440,18 +8349,22 @@ return true;
                 },
                 forced:true,
                 content:function (){
-                    player.removeSkill('nyhzr硬化lj');
+                    player.removeSkill('nyhzr硬化ol');
 					game.log('硬化的蛛壳使',player,'免疫了攻击');
                     trigger.untrigger();
                     trigger.finish();
                 },
             },
-            "nyhzr血虐暴风lj":{
+            "nyhzr血虐暴风ol":{
                 nobracket:true,
+                audio:"ext:新英魂之刃:1",
                 trigger:{
                     source:"damageEnd",
                 },
                 forced:true,
+                filter:function (event,player){
+                    return player.hp==0||event.player.hp==0;
+                },
                 content:function (){     
                     if (trigger.player.hp==0){
                         player.gainMaxHp();
@@ -5461,8 +8374,9 @@ return true;
                     };
                 },
             },
-            "nyhzr歃血为神lj":{
+            "nyhzr歃血为神ol":{
                 nobracket:true,
+                audio:"ext:新英魂之刃:2",
                 trigger:{
                     source:"damageEnd",
                 },
@@ -5476,7 +8390,7 @@ return true;
 					if (result.control=='弃牌恢复体力'){
 						player.chooseToDiscard(1,'h',true);      
 						player.recover();
-						if (player.hp==player.maxHp&&player.hasSkill('nyhzr血虐暴风lj')){
+						if (player.hp==player.maxHp&&player.hasSkill('nyhzr血虐暴风ol')){
 							player.changeHujia();
 							player.update();
 							game.log(player,'获得1点护甲');
@@ -5494,7 +8408,7 @@ return true;
                     return true;
                 },
             },
-            "nyhzr燎火之箭lj":{
+            "nyhzr燎火之箭ol":{
                 nobracket:true,
                 trigger:{
                     source:"damageBegin",
@@ -5505,7 +8419,7 @@ return true;
                     trigger.player.discard(trigger.player.get('e'));
                 },
             },
-            "nyhzr穿云箭lj":{
+            "nyhzr穿云箭ol":{
                 nobracket:true,
                 ai:{
                     unequip:true,
@@ -5515,8 +8429,9 @@ return true;
                     },
                 },
 			},
-            "nyhzr逐阳之弓lj":{
+            "nyhzr逐阳之弓ol":{
                 nobracket:true,
+                audio:"ext:新英魂之刃:2",
                 mod:{
                     globalFrom:function (from,to,distance){
                         return distance-1;
@@ -5533,66 +8448,590 @@ return true;
 					player.chooseControl(["穿云箭","燎火之箭"]);
 					"step 1"
 					if (result.control=='穿云箭'){
-						player.addTempSkill('nyhzr穿云箭lj',{player:'useCardAfter'});
+						player.addTempSkill('nyhzr穿云箭ol',{player:'useCardAfter'});
 						game.log(player,'将穿云箭上弦');
 					};
 					if (result.control=='燎火之箭'){
-						player.addTempSkill('nyhzr燎火之箭lj',{player:'useCardAfter'});
+						player.addTempSkill('nyhzr燎火之箭ol',{player:'useCardAfter'});
 						game.log(player,'将燎火之箭上弦');
 					};
+                },			
+			},
+			"nyhzr颠倒灵魂ol":{
+				nobracket:true,
+				group:["nyhzr颠倒灵魂ol_draw","nyhzr颠倒灵魂ol_discard"],
+				subSkill:{
+					draw:{
+						trigger:{
+							player:"drawBegin",
+						},
+                        filter:function (event,player){
+							return ui.discardPile.childNodes.length>=event.num;
+						},
+						forced:true,
+						content:function (){
+							"step 0"
+							trigger.untrigger();
+							trigger.finish();
+							var cards=[];
+							for(var i=0;i<ui.discardPile.childNodes.length;i++){
+								cards.push(ui.discardPile.childNodes[i]);
+							}
+							player.chooseCardButton(cards,'选择卡牌获得之',trigger.num,true).ai=function(button){return 1};
+							"step 1"
+							if(result.bool){
+								for(var i=0;i<result.links.length;i++){
+									player.gain(result.links[i]);
+									player.$gain2(result.links[i]);
+									game.log(player,'获得了',result.links[i]);   
+									if(result.links[i].name=='wuzhong'||result.links[i].name=='zengbin'){
+										player.chooseToDiscard(1,'h',true);
+									};
+								}; 
+							}else{
+								player.draw(trigger.num);
+							};
+						},
+					},
+					discard:{
+						trigger:{
+							player:"discardBegin",
+						},
+						forced:true,
+						content:function (){
+							trigger.untrigger();
+							trigger.finish();
+							for(var i=0;i<trigger.cards.length;i++){
+								ui.cardPile.insertBefore(game.createCard(trigger.cards[i]),ui.cardPile.firstChild);
+								game.log(player,'将',trigger.cards[i],'置于牌堆顶');
+							};
+							player.lose(trigger.cards,ui.special);
+							player.$throw(trigger.cards);
+						},
+					},
+				},
+			},
+            "nyhzr困兽之斗ol":{
+				nobracket:true,
+                audio:"ext:新英魂之刃:1",
+                trigger:{
+                    player:"phaseEnd",
                 },
-                check:function (event,player){
-                    if(player.identity==event.player.identity) return false;
-                    if(event.player.identity=='zhu'&&player.identity=='zhong') return false;
-                    if(player.identity=='zhu'&&event.player.identity=='zhong') return false;   
-                    return true;
-                },				
+				frequent:true,
+                content:function (){
+					'step 0'
+                    player.storage.nyhzrhorse=0;
+                    for(var i=0;i<game.players.length;i++){
+                        if(game.players[i]!=player){
+                            if(game.players[i].get('e','3')){
+								player.storage.nyhzrhorse++;
+								game.players[i].discard(game.players[i].get('e','3'));
+							};
+                            if(game.players[i].get('e','4')){
+								player.storage.nyhzrhorse++;
+								game.players[i].discard(game.players[i].get('e','4'));
+							};
+                        };
+                    };
+					if(player.storage.nyhzrhorse>0) player.chooseTarget('选择使用【南蛮入侵】的目标',function(card,player,target){return target!=player;}).ai=function(target){return -ai.get.attitude(player,target)};
+					'step 1'
+                    if(result.bool){
+                        for(var j=0;j<player.storage.nyhzrhorse;j++){
+	                        player.useCard({name:'nanman'},result.targets[0]);
+                        };
+                    }else{
+						event.finish();
+                    };
+                },
+            },
+            "nyhzr永恒之斩ol":{
+				nobracket:true,
+                audio:"ext:新英魂之刃:1",
+                init:function (player){
+                    for(var i=0;i<game.players.length;i++){
+                        game.players[i].storage.nyhzr永恒之斩ol=0;
+                    }
+                },
+				global:"nyhzr永恒之斩ol_1",
+                subSkill:{
+                    1:{
+                        mod:{
+                            maxHandcard:function (player,num){
+								if(player.storage.nyhzr永恒之斩ol>0) return num-player.storage.nyhzr永恒之斩ol;
+                                return num;
+                            },
+                        },
+						trigger:{
+							player:'recoverAfter'
+						},
+						forced:true,
+						filter:function (event,player){
+							return player.storage.nyhzr永恒之斩ol>0;
+						},
+						content:function (){
+							player.storage.nyhzr永恒之斩ol--;
+							game.log(player,'的手牌上限+1');
+						},
+					},
+                },
+                trigger:{
+                    source:"damageBegin",
+                },
+                forced:true,
+                content:function (){
+                    if(trigger.player.hp==trigger.player.maxHp){
+						trigger.untrigger();
+						trigger.finish();
+						trigger.player.loseMaxHp();
+                    }else{
+						trigger.player.storage.nyhzr永恒之斩ol++;
+						game.log(trigger.player,'的手牌上限-1');
+					};
+                },
+            },
+            "nyhzr仙荷甘露ol":{
+				nobracket:true,
+                audio:"ext:新英魂之刃:1",
+				enable:'phaseUse',
+				usable:1,
+				filterCard:function(card){
+					var type=get.type(card);
+					for(var i=0;i<ui.selected.cards.length;i++){
+						if(get.type(ui.selected.cards[i])==type) return false;
+					};
+					return true;
+				},
+				complexCard:true,
+				selectCard:[1,Infinity],
+				selectTarget:-1,
+				filterTarget:true,
+				line:'thunder',
+				check:function(card){
+					return 6-ai.get.value(card);
+				},
+				content:function(){
+					target.draw(cards.length);
+					if(cards.length>=2&&player.storage.nyhzr凤求凰ol!=0){
+						player.storage.nyhzr凤求凰ol=0;
+						player.recover();
+					};
+				},
+				ai:{
+					order:2,
+					result:{
+						player:function(player){
+							if(player.hp!=player.maxHp&&player.storage.nyhzr凤求凰ol!=0) return 1;
+							return 0;
+						}
+					},
+					threaten:0.5
+				},
+			},
+            "nyhzr凤求凰ol":{
+				nobracket:true,
+                audio:"ext:新英魂之刃:1",
+				marktext:"凤",
+                intro:{
+                    content:function (storage){
+                        if(storage==0){
+							return '已解除封印'
+						}else{
+							return '未解除封印'
+						};
+                    },
+                },
+				mark:true,
+				trigger:{
+					player:'chooseToRespondBegin'
+				},
+				direct:true,
+				unique:true,
+				filter:function(event,player){
+					if(event.responded) return false;	
+					for(var i=0;i<game.players.length;i++){
+						if(game.players[i]!=player&&game.players[i].num('h')){
+							return player.storage.nyhzr凤求凰ol==0;
+						};
+					};
+					return false;
+				},
+				content:function(){
+					"step 0"
+					player.chooseTarget(function(card,player,target){return player!=target&&target.num('h')},'请选择【凤求凰】的目标?').ai=function(target){
+						var att=ai.get.attitude(player,target)+1;
+						if(target.num('h','shan')||target.num('h','sha')){
+							att*10;
+						};
+						return -att;
+					};
+					"step 1"
+					if(result.bool){
+						event.target=result.targets[0];
+						event.goto(2);
+					}else{
+						event.finish();	
+					};
+					"step 2"
+					var target=event.target;
+					var cards=target.get('h');
+					player.chooseCardButton('选择'+get.translation(target)+'的一张手牌打出',cards).filterButton=function(button){return trigger.filterCard(button.link)};
+					"step 3"
+					if(result.bool){
+						player.storage.nyhzr凤求凰ol=1;
+						event.target.lose(result.links);
+						trigger.untrigger();
+						trigger.responded=true;
+						result.buttons[0].link.remove();
+						trigger.result={bool:true,card:result.buttons[0].link}
+					};
+				},
+				ai:{
+					effect:{
+						target:function(card){
+							if(get.tag(card,'respondShan')) return 0.7;
+							if(get.tag(card,'respondSha')) return 0.7;
+						}
+					}
+				},
+			},
+            "nyhzr火球术ol":{
+				nobracket:true,
+                trigger:{
+                    player:"phaseAfter",
+                },
+                filter:function (event,player){
+                    return player.num('h')>=2;
+                },
+                content:function (){
+					'step 0'
+                    player.chooseToDiscard(2,'h',true);
+					'step 1'
+                    event.target=game.players.randomGet(player);
+                    event.target.showHandcards();
+					'step 2'
+                    var cards=event.target.get('h','sha');
+                    if(cards.length>0){
+                        player.gain(cards);
+						event.target.$give(cards,player);
+                    }else{
+						event.target.damage('fire');
+						event.target.storage.nyhzr火之箭矢ol++;
+						game.log(event.target,'的火种+1');
+                    };
+                },
+            },
+            "nyhzr火之箭矢ol":{
+				nobracket:true,
+                group:["nyhzr火之箭矢ol_1111","nyhzr火之箭矢ol_2222"],
+                subSkill:{
+                    1111:{
+                        init:function (player){
+                            for(var i=0;i<game.players.length;i++){
+								game.players[i].storage.nyhzr火之箭矢ol=0;
+                            };
+                        },
+                        trigger:{
+                            player:"phaseBefore",
+                        },
+                        filter:function (event,player){
+                            return player.get('h','sha').length>0;
+                        },
+						frequent:true,
+						content:function (){
+							"step 0"
+                            player.chooseTarget('选择【火之箭矢】的目标',function(card,player,target){return target!=player}).ai=function(target){return -ai.get.attitude(player,target)};
+							"step 1"
+							if(result.bool){
+								player.chooseToDiscard(1,'h',{name:'sha'},true,'将一张【杀】转化为【火杀】并对目标使用');
+								player.useCard({name:'sha',nature:'fire'},result.targets[0]);
+								result.targets[0].storage.nyhzr火之箭矢ol++;
+								game.log(result.targets[0],'的火种+1');
+							}else{
+								event.finish();
+							};
+						},
+                    },
+                    2222:{
+                        trigger:{
+                            player:"useCardToBefore",
+                        },
+						forced:true,
+                        filter:function (event,player){
+                            return event.target!=player&&event.target.storage.nyhzr火之箭矢ol>0&&event.target.num('h')>0;
+                        },
+						content:function (){
+							trigger.target.chooseToDiscard(1,'h',true);
+							trigger.target.storage.nyhzr火之箭矢ol--;
+							game.log(trigger.target,'的火种被引燃');
+						},
+                    },
+                },
+            },
+            "nyhzr液态火ol":{
+				nobracket:true,
+				trigger:{
+					source:'damageAfter'
+				},
+				filter:function (event,player){
+					return player.get('e','1');
+				},
+				forced:true,
+				content:function (){
+					trigger.player.damage('nosource','fire');
+				},
+			},
+            "nyhzr元素转化ol":{
+				nobracket:true,
+                trigger:{
+                    global:"damageBefore",
+                },
+                filter:function (event,player){
+                    return event.player&&event.num>0;
+                },
+                content:function (){
+                    'step 0'
+					game.awakenShow('Newsnyhzr司马懿','20','red','元素转化');
+                    player.chooseControl('火','雷','无属性',ui.create.dialog('请选择转化后的属性','hidden')).ai=function(event,player){if(trigger.player.get('e','2')&&trigger.player.get('e','2').name=='tengjia') return '火'};    
+                    "step 1"
+                    if(result.control=='火'){
+                        trigger.nature='fire';
+                    };
+                    if(result.control=='雷'){
+                        trigger.nature='thunder';
+                    };
+                    if(result.control=='无属性'){
+                        trigger.nature='';
+                    };
+                },
+            },
+            "nyhzr炎阳胄ol":{
+				nobracket:true,
+				trigger:{
+					player:"damageAfter",
+				},
+				forced:true,
+				content:function (){
+					player.turnOver();
+				},
+            },
+            "_nyhzr炎阳胄ol":{
+				nobracket:true,
+				trigger:{
+					global:"gameStart",
+				},
+				forced:true,
+				filter:function (event,player){
+					return player.hasSkill('nyhzr炎阳胄ol');
+				},
+				content:function (){
+					player.turnOver=function(all){
+						if(player.name=='jnyhzr金乌ol'){
+							if(player.storage.nyhzr炎阳胄ol==undefined||player.storage.nyhzr炎阳胄ol==1){
+								game.broadcastAll(function(player){
+									player.node.avatar.setBackgroundImage('extension/新英魂之刃/jnyhzr金乌1.jpg');
+									player.storage.nyhzr炎阳胄ol=0;
+								},player);
+								player.addSkill('nyhzr不灭之炎ol');
+							}else{
+								game.broadcastAll(function(player){
+									player.node.avatar.setBackgroundImage('extension/新英魂之刃/Newjnyhzr金乌.jpg');
+									player.storage.nyhzr炎阳胄ol=1;
+								},player);
+								player.removeSkill('nyhzr不灭之炎ol');
+							};
+						};
+						if(player.name2=='jnyhzr金乌ol'){
+							if(player.storage.nyhzr炎阳胄ol==undefined||player.storage.nyhzr炎阳胄ol==1){
+								game.broadcastAll(function(player){
+									player.node.avatar2.setBackgroundImage('extension/新英魂之刃/jnyhzr金乌1.jpg');
+									player.storage.nyhzr炎阳胄ol=0;
+								},player);
+								player.addSkill('nyhzr不灭之炎ol');
+							}else{
+								game.broadcastAll(function(player){
+									player.node.avatar2.setBackgroundImage('extension/新英魂之刃/Newjnyhzr金乌.jpg');
+									player.storage.nyhzr炎阳胄ol=1;
+								},player);
+								player.removeSkill('nyhzr不灭之炎ol');
+							};
+						};
+					};
+				},
+            },
+            "nyhzr业火ol":{
+				nobracket:true,
+				trigger:{
+					player:'shaBegin'
+				},
+				priority:-1,
+				content:function(){
+					'step 0'
+					trigger.target.chooseToRespond({name:'sha'},'请打出一张杀响应杀');
+					"step 1"
+					if(result.bool==false){
+						trigger.directHit=true;
+					}
+				},
+			},
+            "nyhzr不灭之炎ol":{
+				nobracket:true,
+				trigger:{
+					player:"phaseBefore",
+				},
+				forced:true,
+				content:function (){
+					"step 0"
+					player.judge(function(card){return (get.color(card)=='red')?1:-1});
+					"step 1"
+					if(result.judge>0){
+						player.recover();
+					}else{
+						player.draw();
+					};
+				},
+			},
+            "nyhzr善恶天秤ol":{
+				nobracket:true,
+				enable:'phaseUse',
+				usable:1,
+				filterCard:true,
+				complexCard:true,
+				selectCard:[2,Infinity],
+				filterTarget:true,
+				selectTarget:1,
+				content:function (){
+					var redCard=0;
+					for(var i=0;i<cards.length;i++){
+						if(get.color(cards[i])=='red'){
+							redCard++;
+						}
+					};
+					for(var i=0;i<cards.length;i++){
+						if(Math.random()<=redCard/cards.length-0.01){
+							target.getBuff();
+							game.log(target,'的判定结果为善');
+						}else{
+							target.getDebuff();
+							game.log(target,'的判定结果为恶');
+						};
+					};
+				},
+			},
+            "nyhzr冰裂龟甲ol":{
+				nobracket:true,
+				trigger:{
+					global:'useCardToBegin'
+				},
+				filter:function(event,player){
+					return event.target==player&&event.player!=player&&event.targets.length==1;
+				},
+				forced:true,
+				content:function(){
+					'step 0'
+					player.judge();
+					'step 1'
+					if(get.suit(result.card)=='club'){
+						trigger.untrigger();
+						trigger.finish();
+						game.log(trigger.player,'的卡牌无效了');
+					};
+					if(get.suit(result.card)=='diamond'){
+						for(var i=0;i<game.players.length;i++){
+							trigger.targets.remove(player);
+							trigger.targets.push(game.players[i]);
+							game.log(game.players[i],'成为',trigger.card,'的额外目标');
+						};
+					};
+					if(get.suit(result.card)=='heart'){
+						trigger.targets.push(player.next);
+						game.log(player.next,'成为',trigger.card,'的额外目标');
+					};
+					if(get.suit(result.card)=='spade'){
+						player.chooseToDiscard(1,'h',true);
+					};
+				},
 			},
 
-
-
-
-
-
-			
 					},
                     translate:{
-            "Newlnyhzr咯哩咯哩":"◉咯哩咯哩",
-            "Newlnyhzr莉莉姆.提露埃拉":"◉莉莉姆·提露埃拉",
-            "Newlnyhzr龙骑士":"◉龙骑士 ",
-            "Newnnyhzr妮娜":"◉妮娜  ",
-            "Newdnyhzr德古拉":"◉德古拉 ",
-            "Newhnyhzr后羿":"◉后羿  ",
-            "nyhzr仙灵伙伴lj":"仙灵伙伴",
-            "nyhzr仙灵伙伴lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你召唤一只妖精皮皮",
-            "nyhzr迷藏印记lj":"迷藏印记",
-            "nyhzr迷藏印记lj_info":"每当你受到伤害时，若你有手牌，你可以牺牲两只妖精皮皮使伤害-1，若游戏人数小于4，你需要弃一张牌",	
-            "nyhzr恐惧镰刀lj":"恐惧镰刀",
-            "nyhzr恐惧镰刀lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每次造成伤害时会为自己的噩梦镰刀充能夜魔之力，达到三层时，造成伤害后使对方翻面",
-            "nyhzr恐惧结界lj":"恐惧结界",
-            "nyhzr恐惧结界lj_info":"当一名其他力量角色使用【杀】造成一次伤害后，该角色可令你摸一张牌并令你恢复一点体力",			
-            "nyhzr龙人血脉lj":"龙人血脉",
-            "nyhzr龙人血脉lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>游戏开始后，每一分钟激活30点血脉<br><br>当血脉数量：<br>为30时，你的体力上限+1并恢复一点体力<br>为90时，你摸两张牌<br>为150时，你获得技能（回合开始前摸一张牌）<br>为240时，你获得技能（回合内有使用次数限制的牌，其限制改为2；你使用的牌无距离限制）<br>为300时，你获得技能（当你造成伤害后，若你的手牌数大于2，你可以弃置所有手牌后摸一张牌，然后随机删除被伤害者一项技能）",
-            "nyhzr神威lj":"神威",
-            "nyhzr女皇神威lj":"女皇神威",			
-            "nyhzr女皇神威lj_info":"出牌阶段，你可以释放自己的女皇神威,使你于本回合内造成伤害后，被伤害者弃置所有手牌，使用后删除此技能",
-            "nyhzr硬化lj":"硬化",
-            "nyhzr蛛壳硬化lj":"蛛壳硬化",
-            "nyhzr蛛壳硬化lj_info":"出牌阶段，你可以硬化自己的壳,使你完全免疫下一次的伤害，使用后删除此技能",
-            "rnyhzr幽影之蜕lj":"幽影之蜕",
-            "rnyhzr幽影之蜕lj_info":"当你受到伤害后，你可以转化为蜘蛛形态，失去技能【女皇神威】，获得技能【蛛壳硬化】",
-            "znyhzr幽影之蜕lj":"幽影之蜕",
-            "znyhzr幽影之蜕lj_info":"当你受到伤害后，你可以转化为人类形态，失去技能【蛛壳硬化】，获得技能【女皇神威】",
-            "nyhzr血虐暴风lj":"血虐暴风",
-            "nyhzr血虐暴风lj_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每当你造成伤害后，若被伤害者体力值为0，你获得一点体力上限；若自身体力值为0，被伤害者流失一点体力<br>技能【嗜血】在自身满血时可以过量恢复，溢出的恢复值转化为护盾值",
-            "nyhzr歃血为神lj":"歃血为神",
-            "nyhzr歃血为神lj_info":"当你造成伤害后，你可以选择弃一张牌并恢复一点体力或者将将现有体力转化为护盾值",
-			"nyhzr歃血为神lj_append":"注：<br>体力值为零时受到任何伤害，会进入濒死阶段",
-            "nyhzr逐阳之弓lj":"逐阳之弓",
-            "nyhzr逐阳之弓lj_info":"当你使用杀前，你可以选择使用燎火之箭或穿云箭上弦",
-			"nyhzr逐阳之弓lj_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>手持弓的你进攻距离+1<br><br>燎火之箭：当你造成伤害时，伤害属性变为火属性并弃置对方装备区内的所有牌<br><br>穿云箭：你使用的杀无视对方防具<br><br>注：<br>燎火之箭不触发藤甲增加伤害效果",			
+            "lnyhzr咯哩咯哩ol":"◉咯哩咯哩",
+            "lnyhzr莉莉姆.提露埃拉ol":"◉莉莉姆·提露埃拉",
+            "lnyhzr龙骑士ol":"◉龙骑士 ",
+            "nnyhzr妮娜ol":"◉妮娜  ",
+            "dnyhzr德古拉ol":"◉德古拉 ",
+            "hnyhzr后羿ol":"◉后羿  ",
+            "snyhzr苏尔肯ol":"◉苏尔肯 ",
+            "nnyhzr瓦尔基里ol":"◉瓦尔基里",
+            "xnyhzr小乔ol":"◉小乔  ",
+            "knyhzr凯撒ol":"◉凯撒  ",
+            "dnyhzr狄娜ol":"◉狄娜  ",
+            "snyhzr司马懿ol":"◉司马懿 ",
+            "jnyhzr金乌ol":"◉金乌  ",
+            "anyhzr阿努比斯ol":"◉阿努比斯",
+            "xnyhzr玄武ol":"◉玄武  ",
+            "nyhzr仙灵伙伴ol":"仙灵伙伴",
+            "nyhzr仙灵伙伴ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你召唤一只妖精皮皮",
+            "nyhzr迷藏印记ol":"迷藏印记",
+            "nyhzr迷藏印记ol_info":"每当你受到伤害时，若你有手牌，你可以牺牲两只妖精皮皮使伤害-1，若游戏人数小于4，你需要弃一张牌",	
+            "nyhzr恐惧镰刀ol":"恐惧镰刀",
+            "nyhzr恐惧镰刀ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每次造成伤害时会为自己的噩梦镰刀充能夜魔之力，达到三层时，造成伤害后使对方翻面",
+            "nyhzr恐惧结界ol":"恐惧结界",
+            "nyhzr恐惧结界ol_info":"当一名其他力量角色使用【杀】造成一次伤害后，该角色可令你摸一张牌并令你恢复一点体力",			
+            "nyhzr龙人血脉ol":"龙人血脉",
+            "nyhzr龙人血脉ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>游戏开始后，每一分钟激活30点血脉<br><br>当血脉数量：<br>为30时，你的体力上限+1并恢复一点体力<br>为90时，你摸两张牌<br>为150时，你获得技能（回合开始前摸一张牌）<br>为240时，你获得技能（回合内有使用次数限制的牌，其限制改为2；你使用的牌无距离限制）<br>为300时，你获得技能（当你造成伤害后，若你的手牌数大于2，你可以弃置所有手牌后摸一张牌，然后随机删除被伤害者一项技能）",
+            "nyhzr神威ol":"神威",
+            "nyhzr女皇神威ol":"女皇神威",			
+            "nyhzr女皇神威ol_info":"出牌阶段，你可以释放自己的女皇神威,使你于本回合内造成伤害后，被伤害者弃置所有手牌，使用后删除此技能",
+            "nyhzr硬化ol":"硬化",
+            "nyhzr蛛壳硬化ol":"蛛壳硬化",
+            "nyhzr蛛壳硬化ol_info":"出牌阶段，你可以硬化自己的壳,使你完全免疫下一次的伤害，使用后删除此技能",
+            "rnyhzr幽影之蜕ol":"幽影之蜕",
+            "rnyhzr幽影之蜕ol_info":"当你受到伤害后，你可以转化为蜘蛛形态，失去技能【女皇神威】，获得技能【蛛壳硬化】",
+            "znyhzr幽影之蜕ol":"幽影之蜕",
+            "znyhzr幽影之蜕ol_info":"当你受到伤害后，你可以转化为人类形态，失去技能【蛛壳硬化】，获得技能【女皇神威】",
+            "nyhzr血虐暴风ol":"血虐暴风",
+            "nyhzr血虐暴风ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>每当你造成伤害后，若被伤害者体力值为0，你获得一点体力上限；若自身体力值为0，被伤害者流失一点体力<br>技能【嗜血】在自身满血时可以过量恢复，溢出的恢复值转化为护盾值",
+            "nyhzr歃血为神ol":"歃血为神",
+            "nyhzr歃血为神ol_info":"当你造成伤害后，你可以选择弃一张牌并恢复一点体力或者将将现有体力转化为护盾值",
+			"nyhzr歃血为神ol_append":"注：<br>体力值为零时受到任何伤害，会进入濒死阶段",
+            "nyhzr逐阳之弓ol":"逐阳之弓",
+            "nyhzr逐阳之弓ol_info":"当你使用杀前，你可以选择使用燎火之箭或穿云箭上弦",
+			"nyhzr逐阳之弓ol_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>手持弓的你进攻距离+1<br><br>燎火之箭：当你造成伤害时，伤害属性变为火属性并弃置对方装备区内的所有牌<br><br>穿云箭：你使用的杀无视对方防具<br><br>注：<br>燎火之箭不触发藤甲增加伤害效果",
+            "nyhzr颠倒灵魂ol":"颠倒灵魂",
+            "nyhzr颠倒灵魂ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你摸牌时，若弃牌堆牌数大于或等于摸牌数，你取消之并从弃牌堆中获得等量的牌，若你以此法获得一张【无中生有】或【增兵减灶】，你弃置一张手牌<br>当你弃置牌时，你取消之并将需要弃置的牌置于牌堆顶",
+            "nyhzr困兽之斗ol":"困兽之斗",
+            "nyhzr困兽之斗ol_info":"回合结束阶段，你可以弃置除你以外的角色装备区内的防御马和进攻马，若你以此法弃置防御马和进攻马，你可以对一名目标使用X张【南蛮入侵】（X为你以此法弃置的防御马和进攻马的数目总和）",
+            "nyhzr永恒之斩ol":"永恒之斩",
+            "nyhzr永恒之斩ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你造成伤害时：<br>（1）若目标体力值等于其体力上限，你取消造成伤害，然后目标失去一点体力上限<br>（2）若目标体力值不等于其体力上限，目标手牌上限-1",
+			"nyhzr永恒之斩ol_append":"注：<br>若一名角色因【永恒之斩】而造成手牌上限减少，其恢复体力后，手牌上限+1",
+            "nyhzr仙荷甘露ol":"仙荷甘露",
+            "nyhzr仙荷甘露ol_info":"出牌阶段，你可以弃置不同类型的牌，令所有角色摸X张牌（X为你的弃牌数），若弃牌数大于2且【凤求凰】处于封印状态，你恢复一点体力并解除【凤求凰】的封印",
+            "nyhzr凤求凰ol":"凤求凰",
+            "nyhzr凤求凰ol_info":"当你需要响应牌前，你可以选择一名角色，将其手牌区中的一张牌视为响应牌打出，使用后封印此技能",
+			"nyhzr凤求凰ol_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>【凤求凰】的初始状态为封印状态",
+            "nyhzr火球术ol":"火球术",
+            "nyhzr火球术ol_info":"回合结束后，若你的手牌数大于或等于二，你弃置两张手牌并随机展示一名角色的手牌，若目标手牌中有【杀】，你获得之，若没有，你对其造成一点火属性伤害并令其获得一个火种",
+            "nyhzr火之箭矢ol":"火之箭矢",
+            "nyhzr火之箭矢ol_info":"回合开始前，若你手牌中有【杀】，你可以选择一名除自己以外的角色，令其获得一个火种并将一张【杀】转化为【火杀】对其使用",
+			"nyhzr火之箭矢ol_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>每当你使用牌指定拥有火种的目标时，你引燃目标一个火种，令其弃置一张手牌（若目标没有手牌则不引燃）",
+            "nyhzr液态火ol":"液态火",
+            "nyhzr液态火ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>当你造成伤害后，若你装备区内有武器牌，目标受到一次没有伤害来源的火属性伤害",
+            "nyhzr元素转化ol":"元素转化",
+            "nyhzr元素转化ol_info":"当一名角色受到大于零的伤害前，你可以转化伤害属性为火，雷，无三种属性之一",
+            "nyhzr炎阳胄ol":"炎阳胄",
+            "nyhzr炎阳胄ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你受到伤害后，你翻面<br><br><span class=\"bluetext\" style=\"color:#EE7621\">被动（特）：</span><br>你为双面武将，当你翻面时，你转换形态并获得技能【不灭之炎】（回合开始前，你进行一次判定，若为红色，你恢复一点体力，否则你摸一张牌）继续战斗<br>每当你变回初始形态时，你失去技能【不灭之炎】",
+            "nyhzr业火ol":"业火",
+            "nyhzr业火ol_info":"当你使用【杀】时，你可以令目标打出一张额外的【杀】来响应你的【杀】",
+            "nyhzr不灭之炎ol":"不灭之炎",
+            "nyhzr不灭之炎ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>回合开始前，你进行一次判定，若为红色，你恢复一点体力，否则你摸一张牌",
+            "nyhzr善恶天秤ol":"善恶天秤",
+            "nyhzr善恶天秤ol_info":"出牌阶段，你可以弃置X张手牌（X不能小于2）并选择一个目标，目标随机被判断X次，若为善，获得祝福，若为恶，获得诅咒，每回合限一次",
+			"nyhzr善恶天秤ol_append":"注：<br>弃置的手牌中红色牌越多，判定为善的几率越大;黑牌越多，判定为恶的几率越大",
+            "nyhzr冰裂龟甲ol":"冰裂龟甲",
+            "nyhzr冰裂龟甲ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>当你成为卡牌的唯一目标时，你进行一次判定，若判定结果为<span style=\"color:red\">♥︎</span>，你的下家会成为卡牌的额外目标，为<span style=\"color:red\">♦︎</span>,所有人都会成为卡牌的额外目标，为<span style=\"color:black\">♠︎</span>，玩家弃置一张手牌，为<span style=\"color:black\">♣︎</span>，使对方的卡牌失效",
+			"nyhzr冰裂龟甲ol_append":"注：<br>若触发【龟甲】的卡牌为延时性锦囊牌且有额外目标，则只有最后一个额外目标受到影响",
 			},
-                };				
+                };
                 if(lib.device||lib.node){
                     for(var i in nyhzrlj.character){nyhzrlj.character[i][4].push('ext:新英魂之刃/'+i+'.jpg');}
                 }else{
@@ -5604,7 +9043,7 @@ return true;
             if(!lib.config.characters.contains('nyhzrlj')){
                 lib.config.characters.push('nyhzrlj');
             }
-            lib.translate['nyhzrlj_character_config'] = '<span style=\"font-size:18px;font-weight:600\">英魂之刃联机</span>';			
+            lib.translate['nyhzrlj_character_config'] = '<span style=\"font-size:18px;font-weight:600\">英魂之刃联机</span>';
 			lib.group.push('jin');
 			lib.translate.jin='×';
 			lib.translate.jinColor="#EAEAEA";
@@ -5617,6 +9056,70 @@ return true;
 			lib.group.push('zhi');
 			lib.translate.zhi='智';
 			lib.translate.zhiColor="#1874CD";
+            game.import('character',function(){
+                var nyhzrskinlj = {
+                    name: 'nyhzrskinlj',
+                    connect:true,				
+                    character:{
+            "NewPifunyhzr自然之灵1":["female","",'',[],["forbidai"]],
+            "NewPifunyhzr自然之灵2":["female","",'',[],["forbidai"]],
+					},
+                    skill:{
+			"_NewPifunyhzr自然之灵":{
+                trigger:{
+                    global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+                },
+                priority:101,
+                direct:true,
+                filter:function (event,player){
+                return player.hasSkill('nyhzr仙灵伙伴lj')&&player.hasSkill('nyhzr迷藏印记lj')&&player.storage._NewPifunyhzr自然之灵==undefined;
+                },	
+                content:function (){
+    'step 0'
+    var list=[];
+	if (lib.configOL.Pifunyhzr自然之灵1==true){
+	list.push('仙灵妙法')	
+	}	
+	if (lib.configOL.Pifunyhzr自然之灵2==true){
+	list.push('黑暗小童星')	
+	}
+    if(list.length){
+    player.chooseControl(list);
+	};
+    'step 1'
+    if (result.control=='仙灵妙法'){                
+    var skin='NewPifunyhzr自然之灵1';
+    };
+    if (result.control=='黑暗小童星'){                
+    var skin='NewPifunyhzr自然之灵2';
+    };
+	if (result.control){
+	game.log(player,'使用皮肤：',result.control);
+	game.broadcastAll(function(player){
+		player.setAvatar('lnyhzr咯哩咯哩ol',skin);
+	},player);
+    };
+	player.storage._NewPifunyhzr自然之灵=0;	
+},
+            },						
+					},
+                    translate:{
+            "NewPifunyhzr自然之灵1":"妙法仙灵",
+            "NewPifunyhzr自然之灵2":"黑暗小童星",			
+					},
+                };				
+                if(lib.device||lib.node){
+                    for(var i in nyhzrskinlj.character){nyhzrskinlj.character[i][4].push('ext:新英魂之刃/'+i+'.jpg');}
+                }else{
+                    for(var i in nyhzrskinlj.character){nyhzrskinlj.character[i][4].push('db:extension-新英魂之刃:'+i+'.jpg');}
+                }
+                return nyhzrskinlj;
+            });
+//          lib.config.all.characters.push('nyhzrskinlj');
+//          if(!lib.config.characters.contains('nyhzrskinlj')){
+//              lib.config.characters.push('nyhzrskinlj');
+//          }
+//          lib.translate['nyhzrskinlj_character_config'] = '<span style=\"font-size:13px;font-weight:600\">英魂之刃皮肤联机</span>';	
         };      	
 
 game.say1=function(str){
@@ -5626,7 +9129,7 @@ dialog.add('<div class="text" style="word-break:break-all;display:inline">'+str+
 dialog.classList.add('popped');
 ui.window.appendChild(dialog);
 var width=dialog.content.firstChild.firstChild.offsetWidth;
-if(width<190){
+if(width<500){
 dialog._mod_height=-16;
 }
 else{
@@ -5641,8 +9144,8 @@ clientY:(this.offsetTop+this.offsetHeight/4)*game.documentZoom
 if(dialog._mod_height){
 dialog.content.firstChild.style.padding=0;
 }
-dialog.style.left='calc(45%)';
-dialog.style.top='calc(30%)';
+dialog.style.left='calc(50% - '+(width+16)/2+'px'+')';
+dialog.style.top='calc(50% - 200px)';
 setTimeout(function(){
 dialog.delete();
 },1500);
@@ -5672,16 +9175,60 @@ game.removeCard2=function(name){
                 list[i].remove();
             }
 };
-
+game.awakenShow=function(character,fontSize,colorCode,skillName){
+if(lib.config.awakenShow==true&&Math.random()<=lib.config.awakenShowRandom){
+game.broadcastAll(function(character,fontSize,colorCode,skillName){
+game.pause();
+var player=ui.create.player(null,true);
+player.node.avatar.style.backgroundSize='cover';
+player.node.avatar.setBackgroundImage('extension/新英魂之刃/'+character+'.jpg');
+player.node.avatar.show();
+player.style.left='calc(50% - 75px)';
+player.style.top='175px';
+player.node.count.remove();
+player.node.hp.remove();
+player.node.nameol.innerHTML='<span style=\"font-size:'+fontSize+'px;font-weight:600;color:'+colorCode+'\">'+skillName+'</span>';
+player.style.transition='all 0.5s';
+ui.window.appendChild(player);
+setTimeout(function(){
+player.delete();
+game.resume();
+},3400);
+ui.window.showcaseinterval=setInterval(function(){
+player.classList.add('zoomin2');
+player.show();
+setTimeout(function(){
+player.hide();
+},1500);
+},1700);
+},character,fontSize,colorCode,skillName)
+}else{};
+};
 },help:{"皮肤解锁":"<li>血月会长：用拥有技能【血祭启示录】的武将在一局游戏中造成超过10点伤害（含10点），在此之后经过一个回合结束阶段即可解锁。<li>雪凝幻彩：联机比赛参赛者的奖品"},
-config:{	
-	"Pifu":{"name":"技能皮肤","init":true,"intro":"拥有技能皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，萨特，德古拉，时空猎人,龙骑士，艾迪兰，超能企鹅"},
+config:{
+	"tips1":{"name":"<span style=\"font-size:15.6px;font-weight:600\">增加人数后建议开启军争卡包，避免回合内摸牌过多导致平局出现</span>","clear":true,"nopointer":true,},
+	"IncreasePlayerNumber":{"name":'增加人数',"init":'all',"item":{'0':'不增加','1':'+1','2':'+2','3':'+3','4':'+4','5':'+5','6':'+6','7':'+7','8':'+8','all':'全部增加'}},
+	"nineMan":{"name":'九人场身份',"init":'1',"item":{'1':'三忠四反一内','2':'二忠四反二内','3':'四忠四反零内','4':'三忠五反零内'}},
+	"tenMan":{"name":'十人场身份',"init":'1',"item":{'1':'三忠四反二内','2':'三忠五反一内','3':'四忠五反零内'}},
+	"elevenMan":{"name":'十一人场身份',"init":'1',"item":{'1':'四忠五反一内','2':'三忠五反二内','3':'五忠五反零内','4':'四忠六反零内'}},
+	"twelveMan":{"name":'十二人场身份',"init":'1',"item":{'1':'四忠五反二内','2':'四忠六反一内','3':'五忠六反零内'}},
+	"thirteenMan":{"name":'十三人场身份',"init":'1',"item":{'1':'五忠六反一内','2':'四忠六反二内','3':'六忠六反零内','4':'五忠七反零内'}},
+	"fourteenMan":{"name":'十四人场身份',"init":'1',"item":{'1':'五忠六反二内','2':'五忠七反一内','3':'六忠七反零内'}},
+	"fifteenMan":{"name":'十五人场身份',"init":'1',"item":{'1':'六忠七反一内','2':'五忠七反二内','3':'七忠七反零内','4':'六忠八反零内'}},
+	"SixteenMan":{"name":'十六人场身份',"init":'1',"item":{'1':'六忠七反二内','2':'六忠八反一内','3':'七忠八反零内'}},
+	"awakenShow":{"name":'特效',"init":true},
+	"awakenShowRandom":{"name":'特效出现概率',"init":'0.25',"item":{'0.1':'10%','0.25':'25%','0.5':'50%','0.75':'75%','1':'100%'},"intro":"拥有特效的技能的角色有◉司马懿"},
+	"tips2":{"name":"<span style=\"font-size:15.6px;font-weight:600\">特效重新设置后需要打开非联机模式来使设置内容被保存</span>","clear":true,"nopointer":true,},
+	"Pifu":{"name":"技能皮肤","init":true,"intro":"拥有技能皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，萨特，德古拉，时空猎人,龙骑士，艾迪兰，超能企鹅，宫本武藏"},
 	"UseNew":{"name":"新版武将包皮肤","init":true,"intro":"拥有新版皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，贞德，萨特，德古拉，狂徒，时空猎人,龙骑士，艾迪兰，布丁，超能企鹅，布鲁，宫本武藏"},
-	"UsePifuNew":{"name":"新版技能皮肤皮肤","init":true,"intro":"拥有新版皮肤的皮肤有：幽梦魔灵，祈愿之星，屠戮魔影，炼狱魂印，毁灭之翼，血色传说，血月会长，强弩神射，幻影射手，皎月王侯，黄金之翼，强袭龙魂，暗翼骨龙，星河雷爆，逆时者，强殖妖斧，妙法仙灵，暗黑小魔星，花牌魔后，雪凝幻彩，星钻仙后，晶钻星使，伊娃，趣海先锋"},
+	"UsePifuNew":{"name":"新版技能皮肤皮肤","init":true,"intro":"拥有新版皮肤的皮肤有：幽梦魔灵，祈愿之星，屠戮魔影，炼狱魂印，毁灭之翼，血色传说，血月会长，强弩神射，幻影射手，皎月王侯，黄金之翼，强袭龙魂，暗翼骨龙，星河雷爆，逆时者，强殖妖斧，妙法仙灵，暗黑小魔星，花牌魔后，雪凝幻彩，星钻仙后，晶钻星使，伊娃，趣海先锋，夜叉胧，七海女王"},
 	"NoUselessSkill":{"name":"关闭无用技能","init":true,"intro":"关闭称号技能与死亡配音技能"},
 	"gongchengmoshi":{"name":"攻城模式","init":true},
-	"xyhzr":{"name":"新英魂之刃与技能卡包","init":true},
+	"jianbingmoshi":{"name":"兼并模式","init":true},
+	"jiangshimoshi":{"name":"僵尸模式","init":true},
+	"jiangshimoshiPlayerNumber":{"name":'僵尸模式人数',"init":'16',"item":{'2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','11':'11','12':'12','13':'13','14':'14','15':'15','16':'16'}},
 	"nyhzrlj":{"name":"<span style=\"font-size:13px;font-weight:600\">将英魂之刃联机武将设为禁用</span>","init":false,"intro":"将英魂之刃联机武将设为禁用"},
+	"nyhzrbj":{"name":"编辑此扩展","clear":true,"onclick":function(){game.say1('禁止编辑')}},
 	},package:{
     character:{
         character:{
@@ -5692,6 +9239,72 @@ config:{
     card:{},
     skill:{
         skill:{
+			"_minskinEquip":{
+			mode:['identity','guozhan'],
+				mod:{
+					cardEnabled:function(card,player){
+						if(game.players.length+game.dead.length>=14&&(get.config('player_number')=='14'||get.config('player_number')=='15'||get.config('player_number')=='16')&&player.isMin()&&!player.hasSkill('ganran')){
+							if(get.type(card)=='equip') return true;
+						}
+					}
+				}
+			},
+            "_minskinEquip1":{
+			mode:['identity','guozhan'],
+trigger:{
+player:"equipBefore",
+},
+filter:function (event,player){
+return game.players.length+game.dead.length>=14&&(get.config('player_number')=='14'||get.config('player_number')=='15'||get.config('player_number')=='16');
+},
+forced:true,
+content:function (){
+if(player!=game.me) player.classList.remove('minskin');
+},
+            },
+            "_minskinEquip2":{
+			mode:['identity','guozhan'],
+trigger:{
+player:"equipAfter",
+},
+filter:function (event,player){
+return game.players.length+game.dead.length>=14&&(get.config('player_number')=='14'||get.config('player_number')=='15'||get.config('player_number')=='16');
+},
+forced:true,
+content:function (){
+if(player!=game.me) player.classList.add('minskin');
+},
+            },
+            "_useMinskin":{
+			mode:['identity','guozhan'],
+trigger:{
+global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+},
+filter:function (event,player){
+return game.players.length+game.dead.length>=14&&player!=game.me&&player.name2&&(get.config('player_number')=='14'||get.config('player_number')=='15'||get.config('player_number')=='16');
+},
+forced:true,
+content:function (){
+player.node.avatar2.remove();
+},
+            },
+            "_useMinskin1":{
+			mode:['identity','guozhan'],
+trigger:{
+global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+},
+filter:function (event,player){
+return game.players.length+game.dead.length>=14&&(get.config('player_number')=='14'||get.config('player_number')=='15'||get.config('player_number')=='16');
+},
+forced:true,
+content:function (){
+game.swapPlayer=function(all){};
+game.swapControl=function(all){};
+if(player!=game.me){
+player.classList.add('minskin');
+};
+},
+            },
             "nyhzr自然之灵":{
                 nobracket:true,
             },
@@ -6709,6 +10322,7 @@ return -ai.get.attitude(player,target);
                 },
             },
             "nyhzr雷霆之环":{
+				mode:["identity"],
                 audio:"ext:新英魂之刃:3",
                 nobracket:true,
                 trigger:{
@@ -8323,24 +11937,7 @@ player.say('晶火熄灭了，我将回归于晨雾');
                 enable:"phaseUse",
                 filterTarget:true,
                 createDialog:function (player,target,onlylist){
-        var names=[];
-        var list=[];
-        if(target.name&&!target.isUnseen(0)) names.add(target.name);
-        if(target.name1&&!target.isUnseen(0)) names.add(target.name1);
-        if(target.name2&&!target.isUnseen(1)) names.add(target.name2);
-        var pss=player.getSkills();
-        for(var i=0;i<names.length;i++){
-            var info=lib.character[names[i]];
-            if(info){
-                var skills=info[3];
-                for(var j=0;j<skills.length;j++){
-                    if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                        !pss.contains(skills[j])){
-                        list.push(skills[j]);
-                    }
-                }
-            }
-        }
+        var list=target.getSkills();
         if(onlylist) return list;
         var dialog=ui.create.dialog('冰上漫滑');
         dialog.add('选择送出一项技能');
@@ -8364,7 +11961,7 @@ player.say('晶火熄灭了，我将回归于晨雾');
                 item.firstChild.link=list[i];
             }
         }
-        dialog.add(ui.create.div('.placeholder'));
+        dialog.add(ui.create.div('placeholder'));
         return dialog;
     },
                 content:function (){
@@ -8545,13 +12142,13 @@ filterTarget:function (card,player,target){
 return player!=target;
 },
 filter:function (event,player){
-return player.num('h')>player.hp;
+return player.num('h')>player.hp+1;
 },
 content:function (){
 "step 0"
 if(player.hasSkill('nyhzr勾玉魂刀')&&!player.hasSkill('nyhzr勾玉魂刀1')) player.addSkill('nyhzr勾玉魂刀1');
 var qyzsha=get.cardPile(function(card){return card.name=='sha'});
-if(qyzsha&&player.num('h')>player.hp){
+if(qyzsha&&player.num('h')>player.hp+1){
 player.gain(qyzsha,'gain2');
 player.useCard(qyzsha,target);
 player.chooseToDiscard(1,'h',true);
@@ -8590,7 +12187,7 @@ player:"dyingBegin",
 mark:true,
 skillAnimation:true,
 animationStr:"乱刃影舞",
-animationColor:"metal",
+animationColor:"thunder",
 init:function (player){
 player.storage.nyhzr乱刃影舞=false;
 },
@@ -8603,7 +12200,7 @@ if(player.hasSkill('nyhzr勾玉魂刀')&&!player.hasSkill('nyhzr勾玉魂刀2'))
 player.awakenSkill('nyhzr乱刃影舞');
 player.storage.nyhzr乱刃影舞=true;
 player.recover();
-for(i=0;i<5;i++){
+for(i=0;i<3;i++){
 player.useCard({name:'sha'},game.players.randomGet());
 };
     },
@@ -8632,6 +12229,11 @@ subSkill:{
 audio:"ext:新英魂之刃:1",
 trigger:{
 player:"damageBegin",
+},
+check:function(event,player){
+if(player.hujia) return false;
+if(event.source==player) return false;
+return true;
 },
 content:function (){
 player.loseHp();
@@ -8675,9 +12277,9 @@ player.say('燃烧的枫叶……凋零');
             "nyhzr勾玉魂刀":"勾玉魂刀",
             "nyhzr勾玉魂刀_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你使用【千叶斩】造成伤害后，你封印目标的技能，持续至其回合末，自身获得随机的正面效果<br>当你使用【乱刃影舞】后，下一次造成的伤害时，你会恢复两点体力",
             "nyhzr千叶斩":"千叶斩",
-            "nyhzr千叶斩_info":"出牌阶段，若你的手牌数大于你的体力值，你可以在牌堆中获得一张【杀】并使用，此【杀】结算后，你弃置一张手牌。若你弃置手牌后，手牌数依然大于体力值，你再使用一次【千叶斩】",
+            "nyhzr千叶斩_info":"出牌阶段，若你的手牌数大于你的体力值+1，你可以在牌堆中获得一张【杀】并使用，此【杀】结算后，你弃置一张手牌。若你弃置手牌后，手牌数依然大于体力值+1，你再使用一次【千叶斩】",
             "nyhzr乱刃影舞":"乱刃影舞",
-            "nyhzr乱刃影舞_info":"限定技，你进入濒死阶段前,你可以恢复一点体力并对五个随机目标使用【杀】",
+            "nyhzr乱刃影舞_info":"限定技，你进入濒死阶段前,你可以恢复一点体力并对三个随机目标使用【杀】",
             "nyhzr幻之分身2":"幻之分身",
             "nyhzr幻之分身":"幻之分身",
             "nyhzr幻之分身_info":"当你受到伤害时，你可以创造分身来完全免疫此次伤害<br>出牌阶段，你可以创造分身，当你使用【千叶斩】时可以无条件地额外使用一张【杀】<br><br>注：<br>创造分身时会消耗一点体力",
@@ -8829,7 +12431,7 @@ player.say('燃烧的枫叶……凋零');
             "nyhzr闪电感染":"闪电感染",
             "nyhzr闪电感染_info":"出牌阶段，你可以与一名指定角色交换座位，然后对该角色造成一点伤害，自己流失一点体力",
             "nyhzr雷霆之环":"雷霆之环",
-            "nyhzr雷霆之环_info":"当你死亡前，若你不为主公，你可以令主公获得技能【闪电活化】",
+            "nyhzr雷霆之环_info":"身份模式下，当你死亡前，若你不为主公，你可以令主公获得技能【闪电活化】",
             "nyhzr萨特":"萨特",
             "nyhzr萨特_info":"",
             "nyhzr吸血鬼伯爵":"称号",

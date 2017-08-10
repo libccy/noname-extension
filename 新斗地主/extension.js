@@ -219,7 +219,7 @@ game.import(
 					"w_zhugeliang",
 					"w_huangyueying",
 					"w_xushu",
-					"w_wangping",
+					"w_lifeng",
 					"w_sunquan",
 					"w_zhouyu",
 					"w_ganning",
@@ -253,6 +253,7 @@ game.import(
 							priority:100,
 							forced:true,
 							content:function(){
+								game.playAudio("./extension/新斗地主","_firstBlood1");
 								_status.currentPhase.$damagepop('一血➷','unknownx');
 							},
 						},
@@ -446,6 +447,12 @@ game.import(
 									trigger.source.stat[trigger.source.stat.length-1].kill = 1;
 								else
 									trigger.source.stat[trigger.source.stat.length-1].kill++;
+								if(ui.task&&!lib.config.task_kill.finished&&game.me==trigger.source){
+									game.saveConfig("task_kill_count",lib.config.task_kill_count+1);
+									if(lib.config.task_kill_count>=4){
+										game.finishedTask("task_kill","疯狂杀戮");
+									}
+								}
 								trigger.source = false;
 							}
 						},
@@ -539,7 +546,7 @@ game.import(
 						"w_feiyang_info":'锁定技,准备阶段,你摸一张牌;出牌阶段,你使用[杀]的次数上限+1',
 						"w_bahu_info":'判定阶段开始时,若你的判定区里有牌,则你可以弃置两张手牌，然后弃置你判定区里的一张牌',
 					};		
-					if(config.RPG){
+					if(config.RPG||config.But||config.task){
 						skill._over = {
 							trigger:{player:'dieBegin'},
 							direct:true,
@@ -633,34 +640,65 @@ game.import(
 											delete lib.storage.w_mizhao;
 										}
 									}
+									if(ui.task){
+										if(lib.config.task_win_count<4){
+											game.saveConfig("task_win_count",lib.config.task_win_count+1);
+											if(!lib.config.task_win1.finished&&lib.config.task_win_count>=1){
+												game.finishedTask("task_win1","初战告捷");
+											}
+											if(!lib.config.task_win2.finished&&lib.config.task_win_count>=2){
+												game.finishedTask("task_win2","捷报再传");
+											}
+											if(!lib.config.task_win3.finished&&lib.config.task_win_count>=3){
+												game.finishedTask("task_win3","战无不胜");
+											}
+											if(!lib.config.task_win4.finished&&lib.config.task_win_count>=4){
+												game.finishedTask("task_win4","国士无双");
+											}
+										}
+										if(!lib.config.task_doublewin.finished){
+											game.saveConfig("task_doublewin_count",lib.config.task_doublewin_count+1);
+											if(lib.config.task_doublewin_count>=2){
+												game.finishedTask("task_doublewin","常胜将军");
+											}
+										}
+									}
+								}
+								else {
+									if(ui.task){
+										if(!lib.config.task_doublewin.finished){
+											game.saveConfig("task_doublewin_count",0);
+										}
+									}
 								}
 							}
 						}
 					};
 					lib.brawl.newWar = {
-						name:"新斗地主",
+						name:"<span style='font-size:84%;'>欢乐斗地主</span>",
 						mode:'identity',
 						intro:[
-							"<div style='position:absolute;top:-90%;left:-10%;background-color:rgba(80,80,80,1);width:130%;height:850%;'>"+
-							"<div style='position:absolute;top:1%;left:1%;background-color:rgba(0,0,0,0.5);width:98%;height:98%;'>"+
-							"<div style='position:absolute;width:100%;height:20%;text-align:center;vertical-align:middle;'>"+
-							"<span style='color:#FC0;font-family:lishu;font-size:350%;'>新斗地主</span><hr width=94% color=rgb(80,80,0)/>"+
+							"<div id='w_div0' style='position:absolute;top:-90%;left:-10%;background-color:rgba(80,80,80,1);width:130%;height:850%;' >"+
+								"<div style='position:absolute;top:1%;left:1%;background-color:rgba(0,0,0,0.5);width:98%;height:98%;background:url("+lib.config.w_backgroundImage+")' >"+
+									"<div style='position:absolute;width:100%;height:20%;text-align:center;vertical-align:middle;top:70%;'>"+
+										"<span style='color:#FC0;font-family:lishu;font-size:350%;'><b>欢乐斗地主</b></span><hr width=94% color=rgb(80,80,0)/>"+				
+									"</div>"+
+									"<div id='w_div1' style='position:absolute;width:40%;height:60%;top:25%;left:30%;background-color:rgba(150,150,0,0.6);border:5px solid #00ae00;display:none;overflow:auto;' >"+
+									"<p align=center>欢乐斗地主通关指南<hr width=94%></p>"+
+									"<p align=center>"+
+										"①游戏人数与阵营划分：本模式由三名玩家进行游戏,分为地主(一位)与农民(两位)两个阵营<br/>"+
+										"②地主阵营增加一点体力上限并获得地主专属技能【飞扬】、【跋扈】<br/>"+
+										"飞扬：判定阶段开始时,若你的判定区里有牌,你可以弃置两张手牌,然后弃置判定区里的一张牌<br/>"+
+										"跋扈：锁定技,准备阶段你摸一张牌;出牌阶段你使用[杀]的次数上限+1"+
+									"</p>"+
+									"</div>"+
+									"<div style='position:absolute;top:96%;width:100%;height:4%;background-color:rgba(80,80,80,0.5);text-align:center;'>"+
+										"<span style='color:#FF0;font-size:80%'>版本号：v0.8  更新日期：2017-08-07  作者：橙续缘</span>"+
+									"</div>"+
+								"</div>"+
 							"</div>"+
-							"<div style='position:absolute;top:25%;left:10%;width:80%;height:55%;'>"+
-							"<p align='center'>【斗地主通关指南】</p>"+
-							"<p>"+
-							"① 游戏人数与阵营划分：游戏由三名玩家参与分为地主(1名)与农民(2名)两个阵营。<br/>"+
-							"② 地主可以获得地主专属技能<span class='greentext'>飞扬</span>、<span class='greentext'>跋扈</span>"+
-							"<ul type='square' style='font-size:80%;'><li>飞扬：判定阶段开始时,若你的判定区有牌,你可以弃置两张手牌,然后弃置你判定区里的一张牌。</li><li>跋扈：锁定技,准备阶段你摸一张牌,出牌阶段你使用[杀]的次数上限+1。</li></ul>"+
-							"③ 将池：专属新标准<br/>"+
-							"④ 牌堆：军争+木牛流马"+
-							"</p>"+
-							"</div>"+
-							"<div style='position:absolute;top:96%;width:100%;height:4%;background-color:rgba(80,80,80,0.5);text-align:center;'>"+
-							"<span style='color:#FF0;'>版本号：v0.6.1 更新日期：2017-07-31 作者：橙续缘</span>"+
-							"</div>"+
-							"</div>"+
-							"</div>",
+							"<div id='w_div2' align=center style='position:absolute;width:30%;height:50%;background-color:#acc572;top:-70%;left:-5%;border:2px solid #8ca552;font-size:120%;font-family:xinwei;cursor:hand;' onclick=document.getElementById('w_div1').style.display=(document.getElementById('w_div1').style.display=='none'?'':'none') >通关指南</div>"+
+							"<div id='w_div3' align=center style='position:absolute;width:30%;height:50%;background-color:#acc572;top:-10%;left:-5%;border:2px solid #8ca552;font-size:120%;font-family:xinwei;cursor:hand;' onclick=window.open('https://tieba.baidu.com/p/5261391487')  >参与讨论</div>"
 						],
 						content:{
 							cardPile:function(list){
@@ -672,10 +710,12 @@ game.import(
 								else if(player!=game.zhu)
 									_status.event.trigger('init2');
 								characterList.randomSort();
-								//player.init("w_caocao");
 								player.init(characterList.randomRemove());
 							},
 							gameStart:function(){
+								if(!lib.config.task_index.finished){
+									game.finishedTask("task_index","每日一斗");
+								}
 							},
 							chooseCharacter:function(){
 								if(game.me==game.zhu)
@@ -683,7 +723,6 @@ game.import(
 								else if(game.me!=game.zhu)
 									_status.event.trigger('init2');
 								characterList.randomSort();
-							//	return ["w_caocao"];
 								if(game.me==game.zhu)
 									return characterList.randomRemove(5);
 								return characterList.randomRemove(3);
@@ -730,9 +769,143 @@ game.import(
 									"w_zhugeliang":["male","shu",3,["w_huoji","w_bazhen","w_kanpo"],["ext:新斗地主/w_zhugeliang.jpg"]],
 									"w_huangyueying":["female","shu",3,["w_jizhi","w_qicai"],["ext:新斗地主/w_huangyueying.jpg"]],
 									"w_xushu":["male","shu",3,["w_zhuhai","w_jianyan"],["ext:新斗地主/w_xushu.jpg"]],
-									"w_wangping":["male","shu",4,["w_feijiang"],["ext:新斗地主/w_wangping.jpg"]],
+								//	"w_wangping":["male","shu",4,["w_feijiang"],["ext:新斗地主/w_wangping.jpg"]],
+									"w_lifeng":["male","shu",3,["w_tunchu","w_shuliang"],["ext:新斗地主/w_lifeng.jpg"]],
+									"ws_simayi":["male","shen",["w_renjie","w_baiying"],["wei"]],
 								},
 								skill:{
+									w_renjie:{
+										init:function(player){
+											player.storage.w_renjie=0;
+										},
+										locked:true,
+										marktext:'忍',
+										intro:{
+											content:function(storage){
+												return "标记数量："+storage;
+											}
+										},
+										group:["w_renjie_phaseDiscard","w_renjie_damage"],
+										subSkill:{
+											phaseDiscard:{
+												trigger:{player:"loseEnd"},
+												filter:function(event,player){
+													var jieguo = false;
+													var temp = 0;
+													while(1){
+														var name = event.getParent(temp).name;
+														if(name=="phaseLoop")break;
+														if(name=="phaseDiscard"){
+															jieguo = true;
+															break;
+														}
+														temp++;
+													}
+													return jieguo;
+												},
+												locked:true,
+												forced:true,
+												content:function(){
+													player.storage.w_renjie += trigger.cards.length;
+													player.markSkill("w_renjie");
+													player.syncStorage("w_renjie");
+												}
+											},
+											damage:{
+												trigger:{player:"damageEnd"},
+												locked:true,
+												forced:true,
+												content:function(){
+													player.storage.w_renjie += trigger.num;
+													player.markSkill("w_renjie");
+													player.syncStorage("w_renjie");
+												}
+											}
+										}
+									},
+									w_tunchu:{
+										mod:{
+											cardEnabled:function(card,player){
+												if(player.storage.w_tunchu.length&&card.name=="sha")return false;
+											}
+										},
+										init:function(player){
+											player.storage.w_tunchu = [];
+										},
+										marktext:'粮',
+										intro:{
+											content:"cards"
+										},
+										trigger:{player:"phaseDrawBegin"},
+										filter:function(event,player){
+											return player.storage.w_tunchu.length==0;
+										},
+										content:function(){
+											"step 0"
+											trigger.num+=2;
+											"step 1"
+											player.addTempSkill("w_tunchu_Temp","phaseEnd");
+										},
+										subSkill:{
+											Temp:{
+												trigger:{player:"phaseDrawEnd"},
+												direct:true,
+												content:function(){
+													"step 0"
+													player.chooseCard("你可以将任意张手牌置于武将牌上称为[粮]",[1,Infinity]).ai=function(card){
+														if(!player.hasFriend())return 0;
+														if(player.hasSha()&&game.hasPlayer(function(current){
+															return player.canUse({name:'sha'},current)&&get.effect(current,{name:"sha"},player,player)>0;
+														}))return 0;
+														if(ui.selected.cards.length)return 0;
+														return 6-get.value(card);
+													};
+													"step 1"
+													if(result.bool){
+														player.lose(result.cards,ui.special);
+														player.storage.w_tunchu=player.storage.w_tunchu.concat(result.cards);
+														player.syncStorage('w_tunchu');
+														player.markSkill('w_tunchu');
+														game.log(player,'将',result.cards,"置于武将牌上作为'粮'");
+													}
+													else 
+														event.finish();
+												}
+											}
+										}
+									},
+									w_shuliang:{
+										trigger:{global:"phaseEnd"},
+										filter:function(event,player){
+											if(event.player.num('h')>=event.player.hp)return false;
+											return player.storage.w_tunchu&&player.storage.w_tunchu.length;
+										},
+										direct:true,
+										content:function(){
+											"step 0"
+											player.chooseCardButton("你可以将一张粮置入弃牌堆,令当前回合角色摸两张牌",player.storage.w_tunchu,1).ai=function(button){
+												return get.attitude(player,trigger.player)>2;
+											};
+											"step 1"
+											if(result.bool){
+												var card=result.links[0];
+												player.discard(card);
+												player.storage.w_tunchu.remove(card);
+												if(!player.storage.w_tunchu.length){
+													player.unmarkSkill('w_tunchu');
+												}
+												else{
+													player.markSkill('w_tunchu');
+												}
+												player.syncStorage('w_tunchu');
+											}
+											else 
+												event.finish();
+											"step 2"
+											player.logSkill("w_shuliang",trigger.player);
+											trigger.player.draw(2);
+										}
+									},
 									w_guose:{
 										audio:"ext:新斗地主:2",
 										enable:'phaseUse',
@@ -837,7 +1010,9 @@ game.import(
 												trigger:{player:'phaseBegin'},
 												direct:true,
 												content:function(){
-													delete lib.storage.w_lianying;
+													if(lib.storage.w_lianying){
+														delete lib.storage.w_lianying;
+													}
 												}
 											},
 										},
@@ -1025,8 +1200,11 @@ game.import(
 											if(event.cards.length)
 												event.goto(2);
 											'step 5'
-											trigger.num--;
-											if(trigger.num>0)
+											if(event.num==undefined){
+												event.num = trigger.num;
+											}
+											event.num--;
+											if(event.num>0)
 												event.goto(0);
 											else
 												event.finish();
@@ -1119,13 +1297,6 @@ game.import(
 													delete lib.storage.w_ganglie_discard;
 												}
 											}
-											'step 4'
-											trigger.num--;
-											if(trigger.num>0){
-												event.goto(0)
-											}
-											else
-												event.finish();
 										},
 										ai:{
 											maixie:true,
@@ -1323,8 +1494,11 @@ game.import(
 												}
 											}
 											'step 2'
-											trigger.num--;
-											if(trigger.num>0)
+											if(event.num==undefined){
+												event.num = trigger.num;
+											}
+											event.num--;
+											if(event.num>0)
 												event.goto(0);
 											else
 												event.finish();
@@ -1836,6 +2010,7 @@ game.import(
 											var att = get.attitude(player,event.target);
 											return att>2;
 										},
+										priority:7,
 										content:function(){
 											'step 0'
 											player.draw();
@@ -2120,7 +2295,7 @@ game.import(
 										},
 										position:'he',
 										viewAs:{name:'guohe'},
-										onuse:function(){
+										onuse:function(result,player){
 											if(ui.But&&game.me==player&&lib.config.But_ganning==false){
 												if(lib.storage.w_qixi==undefined){
 													lib.storage.w_qixi=0;
@@ -2142,8 +2317,10 @@ game.import(
 											count:{
 												trigger:{player:'phaseUseBegin'},
 												direct:true,
-												conetnt:function(){
-													delete lib.storage.w_qixi;
+												content:function(){
+													if(lib.storage.w_qixi){
+														delete lib.storage.w_qixi;
+													}
 												}
 											}
 										}
@@ -3171,7 +3348,9 @@ game.import(
 														delete player.storage.w_jianying;
 														player.unmarkSkill('w_jianying');
 													}
-													delete lib.storage.w_jianying;
+													if(lib.storage.w_jianying){
+														delete lib.storage.w_jianying;
+													}
 												}
 											},
 										}
@@ -3789,6 +3968,7 @@ game.import(
 										filterCard:function(card,player){
 											return get.color(card)=='red';
 										},
+										position:'he',
 										viewAs:{name:'sha'},
 										onrespond:function(){
 											_status.event.player.line(_status.event.source);
@@ -4159,6 +4339,7 @@ game.import(
 											return get.attitude(player,event.target)<2;
 										},
 										logTarget:'target',
+										priority:7,
 										content:function(){
 											'step 0'
 											trigger.target.addTempSkill("w_tieqi_Suo","phaseEnd");
@@ -4539,7 +4720,8 @@ game.import(
 									"w_huangyueying":'黄月英',
 									"w_xushu":'徐庶',
 									"w_wangping":'王平',
-									
+									"w_lifeng":'李丰',
+									"ws_simayi":'神司马懿',
 									w_jianxiong:'奸雄',
 									w_weiwu:'魏武',
 									w_yiji:'遗计',
@@ -4616,11 +4798,17 @@ game.import(
 									w_qixi:'奇袭',
 									w_guicai:'鬼才',
 									w_lianying:'连营',
+									w_tunchu:"屯储",
+									w_shuliang:"输粮",
+									w_renjie:"忍戒",
+									"w_renjie_info":"<font color=#fc0>锁定技</font> 每当你受到伤害后或于弃牌阶段失去牌后,你获得等量的'忍'标记",
+									"w_tunchu_info":"摸牌阶段摸牌时,若你没有'粮',你可以额外摸两张牌,然后将任意张手牌置于你的武将牌上,称为'粮';若你的武将牌上有'粮',则你不能使用[杀]",
+									"w_shuliang_info":"一名角色的回合结束时,若其手牌数小于体力值,你可以将一张'粮'置入弃牌堆,令该角色摸两张牌",
 									"w_lianying_info":'当你失去最后的手牌时,你可以令至多x名角色各摸一张牌(x为失去的手牌数)',
 									'w_jianxiong_info':'当你受到伤害后,你可以获得对你造成伤害的牌或摸x张牌(x为伤害数)',
 									'w_weiwu_info':'<font color=#fc0>地主技</font> <font color=#fc0>限定技</font> 回合结束时,你可以进行一个额外的回合',
 									"w_yiji_info":'每当你受到一点伤害后,你可以观看牌堆顶的两张牌并将其交给任意角色',
-									'w_ganglie_info':'每当你受到一点伤害后,你可以进行一次判定,若结果为:黑色:你获得一名其他角色的一张牌;红色:你对一名其他角色造成一点伤害',
+									'w_ganglie_info':'每当你受到一次伤害后,你可以进行一次判定,若结果为:黑色:你获得一名其他角色的一张牌;红色:你对一名其他角色造成一点伤害',
 									'w_qingjian_info':'当你于摸牌阶段外获得牌时,你可以将其中任意张牌置于武将牌上;当前回合结束时,若你武将牌上有牌,你需将其交给任意名其他角色',
 									'w_fankui_info':'每当你受到一点伤害后,你可以获得伤害来源的一张牌',
 									'w_tuxi_info':'摸牌阶段,你可以少摸一张牌,若如此做,你获得一名其他角色的一张手牌',
@@ -4693,8 +4881,14 @@ game.import(
 									qinggang:'倚天剑',
 								},
 							},'新斗地主');
+							
+							lib.config.mode_config.identity.identity_mode = "normal";
 							lib.configOL.number = 3;
 							lib.config.mode_config.identity.identity[1] = ['zhu','fan','fan'];
+							lib.config.mode_config.identity.double_nei = false;
+							lib.config.mode_config.identity.enhance_zhu = false;
+							lib.config.mode_config.identity.special_identity = false;
+							lib.config.mode_config.identity.double_character = false;
 							lib.config.mode_config.identity.free_choose = false;
 							lib.config.mode_config.identity.change_choice = false;
 							lib.config.mode_config.identity.change_identity = false;
@@ -4829,6 +5023,7 @@ game.import(
 								trigger:{player:'shaBegin'},
 								priority:10,
 								logTaget:"target",
+								forced:true,
 								content:function(){},
 								ai:{
 									unequip:true,
@@ -4839,7 +5034,6 @@ game.import(
 								}
 							};
 							lib.card.qinggang.skills=['w_qinggang_skill'];
-							lib.translate.w_qinggang_skill='倚天剑';
 						},
 					}
 				}
@@ -4849,9 +5043,9 @@ game.import(
 						lib.setPopped(ui.But,function(){
 							var ImageSrc=function(config,name){
 								if(config){
-									return "extension/新斗地主/"+name+"0.jpg";
+									return lib.assetURL+"extension/新斗地主/"+name+"0.jpg";
 								}
-								return "extension/新斗地主/"+name+"1.jpg";
+								return lib.assetURL+"extension/新斗地主/"+name+"1.jpg";
 							};
 							var ButStr=function(config){
 								if(config){
@@ -5105,7 +5299,7 @@ game.import(
 								"</div>"+
 								"<div style='position:absolute;top:"+110*17+"px;width:100%;height:100px;'>"+
 									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
-										"<img src='"+ImageSrc(lib.config.But_wangping,"w_wangping")+"' width=100% ondragstart='return false;'/>"+
+										"<img src='"+ImageSrc(lib.config.But_wangping,"w_lifeng")+"' width=100% ondragstart='return false;'/>"+
 									"</div>"+
 									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
 										"<center style='position:absolute;top:15%;left:8%'>无当飞将</center>"+
@@ -5374,6 +5568,128 @@ game.import(
 						},250,350);
 					})
 				}
+				if(config.task&&lib.brawl){
+					lib.arenaReady.push(function(){
+						ui.task = ui.create.system("任务 周活跃：<span class='greentext'>"+lib.config.task_active+"</span>",null,false);
+						lib.setPopped(ui.task,function(){
+							var uiintro = ui.create.dialog("hidden");
+							var ImageSrc=function(config,name){
+								if(config.finished){
+									return lib.assetURL+"extension/新斗地主/"+name+"1.jpg";
+								}
+								return lib.assetURL+"extension/新斗地主/"+name+"0.jpg";
+							};
+							var ButStr=function(config){
+								if(config.finished){
+									return "<span class='greentext'>(已完成)</span>";
+								}
+								return "<font color=#F00>(未完成)</font>";
+							};
+							uiintro.add("<span>每日任务</span><hr/>");
+							uiintro.add(
+								"<div style='position:absolute;top:"+110*0+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_index,"task_index")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>每日一斗</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>进行一场(新斗地主模式)游戏</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_index)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*1+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_win1,"task_win1")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>初战告捷</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>获得一场(新斗地主模式)游戏胜利<br/>进度："+Math.min(lib.config.task_win_count,1)+"/1</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_win1)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*2+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_win2,"task_win2")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>捷报再传</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>获得两场(新斗地主模式)游戏胜利<br/>进度："+Math.min(lib.config.task_win_count,2)+"/2</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_win2)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*3+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_win3,"task_win3")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>战无不胜</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>获得三场(新斗地主模式)游戏胜利<br/>进度："+Math.min(lib.config.task_win_count,3)+"/3</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_win3)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*4+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_win4,"task_win4")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>国士无双</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>获得四场(新斗地主模式)游戏胜利<br/>进度："+Math.min(lib.config.task_win_count,4)+"/4</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_win4)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*5+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_doublewin,"task_doublewin")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>常胜将军</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>获得(新斗地主模式)二连胜<br/>进度："+Math.min(lib.config.task_doublewin_count,2)+"/2</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_doublewin)+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<div style='position:absolute;top:"+110*6+"px;width:100%;height:100px;'>"+
+									"<div style='position:absolute;left:1%;top:3%;background-color:rgba(80,80,80,1);width:32%;height:67%;'>"+
+										"<img src='"+ImageSrc(lib.config.task_kill,"task_kill")+"' width=100% ondragstart='return false;'/>"+
+									"</div>"+
+									"<div style='position:absolute;left:1%;top:72%;background-color:rgba(80,80,80,1);width:32%;height:25%;' >"+
+										"<center style='position:absolute;top:15%;left:8%'>疯狂杀戮</center>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:3%;background-color:rgba(80,80,80,1);width:65%;height:67%;'>"+
+										"<p align='center' style='font-size:80%'>累计杀死四名敌人(新斗地主模式)<br/>进度："+Math.min(lib.config.task_kill_count,4)+"/4</p>"+
+									"</div>"+
+									"<div style='position:absolute;left:34%;top:72%;background-color:rgba(80,80,80,1);width:65%;height:25%;' >"+
+										"<p align='center' style='font-size:80%'>"+ButStr(lib.config.task_kill)+"</p>"+
+									"</div>"+
+								"</div>"
+							);
+							return uiintro;
+						},250,350);
+					});
+				}
 			},
 			precontent:function(){
 				lib.config.w_level;
@@ -5482,15 +5798,187 @@ game.import(
 					}
 					return "("+lib.config.bUT+"/"+lib.config.But+")";
 				};
+				if(lib.config.w_lastTime_date==undefined){
+					var date = new Date();
+					game.saveConfig("w_lastTime_date",date.getDate());
+					game.saveConfig("w_lastTime_hour",date.getHours());
+				}
+				if(lib.config.task_active==undefined){
+					game.saveConfig("task_active",0);
+				}
+				if(lib.config.task_index==undefined){
+					game.saveConfig("task_index",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:5,
+						},
+					});
+				}
+				if(lib.config.task_win1==undefined){
+					game.saveConfig("task_win1",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:10,
+						}
+					});
+				}
+				if(lib.config.task_win2==undefined){
+					game.saveConfig("task_win2",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:10,
+						}
+					});
+				}
+				if(lib.config.task_win3==undefined){
+					game.saveConfig("task_win3",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:25,
+						}
+					});
+				}
+				if(lib.config.task_win4==undefined){
+					game.saveConfig("task_win4",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:25,
+						}
+					});
+				}
+				if(lib.config.task_kill==undefined){
+					game.saveConfig("task_kill",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:30,
+						}
+					});
+				}
+				if(lib.config.task_doublewin==undefined){
+					game.saveConfig("task_doublewin",{
+						finished:false,
+						reward:{
+							exp:15,
+							active:25,
+						}
+					});
+				}
+				if(lib.config.task_win_count==undefined){
+					game.saveConfig("task_win_count",0);
+					game.saveConfig("task_kill_count",0);
+					game.saveConfig("task_doublewin_count",0);
+				}
+				var nowTime = new Date();
+				var nowTime_date = nowTime.getDate();
+				var nowTime_day = nowTime.getDay();
+				var nowTime_hour = nowTime.getHours();
+				if(nowTime_date!=lib.config.w_lastTime_date){
+					if(nowTime_hour>=4||nowTime_date-lib.config.w_lastTime_date>1){
+						game.saveConfig("task_index",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:5,
+							},
+						});
+						game.saveConfig("task_win1",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:10,
+							}
+						});
+						game.saveConfig("task_win2",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:10,
+							}
+						});
+						game.saveConfig("task_win3",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:25,
+							}
+						});
+						game.saveConfig("task_win4",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:25,
+							}
+						});
+						game.saveConfig("task_kill",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:30,
+							}
+						});
+						game.saveConfig("task_doublewin",{
+							finished:false,
+							reward:{
+								exp:15,
+								active:25,
+							}
+						});
+						game.saveConfig("task_win_count",0);
+						game.saveConfig("task_kill_count",0);
+						game.saveConfig("task_doublewin_count",0);
+						if(nowTime_day==1||nowTime_date-lib.config.w_lastTime_date>7){
+							game.saveConfig("task_active",0);
+						}
+					}
+				}
+				game.saveConfig("w_lastTime_date",nowTime_date);
+				game.saveConfig("w_lastTime_hour",nowTime_hour);
+				game.changeActive = function(num){
+					game.warn("活跃度+"+num);
+					game.saveConfig("task_active",lib.config.task_active+num);
+					ui.task.innerHTML = "任务 周活跃：<span class='greentext'>"+lib.config.task_active+"</span>";
+				}
+				game.finishedTask = function(config,name){
+					if(lib.config[config].finished)return;
+					lib.config[config].finished = true;
+					game.saveConfig(config,lib.config[config]);
+					setTimeout(function(){
+						game.changeActive(lib.config[config].reward.active);
+						setTimeout(function(){
+							game.changeExp(lib.config[config].reward.exp);
+							setTimeout(function(){
+								game.warn("完成任务<span class='yellowtext'>【"+name+"】</span>");
+							},1000);
+						},1000);
+					},1500);
+				}
+				if(lib.config.w_backgroundImage!=undefined){
+					game.saveConfig("w_backgroundImage",lib.assetURL+"extension/新斗地主/background_0.jpg");
+				}
 			},
 			config:{
 				RPG:{
 					name:'胜率统计',
-					init:false,
+					init:true,
 				},
 				But:{
 					name:'战功系统',
 					init:true,
+				},
+				task:{
+					name:'任务系统',
+					init:true,
+				},
+				extra:{
+					name:'替换神将',
+					init:false,
+					intro:"各势力替换一名神武将,牌堆中替换神武将专属武器",
 				},
 			},
 			help:{

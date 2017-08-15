@@ -21,32 +21,365 @@ lib.config.lnzGXJZ1=0;
                     connect:true,				
                     
                     character:{
-            "ln_cy" :["female",'Han',3,['LN_GH','LN_BG','LN_DUANC'],["des:中国四大才女之一，堪称三国时期第一才女，善于诗文和音乐，幼时便可以分辨出弦音，其父也精通音律，其父死后，蔡琰因战乱而为匈奴人所虏，后来为魏国花钱买回，终于再次回到了故乡，与曹操是忘隙之交；"]],
-            "ln_lz" :["female",'Han',3,['LN_ZHIXIN','LN_DUZHI'],["des:吕雉（公元前241年－公元前180年8月18日），字娥姁[é xū]，通称吕后，或称汉高后、吕太后等等。砀郡单父县（今山东菏泽市单县）人。汉高祖刘邦（前202年-前195年在位）的皇后，高祖死后，被尊为皇太后（前195年—前180年），是中国历史上有记载的第一位皇后和皇太后。同时吕雉也是秦始皇统一中国，实行皇帝制度之后，第一个临朝称制的女性，被司马迁列入记录帝王政事的本纪，后来班固作汉书仍然沿用。她开启了汉代外戚专权的先河。吕雉统治期间实行黄老之术与民休息的政策，废除挟书律，下令鼓励民间藏书、献书，恢复旧典。为后来的文景之治打下了很好的基础，司马迁在《史记·吕后本纪》中对她的评价是“政不出房户，天下晏然；刑罚罕用，罪人是希；民务稼穑，衣食滋殖。”给予吕后施政极大的肯定。"]],
-            "ln_wzf":["female",'Han',3,['LN_XHOU','LN_CN'],["des:卫子夫（？－前91年），名不详，字子夫，河东平阳（今山西临汾）人。卫子夫是汉武帝刘彻的第二任皇后，史称孝武卫皇后，也是中国历史上第一位拥有独立谥号的皇后，卫子夫原为平阳公主家歌女。于建元二年（前139年）入宫，建元三年（前138年）封为夫人，元朔元年（前128年）立为皇后，征和二年（前91年）在巫蛊之祸中自杀身亡。谥思后，葬桐柏亭。身驻汉宫凡49年，在皇后位38年，育有一男三女。"]],
-            "ln_ds":["female",'Han',3,['LN_XINGWEN','LN_JINGZI'],["des:邓绥（81年－121年4月17日），南阳新野人，东汉王朝著名的女政治家，东汉王朝第四代皇帝汉和帝的皇后。邓绥系出名门，其祖父正是以向光武帝刘秀进献了“图天下策”的东汉开国重臣、云台二十八将之首的太傅高密侯邓禹。邓绥15岁入宫，22岁被册封为皇后。东汉延平元年（公元106年），年仅27岁的汉和帝突然驾崩，面对着“主幼国危”的局面，25岁的邓绥临朝称制。邓绥执政期间，对内帮助东汉王朝度过了“水旱十年”的艰难局面，对外则坚决派兵镇压了西羌之乱，使得危机四伏的东汉王朝转危为安，被誉为“兴灭国，继绝世”。但另一方面，邓绥亦有专权之嫌，其废长立幼，临朝称制达十六年而不愿还政于刘氏，朝中多有非议。东汉永宁二年（公元121年），邓绥驾崩，谥号“和熹”，与汉和帝合葬于慎陵。"]],
-            "ln_bz":["female",'Han',4,['LN_CX','LN_JJ','LN_CJ'],["des:西汉史学家、文学家、思想家。以才学著称，曾经几度入宫传授学识，班昭继承兄长遗志，坚决修订完《汉书》，而也只有她才能修订完，故而十分得人敬佩，是皇太后邓绥之师，名望很高"]],
-            "ln_wzj":["female","Han",3,['LN_LY','LN_CQ'],["des:中国四大美女之一，年少之时以民间女子身份被选为宫女，之后，匈奴单于向元帝请求娶汉人为妻（其间又有两种说法，一种是从昭君入宫之后到出塞的这段时间内元帝从未见过昭君，因此当发现她是绝世美女后，颇为后悔。另一种则是，昭君入宫后，过了几年，为元帝发现，两人爱的死去活来，之所以后来送她出塞，则是元帝出于顾及大家的原因），遂许昭君与之，几年后，昭君丧夫（昭君请求回归大汉，但是为皇帝所拒绝），又按照匈奴习俗嫁给了另一个单于，过了11年，又再度丧夫，王昭君经历了悲苦的一生，最终无法忍受而服毒自杀；"]],         
-            "ln_zwy":["female",'qi',4,['LN_DZ','LN_MJ'],["des:齐国人，不学女工，好为治国之术，又名钟离春、钟无盐，相传相貌极丑，故而四十而未加，不甘心的她直谏齐王，使得齐王颇有建树。"]],
-            "ln_mjn":["female","qin",3,['LN_QT'],["des:秦王政时期人物，相传为寻未谋面的夫君而将长城哭倒。"]],
-            "ln_hyy":["female","shu",4,["LX","dc","机巧",'bazhen'],["des:诸葛亮之妻，诸葛瞻之母，有奇才，上通天文，下察地理，精通兵法，近乎诸略无所不晓，善于发明制造，传授诸葛亮很多学识，在诸葛亮病逝之后不久也随之仙逝，死前以“忠孝”勉励其子诸葛瞻；"]],
-            "ln_nw":["female","G",4,["SD","SN"],["des:上古传说中的人物，华胥氏之女，人首蛇身，有圣德(五行属土德)，与伏羲兄妹通婚，创造婚姻制度，结束了只知其母不知其父的原始社会，有补天造人、治水平乱等的传说，和伏羲一起治理族人，制造乐器等物品，对后世产生了极大的影响（由于女娲伏羲属于一家人，故而“三皇”中只选取其中一人为代表）；"]],
-            "ln_ehny":["female","SW",4,["DX","JF"],["des:娥皇女英，又称皇英。长曰娥皇，次曰女英，是中国古代神话传说中帝尧的两个女儿，姐妹同嫁帝舜为妻。舜父顽，母嚣，弟劣，曾多次欲置舜于死地，终因娥皇女英助之而脱险。舜继尧位，娥皇女英之其妃，后舜至南方巡视，死于苍梧。二妃往寻，得知舜帝已死，埋在九嶷山下，抱竹痛哭，泪染青竹，泪尽而死，因称“潇湘竹”或“湘妃竹”。自秦汉时起，湘江之神湘君与湘夫人的爱情神话，被演变成舜与娥皇、女英的传说。后世因附会称二女为“湘夫人”。"]],
-            "ln_tss":["female","SW",4,["HX","启夏"],["des:大禹之妻，传说为狐仙化身，协助大禹，在禹治水之时，将内事管理得条条有理，特别是对于夏启的管教。民间流传许多关于夏禹和涂山氏的美好的爱情故事。"]],
-            "ln_fh":["female","SW",4,["LN_JG"],["des:武丁最宠幸的妃子，也是中国历史上最早最杰出的女将，能征善战而且精于政务，文武全才，深得武丁宠爱，死后更是以极其崇高的礼节厚葬；"]],
-            "ln_qj":["female","qi",3,["LN_GZ","LN_DY"],["des:齐国奇女子，姜小白堂妹，嫁给晋文公为妻，协助晋文公登上国君之位，素有国姿，善于舞乐等文艺之才，为人又深明大义，称得上一代奇女子，姜奇得知晋文公沉迷于自己的美色之中，便密谋将之送回晋国，并且杀死了可能泄密的婢女，然后想办法将晋文公送回了晋国，晋文公后来成为“五霸之一”；"]],
-            "ln_fj":["female","chu",3,["明辨","jinxian"],["des:樊姬，楚庄王的王后。樊姬为了劝阻楚庄王不要因打猎，玩物丧志，就不吃禽兽肉，以此来打动楚庄王。而楚庄王从此改过自新。张说曾说：“楚国所以霸，樊姬有力。”，除此之外，樊姬还有进贤之功、知人之明，孙叔敖可以说是她间接引进的。"]],
-            "ln_mm":["female","qi",3,["严母","惟德"],["des:叔敖母，即孙叔敖之母，深知天道。叔敖见蛇，两头岐首，杀而埋之，泣恐不及。母曰阴德，不死必寿。孟母，仉氏，生卒年不可考，孟子的母亲。战国时人，以教子有方著称。孟子三岁丧父，靠母亲教养长大成人，并成为后世儒家追慕向往的亚圣，孟母也留下了“孟母三迁”、“断机教子”等教子佳话。"]],
-            "ln_dmsj":["female","chu",3,["预谚","鉴师","识天"],["des:邓曼，曼姓，邓城（今湖北襄阳西北）人，春秋时邓侯之女，楚武王夫人。邓曼为人贤惠聪颖，常对楚武王的某些活动进行劝谋。生子熊赀，后为楚文王。羊舌叔姬，晋国大夫羊舌职之妻，叔向之母，以慧著称，多次准确预言其家人命运。"]],
-            "ln_djj":["female","qi",3,["LN_YH","LN_XJ","方绩"],["des:敬姜，齐侯之女，姜姓，谥曰敬，是鲁国大夫公父文伯的母亲。与孔子同时。世称贤母敬姜的《论劳逸》是春秋战国时期家训的代表之作。其事迹散见於《国语》、《列女传》、《韩诗外传》、《礼记·檀弓》。定姜，姜姓，定是跟从丈夫的谥号，春秋时期卫国国君卫定公的夫人，卫献公嫡母。"]],
-            "ln_jhwj":["female","lu",3,["秩秩","罪谏","救卫"],["des:姜后，是西周第十一代天子周宣王的王后，齐国君主之女。她因为周宣王早卧晏起，于是在永巷待罪，将发簪耳环脱下，称君王耽色，源罪于自己。周宣王感动，励精图治，才有宣王中兴。齐桓卫姬，忠款诚信。公好淫乐，姬为修身。望色请罪，桓公加焉，厥使治内，立为夫人，曾经阻止齐桓公攻卫，并且颇有谏言。"]],
-            "ln_jtxn":["female","SW",5,["LN_SN"],["des:上古传说人物，鸟身人首。传说曾经在黄帝苦战蚩尤不胜之时，传授黄帝兵法，最终黄帝终于打败了蚩尤。"]],
-            "ln_xs":["female","chu",3,['LN_CY','LN_XS'],["des:春秋时期美女，为四大美女之一，曾经协助越王勾践，以美人计迷惑夫差，最终导致夫差败亡，吴国被灭，勾践一雪前耻，而且传说西施德才兼备，但最后的归宿不得而知，《墨子》中称其被丢进河中溺水而亡。"]]},
+            "ln_zwj":["female",'Han',3,['LN_QIYIN','LN_BTY','n称号'],['des:卓文君（公元前175年—公元前121年），原名文后，西汉时期蜀郡临邛（今四川省成都市邛崃市）人，汉代才女。中国古代四大才女之一、蜀中四大才女之一。卓文君为蜀郡临邛的冶铁巨商卓王孙之女，姿色娇美，精通音律，善弹琴，有文名。卓文君与汉代著名文人司马相如的一段爱情佳话至今被人津津乐道。她也有不少佳作，如《白头吟》，诗中“愿得一心人，白头不相离”堪称经典佳句。']],
+            "ln_wzt":["female",'qun',3,['n称号','ln_huoni','ln_lugong'],['des:武则天（624年－705年12月16日），名曌（zhào），并州文水（今山西文水县东）人。中国历史上唯一的正统的女皇帝，也是即位年龄最大（67岁即位）、寿命最长的皇帝之一（终年82岁）。']],
+            "ln_lqz":["female",'qun',3,['LN_YOUGUI','LN_QINGKU','LN_CIDIAO','LN_SHINAN','n称号'],['des:李清照（1084年3月13日—1155年？），号易安居士，汉族，齐州济南（今山东省济南市章丘区）人。宋代女词人，婉约词派代表，有“千古第一才女”之称。李清照出生于书香门第，早期生活优裕，其父李格非藏书甚富，她小时候就在良好的家庭环境中打下文学基础。出嫁后与夫赵明诚共同致力于书画金石的搜集整理。金兵入据中原时，流寓南方，境遇孤苦。所作词，前期多写其悠闲生活，后期多悲叹身世，情调感伤。形式上善用白描手法，自辟途径，语言清丽。论词强调协律，崇尚典雅，提出词“别是一家”之说，反对以作诗文之法作词。能诗，留存不多，部分篇章感时咏史，情辞慷慨，与其词风不同，有《易安居士文集》《易安词》，已散佚。后人有《漱玉词》辑本。今有《李清照集校注》']],
+            "ln_qly":["female",'qun',4,['LN_JIANGF','LN_MASHU','LN_ZHENLIE','n称号'],['des:秦良玉（1574年―1648年7月11日），字贞素，四川忠州（今重庆忠县）人，明朝末年著名女将。丈夫马千乘是汉伏波将军马援后人，世袭石砫宣慰使（俗称土司），马千乘被害后，因其子马祥麟年幼，秦良玉于是代领夫职。秦良玉率领兄弟秦邦屏、秦民屏先后参加抗击清军、奢崇明之乱、张献忠之乱等战役，战功显赫，被封为二品诰命夫人。崇祯皇帝曾作诗四首赞颂秦良玉。秦良玉死后后世文人赞颂秦良玉所作的诗词非常多，近代冰心、郭沫若也对秦良玉大加称赞，爱国将领冯玉祥也曾说到：“纪念花木兰，要学秦良玉。”明朝灭亡后，南明王朝追谥秦良玉为“忠贞侯”。历朝历代修史，女性名人都是被记载到列女传里，而秦良玉是历史上唯一一位作为王朝名将被单独立传记载到正史将相列传里的巾帼英雄。']],
+            "ln_cy" :["female",'Han',3,['LN_GH','LN_BG','LN_DUANC','n称号'],["des:中国四大才女之一，堪称三国时期第一才女，善于诗文和音乐，幼时便可以分辨出弦音，其父也精通音律，其父死后，蔡琰因战乱而为匈奴人所虏，后来为魏国花钱买回，终于再次回到了故乡，与曹操是忘隙之交；"]],
+            "ln_lz" :["female",'Han',3,['LN_ZHIXIN','LN_DUZHI','n称号'],["des:吕雉（公元前241年－公元前180年8月18日），字娥姁[é xū]，通称吕后，或称汉高后、吕太后等等。砀郡单父县（今山东菏泽市单县）人。汉高祖刘邦（前202年-前195年在位）的皇后，高祖死后，被尊为皇太后（前195年—前180年），是中国历史上有记载的第一位皇后和皇太后。同时吕雉也是秦始皇统一中国，实行皇帝制度之后，第一个临朝称制的女性，被司马迁列入记录帝王政事的本纪，后来班固作汉书仍然沿用。她开启了汉代外戚专权的先河。吕雉统治期间实行黄老之术与民休息的政策，废除挟书律，下令鼓励民间藏书、献书，恢复旧典。为后来的文景之治打下了很好的基础，司马迁在《史记·吕后本纪》中对她的评价是“政不出房户，天下晏然；刑罚罕用，罪人是希；民务稼穑，衣食滋殖。”给予吕后施政极大的肯定。"]],
+            "ln_wzf":["female",'Han',3,['LN_XHOU','LN_CN','n称号'],["des:卫子夫（？－前91年），名不详，字子夫，河东平阳（今山西临汾）人。卫子夫是汉武帝刘彻的第二任皇后，史称孝武卫皇后，也是中国历史上第一位拥有独立谥号的皇后，卫子夫原为平阳公主家歌女。于建元二年（前139年）入宫，建元三年（前138年）封为夫人，元朔元年（前128年）立为皇后，征和二年（前91年）在巫蛊之祸中自杀身亡。谥思后，葬桐柏亭。身驻汉宫凡49年，在皇后位38年，育有一男三女。"]],
+            "ln_ds":["female",'Han',3,['LN_XINGWEN','LN_JINGZI','称号'],["des:邓绥（81年－121年4月17日），南阳新野人，东汉王朝著名的女政治家，东汉王朝第四代皇帝汉和帝的皇后。邓绥系出名门，其祖父正是以向光武帝刘秀进献了“图天下策”的东汉开国重臣、云台二十八将之首的太傅高密侯邓禹。邓绥15岁入宫，22岁被册封为皇后。东汉延平元年（公元106年），年仅27岁的汉和帝突然驾崩，面对着“主幼国危”的局面，25岁的邓绥临朝称制。邓绥执政期间，对内帮助东汉王朝度过了“水旱十年”的艰难局面，对外则坚决派兵镇压了西羌之乱，使得危机四伏的东汉王朝转危为安，被誉为“兴灭国，继绝世”。但另一方面，邓绥亦有专权之嫌，其废长立幼，临朝称制达十六年而不愿还政于刘氏，朝中多有非议。东汉永宁二年（公元121年），邓绥驾崩，谥号“和熹”，与汉和帝合葬于慎陵。"]],
+            "ln_bz":["female",'Han',4,['LN_CX','LN_JJ','LN_CJ','n称号'],["des:西汉史学家、文学家、思想家。以才学著称，曾经几度入宫传授学识，班昭继承兄长遗志，坚决修订完《汉书》，而也只有她才能修订完，故而十分得人敬佩，是皇太后邓绥之师，名望很高"]],
+            "ln_wzj":["female","Han",3,['LN_LY','LN_CQ','n称号'],["des:中国四大美女之一，年少之时以民间女子身份被选为宫女，之后，匈奴单于向元帝请求娶汉人为妻（其间又有两种说法，一种是从昭君入宫之后到出塞的这段时间内元帝从未见过昭君，因此当发现她是绝世美女后，颇为后悔。另一种则是，昭君入宫后，过了几年，为元帝发现，两人爱的死去活来，之所以后来送她出塞，则是元帝出于顾及大家的原因），遂许昭君与之，几年后，昭君丧夫（昭君请求回归大汉，但是为皇帝所拒绝），又按照匈奴习俗嫁给了另一个单于，过了11年，又再度丧夫，王昭君经历了悲苦的一生，最终无法忍受而服毒自杀；"]],         
+            "ln_zwy":["female",'qi',4,['LN_DZ','LN_MJ','n称号'],["des:齐国人，不学女工，好为治国之术，又名钟离春、钟无盐，相传相貌极丑，故而四十而未加，不甘心的她直谏齐王，使得齐王颇有建树。"]],
+            "ln_mjn":["female","qin",3,['LN_QT','n称号'],["des:秦王政时期人物，相传为寻未谋面的夫君而将长城哭倒。"]],
+            "ln_hyy":["female","shu",4,["LX","dc","LN_JIQIAO",'bazhen','n称号'],["des:诸葛亮之妻，诸葛瞻之母，有奇才，上通天文，下察地理，精通兵法，近乎诸略无所不晓，善于发明制造，传授诸葛亮很多学识，在诸葛亮病逝之后不久也随之仙逝，死前以“忠孝”勉励其子诸葛瞻；"]],
+            "ln_nw":["female","G",4,["SD","SN","n称号"],["des:上古传说中的人物，华胥氏之女，人首蛇身，有圣德(五行属土德)，与伏羲兄妹通婚，创造婚姻制度，结束了只知其母不知其父的原始社会，有补天造人、治水平乱等的传说，和伏羲一起治理族人，制造乐器等物品，对后世产生了极大的影响（由于女娲伏羲属于一家人，故而“三皇”中只选取其中一人为代表）；"]],
+            "ln_ehny":["female","SW",5,["DX","JF",'n称号'],["des:娥皇女英，又称皇英。长曰娥皇，次曰女英，是中国古代神话传说中帝尧的两个女儿，姐妹同嫁帝舜为妻。舜父顽，母嚣，弟劣，曾多次欲置舜于死地，终因娥皇女英助之而脱险。舜继尧位，娥皇女英之其妃，后舜至南方巡视，死于苍梧。二妃往寻，得知舜帝已死，埋在九嶷山下，抱竹痛哭，泪染青竹，泪尽而死，因称“潇湘竹”或“湘妃竹”。自秦汉时起，湘江之神湘君与湘夫人的爱情神话，被演变成舜与娥皇、女英的传说。后世因附会称二女为“湘夫人”。"]],
+            "ln_tss":["female","SW",4,["HX","启夏","n称号"],["des:大禹之妻，传说为狐仙化身，协助大禹，在禹治水之时，将内事管理得条条有理，特别是对于夏启的管教。民间流传许多关于夏禹和涂山氏的美好的爱情故事。"]],
+            "ln_fh":["female","SW",4,["LN_JG","n称号",'mashu'],["des:武丁最宠幸的妃子，也是中国历史上最早最杰出的女将，能征善战而且精于政务，文武全才，深得武丁宠爱，死后更是以极其崇高的礼节厚葬；"]],
+            "ln_qj":["female","qi",3,["LN_GZ","LN_DY",'n称号'],["des:齐国奇女子，姜小白堂妹，嫁给晋文公为妻，协助晋文公登上国君之位，素有国姿，善于舞乐等文艺之才，为人又深明大义，称得上一代奇女子，姜奇得知晋文公沉迷于自己的美色之中，便密谋将之送回晋国，并且杀死了可能泄密的婢女，然后想办法将晋文公送回了晋国，晋文公后来成为“五霸之一”；"]],
+            "ln_fj":["female","chu",3,["明辨","jinxian",'n称号'],["des:樊姬，楚庄王的王后。樊姬为了劝阻楚庄王不要因打猎，玩物丧志，就不吃禽兽肉，以此来打动楚庄王。而楚庄王从此改过自新。张说曾说：“楚国所以霸，樊姬有力。”，除此之外，樊姬还有进贤之功、知人之明，孙叔敖可以说是她间接引进的。"]],
+            "ln_mm":["female","qi",3,["严母","惟德",'n称号'],["des:叔敖母，即孙叔敖之母，深知天道。叔敖见蛇，两头岐首，杀而埋之，泣恐不及。母曰阴德，不死必寿。孟母，仉氏，生卒年不可考，孟子的母亲。战国时人，以教子有方著称。孟子三岁丧父，靠母亲教养长大成人，并成为后世儒家追慕向往的亚圣，孟母也留下了“孟母三迁”、“断机教子”等教子佳话。"]],
+            "ln_dmsj":["female","chu",3,["预谚","鉴师","识天",'n称号'],["des:邓曼，曼姓，邓城（今湖北襄阳西北）人，春秋时邓侯之女，楚武王夫人。邓曼为人贤惠聪颖，常对楚武王的某些活动进行劝谋。生子熊赀，后为楚文王。羊舌叔姬，晋国大夫羊舌职之妻，叔向之母，以慧著称，多次准确预言其家人命运。"]],
+            "ln_djj":["female","lu",3,["LN_YH","LN_XJ","方绩",'n称号'],["des:敬姜，齐侯之女，姜姓，谥曰敬，是鲁国大夫公父文伯的母亲。与孔子同时。世称贤母敬姜的《论劳逸》是春秋战国时期家训的代表之作。其事迹散见於《国语》、《列女传》、《韩诗外传》、《礼记·檀弓》。定姜，姜姓，定是跟从丈夫的谥号，春秋时期卫国国君卫定公的夫人，卫献公嫡母。"]],
+            "ln_jhwj":["female","lu",3,["秩秩","罪谏","救卫",'n称号'],["des:姜后，是西周第十一代天子周宣王的王后，齐国君主之女。她因为周宣王早卧晏起，于是在永巷待罪，将发簪耳环脱下，称君王耽色，源罪于自己。周宣王感动，励精图治，才有宣王中兴。齐桓卫姬，忠款诚信。公好淫乐，姬为修身。望色请罪，桓公加焉，厥使治内，立为夫人，曾经阻止齐桓公攻卫，并且颇有谏言。"]],
+            "ln_jtxn":["female","SW",5,["LN_SN",'n称号'],["des:上古传说人物，鸟身人首。传说曾经在黄帝苦战蚩尤不胜之时，传授黄帝兵法，最终黄帝终于打败了蚩尤。"]],
+            "ln_xs":["female","chu",3,['LN_CY','LN_XS','n称号'],["des:春秋时期美女，为四大美女之一，曾经协助越王勾践，以美人计迷惑夫差，最终导致夫差败亡，吴国被灭，勾践一雪前耻，而且传说西施德才兼备，但最后的归宿不得而知，《墨子》中称其被丢进河中溺水而亡。"]]},
    
                              
                     
                     skill:{
+                    
+                            
+                   
+                        ln_lugong:{
+                       
+                            trigger:{
+        player:"loseEnd"
+    },
+    direct:true,
+    filter:function (event,player){
+        return event.cards&&event.cards.length>2;
+    },
+    content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('ln_lugong'),function(card,player,target){
+            return target!=player&&target.hp>0;
+        }).set("ai",function(target){
+                return get.damageEffect(target,player,player);
+            
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('lu_lugong',result.targets);
+            result.targets[0].damage();
+            player.gainMaxHp();
+            player.draw(player.maxHp-player.hp);           
+            if(player.maxHp>5)player.recover(player.hp);
+            if(player.maxHp>5)player.loseMaxHp(3);
+            
+        }
+    },
+                        },
+                        ln_huoni:{
+                           audio:"ext:列女传:2", 
+                       trigger:{
+                    player:"phaseUseBegin",
+                },
+                            filter:function (event,player){
+        return player.num('h')>0;
+    },
+                content:function (){
+                    'step 0'
+                    player.chooseToDiscard(999,'h',true);
+                    'step 1'
+                   player.chooseTarget(get.prompt('ln_huoni'),function(card,player,target){
+            return target!=player&&target.num('h')>0&&target.sex=='male';
+        }).set("ai",function(target){
+                return get.damageEffect(target,player,player);                    });              
+              'step 2'
+                 if(result.bool){
+                     player.logSkill('ln_huoni',result.tatgets)
+                     result.targets[0].chooseToDiscard(999,'h',true)
+                 }
+                        },},
+                        n称号:{
+                            trigger:{global:'gameStart'
+                                    },
+                            frequent:true,
+            
+           filter:function (event,player){
+        return game.players.length>0;
+    },
+                            content:function (){
+                                if(player.name=='ln_mjn')player.node.name.innerHTML='<font color=red>泣<br>天<br>浸<br>地</font> ';
+                                if(player.name=='ln_qly')player.node.name.innerHTML='<font color=red>妇<br>好<br>之<br>风</font> ';
+                                if(player.name=='ln_ds')player.node.name.innerHTML='<font color=red>文<br>昭<br>日<br>月</font> ';
+                                if(player.name=='ln_lz')player.node.name.innerHTML='<font color=red>大<br>汉<br>毒<br>后</font> ';
+                                if(player.name=='ln_zwy')player.node.name.innerHTML='<font color=red>奇<br>女<br>子</font> ';
+                                if(player.name=='ln_wzf')player.node.name.innerHTML='<font color=red>大<br>汉<br>贤<br>后</font> ';
+                                if(player.name=='ln_bz')player.node.name.innerHTML='<font color=red>学<br>动<br>神<br>州</font> ';
+                                if(player.name=='ln_tss')player.node.name.innerHTML='<font color=red>狐<br>仙<br>化<br>身</font> ';
+                                if(player.name=='ln_fj')player.node.name.innerHTML='<font color=red>神<br>智<br>过<br>人</font> ';
+                                if(player.name=='ln_mm')player.node.name.innerHTML='<font color=red>慈<br>心<br>严<br>笃</font> ';                           
+                                if(player.name=='ln_jtxn')player.node.name.innerHTML='<font color=red>九<br>天<br>娘<br>娘</font> ';
+                                if(player.name=='ln_xs')player.node.name.innerHTML='<font color=red>浣<br>纱<br>仙<br>女</font> ';                                
+                                if(player.name=='ln_ehny')player.node.name.innerHTML='<font color=red>有<br>虞<br>二<br>姚</font> ';                                
+                                if(player.name=='ln_zwj')player.node.name.innerHTML='<font color=red>凤<br>于<br>九<br>天</font> ';
+                                if(player.name=='ln_wzj')player.node.name.innerHTML='<font color=red>塞<br>外<br>美<br>人</font> ';
+                                if(player.name=='ln_nw')player.node.name.innerHTML='<font color=red>神<br>圣<br>女</font> ';
+                                if(player.name=='ln_hyy')player.node.name.innerHTML='<font color=red>归<br>隐<br>杰<br>女</font> ';
+                                if(player.name=='ln_fh')player.node.name.innerHTML='<font color=red>第<br>一<br>女<br>将</font> ';
+                                if(player.name=='ln_cy')player.node.name.innerHTML='<font color=red>异<br>乡<br>孤<br>魂</font> ';
+                                if(player.name=='ln_lqz')player.node.name.innerHTML='<font color=red>千<br>古<br>才<br>女</font> ';
+                                if(player.name=='ln_wzt')player.node.name.innerHTML='<font color=red>一<br>代<br>女<br>皇</font> ';
+                                if(player.name=='ln_dmsj')player.node.name.innerHTML='<font color=red>晓<br>明<br>天<br>道</font> ';
+                                if(player.name=='ln_djj')player.node.name.innerHTML='<font color=red>绝<br>代<br>双<br>姜</font> ';
+                                if(player.name=='ln_jhwj')player.node.name.innerHTML='<font color=red>国<br>之<br>茴<br>后</font> ';
+                                if(player.name=='ln_qj')player.node.name.innerHTML='<font color=red>深<br>明<br>大<br>义</font> ';
+                                
+                                
+                            }
+                            
+                        },
+                        LN_QIYIN:{
+                            
+           
+                  
+                enable:'phaseUse',
+                usable:1,
+				filterCard:true,
+				filterTarget:function (card,player,target){
+					return player!=target&&target.sex=='male';
+				},	
+                content:function (){
+					player.showCards(cards);
+					player.gain(cards);
+					game.log(player,'收回了',cards);
+					var targetCard=target.get('h').randomGet();
+					target.showCards(targetCard);
+					if(get.color(cards)==get.color(targetCard)){
+						player.recover();
+						player.draw();
+						target.recover();
+						target.draw();
+                        var chat=['执子之手，与子偕老——《诗经》','永以为好也——《诗经》'].randomGet()
+                  player.say(chat)
+					};
+				},
+			
+                        },
+                        LN_BTY:{
+                            trigger:{
+                    player:"phaseDiscardBegin",
+                },
+                            filter:function (event,player){
+        return player.num('h')>player.hp;
+    },
+                content:function (){
+                    'step 0'
+                    trigger.untrigger();
+                    trigger.finish();
+                    'step 1'                      
+                   player.chooseTarget(get.prompt('LN_BTY'),function(card,player,target){
+            return target!=player&&target.sex=='male';
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });  
+              'step 2'
+                 if(result.bool){
+                     player.logSkill('LN_BTY',result.tatgets)
+                     result.targets[0].draw(player.num('h')-player.hp);
+                     if(result.targets[0].hp<result.targets[0].maxHp)player.chooseToDiscard(true);
+                     var chat=['有美人兮，见之不忘——《凤求凰》','皑如山上雪，皎若云间月——《白头吟》'].randomGet()
+                  player.say(chat)
+                 }
+                  'step 3'   
+                  if(player.num('h')>4&&player.hp>1)player.loseHp();
+                    var chat=['闻君有两意，特来相决绝——《白头吟》'].randomGet()
+                  player.say(chat)
+                        },},
+                        LN_YOUGUI:{
+                               trigger:{
+                global:"gameStart",
+            },
+            frequent:true,
+            
+           filter:function (event,player){
+        return game.players.length>3;
+    },
+            content:function (){
+                           player.maxHp=game.players.length;
+                           player.update();
+                var chat=['天上星河转，人间帘幕垂！'].randomGet()
+                  player.say(chat);
+                        },},
+                        LN_QINGKU:{
+                            audio:"ext:列女传:1",
+                           trigger:{
+        player:"phaseDrawBegin",
+    },
+    frequent:true,
+    content:function (){
+        trigger.num--;
+        var chat=['寻寻觅觅，冷冷清清，凄凄惨惨戚戚！'].randomGet()
+                  player.say(chat);
+    },
+    ai:{
+        threaten:1.3,
+    },
+     group:'LN_QINGKU_1',
+       subSkill:{
+           1:{
+                                      trigger:{
+        player:"damageEnd",
+    },
+  
+          
+                            filter:function (event,player){
+        return player.hp>0&&player.num('h')>0;
+    },
+                content:function (){
+                    player.chooseToDiscard(1,'h',true)
+                    var chat=['守着窗儿，独自怎生得黑！','这次第，怎一个愁字了得！'].randomGet()
+                  player.say(chat);
+                }
+               
+           },
+           
+       } ,
+                            
+                        },
+                        LN_SHINAN:{
+                              trigger:{
+        player:"chooseToCompareBefore",
+        target:"chooseToCompareBefore",
+    },
+    content:function (){
+        'step 0'
+          player.draw();
+        var chat=['绣面芙蓉一笑开,斜飞宝鸭衬香腮。'].randomGet()
+                  player.say(chat)
+        'step 1'
+          player.chooseToDiscard(1,'h',true)
+        
+                     },   },
+                        LN_CAIMING:{
+                            enable:"phaseUse",
+    usable:1,
+    filterTarget:function (card,player,target){
+        return target.countCards('h')>=player.countCards('h')&&player!=target;
+    },
+    filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+    content:function (){
+         player.swapHandcards(target);
+        var chat=['一面风情深有韵，半笺娇恨寄幽怀。月移花影约重来。'].randomGet()
+                  player.say(chat);
+    },
+    ai:{
+        order:1,
+        result:{
+            player:function (player,target){
+                return player.countCards('h')-player.countCards('h');
+            },
+            target:function (player,target){
+                return target.countCards('h')-target.countCards('h');
+            },
+        },
+    },
+                            
+                        },
+                        LN_LIULI:{
+                           trigger:{
+        player:"phaseUseEnd",
+    },
+    frequent:true,
+    content:function (){
+        if(player.hp<player.maxHp)player.loseMaxHp();
+        if(player.hp==player.maxHp)player.loseHp();
+        var chat=['只恐双溪舴艋舟，载不动许多愁！','风住尘香花已尽，日晚倦梳头！'].randomGet()
+                  player.say(chat);
+        
+    },  
+                            
+                        },
+                        LN_CIDIAO:{
+                            audio:"ext:列女传:1",
+              trigger:{
+        player:"phaseBegin",
+    },
+   
+    filter:function (event,player){
+        return player.hp>0&&player.num('h')>0;
+    },
+    content:function (){
+         "step 0"
+        player.chooseTarget(get.prompt('LN_CIDIAO'),function(card,player,target){
+            return player!=target&&target.countCards('h')>0;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target)/target.countCards('h');
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('LN_CIDIAO',result.targets[0]);
+            player.chooseToCompare(result.targets[0]);
+        }
+        else{
+            event.finish();
+        }
+        "step 2"
+        if(result.bool){                      
+      player.addTempSkill('LN_CAIMING');
+            var chat=['露浓花瘦，薄汗轻衣透！'].randomGet()
+                  player.say(chat);
+        }
+        else{
+            player.addTempSkill('LN_LIULI');
+            var chat=['才下眉头，却向心头！'].randomGet()
+                  player.say(chat);
+        }
+                        },},
+                        LN_ZHENLIE:{
+                              trigger:{
+        player:"damageEnd",
+    },
+    filter:function (event,player){
+        return player.hp>0;
+    },
+     content:function (){
+         'step 0'
+         trigger.source.chooseToDiscard(2,'he',true)
+         'step 1'
+          player.chooseToUse({name:'sha'},'是否使用一张【杀】？');
+         var chat=['纵使孤军奋战，也绝不后退！','誓杀国贼！'].randomGet()
+                  player.say(chat)
+                            }
+                            
+                        },
+                        LN_MASHU:{
+                              mod:{
+        globalFrom:function (from,to,distance){
+            return distance-1;
+        },
+    },
+                        },
+                        LN_JIANGF:{
+                            trigger:{
+        player:["useCard","respond"],
+    },
+    forced:true,
+    filter:function (event,player){
+        return event.card&&event.card.name=='sha';},
+    content:function (){
+                     player.draw();
+        var chat=['忌一巾帼妇人，汝当自愧！','败于贼者，唯恐人之胜，怯于贼者，唯恐人之强'].randomGet()
+                  player.say(chat)
+                        },},
                         LN_BG:{
+                            audio:"beige",
                              trigger:{
                     player:"loseHpEnd",
                 },
@@ -85,6 +418,7 @@ lib.config.lnzGXJZ1=0;
                             
                       },
                         LN_GH:{
+                            audio:"beige",
                             trigger:{
         player:"phaseEnd",
     },
@@ -102,6 +436,7 @@ lib.config.lnzGXJZ1=0;
                             
                         },
                         LN_DUANC:{
+                            audio:"duanchang",
                               forbid:["boss"],
     trigger:{
         player:"dieBegin",
@@ -350,7 +685,12 @@ lib.config.lnzGXJZ1=0;
      mod:{
         maxHandcard:function (player,num){
            return num+=1;
-        },
+        },},
+           mod:{
+        globalTo:function (from,to,distance){
+            return distance+1;
+        
+    },
     },
                             
                             
@@ -635,7 +975,7 @@ if(player.maxHp>player.hp)player.draw();
                 },
             },
             dc:{
-                audio:"kanpo1",
+                audio:"ext:列女传:3",
                 enable:"chooseToUse",
                 position:"hej",
                 filterCard:function (card){
@@ -664,7 +1004,8 @@ if(player.maxHp>player.hp)player.draw();
                     expose:0.2,
                 },
             },
-            "机巧":{
+            "LN_JIQIAO":{
+                audio:"ext:列女传:2",
                 trigger:{
                     global:"phaseEnd",
                 },
@@ -766,6 +1107,7 @@ if(player.maxHp>player.hp)player.draw();
     },
             },
             SD:{
+                audio:"ext:列女传:2",
                 trigger:{
                     player:["phaseEnd","phaseBegin"],
                 },
@@ -782,6 +1124,7 @@ if(player.maxHp>player.hp)player.draw();
                 group:["SD_SD1","SD_SD2","SD_SD3"],
                 subSkill:{
                     "SD1":{
+                        audio:"ext:列女传:1",
                         trigger:{
                             player:"damageEnd",
                         },
@@ -1724,7 +2067,7 @@ trigger.num+=1;
     
     
     
-    
+5
     
     
     
@@ -1804,28 +2147,29 @@ trigger.num+=1;
                 },
             }},
                     translate:{  
-                           G:"古",
+            G:"<font color=black>古</font> ",
             GColor:"#000000",
-            SW:"王",
+            SW:"<font color=#000000>王</font> ",
             SWColor:"#000000",
-            Han:"汉",
+            Han:"<font color=red>汉</font> ",
             HanColor:"#000000",
-            lu:"鲁",
+            lu:"<font color=#A67D3D>鲁</font> ",
             luColor:"#000000",
-            qin:"秦",
+            qin:"<font color=#32CD32>秦</font> ",
             qinColor:"#000000",
-            chu:"楚",
+            chu:"<font color=#FF0000>楚</font> ",
             chuColor:"#A67D3D",
-            qi:"齐",
+            qi:"<font color=#871F78>齐</font> ",
             qiColor:"#871F78",
-            yan:"燕",
+            yan:"<font color=#007FFF>燕</font> ",
             yanColor:"#007FFF",
-            zhao:"赵",
+            zhao:"<font color=#42426F>赵</font> ",
             zhaoColor:"#42426F",
-            wei:"魏",
-            weiColor:"#FF0000",
-            han:"韩",
-            hanColor:"#32CD32",
+            han:"<font color=#F0F>韩</font> ",
+            hanColor:"#32CD32",    
+                        
+
+                        
             "ln_hyy":"黄月英",
             "ln_nw":"女娲",
             "ln_ehny":"娥皇女英",
@@ -1847,6 +2191,31 @@ trigger.num+=1;
             'ln_ds':'邓绥',
             'ln_lz':'吕雉',
             'ln_cy':'蔡琰',
+            'ln_qly':'秦良玉',
+            'ln_lqz':'李清照',
+            'ln_wzt':'武则天',
+            'ln_zwj':'卓文君',
+            'LN_QIYIN':'齐音',
+            'LN_BTY':'白头吟',           
+            'LN_QIYIN_info':'出牌阶段限一次，你可以展示一张手牌，然后令一名男性角色也展示一张手牌，若颜色相同，你与之一同恢复一点体力和摸取一张牌。 ',
+            'LN_BTY_info':'你的弃牌阶段开始时，你可以跳过之，然后令一名男性角色摸取等同于你超出体力值张数的牌。<font color=#F0F>私意</font> :若目标已受伤，你需要弃置一张手牌，然后若此时你的手牌数不小于5且体力值大于1，你需要失去一点体力。',
+            'ln_huoni':'祸逆',
+            'ln_huoni_info':'出牌阶段开始时，你可以弃置所有手牌，然后选择一名男性角色，令之亦如此做。',
+            'ln_lugong':'戮功',
+            'ln_lugong_info':'当你失去牌后，若失去的牌数不小于3张，那么你可以指定一名其他角色，令之受到一点伤害，然后你获得一点体力上限并摸取等同于你已损失体力值的牌。<font color=#F0F>封天</font> ：<font color=red>被动</font> :当你发动【戮功】时，若你体力上限大于5，那么你恢复等同于当前体力数的体力值，再失去三点体力上限。',           
+            'LN_CAIMING':'才名',
+            'LN_QINGKU':'清苦',
+            'LN_YOUGUI':'优贵',
+            'LN_YOUGUI_info':'游戏开始时，若游戏人数大于3，那么你将体力上限调整到等于当前游戏人数',
+            'LN_QINGKU_info':'摸牌阶段你少摸取一张牌。当你受到伤害后，可以弃置一张手牌',
+            'LN_CIDIAO':'词调',
+            'LN_CIDIAO_info':'回合开始时，你可以选择一名其他角色，与之拼点，若你赢，你获得技能【才名】到回合结束:“出牌阶段一次，你可以与一名其他手牌数大于等于你的角色交换手牌”，若你输，你获得【流离】到回合结束。【流离】：“出牌阶段结束时，若你未受伤，那么你失去一点体力，若你已受伤，那么你失去一点体力上限”',
+            'LN_SHINAN':'诗囊',
+            'LN_SHINAN_info':'当你需要拼点前，你可以摸取一张牌再弃置一张牌。',
+            'LN_ZHENLIE':'贞烈',
+            'LN_ZHENLIE_info':'当你受到伤害后，你可以令来源弃置两张牌，然后你可以使用一张【杀】',
+            'LN_JIANGF':'将风',
+            'LN_JIANGF_info':'当你打出或者使用一张【杀】时，摸取一张牌。锁定技：你拥有技能【马术】。',
             'LN_GH':'孤魂',
             'LN_GH_info':'你的回合结束时,若你体力值大于1，那么你须失去一点体力并且弃置一张牌（可以取消自动发动）。',
             'LN_BG':'悲歌',
@@ -1858,7 +2227,7 @@ trigger.num+=1;
             'LN_ZHIXIN_info':'你造成的伤害均视为体力流失，',
             'LN_DUZHI_info':'当场上有其他角色在你回合内流失体力时若你手中拥有【杀】，你可以先弃置等同于手中的【杀】数量的牌再令之弃置所有手牌。',
             'LN_JINGZI':'经资',
-            'LN_JINGZI_info':'每当有其他角色在你回合内摸取不小于2张牌时，你可以获得其一张牌（包括判定区内的牌）。锁定技：场上每有一种势力，其中包括上古、三王、秦、齐、汉等等，你上升一点手牌上限。',
+            'LN_JINGZI_info':'每当有其他角色在你回合内获得不小于2张牌时，你可以获得其一张牌（包括判定区内的牌）。锁定技：场上每有一种势力，其中包括上古、三王、秦、齐、汉等等，你上升一点手牌上限。',
             'LN_XINGWEN':'行文',
             'LN_XINGWEN_info':'出牌阶段限2次，你可以弃置装备区内所有的牌并且令一名装备区内有牌的角色弃置其装备区内所有牌，然后其摸取两张牌。',
             'LN_CN':'持内',
@@ -1891,8 +2260,8 @@ trigger.num+=1;
             "LX_info":"每当你使用一张非转化的普通锦囊牌，可以摸一张牌，且若你的装备区内有牌，你获得技能【奇才】到回合结束，若你装备区内的牌不小于2，额外多摸取一张牌。锁定技：你的手牌上限加x，x为你装备区内的牌。",
             dc:"洞察",
             "dc_info":"在你拥有手牌或者区域内有牌时，你可以将你的任意一张牌当【无懈可击】使用。",
-            "机巧":"机巧",
-            "机巧_info":"每当一名其他角色的回合结束时，若你的装备区和手中有牌，则你可以选择一名角色，将其区域内的牌移动到另一名角色的相应区域内，然后你弃置一张手牌。",
+            "LN_JIQIAO":"机巧",
+            "LN_JIQIAO_info":"每当一名其他角色的回合结束时，若你的装备区和手中有牌，则你可以选择一名角色，将其区域内的牌移动到另一名角色的相应区域内，然后你弃置一张手牌。",
             SD:"圣德",
             "SD_info":"<font color=#F0F>被动技能</font> :每当你回合开始或结束时，你随机将你的武将牌翻面或受到一点伤害或恢复一点体力或摸取两张牌。<font color=#F0F>平治</font> ：每当你武将牌翻面后，你可以选择一名其他角色，令之将武将牌翻面。<font color=#F0F>神音</font> :当你恢复体力后，可以选择一名其他角色，令之摸取两张牌然后你摸取一张牌。<font color=#F0F>补天</font> :当你受到伤害后，你摸取等同于已损失体力值的牌并指定一名其他角色，令之受到一点伤害。",
             DX:"德馨",

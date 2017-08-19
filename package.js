@@ -468,9 +468,9 @@ window.noname_extension_list=[
         author:"天气亏",
         intro:"《列女传》最新版，加入了称号等，人物增加至25（不再增加，详见贴吧）名，平衡性较高，有些人物有配音，贴吧那有皮肤文件，添加到skin那里即可（皮肤精美）。设计背景：刘向《列女传》（有所扩展）。",
         size:"4.8MB",
-        netdisk:"https://pan.baidu.com/s/1eSH3wXW",
+        netdisk:"http://pan.baidu.com/s/1bpJBOTp",
         forum:"https://tieba.baidu.com/p/5258930874",
-        version:4,
+        version:5,
         files:[
             "LN_CIDIAO1.mp3","LN_JIQIAO1.ogg","LN_JIQIAO2.ogg","LN_QINGKU1.mp3","LX1.mp3",
 			"LX2.mp3","SD1.mp3","SD2.mp3","dc1.mp3","dc2.mp3",
@@ -486,9 +486,9 @@ window.noname_extension_list=[
         author:"Sukincen、天气亏",
         intro:"此扩展包含之前我在Q群上分享的单独的武将扩展新姜维、新王允、新孟获、宇智波鼬，下载之前，可先删去这几个武将扩展，因为已修复部分问题，新增了些内容如配音、动画特效等。技能主要是借鉴大神的扩展作修改，感谢大神天气亏的指导和编写代码实现了新王允的技能",
         size:"3.5MB",
-        netdisk:"https://pan.baidu.com/s/1mhRQ1uw",
+        netdisk:"https://pan.baidu.com/s/1c1DTA04",
         // forum:"https://tieba.baidu.com/p/5258930874",
-        version:1,
+        version:2,
         files:[
             "baoxing1.mp3","baoxing2.mp3","chengmou1.mp3","chengmou2.mp3","guanxing_jiangwei1.mp3",
 			"guanxing_jiangwei2.mp3","jugong1.mp3","jugong2.mp3","liangji1.mp3","liangji2.mp3",

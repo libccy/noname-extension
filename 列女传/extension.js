@@ -28,7 +28,7 @@ lib.config.lnzGXJZ1=0;
             "ln_cy" :["female",'Han',3,['LN_GH','LN_BG','LN_DUANC','n称号'],["des:中国四大才女之一，堪称三国时期第一才女，善于诗文和音乐，幼时便可以分辨出弦音，其父也精通音律，其父死后，蔡琰因战乱而为匈奴人所虏，后来为魏国花钱买回，终于再次回到了故乡，与曹操是忘隙之交；"]],
             "ln_lz" :["female",'Han',3,['LN_ZHIXIN','LN_DUZHI','n称号'],["des:吕雉（公元前241年－公元前180年8月18日），字娥姁[é xū]，通称吕后，或称汉高后、吕太后等等。砀郡单父县（今山东菏泽市单县）人。汉高祖刘邦（前202年-前195年在位）的皇后，高祖死后，被尊为皇太后（前195年—前180年），是中国历史上有记载的第一位皇后和皇太后。同时吕雉也是秦始皇统一中国，实行皇帝制度之后，第一个临朝称制的女性，被司马迁列入记录帝王政事的本纪，后来班固作汉书仍然沿用。她开启了汉代外戚专权的先河。吕雉统治期间实行黄老之术与民休息的政策，废除挟书律，下令鼓励民间藏书、献书，恢复旧典。为后来的文景之治打下了很好的基础，司马迁在《史记·吕后本纪》中对她的评价是“政不出房户，天下晏然；刑罚罕用，罪人是希；民务稼穑，衣食滋殖。”给予吕后施政极大的肯定。"]],
             "ln_wzf":["female",'Han',3,['LN_XHOU','LN_CN','n称号'],["des:卫子夫（？－前91年），名不详，字子夫，河东平阳（今山西临汾）人。卫子夫是汉武帝刘彻的第二任皇后，史称孝武卫皇后，也是中国历史上第一位拥有独立谥号的皇后，卫子夫原为平阳公主家歌女。于建元二年（前139年）入宫，建元三年（前138年）封为夫人，元朔元年（前128年）立为皇后，征和二年（前91年）在巫蛊之祸中自杀身亡。谥思后，葬桐柏亭。身驻汉宫凡49年，在皇后位38年，育有一男三女。"]],
-            "ln_ds":["female",'Han',3,['LN_XINGWEN','LN_JINGZI','称号'],["des:邓绥（81年－121年4月17日），南阳新野人，东汉王朝著名的女政治家，东汉王朝第四代皇帝汉和帝的皇后。邓绥系出名门，其祖父正是以向光武帝刘秀进献了“图天下策”的东汉开国重臣、云台二十八将之首的太傅高密侯邓禹。邓绥15岁入宫，22岁被册封为皇后。东汉延平元年（公元106年），年仅27岁的汉和帝突然驾崩，面对着“主幼国危”的局面，25岁的邓绥临朝称制。邓绥执政期间，对内帮助东汉王朝度过了“水旱十年”的艰难局面，对外则坚决派兵镇压了西羌之乱，使得危机四伏的东汉王朝转危为安，被誉为“兴灭国，继绝世”。但另一方面，邓绥亦有专权之嫌，其废长立幼，临朝称制达十六年而不愿还政于刘氏，朝中多有非议。东汉永宁二年（公元121年），邓绥驾崩，谥号“和熹”，与汉和帝合葬于慎陵。"]],
+            "ln_ds":["female",'Han',3,['LN_XINGWEN','LN_JINGZI','n称号'],["des:邓绥（81年－121年4月17日），南阳新野人，东汉王朝著名的女政治家，东汉王朝第四代皇帝汉和帝的皇后。邓绥系出名门，其祖父正是以向光武帝刘秀进献了“图天下策”的东汉开国重臣、云台二十八将之首的太傅高密侯邓禹。邓绥15岁入宫，22岁被册封为皇后。东汉延平元年（公元106年），年仅27岁的汉和帝突然驾崩，面对着“主幼国危”的局面，25岁的邓绥临朝称制。邓绥执政期间，对内帮助东汉王朝度过了“水旱十年”的艰难局面，对外则坚决派兵镇压了西羌之乱，使得危机四伏的东汉王朝转危为安，被誉为“兴灭国，继绝世”。但另一方面，邓绥亦有专权之嫌，其废长立幼，临朝称制达十六年而不愿还政于刘氏，朝中多有非议。东汉永宁二年（公元121年），邓绥驾崩，谥号“和熹”，与汉和帝合葬于慎陵。"]],
             "ln_bz":["female",'Han',4,['LN_CX','LN_JJ','LN_CJ','n称号'],["des:西汉史学家、文学家、思想家。以才学著称，曾经几度入宫传授学识，班昭继承兄长遗志，坚决修订完《汉书》，而也只有她才能修订完，故而十分得人敬佩，是皇太后邓绥之师，名望很高"]],
             "ln_wzj":["female","Han",3,['LN_LY','LN_CQ','n称号'],["des:中国四大美女之一，年少之时以民间女子身份被选为宫女，之后，匈奴单于向元帝请求娶汉人为妻（其间又有两种说法，一种是从昭君入宫之后到出塞的这段时间内元帝从未见过昭君，因此当发现她是绝世美女后，颇为后悔。另一种则是，昭君入宫后，过了几年，为元帝发现，两人爱的死去活来，之所以后来送她出塞，则是元帝出于顾及大家的原因），遂许昭君与之，几年后，昭君丧夫（昭君请求回归大汉，但是为皇帝所拒绝），又按照匈奴习俗嫁给了另一个单于，过了11年，又再度丧夫，王昭君经历了悲苦的一生，最终无法忍受而服毒自杀；"]],         
             "ln_zwy":["female",'qi',4,['LN_DZ','LN_MJ','n称号'],["des:齐国人，不学女工，好为治国之术，又名钟离春、钟无盐，相传相貌极丑，故而四十而未加，不甘心的她直谏齐王，使得齐王颇有建树。"]],
@@ -49,12 +49,10 @@ lib.config.lnzGXJZ1=0;
    
                              
                     
-                    skill:{
-                    
-                            
-                   
-                        ln_lugong:{
-                       
+                    skill:{ 
+                       	
+                        ln_lugong:{   
+                           
                             trigger:{
         player:"loseEnd"
     },
@@ -167,7 +165,15 @@ lib.config.lnzGXJZ1=0;
                         var chat=['执子之手，与子偕老——《诗经》','永以为好也——《诗经》'].randomGet()
                   player.say(chat)
 					};
-				},
+				},ai:{
+        order:9,
+        result:{
+            player:0.5,
+            target:function (target,player){
+                return get.effect(target,{name:'wangmei'},player,player);
+            },
+        },
+    },
 			
                         },
                         LN_BTY:{
@@ -552,6 +558,15 @@ lib.config.lnzGXJZ1=0;
        var chat=['经文治世，百姓不辛！','圣王以教化为先，汝等亦须修文！'].randomGet()
              player.say(chat);
     },
+                            ai:{
+        order:9,
+        result:{
+            player:0.5,
+            target:function (target,player){
+                return get.effect(target,{name:'guohe'},player,player);
+            },
+        },
+    },
                         },
                         LN_CN:{
                              trigger:{
@@ -755,7 +770,7 @@ lib.config.lnzGXJZ1=0;
                         },
                         LN_QT:{
                               trigger:{
-                    player:["damageEnd","loseHp"],
+                    player:["damageEnd","loseHpBegin"],
                 },
                             filter:function (event,player){
         return player.hp>0;
@@ -889,43 +904,33 @@ content:function (){
                             
                         },
                         LN_XS:{
-                            enable:"phaseUse",
-    usable:1,
-    position:"he",
-    filterCard:true,
-    selectCard:[2,Infinity],
-    prompt:"弃置任意张但不小于二的牌并指定一名男性角色，令之摸取等量的牌",
-    check:function (card){
-        return 6-get.value(card)
-    },
-                            filterTarget:function (card,player,target){
-        return target.sex=='male'&&player!=target;
+    trigger:{
+                    player:"phaseEnd",
+                },
+                                      
+    filter:function (event,player){
+        return player.num('he')>1;
     },
     content:function (){
         'step 0'
         player.chooseTarget(get.prompt('LN_XS'),function(card,player,target){
-            return target!=player;
+            return target!=player&&target.sex=='male';
         }).set('ai',function(target){
             return get.attitude(player,target);
-        });U
+        });
         'step 1'
         if(result.bool){
-            player.logSkill('LN_XS',result.targets);
-            var chat=['为了江山社稷！','一切交给我吧！'].randomGet()
-                  player.say(chat)
-        
-        result.targets[0].draw(cards.length);
-        };
-        
+        player.logSkill('LN_XS',result.targets); 
+        player.chooseToDiscard(4,'he',true);
+        result.targets[0].draw(player.hp);
+        };        
     },
-    ai:{
-        order:1,
+          ai:{       
+        order:3,
         result:{
-            player:1,
-        },
-        threaten:1.5,
-    },
-                            
+            player:-0.2,
+            target:1,
+        }}            
                         },
                         LN_CY:{
                             trigger:{
@@ -2255,7 +2260,7 @@ trigger.num+=1;
             'LN_CY':'沉鱼',
             'LN_CY_info':'锁定技：场上每有一名男性角色，你的手牌上限便加一。当你的摸牌阶段开始时，你可以摸取一张牌并且若你已受伤，则额外多摸取一张牌。',
             'LN_XS':'献身',
-            'LN_XS_info':"出牌阶段限一次，你可以弃置任意张牌（至少为二），然后令一名男性角色摸取等量的牌",
+            'LN_XS_info':"回合结束时，你可以弃置四张牌，然后令一名男性角色摸取等同于你体力值的牌",
              LX:"灵心",
             "LX_info":"每当你使用一张非转化的普通锦囊牌，可以摸一张牌，且若你的装备区内有牌，你获得技能【奇才】到回合结束，若你装备区内的牌不小于2，额外多摸取一张牌。锁定技：你的手牌上限加x，x为你装备区内的牌。",
             dc:"洞察",
@@ -2329,7 +2334,7 @@ trigger.num+=1;
         };
      
     
-},help:{},config:{"lnz":{"name":"把列女传设为禁用","init":false}},package:{
+},help:{},config:{"lnz":{"name":"把列女传设为联机禁用","init":false}},package:{
     character:{
         character:{
         },

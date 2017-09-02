@@ -6,9 +6,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"三�
 //game.say1('编辑失败');
 //}
 //}       
-             var cardPack2 = [
-                    ['spade',1,'bz_zhaoxianling'],          ['club',7,'bz_zhaoxianling'],
-                    ['diamond',3,'bz_zhaoxianling'],        ['heart',5,'bz_zhaoxianling'],
+             var cardPack2 = [                   
                     ['spade',1,'juedou'],				    ['spade',2,'bagua'],
 					['spade',3,'guohe'],					['spade',4,'guohe'],
 					['spade',5,'qinglong'],					['spade',6,'lebu'],
@@ -26,9 +24,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"三�
 					['spade',3,'jiu'],					    ['spade',4,'sha','thunder'],
 					['spade',5,'sha','thunder'],			['spade',6,'sha','thunder'],
 					['spade',7,'sha','thunder'],			['spade',8,'sha','thunder'],
-					['spade',9,'jiu'],					    ['spade',10,'bingliang'],
-                    ['spade',4,'bz_longzhongdui'],          ['club',12,'bz_longzhongdui'],
-                    ['diamond',6,'bz_longzhongdui'],        ['heart',10,'bz_longzhongdui'],
+					['spade',9,'jiu'],					    ['spade',10,'bingliang'],                
 					['spade',11,'tiesuo'],					['spade',12,'tiesuo'],
 					['spade',13,'nanman'],					['spade',2,'hanbing'],
 					['heart',1,'wanjian'],					['heart',1,'taoyuan'],
@@ -38,17 +34,15 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"三�
 					['heart',3,'sha','fire'],				['heart',4,'tao'],
 					['heart',4,'wugu'],                     ['heart',4,'huogong'],
 					['heart',5,'qilin'],					['heart',5,'chitu'],
-					['heart',5,'tao'],				     	['heart',6,'tao'],
-					['heart',6,'lebu'],				    	['heart',6,'tao'],
+					['heart',5,'tao'],				     	['heart',6,'shan'],
+					['heart',6,'lebu'],				    	['heart',6,'sha'],
 					['heart',7,'tao'],					    ['heart',7,'wuzhong'],
-					['heart',7,'sha','fire'],				['heart',8,'tao'],
+					['heart',7,'sha','fire'],				['heart',8,'shan'],
 					['heart',8,'wuzhong'],					['heart',8,'shan'],
 					['heart',9,'tao'],                      ['heart',9,'wuzhong'],
-					['heart',9,'shan'],				    	['heart',10,'sha'],
+					['heart',9,'shan'],				    	['heart',10,'tao'],
 					['heart',10,'sha'],					    ['heart',10,'sha','fire'],
-                    ['spade',9,'bz_kanglongyouhui'],        ['club',11,'bz_kanglongyouhui'],
-                    ['diamond',6,'bz_kanglongyouhui'],      ['heart',10,'bz_kanglongyouhui'],
-					['heart',11,'sha'],					    ['heart',11,'wuzhong'],
+					['heart',11,'tao'],					    ['heart',11,'wuzhong'],
 					['heart',11,'shan'],					['heart',12,'tao'],
 					['heart',12,'guohe'],					['heart',12,'shan'],
 					['heart',12,'shandian'],				['heart',13,'shan'],
@@ -187,6 +181,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"三�
                                                                    
 				];
              var characterList = [
+                 'cw_bz_chengyu',  'cw_bz_simayi',
+                 'qx_bz_yanliang', 'qx_bz_wenchou',
+                 'qx_bz_guanning', 'sh_bz_huangzhong',
+                 'sh_bz_fazheng',  'sh_bz_weiyan',
+                 'dw_bz_dinfeng',  'cw_bz_guojia',
+                 'dw_bz_xusheng',  'dw_bz_zhangzhao',
+                 'qx_bz_liubiao',  'cw_bz_zhangchunhua',
+                 'sh_bz_zhugeliang','dw_bz_sunjian',
                  'sh_bz_machao',   'qx_bz_gongsunzan',
                  'cw_bz_zhangliao','dw_bz_ganning',
                  'cw_bz_caocao',   'cw_bz_caoren',
@@ -212,16 +214,14 @@ lib.brawl.qunxiongzhulu = {
             intro:['<font color=#FF0>游戏介绍</font> ：用《三国标准包》武将进行游戏',
                    '<font color=#FF0>游戏特色</font>：局势变化多端，考验玩法 ',
                    '<font color=#FF0>规则简介</font>：分为天子、诸侯、叛贼、辅臣，天子需运筹帷幄，诸侯需消灭其他势力，辅臣需协助天子，叛贼则推翻汉王朝 ',
-                   "<font color=#FF0>简单介绍</font>：如下，更多请点击下方“详细规则”",
+                   "<font color=#FF0>简单介绍</font>：如下，更多请看扩展页面",
                    "<font color=#FF0>一股清流</font>：辅臣第一次击杀触发，天子摸牌一张，辅臣得技【特权】",
                    "<font color=#FF0>势力兼并</font>：诸侯第一次击杀触发，得技【特权】",
                    "<font color=#FF0>郡县沦陷</font>：叛贼第一次击杀触发，所有叛贼摸牌一张，天子弃牌",
                    '<font color=#FF0>胜负简介</font>：<font color=#FF0>一统天下</font>：天子消灭所有敌人，<font color=#FF0>更朝换代</font>：有一诸侯最终胜利，<font color=#FF0>推翻统治</font>：叛贼击杀天子， 注：v.1.3暂未加入这些动画',
                    '<font color=#FF0>专属牌堆</font>：暂待更新 ',
-                   '<font color=#FF0>其他功能</font>：暂待更新',
-                    "<span style='color:#FF0;font-size:80%'>作者：天气亏         版本：v.1.3       更新时间：20170825</span>",                   
-                   "<div onclick=window.open('http://tieba.baidu.com/p/5286202985?share=9105&fr=share&see_lz=0')  >传送至贴吧</div>",                                 
-                   "<div onclick=window.open('http://tieba.baidu.com/p/5286202985?share=9105&fr=share&see_lz=0')  >详细规则</div>",                              						
+                   '<font color=#FF0>特殊人物</font>：暂待更新',                                    
+                   "<div onclick=window.open('http://tieba.baidu.com/p/5286202985?share=9105&fr=share&see_lz=0')  >传送至贴吧</div>",                                                                              						
                   ],
             content:{
                  cardPile:function(){
@@ -233,7 +233,7 @@ lib.brawl.qunxiongzhulu = {
 								else if(game.me!=game.zhu)
 									_status.event.trigger('init2');
 								characterList.randomSort();		
-                                var num = game.me==game.zhu?5:3;
+                                var num = game.me==game.zhu?15:10;
 								var list = [];
                                 list = list.concat(characterList.randomRemove(num));
 								return list;             
@@ -253,6 +253,8 @@ lib.brawl.qunxiongzhulu = {
                     'step 1'
                    if(game.me.identity!='zhu')game.zhu.maxHp++;
                    if(game.me.idenyity!='zhu')game.zhu.hp++; 
+                    game.me.maxHp++;
+                    game.me.hp++;
                     'step 2'
                     for(var i=0;i<game.players.length;i++){
                         if(game.players[i].identity=='zhu') continue;
@@ -331,8 +333,11 @@ lib.brawl.qunxiongzhulu = {
                return event.player.num('hej')>0
                },
                 content:function (){
+                    'step 0'
                     player.gainPlayerCard(trigger.player,999,'hej',true)
+                    'step 1'
                     player.maxHp++;
+                    
            }}
            lib.skill.TZ_FF={
                mark:true,
@@ -350,12 +355,18 @@ lib.brawl.qunxiongzhulu = {
                     'step 0'
         trigger.untrigger();
         trigger.finish();
-        trigger.player.chooseToDiscard(999,'he',true)
+        trigger.player.chooseToDiscard(999,'hej',true)
         trigger.player.recover(2);
         trigger.player.draw(3);
         trigger.player.removeSkill('ZH_JB');
         trigger.player.addSkill('FC_TQ1') 
-        trigger.player.removeSkill('ZH_PH')
+        trigger.player.removeSkill('ZH_PH');
+        trigger.player.removeSkill('zl_sljb');
+        trigger.player.removeSkill('zl_yfbz');
+        trigger.player.removeSkill('zl_txzb');
+        trigger.player.removeSkill('ZH_TQ1');
+        trigger.player.removeSkill('ZH_TQ2');
+        trigger.player.addSkill('zl_ygql');
                     'step 1'
                     trigger.player.identity='zhong';
                     game.showIdentity();
@@ -385,7 +396,7 @@ lib.brawl.qunxiongzhulu = {
             lib.translate.TZ_FF_info='<font color=orange>天子技</font>、 <font color=red>锁定技</font> ：当你杀死一名角色时，若其势力与你一致，防止其死亡，再将其身份转为“辅臣”，并且令之回血两点以及摸牌三张（其先弃置所有牌）', 
             lib.translate.FC_YW='雅望',
             lib.translate.FC_YW_info='<font color=orange>辅臣技</font>、 <font color=red>锁定技</font> ：你的回合开始时，若你已受伤，你回血一点，若你未受伤，上升一点体力上限。',                                                                              
-            lib.storage.mode = "biaozhunmoshi";		                
+            lib.storage.mode = "qunxiongzhulu";		                
             game.saveConfig('player_number','8','identity');
 	        game.saveConfig('identity_mode','normal','identity'); 
             lib.config.mode_config.identity.enhance_zhu = false;
@@ -404,13 +415,11 @@ lib.brawl.biaozhunmoshi = {
             mode:'identity',   
             intro:['标准模式',
                    '游戏规则：同标准八人局一致',
-                   '<font color=red>游戏特色</font> ：存在揭示游戏情报或者体现当前事件的动画（持续更新中），以增加趣味和策略性',
-                   '<font color=red>模式介绍</font> ：目的在于为《三国标准包》提供一个良好的游戏环境，且也是为了还原标准的三国杀的趣味，并在此基础上，进行了一些创新（内容、规则等并未改动）',
+                   '<font color=#FF0>游戏特色</font> ：存在揭示游戏情报或者体现当前事件的动画（持续更新中），以增加趣味和策略性',
+                   '<font color=#FF0>模式介绍</font> ：目的在于为《三国标准包》提供一个良好的游戏环境，且也是为了还原标准的三国杀的趣味，并在此基础上，进行了一些创新（内容、规则等并未改动）',
                    '将池：《三国标准包》内角色（持续更新中）。注：无法自由选将',
                    '牌堆：《标准包》牌堆。',
-                   '人物专属牌堆：诸葛亮——【隆中对】,曹操——【招贤令】,关羽——【亢龙有悔】。注：v1.2开始联系人物',    
-                   '注释：若觉得标准模式无趣，可以等待【群雄逐鹿】模式，标注模式也是挺有趣的，只是必须“标准”',
-                    "<span style='color:#FF0;font-size:80%'>作者：天气亏         版本：v.1.3         更新时间：20170825</span>",                   
+                   '人物专属牌堆：诸葛亮——【隆中对】,曹操——【招贤令】,关羽——【亢龙有悔】',                                                      
                    "<div onclick=window.open('http://tieba.baidu.com/p/5286202985?share=9105&fr=share&see_lz=0')  >传送至贴吧</div>"
 						
                   ],
@@ -424,7 +433,7 @@ lib.brawl.biaozhunmoshi = {
 								else if(game.me!=game.zhu)
 									_status.event.trigger('init2');
 								characterList.randomSort();		
-                                var num = game.me==game.zhu?5:3;
+                                var num = game.me==game.zhu?15:10;                              
 								var list = [];
                                 list = list.concat(characterList.randomRemove(num));
 								return list;             
@@ -590,7 +599,7 @@ lib.brawl.biaozhunmoshi = {
 },precontent:function (){
   
   
-},help:{},config:{"tips1":{"name":"<span style=\"font-size:15.6px;font-weight:600\"><font color=#FF0>作者</font>：天气亏  <font color=#FF0>版本号</font>：v.1.3   <font color=#FF0>更新日期</font>：2017年8月26日  </span><span style=\"font-size:14px\"><li>群雄逐鹿目前并未添加专属卡牌系统<li>标准模式将会持续优化，武将会持续增加<li>若有疑问或bug反馈，请在标准或逐鹿那里点击“传送至贴吧”<br></span>","clear":true,"nopointer":true},"biaozhunmoshi":{"name":"在乱斗中打开标准模式","init":false},"qunxiongzhulu":{"name":"在乱斗中打开群雄逐鹿","init":false},"三国标准包":{"name":"编辑此扩展","clear":true}},package:{
+},help:{},config:{"tips1":{"name":"<span style=\"font-size:15.6px;font-weight:600\"><font color=#FF0>作者</font>：天气亏  <font color=#FF0>版本号</font>：v.1.4   <font color=#FF0>更新日期</font>：2017年8月30日  </span><span style=\"font-size:14px\"><li>群雄逐鹿目前并未添加专属卡牌、特殊人物系统<li>标准模式将会持续优化，武将会持续增加<li>若有疑问或bug反馈，请在标准或逐鹿那里点击“传送至贴吧”<li>群雄逐鹿规则：诸侯有“势力兼并”、“一方霸主”、“天下至霸”三个进阶段。辅臣有“一股清流”、“匡扶汉室”、“一匡天下”三个进阶段。叛贼有“郡县沦陷”、“天下震动”、“气数将尽”三个进阶段<li>其次，诸侯有【挟汉】，辅臣有【丞相】，叛贼有【贼首】、【内乱】<li>三足鼎立、南北朝等暂未加入群雄逐鹿<li>群雄逐鹿将会不断调整更新<li>由于时间问题，以后更新会非常慢，如有觉得应先解决的问题或重要的，你们可以传送至贴吧，进行留言，我会优先处理<br></span>","clear":true,"nopointer":true},"biaozhunmoshi":{"name":"在乱斗中打开标准模式","init":false},"qunxiongzhulu":{"name":"在乱斗中打开群雄逐鹿","init":false},"三国标准包":{"name":"编辑此扩展","clear":true}},package:{
     character:{
         character:{
             "dw_bz_zhouyu":["male","wu",3,["DW_FENGYA","DW_YEYAN"],["des:<font color=red>美周郎</font> <br>级别：S级<br>星级：★★☆<br>定位：反手 威压<br>特点：附带火攻能力"]],
@@ -617,14 +626,30 @@ lib.brawl.biaozhunmoshi = {
             "qx_bz_yuanshao":["male","qun",4,["QX_XURONG","QX_SULI","QX_YUANMEN"],["zhu","des:<font color=red>四世三公</font> <br>级别：B级<br>星级：★☆<br>定位：协助 威压<br>特点：需慎用技能，但效果不错"]],
             "qx_bz_lvbu":["male","qun",4,["QX_WUSHUANG"],["des:<font color=red>人中吕布</font> <br>级别：S级<br>星级：★★☆<br>定位：猛将<br>特点：有加强版【无双】的能力"]],
             "qx_bz_diaochan":["female","qun",3,["QX_BIYUE","QX_LIJIAN"],["des:<font color=red>闭月</font> <br>级别：A+级<br>星级：★★☆<br>定位：损势 去伤<br>特点：保留【离间】，死去不视为被击杀"]],
-            "qx_bz_dongzhuo":["male","qun",3,["QX_BAOZHENG"],["zhu","des:<font color=red>噬血魔王</font><br>级别：A级<br>星级：★★<br>定位：弱化 刷牌<br>特点：能刷大量的牌，但需谨慎 "]],
+            "qx_bz_dongzhuo":["male","qun",4,["QX_BAOZHENG"],["zhu","des:<font color=red>噬血魔王</font><br>级别：A级<br>星级：★★<br>定位：弱化 刷牌<br>特点：能刷大量的牌，但需谨慎 "]],
             "qx_bz_zhangjiao":["male","qun",3,["QX_HUANGTIAN","QX_LUOLEI"],["zhu","des:<font color=red>广贤良师</font> <br>级别：S级<br>星级：★★<br>定位：反手 迂回<br>特点：牌可当【闪】，【闪】连技能"]],
-            "qx_bz_zhaoyun":["male","qun",3,["QX_LONGQIANG","QX_YIYAN"],["des:<font color=red>少年将军</font> <br>级别：B+级<br>星级：★★<br>定位：攻坚 辅助<br>特点：双重攻击"]],
+            "qx_bz_zhaoyun":["male","qun",4,["QX_LONGQIANG","QX_YIYAN"],["des:<font color=red>少年将军</font> <br>级别：B+级<br>星级：★★<br>定位：攻坚 辅助<br>特点：双重攻击"]],
             "qx_bz_huangshuo":["female","qun",3,["QX_QIAOSI","QX_BOCAI"],["des:<font color=red>奇博士</font> <br>级别：A级<br>星级：★★<br>定位：器神<br>特点：装备生产，装备重铸"]],
             "qx_bz_gongsunzan":["male","qun",4,["QX_YICONG"],["zhu","des:<font color=red>白马将军</font> <br>级别：B级<br>星级：★☆<br>定位：沉稳<br>特点：有一定的被动攻击性和防御性，算得上攻守兼备"]],
             "cw_bz_zhangliao":["male","wei",4,["CW_TUXI"],["des:<font color=red>威震逍遥</font> <br>级别：A+级<br>星级：★★<br>定位：收割<br>特点：对低牌数角色的压制性很高"]],
             "sh_bz_machao":["male","shu",4,["SH_JICHI","mashu"],["des:<font color=red>锦马超</font> <br>级别：S级<br>星级：★★<br>定位：猛将<br>特点：【马术】是关键"]],
             "dw_bz_ganning":["male","wu",4,["DW_JIEXI","DW_SHUIDAO"],["des:<font color=red>水上锦帆</font><br>级别：A级<br>星级：★★<br>定位：弱化<br>特点：操作性高 "]],
+            "sh_bz_zhugeliang":["male","shu",3,["SH_ZHISHENG","SH_DONGCHA","SH_WEIWO"],["des:<font color=red>军师将军</font><br>级别：S级<br>星级：★★☆<br>定位：沉稳 均衡 免疫<br>特点：攻守兼备，其中，以【洞察】为主防 "]],
+            "dw_bz_sunjian":["male","wu",4,["DW_CHUANGZHEN"],["zhu","des:<font color=red>江东英魂</font><br>级别：B+级<br>星级：★★<br>定位：攻坚<br>特点：能有效实施打压 "]],
+            "cw_bz_zhangchunhua":["female","wei",3,["CW_JUEQING","CW_MIEKOU"],["des:<font color=red>绝情才女</font> <br>级别：B级<br>星级：★★<br>定位：收割 流失<br>特点：免疫伤害带来的反手技能"]],
+            "qx_bz_liubiao":["male","qun",4,["QX_ZISHOU"],["zhu","des:<font color=red>自守之君</font><br>级别：B级 <br>星级：★★<br>定位：留牌<br>特点：有时候会有不弱的爆发"]],
+            "dw_bz_xusheng":["male","wu",3,["DW_POJUN"],["des:<font color=red>奋先之将</font><br>级别：B级<br>星级：★☆<br>定位：猛将 攻坚<br>特点：增加优势 "]],
+            "cw_bz_guojia":["male","wei",3,["CW_GUICAI","CW_BUJI"],["des:<font color=red>早逝先知</font><br>级别：S级<br>星级：★★☆<br>定位：输出<br>特点：【不羁】充分配合【鬼才】 "]],
+            "dw_bz_dinfeng":["male","wu",3,["DW_ROUBO"],["des:<font color=red>轻装老军</font> <br>级别：B级<br>星级：★☆<br>定位：攻坚<br>特点：可无距离短兵交战，但需谨慎"]],
+            "dw_bz_zhangzhao":["male","wu",3,["DW_CHAOCHEN","DW_GUZHENG"],["des:<font color=red>江东肱骨</font> <br>级别：B+级<br>星级：★★<br>定位：辅助<br>特点：增加团队的留牌数"]],
+            "qx_bz_guanning":["male","qun",3,["QX_DANBO","QX_DUANXI"],["zhu","des:<font color=red>断席清心</font><br>级别：B-级<br>星级：★☆<br>定位：反手 迂回<br>特点：动力源成为【杀】的目标是"]],
+            "sh_bz_fazheng":["male","shu",3,["SH_ENYUAN"],["des:<font color=red>恩怨必报</font><br>级别：A级<br>星级：★★<br>定位：反手 协助<br>特点：恩怨必报 "]],
+            "sh_bz_huangzhong":["male","shu",4,["SH_JIGONG"],["des:<font color=red>神射手</font> <br>级别：S级<br>星级：★★☆<br>定位：输出 置办<br>特点：无距离压力"]],
+            "sh_bz_weiyan":["male","shu",4,["SH_KUANGGU"],["des:<font color=red>狂骨镇将</font> <br>级别：A+级<br>星级：★★<br>定位：猛将 攻坚<br>特点：压制流"]],
+            "cw_bz_chengyu":["male","wei",3,["CW_DANMOU","CW_WEICHENG","CW_HUALAO"],["des:<font color=red>心定之谋士</font><br>级别：A级<br>星级：★★<br>定位：弱化 逆流<br> 特点：【画牢】随配合【胆谋】，但需慎重"]],
+            "cw_bz_simayi":["male","wei",3,["CW_LANGGU","CW_MIAOSUAN"],["des:<font color=red>狼顾之鬼</font> <br>级别：S级<br>星级：★★☆<br>定位：洗牌 爆发<br>特点：手牌越少，技能越强"]],
+            "qx_bz_wenchou":["male","qun",3,["QX_LANGLUE"],["des:<font color=red>河北狼</font><br>级别：B级<br>星级：★☆<br>定位：猛将 掠夺<br>特点：成功的【杀】有回益和弱化 "]],
+            "qx_bz_yanliang":["male","qun",4,["QX_HUBU"],["des:<font color=red>河北虎</font><br>级别：B级<br>星级：★☆<br>定位：攻坚<br>特点：没有不收益的杀 "]],
         },
         translate:{
             "dw_bz_zhouyu":"周瑜",
@@ -659,6 +684,22 @@ lib.brawl.biaozhunmoshi = {
             "cw_bz_zhangliao":"张辽",
             "sh_bz_machao":"马超",
             "dw_bz_ganning":"甘宁",
+            "sh_bz_zhugeliang":"诸葛亮",
+            "dw_bz_sunjian":"孙坚",
+            "cw_bz_zhangchunhua":"张春华",
+            "qx_bz_liubiao":"刘表",
+            "dw_bz_xusheng":"徐盛",
+            "cw_bz_guojia":"郭嘉",
+            "dw_bz_dinfeng":"丁奉",
+            "dw_bz_zhangzhao":"张昭",
+            "qx_bz_guanning":"管宁",
+            "sh_bz_fazheng":"法正",
+            "sh_bz_huangzhong":"黄忠",
+            "sh_bz_weiyan":"魏延",
+            "cw_bz_chengyu":"程昱",
+            "cw_bz_simayi":"司马懿",
+            "qx_bz_wenchou":"文丑",
+            "qx_bz_yanliang":"颜良",
         },
     },
     card:{
@@ -704,9 +745,9 @@ return get.color(card)=='red';
                 position:"he",
                 viewAs:{
                     name:"huogong",
-                    suit:"heart",
-                    number:12,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":12,"name":"shandian","cardid":"2340082313","clone":{"name":"shandian","suit":"heart","number":12,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":10456},"original":"h","_transform":"translateY(0px)","timeout":10435}],
+                    suit:"diamond",
+                    number:8,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":8,"name":"sha","cardid":"4887900360","clone":{"name":"sha","suit":"diamond","number":8,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":3182},"timeout":3161,"original":"h"}],
                 },
                 ai:{
                     basic:{
@@ -889,7 +930,8 @@ return get.color(card)=='red';
         return player.num('h')<player.maxHp;
     },
                 content:function (){
-        player.draw(player.maxHp-player.num('h'));
+        if(game.players.length>4)player.draw(player.maxHp-player.num('h'));
+        if(game.players.length<=4)player.draw()
     },
             },
             "DW_QIANXUN":{
@@ -899,8 +941,8 @@ return get.color(card)=='red';
                 filterCard:true,
                 viewAs:{
                     name:"shan",
-                    suit:"club",
-                    number:2,
+                    suit:"heart",
+                    number:13,
                 },
                 viewAsFilter:function (player){
         if(player.num('h')==0) return false;        
@@ -967,7 +1009,7 @@ return get.color(card)=='black';
                     name:"bingliang",
                     suit:"club",
                     number:3,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"club","number":3,"name":"jiu","cardid":"4108030275","clone":{"name":"jiu","suit":"club","number":3,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":4792},"original":"j","_transform":"translateY(0px)","viewAs":"bingliang","timeout":4779}],
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":7,"name":"sha","cardid":"1448501251","clone":{"name":"sha","suit":"spade","number":7,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"fixed":true,"timeout":454},"original":"h","_transform":"translateY(0px)","viewAs":"bingliang"},{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":9,"name":"jiu","cardid":"6644622254","clone":{"name":"jiu","suit":"spade","number":9,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":444},"timeout":423,"original":"h"}],
                 },
                 ai:{
                     basic:{
@@ -1054,7 +1096,7 @@ return get.color(card)=='red';
                     name:"lebu",
                     suit:"diamond",
                     number:6,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":10,"name":"sha","cardid":"4849968308","clone":{"name":"sha","suit":"heart","number":10,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"fixed":true,"_transitionEnded":true,"timeout":2160},"original":"h","_transform":"translateY(0px)","viewAs":"lebu","timeout":2149},{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":3,"name":"tao","cardid":"8253641307","clone":{"name":"tao","suit":"heart","number":3,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":1608},"timeout":1592,"original":"h"}],
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":8,"name":"shan","cardid":"8072247291","clone":{"name":"shan","suit":"heart","number":8,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":6970},"original":"h","_transform":"translateX(112px)","viewAs":"lebu","timeout":6963},{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":9,"name":"tao","cardid":"5424502293","clone":{"name":"tao","suit":"heart","number":9,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":7184},"original":"h","_transform":"translateX(0px)","timeout":7160}],
                 },
                 ai:{
                     basic:{
@@ -1349,7 +1391,7 @@ if(player.hp<2) return false;},
                 content:function (){
        'step 0'
         player.chooseTarget('请选择一名目标，弃置其所有手牌',get.prompt('CW_DUMIE'),1,function(card,player,target){
-            return target!=player&&target.num('h')<4;
+            return target!=player&&0<target.num('h')<4;
         }).set("ai",function(target){
                 return get.damageEffect(target,player,player);
             
@@ -1382,7 +1424,7 @@ if(player.hp<2) return false;},
                 content:function (){
      'step 0'
         player.chooseTarget('选择任意名男性角色，弃置其手中、装备区内各一张牌',get.prompt('CW_LUOSHEN'),[1,Infinity],function(card,player,target){
-            return target!=player&&target.num('he')>0&&target.sex=='male';
+            return target!=player&&target.num('h')>0&&target.sex=='male';
         }).set("ai",function(target){
                 return get.damageEffect(target,player,player);
             
@@ -1583,13 +1625,13 @@ if(player.hp<2) return false;},
                     player:"shaBegin",
                 },
                 filter:function (event,player){
-        return player.num('he')>0&&event.target.num('he')>0;
+        return player.num('he')>0&&event.target.num('h')>0;
     },
                 content:function (){
         'step 0'
        player.chooseToDiscard(1,'he',true);
         'step 1'
-        trigger.target.chooseToDiscard(1,'he',true);    
+        trigger.target.chooseToDiscard(1,'h',true);    
     },
                 mod:{
                     globalFrom:function (from,to,distance){
@@ -1603,13 +1645,13 @@ if(player.hp<2) return false;},
                     target:"shaBegin",
                 },
                 filter:function (event,player){
-        return player.num('he')>0&&event.player.num('he')>0;
+        return player.num('he')>0&&event.player.num('h')>0;
     },
                 content:function (){
         'step 0'
        player.chooseToDiscard(1,'he',true);
         'step 1'
-       trigger.player.chooseToDiscard(1,'he',true);                                      
+       trigger.player.chooseToDiscard(1,'h',true);                                      
     },
             },
             "SH_XIAKEXING":{
@@ -1713,6 +1755,7 @@ if(player.hp<2) return false;},
                 },
             },
             "bz_yisha":{
+                global:"bz_yisha",
                 skillAnimation:"epic",
                 animationStr:"一战成名",
                 animationColor:"fire",
@@ -1865,13 +1908,13 @@ if(target.num('he')>1) return -1;
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
-        return player!=target&&target.num('hej')>0;
+        return player!=target&&target.num('h')>0;
     },
                 content:function (){
         'step 0'
-        player.chooseToDiscard(1,'he',true);
+        player.chooseToDiscard(1,'h',true);
         'step 1'
-        player.gainPlayerCard(1,target,'hej',true);
+        player.gainPlayerCard(1,target,'h',true);
     
                      
   
@@ -1912,8 +1955,8 @@ if(target.num('he')>1) return -1;
                 viewAs:{
                     name:"sha",
                     suit:"heart",
-                    number:9,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":9,"name":"shan","cardid":"9240305336","clone":{"name":"shan","suit":"heart","number":9,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2835},"timeout":2813,"original":"h"}],
+                    number:6,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":6,"name":"shan","cardid":"2269293357","clone":{"name":"shan","suit":"heart","number":6,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2862},"timeout":2837,"original":"h"}],
                 },
                 check:function (){return 1},
                 ai:{
@@ -2061,6 +2104,7 @@ if(target.num('he')>1) return -1;
                 forced:true,
                 content:function (){
         'step 0'
+        player.changeHujia(-999)
         player.skip('phaseJudge')
         player.skip('phaseDraw');
         'step 1'
@@ -2068,6 +2112,7 @@ if(target.num('he')>1) return -1;
         'step 2'
         player.skip('phaseDiscard');
         if(player.hp<player.maxHp)player.draw();
+        if(player.hp<2)player.changeHujia();
         
 
     },
@@ -2085,10 +2130,12 @@ if(target.num('he')>1) return -1;
     },
                 content:function (){
     'step 0'
-    if(player.num('h')==6)player.chooseToDiscard(1,'h',true);
+   if(player.num('h')==6)player.chooseToDiscard(1,'h',true);
    if(player.num('h')<6)player.draw();
     'step 1'
-   if(player.num('h')>2) player.chooseToUse('是否使用一张牌？');                           
+   if(player.num('h')>2) player.chooseToUse('是否使用一张牌？'); 
+   if(game.players.length<3)player.addSkill('guanxing');
+   if(game.players.length<3)player.addSkill('jizhi');
        },
             },
             "QX_XURONG":{
@@ -2104,7 +2151,7 @@ if(target.num('he')>1) return -1;
                     name:"juedou",
                     suit:"club",
                     number:1,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"heart","number":6,"name":"lebu","cardid":"6573365335","clone":{"name":"lebu","suit":"heart","number":6,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2885},"timeout":2841,"original":"h"},{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":1,"name":"zhuge","cardid":"3243204276","clone":{"name":"zhuge","suit":"diamond","number":1,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2886},"original":"e","timeout":2842}],
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":1,"name":"shandian","nature":"thunder","cardid":"8934881289","clone":{"name":"shandian","suit":"spade","number":1,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":563},"timeout":526,"original":"h"},{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":10,"name":"bingliang","cardid":"4900712284","clone":{"name":"bingliang","suit":"spade","number":10,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":564},"timeout":527,"original":"h"}],
                 },
                 ai:{
                     basic:{
@@ -2322,7 +2369,7 @@ if(target.num('he')>1) return -1;
     },
                 content:function (){
      'step 0'
-        player.chooseTarget('选择任意名其他角色，获得其一张牌',get.prompt('QX_BAOZHENG'),[1,4],function(card,player,target){
+        player.chooseTarget('选择任意名其他角色，获得其一张手牌',get.prompt('QX_BAOZHENG'),[1,3],function(card,player,target){
             return target!=player&&target.num('he')>0;
         }).set("ai",function(target){
                 return get.damageEffect(target,player,player);
@@ -2332,10 +2379,10 @@ if(target.num('he')>1) return -1;
           if(result.bool){            
             for(var i=0;i<result.targets.length;i++){
                player.logSkill('QX_BAOZHENG',result.targets);                          
-               player.gainPlayerCard(result.targets[i],'he',true)
-               result.targets[i].chooseToUse('是否对董卓使用一张【杀】？',{name:'sha'},player);
+               player.gainPlayerCard(result.targets[i],'h',true)}}          
+       if(result.targets.length>1)player.loseHp();
                
-        };};
+       
           
     
     
@@ -2449,38 +2496,54 @@ if(target.num('he')>1) return -1;
         return game.players.length>0;
     },
                 content:function (){
-        if(player.name=='sh_bz_machao')player.node.name.innerHTML='<font color=red>锦<br>马<br>超</font> ';
-        if(player.name=='dw_bz_ganning')player.node.name.innerHTML='<font color=red>水<br>上<br>锦<br>帆</font> ';                                
-        if(player.name=='cw_bz_zhangliao')player.node.name.innerHTML='<font color=red>威<br>震<br>逍<br>遥</font> ';
-        if(player.name=='qx_bz_gongsunzan')player.node.name.innerHTML='<font color=red>白<br>马<br>将<br>军</font> ';
-        if(player.name=='qx_bz_huangshuo')player.node.name.innerHTML='<font color=red>奇<br>博<br>士</font> ';                                
-        if(player.name=='qx_bz_zhaoyun')player.node.name.innerHTML='<font color=red>少<br>年<br>将<br>军</font> ';                                
-        if(player.name=='cw_bz_caocao')player.node.name.innerHTML='<font color=red>乱<br>世<br>奸<br>雄</font> ';
-        if(player.name=='cw_bz_xunyu')player.node.name.innerHTML='<font color=red>大<br>汉<br>辅<br>臣</font> ';
-        if(player.name=='cw_bz_caiyan')player.node.name.innerHTML='<font color=red>异<br>乡<br>孤<br>魂</font> ';
-        if(player.name=='cw_bz_caoren')player.node.name.innerHTML='<font color=red>大<br>魏<br>上<br>将</font> ';
-        if(player.name=='cw_bz_xiahoudun')player.node.name.innerHTML='<font color=red>独<br>眼<br>狼</font> ';
-        if(player.name=='cw_bz_jiaxu')player.node.name.innerHTML='<font color=red>隐<br>身<br>的<br>毒<br>士</font> ';
-        if(player.name=='cw_bz_zhenfu')player.node.name.innerHTML='<font color=red>洛<br>神</font> ';
-        if(player.name=='dw_bz_zhouyu')player.node.name.innerHTML='<font color=red>美<br>周<br>郎</font> ';
-        if(player.name=='dw_bz_sunquan')player.node.name.innerHTML='<font color=red>江<br>东<br>雄<br>君</font> ';
-        if(player.name=='dw_bz_sunce')player.node.name.innerHTML='<font color=red>江<br>东<br>小<br>霸<br>王</font> ';                           
-        if(player.name=='dw_bz_daqiao')player.node.name.innerHTML='<font color=red>矜<br>持<br>的<br>美<br>人</font> ';
-        if(player.name=='dw_bz_xiaoqiao')player.node.name.innerHTML='<font color=red>天<br>之<br>芳<br>馨</font> ';                                
-        if(player.name=='dw_bz_luxun')player.node.name.innerHTML='<font color=red>书<br>生<br>意<br>气</font> ';                                
-        if(player.name=='dw_bz_lusu')player.node.name.innerHTML='<font color=red>竭<br>虑<br>的<br>忠<br>臣</font> ';
-        if(player.name=='sh_bz_liubei')player.node.name.innerHTML='<font color=red>潜<br>龙</font> ';
-        if(player.name=='sh_bz_guanyu')player.node.name.innerHTML='<font color=red>武<br>圣</font> ';
-        if(player.name=='sh_bz_huangyueying')player.node.name.innerHTML='<font color=red>归<br>隐<br>的<br>杰<br>女</font> ';
-        if(player.name=='sh_bz_zhaoyun')player.node.name.innerHTML='<font color=red>常<br>胜<br>将<br>军</font> ';
-        if(player.name=='sh_bz_zhangfei')player.node.name.innerHTML='<font color=red>万<br>人<br>敌</font> ';
-        if(player.name=='sh_bz_pangtong')player.node.name.innerHTML='<font color=red>凤<br>雏<br>先<br>生</font> ';
-        if(player.name=='sh_bz_xushu')player.node.name.innerHTML='<font color=red>至<br>孝<br>的<br>游<br>子</font> ';
-        if(player.name=='qx_bz_diaochan')player.node.name.innerHTML='<font color=red>闭<br>月</font> ';
-        if(player.name=='qx_bz_lvbu')player.node.name.innerHTML='<font color=red>人<br>中<br>吕<br>布</font> ';
-        if(player.name=='qx_bz_dongzhuo')player.node.name.innerHTML='<font color=red>噬<br>血<br>魔<br>王</font> ';
-        if(player.name=='qx_bz_yuanshao')player.node.name.innerHTML='<font color=red>四<br>世<br>三<br>公</font> ';
-        if(player.name=='qx_bz_zhangjiao')player.node.name.innerHTML='<font color=red>广<br>贤<br>良<br>师</font> ';
+        if(player.name=='qx_bz_wenchou')player.node.name.innerHTML='<font color=#FF0>河<br>北<br>狼</font> ';
+        if(player.name=='qx_bz_yanliang')player.node.name.innerHTML='<font color=#FF0>河<br>北<br>虎</font> ';                                
+        if(player.name=='cw_bz_chengyu')player.node.name.innerHTML='<font color=#FF0>心<br>定<br>之<br>谋<br>士</font> ';
+        if(player.name=='cw_bz_simayi')player.node.name.innerHTML='<font color=#FF0>狼<br>顾<br>之<br>鬼</font> ';
+        if(player.name=='sh_bz_huangzhong')player.node.name.innerHTML='<font color=#FF0>神<br>射<br>手</font> ';
+        if(player.name=='sh_bz_weiyan')player.node.name.innerHTML='<font color=#FF0>傲<br>骨<br>镇<br>将</font> ';                                
+        if(player.name=='sh_bz_fazheng')player.node.name.innerHTML='<font color=#FF0>恩<br>怨<br>必<br>报</font> ';
+        if(player.name=='qx_bz_guanning')player.node.name.innerHTML='<font color=#FF0>断<br>席<br>清<br>心</font> ';
+        if(player.name=='dw_bz_zhangzhao')player.node.name.innerHTML='<font color=#FF0>江<br>东<br>肱<br>骨</font> ';                                
+        if(player.name=='cw_bz_guojia')player.node.name.innerHTML='<font color=#FF0>早<br>逝<br>先<br>知</font> ';
+        if(player.name=='dw_bz_dinfeng')player.node.name.innerHTML='<font color=#FF0>轻<br>装<br>老<br>军</font> ';
+        if(player.name=='dw_bz_xusheng')player.node.name.innerHTML='<font color=#FF0>奋<br>先<br>之<br>将</font> ';                                
+        if(player.name=='qx_bz_liubiao')player.node.name.innerHTML='<font color=#FF0>自<br>守<br>之<br>君</font> ';
+        if(player.name=='cw_bz_zhangchunhua')player.node.name.innerHTML='<font color=#FF0>冷<br>艳<br>才<br>女</font> ';                                
+        if(player.name=='dw_bz_sunjian')player.node.name.innerHTML='<font color=#FF0>江<br>东<br>英<br>魂</font> ';                                
+        if(player.name=='sh_bz_zhugeliang')player.node.name.innerHTML='<font color=#FF0>军<br>师<br>将<br>军</font> ';                                
+        if(player.name=='sh_bz_machao')player.node.name.innerHTML='<font color=#FF0>锦<br>马<br>超</font> ';
+        if(player.name=='dw_bz_ganning')player.node.name.innerHTML='<font color=#FF0>水<br>上<br>锦<br>帆</font> ';                                
+        if(player.name=='cw_bz_zhangliao')player.node.name.innerHTML='<font color=#FF0>威<br>震<br>逍<br>遥</font> ';
+        if(player.name=='qx_bz_gongsunzan')player.node.name.innerHTML='<font color=#FF0>白<br>马<br>将<br>军</font> ';
+        if(player.name=='qx_bz_huangshuo')player.node.name.innerHTML='<font color=#FF0>奇<br>博<br>士</font> ';                                
+        if(player.name=='qx_bz_zhaoyun')player.node.name.innerHTML='<font color=#FF0>少<br>年<br>将<br>军</font> ';                                
+        if(player.name=='cw_bz_caocao')player.node.name.innerHTML='<font color=#FF0>乱<br>世<br>奸<br>雄</font> ';
+        if(player.name=='cw_bz_xunyu')player.node.name.innerHTML='<font color=#FF0>大<br>汉<br>辅<br>臣</font> ';
+        if(player.name=='cw_bz_caiyan')player.node.name.innerHTML='<font color=#FF0>异<br>乡<br>孤<br>魂</font> ';
+        if(player.name=='cw_bz_caoren')player.node.name.innerHTML='<font color=#FF0>大<br>魏<br>上<br>将</font> ';
+        if(player.name=='cw_bz_xiahoudun')player.node.name.innerHTML='<font color=#FF0>独<br>眼<br>狼</font> ';
+        if(player.name=='cw_bz_jiaxu')player.node.name.innerHTML='<font color=#FF0>隐<br>身<br>的<br>毒<br>士</font> ';
+        if(player.name=='cw_bz_zhenfu')player.node.name.innerHTML='<font color=#FF0>洛<br>神</font> ';
+        if(player.name=='dw_bz_zhouyu')player.node.name.innerHTML='<font color=#FF0>美<br>周<br>郎</font> ';
+        if(player.name=='dw_bz_sunquan')player.node.name.innerHTML='<font color=#FF0>江<br>东<br>雄<br>君</font> ';
+        if(player.name=='dw_bz_sunce')player.node.name.innerHTML='<font color=#FF0>江<br>东<br>小<br>霸<br>王</font> ';                           
+        if(player.name=='dw_bz_daqiao')player.node.name.innerHTML='<font color=#FF0>矜<br>持<br>的<br>美<br>人</font> ';
+        if(player.name=='dw_bz_xiaoqiao')player.node.name.innerHTML='<font color=#FF0>天<br>之<br>芳<br>馨</font> ';                                
+        if(player.name=='dw_bz_luxun')player.node.name.innerHTML='<font color=#FF0>书<br>生<br>意<br>气</font> ';                                
+        if(player.name=='dw_bz_lusu')player.node.name.innerHTML='<font color=#FF0>竭<br>虑<br>的<br>忠<br>臣</font> ';
+        if(player.name=='sh_bz_liubei')player.node.name.innerHTML='<font color=#FF0>潜<br>渊<br>之<br>龙</font> ';
+        if(player.name=='sh_bz_guanyu')player.node.name.innerHTML='<font color=#FF0>武<br>圣</font> ';
+        if(player.name=='sh_bz_huangyueying')player.node.name.innerHTML='<font color=#FF0>归<br>隐<br>的<br>杰<br>女</font> ';
+        if(player.name=='sh_bz_zhaoyun')player.node.name.innerHTML='<font color=#FF0>常<br>胜<br>将<br>军</font> ';
+        if(player.name=='sh_bz_zhangfei')player.node.name.innerHTML='<font color=#FF0>万<br>人<br>敌</font> ';
+        if(player.name=='sh_bz_pangtong')player.node.name.innerHTML='<font color=#FF0>凤<br>雏<br>先<br>生</font> ';
+        if(player.name=='sh_bz_xushu')player.node.name.innerHTML='<font color=#FF0>至<br>孝<br>的<br>游<br>子</font> ';
+        if(player.name=='qx_bz_diaochan')player.node.name.innerHTML='<font color=#FF0>闭<br>月</font> ';
+        if(player.name=='qx_bz_lvbu')player.node.name.innerHTML='<font color=#FF0>人<br>中<br>吕<br>布</font> ';
+        if(player.name=='qx_bz_dongzhuo')player.node.name.innerHTML='<font color=#FF0>噬<br>血<br>魔<br>王</font> ';
+        if(player.name=='qx_bz_yuanshao')player.node.name.innerHTML='<font color=#FF0>四<br>世<br>三<br>公</font> ';
+        if(player.name=='qx_bz_zhangjiao')player.node.name.innerHTML='<font color=#FF0>广<br>贤<br>良<br>师</font> ';
                                 
         
         
@@ -2885,9 +2948,11 @@ if(target.num('he')>1) return -1;
     },
                 content:function (){
     'step 0'
+    if(player.name=='sh_bz_zhugeliang')player.gain(game.createCard('bz_longzhongdui'));
     if(player.name=='cw_bz_caocao')player.gain(game.createCard('bz_zhaoxianling'));
     if(player.name=='sh_bz_guanyu')player.gain(game.createCard('bz_kanglongyouhui'));   
     'step 1'
+    if(player.name=='sh_bz_zhugeliang')player.addSkill('LZD');
     if(player.name=='cw_bz_caocao')player.addSkill('ZXL')
     if(player.name=='sh_bz_guanyu')player.addSkill('KLYH')
 
@@ -2959,20 +3024,15 @@ if(target.num('he')>1) return -1;
     });
     'step 1'
       if(result.bool){                       
-           player.logSkill('QXZL_CF',result.targets); 
-           
-                
+           player.logSkill('QXZL_CF',result.targets);                            
            result.targets[0].identity='zhong';
            result.targets[0].addSkill('FC_YW')
            result.targets[0].removeSkill('ZH_JB')
-           player.awakenSkill('QXZL_CF');  
-          result.targets[0].draw(2)
-           game.showIdentity();                                                               }
-      
-        
-      
-        
-        
+           player.removeSkill('QXZL_CF');  
+           result.targets[0].draw(2)           
+           game.showIdentity();                                         
+      }               
+                    
         
         
         
@@ -2993,7 +3053,9 @@ if(target.num('he')>1) return -1;
                 content:function (){
                 'step 0'                 
         var n=[1,2].randomGet(); 
-        if(n==1);
+        if(n==1){
+            
+        };
         if(n==2){
             player.identity='fan';
             trigger.untrigger();
@@ -3005,6 +3067,8 @@ if(target.num('he')>1) return -1;
             player.removeSkill('ZH_PH')
             player.removeSkill('ZH_JB')
             player.removeSkill('zl_sljb');
+            player.removeSkill('ZH_TQ1')
+            player.removeSkill('ZH_TQ2')
             player.addSkill('PZ_XY');
             player.addSkill('zl_fklx')
             if(get.population('fan')>1)player.insertPhase();
@@ -3029,6 +3093,7 @@ if(target.num('he')>1) return -1;
     },
                 content:function (){
         'step 0'
+        player.recover()
         player.addSkill('ZH_TQ1');
         'step 1'
         player.removeSkill('zl_sljb');
@@ -3054,6 +3119,7 @@ if(target.num('he')>1) return -1;
        player.removeSkill('zl_ygql');
         'step 1'
        player.addSkill('FC_TQ1');
+       player.draw(2)
        game.zhu.draw(2)
     
     
@@ -3130,8 +3196,7 @@ if(target.num('he')>1) return -1;
        player.addSkill('FC_CX');
        player.removeSkill('zl_yktx');
        player.removeSkill('FC_YW');
-        'step 1'
-       player.removeSkill('FC_TQ2')
+        'step 1'    
        game.zhu.draw(4)
        player.draw(4)
        player.recover()
@@ -3154,6 +3219,8 @@ if(target.num('he')>1) return -1;
     },
                 content:function (){
         'step 0'
+       player.changeHujia()
+       player.draw(2);
        player.removeSkill('ZH_TQ1');
        player.addSkill('zl_txzb');
        player.removeSkill('zl_yfbz');
@@ -3180,9 +3247,9 @@ if(target.num('he')>1) return -1;
        player.recover();
        player.removeSkill('ZH_PH') 
        player.removeSkill('ZH_JB');
-       player.draw(2);     
+       player.draw(4);     
        player.removeSkill('zl_txzb');
-       player.removeSkill('ZH_TQ2')
+       
         'step 1'
        player.addSkill('ZH_XH');
     
@@ -3235,6 +3302,7 @@ if(target.num('he')>1) return -1;
         'step 0'      
        player.addSkill('PC_ZS');
        player.removeSkill('zl_qsjj');
+        player.removeSkill('PZ_XY')
         'step 1'
       for(var i=0;i<game.players.length;i++){
    if(game.players[i].identity=='zhu'||game.players[i].identity=='nei'||game.players[i].identity=='zhong') continue
@@ -3242,10 +3310,8 @@ if(target.num('he')>1) return -1;
    game.players[i].addSkill('PC_NL');
    game.players[i].skip('phaseUse');
                     }
-        'step 2'        
-        game.zhu.chooseToDiscard(999,true)
-        game.zong.chooseToDiscard(999,true)
-        'step 3'
+        'step 2'            
+     
        game.zhu.loseHp()
     
     
@@ -3287,8 +3353,6 @@ if(target.num('he')>1) return -1;
             return distance-1;
         },
                 },
-            },
-            "PZ_ZS":{
             },
             "ZH_XH":{
                 mark:true,
@@ -3346,6 +3410,646 @@ if(target.num('he')>1) return -1;
  
     },
             },
+            "SH_ZHISHENG":{
+                skillAnimation:true,
+                animationStr:"谋定天下",
+                animationColor:"fire",
+                enable:"phaseUse",
+                usable:1,
+                audio:"huoji",
+                filter:function (event,player){
+        return player.countCards('he')>0  
+    },
+                chooseButton:{
+                    dialog:function (){
+            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
+            for(var i=0;i<list.length;i++){
+                list[i]=['锦囊','',list[i]];
+            }                       
+    return ui.create.dialog([list,'vcard']);                                        
+        },
+                    check:function (button){
+            var player=_status.event.player;
+            var recover=0,lose=1,players=game.filterPlayer();
+            for(var i=0;i<players.length;i++){
+                if(!players[i].isOut()){
+                    if(players[i].hp<players[i].maxHp){
+                        if(get.attitude(player,players[i])>0){
+                            if(players[i].hp<2){
+                                lose--;
+                                recover+=0.5;
+                            }
+                            lose--;
+                            recover++;
+                        }
+                        else if(get.attitude(player,players[i])<0){
+                            if(players[i].hp<2){
+                                lose++;
+                                recover-=0.5;
+                            }
+                            lose++;
+                            recover--;
+                        }
+                    }
+                    else{
+                        if(get.attitude(player,players[i])>0){
+                            lose--;
+                        }
+                        else if(get.attitude(player,players[i])<0){
+                            lose++;
+                        }
+                    }
+                }
+            }
+            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
+            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
+            return (button.link[2]=='wuzhong')?1:-1;
+        },
+                    backup:function (links,player){                   
+        return {
+                filterCard:true,   
+                filterCard:true,                          
+                selectCard:1,                   
+                position:'he',               
+                popname:true,
+                viewAs:{name:links[0][2]},
+            }                                                                    
+        },
+                    prompt:function (links,player){           
+           
+            return '选择任意一张牌当作'+get.translation(links[0][2])+'使用';                 
+        },
+                },
+                ai:{
+                    order:1,
+                    expose:0.5,
+                    result:{
+                        player:function (player){
+                var num=0;
+                var cards=player.getCards('he');                                  
+                if(card.name=='bagua'&&card.name=='renwang') return 0         
+                for(var i=0;i<cards.length;i++){
+                    num+=Math.max(0,get.value(cards[i],player,'raw'));
+                }
+                num/=cards.length;
+                num*=Math.min(cards.length,player.hp);
+                return 12-num;
+            },
+                    },
+                    threaten:1.6,
+                },
+            },
+            "SH_DONGCHA":{
+                audio:"kanpo",
+                enable:"chooseToUse",
+                position:"hej",
+                filterCard:function (card){
+        return get.color(card)=='black'||get.color(card)=='red';
+    },
+                viewAsFilter:function (player){
+        return player.num('hej',{color:['black','red']})>0;
+    },
+                viewAs:{
+                    name:"wuxie",
+                    suit:"spade",
+                    number:9,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":9,"name":"sha","cardid":"1040628353","clone":{"name":"sha","suit":"spade","number":9,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":3025},"timeout":3012,"original":"h"}],
+                },
+                prompt:"将一张牌当无懈可击使用",
+                check:function (card){return 8-ai.get.value(card)},
+                threaten:1.2,
+                ai:{
+                    basic:{
+                        useful:[6,4],
+                        value:[6,4],
+                    },
+                    result:{
+                        player:1,
+                    },
+                    expose:0.2,
+                },
+            },
+            "SH_WEIWO":{
+                group:["bz_yisha","bz_ch"],
+                mod:{
+                    globalTo:function (from,to,distance){
+            return distance+1;
+        },
+                    globalFrom:function (from,to,distance){
+            return distance-1;
+        },
+                },
+            },
+            "DW_CHUANGZHEN":{
+                group:["bz_yisha","bz_ch"],
+                audio:"yinghun",
+                trigger:{
+                    player:"shaBegin",
+                },
+                filter:function (event,player){
+        return player.num('h')>0&&event.target.num('h')>0;
+    },
+                check:function (event,player){
+  if(player.num('h')<2) return false;
+  if(1<player.num('h')<4&&player.hp<2) return false;
+        return player.hp>1&&player.num('h')>1;
+    },
+                content:function (){
+        'step 0'
+       player.chooseToDiscard(2,'h',true);
+        'step 1'
+        trigger.target.chooseToDiscard(2,'h',true);    
+    },
+            },
+            "CW_JUEQING":{
+                trigger:{
+                    source:"damageBefore",
+                },
+                forced:true,
+                audio:"jueqing",
+                priority:16,
+                check:function (){return false;},
+                content:function (){
+        trigger.untrigger();
+        trigger.finish();
+        var ex=0;
+        if(trigger.card&&trigger.card.name=='sha'){
+            if(player.hasSkill('jiu')) ex++;
+            if(player.hasSkill('luoyi2')) ex++;
+            if(player.hasSkill('reluoyi2')) ex++;
+        }
+        trigger.player.loseHp(trigger.num+ex);
+        player.draw();
+        player.chooseToDiscard(true)
+    },
+                ai:{
+                    jueqing:true,
+                },
+            },
+            "CW_MIEKOU":{
+                mod:{
+                    cardSavable:function (card,player){
+            if(!_status.currentPhase) return;
+            if(_status.currentPhase.hasSkill('CW_MIEKOU')&&_status.currentPhase!=player){
+                if(card.name=='tao'&&_status.event.dying!=player) return false;
+            }
+        },
+                },
+            },
+            "QX_ZISHOU":{
+                group:["bz_yisha","bz_ch"],
+                mod:{
+                    maxHandcard:function (player,num){
+             return num+=player.hp;
+        },
+                    globalFrom:function (from,to,distance){
+            return distance+=1;
+        },
+                },
+            },
+            LZD:{
+                audio:"kongcheng",
+                mark:true,
+                intro:{
+                    content:"三分天下",
+                },
+                forced:true,
+                skillAnimation:"epic",
+                animationStr:"卧龙出山",
+                animationColor:"thunder",
+                trigger:{
+                    player:"phaseBegin",
+                },
+                filter:function (event,player){ return game.players.length==3
+      },
+                content:function (){ 
+    'step 0'
+    player.gain(game.createCard('bz_longzhongdui'));
+    },
+            },
+            "DW_POJUN":{
+                group:["bz_yisha","bz_ch"],
+                audio:"pojun",
+                trigger:{
+                    source:"damageEnd",
+                },
+                check:function (event,player){
+    if(ai.get.attitude(player,event.player)>0) return false;
+    },
+                filter:function (event,player){
+        return event.player.num('he')>0&&event.card&&event.card.name=='sha';
+    },
+                content:function (){       
+        player.discardPlayerCard(1,trigger.player,'he',true)   
+    
+    },
+            },
+            "CW_BUJI":{
+                mod:{
+                    globalFrom:function (from,to,distance){
+            return distance-1;
+        },
+                },
+                group:"CW_BUJI_1",
+                subSkill:{
+                    "1":{
+                        mod:{
+                            globalTo:function (from,to,distance){
+            return distance-1;
+        },
+                        },
+                        sub:true,
+                    },
+                },
+            },
+            "CW_GUICAI":{
+                group:["bz_ch","bz_yisha"],
+                mod:{
+                    cardUsable:function (card,player,num){
+            if(card.name=='sha') return 2;
+        },
+                },
+                ai:{
+                    unequip:true,
+                    skillTagFilter:function (player,tag,arg){
+            if(!get.zhu(player,'shouyue')) return false;
+            if(arg&&arg.name=='sha') return true;
+            return false;
+        },
+                },
+            },
+            "DW_GUZHENG":{
+                group:["bz_ch","bz_yisha"],
+                mod:{
+                    maxHandcard:function (player,num){
+             return num+1;
+        },
+                },
+            },
+            "DW_ROUBO":{
+                group:["bz_yisha","bz_ch"],
+                audio:"duanbing",
+                trigger:{
+                    global:"phaseBegin",
+                },
+                filter:function (event,player){
+        return event.player!=player&&event.player.num('h')>=player.num('h');
+    },
+                check:function (event,player){
+      if(ai.get.attitude(player,event.player)>0) return false;
+        return player.num('h','sha')>0&&player.num('h','shan')>0;
+    },
+                content:function (){
+    'step 0'
+     player.chooseToUse('是否使用一张【杀】？',{name:'sha'},trigger.player);
+    'step 1'
+    trigger.player.chooseToUse('是否使用一张【杀】？',player,{name:'sha'});                           
+       },
+            },
+            "QX_DANBO":{
+                group:["bz_ch","bz_yisha"],
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                forced:true,
+                unique:true,
+                content:function (){
+        trigger.num--;
+    },
+                ai:{
+                    threaten:1.3,
+                },
+            },
+            "DW_CHAOCHEN":{
+                audio:"guzheng",
+                trigger:{
+                    player:"damageEnd",
+                },
+                filter:function (event,player){
+        return player.hp>0&&player.num('h')>player.hp&&player.num('h')>1;
+    },
+                content:function (){
+     'step 0'
+        player.chooseTarget('请选择一名目标，令之获得【固政】',get.prompt('DW_GUZHENG'),1,function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return ai.get.attitude(player,target);
+        });
+        'step 1'
+          if(result.bool){
+            
+            for(var i=0;i<result.targets.length;i++){
+                player.chooseToDiscard(2,true);
+                player.logSkill('DW_GUZHENG',result.targets);            
+               result.targets[i].addSkill('DW_GUZHENG')
+       
+         
+        };};
+          
+    
+    
+    
+    
+    
+},
+            },
+            "QX_DUANXI":{
+                group:["bz_yisha","bz_ch"],
+                trigger:{
+                    target:"shaBegin",
+                },
+                filter:function (event,player){
+        return player.hp>0;
+    },
+                check:function (event,player){
+if(ai.get.attitude(player,event.player)>0) return false;},
+                content:function (){
+        'step 0'
+         player.chooseToDiscard().ai=function(card){
+         return 3-ai.get.value(card);
+}
+        'step 1'
+         if(player.num('h')<=trigger.player.num('h'))player.discardPlayerCard(1,trigger.player,'he',true)
+        'step 2'
+         player.draw()
+   
+       
+
+
+
+
+         
+         
+         
+         
+         
+         
+         
+         
+         
+    },
+            },
+            "SH_ENYUAN":{
+                audio:"enyuan",
+                trigger:{
+                    player:"damageEnd",
+                },
+                check:function (event,player){
+        var att=get.attitude(player,event.source);
+        var num=event.source.countCards('h');
+        if(att<=0) return true;
+        if(num>2) return true;
+        if(num) return att<4;
+        return false;
+    },
+                filter:function (event,player){
+        return event.source&&event.source!=player&&event.num>0&&event.source.isAlive();
+    },
+                content:function (){
+        "step 0"
+        event.num=trigger.num;
+        "step 1"
+        trigger.source.chooseCard('交给'+get.translation(player)+'一张手牌或流失一点体力').set('ai',function(card){
+            if(get.attitude(_status.event.player,_status.event.getParent().player)>0){
+                return 11-get.value(card);
+            }
+            else{
+                return 7-get.value(card);
+            }
+        });
+        "step 2"
+        if(result.bool){
+            player.gain(result.cards[0],trigger.source);
+            trigger.source.$give(1,player);
+        }
+        else{
+            trigger.source.loseHp();
+        }
+        if(event.num>1){
+            event.num--;
+            event.goto(1);
+        }
+    },
+                ai:{
+                    effect:{
+                        target:function (card,player,target){
+                if(player.hasSkillTag('jueqing',false,target)) return [1,-1.5];
+                if(!target.hasFriend()) return;
+                if(get.tag(card,'damage')) return [1,0,0,-0.7];
+            },
+                    },
+                },
+                group:["xinenyuan2","bz_ch","bz_yisha"],
+            },
+            "SH_JIGONG":{
+                group:["bz_ch","bz_yisha"],
+                mod:{
+                    globalFrom:function (from,to,distance){
+            return distance-Infinity;
+        },
+                },
+            },
+            "SH_KUANGGU":{
+                group:["bz_ch","bz_yisha"],
+                trigger:{
+                    source:"damageEnd",
+                },
+                filter:function (event,player){
+        return get.distance(player,event.player)<=1&&event.num>0;
+    },
+                forced:true,
+                direct:true,
+                audio:"kuanggu",
+                content:function (){
+        'step 0'
+        event.num=trigger.num;
+        'step 1'
+        player.draw(trigger.num);        
+        },
+            },
+            "CW_DANMOU":{
+                group:["bz_yisha","bz_ch"],
+                audio:"shefu",
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target&&target.num('he')>0;
+    },
+                check:function (event,player){
+        if(player.hp==1) return false;
+        if(player.num('h')<3&&player.hp==2) return false;       
+        return player.hp>1;
+    },
+                content:function (){
+        'step 0'
+       player.loseHp()
+        'step 1'
+       player.discardPlayerCard(2,target,'he',true);                                       
+                                      
+    },
+                ai:{
+                    expose:0.5,
+                    order:8,
+                    result:{
+                        player:-0.5,
+                        target:function (player,target){
+if(target.num('he')>1) return -1;
+if(target.num('he')<2) return 1;
+},
+                    },
+                },
+            },
+            "CW_HUALAO":{
+                mod:{
+                    targetEnabled:function (card,player,target,now){
+            if(target.hp==1){
+                if(card.name=='sha') return false;
+            }
+        },
+                },
+                ai:{
+                    noh:true,
+                    skillTagFilter:function (player,tag){
+            if(tag=='noh'){
+                if(player.hp!=1) return false;
+            }
+        },
+                },
+            },
+            "CW_WEICHENG":{
+                mod:{
+                    globalTo:function (from,to,distance){
+            return distance-1;
+        },
+                },
+            },
+            "CW_LANGGU":{
+                group:["bz_yisha","bz_ch"],
+                audio:"fankui",
+                trigger:{
+                    global:"damageEnd",
+                },
+                filter:function (event,player){
+        return event.player!=player&&event.player.num('he')>0&&_status.currentPhase!=player
+    },
+                check:function (event,player){
+     if(ai.get.attitude(player,event.player)>3) return false;
+    },
+                content:function (){
+    'step 0'
+   player.gainPlayerCard(1,'he',true,trigger.player);
+    'step 1'
+   player.chooseCard('交给'+get.translation(trigger.player)+'一张手牌')
+    'step 2'
+    trigger.player.gain(result.cards[0],player)
+    player.$give(result.cards[0],trigger.player,true)
+ 
+       },
+            },
+            "CW_MIAOSUAN":{
+                audio:"guicai",
+                trigger:{
+                    player:"phaseBegin",
+                },
+                filter:function (event,player){
+        return player.num('h')>0;
+    },
+                content:function (){
+        "step 0"            
+        player.showHandcards();
+        "step 1"       
+        var cards=player.getCards('h');
+        for(var i=1;i<cards.length;i++){
+            if(get.color(cards[i])!=get.color(cards[0])) return;
+        }
+      player.draw(2);
+    },
+                ai:{
+                    threaten:0.9,
+                },
+            },
+            "QX_HUBU":{
+                group:["bz_ch","bz_yisha"],
+                audio:"shuangxiong",
+                trigger:{
+                    player:"shaMiss",
+                },
+                filter:function (event,player){
+        return player.hp>0&&event.player.num('e')>0;
+    },
+                usable:1,
+                check:function (event,player){
+if(ai.get.attitude(player,event.player)>=0) return false;},
+                content:function (){
+        'step 0'
+      player.diacardPlayerCard(1,'e',trigger.player,true)  
+        
+       
+
+
+
+    },
+            },
+            "QX_LANGLUE":{
+                group:["bz_ch","bz_yisha"],
+                audio:"shuangxiong",
+                trigger:{
+                    source:"damageEnd",
+                },
+                check:function (event,player){
+    if(ai.get.attitude(player,event.player)>0) return false;
+    },
+                filter:function (event,player){
+              return event.card&&event.card.name=='sha'&&event.player.num('h')>0;
+    },
+                content:function (){       
+           player.gainPlayerCard(1,trigger.player,'h',true)   
+    
+    },
+            },
+            "PC_NL":{
+                skillAnimation:"epic",
+                animationStr:"自相残杀",
+                animationColor:"thunder",
+                forced:true,
+                trigger:{
+                    player:"phaseBegin",
+                },
+                filter:function (event,player){
+       return player.identity=='fan'&&player.group!=game.zhu.group;                  
+       },
+                content:function (){
+   'step 0'                 
+    var n=[1,2].randomGet(); 
+    if(n==1){            
+    };
+    if(n==2){
+    if(get.population('nei')<3){
+   player.identity='nei';
+   player.chooseToDiscard(true);
+   player.removeSkill('PC_ZS')
+   player.removeSkill('PC_NL')
+   game.showIdentity();
+   for(var i=0;i<game.players.length;i++){
+   if(game.players[i].identity=='zhu'||game.players[i].identity=='nei'||game.players[i].identity=='zhong') continue
+   game.players[i].chooseToDiscard(true) 
+   game.players[i].removeSkill('PC_NL');                       }            
+    }else{
+        player.chooseToDiscard(true)
+    }
+
+    }},
+            },
+            "PC_ZS":{
+                mod:{
+                    globalFrom:function (from,to,distance){
+            return distance-1;
+        },
+                    cardUsable:function (card,player,num){
+            if(card.name=='sha') return 2;
+        },
+                },
+            },
         },
         translate:{
             "DW_FENGYA":"风雅",
@@ -3363,7 +4067,7 @@ if(target.num('he')>1) return -1;
             "DW_JIEMING":"竭命",
             "DW_JIEMING_info":"每名其他角色的回合开始时，你可以弃置一张手牌，然后令之摸取一张牌",
             "DW_YUANLV":"远虑",
-            "DW_YUANLV_info":"你的回合结束时，将手牌数补充至等同于体力上限",
+            "DW_YUANLV_info":"你的回合结束时，若游戏人数不大于4，你摸取一张牌，若游戏人数大于4，你将手牌补充到体力上限",
             "DW_QIANXUN":"谦逊",
             "DW_QIANXUN_info":"你可以将一张手牌当[闪]使用或打出",
             "DW_ZHIDI":"制敌",
@@ -3407,11 +4111,11 @@ if(target.num('he')>1) return -1;
             "SH_TUODAO":"拖刀",
             "SH_TUODAO_info":"每当你打出或者使用一张【闪】，你可以获得一张【酒】。",
             "SH_JIJIAN":"击剑",
-            "SH_JIJIAN_info":"当你使用【杀】时，你可以弃置一张牌，再令目标弃置一张牌。当你被【杀】指定时，你可以弃置一张牌，再令来源弃置一张牌。",
+            "SH_JIJIAN_info":"当你使用【杀】时，你可以弃置一张牌，再令目标弃置一张牌。当你被【杀】指定时，你可以弃置一张牌，再令来源弃置一张手牌。",
             jijian:"击剑",
             "jijian_info":"",
             "SH_XIAKEXING":"侠客行",
-            "SH_XIAKEXING_info":"锁定技：你的手牌上限始终等于体力上限。锁定技：你的进攻距离加一。",
+            "SH_XIAKEXING_info":"<font color=red>锁定技</font> ：你的手牌上限始终等于体力上限。你的进攻距离加一。",
             "SH_FENGCHU":"凤雏",
             "SH_FENGCHU_info":"每当你受到属性伤害时，取消之，并且回复一点体力，然后摸取两张牌。",
             "SH_HAOYAN":"豪言",
@@ -3429,7 +4133,7 @@ if(target.num('he')>1) return -1;
             "SH_YISHI":"义释",
             "SH_YISHI_info":"当你的【杀】被闪避时，你可以同目标共同摸取一张牌。",
             "SH_XIAOXIONG":"枭雄",
-            "SH_XIAOXIONG_info":"出牌阶段限一次，你可以选择一名有牌的其他角色，然后你弃置一张牌再获得目标一张牌，且包括判定区内的牌。",
+            "SH_XIAOXIONG_info":"出牌阶段限一次，你可以选择一名有手牌的其他角色，然后你弃置一张手牌再获得目标一张手牌",
             "SH_JUEJING":"绝境",
             "SH_JUEJING_info":"",
             "SH_LONGDAN":"龙胆",
@@ -3437,9 +4141,9 @@ if(target.num('he')>1) return -1;
             "SH_DANJI":"单骑",
             "SH_DANJI_info":"锁定技：【南蛮入侵】、【万箭齐发】和【桃园结义】、【五谷丰登】对你无效。且当你受到大于一点的伤害时，你将之改为流失你一点体力。",
             "SH_GUIYIN":"归隐",
-            "SH_GUIYIN_info":"<font color=red>锁定技</font> ：你的回合开始时，你跳过你的判定阶段、摸牌阶段和出牌阶段，然后跳过你的弃牌阶段，且若你已受伤，还将摸取一张牌。",
+            "SH_GUIYIN_info":"<font color=red>锁定技</font> ：你的回合开始时，你跳过你的判定阶段、摸牌阶段和出牌阶段，然后跳过你的弃牌阶段，且若你已受伤，还将摸取一张牌，并且若此时体力值小于2，你将获得一层护甲直至下次回合开始。",
             "SH_QICAI":"奇才",
-            "SH_QICAI_info":"<font color=orange>特殊技</font> :当一名其他角色的回合开始时，若你的手牌数等于6，你弃置一张手牌，若你手牌数小于6，你摸取一张牌，且若你手牌数大于2，你可以使用一张牌。",
+            "SH_QICAI_info":"<font color=orange>特殊技</font> :当一名其他角色的回合开始时，若你的手牌数等于6，你弃置一张手牌，若你手牌数小于6，你摸取一张牌，且若你手牌数大于2，你可以使用一张牌，且若游戏人数不足三名，你获得【观星】和【集智】。",
             "QX_XURONG":"虚荣",
             "QX_XURONG_info":"出牌阶段限一次，你可以将两张牌当【决斗】使用。",
             "QX_YUANMEN":"袁门",
@@ -3453,7 +4157,7 @@ if(target.num('he')>1) return -1;
             "QX_BIYUE":"闭月",
             "QX_BIYUE_info":"<font color=red>锁定技</font> ：当你受到伤害时，将之改为流失等量的体力并且由你摸取一张牌。",
             "QX_BAOZHENG":"暴征",
-            "QX_BAOZHENG_info":"你的回合结束时，你可以选择任意名其他角色（至多4名），获得其一张牌，然后其可以对你使用一张【杀】",
+            "QX_BAOZHENG_info":"你的回合结束时，你可以选择任意名其他角色（至多3名），获得其一张手牌，若目标超过一名，你需要先失去一点体力",
             "QX_HUANGTIAN":"黄天",
             "QX_HUANGTIAN_info":"你可以将两张牌当[闪]使用或打出",
             "QX_LUOLEI":"落雷",
@@ -3536,12 +4240,66 @@ if(target.num('he')>1) return -1;
             "FC_TQ1_info":"<font color=red>锁定技</font> ：你的手牌上限加一。",
             "FC_TQ2":"特权",
             "FC_TQ2_info":"<font color=red>锁定技</font> ：你的进攻距离加一。你的防御距离加一。",
-            "PZ_ZS":"贼首",
-            "PZ_ZS_info":"",
             "ZH_XH":"挟汉",
             "ZH_XH_info":"<font color=orange>诸侯进阶技</font>：出牌阶段限一次，你可以弃置一张手牌，然后对主公使用，令其跳过其下个出牌阶段 ",
             "FC_CX":"丞相",
             "FC_CX_info":"<font color=orange>辅臣进阶技</font> ：每当主公受到伤害后，你可以使用一张【杀】，同时，主公摸取两张牌",
+            "SH_ZHISHENG":"智圣",
+            "SH_ZHISHENG_info":"<font color=#F0F>被动</font> ：出牌阶段限一次。你可以将任意一张牌当任意一张普通锦囊牌使用",
+            "SH_DONGCHA":"洞察",
+            "SH_DONGCHA_info":"在你拥有手牌或者区域内有牌时，你可以将你的任意一张牌当【无懈可击】使用。",
+            "SH_WEIWO":"帷幄",
+            "SH_WEIWO_info":"<font color=red>锁定技</font> ：你计算与其他角色的距离时，始终减一，其他角色计算与你的距离时，始终加一。",
+            "DW_CHUANGZHEN":"闯阵",
+            "DW_CHUANGZHEN_info":"当你使用【杀】时，若你和目标均有手牌，你可以弃置两张手牌，然后令目标亦弃置两张手牌",
+            "CW_JUEQING":"绝情",
+            "CW_JUEQING_info":"<font color=red>锁定技</font> ：你即将造成的伤害均视为失去体力。<font color=#F0F>被动</font> ：当你发动【绝情】时，你需摸取一张牌再弃置一张手牌。",
+            "CW_MIEKOU":"灭口",
+            "CW_MIEKOU_info":"<font color=red>锁定技</font> ：在你的回合，除你以外，只有处于濒死状态的角色才能使用【桃】。",
+            "QX_ZISHOU":"自守",
+            "QX_ZISHOU_info":"<font color=red>锁定技</font> ：你的手牌上限增加等同于体力的值，同时，你计算与其他角色的距离时，始终加一。",
+            LZD:"隆中对",
+            "LZD_info":"<font color=breen>卡牌技</font> ：你的回合开始时，若场上角色为三名，你获得一张【隆中对】",
+            "DW_POJUN":"破军",
+            "DW_POJUN_info":"当你是用【杀】对一名角色造成伤害后，可以弃置其一张牌",
+            "CW_BUJI":"不羁",
+            "CW_BUJI_info":"<font color=red>锁定技</font> ：你计算与其他角色的距离时，始终减一，其他角色计算与你的距离时，始终减一。",
+            "CW_GUICAI":"鬼才",
+            "CW_GUICAI_info":"<font color=red></font> ：出牌阶段，你使用【杀】的次数加一。",
+            "DW_GUZHENG":"固政",
+            "DW_GUZHENG_info":"<font color=red>锁定技</font> ：你的手牌上限加一。",
+            "DW_ROUBO":"肉搏",
+            "DW_ROUBO_info":"当一名手牌数不小于你的其他角色回合开始时，你可以对之使用一张【杀】，然后其可以对你使用一张【杀】",
+            "QX_DANBO":"淡泊",
+            "QX_DANBO_info":"<font color=red>锁定技</font> ：摸牌阶段，你少摸一张牌",
+            "DW_CHAOCHEN":"朝臣",
+            "DW_CHAOCHEN_info":"当你受到伤害后，若你的手牌数不小于2且大于当前体力值，你可以弃置两张牌令一名其他角色获得技能【固政】",
+            "QX_DUANXI":"断席",
+            "QX_DUANXI_info":"当你成为【杀】的目标时，你可以先弃置一张手牌，然后若此时你的手牌数不大于来源，你可以弃置来源一张牌，然后你再摸取一张牌。",
+            "SH_ENYUAN":"恩怨",
+            "SH_ENYUAN_info":"当你获得一名其他角色两张或更多的牌后，你可以令其摸一张牌；当你受到1点伤害后，你可以令伤害来源选择一项：1、将一张手牌交给你；2、失去1点体力",
+            "SH_JIGONG":"极弓",
+            "SH_JIGONG_info":"<font color=#red>锁定技</font> ：你计算与其他角色的距离时，始终减少任意点",
+            "SH_KUANGGU":"狂骨",
+            "SH_KUANGGU_info":"当你对距离1以内的一名角色造成1点伤害后，你可以摸一张牌",
+            "CW_DANMOU":"胆谋",
+            "CW_DANMOU_info":"出牌阶段限一次，你可以失去一点体力然后弃置一名其他角色的两张牌。",
+            "CW_HUALAO":"画牢",
+            "CW_HUALAO_info":"<font color=red>锁定技</font> ：当你体力值为1时，你不能成为【杀】的目标",
+            "CW_WEICHENG":"危城",
+            "CW_WEICHENG_info":"<font color=red>锁定技</font> ：其他角色计算与你的距离时，始终减一",
+            "CW_LANGGU":"狼顾",
+            "CW_LANGGU_info":"你的回合外当场上有其他角色受到伤害后，你可以获得其一张牌再交给其一张牌",
+            "CW_MIAOSUAN":"妙算",
+            "CW_MIAOSUAN_info":"回合开始时，你可以展示所有手牌，若颜色均相同，你可以摸取两张牌",
+            "QX_HUBU":"虎步",
+            "QX_HUBU_info":"当你使用的【杀】被闪避时，若目标装备区内有牌，你可以弃置其中一张",
+            "QX_LANGLUE":"狼掠",
+            "QX_LANGLUE_info":"每当你使用【杀】对一名其他角色造成伤害后，可以获得其一手牌",
+            "PC_NL":"内乱",
+            "PC_NL_info":"<font color=orange>叛贼限制技</font> ：你的回合开始时，你有50%的机会触发以下效果：1，若场上内奸数小于3，你变为内奸并令所有叛贼和你一同弃置一张手牌，同时，这些叛贼将失去【内乱】。2，你弃置一张手牌。",
+            "PC_ZS":"贼首",
+            "PC_ZS_info":"<font color=orange>叛贼进阶技</font> ：你计算与其他角色的距离始终减一。你出牌阶段时使用【杀】的次数为2。",
         },
     },
-},files:{"character":["dw_bz_ganning.jpg"],"card":[],"skill":[]},editable:false,}})
+},files:{"character":["qx_bz_yanliang.jpg"],"card":[],"skill":[]},editable:false,}})

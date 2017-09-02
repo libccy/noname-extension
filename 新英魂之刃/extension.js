@@ -91,162 +91,805 @@ lib.character[i][4].push("forbidai");
 			if(lib.config.风龙龙鳞==undefined) game.saveConfig('风龙龙鳞',0);
 			if(lib.config.冰龙龙鳞==undefined) game.saveConfig('冰龙龙鳞',0);
 			if(lib.config.尸魂==undefined) game.saveConfig('尸魂',0);
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='9']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='2']{top:calc(100% / 3 - 70px);left:calc(85% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='3']{top:5px;left:calc(75% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='4']{top:0;left:calc(60% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='5']{top:0;left:calc(40% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='6']{top:5px;left:calc(25% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='7']{top:calc(100% / 3 - 70px);left:calc(15% - 75px);}";
-				style.innerHTML+="[data-number='9']>.player[data-position='8']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='10']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='2']{top:calc(100% / 3 - 120px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='3']{top:30px;left:calc(80% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='4']{top:5px;left:calc(65% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='5']{top:0;left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='6']{top:5px;left:calc(35% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='7']{top:30px;left:calc(20% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='8']{top:calc(100% / 3 - 120px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='10']>.player[data-position='9']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='11']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='4']{top:0;left:calc(77% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='5']{top:0;left:calc(59% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='6']{top:0;left:calc(41% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='7']{top:0;left:calc(23% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='8']{top:0;left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='9']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='11']>.player[data-position='10']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='12']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='4']{top:0;left:calc(80% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='5']{top:0;left:calc(65% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='6']{top:0;left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='7']{top:0;left:calc(35% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='8']{top:0;left:calc(20% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='9']{top:0;left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='10']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='12']>.player[data-position='11']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='13']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='4']{top:0;left:calc(83% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='5']{top:0;left:calc(69.8% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='6']{top:0;left:calc(56.6% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='7']{top:0;left:calc(43.4% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='8']{top:0;left:calc(30.2% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='9']{top:0;left:calc(17% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='10']{top:0;left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='11']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='13']>.player[data-position='12']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='14']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='5']{top:30px;left:calc(80% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='6']{top:5px;left:calc(65% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='7']{top:0;left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='8']{top:5px;left:calc(35% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='9']{top:30px;left:calc(20% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='10']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='11']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='12']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='14']>.player[data-position='13']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='15']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='5']{top:30px;left:calc(82.1% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='6']{top:5px;left:calc(69.25% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='7']{top:0;left:calc(56.4% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='8']{top:0;left:calc(43.55% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='9']{top:5px;left:calc(30.7% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='10']{top:30px;left:calc(17.85% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='11']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='12']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='13']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='15']>.player[data-position='14']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='16']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='5']{top:30px;left:calc(83.75% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='6']{top:20px;left:calc(72.5% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='7']{top:5px;left:calc(61.25% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='8']{top:0;left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='9']{top:5px;left:calc(38.75% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='10']{top:20px;left:calc(27.5% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='11']{top:30px;left:calc(16.25% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='12']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='13']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='14']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='16']>.player[data-position='15']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
-			var cssStyle=function(){
-				var style=document.createElement('style');
-				style.innerHTML="[data-number='17']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='2']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='3']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='4']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='5']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='6']{top:30px;left:calc(83.75% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='7']{top:20px;left:calc(72.5% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='8']{top:5px;left:calc(61.25% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='9']{top:0;left:calc(50% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='10']{top:5px;left:calc(38.75% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='11']{top:20px;left:calc(27.5% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='12']{top:30px;left:calc(16.25% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='13']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='14']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='15']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
-				style.innerHTML+="[data-number='17']>.player[data-position='16']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
-				document.head.appendChild(style);
-			}
-			cssStyle();
+game.saveConfig('wujinmoshiYZR',undefined);
+if(config.wujinmoshi){
+game.wujinmoshiRE=function(){
+game.saveConfig('wujinmoshiP',undefined);
+game.saveConfig('wujinmoshiDXB',undefined);
+game.saveConfig('wujinmoshiDS',undefined);
+game.saveConfig('wujinmoshiDamage',undefined);
+game.saveConfig('wujinmoshiMaxHp',undefined);
+game.saveConfig('wujinmoshiMaxHandCard',undefined);
+game.saveConfig('wujinmoshiDraw',undefined);
+game.saveConfig('wujinmoshiRecover',undefined);
+game.saveConfig('wujinmoshiESkill',undefined);
+game.saveConfig('wujinmoshiDamageI',undefined);
+game.saveConfig('wujinmoshiMaxHpI',undefined);
+game.saveConfig('wujinmoshiMaxHandCardI',undefined);
+game.saveConfig('wujinmoshiDrawI',undefined);
+game.saveConfig('wujinmoshiRecoverI',undefined);
+game.reload();
+};
+if(lib.config.wujinmoshiDXB==undefined) game.saveConfig('wujinmoshiDXB',1);
+if(lib.config.wujinmoshiDS==undefined) game.saveConfig('wujinmoshiDS',1);
+if(lib.config.wujinmoshiDamage==undefined) game.saveConfig('wujinmoshiDamage',0);
+if(lib.config.wujinmoshiMaxHp==undefined) game.saveConfig('wujinmoshiMaxHp',0);
+if(lib.config.wujinmoshiMaxHandCard==undefined) game.saveConfig('wujinmoshiMaxHandCard',0);
+if(lib.config.wujinmoshiDraw==undefined) game.saveConfig('wujinmoshiDraw',0);
+if(lib.config.wujinmoshiRecover==undefined) game.saveConfig('wujinmoshiRecover',0);
+if(lib.config.wujinmoshiDamageI==undefined) game.saveConfig('wujinmoshiDamageI',0);
+if(lib.config.wujinmoshiMaxHpI==undefined) game.saveConfig('wujinmoshiMaxHpI',0);
+if(lib.config.wujinmoshiMaxHandCardI==undefined) game.saveConfig('wujinmoshiMaxHandCardI',0);
+if(lib.config.wujinmoshiDrawI==undefined) game.saveConfig('wujinmoshiDrawI',0);
+if(lib.config.wujinmoshiRecoverI==undefined) game.saveConfig('wujinmoshiRecoverI',0);
+if(lib.config.wujinmoshiMAXLC==undefined) game.saveConfig('wujinmoshiMAXLC',0);
+if(lib.config.wujinmoshiMAXLCWJ==undefined) game.saveConfig('wujinmoshiMAXLCWJ','');
+if(lib.config.wujinmoshiMAXLC<lib.config.wujinmoshiDXB-1){
+game.saveConfig('wujinmoshiMAXLC',lib.config.wujinmoshiDXB-1);
+game.saveConfig('wujinmoshiMAXLCWJ','（'+lib.translate[lib.config.wujinmoshiP]+'）');
+};
+if(lib.config.wujinmoshiHJK==undefined) game.saveConfig('wujinmoshiHJK',0);
+if(lib.config.wujinmoshiXRK==undefined) game.saveConfig('wujinmoshiXRK',0);
+			game.WJchangeCharacter=function(){
+				var WJchangeCharacter=ui.create.dialog('hidden');
+				WJchangeCharacter.style.height='calc(100%)';
+				WJchangeCharacter.style.width='calc(100%)';
+				WJchangeCharacter.style.left='0px';
+				WJchangeCharacter.style.top='0px';
+				WJchangeCharacter.classList.add('popped');
+				WJchangeCharacter.classList.add('static');
+						
+						
+				var WJchangeCharacterCC=ui.create.div();
+              	WJchangeCharacterCC.style.left='50px';
+                WJchangeCharacterCC.style.top='30px';
+				var character='';
+				for(i in lib.character){
+					if(!lib.character[i][4].contains('forbidai')) character+='<option value='+i+'>'+lib.translate[i]+'</option>';
+				};
+				WJchangeCharacterCC.innerHTML='请选择武将<br><select id="chooseCharacter" size="18" style="width:75px">'+character+'</select>';
+						
+						
+				var WJchangeCharacterYES=ui.create.div('.menubutton.large','<span style="cursor:pointer;">确认</span>',function(){
+					var country=document.getElementById('chooseCharacter');
+					var str=country.options[country.selectedIndex].value;
+					if(confirm('是否选择'+lib.translate[str]+'？')){
+						WJchangeCharacter.delete();
+						game.saveConfig('wujinmoshiP',str);
+					};
+				});
+				WJchangeCharacterYES.style.left='-40.55px';
+				WJchangeCharacterYES.style.top='70px';
+
+						
+				WJchangeCharacter.add(WJchangeCharacterCC);
+				WJchangeCharacter.add(WJchangeCharacterYES);
+				ui.window.appendChild(WJchangeCharacter);
+			};
+if(lib.brawl){
+lib.brawl.wujinmoshi={
+            name:'无尽模式',
+            mode:'identity',
+            intro:'曾通过的最高轮次：'+get.cnNumber(lib.config.wujinmoshiMAXLC)+'轮'+lib.config.wujinmoshiMAXLCWJ,
+			showcase:function(init){
+				if(lib.config.wujinmoshiYZR!=true){
+					this.style.width='575px';
+					var wujinmoshichooseCharacter1=ui.create.div('.menubutton.large','<span style="cursor:pointer;">选择<br>武将</span>',function(){
+						var wujinmoshichooseCharacter=ui.create.dialog('hidden');
+						wujinmoshichooseCharacter.style.height='calc(100%)';
+						wujinmoshichooseCharacter.style.width='calc(100%)';
+						wujinmoshichooseCharacter.style.left='0px';
+						wujinmoshichooseCharacter.style.top='0px';
+						wujinmoshichooseCharacter.classList.add('popped');
+						wujinmoshichooseCharacter.classList.add('static');
+						
+						
+						var wujinmoshiCharacter=ui.create.div();
+                		wujinmoshiCharacter.style.left='50px';
+                		wujinmoshiCharacter.style.top='30px';
+						var character='';
+						for(i in lib.character){
+							if(!lib.character[i][4].contains('forbidai')) character+='<option value='+i+'>'+lib.translate[i]+'</option>';
+						};
+						wujinmoshiCharacter.innerHTML='请选择武将<br><select id="chooseCharacter" size="18" style="width:75px">'+character+'</select>';
+						
+						
+						var wujinmoshiYES=ui.create.div('.menubutton.large','<span style="cursor:pointer;">确认</span>',function(){
+							var country=document.getElementById('chooseCharacter');
+							var str=country.options[country.selectedIndex].value;
+							if(confirm('是否选择'+lib.translate[str]+'？')){
+								wujinmoshichooseCharacter.delete();
+								wujinmoshichooseCharacter1.hide();
+								wujinmoshiDXB.show();
+								wujinmoshiDS.show();
+								wujinmoshiharacter.show();
+								wujinmoshiDamage.show();
+								wujinmoshiMaxHp.show();
+								wujinmoshiMaxHandCard.show();
+								wujinmoshiDraw.show();
+								wujinmoshiRecover.show();
+								wujinmoshiESkill.show();
+								wujinmoshiDSDJC.show();
+								wujinmoshiDamageE.show();
+								wujinmoshiMaxHpE.show();
+								wujinmoshiMaxHandCardE.show();
+								wujinmoshiDrawE.show();
+								wujinmoshiRecoverE.show();
+								game.saveConfig('wujinmoshiP',str);
+							};
+						});
+						wujinmoshiYES.style.left='-40.55px';
+						wujinmoshiYES.style.top='70px';
+
+						
+						wujinmoshichooseCharacter.add(wujinmoshiCharacter);
+						wujinmoshichooseCharacter.add(wujinmoshiYES);
+						ui.window.appendChild(wujinmoshichooseCharacter);
+					});
+					wujinmoshichooseCharacter1.style.left='0px';
+					wujinmoshichooseCharacter1.style.top='0px';
+					this.appendChild(wujinmoshichooseCharacter1);
+					if(lib.config.wujinmoshiP!=undefined) wujinmoshichooseCharacter1.hide();
+					
+					
+					var wujinmoshiDXB=ui.create.div();
+					wujinmoshiDXB.style.left='0px';
+					wujinmoshiDXB.style.top='0px';
+					this.appendChild(wujinmoshiDXB);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB==undefined){
+							wujinmoshiDXB.innerHTML='未开始';
+						}else{
+							wujinmoshiDXB.innerHTML='第'+get.cnNumber(lib.config.wujinmoshiDXB)+'轮';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDXB.hide();
+					
+					
+					var wujinmoshiDS=ui.create.div();
+					wujinmoshiDS.style.left='120px';
+					wujinmoshiDS.style.top='0px';
+					this.appendChild(wujinmoshiDS);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS==undefined){
+							wujinmoshiDS.innerHTML='拥有点数：0点';
+						}else{
+							wujinmoshiDS.innerHTML='拥有点数：'+lib.config.wujinmoshiDS+'点';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDS.hide();
+
+					
+					var wujinmoshiharacter=ui.create.div();
+					wujinmoshiharacter.style.left='0px';
+					wujinmoshiharacter.style.top='20px';
+					this.appendChild(wujinmoshiharacter);
+					setInterval(function(){
+						if(lib.config.wujinmoshiP==undefined){
+							wujinmoshiharacter.innerHTML='拥有武将：未选择';
+						}else{
+							wujinmoshiharacter.innerHTML='拥有武将：'+lib.translate[lib.config.wujinmoshiP];
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiharacter.hide();
+
+					
+					var wujinmoshiDamage=ui.create.div();
+					wujinmoshiDamage.style.left='0px';
+					wujinmoshiDamage.style.top='40px';
+					this.appendChild(wujinmoshiDamage);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDamage==undefined){
+							wujinmoshiDamage.innerHTML='攻击力加成：0';
+						}else{
+							wujinmoshiDamage.innerHTML='攻击力加成：'+lib.config.wujinmoshiDamage;
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDamage.hide();
+
+					
+					var wujinmoshiDamageAdd=ui.create.div(function(){
+						if(confirm('消耗'+(5+Math.floor(lib.config.wujinmoshiDamage/3))+'点点数来增加一点攻击力?')){
+							game.saveConfig('wujinmoshiDamage',lib.config.wujinmoshiDamage+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS-(5+Math.floor(lib.config.wujinmoshiDamage/3)));
+						};
+					});
+					wujinmoshiDamageAdd.style.left='150px';
+					wujinmoshiDamageAdd.style.top='40px';
+					wujinmoshiDamageAdd.innerHTML='<span style="cursor:pointer">+</span>';
+					this.appendChild(wujinmoshiDamageAdd);
+					wujinmoshiDamageAdd.hide();
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS>=(5+Math.floor(lib.config.wujinmoshiDamage/3))){
+							wujinmoshiDamageAdd.show();
+						}else{
+							wujinmoshiDamageAdd.hide();
+						};
+					},100);
+
+					
+					var wujinmoshiMaxHp=ui.create.div();
+					wujinmoshiMaxHp.style.left='0px';
+					wujinmoshiMaxHp.style.top='60px';
+					this.appendChild(wujinmoshiMaxHp);
+					setInterval(function(){
+						if(lib.config.wujinmoshiMaxHp==undefined){
+							wujinmoshiMaxHp.innerHTML='体力上限加成：0';
+						}else{
+							wujinmoshiMaxHp.innerHTML='体力上限加成：'+lib.config.wujinmoshiMaxHp;
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHp.hide();
+
+					
+					var wujinmoshiMaxHpAdd=ui.create.div(function(){
+						if(confirm('消耗3点点数来增加一点体力上限?')){
+							game.saveConfig('wujinmoshiMaxHp',lib.config.wujinmoshiMaxHp+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS-3);
+						};
+					});
+					wujinmoshiMaxHpAdd.style.left='150px';
+					wujinmoshiMaxHpAdd.style.top='60px';
+					wujinmoshiMaxHpAdd.innerHTML='<span style="cursor:pointer">+</span>';
+					this.appendChild(wujinmoshiMaxHpAdd);
+					wujinmoshiMaxHpAdd.hide();
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS>=3){
+							wujinmoshiMaxHpAdd.show();
+						}else{
+							wujinmoshiMaxHpAdd.hide();
+						};
+					},100);
+
+					
+					var wujinmoshiMaxHandCard=ui.create.div();
+					wujinmoshiMaxHandCard.style.left='0px';
+					wujinmoshiMaxHandCard.style.top='80px';
+					this.appendChild(wujinmoshiMaxHandCard);
+					setInterval(function(){
+						if(lib.config.wujinmoshiMaxHandCard==undefined){
+							wujinmoshiMaxHandCard.innerHTML='手牌上限加成：0';
+						}else{
+							wujinmoshiMaxHandCard.innerHTML='手牌上限加成：'+lib.config.wujinmoshiMaxHandCard;
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHandCard.hide();
+
+					
+					var wujinmoshiMaxHandCardAdd=ui.create.div(function(){
+						if(confirm('消耗1点点数来增加一点手牌上限?')){
+							game.saveConfig('wujinmoshiMaxHandCard',lib.config.wujinmoshiMaxHandCard+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS-1);
+						};
+					});
+					wujinmoshiMaxHandCardAdd.style.left='150px';
+					wujinmoshiMaxHandCardAdd.style.top='80px';
+					wujinmoshiMaxHandCardAdd.innerHTML='<span style="cursor:pointer">+</span>';
+					this.appendChild(wujinmoshiMaxHandCardAdd);
+					wujinmoshiMaxHandCardAdd.hide();
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS>=1&&lib.config.wujinmoshiP!=undefined){
+							wujinmoshiMaxHandCardAdd.show();
+						}else{
+							wujinmoshiMaxHandCardAdd.hide();
+						};
+					},100);
+
+					
+					var wujinmoshiDraw=ui.create.div();
+					wujinmoshiDraw.style.left='0px';
+					wujinmoshiDraw.style.top='100px';
+					this.appendChild(wujinmoshiDraw);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDraw==undefined){
+							wujinmoshiDraw.innerHTML='摸牌数加成：0';
+						}else{
+							wujinmoshiDraw.innerHTML='摸牌数加成：'+lib.config.wujinmoshiDraw;
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDraw.hide();
+
+					
+					var wujinmoshiDrawAdd=ui.create.div(function(){
+						if(confirm('消耗5点点数来增加一点摸牌数?')){
+							game.saveConfig('wujinmoshiDraw',lib.config.wujinmoshiDraw+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS-5);
+						};
+					});
+					wujinmoshiDrawAdd.style.left='150px';
+					wujinmoshiDrawAdd.style.top='100px';
+					wujinmoshiDrawAdd.innerHTML='<span style="cursor:pointer">+</span>';
+					this.appendChild(wujinmoshiDrawAdd);
+					wujinmoshiDrawAdd.hide();
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS>=5&&lib.config.wujinmoshiDraw<3){
+							wujinmoshiDrawAdd.show();
+						}else{
+							wujinmoshiDrawAdd.hide();
+						};
+					},100);
+
+					
+					var wujinmoshiRecover=ui.create.div();
+					wujinmoshiRecover.style.left='0px';
+					wujinmoshiRecover.style.top='120px';
+					this.appendChild(wujinmoshiRecover);
+					setInterval(function(){
+						if(lib.config.wujinmoshiRecover==undefined){
+							wujinmoshiRecover.innerHTML='恢复量加成：0';
+						}else{
+							wujinmoshiRecover.innerHTML='恢复量加成：'+lib.config.wujinmoshiRecover;
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiRecover.hide();
+
+					
+					var wujinmoshiRecoverAdd=ui.create.div(function(){
+						if(confirm('消耗3点点数来增加一点恢复量?')){
+							game.saveConfig('wujinmoshiRecover',lib.config.wujinmoshiRecover+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS-3);
+						};
+					});
+					wujinmoshiRecoverAdd.style.left='150px';
+					wujinmoshiRecoverAdd.style.top='120px';
+					wujinmoshiRecoverAdd.innerHTML='<span style="cursor:pointer">+</span>';
+					this.appendChild(wujinmoshiRecoverAdd);
+					wujinmoshiRecoverAdd.hide();
+					setInterval(function(){
+						if(lib.config.wujinmoshiDS>=3){
+							wujinmoshiRecoverAdd.show();
+						}else{
+							wujinmoshiRecoverAdd.hide();
+						};
+					},100);
+
+					
+					var wujinmoshiESkill=ui.create.div();
+					wujinmoshiESkill.style.left='0px';
+					wujinmoshiESkill.style.top='140px';
+					this.appendChild(wujinmoshiESkill);
+					setInterval(function(){
+						if(lib.config.wujinmoshiESkill==undefined){
+							wujinmoshiESkill.innerHTML='额外技能：未获得（只能拥有一个）';
+						}else{
+							wujinmoshiESkill.innerHTML='额外技能：'+lib.translate[lib.config.wujinmoshiESkill]+'（只能拥有一个）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiESkill.hide();
+
+					
+					var wujinmoshiDSDJC=ui.create.div();
+					wujinmoshiDSDJC.style.left='0px';
+					wujinmoshiDSDJC.style.top='180px';
+					wujinmoshiDSDJC.innerHTML='对手的加成：'
+					this.appendChild(wujinmoshiDSDJC);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDSDJC.hide();
+
+					
+					var wujinmoshiDamageE=ui.create.div();
+					wujinmoshiDamageE.style.left='0px';
+					wujinmoshiDamageE.style.top='200px';
+					this.appendChild(wujinmoshiDamageE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB!=undefined){
+							wujinmoshiDamageE.innerHTML='攻击力加成：'+(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDamageI)+'（每10轮+1）';
+						}else{
+							wujinmoshiDamageE.innerHTML='攻击力加成：0（每10轮+1）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDamageE.hide();
+
+					
+					var wujinmoshiMaxHpE=ui.create.div();
+					wujinmoshiMaxHpE.style.left='0px';
+					wujinmoshiMaxHpE.style.top='220px';
+					this.appendChild(wujinmoshiMaxHpE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB!=undefined){
+							wujinmoshiMaxHpE.innerHTML='体力上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI)+'（每5轮+1）';
+						}else{
+							wujinmoshiMaxHpE.innerHTML='体力上限加成：0（每5轮+1）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHpE.hide();
+
+					
+					var wujinmoshiMaxHandCardE=ui.create.div();
+					wujinmoshiMaxHandCardE.style.left='0px';
+					wujinmoshiMaxHandCardE.style.top='240px';
+					this.appendChild(wujinmoshiMaxHandCardE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB!=undefined){
+							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/3)-lib.config.wujinmoshiMaxHandCardI)+'（每3轮+1）';
+						}else{
+							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：0（每3轮+1）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHandCardE.hide();
+
+					
+					var wujinmoshiDrawE=ui.create.div();
+					wujinmoshiDrawE.style.left='0px';
+					wujinmoshiDrawE.style.top='260px';
+					this.appendChild(wujinmoshiDrawE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB!=undefined){
+							if(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI<3){
+								wujinmoshiDrawE.innerHTML='摸牌数加成：'+(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI)+'（每10轮+1，上限+3）';
+							}else{
+								wujinmoshiDrawE.innerHTML='摸牌数加成：3（每10轮+1，上限+3）';
+							};
+						}else{
+							wujinmoshiDrawE.innerHTML='摸牌数加成：0（每10轮+1，上限+5）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiDrawE.hide();
+
+					
+					var wujinmoshiRecoverE=ui.create.div();
+					wujinmoshiRecoverE.style.left='0px';
+					wujinmoshiRecoverE.style.top='280px';
+					this.appendChild(wujinmoshiRecoverE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiDXB!=undefined){
+							wujinmoshiRecoverE.innerHTML='回复量加成：'+(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiRecoverI)+'（每8轮+1）';
+						}else{
+							wujinmoshiRecoverE.innerHTML='回复量加成：0（每8轮+1）';
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiRecoverE.hide();
+					
+
+					var wujinmoshiRE=ui.create.div('.menubutton.large','<span style="cursor:pointer;">重置</span>',function(){
+						if(confirm('是否重置?')){
+							game.wujinmoshiRE();
+						};
+					});
+					wujinmoshiRE.style.left='500px';
+					wujinmoshiRE.style.top='0px';
+					this.appendChild(wujinmoshiRE);
+					
+					
+					var wujinmoshiBAGQX1=this;
+					var wujinmoshiBAG=ui.create.div('.menubutton.large','<span style="cursor:pointer;">背包</span>',function(){
+						wujinmoshiBAG.delete();
+						var wujinmoshiBAGQX=ui.create.div('.menubutton.large','<span style="cursor:pointer;">关闭</span>',function(){
+							wujinmoshiBAGQX.delete();
+							wujinmoshiBAGJM.delete();
+							wujinmoshiBAGQX1.appendChild(wujinmoshiBAG);
+						});
+						wujinmoshiBAGQX.style.left='500px';
+						wujinmoshiBAGQX.style.top='50px';
+						wujinmoshiBAGQX1.appendChild(wujinmoshiBAGQX);
+						wujinmoshiBAGJM=ui.create.dialog('hidden');
+						wujinmoshiBAGJM.style.height='calc(50%)';
+						wujinmoshiBAGJM.style.width='calc(50%)';
+						wujinmoshiBAGJM.style.left='calc(25%)';
+						wujinmoshiBAGJM.style.top='calc(25%)';
+						wujinmoshiBAGJM.classList.add('popped');
+						wujinmoshiBAGJM.classList.add('static');
+						
+						
+						var wujinmoshiHJK=ui.create.div('','<span style="cursor:pointer;">换将卡<br>'+lib.config.wujinmoshiHJK+'张</span>',function(){
+							if(lib.config.wujinmoshiHJK>0){
+								if(lib.config.wujinmoshiP!=undefined){
+									if(confirm('是否使用换将卡?')){
+										game.saveConfig('wujinmoshiHJK',lib.config.wujinmoshiHJK-1);
+										game.WJchangeCharacter();
+										wujinmoshiBAGQX.delete();
+										wujinmoshiBAGJM.delete();
+										wujinmoshiBAGQX1.appendChild(wujinmoshiBAG);
+									};
+								}else{
+									alert('游戏未开始，无法使用');
+								};
+							};
+						});
+						if(lib.config.wujinmoshiHJK>0) wujinmoshiBAGJM.add(wujinmoshiHJK);
+						setInterval(function(){
+							if(lib.config.wujinmoshiHJK<=0) wujinmoshiHJK.delete();
+						},1000);
+						
+						
+						var wujinmoshiXRK=ui.create.div('','<span style="cursor:pointer;">削弱卡<br>'+lib.config.wujinmoshiXRK+'张</span>',function(){
+							if(lib.config.wujinmoshiXRK>0){
+								if(lib.config.wujinmoshiP!=undefined){
+									if(confirm('是否使用削弱卡?')){
+										game.saveConfig('wujinmoshiXRK',lib.config.wujinmoshiXRK-1);
+										game.saveConfig('wujinmoshiDamageI',lib.config.wujinmoshiDamageI+1);
+										game.saveConfig('wujinmoshiMaxHpI',lib.config.wujinmoshiMaxHpI+1);
+										game.saveConfig('wujinmoshiMaxHandCardI',lib.config.wujinmoshiMaxHandCardI+1);
+										game.saveConfig('wujinmoshiDrawI',lib.config.wujinmoshiDrawI+1);
+										game.saveConfig('wujinmoshiRecoverI',lib.config.wujinmoshiRecoverI+1);
+										wujinmoshiBAGQX.delete();
+										wujinmoshiBAGJM.delete();
+										wujinmoshiBAGQX1.appendChild(wujinmoshiBAG);
+									};
+								}else{
+									alert('游戏未开始，无法使用');
+								};
+							};
+						});
+						if(lib.config.wujinmoshiXRK>0) wujinmoshiBAGJM.add(wujinmoshiXRK);
+						setInterval(function(){
+							if(lib.config.wujinmoshiXRK<=0) wujinmoshiXRK.delete();
+						},1000);
+						
+						
+						ui.window.appendChild(wujinmoshiBAGJM);
+					});
+					wujinmoshiBAG.style.left='500px';
+					wujinmoshiBAG.style.top='50px';
+					this.appendChild(wujinmoshiBAG);
+				
+				
+					var wujinmoshiJS=ui.create.div('.menubutton.large','<span style="cursor:pointer;">规则</span>',function(){
+							var wujinmoshiJS1=ui.create.dialog('hidden');
+							wujinmoshiJS1.style.height='calc(100%)';
+							wujinmoshiJS1.style.width='calc(100%)';
+							wujinmoshiJS1.style.left='0px';
+							wujinmoshiJS1.style.top='0px';
+							wujinmoshiJS1.classList.add('popped');
+							wujinmoshiJS1.classList.add('static');
+							var wujinmoshiJSQX=ui.create.div('.menubutton.round','×',function(){
+								wujinmoshiJS1.delete();
+							});
+							wujinmoshiJSQX.style.left='50px';
+							wujinmoshiJSQX.style.top='50px';
+	
+							var jilueduijueJS2=ui.create.div('','');
+							jilueduijueJS2.setBackgroundImage('extension/新英魂之刃/wujinmoshiJS.png');
+							jilueduijueJS2.style.height='400px';
+							jilueduijueJS2.style.width='600px';
+							jilueduijueJS2.style.left='50px';
+							jilueduijueJS2.style.top='50px';
+						
+							wujinmoshiJS1.add(jilueduijueJS2);
+							wujinmoshiJS1.add(wujinmoshiJSQX);
+							ui.window.appendChild(wujinmoshiJS1);
+					});
+					wujinmoshiJS.style.left='500px';
+					wujinmoshiJS.style.top='100px';
+					this.appendChild(wujinmoshiJS);
+					
+					
+					game.saveConfig('wujinmoshiYZR',true);
+				};
+        	},
+            content:{
+	            gameStart:function(){
+					var characterAi=[];
+                    for(i in lib.character){
+                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) characterAi.push(i);
+                    };
+					game.me.next.init(characterAi.randomGet());
+					if(lib.config.wujinmoshiMaxHp>0){
+						game.me.gainMaxHp(lib.config.wujinmoshiMaxHp);
+						game.me.recover(lib.config.wujinmoshiMaxHp);
+					};
+					if(-(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI)<game.me.next.maxHp){
+						game.me.next.gainMaxHp(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI);
+						game.me.next.recover(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI);
+					}else{
+						game.me.next.maxHp=0;
+						game.me.next.update();
+						game.me.next.die();
+					};
+					game.me.storage.wujinmoshiRE=lib.character[game.me.next.name][3];
+					if(lib.config.wujinmoshiESkill!=undefined) game.me.addSkill(lib.config.wujinmoshiESkill);
+					game.addPlayer=function(all){};
+					game.addFellow=function(all){};
+					game.swapPlayer=function(all){};
+					game.swapControl=function(all){};
+				},
+                chooseCharacter:function(){
+	                if(lib.config.wujinmoshiP!=undefined) return [lib.config.wujinmoshiP];
+					var characterAi=[];
+                    for(i in lib.character){
+                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) characterAi.push(i);
+                    };
+					return [characterAi.randomGet()];
+                },
+                chooseCharacterAi:function(){
+                    return ;
+                },
+			},
+            init:function(){
+				lib.config.mode_config.identity.free_choose=false;
+				lib.config.mode_config.identity.change_choice=false;
+				lib.config.mode_config.identity.change_identity=false;
+				game.saveConfig('player_number','2','identity');
+				lib.skill._wujinmoshiRE={
+					trigger:{
+						player:'dieBefore'
+					},
+					forced:true,
+					filter:function (event,player){
+						return lib.config.wujinmoshiP!=undefined;
+					},
+					content:function(){
+						if(player==game.me){
+							alert('进行无尽模式的武将死亡，重置游戏');
+							game.wujinmoshiRE();
+						}else{
+							if(Math.random()<=0.05){
+								var DJlist=['wujinmoshiHJK','wujinmoshiXRK'];
+								var DJ=DJlist.randomGet();
+								game.saveConfig(DJ,lib.config[DJ]+1);
+								if(DJ=='wujinmoshiHJK') game.say1('你获得一张换将卡');
+								if(DJ=='wujinmoshiXRK') game.say1('你获得一张削弱卡');
+							};
+							if(Math.random()<=0.05){
+								game.saveConfig('wujinmoshiHJK',lib.config.wujinmoshiHJK+1);
+								game.say2('你获得一张换将卡');
+							};
+							if(Math.random()<=0.01){
+								game.saveConfig('wujinmoshiXRK',lib.config.wujinmoshiXRK+1);
+								game.say2('你获得一张削弱卡');
+							};
+							game.saveConfig('wujinmoshiDXB',lib.config.wujinmoshiDXB+1);
+							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS+1);
+							game.me.useSkill('wujinmoshiRE1');
+						};
+					},
+				};
+				lib.skill.wujinmoshiRE1={
+					content:function (){
+						'step 0'
+						game.me.chooseControl('确定','取消',ui.create.dialog('是否从对方身上获得额外技能？','hidden'));
+						'step 1'
+						if(result.control=='确定') game.me.useSkill('wujinmoshiRE2');
+					},
+				};
+				lib.skill.wujinmoshiRE2={
+                	createDialog:function (player,target,onlylist){
+						var list=target.storage.wujinmoshiRE;
+							if(onlylist) return list;
+						var dialog=ui.create.dialog('选择一项作为你的额外技能');
+						_status.event.list=list;
+						var clickItem=function(){
+							_status.event._result=this.link;
+							game.resume();
+						};
+						for(i=0;i<list.length;i++){
+							if(lib.translate[list[i]+'_info']){
+								var translation=get.translation(list[i]);
+								if(translation[0]=='新'&&translation.length==3){
+									translation=translation.slice(1,3);
+									}else{
+									translation=translation.slice(0,2);
+								}
+								var item=dialog.add('<div class="popup pointerdiv" style="width:50%;display:inline-block"><div class="skill">【'+translation+'】</div><div>'+lib.translate[list[i]+'_info']+'</div></div>');
+								item.firstChild.addEventListener('click',clickItem);
+								item.firstChild.link=list[i];
+							};
+						};
+						dialog.add(ui.create.div('placeholder'));
+						return dialog;
+                	},
+                	content:function (){
+                    	"step 0"
+                    	event.dialog=lib.skill.wujinmoshiRE2.createDialog(target,player);
+                    	event.switchToAuto=function(){
+                        	event._result=event.skillai(event.list);
+                        	game.resume();
+                    	};
+                    	_status.imchoosing=true;
+                    	game.pause();
+                    	"step 1"
+                    	_status.imchoosing=false;
+                    	if(event.dialog){
+                        	event.dialog.close();
+                    	};
+						game.saveConfig('wujinmoshiESkill',result);
+                	},
+				};
+				lib.translate.wujinmoshiRE1='获取技能';
+				lib.translate.wujinmoshiRE2='获取技能';
+				lib.skill._wujinmoshiDamage={
+					trigger:{
+						source:'damageBefore'
+					},
+					filter:function (event,player){
+						return lib.config.wujinmoshiDamage>0&&player==game.me;
+					},
+					forced:true,
+					content:function (){
+						trigger.num+=lib.config.wujinmoshiDamage;
+					},
+				};
+				lib.skill._wujinmoshiDamageE={
+					trigger:{
+						source:'damageBefore'
+					},
+					filter:function (event,player){
+						return player!=game.me;
+					},
+					forced:true,
+					content:function (){
+						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDamageI;
+					},
+				};
+            	lib.skill._wujinmoshiMaxHandCard={
+					mod:{
+    					maxHandcard:function (player,num){
+            				if(player==game.me&&lib.config.wujinmoshiMaxHandCard>0) return num+lib.config.wujinmoshiMaxHandCard;
+            				return num;
+    					},
+					},
+				};
+            	lib.skill._wujinmoshiMaxHandCardE={
+					mod:{
+    					maxHandcard:function (player,num){
+            				if(player!=game.me) return num+Math.floor(lib.config.wujinmoshiDXB/3)-lib.config.wujinmoshiMaxHandCardI;
+            				return num;
+    					},
+					},
+				};
+            	lib.skill._wujinmoshiDraw={
+					trigger:{
+						player:'drawBefore'
+					},
+					filter:function (event,player){
+						return lib.config.wujinmoshiDraw>0&&player==game.me;
+					},
+					forced:true,
+					content:function (){
+						trigger.num+=lib.config.wujinmoshiDraw;
+					},
+				};
+            	lib.skill._wujinmoshiDrawE={
+					trigger:{
+						player:'drawBefore'
+					},
+					filter:function (event,player){
+						return player!=game.me;
+					},
+					forced:true,
+					content:function (){
+						if(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI<3){
+							trigger.num+=Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI;
+						}else{
+							trigger.num+=3;
+						};
+					},
+				};
+            	lib.skill._wujinmoshiRecover={
+					trigger:{
+						player:'recoverBefore'
+					},
+					filter:function (event,player){
+						return lib.config.wujinmoshiRecover>0&&player==game.me;
+					},
+					forced:true,
+					content:function (){
+						trigger.num+=lib.config.wujinmoshiRecover;
+					},
+				};
+            	lib.skill._wujinmoshiRecoverE={
+					trigger:{
+						player:'recoverBefore'
+					},
+					filter:function (event,player){
+						return player!=game.me;
+					},
+					forced:true,
+					content:function (){
+						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiRecoverI;
+					},
+				};
+				if(lib.config.wujinmoshiP==undefined){
+					alert('未选择进行无尽模式的武将，重新载入游戏');
+					game.reload();
+				};
+				if(wujinmoshiBAGJM) wujinmoshiBAGJM.delete();
+			},
+};
+};
+};
 			var jilueduijueCharacter1=[];
 			for(i in lib.character){
-				jilueduijueCharacter1.push(i);
+				if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) jilueduijueCharacter1.push(i);
 			};
 			var jilueduijueCharacter=jilueduijueCharacter1.randomGets(25);
 		if(lib.config.jilueduijue1==undefined) game.saveConfig('jilueduijue1',jilueduijueCharacter[0]);
@@ -283,6 +926,9 @@ lib.character[i][4].push("forbidai");
 		game.saveConfig('jilueduijueYZR',undefined);
 		if(lib.config.jilueduijueND==undefined) game.saveConfig('jilueduijueND','medium');
 		game.saveConfig('bingjingliangzuYZR',undefined);
+		if(lib.config.jilueduijueEasy==undefined) game.saveConfig('jilueduijueEasy',0);
+		if(lib.config.jilueduijuemedium==undefined) game.saveConfig('jilueduijuemedium',0);
+		if(lib.config.jilueduijuehard==undefined) game.saveConfig('jilueduijuehard',0);
 
 	if(config.jilueduijue){
 	game.jilueduijueRE=function(){
@@ -361,22 +1007,31 @@ lib.character[i][4].push("forbidai");
 						game.saveConfig('jilueduijueDXG',undefined);
 						
 						
-						game.saveConfig('jilueduijueND',undefined);
-						
-						
 						game.reload();
 					};
 	if ( lib.brawl ) {
 lib.brawl.jilueduijue = {
             name:'极略对决',
 	        mode:'identity',
-            intro:'<span style="font-size:14px;font-weight:600">打开该模式界面后自动设置窗口大小，然后将无法改变窗口大小（电脑）</span>',
+            intro:'',
             showcase:function(init){
-				window.resizeTo(1000, 650);
-				window.onresize=function(){
-					window.resizeTo(1000, 650);
-				};
+//				window.resizeTo(1000, 650);
+//				window.onresize=function(){
+//					window.resizeTo(1000, 650);
+//				};
+				this.style.width='575px';
 				if(lib.config.jilueduijueYZR!=true){
+				var jilueduijueSM=ui.create.div('');
+				if(lib.device){
+					jilueduijueSM.innerHTML='单击选择挑战武将，点击取消或确定后弹出武将资料';
+				}else{
+					jilueduijueSM.innerHTML='单击弹出武将资料，双击选择挑战武将';
+				};
+				jilueduijueSM.style.left='100px';
+				jilueduijueSM.style.top='0px';
+				this.appendChild(jilueduijueSM);
+				
+
 				var jilueduijueRENDS=ui.create.div('');
 				if(lib.config.jilueduijueE==undefined){
 					jilueduijueRENDS.innerHTML='未选择对手';
@@ -560,6 +1215,31 @@ lib.brawl.jilueduijue = {
 
 				var jilueduijueNDA=ui.create.div('.menubutton.large','<span style="cursor:pointer;">难度</span>',function(){
 					if(lib.config.jilueduijueDXG==1&&lib.config.jilueduijueE==undefined){
+						jilueduijue1.hide();
+						jilueduijue2.hide();
+						jilueduijue3.hide();
+						jilueduijue4.hide();
+						jilueduijue5.hide();
+						jilueduijue6.hide();
+						jilueduijue7.hide();
+						jilueduijue8.hide();
+						jilueduijue9.hide();
+						jilueduijue10.hide();
+						jilueduijue11.hide();
+						jilueduijue12.hide();
+						jilueduijue13.hide();
+						jilueduijue14.hide();
+						jilueduijue15.hide();
+						jilueduijue16.hide();
+						jilueduijue17.hide();
+						jilueduijue18.hide();
+						jilueduijue19.hide();
+						jilueduijue20.hide();
+						jilueduijue21.hide();
+						jilueduijue22.hide();
+						jilueduijue23.hide();
+						jilueduijue24.hide();
+						jilueduijue25.hide();
 						var jilueduijueNDA1=ui.create.dialog('hidden');
 						jilueduijueNDA1.style.height='calc(100%)';
 						jilueduijueNDA1.style.width='calc(100%)';
@@ -569,6 +1249,31 @@ lib.brawl.jilueduijue = {
 						jilueduijueNDA1.classList.add('static');
 						var jilueduijueNDQX=ui.create.div('.menubutton.round','×',function(){
 							jilueduijueNDA1.delete();
+							jilueduijue1.show();
+							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
+							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
+							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
+							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
+							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
+							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
+							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
+							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
+							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
+							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
+							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
+							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
+							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
+							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
+							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
+							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
+							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
+							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
+							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
+							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
+							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
+							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
+							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
+							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
 						});
 						jilueduijueNDQX.style.left='100px';
 						jilueduijueNDQX.style.top='100px';
@@ -578,6 +1283,31 @@ lib.brawl.jilueduijue = {
 							jilueduijueNDA1.delete();
 							game.saveConfig('jilueduijueND','easy');
 							game.say1('设置成功');
+							jilueduijue1.show();
+							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
+							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
+							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
+							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
+							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
+							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
+							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
+							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
+							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
+							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
+							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
+							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
+							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
+							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
+							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
+							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
+							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
+							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
+							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
+							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
+							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
+							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
+							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
+							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
 						});
 						jilueduijueNDeasy.style.left='50px';
 						jilueduijueNDeasy.style.top='250px';
@@ -587,6 +1317,31 @@ lib.brawl.jilueduijue = {
 							jilueduijueNDA1.delete();
 							game.saveConfig('jilueduijueND','medium');
 							game.say1('设置成功');
+							jilueduijue1.show();
+							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
+							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
+							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
+							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
+							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
+							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
+							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
+							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
+							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
+							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
+							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
+							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
+							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
+							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
+							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
+							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
+							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
+							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
+							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
+							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
+							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
+							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
+							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
+							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
 						});
 						jilueduijueNDmedium.style.left='50px';
 						jilueduijueNDmedium.style.top='250px';
@@ -596,6 +1351,31 @@ lib.brawl.jilueduijue = {
 							jilueduijueNDA1.delete();
 							game.saveConfig('jilueduijueND','hard');
 							game.say1('设置成功');
+							jilueduijue1.show();
+							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
+							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
+							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
+							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
+							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
+							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
+							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
+							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
+							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
+							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
+							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
+							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
+							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
+							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
+							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
+							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
+							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
+							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
+							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
+							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
+							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
+							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
+							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
+							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
 						});
 						jilueduijueNDhard.style.left='50px';
 						jilueduijueNDhard.style.top='250px';
@@ -633,9 +1413,38 @@ lib.brawl.jilueduijue = {
 						jilueduijueND.style.backgroundColor='red';
 					};
 				},100);
+					
+					var jilueduijueJL1=this;
+					var jilueduijueJL=ui.create.div('.menubutton.large','<span style="cursor:pointer;">记录</span>',function(){
+						jilueduijueJL.delete();
+						var jilueduijueJLQX=ui.create.div('.menubutton.large','<span style="cursor:pointer;">关闭</span>',function(){
+							jilueduijueJLQX.delete();
+							jilueduijueJLJM.delete();
+							jilueduijueJL1.appendChild(jilueduijueJL);
+						});
+						jilueduijueJLQX.style.left='500px';
+						jilueduijueJLQX.style.top='200px';
+						jilueduijueJL1.appendChild(jilueduijueJLQX);
+						jilueduijueJLJM=ui.create.dialog('hidden');
+						jilueduijueJLJM.style.height='calc(50%)';
+						jilueduijueJLJM.style.width='calc(50%)';
+						jilueduijueJLJM.style.left='calc(25%)';
+						jilueduijueJLJM.style.top='calc(25%)';
+						jilueduijueJLJM.classList.add('popped');
+						jilueduijueJLJM.classList.add('static');
+						var jilueduijueJLD=ui.create.div('','简单难度通关次数：'+lib.config.jilueduijueEasy+'次<br>普通难度通关次数：'+lib.config.jilueduijuemedium+'次<br>困难难度通关次数：'+lib.config.jilueduijuehard+'次');
+						jilueduijueJLJM.add(jilueduijueJLD);
+						
+						ui.window.appendChild(jilueduijueJLJM);
+					});
+					jilueduijueJL.style.left='500px';
+					jilueduijueJL.style.top='200px';
+					this.appendChild(jilueduijueJL);
 				
 				
-				var jilueduijue1=ui.create.div('.card.fullskin');
+				var jilueduijue1=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue1,'');
+				});
 				jilueduijue1.style.height='55px';
 				jilueduijue1.style.width='55px';
 				jilueduijue1.style.left='0px';
@@ -644,7 +1453,15 @@ lib.brawl.jilueduijue = {
 				this.appendChild(jilueduijue1);
 				
 
-				var jilueduijue2=ui.create.div('.card.fullskin',function(){
+				var jilueduijue2=ui.create.div('.card.fullskin');
+				jilueduijue2.style.height='55px';
+				jilueduijue2.style.width='55px';
+				jilueduijue2.style.left='0px';
+				jilueduijue2.style.top='122.5px';
+				jilueduijue2.setBackground(lib.config.jilueduijue2,'character');
+				ondblclickjilueduijue2=false;
+				jilueduijue2.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==1){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue2]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue2);
@@ -664,16 +1481,50 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue2.style.height='55px';
-				jilueduijue2.style.width='55px';
-				jilueduijue2.style.left='0px';
-				jilueduijue2.style.top='122.5px';
-				jilueduijue2.setBackground(lib.config.jilueduijue2,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue2!=1&&ondblclickjilueduijue2!=2){
+							ui.click.charactercard(lib.config.jilueduijue2,'');
+						}else{
+							if(ondblclickjilueduijue2==2) ondblclickjilueduijue2=false;
+							if(ondblclickjilueduijue2==1) ondblclickjilueduijue2=2;
+						};
+					},500);
+				};
+				jilueduijue2.ondblclick=function(){
+					ondblclickjilueduijue2=1;
+					if(lib.config.jilueduijueDXG==1){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue2]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue2);
+						jilueduijue3.hide();
+						jilueduijue6.hide();
+						jilueduijue10.hide();
+						jilueduijue15.hide();
+						jilueduijue20.hide();
+						jilueduijue25.hide();
+						game.saveConfig('jilueduijue3a',true);
+						game.saveConfig('jilueduijue6a',true);
+						game.saveConfig('jilueduijue10a',true);
+						game.saveConfig('jilueduijue15a',true);
+						game.saveConfig('jilueduijue20a',true);
+						game.saveConfig('jilueduijue25a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue2);
 
 
-				var jilueduijue3=ui.create.div('.card.fullskin',function(){
+				var jilueduijue3=ui.create.div('.card.fullskin');
+				jilueduijue3.style.height='55px';
+				jilueduijue3.style.width='55px';
+				jilueduijue3.style.left='-62.5px';
+				jilueduijue3.style.top='187.5px';
+				jilueduijue3.setBackground(lib.config.jilueduijue3,'character');
+				ondblclickjilueduijue3=false;
+				jilueduijue3.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==1){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue3]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue3);
@@ -693,16 +1544,50 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue3.style.height='55px';
-				jilueduijue3.style.width='55px';
-				jilueduijue3.style.left='-62.5px';
-				jilueduijue3.style.top='187.5px';
-				jilueduijue3.setBackground(lib.config.jilueduijue3,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue3!=1&&ondblclickjilueduijue3!=2){
+							ui.click.charactercard(lib.config.jilueduijue3,'');
+						}else{
+							if(ondblclickjilueduijue3==2) ondblclickjilueduijue3=false;
+							if(ondblclickjilueduijue3==1) ondblclickjilueduijue3=2;
+						};
+					},500);
+				};
+				jilueduijue3.ondblclick=function(){
+					ondblclickjilueduijue3=1;
+					if(lib.config.jilueduijueDXG==1){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue3]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue3);
+						jilueduijue2.hide();
+						jilueduijue4.hide();
+						jilueduijue7.hide();
+						jilueduijue11.hide();
+						jilueduijue16.hide();
+						jilueduijue21.hide();
+						game.saveConfig('jilueduijue2a',true);
+						game.saveConfig('jilueduijue4a',true);
+						game.saveConfig('jilueduijue7a',true);
+						game.saveConfig('jilueduijue11a',true);
+						game.saveConfig('jilueduijue16a',true);
+						game.saveConfig('jilueduijue21a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue3);
 
 				
-				var jilueduijue4=ui.create.div('.card.fullskin',function(){
+				var jilueduijue4=ui.create.div('.card.fullskin');
+				jilueduijue4.style.height='55px';
+				jilueduijue4.style.width='55px';
+				jilueduijue4.style.left='-62.5px';
+				jilueduijue4.style.top='90px';
+				jilueduijue4.setBackground(lib.config.jilueduijue4,'character');
+				ondblclickjilueduijue4=false;
+				jilueduijue4.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==2){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue4]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue4);
@@ -720,17 +1605,48 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				
-				jilueduijue4.style.height='55px';
-				jilueduijue4.style.width='55px';
-				jilueduijue4.style.left='-62.5px';
-				jilueduijue4.style.top='90px';
-				jilueduijue4.setBackground(lib.config.jilueduijue4,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue4!=1&&ondblclickjilueduijue4!=2){
+							ui.click.charactercard(lib.config.jilueduijue4,'');
+						}else{
+							if(ondblclickjilueduijue4==2) ondblclickjilueduijue4=false;
+							if(ondblclickjilueduijue4==1) ondblclickjilueduijue4=2;
+						};
+					},500);
+				};
+				jilueduijue4.ondblclick=function(){
+					ondblclickjilueduijue4=1;
+					if(lib.config.jilueduijueDXG==2){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue4]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue4);
+						jilueduijue5.hide();
+						jilueduijue9.hide();
+						jilueduijue14.hide();
+						jilueduijue19.hide();
+						jilueduijue24.hide();
+						game.saveConfig('jilueduijue5a',true);
+						game.saveConfig('jilueduijue9a',true);
+						game.saveConfig('jilueduijue14a',true);
+						game.saveConfig('jilueduijue19a',true);
+						game.saveConfig('jilueduijue24a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue4);
 
 
-				var jilueduijue5=ui.create.div('.card.fullskin',function(){
+				var jilueduijue5=ui.create.div('.card.fullskin');
+				jilueduijue5.style.height='55px';
+				jilueduijue5.style.width='55px';
+				jilueduijue5.style.left='-125px';
+				jilueduijue5.style.top='155px';
+				jilueduijue5.setBackground(lib.config.jilueduijue5,'character');
+				ondblclickjilueduijue5=false;
+				jilueduijue5.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==2){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue5]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue5);
@@ -758,16 +1674,58 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue5.style.height='55px';
-				jilueduijue5.style.width='55px';
-				jilueduijue5.style.left='-125px';
-				jilueduijue5.style.top='155px';
-				jilueduijue5.setBackground(lib.config.jilueduijue5,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue5!=1&&ondblclickjilueduijue5!=2){
+							ui.click.charactercard(lib.config.jilueduijue5,'');
+						}else{
+							if(ondblclickjilueduijue5==2) ondblclickjilueduijue5=false;
+							if(ondblclickjilueduijue5==1) ondblclickjilueduijue5=2;
+						};
+					},500);
+				};
+				jilueduijue5.ondblclick=function(){
+					ondblclickjilueduijue5=1;
+					if(lib.config.jilueduijueDXG==2){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue5]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue5);
+						jilueduijue4.hide();
+						jilueduijue6.hide();
+						jilueduijue7.hide();
+						jilueduijue11.hide();
+						jilueduijue16.hide();
+						jilueduijue21.hide();
+						jilueduijue10.hide();
+						jilueduijue15.hide();
+						jilueduijue20.hide();
+						jilueduijue25.hide();
+						game.saveConfig('jilueduijue4a',true);
+						game.saveConfig('jilueduijue6a',true);
+						game.saveConfig('jilueduijue7a',true);
+						game.saveConfig('jilueduijue11a',true);
+						game.saveConfig('jilueduijue16a',true);
+						game.saveConfig('jilueduijue21a',true);
+						game.saveConfig('jilueduijue10a',true);
+						game.saveConfig('jilueduijue15a',true);
+						game.saveConfig('jilueduijue20a',true);
+						game.saveConfig('jilueduijue25a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue5);
 
 
-				var jilueduijue6=ui.create.div('.card.fullskin',function(){
+				var jilueduijue6=ui.create.div('.card.fullskin');
+				jilueduijue6.style.height='55px';
+				jilueduijue6.style.width='55px';
+				jilueduijue6.style.left='-187.5px';
+				jilueduijue6.style.top='220px';
+				jilueduijue6.setBackground(lib.config.jilueduijue6,'character');
+				ondblclickjilueduijue6=false;
+				jilueduijue6.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==2){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue6]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue6);
@@ -785,16 +1743,48 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue6.style.height='55px';
-				jilueduijue6.style.width='55px';
-				jilueduijue6.style.left='-187.5px';
-				jilueduijue6.style.top='220px';
-				jilueduijue6.setBackground(lib.config.jilueduijue6,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue6!=1&&ondblclickjilueduijue6!=2){
+							ui.click.charactercard(lib.config.jilueduijue6,'');
+						}else{
+							if(ondblclickjilueduijue6==2) ondblclickjilueduijue6=false;
+							if(ondblclickjilueduijue6==1) ondblclickjilueduijue6=2;
+						};
+					},500);
+				};
+				jilueduijue6.ondblclick=function(){
+					ondblclickjilueduijue6=1;
+					if(lib.config.jilueduijueDXG==2){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue6]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue6);
+						jilueduijue5.hide();
+						jilueduijue8.hide();
+						jilueduijue12.hide();
+						jilueduijue17.hide();
+						jilueduijue22.hide();
+						game.saveConfig('jilueduijue5a',true);
+						game.saveConfig('jilueduijue8a',true);
+						game.saveConfig('jilueduijue12a',true);
+						game.saveConfig('jilueduijue17a',true);
+						game.saveConfig('jilueduijue22a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue6);
 
 
-				var jilueduijue7=ui.create.div('.card.fullskin',function(){
+				var jilueduijue7=ui.create.div('.card.fullskin');
+				jilueduijue7.style.height='55px';
+				jilueduijue7.style.width='55px';
+				jilueduijue7.style.left='-187px';
+				jilueduijue7.style.top='57.5px';
+				jilueduijue7.setBackground(lib.config.jilueduijue7,'character');
+				ondblclickjilueduijue7=false;
+				jilueduijue7.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==3){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue7]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue7);
@@ -810,16 +1800,46 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue7.style.height='55px';
-				jilueduijue7.style.width='55px';
-				jilueduijue7.style.left='-187px';
-				jilueduijue7.style.top='57.5px';
-				jilueduijue7.setBackground(lib.config.jilueduijue7,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue7!=1&&ondblclickjilueduijue7!=2){
+							ui.click.charactercard(lib.config.jilueduijue7,'');
+						}else{
+							if(ondblclickjilueduijue7==2) ondblclickjilueduijue7=false;
+							if(ondblclickjilueduijue7==1) ondblclickjilueduijue7=2;
+						};
+					},500);
+				};
+				jilueduijue7.ondblclick=function(){
+					ondblclickjilueduijue7=1;
+					if(lib.config.jilueduijueDXG==3){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue7]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue7);
+						jilueduijue8.hide();
+						jilueduijue13.hide();
+						jilueduijue18.hide();
+						jilueduijue23.hide();
+						game.saveConfig('jilueduijue8a',true);
+						game.saveConfig('jilueduijue13a',true);
+						game.saveConfig('jilueduijue18a',true);
+						game.saveConfig('jilueduijue23a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue7);
 
 
-				var jilueduijue8=ui.create.div('.card.fullskin',function(){
+				var jilueduijue8=ui.create.div('.card.fullskin');
+				jilueduijue8.style.height='55px';
+				jilueduijue8.style.width='55px';
+				jilueduijue8.style.left='-250px';
+				jilueduijue8.style.top='122.5px';
+				jilueduijue8.setBackground(lib.config.jilueduijue8,'character');
+				ondblclickjilueduijue8=false;
+				jilueduijue8.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==3){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue8]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue8);
@@ -843,16 +1863,54 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue8.style.height='55px';
-				jilueduijue8.style.width='55px';
-				jilueduijue8.style.left='-250px';
-				jilueduijue8.style.top='122.5px';
-				jilueduijue8.setBackground(lib.config.jilueduijue8,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue8!=1&&ondblclickjilueduijue8!=2){
+							ui.click.charactercard(lib.config.jilueduijue8,'');
+						}else{
+							if(ondblclickjilueduijue8==2) ondblclickjilueduijue8=false;
+							if(ondblclickjilueduijue8==1) ondblclickjilueduijue8=2;
+						};
+					},500);
+				};
+				jilueduijue8.ondblclick=function(){
+					ondblclickjilueduijue8=1;
+					if(lib.config.jilueduijueDXG==3){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue8]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue8);
+						jilueduijue7.hide();
+						jilueduijue9.hide();
+						jilueduijue11.hide();
+						jilueduijue16.hide();
+						jilueduijue21.hide();
+						jilueduijue14.hide();
+						jilueduijue19.hide();
+						jilueduijue24.hide();
+						game.saveConfig('jilueduijue7a',true);
+						game.saveConfig('jilueduijue9a',true);
+						game.saveConfig('jilueduijue11a',true);
+						game.saveConfig('jilueduijue16a',true);
+						game.saveConfig('jilueduijue21a',true);
+						game.saveConfig('jilueduijue14a',true);
+						game.saveConfig('jilueduijue19a',true);
+						game.saveConfig('jilueduijue24a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue8);
 
 
-				var jilueduijue9=ui.create.div('.card.fullskin',function(){
+				var jilueduijue9=ui.create.div('.card.fullskin');
+				jilueduijue9.style.height='55px';
+				jilueduijue9.style.width='55px';
+				jilueduijue9.style.left='-312.75px';
+				jilueduijue9.style.top='187px';
+				jilueduijue9.setBackground(lib.config.jilueduijue9,'character');
+				ondblclickjilueduijue9=false;
+				jilueduijue9.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==3){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue9]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue9);
@@ -876,16 +1934,54 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue9.style.height='55px';
-				jilueduijue9.style.width='55px';
-				jilueduijue9.style.left='-312.75px';
-				jilueduijue9.style.top='187px';
-				jilueduijue9.setBackground(lib.config.jilueduijue9,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue9!=1&&ondblclickjilueduijue9!=2){
+							ui.click.charactercard(lib.config.jilueduijue9,'');
+						}else{
+							if(ondblclickjilueduijue9==2) ondblclickjilueduijue9=false;
+							if(ondblclickjilueduijue9==1) ondblclickjilueduijue9=2;
+						};
+					},500);
+				};
+				jilueduijue9.ondblclick=function(){
+					ondblclickjilueduijue9=1;
+					if(lib.config.jilueduijueDXG==3){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue9]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue9);
+						jilueduijue8.hide();
+						jilueduijue10.hide();
+						jilueduijue12.hide();
+						jilueduijue17.hide();
+						jilueduijue22.hide();
+						jilueduijue15.hide();
+						jilueduijue20.hide();
+						jilueduijue25.hide();
+						game.saveConfig('jilueduijue8a',true);
+						game.saveConfig('jilueduijue10a',true);
+						game.saveConfig('jilueduijue12a',true);
+						game.saveConfig('jilueduijue17a',true);
+						game.saveConfig('jilueduijue22a',true);
+						game.saveConfig('jilueduijue15a',true);
+						game.saveConfig('jilueduijue20a',true);
+						game.saveConfig('jilueduijue25a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue9);
 
 
-				var jilueduijue10=ui.create.div('.card.fullskin',function(){
+				var jilueduijue10=ui.create.div('.card.fullskin');
+				jilueduijue10.style.height='55px';
+				jilueduijue10.style.width='55px';
+				jilueduijue10.style.left='191.5px';
+				jilueduijue10.style.top='187px';
+				jilueduijue10.setBackground(lib.config.jilueduijue10,'character');
+				ondblclickjilueduijue10=false;
+				jilueduijue10.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==3){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue10]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue10);
@@ -901,16 +1997,46 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue10.style.height='55px';
-				jilueduijue10.style.width='55px';
-				jilueduijue10.style.left='191.5px';
-				jilueduijue10.style.top='187px';
-				jilueduijue10.setBackground(lib.config.jilueduijue10,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue10!=1&&ondblclickjilueduijue10!=2){
+							ui.click.charactercard(lib.config.jilueduijue10,'');
+						}else{
+							if(ondblclickjilueduijue10==2) ondblclickjilueduijue10=false;
+							if(ondblclickjilueduijue10==1) ondblclickjilueduijue10=2;
+						};
+					},500);
+				};
+				jilueduijue10.ondblclick=function(){
+					ondblclickjilueduijue10=1;
+					if(lib.config.jilueduijueDXG==3){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue10]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue10);
+						jilueduijue9.hide();
+						jilueduijue13.hide();
+						jilueduijue18.hide();
+						jilueduijue23.hide();
+						game.saveConfig('jilueduijue9a',true);
+						game.saveConfig('jilueduijue13a',true);
+						game.saveConfig('jilueduijue18a',true);
+						game.saveConfig('jilueduijue23a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue10);
 
 
-				var jilueduijue11=ui.create.div('.card.fullskin',function(){
+				var jilueduijue11=ui.create.div('.card.fullskin');
+				jilueduijue11.style.height='55px';
+				jilueduijue11.style.width='55px';
+				jilueduijue11.style.left='193.5px';
+				jilueduijue11.style.top='-40.5px';
+				jilueduijue11.setBackground(lib.config.jilueduijue11,'character');
+				ondblclickjilueduijue11=false;
+				jilueduijue11.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==4){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue11]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue11);
@@ -924,16 +2050,44 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue11.style.height='55px';
-				jilueduijue11.style.width='55px';
-				jilueduijue11.style.left='193.5px';
-				jilueduijue11.style.top='-40.5px';
-				jilueduijue11.setBackground(lib.config.jilueduijue11,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue11!=1&&ondblclickjilueduijue11!=2){
+							ui.click.charactercard(lib.config.jilueduijue11,'');
+						}else{
+							if(ondblclickjilueduijue11==2) ondblclickjilueduijue11=false;
+							if(ondblclickjilueduijue11==1) ondblclickjilueduijue11=2;
+						};
+					},500);
+				};
+				jilueduijue11.ondblclick=function(){
+					ondblclickjilueduijue11=1;
+					if(lib.config.jilueduijueDXG==4){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue11]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue11);
+						jilueduijue12.hide();
+						jilueduijue17.hide();
+						jilueduijue22.hide();
+						game.saveConfig('jilueduijue12a',true);
+						game.saveConfig('jilueduijue17a',true);
+						game.saveConfig('jilueduijue22a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue11);
 
 
-				var jilueduijue12=ui.create.div('.card.fullskin',function(){
+				var jilueduijue12=ui.create.div('.card.fullskin');
+				jilueduijue12.style.height='55px';
+				jilueduijue12.style.width='55px';
+				jilueduijue12.style.left='130px';
+				jilueduijue12.style.top='24.5px';
+				jilueduijue12.setBackground(lib.config.jilueduijue12,'character');
+				ondblclickjilueduijue12=false;
+				jilueduijue12.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==4){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue12]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue12);
@@ -953,16 +2107,50 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue12.style.height='55px';
-				jilueduijue12.style.width='55px';
-				jilueduijue12.style.left='130px';
-				jilueduijue12.style.top='24.5px';
-				jilueduijue12.setBackground(lib.config.jilueduijue12,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue12!=1&&ondblclickjilueduijue12!=2){
+							ui.click.charactercard(lib.config.jilueduijue12,'');
+						}else{
+							if(ondblclickjilueduijue12==2) ondblclickjilueduijue12=false;
+							if(ondblclickjilueduijue12==1) ondblclickjilueduijue12=2;
+						};
+					},500);
+				};
+				jilueduijue12.ondblclick=function(){
+					ondblclickjilueduijue12=1;
+					if(lib.config.jilueduijueDXG==4){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue12]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue12);
+						jilueduijue11.hide();
+						jilueduijue13.hide();
+						jilueduijue16.hide();
+						jilueduijue18.hide();
+						jilueduijue21.hide();
+						jilueduijue23.hide();
+						game.saveConfig('jilueduijue11a',true);
+						game.saveConfig('jilueduijue13a',true);
+						game.saveConfig('jilueduijue16a',true);
+						game.saveConfig('jilueduijue18a',true);
+						game.saveConfig('jilueduijue21a',true);
+						game.saveConfig('jilueduijue23a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue12);
 
 
-				var jilueduijue13=ui.create.div('.card.fullskin',function(){
+				var jilueduijue13=ui.create.div('.card.fullskin');
+				jilueduijue13.style.height='55px';
+				jilueduijue13.style.width='55px';
+				jilueduijue13.style.left='67px';
+				jilueduijue13.style.top='89.5px';
+				jilueduijue13.setBackground(lib.config.jilueduijue13,'character');
+				ondblclickjilueduijue13=false;
+				jilueduijue13.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==4){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue13]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue13);
@@ -982,16 +2170,50 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue13.style.height='55px';
-				jilueduijue13.style.width='55px';
-				jilueduijue13.style.left='67px';
-				jilueduijue13.style.top='89.5px';
-				jilueduijue13.setBackground(lib.config.jilueduijue13,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue13!=1&&ondblclickjilueduijue13!=2){
+							ui.click.charactercard(lib.config.jilueduijue13,'');
+						}else{
+							if(ondblclickjilueduijue13==2) ondblclickjilueduijue13=false;
+							if(ondblclickjilueduijue13==1) ondblclickjilueduijue13=2;
+						};
+					},500);
+				};
+				jilueduijue13.ondblclick=function(){
+					ondblclickjilueduijue13=1;
+					if(lib.config.jilueduijueDXG==4){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue13]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue13);
+						jilueduijue12.hide();
+						jilueduijue14.hide();
+						jilueduijue17.hide();
+						jilueduijue19.hide();
+						jilueduijue22.hide();
+						jilueduijue24.hide();
+						game.saveConfig('jilueduijue12a',true);
+						game.saveConfig('jilueduijue14a',true);
+						game.saveConfig('jilueduijue17a',true);
+						game.saveConfig('jilueduijue19a',true);
+						game.saveConfig('jilueduijue22a',true);
+						game.saveConfig('jilueduijue24a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue13);
 
 
-				var jilueduijue14=ui.create.div('.card.fullskin',function(){
+				var jilueduijue14=ui.create.div('.card.fullskin');
+				jilueduijue14.style.height='55px';
+				jilueduijue14.style.width='55px';
+				jilueduijue14.style.left='4.5px';
+				jilueduijue14.style.top='154.5px';
+				jilueduijue14.setBackground(lib.config.jilueduijue14,'character');
+				ondblclickjilueduijue14=false;
+				jilueduijue14.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==4){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue14]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue14);
@@ -1011,16 +2233,50 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue14.style.height='55px';
-				jilueduijue14.style.width='55px';
-				jilueduijue14.style.left='4.5px';
-				jilueduijue14.style.top='154.5px';
-				jilueduijue14.setBackground(lib.config.jilueduijue14,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue14!=1&&ondblclickjilueduijue14!=2){
+							ui.click.charactercard(lib.config.jilueduijue14,'');
+						}else{
+							if(ondblclickjilueduijue14==2) ondblclickjilueduijue14=false;
+							if(ondblclickjilueduijue14==1) ondblclickjilueduijue14=2;
+						};
+					},500);
+				};
+				jilueduijue14.ondblclick=function(){
+					ondblclickjilueduijue14=1;
+					if(lib.config.jilueduijueDXG==4){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue14]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue14);
+						jilueduijue13.hide();
+						jilueduijue15.hide();
+						jilueduijue18.hide();
+						jilueduijue20.hide();
+						jilueduijue23.hide();
+						jilueduijue25.hide();
+						game.saveConfig('jilueduijue13a',true);
+						game.saveConfig('jilueduijue15a',true);
+						game.saveConfig('jilueduijue18a',true);
+						game.saveConfig('jilueduijue20a',true);
+						game.saveConfig('jilueduijue23a',true);
+						game.saveConfig('jilueduijue25a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue14);
 
 
-				var jilueduijue15=ui.create.div('.card.fullskin',function(){
+				var jilueduijue15=ui.create.div('.card.fullskin');
+				jilueduijue15.style.height='55px';
+				jilueduijue15.style.width='55px';
+				jilueduijue15.style.left='-58.5px';
+				jilueduijue15.style.top='219.5px';
+				jilueduijue15.setBackground(lib.config.jilueduijue15,'character');
+				ondblclickjilueduijue15=false;
+				jilueduijue15.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==4){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue15]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue15);
@@ -1034,16 +2290,44 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue15.style.height='55px';
-				jilueduijue15.style.width='55px';
-				jilueduijue15.style.left='-58.5px';
-				jilueduijue15.style.top='219.5px';
-				jilueduijue15.setBackground(lib.config.jilueduijue15,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue15!=1&&ondblclickjilueduijue15!=2){
+							ui.click.charactercard(lib.config.jilueduijue15,'');
+						}else{
+							if(ondblclickjilueduijue15==2) ondblclickjilueduijue15=false;
+							if(ondblclickjilueduijue15==1) ondblclickjilueduijue15=2;
+						};
+					},500);
+				};
+				jilueduijue15.ondblclick=function(){
+					ondblclickjilueduijue15=1;
+					if(lib.config.jilueduijueDXG==4){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue15]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue15);
+						jilueduijue14.hide();
+						jilueduijue19.hide();
+						jilueduijue24.hide();
+						game.saveConfig('jilueduijue14a',true);
+						game.saveConfig('jilueduijue19a',true);
+						game.saveConfig('jilueduijue24a',true);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue15);
 
 
-				var jilueduijue16=ui.create.div('.card.fullskin',function(){
+				var jilueduijue16=ui.create.div('.card.fullskin');
+				jilueduijue16.style.height='55px';
+				jilueduijue16.style.width='55px';
+				jilueduijue16.style.left='-40px';
+				jilueduijue16.style.top='-40px';
+				jilueduijue16.setBackground(lib.config.jilueduijue16,'character');
+				ondblclickjilueduijue16=false;
+				jilueduijue16.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==5){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue16]+'和'+lib.translate[lib.config.jilueduijue21]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue16);
@@ -1052,16 +2336,39 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue16.style.height='55px';
-				jilueduijue16.style.width='55px';
-				jilueduijue16.style.left='-40px';
-				jilueduijue16.style.top='-40px';
-				jilueduijue16.setBackground(lib.config.jilueduijue16,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue16!=1&&ondblclickjilueduijue16!=2){
+							ui.click.charactercard(lib.config.jilueduijue16,'');
+						}else{
+							if(ondblclickjilueduijue16==2) ondblclickjilueduijue16=false;
+							if(ondblclickjilueduijue16==1) ondblclickjilueduijue16=2;
+						};
+					},500);
+				};
+				jilueduijue16.ondblclick=function(){
+					ondblclickjilueduijue16=1;
+					if(lib.config.jilueduijueDXG==5){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue16]+'和'+lib.translate[lib.config.jilueduijue21]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue16);
+						game.saveConfig('jilueduijueE1',lib.config.jilueduijue21);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue16);
 
 
-				var jilueduijue17=ui.create.div('.card.fullskin',function(){
+				var jilueduijue17=ui.create.div('.card.fullskin');
+				jilueduijue17.style.height='55px';
+				jilueduijue17.style.width='55px';
+				jilueduijue17.style.left='-102.5px';
+				jilueduijue17.style.top='25px';
+				jilueduijue17.setBackground(lib.config.jilueduijue17,'character');
+				ondblclickjilueduijue17=false;
+				jilueduijue17.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==5){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue17]+'和'+lib.translate[lib.config.jilueduijue22]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue17);
@@ -1070,16 +2377,39 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue17.style.height='55px';
-				jilueduijue17.style.width='55px';
-				jilueduijue17.style.left='-102.5px';
-				jilueduijue17.style.top='25px';
-				jilueduijue17.setBackground(lib.config.jilueduijue17,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue17!=1&&ondblclickjilueduijue17!=2){
+							ui.click.charactercard(lib.config.jilueduijue17,'');
+						}else{
+							if(ondblclickjilueduijue17==2) ondblclickjilueduijue17=false;
+							if(ondblclickjilueduijue17==1) ondblclickjilueduijue17=2;
+						};
+					},500);
+				};
+				jilueduijue17.ondblclick=function(){
+					ondblclickjilueduijue17=1;
+					if(lib.config.jilueduijueDXG==5){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue17]+'和'+lib.translate[lib.config.jilueduijue22]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue17);
+						game.saveConfig('jilueduijueE1',lib.config.jilueduijue22);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue17);
 
 
-				var jilueduijue18=ui.create.div('.card.fullskin',function(){
+				var jilueduijue18=ui.create.div('.card.fullskin');
+				jilueduijue18.style.height='55px';
+				jilueduijue18.style.width='55px';
+				jilueduijue18.style.left='-165.5px';
+				jilueduijue18.style.top='90px';
+				jilueduijue18.setBackground(lib.config.jilueduijue18,'character');
+				ondblclickjilueduijue18=false;
+				jilueduijue18.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==5){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue18]+'和'+lib.translate[lib.config.jilueduijue23]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue18);
@@ -1088,16 +2418,39 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue18.style.height='55px';
-				jilueduijue18.style.width='55px';
-				jilueduijue18.style.left='-165.5px';
-				jilueduijue18.style.top='90px';
-				jilueduijue18.setBackground(lib.config.jilueduijue18,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue18!=1&&ondblclickjilueduijue18!=2){
+							ui.click.charactercard(lib.config.jilueduijue18,'');
+						}else{
+							if(ondblclickjilueduijue18==2) ondblclickjilueduijue18=false;
+							if(ondblclickjilueduijue18==1) ondblclickjilueduijue18=2;
+						};
+					},500);
+				};
+				jilueduijue18.ondblclick=function(){
+					ondblclickjilueduijue18=1;
+					if(lib.config.jilueduijueDXG==5){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue18]+'和'+lib.translate[lib.config.jilueduijue23]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue18);
+						game.saveConfig('jilueduijueE1',lib.config.jilueduijue23);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue18);
 
 
-				var jilueduijue19=ui.create.div('.card.fullskin',function(){
+				var jilueduijue19=ui.create.div('.card.fullskin');
+				jilueduijue19.style.height='55px';
+				jilueduijue19.style.width='55px';
+				jilueduijue19.style.left='275px';
+				jilueduijue19.style.top='89px';
+				jilueduijue19.setBackground(lib.config.jilueduijue19,'character');
+				ondblclickjilueduijue19=false;
+				jilueduijue19.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==5){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue19]+'和'+lib.translate[lib.config.jilueduijue24]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue19);
@@ -1106,16 +2459,39 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue19.style.height='55px';
-				jilueduijue19.style.width='55px';
-				jilueduijue19.style.left='275px';
-				jilueduijue19.style.top='89px';
-				jilueduijue19.setBackground(lib.config.jilueduijue19,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue19!=1&&ondblclickjilueduijue19!=2){
+							ui.click.charactercard(lib.config.jilueduijue19,'');
+						}else{
+							if(ondblclickjilueduijue19==2) ondblclickjilueduijue19=false;
+							if(ondblclickjilueduijue19==1) ondblclickjilueduijue19=2;
+						};
+					},500);
+				};
+				jilueduijue19.ondblclick=function(){
+					ondblclickjilueduijue19=1;
+					if(lib.config.jilueduijueDXG==5){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue19]+'和'+lib.translate[lib.config.jilueduijue24]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue19);
+						game.saveConfig('jilueduijueE1',lib.config.jilueduijue24);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue19);
 
 
-				var jilueduijue20=ui.create.div('.card.fullskin',function(){
+				var jilueduijue20=ui.create.div('.card.fullskin');
+				jilueduijue20.style.height='55px';
+				jilueduijue20.style.width='55px';
+				jilueduijue20.style.left='212.5px';
+				jilueduijue20.style.top='154px';
+				jilueduijue20.setBackground(lib.config.jilueduijue20,'character');
+				ondblclickjilueduijue20=false;
+				jilueduijue20.onclick=function(){
+				if(lib.device){
 					if(lib.config.jilueduijueDXG==5){
 					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue20]+'和'+lib.translate[lib.config.jilueduijue25]+'?')){
 						game.saveConfig('jilueduijueE',lib.config.jilueduijue20);
@@ -1124,16 +2500,33 @@ lib.brawl.jilueduijue = {
 					}else{
 						alert('已挑战或前一关未通关')
 					};
-				});
-				jilueduijue20.style.height='55px';
-				jilueduijue20.style.width='55px';
-				jilueduijue20.style.left='212.5px';
-				jilueduijue20.style.top='154px';
-				jilueduijue20.setBackground(lib.config.jilueduijue20,'character');
+				};
+					setTimeout(function(){
+						if(ondblclickjilueduijue20!=1&&ondblclickjilueduijue20!=2){
+							ui.click.charactercard(lib.config.jilueduijue20,'');
+						}else{
+							if(ondblclickjilueduijue20==2) ondblclickjilueduijue20=false;
+							if(ondblclickjilueduijue20==1) ondblclickjilueduijue20=2;
+						};
+					},500);
+				};
+				jilueduijue20.ondblclick=function(){
+					ondblclickjilueduijue20=1;
+					if(lib.config.jilueduijueDXG==5){
+					if(confirm('是否挑战'+lib.translate[lib.config.jilueduijue20]+'和'+lib.translate[lib.config.jilueduijue25]+'?')){
+						game.saveConfig('jilueduijueE',lib.config.jilueduijue20);
+						game.saveConfig('jilueduijueE1',lib.config.jilueduijue25);
+					};
+					}else{
+						alert('已挑战或前一关未通关')
+					};
+				};
 				this.appendChild(jilueduijue20);
 
 
-				var jilueduijue21=ui.create.div('.card.fullskin');
+				var jilueduijue21=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue21,'');
+				});
 				jilueduijue21.style.height='55px';
 				jilueduijue21.style.width='55px';
 				jilueduijue21.style.left='207.5px';
@@ -1142,7 +2535,9 @@ lib.brawl.jilueduijue = {
 				this.appendChild(jilueduijue21);
 
 
-				var jilueduijue22=ui.create.div('.card.fullskin');
+				var jilueduijue22=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue22,'');
+				});
 				jilueduijue22.style.height='55px';
 				jilueduijue22.style.width='55px';
 				jilueduijue22.style.left='146px';
@@ -1151,7 +2546,9 @@ lib.brawl.jilueduijue = {
 				this.appendChild(jilueduijue22);
 
 
-				var jilueduijue23=ui.create.div('.card.fullskin');
+				var jilueduijue23=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue23,'');
+				});
 				jilueduijue23.style.height='55px';
 				jilueduijue23.style.width='55px';
 				jilueduijue23.style.left='83px';
@@ -1160,7 +2557,9 @@ lib.brawl.jilueduijue = {
 				this.appendChild(jilueduijue23);
 
 
-				var jilueduijue24=ui.create.div('.card.fullskin');
+				var jilueduijue24=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue24,'');
+				});
 				jilueduijue24.style.height='55px';
 				jilueduijue24.style.width='55px';
 				jilueduijue24.style.left='20px';
@@ -1169,7 +2568,9 @@ lib.brawl.jilueduijue = {
 				this.appendChild(jilueduijue24);
 
 
-				var jilueduijue25=ui.create.div('.card.fullskin');
+				var jilueduijue25=ui.create.div('.card.fullskin',function(){
+					ui.click.charactercard(lib.config.jilueduijue25,'');
+				});
 				jilueduijue25.style.height='55px';
 				jilueduijue25.style.width='55px';
 				jilueduijue25.style.left='-43px';
@@ -1206,12 +2607,7 @@ lib.brawl.jilueduijue = {
 				};
 			},
             content:{
-	            chooseCharacterFixed:true,
 	            gameStart:function(){
-					if(lib.config.jilueduijueE==undefined){
-						alert('未选择挑战武将，重新载入游戏');
-						game.reload();
-					};
 					if(game.me.name==lib.config.gameMeHasPlayer1&&lib.config.gameMeHasPlayerHp1!=undefined) game.me.hp=lib.config.gameMeHasPlayerHp1;
 					if(game.me.name==lib.config.gameMeHasPlayer2&&lib.config.gameMeHasPlayerHp2!=undefined) game.me.hp=lib.config.gameMeHasPlayerHp2;
 					if(game.me.name==lib.config.gameMeHasPlayer3&&lib.config.gameMeHasPlayerHp3!=undefined) game.me.hp=lib.config.gameMeHasPlayerHp3;
@@ -1273,6 +2669,14 @@ lib.brawl.jilueduijue = {
                 },
             },
             init:function(){
+				if(lib.config.jilueduijueE==undefined){
+					alert('未选择挑战武将，重新载入游戏');
+					game.reload();
+				};
+//				ui.commandnode.classList.add('off');
+				lib.config.mode_config.identity.free_choose=false;
+				lib.config.mode_config.identity.change_choice=false;
+				lib.config.mode_config.identity.change_identity=false;
                 game.saveConfig('double_character',false,'identity');
                 game.saveConfig('identity_mode','normal','identity');
                 if(lib.config.jilueduijueDXG!=5){
@@ -1322,6 +2726,8 @@ lib.brawl.jilueduijue = {
 								game.saveConfig('gameMeHasPlayer5',player.name);
 								game.saveConfig('gameMeHasPlayerHp5',lib.character[lib.config.gameMeHasPlayer5][2]);
 							};
+							if(lib.config.jilueduijueND=='easy'&&lib.config.jilueduijueDXG==5) game.saveConfig('jilueduijueEasy',lib.config.jilueduijueEasy+1);
+							if(lib.config.jilueduijueND=='medium'&&lib.config.jilueduijueDXG==5) game.saveConfig('jilueduijuemedium',lib.config.jilueduijuemedium+1);
 							if(game.me.name==lib.config.gameMeHasPlayer1) game.saveConfig('gameMeHasPlayerHp1',game.me.hp);
 							if(game.me.name==lib.config.gameMeHasPlayer2) game.saveConfig('gameMeHasPlayerHp2',game.me.hp);
 							if(game.me.name==lib.config.gameMeHasPlayer3) game.saveConfig('gameMeHasPlayerHp3',game.me.hp);
@@ -1347,6 +2753,8 @@ lib.brawl.jilueduijue = {
 									game.saveConfig('gameMeHasPlayer5',player.name);
 									game.saveConfig('gameMeHasPlayerHp5',lib.character[lib.config.gameMeHasPlayer5][2]);
 								};
+								if(lib.config.jilueduijueND=='medium'&&lib.config.jilueduijueDXG==5) game.saveConfig('jilueduijuemedium',lib.config.jilueduijuemedium+1);
+								if(lib.config.jilueduijueND=='hard'&&lib.config.jilueduijueDXG==5) game.saveConfig('jilueduijuehard',lib.config.jilueduijuehard+1);
 								if(game.me.name==lib.config.gameMeHasPlayer1) game.saveConfig('gameMeHasPlayerHp1',game.me.hp);
 								if(game.me.name==lib.config.gameMeHasPlayer2) game.saveConfig('gameMeHasPlayerHp2',game.me.hp);
 								if(game.me.name==lib.config.gameMeHasPlayer3) game.saveConfig('gameMeHasPlayerHp3',game.me.hp);
@@ -1368,7 +2776,7 @@ lib.brawl.jilueduijue = {
 					if(lib.config.gameMeHasPlayer3!=undefined) list.push(lib.config.gameMeHasPlayer3);
 					if(lib.config.gameMeHasPlayer4!=undefined) list.push(lib.config.gameMeHasPlayer4);
 					if(lib.config.gameMeHasPlayer5!=undefined) list.push(lib.config.gameMeHasPlayer5);
-					player.chooseButton(ui.create.dialog('选择上场的武将',[list,'character']));
+					player.chooseButton(ui.create.dialog('选择上场的武将',[list,'character']),true);
 					'step 1'
 					if(result.bool){
 						player.init(result.buttons[0].link);
@@ -1379,12 +2787,11 @@ lib.brawl.jilueduijue = {
 						if(game.me.name==lib.config.gameMeHasPlayer5&&lib.config.gameMeHasPlayerHp5!=undefined) game.me.hp=lib.config.gameMeHasPlayerHp5;
 						game.me.update();
 						player.draw(2);
-					}else{
-						game.jilueduijueRE();
 					};
 				},
 			};
 			lib.translate.jilueduijueCS='换将';
+			if(jilueduijueJLJM) jilueduijueJLJM.delete();
             },
 };
 };
@@ -2672,7 +4079,7 @@ trigger.source.discard(trigger.source.get('h'));
             "lielongshilan":"噬浪",
             "lielongshilan_info":"锁定技，其他角色的回合开始前，其须选择一项：<br>1.弃置一张手牌<br>2.流失一点体力",
             "lielongxuanwo":"漩涡",
-            "lielongxuanwo_info":"当你改变体力时，你可以将一名角色的武将牌翻面并令其X张牌。X为其当前已损失体力值",
+            "lielongxuanwo_info":"当你改变体力时，你可以将一名角色的武将牌翻面并令其摸X张牌。X为其当前已损失体力值",
             "lielonghaige":"海歌",
             "lielonghaige_info":"锁定技，结束阶段，你视为使用了一张【桃】",
             "lielongjiliu":"激流",
@@ -2941,127 +4348,6 @@ if(card.name=='sha') return num+1;
 };
 };
 	if(config.jiangshimoshi){
-	game.addCharacterPack({
-		character:{
-            jiangshifz:["male","qun",5,["xunmeng","zaibian","ganran","wansha","paoxiao"],["forbidai","des:僵尸模式配套武将"]],
-            jiangshinj:["male","qun",3,["baozou","wansha","xueji","shishi","ganran"],["forbidai","des:僵尸模式配套武将"]],
-		},
-		skill:{
-baozou:{
-    mod:{
-        cardUsable:function (card,player,num){
-            if(card.name=='sha') return Infinity;
-        },
-    },
-    ai:{
-        unequip:true,
-        skillTagFilter:function (player,tag,arg){
-            if(!get.zhu(player,'shouyue')) return false;
-            if(arg&&arg.name=='sha') return true;
-            return false;
-        },
-    },
-},
-            shishi:{
-				trigger:{source:'dieAfter'},
-				forced:true,
-				content:function(){
-					player.gainMaxHp(1);
-					player.recover();
-				}
-			},
-            xunmeng:{
-				trigger:{source:'damageBegin'},
-				filter:function(event){
-					return event.card&&event.card.name=='sha'&&event.parent.name!='_lianhuan'&&event.parent.name!='_lianhuan2';
-				},
-				forced:true,
-				content:function(){
-					trigger.num++;
-					if(player.hp>1) player.loseHp();
-				}
-			},
-            zaibian:{
-				trigger:{player:'phaseUseBegin'},
-				filter:function(event,player){
-					return get.population('zhong')-get.population('fan')-get.population('nei')+2>0;
-				},
-				forced:true,
-				content:function(){
-					var num=get.population('zhong')-get.population('fan')-get.population('nei')+2;
-					player.draw(num);
-				}
-			},
-			ganran:{
-				mod:{
-					cardEnabled:function(card,player){
-						if(get.type(card)=='equip') return false;
-					},
-					cardRespondable:function(card,player){
-						if(get.type(card)=='equip') return false;
-					},
-					cardSavable:function(card,player){
-						if(get.type(card)=='equip') return false;
-					},
-				},
-				enable:['chooseToUse'],
-				filterCard:{type:'equip'},
-				viewAsFilter:function(player){
-					return player.num('h',{type:'equip'})>0;
-				},
-				viewAs:{name:'tiesuo'},
-				check:function(){return 1},
-				group:'ganran2',
-				ai:{
-					order:4,
-					useful:-1,
-					value:-1
-				}
-			},
-			ganran2:{
-				enable:'phaseUse',
-				filter:function(event,player){
-					return player.num('h',{type:'equip'})>0;
-				},
-				filterCard:{type:'equip'},
-				prepare:function(cards,player){
-					player.$throw(cards,1000);
-				},
-				discard:false,
-				delay:0.5,
-				content:function(){
-					"step 0"
-					player.draw();
-					"step 1"
-					for(var i=0;i<cards.length;i++){
-						ui.discardPile.appendChild(cards[i]);
-					}
-				},
-				ai:{
-					order:3.5,
-					result:{
-						player:1
-					}
-				}
-			},
-
-		},
-		translate:{
-			jiangshifz:'僵尸',
-			jiangshinj:'僵尸',
-			baozou:'暴走',
-			baozou_info:' 锁定技，出牌阶段，你可以使用任意数量的【杀】。 ',
-			shishi:'噬尸',
-			shishi_info:' 锁定技，当你杀死一名角色后，你获得一点体力上限并回复一点体力。 ',
-			xunmeng:'迅猛',
-			xunmeng_info:' 锁定技，你的杀造成的伤害+1。你的杀造成伤害时，若你体力大于1，你流失1点体力。 ',
-			zaibian:'灾变',
-			zaibian_info:' 锁定技，你的出牌阶段开始时，若人类玩家数-僵尸玩家数+1大于0，则你摸取该数目的牌。 ' ,
-			ganran:'感染',
-			ganran_info:' 锁定技，你的装备牌都视为铁锁连环',
-			ganran2:'感染·重铸',
-		},
-},'僵尸模式');
 	if ( lib.brawl ) {
 lib.brawl.jiangshimoshi = {
             name:'僵尸模式',
@@ -3433,7 +4719,7 @@ player.next.group='er';
 player.next.identity='er';
 player.next._group='er';
 player.next.node.identity.firstChild.innerHTML=get.translation('er');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>2){
 player.next.useSkill("chanceIdentity2")
 }
@@ -3445,7 +4731,7 @@ player.next.group='san';
 player.next.identity='san';
 player.next._group='san';
 player.next.node.identity.firstChild.innerHTML=get.translation('san');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>3){
 player.next.useSkill("chanceIdentity3")
 }
@@ -3457,7 +4743,7 @@ player.next.group='si';
 player.next.identity='si';
 player.next._group='si';
 player.next.node.identity.firstChild.innerHTML=get.translation('si');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>4){
 player.next.useSkill("chanceIdentity4")
 }
@@ -3469,7 +4755,7 @@ player.next.group='wu1';
 player.next.identity='wu1';
 player.next._group='wu1';
 player.next.node.identity.firstChild.innerHTML=get.translation('wu1');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>5){
 player.next.useSkill("chanceIdentity5")
 }
@@ -3481,7 +4767,7 @@ player.next.group='liu';
 player.next.identity='liu';
 player.next._group='liu';
 player.next.node.identity.firstChild.innerHTML=get.translation('liu');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>6){
 player.next.useSkill("chanceIdentity6")
 }
@@ -3493,7 +4779,7 @@ player.next.group='qi';
 player.next.identity='qi';
 player.next._group='qi';
 player.next.node.identity.firstChild.innerHTML=get.translation('qi');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>7){
 player.next.useSkill("chanceIdentity7")
 }
@@ -3505,7 +4791,7 @@ player.next.group='ba';
 player.next.identity='ba';
 player.next._group='ba';
 player.next.node.identity.firstChild.innerHTML=get.translation('ba');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>8){
 player.next.useSkill("chanceIdentity8")
 }
@@ -3517,7 +4803,7 @@ player.next.group='jiu1';
 player.next.identity='jiu1';
 player.next._group='jiu1';
 player.next.node.identity.firstChild.innerHTML=get.translation('jiu1');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>9){
 player.next.useSkill("chanceIdentity9")
 }
@@ -3529,7 +4815,7 @@ player.next.group='shi';
 player.next.identity='shi';
 player.next._group='shi';
 player.next.node.identity.firstChild.innerHTML=get.translation('shi');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>10){
 player.next.useSkill("chanceIdentity10")
 }
@@ -3541,7 +4827,7 @@ player.next.group='shiyi';
 player.next.identity='shiyi';
 player.next._group='shiyi';
 player.next.node.identity.firstChild.innerHTML=get.translation('shiyi');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>11){
 player.next.useSkill("chanceIdentity11")
 }
@@ -3553,7 +4839,7 @@ player.next.group='shier';
 player.next.identity='shier';
 player.next._group='shier';
 player.next.node.identity.firstChild.innerHTML=get.translation('shier');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>12){
 player.next.useSkill("chanceIdentity12")
 }
@@ -3565,7 +4851,7 @@ player.next.group='shisan';
 player.next.identity='shisan';
 player.next._group='shisan';
 player.next.node.identity.firstChild.innerHTML=get.translation('shisan');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>13){
 player.next.useSkill("chanceIdentity13")
 }
@@ -3577,7 +4863,7 @@ player.next.group='shisi';
 player.next.identity='shisi';
 player.next._group='shisi';
 player.next.node.identity.firstChild.innerHTML=get.translation('shisi');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>14){
 player.next.useSkill("chanceIdentity14")
 }
@@ -3589,7 +4875,7 @@ player.next.group='shiwu';
 player.next.identity='shiwu';
 player.next._group='shiwu';
 player.next.node.identity.firstChild.innerHTML=get.translation('shiwu');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>15){
 player.next.useSkill("chanceIdentity15")
 }
@@ -3601,7 +4887,7 @@ player.next.group='shiliu';
 player.next.identity='shiliu';
 player.next._group='shiliu';
 player.next.node.identity.firstChild.innerHTML=get.translation('shiliu');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 if(game.players.length>16){
 player.next.useSkill("chanceIdentity16")
 }
@@ -3613,7 +4899,7 @@ player.next.group='yi';
 player.next.identity='yi';
 player.next._group='yi';
 player.next.node.identity.firstChild.innerHTML=get.translation('yi');
-player.next.node.identity.dataset.color=player.next.identity;
+player.next.node.identity.dataset.color='zhu';
 player.next.useSkill("chanceIdentity")
 },
             };
@@ -10417,17 +11703,6 @@ player.recover();
 		},
 
 },'技能皮肤');
-};
-        if (config.UsePifuNew) {
-            for (var i in lib.characterPack['mode_extension_技能皮肤']) {
-				if (i=='Pifunyhzr第二人类1'||i=='Pifunyhzr第二人类3'||i=='Pifunyhzr魅魔公主1'||i=='Pifunyhzr魅魔公主2'||i=='Pifunyhzr暴君1'||i=='Pifunyhzr暴君2'||i=='Pifunyhzr暴君3'||i=='Pifunyhzr吸血鬼伯爵1'||i=='Pifunyhzr吸血鬼伯爵3'||i=='Pifunyhzr射日英雄1'||i=='Pifunyhzr射日英雄2'||i=='Pifunyhzr射日英雄4'||i=='Pifunyhzr射日英雄5'||i=='Pifunyhzr魔龙化身1'||i=='Pifunyhzr魔龙化身2'||i=='Pifunyhzr魔龙化身3'||i=='Pifunyhzr时空英雄1'||i=='Pifunyhzr时空英雄2'||i=='Pifunyhzr自然之灵1'||i=='Pifunyhzr自然之灵2'||i=='Pifunyhzr幻卡魔女1'||i=='Pifunyhzr幻卡魔女2'||i=='Pifunyhzr幻卡魔女3'||i=='Pifunyhzr幻卡魔女4'||i=='Pifunyhzr黑暗中的剑客1'||i=='Pifunyhzr黑暗中的剑客3')
-                for (var j = 0; j < lib.character[i][4].length; j++) {
-                    if (lib.character[i][4][j].indexOf('ext:') == 0) {
-                        lib.character[i][4][j] = 'ext:新英魂之刃/New' + i + '.jpg'; break;
-                    }
-                }
-            }
-        };
         if (lib.config.Pifunyhzr魅魔公主1) {
 			for (var i in lib.characterPack['mode_extension_技能皮肤']) {
 			if (i=='Pifunyhzr魅魔公主1'){
@@ -10659,6 +11934,17 @@ player.recover();
         }
 		}
         };
+		};
+        if (config.UsePifuNew) {
+            for (var i in lib.characterPack['mode_extension_技能皮肤']) {
+				if (i=='Pifunyhzr第二人类1'||i=='Pifunyhzr第二人类3'||i=='Pifunyhzr魅魔公主1'||i=='Pifunyhzr魅魔公主2'||i=='Pifunyhzr暴君1'||i=='Pifunyhzr暴君2'||i=='Pifunyhzr暴君3'||i=='Pifunyhzr吸血鬼伯爵1'||i=='Pifunyhzr吸血鬼伯爵3'||i=='Pifunyhzr射日英雄1'||i=='Pifunyhzr射日英雄2'||i=='Pifunyhzr射日英雄4'||i=='Pifunyhzr射日英雄5'||i=='Pifunyhzr魔龙化身1'||i=='Pifunyhzr魔龙化身2'||i=='Pifunyhzr魔龙化身3'||i=='Pifunyhzr时空英雄1'||i=='Pifunyhzr时空英雄2'||i=='Pifunyhzr自然之灵1'||i=='Pifunyhzr自然之灵2'||i=='Pifunyhzr幻卡魔女1'||i=='Pifunyhzr幻卡魔女2'||i=='Pifunyhzr幻卡魔女3'||i=='Pifunyhzr幻卡魔女4'||i=='Pifunyhzr黑暗中的剑客1'||i=='Pifunyhzr黑暗中的剑客3')
+                for (var j = 0; j < lib.character[i][4].length; j++) {
+                    if (lib.character[i][4][j].indexOf('ext:') == 0) {
+                        lib.character[i][4][j] = 'ext:新英魂之刃/New' + i + '.jpg'; break;
+                    }
+                }
+            }
+        };
 		if(config.awakenShow){
 			game.saveConfig('awakenShow',true);
 		}else{
@@ -10687,6 +11973,214 @@ player.recover();
 		};
 		},editable:false,
 		precontent:function (nyhzrlj){
+		get.modetrans=function(config,server){
+            if(config.mode=='versus'){
+                switch(config.versus_mode){
+                    case '1v1':return '单人对决';
+                    case '2v2':return '欢乐成双';
+                    case '3v3':return '血战到底';
+                    case '4v4':return '四人对决';
+                }
+            }
+            else if(config.mode=='identity'&&config.identity_mode=='zhong'){
+                return '忠胆英杰';
+            }
+            else if(config.mode=='identity'&&config.identity_mode=='zombie'){
+                return '僵尸狂潮';
+            }
+            else if(config.mode=='identity'&&config.identity_mode=='strong'){
+                return '兵精粮足';
+            }
+            else if(config.mode=='guozhan'&&config.guozhan_mode=='combine'){
+                return '一统天下';
+            }
+            else{
+                if(server){
+                    return get.translation(config.mode)+'模式';
+                }
+                else{
+                    return get.cnNumber(parseInt(config.number))+'人'+get.translation(config.mode);
+                }
+            }
+        };
+		get.groupnature=function(group,method){
+			var nature;
+			switch(group){
+				case 'shen':nature='thunder';break;
+				case 'wei':nature='water';break;
+				case 'shu':nature='soil';break;
+				case 'wu':nature='wood';break;
+				case 'qun':nature='metal';break;
+				case 'li':nature='soil';break;
+				case 'min':nature='thunder';break;
+				case 'zhi':nature='water';break;
+				default:return '';
+			}
+			if(method=='raw'){
+				return nature;
+			}
+			return nature+'mm';
+		};
+		get.verticalStr=function(str,sp){
+			if(typeof str!='string') return '';
+			str=str.toUpperCase();
+			var str2='';
+            var nobreak=false;
+			for(var i=0;i<str.length;i++){
+                if(str[i]=='`'){
+                    nobreak=!nobreak;continue;
+                }
+				str2+=str[i];
+                if(nobreak) continue;
+				if(sp&&str[i]=='S'&&str[i+1]=='P') continue;
+                if(/[0-9]/.test(str[i])&&/[0-9]/.test(str[i+1])) continue;
+				if(i<str.length-1){
+					str2+='<br>';
+				}
+			}
+			if(str2=='灭<br>世<br>魔<br>星'){
+				str2='<span style="color:#7F0A75;font-weight:600;font-family:lishu">尸<br>王<br>之<br>子<br> </span>'
+			}
+			if(str2=='◉<br>咯<br>哩<br>咯<br>哩'){
+				str2='<span style="color:#2DFF22;font-weight:600;font-family:lishu">自<br>然<br>之<br>灵<br> </span>'
+			}
+			if(str2=='◉<br>莉<br>莉<br>姆<br>·<br>提<br>露<br>埃<br>拉'){
+				str2='<span style="color:#FF0BF3;font-weight:600;font-family:lishu">媚<br>魔<br>公<br>主<br> </span>'
+			}
+			if(str2=='◉<br>龙<br>骑<br>士'){
+				str2='<span style="color:#A80E0E;font-weight:600;font-family:lishu">魔<br>龙<br>化<br>身<br> </span>'
+			}
+			if(str2=='◉<br>妮<br>娜'){
+				str2='<span style="color:#0C7A0E;font-weight:600;font-family:lishu">狼<br>蛛<br> <br> <br> </span>'
+			}
+			if(str2=='◉<br>德<br>古<br>拉'){
+				str2='<span style="color:#E80000;font-weight:600;font-family:lishu">吸<br>血<br>鬼<br>伯<br>爵</span>'
+			}
+			if(str2=='◉<br>后<br>羿'){
+				str2='<span style="color:#FCFF2E;font-weight:600;font-family:lishu">射<br>日<br>英<br>雄<br> </span>'
+			}
+			if(str2=='◉<br>苏<br>尔<br>肯'){
+				str2='<span style="color:#B20BFF;font-weight:600;font-family:lishu">死<br>灵<br>法<br>师<br> </span>'
+			}
+			if(str2=='◉<br>瓦<br>尔<br>基<br>里'){
+				str2='<span style="color:#FF520D;font-weight:600;font-family:lishu">女<br>武<br>神<br> <br> </span>'
+			}
+			if(str2=='◉<br>小<br>乔'){
+				str2='<span style="color:#06FBFF;font-weight:600;font-family:lishu">矫<br>情<br>之<br>花<br> </span>'
+			}
+			if(str2=='◉<br>凯<br>撒'){
+				str2='<span style="color:#FBFF03;font-weight:600;font-family:lishu">凯<br>撒<br>大<br>帝<br> </span>'
+			}
+			if(str2=='◉<br>狄<br>娜'){
+				str2='<span style="color:#FF0000;font-weight:600;font-family:lishu">炽<br>焰<br>火<br>女<br> </span>'
+			}
+			if(str2=='◉<br>司<br>马<br>懿'){
+				str2='<span style="color:#272AFF;font-weight:600;font-family:lishu">狼<br>顾<br>之<br>相<br> </span>'
+			}
+			if(str2=='◉<br>金<br>乌'){
+				str2='<span style="color:#F4200D;font-weight:600;font-family:lishu">三<br>足<br>乌<br> <br> </span>'
+			}
+			if(str2=='◉<br>阿<br>努<br>比<br>斯'){
+				str2='<span style="color:#EAFF00;font-weight:600;font-family:lishu">灵<br>魂<br>守<br>护<br>神</span>'
+			}
+			if(str2=='◉<br>玄<br>武'){
+				str2='<span style="color:#F4A26E;font-weight:600;font-family:lishu">四<br>象<br>之<br>北<br> </span>'
+			}
+			if(str2=='◉<br>甘<br>道<br>夫'){
+				str2='<span style="color:#F2F482;font-weight:600;font-family:lishu">白<br>袍<br>巫<br>师<br> </span>'
+			}
+			if(str2=='◉<br>树<br>精<br>长<br>老'){
+				str2='<span style="color:#AFF400;font-weight:600;font-family:lishu">阴<br>阳<br>师<br> <br> </span>'
+			}
+			if(str2=='◉<br>泰<br>坦'){
+				str2='<span style="color:#F4D7A9;font-weight:600;font-family:lishu">巨<br>人<br> <br> <br> </span>'
+			}
+			if(str2=='◉<br>水<br>元<br>素'){
+				str2='<span style="color:#3BEBF4;font-weight:600;font-family:lishu">吞<br>噬<br>之<br>水<br> </span>'
+			}
+			if(str2=='◉<br>死<br>神'){
+				str2='<span style="color:#000000;font-weight:600;font-family:lishu">暗<br>黑<br>收<br>割<br>者</span>'
+			}
+			if(str2=='◉<br>项<br>羽'){
+				str2='<span style="color:#FF6F15;font-weight:600;font-family:lishu">西<br>楚<br>霸<br>王<br> </span>'
+			}
+			if(str2=='◉<br>八<br>歧<br>大<br>蛇'){
+				str2='<span style="color:#0BFF2F;font-weight:600;font-family:lishu">万<br>物<br>意<br>志<br> </span>'
+			}
+			if(str2=='◉<br>狂<br>徒'){
+				str2='<span style="color:#960085;font-weight:600;font-family:lishu">罪<br>业<br>狂<br>屠<br> </span>'
+			}
+			if(str2=='◉<br>杨<br>戬'){
+				str2='<span style="color:#FBFF22;font-weight:600;font-family:lishu">二<br>郎<br>神<br> <br> </span>'
+			}
+			if(str2=='◉<br>米<br>迦<br>勒'){
+				str2='<span style="color:#FCFF66;font-weight:600;font-family:lishu">大<br>天<br>使<br> <br> </span>'
+			}
+			if(str2=='◉<br>电<br>光<br>侠'){
+				str2='<span style="color:#1A98FF;font-weight:600;font-family:lishu">异<br>变<br>的<br>英<br>雄</span>'
+			}
+			if(str2=='◉<br>兰'){
+				str2='<span style="color:#FF2727;font-weight:600;font-family:lishu">火<br>神<br>战<br>姬<br> </span>'
+			}
+			if(str2=='◉<br>大<br>乔'){
+				str2='<span style="color:#06FBFF;font-weight:600;font-family:lishu">国<br>色<br>天<br>香<br> </span>'
+			}
+			if(str2=='◉<br>雅<br>典<br>娜'){
+				str2='<span style="color:#03EAFF;font-weight:600;font-family:lishu">智<br>慧<br>女<br>神<br> </span>'
+			}
+			if(str2=='◉<br>西<br>莫'){
+				str2='<span style="color:#AF07AD;font-weight:600;font-family:lishu">食<br>人<br>魔<br>首<br>领</span>'
+			}
+			if(str2=='◉<br>丛<br>林<br>之<br>子'){
+				str2='<span style="color:#00FF48;font-weight:600;font-family:lishu">丛<br>林<br>之<br>子<br> </span>'
+			}
+			if(str2=='◉<br>宫<br>本<br>武<br>藏'){
+				str2='<span style="color:#000000;font-weight:600;font-family:lishu">黑<br>暗<br>中<br>的<br>剑<br>客</span>'
+			}
+			if(str2=='◉<br>鲁<br>瓦'){
+				str2='<span style="color:#E24529;font-weight:600;font-family:lishu">地<br>狱<br>火<br> <br> </span>'
+			}
+			if(str2=='◉<br>阿<br>瑞<br>斯'){
+				str2='<span style="color:#F3FF06;font-weight:600;font-family:lishu">战<br>神<br> <br> <br> </span>'
+			}
+			if(str2=='◉<br>席<br>璐<br>达'){
+				str2='<span style="color:#A5393A;font-weight:600;font-family:lishu">黑<br>桃<br>皇<br>后<br> </span>'
+			}
+			if(str2=='◉<br>钟<br>馗'){
+				str2='<span style="color:#92A577;font-weight:600;font-family:lishu">判<br>官<br> <br> <br> </span>'
+			}
+			if(str2=='◉<br>阿<br>波<br>罗'){
+				str2='<span style="color:#FCFF5F;font-weight:600;font-family:lishu">太<br>阳<br>之<br>子<br> </span>'
+			}
+			if(str2=='◉<br>花<br>木<br>兰'){
+				str2='<span style="color:#ED0547;font-weight:600;font-family:lishu">代<br>父<br>从<br>军<br> </span>'
+			}
+			if(str2=='◉<br>西<br>门<br>飞<br>雪'){
+				str2='<span style="color:#8CEDDE;font-weight:600;font-family:lishu">风<br>吹<br>雪<br> <br> </span>'
+			}
+			if(str2=='◉<br>孙<br>悟<br>空'){
+				str2='<span style="color:#FBFF22;font-weight:600;font-family:lishu">齐<br>天<br>大<br>圣<br> </span>'
+			}
+			if(str2=='◉<br>斯<br>巴<br>达'){
+				str2='<span style="color:#A83131;font-weight:600;font-family:lishu">英<br>勇<br>无<br>畏<br> </span>'
+			}
+			if(str2=='◉<br>黛<br>西<br>亚'){
+				str2='<span style="color:#C8FF52;font-weight:600;font-family:lishu">圣<br>枪<br>使<br> <br> </span>'
+			}
+			if(str2=='◉<br>妲<br>己'){
+				str2='<span style="color:#E555FF;font-weight:600;font-family:lishu">媚<br>狐<br><br> <br> </span>'
+			}
+			if(str2=='◉<br>卡<br>柯'){
+				str2='<span style="color:#E58005;font-weight:600;font-family:lishu">波<br>斯<br>王<br>子<br> </span>'
+			}
+			if(str2=='◉<br>艾<br>薇'){
+				str2='<span style="color:#092BA5;font-weight:600;font-family:lishu">暗<br>月<br>猎<br>手<br> </span>'
+			}
+			if(str2=='◉<br>福<br>娃'){
+				str2='<span style="color:#FF000D;font-weight:600;font-family:lishu">福<br>娃<br> <br> <br> </span>'
+			}
+			return str2;
+		};
         if(nyhzrlj.enable){
             game.import('character',function(){
                 var nyhzrlj={
@@ -10720,7 +12214,7 @@ player.recover();
             "mnyhzr米迦勒ol":["male","li",4,["nyhzr神圣审判ol","nyhzr圣光护盾ol"],["ext:新英魂之刃/Newmnyhzr米迦勒.jpg","des:<img src='http://img5.91huo.cn/news.cos/images/buy/dts/header.jpg?' width='280' height='150'><li>在凡人无法触及的高天之上，是属于神的领域，圣洁的天使在此巡弋，维护着尘世的公平与秩序。<li>同为诞生最早的天使，米迦勒和路西法拥有着其他天使无法比拟的勇气和力量，一个是光之君主，一个是拂晓之星，亲如兄弟的他们一同成为了神的左右手。<li>然而此刻，天界却被邪恶的阴影所笼罩，路西法背弃了天父，投入了魔鬼的怀抱，三分之一的天使随之堕落。只要两位最强大的天使联手，神也不是高不可攀……<li>但是，米迦勒拒绝了和路西法一同堕落。性情高傲的他无法原谅背弃了神和自己的路西法。<li>他吹响了天国的号角，战火燃遍广漠无垠的天宇。罪恶必须被无情地否定和毁灭，即使天使犯了罪，也应一视同仁。<li>如同所有歌谣中一样，正义最终战胜了邪恶，堕落者永远无法得到原谅，天上再也没有他们的位置。在神的授意下，米迦勒亲手将路西法投入无底的深渊。<li>光明与黑暗就此决裂，米迦勒成为了最耀眼最强大的天使长。与路西法及其手下的邪灵争战成为米迦勒背负的十字架——只要邪恶还在肆虐，米迦勒的战斗就不会停歇。"]],
             "dnyhzr电光侠ol":["male","min",3,["nyhzr移形换影ol","nyhzr电光火石ol"],["ext:新英魂之刃/Newdnyhzr电光侠.jpg","des:<img src='http://img5.91huo.cn/news.cos/images/buy/dgx/header.jpg' width='280' height='150'><li>23世纪，新纪元带给人们的并非光明。浓稠的黑暗成为世界的主色调。罪恶大行其道，正义瑟瑟发抖。人们祈求有一位英雄挺身而出，与邪恶力量殊死搏斗。<li>救世主就在这种时候出现。他不理会民众的示好，从不驻足停留。也许是神秘感始然，关于新英雄的消息潮水般涌来——街头小报借此狠狠发了笔横财。<li>邪恶力量对从天而降的劲敌束手无策，他们想尽方法试图找到他的弱点，不放过任何一丝细节。<li>渐渐的，英雄开始处于下风。一则流言甚嚣尘上——新英雄是使用药物产生变异的普通人。一旦能力失控，他很有可能成为比邪恶力量更可怕的人类公敌！<li>对英雄的欢呼转瞬变成冷言冷语的利刃。竟连“他是邪恶力量的幕后指使者”的意见也得到了不少认可。<li>邪恶力量再度席卷而来时，英雄并未出现。惶恐不安的人们又拾起敬畏之心，重新呼唤被他们称为“电光侠”的恩人。这次，他们的期望落空了……<li>不过，英雄的出现唤醒了一些人沉睡的正义！对抗邪恶的前线上出现了一群无畏的年轻人。他们视那位英雄为指引前行的明灯，以“电光侠”为名，誓将黑暗斩除，迎接黎明的未来！"]],
             "lnyhzr兰ol":["female","li",3,["nyhzr高速格林炮ol","nyhzr穿刺射击ol"],["ext:新英魂之刃/Newlnyhzr兰.jpg","des:<img src='http://img3.91huo.cn/news.cos/images/buy/hszj/header.jpg' width='380' height='122'><li>血腥味与硝烟味弥漫在空气中，幸存的士兵静默地收拾残局，天空飘落的细雪渐渐掩盖了焦土，好像刚才的激战从未存在。<li>兰依旧手握火神重炮，警惕地环视四周，直至收队的命令响起。不能放松，她对自己说，放松就意味着……生命的消逝。<li>作为队里的特殊战力，兰被称为“火神战姬”。她得到的瞩目与关注是许多战士所梦寐以求。<li>然而，这些不过是毫无用处的东西。如果可以的话，她愿意用现在的一切去交换曾经被她所轻视的生活。<li>自从局部战争开始以来，每天平淡的校园生活变成奢侈。叽叽喳喳的女生凑在一起笑闹的场景，也成为记忆中褪色的画面。每每从噩梦中惊醒，她都想到挚友们最后的样子。那过早凋零的生命时刻提醒着，她为自己的自大付出了怎样的代价。<li>现在，她用枪弹宣泄着心中的怒火和对敌人的恨意。只要生命不止，她将继续战斗下去，为了让其他人安享生活，不再承受这样的痛苦！"]],
-            "dnyhzr大乔ol":["female","zhi",3,["nyhzr乱世听凤ol","nyhzr凤羽踏歌ol"],["ext:新英魂之刃/dnyhzr大乔.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/dq//header.jpg' width='340' height='122'>"]],
+            "dnyhzr大乔ol":["female","zhi",3,["nyhzr乱世听凤ol","nyhzr凤羽踏歌ol"],["ext:新英魂之刃/dnyhzr大乔.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/dq//header.jpg' width='340' height='122'><li>东汉建安四年，皖城告破，易主孙吴。春卷庐江郡皖，落英缤纷难掩满城战乱后的萧索。<li>两位将领模样的男子带着一队兵卒至东郊一处寓所，随行抬着八九个满载金银的大箱。箱落地，人入座，领头男子向家主拱手遥作一揖，语含笑意，“闻乔公二女皆为国色，今孙策前来提亲，乔公意下如何？”<li>后院深闺，大乔一边轻抚凤凰琴弦，一边听下人禀报前堂事态。生性娇俏的小乔早已按耐不住，抱着大乔的手臂轻晃，“阿姐，阿姐，难道你我要同侍一夫吗……”<li>“孙策颜姿俊美，却被称江东小霸王，怕是不识雅韵……”<li>“阿姐，这周将军的笛配我们的琴会不会很有意思……”大乔轻拍小乔的手，淡淡道，“你等下随我入堂，不要言语，一切交给阿姐便是。” <li>堂上，孙策直抒来意，乔公知无退路，却又踌躇难断。数十载，乔家为避战祸四处奔波，就是不愿二女卷入其中，奈何姊妹渐露倾城之色，名号传扬开去，终是逃不出离乱命数。看乔公迟迟不应，孙策有些不耐烦，周瑜见状开口，“乔公二女流离，若得吴侯做婿，不足为欢？”“欢不欢都被一语道破，周将军倒是比吴侯更懂我姐妹二人——”有人淡淡地道，声音若玉石，坠入冰潭中，连激起的水花，也是冷的。<li>孙策，周瑜纷纷回头看向厅门，围满前堂的士卒不知不觉散开，两女子一前一后，缓缓向这边走来。语者行于前，微扬着头，云髻高挽，点一枚凤羽盘于发间。她的身材高挑，眼角成匀称的丹凤，走动之际，金色凤羽眉心坠就有韵律地摇晃起来，衣裙飘逸，袖口迤逦自地面，裙尾长长地拖在身后。淡如水却又高贵成凤，像一只浴水凤凰，从天宫一步一步走进人间来，君临天下般俯视着周瑜，“那周将军，你怎么不提亲呢？莫不是因为阶下囚的身份而看不起大乔小乔？”周瑜觉察方才所言有失礼数，准备说些什么，大乔却并不理会，随即转向孙策，轻作揖，“吴侯莫怪，家父为难也是有所顾虑，”大乔把小乔拉到身边，“大小乔素来姐妹情深，但同侍一夫难免心生嫌隙，这是家父也是我二人都不愿看到的。”大乔看孙策若有所思，继续说道，“闻吴侯善待有才之士，与周将军更是情同手足，倒不如你二人双双提亲，两位才俊配两位佳人，兼顾姐妹之情与手足之义，岂不大全？”<li>“哈哈哈，好一个大全。公瑾啊，你今天撞上好运了。那——”孙策饶有兴致地看向大乔，“是你嫁予我呢，还是你妹妹嫁予我？”大乔不禁莞尔，笑入孙策躁动的内心，“吴侯逗乐了，我何时说过自己是阿姐了。小乔以为，这长幼有序，是自古的礼数，吴侯长于周将军，自当吴侯配阿姐，而我与周郎成双了。”<li>说罢，大乔将小乔往孙策身边拢了拢。孙策这下着急了，竟直呼不妥。小乔偷笑着投来目光，大乔只一眼对望，却让小乔感到心安，姐姐会一直保护她。<li>待亲事落定，孙策应了大乔善待乔家全府的请求，这大乔才重新介绍姐妹二人。孙策倒也不气不恼，笑看大乔，觉得这夫人着实看不透。很久以后孙策问大乔，当时若应下了长幼有序的配法，她将如何处之。“这说明夫君是个恪守礼数的人，则大事上言出必行。若辨明真身，我为大，夫君也依然要娶我。只是那时的你，选择了从心而行。”<li>说罢大乔回眸一笑，金色凤羽眉心坠熠熠生辉，宛若坠入人间的凤凰，晃得人眼迷离，晃得孙策好想问她，你的真心又是什么，是不是只为了帮小乔。却迟迟不敢开口。"]],
             "ynyhzr雅典娜ol":["female","zhi",3,["nyhzr战争惧刃ol","nyhzr圣光法球ol"],["ext:新英魂之刃/Newynyhzr雅典娜.jpg","des:<img src='http://img4.91huo.cn/news.cos/images/buy/ydn/header.jpg' width='280' height='150'><li>愤怒的时代结束了，在黎明尽头，诸神以犹疑的目光注视着天地中心的那扇混沌之门，那是异世界的入口，是战争的源头，是混合了信仰、破灭、黑暗、光明、绝望以及希望的所在。女神在那里放下希望信标，天空之风轻轻将历史翻过新的一页。<li>千年之后，上古时代的种种已化为发黄书页中记载的传说。人类在世界各地建立新的国家，繁衍生息。然而，随着时间的推移，原来平和温顺的人类似乎被拖入欲望的迷沼，贪婪、胆怯、卑劣、背诺……信仰缺失的人类犹如置身重重迷雾之中……<li>种种游离的、隐秘不定的迹象，将混沌之门这个早已埋没在历史尘埃中的地点重新提及。一些试图重新找寻本源的人站了出来。据说，他们得到了一位神祗的相助——那名神秘的女神有着传说一般的身世与容貌。人们被阻隔在这层传说之雾外，唯一可知的就是她有一个温柔的名字：雅典娜。"]],
             "xnyhzr西莫ol":["male","zhi",4,["nyhzr欲望灾火ol"],["ext:新英魂之刃/Newxnyhzr西莫.jpg","des:<img src='http://img5.91huo.cn/news.cos/images/buy/stsrm/header_v1.jpg' width='280' height='150'><li>也许是饥荒年代的一次捕食，食人魔这个名字便顽固地流传开来。那异乎寻常的外貌被添油加醋成为了食人的证明。为了清除可能的隐患因素，人类对食人魔族展开了大规模围剿，哪怕他们早已不将人类作为食物。<li>压倒性的战局令大批大批的食人魔沦为帝国的奴隶。要么毫无尊严的成为奴隶，要么成为人类狩猎的活靶。“比起战死而言，成为人类的奴隶只要听话至少衣食无忧”，这个想法一度成为食人魔族的共识。<li>生来便拥有两个脑袋的西莫很明显是个异类，无论是哪个方面。也许是两个脑袋的缘故，他对于自由的渴望比其他食人魔更加炽烈，当然，智慧与勇气也有双份。他巧妙地制造一起起收容所暴动，策划了一场又一场的游击战。人类花费了极大的精力来应付他精妙的战术却均以失败告终。食人魔族开始相信西莫将是带领他们走向光明的天选之子，是他们毕生追随的首领，与信仰。<li>然而西莫知道，为了确保族人能重新和平的生活在这片大地上，不再沦为奴隶，不再饱受战火，他将一直战斗下去，直到生命的最后一刻。"]],
             "cnyhzr丛林之子ol":["male","min",3,["nyhzr毁灭蛊箭ol","nyhzr生存本能ol"],["ext:新英魂之刃/Newcnyhzr丛林之子.jpg","des:<img src='http://img1.91huo.cn/news.cos/images/buy/clzz/header.jpg' width='280' height='150'><li>智慧之光并非只恩赐了文明，文明之外，人类仍可发现其它不同类别的知识。丛林之子便是其中之一，他们被称为“绿野中的守护”，对于自然的暴戾与温柔都有相当了解，他们并不完全依赖自然，而是与自然相融为一。<li>无法确定是否是炼金术师们首先发现了丛林之子，但在人类的历史遗迹中，我们随处可见他们留下的痕迹：海岛上不知名的巨石阵、金字塔下兽型的人面像，甚至还有决战之谷里难解的图腾柱。丛林之子使用来自自然但又超越自然的能量，他们从地母信仰中祈得祝福，为自由谱写誓言之歌。<li>丛林之子为森林带来了祝福。被其净化的不洁，化为可以滋润万物的雨水。也是从那时起，世界上出现了雨林。据说，常在雨林中行走的人可以听到时而传来的丛林之子的笑声……"]],
@@ -10734,8 +12228,11 @@ player.recover();
 			"xnyhzr西门飞雪ol":["male","min",4,["nyhzr追魂剑ol"],["ext:新英魂之刃/Newxnyhzr西门飞雪.jpg","des:<img src='http://img6.91huo.cn/news.cos/images/buy/xmcx/header.jpg' width='280' height='150'><li>二月初二，雪。<li>他早早的起床，取净水洁面，叠放整齐的白衣柔软合身。<li>剑已擦拭雪亮，他轻柔地抚摸剑身，犹如抚摸最心爱的女子。<li>桌上的簿子记着：“青州宋义威，擅八卦刀法，所使金环大背刀，刀背镶九金环，重二十三斤。于十一月劫杀定州宁氏，宁府上下四十八口无一幸免。<li>” 二月初四，雪。<li>他已经在雪中站立许久，久到眼睫毛已经沾满雪花。<li>宋义威喘着粗气，问道：“你我素不相识，只因我劫杀宁氏，你要为其报仇。但你并不认识宁氏？” “是的。”他面色宁静的答道，就像取人性命如同简单寒暄一般轻松。<li>“你千里而来杀我，究竟为何？”<li>“应该为之而已。”<li>话音落，风吹雪，宋义威面上还带着惊恐之情，他似乎还有什么话想说，但再也说不来。因为死人，是不会说话的。<li>西门飞雪吹落了剑上的血花。每当了结一件大事时，他就想喝酒。滚烫的，能让人从骨头里烧起来的，驱除寂寞的酒。<li>“世上还有什么事能使心再热起来？血再热起来？”看着手中的剑，西门陷入沉思……"]],
 			"snyhzr孙悟空ol":["male","min",4,["nyhzr七十二变ol","nyhzr火眼金睛ol"],["ext:新英魂之刃/Newsnyhzr孙悟空.jpg","des:<img src='http://img4.91huo.cn/news.cos/images/buy/swk/header.jpg' width='280' height='150'><li>梦的尽头是一片水帘，波光粼粼地覆盖着黑暗中的一切。他伸出手想去触碰，但视线所聚合的光影以一种可怕的速度倾塌着，光明被急速地抽离，然后便是毁灭一切的风。他隐约听到一个声音：齐天大圣。<li>没错，那正是他的名字。男人笑了，他的笑有一种嘲弄的神色在里面，彷佛是想起了什么，他随手翻开旁边的书册，第五章：乱蟠桃大圣偷丹，反天宫诸神捉怪。这是一位文人所编撰的故事，在他看来却极其可笑。世人不了解那一战，他们称那是混乱的欢乐，但只有孙悟空明白那一战是雷霆的宣威，是对世人愚昧的挑战。乌云遮蔽了中土几千万年，霹雳一声乌云散了，而人们却称雷霆的制造者为疯子！<li>人是神的子民，但子民不应害怕他们的神，孙悟空微笑着，神应该害怕他们的子民。愚昧所建立的暴政绝非长治久安，子民有选择有尊严地生存下去的权利，而这，正是一切变革的开始！声音不断地自黑暗深处传来，齐天大圣……"]],
 			"snyhzr斯巴达ol":["male","li",4,["nyhzr束缚搏击ol","nyhzr战火盾甲ol"],["ext:新英魂之刃/Newsnyhzr斯巴达.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/sbd/header.jpg' width='280' height='150'><li>战斗已经陷入胶着，空气中弥漫着死亡的气息。列奥尼达斯咒骂了一句，手中重剑劈倒一名企图从隘口侧面进攻的波斯士兵。他环顾四周，那些忠诚的勇士已经所剩无几。鲜血模糊了视线，他的身体也已经到达极限……<li>这场悬殊的战斗开始于三天前。最初，易守难攻的温泉关让波斯大军吃尽了苦头。然而一个无耻的奸细让希腊联军的努力化为乌有！背后突然出现的敌人令联军丢掉了所有优势。关键时刻，斯巴达人挺身而出！列奥尼达斯带领着三百名最勇敢的战士冲向波斯大军。<li>联军得以安然撤离，而斯巴达人的战斗才刚拉开序幕！<li>——公元前480年，温泉关战役，斯巴达人带着两万条波斯人的性命，在地狱中开怀畅饮。自此，“斯巴达勇士”之名成为后世每一位战士所追求的最高荣耀！"]],
-			"dnyhzr黛西亚ol":["female","min",3,["nyhzr弹药填装ol","nyhzr高距炮弹ol"],["ext:新英魂之刃/dnyhzr黛西亚.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/sbd/header.jpg' width='280' height='150'>"]],
-			"dnyhzr妲己ol":["female","zhi",3,["nyhzr九命妖尾ol","nyhzr勾魂大法ol"],["ext:新英魂之刃/Newdnyhzr妲己.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/sbd/header.jpg' width='280' height='150'>"]],
+			"dnyhzr黛西亚ol":["female","min",3,["nyhzr弹药填装ol","nyhzr高距炮弹ol"],["ext:新英魂之刃/dnyhzr黛西亚.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/sqs/header.jpg' width='380' height='122'><li>“黎明的曙光照在贞德焚身之地，美丽的少女已经不在……我们为追逐光明的光明而消弭黑暗的黑暗，求你使所有罪止于天下人间，求你使我们终将领受属天的平安。以上所求是靠你的子，我们的主天主、耶稣基督，他和你及圣神永生永王。阿们。”<li>这又是一次军事修会的行前祷告。<li>在圣女贞德被焚后，魔鬼们因忌惮军事修会势力庞大，继续操纵法兰西王室打压军事修会。不屈的教众们坚信感化不足以救世，几个主要成员行至各地散播武装抵御的种子，隐忍数十、数百年，以大大小小修道院为据点，酬征圣使。他们称听到了主的声音，将圣使奉为驱逐魔物的神职，他们的使命因为善良的意愿得以超越教条，为主所宽恕。<li>即使达蒂瓜尔修道院地处偏僻，也不得不顺从时势，被编入军事修会的行列中。祷告结束后，黛西亚就要着手准备自己第七次圣使任务。<li>回房，掩窗，轻拉纱帘，侧身打开床头摆放的暗纹皮箱，双手捧出金属组件，垫上棉布于桌面一字摆开，逐个擦拭。修道院收养的孤儿在庭院中嬉戏打闹，稚声透过纱帘传来，黛西亚仔细辨认每个声音，脑中同步着窗外的情节，不时莞尔。<li>这一道帘，隔开了两个世界。<li>黛西亚放下组件，拂拭手心的印记，那是她发愿出任圣使的第一个晚上，身体出现了圣痕，军事修会的主教命人,将黛西亚带往修道院地下的军火库。神奇的是，靠近一柄赤黑镶金的榴弹枪的时候，圣痕自愈，主教便把这圣燯配予西亚，口述着来自主的神职。如今圣燯一洗尘封，赤色光泽晃地人眼恍惚，圣痕在黛西亚的身体上却仍保持着铁的颜色，几经不散。<li>“黛西亚姐姐，黛西亚姐姐！”<li>视线重新聚焦，用绸布轻盖住圣燯的组件，黛西亚剥开纱帘，推窗。把头探出的瞬间，只觉得阳光很暖，“怎么啦？”<li>“黛西亚姐姐，昨天真的吃到了棉花糖!”不及窗口高的小男孩杰尔原地雀跃，“还有还有，星期三吃到了草莓蛋糕，星期一是布丁。梅洛、罗格夫他们都说黛西亚姐姐才是天主！”黛西亚伸手揉乱杰尔的发，微笑着说，“是天主让我实现你们的愿望的。”扎着麻花辫的小女孩梅洛闻言跑过来，“那是因为和黛西亚姐姐说想吃的，都能吃得到嘛！”院子里的孩童越聚越多，七嘴八舌地嘟囔甜食名称。黛西亚却一点都不觉得吵，整个人宛若泡在他们闪亮的眸光里接受洗礼，才真正觉得赎了罪。<li>“这次的酬劳么？”<li>“恩。”<li>当晚，黛西亚又一次将写满甜蜜愿望的手书递予主教,便出发了。她收起了往日的平和，眼神凌冽。光明正躲在她身后不谙世事，所以她必须与黑暗久久对峙，来犯者胆敢走近一尺，黛西亚便杀它一丈，容不得放肆。圣燯枪口隐隐喷喘的炎星，与一袭红黑修道服，撕裂了夜的静谧。承主之心，与魔为敌。<li>这是圣使黛西亚所信仰的圣意。"]],
+			"dnyhzr妲己ol":["female","zhi",3,["nyhzr九命妖尾ol","nyhzr勾魂大法ol"],["ext:新英魂之刃/Newdnyhzr妲己.jpg","des:<img src='http://img4.91huo.cn/news.cos/images/buy/dj/header.jpg' width='280' height='150'><li>瘟疫。眼眸所注视的除了死亡，还有，饥饿。女娲将一幅充满着诱惑与光辉的画卷朝前展开，小狐女的眼前掠过王国三千里繁华鼎盛的疆土，在鲜花路面的尽头，王在等她。接受命运的安排，她就可以成为世间最强帝王的王妃。<li>十年一晃，十年倾城。当初的狐女业已成为商纣最挚爱的王妃。人们叫她妲己，对她的美貌顶礼膜拜，在王国纵驰的驿道上，随处可见俗人对她的颂扬。<li>但她自己呢？她在帘幕后书空咄咄的那些年，心里一直念叨的难道不是那个叫伯邑考的聪明男子么？但她毕竟还是错过了什么。武王姬发破城的时候，她有一种摇摇欲坠的破败感，像是自己的无极塌了。长生如梦，一切终究抵不过命运的嘲弄。兵火燃尽的时候，妲己醒来。<li>女娲在等弟子的求情，但这一次她看到了不一样的光——妲己向女娲俯身下拜，然后朝着西岐的方向飞去。她不确定如何才叫爱，她只是忽然明白了，连无极都无法洗去的思念，修行又怎么能够呢……"]],
+			"knyhzr卡柯ol":["male","min",4,["nyhzr宿敌之剑ol"],["ext:新英魂之刃/Newknyhzr卡柯.jpg","des:<img src='http://n.7k7kimg.cn/2016/0806/1470465667373.jpg' width='280' height='150'><li>他曾是波斯帝国高贵的王子殿下，被称为太阳之子—他那金色的短发就如他的性格一般阳光璀璨。<li>可当权谋的阴影将他笼罩，面对至亲王叔的背叛与毒杀，再璀璨的金色也会染上复仇的暗光。仅仅是一夜之间，他失去了所有的亲人、他的家园、他爱慕的女子……以及一切，而他唯一收获的，就只有仇恨。但失去权势的王子殿下，又能用怎样的手段杀死那个已经坐上至高王座的仇人呢？<li>于是，当冥府之神阿努比斯现身时，他没有丝毫犹豫地签下了代表死亡的契约。冥神的力量在他的体内充斥，他终于彻底沦为复仇的傀儡。当他手持复仇双刃割下王叔的头颅，泪水终于无可抑制的从他的眼角滑落——财富、权势和贪婪，以及最后的仇恨，让他真正的一无所有。<li>对于生命，他还有什么可以贪恋的呢？当他手握王叔的头颅，迎来冥神阿努比斯时，唯一怀念的，就是太阳光辉笼罩下亲人温柔的回望。"]],
+			"anyhzr艾薇ol":["female","min",3,["nyhzr追袭ol","nyhzr射月ol"],["ext:新英魂之刃/Newanyhzr艾薇.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/ayls/header.jpg' width='280' height='150'><li>艾薇是暗月森林最美丽的精灵。可是，正是这份美丽，引来了大主祭的垂涎。为了摆脱纠缠，艾薇决定成为法定不得婚嫁的皇室神射手。<li>经过激烈的角逐，她得到精灵女王的认可，成功入选，甚至获得了专属于女性精灵射手的荣耀之名——神箭哲琴。<li>大主祭的美梦成了泡影。恼羞成怒的他决心毁掉这件自己得不到的珍宝。他勾结恶魔军团，在艾薇前往接受封赐的路上设伏偷袭。 艾薇的伙伴们在第一轮箭雨下死伤殆尽。<li>满怀悲愤的艾薇退入密林，用她冰冷的箭矢收割着恶魔的性命。企图逃走的大主祭被远远射来的一只大箭钉在树上，随后被密集的箭岚射成了蜂窝。<li>当援军赶到时，艾薇已经力竭身亡，藤弓流月静静地躺在她的脚边，她的四周是数千恶魔的尸首。"]],
+			"fnyhzr福娃ol":["female","zhi",3,["nyhzr连年有余ol","nyhzr定时爆竹ol"],["ext:新英魂之刃/Newfnyhzr福娃.jpg","des:"]],
 					},
                     skill:{
             "nyhzr仙灵伙伴ol":{
@@ -11146,6 +12643,9 @@ return true;
 				filter:function (event,player){
                     return event.card.name=='sha'&&_status.currentPhase==player;
 				},
+				check:function (event,player){
+					return (get.attitude(player,event.target)<=0);
+				},
 				content:function (){
 					"step 0"
 					player.chooseControl(["穿云箭","燎火之箭"]).ai=function(){
@@ -11222,6 +12722,7 @@ return true;
                 trigger:{
                     player:"phaseEnd",
                 },
+				frequent:true,
                 content:function (){
 					'step 0'
                     player.storage.nyhzrhorse=0;
@@ -11237,7 +12738,7 @@ return true;
 							};
                         };
                     };
-					if(player.storage.nyhzrhorse>0) player.chooseTarget('选择使用【南蛮入侵】的目标',function(card,player,target){return target!=player;}).ai=function(target){return get.damageEffect(target,player)};
+					if(player.storage.nyhzrhorse>0) player.chooseTarget('选择使用【南蛮入侵】的目标',function(card,player,target){return target!=player;}).ai=function(target){return -ai.get.attitude(player,target)};
 					'step 1'
                     if(result.bool){
                         for(var j=0;j<player.storage.nyhzrhorse;j++){
@@ -11572,6 +13073,9 @@ return true;
 					player:'shaBegin'
 				},
 				priority:-1,
+				check:function (event,player){
+					return (get.attitude(player,event.target)<=0);
+				},
 				content:function(){
 					'step 0'
 					trigger.target.chooseToRespond({name:'sha'},'请打出一张杀响应杀');
@@ -13023,10 +14527,13 @@ return true;
             "nyhzr黑桃暗杀ol1":{
 				content:function (){
 					"step 0"
-					player.chooseTarget('选择【黑桃暗杀】的目标',function(card,player,target){return target!=player}).ai=function(target){return ai.get.damageEffect(target,player)};
+					player.chooseTarget('选择【黑桃暗杀】的目标',function(card,player,target){return target!=player}).ai=function(target){return -ai.get.attitude(player,target)};
 					"step 1"
 					if(result.bool){
-						if(result.targets) result.targets[0].damage();
+						if(result.targets){
+							player.line(result.targets[0]);
+							result.targets[0].damage();
+						};
 					}else{
 						event.finish();
 					};
@@ -13320,7 +14827,7 @@ return true;
 				},
 				direct:true,
 				check:function (event,player){
-					return get.damageEffect(event.player,player)>0;
+					return (get.attitude(player,event.target)<=0);
 				},
 				content:function(){
 					'step 0'
@@ -13604,7 +15111,7 @@ return true;
 					nyhzr弹药填装oltarget.chooseToCompare(player);
 					"step 1"
 					if(result.bool){
-						if(ai.get.attitude(player,nyhzr弹药填装oltarget)>0){
+						if(ai.get.attitude(nyhzr弹药填装oltarget,player)>0){
 							nyhzr弹药填装oltarget.line(player);
 							player.storage.nyhzr弹药填装ol+=5;
 							player.syncStorage('nyhzr弹药填装ol');
@@ -13658,7 +15165,7 @@ return true;
 				content:function(){		
 					var card=get.cards(1);
 					player.showCards(card,'九命妖尾');
-					if (get.number(card)>=9){
+					if(get.number(card[0])>=9){
 						player.recover();
 					}else{
 						player.useSkill('nyhzr勾魂大法ol');
@@ -13697,7 +15204,7 @@ return true;
 						event.finish();
 					};
 					if(result.control=='将一张牌复制并交给所有其他角色'){
-						if(player.num('h')>0) player.chooseCard('请选择需要复制并交给所有其他角色的牌',function(card){return true}).ai=function(card){return 4-ai.get.value(card)};;
+						if(player.num('h')>0) player.chooseCard('请选择需要复制并交给所有其他角色的牌',function(card){return true}).ai=function(card){return 4-ai.get.value(card)};
 					};
 					'step 2'
 					if(result.bool){
@@ -13707,59 +15214,237 @@ return true;
 					};
 				},	
 			},
-			
-			
-			
-			
-			
+            "nyhzr宿敌之剑ol":{
+				nobracket:true,
+				enable:"phaseUse",
+				usable:1,
+				filter:function (event,player){
+					return player.num('h','sha')>0;
+				},
+				filterCard:function (card){
+					return card.name=='sha';
+				},
+				filterTarget:function (card,player,target){
+					return player!=target;
+				},
+				content:function (){
+					"step 0"
+					var list=["弃牌或流失体力"];
+					if(target.num('h','sha')>0) list.push('弃置一张杀');
+					target.chooseControl(list).ai=function(){
+						if(target.num('h','sha')>0) return '弃置一张杀';
+						return '弃牌或流失体力';
+					};
+					"step 1"
+					if(result.control=='弃牌或流失体力'){
+						var list=["流失一点体力"];
+						if(target.num('h')>=2) list.push('弃置两张手牌');
+						target.chooseControl(list).ai=function(){
+							if(target.num('h')>=2) return '弃置两张手牌';
+							return '流失一点体力';
+						};
+					};
+					if(result.control=='弃置一张杀'){
+						target.chooseToDiscard(function(card){return card.name=='sha'},true);
+						player.useCard({name:'juedou'},target);
+						if(player.hp<3) player.draw();
+						event.finish();
+					};
+					'step 2'
+					if(result.control=='弃置两张手牌'){
+						target.chooseToDiscard(2,'h',true);
+					};
+					if(result.control=='流失一点体力'){
+						target.loseHp();
+					};
+				},
+				ai:{
+					order:9,
+                    expose:0.6,
+					result:{
+						target:function (player,target){
+							return get.damageEffect(target,player);
+						},
+					},
+				},
+			},
+            "nyhzr追袭ol":{
+				nobracket:true,
+                mod:{
+                    globalFrom:function (from,to,distance){
+                        if(from.storage.nyhzr射月ol>0) return distance-(from.maxHp-from.hp)+from.storage.nyhzr射月ol;
+						return distance-(from.maxHp-from.hp);
+                    },
+                },
+                trigger:{
+                    player:"useCardBefore",
+                },
+                forced:true,
+				popup:false,
+                content:function (){
+                    player.removeAdditionalSkill('nyhzr追袭ol');
+                    var list=[];
+                    if(player.getAttackRange()<2) list.push('feiying');
+                    if(player.getAttackRange()==2) list.push('guanshi_skill');
+                    if(player.getAttackRange()>2) list.push('qinggang_skill');
+                    if(list.length) player.addAdditionalSkill('nyhzr追袭ol',list);
+				},
+			},
+            "nyhzr射月ol":{
+				nobracket:true,
+				enable:"phaseUse",
+				filterTarget:function (card,player,target){
+					return player!=target&&get.distance(player,target,'attack')<=1;
+				},
+				content:function (){
+					player.useCard({name:'sha'},target,false);
+					if(player.storage.nyhzr射月ol==undefined) player.storage.nyhzr射月ol=0;
+					player.storage.nyhzr射月ol+=1;
+				},
+				ai:{
+					order:2,
+                    expose:0.5,
+					result:{
+						target:function (player,target){
+							return get.damageEffect(target,player);
+						},
+					},
+				},
+			},
+            "_nyhzr射月ol":{
+                trigger:{
+                    player:"phaseAfter",
+                },
+                forced:true,
+				filter:function (event,player){
+					return player.hasSkill('nyhzr追袭ol');
+				},
+                content:function (){
+					player.storage.nyhzr射月ol=0;
+				},
+			},
+            "nyhzr连年有余ol":{
+				nobracket:true,
+    			trigger:{
+					player:'discardAfter',
+				},
+    			direct:true,
+    			content:function(){
+    				'step 0'
+					if(trigger.cards.length>1) player.draw(trigger.cards.length);
+					if(player.storage.nyhzr定时爆竹ol!=true&&!_status.connectMode){
+    					var list=['equip1','equip2','equip3','equip4','equip5'];
+    					for(var i=0;i<list.length;i++){
+    						if(player.getEquip(list[i])) list.splice(i--,1);
+    					};
+    					list.push('cancel2');
+    					player.chooseControl(list).prompt='请选择【'+get.translation(trigger.cards[0].name)+'】改变后的装备类型';
+					}else{
+						player.storage.nyhzr定时爆竹ol=false;
+						event.finish();
+					};
+    				'step 1'
+    				if(result.control&&result.control!='cancel2'){
+    					var name='nyhzr连年有余ol'+'_'+result.control+'_'+trigger.cards[0].name;
+    					lib.card[name]=get.copy(get.info(trigger.cards[0]));
+    					lib.card[name].subtype=result.control;
+    					lib.card[name].epic=true;
+    					lib.card[name].cardimage='wugu';
+    					lib.card[name].source=[trigger.cards[0].name];
+    					lib.translate[name]=lib.translate[trigger.cards[0].name];
+    					lib.translate[name+'_info']=lib.translate[trigger.cards[0].name+'_info'];
+    					trigger.cards[0].init([trigger.cards[0].suit,trigger.cards[0].number,name,trigger.cards[0].nature]);
+						player.equip(trigger.cards[0])
+    				};
+    			},
+			},
+            "_nyhzr连年有余ol":{
+    			trigger:{
+        			player:"phaseBefore",
+    			},
+    			forced:true,
+				filter:function (event,player){
+					return player.hasSkill('nyhzr连年有余ol');
+				},
+    			content:function (){
+        			if(player.getEquip('equip1')) player.gain(player.getEquip('equip1'),'gain2');
+        			if(player.getEquip('equip2')) player.gain(player.getEquip('equip2'),'gain2');
+        			if(player.getEquip('equip3')) player.gain(player.getEquip('equip3'),'gain2');
+        			if(player.getEquip('equip4')) player.gain(player.getEquip('equip4'),'gain2');
+        			if(player.getEquip('equip5')) player.gain(player.getEquip('equip5'),'gain2');
+    			},
+			},
+            "nyhzr定时爆竹ol":{
+				nobracket:true,
+    			trigger:{
+					player:'phaseAfter',
+				},
+				filter:function (event,player){
+					return player.num('e')>0;
+				},
+				check:function (event,player){
+//					return player.num('h','shan')>0;
+					return false;
+				},
+				content:function (){
+					player.chooseToDiscard(1,'e',true);
+					player.storage.nyhzr定时爆竹ol=true;
+					setTimeout(function(){
+						player.useCard({name:'sha',nature:'fire'},game.players,false);
+					},10000);
+				},
+			},			
 			
 			
 					},
                     translate:{
-            "mnyhzr灭世魔星dj":"灭世魔星 ",
+            "mnyhzr灭世魔星dj":"灭世魔星",
             "lnyhzr咯哩咯哩ol":"◉咯哩咯哩",
             "lnyhzr莉莉姆.提露埃拉ol":"◉莉莉姆·提露埃拉",
-            "lnyhzr龙骑士ol":"◉龙骑士 ",
-            "nnyhzr妮娜ol":"◉妮娜  ",
-            "dnyhzr德古拉ol":"◉德古拉 ",
-            "hnyhzr后羿ol":"◉后羿  ",
-            "snyhzr苏尔肯ol":"◉苏尔肯 ",
+            "lnyhzr龙骑士ol":"◉龙骑士",
+            "nnyhzr妮娜ol":"◉妮娜",
+            "dnyhzr德古拉ol":"◉德古拉",
+            "hnyhzr后羿ol":"◉后羿",
+            "snyhzr苏尔肯ol":"◉苏尔肯",
             "nnyhzr瓦尔基里ol":"◉瓦尔基里",
-            "xnyhzr小乔ol":"◉小乔  ",
-            "knyhzr凯撒ol":"◉凯撒  ",
-            "dnyhzr狄娜ol":"◉狄娜  ",
-            "snyhzr司马懿ol":"◉司马懿 ",
-            "jnyhzr金乌ol":"◉金乌  ",
+            "xnyhzr小乔ol":"◉小乔",
+            "knyhzr凯撒ol":"◉凯撒",
+            "dnyhzr狄娜ol":"◉狄娜",
+            "snyhzr司马懿ol":"◉司马懿",
+            "jnyhzr金乌ol":"◉金乌",
             "anyhzr阿努比斯ol":"◉阿努比斯",
-            "xnyhzr玄武ol":"◉玄武  ",
-            "gnyhzr甘道夫ol":"◉甘道夫 ",
+            "xnyhzr玄武ol":"◉玄武",
+            "gnyhzr甘道夫ol":"◉甘道夫",
             "snyhzr树精长老ol":"◉树精长老",
-            "tnyhzr泰坦ol":"◉泰坦  ",
-            "snyhzr水元素ol":"◉水元素 ",
-            "snyhzr死神ol":"◉死神  ",
-            "xnyhzr项羽ol":"◉项羽  ",
+            "tnyhzr泰坦ol":"◉泰坦",
+            "snyhzr水元素ol":"◉水元素",
+            "snyhzr死神ol":"◉死神",
+            "xnyhzr项羽ol":"◉项羽",
             "bnyhzr八歧大蛇ol":"◉八歧大蛇",
-            "knyhzr狂徒ol":"◉狂徒  ",
-            "ynyhzr杨戬ol":"◉杨戬  ",
-            "mnyhzr米迦勒ol":"◉米迦勒 ",
-            "dnyhzr电光侠ol":"◉电光侠 ",
-            "lnyhzr兰ol":"◉兰   ",
-            "dnyhzr大乔ol":"◉大乔  ",
-            "ynyhzr雅典娜ol":"◉雅典娜 ",
-            "xnyhzr西莫ol":"◉西莫  ",
+            "knyhzr狂徒ol":"◉狂徒",
+            "ynyhzr杨戬ol":"◉杨戬",
+            "mnyhzr米迦勒ol":"◉米迦勒",
+            "dnyhzr电光侠ol":"◉电光侠",
+            "lnyhzr兰ol":"◉兰",
+            "dnyhzr大乔ol":"◉大乔",
+            "ynyhzr雅典娜ol":"◉雅典娜",
+            "xnyhzr西莫ol":"◉西莫",
             "cnyhzr丛林之子ol":"◉丛林之子",
             "gnyhzr宫本武藏ol":"◉宫本武藏",
-            "lnyhzr鲁瓦ol":"◉鲁瓦  ",
-            "anyhzr阿瑞斯ol":"◉阿瑞斯 ",
-            "xnyhzr席璐达ol":"◉席璐达 ",
-            "znyhzr钟馗ol":"◉钟馗  ",
-            "anyhzr阿波罗ol":"◉阿波罗 ",
-            "hnyhzr花木兰ol":"◉花木兰 ",
+            "lnyhzr鲁瓦ol":"◉鲁瓦",
+            "anyhzr阿瑞斯ol":"◉阿瑞斯",
+            "xnyhzr席璐达ol":"◉席璐达",
+            "znyhzr钟馗ol":"◉钟馗",
+            "anyhzr阿波罗ol":"◉阿波罗",
+            "hnyhzr花木兰ol":"◉花木兰",
             "xnyhzr西门飞雪ol":"◉西门飞雪",
-            "snyhzr孙悟空ol":"◉孙悟空 ",
-            "snyhzr斯巴达ol":"◉斯巴达 ",
-            "dnyhzr黛西亚ol":"◉黛西亚 ",
-            "dnyhzr妲己ol":"◉妲己  ",
+            "snyhzr孙悟空ol":"◉孙悟空",
+            "snyhzr斯巴达ol":"◉斯巴达",
+            "dnyhzr黛西亚ol":"◉黛西亚",
+            "dnyhzr妲己ol":"◉妲己",
+            "knyhzr卡柯ol":"◉卡柯",
+            "anyhzr艾薇ol":"◉艾薇",
+            "fnyhzr福娃ol":"◉福娃",
             "nyhzr仙灵伙伴ol":"仙灵伙伴",
             "nyhzr仙灵伙伴ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你召唤一只妖精皮皮",
             "nyhzr迷藏印记ol":"迷藏印记",
@@ -13871,6 +15556,7 @@ return true;
             "nyhzr电光火石ol":"电光火石",
             "nyhzr电光火石ol_info":"出牌阶段，你可以将两张【杀】视为一张没有花色且没有使用距离限制的雷属性【杀】打出，若如此做，此【杀】不可闪避且不计入使用次数",
             "nyhzr高速格林炮ol1":"高速格林炮",
+            "_nyhzr高速格林炮ol1":"高速格林炮",
             "nyhzr高速格林炮ol":"高速格林炮",
             "nyhzr高速格林炮ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>出牌阶段，你首次使用【杀】后，视为对此次【杀】的目标使用两张额外的【杀】，使用额外的【杀】前，你进行一次判定，若判定结果为黑色，此【杀】失去目标<br>出牌阶段，你使用的【杀】没有数量限制",
             "nyhzr穿刺射击ol":"穿刺射击",
@@ -13932,7 +15618,7 @@ return true;
             "nyhzr追魂剑ol_append":"注：<br>当一名角色的追魂印记：<li>大于或等于一时，该角色无法恢复体力<li>大于或等于二时，受到伤害后，拥有技能【追魂剑】的角色摸一张牌<li>大于或等于三时，受到伤害后，该角色弃置手牌区与装备区内的所有牌<li>大于或等于三时，受到伤害后，该角色死亡",
             "nyhzr七十二变ol":"七十二变",
             "nyhzr七十二变ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你可以选择摸一张牌或随机获得场上其他角色的一个技能，选择后，消耗一个【七十二变】印记，若【七十二变】印记大于零，你再次进行选择<br>回合开始阶段前，你还原自身技能",
-            "nyhzr七十二变ol_append":"注：<br>【七十二变】印记的初始数量为二",
+            "nyhzr七十二变ol_append":"注：<br>【七十二变】印记的初始数量为二，还原后为零",
             "nyhzr火眼金睛ol":"火眼金睛",
             "nyhzr火眼金睛ol_info":"出牌阶段前，你可以观看一名其他角色的手牌，若其手牌中有【杀】，你获得X个【七十二变】印记（X为目标手牌中【杀】的数量），否则你摸一张牌",
             "nyhzr战火盾甲ol":"战火盾甲",
@@ -13948,6 +15634,19 @@ return true;
             "nyhzr勾魂大法ol1":"勾魂大法",
             "nyhzr勾魂大法ol":"勾魂大法",
             "nyhzr勾魂大法ol_info":"出牌阶段，你可以获得场上男性的一张手牌，每次以此法获得牌后，你选择一项：<br>1.弃置一张手牌<br>2.将一张牌复制并交给所有其他角色<br>，每回合限一次",
+            "nyhzr宿敌之剑ol":"宿敌之剑",
+            "nyhzr宿敌之剑ol_info":"出牌阶段，你可以弃置一张【杀】并指定一名其他角色，该角色弃置一张【杀】，若不弃，该角色选择一项：1.流失一点体力；2.弃置两张手牌，否则，视为你对该角色使用一张【决斗】，以此法进行决斗后，若你的体力值小于三，你摸一张牌，每回合限一次",
+            "nyhzr追袭ol":"追袭",
+            "nyhzr追袭ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你的进攻距离+X（X为你已损失的生命值）",
+            "nyhzr追袭ol_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你使用牌前，若攻击范围：<li>小于二，你获得【飞影】<li>等于二，你获得【贯石】<li>大于二，你获得【青釭】<br>每当你以此法获得技能时，会删除前一个以此法获得的技能",
+            "nyhzr射月ol":"射月",
+            "nyhzr射月ol_info":"出牌阶段，你可以对你攻击范围内的其他角色使用一张不计入使用次数的【杀】，若如此做，本回合内，你的进攻距离-1",
+            "nyhzr连年有余ol":"连年有余",
+            "nyhzr连年有余ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始前，你获得你装备区内的所有牌<br>当你弃牌后，你可以将弃置的第一张牌转化为装备牌并装备之，若弃牌数大于一，你摸X张牌（X为弃牌数）",
+            "nyhzr连年有余ol_append":"注：<br>因【连年有余】变为装备牌的仅用于响应的牌无法使用<br>因【连年有余】变为装备牌的【杀】和【酒】不计入使用次数<br>联机模式下，不触发【连年有余】转化类型并装备效果",
+            "nyhzr定时爆竹ol":"定时爆竹",
+            "nyhzr定时爆竹ol_info":"回合结束后，你可以弃置你装备区内的一张牌，若如此做，10秒后，你对所有角色使用一张不计入使用次数的火属性【杀】",
+            "nyhzr定时爆竹ol_append":"注：<br>因【定时爆竹】弃置的牌不会触发【连年有余】",
 			},
                 };
                 return nyhzrlj;
@@ -13957,15 +15656,676 @@ return true;
                 lib.config.characters.push('nyhzrlj');
             }
             lib.translate['nyhzrlj_character_config'] = '<span style=\"font-size:18px;font-weight:600\">英魂之刃联机</span>';
+            game.import('character',function(){
+                var zombie={
+                    name:'zombie',
+                    connect:true,
+                    character:{
+                        jiangshifz:["male","qun",5,["xunmeng","zaibian","ganran","wansha","paoxiao"],["ext:新英魂之刃/jiangshifz.jpg","forbidai","des:僵尸模式配套武将"]],
+                        jiangshinj:["male","qun",3,["baozou","wansha","xueji","shishi","ganran"],["ext:新英魂之刃/jiangshinj.jpg","forbidai","des:僵尸模式配套武将"]],
+                    },
+                    skill:{
+baozou:{
+    mod:{
+        cardUsable:function (card,player,num){
+            if(card.name=='sha') return Infinity;
+        },
+    },
+    ai:{
+        unequip:true,
+        skillTagFilter:function (player,tag,arg){
+            if(!get.zhu(player,'shouyue')) return false;
+            if(arg&&arg.name=='sha') return true;
+            return false;
+        },
+    },
+},
+            shishi:{
+				trigger:{source:'dieAfter'},
+				forced:true,
+				content:function(){
+					player.gainMaxHp(1);
+					player.recover();
+				}
+			},
+            xunmeng:{
+				trigger:{source:'damageBegin'},
+				filter:function(event){
+					return event.card&&event.card.name=='sha'&&event.parent.name!='_lianhuan'&&event.parent.name!='_lianhuan2';
+				},
+				forced:true,
+				content:function(){
+					trigger.num++;
+					if(player.hp>1) player.loseHp();
+				}
+			},
+            zaibian:{
+				trigger:{player:'phaseUseBegin'},
+				filter:function(event,player){
+					return get.population('zhong')-get.population('fan')-get.population('nei')+2>0;
+				},
+				forced:true,
+				content:function(){
+					var num=get.population('zhong')-get.population('fan')-get.population('nei')+2;
+					player.draw(num);
+				}
+			},
+			ganran:{
+				mod:{
+					cardEnabled:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+					cardRespondable:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+					cardSavable:function(card,player){
+						if(get.type(card)=='equip') return false;
+					},
+				},
+				enable:['chooseToUse'],
+				filterCard:{type:'equip'},
+				viewAsFilter:function(player){
+					return player.num('h',{type:'equip'})>0;
+				},
+				viewAs:{name:'tiesuo'},
+				check:function(){return 1},
+				group:'ganran2',
+				ai:{
+					order:4,
+					useful:-1,
+					value:-1
+				}
+			},
+			ganran2:{
+				enable:'phaseUse',
+				filter:function(event,player){
+					return player.num('h',{type:'equip'})>0;
+				},
+				filterCard:{type:'equip'},
+				prepare:function(cards,player){
+					player.$throw(cards,1000);
+				},
+				discard:false,
+				delay:0.5,
+				content:function(){
+					"step 0"
+					player.draw();
+					"step 1"
+					for(var i=0;i<cards.length;i++){
+						ui.discardPile.appendChild(cards[i]);
+					}
+				},
+				ai:{
+					order:3.5,
+					result:{
+						player:1
+					}
+				}
+			},
+
+		},
+                    translate:{
+                        jiangshifz:'僵尸',
+                        jiangshinj:'僵尸',
+                        baozou:'暴走',
+                        baozou_info:' 锁定技，出牌阶段，你可以使用任意数量的【杀】。 ',
+                        shishi:'噬尸',
+                        shishi_info:' 锁定技，当你杀死一名角色后，你获得一点体力上限并回复一点体力。 ',
+                        xunmeng:'迅猛',
+                        xunmeng_info:' 锁定技，你的杀造成的伤害+1。你的杀造成伤害时，若你体力大于1，你流失1点体力。 ',
+                        zaibian:'灾变',
+                        zaibian_info:' 锁定技，你的出牌阶段开始时，若人类玩家数-僵尸玩家数+1大于0，则你摸取该数目的牌。 ' ,
+                        ganran:'感染',
+                        ganran_info:' 锁定技，你的装备牌都视为铁锁连环',
+                        ganran2:'感染·重铸',
+                    },
+                };
+                return zombie;
+            });
+            lib.config.all.characters.push('zombie');
+            if(!lib.config.characters.contains('zombie')){
+                lib.config.characters.push('zombie');
+            }
+            lib.translate['zombie_character_config'] ='僵尸';
+		};
 			lib.group.push('jin');
 			lib.translate.jin='×';
 			lib.group.push('li');
 			lib.translate.li='<span style="color:red;font-size:22px">力</span>';
 			lib.group.push('min');
-			lib.translate.min='<span style="color:#8FFF7B;font-size:22px">敏</span>';
+			lib.translate.min='<span style="color:#03E041;font-size:22px">敏</span>';
 			lib.group.push('zhi');
 			lib.translate.zhi='<span style="color:#69DFFF;font-size:22px">智</span>';
-        };
+			lib.mode.identity.connect.connect_identity_mode={
+				name:'游戏模式',
+				init:'normal',
+				item:{
+					normal:'标准',
+					zhong:'明忠',
+					zombie:'僵尸',
+					strong:'强兵'
+				},
+				restart:true,
+				frequent:true,
+				intro:'明忠详见帮助<br>僵尸详见僵尸模式<br>强兵详见兵精粮足'
+			};
+			lib.skill._zombieSupport={
+				trigger:{global:'gameStart'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return true;
+				},
+				content:function(){
+					game.zhu.storage.fzjsNumber=0;
+					game.broadcastAll(function(){
+						for(var i=0;i<game.players.length;i++){
+							game.players[i].turnOver=function(all){};
+							if(game.players[i]!=game.zhu){
+								game.players[i].identity='zhong';
+							};
+							game.players[i].setIdentity(game.players[i].identity);
+						};
+					});
+					game.swapSeat=function(all){};
+				},
+			};
+			lib.skill._jisuangailv={
+				trigger:{global:'phaseAfter'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player==game.zhu&&game.zhu.storage._tuizhi==2;
+				},
+				content:function(){
+					if(game.zhu.storage.jisuangailv==undefined) game.zhu.storage.jisuangailv=0;
+					game.zhu.storage.jisuangailv++;
+				},
+				intro:{
+					content:'mark'
+				},
+			};
+			lib.skill._tuizhi={
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				priority:10,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player==game.zhu;
+				},
+				content:function(){
+					if(player.storage._tuizhi==undefined) player.storage._tuizhi=0;
+					player.storage._tuizhi++;
+					player.markSkill('_tuizhi');
+					player.syncStorage('_tuizhi');
+				},
+				intro:{
+					content:'mark'
+				},
+			};
+			lib.skill._tuizhi2={
+				skillAnimation:'epic',
+				animationStr:'人类胜利',
+				animationColor:'metal',
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				priority:5,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return game.zhu.storage._tuizhi>=8;
+				},
+				content:function(){
+					for(var i=0;i<game.players.length;i++){
+						if(game.players[i].identity=='fan'||game.players[i].identity=='nei') game.players[i].die();
+					};
+				}
+			};
+			lib.skill._jiangshi={
+				trigger:{player:'dieBegin'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.identity=='zhong';
+				},
+				content:function(){
+					if(player.storage.fzjs==0){
+						player.draw(4);
+						player.discard(player.get("hej"));
+					    player.revive();
+						game.broadcastAll(function(player){
+							player.uninit;
+							player.init(player.name,'jiangshifz');
+						},player);
+						player.maxHp=5;
+						player.hp=player.maxHp;
+						game.broadcastAll(function(player){
+							player.identity='fan';
+						},player);
+					}else{
+						player.draw(4);
+						player.discard(player.get("hej"));
+					    player.revive();
+						game.broadcastAll(function(player){
+							player.uninit;
+							player.init(player.name,'jiangshinj');
+						},player);
+						player.hp=player.maxHp;
+						game.broadcastAll(function(player){
+							player.identity='nei';
+						},player);
+					};
+					game.broadcastAll(function(){
+						for(var i=0;i<game.players.length;i++){
+							game.players[i].setIdentity(game.players[i].identity);
+						};
+					});
+					trigger.untrigger();
+					trigger.finish();
+				}
+			};
+			lib.skill._jiangshi2={
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				popup:false,
+				silent:true,
+				priority:15,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					if(game.players.length<=6) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+					if(game.players.length>6&&game.players.length<=12) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv*2/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+					if(game.players.length>12&&game.players.length<=18) return !player.storage._tuizhi&&game.zhu.storage._tuizhi==2&&Math.random()<=(game.zhu.storage.jisuangailv*3/(game.players.length-1))-game.zhu.storage.fzjsNumber;
+				},
+				content:function(){
+					player.die();
+					game.broadcastAll(function(player){
+						player.identity='zhong';
+					},player);
+					player.storage.fzjs=0;
+					game.zhu.storage.fzjsNumber++;
+				}
+			}
+			lib.skill._jiangshi3={
+				trigger:{source:'dieBefore'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return event.player.identity=='zhong'&&player.identity=='nei';
+				},
+				content:function(){
+					game.broadcastAll(function(player){
+						player.identity='fan';
+					},player);
+					game.broadcastAll(function(player){
+						player.init(player.name,'jiangshifz');
+					},player);
+					game.broadcastAll(function(){
+						for(var i=0;i<game.players.length;i++){
+							game.players[i].setIdentity(game.players[i].identity);
+						};
+					});
+				},
+			};
+			lib.skill._jiangshi4={
+				skillAnimation:'epic',
+				animationStr:'主公阵亡',
+				animationColor:'metal',
+				trigger:{player:'dieBegin'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.storage._tuizhi>0;
+				},
+				content:function(){
+					for(var i=0;i<game.players.length;i++){
+						if(game.players[i].identity=='zhong'){
+							event.target=game.players[i];
+							break;
+						}
+					}
+					if(event.target){
+						game.zhu.line(event.target,'thunder');
+						game.log(game.zhu,'死亡',event.target,'成为了新的主公！');
+						game.zhu=event.target;
+						game.broadcastAll(function(player){
+							player.identity='zhu';
+						},event.target);
+						event.target.gainMaxHp();
+						event.target.recover();
+						event.target.storage._tuizhi=player.storage._tuizhi-1;
+						event.target.markSkill('_tuizhi');
+						event.target.syncStorage('_tuizhi');
+						game.broadcastAll(function(){
+							for(var i=0;i<game.players.length;i++){
+								game.players[i].setIdentity(game.players[i].identity);
+							};
+						});
+					}
+				}
+			}
+			lib.skill._jiangshiTx={
+				skillAnimation:'epic',
+				animationStr:'灵魂、献祭',
+				forced:true,
+				trigger:{player:'dieBefore'},
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.identity=='zhong';
+				},
+				content:function(){
+					game.log('灵魂、献祭');
+				}
+			};
+			lib.skill._jiangshiTx2={
+				audio:'jiangshidie',
+				skillAnimation:'epic',
+				animationStr:'僵尸、灭亡',
+				animationColor:'thunder',
+				forced:true,
+				trigger:{player:'dieBefore'},
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.identity=='fan'||player.identity=='nei';
+				},
+				content:function(){
+					game.log('僵尸、灭亡');
+				}
+			};
+			lib.skill._jiangshiTx3={
+				skillAnimation:'epic',
+				animationStr:'暗夜、降临',
+				animationColor:'thunder',
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.storage._tuizhi==2&&player.storage.ayjljs!=0;
+				},
+				content:function(){
+					for(var i=0;i<game.players.length;i++){
+						game.players[i].storage.ayjljs=0;
+					};
+					game.log('暗夜、降临');
+				}
+			}
+			lib.skill._huzhu={
+				enable:'phaseUse',
+				usable:1,
+				filterCard:function(card,player){
+					return card.name=='tao';
+				},
+				filter:function(event,player){
+					if(_status.mode!='zombie') return false;
+					return player.identity=='zhong'||player.identity=='zhu';
+				},
+				filterTarget:function(card,player,target){
+					if(player==target) return false;
+					return get.distance(player,target)<=1&&target.isDamaged()&&(target.identity=='zhong'||target.identity=='zhu');
+				},
+				content:function(){
+					player.useCard({name:'tao'},target)
+				}
+			}
+			lib.translate._tuizhi='退治'
+			lib.translate._tuizhi2='退治'
+			lib.translate._jiangshi='僵尸'
+			lib.translate._jiangshi2='僵尸'
+			lib.translate._jiangshi3='僵尸'
+			lib.translate._jiangshi4='僵尸'
+			lib.translate._jiangshiTx='僵尸'
+			lib.translate._jiangshiTx2='僵尸'
+			lib.translate._jiangshiTx3='僵尸'
+			lib.translate._huzhu='互助'
+			lib.translate._huzhu_info='出牌阶段限一次，人类玩家可以弃置一张【桃】令距离一的人类玩家恢复一点体力'
+			lib.skill._mopaishuzengjia={
+				trigger:{
+					player:"phaseDrawBegin",
+				},
+				forced:true,
+				filter:function(event,player){
+					return _status.mode=='strong';
+				},
+				content:function (){
+					trigger.num++;
+				},
+			};
+			lib.skill._chushashuzengjia={
+				mod:{
+					cardUsable:function (card,player,num){
+						if(card.name=='sha'&&_status.mode=='strong') return num+1;
+					},
+				},
+			};
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='9']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='2']{top:calc(100% / 3 - 70px);left:calc(85% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='3']{top:5px;left:calc(75% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='4']{top:0;left:calc(60% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='5']{top:0;left:calc(40% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='6']{top:5px;left:calc(25% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='7']{top:calc(100% / 3 - 70px);left:calc(15% - 75px);}";
+				style.innerHTML+="[data-number='9']>.player[data-position='8']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='10']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='2']{top:calc(100% / 3 - 120px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='3']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='4']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='5']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='6']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='7']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='8']{top:calc(100% / 3 - 120px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='10']>.player[data-position='9']{top:calc(200% / 3 - 145px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='11']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='4']{top:0;left:calc(77% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='5']{top:0;left:calc(59% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='6']{top:0;left:calc(41% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='7']{top:0;left:calc(23% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='8']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='9']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='11']>.player[data-position='10']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='12']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='4']{top:0;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='5']{top:0;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='6']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='7']{top:0;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='8']{top:0;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='9']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='10']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='12']>.player[data-position='11']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='13']>.player[data-position='1']{top:calc(200% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='2']{top:calc(100% / 3 - 50px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='3']{top:0;left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='4']{top:0;left:calc(83% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='5']{top:0;left:calc(69.8% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='6']{top:0;left:calc(56.6% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='7']{top:0;left:calc(43.4% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='8']{top:0;left:calc(30.2% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='9']{top:0;left:calc(17% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='10']{top:0;left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='11']{top:calc(100% / 3 - 50px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='13']>.player[data-position='12']{top:calc(200% / 3 - 100px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='14']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='5']{top:30px;left:calc(80% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='6']{top:5px;left:calc(65% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='7']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='8']{top:5px;left:calc(35% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='9']{top:30px;left:calc(20% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='10']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='11']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='12']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='14']>.player[data-position='13']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='15']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='5']{top:30px;left:calc(82.1% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='6']{top:5px;left:calc(69.25% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='7']{top:0;left:calc(56.4% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='8']{top:0;left:calc(43.55% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='9']{top:5px;left:calc(30.7% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='10']{top:30px;left:calc(17.85% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='11']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='12']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='13']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='15']>.player[data-position='14']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='16']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='2']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='3']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='4']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='5']{top:30px;left:calc(83.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='6']{top:20px;left:calc(72.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='7']{top:5px;left:calc(61.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='8']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='9']{top:5px;left:calc(38.75% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='10']{top:20px;left:calc(27.5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='11']{top:30px;left:calc(16.25% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='12']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='13']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='14']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='16']>.player[data-position='15']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			var cssStyle=function(){
+				var style=document.createElement('style');
+				style.innerHTML="[data-number='17']>.player[data-position='1']{top:calc(100% / 3 + 160px);left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='2']{top:calc(100% / 3 + 160px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='3']{top:calc(100% / 3 + 30px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='4']{top:calc(100% / 3 - 100px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='5']{top:calc(100% / 3 - 230px);left:calc(95% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='6']{top:30px;left:calc(83.75% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='7']{top:20px;left:calc(72.5% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='8']{top:5px;left:calc(61.25% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='9']{top:0;left:calc(50% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='10']{top:5px;left:calc(38.75% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='11']{top:20px;left:calc(27.5% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='12']{top:30px;left:calc(16.25% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='13']{top:calc(100% / 3 - 230px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='14']{top:calc(100% / 3 - 100px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='15']{top:calc(100% / 3 + 30px);left:calc(5% - 75px);}";
+				style.innerHTML+="[data-number='17']>.player[data-position='16']{top:calc(100% / 3 + 160px);left:calc(5% - 75px);}";
+				document.head.appendChild(style);
+			}
+			cssStyle();
+			lib.mode.identity.connect.connect_player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+				'10':'十人',
+				'11':'十一人',
+				'12':'十二人',
+				'13':'十三人',
+			}
+			lib.mode.guozhan.connect.connect_player_number.item={
+				'2':'两人',
+				'3':'三人',
+				'4':'四人',
+				'5':'五人',
+				'6':'六人',
+				'7':'七人',
+				'8':'八人',
+				'9':'九人',
+				'10':'十人',
+				'11':'十一人',
+				'12':'十二人',
+				'13':'十三人',
+			}
+			lib.translate.unknown8='九号位';
+			lib.translate.unknown9='十号位';
+			lib.translate.unknown10='十一号位';
+			lib.translate.unknown11='十二号位';
+			lib.translate.unknown12='十三号位';
+			if(get.mode()=='connect') lib.config.mode_config.identity.identity.push(['zhu','zhong','zhong','zhong','nei','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','fan','fan','fan','fan','fan','fan','fan'],['zhu','zhong','zhong','zhong','zhong','zhong','zhong','nei','nei','fan','fan','fan','fan','fan','fan','fan']);
+			lib.mode.guozhan.connect.connect_guozhan_mode={
+		        name:'游戏模式',
+		        init:'normal',
+		        item:{
+					normal:'标准',
+		            combine:'兼并'
+		        },
+		        frequent:true,
+		        restart:true,
+				intro:'兼并详见兼并模式'
+			};
+			lib.skill._combineSupport={
+				trigger:{global:'gameStart'},
+				forced:true,
+				filter:function(event,player){
+					if(_status.mode!='combine') return false;
+					return true;
+				},
+				content:function(){
+					game.broadcastAll(function(){
+						for(var i=0;i<game.players.length;i++){
+							game.players[i].group='ye';
+							game.players[i].identity='ye';
+							game.players[i]._group='ye';
+							game.players[i].node.identity.firstChild.innerHTML='国';
+							game.players[i].node.identity.dataset.color='zhu';
+						};
+					});
+				},
+			};
+			lib.skill._combine={
+                trigger:{
+                    player:"dieBegin",
+                },
+                forced:true,
+                filter:function (event){
+					if(_status.mode!='combine') return false;
+                    return event.source&&event.source.isIn();
+                },
+                content:function (){
+					game.log(trigger.source,'获得了',player.get('s',false,false));
+					trigger.source.addSkill(player.get('s',false,false));
+				},
+            };
 game.say1=function(str){
 var dialog=ui.create.dialog('hidden');
 dialog.classList.add('static');
@@ -14078,7 +16438,7 @@ player.hide();
 };
 },help:{"皮肤解锁":"<li>血月会长：用拥有技能【血祭启示录】的武将在一局游戏中造成超过10点伤害（含10点），在此之后经过一个回合结束阶段即可解锁。<li>雪凝幻彩：联机比赛参赛者的奖品"},
 config:{
-	"tips1":{"name":"<span style=\"font-size:15.6px;font-weight:600\">增加人数后建议开启军争卡包，避免回合内摸牌过多导致平局出现</span><span style=\"font-size:14px\"><li>如果选项为全部增加，乱斗模式下的非本扩展的身份模式中人数不能大于8，否则无法游戏，选择+X选项可以解决<li>8人局以上，任何卡牌无法指定距离相隔4及以上的角色为目标<br></span>","clear":true,"nopointer":true,},
+	"tips1":{"name":"<span style=\"font-size:15.6px;font-weight:600\">增加人数后建议开启军争卡包，避免回合内摸牌过多导致平局出现</span><span style=\"font-size:14px\"><li>如果选项为全部增加，乱斗模式下的非本扩展的身份模式中人数不能大于8，否则无法游戏，选择+X选项可以解决<li>8人局以上，任何卡牌无法指定距离相隔4及以上的角色为目标<li>以下身份选项仅在非联机模式下生效<br></span>","clear":true,"nopointer":true,},
 	"IncreasePlayerNumber":{"name":'增加人数',"init":'all',"item":{'0':'不增加','1':'+1','2':'+2','3':'+3','4':'+4','5':'+5','6':'+6','7':'+7','8':'+8','all':'全部增加'}},
 	"nineMan":{"name":'九人场身份',"init":'1',"item":{'1':'三忠四反一内','2':'二忠四反二内','3':'四忠四反零内','4':'三忠五反零内'}},
 	"tenMan":{"name":'十人场身份',"init":'1',"item":{'1':'三忠四反二内','2':'三忠五反一内','3':'四忠五反零内'}},
@@ -14090,7 +16450,7 @@ config:{
 	"SixteenMan":{"name":'十六人场身份',"init":'1',"item":{'1':'六忠七反二内','2':'六忠八反一内','3':'七忠八反零内'}},
 //	"awakenShow":{"name":'特效',"init":true},
 //	"awakenShowRandom":{"name":'特效出现概率',"init":'0.25',"item":{'0.1':'10%','0.25':'25%','0.5':'50%','0.75':'75%','1':'100%'},"intro":"拥有特效的技能的角色有◉司马懿"},
-	"tips2":{"name":"<span style=\"font-size:15.6px;font-weight:600\">特效重新设置后需要打开非联机模式来使设置内容被保存</span>","clear":true,"nopointer":true,},
+//	"tips2":{"name":"<span style=\"font-size:15.6px;font-weight:600\">特效重新设置后需要打开非联机模式来使设置内容被保存</span>","clear":true,"nopointer":true,},
 	"Pifu":{"name":"技能皮肤","init":true,"intro":"拥有技能皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，萨特，德古拉，时空猎人,龙骑士，艾迪兰，超能企鹅，宫本武藏"},
 	"UseNew":{"name":"新版武将包皮肤","init":true,"intro":"拥有新版皮肤的武将有：咯哩咯哩，莉莉姆.提露埃拉，后羿，贞德，萨特，德古拉，狂徒，时空猎人,龙骑士，艾迪兰，布丁，超能企鹅，布鲁，宫本武藏"},
 	"UsePifuNew":{"name":"新版技能皮肤皮肤","init":true,"intro":"拥有新版皮肤的皮肤有：幽梦魔灵，祈愿之星，屠戮魔影，炼狱魂印，毁灭之翼，血色传说，血月会长，强弩神射，幻影射手，皎月王侯，黄金之翼，强袭龙魂，暗翼骨龙，星河雷爆，逆时者，强殖妖斧，妙法仙灵，暗黑小魔星，花牌魔后，雪凝幻彩，星钻仙后，晶钻星使，伊娃，趣海先锋，夜叉胧，七海女王"},
@@ -14101,6 +16461,7 @@ config:{
 	"bingjingliangzu":{"name":"兵精粮足","init":true},
 	"duorenduijue":{"name":"多人对决","init":true},
 	"jilueduijue":{"name":"极略对决","init":true},
+	"wujinmoshi":{"name":"无尽模式","init":true},
 	"brawlPlayerNumber":{"name":'此扩展乱斗—身份乱斗人数',"init":'16',"item":{'2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10','11':'11','12':'12','13':'13','14':'14','15':'15','16':'16'}},
 	"nyhzrChessBoss":{"name":"英魂之刃战棋","init":true,"intro":"设置英魂之刃战棋包"},
 	"nyhzrBoss":{"name":"英魂之刃BOSS","init":true,"intro":"设置英魂之刃BOSS包"},
@@ -14153,13 +16514,13 @@ trigger:{
 global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
 },
 filter:function (event,player){
-return game.players.length+game.dead.length>=14&&player&&player!=game.me&&!player.isUnseen(1)&&player.storage.STAVA2!=0;
+return game.players.length+game.dead.length>=14&&player&&player!=game.me&&!player.isUnseen(1)&&player.name2&&player.storage.STAVA2!=0;
 },
 forced:true,
 content:function (){
 player.storage.STAVA2=0;
 player.setNickname=function(all){};
-var avatar2=ui.create.div(function(){ui.click.charactercard(player.name2,'')});
+var avatar2=ui.create.div(function(){if(player.name2) ui.click.charactercard(player.name2,'')});
 avatar2.style.height='40px';
 avatar2.style.width='40px';
 avatar2.style.borderRadius='40px';
@@ -14177,13 +16538,13 @@ trigger:{
 player:'dieBefore',
 },
 filter:function (event,player){
-return game.players.length+game.dead.length>=14&&player&&player!=game.me&&player.isUnseen(1)&&player.storage.STAVA2!=0;
+return game.players.length+game.dead.length>=14&&player&&player!=game.me&&player.isUnseen(1)&&player.name2&&player.storage.STAVA2!=0;
 },
 forced:true,
 content:function (){
 player.storage.STAVA2=0;
 player.setNickname=function(all){};
-var avatar2=ui.create.div(function(){ui.click.charactercard(player.name2,'')});
+var avatar2=ui.create.div(function(){if(player.name2) ui.click.charactercard(player.name2,'')});
 avatar2.style.height='40px';
 avatar2.style.width='40px';
 avatar2.style.borderRadius='40px';
@@ -15867,6 +18228,7 @@ player.say('离开是暂时的');
 return player==game.me;
 },
                 forced:true,
+				popup:false,
                 content:function (){
 game.increaseJifen(1);
 },

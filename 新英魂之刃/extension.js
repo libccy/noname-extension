@@ -108,6 +108,7 @@ game.saveConfig('wujinmoshiMaxHpI',undefined);
 game.saveConfig('wujinmoshiMaxHandCardI',undefined);
 game.saveConfig('wujinmoshiDrawI',undefined);
 game.saveConfig('wujinmoshiRecoverI',undefined);
+game.saveConfig('wujinmoshiESkillE',undefined);
 game.reload();
 };
 if(lib.config.wujinmoshiDXB==undefined) game.saveConfig('wujinmoshiDXB',1);
@@ -130,6 +131,13 @@ game.saveConfig('wujinmoshiMAXLCWJ','（'+lib.translate[lib.config.wujinmoshiP]+
 };
 if(lib.config.wujinmoshiHJK==undefined) game.saveConfig('wujinmoshiHJK',0);
 if(lib.config.wujinmoshiXRK==undefined) game.saveConfig('wujinmoshiXRK',0);
+var wujinmoshiESkillESkills=[];
+for(i in lib.character){
+for(var j=0;j<lib.character[i][3].length;j++){
+wujinmoshiESkillESkills.push(lib.character[i][3][j]);
+};
+};
+if(lib.config.wujinmoshiESkillE==undefined) game.saveConfig('wujinmoshiESkillE',wujinmoshiESkillESkills.randomGet());
 			game.WJchangeCharacter=function(){
 				var WJchangeCharacter=ui.create.dialog('hidden');
 				WJchangeCharacter.style.height='calc(100%)';
@@ -215,6 +223,7 @@ lib.brawl.wujinmoshi={
 								wujinmoshiMaxHandCardE.show();
 								wujinmoshiDrawE.show();
 								wujinmoshiRecoverE.show();
+								wujinmoshiESkillE.show();
 								game.saveConfig('wujinmoshiP',str);
 							};
 						});
@@ -472,9 +481,9 @@ lib.brawl.wujinmoshi={
 					this.appendChild(wujinmoshiDamageE);
 					setInterval(function(){
 						if(lib.config.wujinmoshiDXB!=undefined){
-							wujinmoshiDamageE.innerHTML='攻击力加成：'+(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDamageI)+'（每10轮+1）';
+							wujinmoshiDamageE.innerHTML='攻击力加成：'+(Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDamageI)+'（每15轮+1）';
 						}else{
-							wujinmoshiDamageE.innerHTML='攻击力加成：0（每10轮+1）';
+							wujinmoshiDamageE.innerHTML='攻击力加成：0（每15轮+1）';
 						};
 					},100);
 					if(lib.config.wujinmoshiP==undefined) wujinmoshiDamageE.hide();
@@ -486,9 +495,9 @@ lib.brawl.wujinmoshi={
 					this.appendChild(wujinmoshiMaxHpE);
 					setInterval(function(){
 						if(lib.config.wujinmoshiDXB!=undefined){
-							wujinmoshiMaxHpE.innerHTML='体力上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI)+'（每5轮+1）';
+							wujinmoshiMaxHpE.innerHTML='体力上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiMaxHpI)+'（每8轮+1）';
 						}else{
-							wujinmoshiMaxHpE.innerHTML='体力上限加成：0（每5轮+1）';
+							wujinmoshiMaxHpE.innerHTML='体力上限加成：0（每8轮+1）';
 						};
 					},100);
 					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHpE.hide();
@@ -500,9 +509,9 @@ lib.brawl.wujinmoshi={
 					this.appendChild(wujinmoshiMaxHandCardE);
 					setInterval(function(){
 						if(lib.config.wujinmoshiDXB!=undefined){
-							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/3)-lib.config.wujinmoshiMaxHandCardI)+'（每3轮+1）';
+							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：'+(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHandCardI)+'（每5轮+1）';
 						}else{
-							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：0（每3轮+1）';
+							wujinmoshiMaxHandCardE.innerHTML='手牌上限加成：0（每5轮+1）';
 						};
 					},100);
 					if(lib.config.wujinmoshiP==undefined) wujinmoshiMaxHandCardE.hide();
@@ -514,13 +523,13 @@ lib.brawl.wujinmoshi={
 					this.appendChild(wujinmoshiDrawE);
 					setInterval(function(){
 						if(lib.config.wujinmoshiDXB!=undefined){
-							if(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI<3){
-								wujinmoshiDrawE.innerHTML='摸牌数加成：'+(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI)+'（每10轮+1，上限+3）';
+							if(Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDrawI<3){
+								wujinmoshiDrawE.innerHTML='摸牌数加成：'+(Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDrawI)+'（每15轮+1，上限+3）';
 							}else{
-								wujinmoshiDrawE.innerHTML='摸牌数加成：3（每10轮+1，上限+3）';
+								wujinmoshiDrawE.innerHTML='摸牌数加成：3（每15轮+1，上限+3）';
 							};
 						}else{
-							wujinmoshiDrawE.innerHTML='摸牌数加成：0（每10轮+1，上限+5）';
+							wujinmoshiDrawE.innerHTML='摸牌数加成：0（每15轮+1，上限+5）';
 						};
 					},100);
 					if(lib.config.wujinmoshiP==undefined) wujinmoshiDrawE.hide();
@@ -532,12 +541,26 @@ lib.brawl.wujinmoshi={
 					this.appendChild(wujinmoshiRecoverE);
 					setInterval(function(){
 						if(lib.config.wujinmoshiDXB!=undefined){
-							wujinmoshiRecoverE.innerHTML='回复量加成：'+(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiRecoverI)+'（每8轮+1）';
+							wujinmoshiRecoverE.innerHTML='回复量加成：'+(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiRecoverI)+'（每10轮+1）';
 						}else{
-							wujinmoshiRecoverE.innerHTML='回复量加成：0（每8轮+1）';
+							wujinmoshiRecoverE.innerHTML='回复量加成：0（每10轮+1）';
 						};
 					},100);
 					if(lib.config.wujinmoshiP==undefined) wujinmoshiRecoverE.hide();
+
+					
+					var wujinmoshiESkillE=ui.create.div();
+					wujinmoshiESkillE.style.left='0px';
+					wujinmoshiESkillE.style.top='300px';
+					this.appendChild(wujinmoshiESkillE);
+					setInterval(function(){
+						if(lib.config.wujinmoshiESkillE==undefined){
+							wujinmoshiESkillE.innerHTML='额外技能：未获得';
+						}else{
+							wujinmoshiESkillE.innerHTML='额外技能：'+lib.translate[lib.config.wujinmoshiESkillE];
+						};
+					},100);
+					if(lib.config.wujinmoshiP==undefined) wujinmoshiESkillE.hide();
 					
 
 					var wujinmoshiRE=ui.create.div('.menubutton.large','<span style="cursor:pointer;">重置</span>',function(){
@@ -637,14 +660,14 @@ lib.brawl.wujinmoshi={
 							wujinmoshiJSQX.style.left='50px';
 							wujinmoshiJSQX.style.top='50px';
 	
-							var jilueduijueJS2=ui.create.div('','');
-							jilueduijueJS2.setBackgroundImage('extension/新英魂之刃/wujinmoshiJS.png');
-							jilueduijueJS2.style.height='400px';
-							jilueduijueJS2.style.width='600px';
-							jilueduijueJS2.style.left='50px';
-							jilueduijueJS2.style.top='50px';
+							var wujinmoshiJS2=ui.create.div('','');
+							wujinmoshiJS2.setBackgroundImage('extension/新英魂之刃/wujinmoshiJS.png');
+							wujinmoshiJS2.style.height='400px';
+							wujinmoshiJS2.style.width='600px';
+							wujinmoshiJS2.style.left='50px';
+							wujinmoshiJS2.style.top='50px';
 						
-							wujinmoshiJS1.add(jilueduijueJS2);
+							wujinmoshiJS1.add(wujinmoshiJS2);
 							wujinmoshiJS1.add(wujinmoshiJSQX);
 							ui.window.appendChild(wujinmoshiJS1);
 					});
@@ -660,25 +683,32 @@ lib.brawl.wujinmoshi={
 	            gameStart:function(){
 					var characterAi=[];
                     for(i in lib.character){
-                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) characterAi.push(i);
+                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')&&!lib.character[i][4].contains('hiddenboss')) characterAi.push(i);
                     };
 					game.me.next.init(characterAi.randomGet());
 					if(lib.config.wujinmoshiMaxHp>0){
 						game.me.gainMaxHp(lib.config.wujinmoshiMaxHp);
 						game.me.recover(lib.config.wujinmoshiMaxHp);
 					};
-					if(-(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI)<game.me.next.maxHp){
-						game.me.next.gainMaxHp(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI);
-						game.me.next.recover(Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHpI);
+					if(-(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiMaxHpI)<game.me.next.maxHp){
+						game.me.next.gainMaxHp(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiMaxHpI);
+						game.me.next.recover(Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiMaxHpI);
 					}else{
 						game.me.next.maxHp=0;
 						game.me.next.update();
 						game.me.next.die();
 					};
+					if(lib.config.wujinmoshiESkillE!=undefined) game.me.next.addSkill(lib.config.wujinmoshiESkillE);
 					game.me.storage.wujinmoshiRE=lib.character[game.me.next.name][3];
 					if(lib.config.wujinmoshiESkill!=undefined) game.me.addSkill(lib.config.wujinmoshiESkill);
-					game.addPlayer=function(all){};
-					game.addFellow=function(all){};
+					game.addPlayer=function(all){
+						alert('增加角色，违反无尽模式规则，重新载入游戏');
+						game.reload();
+					};
+					game.addFellow=function(all){
+						alert('增加角色，违反无尽模式规则，重新载入游戏');
+						game.reload();
+					};
 					game.swapPlayer=function(all){};
 					game.swapControl=function(all){};
 				},
@@ -686,7 +716,7 @@ lib.brawl.wujinmoshi={
 	                if(lib.config.wujinmoshiP!=undefined) return [lib.config.wujinmoshiP];
 					var characterAi=[];
                     for(i in lib.character){
-                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) characterAi.push(i);
+                        if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')&&!lib.character[i][4].contains('hiddenboss')) characterAi.push(i);
                     };
 					return [characterAi.randomGet()];
                 },
@@ -727,6 +757,7 @@ lib.brawl.wujinmoshi={
 								game.saveConfig('wujinmoshiXRK',lib.config.wujinmoshiXRK+1);
 								game.say2('你获得一张削弱卡');
 							};
+							game.saveConfig('wujinmoshiESkillE',undefined);
 							game.saveConfig('wujinmoshiDXB',lib.config.wujinmoshiDXB+1);
 							game.saveConfig('wujinmoshiDS',lib.config.wujinmoshiDS+1);
 							game.me.useSkill('wujinmoshiRE1');
@@ -807,7 +838,7 @@ lib.brawl.wujinmoshi={
 					},
 					forced:true,
 					content:function (){
-						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDamageI;
+						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDamageI;
 					},
 				};
             	lib.skill._wujinmoshiMaxHandCard={
@@ -821,7 +852,7 @@ lib.brawl.wujinmoshi={
             	lib.skill._wujinmoshiMaxHandCardE={
 					mod:{
     					maxHandcard:function (player,num){
-            				if(player!=game.me) return num+Math.floor(lib.config.wujinmoshiDXB/3)-lib.config.wujinmoshiMaxHandCardI;
+            				if(player!=game.me) return num+Math.floor(lib.config.wujinmoshiDXB/5)-lib.config.wujinmoshiMaxHandCardI;
             				return num;
     					},
 					},
@@ -847,8 +878,8 @@ lib.brawl.wujinmoshi={
 					},
 					forced:true,
 					content:function (){
-						if(Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI<3){
-							trigger.num+=Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiDrawI;
+						if(Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDrawI<3){
+							trigger.num+=Math.floor(lib.config.wujinmoshiDXB/15)-lib.config.wujinmoshiDrawI;
 						}else{
 							trigger.num+=3;
 						};
@@ -875,7 +906,7 @@ lib.brawl.wujinmoshi={
 					},
 					forced:true,
 					content:function (){
-						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/8)-lib.config.wujinmoshiRecoverI;
+						trigger.num+=Math.floor(lib.config.wujinmoshiDXB/10)-lib.config.wujinmoshiRecoverI;
 					},
 				};
 				if(lib.config.wujinmoshiP==undefined){
@@ -889,7 +920,7 @@ lib.brawl.wujinmoshi={
 };
 			var jilueduijueCharacter1=[];
 			for(i in lib.character){
-				if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')) jilueduijueCharacter1.push(i);
+				if(!lib.character[i][4].contains('forbidai')&&!lib.character[i][4].contains('boss')&&!lib.character[i][4].contains('hiddenboss')) jilueduijueCharacter1.push(i);
 			};
 			var jilueduijueCharacter=jilueduijueCharacter1.randomGets(25);
 		if(lib.config.jilueduijue1==undefined) game.saveConfig('jilueduijue1',jilueduijueCharacter[0]);
@@ -1215,176 +1246,16 @@ lib.brawl.jilueduijue = {
 
 				var jilueduijueNDA=ui.create.div('.menubutton.large','<span style="cursor:pointer;">难度</span>',function(){
 					if(lib.config.jilueduijueDXG==1&&lib.config.jilueduijueE==undefined){
-						jilueduijue1.hide();
-						jilueduijue2.hide();
-						jilueduijue3.hide();
-						jilueduijue4.hide();
-						jilueduijue5.hide();
-						jilueduijue6.hide();
-						jilueduijue7.hide();
-						jilueduijue8.hide();
-						jilueduijue9.hide();
-						jilueduijue10.hide();
-						jilueduijue11.hide();
-						jilueduijue12.hide();
-						jilueduijue13.hide();
-						jilueduijue14.hide();
-						jilueduijue15.hide();
-						jilueduijue16.hide();
-						jilueduijue17.hide();
-						jilueduijue18.hide();
-						jilueduijue19.hide();
-						jilueduijue20.hide();
-						jilueduijue21.hide();
-						jilueduijue22.hide();
-						jilueduijue23.hide();
-						jilueduijue24.hide();
-						jilueduijue25.hide();
-						var jilueduijueNDA1=ui.create.dialog('hidden');
-						jilueduijueNDA1.style.height='calc(100%)';
-						jilueduijueNDA1.style.width='calc(100%)';
-						jilueduijueNDA1.style.left='0px';
-						jilueduijueNDA1.style.top='0px';
-						jilueduijueNDA1.classList.add('popped');
-						jilueduijueNDA1.classList.add('static');
-						var jilueduijueNDQX=ui.create.div('.menubutton.round','×',function(){
-							jilueduijueNDA1.delete();
-							jilueduijue1.show();
-							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
-							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
-							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
-							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
-							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
-							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
-							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
-							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
-							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
-							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
-							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
-							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
-							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
-							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
-							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
-							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
-							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
-							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
-							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
-							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
-							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
-							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
-							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
-							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
-						});
-						jilueduijueNDQX.style.left='100px';
-						jilueduijueNDQX.style.top='100px';
-						
-						
-						var jilueduijueNDeasy=ui.create.div('.menubutton.large','<span style="cursor:pointer;">简<br>单</span>',function(){
-							jilueduijueNDA1.delete();
+						if(lib.config.jilueduijueND=='hard'){
 							game.saveConfig('jilueduijueND','easy');
-							game.say1('设置成功');
-							jilueduijue1.show();
-							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
-							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
-							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
-							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
-							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
-							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
-							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
-							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
-							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
-							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
-							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
-							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
-							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
-							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
-							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
-							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
-							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
-							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
-							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
-							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
-							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
-							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
-							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
-							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
-						});
-						jilueduijueNDeasy.style.left='50px';
-						jilueduijueNDeasy.style.top='250px';
-						
-						
-						var jilueduijueNDmedium=ui.create.div('.menubutton.large','<span style="cursor:pointer;">普<br>通</span>',function(){
-							jilueduijueNDA1.delete();
-							game.saveConfig('jilueduijueND','medium');
-							game.say1('设置成功');
-							jilueduijue1.show();
-							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
-							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
-							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
-							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
-							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
-							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
-							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
-							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
-							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
-							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
-							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
-							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
-							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
-							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
-							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
-							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
-							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
-							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
-							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
-							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
-							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
-							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
-							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
-							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
-						});
-						jilueduijueNDmedium.style.left='50px';
-						jilueduijueNDmedium.style.top='250px';
-						
-						
-						var jilueduijueNDhard=ui.create.div('.menubutton.large','<span style="cursor:pointer;">困<br>难</span>',function(){
-							jilueduijueNDA1.delete();
+							game.say1('设置难度为简单');
+						}else if(lib.config.jilueduijueND=='medium'){
 							game.saveConfig('jilueduijueND','hard');
-							game.say1('设置成功');
-							jilueduijue1.show();
-							if(lib.config.jilueduijue2a!=true) jilueduijue2.show();
-							if(lib.config.jilueduijue3a!=true) jilueduijue3.show();
-							if(lib.config.jilueduijue4a!=true) jilueduijue4.show();
-							if(lib.config.jilueduijue5a!=true) jilueduijue5.show();
-							if(lib.config.jilueduijue6a!=true) jilueduijue6.show();
-							if(lib.config.jilueduijue7a!=true) jilueduijue7.show();
-							if(lib.config.jilueduijue8a!=true) jilueduijue8.show();
-							if(lib.config.jilueduijue9a!=true) jilueduijue9.show();
-							if(lib.config.jilueduijue10a!=true) jilueduijue10.show();
-							if(lib.config.jilueduijue11a!=true) jilueduijue11.show();
-							if(lib.config.jilueduijue12a!=true) jilueduijue12.show();
-							if(lib.config.jilueduijue13a!=true) jilueduijue13.show();
-							if(lib.config.jilueduijue14a!=true) jilueduijue14.show();
-							if(lib.config.jilueduijue15a!=true) jilueduijue15.show();
-							if(lib.config.jilueduijue16a!=true) jilueduijue16.show();
-							if(lib.config.jilueduijue17a!=true) jilueduijue17.show();
-							if(lib.config.jilueduijue18a!=true) jilueduijue18.show();
-							if(lib.config.jilueduijue19a!=true) jilueduijue19.show();
-							if(lib.config.jilueduijue20a!=true) jilueduijue20.show();
-							if(lib.config.jilueduijue21a!=true) jilueduijue21.show();
-							if(lib.config.jilueduijue22a!=true) jilueduijue22.show();
-							if(lib.config.jilueduijue23a!=true) jilueduijue23.show();
-							if(lib.config.jilueduijue24a!=true) jilueduijue24.show();
-							if(lib.config.jilueduijue25a!=true) jilueduijue25.show();
-						});
-						jilueduijueNDhard.style.left='50px';
-						jilueduijueNDhard.style.top='250px';
-
-						jilueduijueNDA1.add(jilueduijueNDeasy);
-						jilueduijueNDA1.add(jilueduijueNDmedium);
-						jilueduijueNDA1.add(jilueduijueNDhard);
-						jilueduijueNDA1.add(jilueduijueNDQX);
-						ui.window.appendChild(jilueduijueNDA1);
+							game.say1('设置难度为困难');
+						}else if(lib.config.jilueduijueND=='easy'){
+							game.saveConfig('jilueduijueND','medium');
+							game.say1('设置难度为普通');
+						};
 					}else{
 						alert('对决已经开始，无法设置难度');
 					};
@@ -2650,8 +2521,14 @@ lib.brawl.jilueduijue = {
 						};
 					};
 					game.showIdentity();
-					game.addPlayer=function(all){};
-					game.addFellow=function(all){};
+					game.addPlayer=function(all){
+						alert('增加角色，违反极略对决规则，重新载入游戏');
+						game.reload();
+					};
+					game.addFellow=function(all){
+						alert('增加角色，违反极略对决规则，重新载入游戏');
+						game.reload();
+					};
 					game.swapPlayer=function(all){};
 					game.swapControl=function(all){};
 				},
@@ -4362,7 +4239,7 @@ lib.brawl.jiangshimoshi = {
 			'4.主公的第二个回合开始时，夜幕降临，此轮中会有X个人变为反贼僵尸（X为存活人数/6（向上整取））。以此法变为反贼僵尸时，体力上限变为5。',
 			'5.僵尸杀死人类后，人类与内奸僵尸组成双将。',
 			'6.人类死亡后与内奸僵尸组成双将。',
-			'7.内奸僵尸杀死人类后变为反贼僵尸。<br><span class=\"bluetext\" style=\"color:#EE7621;font-size:20px\"><p align="center">游戏结束条件</p></span>',
+			'7.内奸僵尸杀死人类或内奸僵尸后变为反贼僵尸。<br><span class=\"bluetext\" style=\"color:#EE7621;font-size:20px\"><p align="center">游戏结束条件</p></span>',
 			'1.退治成功，所有人类胜利，僵尸以及成为僵尸的人类失败：<br>任何玩家的回合开始时，主公退治印记到达8。<br>击杀所有僵尸。',
 			'2.退治失败，所有反贼僵尸胜利，非反贼僵尸以及人类失败：<br>主公阵亡并且场上没有可以代替主公的人类。'
 			],
@@ -4503,7 +4380,7 @@ game.saveConfig('player_number','8','identity');
 				trigger:{source:'dieBefore'},
 				forced:true,
 				filter:function(event,player){
-					return event.player.identity=='zhong'&&player.identity=='nei';
+					return (event.player.identity=='zhong'||event.player.identity=='nei')&&player.identity=='nei';
 				},
 				content:function(){
 					player.identity='fan';
@@ -4534,6 +4411,7 @@ game.saveConfig('player_number','8','identity');
 						event.target.identity='zhu';
 						event.target.gainMaxHp();
 						event.target.recover();
+						event.target.storage.fzjsNumber=player.storage.fzjsNumber;
 						event.target.storage._tuizhi=player.storage._tuizhi-1;
 						event.target.markSkill('_tuizhi');
 						event.target.syncStorage('_tuizhi');
@@ -11973,6 +11851,106 @@ player.recover();
 		};
 		},editable:false,
 		precontent:function (nyhzrlj){
+		ui.create.connectPlayers=function(ip){
+                game.connectPlayers=[];
+                for(var i=0;i<13;i++){
+                    var player=ui.create.player(ui.window);
+					if(i==0){
+						player.style.left='calc(2.5%)';
+						player.style.top='calc(20%)';
+					};
+					if(i==1){
+						player.style.left='calc(22.5%)';
+						player.style.top='calc(20%)';
+					};
+					if(i==2){
+						player.style.left='calc(42.5%)';
+						player.style.top='calc(20%)';
+					};
+					if(i==3){
+						player.style.left='calc(62.5%)';
+						player.style.top='calc(20%)';
+					};
+					if(i==4){
+						player.style.left='calc(82.5%)';
+						player.style.top='calc(20%)';
+					};
+					if(i==5){
+						player.style.left='calc(2.5%)';
+						player.style.top='calc(41%)';
+					};
+					if(i==6){
+						player.style.left='calc(22.5%)';
+						player.style.top='calc(41%)';
+					};
+					if(i==7){
+						player.style.left='calc(42.5%)';
+						player.style.top='calc(41%)';
+					};
+					if(i==8){
+						player.style.left='calc(62.5%)';
+						player.style.top='calc(41%)';
+					};
+					if(i==9){
+						player.style.left='calc(82.5%)';
+						player.style.top='calc(41%)';
+					};
+					if(i==10){
+						player.style.left='calc(2.5%)';
+						player.style.top='calc(62%)';
+					};
+					if(i==11){
+						player.style.left='calc(22.5%)';
+						player.style.top='calc(62%)';
+					};
+					if(i==12){
+						player.style.left='calc(42.5%)';
+						player.style.top='calc(62%)';
+					};
+                    player.dataset.position=i;
+                    player.classList.add('connect');
+                    player.classList.add('minskin');
+                    game.connectPlayers.push(player);
+                    if(i>=lib.configOL.number){
+                        player.classList.add('unselectable2');
+                    }
+                }
+
+                var bar=ui.create.div(ui.window);
+                bar.style.height='20px';
+                bar.style.width='80%';
+                bar.style.left='10%';
+                bar.style.top='calc(200% / 7 - 120px + 5px)';
+                bar.style.textAlign='center';
+                var ipbar=ui.create.div('.shadowed',ip,bar);
+                ipbar.style.padding='4px';
+                ipbar.style.borderRadius='2px';
+                ipbar.style.position='relative';
+
+                var button=ui.create.div('.menubutton.large.highlight.connectbutton.pointerdiv',game.online?'退出联机':'开始游戏',ui.window,function(){
+                    if(button.clicked) return;
+                    if(game.online){
+                        if(game.onlinezhu){
+                            game.send('startGame');
+                        }
+                        else{
+                            game.saveConfig('reconnect_info');
+                            game.reload();
+                        }
+                    }
+                    else{
+                        game.resume();
+                    }
+                    button.delete();
+                    bar.delete();
+                    delete ui.connectStartButton;
+                    delete ui.connectStartBar;
+                    button.clicked=true;
+                });
+
+                ui.connectStartButton=button;
+                ui.connectStartBar=bar;
+            };
 		get.modetrans=function(config,server){
             if(config.mode=='versus'){
                 switch(config.versus_mode){
@@ -12179,6 +12157,21 @@ player.recover();
 			if(str2=='◉<br>福<br>娃'){
 				str2='<span style="color:#FF000D;font-weight:600;font-family:lishu">福<br>娃<br> <br> <br> </span>'
 			}
+			if(str2=='◉<br>宫<br>本<br>武<br>藏<br> '){
+				str2='<span style="color:#40FF00;font-weight:600;font-family:huangcao">夜<br>叉<br>胧<br><br><br></span>'
+			}
+			if(str2=='◉<br>宫<br>本<br>武<br>藏<br> <br> '){
+				str2='<span style="color:#D3099A;font-weight:600;font-family:huangcao">幕<br>府<br>利<br>刃<br><br></span>'
+			}
+			if(str2=='◉<br>宫<br>本<br>武<br>藏<br> <br> <br> '){
+				str2='<span style="color:#00FFF2;font-weight:600;font-family:huangcao">七<br>海<br>女<br>王<br><br></span>'
+			}
+			if(str2=='◉<br>后<br>羿<br> <br> <br> '){
+				str2='<span style="color:#EAEAEA;font-weight:600;font-family:huangcao">银<br>月<br>箭<br>华<br><br></span>'
+			}
+			if(str2=='◉<br>后<br>羿<br> <br> <br> <br> <br> '){
+				str2='<span style="color:#FBFF08;font-weight:600;font-family:huangcao">黄<br>金<br>之<br>翼<br><br></span>'
+			}
 			return str2;
 		};
         if(nyhzrlj.enable){
@@ -12233,6 +12226,11 @@ player.recover();
 			"knyhzr卡柯ol":["male","min",4,["nyhzr宿敌之剑ol"],["ext:新英魂之刃/Newknyhzr卡柯.jpg","des:<img src='http://n.7k7kimg.cn/2016/0806/1470465667373.jpg' width='280' height='150'><li>他曾是波斯帝国高贵的王子殿下，被称为太阳之子—他那金色的短发就如他的性格一般阳光璀璨。<li>可当权谋的阴影将他笼罩，面对至亲王叔的背叛与毒杀，再璀璨的金色也会染上复仇的暗光。仅仅是一夜之间，他失去了所有的亲人、他的家园、他爱慕的女子……以及一切，而他唯一收获的，就只有仇恨。但失去权势的王子殿下，又能用怎样的手段杀死那个已经坐上至高王座的仇人呢？<li>于是，当冥府之神阿努比斯现身时，他没有丝毫犹豫地签下了代表死亡的契约。冥神的力量在他的体内充斥，他终于彻底沦为复仇的傀儡。当他手持复仇双刃割下王叔的头颅，泪水终于无可抑制的从他的眼角滑落——财富、权势和贪婪，以及最后的仇恨，让他真正的一无所有。<li>对于生命，他还有什么可以贪恋的呢？当他手握王叔的头颅，迎来冥神阿努比斯时，唯一怀念的，就是太阳光辉笼罩下亲人温柔的回望。"]],
 			"anyhzr艾薇ol":["female","min",3,["nyhzr追袭ol","nyhzr射月ol"],["ext:新英魂之刃/Newanyhzr艾薇.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/ayls/header.jpg' width='280' height='150'><li>艾薇是暗月森林最美丽的精灵。可是，正是这份美丽，引来了大主祭的垂涎。为了摆脱纠缠，艾薇决定成为法定不得婚嫁的皇室神射手。<li>经过激烈的角逐，她得到精灵女王的认可，成功入选，甚至获得了专属于女性精灵射手的荣耀之名——神箭哲琴。<li>大主祭的美梦成了泡影。恼羞成怒的他决心毁掉这件自己得不到的珍宝。他勾结恶魔军团，在艾薇前往接受封赐的路上设伏偷袭。 艾薇的伙伴们在第一轮箭雨下死伤殆尽。<li>满怀悲愤的艾薇退入密林，用她冰冷的箭矢收割着恶魔的性命。企图逃走的大主祭被远远射来的一只大箭钉在树上，随后被密集的箭岚射成了蜂窝。<li>当援军赶到时，艾薇已经力竭身亡，藤弓流月静静地躺在她的脚边，她的四周是数千恶魔的尸首。"]],
 			"fnyhzr福娃ol":["female","zhi",3,["nyhzr连年有余ol","nyhzr定时爆竹ol"],["ext:新英魂之刃/Newfnyhzr福娃.jpg","des:"]],
+			"gnyhzr宫本武藏SkinC1ol":["female","min",3,["nyhzr隐匿·胧ol","nyhzr千叶斩ol"],["ext:新英魂之刃/NewPifunyhzr黑暗中的剑客1.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/gbwz/header.jpg' width='380' height='122'><li>黑夜深沉，参天宫殿伫立于阴影之中。传说中拥有巨大力量的天照宝珠就被魔王藏在这里。<li>女剑客静静潜伏在悬崖边上，隐藏在狐面下的冰冷双瞳远远向宫殿凝望。<li>几支巡逻队打着火把如往常一般在宫殿外巡视，她低下身子，轻巧地绕过他们潜入宫殿之中。阴森幽暗的建筑中遍布重重机关，稍一不慎就将死无葬身之地。上下摇摆的抡锤、瞬时淹没的流沙、地底渗出的剧毒、诡异的谜题之门……这些都难不倒这个美艳冷酷的女子。双刀在手，一路过关斩将。<li>暗夜中的潜伏者最终来到了她的终点——某个宫殿深处的密室，悄无声息地划开的机关门后，一片黑暗中的石台上，天照宝珠正在绽放光华。<li>目标就在眼前，她不由加快脚步，但突然觉察到什么又立即停下，双手交错反握刀柄，伏身露出戒备的神情。“真可惜，再往前一步，你就死了。”魔王鼓着掌，从黑暗中露出身形，嘴角扯出一道狰狞的笑。“重重关卡都被你闯过，真是精彩。宫本武藏，你果然不愧传说中的盛名……但你注定拿不到它，因为我会在你拿到之前毁掉它。”<li>“可惜我的目标不是它。”武藏冷冷一笑：“是你！”<li>刀光闪过，天照宝珠仍静静地光华四射，魔王还留存着讶异表情的人头已落地。<li>双刀入鞘，身形一晃，天照宝珠落入腰囊，而武藏，已重新隐入黑暗之中……"]],
+			"gnyhzr宫本武藏SkinC2ol":["female","min",4,["nyhzr幕府利刃ol","nyhzr千叶斩ol"],["ext:新英魂之刃/Pifunyhzr黑暗中的剑客2.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/gbwz/header.jpg' width='380' height='122'><li>黑夜深沉，参天宫殿伫立于阴影之中。传说中拥有巨大力量的天照宝珠就被魔王藏在这里。<li>女剑客静静潜伏在悬崖边上，隐藏在狐面下的冰冷双瞳远远向宫殿凝望。<li>几支巡逻队打着火把如往常一般在宫殿外巡视，她低下身子，轻巧地绕过他们潜入宫殿之中。阴森幽暗的建筑中遍布重重机关，稍一不慎就将死无葬身之地。上下摇摆的抡锤、瞬时淹没的流沙、地底渗出的剧毒、诡异的谜题之门……这些都难不倒这个美艳冷酷的女子。双刀在手，一路过关斩将。<li>暗夜中的潜伏者最终来到了她的终点——某个宫殿深处的密室，悄无声息地划开的机关门后，一片黑暗中的石台上，天照宝珠正在绽放光华。<li>目标就在眼前，她不由加快脚步，但突然觉察到什么又立即停下，双手交错反握刀柄，伏身露出戒备的神情。“真可惜，再往前一步，你就死了。”魔王鼓着掌，从黑暗中露出身形，嘴角扯出一道狰狞的笑。“重重关卡都被你闯过，真是精彩。宫本武藏，你果然不愧传说中的盛名……但你注定拿不到它，因为我会在你拿到之前毁掉它。”<li>“可惜我的目标不是它。”武藏冷冷一笑：“是你！”<li>刀光闪过，天照宝珠仍静静地光华四射，魔王还留存着讶异表情的人头已落地。<li>双刀入鞘，身形一晃，天照宝珠落入腰囊，而武藏，已重新隐入黑暗之中……"]],
+			"gnyhzr宫本武藏SkinC3ol":["female","min",4,["nyhzr颠覆之海ol","nyhzr千叶斩ol"],["ext:新英魂之刃/NewPifunyhzr黑暗中的剑客3.jpg","des:<img src='http://img2.91huo.cn/news.cos/images/buy/gbwz/header.jpg' width='380' height='122'><li>黑夜深沉，参天宫殿伫立于阴影之中。传说中拥有巨大力量的天照宝珠就被魔王藏在这里。<li>女剑客静静潜伏在悬崖边上，隐藏在狐面下的冰冷双瞳远远向宫殿凝望。<li>几支巡逻队打着火把如往常一般在宫殿外巡视，她低下身子，轻巧地绕过他们潜入宫殿之中。阴森幽暗的建筑中遍布重重机关，稍一不慎就将死无葬身之地。上下摇摆的抡锤、瞬时淹没的流沙、地底渗出的剧毒、诡异的谜题之门……这些都难不倒这个美艳冷酷的女子。双刀在手，一路过关斩将。<li>暗夜中的潜伏者最终来到了她的终点——某个宫殿深处的密室，悄无声息地划开的机关门后，一片黑暗中的石台上，天照宝珠正在绽放光华。<li>目标就在眼前，她不由加快脚步，但突然觉察到什么又立即停下，双手交错反握刀柄，伏身露出戒备的神情。“真可惜，再往前一步，你就死了。”魔王鼓着掌，从黑暗中露出身形，嘴角扯出一道狰狞的笑。“重重关卡都被你闯过，真是精彩。宫本武藏，你果然不愧传说中的盛名……但你注定拿不到它，因为我会在你拿到之前毁掉它。”<li>“可惜我的目标不是它。”武藏冷冷一笑：“是你！”<li>刀光闪过，天照宝珠仍静静地光华四射，魔王还留存着讶异表情的人头已落地。<li>双刀入鞘，身形一晃，天照宝珠落入腰囊，而武藏，已重新隐入黑暗之中……"]],
+			"hnyhzr后羿SkinC3ol":["male","min",4,["nyhzr银箭ol","nyhzr逐阳之弓ol"],["ext:新英魂之刃/Pifunyhzr射日英雄3.jpg","des:<img src='http://img5.91huo.cn/news.cos/images/buy/hy/header.jpg' width='280' height='150'><li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
+			"hnyhzr后羿SkinC5ol":["male","min",4,["nyhzr黄金之翼ol","nyhzr逐阳之弓ol1"],["ext:新英魂之刃/NewPifunyhzr射日英雄5.jpg","des:<img src='http://img5.91huo.cn/news.cos/images/buy/hy/header.jpg' width='280' height='150'><li>后羿环顾着四周，目力可及之处，只有龟裂的大地。匍匐在他脚下的老妪已经被灼热的太阳晒脱了水分，恍惚间就像一段焦枯树干。 <li>天空中的太阳们依旧嚣张地散发着全部的热量。<li>是的，太阳们。<li>它们是天帝的儿子，每日有一人化身为太阳穿过天空，撒下光热，哺育世间万物。然而，周而复始的日子令它们觉得厌烦。于是，再一个黎明到来时，它们一起出现在天空中， <li>太阳们散发出的热量烤焦了大地，树木庄稼化为灰烬，人间瞬时化为炼狱…… <li>不能再这样了，总得有个人站出来，帮助大家脱离苦海。<li>后羿回过神来，他按了按腰间的箭囊，那是最后的希望……不能再等待了！他从肩上取下那张红色的弓，抽出了箭矢。 <li>满弓！射出！ <li>奇迹出现了！骄横的太阳纷纷坠落，当第九个太阳落下之时，世界再度恢复了原貌。 <li>人们铭记着他的威能，自此，“神射手”之名名垂千古！"]],
 					},
                     skill:{
             "nyhzr仙灵伙伴ol":{
@@ -12615,7 +12613,11 @@ return true;
                 },
 				forced:true,
                 content:function (){
-                    trigger.nature='fire';
+					if(player.hasSkill('nyhzr银箭ol')){
+						trigger.nature='thunder';
+					}else{
+                        trigger.nature='fire';
+					}
                     trigger.player.discard(trigger.player.get('e'));
                 },
             },
@@ -12644,11 +12646,12 @@ return true;
                     return event.card.name=='sha'&&_status.currentPhase==player;
 				},
 				check:function (event,player){
-					return (get.attitude(player,event.target)<=0);
+					return ai.get.attitude(player,event.target)<0;
 				},
 				content:function (){
 					"step 0"
 					player.chooseControl(["穿云箭","燎火之箭"]).ai=function(){
+						if(player.hasSkill('nyhzr银箭ol')) return '燎火之箭';
 						return '穿云箭';
 					};
 					"step 1"
@@ -13074,7 +13077,7 @@ return true;
 				},
 				priority:-1,
 				check:function (event,player){
-					return (get.attitude(player,event.target)<=0);
+					return ai.get.attitude(player,event.target)<0;
 				},
 				content:function(){
 					'step 0'
@@ -13692,6 +13695,8 @@ return true;
 					if (result.control=='说出身份'){
 						game.broadcastAll(function(player){
 							player.chat('我是'+get.translation(trigger.player.identity));
+							player.setIdentity(player.identity);
+							player.node.identity.dataset.color=player.identity;
 						},trigger.player);
 					};
 					if (result.control=='流失体力') trigger.player.loseHp();
@@ -14111,7 +14116,7 @@ return true;
 					"step 0"
 					if(targets[0].num('h')==0) targets[0].draw();
 					if(targets[1].num('h')==0) targets[1].draw();
-					if(targets[0].identity!=targets[1].identity) player.draw();
+					if(targets[0].group!=targets[1].group) player.draw();
 					targets[0].line(targets[1]);
 					targets[0].chooseToCompare(targets[1]);
 					"step 1"
@@ -14827,7 +14832,7 @@ return true;
 				},
 				direct:true,
 				check:function (event,player){
-					return (get.attitude(player,event.target)<=0);
+					return ai.get.attitude(player,event.player)<0;
 				},
 				content:function(){
 					'step 0'
@@ -15131,7 +15136,6 @@ return true;
             "nyhzr高距炮弹ol":{
 				nobracket:true,
 				enable:"phaseUse",
-				usable:1,
 				filterTarget:function (card,player,target){
 					return player!=target;
 				},
@@ -15380,6 +15384,7 @@ return true;
 					player:'phaseAfter',
 				},
 				filter:function (event,player){
+					if(_status.connectMode) return player.num('h')>0;
 					return player.num('e')>0;
 				},
 				check:function (event,player){
@@ -15387,13 +15392,183 @@ return true;
 					return false;
 				},
 				content:function (){
-					player.chooseToDiscard(1,'e',true);
+					if(_status.connectMode){
+						player.chooseToDiscard(1,'h',true);
+					}else{
+						player.chooseToDiscard(1,'e',true);
+					};
 					player.storage.nyhzr定时爆竹ol=true;
 					setTimeout(function(){
 						player.useCard({name:'sha',nature:'fire'},game.players,false);
 					},10000);
 				},
 			},			
+            "nyhzr隐匿·胧ol":{
+				nobracket:true,
+                init:function (player){
+                    player.storage.nyhzr隐匿·胧ol=0;
+                },
+                marktext:"胧",
+                intro:{
+                    content:function (storage){
+						return '已触发'+get.cnNumber(storage)+'次隐藏拖拽线效果'
+                    },
+                },
+                mark:true,
+			},
+            "_nyhzr隐匿·胧ol":{
+				trigger:{
+					global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+				},
+				forced:true,
+				filter:function (event,player){
+					return player.hasSkill('nyhzr隐匿·胧ol')&&player.storage.nyhzr隐匿·胧ol1!=0;
+				},
+				content:function (){
+					player.storage.nyhzr隐匿·胧ol1=0;
+					player.line=function(all){
+						player.storage.nyhzr隐匿·胧ol+=1;
+						if(player.storage.nyhzr隐匿·胧ol>=5){
+							player.addTempSkill('qianxing',{player:'phaseBefore'});
+							player.storage.nyhzr隐匿·胧ol=0;
+							player.syncStorage('nyhzr隐匿·胧ol');
+						};
+					};
+				},
+			},
+            "nyhzr幕府利刃ol":{
+				nobracket:true,
+				mod:{
+					cardUsable:function(card,player,num){
+						if(card.name=='sha') return Infinity;
+					},
+                    selectTarget:function (card,player,range){
+                        if(card.name=='wanjian'||card.name=='nanman'||card.name=='sha') range[1]=player.countUsed('sha')+1;
+                    },
+                },
+                trigger:{
+                    player:"useCardAfter",
+                },
+                filter:function (event,player){
+                    if(_status.currentPhase!=player) return false;
+                    return player.countUsed(event.card)>2;
+                },
+                forced:true,
+				usable:3,
+                content:function (){
+                    player.draw();
+                },
+            },
+            "nyhzr颠覆之海ol":{
+				nobracket:true,
+			},
+            "_nyhzr颠覆之海ol":{
+				trigger:{
+					global:["gameStart","useCardAfter","useCardBefore","phaseBefore","loseEnd","phaseBegin","phaseDradBegin","phaseUseBegin","phaseUseEnd","phaseEnd","phaseDiscardAfter","phaseDiscardBegin","useSkillBefore","judgeBefore","judgeAfter"],
+				},
+				forced:true,
+				filter:function (event,player){
+					return player.hasSkill('nyhzr颠覆之海ol')&&player.storage.nyhzr颠覆之海ol1!=0;
+				},
+				content:function (){
+					player.storage.nyhzr颠覆之海ol1=0;
+					player.loseHp=function(all){
+						player.useCard({name:'sha'},player);
+					};
+					player.turnOver=function(all){
+						if(player.num('h')>0) player.chooseToDiscard(1,'h',true);
+					};
+				},
+			},
+			"nyhzr银箭ol":{
+				nobracket:true,
+				trigger:{
+					source:"damageEnd",
+				},
+				filter:function (event){
+					return event.nature=='thunder';
+				},
+				forced:true,
+				content:function (){
+					var skill=trigger.player.get('s',false,false).randomGet();
+					game.log(player,'获得了【',lib.translate[skill],'】');
+					player.addSkill(skill);
+				},
+			},
+		    "nyhzr黄金之翼ol":{
+				nobracket:true,
+				group:["nyhzr黄金之翼ol_1","nyhzr黄金之翼ol_2"],
+				subSkill:{
+					1:{
+						trigger:{
+							global:"damageBefore",
+						},
+						forced:true,
+						popup:false,
+						filter:function (event,player){
+							return event.source&&event.source!=player&&event.player!=player;
+						},
+						content:function (){
+							trigger.source=player;
+							trigger.nature='fire';
+						},
+					},
+					2:{
+						trigger:{
+							source:'damageBegin'
+						},
+						forced:true,
+						popup:false,
+						content:function (){
+							game.broadcastAll(function(target,player){
+								game.swapSeat(target,player);
+							},trigger.player,player)
+						},
+					},
+				},
+		    },
+            "nyhzr逐阳之弓ol1":{
+                nobracket:true,
+                mod:{
+                    globalFrom:function (from,to,distance){
+                        return distance-1;
+                    },
+                },
+				trigger:{
+                    source:"damageAfter",
+				},
+				filter:function (event,player){
+                    return event.card;
+				},
+				check:function (event,player){
+					return ai.get.attitude(player,event.player)<0;
+				},
+				content:function (){
+					var cards=[];
+					for(var i=0;i<trigger.player.get('hej').length;i++){
+						if(get.number(trigger.player.get('hej')[i])-get.number(trigger.card)<=2&&get.number(trigger.player.get('hej')[i])-get.number(trigger.card)>=-2) cards.push(trigger.player.get('hej')[i]);
+					};
+					trigger.player.discard(cards);
+				},
+			},
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 					},
@@ -15445,6 +15620,11 @@ return true;
             "knyhzr卡柯ol":"◉卡柯",
             "anyhzr艾薇ol":"◉艾薇",
             "fnyhzr福娃ol":"◉福娃",
+            "gnyhzr宫本武藏SkinC1ol":"◉宫本武藏 ",
+            "gnyhzr宫本武藏SkinC2ol":"◉宫本武藏  ",
+            "gnyhzr宫本武藏SkinC3ol":"◉宫本武藏   ",
+            "hnyhzr后羿SkinC3ol":"◉后羿   ",
+            "hnyhzr后羿SkinC5ol":"◉后羿     ",
             "nyhzr仙灵伙伴ol":"仙灵伙伴",
             "nyhzr仙灵伙伴ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你召唤一只妖精皮皮",
             "nyhzr迷藏印记ol":"迷藏印记",
@@ -15608,14 +15788,14 @@ return true;
             "nyhzr太阳之子ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你可以调整执行阶段的顺序<br>你不能成为【过河拆桥】的目标",
             "nyhzr太阳之子ol_append":"注：<br>死神在场时，你只能执行一个阶段<br>阶段包括判定阶段、摸牌阶段、出牌阶段和弃牌阶段",
             "nyhzr怒战八方ol":"怒战八方",
-            "nyhzr怒战八方ol_info":"你的回合外，当其他角色使用基本牌或非延时性锦囊牌时，你可以弃置一张与此牌花色相同的手牌并使此牌失效，若弃置的牌颜色为黑色，你摸一张牌，否则你对此牌的使用者使用一张杀",
+            "nyhzr怒战八方ol_info":"你的回合外，当其他角色使用基本牌或非延时性锦囊牌时，你可以弃置一张与此牌花色相同的手牌并使此牌失效，若弃置的牌颜色为黑色，你摸一张牌，否则视为你对此牌的使用者使用一张杀",
             "nyhzr所向披靡ol2":"所向披靡",
             "nyhzr所向披靡ol1":"所向披靡",
 			"nyhzr所向披靡ol":"所向披靡",
             "nyhzr所向披靡ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你因【怒战八方】获得牌时，你可以选择一项：<li>令一名角色摸牌<li>弃置一名其他角色装备区内的装备牌",
             "nyhzr追魂剑ol":"追魂剑",
             "nyhzr追魂剑ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>当你的【杀】命中时，目标获得一个追魂印记",
-            "nyhzr追魂剑ol_append":"注：<br>当一名角色的追魂印记：<li>大于或等于一时，该角色无法恢复体力<li>大于或等于二时，受到伤害后，拥有技能【追魂剑】的角色摸一张牌<li>大于或等于三时，受到伤害后，该角色弃置手牌区与装备区内的所有牌<li>大于或等于三时，受到伤害后，该角色死亡",
+            "nyhzr追魂剑ol_append":"注：<br>当一名角色的追魂印记：<li>大于或等于一时，该角色无法恢复体力<li>大于或等于二时，受到伤害后，拥有技能【追魂剑】的角色摸一张牌<li>大于或等于三时，受到伤害后，该角色弃置手牌区与装备区内的所有牌<li>大于或等于四时，受到伤害后，该角色死亡",
             "nyhzr七十二变ol":"七十二变",
             "nyhzr七十二变ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始阶段，你可以选择摸一张牌或随机获得场上其他角色的一个技能，选择后，消耗一个【七十二变】印记，若【七十二变】印记大于零，你再次进行选择<br>回合开始阶段前，你还原自身技能",
             "nyhzr七十二变ol_append":"注：<br>【七十二变】印记的初始数量为二，还原后为零",
@@ -15640,13 +15820,27 @@ return true;
             "nyhzr追袭ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你的进攻距离+X（X为你已损失的生命值）",
             "nyhzr追袭ol_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你使用牌前，若攻击范围：<li>小于二，你获得【飞影】<li>等于二，你获得【贯石】<li>大于二，你获得【青釭】<br>每当你以此法获得技能时，会删除前一个以此法获得的技能",
             "nyhzr射月ol":"射月",
-            "nyhzr射月ol_info":"出牌阶段，你可以对你攻击范围内的其他角色使用一张不计入使用次数的【杀】，若如此做，本回合内，你的进攻距离-1",
+            "nyhzr射月ol_info":"出牌阶段，你可以视为对你攻击范围内的其他角色使用一张不计入使用次数的【杀】，若如此做，本回合内，你的进攻距离-1",
             "nyhzr连年有余ol":"连年有余",
             "nyhzr连年有余ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>回合开始前，你获得你装备区内的所有牌<br>当你弃牌后，你可以将弃置的第一张牌转化为装备牌并装备之，若弃牌数大于一，你摸X张牌（X为弃牌数）",
             "nyhzr连年有余ol_append":"注：<br>因【连年有余】变为装备牌的仅用于响应的牌无法使用<br>因【连年有余】变为装备牌的【杀】和【酒】不计入使用次数<br>联机模式下，不触发【连年有余】转化类型并装备效果",
             "nyhzr定时爆竹ol":"定时爆竹",
-            "nyhzr定时爆竹ol_info":"回合结束后，你可以弃置你装备区内的一张牌，若如此做，10秒后，你对所有角色使用一张不计入使用次数的火属性【杀】",
-            "nyhzr定时爆竹ol_append":"注：<br>因【定时爆竹】弃置的牌不会触发【连年有余】",
+            "nyhzr定时爆竹ol_info":"回合结束后，你可以弃置你装备区内的一张牌，若如此做，10秒后，视为你对所有角色使用一张不计入使用次数的火属性【杀】",
+            "nyhzr定时爆竹ol_append":"注：<br>因【定时爆竹】弃置的牌不会触发【连年有余】<br>联机模式下，【定时爆竹】弃置装备区内的一张牌变为弃置手牌区内的一张牌",
+			"nyhzr隐匿·胧ol":"隐匿·胧",
+            "nyhzr隐匿·胧ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动（特）：</span><br>你触发的任何事件都不会显示拖拽线，每当你触发隐藏拖拽线效果大于或等于五次时，你潜行直至你的回合开始前并清空触发次数",
+			"nyhzr幕府利刃ol":"幕府利刃",
+            "nyhzr幕府利刃ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>你使用的【杀】，【南蛮入侵】和【万箭齐发】可以指定X个目标（X为回合内使用【杀】的数量）<br>出牌阶段，你使用的【杀】无数量限制<br>当你于回合内使用牌后，若该回合内你已经使用与之同名的卡牌达三张或更多时，你摸一张牌，每回合限三次",
+            "nyhzr幕府利刃ol_append":"注：<br>因【千叶斩】使用的【杀】不计入【幕府利刃】",
+			"nyhzr颠覆之海ol":"颠覆之海",
+            "nyhzr颠覆之海ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动（特）：</span><br>当你流失体力时，视为对自己使用一张【杀】并取消流失体力<br>当你翻面时,你弃置一张手牌（没有则不弃）并取消翻面",
+			"nyhzr银箭ol":"银箭",
+            "nyhzr银箭ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>燎火之箭转化后的属性变为雷属性<br>当你造成雷属性伤害时，你随机复制目标一项技能",
+			"nyhzr黄金之翼ol":"黄金之翼",
+            "nyhzr黄金之翼ol_info":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span><br>其他角色造成的伤害均视为由你造成<br>你造成的伤害均视为火属性伤害<br>当你造成伤害时，你与目标交换座位",
+            "nyhzr逐阳之弓ol1":"逐阳之弓",
+            "nyhzr逐阳之弓ol1_info":"当你造成伤害后，你可以令目标弃置所有区域内与造成伤害的牌的点数的绝对值不大于二的牌",
+			"nyhzr逐阳之弓ol1_append":"<span class=\"bluetext\" style=\"color:#EE7621\">被动：</span>你的进攻距离+1",
 			},
                 };
                 return nyhzrlj;
@@ -15949,7 +16143,7 @@ baozou:{
 				forced:true,
 				filter:function(event,player){
 					if(_status.mode!='zombie') return false;
-					return event.player.identity=='zhong'&&player.identity=='nei';
+					return (event.player.identity=='zhong'||event.player.identity=='nei')&&player.identity=='nei';
 				},
 				content:function(){
 					game.broadcastAll(function(player){
@@ -15991,6 +16185,7 @@ baozou:{
 						},event.target);
 						event.target.gainMaxHp();
 						event.target.recover();
+						event.target.storage.fzjsNumber=player.storage.fzjsNumber;
 						event.target.storage._tuizhi=player.storage._tuizhi-1;
 						event.target.markSkill('_tuizhi');
 						event.target.syncStorage('_tuizhi');
@@ -16294,20 +16489,21 @@ baozou:{
 				intro:'兼并详见兼并模式'
 			};
 			lib.skill._combineSupport={
-				trigger:{global:'gameStart'},
+				trigger:{player:'phaseBefore'},
 				forced:true,
 				filter:function(event,player){
 					if(_status.mode!='combine') return false;
-					return true;
+					return player.storage.combineSupport!=0;
 				},
 				content:function(){
 					game.broadcastAll(function(){
 						for(var i=0;i<game.players.length;i++){
-							game.players[i].group='ye';
-							game.players[i].identity='ye';
-							game.players[i]._group='ye';
+							game.players[i].group=get.cnNumber(i+1);
+							game.players[i].identity=get.cnNumber(i+1);
+							game.players[i]._group=get.cnNumber(i+1);
+							game.players[i].storage.combineSupport=0;
 							game.players[i].node.identity.firstChild.innerHTML='国';
-							game.players[i].node.identity.dataset.color='zhu';
+//							game.players[i].node.identity.dataset.color='zhu';
 						};
 					});
 				},
@@ -16326,6 +16522,20 @@ baozou:{
 					trigger.source.addSkill(player.get('s',false,false));
 				},
             };
+			if(lib.device&&get.mode()=='connect'){
+				game.saveConfig('player_height','short');
+				game.saveConfig('layout','long');
+			};
+		lib.arenaReady.push(function(){
+			if(lib.device&&_status.connectMode){
+				var zoom=function(num){
+					var zoom=num;
+					game.documentZoom=game.deviceZoom*zoom;
+					document.documentElement.style.zoom=game.documentZoom;
+				};
+				zoom(0.8);
+			};
+		});
 game.say1=function(str){
 var dialog=ui.create.dialog('hidden');
 dialog.classList.add('static');

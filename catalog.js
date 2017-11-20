@@ -4,7 +4,7 @@ extension["风华绝代"]={
     size:"299.99MB",
     netdisk:"http://pan.baidu.com/s/1pKRjIcz",
     forum:"https://tieba.baidu.com/p/5063284116",
-    version:3,
+    version:4,
     files:[
         "11.mp3","12.mp3","BOSS_diaochan.jpg","BOSS_shenhua.jpg","BOSS_xuhuang.jpg",
 		"BOSS_yuji.jpg","BOSS_zhangfei.jpg","BOSS_zhanshen.jpg","BOSS_zuoci.jpg","IMG_20170402_061457.jpg",

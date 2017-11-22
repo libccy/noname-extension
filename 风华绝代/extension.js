@@ -934,7 +934,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,3];
            new_buhui_info:'锁定技，你不能成为【杀】的目标。',
             "slianying_info":"1、每当你使用或打出一张牌时，你可以摸一张牌；2、你对目标造成伤害时，可将其武将牌横置；3、锁定技，你即将造成的伤害均视为火焰伤害。",
          },
-       },'神将&民间')
+       },'神将/民间')
       }  
     // ---------------------------------------新版武将------------------------------------------//
 		if(config.new_){
@@ -2688,7 +2688,7 @@ if(player.countCards('e')>=player.hp){
 				maixie:true,
 				effect:{
 					target:function(card,player,target){
-						if(target.maxHp<=3) return;
+						if(target.maxHp<=3&&target.countCards('e')<target.hp-1) return;
 						if(get.tag(card,'damage')){
            if(!target.hasFriend()) return;
 							if(target.hp==target.maxHp) return [0,1];
@@ -2918,8 +2918,8 @@ player:['damageEnd','loseHpEnd']
                 return true;
             },
                 content:function (){
-                player.gainMaxHp();
-                player.draw(2);
+                player.recover();
+                player.draw(3);
             },
             },
             xinxingxue:{
@@ -2930,7 +2930,7 @@ player:['damageEnd','loseHpEnd']
                 direct:true,
                 content:function (){
                 'step 0'
-            player.chooseTarget([1,3],get.prompt('xinxingxue')).set('ai',function(target){
+            player.chooseTarget([1,2],get.prompt('xinxingxue')).set('ai',function(target){
                     var att=ai.get.attitude(_status.event.player,target);
                     if(target.num('he')) return att;
                     return att/10;
@@ -3440,7 +3440,7 @@ player:['damageEnd','loseHpEnd']
     					if(get.attitude(_status.event.player,target)>0){
     						return 10+get.attitude(_status.event.player,target);
     					}
-    					if(player.maxHp-player.hp==1){
+    					if(player.maxHp-player.hp==1&&player.countCards('e')<player.hp){
     						return -1;
     					}
     					return 1;
@@ -3488,7 +3488,7 @@ player:['damageEnd','loseHpEnd']
     				maixie:true,
     				effect:{
     					target:function(card,player,target){
-    						if(target.maxHp<=3) return;
+    						if(target.maxHp<=3&&target.countCards('e')<target.hp-1) return;
     						if(get.tag(card,'damage')){
                if(!target.hasFriend()) return;
     							if(target.hp==target.maxHp) return [0,1];
@@ -3513,11 +3513,13 @@ player:['damageEnd','loseHpEnd']
     			},
     			ai:{
     				effect:{
-    					target:function(card,player,target){
-    						if(card.name=='sha'&&get.color(card)=='red') return [1,0.3];
+    					target:function(card,player,target){    				if(card.name=='sha'&&get.color(card)=='red'&&!target.hasSkill('new_hunzi2'))
+           return [1,0.3];
+if(card.name=='sha'&&get.color(card)=='red'&&target.hasSkill('new_hunzi2'))
+           return [1,2];          
     					},
     					player:function(card,player,target){
-    						if(card.name=='juedou'||card.name=='sha'&&get.color(card)=='red') return [1,2];
+    						if(card.name=='juedou'&&!player.storage.new_hunzi||card.name=='sha'&&get.color(card)=='red') return [1,2];
     					}
     				}
     			}
@@ -3593,10 +3595,10 @@ player:['damageEnd','loseHpEnd']
            if(get.tag(card,'thunderDamage')||get.tag(card,'fireDamage')||get.tag(card,'poisonDamage')){
 
 							return [1,-2];
-
+            }
             return 0;
 
-						}}
+						}
 					}
 
 				}
@@ -6674,12 +6676,12 @@ trigger.source.chooseToDiscard(true,'he');
             xinyanzhu:"宴诛",
             "xinyanzhu_info":"出牌阶段限一次，你可以令一名有牌的其他角色弃置一张牌。",
             xinxingxue:"兴学",
-            xinxingxue_info:"结束阶段开始时，你可以令一至三名角色依次摸两张牌并将一张牌置于牌堆顶。",
+            xinxingxue_info:"结束阶段开始时，你可以令一至两名角色依次摸两张牌并将一张牌置于牌堆顶。",
             xinzhaofu:"诏缚",
-            xinzhaofu_info:"主公技，锁定技，其他吴国势力角色杀死目标后，你增加一点体力上限并摸两张牌。",
+            xinzhaofu_info:"主公技，锁定技，其他吴国势力角色杀死目标后，你回复1点体力并摸三张牌。",
             xinshenxian:"甚贤",
             "xinshenxian_info":"每名其他角色的回合限一次，当有其他角色因弃置而失去牌时，其中每有一张基本牌，你可以摸一张牌。",             
-            new_jiuchi_info:'你可以将一张♠或♣手牌当【酒】使用；你可以额外使用一张【酒】。',          
+            new_jiuchi_info:'你可以将一张♠或♣手牌当【酒】使用；锁定技，你可以额外使用一张【酒】。',          
             new_benghuai_info:'结束阶段，若你的体力不是全场最少的(或之一)，你失去一点体力。',
             new_baonue_info:'主公技，其他群雄角色每造成一次伤害，可进行一次判定，若为♠或♣，你回复1点体力。',
             "xintiaoxin_info":"出牌阶段限一次，你可以指定一名你在其攻击范围内的其他角色，该角色需对你使用一张【杀】，否则你弃置其X张牌，X为其装备区牌的数量，且至少为1。",

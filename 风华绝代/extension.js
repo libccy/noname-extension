@@ -1,4 +1,3 @@
-
 ﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){        
       if(config.Nie_name=='hide'){
 			get.slimName=function(str){

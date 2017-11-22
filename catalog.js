@@ -1,4 +1,4 @@
-extension["风华绝代"]={
+﻿extension["风华绝代"]={
     author:"一瞬间丶遗忘",
     intro:"此扩展为★改版武将的继承版；90%原创、99%武将配音、高清武将插图；1、食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；2、本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；3、本扩展所有按钮默认全开启，请认真查阅选择开启或关闭；4、挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）；5、欢迎加入无名杀玩家交流群，群号码：658152910；更新时间：2017年11月18日。",
     size:"313.7MB",
@@ -565,12 +565,20 @@ extension["列女传"]={
 		"ln_xs.jpg","ln_zwj.jpg","ln_zwy.jpg"
     ]
 };
+
+
+
+
 extension["新武将"]={
-    author:"Sukincen、天气亏",
-    intro:"此扩展包含之前我在Q群上分享的单独的武将扩展新姜维、新王允、新孟获、宇智波鼬，下载之前，可先删去这几个武将扩展，因为已修复部分问题，新增了些内容如配音、动画特效等。技能主要是借鉴大神的扩展作修改，感谢大神天气亏的指导和编写代码实现了新王允的技能",
-    size:"3.5MB",
-    netdisk:"https://pan.baidu.com/s/1i5veN1j",
-    forum:"https://tieba.baidu.com/p/5288180800",
+	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用前请先打开兼容模式，否则可能会卡死。",
+	author:"Sukincen",
+	netdisk:"https://pan.baidu.com/s/1qYBjb9y",
+	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
+	version:"20171118",
+	files:["xiezi.jpg"],
+	size:"1.3MB"
+};
+
     version:4,
     files:[
         "baiyan1.mp3","baiyan2.mp3","baoxing1.mp3","baoxing2.mp3","chendun1.mp3",

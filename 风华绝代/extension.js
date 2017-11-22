@@ -17930,7 +17930,7 @@ return 10;
     }
 },precontent:function (){    
 },help:{"风华绝代":"<li>修复已知BUG<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
-    config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: steelblue;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
+    config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
                   enhancement:{
                   name:'属性增强',
                   init:true
@@ -17956,7 +17956,7 @@ return 10;
                  init:true
                  },
                  news_:{
-                 name:'神将&民间',
+                 name:'神将/民间',
                  init:true
                  },
                  Nie_name:{

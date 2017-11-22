@@ -4,7 +4,7 @@ extension["风华绝代"]={
     size:"313.7MB",
     netdisk:"http://pan.baidu.com/s/1pKRjIcz",
     forum:"https://tieba.baidu.com/p/5063284116",
-    version:7,
+    version:8,
     files:[
         "feijiangx1.mp3","feijiangx2.mp3","boss_zhuihun21.mp3","boss_xuezhan2.mp3","boss_xuezhan12.mp3","boss_xuezhan1.mp3","new_luanji3.mp3","god_zhouyu.jpg","god_yeyan1.ogg","god_yeyan2.ogg","god_yuhuo.mp3","new_luanji4.mp3","xinjizhi1.ogg","xinjizhi3.ogg","boss_wanzun14.mp3","god_yeyan3.ogg","new_gangbi.mp3","xinfangzhu3.mp3","boss_taofa2.mp3","boss_xuezhan3.mp3","boss_zhuihun22.mp3","new_luanji1.mp3","boss_xuezhan11.mp3","boss_xuezhan4.mp3","new_luanji2.mp3","new_yicong1.mp3","wang_sunquan.jpg","wang_liubei.jpg","wang_caocao.jpg","challenge_yuangujulong.jpg","new_yicong2.mp3","11.mp3","12.mp3","BOSS_diaochan.jpg","BOSS_shenhua.jpg","BOSS_xuhuang.jpg",
 		"BOSS_yuji.jpg","BOSS_zhangfei.jpg","BOSS_zhanshen.jpg","BOSS_zuoci.jpg","IMG_20170402_061457.jpg",

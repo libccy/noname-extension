@@ -10,17 +10,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 			}
 		}
      lib.group.push('wang');    
-		 lib.group.push('xian');			
-		 lib.translate.wang='王';
-		 lib.translate.xian='仙';			
-		 lib.translate.wangColor="#EEEE00"					
-		 lib.translate.xianColor="#97FFFF"				   
+			lib.group.push('xian');			
+			lib.translate.wang='王';
+			lib.translate.xian='仙';			
+			lib.translate.wangColor="#EEEE00"					
+			lib.translate.xianColor="#97FFFF"				   
  	   lib.group.push('shen');
-		 lib.translate.shen='神';
-		 lib.translate.shenColor="#415390",
+			lib.translate.shen='神';
+			lib.translate.shenColor="#415390",
      lib.translate.mo='魔';
      lib.translate.moColor="#A757A8",	
-     lib.skill._choince={
+    	lib.skill._choince={
 				trigger:{global:['gameDrawAfter','phaseBegin']},
 				forced:true,
 				unique:true,
@@ -6677,10 +6677,10 @@ trigger.source.chooseToDiscard(true,'he');
             xinxingxue:"兴学",
             xinxingxue_info:"结束阶段开始时，你可以令一至两名角色依次摸两张牌并将一张牌置于牌堆顶。",
             xinzhaofu:"诏缚",
-            xinzhaofu_info:"主公技，锁定技，其他吴国势力角色杀死目标后，你回复1点体力并摸三张牌。",
+            xinzhaofu_info:"主公技，锁定技，其他吴国势力角色杀死目标后，你回复1点体力并摸两张牌。",
             xinshenxian:"甚贤",
             "xinshenxian_info":"每名其他角色的回合限一次，当有其他角色因弃置而失去牌时，其中每有一张基本牌，你可以摸一张牌。",             
-            new_jiuchi_info:'你可以将一张♠或♣手牌当【酒】使用；锁定技，你可以额外使用一张【酒】。',          
+            new_jiuchi_info:'你可以将一张♠或♣手牌当【酒】使用；你可以额外使用一张【酒】。',          
             new_benghuai_info:'结束阶段，若你的体力不是全场最少的(或之一)，你失去一点体力。',
             new_baonue_info:'主公技，其他群雄角色每造成一次伤害，可进行一次判定，若为♠或♣，你回复1点体力。',
             "xintiaoxin_info":"出牌阶段限一次，你可以指定一名你在其攻击范围内的其他角色，该角色需对你使用一张【杀】，否则你弃置其X张牌，X为其装备区牌的数量，且至少为1。",
@@ -8797,6 +8797,100 @@ player.draw(player.storage.baonu);
      if(config.enhancement){
      if(lib.config.mode!='boss'){
      lib.arenaReady.push(function(){
+     lib.skill.reyiji={
+				audio:2,
+				trigger:{player:'damageEnd'},
+				frequent:true,
+				filter:function(event){
+					return (event.num>0)
+				},
+				content:function(){
+					"step 0"
+					event.num=1;
+					event.count=1;
+					"step 1"
+					player.gain(get.cards(2));
+					player.$draw(2);
+					"step 2"
+					player.chooseCardTarget({
+						filterCard:true,
+						selectCard:[1,2],
+						filterTarget:function(card,player,target){
+							return player!=target&&target!=event.temp;
+						},
+						ai1:function(card){
+							if(ui.selected.cards.length>0) return -1;
+							if(card.name=='du') return 20;
+							return (_status.event.player.countCards('h')-_status.event.player.hp);
+						},
+						ai2:function(target){
+							var att=get.attitude(_status.event.player,target);
+							if(ui.selected.cards.length&&ui.selected.cards[0].name=='du'){
+								if(target.hasSkillTag('nodu')) return 0;
+								return 1-att;
+							}
+							return att-4;
+						},
+						prompt:'请选择要送人的卡牌'
+					});
+					"step 3"
+					if(result.bool){
+						player.lose(result.cards,ui.special);
+						if(result.targets[0].hasSkill('reyiji2')){
+							result.targets[0].storage.reyiji2=result.targets[0].storage.reyiji2.concat(result.cards);
+						}
+						else{
+							result.targets[0].addSkill('reyiji2');
+							result.targets[0].storage.reyiji2=result.cards;
+						}
+						player.$give(result.cards.length,result.targets[0]);
+						player.line(result.targets,'green');
+						game.addVideo('storage',result.targets[0],['reyiji2',get.cardsInfo(result.targets[0].storage.reyiji2),'cards']);
+						if(num==1){
+							event.temp=result.targets[0];
+							event.num++;
+							event.goto(2);
+						}
+						else if(event.count<Math.min(3,trigger.num)){
+							delete event.temp;
+							event.num=1;
+							event.count++;
+							event.goto(1);
+						}
+					}
+					else if(event.count<Math.min(3,trigger.num)){
+						delete event.temp;
+						event.num=1;
+						event.count++;
+						event.goto(1);
+					}
+				},
+				ai:{
+					maixie:true,
+					maixie_hp:true,
+					result:{
+						effect:function(card,player,target){
+							if(get.tag(card,'damage')){
+								if(player.hasSkillTag('jueqing',false,target)) return [1,-2];
+								if(!target.hasFriend()) return;
+								var num=1;
+								if(get.attitude(player,target)>0){
+									if(player.needsToDiscard()){
+										num=0.7;
+									}
+									else{
+										num=0.5;
+									}
+								}
+								if(player.hp>=4) return [1,num*2];
+								if(target.hp==3) return [1,num*1.5];
+								if(target.hp==2) return [1,num*0.5];
+							}
+						}
+					},
+					threaten:0.6
+				}
+			},			
      lib.skill .chouce = {
                 trigger:{player:'damageEnd'},
                 content:function(){
@@ -9066,7 +9160,7 @@ player.draw(player.storage.baonu);
 						silent:true,
           priority:Infinity,         
  						content:function(){
-          player.gain(get.cards(2))._triggered=null; player.maxHp=player.maxHp*(200000+Math.floor(Math.random()*15000));
+          player.gain(get.cards(2))._triggered=null; player.maxHp=player.maxHp*(125000+Math.floor(Math.random()*25000));
 player.hp=player.maxHp;
 player.update();
 	      
@@ -9088,9 +9182,9 @@ player.update();
        return false;          
 				},        
  						content:function(){
-          if(trigger.name!='loseMaxHp'){ trigger.num=trigger.num*(100000+Math.floor(Math.random()*50000));}
+          if(trigger.name!='loseMaxHp'){ trigger.num=trigger.num*(100000+Math.floor(Math.random()*20000));}
           else{
-          trigger.num=Math.min(player.maxHp,trigger.num*(100000+Math.floor(Math.random()*50000)));    
+          trigger.num=Math.min(player.maxHp,trigger.num*(100000+Math.floor(Math.random()*20000)));    
            }
              }          
            }
@@ -17929,7 +18023,7 @@ return 10;
    loopType:2,
     }
 },precontent:function (){    
-},help:{"风华绝代":"<li>修复已知BUG<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
+},help:{"风华绝代":"<li>修复已知BUG<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
     config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
                   enhancement:{
                   name:'属性增强',

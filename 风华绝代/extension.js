@@ -1,4 +1,4 @@
-﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){        
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){        
       if(config.Nie_name=='hide'){
 			get.slimName=function(str){
 				var str2=lib.translate[str];
@@ -10,17 +10,17 @@
 			}
 		}
      lib.group.push('wang');    
-			lib.group.push('xian');			
-			lib.translate.wang='王';
-			lib.translate.xian='仙';			
-			lib.translate.wangColor="#EEEE00"					
-			lib.translate.xianColor="#97FFFF"				   
+		 lib.group.push('xian');			
+		 lib.translate.wang='王';
+		 lib.translate.xian='仙';			
+		 lib.translate.wangColor="#EEEE00"					
+		 lib.translate.xianColor="#97FFFF"				   
  	   lib.group.push('shen');
-			lib.translate.shen='神';
-			lib.translate.shenColor="#415390",
+		 lib.translate.shen='神';
+		 lib.translate.shenColor="#415390",
      lib.translate.mo='魔';
      lib.translate.moColor="#A757A8",	
-    	lib.skill._choince={
+     lib.skill._choince={
 				trigger:{global:['gameDrawAfter','phaseBegin']},
 				forced:true,
 				unique:true,

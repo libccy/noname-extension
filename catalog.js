@@ -606,7 +606,7 @@ extension["新武将"]={
 "shunsheng1.mp3","shunsheng2.mp3","tiancheng1.mp3","tiancheng2.mp3","tianyin1.mp3",
  "tianyin2.mp3","tianzheng1.mp3","tianzheng2.mp3","tiaoxin_jiangwei1.mp3","tiaoxin_jiangwei2.mp3",
  "tuci1.mp3","tuci2.mp3","wanshe1.mp3","wanshe2.mp3","wuchen1.mp3","wuchen2.mp3",
- "xianfa1.mp3","xianfa2.mp3","xiangfu1.mp3","xianren1.mp3","xianren2.mp3","xianshu1.mp3","xianshu1.mp3",
+ "xianfa1.mp3","xianfa2.mp3","xiangfu1.mp3","xianren1.mp3","xianren2.mp3","xianshu1.mp3","xianshu2.mp3",
  "xianti1.mp3","xianti2.mp3","xianyan1.mp3","xianyan2.mp3","xinbaiyan1.mp3","xinbaiyan2.mp3",
 "xinxuzuo1.mp3","xinxuzuo2.mp3","xiongqi1.mp3","xiongqi2.mp3","xishou1.mp3","xishou2.mp3",
  "xuzuo1.mp3","xuzuo2.mp3","yandun1.mp3","yandun2.mp3","yandun3.mp3","yingmo1.mp3",

@@ -572,8 +572,6 @@ extension["列女传"]={
 };
 
 
-
-
 extension["新武将"]={
 	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用前请先打开兼容模式，否则可能会卡死。",
 	author:"Sukincen",
@@ -582,27 +580,7 @@ extension["新武将"]={
 	version:"20171122",
 	size:"22MB",
     version:4,
-    files:[
-        "xiezi.jpg","baiyan1.mp3","baiyan2.mp3","baoxing1.mp3","baoxing2.mp3","chendun1.mp3",
-		"chendun2.mp3","chengmou1.mp3","chengmou2.mp3","fenshen1.mp3","fenshen2.mp3",
-		"fuzhi1.mp3","fuzhi2.mp3","fuzhi3.mp3","guanxing_jiangwei1.mp3","guanxing_jiangwei2.mp3",
-		"guazhang1.mp3","guazhang2.mp3","itachi.jpg","juefang_less1.mp3","juefang_more1.mp3",
-		"jugong1.mp3","jugong2.mp3","leique1.mp3","leique2.mp3","liangji1.mp3",
-		"liangji2.mp3","lunhui1.mp3","lunhui2.mp3","luoxuan1.mp3","luoxuan2.mp3",
-		"new.jpg","new.mp3","qianniao1.mp3","qianniao2.mp3","refengyin1.mp3",
-		"refengyin2.mp3","reshenwei1.mp3","reshenwei2.mp3","resizhan1.mp3","resizhan2.mp3",
-		"retianzhao1.mp3","retianzhao2.mp3","rexuzuo1.mp3","rexuzuo2.mp3","tiancheng1.mp3",
-		"tiancheng2.mp3","tianyin1.mp3","tianyin2.mp3","tianzheng1.mp3","tianzheng2.mp3",
-		"tiaoxin_jiangwei1.mp3","tiaoxin_jiangwei2.mp3","weishou.jpg","xianfa1.mp3","xianfa2.mp3",
-		"xiangfu1.mp3","xianshu1.mp3","xianshu2.mp3","xianyan1.mp3","xianyan2.mp3",
-		"xianyan3.mp3","xiongqi1.mp3","xiongqi2.mp3","xishou1.mp3","xishou2.mp3",
-		"xuzuo1.mp3","xuzuo2.mp3","yandun1.mp3","yandun2.mp3","yandun3.mp3",
-		"yizhi1.mp3","yizhi2.mp3","yuedu1.mp3","yuedu2.mp3","yuedu3.mp3",
-		"zhuansheng1.mp3","zhuansheng2.mp3","佐助.jpg","南蛮王.jpg","卡卡西.jpg",
-		"大野木.jpg","姜伯约.jpg","带土.jpg","我爱罗.jpg","日向宁次.jpg",
-		"日向雏田.jpg","波风水门.jpg","漩涡长门.jpg","漩涡鸣人.jpg","药师兜.jpg",
-		"迈特凯.jpg"
-    ]
+    files:["xiezi.jpg"]
 };
 extension["战国七雄"]={
     author:"何子风云",

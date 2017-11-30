@@ -2841,7 +2841,7 @@ mod:{
 				}
              },
             new_xiuxing1:{
-                audio:3,
+                audio:['xinsheng',2],
                 trigger:{
 player:['damageEnd','loseHpEnd']
                 },
@@ -2893,7 +2893,7 @@ player:['damageEnd','loseHpEnd']
 				}
 			},
            new_xiuxing2:{
-                audio:true,
+                audio:['huanhua1'],
                 trigger:{player:['phaseBegin','phaseEnd'],
                 },
                 forced:true,
@@ -3214,7 +3214,8 @@ player:['damageEnd','loseHpEnd']
             },
             new_xiangle:{
 
-                audio:2,
+                audio:['xiangle'2],
+
 
                 trigger:{
 

@@ -3214,7 +3214,7 @@ player:['damageEnd','loseHpEnd']
             },
             new_xiangle:{
 
-                audio:['xiangle'2],
+                audio:['xiangle',2],
 
 
                 trigger:{

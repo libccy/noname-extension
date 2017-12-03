@@ -582,7 +582,7 @@ extension["新武将"]={
     version:4,
     files:
 
-["itachi.jpg","gangshou.jpg","weizhuang.jpg","dashewan.jpg","zhilaiye.jpg","ningchi.jpg",
+["itachi.jpg","gangshou.jpg","weizhuang.jpg","feijian.jpg","xiaoying.jpg","dashewan.jpg","zhilaiye.jpg","ningchi.jpg",
  "dou.jpg","kai.jpg","liluoke.jpg","sanlei.jpg","zhishui.jpg","feiduan.jpg","ban.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg",
@@ -614,7 +614,10 @@ extension["新武将"]={
  "yuedu3.mp3","zhenxing1.mp3","zhenxing2.mp3","zhimou11.mp3","zhimou21.mp3","zhimou31.mp3",
  "zhimou41.mp3","zhimou51.mp3","zhimou61.mp3","zhimou71.mp3","zhoushu1.mp3","zhoushu2.mp3",
  "zhuansheng1.mp3","zhuansheng2.mp3","zongjian1.mp3","zongjian2.mp3","zongjian3.mp3","zuidun1.mp3",
- "zuidun2.mp3","zuiquan1.mp3","zuiquan2.mp3","refenxin1.mp3","refenxin2.mp3"],
+ "zuidun2.mp3","zuiquan1.mp3","zuiquan2.mp3","refenxin1.mp3","refenxin2.mp3","baofu11.mp3","baofu12.mp3",
+ "baofu21.mp3","baofu22.mp3","baoli1.mp3","baoli2.mp3","baoli21.mp3","baoli31.mp3","shuidun1.mp3",
+ "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3"
+]
 
 };
 

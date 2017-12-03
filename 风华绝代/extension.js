@@ -2829,7 +2829,7 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
       return true;
       },			
 				content:function(){
-       player.draw(4+(player.maxHp-player.hp))._triggered=null;
+       player.draw(4+Math.min(20,player.maxHp-player.hp))._triggered=null;
        },
        mod:{
            maxHandcard:function (player,num){

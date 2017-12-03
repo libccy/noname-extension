@@ -119,7 +119,7 @@
       ['new_zhongyi','rende'],
       ['new_zhongyi','xinrende'],
       ]
-     // ---------------------------------------屬性強化------------------------------------------//
+     // ---------------------------------------屬性强化------------------------------------------//
      if(config.enhancement){
      if(lib.config.mode!='boss'){
      lib.arenaReady.push(function(){
@@ -1755,22 +1755,65 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 		  	}
 	  	},
       boss_zhongyi:{
+
+      trigger:{player:['loseMaxHpBefore','turnOverBefore']},			
+
+        forced:true,
+
+        unique:true,
+
+        priority:100,
+
+       filter:function(event,player){
+
+    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
+
+       return false;
+
+        return true;
+
+       },            
+
+				content:function(){	
+
+        trigger.cancel();
+
+       },
+
       mod:{
+
            unique:true,
-    				targetEnabled:function(card,player,target,now){
-							if(lib.config.mode=='boss'&&target.identity!='zhu'||target.name!='boss_gy'&&target.name!='boss_gyc'&&target.name2!='boss_gy'&&target.name2!='boss_gyc')
+
+    				targetEnabled:function(card,player,target,now){
+
+   if(lib.config.mode=='boss'&&target.identity!='zhu'||target.name!='boss_gy'&&target.name!='boss_gyc'&&target.name2!='boss_gy'&&target.name2!='boss_gyc')
+
        return;
+
     					if(get.type(card)=='delay') return false;
+
     				}    		
+
     		 },
-       ai:{           
-                   threaten:6,                
+
+       ai:{
+
+           nodu:true,                
+
+                   threaten:7,                
+
                     effect:{
+
    target:function (card,player,target,current){           
+
 if(card.name=='du') return [1,Infinity];              
+
             }
+
           }
+
         }
+
       },
       boss_duoming:{
        group:'boss_duoming2',
@@ -1798,8 +1841,11 @@ if(card.name=='du') return [1,Infinity];
       return event.player!=player&&event.card&&(event.card.name=='sha'||event.card.name=='juedou');
       },
 			content:function(){
+     if(trigger.player.countCards('he')){
+     player.line(trigger.player,'green');
 			player.gain(trigger.player.get('he'));
-			}
+     trigger.player.$give(trigger.player.get('he').length,player);
+			}}
 		},
       boss_baonug:{
 			unique:true,
@@ -4116,6 +4162,7 @@ return 0; });
      },    
 			content:function(){
 player.addSkill([['duanliang','jizhi'],['zhiheng','lianhuan'],['luanji','wansha']].randomGet(),{player:'phaseAfter'});
+
     }},
      boss_shenmou2:{        
       audio:2,
@@ -7689,7 +7736,7 @@ return;
        boss_fenming_info:'<span class="greentext">锁定技'+'</span>，当你使用一张【杀】或【决斗】对一名其他角色即将造成伤害时，根据该角色所属势力执行下列相应的效果：“魏”：此【杀】或【决斗】对该角色造成的伤害+1；“蜀”：若你未受伤，你摸与此伤害等量的牌，否则你回复一点体力；“吴”：你获得该角色与此伤害等量的牌；“群”：该角色失去一点体力；“其它”：该角色进入混乱状态直到其下一回合出牌阶段开始',
        boss_duoming_info:'<span class="greentext">锁定技'+'</span>，当你使用【杀】或【决斗】对目标造成伤害时，此伤害+X(X为你装备区里牌数)；然后你获得该角色所有装备区里的牌和手牌',
        boss_zhenshou_info:'<span class="greentext">锁定技'+'</span>，当你成为【杀】的目标时，你摸两张牌',
-       boss_zhongyi_info:'<span class="greentext">锁定技'+'</span>，你不能成为延时锦囊牌的目标且不受【毒】的影响',
+       boss_zhongyi_info:'<span class="greentext">锁定技'+'</span>，你的武将牌始终正面朝上；你防止失去体力上限；你不能成为延时锦囊牌的目标且不受【毒】的影响',
        boss_weizhen_info:'<span class="greentext">锁定技'+'</span>，回合结束阶段，你令所有其他角色依次选择一项：1、交给你一张牌；2、令你摸一张牌',
        boss_wusheng_info:'你可以将你的任意一张♥或♦牌当【杀】使用或打出；将任意一张♣或♠牌当【决斗】使用',
        boss_baonug_info:'<span class="greentext">锁定技'+'</span>，当你的体力值降至10或更低时，你变身为“夺命武魂”，并立即开始你的回合',
@@ -16718,6 +16765,7 @@ trigger.nature=['fire','thunder'].randomGet();
 				return 10-ai.get.value(card);
 			},
 			position:'he',
+
 			ai:{
 				order:3.9,
        threaten:1.5,

@@ -1048,6 +1048,9 @@ if(player.storage.battle_song>=25&&player.name!='boss_gyc'&&player.name!='boss_g
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=3;
 			},
@@ -1072,7 +1075,10 @@ if(card.name=='tiesuo') return [1,-100];
 						filterTarget:function(card,player,target){
 							return player!=target&&target.countCards('e')>player.countCards('e');
 						},
-          unique:true,						
+          unique:true,
+          noremove:true,
+      noadd:true,
+      nodisable:true,					
 						content:function(){
             'step 0'
 							player.gainPlayerCard(true,target,'e',target.countCards('e')-player.countCards('e'));
@@ -1099,6 +1105,9 @@ if(card.name=='tiesuo') return [1,-100];
       group:'boss_taofa2',
       locked:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
        },
       boss_taofa2:{   
 						audio:true,
@@ -1120,6 +1129,9 @@ if(card.name=='tiesuo') return [1,-100];
 							return 15-get.value(card);
 						},
           unique:true,
+          noremove:true,
+      noadd:true,
+      nodisable:true,
 						content:function(){
             'step 0'
 							target.damage(cards.length);
@@ -1158,6 +1170,9 @@ if(card.name=='tiesuo') return [1,-100];
                 return 9-ai.get.value(card)
             },
                 unique:true,
+                noremove:true,
+      noadd:true,
+      nodisable:true,
                 content:function (){
                 player.draw(cards.length);
             },
@@ -1171,6 +1186,9 @@ if(card.name=='tiesuo') return [1,-100];
             },
       boss_dilu:{
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
 				mod:{
 					globalTo:function(from,to,distance){
 					if(to.hp<=3)
@@ -1186,7 +1204,10 @@ if(card.name=='tiesuo') return [1,-100];
      return event.player!=player&&get.type(event.card)!='equip'&&get.type(event.card)!='delay'&&event.cards[0]&&event.cards[0]==event.card;
 			},
      forced:true,
-     unique:true,   
+     unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,   
 			content:function(){
 		  player.gain(trigger.card,'gain');     
 		   },
@@ -1198,6 +1219,9 @@ if(card.name=='tiesuo') return [1,-100];
      return event.player!=player&&event.player.countCards('he');
 			},     
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      priority:20,
      check:function (event,player){
      if(ai.get.attitude(player,event.player)>1&&(event.player.hasSkill('jijiu')&&event.player.countCards('he',{color:'red'})||event.player.hasSkill('xinjijiu')&&event.player.countCards('he',{suit:'heart'})))
@@ -1214,6 +1238,9 @@ if(card.name=='tiesuo') return [1,-100];
 				audio:2,
 				trigger:{global:'judgeEnd'},
 				unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				check:function (event,player){
      return ai.get.attitude(player,event.player)<0;
        },
@@ -1232,6 +1259,9 @@ if(card.name=='tiesuo') return [1,-100];
       group:['boss_shanmou1','boss_shanmou2'],
       locked:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       },
      boss_shanmou1:{			
 			trigger:{player:['useCardEnd']},
@@ -1239,7 +1269,10 @@ if(card.name=='tiesuo') return [1,-100];
      return player.hp<=4&&(get.type(event.card)=='trick'||get.type(event.card)=='delay')&&event.cards[0]&&event.cards[0]==event.card;
 			},
      forced:true,
-     unique:true,   
+     unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,   
 			content:function(){
 		  var list=[];
 				for(var i=0;i<game.players.length;i++){
@@ -1256,6 +1289,9 @@ if(card.name=='tiesuo') return [1,-100];
 		   },
       boss_shanmou2:{
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       ai:{
       result:{
       player:1,
@@ -1269,6 +1305,9 @@ if(player.hp<=4&&(get.type(card)=='trick'||get.type(card)=='delay')&&card.name!=
      },
       boss_zhulu:{
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       mod:{
        cardUsable:function (card,player,num){
        if(player.hp>4) return;
@@ -1279,7 +1318,11 @@ if(player.hp<=4&&(get.type(card)=='trick'||get.type(card)=='delay')&&card.name!=
       boss_wentao:{
       group:'boss_xianwangzhizhan_buff',
       trigger:{player:['recoverBegin','drawBegin']},			
-      forced:true,      
+      forced:true,
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,      
 			content:function(){
      trigger.num+=2;
        },
@@ -1301,7 +1344,10 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
      return (get.type(event.card)!='equip'&&get.type(event.card)!='delay'&&event.cards[0]&&event.cards[0]==event.card)&&Math.random()<0.2;
 			},
      forced:true,
-     unique:true,    
+     unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,    
 			content:function(){
 		  player.gain(trigger.card,'gain');
      game.log(player,'回收了',trigger.card); 
@@ -1322,6 +1368,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
 	    	});    
      },
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				"step 0"
 				target.damage(Math.ceil(player.countCards('e')/2)+1);
@@ -1343,13 +1392,19 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       filter:function(event,player){
       return player.hp<=3&&event.source!=player;
       },
-      unique:true,      
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,      
 			content:function(){
      player.draw(trigger.num);
        }
      },
       boss_fuzhong:{
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       mod:{
 					maxHandcard:function(player,num){
           if(player.hp>3) return;
@@ -1361,11 +1416,17 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       group:['boss_shangjiang1','boss_shangjiang2','boss_shangjiang3','boss_shangjiang4','boss_shangjiang5','boss_shangjiang6'],
       locked:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       },
       boss_shangjiang1:{
       trigger:{player:['phaseBegin','phaseEnd']},			
       forced:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       audio:true,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;     
@@ -1391,6 +1452,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       forced:true,
       unique:true,
       audio:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;
       if(event.name=='damage'){
@@ -1411,6 +1475,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       forced:true,
       unique:true,
       audio:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       priority:-20178888,
       filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;   
@@ -1426,6 +1493,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       unique:true,
       audio:true,
       priority:100,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;     
       return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&(player.hp<player.maxHp||event.player.countCards('e'));       
@@ -1447,6 +1517,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
 			direct:true,
       audio:true,
       unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;
       return event.source!=player&&(event.source!=undefined)&&event.source.isAlive();  
@@ -1489,6 +1562,9 @@ return [1,3];
       trigger:{target:'lebuBefore'},			
       forced:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       audio:true,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;     
@@ -1504,6 +1580,9 @@ return [1,3];
       group:'guanshi_skill',
       locked:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       mod:{         
         cardUsable:function (card,player,num){ 
 if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return;
@@ -1516,6 +1595,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 				trigger:{global:'useCardToBefore'},			
         forced:true,
         unique:true,
+        noremove:true,
+        noadd:true,
+      nodisable:true,    
         priority:30,
         filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
@@ -1544,6 +1626,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			},
 			selectCard:1,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			filterTarget:function(card,player,target){		
 				return player!=target;
 			},
@@ -1574,6 +1659,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 						trigger:{player:'phaseEnd'},
 						forced:true,
            unique:true,
+         noremove:true,
+      noadd:true,
+      nodisable:true,
            filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1612,6 +1700,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			trigger:{player:'phaseEnd'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1655,6 +1746,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			trigger:{player:'damageEnd'},
 			forced:true,
 			unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1674,6 +1768,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
       trigger:{player:'recoverEnd'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1687,6 +1784,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			trigger:{target:'shaBefore'},
 			forced:true,
 			unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
       audio:true,
       filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
@@ -1701,9 +1801,16 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
        group:['boss_wusheng1','boss_wusheng2'],
        locked:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
        boss_wusheng1:{
 				audio:2,
+       unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				enable:['chooseToRespond','chooseToUse'],
         filter:function(event,player){       
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
@@ -1740,6 +1847,10 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			},
       boss_wusheng2:{
 				audio:2,
+      unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				enable:['chooseToRespond','chooseToUse'],
        filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
@@ -1778,6 +1889,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 			forced:true,
 			audio:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){      
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;          
@@ -1813,7 +1927,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
         forced:true,
 
         unique:true,
-
+        noremove:true,
+      noadd:true,
+      nodisable:true,
         priority:100,
 
        filter:function(event,player){
@@ -1873,6 +1989,9 @@ if(card.name=='du') return [1,Infinity];
 			forced:true,
 			audio:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1887,6 +2006,9 @@ if(card.name=='du') return [1,Infinity];
 			forced:true,
 			popup:false,
       unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1901,6 +2023,9 @@ if(card.name=='du') return [1,Infinity];
 		},
       boss_baonug:{
 			unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			group:'boss_baonug2',
 			trigger:{player:'changeHp'},
 			forced:true,
@@ -1960,6 +2085,9 @@ if(card.name=='du') return [1,Infinity];
 			forced:true,
 			popup:false,
       unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -1979,6 +2107,9 @@ if(card.name=='du') return [1,Infinity];
 						},
 						direct:true,
            unique:true,
+          noremove:true,
+      noadd:true,
+      nodisable:true,
 						content:function(){
 							'step 0'
 							player.addSkill('boss_tuodao_buff');
@@ -2008,6 +2139,8 @@ if(card.name=='du') return [1,Infinity];
       group:'boss_zhuihun2',
       locked:true,
       noremove:true,
+      noadd:true,
+      nodisable:true,
       unique:true,
       },
       boss_zhuihun2:{  
@@ -2016,6 +2149,9 @@ if(card.name=='du') return [1,Infinity];
 			unique:true,
       forced:true,
       priority:700000,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
        return false;
@@ -2050,12 +2186,18 @@ current.damage(current.maxHp)._triggered=null;
       group:['boss_yingyi1','boss_yingyi2','boss_yingyi3','boss_yingyi4','boss_yingyi5','boss_yingyi6'],
       locked:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,      
       },
       boss_yingyi1:{
       audio:2,       
 				trigger:{source:'damageBegin'},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
         filter:function(event,player){
         if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
         if(event.player==player)
@@ -2072,7 +2214,10 @@ current.damage(current.maxHp)._triggered=null;
 				trigger:{player:'shaBegin'},			
         forced:true,
         unique:true,
-        popup:false,   
+        popup:false,
+        noremove:true,
+      noadd:true,
+      nodisable:true,   
         filter:function(event,player){
         if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
         return true;
@@ -2128,6 +2273,9 @@ return [1,3];
 				trigger:{player:['loseHpBefore','damageBefore']},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
         priority:30,
         filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
@@ -2162,6 +2310,9 @@ return [1,3];
 				trigger:{player:'dying'},
 				forced:true,				
 				unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        audio:true,
        priority:100,
        filter:function(event,player){
@@ -2184,6 +2335,9 @@ return [1,3];
        	trigger:{global:'useCardToBefore'},
 				forced:true,				
 				unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
         priority:100,
        filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
@@ -2208,6 +2362,9 @@ return [1,3];
                 trigger:{player:'phaseBegin'},
 			unique:true,
       forced:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       priority:70,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
@@ -2234,6 +2391,9 @@ return [1,3];
       locked:true,
       unique:true,
       nobracket:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       },
       challenge_shanggushengwu1:{
       audio:true,       
@@ -2241,6 +2401,9 @@ return [1,3];
         forced:true,
         unique:true,
         popup:false,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return true;
@@ -2254,6 +2417,9 @@ return [1,3];
 				trigger:{global:'gainEnd'},			
         forced:true,
         unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return event.player!=player&&event.cards&&event.cards.length;
@@ -2273,6 +2439,9 @@ return [1,3];
 				trigger:{player:['loseHpBefore','damageBefore']},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
         priority:9997,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
@@ -2296,6 +2465,9 @@ return [1,3];
 				trigger:{player:['loseMaxHpBefore','turnOverBefore']},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return true;
@@ -2329,6 +2501,9 @@ return [1,3];
 				trigger:{player:'phaseEnd'},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return true;
@@ -2343,6 +2518,9 @@ player.gainMaxHp(Math.round(player.maxHp*0.15))._triggered=null;
 				trigger:{player:'recoverBegin'},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return true;
@@ -2358,6 +2536,9 @@ player.gainMaxHp(Math.round(player.maxHp*0.15))._triggered=null;
         unique:true,
         priority:100,
         popup:false,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         return true;
@@ -2373,6 +2554,8 @@ player.gainMaxHp(Math.round(player.maxHp*0.15))._triggered=null;
       audio:false,
       mark:true,
       popup:false,
+      noremove:true,      
+      nodisable:true,
       init:function(player){
 			player.storage.challenge_shanggushengwu9=Math.min(0.7,1-(player.hp/player.maxHp))*100;
       },
@@ -2398,6 +2581,9 @@ return '当前伤害和体力流失防止几率：'+storage+'%'
        nobracket:true,
        locked:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        group:['challenge_julongkuangnu1','challenge_julongkuangnu2'],
        },
       challenge_julongkuangnu1:{
@@ -2405,6 +2591,9 @@ return '当前伤害和体力流失防止几率：'+storage+'%'
 				trigger:{source:'damageBegin'},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
         skillAnimation:true,    			
     			animationColor:'fire',       
        filter:function(event,player){
@@ -2427,7 +2616,10 @@ trigger.num+=1+Math.floor(Math.random()*(trigger.player.maxHp-trigger.player.hp)
       audio:false,       
 				trigger:{global:['respond','useCardEnd']},			
         forced:true,
-        unique:true,        
+        unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,      
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
         if(get.color(event.card)=='red'&&get.type(event.card)=='basic')
@@ -2455,12 +2647,18 @@ player.addSkill('challenge_shanggushengwu5');
        nobracket:true,
        locked:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
       boss_dengchang2:{
       audio:true,       
 				trigger:{player:'phaseDrawBegin'},			
         forced:true,
         unique:true,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
         return true;
@@ -2474,6 +2672,9 @@ player.addSkill('challenge_shanggushengwu5');
        locked:true,
        unique:true,
        nobracket:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
        boss_penshe1:{
       audio:true,       
@@ -2487,6 +2688,9 @@ player.addSkill('challenge_shanggushengwu5');
         forced:true,
         unique:true,
         priority:-3,
+        noremove:true,
+      noadd:true,
+      nodisable:true,
 				content:function(){	},
       mod:{
                     cardUsable:function (card,player,num){
@@ -2507,12 +2711,18 @@ player.addSkill('challenge_shanggushengwu5');
        locked:true,
        unique:true,
        nobracket:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
        boss_suanye1:{  
                 audio:2,
                 trigger:{player:'loseEnd'},
 			unique:true,
       forced:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
       for(var i=0;i<event.cards.length;i++){
@@ -2544,11 +2754,17 @@ player.addSkill('challenge_shanggushengwu5');
        locked:true,
        unique:true,
        nobracket:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
        boss_jixing1:{   
     trigger:{player:['damageBegin','loseHpBegin']},			
       forced:true,
        unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       priority:-99999998,
       filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
@@ -2562,13 +2778,19 @@ player.addSkill('challenge_shanggushengwu5');
        group:'boss_jianci1',
        locked:true,
        unique:true,
-       nobracket:true,
+       nobracket:true, 
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
       boss_jianci1:{    
                 audio:2,
                 trigger:{player:'damageEnd',source:'damageEnd'},
 			unique:true,
       forced:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
       return Math.random()<=0.15;
@@ -2598,12 +2820,18 @@ player.addSkill('challenge_shanggushengwu5');
      locked:true,
     unique:true,
     nobracket:true,
+    noremove:true,
+      noadd:true,
+      nodisable:true,
      },
     boss_xukong1:{   
     audio:2,
     trigger:{global:['phaseBegin','phaseEnd']},		
    	unique:true,
     forced:true,
+    noremove:true,
+      noadd:true,
+      nodisable:true,
    filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
    return Math.random()<=0.15;
@@ -2653,6 +2881,9 @@ player.addSkill('challenge_shanggushengwu5');
       locked:true,
       unique:true,
       nobracket:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
        },
       boss_moqu1:{
 			
@@ -2664,7 +2895,9 @@ player.addSkill('challenge_shanggushengwu5');
 			
       forced:true,
      unique:true,
-			
+			noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
 		if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
       	return player.hasSkill('boss_moqux');
@@ -2714,7 +2947,9 @@ player.addSkill('challenge_shanggushengwu5');
     unique:true,
 			
    trigger:{global:'phaseBegin'},
-			
+		noremove:true,
+      noadd:true,
+      nodisable:true,	
    forced:true,
 			
    filter:function(event,player){
@@ -2743,11 +2978,17 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
        unique:true,
        nobracket:true,
        locked:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
        boss_ningshi2:{    
        trigger:{player:['damageBefore','loseHpBefore']},			
       forced:true,
-      unique:true,      
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,     
       audio:2,
       priority:9997,
      filter:function(event,player){
@@ -2764,11 +3005,17 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
        unique:true,
        nobracket:true,
        locked:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
       boss_kangxing2:{  
       trigger:{player:['linkBefore','turnOverBefore']},			
       forced:true,
-      unique:true,      
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,     
       audio:2,
    filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
@@ -2789,8 +3036,8 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
               nodu:true,
               noturn:true,             
            	effect:{
-					target:function(card,player,target,current){						
-           if(card.name=='tiesuo') [0,0];
+					target:function(card,player,target){						
+           if(card.name=='tiesuo') return 0;
            	}
        		}
         	},
@@ -2801,6 +3048,9 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
 	    			unique:true,
 	    			popup:false,
     				silent:true,
+          noremove:true,
+      noadd:true,
+      nodisable:true,
     				filter:function(event,player){
 	  				return (player.group=='wang'&&player.node.name.dataset.nature!='wang');
 		    		},			
@@ -2814,6 +3064,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
 	    			unique:true,
 	    			popup:false,
     				silent:true,
+          noremove:true,
+      noadd:true,
+      nodisable:true,
     				filter:function(event,player){
 	  				return (player.group=='xian'&&player.node.name.dataset.nature!='xian');
 		    		},			
@@ -2825,6 +3078,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
                 group:['boss_shenyou1','boss_shenyou2','boss_shenyou3','boss_shenyou4'],
        locked:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
        },
      boss_shenyou1:{  
                 mode:['identity'],
@@ -2832,6 +3088,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
 			unique:true,
       forced:true,
       priority:70000,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       filter:function (event,player){
    if(player.name!='boss_taishici'&&player.name2!='boss_taishici'&&player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
       return player.identity=='zhu';
@@ -2858,6 +3117,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
    trigger:{player:['loseMaxHpBefore','turnOverBefore']},			
       forced:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
     filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici'&&player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
       return true;
@@ -2873,6 +3135,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
        popup:false,
        silent:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
    filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici'&&player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
       return player.identity=='zhu';
@@ -2885,6 +3150,9 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
 				trigger:{player:'phaseBegin'},
 				forced:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
    filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici'&&player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
       return true;
@@ -2900,12 +3168,20 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
            }
          },
        boss_duce:{
-       group:['boss_duce1','boss_duce2','boss_duce3','boss_duce4'],locked:true,unique:true,},      
+       group:['boss_duce1','boss_duce2','boss_duce3','boss_duce4'],
+      locked:true,
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,},      
       boss_duce1:{                 
                 audio:3,
                 trigger:{player:['phaseEnd','damageEnd','loseHpEnd']},
 			unique:true,
       forced:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
    filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
      return true;
@@ -2948,6 +3224,9 @@ return [1,4];
 			trigger:{source:'damageBefore'},     
      forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      popup:false,
      priority:1999,
   filter:function(event,player){
@@ -2990,6 +3269,9 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
 			trigger:{global:'phaseBefore'},     
      forced:true,     
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      priority:10,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
@@ -3015,6 +3297,9 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
      forced:true,
      priority:101,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
       return event.card&&(event.card.name!='wuxie'&&(get.type(event.card)=='trick'||get.type(event.card)=='delay'))&&event.target!=player;
@@ -3032,6 +3317,9 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
     forced:true,
     priority:9999,
     unique:true,
+    noremove:true,
+      noadd:true,
+      nodisable:true,
     skillAnimation:true,
 		animationColor:'water',   
      filter:function (event,player){   
@@ -3040,6 +3328,10 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
     },    
     content:function (){}},     
     		boss_wansha2:{
+        noremove:true,
+      noadd:true,
+      nodisable:true,
+      unique:true,
     			mod:{
     				cardSavable:function(card,player){
     					if(!_status.currentPhase) return;    					if((_status.currentPhase.name=='boss_jiaxu'||_status.currentPhase.name2=='boss_jiaxu'||_status.currentPhase.hasSkill('boss_wansha'))&&_status.currentPhase!=player){
@@ -3052,6 +3344,9 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
    trigger:{global:'useCard'},			
       forced:true,
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       audio:2,     
       filter:function (event,player,card){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
@@ -3072,11 +3367,16 @@ if(lib.config.mode=='boss'&&target.identity!='zhu'||!target.name=='boss_jiaxu'&&
          }
       },
      boss_shipo:{
-   trigger:{global:'useCardToBefore'},			
+   trigger:{target:'useCardToBefore'},			
       frequent:true,
-      unique:true,     
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,    
       filter:function (event,player){
-      return event.target==player&&get.type(event.card)=='trick'&&get.color(event.card)=='black'||event.target==player&&get.type(event.card)=='delay'&&get.color(event.card)=='black';
+      if(event.player==player)
+      return false;
+      return get.type(event.card)=='trick'||get.type(event.card)=='delay';
      },     
 			content:function(){
      "step 0"
@@ -3087,18 +3387,29 @@ if(lib.config.mode=='boss'&&target.identity!='zhu'||!target.name=='boss_jiaxu'&&
 					});
       "step 1"
 					if(result.bool){
+        game.log(trigger.card,'对',player,'失效');
 					trigger.finish();
          trigger.untrigger();
 					}
-				}
-			},
+				},
+			ai:{                    
+                    effect:{
+                       target:function(card,player,target){
+         if(get.type(card)=='trick'||get.type(card)=='delay') return 0.5;
+           }
+         }     
+       }
+     },
      boss_zhengjiao:{
                 audio:1,
                 trigger:{
                     player:'phaseEnd',
                 },
                 direct:true,
-                unique:true,            
+                unique:true,
+                noremove:true,
+      noadd:true,
+      nodisable:true,            
                 content:function (){        
                 "step 0" 
 player.chooseTarget(get.prompt('boss_zhengjiao'),function(card,player,target){
@@ -3133,6 +3444,9 @@ player.logSkill('boss_zhengjiao',result.targets);              event.targets=res
 				return true;
 			},
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){		
        player.line(target,'fire');
        if(!target.hasSkill('boss_suoshi2')){
@@ -3190,6 +3504,9 @@ player.logSkill('boss_zhengjiao',result.targets);              event.targets=res
      boss_yudan:{
 				audio:2,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				enable:'chooseToUse',
 				filter:function(event,player){        
 					return player.hp<=3&&player.countCards('h',{color:'red'})>0;
@@ -3199,7 +3516,7 @@ player.logSkill('boss_zhengjiao',result.targets);              event.targets=res
 				},
 				position:'h',
 				viewAs:{name:'tao'},
-				prompt:'将一张♥♦手牌当桃使用',
+				prompt:'将一张♥♦手牌当【桃】使用',
 				check:function(card){return 15-get.value(card)},
 				ai:{
 					skillTagFilter:function(player){
@@ -3232,6 +3549,9 @@ player.logSkill('boss_zhengjiao',result.targets);              event.targets=res
 				selectTarget:2,
 				multitarget:true,
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				content:function(){
 targets[1].addSkill('boss_lipan2');			targets[1].useCard({name:'juedou'},targets[0],'noai').animate=false;
 					game.delay(0.5);
@@ -3281,6 +3601,9 @@ targets[1].addSkill('boss_lipan2');			targets[1].useCard({name:'juedou'},targets
     				return  7-get.value(card);
     			},
          unique:true,
+         noremove:true,
+      noadd:true,
+      nodisable:true,
     			content:function(){
     				 "step 0"
  player.chooseCardButton(target,target.get('h')).ai=function(card){
@@ -3305,6 +3628,9 @@ targets[1].addSkill('boss_lipan2');			targets[1].useCard({name:'juedou'},targets
     		},
       boss_xiyu:{
       unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
       mod:{
 				targetEnabled:function(card,player,target,now){
 if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.type(card)=='trick'&&get.color(card)=='black'||get.type(card)=='delay'&&get.color(card)=='black'){
@@ -3321,6 +3647,9 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
        return player.hp<=3;
        },
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				content:function(){
 					"step 0"
 					var check;
@@ -3359,6 +3688,9 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
 					return player.canUse('sha',event.target)&&player.hasSha();
 				},
        unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 				content:function(){
 					"step 0"
 					if(player.hasSkill('jiu')){
@@ -3378,7 +3710,10 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
     group:'boss_poji1',
    trigger:{player:'shaBegin'},			
       forced:true,
-      unique:true,     
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,   
       filter:function (event){
       return get.color(event.card)=='red';
       },
@@ -3387,12 +3722,9 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
      },
      ai:{                    
                     threaten:3,                   
-                    effect:{
-            player:function (card,player,target){
-         if(card.name=='sha'&&get.color(card)=='red') return 2;        if(card.name=='sha'&&get.suit(card)=='spade') return 1.5;
-         },
-           target:function(card,player,target,current){
-      if(card.name=='tiesuo') return [0,0];
+                    effect:{          
+           target:function(card,player,target){
+      if(card.name=='tiesuo') return 0;
              },
         },
       },
@@ -3400,7 +3732,10 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
      boss_poji1:{
    trigger:{source:'damageBegin'},			
       forced:true,
-      unique:true,     
+      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,  
       filter:function (event){
       return event.card&&(event.card.name=='sha'&&get.suit(event.card)=='spade')&&
 				event.parent.name!='_lianhuan'&&event.parent.name!='_lianhuan2';
@@ -3415,7 +3750,10 @@ if(target.hp>3) return;				if(card.name=='sha'&&get.color(card)=='black'||get.ty
      filter:function(event,player){
 					return (event.source&&event.source.countCards('h')&&event.source!=player);
 				},
-       unique:true,    
+       unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 player.logSkill('boss_yuling',trigger.source);
      	player.gainPlayerCard(true,trigger.source,trigger.num,'h')	;
@@ -3431,6 +3769,9 @@ player.logSkill('boss_yuling',trigger.source);
 			},
      boss_langzhao:{
                 unique:true,
+                noremove:true,
+      noadd:true,
+      nodisable:true,
                 mod:{
                     globalFrom:function (from,to,current){
                    if(from.hp<5) return current-1;
@@ -3447,6 +3788,9 @@ player.logSkill('boss_yuling',trigger.source);
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=4;
 			}
@@ -3457,7 +3801,10 @@ player.logSkill('boss_yuling',trigger.source);
 				filter:function(event,player){
 					return (event.source!=undefined)&&event.source!=player;
 				},
-       unique:true,				
+       unique:true,
+       noremove:true,
+      noadd:true,
+      nodisable:true,				
 				content:function(){
        "step 0"
        game.delay();
@@ -3481,7 +3828,8 @@ player.useCard({name:'sha'},trigger.source,false);
 			  	}
 	  		},
      challenge_slvbu_pojia:{
-      unique:true,
+      unique:true,      
+      nodisable:true,
 			ai:{
 				unequip:true,        
 				skillTagFilter:function(player,tag,arg){    
@@ -3492,6 +3840,9 @@ player.useCard({name:'sha'},trigger.source,false);
 		},
      boss_shashen:{
 			unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			mod:{
 				selectTarget:function(card,player,range){
 					if(player.hp>5||range[1]==-1) return;
@@ -3504,6 +3855,9 @@ player.useCard({name:'sha'},trigger.source,false);
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=2;
 			}
@@ -3512,6 +3866,9 @@ player.useCard({name:'sha'},trigger.source,false);
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=2;
 			}
@@ -3520,6 +3877,9 @@ player.useCard({name:'sha'},trigger.source,false);
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=2;
 			}
@@ -3528,32 +3888,45 @@ player.useCard({name:'sha'},trigger.source,false);
 			trigger:{player:'phaseDrawBegin'},
 			frequent:true,
      unique:true,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 				trigger.num+=2;
 			}
 		},
     boss_qidun:{
      group:'boss_qidun1',
-			trigger:{target:'tiesuoBefore'},
+			trigger:{target:'useCardToBefore'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
+     priority:10,
+     filter:function (event,player){
+      return event.card.name=='tiesuo'||get.type(event.card)=='delay';
+     },
 			content:function(){
 		 trigger.finish();
      trigger.untrigger();
-		},
-    mod:{
-				targetEnabled:function(card,player,target){
-					if(get.type(card)=='delay'){
-						return false;
-					}
-				}
-			}
-		},
+		 },
+    ai:{                    
+                    effect:{
+                       target:function(card,player,target){
+         if(card.name=='tiesuo'||get.type(card)=='delay') return 0;
+           }
+         }     
+       }
+     },
     boss_qidun1:{			
 			trigger:{player:'phaseBefore'},
             forced:true,
             priority:1000,
             popup:false,
+            noremove:true,
+      noadd:true,
+      nodisable:true,
        filter:function(event ,player){
                 return player.num('j')>0;
             },
@@ -3561,13 +3934,23 @@ player.useCard({name:'sha'},trigger.source,false);
             content:function(){
             player.discard(player.get('j'));
             player.skip('phaseJudge');                
-            }
-          },    
+            },
+            ai:{                    
+                    effect:{
+                       target:function(card,player,target){
+         if(card.name=='tiesuo') return 0;
+           }
+         }     
+       }
+     },    
     boss_shanshi:{
      group:['boss_shanshi1','zhuque_skill','guding_skill','qinggang_skill','guanshi_skill','qilin_skill','cixiong_skill','fangtian_skill','zhangba_skill'],
 			trigger:{player:'turnOverBefore'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){}},
     boss_shanshi1:{
    		trigger:{source:'damageBegin'},
@@ -3593,6 +3976,9 @@ if(get.tag(card,'recover')&&player.hp==4) return [0,0];
 			trigger:{player:'turnOverBefore'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
 			content:function(){
 		 trigger.finish();
      trigger.untrigger();
@@ -3606,6 +3992,9 @@ if(get.tag(card,'recover')&&player.hp==4) return [0,0];
 			trigger:{global:'gamDrawBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.name=='boss_huaxiong'||player.name=='boss_slvbu'||player.name=='bossx_diaochan'||player.name=='bossx_machao'||player.name=='boss_liru'||player.name=='wang_liubei'||player.name=='wang_caocao'||player.name=='wang_sunquan'||player.name2=='boss_huaxiong'||player.name2=='boss_slvbu'||player.name2=='bossx_diaochan'||player.name2=='bossx_machao'||player.name2=='boss_liru'||player.name2=='wang_liubei'||player.name2=='wang_caocao'||player.name2=='wang_sunquan';
 },
@@ -3621,6 +4010,10 @@ player.popup('<span class="bluetext" style="color:	#930000">天威'+'</span>');
     boss_xiaoshous:{
    		trigger:{player:'damageEnd'},
      direct:true,
+      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
 					return (event.source&&event.source.countCards('e')&&event.source!=player);
 				},
@@ -3641,6 +4034,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 		boss_fubing:{
 			trigger:{player:'phaseEnd'},
 			forced:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.hp<=4;
      },
@@ -3651,6 +4047,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 		},
    boss_shuangren:{
     unique:true,
+    noremove:true,
+      noadd:true,
+      nodisable:true,
     mod:{
            cardUsable:function (card,player,num){
            if(card.name=='sha') return num+1;
@@ -3662,6 +4061,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 			trigger:{player:'phaseBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.hp<=5;
      },
@@ -3674,6 +4076,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 			trigger:{player:'phaseBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.hp<=4;
      },
@@ -3686,6 +4091,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 			trigger:{player:'phaseBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.hp<=4;
      },
@@ -3698,6 +4106,9 @@ player.logSkill('boss_xiaoshous',trigger.source);
 			trigger:{player:'phaseBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+      noadd:true,
+      nodisable:true,
      filter:function(event,player){
      return player.hp<=3;
      },
@@ -3711,7 +4122,10 @@ player.logSkill('boss_xiaoshous',trigger.source);
 			trigger:{global:'gameStart'},
 			forced:true,
      unique:true,
-     popup:false,     
+     popup:false,
+     noremove:true,
+      noadd:true,
+      nodisable:true,   
 			content:function(){
      player.draw(6,false);
      console.log(player);
@@ -3725,6 +4139,9 @@ player.popup('<span class="bluetext" style="color:	#930000">BUFF!'+'</span>');
 	    			forced:true,
 	    			unique:true,
 	    			popup:false,
+          noremove:true,
+                noadd:true,
+                nodisable:true,
     				silent:true,
     				filter:function(event,player){
 	  				return (player.group=='mo'&&player.node.name.dataset.nature!='mo');
@@ -3734,12 +4151,15 @@ player.popup('<span class="bluetext" style="color:	#930000">BUFF!'+'</span>');
        }
      },
       boss_angyang:{
-      group:'boss_angyang1',
+      group:['boss_dianji3','boss_angyang1'],
       audio:4,  
                 trigger:{source:'damageBegin'},
 			unique:true,
       forced:true,
-      priority:-25,
+      noremove:true,
+      noadd:true,
+      nodisable:true,
+      priority:25,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
      if(event.player==player)
@@ -3770,7 +4190,10 @@ player.gain(true,trigger.player.get('e'));
       audio:2,    
                 trigger:{player:['shaBegin','juedouBegin']},
 			unique:true,
-      forced:true,   
+      forced:true,
+      noremove:true,
+                noadd:true,
+                nodisable:true,  
 	  filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
       if(event.target==player)
@@ -3799,12 +4222,14 @@ if(lib.config.mode=='boss'&&from.identity!='zhu'||from.name!='boss_sunce'&&from.
                     player:function (card,player,target){
 if(get.subtype(card)=='equip1'&&player.countCards('e','zhuge')>0&&player.countCards('h','sha')>0) return [1,-4];
      if(get.type(card)=='equip') return [1,3];    
-     if(get.type(card)=='trick'&&card.name!='tiesuo') return [1,3];
-     if(get.type(card)=='delay') return [1,3];                  
-     if(card.name=='sha') return [1,Infinity];                                           
+     if(get.type(card)=='trick'&&card.name!='tiesuo') return [1,7];
+     if(get.type(card)=='delay') return [1,3];
+     if((card.name=='juedou'||card.name=='sha')&&(target.hasSkill('boss_zhuihun2')||target.hasSkill('xiangxing'))&&!player.countCards('h','jiu')&&!player.countCards('h','tao')) return [1,-5];           
+     if((card.name=='juedou'||card.name=='sha')&&(!target.hasSkill('boss_zhuihun2')||!target.hasSkill('xiangxing')||player.countCards('h','jiu')||player.countCards('h','tao'))) return [1,Infinity];                                           
 if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
            },
-     target:function (card,player,target){     
+     target:function (card,player,target){
+     if(card.name=='tao'&&target.hp>0&&target.countCards('h','tao')<2) return [0,0];
      if(card.name=='tiesuo') return [0,0,0,-0.5];
            },
      target:function (card,player,target,current){
@@ -3814,13 +4239,16 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
        },
      },      
        boss_dianji:{
-      group:['boss_dianji1','boss_dianji2','boss_dianji3','boss_immune'],       
+      group:['boss_dianji1','boss_dianji2','boss_immune'],       
        audio:2,
 			trigger:{
                     player:"loseEnd",
                 },
                 forced:true,
                 unique:true,
+                noremove:true,
+                noadd:true,
+                nodisable:true,
                 filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
                 if(player.num('h')>=7)
@@ -3836,9 +4264,12 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
             },
       boss_dianji1:{    
        audio:1,
-			trigger:{player:['phaseDrawBegin','turnOverBefore']},
+			trigger:{target:'lebuBefore',player:['phaseDrawBegin','turnOverBefore']},
        forced:true,
        unique:true,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
      return true;
@@ -3853,6 +4284,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
        forced:true,
        unique:true,
        silent:true,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
        priority:10,
       filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
@@ -3863,21 +4297,26 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
       }},
       boss_dianji3:{    
        audio:1,
-			trigger:{target:'lebuBefore'},
+			trigger:{player:'recoverBefore'},
        forced:true,
        unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
+     priority:999,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
-     return true;
+     return player.hp<0;
      },     
 			content:function(){
-      trigger.finish();
-     trigger.untrigger();
+      trigger.cancel();
+      player.recover(1-player.hp)._triggered=null;
      },
       ai:{
+                noturn:true,
                 effect:{
                     target:function(card,player,target,current){
-                        if(card.name=='lebu'||card.name=='bingliang') return [0,0,0,0];
+                        if(card.name=='lebu'||card.name=='bingliang') return 0;
                     }
                 }
             }
@@ -3886,6 +4325,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
       group:['boss_zh1','boss_zh2','boss_zh3','boss_immune'],
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },  
      boss_zh1:{     
 			trigger:{global:'gameStart'},     
@@ -3893,6 +4335,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      popup:false,      
      unique:true,
      silent:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zuhe'&&player.name2!='boss_zuhe') return false;
      return true;
@@ -3910,6 +4355,9 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
      forced:true,
      popup:false,      
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zuhe'&&player.name2!='boss_zuhe') return false;
      return true;
@@ -3939,6 +4387,9 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
      popup:false,      
      unique:true,
      priority:1000,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zuhe'&&player.name2!='boss_zuhe') return false;
      return player.hp<1;
@@ -3952,7 +4403,10 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
 			trigger:{player:'changeHp'},     
      forced:true,
      popup:false,      
-     unique:true,     
+     unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,   
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zuhe'&&player.name2!='boss_zuhe') return false;
      return player.hp>0;
@@ -3966,6 +4420,9 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
        audio:1,
 			trigger:{player:['drawBegin','recoverBegin']},     
      forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      unique:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_daqiao'&&player.name2!='boss_daqiao') return false;
@@ -3986,14 +4443,14 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
                  player:1,
                  },
                     effect:{
-                 player:function (card,player){
-                if(card.name=='tiesuo') return [0,-9];
+                 player:function (card,player,target){
+                if(card.name=='tiesuo') return [1,-9];
 if(get.color(card)=='red'&&card.name!='tao') return [1,3];
      if(card.name=='guanshi') return [1,3];                    
 if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];      
            },
               target:function(card,player,target,current){
-      if(card.name=='tiesuo') return [0,-0.5];                 
+      if(get.tag(card,'draw')) return [1,3];                 
            },
          },
        },
@@ -4003,6 +4460,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 			trigger:{player:'turnOverBefore',target:['shaBefore','juedouBefore','shunshouBefore','guoheBefore','lebuBefore','bingliangBefore','tiesuoBefore']},     
      forced:true,    
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_daqiao'&&player.name2!='boss_daqiao') return false;
      if(event.name=='turnOver'){
@@ -4038,6 +4498,10 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
                     player:['loseEnd','useCard','respond'],
                 },
                 direct:true,
+                unique:true,
+                noremove:true,
+                noadd:true,
+                nodisable:true,
                 filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_daqiao'&&player.name2!='boss_daqiao') return false;  
                 if(event.name=='useCard'||event.name=='respond'){
@@ -4090,13 +4554,21 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
                 },
             },      
       boss_yuanlv:{
-      group:['boss_immune','boss_yuanlv3','boss_yuanlv1','boss_yuanlv2'],locked:true,unique:true,
+      group:['boss_immune','boss_yuanlv3','boss_yuanlv1','boss_yuanlv2'],
+      locked:true,
+      unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },
       boss_yuanlv3:{
       audio:2,
 			trigger:{player:['phaseBegin','phaseEnd']},     
      forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
      return true;
@@ -4123,6 +4595,9 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
 			trigger:{player:['loseHpBefore','loseMaxHpBefore','turnOverBefore']},
       forced:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
      return true;
@@ -4136,9 +4611,12 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
                 trigger:{player:'damageBefore'},
 			unique:true,
       forced:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;  
-     return get.type(event.card)!='trick'||get.type(event.card)=='delay';				
+     return get.type(event.card)!='trick'&&get.type(event.card)!='delay';				
 			},   
 			content:function(){     
      trigger.untrigger();
@@ -4146,8 +4624,8 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
      },
      ai:{
 				effect:{
-					target:function(card,damage){
-						if((get.type(card)!='trick'||get.type(card)!='delay')&&get.tag(card,'damage')){
+					target:function(card,player,target){
+						if(get.type(card)!='trick'&&get.type(card)!='delay'&&get.tag(card,'damage')){
 							return [0,0];
 						}
 					}
@@ -4157,11 +4635,17 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
     group:['boss_shenmou1','boss_shenmou2','boss_shenmou3'],
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_shenmou3:{      
       audio:1,
 			trigger:{player:['phaseDrawBegin']},     
      forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      unique:true,
    filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
@@ -4217,6 +4701,9 @@ return 0; });
      forced:true,
      priority:100,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
    filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
      return true;
@@ -4230,6 +4717,9 @@ player.addSkill([['duanliang','jizhi'],['zhiheng','lianhuan'],['luanji','wansha'
 			trigger:{player:['phaseEnd']},
      forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
    filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
      return true;
@@ -4242,6 +4732,9 @@ player.removeSkill(['duanliang','lianhuan','zhiheng','jizhi','luanji','wansha'])
      trigger:{player:['changeHp']},
 			forced:true,
 			mark:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			audio:4,
      unique:true,     
 			init:function(player){   
@@ -4280,6 +4773,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
                 trigger:{player:'phaseEnd'},
 			unique:true,
       forced:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai') return false;
      return true;
@@ -4332,6 +4828,9 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&
      audio:['buqu',2],
       unique:true,
       priority:1000,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai') return false;
      return true;
@@ -4378,6 +4877,9 @@ player.gainPlayerCard(true,'he',current)._triggered=null;
 			trigger:{player:'turnOverBefore'},
       forced:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai') return false;
      return true;
@@ -4391,7 +4893,7 @@ player.gainPlayerCard(true,'he',current)._triggered=null;
      challenge_pojia:{
 			ai:{
 				unequip:true,
-        unique:true,
+        unique:true,    
 				skillTagFilter:function(player,tag,arg){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai') return;
 					if(arg&&arg.name=='sha') return true;
@@ -4404,6 +4906,9 @@ group:['wansha','yinxian1','yinxian2'],
 			trigger:{global:['useCard','respond']},
       forced:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yinxian'&&player.name2!='boss_yinxian') return false;
      if(event.player==player)
@@ -4433,6 +4938,9 @@ group:['wansha','yinxian1','yinxian2'],
 			ai:{
         unique:true,
 				unequip:true,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
 				skillTagFilter:function(player,tag,arg){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yinxian'&&player.name2!='boss_yinxian') return;
 					if(arg&&arg.name=='wanjian'||arg&&arg.name=='nanman') return true;
@@ -4444,6 +4952,9 @@ group:['wansha','yinxian1','yinxian2'],
 			trigger:{global:['useCard','respond']},
       forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yinxian'&&player.name2!='boss_yinxian') return false;
      if(event.player==player)
@@ -4464,6 +4975,9 @@ group:['wansha','yinxian1','yinxian2'],
 			mark:true,		
       audio:2,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       priority:101,
 			filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_fennu'&&player.name2!='boss_fennu') return false;
@@ -4488,6 +5002,9 @@ group:['wansha','yinxian1','yinxian2'],
       trigger:{player:'phaseBegin'},			
       forced:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
 if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_fennu'&&player.name2!='boss_fennu') return false;  			 
            return true;
@@ -4501,6 +5018,9 @@ player.hp+=Math.max(1,Math.floor(player.maxHp*0.2));
 			trigger:{source:'damageBegin'},		
       forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){ 
           if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_fennu'&&player.name2!='boss_fennu') return false;  			 
            return true;
@@ -4514,6 +5034,9 @@ player.hp+=Math.max(1,Math.floor(player.maxHp*0.2));
 						forced:true,
 						unique:true,
 						priority:100,
+          noremove:true,
+     noadd:true,
+     nodisable:true,
           filter:function(event,player){ 
           if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_fennu'&&player.name2!='boss_fennu') return false;  			 
            return _status.currentPhase!=player;
@@ -4558,7 +5081,10 @@ player.hp+=Math.max(1,Math.floor(player.maxHp*0.2));
         fennu4:{
 			trigger:{player:['damageBegin','loseHpBegin']},		
       forced:true,
-      unique:true,      
+      unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,    
       filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_fennu'&&player.name2!='boss_fennu') return false;
       return event.num>2;
@@ -4574,6 +5100,9 @@ player.hp+=Math.max(1,Math.floor(player.maxHp*0.2));
 			forced:true,	
      priority:Infinity,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_huaji'&&player.name2!='boss_huaji') return false;
       if(event.target==player)
@@ -4586,9 +5115,13 @@ player.hp+=Math.max(1,Math.floor(player.maxHp*0.2));
 		},
    huaji1:{
 			audio:2,
-		trigger:{target:['shaBegin','juedouBegin','wanjianBegin','nanmanBegin','lebuBegin','bingliangBegin','shunshouBegin','guoheBegin','huogongBegin','jiedaoBegin','tiesuoBegin','shengdongBegin','caomuBegin','qijiaBegin']},			forced:true,	
+		trigger:{target:['shaBegin','juedouBegin','wanjianBegin','nanmanBegin','lebuBegin','bingliangBegin','shunshouBegin','guoheBegin','huogongBegin','jiedaoBegin','tiesuoBegin','shengdongBegin','caomuBegin','qijiaBegin']},			
+      forced:true,	
       priority:100,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_huaji'&&player.name2!='boss_huaji') return false;  
       return Math.random()<=0.4;
@@ -4603,6 +5136,9 @@ trigger.player.loseHp(Math.max(1,trigger.player.maxHp-trigger.player.hp));
 			forced:true,	
       priority:100,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_huaji'&&player.name2!='boss_huaji') return false; 
       if(event.player==player)  
@@ -4622,7 +5158,10 @@ trigger.player.loseHp(Math.max(1,trigger.player.maxHp-trigger.player.hp));
 		trigger:{global:['damageBegin']},
 			forced:true,	
       priority:99,
-      unique:true,      
+      unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,      
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_huaji'&&player.name2!='boss_huaji') return false; 
       if(event.player==player)  
@@ -4645,6 +5184,9 @@ game.addVideo('storage',player,['the_mass',player.storage.the_mass]);
          unique:true,
          popup:false,
          priority:100,
+         noremove:true,
+     noadd:true,
+     nodisable:true,
         filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yishunjianyiwang'&&player.name2!='boss_yishunjianyiwang') return false;
         return true;
@@ -4659,7 +5201,10 @@ game.addVideo('storage',player,['the_mass',player.storage.the_mass]);
     audio:8,
     trigger:{player:'phaseBegin'},
 			forced:true,	     
-     unique:true,              
+     unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,             
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yishunjianyiwang'&&player.name2!='boss_yishunjianyiwang') return false;         
       return !player.hasSkill('the_masslose')||player.storage.the_mass>=25;  
@@ -4677,6 +5222,9 @@ game.addVideo('storage',player,['the_mass',player.storage.the_mass]);
 			unique:true,
       forced:true,
      popup:false,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yishunjianyiwang'&&player.name2!='boss_yishunjianyiwang') return false;
       return true;
@@ -4703,6 +5251,8 @@ trigger:{player:['phaseEnd']},
      priority:500,
      unique:true,
      noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:2,
      animationStr:"瞬间",
 			skillAnimation:true,
@@ -4725,6 +5275,8 @@ if(player.hp<player.maxHp&&Math.random()<=0.33){
    locked:true,
    unique:true,
    noremove:true,
+     noadd:true,
+     nodisable:true,
     },
    boss_yiwang0:{
    trigger:{player:['dieBefore']},			
@@ -4732,6 +5284,8 @@ if(player.hp<player.maxHp&&Math.random()<=0.33){
       priority:Infinity,
       unique:true,
       noremove:true,
+     noadd:true,
+     nodisable:true,
      animationStr:"遗忘",
 			skillAnimation:true,
      animationColor:['fire','thunder','metal','white','water'].randomGet(),
@@ -4781,6 +5335,8 @@ return [1,3];
       priority:100,
      unique:true,
       noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:4,
      animationStr:"遗忘",
 			skillAnimation:true,
@@ -4802,6 +5358,8 @@ return [1,3];
       priority:Infinity,
       unique:true,
       noremove:true,
+     noadd:true,
+     nodisable:true,
       animationStr:"遗忘",
 			skillAnimation:true,
      animationColor:['fire','thunder','metal','white','water'].randomGet(),
@@ -4821,6 +5379,8 @@ trigger:{global:["gameStart","gameDrawBefore"]},
 forced:true,
 priority:Infinity,
 noremove:true,
+     noadd:true,
+     nodisable:true,
 unique:true,
 filter:function (event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yishunjianyiwang'&&player.name2!='boss_yishunjianyiwang') return false;
@@ -4864,6 +5424,8 @@ player.popup('<span style="color: palegreen">😎</span>');
       forced:true,
      unique:true,
      noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_yishunjianyiwang'&&player.name2!='boss_yishunjianyiwang') return false;     
      return event.source!=player;
@@ -4883,6 +5445,8 @@ trigger.source.chooseToDiscard(true,'he',player.maxHp-player.hp)._triggered=null
    locked:true,
    unique:true,
    noremove:true,
+     noadd:true,
+     nodisable:true,
    },
    boss_wanzun1:{  
    trigger:{global:['phaseUseBegin']},
@@ -4890,6 +5454,8 @@ trigger.source.chooseToDiscard(true,'he',player.maxHp-player.hp)._triggered=null
      priority:9999,
      unique:true,
      noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:4,
      animationStr:"挽尊",
 			skillAnimation:true,
@@ -4920,6 +5486,8 @@ trigger:{source:['damageBegin']},
       forced:true,
      unique:true,
       noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:3,    
 			skillAnimation:true,
      filter:function (event,player){
@@ -4956,6 +5524,8 @@ trigger:{source:['damageBegin']},
       forced:true,      
       unique:true,
       noremove:true,
+     noadd:true,
+     nodisable:true,
       audio:4,
       animationStr:"水帖",
 			skillAnimation:true,
@@ -4976,7 +5546,10 @@ trigger:{source:['damageBegin']},
    trigger:{source:'damageBegin'},			
       forced:true, 
       priority:-12,
-      unique:true,  
+      unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,  
       filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaopi'&&player.name2!='boss_tiaopi') return false;
       if(event.nature=='fire'||event.nature=='thunder')
@@ -4990,7 +5563,10 @@ trigger.num=trigger.num+Math.round(trigger.player.maxHp*0.5);
      tiaopi1:{
    trigger:{player:'shaBegin'},			
       forced:true,
-      unique:true,     
+      unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,   
       filter:function (event,player){    
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaopi'&&player.name2!='boss_tiaopi') return false;      
       return event.card.nature=='fire'||event.card.nature=='thunder';
@@ -5035,6 +5611,9 @@ trigger.num=trigger.num+Math.round(trigger.player.maxHp*0.5);
                 trigger:{player:'phaseEnd'},
 			unique:true,
       forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaopi'&&player.name2!='boss_tiaopi') return false;    
       return true;
@@ -5065,6 +5644,9 @@ if(!current.isTurnedOver()&&Math.random()<=0.38){
                 trigger:{player:'phaseEnd'},
 			unique:true,
       forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_kelian'&&player.name2!='boss_kelian') return false;    
       return true;
@@ -5093,6 +5675,9 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 			forced:true,	
       priority:-100,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_kelian'&&player.name2!='boss_kelian') return false;    
       return event.num>0;
@@ -5109,6 +5694,9 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 			forced:true,	
      priority:15,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_kelian'&&player.name2!='boss_kelian') return false;   
       return event.num>0;
@@ -5123,11 +5711,17 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
     group:['boss_qingxu0','boss_qingxu1','boss_qingxu2','boss_qingxu3'],
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
 			boss_qingxu0:{
 		trigger:{target:['shaBefore','juedouBefore','huogongBefore','lebuBefore','bingliangBefore','guoheBefore','caomuBefore','shengdongBefore','qijiaBefore'],player:['loseHpBefore','damageBefore'],},
 			forced:true,	
-      unique:true,
+     unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function(event,player){    
       return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&(event.name=='damage'&&!event.source||Math.random()<=0.45);
       },		
@@ -5154,6 +5748,9 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 		trigger:{player:'loseBefore'},
 			forced:true,	
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){                 
       return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&_status.currentPhase!=player&&Math.random()<=0.5;
     for(var i=0;i<event.cards.length;i++){
@@ -5173,6 +5770,9 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 		trigger:{player:'turnOverBefore'},
 			forced:true,	
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(player.isTurnedOver())
      return false;    
@@ -5189,6 +5789,9 @@ trigger:{global:["gameStart","gameDrawBefore"]},
 forced:true,
 priority:Infinity,
 unique:true,
+noremove:true,
+     noadd:true,
+     nodisable:true,
 filter:function (event,player){
 return player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan';
 },
@@ -5208,11 +5811,17 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
    group:['boss_hudui1','boss_hudui2','boss_hudui3','boss_qingxu3'], 
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
 			boss_hudui1:{ 
 		trigger:{player:'damageEnd'},
 			direct:true,	
       unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaozhan'&&player.name2!='boss_tiaozhan') return false;
       return event.source!=player&&(event.source!=undefined)&&event.source.isAlive();  
@@ -5247,6 +5856,9 @@ player.useCard({name:'sha'},trigger.source,false);
 		trigger:{player:['damageBefore','loseHpBefore']},
 			forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:['weimu',2],     
     filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaozhan'&&player.name2!='boss_tiaozhan') return false;
@@ -5269,7 +5881,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		trigger:{source:'damageEnd'},
 			forced:true,
      unique:true,
-     popup:false, 
+     popup:false,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
    filter:function (event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_tiaozhan'&&player.name2!='boss_tiaozhan') return false;  
    return _status.currentPhase!=player;
@@ -5291,7 +5906,9 @@ player.useCard({name:'sha'},trigger.source,false);
 		},    
     boss_chuantou:{
     unique:true,
-    noAdd:true,
+    noremove:true,
+     noadd:true,
+     nodisable:true,
     ai:{
 				unequip:true,        
 				skillTagFilter:function(player,tag,arg){
@@ -5303,7 +5920,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		},    
     tiaozhan_bianshen:{
      mode:['boss'],		
-			unique:true,			
+			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,			
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5344,7 +5964,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		},
     tiaozhan_bianshen2:{
      mode:['boss'],		
-			unique:true,			
+			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,		
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5386,6 +6009,9 @@ player.useCard({name:'sha'},trigger.source,false);
     tiaozhan_bianshen3:{
      mode:['boss'],	
 			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5426,7 +6052,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		},
    tiaozhan_bianshen4:{	
      mode:['boss'],	
-			unique:true,			
+			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,		
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5467,7 +6096,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		},
     tiaozhan_bianshen5:{
      mode:['boss'],		
-			unique:true,			
+			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,		
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5508,7 +6140,10 @@ player.useCard({name:'sha'},trigger.source,false);
 		},
     tiaozhan_bianshen6:{
      mode:['boss'],	
-			unique:true,			
+			unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,		
 			trigger:{player:'dieBefore'},
 			forced:true,
 			priority:Infinity,
@@ -5551,12 +6186,18 @@ player.useCard({name:'sha'},trigger.source,false);
     group:['boss_pimi3','boss_pimi2','boss_pimi1'],
     locked:true,
     unique:true,
+    noremove:true,
+     noadd:true,
+     nodisable:true,
     },
     boss_pimi1:{
 			audio:2,
 		trigger:{source:'damageBegin'},
 			forced:true,	
-     unique:true,     
+     unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,     
       filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;
       if(player.num('e')<event.player.num('e'))
@@ -5586,35 +6227,45 @@ player.useCard({name:'sha'},trigger.source,false);
     				}
     		},     
     ai:{                    
-                    threaten:6.5,                   
-                    effect:{
-            player:function (card,player,target){
-if(get.subtype(card)=='equip1'&&player.countCards('e','zhuge')>0&&player.countCards('h','sha')>0) return [1,-4];
-         if(card.name=='tiesuo'&&target.isLinked()&&target!=player) return [1,-3];
-         if(card.name=='du') return [1,Infinity];       
-        if(card.name=='sha'&&!target.isLinked()&&!card.nature&&!target.hasSkill('wuhun')&&!player.countCards('h',{name:'sha',nature:'thunder'})&&!player.countCards('h',{name:'sha',nature:'fire'})||card.name=='sha'&&card.nature&&!target.hasSkill('wuhun')&&get.attitude(player,target)<0) return [1,Infinity];        
+        threaten:6.5,
+        noturn:true,
+        result:{
+        player:1,
+        },                  
+       effect:{
+       player:function (card,player,target){
+if(get.subtype(card)=='equip1'&&player.countCards('e','zhuge')>0&&player.countCards('h','sha')>0) return [1,-4];                 
+   if(card.name=='tiesuo'&&target.isLinked()&&target!=player) return [1,-3];
+       if(card.name=='tiesuo'&&!target.isLinked()&&target!=player) return [1,3];
+         if(card.name=='du') return [0,3];
+        if(card.name=='sha'&&target.isLinked()&&!card.nature&&(player.countCards('h',{name:'sha',nature:'thunder'})||player.countCards('h',{name:'sha',nature:'fire'}))||(card.name=='sha'||card.name=='juedou')&&(target.hasSkill('boss_zhuihun2')||target.hasSkill('wuhun'))&&!player.countCards('h','tao')&&!player.countCards('h','jiu')) return [1,-10];    
+        if((card.name=='sha'&&!target.isLinked()&&!card.nature||card.name=='juedou')&&(!target.hasSkill('wuhun')||player.countCards('h','tao')||player.countCards('h','jiu'))&&!player.countCards('h',{name:'sha',nature:'thunder'})&&!player.countCards('h',{name:'sha',nature:'fire'})||card.name=='sha'&&card.nature&&(!target.hasSkill('wuhun')||player.countCards('h','tao')||player.countCards('h','jiu'))&&(target.isLinked()||get.attitude(player,target)<0)) return [1,Infinity];
+        if(get.tag(card,'damage')&&(card.name=='sha'||card.name=='juedou')&&target.hasSkillTag('maixie')) return [1,99,0,-999];       
         if(card.name!='tao') return [1,3];        
           },
-          target:function (card,player,target){     
-           if(card.name=='jiedao') return [1,3];       
-           if(card.name=='wuxie') return -Infinity;          
-           if(card.name=='bingliang') return -100;
-           if(card.name=='lebu') return -100;
-           if(card.name=='shunshou') return -100;
-           if(card.name=='guohe') return -100;
-           if(card.name=='huogong') return -100;
-           if(card.name=='caomu') return -100;
-           if(card.name=='shengdong') return -100;
-        if(card.name=='qijia') return -100;                        
-                },                         
-                    },
-                },
-            },
+          target:function (card,player,target,current){
+          if(get.tag(card,'damage')&&player.hasSkillTag('jueqing')||get.tag(card,'loseHp')||get.tag(card,'turnOver')) return [0,3];
+           if(card.name=='jiedao') return [0,3];                  
+           if(card.name=='bingliang') return [0,3];
+           if(card.name=='lebu') return [0,3];
+           if(card.name=='shunshou') return [0,3];
+           if(card.name=='guohe') return [0,3];
+           if(card.name=='huogong') return [0,3];
+           if(card.name=='caomu') return [0,3];
+           if(card.name=='shengdong') return [0,3];
+           if(card.name=='qijia') return [0,3];                        
+        },                         
+           },
+         },
+      },
      boss_pimi2:{
 				audio:2,				
 				forced:true,
        popup:false,
        priority:20179999,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
 				filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;
 					return !event.directHit&&Math.random()<=0.2*player.countCards('e');
@@ -5632,6 +6283,9 @@ if(get.subtype(card)=='equip1'&&player.countCards('e','zhuge')>0&&player.countCa
 				forced:true,
        popup:false,
        priority:20179999,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
 				filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;
 					return true;
@@ -5677,12 +6331,18 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='bo
      group:['boss_xionglie1','boss_xionglie2','boss_xionglie3','boss_xionglie4','boss_xionglie5','boss_xionglie6','boss_immune'],
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_xionglie1:{
 trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bingliangBefore','shunshouBefore','guoheBefore','lebuBefore','huogongBefore','caomuBefore','qijiaBefore','shengdongBefore'],},
 			forced:true,	
      priority:100,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){ 
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;  			 
        return true;
@@ -5690,7 +6350,7 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			content:function(){
      trigger.finish();
       trigger.untrigger();
-      player.gainMaxHp();
+      player.gainMaxHp()._triggered=null;
        }
       },
       boss_xionglie2:{
@@ -5698,6 +6358,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			forced:true,
      	priority:10,      
       unique:true,	
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){ 
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;  			 
        return true;
@@ -5710,19 +6373,25 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			trigger:{player:'recoverBegin'},
 			forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){ 
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;  			 
        return true;
 	     },
 			content:function(){
-      trigger.num=trigger.num+Math.floor((player.maxHp-player.hp)/2);
+      trigger.num+=Math.floor((player.maxHp-player.hp)/2);
        }
       },
       boss_xionglie4:{
-			trigger:{player:'damageBegin'},
+			trigger:{player:'damageBefore'},
 			forced:true,
-     priority:-75,
+     priority:750,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;
      return _status.currentPhase==player;
@@ -5730,7 +6399,7 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			content:function(){
      trigger.finish();
       trigger.untrigger();
-      player.gainMaxHp();
+      player.gainMaxHp()._triggered=null;
        }
       },
        boss_xionglie5:{
@@ -5738,6 +6407,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			forced:true,
      priority:15,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;
      if(player.hp==player.maxHp)
@@ -5753,6 +6425,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			ai:{
 				unequip:true,
         unique:true,
+       noremove:true,
+     noadd:true,
+     nodisable:true,
 				skillTagFilter:function(player,tag,arg){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return;
 					if(arg&&arg.name=='sha') return true;
@@ -5764,6 +6439,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
             group:['boss_bieli2','boss_bieli1','boss_immune'],
             locked:true,
             unique:true,
+            noremove:true,
+     noadd:true,
+     nodisable:true,
             },
             boss_bieli1:{
                 audio:2,
@@ -5773,6 +6451,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
                 forced:true,
                 unique:true,
                 priority:10000,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_cwj'&&player.name2!='boss_cwj') return false;
                 return true;
@@ -5796,6 +6477,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 			forced:true,
       unique:true,
       popup:false,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_cwj'&&player.name2!='boss_cwj') return false;
       if(event.name=='damage'){
@@ -5815,6 +6499,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
            group:['boss_beifen1','boss_beifen2'],
            locked:true,
            unique:true,
+           noremove:true,
+     noadd:true,
+     nodisable:true,
            },
            boss_beifen1:{
                 audio:2,
@@ -5833,6 +6520,9 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
             },           	           
                  forced:true,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
                 priority:10000,           
                 content:function (){
                 player.getStat().card.sha--;
@@ -5849,7 +6539,10 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
                 return event.player!=player;
             },           	           
                  forced:true,
-                unique:true,           
+                unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,          
                 content:function (){               
                 "step 0"
                 trigger.player.addSkill('fengyin');
@@ -5909,6 +6602,9 @@ return [1,3];
                 forced:true,
                 priority:-20173000,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function (event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayan'&&player.name2!='boss_simayan') return false;
                if(event.name=='loseMaxHp'){
@@ -5930,12 +6626,18 @@ return [1,3];
      group:'boss_tongyi1',
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },
      boss_tongyi1:{
                 audio:true,
                 trigger:{player:['phaseBegin','phaseEnd','damageEnd','loseHpEnd','turnOverEnd']},
 			unique:true,
       forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function(event,player){ 
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayan'&&player.name2!='boss_simayan') return false;
      for(var i=0;i<game.players.length;i++){
@@ -5944,7 +6646,7 @@ return [1,3];
      return false;         
       },  
 			content:function(){     
-     game.delay(0.3);
+     game.delay(0.2);
 				"step 0"
 				event.players=get.players(player);
      if(player.hp<player.maxHp){
@@ -5971,7 +6673,8 @@ current.damage(Math.max(1,Math.round(current.maxHp/4)))._triggered=null;
          player:function (card,player,target){                
          if((card.name=='sha'||card.name=='juedou')&&get.attitude(player,target)<0) return [1,Infinity];                    
             },
-        target:function (card,player,target,current){       
+        target:function (card,player,target,current){
+        if(get.tag(card,'damage')&&card.name=='sha'&&target.hasSkillTag('jiu')) return [1,2];     
         for(var i=0;i<game.players.length;i++){
      if(game.players[i]==player) continue;        
 if(game.players[i].countCards('he')&&(card.name=='du'||card.name=='huogong')) return [1,4];
@@ -5999,11 +6702,17 @@ return [1,3];
      group:['boss_jianqi1','boss_jianqi2','boss_immune'],
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       }, 
     boss_jianqi1:{
 			trigger:{source:'damageBegin'},
      forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      audio:3,
      priority:-4, 
      skillAnimation:true,
@@ -6041,7 +6750,10 @@ return [1,3];
      forced:true,
      unique:true,
      audio:1,   
-     priority:100,      
+     priority:100,
+     noremove:true,
+     noadd:true,
+     nodisable:true,    
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
      return event.target.countCards('e')&&Math.random()<=0.25;
@@ -6056,12 +6768,18 @@ return [1,3];
      group:['boss_xiushen0','boss_xiushen1','boss_xiushen2','boss_xiushen3','boss_xiushen4'],
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },
      boss_xiushen0:{   
 			trigger:{player:'phaseBegin'},
      forced:true, 
      audio:3,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
     return true;
@@ -6094,6 +6812,9 @@ return [1,3];
 			trigger:{player:'turnOverBefore'},
 			forced:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;     
      if(player.isTurnedOver())
@@ -6111,6 +6832,9 @@ return [1,3];
 			trigger:{target:'lebuBefore'},
 			forced:true,
       unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false; 
        return Math.random()<=0.75;
@@ -6127,6 +6851,9 @@ return [1,3];
 			forced:true,
      unique:true,
      priority:-99999,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
       return event.num>player.maxHp*0.03;
@@ -6137,7 +6864,10 @@ return [1,3];
       boss_xiushen4:{
 			trigger:{player:'loseMaxHpBefore'},
 			forced:true,
-      unique:true,
+     unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
     return true;
@@ -6153,7 +6883,10 @@ return [1,3];
            player:"useCardBefore",
            },
  						forced:true,
-           audio:true,					
+           audio:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,	
          filter:function (event,player){
          if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
         return event.card&&event.card.name=='sha'&&event.targets.length>1;
@@ -6176,9 +6909,11 @@ return [1,3];
      boss_pojia:{
      group:'boss_pojia1',
      locked:true,
-     unique:true,
+     unique:true,     
+      nodisable:true,
      },
      boss_pojia1:{
+       nodisable:true,
       unique:true,
         trigger:{
            player:"useCardToBefore",
@@ -6204,6 +6939,9 @@ return [1,3];
 			forced:true,
      priority:-1,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
   filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
     return true;
@@ -6217,7 +6955,9 @@ return [1,3];
 			trigger:{global:'gameDrawAfter',},
 			forced:true,
      priority:-1,
-     unique:true,
+     unique:true,  
+     nodisable:true,
+      noadd:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
     return true;
@@ -6231,7 +6971,9 @@ return [1,3];
 			forced:true,
      priority:Infinity,
      unique:true,
-     audio:false, 
+     audio:false,     
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;    
      return player.hp<5;
@@ -6253,12 +6995,18 @@ player.hp=(player.maxHp*0.25+Math.floor(Math.random()*player.maxHp*0.26));
      group:['boss_dcmy','boss_biyue1','boss_biyue2'],
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_biyue1:{
 			audio:['biyue',2],
       unique:true,
 			trigger:{player:'damageEnd'},
 		  forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan') return false;
     return event.source&&event.source!=player&&event.source.sex=='male';
@@ -6292,6 +7040,9 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
       unique:true,
 			trigger:{player:'phaseEnd'},
 		  forced:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan') return false;
     return true;
@@ -6312,6 +7063,9 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
 						usable:1,
 						direct:true,					
 						unique:true,
+          noremove:true,
+     noadd:true,
+     nodisable:true,
          selectTarget:[1,2],
     filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan') return false;
@@ -6370,10 +7124,13 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
 						group:['boss_meihuo2'],
 						ai:{
 							order:20,
-             threaten:8.2,
+             threaten:8,
 							result:{
-								player:function(player,target){
-									if(target.num('h')>=0) return Infinity;
+             player:function(player,target){
+							 return target.num('he')+1.5*target.get('s').length;
+								},
+								target:function(player,target){
+									if(target.num('he')>=0||target.get('s')) return -(target.num('he')+1.5*target.get('s').length);
 									return ai.get.attitude(player,target);
 								}
 							},
@@ -6385,6 +7142,9 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
 						forced:true,
 						popup:false,
            unique:true,	
+           noremove:true,
+     noadd:true,
+     nodisable:true,
 						filter:function(event,player){
 							var targets=[];
 							var players=game.players.concat(game.dead);
@@ -6438,6 +7198,9 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
 			enable:'phaseUse',	
 			discard:false,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan') return false;
 				return player.countCards('he',{color:'red'})>0;
@@ -6480,6 +7243,8 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
     locked:true,
     unique:true,
     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
     boss_immune1:{
 trigger:{global:["gameStart","gameDrawBefore"]},
@@ -6487,8 +7252,10 @@ forced:true,
 priority:Infinity,
 unique:true,
 noremove:true,
+     noadd:true,
+     nodisable:true,
 filter:function(event,player){
-return player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
+return player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_sunce'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
 },
 content:function (){
 console.log(player);
@@ -6515,9 +7282,11 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
     unique:true,
     forced:true,
     noremove:true,
+     noadd:true,
+     nodisable:true,
 		trigger:{player:'dieBefore'},
     filter:function(event,player){
-    return (player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng')&&player.hp>0;
+    return (player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&player.hp>0;
     },    
     content:function(){
     trigger.finish();
@@ -6529,6 +7298,8 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      locked:true,
      unique:true,
      noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_dcmy1:{
 trigger:{global:["gameStart","gameDrawBefore"]},
@@ -6536,6 +7307,8 @@ forced:true,
 priority:Infinity,
 unique:true,
 noremove:true,
+     noadd:true,
+     nodisable:true,
 filter:function(event,player){
 return player.name=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc';
 },
@@ -6564,6 +7337,8 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
     unique:true,
     forced:true,
     noremove:true,
+     noadd:true,
+     nodisable:true,
 		trigger:{player:'dieBefore'},
     filter:function(event,player){
     return (player.name=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc')&&player.hp>0;
@@ -6578,6 +7353,8 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      locked:true,
      unique:true,
      noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_dcmyg1:{
 trigger:{global:["gameStart","gameDrawBefore"]},
@@ -6585,6 +7362,8 @@ forced:true,
 priority:Infinity,
 unique:true,
 noremove:true,
+     noadd:true,
+     nodisable:true,
 filter:function(event,player){
 return player.name=='boss_gy'||player.name2=='boss_gy';
 },
@@ -6611,6 +7390,8 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
     forced:true,
     popup:false,
     noremove:true,
+     noadd:true,
+     nodisable:true,
 		trigger:{player:['dieBefore','loseMaxHpBefore']},
     filter:function(event,player){
     return (player.name=='boss_gy'||player.name2=='boss_gy')&&player.hp>0;
@@ -6624,6 +7405,9 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      group:'boss_immune',
      audio:1,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			trigger:{global:['recoverBefore']},		
 			filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;
@@ -6653,6 +7437,9 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
 			forced:true,
 			unique:true,   
      	priority:-100,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;
      return true;
@@ -6670,7 +7457,10 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      audio:1,
      trigger:{global:'phaseEnd'},
 						forced:true,
-						unique:true,    
+						unique:true,
+          noremove:true,
+     noadd:true,
+     nodisable:true,   
          filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;
       if(event.player==player)
@@ -6701,6 +7491,9 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      shensha:{
      audio:1,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			trigger:{global:['turnOverBegin']},		
 			filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;
@@ -6740,6 +7533,9 @@ player.gainPlayerCard(trigger.player,true,trigger.player.num('he'),'he');
 			mark:false,
      unique:true,
       usable:1,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			content:function(){     
 				"step 0"							
 				player.storage.baonu-=7;
@@ -6784,11 +7580,17 @@ player.gainPlayerCard(cur,'he',true,cur.num('he'));
       group:['boss_jieliang2','boss_immune'],
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },
       boss_jieliang2:{
 			     audio:2,
             priority:-10,
             unique:true,
+            noremove:true,
+     noadd:true,
+     nodisable:true,
             trigger:{global:'drawAfter'},
             filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_xuhuang'&&player.name2!='BOSS_xuhuang') return false;
@@ -6832,6 +7634,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
       group:['boss_yaohuo1','boss_yaohuo2','boss_immune'],
       locked:true,
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       },
       boss_yaohuo1:{
       audio:2,
@@ -6839,6 +7644,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 			forced:true,
      unique:true,
      popup:false,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_yuji'&&player.name2!='BOSS_yuji') return false;                      
      return true;
@@ -6852,6 +7660,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 			trigger:{player:'loseEnd'},
 			forced:true,
       unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_yuji'&&player.name2!='BOSS_yuji') return false;            
                 for(var i=0;i<event.cards.length;i++){
@@ -6891,6 +7702,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      group:'boss_piaomiao2',
      locked:true,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
      },
      boss_piaomiao2:{
      audio:"huanhua2",
@@ -6898,6 +7712,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 			unique:true,
       forced:true,
      priority:99999,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
     filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci') return false;
     return true;
@@ -6930,6 +7747,9 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
                 forced:true,
                 priority:-1200000,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci') return false;
                     return event.num>1;
@@ -6943,7 +7763,10 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
                     player:["damageBefore","loseHpBefore","loseMaxHpBefore"]},
                 forced:true,
                 unique:true,
-                priority:1000,             
+                priority:1000,
+                noremove:true,
+     noadd:true,
+     nodisable:true,             
                filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci') return false;
                 if(event.name=='damage'){
@@ -6980,6 +7803,9 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
                 forced:true,
                 priority:250,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function (event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci') return false;
                 for(var i=0;i<event.cards.length;i++){
@@ -6996,12 +7822,18 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
           group:'boss_qimen2',
           locked:true,
           unique:true,
+          noremove:true,
+     noadd:true,
+     nodisable:true,
           },
           boss_qimen2:{
                 audio:2,
                 trigger:{player:["changeHp","phaseBegin"]},
                 forced:true, 
                 unique:true,
+               noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function (event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci') return false;                
                     return true;
@@ -7042,6 +7874,9 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
             },
      	boss_shemao:{
       unique:true,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
 			enable:['chooseToUse','chooseToRespond'],
 			filterCard:true,
 			selectCard:2,
@@ -7072,6 +7907,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
           locked:true,
           unique:true,
           noremove:true,
+     noadd:true,
+     nodisable:true,
          },
         boss_nuxiao1:{
                 audio:4,                
@@ -7082,6 +7919,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
                 priority:100,
                 unique:true,
                 noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei') return false;
      return player.countCards('h')<player.maxHp&&event.target!=player&&event.card&&event.card.name=='sha';
@@ -7130,6 +7969,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
         boss_nuxiao2:{
         unique:true,
         noremove:true,
+     noadd:true,
+     nodisable:true,
 			   mod:{			  
 				globalFrom:function(from,to,num){
    if(lib.config.mode=='boss'&&from.identity!='zhu'||from.name!='BOSS_zhangfei'&&from.name2!='BOSS_zhangfei') return false;
@@ -7144,6 +7985,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
       priority:250,
       popup:false,
       noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei') return false;
      if(event.player==player)
@@ -7160,11 +8003,21 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      trigger.num+=Math.floor(0.33*(trigger.player.maxHp-trigger.player.hp));
         }
       },
-      boss_yuhai:{      
+      boss_yuhai:{
+      group:'boss_yuci',
+      noremove:true,
+     noadd:true,
+     nodisable:true,
+     unique:true,
+     locked:true,
+      },
+     boss_yuci:{      
          trigger:{player:'damageAfter'},
 			unique:true,
       forced:true,
-      priority:-100,        
+      noremove:true,
+     noadd:true,
+     nodisable:true,   
      filter:function(event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei') return false;
      if(_status.currentPhase==player)
@@ -7172,10 +8025,20 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      return event.source!=player&&event.card&&event.card.name=='sha';
 			},     
 			content:function(){
-      game.delay(0.5);       
       player.die()._triggered=null;
-        }
+      game.log(trigger.source,'刺杀',player,'成功');     
+      trigger.source.recover();
+      trigger.source.draw(4);
       },
+      ai:{
+					effect:{
+						target:function(card,player,target){
+          if(get.tag(card,'damage')&&card.name=='sha')
+          return [0,-target.maxHp,1,6];
+              }
+            }
+          }
+        },
         boss_nuxiaox:{
                 audio:true,
                 trigger:{
@@ -7200,15 +8063,11 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='BO
             },   
         boss_shenwu:{
             group:['boss_immune','wushuang','boss_qiangxi','boss_xuanfeng','boss_shenji'],             
-                trigger:{
-                  source:"damageEnd",
-                },
-                forced:true,
-                unique:true,
-                priority:-20,
-                popup:false,
-                noremove:true,                
-                content:function (){},
+     noremove:true,
+     noadd:true,
+     nodisable:true,
+     unique:true,
+     locked:true, 
               ai:{
                     threaten:6,                                    
                     effect:{
@@ -7231,6 +8090,9 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='BO
 			},
 			selectCard:1,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			filterTarget:function(card,player,target){
 				if(player==target) return false;
 				return player.hp!=target.hp;
@@ -7261,6 +8123,9 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='BO
                 },
                 direct:true,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
                 filter:function (event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false; 
                 if(event.name=='phaseDiscard'){
@@ -7321,6 +8186,9 @@ player.logSkill('boss_xuanfeng',result.targets);
     },
     forced:true,
     unique:true,
+    noremove:true,
+     noadd:true,
+     nodisable:true,
     audio:2,
     filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;
@@ -7354,12 +8222,18 @@ player.logSkill('boss_xuanfeng',result.targets);
      group:['boss_zhanshen1','boss_zhanshen2','boss_zhanshen3','boss_zhanshen4','boss_zhanshen5'],
     locked:true,
     unique:true,
+    noremove:true,
+     noadd:true,
+     nodisable:true,
     },  
      boss_zhanshen1:{
 			trigger:{source:'damageEnd'},
 			forced:true,
      audio:2,
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
    filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;
       return true;
@@ -7374,28 +8248,34 @@ player.logSkill('boss_xuanfeng',result.targets);
 			trigger:{global:['phaseBegin']},
 			forced:true,     
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			filter:function(event,player){  
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;
 				return player.num('h')<=player.maxHp;
 			},
 			content:function(){
-      game.delay(0.35);
+      game.delay(0.2);
 				player.draw(3);     
     }
     },    
     boss_zhanshen3:{
                audio:1,
                 trigger:{
-                    target:"lebuBegin",
+                    target:"lebuBefore",
                 },
                 forced:true,
                 unique:true,
+                noremove:true,
+     noadd:true,
+     nodisable:true,
      filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;
            return true;
                 },
                 content:function (){
-                game.delay(0.5);
+                game.log(trigger.card,'对',player,'失效');
                 trigger.untrigger();
                 trigger.finish();           
             },
@@ -7403,7 +8283,7 @@ player.logSkill('boss_xuanfeng',result.targets);
      effect:{               
      target:function(card,player,target,current){
       if(card.name=='bingliang') return 0.1;
-      if(card.name=='lebu') return [0,0];      
+      if(card.name=='lebu') return 0;      
              }
             }
           },
@@ -7413,6 +8293,9 @@ player.logSkill('boss_xuanfeng',result.targets);
 			forced:true,
 			unique:true,
      priority:200,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;
 			return player.isTurnedOver();
@@ -7427,6 +8310,9 @@ player.logSkill('boss_xuanfeng',result.targets);
 						forced:true,
 						unique:true,
 						priority:120,
+          noremove:true,
+     noadd:true,
+     nodisable:true,
            filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen') return false;      
     			 if(player.hp>3)
@@ -7472,6 +8358,9 @@ player.logSkill('boss_xuanfeng',result.targets);
 					},     
      boss_chitu:{
      unique:true,
+     noremove:true,
+     noadd:true,
+     nodisable:true,
 			mod:{		
 				globalFrom:function(from,to,num){
 					if(lib.config.mode=='boss'&&from.identity!='zhu'||from.name!='BOSS_zhanshen'&&from.name!='BOSS_shenhua'&&from.name!='boss_gy'&&from.name!='boss_gyc'&&from.name2!='BOSS_zhanshen'&&from.name2!='BOSS_shenhua'&&from.name2!='boss_gy'&&from.name2!='boss_gyc')
@@ -7485,9 +8374,12 @@ return;
      trigger:{global:'gameStart'},
 			unique:true,      
       priority:790000,
+      noremove:true,
+     noadd:true,
+     nodisable:true,
       filter:function (event,player){
    if(player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen'&&player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua'&&player.name!='boss_zuhe'&&player.name2!='boss_zuhe'&&player.name!='boss_jianwu'&&player.name2!='boss_jianwu'&&player.name!='boss_machao'&&player.name2!='boss_machao'&&player.name!='boss_gyc'&&player.name2!='boss_gyc'&&player.name!='boss_sunce'&&player.name2!='boss_sunce'&&player.name!='BOSS_yuji'&&player.name2!='BOSS_yuji'&&player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci'&&player.name!='boss_daqiao'&&player.name2!='boss_daqiao'&&player.name!='boss_cwj'&&player.name2!='boss_cwj'&&player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei'&&player.name!='boss_panfeng'&&player.name2!='boss_panfeng'&&player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong'&&player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue'&&player.name!='boss_simayi'&&player.name2!='boss_simayi'&&player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan'&&player.name!='BOSS_xuhuang'&&player.name2!='BOSS_xuhuang'&&player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai'&&player.name!='boss_simayan'&&player.name2!='boss_simayan') return false;
-      return player.identity=='zhu';
+      return player.identity=='zhu'&&game.players.length>2;
       },
      check:function (event,player){
       return Math.random()<=0.8;
@@ -7573,6 +8465,7 @@ return;
        boss_xuanfeng:"旋风",
        boss_shemao:"蛇矛",
        boss_nuxiao:"怒哮",
+       boss_yuci:'遇刺',
        boss_nuxiaox:"颤抖",
        boss_dunjia:"遁甲",
        boss_dunjia1:"遁甲",
@@ -7681,8 +8574,9 @@ return;
        boss_yuanlv2:'远虑',
        boss_yuanlv3:'远虑',
        boss_lizhi:'丽质',
-       boss_angyang:'昂扬',
-       boss_angyang1:'<span class="bluetext" style="color:	#ff0000">昂扬'+'</span>',
+       boss_angyang:'冠世',
+       boss_angyang1:'<span class="bluetext" style="color:	#ff0000">冠世'+'</span>',
+       boss_dianji3:'冠世',
        boss_fengzi:'风姿',       
        boss_dianji:'奠基',
        boss_dianji2:'<span class="bluetext" style="color:	#8c8c00">奠基'+'</span>',
@@ -7789,7 +8683,7 @@ return;
        boss_taofa2:'讨伐',
        boss_zhaoxian:'招贤',
        boss_dilu:'的卢',
-       boss_challenge:'横扫千军',
+       boss_challenge:'浑身是胆',
        challenge_shanggushengwu:'<span style="color: peachpuff">上古生物</span>',
        challenge_shanggushengwu1:'上古生物',
        challenge_shanggushengwu2:'上古生物',
@@ -7893,11 +8787,11 @@ return;
        boss_huitianm_info:'<span class="bluetext"style="color:	#FF8C00">锁定技，回合开始阶段，回复1点体力'+'</span>',
        boss_huitianl_info:'<span class="bluetext"style="color:	#FF8C00">锁定技，回合开始阶段，回复1点体力'+'</span>',
        boss_huitiand_info:'<span class="bluetext"style="color:	#FF8C00">锁定技，回合开始阶段，回复1点体力'+'</span>',      
-       boss_angyang_info:'<span class="greentext">锁定技'+'</span>，1、你使用【杀】或【决斗】指定其他角色为目标时，若其装备区牌数不大于你，则其不可使用【闪】或【杀】响应此【杀】或【决斗】；2、当你使用【杀】或【决斗】对其他角色造成伤害时，伤害+X(X为其已损失的体力值)，然后你获得其装备区里所有的牌，若其装备区里没有牌，你令其进入混乱状态，直到其下一回合结束；3、出牌阶段，你使用【杀】的次数上限+X(X改为你装备区里牌数与你已损失的体力值之和)；你的进攻距离无限', 
-       boss_dianji_info:'<span class="greentext">锁定技'+'</span>，1、游戏开始时，你将手牌设为7张；2、摸牌阶段开始时，你不摸牌；若你的手牌数小于7，你将手牌补至7张；3、当你成为【乐不思蜀】或被翻面的目标时，你取消之',
+       boss_angyang_info:'<span class="greentext">锁定技'+'</span>，1、你使用【杀】或【决斗】指定其他角色为目标时，若其装备区牌数不大于你，则其不可使用【闪】或【杀】响应此【杀】或【决斗】；2、当你使用【杀】或【决斗】对其他角色造成伤害时，伤害+X(X为其已损失的体力值)，然后你获得其装备区里所有的牌，若其装备区里没有牌，你令其进入混乱状态，直到其下一回合结束；3、出牌阶段，你使用【杀】的次数上限+X(X改为你装备区里牌数与你已损失的体力值之和)；你的进攻距离无限；4、当你回复体力时，若你的体力值低于0，你回复体力至1点', 
+       boss_dianji_info:'<span class="greentext">锁定技'+'</span>，1、游戏开始时，你将手牌设为7张；2、摸牌阶段开始时，你不摸牌；若你的手牌数小于7时，你将手牌补至7张；3、当你成为【乐不思蜀】或被翻面的目标时，你取消之',
        boss_fengzi_info:'每当你失去装备区里的牌或使用、打出一张红色牌时，你可以获得一名其他角色的两张牌，然后对其造成X点伤害（X为其最大体力值的30%四舍五入取整，且至少为1）',
        boss_lizhi_info:'<span class="greentext">锁定技'+'</span>，1、你摸牌的数量和回复的体力值为基础的三倍；2、你的手牌上限不会因体力值的减少而减少；3、当你成为【杀】、【决斗】、【顺手牵羊】、【过河拆桥】、【乐不思蜀】、【兵粮寸断】、【铁索连环】或翻面的目标时，55%几率取消之；4、你使用的非延时类锦囊牌不能被【无懈可击】响应',
-       boss_yuanlv_info:'<span class="greentext">锁定技'+'</span>，回合开始和结束时，你随机获得一名其他角色的所有手牌和装备区，若该角色牌数小于2，你摸4张牌，并令其进入混乱状态，直到其下一回合结束，然后对其造成X点伤害，X为其最大体力值的一半四舍五入取整；2、你防止体力流失、失去体力上限、翻面或非锦囊牌的伤害',
+       boss_yuanlv_info:'<span class="greentext">锁定技'+'</span>，回合开始和结束时，你随机获得一名其他角色的所有手牌和装备区，若该角色牌数小于2，你摸4张牌，并令其进入混乱状态，直到其下一回合结束，然后对其造成X点伤害，X为其最大体力值的一半四舍五入取整；2、你防止体力流失、失去体力上限、翻面或伤害来源不为锦囊牌的伤害',
        boss_shenmou_info:'<span class="greentext">锁定技'+'</span>，1、回合开始时，你随机获得以下其中两项技能:【<span class="bluetext" style="color:	#5F9EA0">断粮'+'</span>、<span class="bluetext" style="color:	#5F9EA0">集智'+'</span>】、【<span class="bluetext" style="color:	#5F9EA0">制衡'+'</span>、<span class="bluetext" style="color:	#5F9EA0">连环'+'</span>】或【<span class="bluetext" style="color:	#5F9EA0">乱击'+'</span>、<span class="bluetext" style="color:	#5F9EA0">完杀'+'</span>】直到回合结束；2、摸牌阶段，你进行一次判定，你的摸牌数改为判定牌的点数',      
        boss_xuezhan_info:'<span class="greentext">锁定技'+'</span>，游戏开始时，你获得血战标记，称为“血”，血战标记数量等同于你已损失的体力值，标记数量随着你已损失体力值变化而变化；你的手牌上限等同于浴血标记的数量；你使用【杀】的次数上限+X；回合结束时，你令所有敌方角色进入“混乱状态”直到其回合开始，并令这些角色弃置1~X张牌（随机值），然后受到你对其造成的X点伤害（X为你的血战标记数）；每当你处于濒死状态时，你亮出牌堆的一张牌，若此牌的点数不等于你的手牌数，则你不会死亡，并获得此牌，然后摸四张牌，最后你依次获得每名敌方角色的一张牌并视为你对其使用一张【杀】（此【杀】无视目标防具）；你武将牌始终正面朝上', 
        tiaozhan_bianshen_info:'你死亡后，召唤“小怜”并立即进入其回合阶段',
@@ -7943,7 +8837,7 @@ return;
             boss_dunjia_info:'<span class="greentext">锁定技'+'</span>，1、你每次受到伤害时，最多承受1点伤害（防止多余的伤害)；2、流失体力或体力上限时，你取消之，改为增加1点体力上限并回复1点体力；3、每当你于回合外失去一张牌，若你的手牌数小于20，则你摸两张牌',
         boss_shemao_info:'你可以将两张手牌当【杀】使用或打出',
         boss_nuxiao_info:'<span class="greentext">锁定技'+'</span>，1、当你使用【杀】指定一名其他角色为目标时，若你的当前手牌数小于你的体力值，则你令该角色的技能失效直到回合结束，然后你展示牌堆顶的四张牌，获得其中的基本牌和装备牌；2、你为伤害来源的【杀】对其他角色造成的伤害+X(X为该角色已损失的体力值的33%且向下取整)；3、出牌阶段，你使用【杀】无数量限制；4、你计算与其他角色的距离始终为1',
-       boss_yuhai_info:'<span class="greentext">锁定技'+'</span>，在你的回合外，当其他角色使用【杀】对你造成伤害后，你立即死亡',
+       boss_yuhai_info:'<span class="greentext">锁定技'+'</span>，在你的回合外，当其他角色使用【杀】对你造成伤害后，你立即死亡，然后伤害来源回复1点体力并摸四张牌',
        boss_shenwu_info:'<span class="greentext">锁定技'+'</span>，你视为拥有技能<span class="bluetext" style="color:	#5F9EA0">【无双】'+'</span>、<span class="bluetext" style="color:	#5F9EA0">【强袭】'+'</span>、<span class="bluetext" style="color:	#5F9EA0">【旋风】'+'</span>和<span class="bluetext" style="color:	#5F9EA0">【神戟】'+'</span>（<span class="bluetext" style="color:	#5F9EA0">【无双】'+'</span>：锁定技，当你使用【杀】指定一个目标后，该角色需依次使用两张【闪】才能抵消此【杀】；当你使用【决斗】指定一个目标后，或成为一名角色使用【决斗】的目标后，该角色每次响应此【决斗】需依次打出两张【杀】；<span class="bluetext" style="color:	#5F9EA0">【强袭】'+'</span>：出牌阶段，你可以弃一张装备区内的武器牌，然后你对你攻击范围内的一名角色造成1点伤害；<span class="bluetext" style="color:	#5F9EA0">【旋风】'+'</span>：当你失去装备区里的牌时，或于弃牌阶段弃置了一张或更多的手牌后，你可以依次弃置1至X名其他角色的共计X张牌（失去装备区的牌时：X为2；弃牌阶段弃置手牌时：X为你弃置牌数）；<span class="bluetext" style="color:	#5F9EA0">【神戟】'+'</span>：若你未装备武器，你使用【杀】或【决斗】指定的目标数上限+2，【杀】的次数上限+1）',
        boss_chitu_info:'<span class="greentext">锁定技'+'</span>，你计算与其他角色的距离始终为1',       
        boss_zhanshen_info:'<span class="greentext">锁定技'+'</span>，1、当你对一名角色造成1点伤害后，若你已受伤，则你回复1点体力，否则你摸一张牌；2、一名角色回合开始时，若你的手牌数不大于体力上限，你摸三张牌；3、当你成为【乐不思蜀】的目标时，取消之；4、当你的武将牌背面朝上时，你可在体力值发生变化后将之翻回正面；5、每当你于回合外受到伤害或流失体力时，若你的体力值等于3或更低时，当前回合结束，你执行1个额外回合',
@@ -9526,7 +10420,7 @@ lib.skill.feilongduofeng2.animationColor='metal'
             new_zuoci:["male","qun",3,["new_liujia","new_xiuxing"],[]],            
             new_sunxiu:["male","wu",3,["xinyanzhu","xinxingxue","xinzhaofu"],["zhu"]],
             new_zhangxingcai:["female","shu",3,["xinshenxian","qiangwu"],[]],
-            new_dongzhuo:['male','qun',12,['new_jiuchi','roulin','new_benghuai','new_baonue'],['zhu']],
+            new_dongzhuo:['male','qun',8,['new_nishi','new_jiuchi','roulin','new_benghuai','new_baonue'],['zhu']],
             new_jiangwei:["male","shu",4,["xintiaoxin","kanpo"],[]],
             new_liushan:["male","shu",3,["new_xiangle","fangquan","new_ruoyu"],["zhu"]],
             new_dengai:["male","wei",4,["xintuntian","xinzaoxian"],[]],
@@ -11603,7 +12497,43 @@ player:['damageEnd','loseHpEnd']
                 },
             },
             "xinshenxian2":{
-            },            
+            },
+            new_nishi:{
+            group:['new_nishi1','new_nishi2'],
+            locked:true,
+            unique:true,
+            },
+            new_nishi1:{
+             trigger:{
+                    global:"gameDrawAfter",
+                },
+                forced:true,
+                content:function (){
+                player.draw(Math.min(12,player.maxHp),false)._triggered=null;
+                },
+            mod:{
+            maxHandcard:function (player){            
+       return player.maxHp-player.hp;
+            }       
+          },
+           ai:{				    
+    				effect:{
+    					target:function(card,player,target){    						if(get.tag(card,'recover')&&player.hp>=1&&player==target) return [0,0];
+    					}
+    				}
+    			}
+    		},
+           new_nishi2:{
+             audio:'boss_baolin',
+             trigger:{
+                    player:"phaseDrawBegin",
+                },
+                forced:true,
+                priority:-1,
+                content:function (){
+             trigger.num=1+Math.floor((player.maxHp-player.hp)/2);
+               }
+             },        
             new_jiuchi:{
                 audio:'ext:风华绝代:2',
                 enable:"chooseToUse",
@@ -15237,6 +16167,10 @@ trigger.source.chooseToDiscard(true,'he');
            new_qingge:'轻歌',
            new_wushuang:'无双',
            new_wushuang3:'无双',
+           new_nishi:'逆施',
+           new_nishi1:'逆施',
+           new_nishi2:'逆施',
+        new_nishi_info:'锁定技，你初始的手牌数+X（X为你的体力上限，且至多为12）；摸牌阶段摸牌时，你摸X+1张牌（X改为你已损失的体力值的一半且向下取整）；你的手牌上限为你已损失的体力值。',
         new_wushuang_info:'当你使用【杀】或【决斗】指定一名其他角色为目标后，你可以展示该角色的一张手牌，若此牌为基本牌，你获得之；锁定技，当你使用【杀】指定一个目标后，该角色需依次使用两张【闪】才能抵消此【杀】；当你使用【决斗】指定一个目标后，或成为一名角色使用【决斗】的目标后，该角色每次响应此【决斗】需依次打出两张【杀】。',          
         new_tianzuo_info:'锁定技，回合开始阶段，若你的体力值小于手牌数，你获得技能“无双”直到回合结束，否则你获得技能“离间”直到回合结束。',
         new_qingge_info:'出牌阶段结束时，若你的体力值小于手牌数且你已受伤，你可以回复1点体力，否则你可以摸两张牌。',
@@ -17012,11 +17946,11 @@ trigger.nature=['fire','thunder'].randomGet();
        threaten:1.5,
 				result:{
 					player:function(player,target){						
-					return 1;
+					return 1.5;
         },
         target:function(player,target){
-        return -1;
-           return ai.get.damageEffect(target,player);						
+        return -1.5;
+           return ai.get.damageEffect(target,player)-1.5;						
           }
 					}				
 				}      
@@ -18020,10 +18954,15 @@ player.chooseToDiscard(true,Math.max(1,Math.round(player.num('he')/3)),'he');
                 content:function (){
         trigger.num=trigger.num*(1+Math.floor(Math.random()*4));
              },
-                ai:{
-                    threaten:1.6,
-                },
-            },
+         ai:{
+          threaten:1.6,             
+				unequip:true,        
+				skillTagFilter:function(player,tag,arg){    
+					if(arg&&arg.name=='sha') return true;
+					return false;
+			    	}
+		       	}
+	        	},
             shanbi:{
                 audio:'ext:风华绝代:1',
                 trigger:{
@@ -18477,7 +19416,7 @@ player.draw(player.storage.lol_baonu);
             "bingjianx_info":"当你使用【杀】指定一名角色为目标后，若该角色装备区有牌，你可以弃置其装备区里的一张牌，该角色获得“寒冰”标记（寒冰：你计算与其他角色的距离+2，其他角色计算与你的距离-2，直到造成伤害），若其已有“寒冰”标记，你不能发动此技能。",
        new_jisu_info:'锁定技，回合开始阶段，若你已受伤，你进行一次判定，若结果为♥或♦，则你回复一点体力，否则你摸一张牌。',
             zhiming:"致命",
-            "zhiming_info":"锁定技，你为伤害来源的【杀】造成1~4倍的伤害。",
+            "zhiming_info":"锁定技，你为伤害来源的【杀】造成1~4倍的伤害；你使用的【杀】无视目标防具。",
             shanbi:"闪避",
             "shanbi_info":"每当你成为【杀】的目标时，60%几率取消之，然后弃置对方一张牌。",
             lol_lianpo:'连破',
@@ -18524,7 +19463,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             }
             lib.translate['yxlm_character_config'] = '英雄联盟';};  
-},help:{"风华绝代":"<li>调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化、修复已知BUG，增加按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
+},help:{"风华绝代":"<li>调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化、修复已知BUG，增加开关按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
     config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
                   enhancement:{
                   name:'属性强化',

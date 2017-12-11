@@ -1,4 +1,4 @@
-﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){      
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){      
       if(config.Nie_name=='hide'){
 			get.slimName=function(str){
 				var str2=lib.translate[str];
@@ -708,7 +708,7 @@ target:function(card,player,target,current){
 if(player.hp<target.hp&&target.hp>1&&!player.countCards('h','tao')){
 if(player.hp>1||player.hasSkill('buqu')||player.hasSkill('xinbuqu')||player.hasSkill('gzbuqu'))
 return [1,-1.5*get.tag(card,'damage'),0,-1.5];
-return [1,-2];
+return -1.5;
                }			 
              }                   							
     					}
@@ -950,9 +950,8 @@ return [1,-2];
      ['club',13,'tiesuo'],
      ['spade',11,'tiesuo']],  
      },'极端锦囊')
-    }
-     if(config.boss_){
-     if(config.zbms){
+    }     
+     if(config.Background_Music){
      lib.config.background_music='music_off'
      if(lib.config.mode!='boss'){
      lib.skill.START_GAME={
@@ -968,16 +967,15 @@ return [1,-2];
       for(var i=0;i<game.players.length;i++){    
 if(game.players[i].hasSkill('victory')) return false;
       }
-      return !game.me.hasSkill('victory')&&Math.random()<=0.02;
+      return !game.me.hasSkill('victory')&&Math.random()<=0.03;
      },     	
 			content:function(){
      player.logSkill('START_GAME');        
        }
      }
      };
-			game.addCharacterPack({ 
-    skill:{
-     boss_winsong:{
+			lib.arenaReady.push(function(){
+     lib.skill.boss_winsong={
     mode:['boss'],
     group:['The_Dawn','the_mass2','battle_name'],
         audio:false,
@@ -996,8 +994,8 @@ game.addVideo('storage',player,['boss_winsong',player.storage.boss_winsong]);
          player.update();       
          }        
        },
-   The_Dawn:{
-    audio:12,
+   lib.skill.The_Dawn={
+    audio:'ext:风华绝代:12',
     mode:['boss'],
     trigger:{player:'phaseBegin'},
 			forced:true,	     
@@ -1013,8 +1011,8 @@ game.addVideo('storage',player,['boss_winsong',player.storage.boss_winsong]);
          }
        }
      },
-    The_Dawnlose:{},    
-   battle_song:{
+    lib.skill.The_Dawnlose={},    
+   lib.skill.battle_song={
     group:['battle_sing','the_mass2','battle_name'],
      locked:true,     
      mode:['boss'],
@@ -1033,8 +1031,8 @@ game.addVideo('storage',player,['battle_song',player.storage.battle_song]);
          player.update();       
          }
      },
-   battle_sing:{
-    audio:6,
+   lib.skill.battle_sing={
+    audio:'ext:风华绝代:6',
     mode:['boss'],
     trigger:{player:'phaseBegin'},
 			forced:true,	     
@@ -1052,8 +1050,8 @@ if(player.storage.battle_song>=25&&player.name!='boss_gyc'&&player.name!='boss_g
          }
        }
      },
-    battle_singlose:{},
-    battle_name:{
+    lib.skill.battle_singlose={},
+    lib.skill.battle_name={
                 trigger:{global:['loseEnd','gainEnd','phaseJudgeBegin','changeHp','phaseEnd','phaseBegin']},
 			unique:true,
       forced:true,     
@@ -1064,10 +1062,10 @@ if(player.storage.battle_song>=25&&player.name!='boss_gyc'&&player.name!='boss_g
 ,"#0080ff","#009393","#ff7575","#ffd2d2","#949449","#b15bff","#02c874","#8cea00","#b766ad",":#c0c0c0","#9999cc","#ff9797","#01814a","#F5FFFA","#E9967A","#EEDC82","#BFEFFF","#98F5FF","#8B8B00","#FF83FA","#C6E2FF","#C0FF3E","#7EC0EE","#79CDCD","#00FF00","#00E5EE","#CDCD00","#DDA0DD","#EEEE00","#F08080","#D1EEEE"].randomGet();                  
          player.update();        
      }
-		},
-         },
-        },'挑战BOSS')
-      }        
+		    }
+        })
+       }
+       if(config.boss){
        game.addCharacterPack({
        skill:{
       boss_qibing:{
@@ -1440,7 +1438,7 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
 			  }
      },  
       boss_shangjiang:{      
-      group:['boss_shangjiang1','boss_shangjiang2','boss_shangjiang3','boss_shangjiang4','boss_shangjiang5','boss_shangjiang6'],
+      group:['boss_shangjiang1','boss_shangjiang2','boss_shangjiang3','boss_shangjiang4','boss_shangjiang5','boss_shangjiang6','boss_immune'],
       locked:true,
       unique:true,
       noremove:true,
@@ -1535,7 +1533,7 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       trigger.player.$give(trigger.player.countCards('e'),player);
        }
         'step 1'      
-     if(player.hp<player.maxHp&&Math.random()<=0.15){			  player.recover(Math.max(1,Math.round((player.maxHp-player.hp)*0.3)))._triggered=null;
+     if(player.hp<player.maxHp&&Math.random()<=0.12){			  player.recover(Math.max(1,Math.round((player.maxHp-player.hp)*0.2)))._triggered=null;
           }      
         }
       },
@@ -2053,7 +2051,7 @@ if(card.name=='du') return [1,Infinity];
      noremove:true,
       noadd:true,
       nodisable:true,
-			group:'boss_baonug2',
+			group:['boss_baonug2'],
 			trigger:{player:'changeHp'},
 			forced:true,
 			priority:2017,
@@ -2163,7 +2161,7 @@ if(card.name=='du') return [1,Infinity];
 						}
 					},
       boss_zhuihun:{
-      group:'boss_zhuihun2',
+      group:['boss_zhuihun2','boss_immune'],
       locked:true,
       noremove:true,
       noadd:true,
@@ -2414,7 +2412,7 @@ return [1,3];
         }
 			 },
       challenge_shanggushengwu:{
-      group:['challenge_shanggushengwu1','challenge_shanggushengwu2','challenge_shanggushengwu3','challenge_shanggushengwu4','challenge_shanggushengwu6','challenge_shanggushengwu7','challenge_shanggushengwu8','boss_immune','boss_winsong'],
+      group:['challenge_shanggushengwu1','challenge_shanggushengwu2','challenge_shanggushengwu3','challenge_shanggushengwu4','challenge_shanggushengwu6','challenge_shanggushengwu7','challenge_shanggushengwu8','boss_immune'],
       locked:true,
       unique:true,
       nobracket:true,
@@ -2695,7 +2693,7 @@ player.addSkill('challenge_shanggushengwu5');
         }      
        },
       boss_penshe:{
-       group:['boss_penshe1','boss_dcmy','boss_winsong'],
+       group:['boss_penshe1','boss_dcmy'],
        locked:true,
        unique:true,
        nobracket:true,
@@ -2897,7 +2895,7 @@ player.addSkill('challenge_shanggushengwu5');
         },
          effect:{
     player:function (card,player,target){
-    if(card.name=='tiesuo') return [0,-3];           
+    if(card.name=='tiesuo') return [1,-10];           
      if(card.name!='tao'&&card.name!='huogong'&&card.name!='tiesuo') return [1,3];          
             },
           },  
@@ -3102,7 +3100,7 @@ player.node.name.dataset.nature='wang';          player.node.name.style.color="#
           }
        },      
       boss_shenyou:{
-                group:['boss_shenyou1','boss_shenyou2','boss_shenyou3','boss_shenyou4'],
+                group:['boss_shenyou1','boss_shenyou2','boss_shenyou3','boss_shenyou4','boss_immune'],
        locked:true,
        unique:true,
        noremove:true,
@@ -3277,7 +3275,7 @@ return [1,4];
          if(player.hasSkill('xinluoyi2')) ap++;
          if(player.hasSkill('qibaodao')) ap++;
          if(player.hasSkill('boss_pimi')) ap+=Math.floor(Math.random()*999);  
-if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
+if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.15) ap+=2;
        }
       var ad=0;
 				if(trigger.card&&trigger.card.name=='juedou'){
@@ -3287,7 +3285,10 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
       if(trigger.player.maxHp>=8){
       sh+=Math.round(trigger.player.maxHp*0.15);
       }
-      trigger.player.damage(trigger.num+ap+ad+sh,'poison');
+      else{
+      sh+=1;
+      }
+      trigger.player.damage((trigger.num+ap+ad)*sh,'poison');
        }
       },
      boss_duce3:{
@@ -3309,12 +3310,12 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.35) ap+=2;
      game.delay(2);
     player.line(trigger.player,'white');
      trigger.player.judge(function(card){
-     if(get.suit(card)=='heart') return -trigger.player.maxHp*0.5;
+     if(get.suit(card)=='heart') return -(2+trigger.player.maxHp-trigger.player.hp);
 					return 0;
 				});
 				'step 1'
 					if(result.bool==false){        
-        trigger.player.damage(Math.max(1,Math.ceil(trigger.player.maxHp*0.5)));
+        trigger.player.damage(2+trigger.player.maxHp-trigger.player.hp);
 					}                
         }
        },
@@ -4755,7 +4756,7 @@ player.addSkill([['duanliang','jizhi'],['zhiheng','lianhuan'],['luanji','wansha'
 player.removeSkill(['duanliang','lianhuan','zhiheng','jizhi','luanji','wansha']);
     }},              
     boss_xuezhan:{
-     group:['boss_xuezhan1','boss_xuezhan2','boss_xuezhan3','battle_song','boss_immune'],
+     group:['boss_xuezhan1','boss_xuezhan2','boss_xuezhan3','boss_immune'],
      trigger:{player:['changeHp']},
 			forced:true,
 			mark:true,
@@ -5298,7 +5299,7 @@ if(player.hp<player.maxHp&&Math.random()<=0.33){
       }
      },
     boss_yiwang:{  
-   group:['boss_yiwang0','boss_yiwang1','boss_yiwang2','boss_yiwang3','boss_yiwang4'],
+   group:['boss_yiwang0','boss_yiwang1','boss_yiwang2','boss_yiwang3','boss_yiwang4','the_mass'],
    locked:true,
    unique:true,
    noremove:true,
@@ -5735,7 +5736,7 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
        }
 		},
      boss_qingxu:{
-    group:['boss_qingxu0','boss_qingxu1','boss_qingxu2','boss_qingxu3'],
+    group:['boss_qingxu0','boss_qingxu1','boss_qingxu2','boss_qingxu3','boss_qingxu4'],
      locked:true,
      unique:true,
      noremove:true,
@@ -5772,22 +5773,21 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
      },
     boss_qingxu1:{    
 			audio:2,
-		trigger:{player:'loseBefore'},
+		trigger:{player:'loseEnd'},
 			forced:true,	
      unique:true,
      noremove:true,
      noadd:true,
      nodisable:true,
      filter:function(event,player){                 
-      return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&_status.currentPhase!=player&&Math.random()<=0.5;
+      return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&_status.currentPhase!=player&&Math.random()<=0.55;
     for(var i=0;i<event.cards.length;i++){
     if(event.cards[i].original=='h') return true;
      }     
       return false;
       },  
 			content:function(){
-      trigger.finish();
-      trigger.untrigger();
+      player.draw(trigger.num);
       player.sex=['male','female'].randomGet();
       player.update();
        }
@@ -5834,6 +5834,32 @@ player.goMad = function (all) {
 player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
 };
 }},
+   boss_qingxu4:{
+
+   trigger:{global:['gainEnd']},			
+
+      forced:true,      
+
+      unique:true,
+
+     filter:function (event,player){
+
+      if(lib.config.mode=='boss'&&player.identity!='zhu') return false;
+
+      return event.player!=player&&(player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&event.player.countCards('he')>8;
+
+     },
+
+     logTarget:"player",
+     usable:1,    
+
+			content:function(){      trigger.player.chooseToDiscard(true,'he',Math.ceil(trigger.player.countCards('he')/2));
+
+     trigger.player.damage();
+
+     }
+
+   },
    boss_hudui:{ 
    group:['boss_hudui1','boss_hudui2','boss_hudui3','boss_qingxu3'], 
      locked:true,
@@ -7007,14 +7033,15 @@ return [1,3];
      return player.hp<5;
      },   
 			content:function(){
-        'step 0'
-      if(lib.config.mode=='boss'&&player.identity=='zhu'){
+       'step 0'
+      if(lib.config.mode=='boss'&&player.identity=='zhu'||game.roundNumber>=15){
       player.logSkill('victory');
-      }        
-player.hp=(player.maxHp*0.25+Math.floor(Math.random()*player.maxHp*0.26));
+      }
+       'step 1'      
+player.hp=Math.round(player.maxHp*0.25+Math.floor(Math.random()*player.maxHp*0.26));
       player.addSkill('boss_liaoshang');  
 		 	player.draw(Math.ceil(player.hp)-player.num('h'));
-        'step 1'     
+       'step 2'     
       player.removeSkill('victory'); 
       player.removeSkill('victory2');
 			},
@@ -7077,19 +7104,25 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
     },
 			content:function(){
       "step 0"
-      player.gainMaxHp(Math.max(1,player.countCards('e')*2))._triggered=null;
+      player.gainMaxHp(game.roundNumber+player.countCards('e'))._triggered=null;
       "step 1"
-      player.draw(Math.min(12,2+player.maxHp-player.hp))._triggered=null;     
+      player.draw(player.countCards('e')+2)._triggered=null;     
       "step 2"
       game.delay(0.5);    
 				player.recover(Math.ceil((player.maxHp-player.hp)/2))._triggered=null;  
 			},
 		},
+          challenge_meihuo:{
+          group:['boss_meihuo','boss_meihuo2'],
+          locked:true,
+          noremove:true,
+     noadd:true,
+     nodisable:true,
+          },
           boss_meihuo:{
 						audio:2,
 						enable:'phaseUse',
 						usable:1,
-						direct:true,					
 						unique:true,
           noremove:true,
      noadd:true,
@@ -7100,15 +7133,16 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
     return true;
     },
          filterTarget:function(card,player,target){
-							return player!=target&&target.num('h')>=0;
+							return player!=target;
 						},
 						content:function(){
 													'step 0'     
-							player.logSkill('boss_meihuo',target);    
-            						
+							if(target.countCards('he')&&target.maxHp>=target.countCards('he')){
+            target.maxHp=target.countCards('he');
+            target.update();
+            }
 								player.gain(target.get('he'),target);
 								target.$give(target.get('he'),player);							
-							player.line(target,'thunder');			
                        'step 1'			
 								if(target.name&&!target.classList.contains('unseen')){
 									var skills=lib.character[target.name][3];
@@ -7148,17 +7182,17 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
 								}														
 								target.storage.boss_meihuo=true;
 							}
-						},
-						group:['boss_meihuo2'],
+						},						
 						ai:{
 							order:20,
-             threaten:8,
+             threaten:20,
 							result:{
              player:function(player,target){
-							 return target.num('he')+1.5*target.get('s').length;
+							 return target.num('he')+target.get('s').length;
 								},
 								target:function(player,target){
-									if(target.num('he')>=0||target.get('s')) return -(target.num('he')+1.5*target.get('s').length);
+									if(target.num('he')>=0||target.get('s')) return -(target.num('he')+target.get('s').length);
+               if(target.num('he')<target.maxHp) return (target.num('he')-target.maxHp)*2;
 									return ai.get.attitude(player,target);
 								}
 							},
@@ -7338,7 +7372,7 @@ noremove:true,
      noadd:true,
      nodisable:true,
 filter:function(event,player){
-return player.name=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc';
+return player.name=='BOSS_diaochan'||player.name=='boss_gyc'||player.name=='boss_nashinanjue'||player.name2=='boss_nashinanjue'||player.name2=='BOSS_diaochan'||player.name2=='boss_gyc';
 },
 content:function (){
 console.log(player);
@@ -7369,7 +7403,7 @@ player.popup('<span class="bluetext" style="color:	#B3EE3A">免疫'+'</span>');
      nodisable:true,
 		trigger:{player:'dieBefore'},
     filter:function(event,player){
-    return (player.name=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc')&&player.hp>0;
+    return (player.name=='BOSS_diaochan'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc')&&player.hp>0;
     },    
     content:function(){
     trigger.finish();
@@ -7720,7 +7754,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
                         player:function (card,player,target){
                 if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(card)=='equip1'&&card.name!='zhuge')
              return [1,-3];
-         if(card.name=='tiesuo') return [1,-3];
+         if(card.name=='tiesuo') return [1,-10];
          if(card.name!='tiesuo'&&get.type(card)!='basic') return [1,3];
             },
       },
@@ -7854,7 +7888,16 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
                 player.turnOver(false);
                 player.discard(player.get('j'),true);                      
          },
-            },
+           ai:{
+					effect:{
+						target:function(card){
+							if(get.tag(card,'loseCard')){
+								return [0,2];
+							}
+						}
+					}
+				}
+     },
           boss_dunjia4:{
                 audio:'huanhua1',
                 unique:true,
@@ -8088,7 +8131,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
       ai:{
 					effect:{
 						target:function(card,player,target){
-          if(get.tag(card,'damage')&&card.name=='sha')
+          if(get.tag(card,'damage')&&_status.currentPhase!=target&&card.name=='sha')
           return [0,-target.maxHp,1,6];
               }
             }
@@ -8478,7 +8521,7 @@ return;
             boss_sunce:'猛锐冠世',
             boss_simayi:'狼顾之鬼',           
             boss_daqiao:"风姿绰约",
-            boss_zhoutai:'奋威将军',
+            boss_zhoutai:'战如熊虎',
             boss_yishunjianyiwang:"一瞬间丶遗忘",
             boss_tiaozhan:"来互相伤害呀",
             boss_huaji:"小稽",
@@ -8536,6 +8579,7 @@ return;
        boss_jieliang:"劫粮",
        boss_jieliang2:"劫粮",
        boss_meihuo:"魅惑",
+       challenge_meihuo:"魅惑",
        boss_guose:"国色",
        boss_biyue:"闭月",
        boss_biyue1:"闭月",
@@ -8792,13 +8836,13 @@ return;
       boss_shangjiang4:'上将',
       boss_shangjiang5:'上将',
       boss_shangjiang6:'上将',
-      boss_shangjiang_info:'<span class="greentext">锁定技'+'</span>，1、回合开始阶段和结束阶段，你摸3+X张牌（X为你装备区里牌数的一半且向上取整）；你的手牌上限始终为5+X（X改为你装备区里牌数的六倍）；2、当你使用【杀】或【决斗】对一名其他角色造成伤害后，你获得该角色所有装备区里的牌，若你已受伤，则15%几率回复X点体力（X改为你已损失的体力值的30%四舍五入取整，且至少为1）；3、每当你受到一次伤害后，你摸两张牌，然后你视为对伤害来源使用一张【决斗】。(此【决斗】不能被【无懈可击】响应)；4、你每次最多受到4点伤害，任何外界伤害、翻面、体力流失、失去体力上限均对你无效；5、当你成为【乐不思蜀】的目标时，55%几率取消之；6、当你计算与其他角色的距离时，始终-1',
+      boss_shangjiang_info:'<span class="greentext">锁定技'+'</span>，1、回合开始阶段和结束阶段，你摸3+X张牌（X为你装备区里牌数的一半且向上取整）；你的手牌上限始终为5+X（X改为你装备区里牌数的六倍）；2、当你使用【杀】或【决斗】对一名其他角色造成伤害后，你获得该角色所有装备区里的牌，若你已受伤，则12%几率回复X点体力（X改为你已损失的体力值的20%四舍五入取整，且至少为1）；3、每当你受到一次伤害后，你摸两张牌，然后你视为对伤害来源使用一张【决斗】。(此【决斗】不能被【无懈可击】响应)；4、你每次最多受到4点伤害，任何外界伤害、翻面、体力流失、失去体力上限均对你无效；5、当你成为【乐不思蜀】的目标时，55%几率取消之；6、当你计算与其他角色的距离-1',
       boss_zhanfu:'神斧',     
       boss_zhanfu_info:'你视为拥有【贯石斧】的技能效果，出牌阶段，你可以额外使用三张【杀】',
        boss_zhuihun_info:'<span class="greentext">锁定技'+'</span>，当你即将死亡时，若你体力上限不小于1，你须减1点体力上限并回复体力至体力上限，然后依次获得每名敌方角色一半的牌且向上取整，并对其造成X点伤害（X为其最大体力值）且不触发任何技能',
        boss_yingyi_info:'<span class="greentext">锁定技'+'</span>，1、回合开始阶段，你令所有敌方角色的非锁定技失效，直到其回合阶段开始；2、当你使用【杀】指定一名角色为目标后，若该角色当前体力值小于此【杀】的点数，则此【杀】不可被闪避，否则该角色的体力上限扣减至此【杀】的点数，且至少扣减一点体力上限；3、你使用【杀】时可以额外指定一个目标；4、当你使用【杀】对其他角色造成伤害时，此【杀】伤害+X；出牌阶段，你使用【杀】的次数上限+X；当你计算与其他角色的距离时，始终-X；你的手牌上限+2X，X为场上其他存活角色个数；5、当你受到附带属性、非来源于卡牌的伤害或体力流失时，防止之；6、你的回合外，任何锦囊均对你无效；7、当你进入濒死状态时，你进行判定，除非判定结果为【桃园结义】或【决斗】，否则你回复体力至2点',
        boss_shenyou_info:'<span class="greentext">锁定技'+'</span>，1、你的初始手牌数+6；2、回合开始阶段，你摸X+4张牌（X为你已损失的体力值，且至多为20）；3、你的手牌上限不会因体力值的减少而减少；4、你防止武将牌被翻面和失去体力上限；5、在身份模式游戏开始阶段，若你的身份牌为“主公”，则所有其他角色的身份牌均视为“反贼”',
-       boss_duce_info:'<span class="greentext">锁定技'+'</span>，1、其他角色的准备阶段，须先进行一次判定，若结果为♥，该角色受到你造成的X点伤害（X为其最大体力值的一半向上取整，且至少为1）；2、你即将造成的伤害均视为毒属性伤害，你对体力上限不小于8的其他角色造成的伤害+X（X为该角色最大体力值的15%且四舍五入取整）；3、当你使用一张锦囊牌指定其他角色为目标时，该角色受到你造成的1点伤害；4、每当你受到伤害、流失体力或回合结束阶段，你对所有牌里有♠、♣或♦牌的敌方角色造成X点伤害（X为该角色牌里♠、♣和♦牌的数量），然后其须弃置所有的♠、♣和♦牌；5、你使用的非延时类锦囊不能被【无懈可击】响应',
+       boss_duce_info:'<span class="greentext">锁定技'+'</span>，1、其他角色的准备阶段，须先进行一次判定，若结果为♥，该角色受到你造成的X+2点伤害（X为其已损失的体力值）；2、你即将造成的伤害均视为毒属性伤害，你对体力上限不小于8的其他角色造成的每点伤害+X（X为该角色最大体力值的15%且四舍五入取整）；3、当你使用一张锦囊牌指定其他角色为目标时，该角色受到你造成的1点伤害；4、每当你受到伤害、流失体力或回合结束阶段，你对所有牌里有♠、♣或♦牌的敌方角色造成X点伤害（X为该角色牌里♠、♣和♦牌的数量），然后其须弃置所有的♠、♣和♦牌；5、你使用的非延时类锦囊不能被【无懈可击】响应',
        boss_weimu_info:'<span class="greentext">锁定技'+'</span>，你不能成为黑色【杀】和锦囊的目标；你不会受到【毒】的影响',     
        boss_wansha_info:'<span class="greentext">锁定技'+'</span>，在你的回合，其他角色不能使用【桃】或【酒】',
        boss_dengchang_info:'<span class="greentext">锁定技'+'</span>，摸牌阶段，你额外摸X+3张牌（X为你装备区里牌数的一半且向上取整）',
@@ -8866,8 +8910,10 @@ return;
        boss_wanzun_info:'<span class="greentext">锁定技'+'</span>，1、一名其他角色的出牌阶段开始时，35%几率令其流失X点体力，X为你最大体力值+其最大体力值的35%四舍五入取整；否则你对其造成X点属性伤害，X改为你已损失的体力值的一半四舍五入取整与其最大体力值的35%四舍五入取整之和，且至少为1；2、你使用牌对其他角色造成伤害时，此牌伤害+X，X为你与该角色的体力值间的差值，若你与其体力值相等，则X改为其最大体力值的30%且向下取整；你使用【酒】和【杀】的次数上限+X（X为你已损失的体力值）',
        tiaopi_info:'1、你对其他角色造成非属性伤害时，伤害+X，X为该角色最大体力值的一半(四舍五入取整)；2、出牌阶段，你属性【杀】的使用次数无限制，且不能被闪避；3、回合结束时，你将一枚调皮标记置于场上所有敌方角色的武将牌上，称为“调”，令其进攻距离和防御距离-3，手牌上限为1，直到其造成伤害；并有38%的几率将其武将牌翻面(不会响应背面朝上的角色)；若其武将牌上已有调皮标记，则令其失去一点体力',
        kelian_info:'<span class="greentext">锁定技'+'</span>，1、你受到不小于1点伤害时，均视为流失1点体力；2、你对目标造成不小于1点伤害时，均视为其失去X点体力，X为此伤害值+其最大体力值的一半(向下取整)；3、回合结束时，你令所有敌方角色弃置两张牌并失去X点体力，X为其已损失的体力值，且至少为1',
-       boss_qingxu_info:'<span class="greentext">锁定技'+'</span>，1、当你成为【杀】、【决斗】、【火攻】、【兵粮寸断】、【乐不思蜀】、【过河拆桥】、【草木皆兵】、【声东击西】、【弃甲曳兵】的目标或(武将牌正面朝上)被翻面、即将受到伤害、流失体力时，你有45%几率防止之，然后你摸三张牌；2、当你回合外失去手牌时，50%几率取消之',
-       boss_hudui_info:'<span class="greentext">锁定技'+'</span>，1、当你受到伤害时，可对造成伤害的来源连续使用X张无消耗的【杀】（X为你已损失的体力值）此【杀】无视目标防具；2、每当你即将流失体力、受到没有伤害来源或自己的伤害时，防止之，然后你摸一张牌；3、当你在回合外造成伤害时，你摸X张牌，X为你已损失的体力值；若你已受伤，你有35%的几率回复两点体力；4、你防止受到来源为你和没有伤害来源的伤害',
+       boss_qingxu_info:'<span class="greentext">锁定技'+'</span>，1、当你成为【杀】、【决斗】、【火攻】、【兵粮寸断】、【乐不思蜀】、【过河拆桥】、【草木皆兵】、【声东击西】、【弃甲曳兵】的目标或武将牌正面朝上被翻面、即将受到伤害、流失体力时，45%几率防止之，然后你摸三张牌；2、每当你于回合外失去手牌时，55%几率摸等量的牌；3、每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
+       boss_qingxu4:'表情',
+       boss_qingxu4_info:'<span class="greentext">锁定技'+'</span>，每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
+       boss_hudui_info:'<span class="greentext">锁定技'+'</span>，1、当你受到伤害时，可对造成伤害的来源连续使用X张无消耗的【杀】（X为你已损失的体力值）此【杀】无视目标防具；2、每当你即将流失体力、受到没有伤害来源或自己的伤害时，防止之，然后你摸一张牌；3、当你在回合外造成伤害时，你摸X张牌，X为你已损失的体力值；若你已受伤，35%几率回复2点体力；4、你防止受到来源为你和没有伤害来源的伤害',
        boss_xionglie_info:'<span class="greentext">锁定技'+'</span>，1、每当你成为【乐不思蜀】、【兵粮寸断】、【顺手牵羊】、【过河拆桥】、【火攻】、【草木皆兵】、【声东击西】、【弃甲曳兵】武将牌被翻面、流失体力、失去体力上限的目标或在回合内受到伤害时，取消之，然后你增加1点体力上限；2、摸牌阶段，你改为摸X张牌，X为你最大体力值-当前手牌数；3、你回复体力时，回复额外+X，X为你已损失体力值的一半且向下取整；4、你的回合外，其他角色回复体力时，若你已受伤，你回复一点体力(回复效果受到条件3的影响)；5、当你使用【杀】指定一名角色为目标后，无视其防具',
        boss_pimi_info:'<span class="greentext">锁定技'+'</span>，1、你为伤害来源的【杀】或【决斗】对装备区里牌数不大于你的其他角色造成的伤害+X（若该角色体力上限不大于999，X为0~999间的随机值，否则X为0~999×其体力上限的1%且四舍五入取整间的随机值）；2、当你使用【杀】或【决斗】指定一名角色为目标后，该角色的所有技能失效直到此【杀】或【决斗】结算后，且20X%几率令该角色不能使用【闪】或【杀】响应之（X为你装备区里牌数）；3、你计算与体力值、手牌数或装备区里牌数小于你的其他角色的距离始终为1',
        boss_bieli_info:'<span class="greentext">锁定技'+'</span>，1、当你即将死亡时，你亮出牌堆中的一张牌，若你的体力值不等于0或此牌不为♣4，则你不会死亡，然后你获得之且回复体力至1点，否则你死亡；2、你防止受到外界的伤害或失去体力上限',
@@ -8879,10 +8925,10 @@ return;
        boss_jianyu_info:'<span class="greentext">锁定技'+'</span>，你的攻击范围无限，你使用【杀】可以指定任意名角色为目标',
        boss_xiushen_info:'<span class="greentext">锁定技'+'</span>，1、摸牌阶段你不摸牌；2、回合开始阶段，若你的体力值大于最大体力值的50%，则你摸三至八张牌，否则你摸四至十张牌；3、当你武将牌正面朝上被翻面或成为【乐不思蜀】的目标时，75%几率取消之，然后摸三张牌；4、你每次受到的伤害或流失的体力数值不会超过你最大体力值的3%四舍五入取整且不小于1；5、你防止失去体力上限；6、你的手牌上限始终为15',
        boss_jianqi_info:'<span class="greentext">锁定技'+'</span>，当你使用【杀】指定一名角色为目标后，25%几率获得该角色随机一张装备区里的牌；当你使用【杀】对目标角色造成伤害时，30%几率对目标角色额外造成1~2点属性伤害',
-       victory_info:'<span class="bluetext" style="color:	#cd7f32">限定技'+'</span>，1、游戏开始时，你摸三至五张牌，然后随机播放一首战歌(无声版)；2、当体力值低于5时，你将体力回复至最大体力值的25%~50%，然后获得技能<span class="bluetext" style="color:	#5F9EA0">【疗伤】'+'</span>并将手牌数补至你当前体力值，再随机播放一首战歌（非挑战模式失效），最后你失去技能<span class="bluetext" style="color:	#5F9EA0">【战歌】'+'</span>',
-       boss_biyue_info:'<span class="greentext">锁定技'+'</span>，每当你受到其他男性角色造成的伤害时，伤害来源须弃置与你受到伤害等量的牌，否则将其武将牌翻面，若此时其武将牌背面朝上，则其流失等量的体力；回合结束阶段，你增加X点体力上限（X为你装备区里牌数的两倍，且至少为1）并摸X张牌（X改为你已损失的体力值+2，且不超过12），然后你回复一半已损失的体力值且向上取整',
+       victory_info:'<span class="bluetext" style="color:	#cd7f32">限定技'+'</span>，1、游戏开始时，你摸三至五张牌，然后随机播放一首战歌；2、当体力值低于5时，你回复体力至最大体力值的25%~50%，然后获得技能<span class="bluetext" style="color:	#5F9EA0">【疗伤】'+'</span>并将手牌数补至你当前体力值，再随机播放一首战歌（非挑战模式游戏轮数≮15），最后你失去技能<span class="bluetext" style="color:	#5F9EA0">【战歌】'+'</span>',
+       boss_biyue_info:'<span class="greentext">锁定技'+'</span>，每当你受到其他男性角色造成的伤害时，伤害来源须弃置与你受到伤害等量的牌，否则将其武将牌翻面，若此时其武将牌背面朝上，则其流失等量的体力；回合结束阶段，你增加X点体力上限（X为你装备区里牌数加上游戏轮数）并摸X+2张牌（X改为你装备区里牌数），然后你回复一半已损失的体力值且向上取整',
        boss_guose_info:'出牌阶段限3次，你可以将一张♥或♦花色牌当做【乐不思蜀】使用；选择完成后，你摸两张牌',
-       boss_meihuo_info:'出牌阶段限一次，你可以指定一至两名其他角色获得其所有牌，并令其失去所有技能直到你回合结束，然后你获得之(你不能获得主公技，限定技，觉醒技)直到你下一回合开始',
+       challenge_meihuo_info:'出牌阶段限一次，你可以指定一至两名其他角色，若其有牌且体力上限大于其牌数，将其体力上限设为其牌数，获得其所有的牌；令其失去所有技能直到你回合结束，然后你获得之(你不能获得主公技，限定技，觉醒技)直到你下一回合开始',
        feijiangx_info:'1、游戏开始时，你的体力上限变为其他角色体力上限之和；2、其他角色回合阶段结束时，你额外执行一个回合；3、你的进攻距离和手牌上限为无限',
        shenshi_info:'你的回合外，其他角色回复体力时，若该角色体力值不低于1，你可以弃1个暴怒标记取消之，然后你摸三张牌',
        shensha_info:'其他角色在其回合内武将牌被翻面，你可以获得其所有手牌和装备区，然后令其立即死亡',
@@ -8910,40 +8956,40 @@ return;
        wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet()]],
        wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],[['qun','shu','wei','wu'].randomGet()]],
        wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],[['qun','shu','wei','wu'].randomGet()]],
-       boss_panfeng:['male','mo',120,['battle_song','boss_immune','boss_shangjiang','boss_zhanfu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        boss_gy:['male','mo',20,['battle_song','boss_dcmyg','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),"des:关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"]],
-        boss_zuhe:['male','mo',20,['battle_song','boss_zh'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:拥有各种常规武将的技能"]],
-         boss_tiaozhan:["male",'mo',7,["boss_hudui","tiaozhan_bianshen"],[['qun','shu','wei','wu'].randomGet()]],
-        boss_gyc:['male','mo',10,['battle_song','boss_immune','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"]],
+       boss_panfeng:['male','mo',120,['boss_shangjiang','boss_zhanfu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        boss_gy:['male','mo',20,['boss_chitu','boss_dcmyg','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),"des:关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"]],
+        boss_zuhe:['male','mo',20,['boss_zh'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:拥有各种常规武将的技能"]],
+         boss_tiaozhan:["male",'mo',7,['boss_qingxu4',"boss_hudui","tiaozhan_bianshen"],[['qun','shu','wei','wu'].randomGet()]],
+        boss_gyc:['male','mo',10,['boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"]],
         boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"]],
-        boss_taishici:['male','mo',6,['battle_song','boss_immune','boss_shenyou','boss_yingyi'],['zhu',['qun','shu','wei','wu'].randomGet()]],
-         boss_jiaxu:['male','mo',7,['battle_song','boss_immune','boss_shenyou','boss_weimu','boss_wansha','boss_duce'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        boss_taishici:['male','mo',6,['boss_shenyou','boss_yingyi'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+         boss_jiaxu:['male','mo',7,['boss_shenyou','boss_weimu','boss_wansha','boss_duce'],['zhu',['qun','shu','wei','wu'].randomGet()]],
          boss_liru:['male','wang',6,['boss_yuanjunl','boss_qidun','boss_shipo','boss_tianwei','boss_zhengjiao','boss_suoshi','boss_yudan'],[['qun','shu','wei','wu'].randomGet()]],         
          bossx_diaochan:['female','wang',7,['boss_yuanjund','boss_qidun','boss_lipan','boss_tianwei','boss_lianxiang','boss_xiyu','boss_xiuhua','boss_huitiand'],[['qun','shu','wei','wu'].randomGet()]],
          bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet()]],
          boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),"des:武藝天下第一。"]],
          boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet()]],         
-         boss_sunce:['male','mo',7,['battle_song','boss_dianji','boss_angyang'],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        boss_simayi:['male','mo',9,['battle_song','boss_shenmou','boss_yuanlv','guicai'],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        boss_daqiao:['female','mo',15,['battle_song','boss_lizhi','boss_fengzi'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+         boss_sunce:['male','mo',7,['boss_dianji','boss_angyang'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        boss_simayi:['male','mo',9,['boss_shenmou','boss_yuanlv','guicai'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        boss_daqiao:['female','mo',15,['boss_lizhi','boss_fengzi'],['zhu',['qun','shu','wei','wu'].randomGet()]],
         boss_zhoutai:['male','mo',5,['boss_xuezhan'],['zhu',['qun','shu','wei','wu'].randomGet()]],
-         boss_machao:["male","mo",12,['battle_song',"boss_pimi","boss_xionglie"],['zhu',['qun','shu','wei','wu'].randomGet()]],        
+         boss_machao:["male","mo",12,["boss_pimi","boss_xionglie"],['zhu',['qun','shu','wei','wu'].randomGet()]],        
          boss_kelian:["female","mo",8,["boss_qingxu","kelian","tiaozhan_bianshen2"],[['qun','shu','wei','wu'].randomGet()]],
          boss_tiaopi:["male","mo",9,["boss_qingxu","tiaopi","tiaozhan_bianshen3"],[['qun','shu','wei','wu'].randomGet()]],
          boss_yinxian:["male","mo",10,["boss_qingxu","yinxian","tiaozhan_bianshen4"],[['qun','shu','wei','wu'].randomGet()]],
          boss_huaji:["male","mo",11,["boss_qingxu","huaji","tiaozhan_bianshen5"],[['qun','shu','wei','wu'].randomGet()]],        
         boss_fennu:["female","mo",12,["boss_qingxu","fennu","fennu1","tiaozhan_bianshen6"],[['qun','shu','wei','wu'].randomGet()]],
-        boss_yishunjianyiwang:["female","mo",3,["the_mass","boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['qun','shu','wei','wu'].randomGet(),"des:水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
-         boss_cwj:["female","mo",1,['battle_song',"boss_beifen","boss_bieli"],['zhu',['qun','shu','wei','wu'].randomGet(),"des:蔡琰，字文姬，又字昭姬[1]。生卒年不详。东汉陈留郡圉县（今河南开封杞县）人，东汉大文学家蔡邕的女儿。初嫁于卫仲道，丈夫死去而回到自己家里，后值因匈奴入侵，蔡琰被匈奴左贤王掳走，嫁给匈奴人，并生育了两个儿子。十二年后，曹操统一北方，用重金将蔡琰赎回，并将其嫁给董祀。[2]蔡琰同时擅长文学、音乐、书法。《隋书·经籍志》著录有《蔡文姬集》一卷，但已经失传。现在能看到的蔡文姬作品只有《悲愤诗》二首和《胡笳十八拍》。"]],
-         boss_simayan:["male","mo",3,['battle_song',"boss_tongyi","boss_shemian"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        boss_yishunjianyiwang:["female","mo",3,["boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['qun','shu','wei','wu'].randomGet(),"des:水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
+         boss_cwj:["female","mo",1,["boss_beifen","boss_bieli"],['zhu',['qun','shu','wei','wu'].randomGet(),"des:蔡琰，字文姬，又字昭姬[1]。生卒年不详。东汉陈留郡圉县（今河南开封杞县）人，东汉大文学家蔡邕的女儿。初嫁于卫仲道，丈夫死去而回到自己家里，后值因匈奴入侵，蔡琰被匈奴左贤王掳走，嫁给匈奴人，并生育了两个儿子。十二年后，曹操统一北方，用重金将蔡琰赎回，并将其嫁给董祀。[2]蔡琰同时擅长文学、音乐、书法。《隋书·经籍志》著录有《蔡文姬集》一卷，但已经失传。现在能看到的蔡文姬作品只有《悲愤诗》二首和《胡笳十八拍》。"]],
+         boss_simayan:["male","mo",3,["boss_tongyi","boss_shemian"],['zhu',['qun','shu','wei','wu'].randomGet()]],
          boss_jianwu:["male","mo",100,["victory","boss_xiushen","boss_pojia","boss_jianqi","boss_jianyu"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        BOSS_diaochan:["female","mo",7,['battle_song',"boss_biyue","boss_guose","boss_meihuo"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        BOSS_xuhuang:["male","mo",12,['battle_song',"boss_jieliang"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        BOSS_yuji:["male","mo",4,['battle_song',"boss_yaohuo"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-        BOSS_zhangfei:["male","mo",7,['battle_song',"boss_shemao","boss_nuxiao","boss_yuhai"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-         BOSS_zhanshen:["male","mo",6,['battle_song',"boss_chitu","boss_shenwu","boss_zhanshen"],['zhu',['qun','shu','wei','wu'].randomGet()]],
-            BOSS_shenhua:["male","mo",0,['battle_song',"baonu","wushuang","feijiangx","shenshi","shensha","shenmie"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        BOSS_diaochan:["female","mo",7,["boss_biyue","boss_guose","challenge_meihuo"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        BOSS_xuhuang:["male","mo",12,["boss_jieliang"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        BOSS_yuji:["male","mo",4,["boss_yaohuo"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        BOSS_zuoci:["male","mo",20,["boss_piaomiao","boss_qimen","boss_dunjia"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+        BOSS_zhangfei:["male","mo",7,["boss_shemao","boss_nuxiao","boss_yuhai"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+         BOSS_zhanshen:["male","mo",6,["boss_chitu","boss_shenwu","boss_zhanshen"],['zhu',['qun','shu','wei','wu'].randomGet()]],
+            BOSS_shenhua:["male","mo",0,["baonu","wushuang","feijiangx","shenshi","shensha","shenmie"],['zhu',['qun','shu','wei','wu'].randomGet()]],
        },
        },'挑战BOSS')
       }}
@@ -8955,7 +9001,6 @@ return;
     }
      // ---------------------------------------挑战BOSS------------------------------------------//		
      if(lib.config.mode=='boss'){
-     lib.config.background_music='music_off'
 			game.addCharacterPack({
 				character:{       
        wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。乱世枭雄。"],['qun','shu','wei','wu'].randomGet()],
@@ -8966,30 +9011,30 @@ return;
          bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。西凉锦马超。"],['qun','shu','wei','wu'].randomGet()],
          boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆。武藝天下第一。"],['qun','shu','wei','wu'].randomGet()],
          boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。关西魔将。"],['qun','shu','wei','wu'].randomGet()],
-       boss_panfeng:['male','mo',120,['battle_song','boss_immune','boss_shangjiang','boss_zhanfu'],[['qun','shu','wei','wu'].randomGet(),'boss','des:强度：★★★☆☆☆。潘凤，小说《三国演义》中的人物。擅使大斧。登场于小说第五回。冀州牧韩馥部下的上将。当十八路诸侯讨伐董卓之时，他奉韩馥之命前往汜水关前挑战董卓部下大将华雄，不敌被斩。'],['qun','shu','wei','wu'].randomGet()],
-        boss_gy:['male','mo',20,['battle_song','boss_dcmyg','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss',"des:强度：★★★☆。关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"],['qun','shu','wei','wu'].randomGet()],
+       boss_panfeng:['male','mo',120,['battle_song','boss_shangjiang','boss_zhanfu'],[['qun','shu','wei','wu'].randomGet(),'boss','des:强度：★★★☆☆☆。潘凤，小说《三国演义》中的人物。擅使大斧。登场于小说第五回。冀州牧韩馥部下的上将。当十八路诸侯讨伐董卓之时，他奉韩馥之命前往汜水关前挑战董卓部下大将华雄，不敌被斩。'],['qun','shu','wei','wu'].randomGet()],
+        boss_gy:['male','mo',20,['boss_dcmyg','battle_song','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss',"des:强度：★★★☆。关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"],['qun','shu','wei','wu'].randomGet()],
         boss_zuhe:['male','mo',20,['battle_song','boss_zh'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆☆。拥有各种常规武将的技能"],['qun','shu','wei','wu'].randomGet()],
-         boss_tiaozhan:["male",'mo',7,["boss_hudui","tiaozhan_bianshen"],['boss',"des:强度：★★★"],['qun','shu','wei','wu'].randomGet()],
-        boss_gyc:['male','mo',10,['battle_song','boss_immune','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],[['qun','shu','wei','wu'].randomGet(),'zhu','hiddenboss',"des:强度：★★★★。赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"],['qun','shu','wei','wu'].randomGet()],
-        challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆☆☆。"],['qun','shu','wei','wu'].randomGet()],
-        boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★。它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"],['qun','shu','wei','wu'].randomGet()],
-        boss_taishici:['male','mo',6,['battle_song','boss_immune','boss_shenyou','boss_yingyi'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★。北海侠士。"],['qun','shu','wei','wu'].randomGet()],         
-         boss_jiaxu:['male','mo',7,['battle_song','boss_immune','boss_shenyou','boss_weimu','boss_wansha','boss_duce'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss',"des:强度：★★★★。乱世之毒士。"],['qun','shu','wei','wu'].randomGet()],                  
+         boss_tiaozhan:["male",'mo',7,['battle_song','boss_qingxu4',"boss_hudui","tiaozhan_bianshen"],['boss',"des:强度：★★★"],['qun','shu','wei','wu'].randomGet()],
+        boss_gyc:['male','mo',10,['battle_song','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],[['qun','shu','wei','wu'].randomGet(),'zhu','hiddenboss',"des:强度：★★★★。赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"],['qun','shu','wei','wu'].randomGet()],
+        challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu','boss_winsong'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆☆☆。"],['qun','shu','wei','wu'].randomGet()],
+        boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci','boss_winsong'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★。它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"],['qun','shu','wei','wu'].randomGet()],
+        boss_taishici:['male','mo',6,['battle_song','boss_shenyou','boss_yingyi'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★。北海侠士。"],['qun','shu','wei','wu'].randomGet()],         
+         boss_jiaxu:['male','mo',7,['battle_song','boss_shenyou','boss_weimu','boss_wansha','boss_duce'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss',"des:强度：★★★★。乱世之毒士。"],['qun','shu','wei','wu'].randomGet()],                  
          boss_sunce:['male','mo',7,['battle_song','boss_dianji','boss_angyang'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★。孙策（175年—200年），字伯符，吴郡富春（今浙江富阳）人。孙坚长子，孙权长兄。东汉末年割据江东一带的军阀，汉末群雄之一，三国时期孙吴的奠基者之一。《三国演义》中绰号“小霸王”。为继承父亲孙坚的遗业而屈事袁术，后脱离袁术，统一江东。在一次狩猎中为刺客所伤，不久后身亡，年仅二十六岁。其弟孙权接掌孙策势力，并于称帝后，追谥孙策为长沙桓王。"],'shu'],
         boss_simayi:['male','mo',9,['battle_song','boss_shenmou','boss_yuanlv','guicai'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★☆。司马懿（179年—251年9月7日[1]），字仲达，河内郡温县孝敬里（今河南省焦作市温县）人。三国时期魏国杰出的政治家、军事家、战略家，西晋王朝的奠基人。曾任职过曹魏的大都督、大将军、太尉、太傅。是辅佐了魏国三代的托孤辅政之重臣，后期成为掌控魏国朝政的权臣。善谋奇策，多次征伐有功，其中最显著的功绩是两次率大军成功抵御诸葛亮北伐和远征平定辽东。对屯田、水利等农耕经济发展有重要贡献。73岁去世，辞郡公和殊礼，葬于首阳山。谥号宣文；次子司马昭封晋王后，追封司马懿为宣王；司马炎称帝后，追尊司马懿为宣皇帝，庙号高祖[2]。"],'wu'],
         boss_daqiao:['female','mo',15,['battle_song','boss_lizhi','boss_fengzi'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★☆。大乔（乔字古作“桥”），（180年代－？），庐江郡皖县（今安徽安庆潜山），中国汉末三国时期的女性，系乔公之女、孙策之妾、小乔之姊。"],'wei'],
-        boss_zhoutai:['male','mo',5,['boss_xuezhan'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★☆。字幼平，九江下蔡人，三国时期吴国武将。早年与蒋钦随孙策左右，立过数次战功。孙策讨伐六县山贼时，周泰胆气绝伦，保卫孙权，勇战退敌，身受十二处伤。有诗云：三番救主出重围，忠勇如公世所稀。遍体疮痍犹痛饮，血痕残酒满征衣。"],'wu'],
+        boss_zhoutai:['male','mo',5,['battle_song','boss_xuezhan'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★☆。字幼平，九江下蔡人，三国时期吴国武将。早年与蒋钦随孙策左右，立过数次战功。孙策讨伐六县山贼时，周泰胆气绝伦，保卫孙权，勇战退敌，身受十二处伤。有诗云：三番救主出重围，忠勇如公世所稀。遍体疮痍犹痛饮，血痕残酒满征衣。"],'wu'],
          boss_machao:["male","mo",12,['battle_song',"boss_pimi","boss_xionglie"],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★★。马超（176年－223年1月），字孟起，司隶部扶风郡茂陵（今陕西杨凌五泉镇）人，东汉卫尉马腾之子，汉末群雄之一，蜀汉开国名将。早年随父征战，平阳之战大破并州刺史高干和南匈奴呼厨泉的联军。后马腾入京，马超拜将封侯割据雍州，潼关之战被曹操击败，退守凉州。失败后依附张鲁，又转投刘备。带头上表刘协扶刘备称王，又辅佐刘备称帝。于章武二年十二月病逝（223年1月），终年47岁，追谥威侯。有阵中剑术“出手法”流传后世。"],'shu'],        
          boss_kelian:["female","mo",8,["boss_qingxu","kelian","tiaozhan_bianshen2"],['hiddenboss',"des:强度：★★★☆"]],
          boss_tiaopi:["male","mo",9,["boss_qingxu","tiaopi","tiaozhan_bianshen3"],['hiddenboss',"des:强度：★★★☆☆"]],
          boss_yinxian:["male","mo",10,["boss_qingxu","yinxian","tiaozhan_bianshen4"],['hiddenboss',"des:强度：★★★☆☆☆"]],
          boss_huaji:["male","mo",11,["boss_qingxu","huaji","tiaozhan_bianshen5"],['hiddenboss',"des:强度：★★★★"]],        
         boss_fennu:["female","mo",12,["boss_qingxu","fennu","fennu1","tiaozhan_bianshen6"],['hiddenboss',"des:强度：★★★★☆☆"]],
-        boss_yishunjianyiwang:["female","mo",3,["the_mass","boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['qun','shu','wei','wu'].randomGet(),'hiddenboss',"des:强度：☆☆☆☆。水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
+        boss_yishunjianyiwang:["female","mo",3,["boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['qun','shu','wei','wu'].randomGet(),'hiddenboss',"des:强度：☆☆☆☆。水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
          boss_cwj:["female","mo",1,['battle_song',"boss_beifen","boss_bieli"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★☆。蔡琰，字文姬，又字昭姬[1]。生卒年不详。东汉陈留郡圉县（今河南开封杞县）人，东汉大文学家蔡邕的女儿。初嫁于卫仲道，丈夫死去而回到自己家里，后值因匈奴入侵，蔡琰被匈奴左贤王掳走，嫁给匈奴人，并生育了两个儿子。十二年后，曹操统一北方，用重金将蔡琰赎回，并将其嫁给董祀。[2]蔡琰同时擅长文学、音乐、书法。《隋书·经籍志》著录有《蔡文姬集》一卷，但已经失传。现在能看到的蔡文姬作品只有《悲愤诗》二首和《胡笳十八拍》。"],'wei'],
          boss_simayan:["male","mo",3,['battle_song',"boss_tongyi","boss_shemian"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★☆☆。司马炎（236年－290年5月16日），字安世，河内温县（今河南省温县）人，晋朝开国皇帝（265年－290年在位）。晋宣帝司马懿之孙、晋文帝司马昭嫡长子、晋元帝司马睿从父。"],'zhu'],
          boss_jianwu:["male","mo",100,["victory","boss_xiushen","boss_pojia","boss_jianqi","boss_jianyu"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★☆☆。無敵是我，我就是無敵！劍術天下無雙！"],'wu'],
-        BOSS_diaochan:["female","mo",7,['battle_song',"boss_biyue","boss_guose","boss_meihuo"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★。中国古代四大美女之一，有闭月羞花之貌。司徒王允之义女，由王允授意施行连环计，离间董卓、吕布，借布手除卓。后貂蝉成为吕布的妾。"],'qun'],
+        BOSS_diaochan:["female","mo",7,['battle_song',"boss_biyue","boss_guose","challenge_meihuo"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★。中国古代四大美女之一，有闭月羞花之貌。司徒王允之义女，由王允授意施行连环计，离间董卓、吕布，借布手除卓。后貂蝉成为吕布的妾。"],'qun'],
         BOSS_xuhuang:["male","mo",12,['battle_song',"boss_jieliang"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★☆☆。徐晃（？－227年），字公明，河东杨（今山西洪洞东南）人。三国时期曹魏名将。本为杨奉帐下骑都尉，杨奉被曹操击败后转投曹操，在曹操手下多立功勋，参与官渡、赤壁、关中征伐、汉中征伐等几次重大战役。樊城之战中徐晃作为曹仁的援军击败关羽，因于此役中治军严整而被曹操称赞“有周亚夫之风”。曹丕称帝后，徐晃被加为右将军，于公元227年病逝，谥曰壮侯。"],'wei'],
         BOSS_yuji:["male","mo",4,['battle_song',"boss_yaohuo"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★。于吉（？-200年，一作干吉、干室）东汉末年黄老道代表人物之一，史书有两种说法：（1）认为其即《太平经》作者。《后汉书·襄楷传》：“顺帝时，琅邪宫崇诣阙，上其师干吉于曲阳泉水上所得神书百七十卷，皆缥白素朱介青首朱目，号《太平青领书》。”（2）认为其乃三国时道士，《三国志·孙策传》注引《江表传》：“时有道士琅邪于吉，先寓居东方，往来吴会，立精舍，烧香读道书，制作符水以治病，吴会人多事之。”后为孙策所杀。"],'wu'],
         BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★★☆☆。左慈（156？--289？），字元放，汉族，安徽庐江郡人，东汉末年方士。少明五经，兼通星纬，学道术，明六甲，传说能役使鬼神，坐致行厨。见汉祚将尽，天下向乱，叹曰：“值此衰运，官高者危，财多者死。当世荣华，不足贪矣。”在安徽天柱山中得石室而精思。左慈授予葛玄道家真经数部。"],'qun'],
@@ -11705,7 +11750,7 @@ lib.skill.feilongduofeng2.animationColor='metal'
 			trigger:{player:'phaseDrawBegin'},
 			forced:true,
 			content:function(){
-				var list=['wei','shu','wu','qun','shen','xian','wang','dan'];
+				var list=['wei','shu','wu','qun','mo','shen','xian','wang','dan'];
 				var num=game.countPlayer(function(current){
 					if(list.contains(current.group)){
 						list.remove(current.group);
@@ -11720,7 +11765,7 @@ lib.skill.feilongduofeng2.animationColor='metal'
 			trigger:{player:'phaseDiscardBegin'},
 			forced:true,
 			content:function(){
-				var list=['wei','shu','wu','qun','shen','xian','wang','dan'];
+				var list=['wei','shu','wu','qun','shen','mo','xian','wang','dan'];
 				var num=game.countPlayer(function(current){
 					if(list.contains(current.group)){
 						list.remove(current.group);
@@ -12026,7 +12071,7 @@ if(_status.currentPhase==player) return false;
     			trigger:{player:'phaseDrawBegin'},
     			threaten:1.4,
     			check:function(event,player){
-           var list=['wei','shu','wu','qun','dan','shen','xian','wang'];
+           var list=['wei','shu','wu','qun','mo','dan','shen','xian','wang'];
 				var num=game.countPlayer(function(current){
 					if(list.contains(current.group)){
 						list.remove(current.group);
@@ -12053,7 +12098,7 @@ if(_status.currentPhase==player) return false;
     				return false;
     			},
     			content:function(){
-          var list=['wei','shu','wu','qun','dan','shen','xian','wang'];
+          var list=['wei','shu','wu','qun','dan','mo','shen','xian','wang'];
 				var num=game.countPlayer(function(current){
 					if(list.contains(current.group)){
 						list.remove(current.group);
@@ -12082,7 +12127,7 @@ if(_status.currentPhase==player) return false;
     			audio:false,
         unique:true,
     			content:function(){
-         var list=['wei','shu','wu','qun','dan','shen','xian','wang'];
+         var list=['wei','shu','wu','qun','mo','dan','shen','xian','wang'];
 				var num=game.countPlayer(function(current){
 					if(list.contains(current.group)){
 						list.remove(current.group);
@@ -12235,7 +12280,7 @@ mod:{
             },
             ai:{
                 expose:0.3,
-                threaten:1.6
+                threaten:1.8
             }
         },
             xinbuqu:{
@@ -13670,7 +13715,7 @@ if(card.name=='sha'&&get.color(card)=='red'&&target.hasSkill('new_hunzi2'))
                             }
                             if(cards.length){
                                 var card=cards.randomGet();
-                                player.gain(card);
+                                player.gain(card,'gain');
                                 game.log(player,'从弃牌堆获得了',card);
              }
        "step 1"
@@ -19534,7 +19579,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             }
             lib.translate['yxlm_character_config'] = '英雄联盟';};  
-},help:{"风华绝代":"<li>优化AI、修复已知BUG、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月29日19:29"},
+},help:{"风华绝代":"<li>【残缺版】存在部分文件缺失，需要完整版请到网盘/qq群下载手动导入<li>削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成其X点伤害（X为其体力上限的50%）→判定为♥对该角色造成其X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化、修复已知BUG，增加开关按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月31日19:31<li>缓更————————"},
     config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
                   enhancement:{
                   name:'属性强化',
@@ -19556,7 +19601,7 @@ player.draw(player.storage.lol_baonu);
                   name:'英雄联盟',
                   init:true
                  },                
-                 boss_:{
+                 boss:{
                  name:'挑战BOSS',
                  init:true
                  },
@@ -19589,7 +19634,7 @@ player.draw(player.storage.lol_baonu);
                  intro:'包含卡牌：【闪电】*8、【浮雷】*8、【乐不思蜀】*8、【兵粮寸断】*8、【铁索连环】*8',
                  init:true
                  },
-                 zbms:{
+                 Background_Music:{
                  name:'Background Music',
                  init:true
                  }

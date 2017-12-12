@@ -703,7 +703,7 @@ player.update();
           effect:{    					
 target:function(card,player,target,current){
         if(get.tag(card,'damage')&&!get.tag(card,'poisonDamage')&&!get.tag(card,'thunderDamage')&&!get.tag(card,'fireDamage')){      
-        if(player.hasSkill('new_jueqing')||player.hasSkillTag('jueqing'))
+        if(player.hasSkill('ltfb')||player.hasSkill('new_jueqing')||player.hasSkillTag('jueqing'))
              return [1,-2];
 if(player.hp<target.hp&&target.hp>1&&!player.countCards('h','tao')){
 if(player.hp>1||player.hasSkill('buqu')||player.hasSkill('xinbuqu')||player.hasSkill('gzbuqu'))
@@ -4466,7 +4466,7 @@ player.addSkill(['wushuang','wusheng','paoxiao','beige','qixi','shangshi','jijiu
         }},
       ai:{
       playernowuxie:true,
-                   threaten:7,
+                 threaten:7,                 
                  result:{
                  player:1,
                  },
@@ -5765,8 +5765,7 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
                     effect:{
                         player:function (card,player,target){                  
                      if(card.name=='sha'&&get.attitude(player,target)<0) return [1,Infinity];
-                       if(card.name=='guanshi'||card.name=='shandian'||card.name=='fulei') return [1,3];
-                     if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
+                       if(card.name=='shandian'||card.name=='fulei') return [1,3];
            },
          },
        },
@@ -5780,9 +5779,9 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
      noadd:true,
      nodisable:true,
      filter:function(event,player){                 
-      return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&_status.currentPhase!=player&&Math.random()<=0.55;
+      return (player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss_tiaopi'||player.name=='boss_yinxian'||player.name=='boss_fennu'||player.name=='boss_tiaozhan'||player.name2=='boss_kelian'||player.name2=='boss_huaji'||player.name2=='boss_tiaopi'||player.name2=='boss_yinxian'||player.name2=='boss_fennu'||player.name2=='boss_tiaozhan')&&_status.currentPhase!=player&&Math.random()<=0.5;
     for(var i=0;i<event.cards.length;i++){
-    if(event.cards[i].original=='h') return true;
+    if(event.cards[i].original=='h'||event.cards[i].original=='j'||event.cards[i].original=='e') return true;
      }     
       return false;
       },  
@@ -8910,7 +8909,7 @@ return;
        boss_wanzun_info:'<span class="greentext">锁定技'+'</span>，1、一名其他角色的出牌阶段开始时，35%几率令其流失X点体力，X为你最大体力值+其最大体力值的35%四舍五入取整；否则你对其造成X点属性伤害，X改为你已损失的体力值的一半四舍五入取整与其最大体力值的35%四舍五入取整之和，且至少为1；2、你使用牌对其他角色造成伤害时，此牌伤害+X，X为你与该角色的体力值间的差值，若你与其体力值相等，则X改为其最大体力值的30%且向下取整；你使用【酒】和【杀】的次数上限+X（X为你已损失的体力值）',
        tiaopi_info:'1、你对其他角色造成非属性伤害时，伤害+X，X为该角色最大体力值的一半(四舍五入取整)；2、出牌阶段，你属性【杀】的使用次数无限制，且不能被闪避；3、回合结束时，你将一枚调皮标记置于场上所有敌方角色的武将牌上，称为“调”，令其进攻距离和防御距离-3，手牌上限为1，直到其造成伤害；并有38%的几率将其武将牌翻面(不会响应背面朝上的角色)；若其武将牌上已有调皮标记，则令其失去一点体力',
        kelian_info:'<span class="greentext">锁定技'+'</span>，1、你受到不小于1点伤害时，均视为流失1点体力；2、你对目标造成不小于1点伤害时，均视为其失去X点体力，X为此伤害值+其最大体力值的一半(向下取整)；3、回合结束时，你令所有敌方角色弃置两张牌并失去X点体力，X为其已损失的体力值，且至少为1',
-       boss_qingxu_info:'<span class="greentext">锁定技'+'</span>，1、当你成为【杀】、【决斗】、【火攻】、【兵粮寸断】、【乐不思蜀】、【过河拆桥】、【草木皆兵】、【声东击西】、【弃甲曳兵】的目标或武将牌正面朝上被翻面、即将受到伤害、流失体力时，45%几率防止之，然后你摸三张牌；2、每当你于回合外失去手牌时，55%几率摸等量的牌；3、每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
+       boss_qingxu_info:'<span class="greentext">锁定技'+'</span>，1、当你成为【杀】、【决斗】、【火攻】、【兵粮寸断】、【乐不思蜀】、【过河拆桥】、【草木皆兵】、【声东击西】、【弃甲曳兵】的目标或武将牌正面朝上被翻面、即将受到伤害、流失体力时，45%几率防止之，然后你摸三张牌；2、每当你于回合外失去牌时，50%几率摸等量的牌；3、每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
        boss_qingxu4:'表情',
        boss_qingxu4_info:'<span class="greentext">锁定技'+'</span>，每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
        boss_hudui_info:'<span class="greentext">锁定技'+'</span>，1、当你受到伤害时，可对造成伤害的来源连续使用X张无消耗的【杀】（X为你已损失的体力值）此【杀】无视目标防具；2、每当你即将流失体力、受到没有伤害来源或自己的伤害时，防止之，然后你摸一张牌；3、当你在回合外造成伤害时，你摸X张牌，X为你已损失的体力值；若你已受伤，35%几率回复2点体力；4、你防止受到来源为你和没有伤害来源的伤害',
@@ -10068,10 +10067,10 @@ target.discard(target.get('he').randomGet());
 						return false;
 					}
 				}
-			},
+			}
      //——————神呂布——————//
-      lib.character.shen_lvbu=['male','shen',5,['baonu','wumou','wuqian','shenfen'],['qun']],
-			lib.translate.shenfen_info='出牌阶段，你可以弃置7枚暴怒标记，对场上所有其他角色造成1点伤害，然后你获得场上每名其他角色2张牌，最后你将你的武将牌翻面。每阶段限一次。',
+      if(lib.character['shen_lvbu']){lib.character.shen_lvbu=['male','shen',5,['baonu','wumou','wuqian','shenfen'],['qun']]}
+			lib.translate.shenfen_info='出牌阶段，你可以弃置6枚暴怒标记，对场上所有其他角色造成1点伤害，然后你获得场上每名其他角色2张牌，最后你将你的武将牌翻面。每阶段限一次。',
       lib.translate.baonu_info='锁定技，游戏开始时，你获得2枚暴怒标记，每当你造成或受到1点伤害，你获得1枚暴怒标记。',			
 			lib.translate.wuqian_info='出牌阶段，你可以弃置1枚暴怒标记，获得技能【无双】并无视所有防具，直到回合结束。',
      lib.translate.wumou_info='锁定技，每当你使用非延时类锦囊牌选择目标后，你选择一项：1.弃1枚“暴怒”标记；2.失去1点体力。',      
@@ -10112,14 +10111,14 @@ target.discard(target.get('he').randomGet());
 				audio:2,
 				enable:'phaseUse',
 				filter:function(event,player){
-					return player.storage.baonu>=7;
+					return player.storage.baonu>=6;
 				},				
 				skillAnimation:true,
 				animationColor:['fire','thunder','metal'].randomGet(),
        usable:1,
 				content:function(){
 					"step 0"				
-					player.storage.baonu-=7;
+					player.storage.baonu-=6;
 					event.targets=game.filterPlayer();
 					event.targets.remove(player);
 					event.targets.sort(lib.sort.seat);
@@ -10197,9 +10196,9 @@ return 10;
 						}
 					}
 				}
-			},
+			}
       //——————神關羽——————//
-      lib.character.shen_guanyu=['male','shen',6,['wushen','wuhun'],['shu']],
+      if(lib.character['shen_guanyu']){lib.character.shen_guanyu[2]=6;	}
       lib.skill.wushen.group='wushen2',
       lib.translate.wushen_info='锁定技，你的每一张♥手牌都视为【杀】；你使用♥的【杀】时无距离限制，且无视目标防具。',			
 			lib.translate.wuhun_info='锁定技，杀死你的角色进入“混乱状态”直到游戏结束。',
@@ -10310,64 +10309,45 @@ return 10;
 			}
      })    
     }
-    //——————武器伪特效——————//
+     //——————武器伪特效——————//
      if(config.effects){   
-   lib.arenaReady.push(function(){
-      //——————饮血剑——————//
-     lib.skill.yinxue_skill.skillAnimation=true,
-     lib.skill.yinxue_skill.animationColor='metal',
-      //——————无尽之刃——————//
-     lib.skill.wujin_skill.skillAnimation=true,
-     lib.skill.wujin_skill.animationColor='thunder',
-      //——————諸葛連弩——————//
+   lib.arenaReady.push(function(){      
+   if(lib.skill['yinxue_skill']&&lib.skill['wujin_skill']){
+     lib.skill.yinxue_skill.skillAnimation=true
+     lib.skill.yinxue_skill.animationColor='metal'    
+     lib.skill.wujin_skill.skillAnimation=true
+     lib.skill.wujin_skill.animationColor='thunder'}    
      lib.skill.zhuge_skill.skillAnimation=true
-    lib.skill.zhuge_skill.animationColor='water'  
-      //——————寒冰劍——————//
-     lib.skill.hanbing_skill.skillAnimation=true
-     lib.skill.hanbing_skill.animationColor='thunder'
-     //——————方天畫戟——————//
-     lib.skill.fangtian_skill.skillAnimation=true
-     //——————青釭劍——————//
+     lib.skill.zhuge_skill.animationColor='water'    
+     lib.skill.hanbing_skill.skillAnimation=true         
+lib.skill.hanbing_skill.animationColor='thunder'   
+     lib.skill.fangtian_skill.skillAnimation=true    
      lib.skill.qinggang_skill.skillAnimation=true
-lib.skill.qinggang_skill.animationColor='thunder'
-     //——————三尖两刃刀——————//
-     lib.skill.sanjian_skill.skillAnimation=true
-     lib.skill.sanjian_skill.animationColor='thunder'
-     //——————飞龙夺凤——————//        
+lib.skill.qinggang_skill.animationColor='thunder'  
+     lib.skill.sanjian_skill.skillAnimation=true 
+    lib.skill.sanjian_skill.animationColor='thunder'     
      lib.skill.feilongduofeng.skillAnimation=true
-lib.skill.feilongduofeng2.skillAnimation=true  
-lib.skill.feilongduofeng2.animationColor='metal'
-     //——————衠钢槊——————//
+     lib.skill.feilongduofeng2.skillAnimation=true 
+ lib.skill.feilongduofeng2.animationColor='metal'  
      lib.skill.zhungangshuo.skillAnimation=true
-     //——————银月枪——————//
-     lib.skill.yinyueqiang.skillAnimation=true    
-     //——————朱雀羽扇——————//
+     lib.skill.yinyueqiang.skillAnimation=true
      lib.skill.zhuque_skill.skillAnimation=true
      lib.skill.zhuque_skill.animationColor='fire'
-      //——————古锭刀——————//
      lib.skill.guding_skill.skillAnimation=true
-   lib.skill.guding_skill.animationColor='thunder' 
-      //——————丈八蛇矛——————//     
+   lib.skill.guding_skill.animationColor='thunder'
  lib.skill.zhangba_skill.skillAnimation=true
  lib.skill.zhangba_skill.animationColor='thunder'  
-     //——————麒麟弓——————//
      lib.skill.qilin_skill.skillAnimation=true
-     //——————雌雄双股剑——————//
      lib.skill.cixiong_skill.skillAnimation=true
      lib.skill.cixiong_skill.animationColor=['white','thunder'].randomGet()
-     //——————贯石斧——————//
      lib.skill.guanshi_skill.skillAnimation=true
- lib.skill.guanshi_skill.animationColor='thunder'
-     //——————青龙偃月刀——————//
+  lib.skill.guanshi_skill.animationColor='thunder'
      lib.skill.qinglong_skill.skillAnimation=true
      lib.skill.qinglong_skill.animationColor='metal'
-     //——————七宝刀——————//
      lib.skill.qibaodao.skillAnimation=true
      lib.skill.qibaodao.animationColor='thunder'
      })
-    }
-    lib.extensionMenu['extension_风华绝代'].enable={name:'   ',clear:true,}
-    lib.extensionMenu['extension_风华绝代'].delete={name:'   ',clear:true,}  
+    }     
     lib.boss.boss_gy={
    chongzheng:7,
    loopType:2,
@@ -10460,6 +10440,8 @@ lib.skill.feilongduofeng2.animationColor='metal'
 				"step 2"
 				lib.skill._save.filter=event.filter;
 			}
+     lib.extensionMenu['extension_风华绝代'].enable={name:'   ',clear:true,}
+    lib.extensionMenu['extension_风华绝代'].delete={name:'   ',clear:true,}
      lib.config.customforbid=[
       ['boss_yingyi3','kurou'],    
       ['boss_yingyi3','xinkurou'],
@@ -19579,7 +19561,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             }
             lib.translate['yxlm_character_config'] = '英雄联盟';};  
-},help:{"风华绝代":"<li>【残缺版】存在部分文件缺失，需要完整版请到网盘/qq群下载手动导入<li>削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成其X点伤害（X为其体力上限的50%）→判定为♥对该角色造成其X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化、修复已知BUG，增加开关按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月31日19:31<li>缓更————————"},
+},help:{"风华绝代":"<li>【残缺版】存在部分文件缺失，需要完整版请到网盘/qq群下载手动导入<li>修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成其X点伤害（X为其体力上限的50%）→判定为♥对该角色造成其X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将/民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910<li>更新时间：2017年12月31日19:31<li>缓更————————"},
     config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},
                   enhancement:{
                   name:'属性强化',

@@ -576,8 +576,8 @@ extension["新武将"]={
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1cpXSwI",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20171209",
-	size:"23MB",
+	version:"20171228",
+	size:"25.2MB",
     version:4,
     files:
 

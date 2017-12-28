@@ -572,7 +572,7 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用前请先打开兼容模式。",
+	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用前请先打开兼容模式。(此次更新日期：2017－12－28)",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1cpXSwI",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -582,7 +582,8 @@ extension["新武将"]={
     files:
 
 ["itachi.jpg","gangshou.jpg","weizhuang.jpg","feijian.jpg","xiaoying.jpg","dashewan.jpg","zhilaiye.jpg","ningchi.jpg",
- "dou.jpg","kai.jpg","liluoke.jpg","sanlei.jpg","zhishui.jpg","feiduan.jpg","ban.jpg",
+ "dou.jpg","kai.jpg","liluoke.jpg","sanlei.jpg","zhishui.jpg","feiduan.jpg","ban.jpg","zaibuzhan.jpg","dingchi.jpg",
+ "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
@@ -615,7 +616,10 @@ extension["新武将"]={
  "zhuansheng1.mp3","zhuansheng2.mp3","zongjian1.mp3","zongjian2.mp3","zongjian3.mp3","zuidun1.mp3",
  "zuidun2.mp3","zuiquan1.mp3","zuiquan2.mp3","refenxin1.mp3","refenxin2.mp3","baofu11.mp3","baofu12.mp3",
  "baofu21.mp3","baofu22.mp3","baoli1.mp3","baoli2.mp3","baoli21.mp3","baoli31.mp3","shuidun1.mp3",
- "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3","rejieyuan_more1.mp3","rejieyuan_less1.mp3"
+ "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3","rejieyuan_more1.mp3","rejieyuan_less1.mp3","ansha1.mp3","ansha2.mp3",
+ "wuyin1.mp3","wuyin2.mp3","reshuilao1.mp3","reshuilao2.mp3","zhuanxin1.mp3","zhuanxin2.mp3","reyiliao1.mp3",
+ "reyiliao2.mp3","beihua1.mp3","beihua2.mp3","huadie1.mp3","huadie2.mp3","zhongquan1.mp3","zhongquan2.mp3",
+ "renzhong1.mp3","renzhong2.mp3"
 ]
 
 };

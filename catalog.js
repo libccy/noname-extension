@@ -572,7 +572,7 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用、更新前请先删除旧版本和打开兼容模式。(此次更新：新增四代雷影、绝、辉夜，已有部分配音，完整配音后补，辉夜姬技能待完善，期待提供技能参考意见。更新日期：2018-01-13)",
+	intro:"本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音，使用、更新前请先删除旧版本和打开兼容模式。(此次更新：新增志村团藏、四代雷影、绝、辉夜姬，辉夜姬技能待完善，期待提供技能参考意见。更新日期：2018-01-13)",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -623,7 +623,8 @@ extension["新武将"]={
  "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3","xuqingshang3.mp3","xuqingshang4.mp3",
  "xuxibie1.mp3","xuxibie2.mp3","xuxibie3.mp3","xuxibie4.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
- "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","zhongbao1.mp3","yiwu1.mp3",
+ "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","zhongbao1.mp3","zhongbao2.mp3","yiwu1.mp3","yiwu2.mp3",
+ "duanbi1.mp3","duanbi2.mp3",
 ]
 
 };

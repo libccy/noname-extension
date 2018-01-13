@@ -624,7 +624,7 @@ extension["新武将"]={
  "xuxibie1.mp3","xuxibie2.mp3","xuxibie3.mp3","xuxibie4.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
  "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","zhongbao1.mp3","zhongbao2.mp3","yiwu1.mp3","yiwu2.mp3",
- "duanbi1.mp3","duanbi2.mp3",
+ "duanbi1.mp3","duanbi2.mp3","baozi1.mp3","baozi2.mp3",
 ]
 
 };

@@ -176,9 +176,7 @@
 		"zhewu3.mp3","zhimang1.mp3","zhimang2.mp3","zhimang21.mp3","zhimang22.mp3",
 		"zhimang23.mp3","zhimang3.mp3","zhimang4.mp3","zhimang5.mp3","zhiming1.ogg",
 		"zhiming2.ogg","zhuanzhu1.mp3","zhuanzhu2.mp3","zhuanzhu3.mp3","zhufeng1.mp3",
-		"zhufeng2.mp3","zhufeng3.mp3","zxzz.jpg"
-    ]
-};
+		"zhufeng2.mp3","zhufeng3.mp3","zxzz.jpg"]};
 extension["极略三国"]={
     author:"可乐加冰24",
     intro:"三国KILL武将复刻，包含SR武将、SK武将以及魂烈包，强度略微高于官方武将。所有素材均来源于网络，正逐步完善中",

@@ -1,10 +1,10 @@
  ﻿extension["风华绝代"]={
-  author:"一瞬间丶遗忘",
+  //author:"一瞬间丶遗忘",
   //intro:"（更新内容：修复完善优化、新增9~13人场身份/国战）本扩展内含古典武侠、神将/民间、英雄联盟、改版武将、挑战BOSS等武将包，部分武将支持联机（详情查看帮助）；①食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；②90%武将原创、99%武将含配音、高清图；③本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；④本扩展所有按钮默认全开，请认真查阅选择开/关；⑤欢迎加入无名杀玩家交流群，群号码：658152910；更新时间：2018年1月23日。",
   size:"99.99MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:9.85,
+  version:9.851,
 files:[
         "feijiangx1.mp3","feijiangx2.mp3","boss_zhuihun21.mp3","boss_xuezhan2.mp3","boss_xuezhan12.mp3",
         "boss_xuezhan1.mp3","new_luanji3.mp3","god_zhouyu.jpg","god_yeyan1.ogg","god_yeyan2.ogg","god_yuhuo.mp3",

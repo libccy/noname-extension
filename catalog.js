@@ -586,7 +586,7 @@ extension["新武将"]={
  "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg","xuSukincen.jpg","zhizhangfei.jpg","kanjiulang.jpg","tuanzang.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
- 
+ "didala.jpg","xinyujins.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
  "aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3",
@@ -623,8 +623,9 @@ extension["新武将"]={
  "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3","xuqingshang3.mp3","xuqingshang4.mp3",
  "xuxibie1.mp3","xuxibie2.mp3","xuxibie3.mp3","xuxibie4.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
- "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","zhongbao1.mp3","zhongbao2.mp3","yiwu1.mp3","yiwu2.mp3",
- "duanbi1.mp3","duanbi2.mp3","baozi1.mp3","baozi2.mp3",
+ "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","juneng21.mp3","juneng22.mp3","yiwu1.mp3","yiwu2.mp3",
+ "baozi1.mp3","baozi2.mp3","duanbi1.mp3","duanbi2.mp3","duanbi21.mp3","duanbi22.mp3","zhongbao1.mp3","zhongbao2.mp3",
+ "zibao1.mp3","zibao2.mp3","zibao21.mp3","tianyu1.mp3","tianyu2.mp3","huigu1.mp3","huigu2.mp3","huigu3.mp3","baodun1.mp3","baodun2.mp3",
 ]
 
 };

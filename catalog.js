@@ -586,7 +586,7 @@ extension["新武将"]={
  "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg","xuSukincen.jpg","zhizhangfei.jpg","kanjiulang.jpg","tuanzang.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
- "didala.jpg","xinyujins.jpg","weishou.jpg",
+ "didala.jpg","xinyujins.jpg","weishou.png",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
  "aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3",

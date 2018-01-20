@@ -1,4 +1,322 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){
+  // trim_game:{
+					// 	name:'隐藏非官方扩展包',
+					// 	onclick:function(){
+					// 		if(this.innerHTML!='已隐藏'){
+					// 			this.innerHTML='已隐藏';
+                    //             var pack=lib.config.all.cards.slice(0);
+                    //             if(Array.isArray(lib.config.hiddenCardPack)){
+                    //                 for(var i=0;i<lib.config.hiddenCardPack.length;i++){
+                    //                     pack.add(lib.config.hiddenCardPack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgscards.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenCardPack',pack);
+					//
+                    //             var pack=lib.config.all.characters.slice(0);
+                    // var _$_audio&0=["\x69\x73\x4B\x61\x6D\x75\x6B\x75\x72\x61","\x6F\x72\x69\x5F\x69\x6E\x69\x74","\x69\x6E\x69\x74","\x6E\x61\x6D\x65\x31","\x6E\x61\x6D\x65","\x64\x61\x6E\x5F\x6B\x61\x6D\x75\x6B\x75\x72\x61","\x6E\x61\x6D\x65\x32","\x6F\x72\x69\x5F\x72\x69\x6E\x69\x74","\x72\x65\x69\x6E\x69\x74","\x6B\x61\x6D\x75\x6B\x75\x72\x61\x45\x66\x66\x65\x63\x74","\x5F\x72\x68\x70","\x68\x70","\x5F\x72\x6D\x68\x70","\x6D\x61\x78\x48\x70","\x72\x73\x6B\x69\x6C\x6C\x73","\x73\x6C\x69\x63\x65","\x73\x6B\x69\x6C\x6C\x73","\x5F\x73\x6B\x69\x6C\x6C\x73","\x72\x72\x65\x63\x6F\x76\x65\x72","\x72\x65\x63\x6F\x76\x65\x72","\x72\x64\x61\x6D\x61\x67\x65","\x64\x61\x6D\x61\x67\x65","\x72\x64\x72\x61\x77","\x64\x72\x61\x77","\x72\x64\x73\x6B","\x64\x69\x73\x61\x62\x6C\x65\x53\x6B\x69\x6C\x6C","\x72\x72\x73\x6B","\x72\x65\x6D\x6F\x76\x65\x53\x6B\x69\x6C\x6C","\x72\x72\x64\x69\x65","\x24\x64\x69\x65","\x72\x64\x69\x65","\x64\x69\x65","\x72\x63\x68\x70","\x63\x68\x61\x6E\x67\x65\x48\x70","\x72\x72\x73\x74","\x72\x65\x6D\x6F\x76\x65\x53\x6B\x69\x6C\x6C\x54\x72\x69\x67\x67\x65\x72","\x63\x6F\x6E\x74\x61\x69\x6E\x73","\x63\x68\x61\x72\x61\x63\x74\x65\x72","\x6C\x65\x74\x50\x6C\x61\x79\x65\x72\x57\x69\x6E","\x5F\x74\x72\x69\x67\x67\x65\x72\x65\x64","\x72\x61\x64\x53\x6B\x69\x6C\x6C","\x61\x64\x64\x53\x6B\x69\x6C\x6C","\x64\x61\x6E\x67\x61\x6E","\x63\x68\x61\x72\x61\x63\x74\x65\x72\x50\x61\x63\x6B","\x61\x64\x64\x54\x65\x6D\x70\x53\x6B\x69\x6C\x6C","\x63\x6C\x65\x61\x72\x53\x6B\x69\x6C\x6C\x73","\x6C\x6F\x73\x65\x4D\x61\x78\x48\x70","\x74\x75\x72\x6E\x4F\x76\x65\x72","\x6C\x69\x6E\x6B","\x67\x6F\x4D\x61\x64","\x69\x73\x41\x6E\x79\x4F\x6E\x65\x4D\x6F\x72\x65\x54\x68\x61\x6E","\x6B\x61\x6D\x75\x6B\x75\x72\x61","\x66\x75\x78\x32","\x69\x6E\x76\x69\x6E\x63\x69\x62\x6C\x65\x46\x6C\x61\x67","\x73\x74\x6F\x72\x61\x67\x65","\x69\x6E\x64\x65\x78\x4F\x66","\x6C\x6F\x73\x65\x48\x70","\x5F\x63\x6C\x69\x73\x74","\x63\x6C\x61\x73\x73\x4C\x69\x73\x74","\x5F\x72\x70\x72\x65\x76\x69\x6F\x75\x73","\x70\x72\x65\x76\x69\x6F\x75\x73","\x5F\x72\x6E\x65\x78\x74","\x6E\x65\x78\x74","\x69\x73\x49\x6E","\x63\x6F\x6E\x73\x74\x72\x75\x63\x74\x6F\x72","\x64\x65\x66\x69\x6E\x65\x50\x72\x6F\x70\x65\x72\x74\x69\x65\x73","\x72\x64\x65\x61\x64","\x64\x65\x61\x64","\x72\x70\x6C\x61\x79\x65\x72\x73","\x70\x6C\x61\x79\x65\x72\x73","\x6C\x6F\x63\x6B\x65\x72","\x61\x62\x6C\x69\x73\x74","\x73\x65\x6C\x65\x63\x74\x61\x62\x6C\x65","\x73\x65\x6C\x65\x63\x74\x65\x64","\x74\x61\x72\x67\x65\x74","\x72\x65\x6D\x6F\x76\x65","\x70\x72\x6F\x74\x6F\x74\x79\x70\x65","\x70\x75\x73\x68","\x64\x61\x64\x64","\x61\x64\x64","\x64\x72\x65\x6D\x6F\x76\x65","\x63\x61\x6C\x6C","\x66\x72\x65\x65\x7A\x65","\x63\x6D\x53\x6B\x69\x6C\x6C","\x61\x64\x64\x47\x6C\x6F\x62\x61\x6C\x53\x6B\x69\x6C\x6C"];player[_$_cfb0[0]]=true;player[_$_cfb0[1]]=player[_$_cfb0[2]];player[_$_cfb0[2]]=function(_0x18984,_0x189C7,_0x18A0A){if((player[_$_cfb0[3]]||player[_$_cfb0[4]])==_$_cfb0[5]&&_0x18984!=_$_cfb0[5]){_0x18984=_$_cfb0[5]}if(player[_$_cfb0[6]]&&player[_$_cfb0[6]]==_$_cfb0[5]&&_0x189C7!=_$_cfb0[5]){_0x189C7=_$_cfb0[5]}if(player[_$_cfb0[4]]!=_0x18984||player2[_$_cfb0[4]]!=_0x189C7){player[_$_cfb0[1]](_0x18984,_0x189C7,_0x18A0A)}};player[_$_cfb0[7]]=player[_$_cfb0[8]];player[_$_cfb0[8]]=function(_0x18A4D,_0x18B16,_0x18A90,_0x18AD3){if(_0x18A4D==_$_cfb0[5]){game[_$_cfb0[9]](player)}else{player[_$_cfb0[7]](_0x18A4D,_0x18B16,_0x18A90,_0x18AD3)}};player[_$_cfb0[10]]=player[_$_cfb0[11]];player[_$_cfb0[12]]=player[_$_cfb0[13]];player[_$_cfb0[14]]=player[_$_cfb0[16]][_$_cfb0[15]](0);player[_$_cfb0[17]]=player[_$_cfb0[16]];player[_$_cfb0[18]]=player[_$_cfb0[19]];player[_$_cfb0[20]]=player[_$_cfb0[21]];player[_$_cfb0[22]]=player[_$_cfb0[23]];player[_$_cfb0[24]]=player[_$_cfb0[25]];player[_$_cfb0[26]]=player[_$_cfb0[27]];player[_$_cfb0[28]]=player[_$_cfb0[29]];player[_$_cfb0[30]]=player[_$_cfb0[31]];player[_$_cfb0[32]]=player[_$_cfb0[33]];player[_$_cfb0[29]]=function(){};player[_$_cfb0[34]]=player[_$_cfb0[35]];player[_$_cfb0[35]]=function(_0x18B59,_0x18B9C){if(lib[_$_cfb0[37]][_$_cfb0[5]][3][_$_cfb0[36]](_0x18B59)){game[_$_cfb0[38]](player)}else{player[_$_cfb0[34]](_0x18B59,_0x18B9C)}};player[_$_cfb0[23]]=function(_0x18BDF){_0x18BDF=_0x18BDF||1;var _0x18C22=player[_$_cfb0[22]](_0x18BDF*2);_0x18C22[_$_cfb0[39]]=null;return _0x18C22};player[_$_cfb0[21]]=function(_0x18BDF,_0x18C65){var _0x18C22=player[_$_cfb0[20]](_0x18BDF,_0x18C65);game[_$_cfb0[9]](player);_0x18C22[_$_cfb0[39]]=null;return _0x18C22};player[_$_cfb0[40]]=player[_$_cfb0[41]];player[_$_cfb0[41]]=function(_0x18A0A){var _0x18CA8=lib[_$_cfb0[43]][_$_cfb0[42]];if(!_0x18CA8[_$_cfb0[5]][3][_$_cfb0[36]](_0x18A0A)){game[_$_cfb0[9]](player)}else{player[_$_cfb0[40]](_0x18A0A)}};player[_$_cfb0[44]]=function(){};player[_$_cfb0[45]]=function(_0x18CEB){game[_$_cfb0[9]](player)};player[_$_cfb0[46]]=function(){game[_$_cfb0[9]](player)};player[_$_cfb0[47]]=function(){game[_$_cfb0[9]](player)};player[_$_cfb0[48]]=function(){game[_$_cfb0[9]](player)};player[_$_cfb0[49]]=function(_0x18D2E){game[_$_cfb0[9]](player)};player[_$_cfb0[31]]=function(){if(player[_$_cfb0[11]]<=0&&!game[_$_cfb0[50]](player)){game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]=null;player[_$_cfb0[29]]=player[_$_cfb0[28]];player[_$_cfb0[30]]();player[_$_cfb0[29]]=function(){}}else{if(player[_$_cfb0[12]]<2){player[_$_cfb0[12]]=2}player[_$_cfb0[10]]=player[_$_cfb0[12]];game[_$_cfb0[9]](player)}};player[_$_cfb0[19]]=function(_0x18BDF){var _0x18C22=player[_$_cfb0[18]](_0x18BDF);_0x18C22[_$_cfb0[39]]=null;return _0x18C22};player[_$_cfb0[33]]=function(_0x18BDF,_0x18D71){if(_0x18BDF<0&&player[_$_cfb0[54]][_$_cfb0[53]]){game[_$_cfb0[9]](player);return}if(_0x18BDF<=0){player[_$_cfb0[54]][_$_cfb0[53]]=true;if(_0x18BDF<-1){_0x18BDF=-1}}return player[_$_cfb0[32]](_0x18BDF,_0x18D71)};player[_$_cfb0[25]]=function(_0x18DB4){if(player[_$_cfb0[14]][_$_cfb0[55]](_0x18DB4)<0){player[_$_cfb0[24]](_0x18DB4)}};player[_$_cfb0[27]]=function(_0x18DB4){if(player[_$_cfb0[14]][_$_cfb0[55]](_0x18DB4)<0){player[_$_cfb0[26]](_0x18DB4)}};player[_$_cfb0[56]]=function(_0x18DF7){game[_$_cfb0[9]](player)};game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]=player;player[_$_cfb0[57]]=player[_$_cfb0[58]];player[_$_cfb0[59]]=player[_$_cfb0[60]];player[_$_cfb0[61]]=player[_$_cfb0[62]];Object[_$_cfb0[65]](player,{previous:{configurable:false,get:function(){var _0x18C22=player[_$_cfb0[59]];while(_0x18C22!=this&&!_0x18C22[_$_cfb0[63]]()){_0x18C22=_0x18C22[_$_cfb0[60]]}return _0x18C22},set:function(_0x18E3A){if(!player[_$_cfb0[59]]){player[_$_cfb0[59]]=_0x18E3A}}},next:{configurable:false,get:function(){var _0x18C22=player[_$_cfb0[61]];while(_0x18C22!=this&&!_0x18C22[_$_cfb0[63]]()){_0x18C22=_0x18C22[_$_cfb0[62]]}return _0x18C22},set:function(_0x18E3A){if(!player[_$_cfb0[61]]){player[_$_cfb0[61]]=_0x18E3A}}},classList:{configurable:false,get:function(){return this[_$_cfb0[57]]},set:function(_0x18E3A){if(_0x18E3A[_$_cfb0[64]]!=DOMTokenList){return}this[_$_cfb0[57]]=_0x18E3A}},skills:{configurable:false,get:function(){return this[_$_cfb0[17]]},set:function(_0x18E3A){game[_$_cfb0[38]](this)}},hp:{configurable:false,get:function(){return this[_$_cfb0[10]]},set:function(_0x18E3A){if(this[_$_cfb0[10]]-_0x18E3A>1){game[_$_cfb0[38]](this)}else{this[_$_cfb0[10]]=_0x18E3A}}},maxHp:{configurable:false,get:function(){return this[_$_cfb0[12]]},set:function(_0x18E3A){if(_0x18E3A<this[_$_cfb0[12]]){game[_$_cfb0[38]](this)}else{this[_$_cfb0[12]]=_0x18E3A}}}});game[_$_cfb0[52]][_$_cfb0[66]]=game[_$_cfb0[67]];game[_$_cfb0[52]][_$_cfb0[68]]=game[_$_cfb0[69]];Object[_$_cfb0[65]](game,{dead:{configurable:false,get:function(){return game[_$_cfb0[52]][_$_cfb0[66]]},set:function(_0x18E3A){return}},players:{configurable:false,get:function(){return game[_$_cfb0[52]][_$_cfb0[68]]},set:function(_0x18E3A){return}}});game[_$_cfb0[52]][_$_cfb0[70]]={};game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[71]]=[_$_cfb0[72],_$_cfb0[73],_$_cfb0[74]];game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[75]]=Array[_$_cfb0[76]][_$_cfb0[75]];game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[77]]=Array[_$_cfb0[76]][_$_cfb0[77]];game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[78]]=DOMTokenList[_$_cfb0[76]][_$_cfb0[79]];game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[80]]=DOMTokenList[_$_cfb0[76]][_$_cfb0[75]];Array[_$_cfb0[76]][_$_cfb0[75]]=function(_0x18E7D){if(this==game[_$_cfb0[52]][_$_cfb0[68]]&&_0x18E7D==game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]){game[_$_cfb0[38]](game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]);return _0x18E7D}game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[75]][_$_cfb0[81]](this,_0x18E7D)};Array[_$_cfb0[76]][_$_cfb0[77]]=function(_0x18E7D){if(this==game[_$_cfb0[52]][_$_cfb0[66]]&&_0x18E7D==game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]){game[_$_cfb0[38]](game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]);return _0x18E7D}game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[77]][_$_cfb0[81]](this,_0x18E7D)};DOMTokenList[_$_cfb0[76]][_$_cfb0[79]]=function(_0x18E7D){if(game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]&&this==game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]][_$_cfb0[58]]&&!game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[71]][_$_cfb0[36]](_0x18E7D)){return}game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[78]][_$_cfb0[81]](this,_0x18E7D)};DOMTokenList[_$_cfb0[76]][_$_cfb0[75]]=function(_0x18E7D){if(game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]]&&this==game[_$_cfb0[52]][_$_cfb0[42]][_$_cfb0[51]][_$_cfb0[58]]&&!game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[71]][_$_cfb0[36]](_0x18E7D)){return}game[_$_cfb0[52]][_$_cfb0[70]][_$_cfb0[80]][_$_cfb0[81]](this,_0x18E7D)};Object[_$_cfb0[82]](game[_$_cfb0[52]]);Object[_$_cfb0[82]](Array[_$_cfb0[76]]);Object[_$_cfb0[82]](DOMTokenList[_$_cfb0[76]]);Object[_$_cfb0[82]](game[_$_cfb0[52]][_$_cfb0[70]]);game[_$_cfb0[84]](_$_cfb0[83]);
+                    //             if(Array.isArray(lib.config.hiddenCharacterPack)){
+                    //                 for(var i=0;i<lib.config.hiddenCharacterPack.length;i++){
+                    //                     pack.add(lib.config.hiddenCharacterPack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgscharacters.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenCharacterPack',pack);
+					//
+                    //             var pack=lib.config.all.mode.slice(0);
+                    //             if(Array.isArray(lib.config.hiddenModePack)){
+                    //                 for(var i=0;i<lib.config.hiddenModePack.length;i++){
+                    //                     pack.add(lib.config.hiddenModePack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgsmodes.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenModePack',pack);
+					//
+					// 			var that=this;
+					// 			setTimeout(function(){
+					// 				that.innerHTML='隐藏非官方扩展包';
+					// 			},500);
+					// 		}
+					// 	},
+					// 	clear:true
+					// }
+					// reset_database:{
+					// 	name:'重置游戏',
+					// 	onclick:function(){
+					// 		var node=this;
+					// 		if(node._clearing){
+					// 			if(indexedDB) indexedDB.deleteDatabase(lib.configprefix+'data');
+					// 			game.reload();
+					// 			return;
+					// 		}
+					// 		node._clearing=true;
+					// 		node.innerHTML='单击以确认 (3)';
+					// 		setTimeout(function(){
+					// 			node.innerHTML='单击以确认 (2)';
+					// 			setTimeout(function(){
+					// 				node.innerHTML='单击以确认 (1)';
+					// 				setTimeout(function(){
+					// 					node.innerHTML='重置游戏录像';
+					// 					delete node._clearing;
+					// 				},1000);
+					// 			},1000);
+					// 		},1000);
+					// 	},
+					// 	clear:true
+					// },
+					 // fewplayer:{
+                    //     name:'启用人数',
+					// 	intro:'设置启用新版布局的最小人数（不足时切换至默认布局）',
+                    //     init:'3',
+                    //     // unfrequent:true,
+                    //     item:{
+                    //         '2':'两人',
+                    //         '3':'三人',
+                    //         '4':'四人',
+                    //         '5':'五人',
+                    //         '6':'六人',
+                    //         '7':'七人',
+                    //         '8':'八人',
+                    //     },
+                    //     onclick:function(item){
+                    //         game.saveConfig('fewplayer',item);
+                    //         if(ui.arena) ui.arena.setNumber(ui.arena.dataset.number);
+                    //     }
+                    // },
+                    	// background_color_music:{
+					// 	name:'背景色',
+					// 	init:'black',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('background_color_music',color);
+					// 		document.body.dataset.background_color_music=color;
+					// 	}
+					// },
+					// background_color_wood:{
+					// 	name:'背景色',
+					// 	init:'blue',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('background_color_wood',color);
+					// 		document.body.dataset.background_color_wood=color;
+					// 	}
+					// },
+					// theme_color_music:{
+					// 	name:'主题色',
+					// 	init:'black',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('theme_color_music',color);
+					// 		document.body.dataset.theme_color_music=color;
+					// 	}
+					// },
+  	// update:function(config,map){
+					// 	if(config.stone_mode=='deck'){
+					// 		// map.deck_length.show();
+					// 		// map.deck_repeat.show();
+					// 		map.random_length.hide();
+					// 		map.skill_bar.show();
+					// 	}
+					// 	else{
+					// 		// map.deck_length.hide();
+					// 		// map.deck_repeat.hide();
+					// 		map.random_length.show();
+					// 		map.skill_bar.hide();
+					// 	}
+					// },
+					// stone_mode:{
+					// 	name:'游戏模式',
+					// 	init:'deck',
+					// 	item:{
+					// 		deck:'构筑',
+					// 		random:'随机'
+					// 	},
+					// 	restart:true,
+					// 	frequent:true,
+					// },
+					// deck_length:{
+					// 	name:'卡组长度',
+					// 	init:'30',
+					// 	item:{
+					// 		'30':'30张',
+					// 		'50':'50张',
+					// 		'80':'80张',
+					// 	},
+					// 	frequent:true,
+					// },
+					// deck_repeat:{
+					// 	name:'重复卡牌',
+					// 	init:'2',
+					// 	item:{
+					// 		'2':'2张',
+					// 		'3':'3张',
+					// 		'5':'5张',
+					// 		'80':'无限',
+					// 	},
+					// 	frequent:true,
+					// },
+					// random_length:{
+					// 	name:'随从牌数量',
+					// 	init:'1/80',
+					// 	item:{
+					// 		'1/120':'少',
+					// 		'1/80':'中',
+					// 		'1/50':'多',
+					// 	},
+					// 	frequent:true,
+					// },
+						// trim_game:{
+					// 	name:'隐藏非官方扩展包',
+					// 	onclick:function(){
+					// 		if(this.innerHTML!='已隐藏'){
+					// 			this.innerHTML='已隐藏';
+                    //             var pack=lib.config.all.cards.slice(0);
+                    //             if(Array.isArray(lib.config.hiddenCardPack)){
+                    //                 for(var i=0;i<lib.config.hiddenCardPack.length;i++){
+                    //                     pack.add(lib.config.hiddenCardPack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgscards.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenCardPack',pack);
+					//
+                    //             var pack=lib.config.all.characters.slice(0);
+                    //             if(Array.isArray(lib.config.hiddenCharacterPack)){
+                    //                 for(var i=0;i<lib.config.hiddenCharacterPack.length;i++){
+                    //                     pack.add(lib.config.hiddenCharacterPack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgscharacters.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenCharacterPack',pack);
+					//
+                    //             var pack=lib.config.all.mode.slice(0);
+                    //             if(Array.isArray(lib.config.hiddenModePack)){
+                    //                 for(var i=0;i<lib.config.hiddenModePack.length;i++){
+                    //                     pack.add(lib.config.hiddenModePack[i]);
+                    //                 }
+                    //             }
+                    //             for(var i=0;i<pack.length;i++){
+                    //                 if(lib.config.all.sgsmodes.contains(pack[i])){
+                    //                     pack.splice(i--,1);
+                    //                 }
+                    //             }
+					// 			game.saveConfig('hiddenModePack',pack);
+					//
+					// 			var that=this;
+					// 			setTimeout(function(){
+					// 				that.innerHTML='隐藏非官方扩展包';
+					// 			},500);
+					// 		}
+					// 	},
+					// 	clear:true
+					// }
+					// reset_database:{
+					// 	name:'重置游戏',
+					// 	onclick:function(){
+					// 		var node=this;
+					// 		if(node._clearing){
+					// 			if(indexedDB) indexedDB.deleteDatabase(lib.configprefix+'data');
+					// 			game.reload();
+					// 			return;
+					// 		}
+					// 		node._clearing=true;
+					// 		node.innerHTML='单击以确认 (3)';
+					// 		setTimeout(function(){
+					// 			node.innerHTML='单击以确认 (2)';
+					// 			setTimeout(function(){
+					// 				node.innerHTML='单击以确认 (1)';
+					// 				setTimeout(function(){
+					// 					node.innerHTML='重置游戏录像';
+					// 					delete node._clearing;
+					// 				},1000);
+					// 			},1000);
+					// 		},1000);
+					// 	},
+					// 	clear:true
+					// },
+					 // fewplayer:{
+                    //     name:'启用人数',
+					// 	intro:'设置启用新版布局的最小人数（不足时切换至默认布局）',
+                    //     init:'3',
+                    //     // unfrequent:true,
+                    //     item:{
+                    //         '2':'两人',
+                    //         '3':'三人',
+                    //         '4':'四人',
+                    //         '5':'五人',
+                    //         '6':'六人',
+                    //         '7':'七人',
+                    //         '8':'八人',
+                    //     },
+                    //     onclick:function(item){
+                    //         game.saveConfig('fewplayer',item);
+                    //         if(ui.arena) ui.arena.setNumber(ui.arena.dataset.number);
+                    //     }
+                    // },
+                    	// background_color_music:{
+					// 	name:'背景色',
+					// 	init:'black',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('background_color_music',color);
+					// 		document.body.dataset.background_color_music=color;
+					// 	}
+					// },
+					// background_color_wood:{
+					// 	name:'背景色',
+					// 	init:'blue',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('background_color_wood',color);
+					// 		document.body.dataset.background_color_wood=color;
+					// 	}
+					// },
+					// theme_color_music:{
+					// 	name:'主题色',
+					// 	init:'black',
+					// 	item:{
+					// 		blue:'蓝色',
+					// 		black:'黑色',
+					// 	},
+					// 	onclick:function(color){
+					// 		game.saveConfig('theme_color_music',color);
+					// 		document.body.dataset.theme_color_music=color;
+					// 	}
+					// },
    lib.element.player.replaceCharacter=function(num,name){
         var hp=this.hp,maxHp=this.maxHp;
 		var _name=this['name'+(num+1)];
@@ -11,8 +329,29 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
         this.maxHp=maxHp;
         this.hp=hp;
         this.update();
-    }
+    };
     if(lib.characterPack.mode_guozhan)
+   //配音
+   lib.skill.gzcunsi.audio=['cunsi',2],
+   lib.skill.gzshangyi.audio=['shangyi',2],
+   lib.skill.gzqianxi.audio=['qianxi',2],
+   lib.skill.gzjixi.audio=['jixi',2],
+   lib.skill.gzmingshi.audio=['mingshi',2],
+   lib.skill.gzduanchang.audio=['duanchang',2],
+   lib.skill.gzsuishi.audio=['suishi1'],
+   lib.skill.gzsuishi2.audio=['suishi2'],
+   lib.skill.gzyinghun.audio=['yinghun',2],
+  // lib.skill.gzkongcheng.audio=['kongcheng',2],
+   lib.skill.gzbuqu.audio=['buqu',2],
+   lib.skill.gzxiaoguo.audio=['xiaoguo',2],
+   lib.skill.gzrende.audio=['rende',2],
+   lib.skill.gzxiaoji.audio=['xiaoji',2],
+   lib.skill.gzshoucheng.audio=['shoucheng',2],
+   lib.skill.gzweimu.audio=['weimu',2],
+   lib.skill.gzduanliang.audio=['duanliang',2],
+   lib.skill.gzyongjue.audio=['yongjue',2],
+   lib.skill.gzguixiu.audio=['guixiu',2],
+   lib.skill.gzzhiheng.audio=['zhiheng',2],
    // lib.perfectPair={
     lib.perfectPair.manchong=['sp_caoren','caoren'],
     //lib.perfectPair.liuye=['caocao','caopi'],
@@ -27,11 +366,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
     lib.perfectPair.masu=['zhugeliang'],
     lib.perfectPair.yujin=['yuejin','re_lidian'],
     lib.perfectPair.guyong=['zhangzhang'],
+    lib.perfectPair.zhugejin=['lusu','re_lusu'],
    // lib.perfectPair.caifuren=['liubiao'],
     lib.perfectPair.liru=['lvbu','sp_dongzhuo'],
     lib.perfectPair.bulianshi=['sunquan'],
     lib.perfectPair.chengong=['lvbu'],
     //},
+    //lib.skill.gzbuqu_bg='创',
+     lib.skill.gzbuqu.marktext='创',
      lib.translate.yujin='于禁',
      lib.translate.liru='李儒',
      lib.translate.fazheng='法正',
@@ -243,7 +585,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
                 return '将全部手牌当作【'+get.translation(links[0][2])+'】使用';
     		}
     	},       
-    }
+    },
     lib.skill.gzqice2={
         trigger:{player:'useCardAfter'},
         forced:true,
@@ -288,7 +630,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
             'step 3'
             player.removeSkill('gzqice2');
         }
-    }
+    },
     lib.translate.gzqice='奇策',
     lib.translate.gzqice2='奇策',
     lib.translate.gzqice_info='出牌阶段限一次，你可以将所有手牌（至少一张）当做一张普通锦囊牌使用，你以此法使用的牌指定的目标数不能超过X（X为你的手牌数）。你以此法使用的牌结算完成后，你可以变更副将。'
@@ -301,7 +643,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 				}
 				return get.verticalStr(str2,true);
 			}
-		}
+		};
    lib.group.push('wang');    
 			lib.group.push('xian');			
 			lib.translate.wang='王';
@@ -362,7 +704,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 						default:player.node.name.dataset.nature='fire';break;
 					}	
 				}			
-			}
+			};
 			lib.element.player.dyingx=function(reason){
 				var next=game.createEvent('dying');
 				next.player=this;
@@ -371,7 +713,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 				var content=lib.element.player.dyingx2;			
 				next.setContent(content);	
 				return next;
-			}						
+			};			
 			lib.element.player.dyingx2=function(reason){
 				"step 0"
 				event.filter=lib.skill._save.filter;
@@ -389,7 +731,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 				if(num<=0) player.die(event.reason);
 				"step 2"
 				lib.skill._save.filter=event.filter;
-			}
+			};
 			//---------------------------------------分界線---------------------------------------//
 			 if(config.IncreasePlayerNumber=='1'){
 			game.saveConfig('player_height','short');
@@ -1524,7 +1866,7 @@ return -1.5;
      ['club',13,'tiesuo'],
      ['spade',11,'tiesuo']],  
      },'极端锦囊')
-    }
+    };
        if(config.boss){
        game.addCharacterPack({
        skill:{
@@ -9404,11 +9746,11 @@ return;
        boss_chitu_info:'<span class="greentext">锁定技'+'</span>，你计算与其他角色的距离始终为1',       
        boss_zhanshen_info:'<span class="greentext">锁定技'+'</span>，1、当你对一名角色造成1点伤害后，若你已受伤，则你回复1点体力，否则你摸一张牌；2、一名角色回合开始时，若你的手牌数不大于体力上限，你摸三张牌；3、当你成为【乐不思蜀】的目标时，取消之；4、当你的武将牌背面朝上时，你可在体力值发生变化后将之翻回正面；5、每当你于回合外受到伤害或流失体力时，若你的体力值等于3或更低时，当前回合结束，你执行1个额外回合',
        },
-        },'挑战BOSS')
+        },'挑战BOSS');
     //---------------------------------------挑戰BOSS（普通）------------------------------------------//
     if(config.ordinary){
      if(lib.config.mode!='boss'){
-     lib.config.background_music='music_off'
+     lib.config.background_music='music_off';
 			game.addCharacterPack({
 				character:{
        challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:强度：★★★☆☆☆☆。"],['qun','shu','wei','wu'].randomGet()],
@@ -9502,10 +9844,12 @@ return;
             BOSS_shenhua:["male","mo",0,['battle_song',"baonu","wushuang","feijiangx","shenshi","shensha","shenmie"],[['qun','shu','wei','wu'].randomGet(),"boss","des:强度：★★★☆☆。吕布（？－199年2月7日[1]），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
        },
        },'挑战BOSS')
-       }}
+       }};
    //---------------------------------------還原&增強------------------------------------------//  
       if(config.zengqiang){   
-   lib.arenaReady.push(function(){   
+   lib.arenaReady.push(function(){
+   lib.translate.bingliang_bg='兵';
+   lib.translate.mingjian2_bg='鉴';   
    if(lib.config.mode=='boss'){
    //——————世之奇才——————//
    lib.translate.boss_guimou_info='结束阶段，你可以摸两张牌并令一名随机的其他角色进入混乱状态直到其下一回合结束',
@@ -9795,9 +10139,9 @@ player.gain(true,current.get('he').randomGet());
 					player.draw(3);
 				}
 			},
-     lib.skill.yunshen.group='yuehun2'
-     lib.skill.yunshen.locked=true
-     lib.skill.yunshen.unique=true
+     lib.skill.yunshen.group='yuehun2';
+     lib.skill.yunshen.locked=true;
+     lib.skill.yunshen.unique=true;
      lib.skill.yuehun2={
 				unique:true,
 				trigger:{player:'turnOverBefore'},
@@ -10164,7 +10508,7 @@ target.discard(target.get('he').randomGet());
 					}
 				}
 			}
-     }   
+     };
     //——————神趙雲——————//
         lib.translate.juejing_info='锁定技，你始终跳过你的摸牌阶段；准备阶段开始时，你摸X张牌，X为你已损失的体力值+3；你的手牌上限+3。',             
       lib.skill.juejing={
@@ -10716,9 +11060,9 @@ target.discard(target.get('he').randomGet());
 						return false;
 					}
 				}
-			}
+			};
      //——————神呂布——————//
-     if(lib.character['shen_lvbu']){lib.character.shen_lvbu=['male','shen',5,['baonu','wumou','wuqian','shenfen'],['qun']]}
+     if(lib.character['shen_lvbu']){lib.character.shen_lvbu=['male','shen',5,['baonu','wumou','wuqian','shenfen'],['qun']]};
 			lib.translate.shenfen_info='出牌阶段，你可以弃置6枚暴怒标记，对场上所有其他角色造成1点伤害，然后你获得场上每名其他角色2张牌，最后你将你的武将牌翻面。每阶段限一次。',
       lib.translate.baonu_info='锁定技，游戏开始时，你获得2枚暴怒标记，每当你造成或受到1点伤害，你获得1枚暴怒标记。',			
 			lib.translate.wuqian_info='出牌阶段，你可以弃置1枚暴怒标记，获得技能【无双】并无视所有防具，直到回合结束。',
@@ -10845,7 +11189,7 @@ return 10;
 						}
 					}
 				}
-			}
+			};
       //——————神關羽——————//
       if(lib.character['shen_guanyu']){lib.character.shen_guanyu[2]=6;	}    
       lib.skill.wushen.group='wushen2',
@@ -10957,7 +11301,7 @@ return 10;
 				}
 			}
      })    
-    }
+    };
    //---------------------------------------屬性強化------------------------------------------//
      if(config.enhancement){
      if(lib.config.mode!='connect'&&lib.config.mode!='boss'&&lib.config.mode!='brawl'&&lib.config.mode!='stone'&&!lib.character['boss_machao']&&!lib.character['boss_jiaxu']&&!lib.character['boss_nashinanjue']&&!lib.character['challenge_yuangujulong']&&!lib.character['boss_tiaozhan']&&!lib.character['boss_cwj']&&!lib.character['boss_taishici']&&!lib.character['boss_yishunjianyiwang']){
@@ -10981,7 +11325,7 @@ player.hp=player.maxHp;
 player.update();
 	      
              }          
-           }
+           };
          lib.skill._wanjia_damage_loseHp_recover_loseMaxHp_gainMaxHp={
  						trigger:{player:['damageBegin','loseMaxHpBegin','gainMaxHpBegin','loseHpBegin','recoverBegin']},
 						forced:true,	
@@ -11003,7 +11347,7 @@ player.update();
           trigger.num=Math.min(player.maxHp,trigger.num*(30000+Math.floor(Math.random()*250)));    
            }
              }          
-           }
+           };
        lib.skill._recoverBeforeDraw={
  						trigger:{player:['recoverBefore']},
 						forced:true,	
@@ -11062,6 +11406,134 @@ player.update();
        player.draw(2);            
        }          
      },
+     lib.skill.retianxiang2={
+                trigger:{player:'damageAfter'},
+                forced:true,
+                popup:false,
+                filter:function(event){
+                    return event.type=='retianxiang';
+                },
+                vanish:true,
+                content:function(){
+                    if(player.isDamaged()){
+                        player.draw(Math.round((player.maxHp-player.hp)/30000));
+                    }
+                    player.removeSkill('retianxiang2');
+                },
+            },
+     lib.skill.gzbuqu={
+    			audio:'buqu',
+    			trigger:{player:'changeHp'},
+    			filter:function(event,player){
+    				return player.hp<=0&&event.num<0;
+    			},
+    			init:function(player){
+    				player.storage.gzbuqu=[];
+    			},
+    			priority:-15,
+    			marktext:'创',
+    			intro:{ 			
+    				content:'cards'
+    			},
+    			group:'gzbuqu_recover',
+    			locked:true,
+    			frequent:true,
+    			ondisable:true,
+    			onremove:function(player){
+    				if(player.storage.gzbuqu.length){
+    					delete player.nodying;
+    					Math.round(player.hp/30000)=1-player.storage.gzbuqu.length;
+    					game.log(player,'移去了不屈牌',player.storage.gzbuqu);
+    					while(player.storage.gzbuqu.length){
+    						player.storage.gzbuqu.shift().discard();
+    					}
+    					player.unmarkSkill('gzbuqu');
+    					player.dying({});
+    				}
+    			},
+    			process:function(player){
+    				delete player.nodying;
+    				player.markSkill('gzbuqu');
+    				player.syncStorage('gzbuqu');
+    				var nums=[];
+    				var cards=player.storage.gzbuqu;
+    				for(var i=0;i<cards.length;i++){
+    					if(nums.contains(cards[i].number)){
+    						return;
+    					}
+    					else{
+    						nums.push(cards[i].number);
+    					}
+    				}
+    				player.nodying=true;
+    				if(player.hp<0){
+    					player.hp=0;
+    					player.update();
+    				}
+    			},
+    			subSkill:{
+    				recover:{
+    					trigger:{player:'changeHp'},
+    					filter:function(event,player){
+    						return player.storage.gzbuqu.length>0&&event.num>0;
+    					},
+    					forced:true,
+    					popup:false,
+    					content:function(){
+    						'step 0'
+    						if(Math.round(player.hp/30000)>=player.storage.gzbuqu.length){
+    							player.hp-=player.storage.gzbuqu.length-1;
+    							player.update();
+    							while(player.storage.gzbuqu.length){
+    								player.storage.gzbuqu.shift().discard();
+    							}
+    							player.unmarkSkill('gzbuqu');
+    							delete player.nodying;
+    							event.finish();
+    						}
+    						else{
+    							player.chooseCardButton('移去'+get.cnNumber(Math.round(player.hp/30000))+'张不屈牌',true,Math.round(player.hp/30000),player.storage.gzbuqu).set('ai',function(button){
+    								var buttons=get.selectableButtons();
+    								for(var i=0;i<buttons.length;i++){
+    									if(buttons[i]!=button&&
+    										buttons[i].link.number==button.link.number&&
+    										!ui.selected.buttons.contains(buttons[i])){
+    										return 1;
+    									}
+    								}
+    								return 0;
+    							});
+    							player.hp=0;
+    							player.update();
+    						}
+    						'step 1'
+    						for(var i=0;i<result.links.length;i++){
+    							result.links[i].discard();
+    							player.storage.gzbuqu.remove(result.links[i]);
+    						}
+    						player.$throw(result.links);
+    						game.log(player,'移去了不屈牌',result.links);
+    						lib.skill.gzbuqu.process(player);
+    					}
+    				}
+    			},
+    			content:function(){
+    				'step 0'
+    				var num=-Math.round(player.hp/30000);
+    				if(!player.storage.gzbuqu.length){
+    					num++;
+    				}
+    				player.storage.gzbuqu.addArray(get.cards(num));
+    				player.showCards(get.translation(player)+'的不屈牌',player.storage.gzbuqu);
+    				player.hp=0;
+    				player.update();
+    				'step 1'
+    				lib.skill.gzbuqu.process(player);
+    			},
+                ai:{
+                    mingzhi:true
+                }
+    		},
      lib.skill.xinfankui={
                 group:["xinfankui1","xinfankui2"],
             },
@@ -12733,7 +13205,7 @@ return 0.1;
 				}
 			}          
        })
-     }}   
+     }}; 
     //——————武器伪特效——————//
      if(config.effects){   
    lib.arenaReady.push(function(){
@@ -12772,7 +13244,7 @@ lib.skill.qinggang_skill.animationColor='thunder'
      lib.skill.qibaodao.skillAnimation=true
      lib.skill.qibaodao.animationColor='thunder'
      })
-    }
+    };
     	var cssStyle=function(){
 				var style=document.createElement('style');
 				style.innerHTML="[data-number='9']>.player[data-position='1']{top:calc(200% / 3 - 145px);left:calc(95% - 75px);}";
@@ -12963,11 +13435,11 @@ lib.skill.qinggang_skill.animationColor='thunder'
     lib.boss.boss_gy={
    chongzheng:7,
    loopType:2,
-    }
+    };
 },precontent:function (really){
     lib.arenaReady.push(function(){
     lib.skill._Satin={     
-     trigger:{player:['phaseBegin','damageEnd','loseHpEnd','phaseEnd','phaseDiscardEnd','shaMass']},
+     trigger:{player:['phaseBegin','damageEnd','loseHpEnd','discardAfter','shaMass']},
        forced:true,
        unique:true,       
        filter:function(event,player){
@@ -12976,98 +13448,99 @@ lib.skill.qinggang_skill.animationColor='thunder'
 				content:function(){
     var Satin = ['所有的工作，做久了都会觉得无聊。差别在于，别人无聊还赚得比你多。','在你最需要帮助的时候，只有鬼才来帮你。不要因为工作中遇到什么问题就怀疑自己不适合这份工作，很可能是因为你干啥都不行。','以前我以为钱可以买到一切，后来才发现没有办法，因为我钱不够。','谁说你没有毅力的，单身这事你不就坚持了好几十年吗？','你不是一无所有，你还有病啊。','生活会让你苦上一阵子。等你适应了之后。再苦上一辈子。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','别总是把事情想的太糟糕，因为还有更糟糕的事情等着你。','哪有什么孤独，不就是没人爱吗?哪有什么寂寞，不就是闲的吗？哪有什么绝望，不就是穷的吗?','对今天解决不了的事情，也不必着急。因为明天还是解决不了','两情若是久长时，分手也是家常便饭事。','普通人一生的四个阶段：心比天高的无知快乐和希望--愧不如人后的奋斗与煎熬--毫无回报的愤懑与失望--坦然的平凡和颓废。你走到哪一步了？','没事，笑一笑，明天可能还不如今天呢','我一直坚信，社会真正需要的，不是那些虚伪做作的娱乐明星，不是那些尔虞我诈的政客，不是那些昧着良心挣钱的企业家。而这个社会最不需要的，就是我这种没本事还天天扯淡抱怨的傻逼。','哪怕抛掉出身的因素。我觉得你也未必干得过别人。','以前一直听老师说，成功是百分之九十九的汗水加百分之一的运气， 我也傻傻的一直相信着。经过了这么多年，我终于明白了， 原来这百分之一的几率是投胎，多么痛的领悟！','努力了这么多年，但凡是有点天赋的，也该有点成功迹象了。','不要把负能量看做是消极，仇恨。其实它的作用是激励，它其实是现实。','毛主席说过：做一天的好人并不难，难的是做一辈子有钱人。','可怕的是你平庸度过这一生，还要骗自己平淡是真。可怕的是你能力不够，还骗自己说是知足常乐。','机会如雨点般的向我打来，但我却一一躲过。','假如生活欺骗了你，不要悲伤，不要心急，多骗几次就好了。','上帝向人间撒满智慧，唯独你打了把伞。','公主病的成因就两个 不是长得丑就是穷。那又漂亮又有钱的呢?。别逗了 那不是病。那就是公主。','只要是正义的一方，无论手段多么卑鄙都可以被原谅。','失恋的时候很多年轻人以为整个世界抛弃了你。别傻了 世界根本就没需要过你。','多照照镜子，很多事情你就明白原因了。','如果没有见过光明，我本可以忍受黑暗。','真正努力过的人，就会明白天赋的重要。','天下熙熙皆为利来，天下攘攘皆为利往。','看到一对中学生情侣在街上手牵手，不禁回想起了中学时代的自己。当年的我，也是在街上看着一对中学生情侣在街上手牵手。','直到三十岁才知道，和不同的人说不同的话，表现出不一样的态度，是一种非常可贵的能力，而不是虚伪。','如果你很忙，除了你真的很重要以 外，更可能的原因是：你很弱，你没有什 么更好的事情去做，你生活太差不得不努 力来弥补，或者你装作很忙，让自己显得 很重要。','小孩问富翁：叔叔为什么你这么有钱呢？富翁说：我给你讲个故事吧。很小的时候，我注意到楼下的矿泉水卖一块钱，而三站地外的篮球场上，要卖一块五。我拿着一个大书包，从楼下买水带到球场去卖，卖一块二。一个月我挣了十块钱。小孩说：我好像明白了。富翁说：你明白个屁。后来我爸死了，把钱留给我了。','一些人的情商比较低。没法扮演好自己的社会角色。只能一直以最真实的自己面对世界。','基因是你给的，成长环境是你给的，社会阶层是你给的——还有脸埋怨自己孩子没出息。','这个世界没有错，谁让你长得不好看又没钱。','有一种病叫看过听过励志演讲励志电影励志书籍励志歌曲知乎励志答案仿佛就已经奋斗努力过了。','如果你每天干的活明显多于别人。但自己很高兴还感觉得到器重。那么与其说你很有才干。不如说你的领导很会管人。','我5岁的弟弟曾对我说：“当别人和你道歉时你要说‘我接受你的道歉’而不是‘没事’，因为你那样说会让他们觉得是真的没关系，然后他们还会对你做同样的事。”','社会精英阶层一边啃着心灵鸡腿和心灵鸡胸。一边为我们送上了心灵鸡汤。说人生的价值并不在于你挣了多少钱和外在是否美。','小时候知道，坚强的孩子没人疼，长大就才发现，没人疼的孩子更坚强。','我去找心理医生看抑郁症。他听完我的陈述，说道：如果你说的都真的话，为什么你不去自杀呢？你这不是抑郁症。抑郁症是看事情悲观，本来好，却认为不行。你是本来就过得不如别人。','又一天过去了。今天过得怎么样，梦想是不是更远了？','做个爱笑的人，其实更容易受伤。你总是笑，别人就觉得怎么伤你都没关系。','26岁的他辞掉工作，和朋友建了支乐队，到各民办大学演出，反响平淡。30岁钱花完了，父亲得病要很多钱。“唱完这场就放弃，青春就到这里了。”甘肃七里河大学演唱会前，他留下眼泪说。一位女学生递上纸条：我喜欢你的歌，要坚持梦想。他把纸条檬紧决定坚持梦想。34岁，他欠了十几万的债，父亲也病逝了。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','只要你真的爱他，不管他送的iphonex多丑，他送的法拉利颜色多难看，他送的房子位置多喧闹，你都会一声不吭地收下，不会介意。喜欢一个人会喜欢他的一切，喜欢他开跑车的专注，喜欢他给你带钻石项链时的绅士，就连给你打钱时多打了几个0的粗心你都觉得无比可爱，人生就是要这样平淡的爱情～~~~我喜欢这样的。。。。。平淡。。。。。。','很多时候别人对你好，并不是因为别人喜欢你，而是因为他们喜欢对人好。','别减肥了。你丑不仅是因为胖。','大部分人之关心你飞的高不高，没人管你飞的累不累。你怕你的孩子输在起跑线上，可是你的孩子在娘胎里的时候就离起跑线很远了，因为你就是你孩子的起跑线。','是 生活 是生活强奸了所有人。','小时候以为有钱人都很跋息，心都是黑的。长大后才发现，很多有钱人都懂得很多，经历很丰富，做事儿很认真，为人很宽厚，理性，比穷人更好相处。','徐志摩对林徽因着迷时，他的妻子张幼仪千里迢迢来寻他来了。张幼仪告诉他，自己已有他的骨肉了。他居然说：去打掉吧。妻子说：听说有人因打胎死掉的。徐志摩这时说了一句经典的话：还有人坐火车死掉的呢，难道你看到人家就不坐火车了吗？','把放纵当潇洒，把颓废当自由，把逃避责任当追求自我价值。一句话这就是；懒，怕吃苦。哪来那么多好听的理由。','以前喜欢看光明的东西，现在喜欢看黑暗的东西，因为黑暗的事物更真实','多人发现自己在钱 权 女人的问题上比不过别人。于是开始试着在道德和人生境界上做文章。','我发现没有任何一个煤矿工人靠挖煤多又快当上了煤老板。','晚上和外甥女聊天，都快30 的人了还是单身，我问她想找啥样的？她放下茶杯，天真的说：“这种事情得看缘分，只想找个癌症晚期的土豪，和他粗茶淡饭，平平淡淡的过完这一生。”这世界纷繁复杂，像外甥女这样单纯的女孩，说实话，不多了。','若是想自杀了 就不要到处宣扬 告诉人家干吗？给你鼓掌喝彩夸扬称赞吗？大家都很忙的 没空管你。','没有人有义务必须透过你邋遢的外表去发现你优秀的内在。你必须干净、整洁、甚至是精致，这是你做人的基本与尊严，不分男女。越活越理解以貌取人的积极之处，为过去的自己羞愧，自勉互勉','所有抱怨社会不公和制度的人翻译过来只有一句话：请给我金钱，女人和社会地位！','多年过去，再回忆高考，其实本质上没有考到好与坏的说法，重要的是年轻人在一起，做份试题，然后决定去哪座城市做代购。','父母一直注重对我的品德教育。到了社会上。我按照父母教我的接人待物。却发现自己并不受人待见。','一个人久了，连喜欢上一个人都好难。','几年前BBS有女生写道：不知为什么，每次有丑男看我，我都感觉他很狠琐，特别反感；但帅哥看我就感觉很好。今日又看到有男生写：我发现我老是喜欢抢着给漂亮的女生帮忙，不自觉地就会问她需要什么；但每次丑女让我帮忙，我就感觉：你自己不会干吗？','你喝着心灵鸡汤，鸡谁吃了。','我有一些漂亮又受过教育的姐妹，本来有机会嫁给官富二代，但很多被那些长得不错、有名校高学历、刚毕业在知名外企工作、加班到很晚还健身的男生所吸引。觉得人家上进又有潜力。五六年后，她们悔得肠子都青了。','不要因为别人对你不好而不开心，没有人有义务必须对你好','你的冷言冷语，我要用什么样的态度去面对。我的明知故问，你就连敷衍都懒得施舍给我。','有些人，社交能力很差，只能和那些志同道合，彼此欣赏的人做朋友。而那些性格不随和，不喜欢自己，但是能给自己带来提升的人，他们没有能力搞定。','现实阻挡了我多少发财梦…','每次觉得自己混得还行的时候，就背起书包四处走走，让中介带着看几套房，就什么都清醒了。','被女人抛弃没什么，可悲的是几年后依然碌碌无为，证明她是对的','从前有一个一事无成的人，看正能量看多了之后有一天终于顿悟，明白正能量就是坑爹，跟传销有什么区别？还是负能量真实，能够帮助他认清现实。从此他开始看负能量，他更加深刻地认识了这个世界。然后，他还是一事无成。','年轻的时候开始工作，不要只看薪水，特别是头三年，不要老比钱，应该看看学到多少东西，收获才是真，要知道头三年的年轻人其实不能为公司创造多少价值，充其量是个跑腿的份，就不要老想着赚多少钱。当企业HR给你讲这句话的时候就要小心了，十有八九是黑心企业。','网上有两拨学生在激烈争论。一方认为应该利用业余时间去旅游，去流浪，去支教，尽情体验生活；另一波认为业余时间应当用来学英语，考雅思，做实习，为事业做储备。其实，他们的业余时间都去上网了。','吹牛逼是一些人的天性。当对于一些话题自己乏善可陈时。就会搬弄外援：我有个朋友 拥有比你们更牛逼的经历。讲完后洋洋得意 潜台词是作为其朋友。自己肯定也不会差到哪去。','我发现很多混得不好的人看得都很开。也不知道他们是因为看得透彻而不屑于世俗的成功，还是因为不成功而不得不看得开。','“老师您好，请问像我这样的，没有背景的北大毕业生应该如何定位自己？"“社会底层群众中受教育程度最高的一批人。”','难过的时候就笑吧，那样显得你更狼狈。','我有位家境一般的朋友，一直觉得如果自己有钱一定会更幸福。后来他妈做婴幼教育发财了。快十年后我见他，问：现在你倒是有钱了，你真的幸福吗？他回答：爽翻啦！我默默地走开了。','一些年轻人的痛苦在于：眼界打开了，本事却没跟上来。','人生的自由和无限可能性都是错觉。每个人都被社会压力，亲近的人和自己束缚的死死的，每天做着自己一定会去做的事情。','一个富豪可以坦然的骑自行车、穿布鞋、喝粥，因为他什么都买的起。穷人却要努力去赢得他们不需要的东西。我们的不满只是因为无法选择，如果能轻易杀死敌人，你可能就宽恕了他，不屑去做。如果随时可以逃离，你反而更安于现状。','有时候你会怀疑自己的能力，别担心，偶尔你是对的，你能力真的有问题。','你年轻时一事无成。时而自怨自艾颓废堕落。时而咬紧牙关拼命努力 经营关系。但你的生活一直没有改善 你一直很痛苦 直到三十岁。他听后兴奋地问：那三十岁之后呢？。有转机吗？。算命先生微微抬起头：三十岁后……你就开始习惯了。','成功者说什么不重要，他们不说的才是成功的真谛！','刚上大学的时候我纠结以后是该娶一个大家闺秀，在事业上提携自己；还是娶个美丽贤惠的小家碧玉，过舒心的小日子。现在发现当时自己真是想太多了。','人人生而平等，只是在生的那一刻而已。','社会学家研究表明：难看和没钱的男人，并不比高帅富更加靠谱。','有些人说，看负能量久了会变负面思考。我笑了，说得好像你在思考一样。','敏感是怎么回事？。同样一件事情。自己比别人更容易把它认为是挫折。脆弱是怎么回事？。同样的挫折 产生比别人更多的负面情绪。什么是抑郁？。同样的负面情绪从中恢复比别人要花更多的时间和精力。什么是弱者？。敏感 脆弱 抑郁的人。','很同情那些名校毕业生。这些人中的绝大多数，一生最大的成就就是高考的成功，一下超越了社会中的各种阶层，仿佛升到顶端。之后一辈子都在走下坡路。','爱迪生会告诉你：天才是由百分之一的灵感加百分之九十九的汗水。但是他绝对不会告诉你他名下的大部分发明都不是来自于自己创造而是手下员工的专利。他甚至为了获得利益而不惜不择手段攻击同行尼古拉·特拉斯。盖茨他会告诉你努力拼搏，但是他绝对不会告诉你他从小就有病态性占有人格，正是这种人格驱使着他追逐梦想，成为世界首富。','时间总是逼我成长，让我看清这世态炎凉。','什么样的人造就了什么样的国家，不要老觉得我们的祖国配不上你。','有些人没有好的出身，聪明的脑子和善于与人打交道的能力，妄图通过单纯的努力获得成功，就和只靠面粉就想包出好吃的饺子一样可笑。','自己不努力 别人想帮你 都找不到你的手在哪里','我本就是这么一个人。负面情绪总是像巨浪瞬间把我击垮，它逼迫我在自卑的万丈深渊边缘行走。我在黑暗中小心翼翼得前进，前面好似有光，我向前跑去，然后倒下，爬不起来。我在地上艰难地爬行，以为自己能够逃离，却发现在沼泽里越陷越深，没人看见，没人关心，无法呼救，也不愿求救。因为没人能救。','一些年轻人。通过高端消费来营造自己高端收入的形象。','这个世界已经腐朽，你我只能在此沉沦','自由从来不是什么理所当然的东西，而是一项需要极高成本的特权。','那些一直嚷着 【 老子做的是自己 管别人屁事 爱看不看】 的人 你真的觉得是别人的问题嘛 别天真了 要想活下去 处的好 就该改变自己 否则活该被孤立死','你身边没那么多朋友，只有两个原因，第一你太丑，第二你太穷。','到现在都记着你的名字纯属是为了让我记住过去那段日子。','不是什么都要人懂 很多事只能自己难过','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','嘴上一直说着 【钱根本不是重要的东西 没有钱我也可以活得很好】 的人 简直笑话 年轻的时候钱不多没关系 等到不惑之年 你的老婆 孩子 没有办法过上理想一点的生活 你不自责？ 这时候还能笑着说 钱不重要嘛 抡圆了胳膊扇自己两巴掌吧','没钱没事业的人。才有时间去提高自己的人生境界。','哭吧，干嘛忍着。你笑得再美 哭得再丑。他都不会多看你一眼。','有些人努力了一辈子。就是从社会的四流挤入了三流。','碰到一个认识的人，想一起聊聊天。她说自己去香港和希腊玩了，又买了苹果和化妆品。我不知道怎么回应，因为我很久没有出去玩和买东西了。我又说我最近思考了人为什么活着和出身的问题，她也沉默，因为很久没有思考这样的问题。此后再也无话。','平时很胆小 干什么都小心翼翼 学习却很好 因为她父亲对她说 如果考不上大学 就打断她的腿 我不知道这位父亲说这话的神态语气 但我觉得 这样很过分 你对一个妈妈去世的有抑郁症的小女孩说 考不上我就打断你的腿 她经常熬夜到半夜 一直在做题 一直在做题 有时候会和我语音聊天 说 这个世界太危险了 我一点都不喜欢 这时候我就忙安慰她 没关系考上大学你就可以离开你的故乡了 可以到我这来啊 到时候我们还能一起玩 一切本来都很好 直到有一天 我至今还记得 那个晚上没有月亮 也没有星星 天很黑 我下楼买吃的 突然接到了她的QQ电话 当时还犹豫呢 我流量不是很多啊 算了还是挂断吧 她又打了一遍 我又挂断了 我跟她说 诶抱歉啊 我流量没多少了 有啥打字说吧','别再抱怨缘分了！美女一直在那，你只不过是没有资格、没有能力遇见罢了','有些事情就是，你用99分的努力也赶不上别人一分的天才。','女孩子希望你有上进心，是想看到你做成事情赚到钱的结果，而不是态度坚决忙乎半天一事无成的过程。','你再这样 咱们友谊的小船 说 翻 就翻 换 大 船。','三十岁时。大部分人都卡在初级职位上。现有的工作升不上去。又无法承担转行的时间成本。更来不及再去读书。父母开始多病 自己收入有限。也没有存款 更大的痛苦。是看到身边没有背景但努力又聪明的人已经小有成就。有背景的人已经开始过上贵族生活了。','有些年轻人。一毕业就到某些大型国企和机关中工作。每天没什么事儿 就是吃饭喝酒。福利好得不得了 人生还没有奋斗过就开始养老。自己的理想被丢在一旁。用民脂民膏来享受特权。对于这样的年轻人。我只想问你们四个字：哪投简历？','我已经被生活虐得千疮百孔、体无完肤，不知还能否在见到明天的太阳。','有的人喜欢说人人平等，说这话的人你能把钱给我花花吗？','凡人甲正在被人揍。他心想："这个肌肉男这么壮，都是健身的结果；每天得拿出好几个小时来锻炼吧。正所谓要想人前显贵，必须人后受罪。他现在表面上过瘾了，其实背后吃的苦可能是这些的好几倍。"想完后，他脸上和身上，却依然那么疼。','天天念叨人生、社会、道德的人慧根往往不高。真正有悟性的人，已经把这些思想视为理所当然的，内化到自己的行动中去，在物质世界获得成功。','“有些人，真是坏的让人害怕。”“大概是因为，做坏事的代价，太低了吧。”这个世界上也没有上帝的存在。','很多朋友喜欢分享旅游经验，看着他们把钱花光出去走一趟。回来后生活没有任何改变，我就感到放心了。','成功不单需要努力，努力只是其中一部分，还需要时势，能力，人脉，更多。你努力不代表你就能成功，你的努力没有得到回报时，果然把自己感动得要哭。','他日若能活着荣回故土，便是福分；客死异乡，也算报应。','我就是不争气，我碍到你了？你凭什么对我指指点点？你他妈是谁？','不要一味的向前行，回头看看，失去的也不少呢。','年轻人不要总抱怨没钱，没钱算什么?以后没钱的日子还多着呢？。','爱情就是，如果没有更好的选择了~我才陪你到天荒地老。','都怪自己太失败了，都怪自己太无能了。但怪自己干嘛，自己本来就没本事。认了吧！','那些人人羡慕的精英，其实过得并不如你想象的那样好，但肯定比你是强得多。','是不是人在年轻时活得越没有自我，才越会在老时拼命想从孩子身上索取点什么。','质疑过许多人，矛盾的是自己。','我们极其自然的擦肩而过，像是本来就该如此','别人在大声骂，大声叫好的时候，你却在冷静而全面地了解事实，理性分析。这样固然是好，但也不是什么值得产生优越感的事情，或者成为高人一等奚落别人的理由。','在发现自己不太可能取得事业上的成功后，一部分人把自己的人生目标修改为“尽情地去体验，做想做的事情”，另一部分人改成了“努力，让自己不后悔。”','我不想努力了，甚至不想再对那个人说话了。我对他报以信任，他却不断伤害我。我想有一个值得我相信的人，也许只能是我自己。','装B不是一件羞耻的事情，只有那些成功者才能去实现自我。而平凡的你最好还是骗骗别人和自己，假装有钱，假装有文化或者假装有品味。','这个世界。正常人犯错会被指责。而精神病仅凭这唯一的理由。抹去所有的罪过。何来公平。最后的崩溃被信仰之人说成报应。我却认为那是解脱。','世界上没有那么多出类拔萃改变世界的人，你、我、他只是这个世界的稳定剂。','人生不是只有独木桥，而是你只有独木桥可走。','很多人都觉得自己的遭遇特别不幸，种种原因导致自己陷入了糟糕的境地。其实这些结果并没有特殊的原因，无非就是出身不好、教育不够、交友不慎、人品太差其中之一','出身不好的限制也不光是平台问题。出身不好。说明你父母混的也不怎么样。也许你基因里就写着“不行”两个字。','秋天是收获的季节。别人的收获是成功与快乐，你的收获是认识到并不是每个人都会成功与快乐。','很多人其实自己并没有正能量。和明天要好好看书一样，只是个美好的愿望。天天嚷嚷自己有，不过是虚张声势。','生活不止有眼前的苟且还有梦想和希望，勇敢的去相信自己试着去爱去改变。男主就是相信这些被乱枪打死的，堕落时他感到迷茫但改变确让他死亡。','我写着别人快乐的故事，自己心中却有着无限哀伤。我看着别人被温暖，自己却双手发冷。','每天显得无聊或寂寞了，去找朋友一起吃饭和逛，只不过是为了满足自己与人交往的需求，算不上是社交。','不要总和你好的人比 多和比你差的人比 这样你就会发现—搬砖的路上 一路有你','爱情开始时都差不多。但当两个人平淡到左手牵右手时，是加班挤地铁还房贷然后给他农村父母寄钱假期在屋里大眼瞪小眼，还是开小车朝九晚五住大房子周末采购装点自己的小家出国旅游，区别就非常大了。','年轻时总是缺乏对自己的正确认识。时而觉得自己能力超群，海阔天空，时而觉得一无是处，平凡无能。长大后，经历得多了，逐渐认清自己，才发现自己原来是一无是处，平凡无能。','别每天趴在桌子上胡思乱想，不是每个王子都会爱上灰姑娘','如果你是个普通人，请一定学会应对挫折；就好象作为一条鱼就一定要学好游泳一样','你自己也清楚无论你怎么努力，这辈子都注定默默无闻','未来不应该由过去决定，只有现在才有这个权力','如果你有过因为突然回想起以前做过的糗事而i尴尬不已，请铭记这句话：“你穷极一生所做的万千件事里，没有任何一件重要到能对这个世界有任何实质性的影响从而被世人铭记。”','坏女人爱男人的钱和权；好女人爱男人因有钱和有权儿产生的自信、宽大、精力充沛、乐观进取。还好，殊途同归。','哪有热爱与爱。从来都是一时兴起。','我们在困难时候最能依靠的人，也是得意时最容易忽视的人。比如备胎，父母，好心但是不优秀的朋友。','努力做一个更好再更好的我，然后他告诉我，我再好他都不要','我就是这么可恶。你不稀罕我所做出的努力，我也不稀罕你精心准备的东西。是不是很生气？我也是。','在激烈的社会竞争中，细腻敏感而且脆弱的年轻人逐渐在社会选择中被淘汰。在被淘汰前他们在SNS上振臂高呼：人生的幸福并不在于你挣了多少钱。','不属于我的我从来不强求，都是跪求。','我已经遍体鳞伤，所以我不在乎还有什么东西伤害我。我止不住流泪，是因为我在告诉自己，不要对世界绝望。','谅解还是惩罚都只是限制罢了，只是刻意的施加桎梏，要说原因…因为人是不会悔改的生物啊。不管多少次，不管愉悦还是痛苦，其本质都不会改变…','长相不行的人，为人也未必好。只不过由于长久寂寞的折磨，有时会发疯似地对人好。','什么？你问有没有那么一个人签名是为你而换，网名是为你而取，脾气是为你而改，性格是为你而变？你先想想自己有没有为一个人签名是为Ta而换，网名是为Ta而取，脾气是为Ta而改，性格是为Ta而变，OK？没有？那就对了。','有人说：你这是在浪费青春！我想说：青春不用来浪费 还能存起来吗？把握好机会，未来的选择，在于青春的你。','健康的身体，双全的父母，能养活自 己，几个能谈心的朋友，可以自由欣赏的 美景，这些幸福的东西我们都已经得到了 ——所以比别人强和获得社会的承认这样 的需求就被凸显出来了。','男人会拒绝一个女人通常是她不够漂亮!','你想念的人，也在想念着别人。','长得丑是病!不然整形医院为什么会是医院!','说不羡慕有钱人，却都爱谈论有钱人。','一边被教育勤劳一定可以致富，一边又被灌输有钱人都很坏','疯狂迷恋一个人，大多数是因为你并不了解TA，你只是迷恋那个你自以为是想象出来的形象。月亮美不?离远了看很美，登上月球后，才发现是坑坑洼洼的一片荒芜死寂之地，令人失望。','“不要让孩子输在起跑线上”是没有意义的，因为你就是起跑线本人，你的孩子早就输了。','努力不一定成功，但是不努力肯定失败，如果经过一番奋斗，你还是过着屌丝生活，那只能说明是你智商(男)/长相(女)问题了','自拍过的人都知道，一个角度拍出来不好看的因素，不一定是长相问题，光线，背景，pose，等等都是影响因素。只要你试着换几个角度再拍几张就会发现，你怎么拍也不好看。','小时候我们经常被教育说不要追求金钱，还嘲笑那些有钱人，说他们穷得只剩下钱。长大后才发现，我们自己穷得连钱也没有啊。','每次电话里听到父母再次提起那些童年伙伴的名字，就感觉在听一场赛事解说，某人结婚，某人生子，某人买车，某人副科。而作为父母的赛马，我还需要跑得更快些。','那些说喜欢吃货女友的男生其实是喜欢长得漂亮身材好的吃货吧，那些说喜欢女朋友素颜的汉子要么是没得选要么也是喜欢漂亮的妹子的素颜吧','总是觉得过去的自己很傻逼，其实再过一段时间，你就会发现，现在的你也很傻逼。','别听那些边抠脚边绞尽脑汁编心灵鸡汤的人告诉你应该怎么活着，说人生意义不在于赚了多少钱的不是巨有钱就是穷。只追求精神境界大多肉体不中看。','我发现很多人总是认不清现实，自命不凡或者觉得“自己没那么差”，事实上你就那么差。你之所以感觉道不公平，是因为你一直都认不清自己的身份觉得自己的社会地位与真正的自己不相符。如果真的认清自己，就会释然了，我本来就该这样。','很多父母对子女的关心就是想知道你活着，活的稳定，在所有人做“该做的事”的年龄做了相同的事情。至于你的梦想理想幻想，心情友情爱情之类的，那太矫情，忘了它吧。','每个人都以为自己与众不同，其实很容易分门别类。你没有什么不同的，你和你差不多环境成长的人基本都是一样的。','我们总会去想几年后的生活会不会就是自己想过的了，那时的自己是不是已经变得更加优秀了，就像几年前的自己憧憬过如今的生活，结果发现，大部分时候，除了环境换了些，大体上生活和我们还是那个老样子。','如果你对目前的工作不太满意，觉得事业发展到了一个瓶颈，那么就去进修一个更高的学历吧，这样的话，毕业以后你就会明白，之前的失败跟学历根本没什么关系。','再下贱的女人在内心深处也觉得自己是好姑娘。再出轨的男人也觉得自己是事出有因，不得已而为之。成绩优异的瞧不起成绩差的，觉得他们不学无术，前途暗淡。学习不好的人普遍觉得学习没什么没用，闯社会靠的是能力和情商。人们永远觉得自己的想法才是对的，凡是跟自己相对立的就是错的。','年轻人如果不知道自己想过什么样的生活，要成为什么样的人，那就先以世俗的看法来作为标准。一定不会错得太远。','当你厌恶你身边的人，你表达厌恶最好的方式不是和他们争吵，而是自己勤快点儿，加把劲离开他们。那样，他们就永远从你的生活中消失，和死了差不多。','你是一个好姑娘，一个人读书、看电影、旅行，直到那个彩虹般绚丽的人出现在你的生命里。和你一起读没读过的书、看没看过的电影、去没去过的目的地。然后你会惊奇地发现，他陪你做这些，只是为了能跟你上床而已。','比起教你如何振作，人们更喜欢教你如何放弃。','为什么谁一说自己的爸妈养育自己特别不容易，其他人就感动啊!不容易有可能是因为他爸妈不努力啊，自己都没混好呢就非生个孩子出来让他受罪。','一个没有很多钱的中国老人，60岁以后的日子就是不停滴重复，吃饭，睡觉，坐着，尽量少生病，慢慢等死。','每天夜里下定决心从明天开始改变，好好生活努力奋斗，第二天中午在被窝里翻个身：操，改天吧。','如果一个姑娘不喜欢你，那你怎么追她都没用。这世界上不存在“精诚所至金石为开”，也根本没有“备胎逆袭女神”这回事，而最傻逼的就是“死缠烂打”。因为对她来说，“你喜欢她"这件事本身，就是一件极讨厌的事。','生活中难免会遇到各种各样的烦心事压的我们喘不过气，孤独和无助将我们团团围住，难以解脱。其实很多事并没有我们想象的那么糟糕，往往是心态使然，只要好好的睡上一觉，早上醒来的时候会惊喜的发现，我们还是和以前一样又胖又穷又丑。','很多年纪大还一事无成的长辈喜欢在年轻人面前吹牛逼。对于这种人，我们要尊敬。因为我们不仅同样一事无成，而且还是晚辈。','那些所谓的各种梦想，用通俗的语言讲无非是”多挣点儿钱”','其实你觉得难吃的菜，没几个人爱吃。你觉得累的事，谁都不爱干。你总以为会有人在未来替你所有的缺陷买单，所以放任自己而去等待一个完美契合的另一半。你指望爱情就是两个五十分，恰恰巧巧能拼出张一百的卷子。可事实上两个不及格的人，甚至给不出一个七十分的答案。','任何的高尚背后都有不为人知自私的用意，这是本能，无可厚非。','今天的事不用放在今天做，万一明天死了呢，就可以不用做了','上帝为你关上一道防盗门，同时还给你上了一把钛合金锁。','有什么好悲伤的？人生不就是起起落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落的吗？','你只看到别人在表面上活得春风得意，却不知道人家在背后也过得也风生水起。','每当我找到成功的钥匙，就发现有人把锁芯给换了','注重细节，从小事做起，因为你根本做不了大事','你无法叫醒一个不回你消息的人，但是红包能','谁说我不会乐器？我退堂鼓打的可好了','秒回并不是喜欢你，只是碰巧在玩手机','如果觉得今天运气挺好，就去买一张彩票吧，至少开奖的时候日期能对的上。','生活不止眼前的苟且，还有前任发来的请帖。','小伙子们现在好好奋斗，将来给你心爱的女生多添点份子钱','有时候你会觉得自己就是个sb，别灰心，至少感觉是对的。','男女之间一定有纯友谊，每一个我认识的女生都说最多只能跟我当朋友','之前我听到过这么一句话，如人饮水冷暖自知，那么你喝热水烫嘴了还不叫唤几声吗？','其实好多时候我们都说过，曾经有好多机会没有把握，那么回到曾经，你有能力把握吗？没有马云就会有你吗？别多想了，洗洗睡吧。','丑小鸭能变天鹅不是因为它多努力，是因为它爸妈本来就是天鹅','童话里的灰姑娘虽然穷，但都很漂亮，你漂亮吗？','我一朋友，特别爱一个女孩，那女孩特别爱吃，所以他每天都想着法带她吃好吃的，大概交往一年，我那朋友都跟着胖了30斤，那一年他俩在一起特别甜蜜。然后女孩跟一个请她吃了一顿豆浆油条的富二代结婚了。','谁说爱笑的人运气都不会差？就是因为你爱笑别人才会觉得你好欺负。','这个世界本没有选择恐惧症，因为你穷了，所以你就病了，地摊跟专卖店就那么难选吗？硬座跟卧铺也很难选吗？吃盖饭还是吃必胜客难选吗？','从前书信很慢，车马很远，一生只能爱一个人，但可以纳很多妾。','记者问王思聪：钱是万能的吗？王思聪：不，钱都是万达的。','你任何为人称道的美丽，都有ps的痕迹。','多少摊煎饼的人，经过不懈的努力，终于摊了更多的煎饼。','比你优秀的人还在努力，那你还努力有什么用？','好人成佛要经历九九八十一难，而坏人只需放下屠刀。','一个残疾的富二代说，上帝给我关上了一扇门，那就请把窗户也关上吧，我要开空调了。','好多人谈读书无用论，其实不是读书没用，是你没用。','我不是不会搭配，只是没钱买齐一整套搭配。','黄鼠狼在养鸡场的悬崖边上立了一块牌，上面写道：不勇敢的飞下去，你怎么知道自己是一只搏击长空的雄鹰？从此黄鼠狼每天都能吃到跳下悬崖摔死的鸡。','有时候你不努力，就不会知道什么叫绝望。','如果你真的想要做好一件事，全世界都会为你挡路。','不要抱怨你在十四亿人中还找不到一个对的人，选择题就四个，你也没对过','只要坚持下去，你就发现幸运一定会发生在别人身上。','上帝为你关上一扇门，还会为你放出一条狗。','跟你谈理想的老板就是为了不给你长工资。','你，成功的话在简介上的形容词就是出身贫寒；失败的话就是在烂泥里打滚。富二代，成功的形容词是出身名门，你也绝对不会看到他失败的那一天','人们常说失败乃成功之母，其实那是骗人的，失败了之后能学到的只有失望和自卑。','作为屌丝的你天天说着人生平平淡淡才是真，得了吧，有成就的人才配说平凡可贵，你那也就是碌碌无为。','自来水不干净不能直接喝，苹果不干净不能直接吃，为什么自来水洗过苹果就能吃了？','沉默不一定是金子，有时候是孙子。','富二代看了鸡汤会越来越成功，而你看了为什么还是那么失败？因为你只有鸡汤而没有勺子。','屌丝这辈子经历最精心动魄的事就是手机还有百分之一的电','世界上没有什么是钱办不到的，如果有，那就是钱不够。','如果你还在坚持，说明你还不够绝望。','跌倒了就得爬起来，不然怎么可能有第二次跌倒摔断腿的机会？','懒惰的人舒服的潦倒一生，勤奋的人累出了病，勤奋换的钱都看了病，然后痛哭的潦倒一生。','如果比尔盖茨没有在IBM做董事的母亲，他会是现在的比尔盖茨吗？若是巴菲特没有美国国会议员的父亲，会有巴菲特的今天吗？','新闻说得重病父亲为了给女儿治病，自己放弃了治疗并捐献了身体器官，好像很感人。其实这篇新闻是要告诉你，如果没有钱，你连活着的资格都没有。','别跟我说什么团结就是力量，难道全世界的鸡蛋联合起来就能打破石头？','万事开头难，中间更难，结尾？不，你没有结尾。','撩你的人多并不代表你很优秀，只是他们觉得你很容易艹。','你现在的生活也许不是你想要的，但绝对是你自找的','别人赖床是因为有钱 想睡多晚就睡多晚 我赖床是因为没钱 能省一餐是一餐','生活上碰到SB怎么办？支持他所有的观点，争取把他培养成大SB。','你所做的事情，也许暂时看不到成果，但不要灰心或焦虑，再坚持一会儿你就会发现其实你在浪费时间。','没事试着联系一下你的初中同学，你就会发现，全班除了你单身，其他同学的孩子都上幼儿园了。','我是一个胖子，有一天被男神嘲笑了，之后我开始努力，每天不坐电梯，爬26楼锻炼身体，终于坚持1个月后，我因为每天迟到被公司开除了。','小时候看电视觉得有钱人都很跋扈，长大后才发现，有钱人（除了村里拆迁的暴发户）其实懂的很多，做事认真，为人宽厚，比穷人更好相处。','你全力做到的最好，可能还不如别人随便搞搞。','出生好的努力是为了成功，而你是为了活下去。','20岁就做了保安的不要担心，坚持下去，至少在下次当保安的时候，你有了工作经验呢。','陈安之说要成功，需要跟成功者在一起，对呀，我一直在给成功者打工呀，可是然后呢？','你以为你是一颗洋葱，你的经历会让人一层一层的剥开感动到哭？其实你就是个卷心菜，别人根本没有耐心剥下去，直接一刀切。','世上无难事只怕有钱人。物以类聚人以穷分。有钱人终成眷属','懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。','以前跪着挣钱很少，于是我也模仿那些优秀的人，试着站起来，结果饭碗就丢了。','“假如我又丑又穷又矮又笨，你还会爱我吗？”“别他妈假如了，你本来就又丑又穷又矮又笨。','除了有钱人，世上还有两种人：其一是省吃俭用买奢侈品装逼的，其二是省吃俭用也买不起奢侈品的。','盖茨休学创业成世界首富，但人家休的是哈佛大学，而你休的蓝翔技校。','现在父母从小就让孩子参加各种兴趣班，为了不让孩子输在起跑线上，殊不知，有些人，出生在终点线上。','幸福离我们并不遥远，它一直在我们那些长相姣好、家庭优越、脑瓜子好使并且积极乐观的朋友身上，和你毛的关系都没有','别人问你有谈恋爱吗？就说现在没有，就可以机智的盖过以前也没有的事实。','我相信只要努力工作就一定能取得成功，当年刚工作的我身无分文，凭借着踏实的工作和勤奋好学，我银行里不仅不在是零存款，而且还欠了银行一大笔钱。','有很多遗憾，我们叫它美丽的错误，如果你坚持去做了，那就只剩下错误了。','我追逐自己的梦想，别人笑我幼稚可笑，但我坚持了下来，最后发现，还真是幼稚可笑。','在公司有一个潜规则，那就是不管你如何有才华，如何专注的工作，如何的真诚待人，都不如一个每天什么都不干，却人美嘴甜的废物。','我敏锐的看清了人生的一些真相，但我的人生却并没有因此而改变。','这个社会是不是就欺负我这种心地善良，脸皮又薄的人？不，是社会只欺负弱者。','每天闹钟响时，午饭吃饱后，周末休息时，你的雄心壮志就变得微不足道。','苦难的生活并不会改变你，它只是让你越来越接近自己本来的样子。','只有看尽人世繁华并有能力随意享受繁华的人，才有资格说淡泊名利之类的话。','人生就是这样，有欢笑就有泪水，只是一部分人主要负责欢笑，另一部分人主要负责泪水。','这世上99%的事都可以用钱来解决。','知道为什么自古红颜多薄命吗？因为没有人在意丑的人活多久。','上帝是公平的，给了你一张丑的脸，还会给你一个没钱的家。','只有努力过了才知道…智商上的差距是不可逾越的。','出卖自己的灵魂和原则并不丢人，丢人的是没能卖一个好价钱。'].randomGet();
        player.say(Satin,3);
+       game.log(player,'：',Satin);
       }
      }
     });   
-   lib.group.push('wang');    
-			lib.group.push('xian');			
-			lib.translate.wang='王';
-			lib.translate.xian='仙';			
-			lib.translate.wangColor="#EEEE00"					
-			lib.translate.xianColor="#97FFFF"				   
- 	   lib.group.push('shen');
-			lib.translate.shen='神';
-			lib.translate.shenColor="#415390",
-     lib.translate.mo='魔';
-     lib.translate.moColor="#A757A8",	
-    	lib.skill._choince={
-				trigger:{global:['gameDrawAfter','phaseBegin']},
-				forced:true,
-				unique:true,
-				popup:false,
-				silent:true,
-				filter:function(event,player){
-					return (player.group&&player.group=='shen');
-				},			
-				content:function(){
-					"step 0"				
-					var controls=[];
-					for(var i in lib.character){ 
-						if(!controls.contains(lib.character[i][1])&&lib.character[i][1]!='shen'){
-							controls.push(lib.character[i][1]);  
-						}
-					}							
-   				    var str='请选择一个势力';
-					player.chooseControl(controls,ui.create.dialog(str,'hidden')).ai=function(){
-						return Math.floor(Math.random()*controls.length);
-					};
-					"step 1"
-					if(result.control){
-						player.group=result.control;
-						if(get.mode()=='guozhan'){
-							player.identity=result.control;
-							player._group=result.control;
-							player.node.identity.firstChild.innerHTML=get.translation(result.control);
-							player.node.identity.dataset.color=player.identity;		
-							if(player.name) lib.character[player.name][1]=result.control;
-							if(player.name1) lib.character[player.name1][1]=result.control;
-							if(player.name2) lib.character[player.name2][1]=result.control;				
-						}
-						else{
-							if(player.name) lib.character[player.name][1]=result.control;
-							if(player.name1) lib.character[player.name1][1]=result.control;
-							if(player.name2) lib.character[player.name2][1]=result.control;			
-						}
-					}
-					"step 2"
-					switch(player.group){
-						case 'wei':player.node.name.dataset.nature='watermm';break;
-						case 'shu':player.node.name.dataset.nature='soilmm';break;
-						case 'wu':player.node.name.dataset.nature='woodmm';break;
-						case 'qun':player.node.name.dataset.nature='metalmm';break;
-						default:player.node.name.dataset.nature='fire';break;
-					}	
-				}			
-			}
-			lib.element.player.dyingx=function(reason){
-				var next=game.createEvent('dying');
-				next.player=this;
-				next.reason=reason;
-				next.source=reason.source;
-				var content=lib.element.player.dyingx2;			
-				next.setContent(content);	
-				return next;
-			}						
-			lib.element.player.dyingx2=function(reason){
-				"step 0"
-				event.filter=lib.skill._save.filter;
-				lib.skill._save.filter=function(event,player){
-					if(event.player.hp>0&&!player.hasSkill('diy_xuelu')) return false;
-					if(event.source&&event.source!=player) return false;
-					return true;
-				},
-				_status.dying=player;
-				event.trigger('dying');
-				game.log(player,'濒死')
-				"step 1"
-				if(_status.dying==player) delete _status.dying;
-				var num=player.hp-player.storage.diy_xuelu;
-				if(num<=0) player.die(event.reason);
-				"step 2"
-				lib.skill._save.filter=event.filter;
-			}
-     lib.extensionMenu['extension_风华绝代'].enable={name:'   ',clear:true,}
-    lib.extensionMenu['extension_风华绝代'].delete={name:'   ',clear:true,}
+   // lib.group.push('wang');    
+		//		lib.group.push('xian');			
+	//			lib.translate.wang='王';
+	//			lib.translate.xian='仙';			
+				//lib.translate.wangColor="#EEEE00"					
+		//		lib.translate.xianColor="#97FFFF"				   
+ 		//   lib.group.push('shen');
+		//		lib.translate.shen='神';
+		//		lib.translate.shenColor="#415390",
+ 	//    lib.translate.mo='魔';
+  	//   lib.translate.moColor="#A757A8",	
+    		//lib.skill._choince={
+					//trigger:{global:['gameDrawAfter','phaseBegin']},
+			//		forced:true,
+				//	unique:true,
+			//		popup:false,
+		//			silent:true,
+				//	filter:function(event,player){
+					//	return (player.group&&player.group=='shen');
+				//	},			
+			//		content:function(){
+				//		"step 0"				
+					//	var controls=[];
+				//		for(var i in lib.character){ 
+					//		if(!controls.contains(lib.character[i][1])&&lib.character[i][1]!='shen'){
+				//				controls.push(lib.character[i][1]);  
+					//		}
+					//	}							
+   			//		    var str='请选择一个势力';
+				//		player.chooseControl(controls,ui.create.dialog(str,'hidden')).ai=function(){
+							//return Math.floor(Math.random()*controls.length);
+						//};
+					//	"step 1"
+					//	if(result.control){
+						//	player.group=result.control;
+					//		if(get.mode()=='guozhan'){
+					//			player.identity=result.control;
+						//		player._group=result.control;
+						//		player.node.identity.firstChild.innerHTML=get.translation(result.control);
+						//		player.node.identity.dataset.color=player.identity;		
+							//	if(player.name) lib.character[player.name][1]=result.control;
+						//		if(player.name1) lib.character[player.name1][1]=result.control;
+							//	if(player.name2) lib.character[player.name2][1]=result.control;				
+						//	}
+					//		else{
+								//if(player.name) lib.character[player.name][1]=result.control;
+							//	if(player.name1) lib.character[player.name1][1]=result.control;
+								//if(player.name2) lib.character[player.name2][1]=result.control;			
+							//}
+					//	}
+					//	"step 2"
+					//	switch(player.group){
+					//		case 'wei':player.node.name.dataset.nature='watermm';break;
+			//				case 'shu':player.node.name.dataset.nature='soilmm';break;
+				//			case 'wu':player.node.name.dataset.nature='woodmm';break;
+						//	case 'qun':player.node.name.dataset.nature='metalmm';break;
+					//		default:player.node.name.dataset.nature='fire';break;
+			//			}	
+			//		}			
+				//};
+			//	lib.element.player.dyingx=function(reason){
+			//		var next=game.createEvent('dying');
+			//		next.player=this;
+				//	next.reason=reason;
+			//		next.source=reason.source;
+			//		var content=lib.element.player.dyingx2;			
+					//next.setContent(content);	
+				//	return next;
+			//	}						
+			//	lib.element.player.dyingx2=function(reason){
+			//		"step 0"
+			//		event.filter=lib.skill._save.filter;
+			//		lib.skill._save.filter=function(event,player){
+				//		if(event.player.hp>0&&!player.hasSkill('diy_xuelu')) return false;
+				//		if(event.source&&event.source!=player) return false;
+				//		return true;
+				//	},
+			//		_status.dying=player;
+			//		event.trigger('dying');
+			//		game.log(player,'濒死')
+			//		"step 1"
+		//			if(_status.dying==player) delete _status.dying;
+					//var num=player.hp-player.storage.diy_xuelu;
+			//		if(num<=0) player.die(event.reason);
+			//		"step 2"
+			//		lib.skill._save.filter=event.filter;
+			//};
+     lib.extensionMenu['extension_风华绝代'].enable={name:'   ',clear:true,};
+    lib.extensionMenu['extension_风华绝代'].delete={name:'   ',clear:true,};
      lib.config.customforbid=[
       ['boss_yingyi3','kurou'],    
       ['boss_yingyi3','xinkurou'],
@@ -13092,7 +13565,7 @@ lib.skill.qinggang_skill.animationColor='thunder'
       ['boss_dianji','xinrende'],
       ['new_zhongyi','rende'],
       ['new_zhongyi','xinrende'],
-      ]     
+      ];  
     // ---------------------------------------改版武將------------------------------------------//
      if(really.Revision){		
             game.import('character',function(){
@@ -19156,16 +19629,21 @@ trigger.source.chooseToDiscard(true,'he');
             lib.config.all.characters.push('Revision');
             if(!lib.config.characters.contains('Revision')){
                 lib.config.characters.push('Revision');
-            }
+            };
             lib.translate['Revision_character_config'] = '改版武将';       
      };
     //---------------------------------------背景音樂------------------------------------------//
      if(really.Background_Music){
      lib.config.background_music='music_off'
+      if(lib.config.mode=='connect'){
+     lib.skill.victory={
+     audio:'ext:风华绝代:5',
+      }
+     };
      if(lib.config.mode!='boss'){
      lib.skill.START_GAME={
      audio:'ext:风华绝代:true',
-     }
+     };
      lib.skill._START_GAME={    
     trigger:{global:'gameDrawAfter'},
 			forced:true,	     
@@ -19176,7 +19654,7 @@ trigger.source.chooseToDiscard(true,'he');
       for(var i=0;i<game.players.length;i++){    
 if(game.players[i].hasSkill('victory')) return false;
       }
-      return !game.me.hasSkill('victory')&&game.me==player&&Math.random()<=0.12;
+      return !game.me.hasSkill('victory')&&game.me==player&&(lib.config.mode!='connect'&&Math.random()<=0.12||Math.random()<=0.24);
      },     	
 			content:function(){
 			if(!lib.skill['victory']){
@@ -19464,7 +19942,7 @@ trigger.source.recover(trigger.source.maxHp-trigger.source.hp);
             lib.config.all.characters.push('Classical');
             if(!lib.config.characters.contains('Classical')){
                 lib.config.characters.push('Classical');
-            }
+            };
             lib.translate['Classical_character_config'] = '古典武侠';
      };
  // ---------------------------------------神將&民間------------------------------------------//
@@ -20278,7 +20756,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,3];
             lib.config.all.characters.push('god');
             if(!lib.config.characters.contains('god')){
                 lib.config.characters.push('god');
-            }
+            };
             lib.translate['god_character_config'] = '神将&民间';
      };
       // ---------------------------------------英雄联盟------------------------------------------//		
@@ -20468,19 +20946,17 @@ return '暴击率：'+(15+10*storage)+'%'}},
               }
            }
         },
-      ltfb:{
-      group:'ltfb_ai',    
+      ltfb:{ 
       audio:'ext:风华绝代:6',
 			trigger:{player:'dying'},     
      forced:true,
      unique:true,
-     priority:17,        
+     priority:17,
+     usable:1,      
 			content:function(){             
        player.recover();
-       player.draw();
-        }
-      },
-      ltfb_ai:{
+       player.draw(2);
+       },
       ai:{                    
 				threaten:function(player,target){
          if(target.hp<=1) return 0.8;
@@ -22333,7 +22809,7 @@ player.draw(player.storage.lol_baonu);
            smts:'吞噬',
            smjh_info:'锁定技，每当你使用非属性【杀】造成伤害时，你获得1个汲魂标记；你使用非属性【杀】对目标造成伤害时，此【杀】伤害+X（X为你拥有汲魂标记数量的一半且向上取整）。',
            smts_info:'锁定技，每当你使用非属性【杀】造成1点伤害，若你已受伤，则你回复1点体力。',
-           ltfb_info:'锁定技，当你进入濒死状态时，你回复1点体力并摸一张牌。',
+           ltfb_info:'锁定技，当你进入濒死状态时，你回复1点体力并摸两张牌，每名角色的回合限一次。',
            ltgg_info:'锁定技，你计算与其他角色的距离-1。',
            xhqy_info:'锁定技，每当你对其他角色造成属性伤害时，你回复1点体力，然后获得对方随机一张♥或♦牌。',
            xhxx_info:'锁定技，你即将造成的非属性伤害均视为属性伤害。',
@@ -22438,9 +22914,9 @@ player.draw(player.storage.lol_baonu);
             lib.config.all.characters.push('yxlm');
             if(!lib.config.characters.contains('yxlm')){
                 lib.config.characters.push('yxlm');
-            }
+            };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【残缺版】完整版请到网盘/qq群内下载并手动导入<li>【2018年1月23日20:28】更新内容：修复、完善、优化<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>其它内容：自行探索<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成其X点伤害（X为其体力上限的50%）→判定为♥对该角色造成其X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【尝鲜版】完整版请到百度网盘/QQ群内下载并手动导入<li>【2018年1月23日20:28】更新内容：修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成其X点伤害（X为其体力上限的50%）→判定为♥对该角色造成其X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<span style=\"font-size:18px;font-weight:550;color: green;font-style: oblique\">欢迎加入无名杀玩家交流群，群号码：658152910</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

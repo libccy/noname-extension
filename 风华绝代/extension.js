@@ -407,7 +407,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
      lib.characterPack.mode_guozhan.gz_guanping=['male','shu',4,['longyin'],[]],
      lib.characterPack.mode_guozhan.gz_zhoucang=['male','shu',4,['zhongyong'],[]],
      lib.characterPack.mode_guozhan.gz_fazheng=['male','shu',3,['xuanhuo','enyuan'],[]],
-     lib.characterPack.mode_guozhan.gz_zhangsong=['male','shu',3,['qiangshi','xiantu'],[]],
+     lib.characterPack.mode_guozhan.gz_zhangsong=['male','shu',3,['qiangzhi','xiantu'],[]],
      lib.characterPack.mode_guozhan.gz_masu=['male','shu',3,['xinzhan','huilei'],[]],
      //吴
      lib.characterPack.mode_guozhan.gz_sunhao=['male','wu',4,['canshi','chouhai'],[]],

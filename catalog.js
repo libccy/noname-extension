@@ -217,7 +217,7 @@ extension["极略三国"]={
 		"sgk_lirang2_backup1.ogg","sgk_lirang2_backup2.ogg","sgk_liuma1.ogg","sgk_liuyun.ogg","sgk_liuyun1.ogg",
 		"sgk_longfu1.ogg","sgk_longfu2.ogg","sgk_manwu.ogg","sgk_meixin1.ogg","sgk_meixin2.ogg",
 		"sgk_meixin21.ogg","sgk_meixin22.ogg","sgk_meixin23.ogg","sgk_meixin24.ogg","sgk_meixin3.ogg",
-		"sgk_meixin4.ogg","sgk_midao1.ogg","sgk_midao2.ogg","sgk_miji1.mp3","sgk_miji2.mp3",
+		"sgk_meixin4.ogg","sgk_midao1.ogg","sgk_midao2.ogg","sgk_miji1.mp3","sgk_miji2.mp3","sgkstar_guanyu.jpg",
 		"sgk_mingshi1.ogg","sgk_mingshi2.ogg","sgk_muma1.ogg","sgk_muniu1.ogg","sgk_muniu2.ogg",
 		"sgk_nizhan1.ogg","sgk_paoxiao1.ogg","sgk_pengri1.mp3","sgk_pengri2.mp3","sgk_pudu1.ogg",
 		"sgk_qicai1.ogg","sgk_qingcheng.ogg","sgk_qingcheng1.ogg","sgk_qingcheng2.ogg","sgk_qingcheng21.ogg",

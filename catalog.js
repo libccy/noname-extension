@@ -572,12 +572,12 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：小改宇智波斑的技能。更新日期：2018-02-01",
+	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：新增达鲁伊。更新日期：2018-02-06",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170201",
-	size:"34MB",
+	version:"20170206",
+	size:"35MB",
     version:4,
     files:
 
@@ -586,7 +586,7 @@ extension["新武将"]={
  "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg","xuSukincen.jpg","zhizhangfei.jpg","kanjiulang.jpg","tuanzang.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
- "didala.jpg","xinyujins.jpg","jiuwei.png",
+ "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
  "aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3","shazang1.mp3","shazang2.mp3",
@@ -626,6 +626,8 @@ extension["新武将"]={
  "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","juneng21.mp3","juneng22.mp3","yiwu1.mp3","yiwu2.mp3",
  "baozi1.mp3","baozi2.mp3","duanbi1.mp3","duanbi2.mp3","duanbi21.mp3","duanbi22.mp3","zhongbao1.mp3","zhongbao2.mp3",
  "zibao1.mp3","zibao2.mp3","zibao21.mp3","tianyu1.mp3","tianyu2.mp3","huigu1.mp3","huigu2.mp3","huigu3.mp3","baodun1.mp3","baodun2.mp3",
+ "x_landun1.mp3","x_landun2.mp3","x_landun3.mp3","x_landun11.mp3","x_landun12.mp3","x_landun31.mp3","x_landun32.mp3","x_landun61.mp3","x_landun62.mp3",
+ "x_bizhu1.mp3","x_bizhu2.mp3",
 ]
 
 };

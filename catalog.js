@@ -599,7 +599,7 @@ extension["新武将"]={
 "lunmu2.mp3","mudun_respond1.mp3","mudun_respond2.mp3","qianniao1.mp3","qianniao2.mp3",
  "qianshou1.mp3","qianshou2.mp3","rebusi1.mp3","rebusi2.mp3","rechendun1.mp3","rechendun2.mp3",
  "rechengmou1.mp3","rechengmou2.mp3","refengyin1.mp3","refengyin2.mp3","reguaili1.mp3",
- "reguaili21.mp3","rehuihun1.mp3","rehuihun2.mp3","rejugong1.mp3","rejugong2.mp3","jiuwei1.mp3","jiuwei2.mp3",
+ "reguaili21.mp3","rehuihun1.mp3","rehuihun2.mp3","rejugong1.mp3","rejugong2.mp3","jiuwei1.mp3",
  "relianhua1.mp3","relianhua2.mp3","renfa1.mp3","renfa2.mp3","reshenwei1.mp3","reshenwei2.mp3",
  "reshouhu1.mp3","reshouhu2.mp3","resizhan1.mp3","resizhan2.mp3","retianzhao1.mp3","retianzhao2.mp3",
  "rexianshu1.mp3","rexianshu2.mp3","rexuanfeng1.mp3","rexuanfeng2.mp3","rexuzuo1.mp3",

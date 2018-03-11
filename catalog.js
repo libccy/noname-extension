@@ -573,11 +573,11 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：修复BUG ！请删除旧版重下。更新日期：2018-03-06",
+	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：修复波风水门封印技能没发动技能都放动画BUG ！更新日期：2018-03-11",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170306",
+	version:"20170311",
 	size:"36MB",
     version:4,
     files:

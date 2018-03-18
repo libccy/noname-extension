@@ -1,4 +1,4 @@
- game.import('extension',{
+game.import('extension',{
     name:'风华绝代',
     content:function(config){
 		if(config.simple_name=='hide'){
@@ -130,7 +130,7 @@
 						},
 					},
 					sgk_wuwei:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event){
@@ -198,7 +198,7 @@
 						}
 					},
 					sgk_yansha:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
@@ -240,7 +240,7 @@
 						}
 					},
 					sgk_yansha2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_yansha2.length>0;
@@ -285,7 +285,7 @@
 						}
 					},
 					sgk_liuyun:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -326,7 +326,7 @@
 						}
 					},
 					sgk_lingbo:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
@@ -390,7 +390,7 @@
 						}
 					},
 					sgk_qingcheng:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:function(){return false;},
@@ -416,7 +416,7 @@
 						group:['sgk_qingcheng2']
 					},
 					sgk_qingcheng2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
 						selectCard:-1,
@@ -437,7 +437,7 @@
 						}
 					},
 					sgk_aozhan:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						marktext:'战',
 						frequent:true,
@@ -463,7 +463,7 @@
 						group:['sgk_aozhan2']
 					},
 					sgk_aozhan2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -511,7 +511,7 @@
 						}
 					},
 					sgk_huxiao:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
@@ -557,7 +557,7 @@
 						}
 					},
 					sgk_guicai:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'judge'},
 						check:function(event,player){
@@ -627,7 +627,7 @@
 						}
 					},
 					sgk_langgu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
@@ -662,7 +662,7 @@
 						group:['sgk_langgu2']
 					},
 					sgk_langgu2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{source:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)<=0;
@@ -695,7 +695,7 @@
 						},
 					},
 					sgk_zhuizun:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'chooseToUse',
 						mark:true,
@@ -775,7 +775,7 @@
 						}
 					},
 					sgk_tianshang:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'dieBegin'},
 						direct:true,
@@ -810,12 +810,12 @@
 						},
 					},
 					sgk_yiji:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						inherit:'yiji'
 					},
 					sgk_huiqu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -958,7 +958,7 @@
 						},
 					},
 					sgk_jiwu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1108,7 +1108,7 @@
 						}
 					},
 					sgk_sheji:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
@@ -1163,7 +1163,7 @@
 						}
 					},
 					sgk_sheji2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:{type:'equip'},
 						viewAs:{name:'sha'},
@@ -1189,7 +1189,7 @@
 						}
 					},
 					sgk_xingyi:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						usable:1,
 						srlose:true,
@@ -1216,7 +1216,7 @@
 						}
 					},
 					sgk_guagu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'dying'},
 						priority:6,
@@ -1261,7 +1261,7 @@
 						}
 					},
 					sgk_wuqin:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1302,7 +1302,7 @@
 						inherit:'lijian'
 					},
 					sgk_manwu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1336,7 +1336,7 @@
 						}
 					},
 					sgk_baiyue:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1405,7 +1405,7 @@
 						}
 					},
 					sgk_yinmeng:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -1468,7 +1468,7 @@
 						}
 					},
 					sgk_xiwu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'shaMiss'},
 						priority:-1,
@@ -1483,7 +1483,7 @@
 						}
 					},
 					sgk_juelie:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1523,7 +1523,7 @@
 					},
 					sgk_fangxin:{
 						srlose:true,
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'chooseToUse',
 						position:'he',
 						viewAs:{name:'tao'},
@@ -1554,7 +1554,7 @@
 						}
 					},
 					sgk_xiyu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -1581,7 +1581,7 @@
 						}
 					},
 					sgk_wanrou:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:['useCardAfter','respondAfter','discardAfter']},
 						direct:true,
@@ -1633,7 +1633,7 @@
 						}
 					},
 					sgk_zhouyan:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						usable:1,
 						enable:'phaseUse',
 						srlose:true,
@@ -1700,7 +1700,7 @@
 						}
 					},
 					sgk_zhaxiang:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						filterCard:true,
@@ -1762,7 +1762,7 @@
 						}
 					},
 					sgk_shixue:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						frequent:true,
@@ -1781,7 +1781,7 @@
 						}
 					},
 					sgk_guoshi:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -1824,7 +1824,7 @@
 								}
 							},
 							judge:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								trigger:{global:'judgeAfter'},
 								forced:true,
 								popup:false,
@@ -1840,7 +1840,7 @@
 								}
 							},
 							discard:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								trigger:{global:'discardAfter'},
 								filter:function(event,player){
 									if(_status.currentPhase!=player) return false;
@@ -1868,7 +1868,7 @@
 						}
 					},
 					sgk_guoshi2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'phaseBegin'},
 						prompt:'是否发动【国士】观看牌顶的牌？',
 						frequent:true,
@@ -2052,7 +2052,7 @@
 						}
 					},
 					sgk_yingcai:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
@@ -2096,7 +2096,7 @@
 						}
 					},
 					sgk_weibao:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2156,7 +2156,7 @@
 						}
 					},
 					sgk_choulve:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2235,7 +2235,7 @@
 						}
 					},
 					sgk_jiexi:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						usable:1,
 						enable:'phaseUse',
@@ -2302,7 +2302,7 @@
 						}
 					},
 					sgk_youxia:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						srlose:true,
 						enable:'phaseUse',
 						filterTarget:function(card,target,player){
@@ -2340,7 +2340,7 @@
 						
 					},
 					sgk_dailao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -2391,7 +2391,7 @@
 						}
 					},
 					sgk_youdi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
@@ -2433,7 +2433,7 @@
 						}
 					},
 					sgk_ruya:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -2461,7 +2461,7 @@
 					},
 					sgk_quanheng:{
 						srlose:true,
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -2818,7 +2818,7 @@
 						}
 					},
 					sgk_xionglve:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						marktext:'略',
 						trigger:{player:'phaseDrawBegin'},
@@ -2854,7 +2854,7 @@
 						group:['sgk_xionglve2'],
 					},
 					sgk_xionglve2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.storage.sgk_xionglve.length>0;
@@ -3050,7 +3050,7 @@
 												return {
 													filterCard:function(){return false},
 													selectCard:-1,
-													audio:”ext:极略三国:1”,
+													audio:’ext:极略三国:1’,
 													popname:true,
 													viewAs:{name:links[0][2]},
 													onuse:function(result,player){
@@ -3126,7 +3126,7 @@
 						}
 					},
 					sgk_fuzheng:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						unique:true,
 						zhuSkill:true,
 						group:['sgk_fuzheng2'],
@@ -3197,7 +3197,7 @@
 						}
 					},
 					sgk_jiuzhu:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:['respondEnd','discardAfter']},
 						filter:function(event,player){
@@ -3249,7 +3249,7 @@
 						group:'sgk_jiuzhu2'
 					},
 					sgk_jiuzhu2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judgeAfter'},
 						direct:true,
 						filter:function(event,player){
@@ -3286,7 +3286,7 @@
 						}
 					},
 					sgk_tuwei:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'useCardToEnd'},
 						filter:function(event,player){
@@ -3342,7 +3342,7 @@
 						}
 					},
 					sgk_xujin:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						content:function(){
@@ -3405,7 +3405,7 @@
 						},
 					},
 					sgk_paoxiao:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{source:'damageAfter'},
 						filter:function(event,player){
@@ -3428,7 +3428,7 @@
 						},
 					},
 					sgk_benxi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						forced:true,
@@ -3453,7 +3453,7 @@
 						}
 					},
 					sgk_yaozhan:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3502,7 +3502,7 @@
 						}
 					},
 					sgk_wenjiu:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3543,7 +3543,7 @@
 						}
 					},
 					sgk_wenjiu2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_wenjiu.length;
@@ -3582,7 +3582,7 @@
 						}
 					},
 					sgk_wenjiu9:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'shaMiss'},
 						priority:-1,
 						forced:true,
@@ -3592,7 +3592,7 @@
 						}
 					},
 					sgk_shuixi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
@@ -3651,7 +3651,7 @@
 						}
 					},
 					sgk_sanfen:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3696,7 +3696,7 @@
 						}
 					},
 					sgk_guanxing:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						frequent:true,
@@ -3903,7 +3903,7 @@
 						}
 					},
 					sgk_weiwo:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -3946,7 +3946,7 @@
 						}
 					},
 					sgk_shouji:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -4006,7 +4006,7 @@
 						}
 					},
 					sgk_hemou:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
@@ -4140,7 +4140,7 @@
 						}
 					},
 					sgk_qicai:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -4171,7 +4171,7 @@
 						}
 					},
 					sgk_rende:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -4202,7 +4202,7 @@
 						}
 					},
 					sgk_chouxi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -4280,8 +4280,8 @@
 						global:'sgk_yongbing2'
 					},
 					sgk_yongbing2:{
-						audio:”ext:极略三国:1”,
-						forceaudio:”ext:极略三国:true”,
+						audio:’ext:极略三国:1’,
+						forceaudio:’ext:极略三国:true’,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='shu') return false;
@@ -4321,7 +4321,7 @@
 						}
 					},
 					sgk_zhaoxiang:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
@@ -4373,7 +4373,7 @@
 						}
 					},
 					sgk_zhishi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -4412,8 +4412,8 @@
 						zhuSkill:true,
 					},
 					sgk_jianxiong2:{
-						audio:”ext:极略三国:1”,
-						forceaudio:”ext:极略三国:true”,
+						audio:’ext:极略三国:1’,
+						forceaudio:’ext:极略三国:true’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='wei') return false;
@@ -4499,7 +4499,7 @@
 						global:['sgk_zhonghou_phaseUse','sgk_zhonghou_sha','sgk_zhonghou_shan','sgk_zhonghou_tao'],
 						subSkill:{
 							phaseUse:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								usable:1,
 								enable:'phaseUse',
 								filter:function(event,player){
@@ -4535,7 +4535,7 @@
 										return {
 											filterCard:function(){return false;},
 											selectCard:-1,
-											audio:”ext:极略三国:2”,
+											audio:’ext:极略三国:2’,
 											usable:1,
 											viewAs:{name:links[0][2]}
 										}
@@ -4551,7 +4551,7 @@
 								}
 							},
 							sha:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								enable:['chooseToUse','chooseToRespond'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4567,7 +4567,7 @@
 								}
 							},
 							shan:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4583,7 +4583,7 @@
 								}
 							},
 							tao:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									if(event.parent.name=='phaseUse') return false;
@@ -4601,7 +4601,7 @@
 						}
 					},
 					sgk_ganglie:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseUseBegin'},
 						srlose:true,
 						check:function(event,player){
@@ -4631,7 +4631,7 @@
 								}
 							},
 							phaseEnd:{
-								audio:”ext:极略三国:2”,
+								audio:’ext:极略三国:2’,
 								trigger:{player:'phaseEnd'},
 								forced:true,
 								filter:function(event,player){
@@ -4888,7 +4888,7 @@
 				},
 				skill:{
 					sgk_zhoufu:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0&&event.player!=player;
@@ -4952,7 +4952,7 @@
 						}
 					},
 					sgk_yingbing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeEnd'},
 						check:function(event,player){
 							return get.effect(event.player,{name:'sha'},player,player)>0;
@@ -4986,7 +4986,7 @@
 						}
 					},
 					sgk_tuodao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaMiss'},
 						filter:function(event,player){
 							return get.distance(player,event.player,'attack')<=1;
@@ -5017,7 +5017,7 @@
 						}
 					},
 					sgk_hemeng:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')&&player.storage.sgk_hemeng_usable>0;
@@ -5060,7 +5060,7 @@
 						}
 					},
 					sgk_sujian:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'gainEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -5083,7 +5083,7 @@
 						}
 					},
 					sgk_yexi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseAfter'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -5185,7 +5185,7 @@
 						}
 					},
 					sgk_kuangyan:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						priority:-10,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -5199,7 +5199,7 @@
 						group:'sgk_kuangyan2'
 					},
 					sgk_kuangyan2:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return event.num>=2;
@@ -5211,7 +5211,7 @@
 						},
 					},
 					sgk_chaochen:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:true,
@@ -5246,7 +5246,7 @@
 						}
 					},
 					sgk_chaochen2:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>player.hp;
@@ -5259,7 +5259,7 @@
 						}
 					},
 					sgk_quanzheng:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							if(event.player==player) return false;
@@ -5274,7 +5274,7 @@
 						}
 					},
 					sgk_shejian:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return !player.getEquip(2);
@@ -5308,7 +5308,7 @@
 					},
 					sgk_shejian2:{},
 					sgk_kuangao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaAfter'},
 						filter:function(event,player){
 							return player.countCards('he');
@@ -5351,7 +5351,7 @@
 						}
 					},
 					sgk_yinbing:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.distanceTo(event.target,'attack')<=1&&event.target!=player&&event.player!=player&&event.target.countCards('e');
@@ -5383,7 +5383,7 @@
 						}
 					},
 					sgk_yinbing2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{target:'shaBefore'},
 						filter:function(event,player){
 							return player.countCards('he')>0&&player.maxHp>player.hp;
@@ -5404,7 +5404,7 @@
 						}
 					},
 					sgk_fenwei:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('h');
@@ -5428,7 +5428,7 @@
 					},
 					sgk_shiyong:{
 						trigger:{player:'damageEnd'},
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						filter:function(event){
 							if(event.card&&(event.card.name=='sha')){
 								if(get.color(event.card)=='red') return true;
@@ -5451,7 +5451,7 @@
 						}
 					},
 					sgk_angyang:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5479,7 +5479,7 @@
 						group:'sgk_angyang2'
 					},
 					sgk_angyang2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{target:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5496,7 +5496,7 @@
 						}
 					},
 					sgk_weifeng:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')<player.hp&&player.countCards('h')>0;
@@ -5528,7 +5528,7 @@
 						}
 					},
 					sgk_xieli:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						zhuSkill:true,
 						trigger:{player:'chooseCardBegin'},
 						filter:function(event,player){
@@ -5592,7 +5592,7 @@
 						},
 					},
 					sgk_jushou:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseEnd'},
 						check:function(event,player){
 							if(player.isTurnedOver()) return true;
@@ -5618,7 +5618,7 @@
 						inherit:'yicong'
 					},
 					sgk_muma:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'loseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -5639,7 +5639,7 @@
 						},
 					},
 					sgk_suiji:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return event.player!=player;
@@ -5682,7 +5682,7 @@
 						}
 					},
 					sgk_fengyi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return get.type(event.card)=='trick'&&event.targets.length==1;
@@ -5693,7 +5693,7 @@
 						},
 					},
 					sgk_yalv:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['damageEnd','phaseUseBegin']},
 						frequent:true,
 						content:function(){
@@ -5715,7 +5715,7 @@
 						}
 					},
 					sgk_xiemu:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						direct:true,
 						content:function(){
@@ -5780,7 +5780,7 @@
 					},
 					sgk_xiemu8:{},
 					sgk_zhejie:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseDiscardEnd'},
 						filter:function(event,player){
 							return event.player!=player&&player.countCards('h')>0;
@@ -5819,7 +5819,7 @@
 						}
 					},
 					sgk_fengya:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						frequent:true,
 						filter:function(event){
@@ -5839,7 +5839,7 @@
 						}
 					},
 					sgk_yijian:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseUseBefore'},
 						direct:true,
 						content:function(){
@@ -5864,7 +5864,7 @@
 						}
 					},
 					sgk_feijun:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseUseBegin'},
 						forced:true,
 						content:function(){
@@ -5970,7 +5970,7 @@
 						},
 					},
 					sgk_liuma:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:function(card){
@@ -6023,7 +6023,7 @@
 						}
 					},
 					sgk_lingnu:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -6069,7 +6069,7 @@
 						}
 					},
 					sgk_baozheng:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						content:function(){
@@ -6121,7 +6121,7 @@
 						}
 					},
 					sgk_zhongyong:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						check:function(event,player){
 							return (!player.hasJudge('lebu')||!player.hasJudge('bingliang'))&&player.hp>2;
@@ -6211,7 +6211,7 @@
 						}
 					},
 					sgk_bozhan:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaMiss',target:'shaMiss'},
 						forced:true,
 						content:function(){
@@ -6219,7 +6219,7 @@
 						}
 					},
 					sgk_qingxi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -6230,7 +6230,7 @@
 						}
 					},
 					sgk_langxing:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(player.countCards('h')>player.hp) return true;
@@ -6250,7 +6250,7 @@
 						}
 					},
 					sgk_langxing2:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						viewAs:{name:'juedou'},
 						filterCard:function(card,player){
@@ -6266,7 +6266,7 @@
 						}
 					},
 					sgk_hubu:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd',source:'damageEnd'},
 						filter:function(event){
 							return event.card&&event.card.name=='sha'&&event.notLink();
@@ -6310,7 +6310,7 @@
 						}
 					},
 					sgk_danshou:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')&&player.countCards('h');
@@ -6330,7 +6330,7 @@
 						}
 					},
 					sgk_yonglie:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&get.distance(player,event.player,'attack')<=1&&event.source&&event.source.isAlive();
@@ -6347,7 +6347,7 @@
 						}
 					},
 					sgk_hengshi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -6359,7 +6359,7 @@
 						}
 					},
 					sgk_zhijiao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseEnd'},
 						init:function(player){
 							player.storage.sgk_zhijiao=false;
@@ -6537,7 +6537,7 @@
 						}
 					},
 					sgk_daoshi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return event.player.num('e')>0;
@@ -6572,7 +6572,7 @@
 						}
 					},
 					sgk_lirang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							if(event.player.countCards('h')==0) return false;
@@ -6660,7 +6660,7 @@
 							},
 							backup:function(links,player){
 								return {
-									audio:”ext:极略三国:2”,
+									audio:’ext:极略三国:2’,
 									filterCard:function(){return false},
 									selectCard:-1,
 									viewAs:{name:'tao'},
@@ -6691,7 +6691,7 @@
 						}
 					},
 					sgk_xianshi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return (event.source!=undefined);
@@ -6723,7 +6723,7 @@
 						}
 					},
 					sgk_chengxiang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						inherit:'chengxiang'
 					},
 					sgk_renxin:{
@@ -6752,7 +6752,7 @@
 						}
 					},
 					sgk_midao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6813,7 +6813,7 @@
 						}
 					},
 					sgk_yishe:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6838,7 +6838,7 @@
 						}
 					},
 					sgk_pudu:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						unique:true,
 						enable:'phaseUse',
 						skillAnimation:true,
@@ -6956,7 +6956,7 @@
 						}
 					},
 					sgk_zongqing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event,player){
 							if(player.isDamaged()&&player.countCards('h',{color:'red'})) return 2;
@@ -7037,7 +7037,7 @@
 						}
 					},
 					sgk_bugua:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeBefore'},
 						content:function(){
 							'step 0'
@@ -7143,7 +7143,7 @@
 						}
 					},
 					sgk_zhaoxin:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							var suits=['heart','club','spade','diamond'];
@@ -7168,7 +7168,7 @@
 						}
 					},
 					sgk_zhihe:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7225,7 +7225,7 @@
 						}
 					},
 					sgk_caijie:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
 							var cards=player.get('h');
@@ -7261,7 +7261,7 @@
 						}
 					},
 					sgk_jilei:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.source)<0;
@@ -7301,7 +7301,7 @@
 						},
 					},
 					sgk_yanliang:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.num('he');
@@ -7360,7 +7360,7 @@
 						}
 					},
 					sgk_duzhi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'recoverAfter'},
 						direct:true,
 						content:function(){
@@ -7385,7 +7385,7 @@
 						group:'sgk_duzhi2'
 					},
 					sgk_duzhi2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&get.color(event.card)=='red'&&event.notLink();
@@ -7426,7 +7426,7 @@
 								if(card.name=='tao'&&_status.event.skill!='sgk_lieyi') return false;
 							},
 						},
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:['chooseToUse','chooseToRespond'],
 						filter:function(event,player){
 							return player.countCards('h','tao')>0;
@@ -7486,7 +7486,7 @@
 						},
 					},
 					sgk_baoli:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7503,7 +7503,7 @@
 						}
 					},
 					sgk_huanbing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							if(get.itemtype(event.card)!='card') return false;
@@ -7536,7 +7536,7 @@
 						group:'sgk_huanbing2'
 					},
 					sgk_huanbing2:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_huanbing.length;
@@ -7583,7 +7583,7 @@
 						}
 					},
 					sgk_hongyuan:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7623,7 +7623,7 @@
 						},
 					},
 					sgk_huaqiang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7663,7 +7663,7 @@
 						}
 					},
 					sgk_chaohuang:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7692,7 +7692,7 @@
 						}
 					},
 					sgk_huilian:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7725,7 +7725,7 @@
 						}
 					},
 					sgk_wenliang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeAfter'},
 						frequent:true,
 						filter:function(event,player){
@@ -7737,7 +7737,7 @@
 					},
 					// sgk_qianhuan:{},
 					sgk_jinglun:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'useCard'},
 						frequent:true,
 						nodelay:true,
@@ -7766,7 +7766,7 @@
 					},
 					sgk_ruzong:{
 						srlose:true,
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h','wuxie')>0;
@@ -7800,7 +7800,7 @@
 							backup:function(links,player){
 								return {
 									filterCard:{name:'wuxie'},
-									audio:”ext:极略三国:1”,
+									audio:’ext:极略三国:1’,
 									popname:true,
 									ai1:function(card){
 										return 8-get.value(card);
@@ -7824,7 +7824,7 @@
 						group:['sgk_ruzong_sha','sgk_ruzong_shan','sgk_ruzong_tao'],
 						subSkill:{
 							sha:{
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'sha'},
@@ -7847,7 +7847,7 @@
 								}
 							},
 							shan:{
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'shan'},
@@ -7870,7 +7870,7 @@
 								}
 							},
 							tao:{
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'tao'},
@@ -7895,7 +7895,7 @@
 						}
 					},
 					sgk_leiji:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'respond'},
 						filter:function(event){
 							return event.card.name=='shan';
@@ -7934,7 +7934,7 @@
 						}
 					},
 					sgk_shanxi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judgeEnd'},
 						forced:true,
 						filter:function(event,player){
@@ -7955,7 +7955,7 @@
 						}
 					},
 					sgk_guhuo:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player!=event.player&&event.player.countCards('h')&&player.countCards('h');
@@ -8049,7 +8049,7 @@
 						popname:true,
 					},
 					sgk_fulu:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player!=event.player;
@@ -8124,7 +8124,7 @@
 						}						
 					},
 					sgk_gongshen:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:8,
@@ -8159,7 +8159,7 @@
 						}
 					},
 					sgk_jianyue:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							if(ui.discardPile.hasChildNodes()==false) return false;
@@ -8185,7 +8185,7 @@
 						}
 					},
 					sgk_zhengyi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){ 
 							return player.countCards('h')-1==player.hp;
@@ -8381,7 +8381,7 @@
 						}
 					},
 					sgk_pengri:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						selectTarget:-1,
 						usable:1,
@@ -8414,7 +8414,7 @@
 						}
 					},
 					sgk_danmou:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageAfter'},
 						filter:function(event){
 							return event.source&&event.player&&event.player.isAlive()&&event.source.isAlive()&&event.source!=event.player;
@@ -8429,7 +8429,7 @@
 						}
 					},
 					sgk_fushe:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseUseBegin'},
 						filter:function(event,player){
 							return get.distance(event.player,player,'attack')<=1&&event.player!=player;
@@ -8509,7 +8509,7 @@
 						}
 					},
 					sgk_ziguo:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -8546,7 +8546,7 @@
 						}	
 					},
 					sgk_shangdao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')>player.countCards('h');
@@ -8559,7 +8559,7 @@
 						}
 					},
 					sgk_hengjiang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -8642,7 +8642,7 @@
 						},
 					},
 					sgk_zhuanshan:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						direct:true,
 						content:function(){
@@ -8711,7 +8711,7 @@
 						}
 					},
 					sgk_zhenlie:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return event.player!=player&&event.card&&(event.card.name=='sha'||get.type(event.card,'trick')=='trick');
@@ -8794,7 +8794,7 @@
 						}
 					},
 					sgk_miji:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						filter:function(event,player,name){
 							if(name=='phaseBegin'){
@@ -9117,7 +9117,7 @@
 				},
 				skill:{
 					sgk_huju:{
-						audio:”ext:极略三国:1”,		
+						audio:’ext:极略三国:1’,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player;
@@ -9129,7 +9129,7 @@
 						group:['sgk_huju2'],
 					},
 					sgk_huju2:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.isMostHandcard();
@@ -9158,7 +9158,7 @@
 						},
 					},
 					sgk_hufu:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(){
@@ -9183,7 +9183,7 @@
 						}
 					},
 					sgk_yanmie:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('he',{suit:'spade'})>0;
@@ -9225,7 +9225,7 @@
 						}
 					},
 					sgk_shunshi:{
-						audio:”ext:极略三国:2”,		
+						audio:’ext:极略三国:2’,		
 						trigger:{target:['shaBegin','taoBegin']},
 						filter:function(event,player){
 							return event.player!=player;
@@ -9257,7 +9257,7 @@
 						}
 					},
 					sgk_junwang:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseUseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -9281,7 +9281,7 @@
 						}
 					},
 					sgk_jizhao:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:[1,Infinity],
@@ -9328,7 +9328,7 @@
 						}
 					},
 					sgk_qixing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						unique:true,
 						trigger:{global:'gameDrawAfter',player:'phaseBegin'},
 						forced:true,
@@ -9422,7 +9422,7 @@
 					},
 					sgk_kuangfeng:{
 						unique:true,
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -9516,7 +9516,7 @@
 						filter:function(event,player){
 							return player.storage.sgk_qixing&&player.storage.sgk_qixing.length;
 						},
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						content:function(){
 							"step 0"
 							player.chooseTarget('选择角色获得大雾标记',
@@ -9635,7 +9635,7 @@
 					},
 					sgk_jilve2:{},
 					sgk_tongtian:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						unique:true,
 						skillAnimation:true,
@@ -9703,7 +9703,7 @@
 						}
 					},
 					sgk_jieyan:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'useCardToBefore'},
 						direct:true,
 						filter:function(event,player){
@@ -9728,7 +9728,7 @@
 						}
 					},
 					sgk_fenying:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:"damageAfter"},
 						direct:true,
 						filter:function(event,player){
@@ -9765,7 +9765,7 @@
 						forced:true,
 						mark:true,
 						marktext:'暴',
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						filter:function(event){
 							return event.num>0;
 						},
@@ -9784,7 +9784,7 @@
 						}
 					},
 					sgk_wumou:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'useCard'},
 						forced:true,
 						filter:function(event){
@@ -9814,7 +9814,7 @@
 						},
 					},
 					sgk_wuqian:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9862,7 +9862,7 @@
 						}
 					},
 					sgk_shenfen:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9926,7 +9926,7 @@
 								if(card.name=='sha'||card.name=='tao') return false;
 							},
 						},
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'chooseToUse',
 						filter:function(event,player){
 							return player.countCards('h',{name:['sha','tao']})>0;
@@ -9946,7 +9946,7 @@
 						}
 					},
 					sgk_suohun:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -9975,7 +9975,7 @@
 					},
 					sgk_suohun2:{
 						skillAnimation:true,
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'dying'},
 						priority:10,
 						forced:true,
@@ -10022,7 +10022,7 @@
 						}
 					},
 					sgk_juejing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player.hp>=1;
@@ -10067,7 +10067,7 @@
 						}
 					},
 					sgk_nizhan:{
-						audio:”ext:极略三国:1”,					
+						audio:’ext:极略三国:1’,					
 						trigger:{global:'damageEnd'},
 						filter:function(event){
 							return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();				
@@ -10103,7 +10103,7 @@
 						}
 					},
 					sgk_cuifeng:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						filter:function(player){
@@ -10138,7 +10138,7 @@
 						}
 					},
 					sgk_weizhen:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							var num=0;
@@ -10176,7 +10176,7 @@
 						}
 					},
 					sgk_zhiming:{
-						audio:”ext:极略三国:1”,		
+						audio:’ext:极略三国:1’,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player&&event.player.countCards('h')>0&&player.countCards('h')>0;
@@ -10224,7 +10224,7 @@
 						}
 					},
 					sgk_suyin:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'loseEnd'},
 						direct:true,
 						filter:function(event,player){
@@ -10254,7 +10254,7 @@
 						}
 					},
 					sgk_dianjie:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseDrawBefore','phaseUseBefore']},
 						prompt:function(event,player){
 							if(event.name=='phaseDraw'){
@@ -10315,7 +10315,7 @@
 						}
 					},
 					sgk_shendao:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judge'},
 						direct:true,
 						content:function(){
@@ -10399,7 +10399,7 @@
 						}
 					},
 					sgk_leihun:{
-						audio:”ext:极略三国:1”,			
+						audio:’ext:极略三国:1’,			
 						trigger:{player:'damageBegin'},
 						forced:true,
 						filter:function(event){
@@ -10420,7 +10420,7 @@
 						}
 					},
 					sgk_shelie:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseDrawBegin'},
 						forced:true,
 						content:function(){
@@ -10462,7 +10462,7 @@
 						}
 					},
 					sgk_gongxin:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -10511,7 +10511,7 @@
 					},
 					sgk_tianqi:{
 						usable:1,
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						chooseButton:{
 							dialog:function(){
@@ -10612,7 +10612,7 @@
 					},
 					sgk_tianqi2:{
 						enable:'chooseToUse',
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10656,7 +10656,7 @@
 					},
 					sgk_tianqi8:{
 						enable:['chooseToUse','chooseToRespond'],
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10699,7 +10699,7 @@
 					},
 					sgk_tianqi9:{
 						enable:'chooseToUse',
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10737,7 +10737,7 @@
 					},
 					sgk_tianqi5:{
 						enable:'chooseToRespond',
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10770,7 +10770,7 @@
 						}
 					},
 					sgk_tianji:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseUseBegin'},
 						frequent:true,
 						filter:function(event,player){
@@ -10835,7 +10835,7 @@
 						},
 					},
 					sgk_xianzhu:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'recoverAfter'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>0;
@@ -10847,7 +10847,7 @@
 						group:'sgk_xianzhu2'
 					},
 					sgk_xianzhu2:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'loseEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>=0;
@@ -10868,7 +10868,7 @@
 						},
 					},
 					sgk_liangyuan:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						skillAnimation:true,
 						unique:true,
@@ -10914,7 +10914,7 @@
 						}
 					},
 					sgk_tianzi:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(game.players.length<8) return 0;
@@ -11026,7 +11026,7 @@
 						}
 					},
 					sgk_shayi:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseUseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -11119,7 +11119,7 @@
 						}
 					},
 					sgk_yinshi:{
-						audio:”ext:极略三国:2”,			
+						audio:’ext:极略三国:2’,			
 						trigger:{player:'damageBegin'},
 						filter:function(event){
 							return event.num>0;
@@ -11142,7 +11142,7 @@
 						}
 					},
 					sgk_zhitian:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -11181,7 +11181,7 @@
 						}
 					},
 					sgk_zhiji:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11230,7 +11230,7 @@
 						}
 					},
 					sgk_jishi:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11289,7 +11289,7 @@
 						}
 					},
 					sgk_xuanxin:{
-						audio:”ext:极略三国:1”,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'damage'},
 						check:function(){return 1},
 						logTarget:'player',
@@ -11320,7 +11320,7 @@
 						}
 					},
 					sgk_lvezhen:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return event.target.countCards('he');
@@ -11365,7 +11365,7 @@
 						}
 					},
 					sgk_danjing:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -11408,7 +11408,7 @@
 						}
 					},
 					sgk_zhonghun:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'dieBegin'},
 						filter:function(event,player){
 							return game.hasPlayer(function(current){
@@ -11434,7 +11434,7 @@
 						}
 					},
 					sgk_qinyin:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>1;
@@ -11493,7 +11493,7 @@
 					sgk_yeyan:{
 						unique:true,
 						enable:'phaseUse',
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						animationColor:'fire',
 						skillAnimation:'legend',
 						filter:function(event,player){
@@ -11788,7 +11788,7 @@
 						}
 					},
 					sup_shejian:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{
 							player:"phaseDiscardEnd",
 						},
@@ -11823,7 +11823,7 @@
 						},
 					},
 					sup_guhuo:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
@@ -12088,7 +12088,7 @@
 								}
 							},
 							sha:{
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
@@ -12119,7 +12119,7 @@
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12155,7 +12155,7 @@
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12370,7 +12370,7 @@
 						}
 					},
 					zhenggong:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'phaseBefore'},
 						filter:function(event,player){
 							return event.player!=player&&!player.isTurnedOver();
@@ -12392,7 +12392,7 @@
 						}
 					},
 					toudu:{
-						audio:”ext:极略三国:true”,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return player.isTurnedOver();
@@ -12422,7 +12422,7 @@
 						}
 					},
 					re_qianxi:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						check:function(){
 							return 1;
@@ -12755,7 +12755,7 @@
 							},
 							sha:{
 								enable:['chooseToUse'],
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12784,7 +12784,7 @@
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0;
 								},
@@ -12819,7 +12819,7 @@
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:”ext:极略三国:1”,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12997,7 +12997,7 @@
 					nos_xiongyi:{
 						unique:true,
 						enable:'phaseUse',
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						mark:true,
 						filter:function(event,player){
 							return !player.storage.xiongyi;
@@ -13047,7 +13047,7 @@
 						}
 					},
 					nos_shuangren:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseUseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -13089,7 +13089,7 @@
 						},
 					},
 					nos_fuhun:{
-						audio:”ext:极略三国:2”,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
 						content:function(){

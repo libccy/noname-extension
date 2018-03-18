@@ -130,7 +130,7 @@ game.import('extension',{
 						},
 					},
 					sgk_wuwei:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event){
@@ -198,7 +198,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yansha:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
@@ -240,7 +240,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yansha2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_yansha2.length>0;
@@ -285,7 +285,7 @@ game.import('extension',{
 						}
 					},
 					sgk_liuyun:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -326,7 +326,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lingbo:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
@@ -390,7 +390,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qingcheng:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:function(){return false;},
@@ -416,7 +416,7 @@ game.import('extension',{
 						group:['sgk_qingcheng2']
 					},
 					sgk_qingcheng2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
 						selectCard:-1,
@@ -437,7 +437,7 @@ game.import('extension',{
 						}
 					},
 					sgk_aozhan:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						marktext:'战',
 						frequent:true,
@@ -463,7 +463,7 @@ game.import('extension',{
 						group:['sgk_aozhan2']
 					},
 					sgk_aozhan2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -511,7 +511,7 @@ game.import('extension',{
 						}
 					},
 					sgk_huxiao:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
@@ -557,7 +557,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guicai:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'judge'},
 						check:function(event,player){
@@ -627,7 +627,7 @@ game.import('extension',{
 						}
 					},
 					sgk_langgu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
@@ -662,7 +662,7 @@ game.import('extension',{
 						group:['sgk_langgu2']
 					},
 					sgk_langgu2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{source:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)<=0;
@@ -695,7 +695,7 @@ game.import('extension',{
 						},
 					},
 					sgk_zhuizun:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'chooseToUse',
 						mark:true,
@@ -775,7 +775,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tianshang:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'dieBegin'},
 						direct:true,
@@ -810,12 +810,12 @@ game.import('extension',{
 						},
 					},
 					sgk_yiji:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						inherit:'yiji'
 					},
 					sgk_huiqu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -958,7 +958,7 @@ game.import('extension',{
 						},
 					},
 					sgk_jiwu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1108,7 +1108,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sheji:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
@@ -1163,7 +1163,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sheji2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:{type:'equip'},
 						viewAs:{name:'sha'},
@@ -1189,7 +1189,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xingyi:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						usable:1,
 						srlose:true,
@@ -1216,7 +1216,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guagu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'dying'},
 						priority:6,
@@ -1261,7 +1261,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wuqin:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1302,7 +1302,7 @@ game.import('extension',{
 						inherit:'lijian'
 					},
 					sgk_manwu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1336,7 +1336,7 @@ game.import('extension',{
 						}
 					},
 					sgk_baiyue:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1405,7 +1405,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinmeng:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -1468,7 +1468,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xiwu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'shaMiss'},
 						priority:-1,
@@ -1483,7 +1483,7 @@ game.import('extension',{
 						}
 					},
 					sgk_juelie:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1523,7 +1523,7 @@ game.import('extension',{
 					},
 					sgk_fangxin:{
 						srlose:true,
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'chooseToUse',
 						position:'he',
 						viewAs:{name:'tao'},
@@ -1554,7 +1554,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xiyu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -1581,7 +1581,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wanrou:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:['useCardAfter','respondAfter','discardAfter']},
 						direct:true,
@@ -1633,7 +1633,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhouyan:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						usable:1,
 						enable:'phaseUse',
 						srlose:true,
@@ -1700,7 +1700,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaxiang:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						filterCard:true,
@@ -1762,7 +1762,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shixue:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						frequent:true,
@@ -1781,7 +1781,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guoshi:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -1824,7 +1824,7 @@ game.import('extension',{
 								}
 							},
 							judge:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								trigger:{global:'judgeAfter'},
 								forced:true,
 								popup:false,
@@ -1840,7 +1840,7 @@ game.import('extension',{
 								}
 							},
 							discard:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								trigger:{global:'discardAfter'},
 								filter:function(event,player){
 									if(_status.currentPhase!=player) return false;
@@ -1868,7 +1868,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guoshi2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'phaseBegin'},
 						prompt:'是否发动【国士】观看牌顶的牌？',
 						frequent:true,
@@ -2052,7 +2052,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yingcai:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
@@ -2096,7 +2096,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weibao:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2156,7 +2156,7 @@ game.import('extension',{
 						}
 					},
 					sgk_choulve:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2235,7 +2235,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jiexi:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						srlose:true,
 						usable:1,
 						enable:'phaseUse',
@@ -2302,7 +2302,7 @@ game.import('extension',{
 						}
 					},
 					sgk_youxia:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						srlose:true,
 						enable:'phaseUse',
 						filterTarget:function(card,target,player){
@@ -2340,7 +2340,7 @@ game.import('extension',{
 						
 					},
 					sgk_dailao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -2391,7 +2391,7 @@ game.import('extension',{
 						}
 					},
 					sgk_youdi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
@@ -2433,7 +2433,7 @@ game.import('extension',{
 						}
 					},
 					sgk_ruya:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -2461,7 +2461,7 @@ game.import('extension',{
 					},
 					sgk_quanheng:{
 						srlose:true,
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -2818,7 +2818,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xionglve:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						marktext:'略',
 						trigger:{player:'phaseDrawBegin'},
@@ -2854,7 +2854,7 @@ game.import('extension',{
 						group:['sgk_xionglve2'],
 					},
 					sgk_xionglve2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.storage.sgk_xionglve.length>0;
@@ -3050,7 +3050,7 @@ game.import('extension',{
 												return {
 													filterCard:function(){return false},
 													selectCard:-1,
-													audio:1,
+													audio:’ext:极略三国:1’,
 													popname:true,
 													viewAs:{name:links[0][2]},
 													onuse:function(result,player){
@@ -3126,7 +3126,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fuzheng:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						unique:true,
 						zhuSkill:true,
 						group:['sgk_fuzheng2'],
@@ -3197,7 +3197,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jiuzhu:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:['respondEnd','discardAfter']},
 						filter:function(event,player){
@@ -3249,7 +3249,7 @@ game.import('extension',{
 						group:'sgk_jiuzhu2'
 					},
 					sgk_jiuzhu2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judgeAfter'},
 						direct:true,
 						filter:function(event,player){
@@ -3286,7 +3286,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tuwei:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'useCardToEnd'},
 						filter:function(event,player){
@@ -3342,7 +3342,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xujin:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						content:function(){
@@ -3405,7 +3405,7 @@ game.import('extension',{
 						},
 					},
 					sgk_paoxiao:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{source:'damageAfter'},
 						filter:function(event,player){
@@ -3428,7 +3428,7 @@ game.import('extension',{
 						},
 					},
 					sgk_benxi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						forced:true,
@@ -3453,7 +3453,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yaozhan:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3502,7 +3502,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wenjiu:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3543,7 +3543,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wenjiu2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_wenjiu.length;
@@ -3582,7 +3582,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wenjiu4:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'shaMiss'},
 						priority:-1,
 						forced:true,
@@ -3592,7 +3592,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shuixi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
@@ -3651,7 +3651,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sanfen:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3696,7 +3696,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guanxing:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						frequent:true,
@@ -3903,7 +3903,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weiwo:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -3946,7 +3946,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shouji:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -4006,7 +4006,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hemou:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
@@ -4060,7 +4060,7 @@ game.import('extension',{
 									threaten:1.5
 								},
 								intro:{
-									name:'合谋·顺手',
+									name:'合谋•顺手',
 									content:'回合限一次,可将一张♥︎牌当顺手牵羊使用.'
 								}
 							},
@@ -4089,7 +4089,7 @@ game.import('extension',{
 									threaten:1.5
 								},
 								intro:{
-									name:'合谋·火攻',
+									name:'合谋•火攻',
 									content:'回合限一次,可将一张♦︎牌当火攻使用.'
 								}
 							},
@@ -4113,7 +4113,7 @@ game.import('extension',{
 									order:8
 								},
 								intro:{
-									name:'合谋·借刀',
+									name:'合谋•借刀',
 									content:'回合限一次,可将一张♣︎牌当借刀杀人使用.'
 								}
 							},
@@ -4133,14 +4133,14 @@ game.import('extension',{
 									order:5
 								},
 								intro:{
-									name:'合谋·决斗',
+									name:'合谋•决斗',
 									content:'回合限一次,可将一张♠︎牌当决斗使用.'
 								}
 							},
 						}
 					},
 					sgk_qicai:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -4171,7 +4171,7 @@ game.import('extension',{
 						}
 					},
 					sgk_rende:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -4202,7 +4202,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chouxi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -4280,8 +4280,8 @@ game.import('extension',{
 						global:'sgk_yongbing2'
 					},
 					sgk_yongbing2:{
-						audio:1,
-						forceaudio:true,
+						audio:’ext:极略三国:1’,
+						forceaudio:’ext:极略三国:true’,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='shu') return false;
@@ -4321,7 +4321,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaoxiang:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						srlose:true,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
@@ -4373,7 +4373,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhishi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -4412,8 +4412,8 @@ game.import('extension',{
 						zhuSkill:true,
 					},
 					sgk_jianxiong2:{
-						audio:1,
-						forceaudio:true,
+						audio:’ext:极略三国:1’,
+						forceaudio:’ext:极略三国:true’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='wei') return false;
@@ -4499,7 +4499,7 @@ game.import('extension',{
 						global:['sgk_zhonghou_phaseUse','sgk_zhonghou_sha','sgk_zhonghou_shan','sgk_zhonghou_tao'],
 						subSkill:{
 							phaseUse:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								usable:1,
 								enable:'phaseUse',
 								filter:function(event,player){
@@ -4535,7 +4535,7 @@ game.import('extension',{
 										return {
 											filterCard:function(){return false;},
 											selectCard:-1,
-											audio:2,
+											audio:’ext:极略三国:2’,
 											usable:1,
 											viewAs:{name:links[0][2]}
 										}
@@ -4551,7 +4551,7 @@ game.import('extension',{
 								}
 							},
 							sha:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								enable:['chooseToUse','chooseToRespond'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4567,7 +4567,7 @@ game.import('extension',{
 								}
 							},
 							shan:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4583,7 +4583,7 @@ game.import('extension',{
 								}
 							},
 							tao:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									if(event.parent.name=='phaseUse') return false;
@@ -4601,7 +4601,7 @@ game.import('extension',{
 						}
 					},
 					sgk_ganglie:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseUseBegin'},
 						srlose:true,
 						check:function(event,player){
@@ -4631,7 +4631,7 @@ game.import('extension',{
 								}
 							},
 							phaseEnd:{
-								audio:2,
+								audio:’ext:极略三国:2’,
 								trigger:{player:'phaseEnd'},
 								forced:true,
 								filter:function(event,player){
@@ -4888,7 +4888,7 @@ game.import('extension',{
 				},
 				skill:{
 					sgk_zhoufu:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0&&event.player!=player;
@@ -4952,7 +4952,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yingbing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeEnd'},
 						check:function(event,player){
 							return get.effect(event.player,{name:'sha'},player,player)>0;
@@ -4986,7 +4986,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tuodao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaMiss'},
 						filter:function(event,player){
 							return get.distance(player,event.player,'attack')<=1;
@@ -5017,7 +5017,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hemeng:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')&&player.storage.sgk_hemeng_usable>0;
@@ -5060,7 +5060,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sujian:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'gainEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -5083,7 +5083,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yexi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseAfter'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -5185,7 +5185,7 @@ game.import('extension',{
 						}
 					},
 					sgk_kuangyan:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						priority:-10,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -5199,7 +5199,7 @@ game.import('extension',{
 						group:'sgk_kuangyan2'
 					},
 					sgk_kuangyan2:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return event.num>=2;
@@ -5211,7 +5211,7 @@ game.import('extension',{
 						},
 					},
 					sgk_chaochen:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:true,
@@ -5246,7 +5246,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chaochen2:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>player.hp;
@@ -5259,7 +5259,7 @@ game.import('extension',{
 						}
 					},
 					sgk_quanzheng:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							if(event.player==player) return false;
@@ -5274,7 +5274,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shejian:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return !player.getEquip(2);
@@ -5308,7 +5308,7 @@ game.import('extension',{
 					},
 					sgk_shejian2:{},
 					sgk_kuangao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaAfter'},
 						filter:function(event,player){
 							return player.countCards('he');
@@ -5351,7 +5351,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinbing:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.distanceTo(event.target,'attack')<=1&&event.target!=player&&event.player!=player&&event.target.countCards('e');
@@ -5383,7 +5383,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinbing2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{target:'shaBefore'},
 						filter:function(event,player){
 							return player.countCards('he')>0&&player.maxHp>player.hp;
@@ -5404,7 +5404,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fenwei:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('h');
@@ -5428,7 +5428,7 @@ game.import('extension',{
 					},
 					sgk_shiyong:{
 						trigger:{player:'damageEnd'},
-						audio:2,
+						audio:’ext:极略三国:2’,
 						filter:function(event){
 							if(event.card&&(event.card.name=='sha')){
 								if(get.color(event.card)=='red') return true;
@@ -5451,7 +5451,7 @@ game.import('extension',{
 						}
 					},
 					sgk_angyang:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5479,7 +5479,7 @@ game.import('extension',{
 						group:'sgk_angyang2'
 					},
 					sgk_angyang2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{target:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5496,7 +5496,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weifeng:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')<player.hp&&player.countCards('h')>0;
@@ -5528,7 +5528,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xieli:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						zhuSkill:true,
 						trigger:{player:'chooseCardBegin'},
 						filter:function(event,player){
@@ -5592,7 +5592,7 @@ game.import('extension',{
 						},
 					},
 					sgk_jushou:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseEnd'},
 						check:function(event,player){
 							if(player.isTurnedOver()) return true;
@@ -5618,7 +5618,7 @@ game.import('extension',{
 						inherit:'yicong'
 					},
 					sgk_muma:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'loseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -5639,7 +5639,7 @@ game.import('extension',{
 						},
 					},
 					sgk_suiji:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return event.player!=player;
@@ -5682,7 +5682,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fengyi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return get.type(event.card)=='trick'&&event.targets.length==1;
@@ -5693,7 +5693,7 @@ game.import('extension',{
 						},
 					},
 					sgk_yalv:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['damageEnd','phaseUseBegin']},
 						frequent:true,
 						content:function(){
@@ -5715,7 +5715,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xiemu:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						direct:true,
 						content:function(){
@@ -5780,7 +5780,7 @@ game.import('extension',{
 					},
 					sgk_xiemu3:{},
 					sgk_zhejie:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseDiscardEnd'},
 						filter:function(event,player){
 							return event.player!=player&&player.countCards('h')>0;
@@ -5819,7 +5819,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fengya:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						frequent:true,
 						filter:function(event){
@@ -5839,7 +5839,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yijian:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseUseBefore'},
 						direct:true,
 						content:function(){
@@ -5864,7 +5864,7 @@ game.import('extension',{
 						}
 					},
 					sgk_feijun:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseUseBegin'},
 						forced:true,
 						content:function(){
@@ -5970,7 +5970,7 @@ game.import('extension',{
 						},
 					},
 					sgk_liuma:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:function(card){
@@ -6023,7 +6023,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lingnu:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -6069,7 +6069,7 @@ game.import('extension',{
 						}
 					},
 					sgk_baozheng:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						content:function(){
@@ -6121,7 +6121,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhongyong:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						check:function(event,player){
 							return (!player.hasJudge('lebu')||!player.hasJudge('bingliang'))&&player.hp>2;
@@ -6211,7 +6211,7 @@ game.import('extension',{
 						}
 					},
 					sgk_bozhan:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaMiss',target:'shaMiss'},
 						forced:true,
 						content:function(){
@@ -6219,7 +6219,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qingxi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'shaBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -6230,7 +6230,7 @@ game.import('extension',{
 						}
 					},
 					sgk_langxing:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(player.countCards('h')>player.hp) return true;
@@ -6250,7 +6250,7 @@ game.import('extension',{
 						}
 					},
 					sgk_langxing2:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						enable:'phaseUse',
 						viewAs:{name:'juedou'},
 						filterCard:function(card,player){
@@ -6266,7 +6266,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hubu:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd',source:'damageEnd'},
 						filter:function(event){
 							return event.card&&event.card.name=='sha'&&event.notLink();
@@ -6310,7 +6310,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danshou:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')&&player.countCards('h');
@@ -6330,7 +6330,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yonglie:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&get.distance(player,event.player,'attack')<=1&&event.source&&event.source.isAlive();
@@ -6347,7 +6347,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hengshi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -6359,7 +6359,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhijiao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseEnd'},
 						init:function(player){
 							player.storage.sgk_zhijiao=false;
@@ -6537,7 +6537,7 @@ game.import('extension',{
 						}
 					},
 					sgk_daoshi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return event.player.num('e')>0;
@@ -6572,7 +6572,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lirang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							if(event.player.countCards('h')==0) return false;
@@ -6660,7 +6660,7 @@ game.import('extension',{
 							},
 							backup:function(links,player){
 								return {
-									audio:2,
+									audio:’ext:极略三国:2’,
 									filterCard:function(){return false},
 									selectCard:-1,
 									viewAs:{name:'tao'},
@@ -6691,7 +6691,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xianshi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return (event.source!=undefined);
@@ -6723,7 +6723,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chengxiang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						inherit:'chengxiang'
 					},
 					sgk_renxin:{
@@ -6752,7 +6752,7 @@ game.import('extension',{
 						}
 					},
 					sgk_midao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6813,7 +6813,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yishe:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6838,7 +6838,7 @@ game.import('extension',{
 						}
 					},
 					sgk_pudu:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						unique:true,
 						enable:'phaseUse',
 						skillAnimation:true,
@@ -6956,7 +6956,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zongqing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event,player){
 							if(player.isDamaged()&&player.countCards('h',{color:'red'})) return 2;
@@ -7037,7 +7037,7 @@ game.import('extension',{
 						}
 					},
 					sgk_bugua:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeBefore'},
 						content:function(){
 							'step 0'
@@ -7143,7 +7143,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaoxin:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							var suits=['heart','club','spade','diamond'];
@@ -7168,7 +7168,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhihe:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7225,7 +7225,7 @@ game.import('extension',{
 						}
 					},
 					sgk_caijie:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
 							var cards=player.get('h');
@@ -7261,7 +7261,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jilei:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.source)<0;
@@ -7301,7 +7301,7 @@ game.import('extension',{
 						},
 					},
 					sgk_yanliang:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.num('he');
@@ -7360,7 +7360,7 @@ game.import('extension',{
 						}
 					},
 					sgk_duzhi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'recoverAfter'},
 						direct:true,
 						content:function(){
@@ -7385,7 +7385,7 @@ game.import('extension',{
 						group:'sgk_duzhi2'
 					},
 					sgk_duzhi2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&get.color(event.card)=='red'&&event.notLink();
@@ -7426,7 +7426,7 @@ game.import('extension',{
 								if(card.name=='tao'&&_status.event.skill!='sgk_lieyi') return false;
 							},
 						},
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:['chooseToUse','chooseToRespond'],
 						filter:function(event,player){
 							return player.countCards('h','tao')>0;
@@ -7486,7 +7486,7 @@ game.import('extension',{
 						},
 					},
 					sgk_baoli:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7503,7 +7503,7 @@ game.import('extension',{
 						}
 					},
 					sgk_huanbing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							if(get.itemtype(event.card)!='card') return false;
@@ -7536,7 +7536,7 @@ game.import('extension',{
 						group:'sgk_huanbing2'
 					},
 					sgk_huanbing2:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_huanbing.length;
@@ -7583,7 +7583,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hongyuan:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7623,7 +7623,7 @@ game.import('extension',{
 						},
 					},
 					sgk_huaqiang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7663,7 +7663,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chaohuang:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7692,7 +7692,7 @@ game.import('extension',{
 						}
 					},
 					sgk_huilian:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7725,7 +7725,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wenliang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'judgeAfter'},
 						frequent:true,
 						filter:function(event,player){
@@ -7737,7 +7737,7 @@ game.import('extension',{
 					},
 					// sgk_qianhuan:{},
 					sgk_jinglun:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'useCard'},
 						frequent:true,
 						nodelay:true,
@@ -7766,7 +7766,7 @@ game.import('extension',{
 					},
 					sgk_ruzong:{
 						srlose:true,
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h','wuxie')>0;
@@ -7800,7 +7800,7 @@ game.import('extension',{
 							backup:function(links,player){
 								return {
 									filterCard:{name:'wuxie'},
-									audio:1,
+									audio:’ext:极略三国:1’,
 									popname:true,
 									ai1:function(card){
 										return 8-get.value(card);
@@ -7824,7 +7824,7 @@ game.import('extension',{
 						group:['sgk_ruzong_sha','sgk_ruzong_shan','sgk_ruzong_tao'],
 						subSkill:{
 							sha:{
-								audio:1,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'sha'},
@@ -7847,7 +7847,7 @@ game.import('extension',{
 								}
 							},
 							shan:{
-								audio:1,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'shan'},
@@ -7870,7 +7870,7 @@ game.import('extension',{
 								}
 							},
 							tao:{
-								audio:1,
+								audio:’ext:极略三国:1’,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'tao'},
@@ -7895,7 +7895,7 @@ game.import('extension',{
 						}
 					},
 					sgk_leiji:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'respond'},
 						filter:function(event){
 							return event.card.name=='shan';
@@ -7934,7 +7934,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shanxi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judgeEnd'},
 						forced:true,
 						filter:function(event,player){
@@ -7955,7 +7955,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guhuo:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player!=event.player&&event.player.countCards('h')&&player.countCards('h');
@@ -8049,7 +8049,7 @@ game.import('extension',{
 						popname:true,
 					},
 					sgk_fulu:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player!=event.player;
@@ -8124,7 +8124,7 @@ game.import('extension',{
 						}						
 					},
 					sgk_gongshen:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:3,
@@ -8159,7 +8159,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jianyue:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							if(ui.discardPile.hasChildNodes()==false) return false;
@@ -8185,7 +8185,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhengyi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){ 
 							return player.countCards('h')-1==player.hp;
@@ -8381,7 +8381,7 @@ game.import('extension',{
 						}
 					},
 					sgk_pengri:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						selectTarget:-1,
 						usable:1,
@@ -8414,7 +8414,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danmou:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'damageAfter'},
 						filter:function(event){
 							return event.source&&event.player&&event.player.isAlive()&&event.source.isAlive()&&event.source!=event.player;
@@ -8429,7 +8429,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fushe:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseUseBegin'},
 						filter:function(event,player){
 							return get.distance(event.player,player,'attack')<=1&&event.player!=player;
@@ -8509,7 +8509,7 @@ game.import('extension',{
 						}
 					},
 					sgk_ziguo:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -8546,7 +8546,7 @@ game.import('extension',{
 						}	
 					},
 					sgk_shangdao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')>player.countCards('h');
@@ -8559,7 +8559,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hengjiang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -8642,7 +8642,7 @@ game.import('extension',{
 						},
 					},
 					sgk_zhuanshan:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						direct:true,
 						content:function(){
@@ -8711,7 +8711,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhenlie:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return event.player!=player&&event.card&&(event.card.name=='sha'||get.type(event.card,'trick')=='trick');
@@ -8794,7 +8794,7 @@ game.import('extension',{
 						}
 					},
 					sgk_miji:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						filter:function(event,player,name){
 							if(name=='phaseBegin'){
@@ -9117,7 +9117,7 @@ game.import('extension',{
 				},
 				skill:{
 					sgk_huju:{
-						audio:1,		
+						audio:’ext:极略三国:1’,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player;
@@ -9129,7 +9129,7 @@ game.import('extension',{
 						group:['sgk_huju2'],
 					},
 					sgk_huju2:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.isMostHandcard();
@@ -9158,7 +9158,7 @@ game.import('extension',{
 						},
 					},
 					sgk_hufu:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(){
@@ -9183,7 +9183,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yanmie:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('he',{suit:'spade'})>0;
@@ -9225,7 +9225,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shunshi:{
-						audio:2,		
+						audio:’ext:极略三国:2’,		
 						trigger:{target:['shaBegin','taoBegin']},
 						filter:function(event,player){
 							return event.player!=player;
@@ -9257,7 +9257,7 @@ game.import('extension',{
 						}
 					},
 					sgk_junwang:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseUseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -9281,7 +9281,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jizhao:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:[1,Infinity],
@@ -9328,7 +9328,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qixing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						unique:true,
 						trigger:{global:'gameDrawAfter',player:'phaseBegin'},
 						forced:true,
@@ -9422,7 +9422,7 @@ game.import('extension',{
 					},
 					sgk_kuangfeng:{
 						unique:true,
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -9516,7 +9516,7 @@ game.import('extension',{
 						filter:function(event,player){
 							return player.storage.sgk_qixing&&player.storage.sgk_qixing.length;
 						},
-						audio:2,
+						audio:’ext:极略三国:2’,
 						content:function(){
 							"step 0"
 							player.chooseTarget('选择角色获得大雾标记',
@@ -9635,7 +9635,7 @@ game.import('extension',{
 					},
 					sgk_jilve2:{},
 					sgk_tongtian:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						unique:true,
 						skillAnimation:true,
@@ -9703,7 +9703,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jieyan:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'useCardToBefore'},
 						direct:true,
 						filter:function(event,player){
@@ -9728,7 +9728,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fenying:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:"damageAfter"},
 						direct:true,
 						filter:function(event,player){
@@ -9765,7 +9765,7 @@ game.import('extension',{
 						forced:true,
 						mark:true,
 						marktext:'暴',
-						audio:2,
+						audio:’ext:极略三国:2’,
 						filter:function(event){
 							return event.num>0;
 						},
@@ -9784,7 +9784,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wumou:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'useCard'},
 						forced:true,
 						filter:function(event){
@@ -9814,7 +9814,7 @@ game.import('extension',{
 						},
 					},
 					sgk_wuqian:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9862,7 +9862,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shenfen:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9926,7 +9926,7 @@ game.import('extension',{
 								if(card.name=='sha'||card.name=='tao') return false;
 							},
 						},
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'chooseToUse',
 						filter:function(event,player){
 							return player.countCards('h',{name:['sha','tao']})>0;
@@ -9946,7 +9946,7 @@ game.import('extension',{
 						}
 					},
 					sgk_suohun:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -9975,7 +9975,7 @@ game.import('extension',{
 					},
 					sgk_suohun2:{
 						skillAnimation:true,
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'dying'},
 						priority:10,
 						forced:true,
@@ -10022,7 +10022,7 @@ game.import('extension',{
 						}
 					},
 					sgk_juejing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player.hp>=1;
@@ -10067,7 +10067,7 @@ game.import('extension',{
 						}
 					},
 					sgk_nizhan:{
-						audio:1,					
+						audio:’ext:极略三国:1’,					
 						trigger:{global:'damageEnd'},
 						filter:function(event){
 							return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();				
@@ -10103,7 +10103,7 @@ game.import('extension',{
 						}
 					},
 					sgk_cuifeng:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						filter:function(player){
@@ -10138,7 +10138,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weizhen:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							var num=0;
@@ -10176,7 +10176,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhiming:{
-						audio:1,		
+						audio:’ext:极略三国:1’,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player&&event.player.countCards('h')>0&&player.countCards('h')>0;
@@ -10224,7 +10224,7 @@ game.import('extension',{
 						}
 					},
 					sgk_suyin:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'loseEnd'},
 						direct:true,
 						filter:function(event,player){
@@ -10254,7 +10254,7 @@ game.import('extension',{
 						}
 					},
 					sgk_dianjie:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:['phaseDrawBefore','phaseUseBefore']},
 						prompt:function(event,player){
 							if(event.name=='phaseDraw'){
@@ -10315,7 +10315,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shendao:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'judge'},
 						direct:true,
 						content:function(){
@@ -10399,7 +10399,7 @@ game.import('extension',{
 						}
 					},
 					sgk_leihun:{
-						audio:1,			
+						audio:’ext:极略三国:1’,			
 						trigger:{player:'damageBegin'},
 						forced:true,
 						filter:function(event){
@@ -10420,7 +10420,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shelie:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{player:'phaseDrawBegin'},
 						forced:true,
 						content:function(){
@@ -10462,7 +10462,7 @@ game.import('extension',{
 						}
 					},
 					sgk_gongxin:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -10511,7 +10511,7 @@ game.import('extension',{
 					},
 					sgk_tianqi:{
 						usable:1,
-						audio:1,
+						audio:’ext:极略三国:1’,
 						enable:'phaseUse',
 						chooseButton:{
 							dialog:function(){
@@ -10612,7 +10612,7 @@ game.import('extension',{
 					},
 					sgk_tianqi2:{
 						enable:'chooseToUse',
-						audio:1,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10656,7 +10656,7 @@ game.import('extension',{
 					},
 					sgk_tianqi3:{
 						enable:['chooseToUse','chooseToRespond'],
-						audio:1,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10699,7 +10699,7 @@ game.import('extension',{
 					},
 					sgk_tianqi4:{
 						enable:'chooseToUse',
-						audio:1,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10737,7 +10737,7 @@ game.import('extension',{
 					},
 					sgk_tianqi5:{
 						enable:'chooseToRespond',
-						audio:1,
+						audio:’ext:极略三国:1’,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10770,7 +10770,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tianji:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'phaseUseBegin'},
 						frequent:true,
 						filter:function(event,player){
@@ -10835,7 +10835,7 @@ game.import('extension',{
 						},
 					},
 					sgk_xianzhu:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'recoverAfter'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>0;
@@ -10847,7 +10847,7 @@ game.import('extension',{
 						group:'sgk_xianzhu2'
 					},
 					sgk_xianzhu2:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{global:'loseEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>=0;
@@ -10868,7 +10868,7 @@ game.import('extension',{
 						},
 					},
 					sgk_liangyuan:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						skillAnimation:true,
 						unique:true,
@@ -10914,7 +10914,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tianzi:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(game.players.length<3) return 0;
@@ -11026,7 +11026,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shayi:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseUseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -11119,7 +11119,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinshi:{
-						audio:2,			
+						audio:’ext:极略三国:2’,			
 						trigger:{player:'damageBegin'},
 						filter:function(event){
 							return event.num>0;
@@ -11142,7 +11142,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhitian:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -11181,7 +11181,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhiji:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11230,7 +11230,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jishi:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11289,7 +11289,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xuanxin:{
-						audio:1,
+						audio:’ext:极略三国:1’,
 						trigger:{global:'damage'},
 						check:function(){return 1},
 						logTarget:'player',
@@ -11320,7 +11320,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lvezhen:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return event.target.countCards('he');
@@ -11365,7 +11365,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danjing:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -11408,7 +11408,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhonghun:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'dieBegin'},
 						filter:function(event,player){
 							return game.hasPlayer(function(current){
@@ -11434,7 +11434,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qinyin:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>1;
@@ -11493,7 +11493,7 @@ game.import('extension',{
 					sgk_yeyan:{
 						unique:true,
 						enable:'phaseUse',
-						audio:2,
+						audio:’ext:极略三国:2’,
 						animationColor:'fire',
 						skillAnimation:'legend',
 						filter:function(event,player){
@@ -11641,7 +11641,7 @@ game.import('extension',{
 					sgk_qixing_info:'分发起始手牌时，你将获得起始手牌改为观看牌堆顶十一张牌并获得其中四张手牌，然后将其余七张牌扣置于武将牌上，称为[星]，摸牌阶段结束时，你可以用至少一张手牌替换等量的[星]',
 					sgk_kuangfeng_info:'回合开始阶段开始时，你可以将一张[星]置入弃牌堆，然后选择一名角色获得一枚[风]标记，若如此做，当其于你的下回合开始前受到火焰伤害时，该伤害加一；雷电伤害时，你令其弃置两张牌；普通伤害时，你将牌堆顶一张牌置入[星]',
 					sgk_dawu_info:'回合结束阶段开始时，你可以弃掉至少一张[星]，然后选择等量的角色获得[雾]标记，若如此做，当其于你的下回合开始前受到非雷电伤害时，你防止之。',
-					sgk_tongtian_info:'限定技，出牌阶段你可以弃置任意花色不同的牌，然后根据以下技能获得相应技能:黑桃·鬼才。 红桃·观星。梅花·完杀。方片·制衡。',
+					sgk_tongtian_info:'限定技，出牌阶段你可以弃置任意花色不同的牌，然后根据以下技能获得相应技能:黑桃•鬼才。 红桃•观星。梅花•完杀。方片•制衡。',
 					sgk_jilve_info:'出牌阶段，你可以摸一张牌，然后选择一项：使用一张牌，或弃置一张牌。若你以此法弃置牌，则本回合此技能失效。',
 					sgk_jieyan_info:'当一张红色【杀】或红色非延时锦囊牌仅指定一名角色为目标后，你可以弃置一张手牌令其无效，然后对目标角色造成1点火焰伤害。',
 					sgk_fenying_info:'当一名角色受到火焰伤害后，若你的手牌数不大于体力上限，你可以弃置一张红色牌，然后对该角色或与其距离最近的一名角色造成等量的火焰伤害。',
@@ -11788,7 +11788,7 @@ game.import('extension',{
 						}
 					},
 					sup_shejian:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{
 							player:"phaseDiscardEnd",
 						},
@@ -11823,7 +11823,7 @@ game.import('extension',{
 						},
 					},
 					sup_guhuo:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
@@ -11839,9 +11839,9 @@ game.import('extension',{
 									list2[i]=['trick','',list2[i]];
 								}
 								var dialog=ui.create.dialog();
-								dialog.addText('蛊惑·基本牌');
+								dialog.addText('蛊惑•基本牌');
 								dialog.add([list,'vcard']);
-								dialog.addText('蛊惑·锦囊牌');
+								dialog.addText('蛊惑•锦囊牌');
 								dialog.add([list2,'vcard']);
 								return dialog;
 							},
@@ -12088,7 +12088,7 @@ game.import('extension',{
 								}
 							},
 							sha:{
-								audio:1,
+								audio:’ext:极略三国:1’,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
@@ -12119,7 +12119,7 @@ game.import('extension',{
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:1,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12155,7 +12155,7 @@ game.import('extension',{
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:1,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12370,7 +12370,7 @@ game.import('extension',{
 						}
 					},
 					zhenggong:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{global:'phaseBefore'},
 						filter:function(event,player){
 							return event.player!=player&&!player.isTurnedOver();
@@ -12392,7 +12392,7 @@ game.import('extension',{
 						}
 					},
 					toudu:{
-						audio:true,
+						audio:’ext:极略三国:true’,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return player.isTurnedOver();
@@ -12422,7 +12422,7 @@ game.import('extension',{
 						}
 					},
 					re_qianxi:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseBegin'},
 						check:function(){
 							return 1;
@@ -12493,9 +12493,9 @@ game.import('extension',{
 									list2[i]=['trick','',list2[i]];
 								}
 								var dialog=ui.create.dialog();
-								dialog.addText('蛊惑·基本牌');
+								dialog.addText('蛊惑•基本牌');
 								dialog.add([list,'vcard']);
-								dialog.addText('蛊惑·锦囊牌');
+								dialog.addText('蛊惑•锦囊牌');
 								dialog.add([list2,'vcard']);
 								return dialog;
 							},
@@ -12755,7 +12755,7 @@ game.import('extension',{
 							},
 							sha:{
 								enable:['chooseToUse'],
-								audio:1,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12784,7 +12784,7 @@ game.import('extension',{
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:1,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0;
 								},
@@ -12819,7 +12819,7 @@ game.import('extension',{
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:1,
+								audio:’ext:极略三国:1’,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12997,7 +12997,7 @@ game.import('extension',{
 					nos_xiongyi:{
 						unique:true,
 						enable:'phaseUse',
-						audio:2,
+						audio:’ext:极略三国:2’,
 						mark:true,
 						filter:function(event,player){
 							return !player.storage.xiongyi;
@@ -13047,7 +13047,7 @@ game.import('extension',{
 						}
 					},
 					nos_shuangren:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseUseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -13089,7 +13089,7 @@ game.import('extension',{
 						},
 					},
 					nos_fuhun:{
-						audio:2,
+						audio:’ext:极略三国:2’,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
 						content:function(){

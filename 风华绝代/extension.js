@@ -9,7 +9,7 @@ game.import('extension',{
 					str2=str2.slice(2);
 				}
 				else if(str2.indexOf('界sp')==0){
-					str2=str2.slice(8);
+					str2=str2.slice(3);
 				}
 				else if(str2.indexOf('SK')==0){
 					str2=str2.slice(2);
@@ -24,31 +24,31 @@ game.import('extension',{
 		if(config.sgk_sr){
 			game.addCharacterPack({
 				character:{
-					sgksr_zhangliao:['male','wei',5,['sgk_wuwei','sgk_yansha'],['die_audio']],
-					sgksr_xiahoudun:['male','wei',9,['sgk_zhonghou','sgk_ganglie'],['die_audio']],
-					sgksr_zhenji:['female','wei',8,['sgk_liuyun','sgk_lingbo','sgk_qingcheng'],['die_audio']],
-					sgksr_xuchu:['male','wei',9,['sgk_aozhan','sgk_huxiao'],['die_audio']],
-					sgksr_simayi:['male','wei',8,['sgk_guicai','sgk_langgu','sgk_zhuizun'],['die_audio']],
-					sgksr_guojia:['male','wei',8,['sgk_tianshang','sgk_yiji','sgk_huiqu'],['die_audio']],
-					sgksr_caocao:['male','wei',9,['sgk_zhaoxiang','sgk_zhishi','sgk_jianxiong'],['zhu','die_audio']],
-					sgksr_zhaoyun:['male','shu',9,['sgk_jiuzhu','sgk_tuwei'],['die_audio']],
-					sgksr_zhangfei:['male','shu',9,['sgk_xujin','sgk_paoxiao'],['die_audio']],
-					sgksr_machao:['male','shu',9,['sgk_benxi','sgk_yaozhan'],['die_audio']],
-					sgksr_guanyu:['male','shu',9,['sgk_wenjiu','sgk_shuixi'],['die_audio']],
-					sgksr_zhugeliang:['male','shu',8,['sgk_sanfen','sgk_guanxing','sgk_weiwo'],['die_audio']],
-					sgksr_huangyueying:['female','shu',8,['sgk_shouji','sgk_hemou','sgk_qicai'],['die_audio']],
-					sgksr_liubei:['male','shu',9,['sgk_rende','sgk_chouxi','sgk_yongbing'],['zhu','die_audio']],
-					sgksr_sunshangxiang:['female','wu',8,['sgk_yinmeng','sgk_xiwu','sgk_juelie'],['die_audio']],
-					sgksr_daqiao:['female','wu',8,['sgk_fangxin','sgk_xiyu','sgk_wanrou'],['die_audio']],
-					sgksr_huanggai:['male','wu',9,['sgk_zhouyan','sgk_zhaxiang'],['die_audio']],
-					sgksr_lvmeng:['male','wu',9,['sgk_shixue','sgk_guoshi'],['die_audio']],
-					sgksr_zhouyu:['male','wu',8,['sgk_yingcai','sgk_weibao','sgk_choulve'],['die_audio']],
-					sgksr_ganning:['male','wu',9,['sgk_jiexi','sgk_youxia'],['die_audio']],
-					sgksr_luxun:['male','wu',8,['sgk_dailao','sgk_youdi','sgk_ruya'],['die_audio']],
-					sgksr_sunquan:['male','wu',9,['sgk_quanheng','sgk_xionglve','sgk_fuzheng'],['zhu','forbidai','die_audio']],
-					sgksr_lvbu:['male','qun',9,['sgk_jiwu','sgk_sheji'],['die_audio']],
-					sgksr_huatuo:['male','qun',12,['sgk_xingyi','sgk_guagu','sgk_wuqin'],['die_audio']],
-					sgksr_diaochan:['female','qun',8,['sgk_lijian','sgk_manwu','sgk_baiyue'],['die_audio']],
+					sgksr_zhangliao:['male','wei',9,['sgk_wuwei','sgk_yansha'],['die_audio']],
+					sgksr_xiahoudun:['male','wei',8,['sgk_zhonghou','sgk_ganglie'],['die_audio']],
+					sgksr_zhenji:['female','wei',7,['sgk_liuyun','sgk_lingbo','sgk_qingcheng'],['die_audio']],
+					sgksr_xuchu:['male','wei',8,['sgk_aozhan','sgk_huxiao'],['die_audio']],
+					sgksr_simayi:['male','wei',7,['sgk_guicai','sgk_langgu','sgk_zhuizun'],['die_audio']],
+					sgksr_guojia:['male','wei',7,['sgk_tianshang','sgk_yiji','sgk_huiqu'],['die_audio']],
+					sgksr_caocao:['male','wei',8,['sgk_zhaoxiang','sgk_zhishi','sgk_jianxiong'],['zhu','die_audio']],
+					sgksr_zhaoyun:['male','shu',8,['sgk_jiuzhu','sgk_tuwei'],['die_audio']],
+					sgksr_zhangfei:['male','shu',8,['sgk_xujin','sgk_paoxiao'],['die_audio']],
+					sgksr_machao:['male','shu',8,['sgk_benxi','sgk_yaozhan'],['die_audio']],
+					sgksr_guanyu:['male','shu',8,['sgk_wenjiu','sgk_shuixi'],['die_audio']],
+					sgksr_zhugeliang:['male','shu',7,['sgk_sanfen','sgk_guanxing','sgk_weiwo'],['die_audio']],
+					sgksr_huangyueying:['female','shu',7,['sgk_shouji','sgk_hemou','sgk_qicai'],['die_audio']],
+					sgksr_liubei:['male','shu',8,['sgk_rende','sgk_chouxi','sgk_yongbing'],['zhu','die_audio']],
+					sgksr_sunshangxiang:['female','wu',7,['sgk_yinmeng','sgk_xiwu','sgk_juelie'],['die_audio']],
+					sgksr_daqiao:['female','wu',7,['sgk_fangxin','sgk_xiyu','sgk_wanrou'],['die_audio']],
+					sgksr_huanggai:['male','wu',8,['sgk_zhouyan','sgk_zhaxiang'],['die_audio']],
+					sgksr_lvmeng:['male','wu',8,['sgk_shixue','sgk_guoshi'],['die_audio']],
+					sgksr_zhouyu:['male','wu',7,['sgk_yingcai','sgk_weibao','sgk_choulve'],['die_audio']],
+					sgksr_ganning:['male','wu',8,['sgk_jiexi','sgk_youxia'],['die_audio']],
+					sgksr_luxun:['male','wu',7,['sgk_dailao','sgk_youdi','sgk_ruya'],['die_audio']],
+					sgksr_sunquan:['male','wu',8,['sgk_quanheng','sgk_xionglve','sgk_fuzheng'],['zhu','forbidai','die_audio']],
+					sgksr_lvbu:['male','qun',8,['sgk_jiwu','sgk_sheji'],['die_audio']],
+					sgksr_huatuo:['male','qun',7,['sgk_xingyi','sgk_guagu','sgk_wuqin'],['die_audio']],
+					sgksr_diaochan:['female','qun',7,['sgk_lijian','sgk_manwu','sgk_baiyue'],['die_audio']],
 				},
 				skill:{
 					_srChoice:{
@@ -72,7 +72,7 @@ game.import('extension',{
 							var list=[];
 							var info=lib.character[name];
 							if(info){
-								var skills=info[8];
+								var skills=info[3];
 								for(var j=0;j<skills.length;j++){
 									if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&lib.skill[skills[j]].srlose){
 										list.push(skills[j]);
@@ -106,12 +106,12 @@ game.import('extension',{
 							'step 2'
 							player.removeSkill(result.control);
 							if(get.mode()=='guozhan'){
-								lib.character[event.deleting][8].remove(result.control);
+								lib.character[event.deleting][3].remove(result.control);
 								player.hiddenSkills.remove(result.control);
 								player.removeSkillTrigger(result.control);
 							}
 							player.checkMarks();
-							'step 8'
+							'step 3'
 							for(var i=0;i<event.names.length;i++){
 								if(event.names[i].indexOf('sgksr_')==0){
 									event.deleting=event.names[i];
@@ -130,18 +130,18 @@ game.import('extension',{
 						},
 					},
 					sgk_wuwei:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event){
-							return event.num<=8;
+							return event.num<=3;
 						},
 						prompt:'是否发动技能【无畏】，展示牌中每有一张基本牌便可视为对一名角色使用一张【杀】',
 						content:function(){
 							'step 0'
 							trigger.untrigger();
 							trigger.finish();
-							event.cards=get.cards(8);
+							event.cards=get.cards(3);
 							player.showCards(event.cards);
 							'step 1'
 							var num=0;
@@ -181,7 +181,7 @@ game.import('extension',{
 								player.gain(event.cards,'gain2');
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								player.useCard({name:'sha'},result.targets,[event.cards1],false);
 								event.cards.remove(event.cards1);
@@ -193,20 +193,20 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							threaten:1.8,
+							threaten:1.3,
 							expose:0.2,
 						}
 					},
 					sgk_yansha:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(player.needsToDiscard()&&player.skipList.contains('phaseUse')&&!player.skipList.contains('phaseDiscard')) return true;
-							return (8-player.storage.sgk_yansha2.length)&&player.countCards('h')>1;
+							return (3-player.storage.sgk_yansha2.length)&&player.countCards('h')>1;
 						},
 						content:function(){
-							trigger.num++;
+							trigger.num+=2;
 							player.addTempSkill('sgk_yansha_cards','phaseAfter');
 						},
 						init:function(player){
@@ -240,7 +240,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yansha2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_yansha2.length>0;
@@ -253,9 +253,9 @@ game.import('extension',{
 							if(get.attitude(player,event.player)<0){
 								if(!player.getEquip(1)&&event.player.getEquip(1)) return 1;
 								if(!player.getEquip(2)&&event.player.getEquip(2)) return 1;
-								if(!player.getEquip(8)&&event.player.getEquip(8)) return 1;
-								if(!player.getEquip(9)&&event.player.getEquip(9)) return 1;
-								if(!player.getEquip(5)&&event.player.getEquip(5)) return 8;
+								if(!player.getEquip(3)&&event.player.getEquip(3)) return 1;
+								if(!player.getEquip(4)&&event.player.getEquip(4)) return 1;
+								if(!player.getEquip(5)&&event.player.getEquip(5)) return 3;
 							}
 							return 0;
 						},
@@ -285,7 +285,7 @@ game.import('extension',{
 						}
 					},
 					sgk_liuyun:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -317,8 +317,8 @@ game.import('extension',{
 								},
 								target:function(player,target){
 									var result=2;
-									if(target.isTurnedOver()) result+=8;
-									if(target.hp==1) result+=8;
+									if(target.isTurnedOver()) result+=3;
+									if(target.hp==1) result+=3;
 									return result;
 								}
 							},
@@ -326,7 +326,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lingbo:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
@@ -373,9 +373,9 @@ game.import('extension',{
 							else{
 								event.card=null;
 							}
-							'step 8'
+							'step 3'
 							if(event.target==game.me) game.delay(0.5);
-							'step 9'
+							'step 4'
 							if(event.card){
 								event.card.fix();
 								ui.cardPile.insertBefore(event.card,ui.cardPile.firstChild);
@@ -390,7 +390,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qingcheng:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:function(){return false;},
@@ -416,7 +416,7 @@ game.import('extension',{
 						group:['sgk_qingcheng2']
 					},
 					sgk_qingcheng2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
 						selectCard:-1,
@@ -437,7 +437,7 @@ game.import('extension',{
 						}
 					},
 					sgk_aozhan:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						marktext:'战',
 						frequent:true,
@@ -463,7 +463,7 @@ game.import('extension',{
 						group:['sgk_aozhan2']
 					},
 					sgk_aozhan2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -478,7 +478,7 @@ game.import('extension',{
 									value+=get.value(cards[i]);
 								}
 								value/=player.storage.sgk_aozhan.length;
-								if(value>=9)  return '收入手牌';
+								if(value>=4)  return '收入手牌';
 								return '置入弃牌堆';
 							}
 							'step 1'
@@ -504,14 +504,14 @@ game.import('extension',{
 							result:{
 								player:function(player){
 									if(player.storage.sgk_aozhan.length>=2) return 1;
-									if(player.hp+player.countCards('h')<=8) return 0.5;
+									if(player.hp+player.countCards('h')<=3) return 0.5;
 									return 0;
 								}
 							}
 						}
 					},
 					sgk_huxiao:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
@@ -532,7 +532,7 @@ game.import('extension',{
 						},
 						content:function(){
 							trigger.num+=2;
-							player.draw(2);
+							player.draw(4);
 							player.addTempSkill('sgk_huxiao2','shaAfter');
 						}
 					},
@@ -557,7 +557,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guicai:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{global:'judge'},
 						check:function(event,player){
@@ -627,7 +627,7 @@ game.import('extension',{
 						}
 					},
 					sgk_langgu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
@@ -662,7 +662,7 @@ game.import('extension',{
 						group:['sgk_langgu2']
 					},
 					sgk_langgu2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{source:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)<=0;
@@ -695,7 +695,7 @@ game.import('extension',{
 						},
 					},
 					sgk_zhuizun:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'chooseToUse',
 						mark:true,
@@ -731,7 +731,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(event.target.countCards('h')){
 								event.target.chooseCard('选择一张手牌交给'+get.translation(player),true).ai=function(card){
 									return -get.value(card);
@@ -740,7 +740,7 @@ game.import('extension',{
 							else{
 								event.goto(2);
 							}
-							'step 9'
+							'step 4'
 							if(result.bool){
 								player.gain(result.cards[0]);
 								target.$give(1,player);
@@ -775,7 +775,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tianshang:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'dieBegin'},
 						direct:true,
@@ -810,12 +810,12 @@ game.import('extension',{
 						},
 					},
 					sgk_yiji:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						inherit:'yiji'
 					},
 					sgk_huiqu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -838,7 +838,7 @@ game.import('extension',{
 							player.chooseToDiscard(get.prompt('sgk_huiqu')).ai=function(card){
 								if(check){
 									if(player.countCards('h')>=player.hp) return 8-get.value(card);
-									return 9-get.value(card);
+									return 4-get.value(card);
 								}
 								return false;
 							}
@@ -869,8 +869,8 @@ game.import('extension',{
 												if(target.isMin()) return false;
 												if((from.get('e','1')&&!target.get('e','1'))||
 													(from.get('e','2')&&!target.get('e','2'))||
-													(from.get('e','8')&&!target.get('e','8'))||
-													(from.get('e','9')&&!target.get('e','9'))||
+													(from.get('e','3')&&!target.get('e','3'))||
+													(from.get('e','4')&&!target.get('e','4'))||
 													(from.get('e','5')&&!target.get('e','5'))) return true;
 												return false;
 											}
@@ -888,8 +888,8 @@ game.import('extension',{
 													if(get.attitude(player,game.players[i])>0){
 														if((target.get('e','1')&&!game.players[i].get('e','1'))||
 														(target.get('e','2')&&!game.players[i].get('e','2'))||
-														(target.get('e','8')&&!game.players[i].get('e','8'))||
-														(target.get('e','9')&&!game.players[i].get('e','9'))||
+														(target.get('e','3')&&!game.players[i].get('e','3'))||
+														(target.get('e','4')&&!game.players[i].get('e','4'))||
 														(target.get('e','5')&&!game.players[i].get('e','5'))) return -get.attitude(player,target);
 													}
 												}
@@ -900,19 +900,19 @@ game.import('extension',{
 									}
 								}
 								else{
-									player.chooseTarget('选择一名目标对其造成2点伤害，然后其摸两张牌。').ai=function(target){
+									player.chooseTarget('选择一名目标对其造成一点伤害，然后其摸一张牌。').ai=function(target){
 										return get.damageEffect(target,player,player);
 									}
 								}
 							}
-							'step 8'
+							'step 3'
 							if(!result.bool){
 								event.finish();
 								return;
 							}
 							player.line2(result.targets);
 							event.targets=result.targets;
-							'step 9'
+							'step 4'
 							if(targets.length==2){
 								player.choosePlayerCard('ej',function(button){
 									var player=_status.event.player;
@@ -937,7 +937,7 @@ game.import('extension',{
 							}
 							else{
 								targets[0].damage(player);
-								targets[0].draw();
+								targets[0].draw(4);
 								event.finish();
 							}
 							'step 5'
@@ -958,7 +958,7 @@ game.import('extension',{
 						},
 					},
 					sgk_jiwu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -980,12 +980,12 @@ game.import('extension',{
 								player.discard(player.getCards('h').remove(cards[0]));
 							}
 							else{
-								player.draw(2);
+								player.draw(4);
 							}
 							'step 1'
 							player.addSkill('sgk_jiwu_buff1');
 							player.addSkill('sgk_jiwu_buff2');
-							player.addTempSkill('sgk_jiwu_buff8','phaseAfter');
+							player.addTempSkill('sgk_jiwu_buff3','phaseAfter');
 							
 						},
 						group:'sgk_jiwu2',
@@ -1016,7 +1016,7 @@ game.import('extension',{
 									player.removeSkill('sgk_jiwu_buff2');
 								},
 							},
-							buff8:{
+							buff3:{
 								mod:{
 									attackFrom:function(){
 										return -Infinity;
@@ -1031,8 +1031,8 @@ game.import('extension',{
 							result:{
 								player:function(player,target){
 									if(player.countCards('h')==0) return 1;
-									if(player.hasSkill('jiu')||player.hasSkill('tianxianjiu')) return 8;
-									return 9-player.countCards('h');
+									if(player.hasSkill('jiu')||player.hasSkill('tianxianjiu')) return 3;
+									return 4-player.countCards('h');
 								}
 							},
 							effect:{
@@ -1108,7 +1108,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sheji:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
@@ -1163,7 +1163,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sheji2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						enable:['chooseToUse','chooseToRespond'],
 						filterCard:{type:'equip'},
 						viewAs:{name:'sha'},
@@ -1189,7 +1189,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xingyi:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						enable:'phaseUse',
 						usable:1,
 						srlose:true,
@@ -1216,7 +1216,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guagu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{global:'dying'},
 						priority:6,
@@ -1252,7 +1252,7 @@ game.import('extension',{
 							trigger.player.recover();
 							"step 1"
 							if(event.bool){
-								trigger.player.draw(2);
+								trigger.player.draw(4);
 							}
 						},
 						ai:{
@@ -1261,7 +1261,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wuqin:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1287,7 +1287,7 @@ game.import('extension',{
 							}
 							'step 2'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
 								player.getStat().card={};
@@ -1302,7 +1302,7 @@ game.import('extension',{
 						inherit:'lijian'
 					},
 					sgk_manwu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1336,7 +1336,7 @@ game.import('extension',{
 						}
 					},
 					sgk_baiyue:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseEnd'},
 						filter:function(event,player){
@@ -1405,7 +1405,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinmeng:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -1434,7 +1434,7 @@ game.import('extension',{
 							}	
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:0.5,
 								target:function(player,target){
@@ -1447,7 +1447,7 @@ game.import('extension',{
 											num++;
 										}
 									}
-									var m=num/9;
+									var m=num/4;
 									if(get.attitude(player,target)>0&&Math.random()<m) return 1;
 									if(get.attitude(player,target)<0&&Math.random()<m) return -1;
 									return 0;
@@ -1468,7 +1468,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xiwu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'shaMiss'},
 						priority:-1,
@@ -1476,14 +1476,14 @@ game.import('extension',{
 							return get.attitude(player,event.target)<0;
 						},
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 							if(trigger.target.countCards('h')){
 								player.discardPlayerCard(trigger.target,'h');
 							}		
 						}
 					},
 					sgk_juelie:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -1523,7 +1523,7 @@ game.import('extension',{
 					},
 					sgk_fangxin:{
 						srlose:true,
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'chooseToUse',
 						position:'he',
 						viewAs:{name:'tao'},
@@ -1554,7 +1554,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xiyu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						direct:true,
@@ -1563,7 +1563,7 @@ game.import('extension',{
 							player.chooseTarget('细语：弃置一名角色的一张牌，然后该角色进行一个额外的出牌阶段',function(card,player,target){
 								return target.num('he')>0;
 							}).ai=function(target){
-								if(target.countCards('h')>=8) return get.attitude(_status.event.player,target);
+								if(target.countCards('h')>=3) return get.attitude(_status.event.player,target);
 								if(target.countCards('h')<2) return -get.attitude(_status.event.player,target);
 								return -get.attitude(_status.event.player,target);
 							}
@@ -1581,7 +1581,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wanrou:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:['useCardAfter','respondAfter','discardAfter']},
 						direct:true,
@@ -1596,13 +1596,13 @@ game.import('extension',{
 						},
 						content:function(){
 							'step 0'
-							player.chooseTarget('婉柔：选择一名目标令其摸两张牌').ai=function(target){
+							player.chooseTarget('婉柔：选择一名目标令其摸一张牌').ai=function(target){
 								return get.attitude(player,target)
 							}
 							'step 1'
 							if(result.bool){
 								player.logSkill('sgk_wanrou',result.targets[0]);
-								result.targets[0].draw();
+								result.targets[0].draw(4);
 							}
 						},
 						ai:{
@@ -1622,18 +1622,18 @@ game.import('extension',{
 						direct:true,
 						content:function(){
 							'step 0'
-							player.chooseTarget('婉柔：选择一名目标令其摸两张牌').ai=function(target){
+							player.chooseTarget('婉柔：选择一名目标令其摸一张牌').ai=function(target){
 								return get.attitude(player,target)
 							}
 							'step 1'
 							if(result.bool){
 								player.logSkill('sgk_wanrou',result.targets[0]);
-								result.targets[0].draw();
+								result.targets[0].draw(4);
 							}
 						}
 					},
 					sgk_zhouyan:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						usable:1,
 						enable:'phaseUse',
 						srlose:true,
@@ -1646,10 +1646,10 @@ game.import('extension',{
 						onuse:function(result,player){
 							game.asyncDraw(result.targets);
 						},
-						prompt:'令一名其他角色摸两张牌视为你对其使用一张火攻',
+						prompt:'令一名其他角色摸一张牌视为你对其使用一张火攻',
 						group:['sgk_zhouyan_buff'],
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:0,
 								target:function(player,target){
@@ -1672,7 +1672,7 @@ game.import('extension',{
 								},
 								content:function(){
 									'step 0'
-									player.draw(2);
+									player.draw(4);
 									if(trigger.getParent().skill=='sgk_zhouyan'){
 										player.chooseBool(get.prompt('sgk_zhouyan')).ai=function(event,player){
 											if(player.countCards('h')==0) return 0;
@@ -1700,7 +1700,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaxiang:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						filterCard:true,
@@ -1762,12 +1762,12 @@ game.import('extension',{
 						}
 					},
 					sgk_shixue:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						frequent:true,
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 							player.addTempSkill('sgk_shixue2','shaAfter');
 						}
 					},
@@ -1781,7 +1781,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guoshi:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -1824,7 +1824,7 @@ game.import('extension',{
 								}
 							},
 							judge:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								trigger:{global:'judgeAfter'},
 								forced:true,
 								popup:false,
@@ -1840,7 +1840,7 @@ game.import('extension',{
 								}
 							},
 							discard:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								trigger:{global:'discardAfter'},
 								filter:function(event,player){
 									if(_status.currentPhase!=player) return false;
@@ -1868,7 +1868,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guoshi2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{global:'phaseBegin'},
 						prompt:'是否发动【国士】观看牌顶的牌？',
 						frequent:true,
@@ -2052,7 +2052,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yingcai:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
@@ -2096,7 +2096,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weibao:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2122,9 +2122,9 @@ game.import('extension',{
 							target.chooseControl('heart2','diamond2','club2','spade2').set('ai',function(event){
 								switch(Math.floor(Math.random()*6)){
 									case 0:return 'heart2';
-									case 1:case 9:case 5:return 'diamond2';
+									case 1:case 4:case 5:return 'diamond2';
 									case 2:return 'club2';
-									case 8:return 'spade2';
+									case 3:return 'spade2';
 								}
 							});
 							'step 1'
@@ -2135,7 +2135,7 @@ game.import('extension',{
 							target.showCards(event.cards);
 							target.gain(event.cards,'draw');
 							'step 2'
-							if(get.suit(event.cards)+'2'!=event.choice) target.damage(2);
+							if(get.suit(event.cards)+'2'!=event.choice) target.damage(4);
 						},
 						ai:{
 							order:1,
@@ -2156,7 +2156,7 @@ game.import('extension',{
 						}
 					},
 					sgk_choulve:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -2207,12 +2207,12 @@ game.import('extension',{
 									return event.card.name=='sha'
 								},
 								content:function(){
-									player.storage.sgk_choulve.draw();
+									player.storage.sgk_choulve.draw(4);
 								}
 							}
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:function(player){
 									if(player.countCards('h')>player.hp) return 0.5;
@@ -2235,7 +2235,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jiexi:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						srlose:true,
 						usable:1,
 						enable:'phaseUse',
@@ -2302,7 +2302,7 @@ game.import('extension',{
 						}
 					},
 					sgk_youxia:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						srlose:true,
 						enable:'phaseUse',
 						filterTarget:function(card,target,player){
@@ -2340,7 +2340,7 @@ game.import('extension',{
 						
 					},
 					sgk_dailao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -2369,29 +2369,29 @@ game.import('extension',{
 							result:{
 								player:function(player){
 									if(ui.selected.cards.length>0){
-										if(player.isTurnedOver()) return 8;
-										if(!player.isTurnedOver()) return -9
+										if(player.isTurnedOver()) return 3;
+										if(!player.isTurnedOver()) return -4
 									}
 									if(ui.selected.cards.length==0){
-										if(player.isTurnedOver()) return 9;
-										if(!player.isTurnedOver()) return -8;
+										if(player.isTurnedOver()) return 4;
+										if(!player.isTurnedOver()) return -3;
 									}
 								},
 								target:function(target,player){
 									if(ui.selected.cards.length>0){
-										if(target.isTurnedOver()) return 8;
-										if(!target.isTurnedOver()) return -9
+										if(target.isTurnedOver()) return 3;
+										if(!target.isTurnedOver()) return -4
 									}
 									if(ui.selected.cards.length==0){
-										if(target.isTurnedOver()) return 9;
-										if(!target.isTurnedOver()) return -8;
+										if(target.isTurnedOver()) return 4;
+										if(!target.isTurnedOver()) return -3;
 									}
 								}
 							}
 						}
 					},
 					sgk_youdi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						enable:'chooseToRespond',
 						filterCard:function(){return false;},
@@ -2422,7 +2422,7 @@ game.import('extension',{
 						content:function(){
 							'step 0'
 							player.chooseToDiscard(get.prompt('sgk_youdi',trigger.player),[1,Infinity]).ai=function(card){
-								if(get.attitude(player,trigger.player)<=0) return 9-get.value(card);
+								if(get.attitude(player,trigger.player)<=0) return 4-get.value(card);
 								return false;
 							}
 							'step 1'
@@ -2433,7 +2433,7 @@ game.import('extension',{
 						}
 					},
 					sgk_ruya:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -2461,7 +2461,7 @@ game.import('extension',{
 					},
 					sgk_quanheng:{
 						srlose:true,
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -2512,7 +2512,7 @@ game.import('extension',{
 
 									if(player.isUnderControl(true)&&!_status.auto&&!ui.tempnowuxie&&tempnowuxie){
 										var translation=get.translation(card.name);
-										if(translation.length>=9){
+										if(translation.length>=4){
 											translation=lib.translate[card.name+'_ab']||translation.slice(0,2);
 										}
 										ui.tempnowuxie=ui.create.control('不无懈'+translation,ui.click.tempnowuxie,'stayleft');
@@ -2535,7 +2535,7 @@ game.import('extension',{
 													var aiii=info.ai.wuxie(source,card,source,_status.event.player,state);
 													if(typeof aiii=='number') return aiii;
 												}
-												if(Math.abs(get.attitude(_status.event.player,source))<8) return 0;
+												if(Math.abs(get.attitude(_status.event.player,source))<3) return 0;
 												if(source.hasSkill('guanxing')) return 0;
 												if(name!='lebu'&&name!='bingliang'){
 													if(source!=_status.event.player){
@@ -2572,7 +2572,7 @@ game.import('extension',{
 													}
 													return -eff*state;
 												}
-												if(Math.abs(get.attitude(_status.event.player,target))<8) return 0;
+												if(Math.abs(get.attitude(_status.event.player,target))<3) return 0;
 												return -get.effect(target,card,source,_status.event.player)*state;
 											}
 										},
@@ -2613,14 +2613,14 @@ game.import('extension',{
 									}
 								}
 								else if(_status.connectMode&&(event.list[0].isOnline()||event.list[0]==game.me)){
-									event.goto(9);
+									event.goto(4);
 								}
 								else{
 									event.current=event.list.shift();
 									event.send(event.current,event.state,event.triggername=='phaseJudge',
 									event.card,event.source,event.target,event.targets,event.id,trigger.parent.id,event.tempnowuxie);
 								}
-								'step 8'
+								'step 3'
 								if(result.bool){
 									event.wuxieresult=event.current;
 									event.wuxieresult2=result;
@@ -2629,7 +2629,7 @@ game.import('extension',{
 								else{
 									event.goto(2);
 								}
-								'step 9'
+								'step 4'
 								var id=event.id;
 								var sendback=function(result,player){
 									if(result&&result.id==id&&!event.wuxieresult&&result.bool){
@@ -2770,7 +2770,7 @@ game.import('extension',{
 									complexCard:true,
 									ai1:function(card){
 										var player=_status.event.player;
-										if(ui.selected.cards.length==1) return 9-get.value(card);
+										if(ui.selected.cards.length==1) return 4-get.value(card);
 										if(ui.selected.cards.length==2&&player.hasWuxie()) return 7-get.value(card);
 										return 5-get.value(card);
 									},
@@ -2811,20 +2811,20 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:1,
 							}
 						}
 					},
 					sgk_xionglve:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						marktext:'略',
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event,player){
 							if(player.skipList.contains('phaseUse')) return 1;
-							return player.storage.sgk_xionglve.length<=8;
+							return player.storage.sgk_xionglve.length<=3;
 						},
 						content:function(){
 							'step 0'
@@ -2854,7 +2854,7 @@ game.import('extension',{
 						group:['sgk_xionglve2'],
 					},
 					sgk_xionglve2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.storage.sgk_xionglve.length>0;
@@ -3050,7 +3050,7 @@ game.import('extension',{
 												return {
 													filterCard:function(){return false},
 													selectCard:-1,
-													audio:’ext:极略三国:1’,
+													audio:1,
 													popname:true,
 													viewAs:{name:links[0][2]},
 													onuse:function(result,player){
@@ -3108,7 +3108,7 @@ game.import('extension',{
 											}
 											else{
 												player.discard(card);
-												target.draw();
+												target.draw(4);
 											}
 										}
 									}
@@ -3119,14 +3119,14 @@ game.import('extension',{
 							order:6,
 							result:{
 								player:function(player){
-									if(player.hp<=2) return 8;
+									if(player.hp<=2) return 3;
 									return player.storage.sgk_xionglve.length-1;
 								},
 							}
 						}
 					},
 					sgk_fuzheng:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						unique:true,
 						zhuSkill:true,
 						group:['sgk_fuzheng2'],
@@ -3161,20 +3161,20 @@ game.import('extension',{
 							'step 2'
 							if(event.targets.length){
 								var target=event.targets.shift();
-								target.draw();
+								target.draw(4);
 								event.current=target;
 							}
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(event.current&&event.current.countCards('h')){
 								event.current.chooseCard('选择一张手牌置于牌堆顶','h',true);
 							}
 							else{
 								event.goto(2);
 							}
-							'step 9'
+							'step 4'
 							if(result&&result.cards){
 								event.card=result.cards[0];
 								event.current.lose(result.cards,ui.special);
@@ -3197,7 +3197,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jiuzhu:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{global:['respondEnd','discardAfter']},
 						filter:function(event,player){
@@ -3249,7 +3249,7 @@ game.import('extension',{
 						group:'sgk_jiuzhu2'
 					},
 					sgk_jiuzhu2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'judgeAfter'},
 						direct:true,
 						filter:function(event,player){
@@ -3286,7 +3286,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tuwei:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{global:'useCardToEnd'},
 						filter:function(event,player){
@@ -3342,7 +3342,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xujin:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'phaseDrawBefore'},
 						content:function(){
@@ -3365,7 +3365,7 @@ game.import('extension',{
 								}
 								return false;
 							}
-							"step 8"
+							"step 3"
 							player.storage.sgk_xujin2=result.buttons.length;
 							player.addTempSkill('sgk_xujin2','phaseAfter');
 							event.cards2=[];
@@ -3376,7 +3376,7 @@ game.import('extension',{
 							player.chooseTarget('选择获得卡牌的目标',true).ai=function(target){
 								return get.attitude(player,target);
 							}
-							"step 9"
+							"step 4"
 							result.targets[0].gain(event.cards2);
 							if(event.cards2.length) result.targets[0].$gain(event.cards2);
 							for(var i=0;i<cards.length;i++){
@@ -3405,7 +3405,7 @@ game.import('extension',{
 						},
 					},
 					sgk_paoxiao:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{source:'damageAfter'},
 						filter:function(event,player){
@@ -3417,7 +3417,7 @@ game.import('extension',{
 						priority:5,
 						content:function(){
 							'step 0'
-							player.draw(2);
+							player.draw(4);
 							player.chooseToUse({name:'sha'},function(card,target,player){
 								return player.canUse({name:'sha'},target);
 							});
@@ -3428,7 +3428,7 @@ game.import('extension',{
 						},
 					},
 					sgk_benxi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'shaBegin'},
 						forced:true,
@@ -3453,7 +3453,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yaozhan:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3498,11 +3498,11 @@ game.import('extension',{
 									return -0.5
 								},
 							},
-							threaten:1.8
+							threaten:1.3
 						}
 					},
 					sgk_wenjiu:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3543,7 +3543,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wenjiu2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_wenjiu.length;
@@ -3564,13 +3564,13 @@ game.import('extension',{
 								ui.discardPile.appendChild(result.links[0]);
 								player.syncStorage('sgk_wenjiu');
 								if(!player.storage.sgk_wenjiu.length) player.unmarkSkill('sgk_wenjiu');
-								player.addTempSkill('sgk_wenjiu8','shaAfter');
-								player.addTempSkill('sgk_wenjiu9','shaAfter');
+								player.addTempSkill('sgk_wenjiu3','shaAfter');
+								player.addTempSkill('sgk_wenjiu4','shaAfter');
 								
 							}
 						}
 					},
-					sgk_wenjiu8:{
+					sgk_wenjiu3:{
 						trigger:{source:'damageBegin'},
 						filter:function(event){
 							return event.card&&event.card.name=='sha'&&event.notLink();
@@ -3581,18 +3581,18 @@ game.import('extension',{
 							trigger.num+=2;
 						}
 					},
-					sgk_wenjiu9:{
-						audio:’ext:极略三国:2’,
+					sgk_wenjiu4:{
+						audio:2,
 						trigger:{player:'shaMiss'},
 						priority:-1,
 						forced:true,
 						popup:false,
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 						}
 					},
 					sgk_shuixi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
@@ -3651,7 +3651,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sanfen:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3689,14 +3689,14 @@ game.import('extension',{
 						ai:{
 							order:8,
 							result:{
-								target:-8
+								target:-3
 							},
-							expose:0.9,
-							threaten:8,
+							expose:0.4,
+							threaten:3,
 						}
 					},
 					sgk_guanxing:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						frequent:true,
@@ -3705,7 +3705,7 @@ game.import('extension',{
 							if(player.isUnderControl()){
 								game.modeSwapPlayer(player);
 							}
-							var cards=get.cards(Math.min(8,game.players.length));
+							var cards=get.cards(Math.min(3,game.players.length));
 							event.cards=cards;
 							var switchToAuto=function(){
 								_status.imchoosing=false;
@@ -3903,7 +3903,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weiwo:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -3946,7 +3946,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shouji:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -3988,7 +3988,7 @@ game.import('extension',{
 							result:{
 								target:function(player,target){
 									if(ui.selected.targets.length==0){
-										return 8;
+										return 3;
 									}
 									else{
 										var next;
@@ -4006,7 +4006,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hemou:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
@@ -4016,7 +4016,7 @@ game.import('extension',{
 						content:function(){
 							'step 0'
 							player.chooseCard('是否对'+get.translation(trigger.player)+'发动【合谋】?').ai=function(card){
-								if(get.attitude(player,trigger.player)>0&&!trigger.player.countCards('j','lebu')&&trigger.player.countCards('h')>2) return 9-get.value(card);
+								if(get.attitude(player,trigger.player)>0&&!trigger.player.countCards('j','lebu')&&trigger.player.countCards('h')>2) return 4-get.value(card);
 								return false;
 							}
 							'step 1'
@@ -4060,7 +4060,7 @@ game.import('extension',{
 									threaten:1.5
 								},
 								intro:{
-									name:'合谋•顺手',
+									name:'合谋·顺手',
 									content:'回合限一次,可将一张♥︎牌当顺手牵羊使用.'
 								}
 							},
@@ -4082,14 +4082,14 @@ game.import('extension',{
 									if(player.countCards('h')>player.hp){
 										return 6-get.value(card);
 									}
-									return 9-get.value(card)
+									return 4-get.value(card)
 								},
 								ai:{
-									order:9,
+									order:4,
 									threaten:1.5
 								},
 								intro:{
-									name:'合谋•火攻',
+									name:'合谋·火攻',
 									content:'回合限一次,可将一张♦︎牌当火攻使用.'
 								}
 							},
@@ -4113,7 +4113,7 @@ game.import('extension',{
 									order:8
 								},
 								intro:{
-									name:'合谋•借刀',
+									name:'合谋·借刀',
 									content:'回合限一次,可将一张♣︎牌当借刀杀人使用.'
 								}
 							},
@@ -4133,14 +4133,14 @@ game.import('extension',{
 									order:5
 								},
 								intro:{
-									name:'合谋•决斗',
+									name:'合谋·决斗',
 									content:'回合限一次,可将一张♠︎牌当决斗使用.'
 								}
 							},
 						}
 					},
 					sgk_qicai:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{player:'loseEnd'},
 						frequent:true,
@@ -4158,20 +4158,20 @@ game.import('extension',{
 							})
 							'step 1'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 							}
 						},
 						ai:{
 							threaten:0.8,
 							effect:{
 								target:function(card){
-									if(card.name=='guohe'||card.name=='liuxinghuoyu') return 0.8;
+									if(card.name=='guohe'||card.name=='liuxinghuoyu') return 0.3;
 								}
 							}
 						}
 					},
 					sgk_rende:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
@@ -4181,7 +4181,7 @@ game.import('extension',{
 						content:function(){
 							'step 0'
 							player.chooseCard('是否对'+get.translation(trigger.player)+'发动【仁德】?',[1,player.countCards('h')]).ai=function(card){
-								if(get.attitude(player,trigger.player)>0) return 9-get.value(card);
+								if(get.attitude(player,trigger.player)>0) return 4-get.value(card);
 								return card.name=='du';
 							}
 							'step 1'
@@ -4202,7 +4202,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chouxi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						usable:1,
 						srlose:true,
 						enable:'phaseUse',
@@ -4210,7 +4210,7 @@ game.import('extension',{
 							return player.countCards('h')>0;
 						},
 						check:function(card){
-							return 9-get.value(card)
+							return 4-get.value(card)
 						},
 						filterCard:true,
 						content:function(){
@@ -4221,7 +4221,7 @@ game.import('extension',{
 							for(var i=0;i<event.cards1.length;i++){
 								event.types.add(get.type(event.cards1[i],'trick'));
 							}
-							event.dialog=ui.create.dialog('弃置一张与'+get.translation(player)+'弃置的牌类别均不同的牌,然后让'+get.translation(player)+'获得'+get.translation(event.cards1)+'或受到来自'+get.translation(player)+'的2点伤害并获得其中一种类别的牌.','hidden');
+							event.dialog=ui.create.dialog('弃置一张与'+get.translation(player)+'弃置的牌类别均不同的牌,然后让'+get.translation(player)+'获得'+get.translation(event.cards1)+'或受到来自'+get.translation(player)+'的一点伤害并获得其中一种类别的牌.','hidden');
 							event.dialog.classList.add('noselect');
 							event.dialog.add(event.cards1);
 							'step 1'
@@ -4239,13 +4239,13 @@ game.import('extension',{
 								if(event.target.isTurnedOver()) return -1;
 								return 8-get.value(card);
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								player.gain(event.cards1);
 								event.finish();
 							}
 							else{
-								event.target.damage(2);
+								event.target.damage(4);
 								var dialog=ui.create.dialog('仇袭：选择一种类别的卡牌获得之',event.cards1);
 								event.target.chooseButton([1,2],dialog,true).filterButton=function(button){
 									for(var i=0;i<ui.selected.buttons.length;i++){
@@ -4254,7 +4254,7 @@ game.import('extension',{
 									return true;
 								}
 							}
-							'step 9'
+							'step 4'
 							var cards2=[];
 							for(var i=0;i<result.buttons.length;i++){
 								cards2.push(result.buttons[i].link);
@@ -4268,7 +4268,7 @@ game.import('extension',{
 							}					
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:1,
 							}
@@ -4280,8 +4280,8 @@ game.import('extension',{
 						global:'sgk_yongbing2'
 					},
 					sgk_yongbing2:{
-						audio:’ext:极略三国:1’,
-						forceaudio:’ext:极略三国:true’,
+						audio:1,
+						forceaudio:true,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='shu') return false;
@@ -4312,7 +4312,7 @@ game.import('extension',{
 							'step 2'
 							if(result.bool){
 								player.logSkill('sgk_yongbing',event.current);
-								event.current.draw();
+								event.current.draw(4);
 							}
 							event.goto(1);
 						},
@@ -4321,7 +4321,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaoxiang:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						srlose:true,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
@@ -4373,7 +4373,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhishi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						srlose:true,
 						enable:'phaseUse',
 						usable:1,
@@ -4382,7 +4382,7 @@ game.import('extension',{
 						},
 						content:function(){
 							'step 0'
-							target.chooseToDiscard('弃置一张基本牌，并回复一点体力。或受到2点伤害并回复一点体力。',{type:'basic'}).ai=function(card){
+							target.chooseToDiscard('弃置一张基本牌，并回复一点体力。或受到一点伤害并回复一点体力。',{type:'basic'}).ai=function(card){
 								if(target.hasSkillTag('maixie')) return 0;
 								if(get.recoverEffect(target,target,target)>0) return 6-get.value(card);
 								return false;
@@ -4412,8 +4412,8 @@ game.import('extension',{
 						zhuSkill:true,
 					},
 					sgk_jianxiong2:{
-						audio:’ext:极略三国:1’,
-						forceaudio:’ext:极略三国:true’,
+						audio:1,
+						forceaudio:true,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							if(player.group!='wei') return false;
@@ -4499,7 +4499,7 @@ game.import('extension',{
 						global:['sgk_zhonghou_phaseUse','sgk_zhonghou_sha','sgk_zhonghou_shan','sgk_zhonghou_tao'],
 						subSkill:{
 							phaseUse:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								usable:1,
 								enable:'phaseUse',
 								filter:function(event,player){
@@ -4535,7 +4535,7 @@ game.import('extension',{
 										return {
 											filterCard:function(){return false;},
 											selectCard:-1,
-											audio:’ext:极略三国:2’,
+											audio:2,
 											usable:1,
 											viewAs:{name:links[0][2]}
 										}
@@ -4543,7 +4543,7 @@ game.import('extension',{
 								},
 								ai:{
 									order:function(){
-										return lib.card.sha.ai.order+0.8;
+										return lib.card.sha.ai.order+0.3;
 									},
 									result:{
 										player:1,
@@ -4551,7 +4551,7 @@ game.import('extension',{
 								}
 							},
 							sha:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								enable:['chooseToUse','chooseToRespond'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4567,7 +4567,7 @@ game.import('extension',{
 								}
 							},
 							shan:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:function(){return false;},
 								selectCard:-1,
@@ -4583,7 +4583,7 @@ game.import('extension',{
 								}
 							},
 							tao:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									if(event.parent.name=='phaseUse') return false;
@@ -4601,7 +4601,7 @@ game.import('extension',{
 						}
 					},
 					sgk_ganglie:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseUseBegin'},
 						srlose:true,
 						check:function(event,player){
@@ -4631,7 +4631,7 @@ game.import('extension',{
 								}
 							},
 							phaseEnd:{
-								audio:’ext:极略三国:2’,
+								audio:2,
 								trigger:{player:'phaseEnd'},
 								forced:true,
 								filter:function(event,player){
@@ -4674,7 +4674,7 @@ game.import('extension',{
 					sgk_wuwei:'无畏',
 					sgk_yansha:'掩杀',
 					sgk_yansha2:'掩杀',
-					sgk_yansha8:'掩杀',
+					sgk_yansha3:'掩杀',
 					sgk_zhonghou:'忠侯',
 					sgk_zhonghou_phaseUse:'忠侯',
 					sgk_zhonghou_phaseUse_backup:'忠侯',
@@ -4712,8 +4712,8 @@ game.import('extension',{
 					sgk_yaozhan:'邀战',
 					sgk_wenjiu:'温酒',
 					sgk_wenjiu2:'温酒',
-					sgk_wenjiu8:'温酒',
-					sgk_wenjiu9:'温酒',
+					sgk_wenjiu3:'温酒',
+					sgk_wenjiu4:'温酒',
 					sgk_shuixi:'水袭',
 					sgk_shuixi2:'水袭',
 					sgk_sanfen:'三分',
@@ -4755,8 +4755,8 @@ game.import('extension',{
 					sgk_fuzheng:'辅政',
 					sgk_jiwu:'极武',
 					sgk_jiwu2:'极武',
-					sgk_jiwu8:'极武',
-					sgk_jiwu9:'极武',
+					sgk_jiwu3:'极武',
+					sgk_jiwu4:'极武',
 					sgk_sheji:'射戟',
 					sgk_sheji2:'射戟',
 					sgk_xingyi:'行医',
@@ -4766,70 +4766,70 @@ game.import('extension',{
 					sgk_manwu:'曼舞',
 					sgk_baiyue:'拜月',
 					
-					sgk_wuwei_info:'摸牌阶段，你可以放弃摸牌，改为亮出牌堆顶的8张牌，其中每有一张基本牌，你便可视为对一名其他角色使用一张杀(每阶段对每名角色限一次)。然后将这些基本牌置入弃牌堆，其余收入手牌。',
-					sgk_yansha_info:'摸牌阶段，你可以少摸两张牌。若若此做，本回合结束时，你可以将一张手牌置于武将牌上，称为『掩』。当一名角色使用杀选择目标后，你可以将一张『掩』置入弃牌堆，然后获得其两张牌。',
+					sgk_wuwei_info:'摸牌阶段，你可以放弃摸牌，改为亮出牌堆顶的3张牌，其中每有一张基本牌，你便可视为对一名其他角色使用一张杀(每阶段对每名角色限一次)。然后将这些基本牌置入弃牌堆，其余收入手牌。',
+					sgk_yansha_info:'摸牌阶段，你可以少摸一张牌。若若此做，本回合结束时，你可以将一张手牌置于武将牌上，称为『掩』。当一名角色使用杀选择目标后，你可以将一张『掩』置入弃牌堆，然后获得其两张牌。',
 					sgk_zhonghou_info:'当你攻击范围内的一名角色需要使用或打出一张基本牌时，该角色可以声明之，然后你可以失去一点体力，视为该角色使用此牌（每名角色的回合限一次）',
 					sgk_liuyun_info:'出牌阶段限一次，你可以横置你的武将牌并弃置一张黑色牌，然后令一名角色选择一项：回复1点体力，或摸两张牌。',
 					sgk_lingbo_info:'一名角色的回合开始阶段，你可以重置你的武将牌，然后将场上的一张牌置于牌堆顶。',
 					sgk_qingcheng_info:'你可以横置你的武将牌，视为你使用或打出一张杀；你可以重置你的武将牌，视为你使用或打出一张闪。',
-					sgk_aozhan_info:'每当你因杀或决斗造成或受到2点伤害后，你可将牌堆顶的一张牌置于你的武将牌上，称为『战』。出牌阶段限一次，你可以选择一项：1、将所有『战』收入手牌。2、将所有『战』弃置，然后摸等量的牌。',
-					sgk_huxiao_info:'出牌阶段，当你使用杀造成伤害时，若你的武将牌正面向上，你可以令此伤害+1并摸两张牌。若如此做，则此杀结算完毕后，将你的武将牌翻面并结束当前回合。',
+					sgk_aozhan_info:'每当你因杀或决斗造成或受到一点伤害后，你可将牌堆顶的一张牌置于你的武将牌上，称为『战』。出牌阶段限一次，你可以选择一项：1、将所有『战』收入手牌。2、将所有『战』弃置，然后摸等量的牌。',
+					sgk_huxiao_info:'出牌阶段，当你使用杀造成伤害时，若你的武将牌正面向上，你可以令此伤害+1并摸一张牌。若如此做，则此杀结算完毕后，将你的武将牌翻面并结束当前回合。',
 					sgk_guicai_info:'在任意角色的判定牌生效前，你可以选择一项：1、打出一张手牌代替之。2、亮出牌堆顶的一张牌代替之。',
 					sgk_langgu_info:'每当你造成或受到一次伤害后，你可以进行一次判定，若为黑色，你获得对方一张牌。',
 					sgk_zhuizun_info:'限定技，当你进入濒死状态时，你可以恢复体力至1点，令所有其他角色依次交给你一张手牌。然后当前回合结束后，你进行一个额外的回合。',
 					sgk_tianshang_info:'你死亡时，可令一名其他角色获得你当前另外一项技能，增加一点体力上限并回复一点体力。',
-					sgk_yiji_info:'每当你受到2点伤害，可以观看牌堆顶的两张牌，并将其交给任意1~2名角色',
-					sgk_huiqu_info:'回合开始阶段，你可以弃置一张手牌进行一次判定，若结果为红色，你将场上的一张牌移动到一个合理的位置；若结果为黑色，你对一名角色造成2点伤害，然后该角色摸两张牌。',
+					sgk_yiji_info:'每当你受到一点伤害，可以观看牌堆顶的两张牌，并将其交给任意1~2名角色',
+					sgk_huiqu_info:'回合开始阶段，你可以弃置一张手牌进行一次判定，若结果为红色，你将场上的一张牌移动到一个合理的位置；若结果为黑色，你对一名角色造成一点伤害，然后该角色摸一张牌。',
 					sgk_zhaoxiang_info:'当一名其他角色使用杀指定目标后，若其在你攻击范围内，你令其选择一项：1、弃置一张牌。2、令此杀无效。若该角色不在你攻击范围内，你可以弃置一张牌令其做上述选择。',
-					sgk_zhishi_info:'出牌阶段限一次，你可以令一名其他角色选择一项：1、弃置一张基本牌，然后回复一点。2、受到你造成的2点伤害，然后回复一点体力。',
+					sgk_zhishi_info:'出牌阶段限一次，你可以令一名其他角色选择一项：1、弃置一张基本牌，然后回复一点。2、受到你造成的一点伤害，然后回复一点体力。',
 					sgk_jianxiong_info:'主公技。每当其他魏势力受到不为你的一次伤害后，该角色可以弃置一张手牌，然后令你获得对其造成伤害的牌。',
 					sgk_jiuzhu_info:'每当一张非转化的闪进入弃牌堆时，你可以用一张不为闪的牌替换之。若此时不是你的回合，你可以视为对当前回合角色使用一张无视防具的杀。',
 					sgk_tuwei_info:'每当一张非转化的杀进入弃牌堆时，若你是此杀的目标或使用者，你可以弃置一张能造成伤害的牌，然后弃置此牌目标或使用者的共计两张牌。',
 					sgk_xujin_info:'摸牌阶段，你可以放弃摸牌，改为展示牌堆顶的五张牌，并令一名角色获得其中一种花色的所有牌，再将其余的牌置入弃牌堆。若如此做，你本回合的攻击范围和可以使用的【杀】数量与以此法被获得的牌的数量相同。',
-					sgk_paoxiao_info:'出牌阶段，当你使用【杀】对目标角色造成一次伤害并结算完毕后，你可以摸两张牌，然后选择一项：使用一张【杀】，或令该角色弃置你的一张牌。',
+					sgk_paoxiao_info:'出牌阶段，当你使用【杀】对目标角色造成一次伤害并结算完毕后，你可以摸一张牌，然后选择一项：使用一张【杀】，或令该角色弃置你的一张牌。',
 					sgk_benxi_info:'锁定技，你计算与其他角色的距离时始终-1.你使用【杀】指定目标后，目标角色须弃置一张装备牌，否则此【杀】不可被【闪】响应。',
 					sgk_yaozhan_info:'出牌阶段限一次，你可以与一名其他角色拼点：若你赢，视为对其使用一张【杀】（此【杀】不计入每回合的使用限制）；若你没赢，该角色可以对你使用一张【杀】。',
-					sgk_wenjiu_info:'出牌阶段限一次，你可以将一张黑色手牌置于你的武将牌上，称为[酒]。当你使用【杀】选择目标后，你可以将一张[酒]置入弃牌堆，然后当此【杀】造成伤害时，该伤害+1；当此【杀】被【闪】响应后，你摸两张牌。',
+					sgk_wenjiu_info:'出牌阶段限一次，你可以将一张黑色手牌置于你的武将牌上，称为[酒]。当你使用【杀】选择目标后，你可以将一张[酒]置入弃牌堆，然后当此【杀】造成伤害时，该伤害+1；当此【杀】被【闪】响应后，你摸一张牌。',
 					sgk_shuixi_info:'回合开始阶段开始时，你可以展示一张手牌并选择一名有手牌的其他角色，令其选择一项：弃置一张与之相同花色的手牌，或失去1点体力。若该角色因此法失去体力，则此回合的出牌阶段，你不能使用【杀】。',
 					sgk_sanfen_info:'出牌阶段限一次，你可以选择两名其他角色，其中一名你选择的角色须对另一名角色使用一张【杀】，然后另一名角色须对你使用一张【杀】，你弃置不如此做者一张牌。（使用杀有距离限制）',
-					sgk_guanxing_info:'回合开始/结束阶段开始时，你可以观看牌堆顶的Ｘ张牌（Ｘ为存活角色的数量，且最多为8），将其中任意数量的牌以任意顺序置于牌堆顶，其余以任意顺序置于牌堆底。',
+					sgk_guanxing_info:'回合开始/结束阶段开始时，你可以观看牌堆顶的Ｘ张牌（Ｘ为存活角色的数量，且最多为3），将其中任意数量的牌以任意顺序置于牌堆顶，其余以任意顺序置于牌堆底。',
 					sgk_weiwo_info:'锁定技，当你有手牌时，你防止受到的属性伤害；当你没有手牌时，你防止受到的非属性伤害。',
 					sgk_shouji_info:'出牌阶段限一次，你可以弃置一张牌并选择两名角色，然后根据你弃置牌的花色，视为其中一名你选择的角色对另一名角色使用一张牌：黑桃【决斗】，梅花【过河拆桥】，红桃【顺手牵羊】，方片【火攻】。',
 					sgk_hemou_info:'其他角色的出牌阶段开始时，你可以将一张手牌正面朝上交给该角色，该角色本阶段限一次，可将一张与之相同花色的手牌按下列规则使用：黑桃【决斗】，梅花【借刀杀人】，红桃【顺手牵羊】，方片【火攻】。',
-					sgk_qicai_info:'每当你失去一次手牌时，你可以进行判定，若结果为红色，你摸两张牌。',
+					sgk_qicai_info:'每当你失去一次手牌时，你可以进行判定，若结果为红色，你摸一张牌。',
 					sgk_rende_info:'任一角色的回合结束阶段结束时，你可以将任意数量的手牌交给该角色，然后该角色进行一个额外的出牌阶段。',
-					sgk_chouxi_info:'出牌阶段限一次，你可以弃置一张手牌并展示牌堆顶的两张牌，然后令一名其他角色选择一项：弃置一张与之均不同类别的牌，然后令你获得这些牌；或受到你造成的2点伤害并获得其中一种类别的牌，然后你获得其余的牌。',
-					sgk_yongbing_info:'主公技，当一名其他蜀势力角色使用【杀】造成一次伤害后，该角色可令你摸两张牌。',
-					sgk_yinmeng_info:'出牌阶段限X次，若你有手牌，你可以展示一名其他男性角色的一张手牌，然后展示你的一张手牌，若两张牌类型相同，你与其各摸两张牌；若不同，你弃置其展示的牌，X为你所损失的体力且至少为1',
-					sgk_xiwu_info:'当你使用的【杀】被目标角色的【闪】响应后，你可以摸两张牌，然后弃置其一张手牌。',
+					sgk_chouxi_info:'出牌阶段限一次，你可以弃置一张手牌并展示牌堆顶的两张牌，然后令一名其他角色选择一项：弃置一张与之均不同类别的牌，然后令你获得这些牌；或受到你造成的1点伤害并获得其中一种类别的牌，然后你获得其余的牌。',
+					sgk_yongbing_info:'主公技，当一名其他蜀势力角色使用【杀】造成一次伤害后，该角色可令你摸一张牌。',
+					sgk_yinmeng_info:'出牌阶段限X次，若你有手牌，你可以展示一名其他男性角色的一张手牌，然后展示你的一张手牌，若两张牌类型相同，你与其各摸一张牌；若不同，你弃置其展示的牌，X为你所损失的体力且至少为1',
+					sgk_xiwu_info:'当你使用的【杀】被目标角色的【闪】响应后，你可以摸一张牌，然后弃置其一张手牌。',
 					sgk_juelie_info:'出牌阶段限一次，你可以令一名手牌数与你不同的其他角色选择一项：将手牌数调整至与你相等；或视为你对其使用一张【杀】（不计入出牌阶段的使用限制）。',
 					sgk_fangxin_info:'当你需要使用一张【桃】时，你可以将一张梅花牌当【兵粮寸断】或将一张方片牌当【乐不思蜀】对自己使用，若如此做，视为你使用一张【桃】。',
 					sgk_xiyu_info:'你的回合开始时，你可以弃置一名角色的一张牌，然后该角色进行一个额外的出牌阶段。',
-					sgk_wanrou_info:'你的方片牌或你判定区的牌进入弃牌堆时，你可以令一名角色摸两张牌。',
-					sgk_zhouyan_info:'出牌阶段，你可以令一名其它角色摸两张牌，若如此做，视为你对其使用一张【火攻】，你可以重复此流程直到你以此法未造成伤害。每当你使用【火攻】造成一次伤害后，你可以摸两张牌。',
+					sgk_wanrou_info:'你的方片牌或你判定区的牌进入弃牌堆时，你可以令一名角色摸一张牌。',
+					sgk_zhouyan_info:'出牌阶段，你可以令一名其它角色摸一张牌，若如此做，视为你对其使用一张【火攻】，你可以重复此流程直到你以此法未造成伤害。每当你使用【火攻】造成一次伤害后，你可以摸一张牌。',
 					sgk_zhaxiang_info:'出牌阶段，你可以将一张手牌扣置，然后令一名其它角色选择一项：交给你一张牌并弃置此牌；或展示并获得此牌，若为【杀】，则视为你对其使用一张火属性的【杀】（不计入出牌阶段的使用限制）。',
 					sgk_shixue_info:'当你使用【杀】指定目标后，你可以摸两张牌，当此【杀】被【闪】响应后，你须弃置两张牌。',
 					sgk_guoshi_info:'任一角色的回合开始阶段开始时，你可以观看牌堆顶的两张牌，然后可将其中任意张牌置于牌堆底；任一角色的回合结束阶段开始时，你可以令其获得本回合因弃置或判定进入弃牌堆的一张牌。',
 					sgk_yingcai_info:'摸牌阶段，你可以放弃摸牌，改为展示牌堆顶的一张牌，你重复此流程直到你展示出第三种花色的牌时，将这张牌置入弃牌堆，然后获得其余的牌。',
-					sgk_weibao_info:'出牌阶段限一次，你可以将一张手牌置于牌堆顶，然后令一名其他角色选择一种花色后摸两张牌并展示之，若此牌与所选花色不同，你对其造成2点伤害。',
-					sgk_choulve_info:'出牌阶段限一次，你可以交给两名其他角色各一张手牌，然后依次展示之，若点数不同，视为点数较大的一方对另一方使用一张【杀】，该【杀】造成伤害后，你摸两张牌。',
+					sgk_weibao_info:'出牌阶段限一次，你可以将一张手牌置于牌堆顶，然后令一名其他角色选择一种花色后摸一张牌并展示之，若此牌与所选花色不同，你对其造成1点伤害。',
+					sgk_choulve_info:'出牌阶段限一次，你可以交给两名其他角色各一张手牌，然后依次展示之，若点数不同，视为点数较大的一方对另一方使用一张【杀】，该【杀】造成伤害后，你摸一张牌。',
 					sgk_jiexi_info:'出牌阶段，你可以与一名其他角色拼点，若你赢，视为对其使用一张【过河拆桥】。你可重复此流程直到你以此法拼点没赢。',
 					sgk_youxia_info:'出牌阶段，若你的武将牌正面朝上，你可以将你的武将牌翻面，然后从一至两名其他角色处各获得一张牌；锁定技，若你的武将牌背面朝上，你不能成为【杀】和【决斗】的目标。',
-					sgk_dailao_info:'出牌阶段限一次，你可以令一名其他角色与你各摸两张牌或各弃置一张牌，然后你与其依次将武将牌翻面。',
+					sgk_dailao_info:'出牌阶段限一次，你可以令一名其他角色与你各摸一张牌或各弃置一张牌，然后你与其依次将武将牌翻面。',
 					sgk_youdi_info:'若你的武将牌背面朝上，你可以将其翻面来视为你使用一张【闪】。每当你使用【闪】响应一名角色使用的【杀】时，你可以额外弃置任意数量的手牌，然后该角色弃置等量的牌。',
 					sgk_ruya_info:'当你失去最后的手牌时，你可以翻面并将手牌补至你体力上限的张数。',
 					sgk_quanheng_info:'出牌阶段限一次，你可以将至少一张手牌当一张【无中生有】或【杀】使用，若你以此法使用的牌被【无懈可击】或【闪】响应时，你摸等量的牌。',
 					sgk_xionglve_info:'摸牌阶段，你可以放弃摸牌，改为展示牌堆顶的两张牌，你获得其中一张牌，然后将另一张牌置于你的武将牌上，称为[略]。出牌阶段，你可以将一张基本牌或锦囊牌的[略]当与之同类别的任意一张牌（延时类锦囊牌除外）使用，将一张装备牌的[略]置于一名其他角色装备区内的相应位置。',
-					sgk_fuzheng_info:'主公技，回合开始阶段开始时，你可以令至多两名其他吴势力角色各摸两张牌，然后这些角色依次将一张手牌置于牌堆顶。',
+					sgk_fuzheng_info:'主公技，回合开始阶段开始时，你可以令至多两名其他吴势力角色各摸一张牌，然后这些角色依次将一张手牌置于牌堆顶。',
 					sgk_jiwu_info:'出牌阶段限一次，你可以将你的手牌调整至一张，若如此做，本回合你的攻击范围无限，且你下一次使用的【杀】造成的伤害+1。锁定技，若你的装备区没有牌，你使用【杀】可以至多额外指定任意两名其他角色为目标。',
 					sgk_sheji_info:'当一名装备区有武器牌的其他角色对另一名角色造成伤害后，你可以弃置一张牌，然后获得该角色的武器牌。你可以将装备牌当无距离限制的【杀】使用或打出，你以此法使用的【杀】须连续使用两张【闪】才能抵消。',
 					sgk_xingyi_info:'出牌阶段限一次，你可以获得一名有手牌的其他角色一张手牌，然后令其回复1点体力。',
-					sgk_guagu_info:'当一名角色进入濒死状态时，你可以弃置其所有手牌（至少一张），然后该角色回复1点体力。若你以此法弃置其两张或更多的手牌时，该角色摸两张牌。',
+					sgk_guagu_info:'当一名角色进入濒死状态时，你可以弃置其所有手牌（至少一张），然后该角色回复1点体力。若你以此法弃置其两张或更多的手牌时，该角色摸一张牌。',
 					sgk_wuqin_info:'回合结束阶段结束时，你可以弃置一张基本牌，然后选择一项：摸两张牌，或进行一个额外的出牌阶段。',
 					sgk_lijian_info:'出牌阶段，你可以弃一张牌并选择两名其他男性角色。若如此做，视为其中一名男性角色对另一名男性角色使用一张【决斗】。◆使用离间时，你决定由哪名角色作为【决斗】的发起者。',
 					sgk_manwu_info:'出牌阶段限一次，你可以展示一名男性角色的一张手牌，若此牌为方片，将之置于该角色的判定区内，视为【乐不思蜀】；若不为方片，你获得之。',
 					sgk_baiyue_info:'回合结束阶段开始时，你可以获得本回合其他角色进入弃牌堆的一张牌。',
-					sgk_ganglie_info:'出牌阶段开始时，你可以失去1点体力，若如此做，你本回合下一次造成的伤害+1。且本回合你每造成2点伤害，回合结束时你便摸两张牌',
+					sgk_ganglie_info:'出牌阶段开始时，你可以失去1点体力，若如此做，你本回合下一次造成的伤害+1。且本回合你每造成1点伤害，回合结束时你便摸一张牌',
 				}
 			},'SR武将');
 		}
@@ -4837,58 +4837,58 @@ game.import('extension',{
 		if(config.sgk_sk){
 			game.addCharacterPack({
 				character:{
-					sgksk_dengzhi:['male','shu',8,['sgk_hemeng','sgk_sujian'],['die_audio']],
-					sgksk_xuyou:['male','wei',8,['sgk_yexi','sgk_kuangyan'],['die_audio']],
-					sgksk_zhangbu:['male','wu',8,['sgk_chaochen','sgk_quanzheng'],['die_audio']],
-					sgksk_miheng:['male','qun',8,['sgk_shejian','sgk_kuangao'],['die_audio']],
-					sgksk_zumao:['male','wu',9,['sgk_yinbing'],['die_audio']],
-					sgksk_huaxiong:['male','qun',5,['sgk_fenwei','sgk_shiyong'],['die_audio']],
-					sgksk_sunce:['male','wu',9,['sgk_angyang','sgk_weifeng','sgk_xieli'],['zhu','die_audio']],
-					sgksk_caoren:['male','wei',9,['sgk_jushou'],['die_audio']],
-					sgksk_gongsunzan:['male','qun',9,['sgk_yicong','sgk_muma'],['die_audio']],
-					sgksk_sunqian:['male','shu',8,['sgk_suiji','sgk_fengyi'],['die_audio']],
-					sgksk_maliang:['male','shu',8,['sgk_yalv','sgk_xiemu'],['die_audio']],
-					sgksk_buzhi:['male','wu',8,['sgk_zhejie','sgk_fengya'],['die_audio']],
-					sgksk_wangping:['male','shu',9,['sgk_yijian','sgk_feijun'],['die_audio']],
-					sgksk_huangyueying:['female','shu',8,['sgk_muniu','sgk_liuma'],['die_audio']],
-					sgksk_dongzhuo:['male','qun',6,['sgk_baozheng','sgk_lingnu'],['die_audio']],
-					sgksk_chendao:['male','shu',9,['sgk_zhongyong'],['die_audio']],
-					sgksk_dingfeng:['male','wu',9,['sgk_bozhan','sgk_qingxi'],['die_audio']],
-					sgksk_wenchou:['male','qun',9,['sgk_langxing'],['die_audio']],
-					sgksk_yanliang:['male','qun',9,['sgk_hubu'],['die_audio']],
-					sgksk_zhuran:['male','wu',9,['sgk_danshou','sgk_yonglie'],['die_audio']],
-					sgksk_lukang:['male','wu',9,['sgk_hengshi','sgk_zhijiao'],['die_audio']],
-					sgksk_lvlingqi:['female','qun',9,['sgk_jiwux'],['die_audio']],
-					sgksk_zhoucang:['male','shu',9,['sgk_daoshi'],['die_audio']],
-					sgksk_kongrong:['male','qun',8,['sgk_lirang','sgk_xianshi'],['die_audio']],
-					sgksk_caochong:['male','wei',8,['sgk_chengxiang','sgk_renxin'],['die_audio']],
-					sgksk_zhanglu:['male','qun',8,['sgk_midao','sgk_yishe','sgk_pudu'],['die_audio']],
-					sgksk_guanlu:['male','wei',8,['sgk_zongqing','sgk_bugua'],['die_audio']],
-					sgksk_simazhao:['male','wei',8,['sgk_zhaoxin','sgk_zhihe'],['die_audio']],
-					sgksk_yangxiu:['male','wei',8,['sgk_caijie','sgk_jilei'],['die_audio']],
-					sgksk_liyan:['male','shu',9,['sgk_yanliang'],['die_audio']],
-					sgksk_jiping:['male','qun',8,['sgk_duzhi','sgk_lieyi'],['die_audio']],
-					sgksk_sunhao:['male','wu',9,['sgk_baoli'],['die_audio']],
-					sgksk_zhugejin:['male','wu',8,['sgk_huanbing','sgk_hongyuan'],['die_audio']],
-					sgksk_zhangxiu:['male','qun',9,['sgk_huaqiang','sgk_chaohuang'],['die_audio']],
-					sgksk_sunluyu:['female','wu',8,['sgk_huilian','sgk_wenliang'],['die_audio']],
-					sgksk_luzhi:['male','qun',8,['sgk_jinglun','sgk_ruzong'],['die_audio']],	
-					sgksk_yuji:['male','qun',8,['sgk_guhuo','sgk_fulu'],['die_audio']],
-					sgksk_zhangning:['female','qun',8,['sgk_leiji','sgk_shanxi'],['die_audio']],
-					sgksk_guonvwang:['female','wei',8,['sgk_gongshen','sgk_jianyue'],['die_audio']],
-					sgksk_chengyu:['male','wei',8,['sgk_pengri','sgk_danmou'],['die_audio']],
-					sgksk_zhangren:['male','qun',9,['sgk_fushe'],['die_audio']],
-					// sgksk_mizhu:['male','shu',8,['sgk_ziguo','sgk_shangdao'],['die_audio']],
-					sgksk_zangba:['male','wei',9,['sgk_hengjiang'],['die_audio']],
-					// sgksk_hejin:['male','qun',9,['sgk_zhuanshan'],['die_audio']],
-					// sgksk_wangyi:['female','wei',8,['sgk_zhenlie','sgk_miji'],['die_audio']],
-					// sgksk_zuoci:['male','qun',8,['sgk_qianhuan']],
-					sgkstar_guanyu:['male','shu',9,['wusheng','sgk_danji'],['die_audio']],
-					sgksk_zhangbao:['male','qun',8,['sgk_zhoufu','sgk_yingbing'],['die_audio']],
+					sgksk_dengzhi:['male','shu',7,['sgk_hemeng','sgk_sujian'],['die_audio']],
+					sgksk_xuyou:['male','wei',7,['sgk_yexi','sgk_kuangyan'],['die_audio']],
+					sgksk_zhangbu:['male','wu',7,['sgk_chaochen','sgk_quanzheng'],['die_audio']],
+					sgksk_miheng:['male','qun',7,['sgk_shejian','sgk_kuangao'],['die_audio']],
+					sgksk_zumao:['male','wu',8,['sgk_yinbing'],['die_audio']],
+					sgksk_huaxiong:['male','qun',9,['sgk_fenwei','sgk_shiyong'],['die_audio']],
+					sgksk_sunce:['male','wu',8,['sgk_angyang','sgk_weifeng','sgk_xieli'],['zhu','die_audio']],
+					sgksk_caoren:['male','wei',8,['sgk_jushou'],['die_audio']],
+					sgksk_gongsunzan:['male','qun',8,['sgk_yicong','sgk_muma'],['die_audio']],
+					sgksk_sunqian:['male','shu',7,['sgk_suiji','sgk_fengyi'],['die_audio']],
+					sgksk_maliang:['male','shu',7,['sgk_yalv','sgk_xiemu'],['die_audio']],
+					sgksk_buzhi:['male','wu',7,['sgk_zhejie','sgk_fengya'],['die_audio']],
+					sgksk_wangping:['male','shu',8,['sgk_yijian','sgk_feijun'],['die_audio']],
+					sgksk_huangyueying:['female','shu',7,['sgk_muniu','sgk_liuma'],['die_audio']],
+					sgksk_dongzhuo:['male','qun',10,['sgk_baozheng','sgk_lingnu'],['die_audio']],
+					sgksk_chendao:['male','shu',8,['sgk_zhongyong'],['die_audio']],
+					sgksk_dingfeng:['male','wu',8,['sgk_bozhan','sgk_qingxi'],['die_audio']],
+					sgksk_wenchou:['male','qun',8,['sgk_langxing'],['die_audio']],
+					sgksk_yanliang:['male','qun',8,['sgk_hubu'],['die_audio']],
+					sgksk_zhuran:['male','wu',8,['sgk_danshou','sgk_yonglie'],['die_audio']],
+					sgksk_lukang:['male','wu',8,['sgk_hengshi','sgk_zhijiao'],['die_audio']],
+					sgksk_lvlingqi:['female','qun',8,['sgk_jiwux'],['die_audio']],
+					sgksk_zhoucang:['male','shu',8,['sgk_daoshi'],['die_audio']],
+					sgksk_kongrong:['male','qun',7,['sgk_lirang','sgk_xianshi'],['die_audio']],
+					sgksk_caochong:['male','wei',7,['sgk_chengxiang','sgk_renxin'],['die_audio']],
+					sgksk_zhanglu:['male','qun',7,['sgk_midao','sgk_yishe','sgk_pudu'],['die_audio']],
+					sgksk_guanlu:['male','wei',7,['sgk_zongqing','sgk_bugua'],['die_audio']],
+					sgksk_simazhao:['male','wei',7,['sgk_zhaoxin','sgk_zhihe'],['die_audio']],
+					sgksk_yangxiu:['male','wei',7,['sgk_caijie','sgk_jilei'],['die_audio']],
+					sgksk_liyan:['male','shu',8,['sgk_yanliang'],['die_audio']],
+					sgksk_jiping:['male','qun',7,['sgk_duzhi','sgk_lieyi'],['die_audio']],
+					sgksk_sunhao:['male','wu',8,['sgk_baoli'],['die_audio']],
+					sgksk_zhugejin:['male','wu',7,['sgk_huanbing','sgk_hongyuan'],['die_audio']],
+					sgksk_zhangxiu:['male','qun',8,['sgk_huaqiang','sgk_chaohuang'],['die_audio']],
+					sgksk_sunluyu:['female','wu',7,['sgk_huilian','sgk_wenliang'],['die_audio']],
+					sgksk_luzhi:['male','qun',7,['sgk_jinglun','sgk_ruzong'],['die_audio']],	
+					sgksk_yuji:['male','qun',7,['sgk_guhuo','sgk_fulu'],['die_audio']],
+					sgksk_zhangning:['female','qun',7,['sgk_leiji','sgk_shanxi'],['die_audio']],
+					sgksk_guonvwang:['female','wei',7,['sgk_gongshen','sgk_jianyue'],['die_audio']],
+					sgksk_chengyu:['male','wei',7,['sgk_pengri','sgk_danmou'],['die_audio']],
+					sgksk_zhangren:['male','qun',8,['sgk_fushe'],['die_audio']],
+					// sgksk_mizhu:['male','shu',7,['sgk_ziguo','sgk_shangdao'],['die_audio']],
+					sgksk_zangba:['male','wei',8,['sgk_hengjiang'],['die_audio']],
+					// sgksk_hejin:['male','qun',8,['sgk_zhuanshan'],['die_audio']],
+					// sgksk_wangyi:['female','wei',7,['sgk_zhenlie','sgk_miji'],['die_audio']],
+					// sgksk_zuoci:['male','qun',7,['sgk_qianhuan']],
+					sgkstar_guanyu:['male','shu',8,['wusheng','sgk_danji'],['die_audio']],
+					sgksk_zhangbao:['male','qun',7,['sgk_zhoufu','sgk_yingbing'],['die_audio']],
 				},
 				skill:{
 					sgk_zhoufu:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0&&event.player!=player;
@@ -4952,7 +4952,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yingbing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'judgeEnd'},
 						check:function(event,player){
 							return get.effect(event.player,{name:'sha'},player,player)>0;
@@ -4986,7 +4986,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tuodao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{target:'shaMiss'},
 						filter:function(event,player){
 							return get.distance(player,event.player,'attack')<=1;
@@ -5017,7 +5017,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hemeng:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')&&player.storage.sgk_hemeng_usable>0;
@@ -5060,7 +5060,7 @@ game.import('extension',{
 						}
 					},
 					sgk_sujian:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'gainEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -5072,7 +5072,7 @@ game.import('extension',{
 								return player!=target;
 							}).ai=function(target){
 								if(!player.countCards('he')) return -get.attitude(player,target)&&target.countCards('he');
-								if(player.countCards('he')>9) return get.attitude(player,target)&&target.countCards('he');
+								if(player.countCards('he')>4) return get.attitude(player,target)&&target.countCards('he');
 								return 0;
 							}
 							'step 1'
@@ -5083,7 +5083,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yexi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseAfter'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -5092,7 +5092,7 @@ game.import('extension',{
 						content:function(){
 							'step 0'
 							var check=(game.hasPlayer(function(current){
-								return player!=current&&current.countCards('h')>1&&get.attitude(player,current)>8
+								return player!=current&&current.countCards('h')>1&&get.attitude(player,current)>3
 							}))&&(player.countCards('h')>1||player.hp>2);
 							player.chooseCardTarget({
 								ai1:function(card){
@@ -5185,7 +5185,7 @@ game.import('extension',{
 						}
 					},
 					sgk_kuangyan:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						priority:-10,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
@@ -5199,7 +5199,7 @@ game.import('extension',{
 						group:'sgk_kuangyan2'
 					},
 					sgk_kuangyan2:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return event.num>=2;
@@ -5211,7 +5211,7 @@ game.import('extension',{
 						},
 					},
 					sgk_chaochen:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:true,
@@ -5225,7 +5225,7 @@ game.import('extension',{
 						},
 						complexCard:true,
 						check:function(card){
-							if(ui.selected.cards.length==0) return 9-get.value(card);
+							if(ui.selected.cards.length==0) return 4-get.value(card);
 							return 0;
 						},
 						content:function(){
@@ -5246,7 +5246,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chaochen2:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>player.hp;
@@ -5259,7 +5259,7 @@ game.import('extension',{
 						}
 					},
 					sgk_quanzheng:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							if(event.player==player) return false;
@@ -5270,11 +5270,11 @@ game.import('extension',{
 						},
 						frequent:true,
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 						}
 					},
 					sgk_shejian:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return !player.getEquip(2);
@@ -5308,7 +5308,7 @@ game.import('extension',{
 					},
 					sgk_shejian2:{},
 					sgk_kuangao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{target:'shaAfter'},
 						filter:function(event,player){
 							return player.countCards('he');
@@ -5344,14 +5344,14 @@ game.import('extension',{
 							effect:{
 								target:function(card,player,target,current){
 									if(card.name=='sha'&&get.attitude(player,target)<0) return [1,-target.num('he'),1,-player.num('he')];
-									if(get.attitude(player,target)>8&&player.countCards('h')<player.maxHp-2) return [1,0,1,Math.min(5,player.maxHp)-player.countCards('h')];
+									if(get.attitude(player,target)>3&&player.countCards('h')<player.maxHp-2) return [1,0,1,Math.min(5,player.maxHp)-player.countCards('h')];
 									return [1,-target.num('he'),1,-player.num('he')];
 								}
 							}
 						}
 					},
 					sgk_yinbing:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{global:'shaBegin'},
 						filter:function(event,player){
 							return player.distanceTo(event.target,'attack')<=1&&event.target!=player&&event.player!=player&&event.target.countCards('e');
@@ -5383,7 +5383,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yinbing2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{target:'shaBefore'},
 						filter:function(event,player){
 							return player.countCards('he')>0&&player.maxHp>player.hp;
@@ -5394,7 +5394,7 @@ game.import('extension',{
 							player.chooseToDiscard(get.prompt('sgk_yinbing2'),'he').ai=function(card){
 								if(player.maxHp-player.hp>1) return 6-get.value(card);
 								if(player.maxHp-player.hp>2) return 10-get.value(card);
-								return 9-get.value(card);
+								return 4-get.value(card);
 							}
 							'step 1'
 							if(result.bool){
@@ -5404,7 +5404,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fenwei:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{source:'damageBegin'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('h');
@@ -5428,7 +5428,7 @@ game.import('extension',{
 					},
 					sgk_shiyong:{
 						trigger:{player:'damageEnd'},
-						audio:’ext:极略三国:2’,
+						audio:2,
 						filter:function(event){
 							if(event.card&&(event.card.name=='sha')){
 								if(get.color(event.card)=='red') return true;
@@ -5451,7 +5451,7 @@ game.import('extension',{
 						}
 					},
 					sgk_angyang:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5460,10 +5460,10 @@ game.import('extension',{
 						frequent:true,
 						content:function(){
 							if(trigger.target.countCards('j')){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
-								player.draw(2);
+								player.draw(4);
 							}
 						},
 						ai:{
@@ -5479,7 +5479,7 @@ game.import('extension',{
 						group:'sgk_angyang2'
 					},
 					sgk_angyang2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{target:['shaBefore','juedouBefore']},
 						filter:function(event,player){
 							if(event.card.name=='juedou') return true;
@@ -5488,15 +5488,15 @@ game.import('extension',{
 						frequent:true,
 						content:function(){
 							if(trigger.player.countCards('j')){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
-								player.draw(2);
+								player.draw(4);
 							}
 						}
 					},
 					sgk_weifeng:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')<player.hp&&player.countCards('h')>0;
@@ -5520,15 +5520,15 @@ game.import('extension',{
 							}
 							'step 2'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
-								event.target.draw(2);
+								event.target.draw(4);
 							}
 						}
 					},
 					sgk_xieli:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						zhuSkill:true,
 						trigger:{player:'chooseCardBegin'},
 						filter:function(event,player){
@@ -5560,7 +5560,7 @@ game.import('extension',{
 								}
 							}
 							else{
-								event.goto(8);
+								event.goto(3);
 							}
 							'step 2'
 							if(result.bool){
@@ -5571,7 +5571,7 @@ game.import('extension',{
 							if(event.targetx.length){
 								event.goto(1);
 							}
-							'step 8'
+							'step 3'
 							if(event.cards.length){
 								var dialog=ui.create.dialog('协力',event.cards);
 								player.chooseButton(dialog,true).ai=function(button){
@@ -5581,7 +5581,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 9'
+							'step 4'
 							trigger.result={
 								bool:true,
 								cards:[result.buttons[0].link],
@@ -5592,7 +5592,7 @@ game.import('extension',{
 						},
 					},
 					sgk_jushou:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseEnd'},
 						check:function(event,player){
 							if(player.isTurnedOver()) return true;
@@ -5618,7 +5618,7 @@ game.import('extension',{
 						inherit:'yicong'
 					},
 					sgk_muma:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'loseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -5626,20 +5626,20 @@ game.import('extension',{
 							if(_status.currentPhase==player) return false;
 							for(var i=0;i<event.cards.length;i++){
 								if(event.cards[i].original=='e'&&get.position(event.cards[i])=='d') 
-									return !player.getEquip(get.subtype(event.cards[i])[5])&&(get.subtype(event.cards[i])=='equip8'||get.subtype(event.cards[i])=='equip9');
+									return !player.getEquip(get.subtype(event.cards[i])[5])&&(get.subtype(event.cards[i])=='equip3'||get.subtype(event.cards[i])=='equip4');
 							}
 							return false;
 						},
 						content:function(){
 							for(var i=0;i<trigger.cards.length;i++){
-								if(trigger.cards[i].original=='e'&&!player.getEquip(get.subtype(trigger.cards[i])[5])&&(get.subtype(trigger.cards[i])=='equip8'||get.subtype(trigger.cards[i])=='equip9')) 
+								if(trigger.cards[i].original=='e'&&!player.getEquip(get.subtype(trigger.cards[i])[5])&&(get.subtype(trigger.cards[i])=='equip3'||get.subtype(trigger.cards[i])=='equip4')) 
 									player.gain(trigger.cards[i],'gain');
 							}
 							
 						},
 					},
 					sgk_suiji:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return event.player!=player;
@@ -5650,7 +5650,7 @@ game.import('extension',{
 							var next=player.chooseCard(get.prompt('sgk_suiji',trigger.player),[1,Infinity]).ai=function(card){
 								if(trigger.player.countCards('h')-trigger.player.hp+1>1&&ui.selected.cards.length==0) return 10-get.value(card);
 								if(trigger.player.countCards('h')-trigger.player.hp+1>1&&ui.selected.cards.length==1) return 0;
-								if(trigger.player.countCards('h')<2&&get.attitude(player,trigger.player)>8&&player.countCards('h')>8) return 6-get.value(card);
+								if(trigger.player.countCards('h')<2&&get.attitude(player,trigger.player)>3&&player.countCards('h')>3) return 6-get.value(card);
 								return 0;
 							}
 							next.set('complexCard',true);
@@ -5674,7 +5674,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								player.gain(result.cards);
 								trigger.player.$give(result.cards.length,player);
@@ -5682,18 +5682,18 @@ game.import('extension',{
 						}
 					},
 					sgk_fengyi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return get.type(event.card)=='trick'&&event.targets.length==1;
 						},
 						frequent:true,
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 						},
 					},
 					sgk_yalv:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:['damageEnd','phaseUseBegin']},
 						frequent:true,
 						content:function(){
@@ -5705,17 +5705,17 @@ game.import('extension',{
 								event.cards.remove(result.buttons[i].link);
 								ui.cardPile.insertBefore(result.buttons[i].link,ui.cardPile.firstChild);
 							}
-							player.chooseBool('是否摸两张牌？').ai=function(){
+							player.chooseBool('是否摸一张牌？').ai=function(){
 								return 1;
 							}
 							'step 2'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 							}			
 						}
 					},
 					sgk_xiemu:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseBegin'},
 						direct:true,
 						content:function(){
@@ -5732,7 +5732,7 @@ game.import('extension',{
 							'step 1'
 							if(result.bool){
 								player.logSkill('sgk_xiemu',trigger.player);
-								trigger.player.addSkill('sgk_xiemu8');
+								trigger.player.addSkill('sgk_xiemu3');
 								event.card=result.cards[0];
 								player.lose(result.cards,ui.special);
 								game.broadcastAll(function(player){
@@ -5747,7 +5747,7 @@ game.import('extension',{
 							}
 							'step 2'
 							if(player==game.me) game.delay(0.5);
-							'step 8'
+							'step 3'
 							if(event.card){
 								event.card.fix();
 								ui.cardPile.insertBefore(event.card,ui.cardPile.firstChild);
@@ -5758,29 +5758,29 @@ game.import('extension',{
 					sgk_xiemu2:{
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
-							return event.player.hasSkill('sgk_xiemu8');
+							return event.player.hasSkill('sgk_xiemu3');
 						},
 						popup:false,
 						forced:true,
 						content:function(){
 							'step 0'
-							trigger.player.removeSkill('sgk_xiemu8');
-							player.chooseBool('是否让'+get.translation(trigger.player)+'摸两张牌？').ai=function(){
+							trigger.player.removeSkill('sgk_xiemu3');
+							player.chooseBool('是否让'+get.translation(trigger.player)+'摸一张牌？').ai=function(){
 								if(get.attitude(player,trigger.player)>0) return 1;
 								return 0;
 							}
 							'step 1'
 							if(result.bool){
-								trigger.player.draw(2);
+								trigger.player.draw(4);
 							}
 						},
 						ai:{
 							expose:0.2
 						}
 					},
-					sgk_xiemu8:{},
+					sgk_xiemu3:{},
 					sgk_zhejie:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseDiscardEnd'},
 						filter:function(event,player){
 							return event.player!=player&&player.countCards('h')>0;
@@ -5811,7 +5811,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								result.targets[0].gain(event.card);
 								result.targets[0].$gain(event.card);
@@ -5819,7 +5819,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fengya:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'damageBegin'},
 						frequent:true,
 						filter:function(event){
@@ -5827,19 +5827,19 @@ game.import('extension',{
 						},
 						content:function(){
 							"step 0"
-							player.draw(2);
-							trigger.source.chooseBool('是否摸两张牌并令此伤害-1?').ai=function(){
+							player.draw(4);
+							trigger.source.chooseBool('是否摸一张牌并令此伤害-1?').ai=function(){
 								return get.attitude(trigger.source,player)>0;
 							}
 							"step 1"
 							if(result.bool){
-								trigger.source.draw();
-								trigger.num++;
+								trigger.source.draw(4);
+								trigger.num+=2;
 							}
 						}
 					},
 					sgk_yijian:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseUseBefore'},
 						direct:true,
 						content:function(){
@@ -5856,7 +5856,7 @@ game.import('extension',{
 								trigger.untrigger();
 								trigger.finish();
 								player.logSkill('sgk_yijian',result.targets[0]);
-								result.targets[0].draw();
+								result.targets[0].draw(4);
 								if(result.targets[0].countCards('h')>=player.countCards('h')){
 									player.recover();
 								}
@@ -5864,7 +5864,7 @@ game.import('extension',{
 						}
 					},
 					sgk_feijun:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseUseBegin'},
 						forced:true,
 						content:function(){
@@ -5897,7 +5897,7 @@ game.import('extension',{
 						}
 					},
 					sgk_muniu:{
-						audio:9,
+						audio:4,
 						trigger:{global:'loseAfter'},
 						filter:function(event,player){
 							if(_status.currentPhase!=player) return false;
@@ -5924,7 +5924,7 @@ game.import('extension',{
 									}
 								}
 								else{
-									event.target.draw();
+									event.target.draw(4);
 								}
 									
 							}
@@ -5933,7 +5933,7 @@ game.import('extension',{
 							}
 							'step 2'
 							if(!result.bool){
-								event.target.draw();
+								event.target.draw(4);
 							}
 						},
 						group:['sgk_muniu2']
@@ -5965,12 +5965,12 @@ game.import('extension',{
 							}
 							'step 2'
 							if(!result.bool){
-								event.target.draw();
+								event.target.draw(4);
 							}
 						},
 					},
 					sgk_liuma:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filterCard:function(card){
@@ -6023,7 +6023,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lingnu:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseAfter'},
 						forced:true,
 						filter:function(event,player){
@@ -6069,7 +6069,7 @@ game.import('extension',{
 						}
 					},
 					sgk_baozheng:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						content:function(){
@@ -6083,10 +6083,10 @@ game.import('extension',{
 							if(event.num<event.targets.length){
 								event.target=event.targets[event.num];
 								if(event.target.countCards('he')>=2){
-									event.target.chooseCard('交给'+get.translation(player)+'一张牌，或弃置两张牌对其造成2点伤害','he').ai=function(card){
+									event.target.chooseCard('交给'+get.translation(player)+'一张牌，或弃置两张牌对其造成1点伤害','he').ai=function(card){
 										if(get.attitude(event.target,player)>0) return 10-get.value(card);
 										if(get.attitude(event.target,player)<0){
-											if(player.hasSkillTag('maixie')&&player.hp>player.maxHp/8) return 0;
+											if(player.hasSkillTag('maixie')&&player.hp>player.maxHp/3) return 0;
 											if(player.hp<=1&&!player.hasSkill('buqu')) return 0;
 										}
 										return 0;
@@ -6112,7 +6112,7 @@ game.import('extension',{
 								event.goto(1);
 							}
 							else{
-								event.target.chooseToDiscard('弃置两张牌对'+get.translation(player)+'造成2点伤害',2,true);
+								event.target.chooseToDiscard('弃置两张牌对'+get.translation(player)+'造成一点伤害',2,true);
 								event.target.line(player,'fire');
 								player.damage(event.target);
 								event.num++;
@@ -6121,7 +6121,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhongyong:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseBegin'},
 						check:function(event,player){
 							return (!player.hasJudge('lebu')||!player.hasJudge('bingliang'))&&player.hp>2;
@@ -6211,7 +6211,7 @@ game.import('extension',{
 						}
 					},
 					sgk_bozhan:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'shaMiss',target:'shaMiss'},
 						forced:true,
 						content:function(){
@@ -6219,7 +6219,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qingxi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'shaBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -6230,11 +6230,11 @@ game.import('extension',{
 						}
 					},
 					sgk_langxing:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
 							if(player.countCards('h')>player.hp) return true;
-							if(player.countCards('h')>8) return true;
+							if(player.countCards('h')>3) return true;
 							return false;
 						},
 						content:function(){
@@ -6250,7 +6250,7 @@ game.import('extension',{
 						}
 					},
 					sgk_langxing2:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						enable:'phaseUse',
 						viewAs:{name:'juedou'},
 						filterCard:function(card,player){
@@ -6266,7 +6266,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hubu:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'damageEnd',source:'damageEnd'},
 						filter:function(event){
 							return event.card&&event.card.name=='sha'&&event.notLink();
@@ -6310,7 +6310,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danshou:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')&&player.countCards('h');
@@ -6324,13 +6324,13 @@ game.import('extension',{
 								trigger.directHit=true;
 							}
 							else{
-								player.draw(2);
+								player.draw(4);
 								player.discardPlayerCard(trigger.player,true);
 							}
 						}
 					},
 					sgk_yonglie:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&event.notLink()&&get.distance(player,event.player,'attack')<=1&&event.source&&event.source.isAlive();
@@ -6343,11 +6343,11 @@ game.import('extension',{
 						content:function(){
 							player.loseHp();
 							player.line(trigger.source);
-							trigger.source.damage(2);
+							trigger.source.damage(4);
 						}
 					},
 					sgk_hengshi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -6359,7 +6359,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhijiao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseEnd'},
 						init:function(player){
 							player.storage.sgk_zhijiao=false;
@@ -6378,7 +6378,7 @@ game.import('extension',{
 							player.chooseTarget(get.prompt('sgk_zhijiao'),function(card,player,target){
 								return player!=target;
 							}).ai=function(target){
-								if(player.storage.sgk_zhijiao2.length>9) return get.attitude(player,target);
+								if(player.storage.sgk_zhijiao2.length>4) return get.attitude(player,target);
 								return false;
 							}
 							'step 1'
@@ -6429,7 +6429,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jiwux:{
-						audio:8,
+						audio:3,
 						trigger:{player:'phaseUseBegin'},
 						filter:function(event,player){
 							return player.countCards('h','sha')>0;
@@ -6442,12 +6442,12 @@ game.import('extension',{
 							}).ai=function(card){
 								var value=0;
 								if(card.nature){
-									if(card.nature=='fire') value+=0.009;
-									if(card.nature=='thunder') value+=0.008;
+									if(card.nature=='fire') value+=0.004;
+									if(card.nature=='thunder') value+=0.003;
 								}
 								switch(get.suit(card)){
-									case 'heart':value+=0.009;break;
-									case 'diamond':value+=0.008;break;
+									case 'heart':value+=0.004;break;
+									case 'diamond':value+=0.003;break;
 									case 'spade':value+=0.002;break;
 									case 'club':value+=0.001;break;
 									default:break;
@@ -6463,7 +6463,7 @@ game.import('extension',{
 								if(event.card.isJiwu==undefined) event.card.isJiwu=[];
 								player.chooseControl('选项一','选项二','选项三',function(){
 									return Math.random()<0.5?'选项一':'选项二';
-								}).set('prompt','戟舞<br><br><div class="text">1:此【杀】不计入次数限制</div><br><div class="text">2:此【杀】无距离限制,且可以额外指定一个目标</div></br><div class="text">8:此【杀】的伤害值+1。</br>');
+								}).set('prompt','戟舞<br><br><div class="text">1:此【杀】不计入次数限制</div><br><div class="text">2:此【杀】无距离限制,且可以额外指定一个目标</div></br><div class="text">3:此【杀】的伤害值+1。</br>');
 							}
 							else{
 								event.finish();
@@ -6478,7 +6478,7 @@ game.import('extension',{
 								game.log(player,'所展示的',event.card,'无距离限制，且可以额外指定一个目标');
 							}
 							else if(result.control=='选项三'){
-								event.card.isJiwu.push(8);
+								event.card.isJiwu.push(3);
 								game.log(player,'所展示的',event.card,'伤害值+1');
 							}
 						},
@@ -6517,7 +6517,7 @@ game.import('extension',{
 								trigger:{source:'damageBegin'},
 								forced:true,
 								filter:function(event,player){
-									return event.card&&event.card.name=='sha'&&event.card.isJiwu&&event.card.isJiwu.contains(8)&&event.notLink();
+									return event.card&&event.card.name=='sha'&&event.card.isJiwu&&event.card.isJiwu.contains(3)&&event.notLink();
 								},
 								content:function(){
 									trigger.num+=2;
@@ -6537,7 +6537,7 @@ game.import('extension',{
 						}
 					},
 					sgk_daoshi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return event.player.num('e')>0;
@@ -6545,7 +6545,7 @@ game.import('extension',{
 						direct:true,
 						content:function(){
 							'step 0'
-							trigger.player.chooseBool('是否发动【刀侍】摸两张牌并将装备区的一张牌交给'+get.translation(player)).ai=function(){
+							trigger.player.chooseBool('是否发动【刀侍】摸一张牌并将装备区的一张牌交给'+get.translation(player)).ai=function(){
 								if(get.attitude(trigger.player,player)>0&&player.num('e')<2)
 										return 1;
 									return 0;
@@ -6553,7 +6553,7 @@ game.import('extension',{
 							'step 1'
 							if(result.bool){
 								trigger.player.logSkill('sgk_daoshi',player);
-								trigger.player.draw(2);
+								trigger.player.draw(4);
 								if(trigger.player!=player){
 									trigger.player.chooseCardButton('选择一张牌交给'+get.translation(player),trigger.player.get('e'),true);
 								}
@@ -6572,7 +6572,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lirang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							if(event.player.countCards('h')==0) return false;
@@ -6612,7 +6612,7 @@ game.import('extension',{
 								player.storage.sgk_lirang=player.storage.sgk_lirang.concat(result.cards);
 								player.markSkill('sgk_lirang');
 								player.syncStorage('sgk_lirang');
-								trigger.player.draw(2);
+								trigger.player.draw(4);
 							}
 							else{
 								event.finish();
@@ -6660,7 +6660,7 @@ game.import('extension',{
 							},
 							backup:function(links,player){
 								return {
-									audio:’ext:极略三国:2’,
+									audio:2,
 									filterCard:function(){return false},
 									selectCard:-1,
 									viewAs:{name:'tao'},
@@ -6691,7 +6691,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xianshi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'damageBegin'},
 						filter:function(event,player){
 							return (event.source!=undefined);
@@ -6708,7 +6708,7 @@ game.import('extension',{
 							if(result.bool){
 								trigger.source.showHandcards();
 							}else{
-								trigger.num++;
+								trigger.num+=2;
 							}
 						},
 						ai:{
@@ -6723,7 +6723,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chengxiang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						inherit:'chengxiang'
 					},
 					sgk_renxin:{
@@ -6752,7 +6752,7 @@ game.import('extension',{
 						}
 					},
 					sgk_midao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6813,7 +6813,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yishe:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -6838,7 +6838,7 @@ game.import('extension',{
 						}
 					},
 					sgk_pudu:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						unique:true,
 						enable:'phaseUse',
 						skillAnimation:true,
@@ -6901,7 +6901,7 @@ game.import('extension',{
 							
 						},
 						ai:{
-							order:9.5,
+							order:4.5,
 							result:{
 								player:function(player,target){
 									var num=0;
@@ -6956,7 +6956,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zongqing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(event,player){
 							if(player.isDamaged()&&player.countCards('h',{color:'red'})) return 2;
@@ -7037,7 +7037,7 @@ game.import('extension',{
 						}
 					},
 					sgk_bugua:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'judgeBefore'},
 						content:function(){
 							'step 0'
@@ -7098,15 +7098,15 @@ game.import('extension',{
 									event.goto(2);
 								}
 							}
-							'step 8'
+							'step 3'
 							if(event.current==game.me) game.delay(0.5);
-							'step 9'
+							'step 4'
 							if(event.card){
 								event.card.fix();
 								ui.cardPile.insertBefore(event.card,ui.cardPile.firstChild);
 							}
 						},
-						group:['sgk_bugua2','sgk_bugua8'],
+						group:['sgk_bugua2','sgk_bugua3'],
 					},
 					sgk_bugua2:{
 						trigger:{global:'judgeAfter'},
@@ -7118,14 +7118,14 @@ game.import('extension',{
 						},
 						prompt:function(event,player){
 							var str='';
-							str+='是否对'+get.translation(event.player)+'发动【卜卦】令其摸两张牌';
+							str+='是否对'+get.translation(event.player)+'发动【卜卦】令其摸一张牌';
 							return str;
 						},
 						content:function(){
-							trigger.player.draw(2);
+							trigger.player.draw(4);
 						}
 					},
-					sgk_bugua8:{
+					sgk_bugua3:{
 						trigger:{global:'judgeAfter'},
 						filter:function(event,player){
 							return (get.color(event.result.card)=='black')&&event.player.num('he');
@@ -7143,7 +7143,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhaoxin:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							var suits=['heart','club','spade','diamond'];
@@ -7168,7 +7168,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhihe:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7225,7 +7225,7 @@ game.import('extension',{
 						}
 					},
 					sgk_caijie:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'phaseBegin'},
 						check:function(event,player){
 							var cards=player.get('h');
@@ -7250,7 +7250,7 @@ game.import('extension',{
 							player.chooseToCompare(trigger.player);
 							'step 1'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
 								trigger.player.useCard({name:'sha'},player,false);
@@ -7261,7 +7261,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jilei:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'damageEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.source)<0;
@@ -7291,7 +7291,7 @@ game.import('extension',{
 							}
 							trigger.source.chooseToDiscard('请弃置手牌中类别相同且最多的所有牌',num,function(card){
 								if(ui.selected.cards.length==0&&event.types.length==2) return (get.type(card,'trick')==event.types[0]||get.type(card,'trick')==event.types[1]);
-								if(ui.selected.cards.length==0&&event.types.length==8) return (get.type(card,'trick')==event.types[0]||get.type(card,'trick')==event.types[1]||get.type(card,'trick')==event.types[8]);
+								if(ui.selected.cards.length==0&&event.types.length==3) return (get.type(card,'trick')==event.types[0]||get.type(card,'trick')==event.types[1]||get.type(card,'trick')==event.types[3]);
 								if(ui.selected.cards.length==0) return (get.type(card,'trick')==event.types[0]);
 								for(var i=0;i<ui.selected.cards.length;i++){
 									if(get.type(card,'trick')==get.type(ui.selected.cards[i],'trick')) return true;
@@ -7301,7 +7301,7 @@ game.import('extension',{
 						},
 					},
 					sgk_yanliang:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player.num('he');
@@ -7311,7 +7311,7 @@ game.import('extension',{
 							'step 0'
 							player.chooseToDiscard('是否对'+get.translation(trigger.player)+'发动【延粮】?','he').ai=function(card){
 								if(get.attitude(player,trigger.player)>0&&trigger.player.num('j','lebu')) return 8-get.value(card)&&get.color(card)=='black';
-								if(get.attitude(player,trigger.player)<0) return 9-get.value(card);
+								if(get.attitude(player,trigger.player)<0) return 4-get.value(card);
 								return 0;
 							}
 							'step 1'
@@ -7360,7 +7360,7 @@ game.import('extension',{
 						}
 					},
 					sgk_duzhi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'recoverAfter'},
 						direct:true,
 						content:function(){
@@ -7385,7 +7385,7 @@ game.import('extension',{
 						group:'sgk_duzhi2'
 					},
 					sgk_duzhi2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{source:'damageEnd'},
 						filter:function(event,player){
 							return event.card&&event.card.name=='sha'&&get.color(event.card)=='red'&&event.notLink();
@@ -7426,7 +7426,7 @@ game.import('extension',{
 								if(card.name=='tao'&&_status.event.skill!='sgk_lieyi') return false;
 							},
 						},
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:['chooseToUse','chooseToRespond'],
 						filter:function(event,player){
 							return player.countCards('h','tao')>0;
@@ -7443,7 +7443,7 @@ game.import('extension',{
 								if(!player.countCards('h','tao')) return false;
 							},
 							respondSha:true,
-							order:9,
+							order:4,
 							useful:-1,
 							value:-1
 						},
@@ -7480,30 +7480,30 @@ game.import('extension',{
 								if(!player.countCards('h','shan')) return false;
 							},
 							save:true,
-							order:9,
+							order:4,
 							useful:-1,
 							value:-1
 						},
 					},
 					sgk_baoli:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
 							return (!target.countCards('e')||target.countCards('j'))&&player!=target;
 						},
 						content:function(){
-							target.damage(2);
+							target.damage(4);
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								target:-1,
 							}
 						}
 					},
 					sgk_huanbing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{target:'shaBegin'},
 						filter:function(event,player){
 							if(get.itemtype(event.card)!='card') return false;
@@ -7536,7 +7536,7 @@ game.import('extension',{
 						group:'sgk_huanbing2'
 					},
 					sgk_huanbing2:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.storage.sgk_huanbing.length;
@@ -7556,7 +7556,7 @@ game.import('extension',{
 							}
 							'step 1'
 							if(result.bool){
-								player.draw(2);
+								player.draw(4);
 								player.gain(player.storage.sgk_huanbing[0],'gain2');
 								player.storage.sgk_huanbing.remove(player.storage.sgk_huanbing[0]);
 								player.syncStorage('sgk_huanbing');
@@ -7583,7 +7583,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hongyuan:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7615,7 +7615,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								event.count-=result.links.length;
 								if(event.count) event.goto(1);
@@ -7623,7 +7623,7 @@ game.import('extension',{
 						},
 					},
 					sgk_huaqiang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -7637,7 +7637,7 @@ game.import('extension',{
 						},
 						complexCard:true,
 						selectCard:function(){
-							return Math.min(9,_status.event.player.hp);
+							return Math.min(4,_status.event.player.hp);
 						},
 						filterTarget:function(card,player,target){
 							return player!=target;
@@ -7646,7 +7646,7 @@ game.import('extension',{
 							return 6-get.value(card);
 						},
 						content:function(){
-							target.damage(2);
+							target.damage(4);
 						},
 						ai:{
 							order:8,
@@ -7663,7 +7663,7 @@ game.import('extension',{
 						}
 					},
 					sgk_chaohuang:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7692,7 +7692,7 @@ game.import('extension',{
 						}
 					},
 					sgk_huilian:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filterTarget:function(card,player,target){
@@ -7725,19 +7725,19 @@ game.import('extension',{
 						}
 					},
 					sgk_wenliang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'judgeAfter'},
 						frequent:true,
 						filter:function(event,player){
 							return (get.color(event.result.card)=='red');
 						},
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 						}
 					},
 					// sgk_qianhuan:{},
 					sgk_jinglun:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'useCard'},
 						frequent:true,
 						nodelay:true,
@@ -7759,14 +7759,14 @@ game.import('extension',{
 									var i=parseInt(Math.random()*ui.cardPile.childNodes.length);
 									ui.cardPile.insertBefore(event.card,ui.cardPile.childNodes[i]);
 									game.log(player,'将',event.card,'随机置于牌堆');
-									player.draw(2);
+									player.draw(4);
 								}
 							}
 						}
 					},
 					sgk_ruzong:{
 						srlose:true,
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h','wuxie')>0;
@@ -7800,7 +7800,7 @@ game.import('extension',{
 							backup:function(links,player){
 								return {
 									filterCard:{name:'wuxie'},
-									audio:’ext:极略三国:1’,
+									audio:1,
 									popname:true,
 									ai1:function(card){
 										return 8-get.value(card);
@@ -7824,7 +7824,7 @@ game.import('extension',{
 						group:['sgk_ruzong_sha','sgk_ruzong_shan','sgk_ruzong_tao'],
 						subSkill:{
 							sha:{
-								audio:’ext:极略三国:1’,
+								audio:1,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'sha'},
@@ -7847,7 +7847,7 @@ game.import('extension',{
 								}
 							},
 							shan:{
-								audio:’ext:极略三国:1’,
+								audio:1,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'shan'},
@@ -7870,7 +7870,7 @@ game.import('extension',{
 								}
 							},
 							tao:{
-								audio:’ext:极略三国:1’,
+								audio:1,
 								enable:['chooseToRespond','chooseToUse'],
 								filterCard:{name:'wuxie'},
 								viewAs:{name:'tao'},
@@ -7895,7 +7895,7 @@ game.import('extension',{
 						}
 					},
 					sgk_leiji:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'respond'},
 						filter:function(event){
 							return event.card.name=='shan';
@@ -7934,7 +7934,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shanxi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'judgeEnd'},
 						forced:true,
 						filter:function(event,player){
@@ -7955,7 +7955,7 @@ game.import('extension',{
 						}
 					},
 					sgk_guhuo:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return player!=event.player&&event.player.countCards('h')&&player.countCards('h');
@@ -8049,7 +8049,7 @@ game.import('extension',{
 						popname:true,
 					},
 					sgk_fulu:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player!=event.player;
@@ -8061,7 +8061,7 @@ game.import('extension',{
 							return 0;
 						},
 						content:function(){
-							trigger.player.draw(2);
+							trigger.player.draw(4);
 							if(trigger.player.hasSkill('sgk_fulu2')){
 								trigger.player.addSkill('sgk_chanyuan');
 								trigger.player.storage.sgk_chanyuan=player;
@@ -8124,10 +8124,10 @@ game.import('extension',{
 						}						
 					},
 					sgk_gongshen:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						filterCard:true,
-						selectCard:8,
+						selectCard:3,
 						position:'he',
 						filter:function(event,player){
 							return player.countCards('he')>2;
@@ -8138,7 +8138,7 @@ game.import('extension',{
 						},
 						content:function(){
 							'step 0'
-							player.draw(2);
+							player.draw(4);
 							'step 1'
 							if(player.isDamaged()){
 								if(player.isFewestHandcard()){
@@ -8159,7 +8159,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jianyue:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							if(ui.discardPile.hasChildNodes()==false) return false;
@@ -8185,7 +8185,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhengyi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						filter:function(event,player){ 
 							return player.countCards('h')-1==player.hp;
@@ -8236,7 +8236,7 @@ game.import('extension',{
 							result:{
 								player:1,
 							},
-							threaten:1.8,
+							threaten:1.3,
 						},
 						group:['sgk_zhengyi_sha','sgk_zhengyi_shan','sgk_zhengyi_tao','sgk_zhengyi_sha2','sgk_zhengyi_shan2','sgk_zhengyi_tao2'],
 						subSkill:{
@@ -8251,10 +8251,10 @@ game.import('extension',{
 								check:function(){return 1;},
 								viewAs:{name:'sha'},
 								onuse:function(result,player){
-									player.draw(2);
+									player.draw(4);
 								},
 								onrespond:function(result,player){
-									player.draw(2);
+									player.draw(4);
 								},
 								ai:{
 									skillTagFilter:function(player){
@@ -8275,7 +8275,7 @@ game.import('extension',{
 								check:function(){return 1;},
 								viewAs:{name:'shan'},
 								onrespond:function(result,player){
-									player.draw(2);
+									player.draw(4);
 								},
 								ai:{
 									skillTagFilter:function(player){
@@ -8296,10 +8296,10 @@ game.import('extension',{
 								check:function(){return 1;},
 								viewAs:{name:'tao'},
 								onuse:function(result,player){
-									player.draw(2);
+									player.draw(4);
 								},
 								onrespond:function(result,player){
-									player.draw(2);
+									player.draw(4);
 								},
 								ai:{
 									skillTagFilter:function(player){
@@ -8381,7 +8381,7 @@ game.import('extension',{
 						}
 					},
 					sgk_pengri:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						selectTarget:-1,
 						usable:1,
@@ -8398,7 +8398,7 @@ game.import('extension',{
 						multiline:true,
 						content:function(){
 							'step 0'
-							player.draw(2);
+							player.draw(4);
 							event.target=target;
 							'setp 1'
 							event.target.chooseToUse('是否对'+get.translation(player)+'使用一张杀？',{name:'sha'},player,-1);
@@ -8414,7 +8414,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danmou:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'damageAfter'},
 						filter:function(event){
 							return event.source&&event.player&&event.player.isAlive()&&event.source.isAlive()&&event.source!=event.player;
@@ -8429,7 +8429,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fushe:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseUseBegin'},
 						filter:function(event,player){
 							return get.distance(event.player,player,'attack')<=1&&event.player!=player;
@@ -8443,9 +8443,9 @@ game.import('extension',{
 							player.chooseControl('heart2','diamond2','club2','spade2').set('ai',function(event){
 								switch(Math.floor(Math.random()*6)){
 									case 0:return 'heart2';
-									case 1:case 9:return 'diamond2';
+									case 1:case 4:return 'diamond2';
 									case 2:case 5:return 'club2';
-									case 8:return 'spade2';
+									case 3:return 'spade2';
 								}
 							});
 							'step 1'
@@ -8503,13 +8503,13 @@ game.import('extension',{
 									});
 									zhangren.logSkill('sgk_fushe',player);
 									player.damage(zhangren);
-									zhangren.draw();
+									zhangren.draw(4);
 								}
 							}
 						}
 					},
 					sgk_ziguo:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -8522,7 +8522,7 @@ game.import('extension',{
 							return target.isDamaged();
 						},
 						content:function(){
-							target.draw(2);
+							target.draw(4);
 							player.addTempSkill('sgk_ziguo_debuff','phaseAfter');
 						},
 						subSkill:{
@@ -8535,7 +8535,7 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							order:9,
+							order:4,
 							result:{
 								player:function(player,target){
 									if(player.countCards('h')-2<=player.getHandcardLimit()) return 0.1;
@@ -8546,7 +8546,7 @@ game.import('extension',{
 						}	
 					},
 					sgk_shangdao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player.countCards('h')>player.countCards('h');
@@ -8559,7 +8559,7 @@ game.import('extension',{
 						}
 					},
 					sgk_hengjiang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -8617,7 +8617,7 @@ game.import('extension',{
 									else{
 										event.finish();
 									}
-									'step 8'
+									'step 3'
 									if(result.bool){
 										event.count-=result.links.length;
 									}
@@ -8642,7 +8642,7 @@ game.import('extension',{
 						},
 					},
 					sgk_zhuanshan:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						direct:true,
 						content:function(){
@@ -8674,7 +8674,7 @@ game.import('extension',{
 									}
 									else{
 										if(target.num('e')){
-											return 9;
+											return 4;
 										}
 										return -1;
 									}
@@ -8684,7 +8684,7 @@ game.import('extension',{
 							'step 1'
 							if(result.bool){
 								event.target=result.targets[0];
-								event.target.draw();
+								event.target.draw(4);
 								player.choosePlayerCard(event.target,'hej',true);
 							}
 							else{
@@ -8700,9 +8700,9 @@ game.import('extension',{
 								cardx.classList.add('infoflip');
 								player.$throw(cardx,1000,'nobroadcast');
 							},event.target);
-							'step 8'
+							'step 3'
 							if(event.target==game.me) game.delay(0.5);
-							'step 9'
+							'step 4'
 							if(event.card){
 								event.card.fix();
 								ui.cardPile.insertBefore(event.card,ui.cardPile.firstChild);
@@ -8711,7 +8711,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhenlie:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{target:'useCardToBefore'},
 						filter:function(event,player){
 							return event.player!=player&&event.card&&(event.card.name=='sha'||get.type(event.card,'trick')=='trick');
@@ -8754,7 +8754,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							"step 8"
+							"step 3"
 							if(result.bool){
 								if(trigger.player.countCards('h')>0){
 									trigger.player.showHandcards();
@@ -8775,7 +8775,7 @@ game.import('extension',{
 									event.finish();
 								}
 							}
-							"step 9"
+							"step 4"
 							if(!result.bool){
 								trigger.player.loseHp();
 							}
@@ -8784,7 +8784,7 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							expose:0.8,
+							expose:0.3,
 							effect:{
 								target:function(card,player,target){
 									if(player.countCards('h')<2) return;
@@ -8794,7 +8794,7 @@ game.import('extension',{
 						}
 					},
 					sgk_miji:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:['phaseBegin','phaseEnd']},
 						filter:function(event,player,name){
 							if(name=='phaseBegin'){
@@ -8821,7 +8821,7 @@ game.import('extension',{
 									default:{
 										if(Math.random()<0.5) return 'basic';
 										if(Math.random()<0.5) return 'equip';
-										if(Math.random()<2/8) return 'trick';
+										if(Math.random()<2/3) return 'trick';
 										return 'basic';
 									};
 								}
@@ -9005,60 +9005,60 @@ game.import('extension',{
 					sgk_miji_info:'回合开始阶段开始时，若你已受伤，你可以声明一种牌的类别，然后从牌堆随机亮出一张此类别的牌，将之交给一名角色。回合结束阶段开始时，若你的体力为全场最少（或之一），你亦可以如此做。',
 					sgk_pengri_info:'出牌阶段限一次，你可以摸两张牌，然后攻击范围内含有你的其他角色可依次对你使用一张【杀】',
 					sgk_danmou_info:'当你受到伤害后，你可以与伤害来源交换手牌。',
-					sgk_fushe_info:'其他角色的出牌阶段开始时，若其在你的攻击范围内，你可以选择一种花色。若如此做，此阶段结束时，若其有此花色的牌进入弃牌堆，你对其造成2点伤害，然后摸两张牌。',
+					sgk_fushe_info:'其他角色的出牌阶段开始时，若其在你的攻击范围内，你可以选择一种花色。若如此做，此阶段结束时，若其有此花色的牌进入弃牌堆，你对其造成1点伤害，然后摸一张牌。',
 					sgk_ziguo_info:'出牌阶段限一次，你可以令一名已受伤的角色摸两张牌，若如此做，本回合你的手牌上限-2。',
 					sgk_shangdao_info:'锁定技，一名角色的准备阶段开始时，若其手牌数大于你，你展示牌堆顶牌并获得之。',
 					sgk_hengjiang_info:'弃牌阶段开始时，你可以令你的手牌上限+1或-1，若如此做，此阶段结束时，你可以弃置场上的至多X张牌（X为此阶段你弃置的牌数）。',
-					sgk_zhuanshan_info:'回合开始/结束阶段开始时，你可以令一名角色摸两张牌，然后将该角色的一张牌置于牌堆顶。',
+					sgk_zhuanshan_info:'回合开始/结束阶段开始时，你可以令一名角色摸一张牌，然后将该角色的一张牌置于牌堆顶。',
 					sgk_hemeng_info:'出牌阶段，若你有手牌，可令一名其他角色观看你的手牌并获得其中一张，然后你观看该角色的手牌并获得其一张牌。每阶段限（X+1）次，X为你此阶段开始时已损失的体力值。',
 					sgk_sujian_info:'每当你从其他角色处获得一次牌时，可令一名其他角色弃置你一张牌，然后你弃置其一张牌。',
 					sgk_yexi_info:'回合结束阶段，你可以多弃一张手牌， 然后指定你以外的一个角色选择:1.使用黑色杀时无视防具。2.使用红色杀时无视距离。该角色将在他的下个出牌阶段得到上述效果中的一个。',
 					sgk_kuangyan_info:'锁定技，你受到1点无属性伤害时，该伤害对你无效，你受到两点或两点以上伤害时，该伤害+1。',
-					sgk_chaochen_info:'出牌阶段限一次，你可以将至少一张手牌交给一名其他角色，若如此做，该角色的回合开始阶段开始时，若其手牌数大于其体力值，你对其造成2点伤害。',
-					sgk_quanzheng_info:'当你成为其他角色使用的【杀】或非延时类锦囊牌的目标后，若其手牌或装备区的牌数大于你对应的区域，你可以摸两张牌。',
+					sgk_chaochen_info:'出牌阶段限一次，你可以将至少一张手牌交给一名其他角色，若如此做，该角色的回合开始阶段开始时，若其手牌数大于其体力值，你对其造成1点伤害。',
+					sgk_quanzheng_info:'当你成为其他角色使用的【杀】或非延时类锦囊牌的目标后，若其手牌或装备区的牌数大于你对应的区域，你可以摸一张牌。',
 					sgk_shejian_info:'出牌阶段对每名其他角色限一次，若你未装备防具，你可以弃置一名其他角色的一张牌，然后该角色可以视为对你使用一张【杀】。',
 					sgk_kuangao_info:'当一张对你使用的【杀】结算后，你可以选择一项：弃置所有牌（至少一张），然后该【杀】的使用者弃置所有牌；或令该【杀】的使用者将手牌补至其体力上限的张数（至多5张）。',
 					sgk_yinbing_info:'你攻击范围内的一名其他角色成为【杀】的目标时，你可以获得其装备区的一张牌，然后将该【杀】转移给你（你不得是此【杀】的使用者）；当你成为【杀】的目标时，你可以弃置一张牌，然后摸X张牌（X为你已损失的体力值）。',
 					sgk_fenwei_info:'当你使用【杀】对目标角色造成伤害时，你可以展示该角色的一张手牌：若为【桃】或【酒】，则你获得之；若不为基本牌，则你弃掉该牌并令该伤害+1。',
 					sgk_shiyong_info:'锁定技，你每受到一次红色【杀】或【酒】【杀】造成的伤害后，减少1点体力上限。',
-					sgk_angyang_info:'每当你使用（指定目标后）或被使用（成为目标后）一张【决斗】或红色的【杀】时，你可以摸两张牌，若对方判定区内有牌，你可以摸两张牌。',
+					sgk_angyang_info:'每当你使用（指定目标后）或被使用（成为目标后）一张【决斗】或红色的【杀】时，你可以摸一张牌，若对方判定区内有牌，你可以摸两张牌。',
 					sgk_weifeng_info:'回合开始阶段，若你的手牌数小于你的体力值，你可以与一名角色拼点，若你赢，你从牌堆摸两张牌，若你没赢，该角色从牌堆摸两张牌。',
 					sgk_xieli_info:'主公技，当你需要打出一张拼点牌时，你可请场上吴将帮你出，所有吴将给出牌后，你必须从中挑选一张作为拼点牌并弃掉其余。',
 					sgk_jushou_info:'回合结束阶段，你可以摸(X+1)张牌，最多5张。若如此做，将你的武将牌翻面。X为仅计算攻击范围和距离时，场上可以攻击到你的人数。',
 					sgk_yicong_info:'锁定技，只要你的体力值大于2点，你计算与其他角色的距离时，始终-1；只要你的体力值为2点或更低，其他角色计算与你的距离时，始终+1。',
 					sgk_muma_info:'锁定技，你的回合外，若你没有装备+1/-1马，则其他角色的+1/-1马从装备区失去时，你可以获得之。',
 					sgk_suiji_info:'其他角色的弃牌阶段开始时，你可以交给其至少一张手牌，然后其将超出其体力值数量的手牌交给你。',
-					sgk_fengyi_info:'当你成为非延时类锦囊牌的唯一目标后，你可以摸两张牌。',
-					sgk_yalv_info:'当你受到伤害后，或出牌阶段开始时，你可以观看牌堆顶两张牌并以任意顺序置于牌堆顶，然后你可以摸两张牌。',
-					sgk_xiemu_info:'一名角色的回合开始阶段开始时，你可以将一张牌置于牌堆顶，若如此做，该角色回合结束阶段开始时，你可以令其摸两张牌。',
+					sgk_fengyi_info:'当你成为非延时类锦囊牌的唯一目标后，你可以摸一张牌。',
+					sgk_yalv_info:'当你受到伤害后，或出牌阶段开始时，你可以观看牌堆顶两张牌并以任意顺序置于牌堆顶，然后你可以摸一张牌。',
+					sgk_xiemu_info:'一名角色的回合开始阶段开始时，你可以将一张牌置于牌堆顶，若如此做，该角色回合结束阶段开始时，你可以令其摸一张牌。',
 					sgk_zhejie_info:'其他角色的弃牌阶段结束时，你可以弃置一张手牌，令其弃置一张牌，若该角色弃置的牌为装备牌，你将之交给除该角色外的一名角色。',
-					sgk_fengya_info:'每当你受到一次伤害时，你可以摸两张牌，然后伤害来源可以摸两张牌并令此伤害-1。',
-					sgk_yijian_info:'你可以跳过你的出牌阶段并令一名其他角色摸两张牌，然后若该角色的手牌数不小于你的手牌数，你回复1点体力。',
+					sgk_fengya_info:'每当你受到一次伤害时，你可以摸一张牌，然后伤害来源可以摸一张牌并令此伤害-1。',
+					sgk_yijian_info:'你可以跳过你的出牌阶段并令一名其他角色摸一张牌，然后若该角色的手牌数不小于你的手牌数，你回复1点体力。',
 					sgk_feijun_info:'锁定技，出牌阶段开始时，若你的手牌数不小于你的体力值，本阶段你的攻击范围+X且可以额外使用一张【杀】（X为你当前体力值）；若你的手牌数小于你的体力值，你不能使用【杀】直到回合结束。',
-					sgk_muniu_info:'你的回合内，当任意角色装备区的牌发生一次变动时，你可以选择一名角色并选择一项： 弃置其一张手牌，或令其摸两张牌。',
+					sgk_muniu_info:'你的回合内，当任意角色装备区的牌发生一次变动时，你可以选择一名角色并选择一项： 弃置其一张手牌，或令其摸一张牌。',
 					sgk_liuma_info:'出牌阶段限一次，你可以弃置一张基本牌，然后令至多两名至少一名装备区有牌的其他角色依次选择一项：将其装备区的一张牌交给一名其他角色，或你获得其一张手牌。',
-					sgk_baozheng_info:'锁定技，回合结束阶段开始时，你令其他角色依次选择一项：交给你一张牌；或弃置两张牌，然后对你造成2点伤害。',
+					sgk_baozheng_info:'锁定技，回合结束阶段开始时，你令其他角色依次选择一项：交给你一张牌；或弃置两张牌，然后对你造成1点伤害。',
 					sgk_lingnu_info:'锁定技，回合结束时，若你于此回合受到2点或更多的伤害，你减1点体力上限，然后从其他角色处依次获得一张牌。',
 					sgk_zhongyong_info:'回合开始阶段开始时，你可以失去1点体力，若如此做，本回合的摸牌阶段，你可以额外摸x张牌（x为你已损失的体力值）；本回合的出牌阶段，你与其他角色的距离为1；本回合的弃牌阶段结束时，你可以令一名其他角色获得你本阶段弃置的牌。',
 					sgk_bozhan_info:'当你使用或被使用一张【杀】并完成结算后，若此【杀】未造成伤害，则此【杀】的目标或你可以对你或此【杀】的使用者使用一张【杀】(无距离限制）。',
 					sgk_qingxi_info:'锁定技，当你使用【杀】指定一个目标后，若你装备区的牌数少于该角色，则其不能使用【闪】响应此【杀】。',
 					sgk_langxing_info:'摸牌阶段开始时，你可以选择放弃摸牌并进行一次判定；你获得此判定牌并且此回合可以将任意一张与该判定牌不同颜色的手牌当【决斗】使用。',
 					sgk_hubu_info:'你每使用【杀】造成一次伤害后或受到一次其他角色使用【杀】造成的伤害后，可以令除你外的任意角色进行一次判定；若结果不为黑桃，则视为你对其使用一张【决斗】（此【决斗】不能被【无懈可击】响应）。',
-					sgk_danshou_info:'锁定技，当一名角色使用【杀】指定你为目标后，若你与其均有手牌，该角色须与你拼点，若你赢，你摸两张牌，然后弃置其一张牌；若你没赢，此【杀】不可被【闪】响应。',
-					sgk_yonglie_info:'当你攻击范围内的一名角色受到【杀】造成的一次伤害后，你可以失去1点体力，然后对伤害来源造成2点伤害。',
+					sgk_danshou_info:'锁定技，当一名角色使用【杀】指定你为目标后，若你与其均有手牌，该角色须与你拼点，若你赢，你摸一张牌，然后弃置其一张牌；若你没赢，此【杀】不可被【闪】响应。',
+					sgk_yonglie_info:'当你攻击范围内的一名角色受到【杀】造成的一次伤害后，你可以失去1点体力，然后对伤害来源造成1点伤害。',
 					sgk_hengshi_info:'弃牌阶段开始时，你可以摸等同于手牌数的牌。',
 					sgk_zhijiao_info:'限定技，回合结束阶段开始时，你可以令一名其他角色获得本回合你因弃置而进入弃牌堆的牌。',
-					sgk_jiwux_info:'出牌阶段开始时，你可以展示一张【杀】，令其获得以下效果之一（进入牌堆后失效）：1、此【杀】不计入次数限制；2、此【杀】无距离限制，且可以额外指定一个目标；8、此【杀】的伤害值+1。',
-					sgk_daoshi_info:'一名角色的回合结束阶段开始时，若其装备区有牌，其可以摸两张牌，然后将其装备区的一张牌交给你。',
-					sgk_lirang_info:'一名角色的回合开始阶段结束时，其可以将一张与所有“礼”花色均不同的手牌置于你的武将牌上，成为“礼”，然后摸两张牌。你可以将两张“礼”当【桃】使用。',
+					sgk_jiwux_info:'出牌阶段开始时，你可以展示一张【杀】，令其获得以下效果之一（进入牌堆后失效）：1、此【杀】不计入次数限制；2、此【杀】无距离限制，且可以额外指定一个目标；3、此【杀】的伤害值+1。',
+					sgk_daoshi_info:'一名角色的回合结束阶段开始时，若其装备区有牌，其可以摸一张牌，然后将其装备区的一张牌交给你。',
+					sgk_lirang_info:'一名角色的回合开始阶段结束时，其可以将一张与所有“礼”花色均不同的手牌置于你的武将牌上，成为“礼”，然后摸一张牌。你可以将两张“礼”当【桃】使用。',
 					sgk_xianshi_info:'每当你受到一次伤害时，你可以令伤害来源选择一项：展示所有手牌并弃置其中一张；或令此伤害-1.',
-					sgk_chengxiang_info:'每当你受到伤害后，你可以亮出牌顶堆的四张牌，然后获得其中的至少一张点数和不大于18的牌，将其余的牌置入弃牌堆。',
+					sgk_chengxiang_info:'每当你受到伤害后，你可以亮出牌顶堆的四张牌，然后获得其中的至少一张点数和不大于13的牌，将其余的牌置入弃牌堆。',
 					sgk_renxin_info:'每当一名其他角色处于濒死状态时，你可以翻面并将所有手牌交给该角色，令其回复1点体力。',
 					sgk_midao_info:'出牌阶段限一次，你可以令手牌数大于你的其他角色依次交给你一张牌，然后若你的手牌数为全场最多，你失去1点体力。',
 					sgk_yishe_info:'出牌阶段限一次，你可以与一名手牌数不大于你的其他角色交换手牌。',
 					sgk_pudu_info:'限定技，出牌阶段，你可以获得所有其他角色的手牌，然后依次交给其他角色一张牌，直到你的手牌数不为全场最多。',
 					sgk_zongqing_info:'摸牌阶段开始时，你可以进行一次判定，若如此做，此阶段摸牌后你须展示之，然后弃置其中与该判定牌颜色不同的牌。若以此法弃置的牌为黑色，视为你使用一张【酒】；若以此法弃置的牌为红色，视为你使用一张【桃】。',
-					sgk_bugua_info:'每当一名角色将要进行判定时，你可以展示牌堆顶牌，然后可以选择一项：将一张手牌置于牌堆顶，或令其将一张手牌置于牌堆顶。当一名角色的判定牌为红色且生效后，你可以令其摸两张牌；当一名角色的判定牌为黑色且生效后，你可以令其弃置一张牌。',
+					sgk_bugua_info:'每当一名角色将要进行判定时，你可以展示牌堆顶牌，然后可以选择一项：将一张手牌置于牌堆顶，或令其将一张手牌置于牌堆顶。当一名角色的判定牌为红色且生效后，你可以令其摸一张牌；当一名角色的判定牌为黑色且生效后，你可以令其弃置一张牌。',
 					sgk_zhaoxin_info:'当你受到伤害后，你可以展示所有手牌，然后摸X张牌（X为缺少的花色数）。',
 					sgk_zhihe_info:'出牌阶段限一次，你可以展示所有手牌，并将其中每种花色的牌弃置至一张，然后将手牌数翻倍。',
 					sgk_caijie_info:'其他角色的回合开始阶段开始时，若其手牌数不小于你，你可以与其拼点，若你赢，你摸两张牌；若你没赢，视为其对你使用一张【杀】。',
@@ -9066,24 +9066,24 @@ game.import('extension',{
 					sgk_yanliang_info:'一名角色的回合开始阶段开始时，你可以弃置一张红色牌，令其本回合的摸牌阶段于出牌阶段后进行；或弃置一张黑色牌，令其本回合的摸牌阶段于弃牌阶段后进行。',
 					sgk_duzhi_info:'每当你回复1点体力或使用红色【杀】造成一次伤害后，你可以令一名其他角色失去1点体力，然后该角色可以对你使用一张【杀】',
 					sgk_lieyi_info:'锁定技，你的【桃】均视为【杀】；你的【闪】均视为【酒】。',
-					sgk_baoli_info:'出牌阶段限一次，你可以对一名装备区没有牌或判定区有牌的其他角色造成2点伤害。',
-					sgk_huanbing_info:'锁定技，当你成为【杀】的目标时，终止此【杀】的结算，改为将之置于你的武将牌上。回合开始阶段开始时，你须为你武将牌上的每一张【杀】进行一次判定：若结果为红色，你摸两张牌；若结果为黑色，你须失去一点体力。然后将【杀】收入手牌。',
+					sgk_baoli_info:'出牌阶段限一次，你可以对一名装备区没有牌或判定区有牌的其他角色造成1点伤害。',
+					sgk_huanbing_info:'锁定技，当你成为【杀】的目标时，终止此【杀】的结算，改为将之置于你的武将牌上。回合开始阶段开始时，你须为你武将牌上的每一张【杀】进行一次判定：若结果为红色，你摸一张牌；若结果为黑色，你须失去一点体力。然后将【杀】收入手牌。',
 					sgk_hongyuan_info:'出牌阶段限一次，你可以弃置至多X张手牌，然后选择一名角色获得场上的X张牌，X为你已损失的体力值。',
-					sgk_huaqiang_info:'出牌阶段限一次，你可以弃置X种不同花色的手牌，然后对一名其他角色造成2点伤害（X为你的体力值且至多为9）。',
+					sgk_huaqiang_info:'出牌阶段限一次，你可以弃置X种不同花色的手牌，然后对一名其他角色造成1点伤害（X为你的体力值且至多为4）。',
 					sgk_chaohuang_info:'出牌阶段限一次，你可以失去1点体力，然后视为对你攻击范围内的任意名角色依次使用一张【杀】（不计入出牌阶段的使用限制）。',
 					sgk_huilian_info:'出牌阶段限一次，你可以令一名其他角色进行一次判定并获得生效后的判定牌。若结果为红桃，该角色回复1点体力。',
-					sgk_wenliang_info:'一名角色的红色判定牌生效后，你可以摸两张牌。',
+					sgk_wenliang_info:'一名角色的红色判定牌生效后，你可以摸一张牌。',
 					// sgk_qianhuan_info:'锁定技，你的每个回合开始时，随机展示三张未上场且你拥有的武将，你获得其中的两个技能（限定技、觉醒技除外）直到你的下个回合开始。若该局游戏为双将模式，则移除你的另一名武将，将“两个”改为“四个”。',
-					sgk_jinglun_info:'当你使用非延时类锦囊牌时，若牌堆有【无懈可击】，你可以随机获得一张；若没有，你可以将一张【无懈可击】从弃牌堆随机置入牌堆，然后摸两张牌。',
+					sgk_jinglun_info:'当你使用非延时类锦囊牌时，若牌堆有【无懈可击】，你可以随机获得一张；若没有，你可以将一张【无懈可击】从弃牌堆随机置入牌堆，然后摸一张牌。',
 					sgk_ruzong_info:'你可以将【无懈可击】当任意基本牌使用。',
 					sgk_leiji_info:'当其他角色使用【闪】时，你可以将牌堆或弃牌堆里的一张【闪电】置入一名角色的判定区。',
 					sgk_shanxi_info:'锁定技，你不能成为【闪电】的目标，【闪电】的判定牌生效后，你获得之。',
-					sgk_guhuo_info:'其他角色的回合开始时，你可以与其拼点：若你赢，视为你使用一张任意非延时类锦囊牌；若你没赢，该角色对你造成2点伤害。',
-					sgk_fulu_info:'其他角色的回合结束时，你可以令其摸两张牌，然后若此回合内该角色对你造成过伤害，你令其获得”缠怨“（锁定技，当你死亡时，你令于吉回复1点体力；当于吉受到伤害时，你失去1点体力并失去”缠怨“）。',
+					sgk_guhuo_info:'其他角色的回合开始时，你可以与其拼点：若你赢，视为你使用一张任意非延时类锦囊牌；若你没赢，该角色对你造成1点伤害。',
+					sgk_fulu_info:'其他角色的回合结束时，你可以令其摸一张牌，然后若此回合内该角色对你造成过伤害，你令其获得”缠怨“（锁定技，当你死亡时，你令于吉回复1点体力；当于吉受到伤害时，你失去1点体力并失去”缠怨“）。',
 					sgk_chanyuan_info:'锁定技，当你死亡时，你令于吉回复1点体力；当于吉受到伤害时，你失去1点体力并失去”缠怨“',
-					sgk_gongshen_info:'出牌阶段，你可以弃置三张牌，然后摸两张牌，若此时你的手牌数为最少（或之一），你回复1点体力。',
+					sgk_gongshen_info:'出牌阶段，你可以弃置三张牌，然后摸一张牌，若此时你的手牌数为最少（或之一），你回复1点体力。',
 					sgk_jianyue_info:'一名角色的回合结束阶段开始时，若该角色的手牌数为最少（或之一），你可以令其从弃牌堆随机获得牌直到其手牌数不为最少（或之一）。',
-					// sgk_zhengyi_info:'你的回合内，你可以弃置一张牌令你的手牌数等于体力值，然后视为使用一张基本牌。你的回合外，你可以摸两张牌令你的手牌数等于体力值，然后视为使用一张基本牌。',
+					// sgk_zhengyi_info:'你的回合内，你可以弃置一张牌令你的手牌数等于体力值，然后视为使用一张基本牌。你的回合外，你可以摸一张牌令你的手牌数等于体力值，然后视为使用一张基本牌。',
 				}
 			},'SK武将');
 		}
@@ -9091,45 +9091,45 @@ game.import('extension',{
 		if(config.sgk_soul){
 			game.addCharacterPack({
 				character:{
-					sgksoul_ganning:['male','wu',9,['sgk_lvezhen','sgk_youlong'],['die_audio']],
-					sgksoul_simahui:['male','qun',9,['sgk_zhitian','sgk_yinshi'],['die_audio']],
-					sgksoul_zhangfei:['male','shu',9,['sgk_shayi','sgk_zhenhun'],['die_audio']],
-					sgksoul_sunquan:['male','wu',9,['sgk_huju'],['die_audio']],
-					sgksoul_jiaxu:['male','qun',8,['sgk_yanmie','sgk_shunshi'],['die_audio']],
-					sgksoul_liubei:['male','shu',9,['sgk_junwang','sgk_jizhao'],['die_audio']],
-					sgksoul_zhugeliang:['male','shu',8,['sgk_qixing','sgk_kuangfeng','sgk_dawu'],['die_audio']],
-					sgksoul_simayi:['male','wei',8,['sgk_jilve','sgk_tongtian'],['die_audio']],
-					sgksoul_luxun:['male','wu',8,['sgk_jieyan','sgk_fenying'],['die_audio']],
-					sgksoul_lvbu:['male','qun',5,['sgk_kuangbao','sgk_wumou','sgk_wuqian','sgk_shenfen']],
-					sgksoul_guanyu:['male','shu',5,['sgk_wushen','sgk_suohun'],['die_audio']],
+					sgksoul_ganning:['male','wu',8,['sgk_lvezhen','sgk_youlong'],['die_audio']],
+					sgksoul_simahui:['male','qun',8,['sgk_zhitian','sgk_yinshi'],['die_audio']],
+					sgksoul_zhangfei:['male','shu',8,['sgk_shayi','sgk_zhenhun'],['die_audio']],
+					sgksoul_sunquan:['male','wu',8,['sgk_huju'],['die_audio']],
+					sgksoul_jiaxu:['male','qun',7,['sgk_yanmie','sgk_shunshi'],['die_audio']],
+					sgksoul_liubei:['male','shu',8,['sgk_junwang','sgk_jizhao'],['die_audio']],
+					sgksoul_zhugeliang:['male','shu',7,['sgk_qixing','sgk_kuangfeng','sgk_dawu'],['die_audio']],
+					sgksoul_simayi:['male','wei',7,['sgk_jilve','sgk_tongtian'],['die_audio']],
+					sgksoul_luxun:['male','wu',7,['sgk_jieyan','sgk_fenying'],['die_audio']],
+					sgksoul_lvbu:['male','qun',9,['sgk_kuangbao','sgk_wumou','sgk_wuqian','sgk_shenfen']],
+					sgksoul_guanyu:['male','shu',9,['sgk_wushen','sgk_suohun'],['die_audio']],
 					sgksoul_zhaoyun:['male','shu',2,['sgk_juejing','sgk_longhun'],['die_audio']],
-					sgksoul_zhangliao:['male','wei',5,['sgk_nizhan','sgk_cuifeng','sgk_weizhen']],
-					sgksoul_huangyueying:['female','shu',8,['sgk_zhiming','sgk_suyin'],['die_audio']],
-					sgksoul_zhangjiao:['male','qun',8,['sgk_dianjie','sgk_shendao','sgk_leihun'],['die_audio']],
-					sgksoul_lvmeng:['male','wu',8,['sgk_shelie','sgk_gongxin'],['die_audio']],
-					sgksoul_guojia:['male','wei',8,['sgk_tianqi','sgk_tianji'],['die_audio']],
-					sgksoul_diaochan:['female','qun',8,['sgk_tianzi','sgk_meixin'],['die_audio']],
-					sgksoul_sunshangxiang:['female','wu',8,['sgk_xianzhu','sgk_liangyuan'],['die_audio']],
-					sgksoul_xiahoudun:['male','wei',5,['sgk_danjing','sgk_zhonghun'],['die_audio']],
-					sgksoul_dianwei:['male','wei',6,['sgk_zhiji'],['die_audio']],
-					sgksoul_huatuo:['male','qun',8,['sgk_jishi','sgk_xuanxin'],['die_audio']],
-					sgksoul_zhouyu:['male','wu',9,['sgk_qinyin','sgk_yeyan'],['die_audio']],
+					sgksoul_zhangliao:['male','wei',9,['sgk_nizhan','sgk_cuifeng','sgk_weizhen']],
+					sgksoul_huangyueying:['female','shu',7,['sgk_zhiming','sgk_suyin'],['die_audio']],
+					sgksoul_zhangjiao:['male','qun',7,['sgk_dianjie','sgk_shendao','sgk_leihun'],['die_audio']],
+					sgksoul_lvmeng:['male','wu',7,['sgk_shelie','sgk_gongxin'],['die_audio']],
+					sgksoul_guojia:['male','wei',7,['sgk_tianqi','sgk_tianji'],['die_audio']],
+					sgksoul_diaochan:['female','qun',7,['sgk_tianzi','sgk_meixin'],['die_audio']],
+					sgksoul_sunshangxiang:['female','wu',7,['sgk_xianzhu','sgk_liangyuan'],['die_audio']],
+					sgksoul_xiahoudun:['male','wei',9,['sgk_danjing','sgk_zhonghun'],['die_audio']],
+					sgksoul_dianwei:['male','wei',10,['sgk_zhiji'],['die_audio']],
+					sgksoul_huatuo:['male','qun',7,['sgk_jishi','sgk_xuanxin'],['die_audio']],
+					sgksoul_zhouyu:['male','wu',8,['sgk_qinyin','sgk_yeyan'],['die_audio']],
 				},
 				skill:{
 					sgk_huju:{
-						audio:’ext:极略三国:1’,		
+						audio:1,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player;
 						},
 						forced:true,
 						content:function(){
-							player.draw(2);
+							player.draw(4);
 						},
 						group:['sgk_huju2'],
 					},
 					sgk_huju2:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							return player.isMostHandcard();
@@ -9158,7 +9158,7 @@ game.import('extension',{
 						},
 					},
 					sgk_hufu:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(){
@@ -9173,7 +9173,7 @@ game.import('extension',{
 							target.chooseToDiscard(target.countCards('e'),true,'he');
 						},
 						ai:{
-							expose:0.8,
+							expose:0.3,
 							order:10,
 							result:{
 								target:function(player,target){
@@ -9183,7 +9183,7 @@ game.import('extension',{
 						}
 					},
 					sgk_yanmie:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('he',{suit:'spade'})>0;
@@ -9215,7 +9215,7 @@ game.import('extension',{
 						},
 						ai:{
 							order:5,
-							expose:0.8,
+							expose:0.3,
 							threaten:1.8,
 							result:{
 								target:function(player,target){
@@ -9225,7 +9225,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shunshi:{
-						audio:’ext:极略三国:2’,		
+						audio:2,		
 						trigger:{target:['shaBegin','taoBegin']},
 						filter:function(event,player){
 							return event.player!=player;
@@ -9257,7 +9257,7 @@ game.import('extension',{
 						}
 					},
 					sgk_junwang:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseUseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -9281,7 +9281,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jizhao:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						filterCard:true,
 						selectCard:[1,Infinity],
@@ -9328,7 +9328,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qixing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						unique:true,
 						trigger:{global:'gameDrawAfter',player:'phaseBegin'},
 						forced:true,
@@ -9409,7 +9409,7 @@ game.import('extension',{
 							if(player==game.me&&_status.auto){
 								game.delay(0.5);
 							}
-							"step 8"
+							"step 3"
 							player.gain(result.links)._triggered=null;
 							for(var i=0;i<result.links.length;i++){
 								player.storage.sgk_qixing.remove(result.links[i]);
@@ -9422,7 +9422,7 @@ game.import('extension',{
 					},
 					sgk_kuangfeng:{
 						unique:true,
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -9438,7 +9438,7 @@ game.import('extension',{
 								clearKuangfeng.popup('sgk_kuangfeng2');
 							}
 							player.chooseTarget('选择一名角色获得狂风标记').ai=function(target){
-								if(player.storage.sgk_qixing.length>8) return get.attitude(player,target)<0&&8-target.hp;
+								if(player.storage.sgk_qixing.length>3) return get.attitude(player,target)<0&&3-target.hp;
 								return -1;
 							}
 							"step 1"
@@ -9499,7 +9499,7 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							threaten:8,
+							threaten:3,
 							effect:{
 								target:function(card,player,target,current){
 									if(get.tag(card,'fireDamage')) return 1.5;
@@ -9516,7 +9516,7 @@ game.import('extension',{
 						filter:function(event,player){
 							return player.storage.sgk_qixing&&player.storage.sgk_qixing.length;
 						},
-						audio:’ext:极略三国:2’,
+						audio:2,
 						content:function(){
 							"step 0"
 							player.chooseTarget('选择角色获得大雾标记',
@@ -9524,9 +9524,9 @@ game.import('extension',{
 								if(target.isMin()) return 0;
 								if(target.hasSkill('biantian2')) return 0;
 								var att=get.attitude(player,target);
-								if(att>=9){
+								if(att>=4){
 									if(target.hp==1&&target.maxHp>2) return att;
-									if(target.hp==2&&target.maxHp>8&&target.num('he')==0) return att*0.7;
+									if(target.hp==2&&target.maxHp>3&&target.num('he')==0) return att*0.7;
 									return 0;
 								}
 								return -1;
@@ -9603,14 +9603,14 @@ game.import('extension',{
 						}
 					},
 					sgk_jilve:{
-						audio:8,
+						audio:3,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return !player.hasSkill('sgk_jilve2');
 						},
 						content:function(){
 							"step 0"
-							player.draw(2);
+							player.draw(4);
 							player.chooseToUse().filterCard=function(card,player){
 								return (lib.filter.cardEnabled(card,player,event.parent.parent)&&lib.filter.cardUsable(card,player,event.parent.parent));
 							}
@@ -9621,21 +9621,21 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							threaten:9,
+							threaten:4,
 							order:15,
 							result:{
 								player:1
 							},
 							effect:{
 								player:function(card,player){
-									if(get.type(card)!='basic') return [1,8];
+									if(get.type(card)!='basic') return [1,3];
 								}
 							},
 						}
 					},
 					sgk_jilve2:{},
 					sgk_tongtian:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						unique:true,
 						skillAnimation:true,
@@ -9652,7 +9652,7 @@ game.import('extension',{
 							}
 							return true;
 						},
-						selectCard:[1,9],
+						selectCard:[1,4],
 						check:function(card){
 							return 10-get.value(card)
 						},
@@ -9693,7 +9693,7 @@ game.import('extension',{
 											suits.push(get.suit(cards[i]));
 										}
 									}
-									if(suits.length<8) return -1;
+									if(suits.length<3) return -1;
 									return suits.length;
 								}
 							}
@@ -9703,7 +9703,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jieyan:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'useCardToBefore'},
 						direct:true,
 						filter:function(event,player){
@@ -9712,7 +9712,7 @@ game.import('extension',{
 						content:function(){
 							"step 0"
 							player.chooseToDiscard('是否对'+get.translation(trigger.target)+'发动【劫焰】？','h').ai=function(card){
-								if(get.attitude(player,trigger.target)<=0&&get.damageEffect(target,player,player,'fire')>0) return 9-get.value(card);
+								if(get.attitude(player,trigger.target)<=0&&get.damageEffect(target,player,player,'fire')>0) return 4-get.value(card);
 								return -1;				
 							}
 							"step 1"
@@ -9728,7 +9728,7 @@ game.import('extension',{
 						}
 					},
 					sgk_fenying:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:"damageAfter"},
 						direct:true,
 						filter:function(event,player){
@@ -9765,7 +9765,7 @@ game.import('extension',{
 						forced:true,
 						mark:true,
 						marktext:'暴',
-						audio:’ext:极略三国:2’,
+						audio:2,
 						filter:function(event){
 							return event.num>0;
 						},
@@ -9784,7 +9784,7 @@ game.import('extension',{
 						}
 					},
 					sgk_wumou:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'useCard'},
 						forced:true,
 						filter:function(event){
@@ -9793,9 +9793,9 @@ game.import('extension',{
 						content:function(){
 							'step 0'
 							if(player.storage.sgk_kuangbao>0){
-								player.chooseControl('选项一','选项二').set('prompt','无谋<br><br><div class="text">1:弃置一枚[暴]标记</div><br><div class="text">2:受到2点伤害</div></br>').ai=function(){
+								player.chooseControl('选项一','选项二').set('prompt','无谋<br><br><div class="text">1:弃置一枚[暴]标记</div><br><div class="text">2:受到一点伤害</div></br>').ai=function(){
 									if(player.storage.sgk_kuangbao>6) return '选项一';
-									if(player.hp+player.countCards('h','tao')>8) return '选项二';
+									if(player.hp+player.countCards('h','tao')>3) return '选项二';
 									return '选项一';
 								};
 							}
@@ -9814,7 +9814,7 @@ game.import('extension',{
 						},
 					},
 					sgk_wuqian:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9862,7 +9862,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shenfen:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filter:function(event,player){
@@ -9881,7 +9881,7 @@ game.import('extension',{
 							event.targets2=event.targets.slice(0);
 							"step 1"
 							if(event.targets.length){
-								event.targets.shift().damage(2);
+								event.targets.shift().damage(4);
 								event.redo();
 							}
 							"step 2"
@@ -9892,7 +9892,7 @@ game.import('extension',{
 								}
 								event.redo();
 							}
-							"step 8"
+							"step 3"
 							player.turnOver();
 						},
 						ai:{
@@ -9926,7 +9926,7 @@ game.import('extension',{
 								if(card.name=='sha'||card.name=='tao') return false;
 							},
 						},
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'chooseToUse',
 						filter:function(event,player){
 							return player.countCards('h',{name:['sha','tao']})>0;
@@ -9940,13 +9940,13 @@ game.import('extension',{
 									if(get.tag(card,'respondSha')&&current<0) return 0.6
 								}
 							},
-							order:9,
+							order:4,
 							useful:-1,
 							value:-1
 						}
 					},
 					sgk_suohun:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return event.source&&event.source!=player;
@@ -9975,7 +9975,7 @@ game.import('extension',{
 					},
 					sgk_suohun2:{
 						skillAnimation:true,
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'dying'},
 						priority:10,
 						forced:true,
@@ -10022,7 +10022,7 @@ game.import('extension',{
 						}
 					},
 					sgk_juejing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'phaseEnd'},
 						filter:function(event,player){
 							return player.hp>=1;
@@ -10030,16 +10030,16 @@ game.import('extension',{
 						forced:true,
 						content:function(){
 							if(player.hp==1){
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
 								player.loseHp();
-								player.draw(2);
+								player.draw(4);
 							}
 						}
 					},
 					sgk_longhun:{
-						group:['longhun1','longhun2','longhun8','longhun9'],
+						group:['longhun1','longhun2','longhun3','longhun4'],
 						ai:{
 							skillTagFilter:function(player,tag){
 								switch(tag){
@@ -10067,7 +10067,7 @@ game.import('extension',{
 						}
 					},
 					sgk_nizhan:{
-						audio:’ext:极略三国:1’,					
+						audio:1,					
 						trigger:{global:'damageEnd'},
 						filter:function(event){
 							return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();				
@@ -10103,7 +10103,7 @@ game.import('extension',{
 						}
 					},
 					sgk_cuifeng:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseEnd'},
 						forced:true,
 						filter:function(player){
@@ -10111,7 +10111,7 @@ game.import('extension',{
 							for(var i=0;i<game.players.length;i++){
 								num+=game.players[i].storage.sgk_nizhan_mark;
 							}
-							if(num>=9) return true;
+							if(num>=4) return true;
 							return false;
 						},
 						content:function(){
@@ -10125,7 +10125,7 @@ game.import('extension',{
 									else{
 										player.gain(game.players[i].getCards('h'));
 										game.players[i].$give(game.players[i].countCards('h'),player);
-										game.players[i].damage(2);
+										game.players[i].damage(4);
 									}
 									game.delay(1);
 								}
@@ -10138,7 +10138,7 @@ game.import('extension',{
 						}
 					},
 					sgk_weizhen:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseBegin'},
 						filter:function(event,player){
 							var num=0;
@@ -10176,7 +10176,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhiming:{
-						audio:’ext:极略三国:1’,		
+						audio:1,		
 						trigger:{global:'phaseBegin'},
 						filter:function(event,player){
 							return event.player!=player&&event.player.countCards('h')>0&&player.countCards('h')>0;
@@ -10185,7 +10185,7 @@ game.import('extension',{
 						content:function(){
 							"step 0"
 							player.chooseToDiscard('h','知命:你可以弃置一张手牌，然后弃置其一张手牌，若两张牌颜色相同，你令其跳过此回合的摸牌阶段或出牌阶段').ai=function(card){
-								if(get.attitude(player,trigger.player)<-8)
+								if(get.attitude(player,trigger.player)<-3)
 									return 10-get.value(card);
 								return 0;
 							}
@@ -10209,7 +10209,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							"step 8"
+							"step 3"
 							if(result.control=='跳过摸牌'){
 								trigger.player.skip('phaseDraw');
 								game.log(trigger.player,'跳过了摸牌阶段');
@@ -10220,11 +10220,11 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							expose:0.9
+							expose:0.4
 						}
 					},
 					sgk_suyin:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'loseEnd'},
 						direct:true,
 						filter:function(event,player){
@@ -10250,11 +10250,11 @@ game.import('extension',{
 							}
 						},
 						ai:{
-							expose:0.8
+							expose:0.3
 						}
 					},
 					sgk_dianjie:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:['phaseDrawBefore','phaseUseBefore']},
 						prompt:function(event,player){
 							if(event.name=='phaseDraw'){
@@ -10270,7 +10270,7 @@ game.import('extension',{
 								if(player.countCards('h',function(card){
 									return get.value(card)>=8;
 								})) return -1;
-								if(player.countCards('h')-player.hp>=8) return -1;
+								if(player.countCards('h')-player.hp>=3) return -1;
 							}
 							return 1;
 						},
@@ -10294,7 +10294,7 @@ game.import('extension',{
 								}).ai=function(target){
 									return -get.attitude(player,target);
 								}
-								event.goto(8);
+								event.goto(3);
 							}
 							'step 2'
 							if(result.bool){
@@ -10305,7 +10305,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							'step 8'
+							'step 3'
 							if(result.bool){
 								player.line(result.targets,'thunder');
 								for(var i=0;i<result.targets.length;i++){
@@ -10315,7 +10315,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shendao:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'judge'},
 						direct:true,
 						content:function(){
@@ -10371,7 +10371,7 @@ game.import('extension',{
 							else{
 								event.finish();
 							}
-							"step 8"
+							"step 3"
 							if(result.bool){
 								player.logSkill('sgk_shendao',event.target);
 								if(trigger.player.judging[0].clone){
@@ -10399,7 +10399,7 @@ game.import('extension',{
 						}
 					},
 					sgk_leihun:{
-						audio:’ext:极略三国:1’,			
+						audio:1,			
 						trigger:{player:'damageBegin'},
 						forced:true,
 						filter:function(event){
@@ -10420,7 +10420,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shelie:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{player:'phaseDrawBegin'},
 						forced:true,
 						content:function(){
@@ -10439,8 +10439,8 @@ game.import('extension',{
 							};
 							'step 1'
 							player.chooseControl('基本牌','锦囊牌','装备牌',function(){
-								if(Math.random()<0.9) return '锦囊牌';
-								if(Math.random()<0.8&&Math.random()>=0.9) return '基本牌';
+								if(Math.random()<0.4) return '锦囊牌';
+								if(Math.random()<0.8&&Math.random()>=0.4) return '基本牌';
 								return '装备牌'
 							}).set('prompt','请选择想要获得的第'+get.cnNumber(event.num,true)+'张牌的类型');
 							'step 2'
@@ -10451,7 +10451,7 @@ game.import('extension',{
 							if(card){
 								ui.cardPile.removeChild(card);
 								event.cards.push(card);
-								if(event.cards.length<9){
+								if(event.cards.length<4){
 									event.num++;
 									event.goto(1);
 								}
@@ -10462,7 +10462,7 @@ game.import('extension',{
 						}
 					},
 					sgk_gongxin:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -10483,7 +10483,7 @@ game.import('extension',{
 							'step 1'
 							if(event.cards.length==1){
 								target.discard(event.cards);
-								target.damage(2);
+								target.damage(4);
 								event.finish();
 							}
 							else{
@@ -10506,12 +10506,12 @@ game.import('extension',{
 								}
 							},
 							order:10,
-							expose:0.9,
+							expose:0.4,
 						}
 					},
 					sgk_tianqi:{
 						usable:1,
-						audio:’ext:极略三国:1’,
+						audio:1,
 						enable:'phaseUse',
 						chooseButton:{
 							dialog:function(){
@@ -10572,7 +10572,7 @@ game.import('extension',{
 								if(player.storage.sgk_tianji_top=='basic'&&player.countCards('h','sha')) return (button.link[2]=='jiu')?1:-1;
 								if(player.storage.sgk_tianji_top=='basic'&&!player.countCards('h','sha')) return (button.link[2]=='sha')?1:-1;
 								if(player.storage.sgk_tianji_top=='trick')	return (button.link[2]=='wuzhong')?1:-1;
-								if(game.players.length<9&&player.storage.sgk_tianji_top=='trick') return (button.link[2]=='shunshou')?1:-1;
+								if(game.players.length<4&&player.storage.sgk_tianji_top=='trick') return (button.link[2]=='shunshou')?1:-1;
 								return (button.link[2]=='guohe')?1:-1;
 							},
 							backup:function(links,player){
@@ -10598,7 +10598,7 @@ game.import('extension',{
 								return '亮出牌堆顶的一张牌，并将此牌当'+get.translation(links[0][2])+'使用。若亮出的牌不为'+get.translation(links[0][0])+'牌，你须先失去1点体力。(你的出牌阶段限一次。)';
 							}
 						},
-						group:['sgk_tianqi2','sgk_tianqi8','sgk_tianqi9','sgk_tianqi5'],
+						group:['sgk_tianqi2','sgk_tianqi3','sgk_tianqi4','sgk_tianqi5'],
 						ai:{
 							order:10,
 							result:{
@@ -10607,12 +10607,12 @@ game.import('extension',{
 									return -1;
 								},
 							},
-							threaten:9,
+							threaten:4,
 						}
 					},
 					sgk_tianqi2:{
 						enable:'chooseToUse',
-						audio:’ext:极略三国:1’,
+						audio:1,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10654,9 +10654,9 @@ game.import('extension',{
 							save:true
 						}
 					},
-					sgk_tianqi8:{
+					sgk_tianqi3:{
 						enable:['chooseToUse','chooseToRespond'],
-						audio:’ext:极略三国:1’,
+						audio:1,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10697,9 +10697,9 @@ game.import('extension',{
 							respondSha:true
 						}
 					},
-					sgk_tianqi9:{
+					sgk_tianqi4:{
 						enable:'chooseToUse',
-						audio:’ext:极略三国:1’,
+						audio:1,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10737,7 +10737,7 @@ game.import('extension',{
 					},
 					sgk_tianqi5:{
 						enable:'chooseToRespond',
-						audio:’ext:极略三国:1’,
+						audio:1,
 						filter:function(event,player){
 							if(event.type=='dying'){
 								if(player==event.dying) return false;
@@ -10770,7 +10770,7 @@ game.import('extension',{
 						}
 					},
 					sgk_tianji:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'phaseUseBegin'},
 						frequent:true,
 						filter:function(event,player){
@@ -10795,7 +10795,7 @@ game.import('extension',{
 							};
 							'step 1'
 							if(result.control=='获得'){
-								player.draw(2);
+								player.draw(4);
 								event.finish();
 							}
 							else if(result.control=='替换'){
@@ -10820,14 +10820,14 @@ game.import('extension',{
 							event.card=result.cards[0];
 							player.storage.sgk_tianji_top=get.type(event.card,'trick');
 							player.lose(event.card,ui.special);
-							player.draw(2);
+							player.draw(4);
 							var cardx=ui.create.card();
 							cardx.classList.add('infohidden');
 							cardx.classList.add('infoflip');
 							player.$throw(cardx,1000);
-							'step 8'
+							'step 3'
 							if(player==game.me) game.delay(0.5);
-							'step 9'
+							'step 4'
 							if(event.card){
 								event.card.fix();
 								ui.cardPile.insertBefore(event.card,ui.cardPile.firstChild);
@@ -10835,19 +10835,19 @@ game.import('extension',{
 						},
 					},
 					sgk_xianzhu:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'recoverAfter'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>0;
 						},
 						logTarget:'player',
 						content:function(){
-							trigger.player.draw(2);
+							trigger.player.draw(4);
 						},
 						group:'sgk_xianzhu2'
 					},
 					sgk_xianzhu2:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{global:'loseEnd'},
 						check:function(event,player){
 							return get.attitude(player,event.player)>=0;
@@ -10868,7 +10868,7 @@ game.import('extension',{
 						},
 					},
 					sgk_liangyuan:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						skillAnimation:true,
 						unique:true,
@@ -10889,12 +10889,12 @@ game.import('extension',{
 						ai:{
 							order:6,
 							result:{
-								target:8,
+								target:3,
 							},
 							threaten:function(player,target){
 								if(game.hasPlayer(function(target1){
 									return target.hasSkill('sgk_liangyuan2');
-								})) return 8;
+								})) return 3;
 							}
 						}
 					},
@@ -10914,10 +10914,10 @@ game.import('extension',{
 						}
 					},
 					sgk_tianzi:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{player:'phaseDrawBefore'},
 						check:function(event,player){
-							if(game.players.length<8) return 0;
+							if(game.players.length<3) return 0;
 						},
 						content:function(){
 							"step 0"
@@ -10925,19 +10925,19 @@ game.import('extension',{
 							trigger.untrigger();
 							event.current=player.next;
 							"step 1"
-							event.current.chooseCard('交给'+get.translation(player)+'一张手牌或令其摸两张牌').ai=function(card){
+							event.current.chooseCard('交给'+get.translation(player)+'一张手牌或令其摸一张牌').ai=function(card){
 								if(get.attitude(event.current,player)>0){
 									return -1;
 								}
 								else{
-									return 8-get.value(card);
+									return 3-get.value(card);
 								}
 							}
 							"step 2"
 							if(result.bool==false){
 								event.current.line(player,'green');
 								game.log(event.current,'让',player,'摸了一张牌');
-								player.draw(2);
+								player.draw(4);
 							}
 							else{
 								player.gain(result.cards[0]);
@@ -10951,7 +10951,7 @@ game.import('extension',{
 						}
 					},
 					sgk_meixin:{
-						audio:9,
+						audio:4,
 						enable:'phaseUse',
 						usable:1,
 						position:'he',
@@ -10962,15 +10962,15 @@ game.import('extension',{
 							return 6-get.value(card);
 						},
 						content:function(){
-							target.markSkillCharacter('sgk_meixin',player,'魅心','本阶段当'+get.translation(player)+'使用一张基本牌后，该目标弃置一张牌；当'+get.translation(player)+'使用一张锦囊牌后，'+get.translation(player)+'获得该目标一张牌；当'+get.translation(player)+'使用一张装备牌后，对该目标造成2点伤害。');
+							target.markSkillCharacter('sgk_meixin',player,'魅心','本阶段当'+get.translation(player)+'使用一张基本牌后，该目标弃置一张牌；当'+get.translation(player)+'使用一张锦囊牌后，'+get.translation(player)+'获得该目标一张牌；当'+get.translation(player)+'使用一张装备牌后，对该目标造成1点伤害。');
 							player.storage.sgk_meixin=target;
 							player.addTempSkill('sgk_meixin2','phaseAfter');
-							player.addTempSkill('sgk_meixin8','phaseAfter');
+							player.addTempSkill('sgk_meixin3','phaseAfter');
 						},
 						ai:{
-							threaten:8,
+							threaten:3,
 							order:15,
-							expose:0.8,
+							expose:0.3,
 							result:{
 								target:function(player,target){
 									return -target.countCards('h')-1;
@@ -11005,13 +11005,13 @@ game.import('extension',{
 								}
 								case 'equip':{
 									player.logSkill('sgk_meixin',target);
-									target.damage(2);
+									target.damage(4);
 									break;
 								}
 							}
 						}
 					},
-					sgk_meixin8:{
+					sgk_meixin3:{
 						trigger:{player:'phaseEnd'},
 						audio:false,
 						forced:true,
@@ -11026,7 +11026,7 @@ game.import('extension',{
 						}
 					},
 					sgk_shayi:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{player:'phaseUseBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>0;
@@ -11040,7 +11040,7 @@ game.import('extension',{
 								player.addTempSkill('sgk_shayi_buff','phaseAfter');
 							}
 							else{
-								player.draw(2);
+								player.draw(4);
 							}
 						},
 						mod:{
@@ -11064,7 +11064,7 @@ game.import('extension',{
 									if(!player.countCards('he',{color:'black'})) return false;
 								},
 								prompt:'将一张黑色牌当杀使用或打出',
-								check:function(card){return 9-get.value(card)},
+								check:function(card){return 4-get.value(card)},
 								ai:{
 									skillTagFilter:function(player){
 										if(!player.countCards('he',{color:'black'})) return false;
@@ -11075,7 +11075,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhenhun:{
-						audio:9,
+						audio:4,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -11086,7 +11086,7 @@ game.import('extension',{
 						},
 						filterCard:true,
 						check:function(card){
-							return 9-get.value(card);
+							return 4-get.value(card);
 						},
 						selectTarget:-1,
 						content:function(){
@@ -11115,11 +11115,11 @@ game.import('extension',{
 									return 0;
 								},
 							},
-							threaten:1.8
+							threaten:1.3
 						}
 					},
 					sgk_yinshi:{
-						audio:’ext:极略三国:2’,			
+						audio:2,			
 						trigger:{player:'damageBegin'},
 						filter:function(event){
 							return event.num>0;
@@ -11142,7 +11142,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhitian:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{player:'phaseBegin'},
 						forced:true,
 						filter:function(event,player){
@@ -11161,10 +11161,10 @@ game.import('extension',{
 								result.targets[0].gain(cards);
 								var skills=[]; 
 								for(var i in lib.character){ 
-									for(var j=0;j<lib.character[i][8].length;j++){ 
-										var info=lib.skill[lib.character[i][8][j]];
+									for(var j=0;j<lib.character[i][3].length;j++){ 
+										var info=lib.skill[lib.character[i][3][j]];
 										if(info&&(info.gainable||!info.unique)&&!info.zhuSkill){
-											skills.add(lib.character[i][8][j]); 
+											skills.add(lib.character[i][3][j]); 
 										}
 									} 
 								}
@@ -11181,7 +11181,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhiji:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11230,7 +11230,7 @@ game.import('extension',{
 						}
 					},
 					sgk_jishi:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						usable:1,
 						enable:'phaseUse',
 						filter:function(event,player){
@@ -11289,7 +11289,7 @@ game.import('extension',{
 						}
 					},
 					sgk_xuanxin:{
-						audio:’ext:极略三国:1’,
+						audio:1,
 						trigger:{global:'damage'},
 						check:function(){return 1},
 						logTarget:'player',
@@ -11320,7 +11320,7 @@ game.import('extension',{
 						}
 					},
 					sgk_lvezhen:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'shaBegin'},
 						filter:function(event,player){
 							return event.target.countCards('he');
@@ -11330,7 +11330,7 @@ game.import('extension',{
 						},
 						content:function(){
 							'step 0'
-							event.cards=get.cards(8);
+							event.cards=get.cards(3);
 							player.showCards(event.cards);
 							'step 1'
 							event.numx=0;
@@ -11365,7 +11365,7 @@ game.import('extension',{
 						}
 					},
 					sgk_danjing:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						usable:1,
 						filterTarget:function(card,player,target){
@@ -11380,10 +11380,10 @@ game.import('extension',{
 							};
 							'step 1'
 							if(result.control=='摸三张牌'){
-								target.draw(8);
+								target.draw(3);
 							}
 							else{
-								target.chooseToDiscard(8,'he',true);
+								target.chooseToDiscard(3,'he',true);
 							}	
 						},
 						ai:{
@@ -11397,10 +11397,10 @@ game.import('extension',{
 									return -1;
 								},
 								target:function(player,target){
-									if(get.attitude(player,target)>0) return 8;
+									if(get.attitude(player,target)>0) return 3;
 									if(get.attitude(player,target)<0){
-										if(target.num('he')<8) return 0;
-										return -8;
+										if(target.num('he')<3) return 0;
+										return -3;
 									}
 									return 0;
 								}
@@ -11408,7 +11408,7 @@ game.import('extension',{
 						}
 					},
 					sgk_zhonghun:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'dieBegin'},
 						filter:function(event,player){
 							return game.hasPlayer(function(current){
@@ -11434,7 +11434,7 @@ game.import('extension',{
 						}
 					},
 					sgk_qinyin:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{player:'phaseDiscardBegin'},
 						filter:function(event,player){
 							return player.countCards('h')>1;
@@ -11453,13 +11453,13 @@ game.import('extension',{
 								});
 								var lose=0,recover=0;
 								for(var i=0;i<friends.length;i++){
-									if(friends[i].hp+friends[i].countCards('he')<9){
+									if(friends[i].hp+friends[i].countCards('he')<4){
 										if(friends[i].isZhu) recover++;
 										recover++;
 									}
 								}
 								for(var i=0;i<enemies.length;i++){
-									if(enemies[i].hp+enemies[i].countCards('he')<9){
+									if(enemies[i].hp+enemies[i].countCards('he')<4){
 										if(enemies[i].isZhu) lose++;
 										lose++;
 									}
@@ -11473,7 +11473,7 @@ game.import('extension',{
 							});
 							'step 1'
 							if(result.control=='选项一'){
-								player.draw(2);
+								player.draw(4);
 								var players=game.filterPlayer();
 								for(var i=0;i<players.length;i++){
 									players[i].loseHp();
@@ -11493,7 +11493,7 @@ game.import('extension',{
 					sgk_yeyan:{
 						unique:true,
 						enable:'phaseUse',
-						audio:’ext:极略三国:2’,
+						audio:2,
 						animationColor:'fire',
 						skillAnimation:'legend',
 						filter:function(event,player){
@@ -11512,7 +11512,7 @@ game.import('extension',{
 						},
 						complexCard:true,
 						mark:true,
-						selectCard:[1,9],
+						selectCard:[1,4],
 						line:'fire',
 						check:function(){return -1},
 						selectTarget:[1,2],
@@ -11520,8 +11520,8 @@ game.import('extension',{
 							'step 0'
 							player.awakenSkill('sgk_yeyan');
 							player.storage.sgk_yeyan=true;
-							if(cards.length>=8){
-								player.loseHp(8);
+							if(cards.length>=3){
+								player.loseHp(3);
 							}
 							'step 1'
 							for(var i=0;i<targets.length;i++){
@@ -11608,8 +11608,8 @@ game.import('extension',{
 					sgk_gongxin:'攻心',
 					sgk_tianqi:'天启',
 					sgk_tianqi2:'天启',
-					sgk_tianqi8:'天启',
-					sgk_tianqi9:'天启',
+					sgk_tianqi3:'天启',
+					sgk_tianqi4:'天启',
 					sgk_tianqi5:'天启',
 					sgk_tianji:'天机',
 					sgk_xianzhu:'贤助',
@@ -11632,29 +11632,29 @@ game.import('extension',{
 					
 					sgk_qinyin_info:'弃牌阶段开始时，你可以选择一项:1.摸两张牌，然后令所有角色各失去一点体力；2.弃两张牌，然后令所有角色各回复一点体力。',
 					sgk_yeyan_info:'限定技:出牌阶段，你可以弃置至少一种花色不同的手牌，然后对一至两名角色各造成等量的火属性伤害，若你以此法弃置的手牌花色数不少于三，你须先失去三点体力。',
-					sgk_huju_info:'锁定技，其他角色的回合开始时，你摸两张牌。你的回合开始时，若你的手牌数为最多（或之一），你选择一项：1、失去1点体力；2、减1点体力上限，失去“虎踞”，获得“制衡”和“虎缚。',
+					sgk_huju_info:'锁定技，其他角色的回合开始时，你摸一张牌。你的回合开始时，若你的手牌数为最多（或之一），你选择一项：1、失去1点体力；2、减1点体力上限，失去“虎踞”，获得“制衡”和“虎缚。',
 					sgk_hufu_info:'出牌阶段限一次，你可以令一名其他角色弃置X张牌（X为其装备区的牌数）。',
 					sgk_yanmie_info:'出牌阶段，你可以弃置一张黑桃牌，令一名其他角色先弃置所有手牌再摸等量的牌并展示之，然后你可以弃置其中所有非基本牌，并对其造成等量的伤害。',
-					sgk_shunshi_info:'当你成为其他角色使用【杀】、【桃】或【梅】的目标后，你可以令你与至少一名除该角色外的其他角色各摸两张牌，然后这些角色也成为此牌的目标。',
+					sgk_shunshi_info:'当你成为其他角色使用【杀】、【桃】或【梅】的目标后，你可以令你与至少一名除该角色外的其他角色各摸一张牌，然后这些角色也成为此牌的目标。',
 					sgk_junwang_info:'锁定技，其他角色的出牌阶段开始时，若其手牌数不小于你，其须交给你一张手牌。',
-					sgk_jizhao_info:'出牌阶段对每名其他角色限一次，你可以交给其至少一张手牌，并令其获得一个“诏”标记。拥有“诏”标记的角色回合结束时，若其本回合内未造成过伤害，其受到你造成的2点伤害并失去“诏”标记。',
+					sgk_jizhao_info:'出牌阶段对每名其他角色限一次，你可以交给其至少一张手牌，并令其获得一个“诏”标记。拥有“诏”标记的角色回合结束时，若其本回合内未造成过伤害，其受到你造成的1点伤害并失去“诏”标记。',
 					sgk_qixing_info:'分发起始手牌时，你将获得起始手牌改为观看牌堆顶十一张牌并获得其中四张手牌，然后将其余七张牌扣置于武将牌上，称为[星]，摸牌阶段结束时，你可以用至少一张手牌替换等量的[星]',
 					sgk_kuangfeng_info:'回合开始阶段开始时，你可以将一张[星]置入弃牌堆，然后选择一名角色获得一枚[风]标记，若如此做，当其于你的下回合开始前受到火焰伤害时，该伤害加一；雷电伤害时，你令其弃置两张牌；普通伤害时，你将牌堆顶一张牌置入[星]',
 					sgk_dawu_info:'回合结束阶段开始时，你可以弃掉至少一张[星]，然后选择等量的角色获得[雾]标记，若如此做，当其于你的下回合开始前受到非雷电伤害时，你防止之。',
-					sgk_tongtian_info:'限定技，出牌阶段你可以弃置任意花色不同的牌，然后根据以下技能获得相应技能:黑桃•鬼才。 红桃•观星。梅花•完杀。方片•制衡。',
-					sgk_jilve_info:'出牌阶段，你可以摸两张牌，然后选择一项：使用一张牌，或弃置一张牌。若你以此法弃置牌，则本回合此技能失效。',
+					sgk_tongtian_info:'限定技，出牌阶段你可以弃置任意花色不同的牌，然后根据以下技能获得相应技能:黑桃·鬼才。 红桃·观星。梅花·完杀。方片·制衡。',
+					sgk_jilve_info:'出牌阶段，你可以摸一张牌，然后选择一项：使用一张牌，或弃置一张牌。若你以此法弃置牌，则本回合此技能失效。',
 					sgk_jieyan_info:'当一张红色【杀】或红色非延时锦囊牌仅指定一名角色为目标后，你可以弃置一张手牌令其无效，然后对目标角色造成1点火焰伤害。',
 					sgk_fenying_info:'当一名角色受到火焰伤害后，若你的手牌数不大于体力上限，你可以弃置一张红色牌，然后对该角色或与其距离最近的一名角色造成等量的火焰伤害。',
 					sgk_kuangbao_info:'锁定技:游戏开始时，你获得两枚[暴]标记。每当你造成或受到伤害时，你获得等量的[暴]标记。',
-					sgk_wumou_info:'锁定技:当你使用非延时锦囊牌时，你须选择一项:1，弃置一枚[暴]标记；2，受到2点伤害。',
+					sgk_wumou_info:'锁定技:当你使用非延时锦囊牌时，你须选择一项:1，弃置一枚[暴]标记；2，受到一点伤害。',
 					sgk_wuqian_info:'出牌阶段：你可以弃置两枚[暴]标记，若如此做，本回合内你视为拥有技能【无双】且你造成伤害后额外获得一枚[暴]标记。',
-					sgk_shenfen_info:'出牌阶段，弃6个暴怒标记，你对每名其他角色各造成2点伤害，其他角色弃掉所有牌，然后将你的武将牌翻面，每回合限一次。',
+					sgk_shenfen_info:'出牌阶段，弃6个暴怒标记，你对每名其他角色各造成一点伤害，其他角色弃掉所有牌，然后将你的武将牌翻面，每回合限一次。',
 					sgk_wushen_info:'锁定技，你的【杀】和【桃】均视为【决斗】。',
-					sgk_suohun_info:'锁定技，每当你受到2点伤害后，伤害来源(除你以外)获得一个“魂”标记。当你进入濒死状态时，减一半(向上取整)的体力上限并回复体力至体力上限，拥有“魂”标记的角色依次弃置所有的“魂”标记，然后受到与弃置的“魂”标记数量相同的伤害。',
-					sgk_juejing_info:'锁定技，一名角色的回合开始时，若你的体力值：为1，你摸两张牌；大于1，你失去1点体力，然后摸两张牌。',
+					sgk_suohun_info:'锁定技，每当你受到1点伤害后，伤害来源(除你以外)获得一个“魂”标记。当你进入濒死状态时，减一半(向上取整)的体力上限并回复体力至体力上限，拥有“魂”标记的角色依次弃置所有的“魂”标记，然后受到与弃置的“魂”标记数量相同的伤害。',
+					sgk_juejing_info:'锁定技，一名角色的回合开始时，若你的体力值：为1，你摸一张牌；大于1，你失去1点体力，然后摸两张牌。',
 					sgk_longhun_info:'你可以将同花色的X张牌按下列规则使用（或打出）：红桃当【桃】；方块当火属性的【杀】；梅花当【闪】；黑桃当【无懈可击】。（X为你当前的体力值且至少为1）。',
 					sgk_nizhan_info:'每当一名角色受到【杀】或【决斗】造成的一次伤害时，你可以将一枚[袭]标记放置在该角色或伤害来源(不为你)的武将牌上。',
-					sgk_cuifeng_info:'锁定技，回合结束阶段，若场上的[袭]标记总数不小于9，你须依次从每名被标记的角色处获得等同于其[袭]标记数量的手牌。若该角色手牌不足，则你获得其全部手牌，然后该角色受到你对其造成的2点伤害。最后移除场上全部的[袭]标记。',
+					sgk_cuifeng_info:'锁定技，回合结束阶段，若场上的[袭]标记总数不小于4，你须依次从每名被标记的角色处获得等同于其[袭]标记数量的手牌。若该角色手牌不足，则你获得其全部手牌，然后该角色受到你对其造成的1点伤害。最后移除场上全部的[袭]标记。',
 					sgk_weizhen_info:'回合开始阶段，你可以移除场上全部的[袭]标记，然后摸等同于[袭]标记数量的牌。',
 					sgk_zhiming_info:'其他角色的回合开始阶段开始时，若其有手牌，你可以弃置一张手牌，然后弃置其一张手牌，若两张牌颜色相同，你令其跳过此回合的摸牌阶段或出牌阶段。',
 					sgk_suyin_info:'你的回合外，当你失去最后的手牌时，可令一名其他角色将其武将牌翻面。',
@@ -11662,14 +11662,14 @@ game.import('extension',{
 					sgk_shendao_info:'一名角色的判定牌生效前，你可以用一张手牌或场上的牌代替之。',
 					sgk_leihun_info:'锁定技，你受到的雷电伤害均视为体力回复。',
 					sgk_shelie_info:'锁定技，摸牌阶段，你摸四张牌，你须依次指定以此法获得牌的类别，然后从牌堆随机获得之。',
-					sgk_gongxin_info:'出牌阶段限一次，你可以观看一次任意一名角色的手牌并展示其中所有的红桃牌，然后若展示的牌数：为1，你弃置之并对其造成2点伤害；大于1，你获得其中一张。',
+					sgk_gongxin_info:'出牌阶段限一次，你可以观看一次任意一名角色的手牌并展示其中所有的红桃牌，然后若展示的牌数：为1，你弃置之并对其造成1点伤害；大于1，你获得其中一张。',
 					sgk_tianqi_info:'你的濒死状态除外，每当你需要使用或打出一张基本牌或非延时锦囊牌时，你可以声明之，然后亮出牌堆顶的一张牌，并将此牌当你所述之牌使用或打出，若其与你所述之牌不为同一类别，你须先失去1点体力。（你的出牌阶段限一次。）',
 					sgk_tianji_info:'任一角色的出牌阶段开始时，你可以观看牌堆顶的一张牌，然后你可以选择一项：用一张手牌替换之；若你的手牌数不是全场最多的(或之一)，你可以获得之。',
 					sgk_xianzhu_info:'当一名角色回复体力后，或失去装备区里的牌后，你可以令其摸两张牌。',
 					sgk_liangyuan_info:'限定技，出牌阶段，你可以选择一名其他男性角色，则于本局游戏中，你的自然回合结束时，该角色进行一个额外的回合。',
-					sgk_tianzi_info:'摸牌阶段，你可以放弃摸牌，然后令所有其他角色依次选择一项：1、交给你一张牌；2、令你摸两张牌。',
-					sgk_meixin_info:'出牌阶段限一次，你可以选择一名其他男性角色，若如此做，本阶段当你使用一张基本牌后，你令其弃置一张牌；当你使用一张锦囊牌后，你获得其一张牌；当你使用一张装备牌后，你对其造成2点伤害。',
-					sgk_shayi_info:'锁定技，出牌阶段开始时，你展示所有手牌，若有【杀】，你摸两张牌；若没有【杀】，你于本阶段可以将一张黑色牌当【杀】使用。你使用【杀】无距离限制、无次数限制。',
+					sgk_tianzi_info:'摸牌阶段，你可以放弃摸牌，然后令所有其他角色依次选择一项：1、交给你一张牌；2、令你摸一张牌。',
+					sgk_meixin_info:'出牌阶段限一次，你可以选择一名其他男性角色，若如此做，本阶段当你使用一张基本牌后，你令其弃置一张牌；当你使用一张锦囊牌后，你获得其一张牌；当你使用一张装备牌后，你对其造成1点伤害。',
+					sgk_shayi_info:'锁定技，出牌阶段开始时，你展示所有手牌，若有【杀】，你摸一张牌；若没有【杀】，你于本阶段可以将一张黑色牌当【杀】使用。你使用【杀】无距离限制、无次数限制。',
 					sgk_zhenhun_info:'出牌阶段限一次，你可以弃置一张牌令所有其他角色的非锁定技于本阶段内无效。',
 					sgk_zhitian_info:'锁定技，回合开始时，你须将所有手牌交给一名角色，并令其随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外），然后你失去1点体力。',
 					sgk_yinshi_info:'锁定技，当你受到伤害时，你防止之，改为摸此伤害值数量的牌。',
@@ -11688,16 +11688,16 @@ game.import('extension',{
 		if(config.supply){
 			game.addCharacterPack({
 				character:{
-					re_madai:['male','shu',9,['re_qianxi','mashu'],['die_audio']],
-					dengshizai:['male','wei',8,['zhenggong','toudu'],['die_audio']],
-					sup_yuji:['male','qun',8,['sup_guhuo'],['die_audio']],
-					sup_miheng:['male','qun',8,['sup_kuangcai','sup_shejian'],['die_audio']],
-					nos_guanzhang:['male','shu',9,['nos_fuhun'],['die_audio']],
-					//nos_yuji:['male','qun',8,['nos_guhuo'],['die_audio']],
+					re_madai:['male','shu',8,['re_qianxi','mashu'],['die_audio']],
+					dengshizai:['male','wei',7,['zhenggong','toudu'],['die_audio']],
+					sup_yuji:['male','qun',7,['sup_guhuo'],['die_audio']],
+					sup_miheng:['male','qun',7,['sup_kuangcai','sup_shejian'],['die_audio']],
+					nos_guanzhang:['male','shu',8,['nos_fuhun'],['die_audio']],
+					//nos_yuji:['male','qun',7,['nos_guhuo'],['die_audio']],
 				},
 				skill:{
 					sup_kuangcai:{
-						audio:8,
+						audio:3,
 						trigger:{
 							player:"phaseUseBegin",
 						},
@@ -11764,7 +11764,7 @@ game.import('extension',{
 								forced:true,
 								content:function (){
 									'step 0'
-									player.draw(2);
+									player.draw(4);
 									_status.MihengCount--;
 									'step 1'
 									if(_status.MihengCount<=0){
@@ -11788,7 +11788,7 @@ game.import('extension',{
 						}
 					},
 					sup_shejian:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{
 							player:"phaseDiscardEnd",
 						},
@@ -11823,7 +11823,7 @@ game.import('extension',{
 						},
 					},
 					sup_guhuo:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						enable:'phaseUse',
 						filter:function(event,player){
 							return player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
@@ -11839,9 +11839,9 @@ game.import('extension',{
 									list2[i]=['trick','',list2[i]];
 								}
 								var dialog=ui.create.dialog();
-								dialog.addText('蛊惑•基本牌');
+								dialog.addText('蛊惑·基本牌');
 								dialog.add([list,'vcard']);
-								dialog.addText('蛊惑•锦囊牌');
+								dialog.addText('蛊惑·锦囊牌');
 								dialog.add([list2,'vcard']);
 								return dialog;
 							},
@@ -11857,7 +11857,7 @@ game.import('extension',{
 									for(var i=0;i<hcard.length;i++){
 										if(lib.filter.filterCard(hcard[i])) return button.link[2]==hcard[i].name?1:0;
 									}
-									return button.link[2]=='sha'?8:0;
+									return button.link[2]=='sha'?3:0;
 								}
 								else{
 									var rate=Math.random();
@@ -11867,31 +11867,31 @@ game.import('extension',{
 									if(player.hp<player.maxHp){
 										if(player.countCards('h','tao')&&rate<0.6) return button.link[2]=='tao'?2:0;
 									}
-									if(player.countCards('h','jiu')&&rate<0.9){
-										return button.link[2]=='jiu'?8:0;
+									if(player.countCards('h','jiu')&&rate<0.4){
+										return button.link[2]=='jiu'?3:0;
 									}
 									if(player.countCards('h','taoyuan')&&rate<0.8){
 										return button.link[2]=='taoyuan'?9:0;
 									}
 									if(player.countCards('h','wugu')&&rate<0.8){
-										return button.link[2]=='wugu'?8:0;
+										return button.link[2]=='wugu'?3:0;
 									}
-									if(player.countCards('h','juedou')&&rate<0.9){
+									if(player.countCards('h','juedou')&&rate<0.4){
 										return button.link[2]=='juedou'?5:0;
 									}
 									if(player.countCards('h','huogong')&&rate<0.8){
 										return button.link[2]=='huogong'?1:0;
 									}
-									if(player.countCards('h','jiedao')&&rate<0.8){
+									if(player.countCards('h','jiedao')&&rate<0.3){
 										return button.link[2]=='jiedao'?8:0;
 									}
 									if(player.countCards('h','tiesuo')&&rate<0.2){
 										return button.link[2]=='tiesuo'?7:0;
 									}
-									if(player.countCards('h','guohe')&&rate<0.9){
+									if(player.countCards('h','guohe')&&rate<0.4){
 										return button.link[2]=='guohe'?7.6:0;
 									}
-									if(player.countCards('h','shunshou')&&rate<0.9){
+									if(player.countCards('h','shunshou')&&rate<0.4){
 										return button.link[2]=='shunshou'?7.5:0;
 									}
 									if(player.countCards('h','wuzhong')&&rate<0.8){
@@ -11916,7 +11916,7 @@ game.import('extension',{
 									direct:true,
 									ai1:function(card){
 										if(Math.random()<0.7) return card.name==links[0][2];
-										return 9-get.value(card);
+										return 4-get.value(card);
 									},
 									viewAs:{name:links[0][2]},
 									onuse:function(result,player){
@@ -11960,7 +11960,7 @@ game.import('extension',{
 									if(get.attitude(event.target,player)>0){
 										if(event.target.hp<=2&&pec<0.9) return false;
 										if(get.value(game.createCard(event.guhuo),event.target,'raw')>6) return false;
-										if(pec<0.8){
+										if(pec<0.3){
 											if(card.name==event.guhuo) return false;
 											return true;
 										}
@@ -11994,7 +11994,7 @@ game.import('extension',{
 								game.delay(1);
 								event.goto(1);
 							}
-							'step 8'
+							'step 3'
 							node=event.node;
 							setTimeout(function(){
 								node.style.transition='all ease-in 0.2s';
@@ -12088,7 +12088,7 @@ game.import('extension',{
 								}
 							},
 							sha:{
-								audio:’ext:极略三国:1’,
+								audio:1,
 								enable:'chooseToUse',
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
@@ -12104,7 +12104,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;	
 								},
 								viewAs:{name:'sha'},
@@ -12119,7 +12119,7 @@ game.import('extension',{
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:’ext:极略三国:1’,
+								audio:1,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12135,7 +12135,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;
 								},
 								onuse:function(result,player){
@@ -12155,7 +12155,7 @@ game.import('extension',{
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:’ext:极略三国:1’,
+								audio:1,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')&&!player.hasSkill('sup_guhuo2');
 								},
@@ -12170,7 +12170,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;
 								},
 								viewAs:{name:'wuxie'},
@@ -12206,7 +12206,7 @@ game.import('extension',{
 												return 0;
 											}
 										}
-										if(Math.random()<0.6) return 9-get.value(card);
+										if(Math.random()<0.6) return 4-get.value(card);
 										return 0;
 									};
 									'step 1'
@@ -12243,7 +12243,7 @@ game.import('extension',{
 											if(get.attitude(event.target,player)>0){
 												if(event.target.hp<=2&&pec<0.9) return false;
 												if(get.value(game.createCard(event.guhuo),event.target,'raw')>6) return false;
-												if(pec<0.8){
+												if(pec<0.3){
 													if(card.name==event.guhuo) return false;
 													return true;
 												}
@@ -12265,7 +12265,7 @@ game.import('extension',{
 									else{
 										event.finish();
 									}
-									'step 8'
+									'step 3'
 									if(result.bool){
 										event.target.popup('质疑!');
 										game.log(event.target,'质疑');
@@ -12277,7 +12277,7 @@ game.import('extension',{
 										game.delay(1);
 										event.goto(2);
 									}
-									'step 9'
+									'step 4'
 									node1=event.node1;
 									setTimeout(function(){
 										node1.style.transition='all ease-in 0.2s';
@@ -12370,7 +12370,7 @@ game.import('extension',{
 						}
 					},
 					zhenggong:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{global:'phaseBefore'},
 						filter:function(event,player){
 							return event.player!=player&&!player.isTurnedOver();
@@ -12392,7 +12392,7 @@ game.import('extension',{
 						}
 					},
 					toudu:{
-						audio:’ext:极略三国:true’,
+						audio:true,
 						trigger:{player:'damageEnd'},
 						filter:function(event,player){
 							return player.isTurnedOver();
@@ -12422,14 +12422,14 @@ game.import('extension',{
 						}
 					},
 					re_qianxi:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseBegin'},
 						check:function(){
 							return 1;
 						},
 						content:function(){
 							"step 0"
-							player.draw(2);
+							player.draw(4);
 							player.chooseToDiscard(true,'he');
 							"step 1"
 							event.color=get.color(result.cards[0]);
@@ -12493,9 +12493,9 @@ game.import('extension',{
 									list2[i]=['trick','',list2[i]];
 								}
 								var dialog=ui.create.dialog();
-								dialog.addText('蛊惑•基本牌');
+								dialog.addText('蛊惑·基本牌');
 								dialog.add([list,'vcard']);
-								dialog.addText('蛊惑•锦囊牌');
+								dialog.addText('蛊惑·锦囊牌');
 								dialog.add([list2,'vcard']);
 								return dialog;
 							},
@@ -12511,7 +12511,7 @@ game.import('extension',{
 									for(var i=0;i<hcard.length;i++){
 										if(lib.filter.filterCard(hcard[i])) return button.link[2]==hcard[i].name?1:0;
 									}
-									return button.link[2]=='sha'?8:0;
+									return button.link[2]=='sha'?3:0;
 								}
 								else{
 									var rate=Math.random();
@@ -12521,31 +12521,31 @@ game.import('extension',{
 									if(player.hp<player.maxHp){
 										if(player.countCards('h','tao')&&rate<0.6) return button.link[2]=='tao'?2:0;
 									}
-									if(player.countCards('h','jiu')&&rate<0.9){
-										return button.link[2]=='jiu'?8:0;
+									if(player.countCards('h','jiu')&&rate<0.4){
+										return button.link[2]=='jiu'?3:0;
 									}
 									if(player.countCards('h','taoyuan')&&rate<0.8){
 										return button.link[2]=='taoyuan'?9:0;
 									}
 									if(player.countCards('h','wugu')&&rate<0.8){
-										return button.link[2]=='wugu'?8:0;
+										return button.link[2]=='wugu'?3:0;
 									}
-									if(player.countCards('h','juedou')&&rate<0.9){
+									if(player.countCards('h','juedou')&&rate<0.4){
 										return button.link[2]=='juedou'?5:0;
 									}
 									if(player.countCards('h','huogong')&&rate<0.8){
 										return button.link[2]=='huogong'?1:0;
 									}
-									if(player.countCards('h','jiedao')&&rate<0.8){
+									if(player.countCards('h','jiedao')&&rate<0.3){
 										return button.link[2]=='jiedao'?8:0;
 									}
 									if(player.countCards('h','tiesuo')&&rate<0.2){
 										return button.link[2]=='tiesuo'?7:0;
 									}
-									if(player.countCards('h','guohe')&&rate<0.9){
+									if(player.countCards('h','guohe')&&rate<0.4){
 										return button.link[2]=='guohe'?7.6:0;
 									}
-									if(player.countCards('h','shunshou')&&rate<0.9){
+									if(player.countCards('h','shunshou')&&rate<0.4){
 										return button.link[2]=='shunshou'?7.5:0;
 									}
 									if(player.countCards('h','wuzhong')&&rate<0.8){
@@ -12568,7 +12568,7 @@ game.import('extension',{
 									popname:true,
 									ai1:function(card){
 										if(Math.random()<0.7) return card.name==links[0][2];
-										return 9-get.value(card);
+										return 4-get.value(card);
 									},
 									viewAs:{name:links[0][2]},
 									onuse:function(result,player){
@@ -12668,7 +12668,7 @@ game.import('extension',{
 										};
 									}
 									else{
-										event.goto(8);
+										event.goto(3);
 									}
 									'step 2'
 									if(result.bool){
@@ -12683,7 +12683,7 @@ game.import('extension',{
 									}
 									game.delay(1);
 									event.goto(1);
-									'step 8'
+									'step 3'
 									if(event.check){
 										node1=event.node1;
 										setTimeout(function(){
@@ -12722,7 +12722,7 @@ game.import('extension',{
 									else{
 										event.finish();
 									}
-									'setp 9'
+									'setp 4'
 									if(event.nobelieve&&event.nobelieve.length){
 										if(event.check){
 											for(var i=0;i<event.nobelieve.length;i++){
@@ -12731,7 +12731,7 @@ game.import('extension',{
 										}
 										else{
 											for(var i=0;i<event.nobelieve.length;i++){
-												event.nobelieve[i].draw();
+												event.nobelieve[i].draw(4);
 											}
 										}
 									}
@@ -12755,7 +12755,7 @@ game.import('extension',{
 							},
 							sha:{
 								enable:['chooseToUse'],
-								audio:’ext:极略三国:1’,
+								audio:1,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12770,7 +12770,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;	
 								},
 								viewAs:{name:'sha'},
@@ -12784,7 +12784,7 @@ game.import('extension',{
 							},
 							save:{
 								enable:'chooseToUse',
-								audio:’ext:极略三国:1’,
+								audio:1,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h')>0;
 								},
@@ -12800,7 +12800,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;
 								},
 								onuse:function(result,player){
@@ -12819,7 +12819,7 @@ game.import('extension',{
 							},
 							wuxie:{
 								enable:'chooseToUse',
-								audio:’ext:极略三国:1’,
+								audio:1,
 								filter:function(event,player){
 									return event.parent.name!='phaseUse'&&player.countCards('h');
 								},
@@ -12834,7 +12834,7 @@ game.import('extension',{
 											return 0;
 										}
 									}
-									if(Math.random()<0.6) return 9-get.value(card);
+									if(Math.random()<0.6) return 4-get.value(card);
 									return 0;
 								},
 								viewAs:{name:'wuxie'},
@@ -12868,7 +12868,7 @@ game.import('extension',{
 												return 0;
 											}
 										}
-										if(Math.random()<0.6) return 9-get.value(card);
+										if(Math.random()<0.6) return 4-get.value(card);
 										return 0;
 									};
 									'step 1'
@@ -12902,9 +12902,9 @@ game.import('extension',{
 										};
 									}
 									else{
-										event.goto(9);
+										event.goto(4);
 									}
-									'step 8'
+									'step 3'
 									if(result.bool){
 										event.check=true;
 										event.target.popup('质疑!');
@@ -12917,7 +12917,7 @@ game.import('extension',{
 									}
 									game.delay(1);
 									event.goto(2);
-									'step 9'
+									'step 4'
 									if(event.check){
 										node1=event.node1;
 										setTimeout(function(){
@@ -12984,7 +12984,7 @@ game.import('extension',{
 										else{
 											game.log('有人质疑,蛊惑失败');
 											for(var i=0;i<event.nobelieve.length;i++){
-												event.nobelieve[i].draw();
+												event.nobelieve[i].draw(4);
 											}
 										}
 									}
@@ -12997,7 +12997,7 @@ game.import('extension',{
 					nos_xiongyi:{
 						unique:true,
 						enable:'phaseUse',
-						audio:’ext:极略三国:2’,
+						audio:2,
 						mark:true,
 						filter:function(event,player){
 							return !player.storage.xiongyi;
@@ -13014,7 +13014,7 @@ game.import('extension',{
 						content:function(){
 							"step 0"
 							player.storage.xiongyi=true;
-							game.asyncDraw([player].concat(targets),8);
+							game.asyncDraw([player].concat(targets),3);
 							"step 1"
 							var wei=get.population('wei'),shu=get.population('shu'),wu=get.population('wu'),qun=get.population('qun');
 							var min=Math.min(wei,shu,wu,qun);
@@ -13032,8 +13032,8 @@ game.import('extension',{
 									var num=player.countCards('h');
 									if(player.hp==1) return 1;
 									if(player.hp==2&&num<=1) return 1;
-									if(player.hp==8&&num==0) return 1;
-									if(player.hp>=8&&num>=8) return 0;
+									if(player.hp==3&&num==0) return 1;
+									if(player.hp>=3&&num>=3) return 0;
 									var mode=get.mode();
 									if(mode=='identity'||mode=='guozhan'){
 										for(var i=0;i<game.players.length;i++){
@@ -13047,7 +13047,7 @@ game.import('extension',{
 						}
 					},
 					nos_shuangren:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseUseBegin'},
 						direct:true,
 						filter:function(event,player){
@@ -13082,14 +13082,14 @@ game.import('extension',{
 								trigger.untrigger();
 								trigger.finish();
 							}
-							"step 8"
+							"step 3"
 							if(result.bool){
 								player.useCard({name:'sha'},result.targets,false);
 							}
 						},
 					},
 					nos_fuhun:{
-						audio:’ext:极略三国:2’,
+						audio:2,
 						trigger:{player:'phaseDrawBegin'},
 						check:function(){return 1;},
 						content:function(){
@@ -13128,17 +13128,17 @@ game.import('extension',{
 					nos_guhuo:'蛊惑',
 					nos_guhuo_backup:'蛊惑',
 					
-					nos_danshou_info:'每当你造成伤害后，你可摸两张牌，然后终止一切结算，结束当前回合。',
-					nos_guhuo_info:"你可以说出任何一种基本牌或非延时类锦囊牌，并正面朝下使用或打出一张手牌。体力值不为0的其他角色依次选择是否质疑。若无人质疑，则该牌按你所述之牌结算。若有人质疑则亮出验明：若为真，质疑者各失去1点体力；若为假，质疑者各摸两张牌。无论真假，弃置被质疑的牌。仅当被质疑的牌为红桃花色且为真时，该牌仍然可以进行结算。",
+					nos_danshou_info:'每当你造成伤害后，你可摸一张牌，然后终止一切结算，结束当前回合。',
+					nos_guhuo_info:"你可以说出任何一种基本牌或非延时类锦囊牌，并正面朝下使用或打出一张手牌。体力值不为0的其他角色依次选择是否质疑。若无人质疑，则该牌按你所述之牌结算。若有人质疑则亮出验明：若为真，质疑者各失去1点体力；若为假，质疑者各摸一张牌。无论真假，弃置被质疑的牌。仅当被质疑的牌为红桃花色且为真时，该牌仍然可以进行结算。",
 					nos_fuhun_info:'摸牌阶段，你可以放弃摸牌，改为亮出牌堆顶的两张牌并获得之，若亮出的牌颜色不同，你获得技能“武圣”、“咆哮”，直到回合结束。',
 					
-					sup_kuangcai_info:"出牌阶段开始时，你可以令你此阶段内的出牌时间变为5秒，若如此做，你使用牌没有距离和次数限制，且每当你与此阶段内使用牌时，你摸两张牌并且出牌时间-1秒。",
+					sup_kuangcai_info:"出牌阶段开始时，你可以令你此阶段内的出牌时间变为5秒，若如此做，你使用牌没有距离和次数限制，且每当你与此阶段内使用牌时，你摸一张牌并且出牌时间-1秒。",
 					sup_shejian_info:"弃牌阶段结束时，若你于此阶段弃置的所有牌花色均不同，你可以弃置一名其他角色的一张牌。",
 					sup_guhuo_info:'每名角色的回合限一次，你可以扣置一张手牌当一张基本牌或非延时类锦囊牌使用或打出。其他角色依次选择是否质疑。一旦有其他角色质疑则翻开此牌：若为假则此牌作废，若为真，则质疑角色获得技能“缠怨”（锁定技，你不能质疑于吉，只要你的体力值为1，你失去所有其他技能）。',
 					sup_chanyuan_info:'锁定技，你不能质疑于吉，只要你的体力值为1，你失去所有其他技能',
 					zhenggong_info:'其他角色的回合开始前，若你的武将牌正面朝上，你可以获得一个额外的回合，此回合结束后，你将武将牌翻面。 ',
 					toudu_info:' 每当你受到一次伤害后，若你的武将牌背面朝上，你可以弃置一张手牌，将你的武将牌翻面，然后视为使用一张【杀】。',
-					re_qianxi_info:'准备阶段开始时，你可以摸两张牌然后弃置一张牌。若如此做，你选择距离为1的一名其他角色，然后直到回合结束，该角色不能使用或打出与你以此法弃置的牌颜色相同的手牌。',
+					re_qianxi_info:'准备阶段开始时，你可以摸一张牌然后弃置一张牌。若如此做，你选择距离为1的一名其他角色，然后直到回合结束，该角色不能使用或打出与你以此法弃置的牌颜色相同的手牌。',
 				}
 			},'武将补全')
 		}
@@ -13177,5 +13177,3 @@ game.import('extension',{
 	},
 	files:{"character":[],"card":[],"skill":[]}
 ,editable:false})
-
-

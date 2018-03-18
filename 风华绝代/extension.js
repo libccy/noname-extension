@@ -1,4 +1,4 @@
- game.import('extension',{
+game.import('extension',{
     name:'风华绝代',
     content:function(config){
 		if(config.simple_name=='hide'){
@@ -13176,4 +13176,4 @@
 		skill:{skill:{},translate:{}}
 	},
 	files:{"character":[],"card":[],"skill":[]}
-,editable:false})
+})

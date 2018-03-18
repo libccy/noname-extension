@@ -13176,4 +13176,4 @@
 		skill:{skill:{},translate:{}}
 	},
 	files:{"character":[],"card":[],"skill":[]}
-})
+,editable:false})

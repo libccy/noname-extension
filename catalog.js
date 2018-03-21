@@ -5,7 +5,7 @@
   size:"311.11MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:1.8.0321,
+  version:1.80321,
 files:[
         "feijiangx1.mp3","feijiangx2.mp3","boss_zhuihun21.mp3","boss_xuezhan2.mp3","boss_xuezhan12.mp3",
         "boss_xuezhan1.mp3","new_luanji3.mp3","god_zhouyu.jpg","god_yeyan1.ogg","god_yeyan2.ogg","god_yuhuo.mp3",

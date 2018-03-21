@@ -2,10 +2,10 @@
   author:"一瞬间丶遗忘",
 	  intro:"更新注意事项：须先删除旧版/开启本扩展所有按钮(首局游戏)；更新内容：在游戏内查看；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年3月21日 19:29:39；欢迎加入无名杀玩家交流群，群号码：658152910。",
   //intro:"（更新内容：修复已知BUG、修复国战武将/配音；新增9~13人场身份/国战；其它详细内容请查看游戏帮助）1.90%武将原创、99%武将含配音、高清图；2.包含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；3.食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；4.请认真查阅扩展按钮选择开/关；5.更新时间：2018年1月25日；6.欢迎加入无名杀玩家交流群，群号码：658152910。",
-  size:"311.11MB",
+  size:"316.93MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:1.80321,
+  version:1.80322,
 files:[
         "boss_pimi21.mp3","boss_pimi22.mp3","feijiangx1.mp3","feijiangx2.mp3","boss_zhuihun21.mp3","boss_xuezhan2.mp3","boss_xuezhan12.mp3",
         "boss_xuezhan1.mp3","new_luanji3.mp3","god_zhouyu.jpg","god_yeyan1.ogg","god_yeyan2.ogg","god_yuhuo.mp3",

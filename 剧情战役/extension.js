@@ -2948,7 +2948,10 @@ if(lib.config.mode=="brawl"){
 						forced:true,	
 						popup:false,					
 						silent:true,
-          priority:Infinity,          
+          priority:Infinity,    
+          filter:function(event,player){
+          return game.zhu.name!='gods_zhaoyun';
+          },      
  						content:function(){
         console.log(player);
         game.swapPlayer= function (all) {

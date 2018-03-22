@@ -2,7 +2,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æµ‘èº
     if(get.mode()=='brawl'){
     game.addCharacterPack({    
     character:{
-    gods_zhaoyun:['male','shen',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','','forbidai'],'qun'],
+    gods_zhaoyun:['male','shen',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','boos','forbidai'],'qun'],
     },
     skill:{
     gods_fengqiang:{

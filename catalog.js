@@ -196,7 +196,7 @@ files:[
 		"xintuntian3.mp3","xintuxi1.mp3","xintuxi2.mp3","xintuxi3.mp3","xintuxi4.mp3",
 		"xintuxi5.mp3","xinwusheng21.mp3","xinwusheng22.mp3","xinwusheng23.mp3","new_xiangle1.mp3",
 		"new_xiangle2.mp3","xinxingshang1.mp3","xinxingshang2.mp3","xinxingshang3.mp3","xinxingshang4.mp3",
-	        "new_xiuxing11","new_xiuxing12","new_xiuxing13","xinxingxue1.mp3","xinxingxue2.mp3","xinxuanfeng1.ogg",
+	        "new_xiuxing11.mp3","new_xiuxing12.mp3","new_xiuxing13.mp3","xinxingxue1.mp3","xinxingxue2.mp3","xinxuanfeng1.ogg",
 	        "xinxuanfeng2.ogg","xinyanzhu1.mp3",
 		"xinyanzhu2.mp3","xinzaoxian1.mp3","xinzaoxian2.mp3","xinzhaofu1.mp3","xinzhijian1.ogg",
 		"xionghan1.mp3","xiongnu.jpg","xuenu1.mp3","xuenu10.mp3","xuenu11.mp3",

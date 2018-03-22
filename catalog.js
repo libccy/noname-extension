@@ -1,3 +1,14 @@
+extension["浑身是胆"]={
+	intro:"模式（在亂鬥模式查看介紹/進行遊戲）",
+	author:"孤芳不自賞",
+	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	version:"1.1",
+	files:["gods_juejing21.mp3","extension.js","gods_fengqiang3.mp3","gods_fengqiang2.mp3",
+		"gods_juejing23.mp3","gods_juejing22.mp3","gods_fengqiang1.mp3","gods_zhaoyun.jpg",
+		"gods_juejing3.mp3","gods_juejing2.mp3","gods_juejing1.mp3","extension.js.bak"],
+	size:"685.13KB"
+};
 extension["剧情战役"]={
 	intro:"三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將（緩更）",
 	author:"孤芳不自賞",
@@ -21,12 +32,12 @@ extension["剧情战役"]={
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",
-	  intro:"更新注意事项：须先删除旧版/开启本扩展所有按钮(首局游戏)；更新内容：在游戏内查看；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年3月22日 12:29:39；欢迎加入无名杀玩家交流群，群号码：658152910。",
+	  intro:"更新注意事项：须先删除旧版/开启本扩展所有按钮(首局游戏)；更新内容：在游戏内查看；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年3月22日 22:00:19；欢迎加入无名杀玩家交流群，群号码：658152910。",
   //intro:"（更新内容：修复已知BUG、修复国战武将/配音；新增9~13人场身份/国战；其它详细内容请查看游戏帮助）1.90%武将原创、99%武将含配音、高清图；2.包含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；3.食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；4.请认真查阅扩展按钮选择开/关；5.更新时间：2018年1月25日；6.欢迎加入无名杀玩家交流群，群号码：658152910。",
   size:"321.87MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:1.80322,
+  version:1.80323,
 files:[
         "new_jiewei1.mp3","new_jiewei2.mp3","new_qinzong.ogg","boss_pimi21.mp3","boss_pimi22.mp3","feijiangx1.mp3","feijiangx2.mp3","boss_zhuihun21.mp3","boss_xuezhan2.mp3","boss_xuezhan12.mp3",
         "boss_xuezhan1.mp3","new_luanji3.mp3","god_zhouyu.jpg","god_yeyan1.ogg","god_yeyan2.ogg","god_yuhuo.mp3",

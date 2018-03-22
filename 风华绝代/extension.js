@@ -5067,7 +5067,7 @@ targets[1].addSkill('boss_lipan2');			targets[1].useCard({name:'juedou'},targets
          usable:1,
          selectCard:1,
     			filterTarget:function(card,player,target){
-    				return target!=player&&target.countCards('he')&&target.sex=='male';
+    				return target!=player&&target.countCards('h')&&target.sex=='male';
     			},
     			check:function(card){
     				return  7-get.value(card);

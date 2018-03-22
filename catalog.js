@@ -1,4 +1,25 @@
- ﻿extension["风华绝代"]={
+extension["剧情战役"]={
+	intro:"三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將（緩更）",
+	author:"無名殺玩家交流群",
+	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	version:"1.0322",
+	files:["Insane_yexin2.mp3","extension.js","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
+		"Insane_yuanshao.jpg","Insane_sunshangxiang.jpg","Insane_zhenji.jpg","lnsane_shuaiwang62.mp3",
+		"lnsane_shuaiwang61.mp3","Insane_caiwenji.jpg","Insane_jiangwei.jpg","Insane_huaxiong.jpg",
+		"Insane_caopi.jpg","Insane_wangyi.jpg","Insane_lingtong.jpg","Insane_sunluban.jpg",
+		"Insane_xiaoqiao.jpg","Insane_daqiao.jpg","Insane_lvbu.jpg","Battle_dongzhuo.jpg",
+		"lnsane_sunji2.mp3","Insane_weilue3.mp3","Insane_weilue2.mp3","Insane_weilue1.mp3",
+		"Insane_zhouyu.jpg","Insane_zhuangbing.mp3","Judgetz.ogg","Insane_yexin1.mp3","Insane_simayi.jpg",
+		"Insane_meihuo23.ogg","Insane_meihuo22.ogg","Insane_meihuo21.ogg","Insane_meihuo24.ogg",
+		"Insane_dianchan.jpg","Insane_jiaxu.jpg","lnsane_mingshu2.mp3","lnsane_liaoyuan22.mp3",
+		"lnsane_liaoyuan21.mp3","Battle_zengyuan.mp3","Insane_zhugeliang.jpg","Insane_sunce.jpg",
+		"wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg","Battle_yuanshao.jpg",
+		"Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg","Battle_huben.mp3",
+		"Battle_huben_shan.mp3","Battle_gongshang.mp3"],
+	size:"4.42MB"
+}; 
+extension["风华绝代"]={
   author:"一瞬间丶遗忘",
 	  intro:"更新注意事项：须先删除旧版/开启本扩展所有按钮(首局游戏)；更新内容：在游戏内查看；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年3月22日 12:29:39；欢迎加入无名杀玩家交流群，群号码：658152910。",
   //intro:"（更新内容：修复已知BUG、修复国战武将/配音；新增9~13人场身份/国战；其它详细内容请查看游戏帮助）1.90%武将原创、99%武将含配音、高清图；2.包含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；3.食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；4.请认真查阅扩展按钮选择开/关；5.更新时间：2018年1月25日；6.欢迎加入无名杀玩家交流群，群号码：658152910。",

@@ -3630,11 +3630,18 @@ current.damage(current.maxHp)._triggered=null;
         if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
         return true;
        },
-				content:function(){	
+				content:function(){
+				   'step 0'
+				if(trigger.target.maxHp>=Infinity||trigger.target.hp>=Infinity){
+       trigger.target.maxHp=100000000;
+       trigger.target.hp=trigger.target.maxHp;
+       trigger.target.update();
+       }
+       'step 1'
         if(get.number(trigger.card)>trigger.target.hp){
         trigger.directHit=true;
         }        
-       else{      
+       else{       
      trigger.target.loseMaxHp(Math.max(1,trigger.target.maxHp-get.number(trigger.card)))._triggered=null;
          }   
        },     		

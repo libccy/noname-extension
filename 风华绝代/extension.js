@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){
+﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){
     // update:function(config,map){
 					// 	if(config.stone_mode=='deck'){
 					// 		// map.deck_length.show();
@@ -327,7 +327,7 @@ target:function(card,player,target){
 		'新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',
 		'本次更新赠送5000金币',
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
- 	'长按/右键下列图标查看详情（往上滑动↑查看更多内容）',
+ 	'长按/右键下列图标查看详情（往上滑动/滚动查看更多内容）',
  	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
 		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
@@ -28117,7 +28117,8 @@ player.draw(player.storage.lol_baonu);
                  },
                  ordinary:{
                  name:'非挑战模式启用挑战BOSS',
-                 init:false
+                 init:true
+
                  },
                  lolzb:{
                  name:'lol装备牌',

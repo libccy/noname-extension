@@ -1,4 +1,5 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风华绝代",content:function (config,pack){
+//  lib.ui.arenalog.style.display='left';
     // update:function(config,map){
 					// 	if(config.stone_mode=='deck'){
 					// 		// map.deck_length.show();
@@ -285,6 +286,7 @@ target:function(card,player,target){
     },'守卫雅典娜')
     };
 //    lib.package.mode_package.character.standard='神将';
+    lib.config.plays.add('coin');
    	// trim_game:{
 					// 	name:'隐藏非官方扩展包',
 					// 	onclick:function(){
@@ -324,14 +326,14 @@ target:function(card,player,target){
                     //                 }
                     //             }
                     FHJD_update=[
-		'新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',
+		'优化武将图、新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',
 		'本次更新赠送3000金币',
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
  	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
  	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
 		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
-	FHJD_version='1.8.0.329';
+	FHJD_version='1.8.0329';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -488,7 +490,7 @@ target:function(card,player,target){
 					// 	init:'black',
 					lib.skill._UnaffectedSkills={
 				trigger:{global:['phaseBegin','chooseToUseBegin','chooseToRespondBegin','chooseToDiscardBegin','chooseToCompareBegin',
-				'chooseButtonBegin','chooseCardBegin','chooseTargetBegin','chooseCardTargetBegin','chooseControlBegin',
+				'chooseButtonBegin','chooseCardBegin','chooseTargetBegin','chooseTargetEnd','loseEnd','gainEnd','recoverEnd','changeHpEnd','phaseEnd','phaseDrawEnd','gameDrawAfter','loseMaxHp','gainMaxHp','initEnd','chooseCardTargetBegin','chooseControlBegin',
 				'chooseBoolBegin','choosePlayerCardBegin','discardPlayerCardBegin','gainPlayerCardBegin']},
 				forced:true,
 				unique:true,
@@ -2683,10 +2685,7 @@ return -1.5;
      ['spade',11,'tiesuo']],  
      },'极端锦囊')
     };
-       if(config.boss&&(get.mode()!='boss'&&config.ordinary||get.mode()=='boss')){
-     lib.config.compatiblemode=false;
-     if(get.mode()=='boss'){
-     lib.skill._boss_changeCoins={     
+       if(config.boss&&(get.mode()!='boss'&&config.ordinary||get.mode()=='boss')){lib.config.show_log='right';lib.config.compatiblemode=false;if(get.mode()=='boss'){lib.skill._boss_changeCoins={     
 			trigger:{player:'dieBegin'},
 			popup:false,
 			forced:true,
@@ -2744,7 +2743,8 @@ return -1.5;
 				}
 			};
 			lib.skill._boss_loseSkills={     
-			trigger:{global:['phase','chooseTargetEnd','loseEnd','changeHp','gainEnd','useCard','useCardEnd','useCardToBefore']},
+			mode:['boss'],
+			trigger:{global:['gameDrawAfter','phaseBefore','phaseBegin','phaseDrawAfter','phaseEnd','chooseTargetEnd','loseEnd','changeHp','gainEnd','useCard','useCardEnd','useCardToBefore']},
 			popup:false,
 			forced:true,
 			silent:true,
@@ -2769,14 +2769,15 @@ game.forceOver(false);
 				}
 			};
 			}else{
-			lib.skill._identity_loseSkills={     
-			trigger:{global:['phase','chooseTargetEnd','loseEnd','changeHp','gainEnd','useCard','useCardEnd','useCardToBefore']},
+			lib.skill._identity_loseSkills={   
+			mode:['identity','guozhan','brawl'],  
+			trigger:{global:['gameDrawAfter','phaseBefore','phaseBegin','phaseDrawAfter','phaseEnd','chooseTargetEnd','loseEnd','changeHp','gainEnd','useCard','useCardEnd','useCardToBefore']},
 			popup:false,
 			forced:true,
 			silent:true,
 			priority:Infinity,
 			filter:function (event,player){  
-			if(player.hasSkill('boss_yiwang')||player.hasSkill('boss_qingxu')||player.hasSkill('boss_immune')||player.hasSkill('boss_dcmy')||player.hasSkill('boss_dcmyg'))   
+			if(player.hasSkill('boss_yiwang')||player.hasSkill('boss_qingxu')||player.hasSkill('boss_qingxu5')||player.hasSkill('boss_immune')||player.hasSkill('boss_dcmy')||player.hasSkill('boss_dcmyg'))   
 			return false;
 			return lib.character[player.name][4].contains('Unaffected');
 			},
@@ -4016,8 +4017,12 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
 					if(target.countCards('he',{type:'equip'})||target.countCards('h','sha')){
 					var equips=target.countCards('he',{type:'equip'});
 					var shas=target.countCards('h','sha');
+					if(equips>0){
 					target.chooseToDiscard(true,'he',equips,{type:'equip'});
-					target.chooseToDiscard(true,'he',shas,{name:'sha'});
+					}
+					if(shas>0){
+					target.chooseToDiscard(true,'h',shas,{name:'sha'});
+					}
 					target.damage(equips+shas);
 				 }}
 				}
@@ -9189,6 +9194,11 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
 player.goMad = function (all) {
 player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
 };
+if(get.mode()!='boss'){
+player.clearSkills = function (all) {
+player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+};
+}
 }},
    boss_qingxu4:{
 
@@ -9250,7 +9260,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
       }
     },
    boss_hudui:{ 
-   group:['boss_hudui1','boss_hudui2','boss_hudui3','boss_qingxu3','boss_qingxu5'], 
+   group:['boss_hudui1','boss_hudui2','boss_hudui3','boss_qingxu3','boss_qingxu4','boss_qingxu5'], 
      locked:true,
      unique:true,
      noLose:true,
@@ -12711,7 +12721,7 @@ return;
        boss_panfeng:['male','mo',120,['boss_shangjiang','boss_zhanfu'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_gy:['male','mo',20,['boss_chitu','boss_dcmyg','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),"des:关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"]],
         boss_zuhe:['male','mo',20,['boss_zh'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:拥有各种常规武将的技能"]],
-         boss_tiaozhan:["male",'mo',7,['boss_qingxu4',"boss_hudui","tiaozhan_bianshen"],[['qun','shu','wei','wu'].randomGet()]],
+         boss_tiaozhan:["male",'mo',7,["boss_hudui","tiaozhan_bianshen"],[['qun','shu','wei','wu'].randomGet()]],
         boss_gyc:['male','mo',10,['boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"]],
         boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"]],
         boss_taishici:['male','mo',6,['boss_shenyou','boss_yingyi'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
@@ -12730,7 +12740,7 @@ return;
          boss_tiaopi:["male","mo",9,["boss_qingxu","tiaopi","tiaozhan_bianshen3"],[['qun','shu','wei','wu'].randomGet()]],
          boss_yinxian:["male","mo",10,["boss_qingxu","yinxian","tiaozhan_bianshen4"],[['qun','shu','wei','wu'].randomGet()]],
          boss_huaji:["male","mo",11,["boss_qingxu","huaji","tiaozhan_bianshen5"],[['qun','shu','wei','wu'].randomGet()]],        
-        boss_fennu:["female","mo",12,["boss_qingxu","fennu","fennu1","tiaozhan_bianshen6"],[['qun','shu','wei','wu'].randomGet()]],
+        boss_fennu:["female","mo",12,["boss_qingxu","fennu","fennu1","tiaozhan_bianshen6"],[['qun','shu','wei','wu'].randomGet(),'Unaffected']],
         boss_yishunjianyiwang:["female","mo",3,["boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','zhu','hiddenboss'].randomGet(),'Unaffected',['qun','shu','wei','wu'].randomGet(),"des:水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
          boss_cwj:["female","mo",1,["boss_beifen","boss_bieli"],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:蔡琰，字文姬，又字昭姬[1]。生卒年不详。东汉陈留郡圉县（今河南开封杞县）人，东汉大文学家蔡邕的女儿。初嫁于卫仲道，丈夫死去而回到自己家里，后值因匈奴入侵，蔡琰被匈奴左贤王掳走，嫁给匈奴人，并生育了两个儿子。十二年后，曹操统一北方，用重金将蔡琰赎回，并将其嫁给董祀。[2]蔡琰同时擅长文学、音乐、书法。《隋书·经籍志》著录有《蔡文姬集》一卷，但已经失传。现在能看到的蔡文姬作品只有《悲愤诗》二首和《胡笳十八拍》。"]],
          boss_simayan:["male","mo",50,["boss_tongyi","boss_shemian"],['zhu','Unaffected',"des:司马炎（236年－290年5月16日），字安世，河内温县（今河南省温县）人，晋朝开国皇帝（265年－290年在位）。晋宣帝司马懿之孙、晋文帝司马昭嫡长子、晋元帝司马睿从父。",['qun','shu','wei','wu'].randomGet()]],
@@ -12776,7 +12786,7 @@ return;
        boss_panfeng:['male','mo',120,['battle_song','boss_shangjiang','boss_zhanfu'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected','des:强度：★★★☆☆☆。潘凤，小说《三国演义》中的人物。擅使大斧。登场于小说第五回。冀州牧韩馥部下的上将。当十八路诸侯讨伐董卓之时，他奉韩馥之命前往汜水关前挑战董卓部下大将华雄，不敌被斩。'],['qun','shu','wei','wu'].randomGet()],
         boss_gy:['male','mo',20,['battle_song','boss_dcmyg','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss','Unaffected',"des:强度：★★★☆。关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"],['qun','shu','wei','wu'].randomGet()],
         boss_zuhe:['male','mo',20,['battle_song','boss_zh'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆☆。拥有各种常规武将的技能"],['qun','shu','wei','wu'].randomGet()],
-         boss_tiaozhan:["male",'mo',7,['battle_song','boss_qingxu4',"boss_hudui","tiaozhan_bianshen"],['boss','Unaffected',"des:强度：★★★"],['qun','shu','wei','wu'].randomGet()],
+         boss_tiaozhan:["male",'mo',7,['battle_song',"boss_hudui","tiaozhan_bianshen"],['boss','Unaffected',"des:强度：★★★"],['qun','shu','wei','wu'].randomGet()],
         boss_gyc:['male','mo',10,['battle_song','boss_chitu','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_zhenshou','boss_aoqi','boss_fuhui','boss_weizhen','boss_jiaobing','boss_baizou','boss_duoming','boss_zhuihun'],[['qun','shu','wei','wu'].randomGet(),'zhu','hiddenboss','Unaffected',"des:强度：★★★★☆。赤壁之战后，刘备助东吴周瑜攻打南郡曹仁，别遣关羽绝北道，阻挡曹操援军，曹仁退走后，关羽被刘备任命为襄阳太守。刘备入益州，关羽留守荆州。建安二十四年，关羽围襄樊，曹操派于禁前来增援，关羽擒获于禁，斩杀庞德，威震华夏，曹操曾想迁都以避其锐。后曹操派徐晃前来增援，东吴吕蒙又偷袭荆州，关羽腹背受敌，兵败被杀。关羽去世后，逐渐被神化，被民间尊为“关公”，又称美髯公。历代朝廷多有褒封，清代奉为“忠义神武灵佑仁勇威显关圣大帝”，崇为“武圣”，与“文圣” 孔子齐名。"],['qun','shu','wei','wu'].randomGet()],
         challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu','boss_winsong'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆☆☆。"],['qun','shu','wei','wu'].randomGet()],
         boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci','boss_winsong'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"],['qun','shu','wei','wu'].randomGet()],
@@ -28190,4 +28200,4 @@ player.draw(player.storage.lol_baonu);
         translate:{
         },
     },
-},files:{"character":[],"card":[],"skill":[]},editable:false}})
+},files:{"character":[],"card":[],"skill":[]},

@@ -285,8 +285,8 @@ target:function(card,player,target){
     },
     },'守卫雅典娜')
     };
-//    lib.package.mode_package.character.standard='神将';
-    lib.config.plays.add('coin');
+//    lib.package.mode_package.character.standard='神将';    
+  //  lib.config.plays.add('coin');
    	// trim_game:{
 					// 	name:'隐藏非官方扩展包',
 					// 	onclick:function(){
@@ -333,7 +333,7 @@ target:function(card,player,target){
  	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
 		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
-	FHJD_version='1.8.0329';
+	FHJD_version='1.8.0.330';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -394,7 +394,7 @@ target:function(card,player,target){
 		forced:true,
 		content:function(){
 			if(lib.config.FHJD_version!=FHJD_version){
-			 if(game.changeCoin&&lib.character[['challenge_weiyan','challenge_huangzhong','challenge_zhenji','challenge_xiahouyuan','challenge_masu']]&&lib.card['guardian']&&lib.card['shuiyin']&&lib.card['Armor']&&lib.card['Magic']){				
+			 if(game.changeCoin&&lib.skill['lol_yxlm']&&lib.skill['new_xgwj']){				
 			 game.changeCoin(3000);
 			 game.log('金币+3000');
 			 }
@@ -12714,10 +12714,10 @@ return;
      lib.config.background_music='music_off';
 			game.addCharacterPack({
 				character:{
-       challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:强度：★★★☆☆☆☆。"],['qun','shu','wei','wu'].randomGet()],
-       wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet()]],
-       wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],[['qun','shu','wei','wu'].randomGet()]],
-       wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],[['qun','shu','wei','wu'].randomGet()]],
+       challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()],['qun','shu','wei','wu'].randomGet()],
+       wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+       wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+       wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],['zhu',['qun','shu','wei','wu'].randomGet()]],
        boss_panfeng:['male','mo',120,['boss_shangjiang','boss_zhanfu'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_gy:['male','mo',20,['boss_chitu','boss_dcmyg','boss_wusheng','boss_zhongyi','boss_tuodao','qinglong_skill','boss_fenming','boss_weizhen','boss_baonug'],[['qun','shu','wei','wu'].randomGet(),"des:关羽（？－220年），本字长生，后改字云长，河东郡解县（今山西运城）人，东汉末年名将，早期跟随刘备辗转各地，曾被曹操生擒，于白马坡斩杀袁绍大将颜良，与张飞一同被称为万人敌。"]],
         boss_zuhe:['male','mo',20,['boss_zh'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:拥有各种常规武将的技能"]],
@@ -12726,11 +12726,11 @@ return;
         boss_nashinanjue:['none','mo',20,['boss_dengchang','boss_moqu','boss_kangxing','boss_ningshi','boss_xukong','boss_jixing','boss_penshe','boss_suanye','boss_jianci'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:它是一头十分恐怖的怪兽，他以前不叫纳什男爵。它曾经以全身的姿态出现在英雄联盟，他在英雄联盟无恶不作，于是嘉文三世，以及均衡教派的前任守护者，和无极剑圣的师傅也是无极剑道的前任守护者，一起结合将纳什男爵封印在召唤师峡谷的地底，它在召唤师峡谷的地底称王称霸，所以全部野怪都尊称他为纳什男爵，并帮他把捆住头的锁链勉强的破开，让他可以重见天日，于是便有了纳什男爵这个野怪。"]],
         boss_taishici:['male','mo',6,['boss_shenyou','boss_yingyi'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
          boss_jiaxu:['male','mo',7,['boss_shenyou','boss_weimu','boss_wansha','boss_duce'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
-         boss_liru:['male','wang',6,['boss_yuanjunl','boss_qidun','boss_shipo','boss_tianwei','boss_zhengjiao','boss_suoshi','boss_yudan'],[['qun','shu','wei','wu'].randomGet()]],         
-         bossx_diaochan:['female','wang',7,['boss_yuanjund','boss_qidun','boss_lipan','boss_tianwei','boss_lianxiang','boss_xiyu','boss_xiuhua','boss_huitiand'],[['qun','shu','wei','wu'].randomGet()]],
-         bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet()]],
-         boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),"des:武藝天下第一。"]],
-         boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet()]],         
+         boss_liru:['male','wang',6,['boss_yuanjunl','boss_qidun','boss_shipo','boss_tianwei','boss_zhengjiao','boss_suoshi','boss_yudan'],['zhu',['qun','shu','wei','wu'].randomGet()]],         
+         bossx_diaochan:['female','wang',7,['boss_yuanjund','boss_qidun','boss_lipan','boss_tianwei','boss_lianxiang','boss_xiyu','boss_xiuhua','boss_huitiand'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+         bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],['zhu',['qun','shu','wei','wu'].randomGet()]],
+         boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:武藝天下無雙。"]],
+         boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],['zhu',['qun','shu','wei','wu'].randomGet()]],         
          boss_sunce:['male','mo',7,['boss_dianji','boss_angyang'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_simayi:['male','mo',9,['boss_shenmou','boss_yuanlv','guicai'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_daqiao:['female','mo',15,['boss_lizhi','boss_fengzi'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
@@ -12770,14 +12770,14 @@ return;
      if(lib.config.mode=='boss'){
 			game.addCharacterPack({
 				character:{       
-       wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。乱世枭雄。"],['qun','shu','wei','wu'].randomGet()],
-         wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。乱世奸雄。"],['qun','shu','wei','wu'].randomGet()],
-         wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。少年贤君。"],['qun','shu','wei','wu'].randomGet()],
-         boss_liru:['male','wang',6,['boss_yuanjunl','boss_qidun','boss_shipo','boss_tianwei','boss_zhengjiao','boss_suoshi','boss_yudan'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★。未得明主。"],['qun','shu','wei','wu'].randomGet()],         
-         bossx_diaochan:['female','wang',7,['boss_yuanjund','boss_qidun','boss_lipan','boss_tianwei','boss_lianxiang','boss_xiyu','boss_xiuhua','boss_huitiand'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★。闭月羞花。"],['qun','shu','wei','wu'].randomGet()],
-         bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。西凉锦马超。"],['qun','shu','wei','wu'].randomGet()],
-         boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。武藝天下第一。"],['qun','shu','wei','wu'].randomGet()],
-         boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。关西魔将。"],['qun','shu','wei','wu'].randomGet()],
+       wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。乱世枭雄。"],['qun','shu','wei','wu'].randomGet()],
+         wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。乱世奸雄。"],['qun','shu','wei','wu'].randomGet()],
+         wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。少年贤君。"],['qun','shu','wei','wu'].randomGet()],
+         boss_liru:['male','wang',6,['boss_yuanjunl','boss_qidun','boss_shipo','boss_tianwei','boss_zhengjiao','boss_suoshi','boss_yudan'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★。未得明主。"],['qun','shu','wei','wu'].randomGet()],         
+         bossx_diaochan:['female','wang',7,['boss_yuanjund','boss_qidun','boss_lipan','boss_tianwei','boss_lianxiang','boss_xiyu','boss_xiuhua','boss_huitiand'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★。闭月羞花。"],['qun','shu','wei','wu'].randomGet()],
+         bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。西凉锦马超。"],['qun','shu','wei','wu'].randomGet()],
+         boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆。武藝天下第一。"],['qun','shu','wei','wu'].randomGet()],
+         boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。关西魔将。"],['qun','shu','wei','wu'].randomGet()],
        challenge_xiahouyuan:['male','mo',8,['battle_song','challenge_fengchi','challenge_juechen'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★☆☆☆。夏侯渊（？－219年），字妙才，沛国谯（今安徽亳州）人，东汉末年名将，擅长千里奔袭作战，官至征西将军，封博昌亭侯。初期随曹操征伐，官渡之战为曹操督运粮草，又督诸将先后平定昌豨、徐和、雷绪、商曜等叛乱。后率军驻凉州，逐马超、破韩遂、灭宋建、横扫羌、氐，虎步关右。张鲁降曹操后，夏侯渊留守汉中，与刘备相拒逾年，于定军山被刘备部将黄忠所袭，战死，谥曰愍侯。'],['qun','shu','wei','wu'].randomGet()],
        challenge_masu:['male','mo',8,['battle_song','challenge_shicai','challenge_kongxin','challenge_huodi','challenge_huilei'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★★☆。马谡（190年－228年），字幼常，襄阳宜城（今湖北宜城南）人，侍中马良之弟，三国时期蜀汉官员、将领。初以荆州从事身份跟随刘备入蜀，历任绵竹县令、成都县令、越嶲太守。蜀汉丞相诸葛亮任用他为参军。马谡才器过人，好论军计。诸葛亮向来对他深为器重，每次接见谈论，从白天到黑夜。建兴六年（228年），马谡在诸葛亮北伐时，因违背诸葛亮作战指令，而导致街亭失守，撤军后被诸葛亮斩首。'],['qun','shu','wei','wu'].randomGet()],
        challenge_zhenji:['female','mo',Infinity,['battle_song','challenge_biyue','challenge_weibu','challenge_juelun','challenge_fangxin'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★★☆☆。文昭甄皇后（183年1月26日—221年8月4日），名不明，相传为甄宓，实则无记载。史称甄夫人。中山无极（今河北省无极县）人，上蔡令甄逸之女。魏文帝曹丕的妻子，魏明帝曹叡的生母。甄氏三岁丧父。建安中期，袁绍为次子袁熙纳之为妻。建安四年（199年）袁熙出任幽州刺史，甄氏留在冀州侍奉袁绍的妻子刘氏。建安九年（204年），曹操率军攻下邺城，甄氏因为姿貌绝伦，被曹丕所纳，甚得宠爱，生下儿子曹叡和女儿曹氏（即东乡公主）。延康元年（220年），曹丕继位魏王，六月率军南征，甄氏被留在邺城。黄初元年（220年），曹丕称帝，山阳公刘协进献二女为曹丕妃嫔，后宫中文德郭皇后，李贵人和阴贵人都得到宠幸，甄氏愈发失意，流露出一些怨恨的话语，曹丕大怒，黄初二年（221）年六月，遣使赐死甄氏，葬于邺城。[3]黄初七年（226）五月，曹丕病重，立甄氏的儿子平原王曹叡为太子。曹叡即位后，追谥甄氏曰文昭皇后。太和四年十二月辛未日（231年2月17日），明帝曹叡将甄氏改葬于朝阳陵。'],['qun','shu','wei','wu'].randomGet()],
@@ -28200,4 +28200,4 @@ player.draw(player.storage.lol_baonu);
         translate:{
         },
     },
-},files:{"character":[],"card":[],"skill":[]},
+},files:{"character":[],"card":[],"skill":[]},editable:false}})

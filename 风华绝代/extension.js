@@ -3049,9 +3049,11 @@ player.draw();
 					if(card.name=='bingliang')
 					return 0;
 					if(card.name=='tiesuo'&&!target.isLinked()||card.name=='huogong')
-							return [0,-9];
+							return [1,-9];
 					},
 						player:function(card,player,target){
+						if(card.name=='tiesuo'&&(target==player&&!target.isLinked()||target.isLinked()&&target!=player&&game.players.length>2))
+							return [1,-9];
 						if(player.countCards('h','lebu')||player.countCards('h','bingliang')){
 								if(game.hasPlayer(function(current){
 									return (player.canUse('bingliang',current)||player.canUse('lebu',current))&&(card.name=='wanjian'||card.name=='sha'||card.name=='nanman');
@@ -28116,7 +28118,7 @@ player.draw(player.storage.lol_baonu);
                  },
                  ordinary:{
                  name:'非挑战模式启用挑战BOSS',
-                 init:false
+                 init:true
                  },
                  lolzb:{
                  name:'lol装备牌',

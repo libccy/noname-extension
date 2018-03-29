@@ -37,7 +37,7 @@ extension["风华绝代"]={
   size:"327.6MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:1.80320,
+  version:1.80330,
 	files:["new_lianhua5.mp3","extension.js","zhufeng3.mp3","zhufeng2.mp3","zhufeng1.mp3",
 		"zhuanzhu3.mp3","zhuanzhu2.mp3","zhuanzhu1.mp3","zhiming2.ogg","zhiming1.ogg","zhimang5.mp3",
 		"zhimang4.mp3","zhimang3.mp3","zhimang23.mp3","zhimang22.mp3","zhimang21.mp3","zhimang2.mp3",

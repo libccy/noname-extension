@@ -334,7 +334,7 @@ target:function(card,player,target){
  	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
 		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
-	FHJD_version='1.8.0.330';
+	FHJD_version='1.8.0.331';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';

@@ -38,7 +38,7 @@ extension["风华绝代"]={
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
   version:1.80330,
-	files:["new_lianhua5.mp3","extension.js","zhufeng3.mp3","zhufeng2.mp3","zhufeng1.mp3",
+	files:["Money.mp3","new_lianhua5.mp3","extension.js","zhufeng3.mp3","zhufeng2.mp3","zhufeng1.mp3",
 		"zhuanzhu3.mp3","zhuanzhu2.mp3","zhuanzhu1.mp3","zhiming2.ogg","zhiming1.ogg","zhimang5.mp3",
 		"zhimang4.mp3","zhimang3.mp3","zhimang23.mp3","zhimang22.mp3","zhimang21.mp3","zhimang2.mp3",
 		"zhimang1.mp3","zhewu3.mp3","zhewu2.mp3","zhewu1.mp3","zhengyi2.mp3","zhengyi1.mp3",

@@ -326,8 +326,9 @@ target:function(card,player,target){
                     //                 }
                     //             }
                     FHJD_update=[
+  '修复BUG、增减金币记录更明显；身份/国战杀人也可以额外获得金币',
 		'优化武将图、新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',
-		'本次更新赠送3000金币',
+		'本次更新赠送5000金币，若当前金币为负数，将金币补至5000（没打开“富甲天下”不会获得奖励）',
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
  	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
  	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
@@ -394,9 +395,11 @@ target:function(card,player,target){
 		forced:true,
 		content:function(){
 			if(lib.config.FHJD_version!=FHJD_version){
-			 if(game.changeCoin&&lib.skill['lol_yxlm']&&lib.skill['new_xgwj']){				
-			 game.changeCoin(3000);
-			 game.log('金币+3000');
+			 if(game.changeCoin&&lib.skill['lol_yxlm']&&lib.skill['new_xgwj']){		
+			 var Coins=Math.max(5000-lib.config.coin,5000);		
+			 game.changeCoin(Coins);
+			 game.me.logSkill('Money');
+			 game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins)+'</span>');
 			 }
 				game.FHJD_update();
 				game.saveConfig('FHJD_version',FHJD_version);
@@ -2685,6 +2688,41 @@ return -1.5;
      ['spade',11,'tiesuo']],  
      },'极端锦囊')
     };
+    if((get.mode()=='identity'||get.mode()=='guozhan')&&lib.skill['lol_yxlm']&&lib.skill['new_xgwj']){lib.config.show_log='right';lib.skill._identity_changeCoins={   
+		   mode:['identity','guozhan'], 
+			trigger:{source:'dieBegin'},
+			popup:false,
+			forced:true,
+			priority:-9,
+			filter:function (event,player){  
+			if(lib.character[game.me.name][4].contains('Unaffected'))   
+			return false;
+			return game.me==player&&event.source==game.me&&game.changeCoin;
+			},
+			content:function(){
+			var Coins=5+Math.floor(Math.random()*26);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins)+'</span>');
+				game.changeCoin(Coins);
+				game.me.logSkill('Money');
+		   		}
+		  	};
+		  	lib.skill._identity_changeCoins2={   
+		   mode:['identity','guozhan'], 
+			trigger:{player:'dieBegin'},
+			popup:false,
+			forced:true,
+			priority:-9,
+			filter:function (event,player){  
+			return game.me==player&&game.changeCoin;
+			},
+			content:function(){
+			var Coins=25+Math.floor(Math.random()*126);
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
+				game.changeCoin(-Coins);
+				game.me.logSkill('Money');
+		   		}
+		  	};
+		  	};
        if(config.boss&&(get.mode()!='boss'&&config.ordinary||get.mode()=='boss')){lib.config.show_log='right';lib.config.compatiblemode=false;if(get.mode()=='boss'){lib.skill._boss_changeCoins={     
 			trigger:{player:'dieBegin'},
 			popup:false,
@@ -2695,11 +2733,13 @@ return -1.5;
 			},
 			content:function(){
 			if(game.me==game.boss){	
-			game.log('金币-500');
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
 				game.changeCoin(-500);
+				game.me.logSkill('Money');
 				}else{
-				game.log('金币-50');
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-50</span>');
 				game.changeCoin(-50);
+				game.me.logSkill('Money');
 				 }
 				}
 			};
@@ -2709,15 +2749,19 @@ return -1.5;
 			forced:true,
 			priority:-9,
 			filter:function (event,player){     
-			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player&&game.me.identity!=event.player.identity&&game.changeCoin;
+			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me&&game.changeCoin;
 			},
 			content:function(){	
 			if(game.me==game.boss){
-			game.log('金币+180');
-				game.changeCoin(180);
+			var Coins1=100+Math.floor(Math.random()*91);
+			game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins1)+'</span>');
+				game.changeCoin(Coins1);
+				game.me.logSkill('Money');
 				}else{
-				game.log('金币+800');
-				game.changeCoin(800);
+				var Coins2=600+Math.floor(Math.random()*301);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
+				game.changeCoin(Coins2);
+				game.me.logSkill('Money');
 			 }
 			  	}
 				};
@@ -2730,16 +2774,21 @@ return -1.5;
 			},
 			content:function(){
   		if(lib.config.coin<500&&game.me==game.boss){
-  	game.log('金币少于500，导致游戏失败！');
+  		game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-200</span>');
+				game.changeCoin(-200);
+				game.me.logSkill('Money');
+  	game.log('金币少于500，游戏失败！');
 			game.forceOver(false);
-			}
+			}else{
 			if(game.me==game.boss){
-			game.log('金币-500');
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
 				game.changeCoin(-500);
+				game.me.logSkill('Money');
 				}else{
-				game.log('金币-300');
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-300</span>');
 				game.changeCoin(-300);
-				 }
+				game.me.logSkill('Money');
+				 }}
 				}
 			};
 			lib.skill._boss_loseSkills={     
@@ -2757,8 +2806,9 @@ return -1.5;
 			content:function(){
 			 'step 0'
 			if(game.changeCoin){
-			game.log('金币-300');
-				game.changeCoin(-300);
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
+				game.changeCoin(-500);
+				game.me.logSkill('Money');
 				}
 				'step 1'
 			if(game.me==game.boss){
@@ -2784,8 +2834,9 @@ game.forceOver(false);
 			content:function(){
 		 	'step 0'
 			if(game.changeCoin){
-			game.log('金币-300');
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-300</span>');
 				game.changeCoin(-300);
+				game.me.logSkill('Money');
 				}
 				'step 1'
 			if(game.me==player){
@@ -2794,7 +2845,7 @@ game.forceOver(true);
 game.forceOver(false);
 }
 				}
-			};
+			};		
 			lib.skill._boss_changeCoins4={     
 			trigger:{global:'gameStart'},
 			popup:false,
@@ -2803,11 +2854,12 @@ game.forceOver(false);
 			return lib.character[game.me.name][4].contains('Unaffected')&&game.me==player&&game.changeCoin;
 			},
 			content:function(){
-				game.log('金币-100');
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-100</span>');
 				game.changeCoin(-100);
+				game.me.logSkill('Money');
 		   		}
-		  	};
-			};
+		  	};		   
+			};			    
        game.addCharacterPack({
        skill:{
        challenge_fengchi:{
@@ -2848,7 +2900,7 @@ game.forceOver(false);
     					player.logSkill('challenge_fengchi');
     					game.delay(0.5);
     					result.targets[0].addTempSkill('fengyin','shaAfter');   					
-    					player.useCard({name:'sha'},result.targets[0]);		
+    					player.useCard({name:'sha'},result.targets[0],false);		
     				}
     	 		"step 2"
     	 		player.removeSkill('xiahouyuan_pojia');  	 		
@@ -2956,6 +3008,7 @@ game.forceOver(false);
 		},
        challenge_huilei:{
        group:'challenge_huilei2',
+       audio:'huilei',
        forced:true,
       unique:true,
      noLose:true,
@@ -3689,9 +3742,9 @@ if(card.name=='sha'&&(target.isTurnedOver()||target.isLinked())) return [1,get.e
      noDeprive:true,
 				filter:function(event,player){
        if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong') return false;
-       if(event.target.hasSkill('challenge_zhongshang'))
+      if(event.card.name=='wuxie'||event.card.name=='Timereflux'||event.target.hasSkill('challenge_zhongshang'))
        return false;
-					return event.card.name!='wuxie'&&event.card.name!='Timereflux'&&event.card.name=='sha'&&Math.random()<=0.3;
+					 return event.card.name=='sha'&&Math.random()<=0.3;
 				},
        unique:true,
         trigger:{player:['useCardToBefore']},				
@@ -3917,6 +3970,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
        challenge_yizhuang:{
         group:['challenge_yizhuang2','challenge_yizhuang3','boss_immune'],
         forced:true,
+        audio:'fuli',
      unique:true,
      noLose:true,
      noGain:true,
@@ -3926,7 +3980,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
        challenge_yizhuang2:{
 				trigger:{player:'dying'},
 				forced:true,
-				audio:true,
+				audio:'fuli',
 				filter:function(event,player){
 				if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong') return false;
 					return player.maxHp>0;
@@ -4167,9 +4221,13 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
     			if(!player.isDamaged()){
     			player.draw(trigger.num);
     			}else{
+    			 if(player.hp>=0){
     				player.recover(Math.max(1,trigger.num*Math.round((player.maxHp-player.hp)/20)));
+    				}else{
+    				player.recover(Math.max(1,trigger.num*Math.round((player.maxHp-player.hp)/4)));
+    	    			}
+       			}
      			}
-    			}
     		},
     		challenge_aogu4:{
     			audio:'xinkuanggu',
@@ -5567,7 +5625,7 @@ return [1,3];
         priority:100,
        filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
-      if(player==_status.currentPhase)
+      if(player==_status.currentPhase||event.card.name=='wuxie'||event.card.name=='Timereflux')
       return false;
       return event.target==player&&(get.type(event.card)=='trick'||get.type(event.card)=='delay');
         },
@@ -10417,6 +10475,8 @@ return [1,3];
            audio:true,					
          filter:function (event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jianwu'&&player.name2!='boss_jianwu') return false;
+     if(event.card.name=='wuxie'||event.card.name=='Timereflux')
+        return false;
         return event.card&&event.card.name=='sha'&&(event.target.hujia||event.target.getEquip(2)&&!event.target.countCards('e','lanyinjia')&&!event.target.countCards('e','kuangtu'));
          },
        content:function (){
@@ -11702,6 +11762,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      noDeprive:true,
                 filter:function(event,player){
      if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei') return false;
+     if(event.card.name=='wuxie'||event.card.name=='Timereflux')
+                return false;
      return player.countCards('h')<player.maxHp&&event.target!=player&&event.card&&event.card.name=='sha';
 		       	},     
                 content:function (){            
@@ -12544,7 +12606,7 @@ return;
        challenge_huodi_info:'<span class="greentext">锁定技'+'</span>，游戏开始时，你令随机两名角色进入“混乱状态”，然后你增加X点体力和体力上限（X为这两名角色体力上限的一半且向下取整）并复制获得其所有技能，最后其各摸三张牌并获得技能“激昂”、“咆哮”、“奇袭”和“断粮”',
        challenge_huilei_info:'<span class="greentext">锁定技'+'</span>，当你进入濒死状态时，伤害来源须弃置其所有牌并失去所有技能直到游戏结束',
        challenge_jinghong_info:'<span class="greentext">锁定技'+'</span>，每当你需要使用或打出一张【闪】时，你可以进行一次判定：若判定结果为♥，则视为你使用或打出了一张【闪】',
-       challenge_cifu_info:'当你使用一张延时锦囊或无懈可击时，你可以视为使用任意一张非延时锦囊',
+       challenge_cifu_info:'当你使用一张延时锦囊或【无懈可击】时，你可以视为使用任意一张非延时锦囊',
        challenge_fangxin_info:'<span class="greentext">锁定技'+'</span>，游戏开始时，场上武将牌不为“界/曹操”、“曹丕”或“曹植”的所有其他角色随机更换成“界/曹操”、“曹丕”或“曹植”',
        challenge_juelun_info:'<span class="greentext">锁定技'+'</span>，你获得其他角色因弃置或被弃置失去的牌，每名角色的回合限一次；你不会失去体力上限且不能成为延时锦囊的目标，若你已获得技能“辞赋”，此描述增加两项：①你的武将牌始终正面朝上；②摸牌阶段摸牌时，你额外摸一张牌',
        challenge_biyue_info:'<span class="greentext">锁定技'+'</span>，每当其他角色使用一张非基本牌或回复体力时，你获得1个蔽月标记；蔽月标记数达到20时，你获得胜利；回合阶段开始时，若当前游戏轮数≮X（X为蔽月标记数的两倍+20），你的体力和体力上限变为20，然后你获得技能“惊鸿”和“辞赋”（<span class="bluetext"style="color:	#FF99CC">惊鸿：'+'</span><span class="greentext">锁定技'+'</span>，每当你需要使用或打出一张【闪】时，你可以进行一次判定：若判定结果为♥，则视为你使用或打出了一张【闪】；<span class="bluetext"style="color:	#FF99CC">辞赋：'+'</span>当你使用一张延时锦囊或无懈可击时，你可以视为使用任意一张非延时锦囊）',
@@ -12555,7 +12617,7 @@ return;
        challenge_yizhuang_info:'<span class="greentext">锁定技'+'</span>，1、当你进入濒死时，若你的体力上限不小于1，你扣减1点体力上限并回复体力至体力上限（若你当前体力值不为0，则无需扣减体力上限），且立即进入你的回合，然后将手牌补至体力上限；2、当你成为翻面、【兵粮寸断】或【乐不思蜀】的目标时，取消之，然后你增加1点体力上限',
        challenge_fuji_info:'一名其他角色从牌堆获得不少于两张牌后，你可以展示这些牌中的一张，若此牌为锦囊，该角色须弃置所有的【杀】和装备牌并受到你造成的与弃置【杀】与装备牌数相加等量的伤害',
        challenge_zhengquan_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限一次，你可以与一名其他角色进行拼【杀】（你与该角色依次展示所有手牌），若该角色的体力或体力上限为无限，你将其体力和体力上限设为一百万；①该角色手牌里【杀】的数量小于你：你随机获得其一个技能（主公技、限定技和觉醒技除外），然后对其造成X点伤害（X为你与该角色的体力间的差值，且至少为1），不会触发任何技能；②该角色手牌里【杀】的数量大于你：该角色获得你的所有手牌，然后对你造成X点伤害；③两者【杀】数量相等：你与其各摸两张牌',
-       challenge_aogu_info:'<span class="greentext">锁定技'+'</span>，1、其他角色对你使用牌后，根据此牌的使用方式执行下列相应的效果：非转化牌：你获得并立即对该角色使用之；转化牌：获得之；视为牌：你摸一张牌并视为你对其使用之；2、当你对一名角色造成1点伤害时，若你已受伤，你回复X点体力（X为你已损失的体力值的5%四舍五入取整，且至少为1）；若你未受伤，你摸一张牌；3、你不会失去体力上限，体力上限小于108时，你将体力和体力上限补至108',
+       challenge_aogu_info:'<span class="greentext">锁定技'+'</span>，1、其他角色对你使用牌后，根据此牌的使用方式执行下列相应的效果：非转化牌：你获得并立即对该角色使用之；转化牌：获得之；视为牌：你摸一张牌并视为你对其使用之；2、当你对一名角色造成1点伤害时，若你已受伤，你回复X点体力（若你的体力值不小于0，X为你已损失的体力值的5%四舍五入取整，且至少为1；否则X改为你已损失的体力值的25%且四舍五入取整）；若你未受伤，你摸一张牌；3、你不会失去体力上限，体力上限小于108时，你将体力和体力上限补至108',
        challenge_xianxi_info:'<span class="greentext">锁定技'+'</span>，当你翻面或进入濒死阶段时，你弃置所有手牌，然后视为你对随机其他角色使用累计X张【杀】（X为场上其他角色的体力值相加，且至少为8），此【杀】无视目标角色防具',
        challenge_shanggushengwu_info:'<span class="greentext">锁定技'+'</span>，你回复的体力+X（X为你已损失的体力值的20%且四舍五入取整）；回合结束阶段，你增加15%的体力上限并回复25%已损失的体力值四舍五入取整，且至少回复1点体力（不受增益效果影响）；每当其他角色获得牌时，你摸取等量的牌；你的手牌上限始终为20；你的武将牌始终正面朝上；你防止失去体力上限和没有伤害来源的伤害；当你即将受到伤害或流失体力时，若此伤害或流失体力多于你体力上限的5%，你防止之，否则你X几率防止之（X改为你已损失的体力值/最大体力值，且不超过70%）；你不能成为延时锦囊的目标',
        challenge_julongkuangnu_info:'<span class="greentext">锁定技'+'</span>，每当其他角色使用或打出牌后（♥♦基本牌除外），若该角色牌数小于你，则你须弃置一张牌，否则你摸一张牌（若此时该角色的武将牌处于横置或背面朝上，你令其非锁定技失效，直到回合结束），然后视为你对其使用一张【杀】，此【杀】无视目标防具；你对手牌数小于你的其他角色造成的伤害+1~该角色已损失的体力值间的随机值（触发几率：2X%，X为该角色的手牌数与你的差值，若该角色的最大体力值不小于100，则触发几率改为你体力值剩余的百分比）',
@@ -12820,7 +12882,7 @@ return;
      audio:'ext:风华绝代:5',
       };
       };
-    //{"files":[{"fileName":"adc_v1.0.25_chunk01.zip","fileSize":"21682009","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk01.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk01.zip.checksums","fileSize":"49797","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk01.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk02.zip","fileSize":"18793081","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk02.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk02.zip.checksums","fileSize":"9000","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk02.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk03.zip","fileSize":"19148079","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk03.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk03.zip.checksums","fileSize":"1760","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk03.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk04.zip","fileSize":"11371051","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk04.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk04.zip.checksums","fileSize":"31015","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk04.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk05.zip","fileSize":"19783956","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk05.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk05.zip.checksums","fileSize":"2532","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk05.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk06.zip","fileSize":"42663669","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk06.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk06.zip.checksums","fileSize":"3409","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk06.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk07.zip","fileSize":"48536016","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk07.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk07.zip.checksums","fileSize":"934","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk07.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk08.zip","fileSize":"46245449","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk08.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk08.zip.checksums","fileSize":"1741","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk08.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk09.zip","fileSize":"9391422","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk09.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk09.zip.checksums","fileSize":"2570","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk09.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk10.zip","fileSize":"9896961","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk10.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk10.zip.checksums","fileSize":"2674","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk10.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk11.zip","fileSize":"12280329","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk11.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk11.zip.checksums","fileSize":"2549","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk11.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk12.zip","fileSize":"8699961","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk12.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk12.zip.checksums","fileSize":"1914","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk12.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk13.zip","fileSize":"9554279","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk13.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk13.zip.checksums","fileSize":"3313","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk13.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk14.zip","fileSize":"9274446","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk14.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk14.zip.checksums","fileSize":"3217","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk14.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk15.zip","fileSize":"10137354","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk15.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk15.zip.checksums","fileSize":"2267","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk15.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk16.zip","fileSize":"9231645","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk16.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk16.zip.checksums","fileSize":"2236","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk16.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk17.zip","fileSize":"10435178","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk17.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk17.zip.checksums","fileSize":"2433","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk17.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk18.zip","fileSize":"8981261","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk18.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk18.zip.checksums","fileSize":"2756","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk18.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk19.zip","fileSize":"10340771","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk19.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk19.zip.checksums","fileSize":"4003","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk19.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk20.zip","fileSize":"10231181","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk20.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk20.zip.checksums","fileSize":"1948","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk20.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk21.zip","fileSize":"8975239","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk21.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk21.zip.checksums","fileSize":"2165","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk21.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk22.zip","fileSize":"9893587","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk22.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk22.zip.checksums","fileSize":"2440","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk22.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk23.zip","fileSize":"8989612","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk23.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk23.zip.checksums","fileSize":"2885","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk23.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk24.zip","fileSize":"10054648","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk24.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk24.zip.checksums","fileSize":"2125","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk24.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk25.zip","fileSize":"8879292","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk25.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk25.zip.checksums","fileSize":"2520","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk25.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk26.zip","fileSize":"9013837","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk26.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk26.zip.checksums","fileSize":"2747","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk26.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk27.zip","fileSize":"9513291","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk27.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk27.zip.checksums","fileSize":"3927","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk27.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk28.zip","fileSize":"23899725","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk28.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk28.zip.checksums","fileSize":"2467","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk28.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk29.zip","fileSize":"24052889","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk29.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk29.zip.checksums","fileSize":"4116","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk29.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk30.zip","fileSize":"24402946","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk30.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk30.zip.checksums","fileSize":"1786","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk30.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk31.zip","fileSize":"22825788","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk31.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk31.zip.checksums","fileSize":"3519","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk31.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk32.zip","fileSize":"26760780","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk32.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk32.zip.checksums","fileSize":"3951","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk32.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk33.zip","fileSize":"13381466","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk33.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk33.zip.checksums","fileSize":"599","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk33.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk34.zip","fileSize":"10196771","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk34.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk34.zip.checksums","fileSize":"465","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk34.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk35.zip","fileSize":"6678100","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk35.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk35.zip.checksums","fileSize":"317","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk35.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk36.zip","fileSize":"8140850","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk36.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk36.zip.checksums","fileSize":"174","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk36.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk37.zip","fileSize":"12024891","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk37.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk37.zip.checksums","fileSize":"104","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk37.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk38.zip","fileSize":"7147898","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk38.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk38.zip.checksums","fileSize":"154","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk38.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk39.zip","fileSize":"13492843","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk39.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk39.zip.checksums","fileSize":"422","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk39.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk40.zip","fileSize":"14452465","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk40.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk40.zip.checksums","fileSize":"48","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk40.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk41.zip","fileSize":"11226649","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk41.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk41.zip.checksums","fileSize":"48","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk41.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk42.zip","fileSize":"2828560","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk42.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk42.zip.checksums","fileSize":"112","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk42.zip.checksums","language":"en","version":"1.0.41"}]}
+    //{"files":[{"fileName":"adc_v1.0.25_chunk01.zip","fileSize":"21682009","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk01.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk01.zip.checksums","fileSize":"49797","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk01.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk02.zip","fileSize":"18793081","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk02.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk02.zip.checksums","fileSize":"9000","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk02.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk03.zip","fileSize":"19148079","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk03.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk03.zip.checksums","fileSize":"1760","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk03.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk04.zip","fileSize":"11371051","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk04.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk04.zip.checksums","fileSize":"31015","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk04.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk05.zip","fileSize":"19783956","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk05.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk05.zip.checksums","fileSize":"2532","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk05.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk06.zip","fileSize":"42663669","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk06.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk06.zip.checksums","fileSize":"3409","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk06.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk07.zip","fileSize":"48536016","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk07.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk07.zip.checksums","fileSize":"934","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk07.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk08.zip","fileSize":"46245449","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk08.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk08.zip.checksums","fileSize":"1741","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk08.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk09.zip","fileSize":"9391422","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk09.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk09.zip.checksums","fileSize":"2570","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk09.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk10.zip","fileSize":"9896961","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk10.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk10.zip.checksums","fileSize":"2674","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk10.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk11.zip","fileSize":"12280329","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk11.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk11.zip.checksums","fileSize":"2549","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk11.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk12.zip","fileSize":"8699961","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk12.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk12.zip.checksums","fileSize":"1914","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk12.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk13.zip","fileSize":"9554279","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk13.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk13.zip.checksums","fileSize":"3313","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk13.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk14.zip","fileSize":"9274446","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk14.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk14.zip.checksums","fileSize":"3217","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk14.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk15.zip","fileSize":"10137354","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk15.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk15.zip.checksums","fileSize":"2267","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk15.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk16.zip","fileSize":"9231645","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk16.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk16.zip.checksums","fileSize":"2236","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk16.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk17.zip","fileSize":"10435178","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk17.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk17.zip.checksums","fileSize":"2433","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk17.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk18.zip","fileSize":"8981261","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk18.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk18.zip.checksums","fileSize":"2756","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk18.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk19.zip","fileSize":"10340771","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk19.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk19.zip.checksums","fileSize":"4003","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk19.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk20.zip","fileSize":"10231181","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk20.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk20.zip.checksums","fileSize":"1948","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk20.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk21.zip","fileSize":"8975239","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk21.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk21.zip.checksums","fileSize":"2165","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk21.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk22.zip","fileSize":"9893587","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk22.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk22.zip.checksums","fileSize":"2440","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk22.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk23.zip","fileSize":"8989612","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk23.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk23.zip.checksums","fileSize":"2885","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk23.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk24.zip","fileSize":"10054648","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk24.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk24.zip.checksums","fileSize":"2125","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk24.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk25.zip","fileSize":"8879292","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk25.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk25.zip.checksums","fileSize":"2520","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk25.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk26.zip","fileSize":"9013837","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk26.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk26.zip.checksums","fileSize":"2747","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk26.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk27.zip","fileSize":"9513291","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk27.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk27.zip.checksums","fileSize":"3927","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk27.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk28.zip","fileSize":"23899725","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk28.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk28.zip.checksums","fileSize":"2467","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk28.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk29.zip","fileSize":"24052889","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk29.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk29.zip.checksums","fileSize":"4116","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk29.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk30.zip","fileSize":"24402946","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk30.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk30.zip.checksums","fileSize":"1786","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk30.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk31.zip","fileSize":"22825788","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk31.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk31.zip.checksums","fileSize":"3519","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk31.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk32.zip","fileSize":"26760780","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk32.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk32.zip.checksums","fileSize":"3951","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk32.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk33.zip","fileSize":"13381466","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk33.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk33.zip.checksums","fileSize":"599","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk33.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk34.zip","fileSize":"10196771","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk34.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk34.zip.checksums","fileSize":"465","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk34.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk35.zip","fileSize":"6678100","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk35.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk35.zip.checksums","fileSize":"317","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk35.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk36.zip","fileSize":"8140850","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk36.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk36.zip.checksums","fileSize":"174","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk36.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk37.zip","fileSize":"12024891","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk37.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk37.zip.checksums","fileSize":"104","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk37.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk38.zip","fileSize":"7147898","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk38.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk38.zip.checksums","fileSize":"154","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk38.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk39.zip","fileSize":"13492843","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk39.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk39.zip.checksums","fileSize":"422","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk39.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk40.zip","fileSize":"14452465","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk40.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk40.zip.checksums","fileSize":"48","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk40.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk41.zip","fileSize":"11226649","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk41.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk41.zip.checksums","fileSize":"48","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk41.zip.checksums","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk42.zip","fileSize":"2828560","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk42.zip","language":"en","version":"1.0.41"},{"fileName":"adc_v1.0.25_chunk42.zip.checksums","fileSize":"112","fileURL":"http:\/\/cdn.skum.eamobile.com\/cms\/android\/core\/pId\/49062\/res\/480x800\/text\/ati\/ver\/1.0.41\/lang\/en\/fname\/adc_v1.0.25_chunk42.zip.checksums","language":"en","version":"1.0.41"}]}     
    //---------------------------------------還原&增強------------------------------------------//    
    if(config.zengqiang){   
    lib.arenaReady.push(function(){
@@ -12899,8 +12961,10 @@ return;
    lib.translate.huanhua2='幻化',
    lib.translate.huanhua3='幻化',
    lib.translate.huanhua4='幻化',
+   lib.translate.huanhua6='道骨',
+   lib.translate.huanhua7='道骨',
    lib.translate.huanhua_info='锁定技，游戏开始时，你复刻所有其他角色的所有技能，体力上限变为其他角色之和；其他角色回复体力时，你回复等量的体力；其他角色获得牌时，你摸取等量的牌；其他角色弃置或被弃置牌时，你须弃置等量的手牌',
-lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5'],
+lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6','huanhua7'],
     lib.skill.huanhua2={
 				trigger:{global:'recoverAfter'},				
 				forced:true,
@@ -12949,8 +13013,36 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5'],
      },
 			content:function(){
      player.draw(4,false);
+     if(game.bossinfo){
+					game.bossinfo.loopType=2;
+		     		}
        }
      },
+     lib.skill.huanhua6={
+      audio:'huashen',
+			trigger:{player:['loseMaxHpBefore','turnOverBefore']},
+			forced:true,
+     unique:true,
+  //   popup:false,
+			content:function(){
+			 trigger.cancel();
+			 if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');  
+      }else{
+      game.log(player,'取消了失去体力上限');
+        }
+ 		 	 }
+			 },
+			 lib.skill.huanhua7={
+      audio:'huashen',
+			trigger:{player:'recoverBegin'},
+			forced:true,
+     unique:true,
+  //   popup:false,
+			content:function(){
+			 trigger.num++;
+ 		 	 }
+			 },
    //——————亂世魔王——————//
     lib.translate.boss_qiangzheng_info='锁定技，结束阶段，你获得每个其他角色的X张牌（X为目标角色牌数的一半向下取整，且至少为1）',   
     lib.skill.boss_qiangzheng={
@@ -17316,6 +17408,19 @@ lib.skill.qinggang_skill.animationColor='thunder';
     };
 },precontent:function (really){
     lib.arenaReady.push(function(){
+    lib.skill._globalDying={
+                trigger:{
+                    player:'dying'
+                },
+                forced:true,
+                popup:false,
+                priority:999,
+                silent:true,
+                content:function (){
+                player.chat('救我……');
+                }
+                };
+    lib.skill.Money={audio:'ext:风华绝代:true',};
     lib.skill._Satin={     
      trigger:{player:['phaseBegin','damageEnd','loseHpEnd','discardAfter','shaMass']},
        forced:true,
@@ -28104,7 +28209,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+180；挑战：300，击杀BOSS：+800；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年3月30日21:09】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【無名殺玩家交流群】</span><span style=\"font-size:13px;font-weight:550;color: DarkOrange;font-style: oblique\">需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可私聊群主，价格人性化不设下限</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

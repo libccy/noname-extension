@@ -326,15 +326,16 @@ target:function(card,player,target){
                     //                 }
                     //             }
                     FHJD_update=[
-  '修复BUG、增减金币记录更明显；身份/国战杀人也可以额外获得金币',
-		'优化武将图、新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',
+  '修复国战卡死BUG、挑战其它BOSS也可以获得金币（玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）',
+//		'优化武将图、新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',  
 		'本次更新赠送5000金币，若当前金币为负数，将金币补至5000（没打开“富甲天下”不会获得奖励）',
+		'————————————————————————————',
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
- 	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
- 	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
-		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
+ //	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
+// 	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
+//		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
-	FHJD_version='1.8.0.331';
+	FHJD_version='1.8.0.0401';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -1102,14 +1103,15 @@ target:function(card,player,target){
 			lib.group.push('xian');			
 			lib.translate.wang='王';
 			lib.translate.xian='仙';			
-			lib.translate.wangColor="#EEEE00"					
-			lib.translate.xianColor="#97FFFF"				   
+			lib.translate.wangColor="#EEEE00",
+			lib.translate.xianColor="#97FFFF", 
  	   lib.group.push('shen');
 			lib.translate.shen='神';
 			lib.translate.shenColor="#1874CD",
      lib.translate.mo='魔';
      lib.translate.moColor="#8B1C62",	
     	lib.skill._choince={
+    	forbid:["boss"],         
 				trigger:{global:['gameDrawAfter','phaseBegin']},
 				forced:true,
 				unique:true,
@@ -2240,7 +2242,7 @@ target:function(card,player,target){
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){
        var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill)){
+                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -2291,7 +2293,7 @@ target:function(card,player,target){
 						},
 						    logTarget:'player',
           content:function(){
-          trigger.player.addTempSkill('Armor2',{player:'phaseAfter'});  
+          trigger.player.addTempSkill('Armor2',{player:['recoverAfter','phaseAfter']});  
          },
          ai:{
 					unequip:true,
@@ -2502,7 +2504,7 @@ return -1.5;
          Armor2_bg:'残',
          Armor3:'重伤',
          Armor2:'重伤效果',
-         Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得重伤效果（重伤：回复的体力-1）直到其回合结束。',
+         Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得重伤效果（重伤：回复的体力-1）直到其回合结束或其回复体力。',
          Timereflux_info:'出牌阶段，若场上有阵亡角色且你的体力上限不小于1，不指定目标角色使用。你令已阵亡的一名角色满体力复活并令其摸四张牌，最后你摸两张牌并失去X点体力上限（X为你体力上限的一半且向上取整），“奇策”无法转化使用此牌。',
          Magic_info:'<span style=\"color: gold\">锁定技</span>，回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、限定技和觉醒技除外），直到你的下一回合阶段开始；你的手牌上限+2；当【魔法秘籍】进入你装备区或从你的装备区失去时，你摸一张牌。',
          guardian_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你弃置装备区里的【守护天使】。',
@@ -2695,7 +2697,7 @@ return -1.5;
 			forced:true,
 			priority:-9,
 			filter:function (event,player){  
-			if(lib.character[game.me.name][4].contains('Unaffected'))   
+			if(get.mode()=='guozhan'&&(event.player.identity==player.identity||event.source.identity=='unknown')||lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))   
 			return false;
 			return game.me==player&&event.source==game.me&&game.changeCoin;
 			},
@@ -2720,8 +2722,8 @@ return -1.5;
 				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
 				game.changeCoin(-Coins);
 				game.me.logSkill('Money');
-		   		}
-		  	};
+		     		}
+		     };
 		  	};
        if(config.boss&&(get.mode()!='boss'&&config.ordinary||get.mode()=='boss')){lib.config.show_log='right';lib.config.compatiblemode=false;if(get.mode()=='boss'){lib.skill._boss_changeCoins={     
 			trigger:{player:'dieBegin'},
@@ -2729,16 +2731,16 @@ return -1.5;
 			forced:true,
 			priority:-9,
 			filter:function (event,player){     
-			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player&&game.changeCoin;
+			return (lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin;
 			},
 			content:function(){
 			if(game.me==game.boss){	
-			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
-				game.changeCoin(-500);
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-800</span>');
+				game.changeCoin(-800);
 				game.me.logSkill('Money');
 				}else{
-				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-50</span>');
-				game.changeCoin(-50);
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-75</span>');
+				game.changeCoin(-75);
 				game.me.logSkill('Money');
 				 }
 				}
@@ -2749,11 +2751,11 @@ return -1.5;
 			forced:true,
 			priority:-9,
 			filter:function (event,player){     
-			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me&&game.changeCoin;
+			return (lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me&&game.changeCoin;
 			},
 			content:function(){	
 			if(game.me==game.boss){
-			var Coins1=100+Math.floor(Math.random()*91);
+			var Coins1=100+Math.floor(Math.random()*101);
 			game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins1)+'</span>');
 				game.changeCoin(Coins1);
 				game.me.logSkill('Money');
@@ -2770,7 +2772,7 @@ return -1.5;
 			popup:false,
 			forced:true,
 			filter:function (event,player){     
-			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player&&game.changeCoin;
+			return (lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin;
 			},
 			content:function(){
   		if(lib.config.coin<500&&game.me==game.boss){
@@ -2801,7 +2803,7 @@ return -1.5;
 			filter:function (event,player){  
 			if(game.boss.hasSkill('boss_yiwang')||game.boss.hasSkill('boss_qingxu5')||game.boss.hasSkill('boss_qingxu')||game.boss.hasSkill('boss_immune')||game.boss.hasSkill('boss_dcmy')||game.boss.hasSkill('boss_dcmyg'))   
 			return false;
-			return lib.character[game.boss.name][4].contains('Unaffected')&&game.me==player;
+			return (lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))&&game.me==player;
 			},
 			content:function(){
 			 'step 0'
@@ -2818,6 +2820,113 @@ game.forceOver(false);
 }
 				}
 			};
+			lib.skill._boss2_changeName={     
+			trigger:{global:'gameStart',player:'dieBefore'},
+			popup:false,
+			forced:true,
+			silent:true,
+			priority:9,
+			filter:function (event,player){
+				if(lib.character[player.name][4].contains('boss')||lib.character[player.name][4].contains('hiddenboss'))
+				return false;   
+			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
+			return false;  
+			return game.me==game.boss&&game.boss!=player&&Math.random()<=0.1;
+			},
+			content:function(){
+			if(trigger.name=='die'){
+			trigger.cancel();
+			}
+			var Name=['boss_huangyueying','boss_lvbu1','boss_pangtong','boss_baiwuchang','boss_heiwuchang','boss_luocha','boss_mamian','boss_lvbu2','boss_lvbu3','boss_caocao','boss_nianshou_baonu','boss_taowu','boss_taotie','boss_qiongqi','boss_hundun','boss_zhugeliang','boss_liubei'].randomGet();
+			player.init(Name);
+			}
+			};
+			lib.skill._boss2_changeCoins={     
+			trigger:{player:'dieBegin'},
+			popup:false,
+			forced:true,
+			priority:-9,
+			filter:function (event,player){   
+			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
+			return false;  
+			return game.me==player&&game.changeCoin;
+			},
+			content:function(){
+			if(game.me==game.boss){	
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-400</span>');
+				game.changeCoin(-400);
+				game.me.logSkill('Money');
+				}else{
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-50</span>');
+				game.changeCoin(-50);
+				game.me.logSkill('Money');
+				 }
+				}
+			};
+			lib.skill._boss_changeCoinss={     
+			trigger:{player:'phaseBegin'},
+			popup:false,
+			forced:true,
+			silent:true,
+			filter:function (event,player){
+			return game.me==game.boss&&game.me==player&&game.changeCoin&&game.roundNumber>8;
+			},
+			content:function(){
+			var Coins1=game.roundNumber-8+(33+Math.floor(Math.random()*43));
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins1)+'</span>');
+				game.changeCoin(-Coins1);
+				game.me.logSkill('Money');
+				}
+			};
+			lib.skill._boss2_changeCoins2={     
+			trigger:{source:'dieBegin'},
+			popup:false,
+			forced:true,
+			priority:-9,
+			filter:function (event,player){   
+			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
+			return false;  
+			return game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me&&game.changeCoin;
+			},
+			content:function(){	
+			if(game.me==game.boss){
+			if(lib.character[trigger.player.name][4].contains('boss')||lib.character[trigger.player.name][4].contains('hiddenboss')){
+			var Coins1=75+Math.floor(Math.random()*136);
+			}else{
+			var Coins1=50+Math.floor(Math.random()*81);
+			}
+			game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins1)+'</span>');
+				game.changeCoin(Coins1);
+				game.me.logSkill('Money');
+				}else{
+				var Coins2=100+Math.floor(Math.random()*201);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
+				game.changeCoin(Coins2);
+				game.me.logSkill('Money');
+			 }
+			  	}
+				};
+			lib.skill._boss2_changeCoins3={     
+			trigger:{global:'gameStart'},
+			popup:false,
+			forced:true,
+			filter:function (event,player){  
+			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
+			return false;
+			return game.me==player&&game.changeCoin;
+			},
+			content:function(){
+			if(game.me==game.boss){
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-300</span>');
+				game.changeCoin(-300);
+				game.me.logSkill('Money');
+				}else{
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-100</span>');
+				game.changeCoin(-100);
+				game.me.logSkill('Money');
+				 }
+				}
+			};
 			}else{
 			lib.skill._identity_loseSkills={   
 			mode:['identity','guozhan','brawl'],  
@@ -2827,9 +2936,9 @@ game.forceOver(false);
 			silent:true,
 			priority:Infinity,
 			filter:function (event,player){  
-			if(player.hasSkill('boss_yiwang')||player.hasSkill('boss_qingxu')||player.hasSkill('boss_qingxu5')||player.hasSkill('boss_immune')||player.hasSkill('boss_dcmy')||player.hasSkill('boss_dcmyg'))   
+			if(get.mode()=='guozhan'&&player.identity=='unknown'||player.hasSkill('boss_yiwang')||player.hasSkill('boss_qingxu')||player.hasSkill('boss_qingxu5')||player.hasSkill('boss_immune')||player.hasSkill('boss_dcmy')||player.hasSkill('boss_dcmyg'))   
 			return false;
-			return lib.character[player.name][4].contains('Unaffected');
+			return lib.character[player.name][4].contains('Unaffected')||player.name2&&lib.character[player.name2][4].contains('Unaffected');
 			},
 			content:function(){
 		 	'step 0'
@@ -2846,17 +2955,24 @@ game.forceOver(false);
 }
 				}
 			};		
-			lib.skill._boss_changeCoins4={     
+			lib.skill._boss_changeCoins4={  
+//			mode:['identity','brawl'],   
+   forbid:["boss","guozhan"],        
 			trigger:{global:'gameStart'},
 			popup:false,
 			forced:true,
 			filter:function (event,player){     
-			return lib.character[game.me.name][4].contains('Unaffected')&&game.me==player&&game.changeCoin;
+			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin;
 			},
 			content:function(){
-				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-100</span>');
-				game.changeCoin(-100);
-				game.me.logSkill('Money');
+			if(lib.character[game.me.name][4].contains('Unaffected')&&game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected')){
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-450</span>');
+				game.changeCoin(-450);
+				}else{
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-150</span>');
+				game.changeCoin(-150);				
+  		}
+   	game.me.logSkill('Money');
 		   		}
 		  	};		   
 			};			    
@@ -3886,7 +4002,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
 				mod:{
 					cardUsable:function(card,player,num){
 					 if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong') return;
-						if(card.name=='sha') return Infinity;
+						if(card.name=='sha') return num+2;
 			 			 }}
 		 			},
 		 			challenge_lianzhu2:{
@@ -3904,7 +4020,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
 				},
 						content:function(){
 							'step 0'							
-							event.cards=get.cards(9);
+							event.cards=get.cards(12);
 							player.showCards(event.cards);
 							'step 1'
 							var num=0;
@@ -3963,7 +4079,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
 							expose:0.2,
 							order:15,
 						result:{
-						player:9,
+						player:12,
 		   				}
 		 				}
 					},
@@ -4224,7 +4340,7 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
     			 if(player.hp>=0){
     				player.recover(Math.max(1,trigger.num*Math.round((player.maxHp-player.hp)/20)));
     				}else{
-    				player.recover(Math.max(1,trigger.num*Math.round((player.maxHp-player.hp)/4)));
+    				player.recover(Math.max(1,trigger.num*Math.round((player.maxHp-player.hp)/5)));
     	    			}
        			}
      			}
@@ -4302,7 +4418,7 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
 		 	player.removeSkill('weiyan_pojia');		
 				 event.num--;
 				 if(event.num>0){
-				 game.delay(1.5);
+				 game.delay();
 				 event.goto(1)
 				 }
 				 else{
@@ -5442,7 +5558,7 @@ if(card.name=='du') return [1,Infinity];
       player.recover(player.maxHp-player.hp)._triggered=null;
        "step 1"
 				event.players=get.players(player);
-			 "step 2"
+			    "step 2"
 				if(event.players.length){
 					var current=event.players.shift();
 					if(current.isEnemyOf(player)){
@@ -5591,6 +5707,7 @@ return [1,3];
 		},
       boss_yingyi4:{
        skillAnimation:true,
+       animationColor:'metal',
 				trigger:{player:'dying'},
 				forced:true,				
 				unique:true,
@@ -6179,7 +6296,7 @@ trigger.player.addTempSkill('fengyin','phaseEnd');}
       boss_moqu1:{
 			
       skillAnimation:true,
-			
+			   animationColor:'water',
       audio:3,
 			
       trigger:{global:'phaseAfter'},
@@ -6561,9 +6678,9 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.15) ap+=2;
        }
       },
      boss_duce3:{
-     skillAnimation:true,  
+//     skillAnimation:true,  
       audio:2,
-			trigger:{global:'phaseBefore'},     
+			trigger:{global:['recoverEnd','phaseBefore']},     
      forced:true,     
      unique:true,
        noLose:true,
@@ -11190,8 +11307,9 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
      check:function (event,player){            
                 return        ai.get.attitude(player,event.player)<1;
             },
+            priority:99,
+            logTarget:'player',
 			content:function(){
-     player.line(trigger.player,'white');
      trigger.finish();
      trigger.untrigger();       
      player.draw(3);
@@ -11262,7 +11380,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
      noLose:true,
      noGain:true,
      noDeprive:true,
-			trigger:{global:['turnOverBegin']},		
+			trigger:{global:['turnOverEnd']},		
 			filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;
       if(event.player==player)
@@ -11295,18 +11413,17 @@ player.gainPlayerCard(trigger.player,true,trigger.player.num('he'),'he');
 			enable:'phaseUse',
 			filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua') return false;    
-				return player.storage.baonu>=7;
+				return player.storage.baonu>=8;
 			},     
 			skillAnimation:true,
-			mark:false,
+			animationColor:'fire',
      unique:true,
-      usable:1,
      noLose:true,
      noGain:true,
      noDeprive:true,
 			content:function(){     
 				"step 0"							
-				player.storage.baonu-=7;
+				player.storage.baonu-=8;
 				event.targets=game.filterPlayer();
 				event.targets.remove(player);
 				event.targets.sort(lib.sort.seat);
@@ -11505,7 +11622,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
          current.hp=100000000;
          current.update();     
          }         
-current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=null;
+current.damage('thunder',Math.max(1,Math.round(current.maxHp/3)))._triggered=null;
          current.chooseToDiscard(true,Math.ceil(current.num('he')/2))._triggered=null;
             }    
 			   	 }        
@@ -11653,7 +11770,7 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/4)))._triggered=nul
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){ 
                             var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique)){
+                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -12613,11 +12730,11 @@ return;
        challenge_weibu:'微步',
        challenge_weibu_info:'<span class="greentext">锁定技'+'</span>，其他角色计算与你的距离+1；你计算与其他角色的距离-1',
        challenge_qiangnu_info:'<span class="greentext">锁定技'+'</span>，你拥有下列技能效果：<span style=\"color: khaki\">强弩：</span>手牌数或体力值不等于你的角色不能使用【闪】响应你的【杀】；<span style=\"color: khaki\">重伤：</span>当你使用【杀】指定一名角色为目标时，30%几率令该角色的技能失效直到你的回合结束；<span style=\"color: khaki\">穿透：</span>当你使用【杀】对其他目标角色造成伤害时，3X%几率令此【杀】伤害+N，X为此【杀】点数，若目标角色被横置、翻面或没有手牌，X改为100，N为目标角色体力上限的一半且向上取整（若场上存活角色数不小于3，目标角色的上家或下家其他角色受到你造成的等量同属性的伤害）；你使用的【杀】无视目标角色的防具',
-       challenge_lianzhu_info:'出牌阶段限一次，你可以亮出牌堆顶的九张牌，若其中有【杀】，你可以使用之，然后你获得这些牌；<span class="greentext">锁定技'+'</span>，你使用【杀】无距离和次数限制',
+       challenge_lianzhu_info:'出牌阶段限一次，你可以亮出牌堆顶的十二张牌，然后你可以使用其中的【杀】（不计入次数限制），最后你获得其余的牌；<span class="greentext">锁定技'+'</span>，你使用【杀】无距离限制且使用次数+2',
        challenge_yizhuang_info:'<span class="greentext">锁定技'+'</span>，1、当你进入濒死时，若你的体力上限不小于1，你扣减1点体力上限并回复体力至体力上限（若你当前体力值不为0，则无需扣减体力上限），且立即进入你的回合，然后将手牌补至体力上限；2、当你成为翻面、【兵粮寸断】或【乐不思蜀】的目标时，取消之，然后你增加1点体力上限',
        challenge_fuji_info:'一名其他角色从牌堆获得不少于两张牌后，你可以展示这些牌中的一张，若此牌为锦囊，该角色须弃置所有的【杀】和装备牌并受到你造成的与弃置【杀】与装备牌数相加等量的伤害',
        challenge_zhengquan_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限一次，你可以与一名其他角色进行拼【杀】（你与该角色依次展示所有手牌），若该角色的体力或体力上限为无限，你将其体力和体力上限设为一百万；①该角色手牌里【杀】的数量小于你：你随机获得其一个技能（主公技、限定技和觉醒技除外），然后对其造成X点伤害（X为你与该角色的体力间的差值，且至少为1），不会触发任何技能；②该角色手牌里【杀】的数量大于你：该角色获得你的所有手牌，然后对你造成X点伤害；③两者【杀】数量相等：你与其各摸两张牌',
-       challenge_aogu_info:'<span class="greentext">锁定技'+'</span>，1、其他角色对你使用牌后，根据此牌的使用方式执行下列相应的效果：非转化牌：你获得并立即对该角色使用之；转化牌：获得之；视为牌：你摸一张牌并视为你对其使用之；2、当你对一名角色造成1点伤害时，若你已受伤，你回复X点体力（若你的体力值不小于0，X为你已损失的体力值的5%四舍五入取整，且至少为1；否则X改为你已损失的体力值的25%且四舍五入取整）；若你未受伤，你摸一张牌；3、你不会失去体力上限，体力上限小于108时，你将体力和体力上限补至108',
+       challenge_aogu_info:'<span class="greentext">锁定技'+'</span>，1、其他角色对你使用牌后，根据此牌的使用方式执行下列相应的效果：非转化牌：你获得并立即对该角色使用之；转化牌：获得之；视为牌：你摸一张牌并视为你对其使用之；2、当你对一名角色造成1点伤害时，若你已受伤，你回复X点体力（若你的体力值不小于0，X为你已损失的体力值的5%四舍五入取整，且至少为1；否则X改为你已损失的体力值的20%且四舍五入取整）；若你未受伤，你摸一张牌；3、你不会失去体力上限，体力上限小于108时，你将体力和体力上限补至108',
        challenge_xianxi_info:'<span class="greentext">锁定技'+'</span>，当你翻面或进入濒死阶段时，你弃置所有手牌，然后视为你对随机其他角色使用累计X张【杀】（X为场上其他角色的体力值相加，且至少为8），此【杀】无视目标角色防具',
        challenge_shanggushengwu_info:'<span class="greentext">锁定技'+'</span>，你回复的体力+X（X为你已损失的体力值的20%且四舍五入取整）；回合结束阶段，你增加15%的体力上限并回复25%已损失的体力值四舍五入取整，且至少回复1点体力（不受增益效果影响）；每当其他角色获得牌时，你摸取等量的牌；你的手牌上限始终为20；你的武将牌始终正面朝上；你防止失去体力上限和没有伤害来源的伤害；当你即将受到伤害或流失体力时，若此伤害或流失体力多于你体力上限的5%，你防止之，否则你X几率防止之（X改为你已损失的体力值/最大体力值，且不超过70%）；你不能成为延时锦囊的目标',
        challenge_julongkuangnu_info:'<span class="greentext">锁定技'+'</span>，每当其他角色使用或打出牌后（♥♦基本牌除外），若该角色牌数小于你，则你须弃置一张牌，否则你摸一张牌（若此时该角色的武将牌处于横置或背面朝上，你令其非锁定技失效，直到回合结束），然后视为你对其使用一张【杀】，此【杀】无视目标防具；你对手牌数小于你的其他角色造成的伤害+1~该角色已损失的体力值间的随机值（触发几率：2X%，X为该角色的手牌数与你的差值，若该角色的最大体力值不小于100，则触发几率改为你体力值剩余的百分比）',
@@ -12665,9 +12782,9 @@ return;
        boss_zhuihun_info:'<span class="greentext">锁定技'+'</span>，当你即将死亡时，若你体力上限不小于1，你须减1点体力上限并回复体力至体力上限，然后依次获得每名敌方角色一半的牌且向上取整，并对其造成X点伤害（X为其最大体力值）且不触发任何技能',
        boss_yingyi_info:'<span class="greentext">锁定技'+'</span>，1、回合开始阶段，你令所有敌方角色90%几率非锁定技失效，直到其回合阶段开始；10%几率失去一个技能；2、当你使用【杀】指定一名角色为目标后，若该角色当前体力值小于此【杀】的点数，则此【杀】不可被闪避，否则该角色的体力上限扣减至此【杀】的点数，且至少扣减1点体力上限；3、你使用【杀】时可以额外指定一个目标；4、当你使用【杀】对其他角色造成伤害时，此【杀】伤害+X；出牌阶段，你使用【杀】的次数上限+X；当你计算与其他角色的距离时，始终-X；你的手牌上限+2X，X为场上其他存活角色个数；5、当你受到附带属性、非来源于卡牌的伤害或体力流失时，防止之；6、你的回合外，任何锦囊均对你无效；7、当你进入濒死状态时，你进行判定，除非判定结果为【桃园结义】或【决斗】，否则你回复体力至2点',
        boss_shenyou_info:'<span class="greentext">锁定技'+'</span>，1、你的初始手牌数+6；2、回合开始阶段，你摸X+4张牌（X为你已损失的体力值）；3、你的手牌上限不会因体力值的减少而减少；4、你防止武将牌被翻面和失去体力上限；5、在身份模式游戏开始阶段，若你的身份牌为“主公”，则所有其他角色的身份牌均视为“反贼”',
-       boss_duce_info:'<span class="greentext">锁定技'+'</span>，1、其他角色的准备阶段，须先进行一次判定，若结果为♥，该角色受到你造成的X+2点伤害（X为其已损失的体力值）；2、你即将造成的伤害均视为毒属性伤害，你对体力上限不小于8的其他角色造成的每点伤害+X（X为该角色最大体力值的15%且四舍五入取整）；3、当你使用一张锦囊牌指定其他角色为目标时，该角色受到你造成的1点伤害；4、每当你受到伤害、流失体力或回合结束阶段，你对所有牌里有♠、♣或♦牌的敌方角色造成X点伤害（X为该角色牌里♠、♣和♦牌的数量），然后其须弃置所有的♠、♣和♦牌；5、你使用的非延时类锦囊不能被【无懈可击】响应',
+       boss_duce_info:'<span class="greentext">锁定技'+'</span>，1、其他角色准备阶段或回复体力时，该角色进行一次判定，若结果为♥，其受到你造成的X+2点伤害（X为其已损失的体力值）；2、你即将造成的伤害均视为毒属性伤害，你对体力上限不小于8的其他角色造成的每点伤害+X（X为该角色最大体力值的15%且四舍五入取整）；3、当你使用一张锦囊牌指定其他角色为目标时，该角色受到你造成的1点伤害；4、每当你受到伤害、流失体力或回合结束阶段，你对所有牌里有♠、♣或♦牌的敌方角色造成X点伤害（X为该角色牌里♠、♣和♦牌的数量），然后其须弃置所有的♠、♣和♦牌；5、你使用的非延时类锦囊不能被【无懈可击】响应',
        boss_weimu_info:'<span class="greentext">锁定技'+'</span>，你不能成为♠♣【杀】和♠♣锦囊的目标；你不会受到【毒】的影响；每当你即将受到伤害时，若此伤害无伤害来源、伤害来源体力上限大于你或多于1点，你须加与此伤害等量的体力上限并回复体力至体力上限，且将此伤害设为1；你每次最多流失1点体力',     
-       boss_wansha_info:'<span class="greentext">锁定技'+'</span>，在你的回合，其他角色不能使用【桃】或【酒】',
+       boss_wansha_info:'<span class="greentext">锁定技'+'</span>，在你的回合，其他角色不能使用【桃】和【酒】',
        boss_dengchang_info:'<span class="greentext">锁定技'+'</span>，摸牌阶段，你额外摸X+3张牌（X为你装备区里牌数的一半且向上取整）',
        boss_jixing_info:'<span class="greentext">锁定技'+'</span>，当你即将受到多于X点伤害或体力流失时，你最多受到X点伤害或体力流失(X为你最大体力值的10%向下取整，且不超过3)，你防止受到多余的伤害和体力流失。',
        boss_penshe_info:'<span class="greentext">锁定技'+'</span>，出牌阶段，你使用【杀】的次数无限制；你无视目标防具',
@@ -12755,10 +12872,10 @@ return;
        feijiangx_info:'<span class="greentext">锁定技'+'</span>，1、游戏开始时，你的体力上限变为其他角色体力上限之和；2、其他角色回合阶段结束时，你额外执行一个回合；3、你的进攻距离和手牌上限为无限',
        shenshi_info:'你的回合外，其他角色回复体力时，若该角色体力值不低于1，你可以弃1个暴怒标记取消之，然后你摸三张牌',
        shensha_info:'其他角色在其回合内武将牌被翻面，你可以获得其所有手牌和装备区，然后令其立即死亡',
-	    	shenmie_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限一次，你可以弃7个暴怒标记，令场上所有其他角色受到你造成的2点伤害，然后令武将牌正面朝上的所有其他角色翻面，最后你获得这些角色的所有手牌和装备区里的牌',
+	    	shenmie_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段，你可以弃8个暴怒标记，令场上所有其他角色受到你造成的2点伤害，然后令武将牌正面朝上的所有其他角色翻面，最后你获得这些角色所有牌',
        boss_jieliang_info:'其他角色从牌堆获得牌时，你可以令其失去非锁定技直到其回合结束，然后你获得其X张牌，X为其所有手牌和装备区里牌数-1，并偷取其1/3的体力上限且四舍五入取整，转化为你的体力和体力上限',
 		boss_yaohuo_info:'<span class="greentext">锁定技'+'</span>，每当你失去手牌时，你令未处于“混乱状态”的随机一名其他角色进入“混乱状态”直到其下一回合结束，若没有可以选定的角色，则你摸两张牌',
-       boss_piaomiao_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段，你对所有手牌数大于1的敌方角色造成X点雷电伤害（X为目标角色最大体力值的25%四舍五入取整，且至少为1）并令其弃置其一半的牌且向上取整',
+       boss_piaomiao_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段，你对所有手牌数大于1的敌方角色造成X点雷电伤害（X为目标角色最大体力值的1/3四舍五入取整，且至少为1）并令其弃置其一半的牌且向上取整',
             boss_qimen_info:'<span class="greentext">锁定技'+'</span>，当你体力值发生变化或回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外），然后你摸三张牌',
             boss_dunjia_info:'<span class="greentext">锁定技'+'</span>，1、你每次最多受到1点伤害；2、你流失体力或失去体力上限时，取消之，改为增加1点体力上限并回复1点体力；3、每当你于回合外失去一张牌，立即摸两张牌、重置武将牌并弃置判定区里所有的牌；4、每当你对自己使用【桃】时，额外回复1点体力',
         boss_shemao_info:'<span style=\"color: cyan\">主动技</span>，你可以将两张手牌当【杀】使用或打出',
@@ -12871,8 +12988,8 @@ return;
         BOSS_diaochan:["female","mo",7,['battle_song',"boss_biyue","boss_guose","challenge_meihuo"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。中国古代四大美女之一，有闭月羞花之貌。司徒王允之义女，由王允授意施行连环计，离间董卓、吕布，借布手除卓。后貂蝉成为吕布的妾。"],'qun'],
         BOSS_xuhuang:["male","mo",12,['battle_song',"boss_jieliang"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。徐晃（？－227年），字公明，河东杨（今山西洪洞东南）人。三国时期曹魏名将。本为杨奉帐下骑都尉，杨奉被曹操击败后转投曹操，在曹操手下多立功勋，参与官渡、赤壁、关中征伐、汉中征伐等几次重大战役。樊城之战中徐晃作为曹仁的援军击败关羽，因于此役中治军严整而被曹操称赞“有周亚夫之风”。曹丕称帝后，徐晃被加为右将军，于公元227年病逝，谥曰壮侯。"],'wei'],
         BOSS_yuji:["male","mo",4,['battle_song',"boss_yaohuo"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。于吉（？-200年，一作干吉、干室）东汉末年黄老道代表人物之一，史书有两种说法：（1）认为其即《太平经》作者。《后汉书·襄楷传》：“顺帝时，琅邪宫崇诣阙，上其师干吉于曲阳泉水上所得神书百七十卷，皆缥白素朱介青首朱目，号《太平青领书》。”（2）认为其乃三国时道士，《三国志·孙策传》注引《江表传》：“时有道士琅邪于吉，先寓居东方，往来吴会，立精舍，烧香读道书，制作符水以治病，吴会人多事之。”后为孙策所杀。"],'wu'],
-        BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆☆。左慈（156？--289？），字元放，汉族，安徽庐江郡人，东汉末年方士。少明五经，兼通星纬，学道术，明六甲，传说能役使鬼神，坐致行厨。见汉祚将尽，天下向乱，叹曰：“值此衰运，官高者危，财多者死。当世荣华，不足贪矣。”在安徽天柱山中得石室而精思。左慈授予葛玄道家真经数部。"],'qun'],
-        BOSS_zhangfei:["male","mo",7,['battle_song',"boss_shemao","boss_nuxiao","challenge_yongmou","boss_yuhai"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。张飞（？－221年），字益德[1]，幽州涿郡（今河北省保定市涿州市）人氏，三国时期蜀汉名将。刘备长坂坡败退，张飞仅率二十骑断后，据水断桥，曹军没人敢逼近；与诸葛亮、赵云扫荡西川时，于江州义释严颜；汉中之战时又于宕渠击败张郃，对蜀汉贡献极大，官至车骑将军、领司隶校尉，封西乡侯，后被范强、张达刺杀。后主时代追谥为“桓侯”。在中国传统文化中，张飞以其勇猛、鲁莽、嫉恶如仇而著称，虽然此形象主要来源于小说和戏剧等民间艺术，但已深入人心。"],'shu'],
+        BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。左慈（156？--289？），字元放，汉族，安徽庐江郡人，东汉末年方士。少明五经，兼通星纬，学道术，明六甲，传说能役使鬼神，坐致行厨。见汉祚将尽，天下向乱，叹曰：“值此衰运，官高者危，财多者死。当世荣华，不足贪矣。”在安徽天柱山中得石室而精思。左慈授予葛玄道家真经数部。"],'qun'],
+        BOSS_zhangfei:["male","mo",7,['battle_song',"boss_shemao","boss_nuxiao","challenge_yongmou","boss_yuhai"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。张飞（？－221年），字益德[1]，幽州涿郡（今河北省保定市涿州市）人氏，三国时期蜀汉名将。刘备长坂坡败退，张飞仅率二十骑断后，据水断桥，曹军没人敢逼近；与诸葛亮、赵云扫荡西川时，于江州义释严颜；汉中之战时又于宕渠击败张郃，对蜀汉贡献极大，官至车骑将军、领司隶校尉，封西乡侯，后被范强、张达刺杀。后主时代追谥为“桓侯”。在中国传统文化中，张飞以其勇猛、鲁莽、嫉恶如仇而著称，虽然此形象主要来源于小说和戏剧等民间艺术，但已深入人心。"],'shu'],
          BOSS_zhanshen:["male","mo",6,['battle_song',"boss_chitu","boss_shenwu","boss_zhanshen"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。吕布（？－199年2月7日[1]），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
             BOSS_shenhua:["male","mo",0,['battle_song',"baonu","wushuang","feijiangx","shenshi","shensha","shenmie"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。吕布（？－199年2月7日），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
        },
@@ -20562,7 +20679,7 @@ player:['damageEnd','loseHpEnd']
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){
        var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique)){
+                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -28209,7 +28326,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年3月30日21:09】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增lol装备牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【無名殺玩家交流群】</span><span style=\"font-size:13px;font-weight:550;color: DarkOrange;font-style: oblique\">需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可私聊群主，价格人性化不设下限</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

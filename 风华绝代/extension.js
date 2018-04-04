@@ -2112,6 +2112,9 @@ target:function(card,player,target){
 			   },
 			   Timereflux:{
 				type:'trick',
+				chongzhu:function(){
+					return get.mode()=='boss';
+				},
 				enable:function(){return game.dead.length>0&&_status.event.player.maxHp>0},
 				notarget:true,
 				cardcolor:'red',
@@ -2903,7 +2906,7 @@ game.forceOver(false);
 			content:function(){	
 			if(game.me==game.boss){
 			if(lib.character[trigger.player.name][4].contains('boss')||lib.character[trigger.player.name][4].contains('hiddenboss')){
-			var Coins1=100+Math.floor(Math.random()*151);
+			var Coins1=100+Math.floor(Math.random()*161);
 			}else{
 			var Coins1=50+Math.floor(Math.random()*81);
 			}
@@ -7604,7 +7607,17 @@ player.logSkill('boss_xiaoshous',trigger.source);
        noLose:true,
      noGain:true,
      noDeprive:true,   
+     filter:function(event,player){
+     return game.boss==player&&player!=game.me;
+     },
 			content:function(){
+			console.log(player);
+			player.disableSkill = function (all) {
+   player.draw();
+   };
+   player.clearSkills = function (all) {
+   player.draw();
+   };
      player.draw(6,false);
        }
      },
@@ -24531,9 +24544,16 @@ trigger.source.chooseToDiscard(true,'he');
      popup:false,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='xiongnu'&&player.name2!='xiongnu') return false;                      
-     return true;
+     return player!=game.boss;
      },
 			content:function(){
+			console.log(player);
+			player.disableSkill = function (all) {
+   player.draw();
+   };
+   player.clearSkills = function (all) {
+   player.draw();
+   };
      player.draw(4,false);
        }
      },           
@@ -24850,7 +24870,7 @@ trigger.source.chooseToDiscard(true,'he');
            new_hongyan:"红颜",
            new_jingqi:'精骑',
            new_jingqi2:'精骑',
-           new_jielue:'劫掠',
+           new_jielue:'抢掠',
            new_chongfeng:'冲锋',
            new_shichou:'誓仇',
            new_manqu:'蛮躯',

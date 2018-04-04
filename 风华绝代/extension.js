@@ -406,7 +406,7 @@ target:function(card,player,target){
 				game.saveConfig('FHJD_version',FHJD_version);
 			};
 		},
-	};
+	};	
                     //             for(var i=0;i<pack.length;i++){
                     //                 if(lib.config.all.sgsmodes.contains(pack[i])){
                     //                     pack.splice(i--,1);
@@ -477,6 +477,18 @@ target:function(card,player,target){
 					// 		document.body.dataset.background_color_music=color;
 					// 	}
 					// },
+					lib.skill._CoinsUpdate={
+		trigger:{
+			global:["phaseBegin","gameStart"]
+		},
+		forced:true,
+			filter:function(event,player){
+			return game.changeCoin&&lib.config.coin>999999;
+			},
+		content:function(){
+			 game.changeCoin(-lib.config.coin);
+			 }
+			 };
 					// background_color_wood:{
 					// 	name:'背景色',
 					// 	init:'blue',
@@ -2179,8 +2191,8 @@ target:function(card,player,target){
 					game.delay(2);
 				 trigger.cancel();
 				 'step 1'
-				 player.recover(2-player.hp);
-				 player.draw(2);
+				 player.recover(2-player.hp)._triggered=null;
+				 player.draw(2)._triggered=null;
 				 player.turnOver(false);
 				 player.link(false);
 				 if(player.isMad()){
@@ -2233,7 +2245,7 @@ target:function(card,player,target){
                 },
                 forced:true,
                 unique:true,    
-                priority:10,         
+                priority:9999,         
                 filter:function (event,player){
                 return player.getEquip('Magic');
                 },
@@ -2359,7 +2371,7 @@ target:function(card,player,target){
           effect:{    					
 target:function(card,player,target,current){
         if(get.tag(card,'damage')&&!get.tag(card,'poisonDamage')&&!get.tag(card,'thunderDamage')&&!get.tag(card,'fireDamage')){      
-        if(player.hasSkill('zhiming')||player.hasSkill('boss_pimi')||player.hasSkill('chuanxin')||player.hasSkill('new_chuanxin')||player.hasSkill('ltfb')||player.hasSkill('new_jueqing')||player.hasSkillTag('jueqing'))
+        if(player.hasSkill('zhiming')||player.hasSkill('boss_pimi')||player.hasSkill('chuanxin')||player.hasSkill('new_chuanxin')||player.hasSkill('ltfb')||player.hasSkill('new_jueqing')||player.hasSkillTag('jueqing')||player.getEquip('guardian'))
              return [1,-2];
 if(player.hp<target.hp&&target.hp>1&&!player.countCards('h','tao')){
 if(player.hp>1||player.hasSkill('buqu')||player.hasSkill('xinbuqu')||player.hasSkill('gzbuqu'))
@@ -2872,7 +2884,7 @@ game.forceOver(false);
 			return game.me==game.boss&&game.me==player&&game.changeCoin&&game.roundNumber>8;
 			},
 			content:function(){
-			var Coins1=game.roundNumber-8+(33+Math.floor(Math.random()*43));
+			var Coins1=game.roundNumber-8+(20+Math.floor(Math.random()*30));
 			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins1)+'</span>');
 				game.changeCoin(-Coins1);
 				game.me.logSkill('Money');
@@ -2891,7 +2903,7 @@ game.forceOver(false);
 			content:function(){	
 			if(game.me==game.boss){
 			if(lib.character[trigger.player.name][4].contains('boss')||lib.character[trigger.player.name][4].contains('hiddenboss')){
-			var Coins1=75+Math.floor(Math.random()*136);
+			var Coins1=100+Math.floor(Math.random()*151);
 			}else{
 			var Coins1=50+Math.floor(Math.random()*81);
 			}
@@ -11831,8 +11843,18 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 			}
 		},
 		      challenge_yongmou:{
+		      group:'challenge_yongmou2',
                 audio:'retishen',
                 forced:true,
+                unique:true,
+                noLose:true,
+     noGain:true,
+     noDeprive:true,
+     },
+      challenge_yongmou2:{
+                audio:'retishen',
+                forced:true,
+                unique:true,
                 noLose:true,
      noGain:true,
      noDeprive:true,
@@ -12430,6 +12452,7 @@ return;
        boss_shemao:"蛇矛",
        boss_nuxiao:"怒哮",
        challenge_yongmou:'勇谋',
+       challenge_yongmou2:'勇谋',
        boss_yuci:'遇刺',
        boss_nuxiaox:"颤抖",
        boss_dunjia:"仙体",
@@ -17531,7 +17554,7 @@ lib.skill.qinggang_skill.animationColor='thunder';
                 },
                 forced:true,
                 popup:false,
-                priority:999,
+                priority:Infinity,
                 silent:true,
                 content:function (){
                 player.chat('救我……');

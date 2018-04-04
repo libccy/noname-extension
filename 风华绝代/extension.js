@@ -24538,13 +24538,14 @@ trigger.source.chooseToDiscard(true,'he');
             },
        new_jingqi3:{
       audio:'ext:风华绝代:2',
+      mode:["boss"],
 			trigger:{global:'gameStart'},
 			forced:true,
      unique:true,
      popup:false,
      filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='xiongnu'&&player.name2!='xiongnu') return false;                      
-     return player!=game.boss;
+     return game.me!=game.boss;
      },
 			content:function(){
 			console.log(player);

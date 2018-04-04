@@ -23205,13 +23205,13 @@ xinwusheng2:{
 				order:10,
 				result:{
 					player:function(player,target){						
-						return 1;
+						return 0.5;
 					},
 					target:function(player,target){   
 					if(target.countCards('j')&&(target.hasJudge('lebu')||target.hasJudge('bingliang'))&&ai.get.attitude(player,target)>0)   
 					return 3;				
 					if(target.countCards('h'))
-						return ai.get.attitude(player,target);
+						return -0.5;
 						return 0;
 					}
 				}

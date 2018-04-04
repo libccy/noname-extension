@@ -335,7 +335,7 @@ target:function(card,player,target){
 // 	'cards://["Armor","guardian","Timereflux","shuiyin","Magic"]',
 //		'players://["challenge_xiahouyuan","challenge_masu","challenge_huangzhong","challenge_weiyan","challenge_zhenji","new_zhanghe","new_zhangren","new_sunhao","new_jiaxu","newsp_zhugeliang","new_yanwen","new_xunyu","new_xunyou","new_chengyu"]',
 	];
-	FHJD_version='1.8.0.0401';
+	FHJD_version='1.8.0401';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -483,7 +483,7 @@ target:function(card,player,target){
 		},
 		forced:true,
 			filter:function(event,player){
-			return game.changeCoin&&lib.config.coin>999999;
+			return game.changeCoin&&lib.config.coin>499999;
 			},
 		content:function(){
 			 game.changeCoin(-lib.config.coin);
@@ -2760,6 +2760,7 @@ return -1.5;
 				 }
 				}
 			};
+			
 			lib.skill._boss_changeCoins2={     
 			trigger:{source:'dieBegin'},
 			popup:false,
@@ -2782,8 +2783,38 @@ return -1.5;
 			 }
 			  	}
 				};
-			lib.skill._boss_changeCoins3={     
+			lib.skill._boss_changeCoins1={     
 			trigger:{global:'gameStart'},
+			popup:false,
+			forced:true,
+			silent:true,
+			filter:function (event,player){     
+			return game.me!=game.boss&&game.boss!=player&&player.identity!='zhong'&&(!game.changeCoin||lib.config.coin<300);
+			},
+			content:function(){
+  	game.log('未开启富甲天下/金币少于300，获得减益效果！');
+			var info=lib.character[player.name];
+    						var skills=player.getSkills();
+    						var list=[];
+    						for(var i=0;i<info[3].length;i++){
+                                if(lib.skill[info[3][i]].fixed) continue;
+                                if(lib.skill[info[3][i]].zhuSkill) continue;
+    							if(skills.contains(info[3][i])){
+    								list.push(info[3][i]);
+    							}
+    						}
+    						if(list.length){
+    							var skill=list.randomGet();
+    							player.popup(skill);   							
+    							player.removeSkill(skill);
+    							game.log(player,'失去了技能：',skill);
+    						}else{
+    						player.loseMaxHp(Math.ceil(player.maxHp/2));
+    			}
+	 			}
+			};
+			lib.skill._boss_changeCoins3={     
+			trigger:{global:'gameDrawAfter'},
 			popup:false,
 			forced:true,
 			filter:function (event,player){     

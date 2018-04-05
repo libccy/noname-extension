@@ -605,11 +605,11 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：修复波风水门封印技能没发动技能都放动画BUG ！更新日期：2018-03-11",
+	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：优化部分旧素材，新增武将“鬼灯幻月” ！更新日期：2018-04-05",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170311",
+	version:"20170405",
 	size:"36MB",
     version:4,
     files:
@@ -619,7 +619,7 @@ extension["新武将"]={
  "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg","xuSukincen.jpg","zhizhangfei.jpg","kanjiulang.jpg","tuanzang.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
- "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg",
+ "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg","x_huanyue.jpg","zbfs.png",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
  "aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3","shazang1.mp3","shazang2.mp3",
@@ -632,7 +632,7 @@ extension["新武将"]={
 "lunmu2.mp3","mudun_respond1.mp3","mudun_respond2.mp3","qianniao1.mp3","qianniao2.mp3",
  "qianshou1.mp3","qianshou2.mp3","rebusi1.mp3","rebusi2.mp3","rechendun1.mp3","rechendun2.mp3",
  "rechengmou1.mp3","rechengmou2.mp3","refengyin1.mp3","refengyin2.mp3","reguaili1.mp3",
- "reguaili21.mp3","rehuihun1.mp3","rehuihun2.mp3","rejugong1.mp3","rejugong2.mp3","jiuwei1.mp3",
+ "reguaili21.mp3","rehuihun1.mp3","rehuihun2.mp3","rejugong1.mp3","rejugong2.mp3","jiuwei1.mp3","jiuwei2.mp3",
  "relianhua1.mp3","relianhua2.mp3","renfa1.mp3","renfa2.mp3","reshenwei1.mp3","reshenwei2.mp3",
  "reshouhu1.mp3","reshouhu2.mp3","resizhan1.mp3","resizhan2.mp3","retianzhao1.mp3","retianzhao2.mp3",
  "rexianshu1.mp3","rexianshu2.mp3","rexuanfeng1.mp3","rexuanfeng2.mp3","rexuzuo1.mp3",
@@ -653,14 +653,15 @@ extension["新武将"]={
  "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3","rejieyuan_more1.mp3","rejieyuan_less1.mp3","ansha1.mp3","ansha2.mp3",
  "wuyin1.mp3","wuyin2.mp3","reshuilao1.mp3","reshuilao2.mp3","zhuanxin1.mp3","zhuanxin2.mp3","reyiliao1.mp3",
  "reyiliao2.mp3","beihua1.mp3","beihua2.mp3","huadie1.mp3","huadie2.mp3","zhongquan1.mp3","zhongquan2.mp3",
- "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3","xuqingshang3.mp3","xuqingshang4.mp3",
- "xuxibie1.mp3","xuxibie2.mp3","xuxibie3.mp3","xuxibie4.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
+ "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3",
+ "xuxibie1.mp3","xuxibie2.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
  "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","juneng21.mp3","juneng22.mp3","yiwu1.mp3","yiwu2.mp3",
  "baozi1.mp3","baozi2.mp3","duanbi1.mp3","duanbi2.mp3","duanbi21.mp3","duanbi22.mp3","zhongbao1.mp3","zhongbao2.mp3",
  "zibao1.mp3","zibao2.mp3","zibao21.mp3","tianyu1.mp3","tianyu2.mp3","huigu1.mp3","huigu2.mp3","huigu3.mp3","baodun1.mp3","baodun2.mp3",
  "x_landun1.mp3","x_landun2.mp3","x_landun3.mp3","x_landun11.mp3","x_landun12.mp3","x_landun31.mp3","x_landun32.mp3","x_landun61.mp3","x_landun62.mp3",
- "x_bizhu1.mp3","x_bizhu2.mp3",
+ "x_bizhu1.mp3","x_bizhu2.mp3","x_chunshu1.mp3","x_chunshu2.mp3","x_chunshu11.mp3","x_chunshu31.mp3","x_lianbao1.mp3",
+ "x_shuipao1.mp3","x_shuipao2.mp3","x_zhengbao1.mp3","x_zhengbao2.mp3",
 ]
 
 };

@@ -706,13 +706,13 @@ extension["虚空虫翼"]={
 };
 extension["弹丸杀"]={
     author:"fux2",
-    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（新增音无凉子和战刃骸20180121）",
-    size:"2.1MB",
+    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（新增音无凉子和战刃骸20180405补充图片）",
+    size:"2.5MB",
     netdisk:"https://pan.baidu.com/s/1mhXRd9m",
     forum:"https://tieba.baidu.com/p/4802167753",
     version:9,
     files:[
-        "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg",
+        "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg","dan_zhanren.jpg","dan_liangzi.jpg",
 		"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",
 		"dan_kamukura.jpg","dan_lingtian.jpg","dan_monokuma.jpg","dan_nuller.jpg","dan_qihai.jpg",
 		"dan_rixianga.jpg","dan_rixiangb.jpg","dan_sonia.jpg","dan_tianzhong.jpg","dan_tumei.jpg",

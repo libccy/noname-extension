@@ -2915,7 +2915,7 @@ game.forceOver(false);
 			forced:true,
 			silent:true,
 			filter:function (event,player){
-			return game.me==game.boss&&game.me==player&&game.changeCoin&&game.roundNumber>8;
+			return game.me==game.boss&&game.me==player&&game.changeCoin&&game.roundNumber>9;
 			},
 			content:function(){
 			var Coins1=game.roundNumber-8+(20+Math.floor(Math.random()*30));
@@ -28270,6 +28270,7 @@ player.draw(player.storage.lol_baonu);
            ftzt:'姿态',
            ftzt1:'姿态',
            hgyhd:'护盾',
+           hgyhdx:'护盾',
            ymdj:'野蛮',
            kj:'恐惧',
            jq:'汲取',

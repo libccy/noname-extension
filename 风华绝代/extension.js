@@ -2517,9 +2517,9 @@ return -1.5;
          shuiyin_skill:'水银之靴',
          Timereflux:'时光倒流',
          Armor2_bg:'残',
-         Armor3:'重伤',
-         Armor2:'重伤效果',
-         Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得重伤效果（重伤：回复的体力-1）直到其回合结束或其回复体力。',
+         Armor3:'残废',
+         Armor2:'残废效果',
+         Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得残废效果（残废：回复的体力-1）直到其回合结束或其回复体力。',
          Timereflux_info:'出牌阶段，若场上有阵亡角色且你的体力上限不小于1，不指定目标角色使用。你令已阵亡的一名角色满体力复活并令其摸四张牌，最后你摸两张牌并失去X点体力上限（X为你体力上限的一半且向上取整），“奇策”无法转化使用此牌。',
          Magic_info:'<span style=\"color: gold\">锁定技</span>，回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、限定技和觉醒技除外），直到你的下一回合阶段开始；你的手牌上限+2；当【魔法秘籍】进入你装备区或从你的装备区失去时，你摸一张牌。',
          guardian_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你弃置装备区里的【守护天使】。',
@@ -2760,7 +2760,7 @@ return -1.5;
 				 }
 				}
 			};
-			
+			lib.config.background_music='music_off';
 			lib.skill._boss_changeCoins2={     
 			trigger:{source:'dieBegin'},
 			popup:false,
@@ -3063,6 +3063,9 @@ game.forceOver(false);
     					game.delay(0.5);
     					result.targets[0].addTempSkill('fengyin','shaAfter');   					
     					player.useCard({name:'sha'},result.targets[0],false);		
+    				}else{
+    				if(player.countCards('h')<player.maxHp)
+    				player.draw(player.maxHp-player.countCards('h'))._triggered=null;
     				}
     	 		"step 2"
     	 		player.removeSkill('xiahouyuan_pojia');  	 		
@@ -4123,7 +4126,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
 						ai:{				
 							threaten:6,
 							expose:0.2,
-							order:15,
+							order:5.5,
 						result:{
 						player:12,
 		   				}
@@ -12783,7 +12786,7 @@ return;
        challenge_fengchi4:'风驰',
        challenge_juechen:'绝尘',
        challenge_juechen2:'绝尘',
-       challenge_fengchi_info:'每当一名角色进行/响应以下阶段/时机时，你可以视为使用一张无距离限制且无视防具并令目标角色的非锁定技失效直到结算完毕的【杀】（开始阶段、判定阶段、摸牌阶段、出牌阶段、弃牌阶段、翻面、结束阶段、回复体力、获得牌）；<span class="greentext">锁定技'+'</span>，当你使用【杀】对目标角色造成伤害时，X%几率令此【杀】伤害+1~X（X为该角色的体力上限）并获得与此【杀】伤害等量的护甲',
+       challenge_fengchi_info:'每当一名角色进行/响应以下阶段/时机时，你可以视为使用一张无距离限制且无视防具并令目标角色的非锁定技失效直到结算完毕的【杀】或将手牌补至体力上限（开始阶段、判定阶段、摸牌阶段、出牌阶段、弃牌阶段、翻面、结束阶段、回复体力、获得牌）；<span class="greentext">锁定技'+'</span>，当你使用【杀】对目标角色造成伤害时，X%几率令此【杀】伤害+1~X（X为该角色的体力上限）并获得与此【杀】伤害等量的护甲',
        challenge_juechen_info:'<span class="greentext">锁定技'+'</span>，你不会失去体力和体力上限；其他角色计算与你的距离+X（X为场上存活其他角色个数）',
        challenge_kongxin_info:'<span class="greentext">锁定技'+'</span>，每当处于混乱状态的其他角色造成1点伤害时，你摸一张牌',
        challenge_shicai_info:'<span class="greentext">锁定技'+'</span>，摸牌阶段，你改为亮出牌堆顶的3X张牌（X为场上存活其他角色个数），你获得其中的锦囊牌，然后将其余的牌置入弃牌堆；每当你使用一张未转化的锦囊后，你摸一张牌，然后你获得1个恃才标记，当你造成伤害或回合结束阶段开始时，你弃置一半向上取整的恃才标记；你计算与其他角色的距离-X（X改为你拥有的恃才标记数）；你造成的伤害+X；出牌阶段，你使用【杀】的次数+X；你使用的锦囊牌无距离限制；你不能成为【杀】的目标；你不会失去体力上限且武将牌始终正面朝上',
@@ -14727,7 +14730,7 @@ target.discard(target.get('he').randomGet());
 						}
 						if(eff<=0) return get.buttonValue(button);
 						if(trigger.target.hp==1) return false;
-						if(player.hasSkill('jiu')||player.hasSkill('challenge_julongkuangnu1')||player.hasSkill('boss_shanshi1')||player.hasSkill('zhiming')||player.hasSkill('boss_angyang')||player.hasSkill('tianxianjiu')||player.hasSkill('boss_qiansha')||player.hasSkill('boss_pimi')||player.hasSkill('boss_jianqi')||player.hasSkill('new_luoyi2')||player.hasSkill('new_jingqi')||player.hasSkill('boss_yingyi')||
+						if(player.hasSkill('challenge_shicai3')||player.hasSkill('challenge_aogu3')||player.hasSkill('challenge_qiangnu3')||player.hasSkill('jiu')||player.hasSkill('challenge_julongkuangnu1')||player.hasSkill('boss_shanshi1')||player.hasSkill('zhiming')||player.hasSkill('boss_angyang')||player.hasSkill('tianxianjiu')||player.hasSkill('boss_qiansha')||player.hasSkill('boss_pimi')||player.hasSkill('boss_jianqi')||player.hasSkill('new_luoyi2')||player.hasSkill('new_jingqi')||player.hasSkill('boss_yingyi')||
 						player.hasSkill('luoyi2')||player.hasSkill('reluoyi2')) return false;
 						if(_status.event.dialog.buttons.length<2) return -1;
 						var num=0;
@@ -17601,6 +17604,8 @@ lib.skill.qinggang_skill.animationColor='thunder';
                 priority:Infinity,
                 silent:true,
                 content:function (){
+                var HP=1-player.hp;
+				game.log(player,'请求'+get.translation(HP)+'个【桃】');
                 player.chat('救我……');
                 }
                 };

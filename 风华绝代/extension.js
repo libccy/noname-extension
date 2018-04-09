@@ -17605,7 +17605,7 @@ lib.skill.qinggang_skill.animationColor='thunder';
                 silent:true,
                 content:function (){
                 var HP=1-player.hp;
-				game.log(player,'请求'+get.translation(HP)+'个【桃】');
+				game.log(player,'求'+get.translation(HP)+'个【桃】');
                 player.chat('救我……');
                 }
                 };

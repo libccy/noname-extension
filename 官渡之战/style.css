@@ -1,0 +1,193 @@
+.cxy * {
+  font-family: lishu , xinwei;
+}
+button.cxy-btn {
+  outline: none;
+  cursor: pointer;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+}
+.cxy ul {
+  position: absolute;
+  margin: 0px;
+  display: inline-block;
+}
+.cxy-btn {
+  position: relative;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  margin: 20px 10px;
+  font-family: lishu , xinwei;
+}
+.cxy-btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.cxy-btn-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.cxy-btn-default:active {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.cxy-bg {
+  position: absolute;
+  left: 0;top: 0;
+  height: 100%;width: 100%;
+  background-color: rgba(20,20,20,0.85);
+  z-index:2018;
+  text-align: left;
+  font-family: lishu;
+  overflow: auto;
+}
+.cxy-bg .cxy-title {
+  position: relative;
+  width: calc(50% - 30px);
+  height: 30px;
+  margin: 10px;
+  text-align: left;
+  line-height: 30px;
+  padding-left: 10px;
+  border-radius: 4px;
+  display: block;
+  background: -webkit-linear-gradient(left, rgba(200,100,20,1), rgba(255,255,255,0)); 
+}
+.cxy-close {
+  position: absolute;
+  width: 40px;
+  height: 25px;
+  right: 10px;
+  text-align: center;
+  line-height: 25px;
+  cursor: pointer;
+  display: block;
+}
+.cxy-close:hover {
+  background: -webkit-linear-gradient(top, rgba(200,20,20,1), rgba(255,255,255,0)); 
+}
+ol.cxy-text {
+  margin: 0 10px;
+}
+ol.cxy-text li {
+  margin-bottom: 5px;
+}
+ol.cxy-text li>a {
+  color: rgb(200,100,20);
+  text-decoration:underline
+}
+ol.cxy-text li>strong {
+  color: rgb(200,20,20);
+}
+xw {
+  font-family: xinwei;
+}
+.cxy-bg .cxy-characterArea {
+  position: relative;
+  max-width: calc(100% - 20px);
+  margin: 0 auto;
+  text-align: center;
+}
+.cxy-hero {
+  position: relative;
+  width: 120px;
+  height: 140px;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 2 2 5px rgb(20,20,20),-2 2 5px rgb(20,20,20);
+}
+.cxy-hero>.cxy-hero-img {
+  position: absolute;
+  width: 100px;
+  height: 140px;
+  right: 0px;top:0px;
+  border-radius: 8px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100px 140px;
+}
+.cxy-hero>.cxy-hero-group {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 0px;top:0px;
+  text-align: center;
+  line-height: 20px;
+  font-family: lishu;
+  font-size: 12px;
+}
+.cxy-hero>.cxy-hero-name {
+  position: absolute;
+  width: 20px;
+  left: 0px;top:25px;
+  text-align: center;
+  line-height: 1.2;
+  font-family: lishu;
+  font-size: 16px;
+}
+.cxy-hero>.cxy-hero-hp {
+  position: absolute;
+  width: 20px;
+  right: 0px;bottom:0px;
+  text-align: center;
+  line-height: 1.2;
+}
+.cxy-hero-hp>.cxy-hero-hp-node {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-image: url(../../theme/style/hp/image/glass1.png);
+}
+.cxy-hero-skills {
+  position: absolute;
+  width: 300px;
+  height: 280px;
+  left: calc(25% + 150px);
+  top: calc(50% - 130px);
+  overflow: auto;
+  text-align: left;
+  line-height: 1.2;
+}
+.cxy-collectArea {
+  position: relative;
+  width: calc(100% - 24px);
+  height: 100px;
+  margin: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid rgb(96,96,96);
+  background-color: rgb(36,36,36);
+}
+.cxy-collect-word {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 4px;
+  top: calc(50% - 30px);
+  margin: 0 10px;
+  text-align: center;
+  line-height: 58px;
+  border: 2px solid rgb(57,54,48);
+  background-color: rgb(59,53,41);
+}
+.cxy-collect-word .count {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right:0;bottom:0;
+  //right: -5px; bottom: -5px;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 20px;
+  background-color: rgba(30,30,30,0.75);
+}

@@ -605,12 +605,12 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：新增武将“鬼灯幻月” ,修改三代雷影的技能突刺，使与另一个技能雷盾联动，输出爆炸性伤害；修改漩涡鸣人的技能“分身”（就简避繁，不再无脑掉血）和删除技能“嘴遁”，可到文件夹里删去两个配音文件“zuidun”,更新日期：2018-04-07",
+	intro:"下载、使用、更新前请先打开兼容模式！本扩展包含部分三国改版新武将和秦时明月、火影忍者等作品的人物，强度略高，基本上都有配音。（此次更新：完善武将“鬼灯幻月” ；新增武将“真禅圣王”,更新日期：2018-04-12",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170407",
-	size:"36MB",
+	version:"20170412",
+	size:"37MB",
     version:4,
     files:
 
@@ -619,7 +619,7 @@ extension["新武将"]={
  "jinye.jpg","jiaodu.jpg","xiaoyaozi.jpg","xuSukincen.jpg","zhizhangfei.jpg","kanjiulang.jpg","tuanzang.jpg",
  "dayemu.jpg","kakasi.jpg","relingju.jpg","jiangboyue.jpg","woailuo.jpg","daitu.jpg","duan.jpg","changmen.jpg",
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
- "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg","x_huanyue.jpg","zbfs.png",
+ "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg","x_huanyue.jpg","zbfs.png","x_zhengshan.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","chutian.jpg","xiezi.jpg","aiyuan1.mp3",
  "aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3","shazang1.mp3","shazang2.mp3",

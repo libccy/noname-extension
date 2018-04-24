@@ -8351,7 +8351,7 @@ player.revive(player.maxHp)
             "retianzhao_info":"出牌阶段，你可将普通杀当火杀使用。锁定技，当你造成火焰伤害时，你令该受伤害的角色获得技能“黑炎”",
         },
     },
-    intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音，使用前请先打开兼容模式。",
+    intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。",
     author:"★Sukincen★<br><img src='file:///storage/sdcard1/Android/data/com.widget.noname/extension/新武将/Sukincen.jpg' width='98' height='98'>",
     diskURL:"",
     forumURL:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",

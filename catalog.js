@@ -664,7 +664,7 @@ extension["新武将"]={
  "x_landun1.mp3","x_landun2.mp3","x_landun3.mp3","x_landun11.mp3","x_landun12.mp3","x_landun31.mp3","x_landun32.mp3","x_landun61.mp3","x_landun62.mp3",
  "x_bizhu1.mp3","x_bizhu2.mp3","x_chunshu1.mp3","x_chunshu2.mp3","x_chunshu11.mp3","x_chunshu31.mp3","x_lianbao1.mp3",
  "x_shuipao1.mp3","x_shuipao2.mp3","x_zhengbao1.mp3","x_zhengbao2.mp3","x_fuchou1.mp3","x_fuchou2.mp3","x_fuchou21.mp3","x_fuchou22.mp3",
- "x_fuhuo1.mp3","x_fuhuo2.mp3","x_fuhuo3.mp3",
+ "x_fuhuo1.mp3","x_fuhuo2.mp3",
 ]
 
 };

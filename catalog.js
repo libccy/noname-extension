@@ -1,3 +1,13 @@
+extension["孙策81难"]={
+	intro:"在亂鬥模式進行游戲",
+	author:"孤芳不自賞",
+	netdisk:"",
+	forum:"",
+	version:"",
+	files:["extension.js","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
+		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
+	size:"387.38KB"
+};
 extension["浑身是胆"]={
 	intro:"模式（在亂鬥模式查看介紹/進行遊戲）",
 	author:"孤芳不自賞",

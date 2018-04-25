@@ -1,9 +1,9 @@
 extension["孙策81难"]={
 	intro:"在亂鬥模式進行游戲",
 	author:"孤芳不自賞",
-	netdisk:"",
-	forum:"",
-	version:"",
+	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
+	version:"1.0",
 	files:["extension.js","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
 		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
 	size:"387.38KB"
@@ -13,7 +13,7 @@ extension["浑身是胆"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.2",
+	version:"1.3",
 	files:["gods_juejing21.mp3","extension.js","gods_fengqiang3.mp3","gods_fengqiang2.mp3",
 		"gods_juejing23.mp3","gods_juejing22.mp3","gods_fengqiang1.mp3","gods_zhaoyun.jpg",
 		"gods_juejing3.mp3","gods_juejing2.mp3","gods_juejing1.mp3","extension.js.bak"],

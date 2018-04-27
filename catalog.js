@@ -1,12 +1,12 @@
 extension["孙策81难"]={
-	intro:"在亂鬥模式進行游戲",
+	intro:"在亂鬥模式進行游戲（更新請刪除舊擴展和關卡）",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.0",
+	version:"1.1",
 	files:["extension.js","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
 		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
-	size:"387.38KB"
+	size:"390.24KB"
 };
 extension["浑身是胆"]={
 	intro:"模式（在亂鬥模式查看介紹/進行遊戲）",

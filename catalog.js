@@ -615,12 +615,12 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。若发现ＢＵＧ可打开兼容模式重启以提升对不同扩展的兼容性和到贴吧反馈！（此次更新：修复多个BUG。技能配音稍迟一段时间再上传。更新日期：2018-04-25",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：修复多个BUG，新增稍改的神杀卡牌“猴子”。技能配音稍迟一段时间再上传。更新日期：2018-04-27",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170425",
-	size:"37.5MB",
+	version:"20170427",
+	size:"38MB",
     version:4,
     files:
 
@@ -631,7 +631,7 @@ extension["新武将"]={
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
  "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg","x_huanyue.jpg","zbfs.png","x_zhengshan.jpg","chutian.jpg","xiezi.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","x_junmalv.jpg","x_maliang.jpg","x_qilabi.jpg","x_shixing.jpg","x_yuanfeirizhan.jpg",
- "xuelunyan.png","Sukincen.jpg",
+ "xuelunyan.png","Sukincen.jpg","x_houzi.png",
  
  "aiyuan1.mp3","aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3","shazang1.mp3","shazang2.mp3",
@@ -651,7 +651,7 @@ extension["新武将"]={
  "rexuzuo2.mp3","rouquan1.mp3","rouquan2.mp3","shayu1.mp3","shayu2.mp3","shuilao1.mp3","shuilao2.mp3",
 "shunsheng1.mp3","shunsheng2.mp3","tiancheng1.mp3","tiancheng2.mp3","tianyin1.mp3",
  "tianyin2.mp3","tianzheng1.mp3","tianzheng2.mp3","tiaoxin_jiangwei1.mp3","tiaoxin_jiangwei2.mp3",
- "tuci1.mp3","tuci2.mp3","wanshe1.mp3","wanshe2.mp3","wuchen1.mp3","wuchen2.mp3",
+ "tuci1.mp3","tuci2.mp3","wanshe1.mp3","wanshe2.mp3","wuchen1.mp3","wuchen2.mp3","x_houzi1.mp3",
  "xianfa1.mp3","xianfa2.mp3","xiangfu1.mp3","xianren1.mp3","xianren2.mp3","xianshu1.mp3","xianshu2.mp3",
  "xianti1.mp3","xianti2.mp3","xianyan1.mp3","xianyan2.mp3","xinbaiyan1.mp3","xinbaiyan2.mp3",
 "xinxuzuo1.mp3","xinxuzuo2.mp3","xiongqi1.mp3","xiongqi2.mp3","xishou1.mp3","xishou2.mp3",

@@ -29,7 +29,7 @@ lib.arenaReady.push(function(){
     lib.translate.brawl_huwei='护卫',
     lib.translate.brawl_huwei_info='锁定技，当你成为【杀】或【决斗】的目标时，你摸一张牌，若你没有手牌或体力值不大于1，你摸两张牌。',
     lib.translate.brawl_hunzi_info='觉醒技，回合开始阶段，若你的体力为1（场上存活其他角色数大于3且小于7时，改为若你的体力不大于2；场上存活其他角色数不小于7时，改为若你的体力不大于3），你须减1点体力上限，并永久获得技能“英姿”和“英魂”。',
-    lib.translate.brawl_zhiba_info='出牌阶段限一次，若场上存活其他角色数不小于5，你可以与一名角色拼点。若你赢，你摸两张牌，直到回合结束，你使用【杀】的次数上限+1、使用【杀】无距离限制且使用【杀】的目标数上限+1。',
+    lib.translate.brawl_zhiba_info='出牌阶段限一次，若场上存活其他角色数不小于5，你可以与一名角色拼点。若你赢，你摸两张牌，直到回合结束，你使用【杀】的次数上限+1、使用【杀】无距离限制且使用【杀】的目标数上限+1；若你没赢，你失去1点体力。',
     lib.translate.brawl_jiang_info='每当你使用（指定目标后）或被使用（成为目标后）一张【决斗】或红色的【杀】时，你可以摸一张牌，若你的手牌数小于场上存活角色数，你将手牌补至场上存活角色数，若你为该牌使用者且对方判定区内有牌，你可以摸两张牌。',
     lib.skill.brawl_hunzi={
 				skillAnimation:true,
@@ -42,12 +42,13 @@ lib.arenaReady.push(function(){
 				},
 				forced:true,
 				priority:3,
-				content:function(){
+				content:function(){			 
 					player.loseMaxHp();
 					player.addSkill('reyingzi');
 					player.addSkill('yinghun');
 					player.awakenSkill('brawl_hunzi');
 					player.storage.brawl_hunzi=true;
+					ui.backgroundMusic.src=lib.assetURL+'extension/孙策81难/Dawn_heroes.mp3';
 					game.createTrigger('phaseBegin','yinghun',player,trigger);
 				},
 				ai:{
@@ -82,7 +83,9 @@ lib.arenaReady.push(function(){
 					if(result.bool){
 						player.draw(2);
 						player.addTempSkill('tianyi2');
-		   			}
+		   	}else{
+		   	player.loseHp();
+		   	}
 				},
 				ai:{
 					order:function(name,player){
@@ -139,7 +142,11 @@ lib.arenaReady.push(function(){
     			ai:{
     				effect:{
     					target:function(card,player,target){
-    						if(card.name=='sha'&&get.color(card)=='red') return [1,0.6];
+    					if(card.name=='sha'&&get.color(card)=='red'||card.name=='juedou'){
+    					if(target.hp>1&&game.players.length>target.countCards('h')-1)
+    					 return [1,game.players.length-target.countCards('h')];
+    			 return [1,0.6];
+    			 }
     					},
     					player:function(card,player,target){
     						if(card.name=='sha'&&get.color(card)=='red') return [1,1];

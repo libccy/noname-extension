@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新武将",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新武将",editable:false,content:function (config,pack){
     
 },precontent:function (){
     

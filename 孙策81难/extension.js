@@ -258,4 +258,5 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
         translate:{
         },
     },
+	author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【无名杀玩家交流群】</span>",
 },files:{"character":[],"card":[],"skill":[]},editable:false}})

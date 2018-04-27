@@ -3,10 +3,10 @@ extension["孙策81难"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.1",
-	files:["extension.js","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
+	version:"1.2",
+	files:["extension.js","Dawn_heroes.mp3","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
 		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
-	size:"390.24KB"
+	size:"8.63MB"
 };
 extension["浑身是胆"]={
 	intro:"模式（在亂鬥模式查看介紹/進行遊戲）",

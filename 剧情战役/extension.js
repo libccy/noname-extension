@@ -829,7 +829,7 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
           })
         };
     if(config.enhancement){ 
-    if(lib.config.mode!='brawl'&&lib.config.mode!='guozhan')
+    if(lib.config.mode!='brawl'&&lib.config.mode!='boss'&&lib.config.mode!='guozhan')
     lib.arenaReady.push(function(){
     //————————————SP————————————//
     lib.translate.daxiaoqiao='大乔小乔'

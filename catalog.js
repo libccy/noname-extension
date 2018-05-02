@@ -615,11 +615,11 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：修复奇拉比“雷刀”技能卡死和智障乱砍队友、绝“孢子”卡死、大野木“尘遁”卡死等多个BUG，新增稍改的神杀卡牌“猴子”。技能配音稍迟一段时间再上传。更新日期：2018-04-28",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：修复绝“孢子”AI卡死等。技能配音稍迟一段时间再上传。更新日期：2018-05-02",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170428",
+	version:"20170502",
 	size:"38MB",
     version:4,
     files:
@@ -665,7 +665,7 @@ extension["新武将"]={
  "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3","rejieyuan_more1.mp3","rejieyuan_less1.mp3","ansha1.mp3","ansha2.mp3",
  "wuyin1.mp3","wuyin2.mp3","reshuilao1.mp3","reshuilao2.mp3","zhuanxin1.mp3","zhuanxin2.mp3","reyiliao1.mp3",
  "reyiliao2.mp3","beihua1.mp3","beihua2.mp3","huadie1.mp3","huadie2.mp3","zhongquan1.mp3","zhongquan2.mp3",
- "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3",
+ "renzhong1.mp3","renzhong2.mp3","xuqingshang1.mp3","xuqingshang2.mp3","jinshu1.mp3","jinshu2.mp3",
  "xuxibie1.mp3","xuxibie2.mp3","newkuilei1.mp3","newkuilei2.mp3","chengyi1.mp3","chengyi2.mp3",
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
  "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","juneng21.mp3","juneng22.mp3","yiwu1.mp3","yiwu2.mp3",

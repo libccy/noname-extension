@@ -615,12 +615,12 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：修复绝“孢子”AI卡死等。技能配音稍迟一段时间再上传。更新日期：2018-05-02",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：删除旧马良（可到extension里删除马良图片）、新增武将小南（仍待增加技能）。技能配音稍迟一段时间再上传。更新日期：2018-05-04",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170502",
-	size:"38MB",
+	version:"20170504",
+	size:"38.5MB",
     version:4,
     files:
 
@@ -631,7 +631,7 @@ extension["新武将"]={
  "guijiao.jpg","wuren.jpg","zhuozhu.jpg","rewangyun.jpg","xinmenghuo.jpg","shuimen.jpg","leiying.jpg","jue.jpg","huiye.jpg",
  "didala.jpg","xinyujins.jpg","jiuwei.png","daluyi.jpg","x_huanyue.jpg","zbfs.png","x_zhengshan.jpg","chutian.jpg","xiezi.jpg",
  "zhujian.jpg","luwan.jpg","mingren.jpg","genie.jpg","x_junmalv.jpg","x_qilabi.jpg","x_shixing.jpg","x_yuanfeirizhan.jpg",
- "xuelunyan.png","Sukincen.jpg","x_houzi.png",
+ "xuelunyan.png","Sukincen.jpg","x_houzi.png","x_xiaonan.jpg",
  
  "aiyuan1.mp3","aiyuan2.mp3","baihao1.mp3","baihao2.mp3","baiji1.mp3","baiji2.mp3","baiyan1.mp3","baiyan2.mp3",
  "baoxing1.mp3","baoxing2.mp3","changsheng1.mp3","changsheng2.mp3","chendun1.mp3","shazang1.mp3","shazang2.mp3",

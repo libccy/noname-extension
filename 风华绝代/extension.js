@@ -28933,4 +28933,89 @@ player.draw(player.storage.lol_baonu);
                  init:true
                  },
                  god:{
-   
+                 name:'神将&民间',
+                 init:true
+                 },
+                  yxlm:{
+                  name:'英雄联盟',
+                  init:true
+                 },                
+                 boss:{
+                 name:'挑战BOSS',
+                 init:true
+                 },
+                 ordinary:{
+                 name:'非挑战模式启用挑战BOSS',
+                 init:true
+                 },
+                 lolzb:{
+                 name:'原创卡牌',
+                 init:true
+                 },
+                 jiduan:{
+                 name:'极端锦囊',
+                 intro:'包含卡牌：【闪电】*10、【浮雷】*10、【乐不思蜀】*10、【兵粮寸断】*10、【铁索连环】*10',
+                 init:true
+                 },                
+                 enhancement:{
+                  name:'属性强化',
+                  init:true
+                 },              
+                 zengqiang:{
+                 name:'还原&增强',
+                 init:true
+                 },
+                 effects:{
+                 name:'武器伪特效',
+                 init:true
+                 },
+                 Nie_name:{
+                 name:'武将前缀',
+                 intro:'选择是否显示★武将前缀',
+                 init:'hide',
+                 item:{
+                 hide:'隐藏','show':'显示'
+                 }
+                 },                
+                 Background_Music:{
+                 name:'Background Music',
+                 init:true
+                 },
+                 //Satin:{
+                 //name:'Negative energy',
+                 //init:true
+                 //},
+                 "IncreasePlayerNumber":{"name":'增加人数',"init":'all',"item":{'0':'不增加','1':'+1','2':'+2','3':'+3','4':'+4','5':'+5'
+          //,'6':'+6','7':'+7','8':'+8'
+          ,'all':'全部增加'
+                 }},
+	"nineMan":{"name":'九人场身份',"init":'1',"item":{'1':'三忠四反一内','2':'二忠四反二内','3':'四忠四反零内','4':'三忠五反零内'}},
+	"tenMan":{"name":'十人场身份',"init":'1',"item":{'1':'三忠四反二内','2':'三忠五反一内','3':'四忠五反零内'}},
+	"elevenMan":{"name":'十一人场身份',"init":'1',"item":{'1':'四忠五反一内','2':'三忠五反二内','3':'五忠五反零内','4':'四忠六反零内'}},
+	"twelveMan":{"name":'十二人场身份',"init":'1',"item":{'1':'四忠五反二内','2':'四忠六反一内','3':'五忠六反零内'}},
+	"thirteenMan":{"name":'十三人场身份',"init":'1',"item":{'1':'五忠六反一内','2':'四忠六反二内','3':'六忠六反零内','4':'五忠七反零内'}},
+	//	"fourteenMan":{"name":'十四人场身份',"init":'1',"item":{'1':'五忠六反二内','2':'五忠七反一内','3':'六忠七反零内'}},
+	//"fifteenMan":{"name":'十五人场身份',"in	it":'1',"item":{'1':'六忠七反一内','2':'五忠七反二内','3':'七忠七反零内','4':'六忠八反零内'}},
+	//	"SixteenMan":{"name":'十六人场身份',"init":'1',"item":{'1':'六忠七反二内','2':'六忠八反一内','3':'七忠八反零内'}},
+                },
+   package:{
+    character:{
+        character:{
+        },
+        translate:{
+        },
+    },
+    card:{
+        card:{
+        },
+        translate:{
+        },
+        list:[],
+    },
+    skill:{
+        skill:{
+        },
+        translate:{
+        },
+    },
+},files:{"character":[],"card":[],"skill":[]},editable:false}})

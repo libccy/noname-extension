@@ -3175,7 +3175,7 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
 								return num<1&&player!=game.boss&&game.me!=game.boss&&event.player==game.boss&&game.boss.name=='Coins_mizhu'&&game.changeCoin;
 							},
 			content:function(){
-				var Coins2=300+Math.floor(Math.random()*751);
+				var Coins2=300+Math.floor(Math.random()*951);
 				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
 				game.changeCoin(Coins2);
 				game.me.logSkill('Money');

@@ -2,7 +2,7 @@
     
 },precontent:function (){
     
-},help:{"新武将":"<li>重铸部分三国杀武将。<li>《火影忍者》、《秦时明月》人物乱入无名杀，与三国群雄逐鹿中原！<li>【代码】Sukincen借鉴参考于各大神的代码<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{"sanguo":{"name":"三国新将","init":true},"huoying":{"name":"火影忍者","init":true},"qinshi":{"name":"秦时明月","init":true},"wugengji":{"name":"武庚纪","init":true},"NO1":{"name":"注：以上四个选项开关是无效的","item":{}}},package:{
+},help:{"新武将":"<li>重铸部分三国杀武将。<li>《火影忍者》、《秦时明月》人物乱入无名杀，与三国群雄逐鹿中原！<li>【代码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{"sanguo":{"name":"三国新将","init":true},"huoying":{"name":"火影忍者","init":true},"qinshi":{"name":"秦时明月","init":true},"wugengji":{"name":"武庚纪","init":true},"NO1":{"name":"注：以上四个选项开关是无效的","item":{}}},package:{
     character:{
         character:{
             itachi:["male","shen",3,["yuedu","retianzhao","xuzuo"],["des:宇智波鼬，木叶村宇智波一族的天才忍者，7岁忍校毕业，13岁当上暗部队长，忍术高超，擅长手里剑。宇智波一族少数开了万花筒写轮眼的人，左眼月读，能瞬间让对手陷入鼬控制的幻术之中，包括时间、空间、质量皆由鼬控制，让其受到极重的精神攻击，属精神攻击类幻术。右眼天照，聚焦即发出能烧毁一切的黑色火焰，烧毁目标前永不熄灭。双眼须佐能乎，拥有极强的攻击与防御力。少年鼬是名双重间谍，为了村子，在宇智波一族叛变木叶前选择灭族，后逃离加入并暗中调查晓组织。后与其弟佐助决战而死，佐助因此开了万花筒写轮眼。第4次忍界大战被兜用秽土转生术复活，然后与鸣人相遇发动最强幻术“别天神”，摆脱控制，与兜一战，发动禁术“伊邪那美”，让兜陷入循环的幻术中。"]],
@@ -7352,6 +7352,7 @@ var chat=['如是因，如是果，你们这一生对他人所做的伤害，都
                 },
             },
             "x_huizhan":{
+                audio:"ext:新武将:2",
                 unique:true,
                 round:2,
                 enable:"phaseUse",

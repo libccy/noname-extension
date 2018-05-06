@@ -614,7 +614,7 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：新增武将重吾，完善小南，完善千手扉间的水遁AI并将此武将解放，完善迪达拉的自爆，修改小削长门以彻底解决爆星BUG，补充奇拉比的配音。其他技能配音稍迟一段时间再上传。更新日期：2018-05-06",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：新增武将重吾，完善小南，完善千手扉间的水遁AI并将此武将解放，完善迪达拉的自爆，修改小削长门以彻底解决爆星BUG，补充奇拉比、小南的配音。其他技能配音稍迟一段时间再上传。更新日期：2018-05-06",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -673,7 +673,7 @@ extension["新武将"]={
  "x_landun1.mp3","x_landun2.mp3","x_landun3.mp3","x_landun11.mp3","x_landun12.mp3","x_landun31.mp3","x_landun32.mp3","x_landun61.mp3","x_landun62.mp3",
  "x_bizhu1.mp3","x_bizhu2.mp3","x_chunshu1.mp3","x_chunshu2.mp3","x_chunshu11.mp3","x_chunshu31.mp3","x_lianbao1.mp3",
  "x_shuipao1.mp3","x_shuipao2.mp3","x_zhengbao1.mp3","x_zhengbao2.mp3","x_fuchou1.mp3","x_fuchou2.mp3","x_fuchou21.mp3","x_fuchou22.mp3",
- "x_fuhuo1.mp3","x_fuhuo2.mp3","x_leidao1.mp3","x_leidao2.mp3","shuochang1.mp3","shuochang2.mp3",
+ "x_fuhuo1.mp3","x_fuhuo2.mp3","x_leidao1.mp3","x_leidao2.mp3","shuochang1.mp3","shuochang2.mp3","x_jizhu1.mp3","x_jizhu2.mp3","x_zhishu1.mp3","x_zhishu2.mp3",
 ]
 
 };

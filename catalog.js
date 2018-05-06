@@ -670,7 +670,7 @@ extension["新武将"]={
  "duoyang1.mp3","duoyang2.mp3","huomeng1.mp3","huomeng2.mp3","huomeng21.mp3","kongbo1.mp3","kongbo2.mp3","sixiang1.mp3",
  "sixiang2.mp3","yinmou1.mp3","yinmou2.mp3","juneng1.mp3","juneng2.mp3","juneng21.mp3","juneng22.mp3","yiwu1.mp3","yiwu2.mp3",
  "baozi1.mp3","baozi2.mp3","duanbi1.mp3","duanbi2.mp3","duanbi21.mp3","duanbi22.mp3","zhongbao1.mp3","zhongbao2.mp3",
- "zibao1.mp3","zibao2.mp3","zibao21.mp3","tianyu1.mp3","tianyu2.mp3","huigu1.mp3","huigu2.mp3","huigu3.mp3","baodun1.mp3","baodun2.mp3",
+ "zibao1.mp3","zibao2.mp3","tianyu1.mp3","tianyu2.mp3","huigu1.mp3","huigu2.mp3","huigu3.mp3","baodun1.mp3","baodun2.mp3",
  "x_landun1.mp3","x_landun2.mp3","x_landun3.mp3","x_landun11.mp3","x_landun12.mp3","x_landun31.mp3","x_landun32.mp3","x_landun61.mp3","x_landun62.mp3",
  "x_bizhu1.mp3","x_bizhu2.mp3","x_chunshu1.mp3","x_chunshu2.mp3","x_chunshu11.mp3","x_chunshu31.mp3","x_lianbao1.mp3",
  "x_shuipao1.mp3","x_shuipao2.mp3","x_zhengbao1.mp3","x_zhengbao2.mp3","x_fuchou1.mp3","x_fuchou2.mp3","x_fuchou21.mp3","x_fuchou22.mp3",

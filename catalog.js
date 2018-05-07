@@ -614,12 +614,12 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：新增武将重吾，完善小南，完善千手扉间的水遁AI并将此武将解放，完善迪达拉的自爆，修改小削长门以彻底解决爆星BUG，补充千手扉间、奇拉比、小南、猿飞日斩的配音。其他技能配音稍迟一段时间再上传。更新日期：2018-05-07",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：补充完善千手扉间、奇拉比、小南、猿飞日斩、波风水门、重吾、君麻吕的配音，改善带土的吸收的配音。更新日期：2018-05-07",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	version:"20170507",
-	size:"39MB",
+	size:"40MB",
     version:4,
     files:
 
@@ -653,7 +653,7 @@ extension["新武将"]={
  "tuci1.mp3","tuci2.mp3","wanshe1.mp3","wanshe2.mp3","wuchen1.mp3","wuchen2.mp3","x_houzi1.mp3",
  "xianfa1.mp3","xianfa2.mp3","xiangfu1.mp3","xianren1.mp3","xianren2.mp3","xianshu1.mp3","xianshu2.mp3",
  "xianti1.mp3","xianti2.mp3","xianyan1.mp3","xianyan2.mp3","xinbaiyan1.mp3","xinbaiyan2.mp3",
-"xinxuzuo1.mp3","xinxuzuo2.mp3","xiongqi1.mp3","xiongqi2.mp3","xishou1.mp3","xishou2.mp3",
+"xinxuzuo1.mp3","xinxuzuo2.mp3","xiongqi1.mp3","xiongqi2.mp3","xishou1.mp3","xishou2.mp3","luoxuan1.mp3","luoxuan2.mp3",
  "xuzuo1.mp3","xuzuo2.mp3","yandun1.mp3","yandun2.mp3","yandun3.mp3","yingmo1.mp3",
  "yingmo2.mp3","yiyuan1.mp3","yiyuan2.mp3","yizhi1.mp3","yizhi2.mp3","yuedu1.mp3","yuedu2.mp3",
  "yuedu3.mp3","zhenxing1.mp3","zhenxing2.mp3","zhimou11.mp3","zhimou21.mp3","zhimou31.mp3",
@@ -675,6 +675,9 @@ extension["新武将"]={
  "x_shuipao1.mp3","x_shuipao2.mp3","x_zhengbao1.mp3","x_zhengbao2.mp3","x_fuchou1.mp3","x_fuchou2.mp3","x_fuchou21.mp3","x_fuchou22.mp3",
  "x_fuhuo1.mp3","x_fuhuo2.mp3","x_leidao1.mp3","x_leidao2.mp3","shuochang1.mp3","shuochang2.mp3","x_jizhu1.mp3","x_jizhu2.mp3","x_zhishu1.mp3","x_zhishu2.mp3",
  "x_fengyin1.mp3","x_fengyin2.mp3","x_huizhan1.mp3","x_huizhan2.mp3","x_yuanmo1.mp3","x_yuanmo2.mp3",
+ "x_xianhua1.mp3","x_xianhua2.mp3","x_kuangbao1.mp3","x_kuangbao2.mp3","x_gu1.mp3","x_gu2.mp3","x_zhouyin1.mp3","x_zhouyin2.mp3",
+ 
+ 
 ]
 
 };

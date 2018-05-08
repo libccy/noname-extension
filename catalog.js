@@ -614,11 +614,11 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：补充完善千手扉间、奇拉比、小南、猿飞日斩、波风水门、重吾、君麻吕的配音，改善带土的吸收的配音。更新日期：2018-05-07",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：补充完善千手扉间、奇拉比、小南、猿飞日斩、波风水门、重吾、君麻吕的配音，修改李洛克，改善带土的吸收的配音。更新日期：2018-05-08",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170507",
+	version:"20170508",
 	size:"40MB",
     version:4,
     files:
@@ -659,7 +659,7 @@ extension["新武将"]={
  "yuedu3.mp3","zhenxing1.mp3","zhenxing2.mp3","zhimou11.mp3","zhimou21.mp3","zhimou31.mp3",
  "zhimou41.mp3","zhimou51.mp3","zhimou61.mp3","zhimou71.mp3","zhoushu1.mp3","zhoushu2.mp3",
  "zhuansheng1.mp3","zhuansheng2.mp3","zongjian1.mp3","zongjian2.mp3","zongjian3.mp3",
- "zuiquan1.mp3","zuiquan2.mp3","refenxin1.mp3","refenxin2.mp3","baofu11.mp3","baofu12.mp3",
+ "refenxin1.mp3","refenxin2.mp3","baofu11.mp3","baofu12.mp3",
  "baofu21.mp3","baofu22.mp3","baoli1.mp3","baoli2.mp3","baoli21.mp3","baoli31.mp3","shuidun1.mp3",
  "shuidun2.mp3","yiliao1.mp3","yiliao2.mp3","rejieyuan_more1.mp3","rejieyuan_less1.mp3","ansha1.mp3","ansha2.mp3",
  "wuyin1.mp3","wuyin2.mp3","reshuilao1.mp3","reshuilao2.mp3","zhuanxin1.mp3","zhuanxin2.mp3","reyiliao1.mp3",

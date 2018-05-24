@@ -9,7 +9,7 @@ extension["孙策81难"]={
 	size:"6.92MB"
 };
 extension["官渡之战"]={
-	intro:"导入后可在乱斗模式中找到此模式<br>"+
+	intro:"<div style='font-size:10px;'>导入后可在乱斗模式中找到此模式<br>"+
 	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版(付费)】<br>"+
 	"升级版介绍："+
 	"<ol style='margin:0;padding:0;font-size:12px;'>"+
@@ -23,8 +23,8 @@ extension["官渡之战"]={
 	"</ol>"+
 	"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</li>"+
 	"</ul>"+
-	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=40 height=40></img></div>",
-	author:"<span style='color:rgb(200,100,0)'>橙续缘</span>",
+	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=40 height=40></img></div></div>",
+	author:"橙续缘",
 	netdisk:"https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
 	forum:"https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",
 	version:"1.0",

@@ -9,24 +9,22 @@ extension["孙策81难"]={
 	size:"6.92MB"
 };
 extension["官渡之战"]={
-	intro:"<ul style='margin:0;padding:0;font-size:12px;'>"+
-	"<li>导入后可在乱斗模式中找到此模式</li>"+
-	"<li>点击下方<font color='rgb(20,100,200)'>“参与讨论”</font>可获取【官渡之战升级版(付费)】</li>"+
-	"<li>升级版介绍："+
-		"<ol style='margin:0;padding:0;font-size:12px;'>"+
-		"<li>支持代替队友选择武将</li>"+
-		"<li>支持代替队友行动</li>"+
-		"<li>常规模式下可以使用以下武将(支持联机)："+
-			"<p style='color:rgb(200,0,200);text-align:center;'>许攸、SP张郃、荀谌<br>高览、淳于琼、审配</p>"+
-		"</li>"+
-		"<li>支持自由选择武将阵型</li>"+
-		"<li>支持无限使用手气卡</li>"+
-		"</ol>"+
+	intro:"导入后可在乱斗模式中找到此模式<br>"+
+	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版(付费)】<br>"+
+	"升级版介绍："+
+	"<ol style='margin:0;padding:0;font-size:12px;'>"+
+	"<li>支持代替队友选择武将</li>"+
+	"<li>支持代替队友行动</li>"+
+	"<li>常规模式下可以使用以下武将(支持联机)："+
+	"<p style='color:rgb(200,0,200);text-align:center;'>许攸、SP张郃、荀谌<br>高览、淳于琼、审配</p>"+
 	"</li>"+
-	"<li>关注微信公众号<font color='rgb(200,100,0)'>“无名杀DIY定制”</font>可获取更多最新扩展咨询</li>"+
+	"<li>支持自由选择武将阵型</li>"+
+	"<li>支持无限使用手气卡</li>"+
+	"</ol>"+
+	"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</li>"+
 	"</ul>"+
-	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=100 height=100></img></div>",
-	author:"<font color='rgb(200,100,0)'>橙续缘</font>",
+	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=40 height=40></img></div>",
+	author:"<span style='color:rgb(200,100,0)'>橙续缘</span>",
 	netdisk:"https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
 	forum:"https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",
 	version:"1.0",

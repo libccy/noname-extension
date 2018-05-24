@@ -21,8 +21,7 @@ extension["官渡之战"]={
 	"<li>支持自由选择武将阵型</li>"+
 	"<li>支持无限使用手气卡</li>"+
 	"</ol>"+
-	"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</li>"+
-	"</ul>"+
+	"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</li>"
 	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=40 height=40></img></div></div>",
 	author:"橙续缘",
 	netdisk:"https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",

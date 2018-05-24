@@ -8,6 +8,36 @@ extension["孙策81难"]={
 		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
 	size:"6.92MB"
 };
+extension["官渡之战"]={
+	intro:"<ul>"+
+	"<li>导入后可在乱斗模式中找到此模式</li>"+
+	"<li>点击下方<font color='rgb(20,100,200)'>“参与讨论”</font>可获取【官渡之战升级版(付费)】</li>"+
+	"<li>升级版介绍："+
+		"<ul>"+
+		"<li>支持代替队友选择武将</li>"+
+		"<li>支持代替队友行动</li>"+
+		"<li>常规模式下可以使用以下武将(支持联机)："+
+			"<p style='color:rgb(200,0,200);text-align:center;'>许攸、SP张郃、荀谌<br>高览、淳于琼、审配</p>"+
+		"</li>"+
+		"<li>支持自由选择武将阵型</li>"+
+		"<li>支持无限使用手气卡</li>"+
+		"</ul>"+
+	"</li>"+
+	"<li>关注微信公众号<font color='rgb(200,100,0)'>“无名杀DIY定制”</font>可获取更多最新扩展咨询</li>"+
+	"</ul>"+
+	"<div style='text-align:center;'><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=100 height=100></img></div>",
+	author:"<font color='rgb(200,100,0)'>橙续缘</font>",
+	netdisk:"https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
+	forum:"https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",
+	version:"1.0",
+	files:["cxyCaoCao.jpg","cxyCaoHong.jpg","cxyCaoRen.jpg","cxyChengYu.jpg","cxyChenLin.jpg",
+		"cxyChunYuQiong.jpg","cxyGaoLan.jpg","cxyGuanYu.jpg","cxyGuoFeng.jpg","cxyGuoJia.jpg",
+		"cxyHanShi.jpg","cxyJuShou.jpg","cxyLiuBei.jpg","cxyLiuYe.jpg","cxyShenPei.jpg",
+		"cxyTianFeng.jpg","cxyTunLiang.png","cxyXuHuang.jpg","cxyXunChen.jpg","cxyXunYou.jpg",
+		"cxyXunYu.jpg","cxyXuYou.jpg","cxyYanWen.jpg","cxyYuanJun.png","cxyYuanShao.jpg",
+		"cxyYuJin.jpg","cxyZhangHe.jpg","cxyZhangLiao.jpg","extension.js","style.css"],
+	size:"2.66MB"
+};
 extension["浑身是胆"]={
 	intro:"模式（在亂鬥模式查看介紹/進行遊戲）",
 	author:"孤芳不自賞",

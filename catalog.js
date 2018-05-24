@@ -9,11 +9,11 @@ extension["孙策81难"]={
 	size:"6.92MB"
 };
 extension["官渡之战"]={
-	intro:"<ul>"+
+	intro:"<ul style='margin:0;padding:0;font-size:12px;'>"+
 	"<li>导入后可在乱斗模式中找到此模式</li>"+
 	"<li>点击下方<font color='rgb(20,100,200)'>“参与讨论”</font>可获取【官渡之战升级版(付费)】</li>"+
 	"<li>升级版介绍："+
-		"<ul>"+
+		"<ol style='margin:0;padding:0;font-size:12px;'>"+
 		"<li>支持代替队友选择武将</li>"+
 		"<li>支持代替队友行动</li>"+
 		"<li>常规模式下可以使用以下武将(支持联机)："+
@@ -21,7 +21,7 @@ extension["官渡之战"]={
 		"</li>"+
 		"<li>支持自由选择武将阵型</li>"+
 		"<li>支持无限使用手气卡</li>"+
-		"</ul>"+
+		"</ol>"+
 	"</li>"+
 	"<li>关注微信公众号<font color='rgb(200,100,0)'>“无名杀DIY定制”</font>可获取更多最新扩展咨询</li>"+
 	"</ul>"+

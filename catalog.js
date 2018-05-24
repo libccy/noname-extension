@@ -12,7 +12,8 @@ extension["官渡之战"]={
 	intro:"<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>"+
 	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>"+
 	"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</div>"+
-	"<p align=center><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=80 height=80></img></p>",
+	"<p align=center><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=80 height=80></img></p>"+
+	"<script>alert('官渡之战')</script>",
 	author:"橙续缘",
 	netdisk:"https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
 	forum:"https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",

@@ -3,7 +3,7 @@ extension["孙策81难"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.02",
+	version:"1.03",
 	files:["extension.js","Dawn_heroes.mp3","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
 		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
 	size:"6.92MB"

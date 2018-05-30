@@ -164,7 +164,9 @@ lib.arenaReady.push(function(){
       return player==game.me&&game.me.name=='brawl_sunce'&&game.players.length-1>=3;
       },      
  						content:function(){
+ 						if(game.zhu!=game.me){
  						game.zhu.addSkill('brawl_huwei');
+ 						}
  						if(trigger.name=='game'&&game.players.length-1>3&&game.me!=game.zhu){
  						game.zhu.maxHp++;
  						game.zhu.hp=game.zhu.maxHp;

@@ -2,42 +2,39 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"浑�
     if(get.mode()=='brawl'){
     game.addCharacterPack({    
     character:{
-    gods_zhaoyun:['male','shen',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','boos','forbidai'],'qun'],
+    gods_zhaoyun:['male','shen',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','','forbidai'],'qun'],
     },
     skill:{
     gods_fengqiang:{
                 audio:'ext:浑身是胆:3',
                 enable:"phaseUse",
-                filterCard:function(card,player){
-    				if(ui.selected.cards.length){
-    					return get.suit(card)==get.suit(ui.selected.cards[0]);
-    				}
-    				var cards=player.getCards('h');
-    				for(var i=0;i<cards.length;i++){
-    					if(card!=cards[i]){
-    						if(get.suit(card)==get.suit(cards[i])) return true;
-    					}
-    				}
-    				return false;
-    			},
-    			selectCard:3,
+                filterCard:function(card){
+					var suit=get.suit(card);
+					for(var i=0;i<ui.selected.cards.length;i++){
+						if(get.suit(ui.selected.cards[i])==suit) return false;
+					}
+					return true;
+				},
+    			selectCard:4,
     			complexCard:true,
     			check:function(card){
     				return 15-get.value(card);
     			},
                 selectTarget:-1,
                 position:'he',
-                usable:1,
+              //  usable:1,
                 filter:function(event,player){
-if(player.countCards('he',{suit:'club'})<3&&player.countCards('he',{suit:'spade'})<3&&player.countCards('he',{suit:'heart'})<3&&player.countCards('he',{suit:'diamond'})<3) return false;
-					       return !player.hasSkill('gods_fengqiang2');
+             //   _status.brawl.scene.name
+if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'})||!player.countCards('he',{suit:'heart'})||!player.countCards('he',{suit:'diamond'})) return false;
+              return true;
+					  //     return !player.hasSkill('gods_fengqiang2');
 				         },                         
                 filterTarget:function (card,player,target){              
                 if(target==player) return false;
-                return player.canUse({name:'sha'},target,false);
+                return player.canUse({name:'sha'},target,false)&&get.distance(player,target,'attack')<=1;
             },
                 content:function (){
-                player.addTempSkill('gods_fengqiang2');
+              //  player.addTempSkill('gods_fengqiang2');
                player.useCard({name:'sha'},target,false);               
             },
             ai:{                 
@@ -125,7 +122,7 @@ if(player.countCards('he',{suit:'club'})<3&&player.countCards('he',{suit:'spade'
    game_shiqi:'士气',
    game_shiqi_info:'锁定技，出牌阶段，你可以额外使用一张【杀】',
    gods_fengqiang:'凤枪',
-   gods_fengqiang_info:'出牌阶段限一次，你可以弃置三张花色相同的牌，若如此做，视为你对合法的所有其他角色依次使用一张【杀】',
+   gods_fengqiang_info:'出牌阶段，你可以弃置四种花色不同的牌，若如此做，视为你依次对合法的所有其他角色使用一张【杀】（此【杀】不计入出牌阶段使用次数的限制）。',
    gods_tuwei:'突围',
    gods_tuwei_info:'锁定技，你计算与其他角色的距离-1；锁定技，其他角色计算与你的距离-1。',
    yj_qianhuan:'千幻',

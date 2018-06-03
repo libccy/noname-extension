@@ -519,11 +519,11 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：新增武将“阿斯玛”。更新日期：2018-06-01",
+	intro:"本扩展包含部分三国改版新武将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音。使用前请打开兼容模式以提升对不同扩展的兼容性！（此次更新：替换部分精美图片，建议先到extension里删了卡卡西、再不斩、药师兜、三代雷影、日向雏田、迪达拉、鬼灯幻月的图片文件再更新。更新日期：2018-06-03",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"20170601",
+	version:"20170603",
 	size:"40MB",
     version:4,
     files:

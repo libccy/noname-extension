@@ -59,13 +59,13 @@ extension["剧情战役"]={
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",
-	  intro:"更新内容：修复BUG、新增武将、新增卡牌（详情在游戏内查看）；更新注意事项：删除旧版/开启本扩展所有按钮(首局游戏)，打开“富甲天下”可获得更新奖励金币：5000(至少补至5000)；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年5月2日 21:19:32；欢迎加入無名殺玩家交流群，群号码：658152910。",
+	  intro:"更新内容：修复BUG、新增挑战武将、增加挑战金币奖励（详情在游戏内查看）；更新注意事项：删除旧版/开启本扩展所有按钮(首局游戏)，打开“富甲天下”可获得更新奖励金币：6666(至少补至6666)；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年6月12日 22:23:09；欢迎加入無名殺玩家交流群，群号码：658152910。",
   //intro:"（更新内容：修复已知BUG、修复国战武将/配音；新增9~13人场身份/国战；其它详细内容请查看游戏帮助）1.90%武将原创、99%武将含配音、高清图；2.包含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；3.食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；4.请认真查阅扩展按钮选择开/关；5.更新时间：2018年1月25日；6.欢迎加入无名杀玩家交流群，群号码：658152910。",
   size:"328.88MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:20180505,
-	files:["new_xiahouyuan.jpg","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
+  version:20180612,
+	files:["Coins_Azrael.jpg","new_xiahouyuan.jpg","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
 		"boss_tiaopi.jpg","boss_yinxian.jpg","boss_huaji.jpg","Armor.ogg","Armor.png","challenge_xiahouyuan.jpg",
 		"challenge_fengchi2.mp3","challenge_fengchi1.mp3","challenge_fengchi4.mp3","challenge_fengchi3.mp3",
 		"new_zhanghe.jpg","new_sunxiu.jpg","new_kanpo.ogg","new_bazhen.ogg","new_huoji.ogg",

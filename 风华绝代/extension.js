@@ -326,16 +326,16 @@ target:function(card,player,target){
                     //                 }
                     //             }
                     FHJD_update=[
-  '修复BUG、新增卡牌、刷金币BOSS',
+  '新增挑战武将、修复BUG、增加奖励',
 //		'优化武将图、新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',  
-		'本次更新赠送5000金币，若当前金币为负数，将金币补至5000（没打开“富甲天下”不会获得奖励）',
+		'本次更新赠送6666金币，若当前金币为负数，将金币补至6666（未开启“富甲天下”或未开启此扩展任意武将包则不会获得奖励）',
 		'————————————————————————————',
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
  //	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
  	'cards://["Charms"]',
- 	'players://["Coins_mizhu"]',
+ 	'players://["Coins_liubiao","Coins_yuanshu","Coins_yuanshao","Coins_mizhu","BOSS_shenhua","boss_simayi"]',
 	];
-	FHJD_version='1.8.0502';
+	FHJD_version='1.8.0612';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -394,10 +394,13 @@ target:function(card,player,target){
 		},
 		priority:Infinity,
 		forced:true,
+		filter:function(event,player){
+		return game.changeCoin&&game.me==player&&lib.character['Coins_yuanshu'];
+		},
 		content:function(){
 			if(lib.config.FHJD_version!=FHJD_version){
 			 if(game.changeCoin&&lib.skill['lol_yxlm']&&lib.skill['new_xgwj']){		
-			 var Coins=Math.max(5000-lib.config.coin,5000);		
+			 var Coins=Math.max(6666-lib.config.coin,6666);		
 			 game.changeCoin(Coins);
 			 game.me.logSkill('Money');
 			 game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins)+'</span>');
@@ -1956,8 +1959,698 @@ target:function(card,player,target){
 			};
 			};   
    //---------------------------------------lol裝備------------------------------------------//                 
-        if(config.lolzb){				
+        if(config.lolzb){		
+        if(get.mode()!='identity'&&get.mode()!='guozhan'){
         	game.addCardPack({  
+        card:{
+       Charms:{
+				audio:true,
+				fullskin:true,
+				type:'trick',
+				enable:true,
+				range:{attack:1},
+				selectTarget:1,
+				filterTarget:function(card,player,target){
+					if(player==target) return false;
+					return !target.hasSkill('Charms_skill');
+				},
+				content:function(){
+					target.addSkill('Charms_skill');
+					target.addSkill('Charms_skill2');
+				},
+				ai:{
+					basic:{
+						order:10.5,
+						useful:1,
+						value:4,
+					},
+					result:{
+						target:-2,
+	   			}
+			 	}
+			},
+       yinxue:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip1',
+				distance:{attackFrom:-1},
+        skills:['yinxue_skill'],
+				ai:{
+					basic:{
+						equipValue:function(card,player){
+							var num=6+player.maxHp-player.hp+(player.countCards('h','juedou'));
+							return num;
+						}
+					}
+				},				
+			   },
+         wujin:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip1',
+				distance:{attackFrom:-2},
+				ai:{
+					basic:{
+						equipValue:9,
+						}					
+				},
+				skills:['wujin_skill'],
+			   },    
+			   Armor:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip1',
+				ai:{
+					basic:{
+						equipValue:9.1,
+						}					
+				},
+				skills:['Armor','Armor3'],
+			   },    
+        zhenfen:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip2',				
+				ai:{
+					basic:{
+						equipValue:function(event,player){
+							var num=5+(player.countCards('h','tao'))+(player.maxHp-player.hp);
+							return num;
+					  	}
+						}					
+				},
+				skills:['zhenfen_skill'],
+			   },
+        kuangtu:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip2',
+				onEquip:function(){
+				player.maxHp++;
+				player.hp++;
+				player.update();
+				},
+				onLose:function(){
+				player.maxHp--;				
+				player.update();
+				},		
+				skills:['kuangtu_skill'],							
+				ai:{
+					basic:{
+						equipValue:function(event,player){
+							var num=7.5+(player.maxHp-player.hp);
+							return num;
+						}
+						},						
+				},				
+			   },
+        jingji:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip2',				
+				ai:{
+					basic:{
+						equipValue:function(event,player){
+							var num=5+player.hp+(player.countCards('h','tao'));
+							return num;
+						}
+						}					
+				},
+				skills:['jingji_skill'],
+			   },
+			     guardian:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip5',				
+				ai:{
+					basic:{
+						equipValue:function(event,player){
+						if(player.hp<=1){
+						return 9.9;
+						}
+						if(player.hp<=3){
+							var num=7+Math.min(2.5,player.maxHp-player.hp);
+							return num;
+							}
+							return 7;
+						}
+						}					
+				},
+				skills:['guardian'],
+			   },
+			   
+			   Magic:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip5',		
+				onEquip:function(){
+				player.draw();
+				},
+				onLose:function(){
+				player.draw();
+				},
+				ai:{
+					basic:{
+						equipValue:8,
+						}					
+				},
+				skills:['Magic'],
+			   },
+        fachuan:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip4',
+        distance:{globalFrom:-1},				
+				ai:{
+					basic:{
+						equipValue:7,
+						}					
+				},
+				skills:['fachuan_skill'],
+			   },
+			   shuiyin:{
+				fullskin:true,
+				type:'equip',
+				subtype:'equip3',
+        distance:{globalTo:1},				
+				ai:{
+					basic:{
+						equipValue:8.5,
+						}					
+				},
+								skills:['shuiyin_skill'],
+			   },
+			   Timereflux:{
+				type:'trick',
+			//	chongzhu:function(){
+				//	return get.mode()=='boss'||game.dead.length<1;
+		//		},
+				enable:function(){return _status.event.player.isDamaged();},
+			selectTarget:-1,
+				cardcolor:'red',
+				toself:true,
+				filterTarget:function(card,player,target){
+					return target==player&&target.isDamaged();
+				},
+				modTarget:true,
+			//	mode:['identity','guozhan','boss'],
+				fullskin:true,
+				//contentBefore:function(){},			
+				content:function(){	
+			 	'step 0'
+				player.logSkill('Timereflux1');
+					player.$skill('时光倒流','legend','metal');
+					game.delay(2);	
+					'step 1'
+				var dh=player.maxHp-player.hp;
+			  player.recover(dh);
+			  if(ui.cardPile.childElementCount>=8){
+					player.draw(Math.min(8,dh));
+					}else{
+					player.draw(ui.cardPile.childElementCount);
+	 				}
+				},
+				ai:{
+					basic:{
+						useful:[5,2],
+						value:[8,2],
+					},
+					order:function(card,player){
+						return 1+player.maxHp-player.hp;
+					},
+					result:{
+						player:function(player){
+						if(ui.cardPile.childElementCount>=8){
+							return 2.5*(Math.min(8,player.maxHp-player.hp));
+							}else{
+							return 1.5*(player.maxHp-player.hp)+ui.cardPile.childElementCount;
+							           }
+				          		}
+		           	}
+   	      		}
+       			},
+        },      
+       skill:{       
+       Charms_skill:{
+				trigger:{player:'phaseUseBegin'},
+				forced:true,
+				mark:true,
+				intro:{
+      				content:'card'
+        			},
+				content:function(){
+					"step 0"
+					player.judge(function(card){
+						if(get.suit(card)=='heart') return -1;
+						return -1.5;
+					})
+					"step 1"
+					if(result.judge<-1){
+						player.loseHp();
+					}else{
+					player.chooseToDiscard('he',true);
+					player.removeSkill(['Charms_skill','Charms_skill2']);
+		  			}
+					}
+			}, 
+			Charms_skill2:{
+			mod:{
+					globalTo:function(from,to,current){
+					return current-1;
+	     				}
+				  		}
+						},    
+        guardian:{
+				trigger:{player:'dieBefore'},
+				forced:true,
+				filter:function(event,player){
+					return player.getEquip('guardian');
+				},
+				content:function(){
+				 'step 0'
+				 player.$skill('守护天使','legend','metal');
+					game.delay(2);
+				 trigger.cancel();
+				 'step 1'
+				 if(player.maxHp<1){
+				 player.maxHp=2;
+				 player.update();
+				 }
+				 player.recover(2-player.hp)._triggered=null;
+				 player.draw(2)._triggered=null;
+				 player.turnOver(false);
+				 player.link(false);
+				 if(player.isMad()){
+				 player.unMad();
+				 }			
+				 if(player.hasSkill('fengyin')){
+				 player.removeSkill('fengyin');
+				 }
+				 'step 2'
+					var card=player.getEquip('guardian');
+					if(card){
+						player.discard(card);
+					}
+				},
+				mod:{
+    				targetEnabled:function(card){
+    					if(card.name=='guohe') return false;
+    		 		}
+    			}
+  			},
+        shuiyin_skill:{
+                trigger:{
+                    player:"turnOverBefore",target:["bingliangBefore","caomuBefore","lebuBefore"],                 
+                },
+                forced:true,
+                filter:function(event,player){
+                if(event.name=='turnOver'&&player.isTurnedOver())
+                return false;
+                return Math.random()<=0.3;
+                },
+                content:function (){
+                trigger.cancel();
+                if(trigger.name!='turnOver'){
+                game.log(trigger.card,'对',player,'失效');
+                }else{
+                game.log(player,'取消了翻面');
+                }
+              },
+            ai:{                       
+                    effect:{
+                        target:function (card,player,target,current){
+                        if(card.name=='lebu'||card.name=='bingliang'||card.name=='caomu') return 0.7;
+                 }
+               }
+             }               
+           },
+        Magic:{
+                trigger:{
+                player:'phaseBegin'
+                },
+                forced:true,
+                unique:true,    
+                priority:9999,         
+                filter:function (event,player){
+                return player.getEquip('Magic');
+                },
+                content:function (){                  
+                    var skills=[]; 
+                    for(var i in lib.character){ 
+                        for(var j=0;j<lib.character[i][3].length;j++){
+       var info=lib.skill[lib.character[i][3][j]];
+                            if(info&&(info.gainable||!info.unique&&!info.locked&&!info.mark&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
+                                skills.add(lib.character[i][3][j]); 
+                            }
+                        } 
+                    }
+                    var link=skills.randomGet();                    
+                    player.addTempSkill(link,{player:'phaseBefore'});                  
+                    game.log(player,'获得了技能','【'+get.translation(link)+'】');                 
+                },
+                ai:{
+	            				threaten:1.6,
+          				},
+          				mod:{
+					maxHandcard:function(player,num){
+						return num+2;				   	 
+				         }
+	      		  }
+	      		},
+	      	Armor:{
+          audio:true,
+          trigger:{source:'damageBegin'},
+          forced:true,
+          priority:-8,        
+           filter:function(event,player){
+           if(event.player==player)
+           return false;
+           return event.card&&event.card.name=='sha'&&!event.nature&&(event.player.hujia||!event.player.getEquip(2));
+						},
+          content:function(){
+          if(!trigger.player.getEquip(2)){
+          trigger.num+=1+Math.ceil(trigger.player.hujia/2);
+          }else{
+          trigger.num+=Math.ceil(trigger.player.hujia/2);
+          }
+         },
+         ai:{
+          threaten:1.5,
+          }       
+        },
+        Armor3:{
+          audio:true,
+          trigger:{source:'damageBegin'},
+          forced:true,
+          priority:-9,        
+           filter:function(event,player){
+           if(event.player==player)
+           return false;
+           return event.card&&event.card.name=='sha'&&!event.nature&&!event.player.hasSkill('Armor2');
+						},
+						    logTarget:'player',
+          content:function(){
+          trigger.player.addTempSkill('Armor2',{player:['recoverAfter','phaseAfter']});  
+         },
+         ai:{
+					unequip:true,
+					skillTagFilter:function(player,tag,arg){
+						if(arg&&arg.name=='sha') return true;
+						return false;
+       					}
+		      		}
+        },
+        Armor2:{
+          trigger:{player:'recoverBegin'},
+          forced:true,
+          priority:-9,   
+          mark:true,    
+          intro:{
+      				content:'回复的体力-1'
+        			},
+           filter:function(event){
+           return event.num>0;
+						},
+          content:function(){
+          trigger.num--;      
+         },
+         ai:{          
+            effect:{
+					target:function(card,player,target){												if(get.tag(card,'recover')&&player.hp>0&&player==target) return [1,-2];
+				          }
+            }
+          }       
+        },
+        fachuan_skill:{
+          audio:true,
+          trigger:{source:'damageBegin'},
+          forced:true,
+          priority:-8,        
+           filter:function(event,player){
+           if(event.player==player)
+           return false;
+           return event.nature;
+						},
+          content:function(){
+          trigger.num++;      
+         },
+         ai:{
+          threaten:1.3,
+          }       
+        },
+        jingji_skill:{
+          audio:true,
+          trigger:{player:'damageEnd'},
+          forced:true,                 
+           filter:function(event,player){           
+         return event.source!=player&&(event.source!=undefined)&&!event.nature;
+          },          
+          logTarget:"source",
+          priority:1,
+          content:function(){
+          game.delay(0.5);
+          player.line(trigger.source,'white');       
+          trigger.source.damage();
+         },
+        ai:{         
+          effect:{    					
+target:function(card,player,target,current){
+        if(get.tag(card,'damage')&&!get.tag(card,'poisonDamage')&&!get.tag(card,'thunderDamage')&&!get.tag(card,'fireDamage')){      
+        if(player.hasSkill('zhiming')||player.hasSkill('boss_pimi')||player.hasSkill('chuanxin')||player.hasSkill('new_chuanxin')||player.hasSkill('ltfb')||player.hasSkill('new_jueqing')||player.hasSkillTag('jueqing')||player.getEquip('guardian'))
+             return [1,-2];
+if(player.hp<target.hp&&target.hp>1&&!player.countCards('h','tao')){
+if(player.hp>1||player.hasSkill('buqu')||player.hasSkill('xinbuqu')||player.hasSkill('gzbuqu'))
+return [1,-2*get.tag(card,'damage')];
+return -2;
+                }			 
+              }                   							
+       					}
+      				}
+     			}
+    		},
+        zhenfen_skill:{
+           group:'zhenfen2_skill',					
+						audio:true,
+						trigger:{player:'recoverBegin'},
+           forced:true,           			
+						content:function(){
+           trigger.num++;
+           },
+           ai:{              
+            effect:{
+					target:function(card,player,target){												if(get.tag(card,'recover')&&player.maxHp-player.hp>=2) return [1,1.5];
+					}
+				}
+          }
+        },
+        zhenfen2_skill:{
+     		   audio:true,
+						trigger:{player:'damageBegin'},
+           forced:true,           
+           priority:-99999,
+           filter:function(event,player){
+           if(event.source&&event.source.hasSkillTag('unequip',false,event.card)) return false;
+							return event.num>1&&event.nature;
+           },					
+						content:function(){
+           trigger.num=1;
+           },
+         ai:{
+          threaten:1.2,         
+          effect:{    					target:function(card,player,target,current){
+           if(!player.hasSkillTag('unequip',false,card)&&card.name=='sha'&&card.nature&&(player.hasSkill('jiu')||player.hasSkill('reluoyi2')||player.hasSkill('new_luoyi2')||player.hasSkill('new_xionghan')||player.hasSkill('luoyi2')||player.hasSkill('wujin_skill')||player.hasSkill('fachuan_skill')||player.hasSkill('guding_skill')&&target.countCards('h')<1)){
+    						if(get.tag(card,'damage')){
+             return 0.1; 
+              }        
+            }
+							if(card.name=='sha'){
+	    						var equip1=player.getEquip(1);
+	    		
+	    						if(equip1&&(equip1.name=='qinggang'||equip1.name=='qibaodao')&&equip1.name!='zhuque') return 1; 
+               }
+    					}
+    				}
+    			}
+    		},
+        kuangtu_skill:{					
+						audio:true,
+						trigger:{player:'phaseBegin'},
+           forced:true,	
+           priority:2,
+						filter:function(event,player){       
+           return player.hp<player.maxHp;                     
+           },
+						content:function(){
+           player.recover();
+           }, 
+        ai:{
+          threaten:1.3,         
+          effect:{
+    					target:function(card,player,target){    						if(get.tag(card,'recover')&&player.countCards('h')<=player.hp&&player.hp>=player.maxHp-1) return [0,0];
+    					}
+    				}
+    			}
+    		},         
+        wujin_skill:{						
+						trigger:{source:'damageBegin'},          
+						filter:function(event){
+					if(event.parent.name=='_lianhuan'||event.parent.name=='_lianhuan2') return false;
+					if(event.card&&event.card.name=='sha'){
+						if(!event.nature&&Math.random()<=0.15) return true;
+					}
+					return false;
+				},
+		    		forced:true,
+          audio:true,          
+          priority:-9,
+						content:function(){
+           trigger.num=trigger.num*3;
+           },
+           ai:{
+          threaten:1.45,
+          }
+        },
+        yinxue_skill:{	
+        	group:'yinxue2_skill',		
+						audio:true,
+						trigger:{source:'damageBegin'},          
+						filter:function(event){
+					if(event.parent.name=='_lianhuan'||event.parent.name=='_lianhuan2') return false;
+					if(event.card&&(event.card.name=='sha'||event.card.name=='juedou')){
+						if(!event.nature) return true;
+					}
+					return false;
+				},
+			     	forced:true,
+            priority:10,          
+						content:function(){}},         
+        yinxue2_skill:{					
+						audio:true,
+						trigger:{source:'damageEnd'},          
+						filter:function(event){
+					if(event.parent.name=='_lianhuan'||event.parent.name=='_lianhuan2') return false;
+					if(event.card&&(event.card.name=='sha'||event.card.name=='juedou')){
+						if(!event.nature) return true;
+					}
+					return false;
+				},
+			     	forced:true,
+						content:function(){              
+           player.draw(Math.min(3,trigger.num-(player.maxHp-player.hp)));  
+      player.recover(Math.min(3,trigger.num));           
+           },
+         ai:{
+         threaten:1.4,
+           }
+         },
+       },   
+       translate:{
+         Armor:'凡性的提醒',
+         Magic:'魔法秘籍',
+         guardian:'守护天使',
+         guardian2:'守护天使',
+         shuiyin:'水银之靴',
+      //   mofashu:'魔法书',
+         fachuan:'法师之靴',
+         jingji:'荆棘之甲',
+         kuangtu:'狂徒铠甲',
+         zhenfen:'振奋铠甲',
+         wujin:'无尽之刃',
+         shuiyin_skill:'水银之靴',
+         Timereflux:'时光倒流',
+         Armor2_bg:'残',
+         Armor3:'残废',
+         Armor2:'残废效果',
+         Charms:'生死符',
+         Charms_skill:'生死符',
+         Charms_skill_bg:'符',
+     //    Charms_skill_info:'出牌阶段，对除你以外与你距离1以内的一名他角色使用，其他角色计算与该角色的距离-1；该角色出牌阶段须进行一次判定，若判定结果为♥，该角色弃置一张牌并解除此效果；否则该角色失去1点体力。',
+         Charms_info:'出牌阶段，对你攻击范围内的一名角色使用，其他角色计算与该角色的距离-1；该角色出牌阶段须进行一次判定，若判定结果为♥，该角色弃置一张牌并解除此效果；否则该角色失去1点体力。',
+         Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得残废效果（残废：回复的体力-1）直到其回合结束或其回复体力。',
+        // Timereflux_info:'出牌阶段，若场上有阵亡角色且你的体力上限不小于1，不指定目标角色使用。你令已阵亡的一名角色满体力复活并令其摸四张牌，最后你摸三张牌并失去X点体力上限（X为你体力上限的一半且向上取整），“奇策”无法转化使用此牌（挑战模式/没有阵亡角色，可以重铸此牌）。',
+         Timereflux_info:'出牌阶段，若你已受伤，对你自己使用，回复体力至体力上限并摸等量的牌（且最多不超过8张）。',
+         Magic_info:'<span style=\"color: gold\">锁定技</span>，回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、限定技和觉醒技除外），直到你的下一回合阶段开始；你的手牌上限+2；当【魔法秘籍】进入你装备区或从你的装备区失去时，你摸一张牌。',
+         guardian_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你弃置装备区里的【守护天使】。',
+         guardian2_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你失去装备区里的【守护天使】。',
+         shuiyin_info:'<span style=\"color: gold\">锁定技</span>，其他角色计算与你的距离+1；当你成为【乐不思蜀】、【兵粮寸断】或【草木皆兵】的目标或武将牌正面朝上被翻面时，30%几率取消之。',
+         shuiyin_skill_info:'<span style=\"color: gold\">锁定技</span>，其他角色计算与你的距离+1；当你成为【乐不思蜀】、【兵粮寸断】或【草木皆兵】的目标或武将牌正面朝上被翻面时，30%几率取消之。',
+         fachuan_skill:'法师之靴',
+         fachuan_skill_info:'<span style=\"color: gold\">锁定技</span>，当你计算与其他角色的距离时，始终-1；你对其他角色造成的属性伤害+1。',
+         fachuan_info:'<span style=\"color: gold\">锁定技</span>，当你计算与其他角色的距离时，始终-1；你对其他角色造成的属性伤害+1。',
+         kuangtu_skill:'狂徒铠甲',
+         kuangtu_skill_info:'<span style=\"color: gold\">锁定技</span>，当【狂徒铠甲】进入你装备区时，你的体力和体力上限+1；当你失去装备区里的【狂徒铠甲】时，你的体力上限-1；回合阶段开始时，若你已受伤，则你回复1点体力。',
+         kuangtu_info:'<span style=\"color: gold\">锁定技</span>，当【狂徒铠甲】进入你装备区时，你的体力和体力上限+1；当你失去装备区里的【狂徒铠甲】时，你的体力上限-1；回合阶段开始时，若你已受伤，则你回复1点体力。',
+         jingji_skill:'荆棘之甲',
+         jingji_skill_info:'<span style=\"color: gold\">锁定技</span>，每当你受到其他角色造成的非属性伤害后，伤害来源立即受到你造成的1点伤害；【荆棘之甲】不会无效化。',
+         jingji_info:'<span style=\"color: gold\">锁定技</span>，每当你受到其他角色造成的非属性伤害后，伤害来源立即受到你造成的1点伤害；【荆棘之甲】不会无效化。',
+         zhenfen_skill:'振奋铠甲',
+         zhenfen2_skill:'振奋铠甲',
+         zhenfen2_skill_info:'<span style=\"color: gold\">锁定技</span>，你回复的体力+1；当你即将受到多于1点属性伤害时，你最多承受1点属性伤害，防止多余的属性伤害。',
+         zhenfen_skill_info:'<span style=\"color: gold\">锁定技</span>，你回复的体力+1；当你即将受到多于1点属性伤害时，你最多承受1点属性伤害，防止多余的属性伤害。',
+         zhenfen_info:'<span style=\"color: gold\">锁定技</span>，你回复的体力+1；当你即将受到多于1点属性伤害时，你最多承受1点属性伤害，防止多余的属性伤害。',
+         wujin_skill:'无尽之刃',
+         wujin_skill_info:'<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】15%几率造成3倍伤害。',
+         wujin_info:'<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】15%几率造成3倍伤害。',
+         yinxue:'饮血剑',       
+         yinxue2:'饮血剑',
+         yinxue_skill:'饮血剑',
+         yinxue_skill_info:'<span style=\"color: gold\">锁定技</span>，每当你使用【决斗】或非属性【杀】对目标角色造成1点伤害，若你已受伤，则你回复1点体力，否则你摸1张牌（最多回复3点体力或摸3张牌）。',
+        yinxue_info:'<span style=\"color: gold\">锁定技</span>，每当你使用【决斗】或非属性【杀】对目标角色造成1点伤害，若你已受伤，则你回复1点体力，否则你摸1张牌（最多回复3点体力或摸3张牌）。',
+        },
+     list:
+     [['spade',9,'Armor'],
+     ['spade',5,'Charms'],
+     ['heart',10,'Timereflux'],
+     ['heart',1,'yinxue'],
+     ['club',8,'shuiyin'],
+     ['diamond',3,'Magic'],
+     ['heart',13,'guardian'],
+     ['spade',3,'wujin'],
+     ['club',12,'jingji'],
+     ['heart',7,'kuangtu'], 
+     ['diamond',13,'zhenfen'],
+     ['club',6,'fachuan'],
+     ['spade',7,'sha'],   
+     ['spade',9,'sha'],
+     ['club',8,'sha'],
+     ['heart',6,'sha'],
+     ['club',4,'sha'],
+     ['spade',10,'sha'],
+     ['heart',5,'sha'],
+     ['club',7,'shunshou'],
+     ['spade',5,'shunshou'],
+     ['diamond',3,'sha'],
+     ['club',8,'sha'], 
+     ['heart',4,'sha','fire'],
+     ['spade',11,'wuxie'],   
+     ['spade',11,'sha','thunder'],  
+     ['club',3,'sha','thunder'],
+     ['heart',13,'shan'],
+     ['diamond',6,'shan'],
+     ['heart',12,'shan'],   
+     ['club',1,'juedou'],
+     ['diamond',1,'juedou'],
+     ['diamond',10,'tao'],
+     ['club',2,'jiu'],
+     ['spade',9,'jiu'],  
+     ['club',11,'jiedao'],
+     ['heart',13,'tao'],
+     ['diamond',12,'wuxie'],
+     ['club',6,'lebu'],
+     ['club',8,'bingliang'],
+     ['spade',10,'tiesuo'],
+     ['spade',13,'tiesuo'],
+     ['heart',6,'wuzhong'],
+     ['club',3,'guohe'],
+     ['diamond',11,'huogong','fire'],
+     ['diamond',1,'wanjian'],
+     ['club',12,'nanman'],
+     ['club',1,'shandian','thunder'],
+     ['heart',5,'wugu'],
+     ['heart',1,'taoyuan']],
+      },'原创卡牌')
+     }else{
+     game.addCardPack({  
         card:{
        Charms:{
 				audio:true,
@@ -2141,17 +2834,24 @@ target:function(card,player,target){
 				chongzhu:function(){
 					return get.mode()=='boss'||game.dead.length<1;
 				},
-				enable:function(){return game.dead.length>0&&_status.event.player.maxHp>0},
+				enable:function(){return game.dead.length>0&&_status.event.player.maxHp>0;},
 				notarget:true,
 				cardcolor:'red',
-				mode:['identity','guozhan','brawl'],
+				mode:['identity','guozhan','boss'],
 				fullskin:true,
-				contentBefore:function(){
-					player.$skill('时光倒流','legend','metal');
-					game.delay(2);
-				},			
+			//	contentBefore:function(){
+			//	player.logSkill('Timereflux1');
+				//	player.$skill('时光倒流','legend','metal');
+			//		game.delay(2);
+			//	},			
 				content:function(){
-					"step 0"
+					"step 0"			
+				//	if(get.mode()!="brawl"){
+	//				var dh=player.maxHp-player.hp;
+			//		player.recover(dh);
+		//			player.draw(dh);
+			//		event.finish();
+				//	}		
 					var list=[];
 					for(var i=0;i<game.dead.length;i++){
 						list.push(game.dead[i].name);
@@ -2162,6 +2862,9 @@ target:function(card,player,target){
 					},true);
 					"step 1"
 					if(result.bool){
+					player.logSkill('Timereflux1');
+					player.$skill('时光倒流','legend','metal');
+					game.delay(2);
 						for(var i=0;i<game.dead.length&&game.dead[i].name!=result.buttons[0].link;i++);
 						var dead=game.dead[i];
 						player.line(dead,'green');
@@ -2177,7 +2880,11 @@ target:function(card,player,target){
 					"step 3"
 			//		if(player.maxHp>8){
 			//		player.maxHp=8;
+			  if(player.maxHp>=30000){
+			  player.loseMaxHp(Math.ceil(player.maxHp/2))._triggered=null;
+			  }else{
 					player.loseMaxHp(Math.ceil(player.maxHp/2));
+					}
 					player.draw(3);
 				},
 				ai:{
@@ -2207,7 +2914,7 @@ target:function(card,player,target){
    				}
        			},
         },       
-       skill:{   
+       skill:{
        Charms_skill:{
 				trigger:{player:'phaseUseBegin'},
 				forced:true,
@@ -2249,6 +2956,10 @@ target:function(card,player,target){
 					game.delay(2);
 				 trigger.cancel();
 				 'step 1'
+				 if(player.maxHp<1){
+				 player.maxHp=2;
+				 player.update();
+				 }
 				 player.recover(2-player.hp)._triggered=null;
 				 player.draw(2)._triggered=null;
 				 player.turnOver(false);
@@ -2292,7 +3003,7 @@ target:function(card,player,target){
             ai:{                       
                     effect:{
                         target:function (card,player,target,current){
-                        if(card.name=='lebu'||card.name=='bingliang'||card.name=='caomu') return 0;
+                        if(card.name=='lebu'||card.name=='bingliang'||card.name=='caomu') return 0.7;
                  }
                }
              }               
@@ -2312,7 +3023,7 @@ target:function(card,player,target){
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){
        var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
+                            if(info&&(info.gainable||!info.unique&&!info.locked&&!info.mark&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -2433,8 +3144,8 @@ target:function(card,player,target,current){
              return [1,-2];
 if(player.hp<target.hp&&target.hp>1&&!player.countCards('h','tao')){
 if(player.hp>1||player.hasSkill('buqu')||player.hasSkill('xinbuqu')||player.hasSkill('gzbuqu'))
-return [1,-1.5*get.tag(card,'damage')];
-return -1.5;
+return [1,-2*get.tag(card,'damage')];
+return -2;
                 }			 
               }                   							
        					}
@@ -2581,6 +3292,7 @@ return -1.5;
          Charms_info:'出牌阶段，对你攻击范围内的一名角色使用，其他角色计算与该角色的距离-1；该角色出牌阶段须进行一次判定，若判定结果为♥，该角色弃置一张牌并解除此效果；否则该角色失去1点体力。',
          Armor_info:'<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一名角色为目标后，无视其防具；<span style=\"color: gold\">锁定技</span>，你使用非属性【杀】对装备区里没有防具的其他角色造成的伤害+1（你使用【杀】造成的伤害无视对方50%护甲向上取整）；<span style=\"color: gold\">锁定技</span>，其他角色受到你使用的非属性【杀】造成的伤害后，该角色获得残废效果（残废：回复的体力-1）直到其回合结束或其回复体力。',
          Timereflux_info:'出牌阶段，若场上有阵亡角色且你的体力上限不小于1，不指定目标角色使用。你令已阵亡的一名角色满体力复活并令其摸四张牌，最后你摸三张牌并失去X点体力上限（X为你体力上限的一半且向上取整），“奇策”无法转化使用此牌（挑战模式/没有阵亡角色，可以重铸此牌）。',
+        // Timereflux_info_brawl:'出牌阶段，若你已受伤，对自己使用，回复体力至体力上限并摸等量的牌。',
          Magic_info:'<span style=\"color: gold\">锁定技</span>，回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、限定技和觉醒技除外），直到你的下一回合阶段开始；你的手牌上限+2；当【魔法秘籍】进入你装备区或从你的装备区失去时，你摸一张牌。',
          guardian_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你弃置装备区里的【守护天使】。',
          guardian2_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【过河拆桥】的目标；当你即将死亡时，防止之，然后你回复体力至2点并摸两张牌，且重置你的武将牌，最后你失去装备区里的【守护天使】。',
@@ -2661,6 +3373,7 @@ return -1.5;
      ['heart',5,'wugu'],
      ['heart',1,'taoyuan']],
       },'原创卡牌')
+     }
      };
      //---------------------------------------極端錦囊------------------------------------------//             
     if(config.jiduan){				
@@ -2811,8 +3524,8 @@ return -1.5;
 			},
 			content:function(){
 			if(game.me==game.boss){	
-			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-800</span>');
-				game.changeCoin(-800);
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-1000</span>');
+				game.changeCoin(-1000);
 				game.me.logSkill('Money');
 				}else{
 				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-75</span>');
@@ -2853,7 +3566,7 @@ return -1.5;
 			return game.me!=game.boss&&game.boss!=player&&player.identity!='zhong'&&(!game.changeCoin||lib.config.coin<300);
 			},
 			content:function(){
-  	game.log('未开启富甲天下/金币少于300，获得减益效果！');
+  	game.log('未开启“富甲天下”/金币不足，获得减益效果！');
 			var info=lib.character[player.name];
     						var skills=player.getSkills();
     						var list=[];
@@ -2886,7 +3599,7 @@ return -1.5;
   		game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-200</span>');
 				game.changeCoin(-200);
 				game.me.logSkill('Money');
-  	game.log('金币少于500，游戏失败！');
+  	game.log('失败原因：金币不足');
 			game.forceOver(false);
 			}else{
 			if(game.me==game.boss){
@@ -2960,16 +3673,16 @@ game.forceOver(false);
 			},
 			content:function(){
 			if(game.me==game.boss){	
-			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-400</span>');
-				game.changeCoin(-400);
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
+				game.changeCoin(-500);
 				game.me.logSkill('Money');
 				}else{
-				if(game.boss.name!='Coins_mizhu'){
+				if(game.boss.name!='Coins_yuanshu'&&game.boss.name!='Coins_mizhu'&&game.boss.name!='Coins_yuanshao'&&game.boss.name!='Coins_liubiao'){
 				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-50</span>');
 				game.changeCoin(-50);
 				game.me.logSkill('Money');
 				 }else{
-				var Coins=15+Math.floor(Math.random()*21);
+				var Coins=69+Math.floor(Math.random()*32);
 			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
 				game.changeCoin(-Coins);
 				game.me.logSkill('Money');
@@ -2985,7 +3698,11 @@ game.forceOver(false);
 			return game.me==game.boss&&game.me==player&&game.changeCoin&&game.roundNumber>8;
 			},
 			content:function(){
-			var Coins1=game.roundNumber-8+(20+Math.floor(Math.random()*16));
+			if(lib.character[game.boss.name][4].contains('Unaffected')){
+			var Coins1=(game.roundNumber-8)*(game.roundNumber-8)+(30+Math.floor(Math.random()*21));
+			}else{
+			var Coins1=(game.roundNumber-8)*2+(20+Math.floor(Math.random()*9));
+			}
 			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins1)+'</span>');
 				game.changeCoin(-Coins1);
 				game.me.logSkill('Money');
@@ -2999,7 +3716,7 @@ game.forceOver(false);
 			filter:function (event,player){   
 			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
 			return false;  
-			return (game.boss==player&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me||game.boss!=player&&game.me!=game.boss&&player.identity==game.me.identity&&player.identity!=event.player.identity)&&game.boss.name!='Coins_mizhu'&&game.changeCoin;
+			return (game.boss==player&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me||game.boss!=player&&game.me!=game.boss&&player.identity==game.me.identity&&player.identity!=event.player.identity)&&game.boss.name!='Coins_yuanshu'&&game.boss.name!='Coins_mizhu'&&game.boss.name!='Coins_yuanshao'&&game.boss.name!='Coins_liubiao'&&game.changeCoin;
 			},
 			content:function(){	
 			if(game.me==game.boss){
@@ -3012,7 +3729,11 @@ game.forceOver(false);
 				game.changeCoin(Coins1);
 				game.me.logSkill('Money');
 				}else{
-				var Coins2=100+Math.floor(Math.random()*201);
+				if(trigger.player.identity=='zhong'){
+				var Coins2=55+Math.floor(Math.random()*46);
+				}else{
+				var Coins2=125+Math.floor(Math.random()*176);
+				}
 				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
 				game.changeCoin(Coins2);
 				game.me.logSkill('Money');
@@ -3026,7 +3747,7 @@ game.forceOver(false);
 			filter:function (event,player){  
 			if(lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))   
 			return false;
-			return game.me==player&&game.changeCoin;
+			return game.me==player&&game.boss.name!='Coins_yuanshu'&&game.boss.name!='Coins_mizhu'&&game.boss.name!='Coins_yuanshao'&&game.boss.name!='Coins_liubiao'&&game.changeCoin;
 			},
 			content:function(){
 			if(game.me==game.boss){
@@ -3034,11 +3755,23 @@ game.forceOver(false);
 				game.changeCoin(-300);
 				game.me.logSkill('Money');
 				}else{
+				var num=0;
+                for(var i=0;i<game.players.length;i++){
+                if(game.players[i]==game.boss) continue;
+if(game.players[i].name!='old_yuanshu'&&game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.players[i].name!='shen_lvbu'&&game.players[i].name!='shen_zhugeliang'&&game.players[i].name!='shen_lvmeng'&&game.players[i].name!='shen_zhaoyun'&&game.players[i].name!='shen_caocao'&&game.players[i].name!='shen_simayi'&&game.players[i].name!='re_lvmeng'&&game.players[i].name!='re_simayi'&&game.players[i].name!='re_xiahoudun'&&game.players[i].name!='re_xuzhu'&&game.players[i].name!='re_zhaoyun'&&game.players[i].name!='re_luxun'&&game.players[i].name!='re_zhouyu'&&game.players[i].name!='re_daqiao'&&game.players[i].name!='re_guanyu'&&game.players[i].name!='re_zhangfei'&&game.players[i].name!='re_zhangliao'&&game.players[i].name!='re_liubei'&&game.players[i].name!='re_lidian'&&game.players[i].name!='re_ganning'&&game.players[i].name!='re_gongsunzan'&&game.players[i].name!='re_huanggai'&&game.players[i].name!='re_lvbu'&&game.players[i].name!='re_xushu'&&game.players[i].name!='re_caocao'&&game.players[i].name!='re_guojia'&&game.players[i].name!='re_machao'&&game.players[i].name!='caocao'&&game.players[i].name!='simayi'&&game.players[i].name!='xiahoudun'&&game.players[i].name!='zhangliao'&&game.players[i].name!='xuzhu'&&game.players[i].name!='guojia'&&game.players[i].name!='zhenji'&&game.players[i].name!='liubei'&&game.players[i].name!='guanyu'&&game.players[i].name!='zhangfei'&&game.players[i].name!='zhugeliang'&&game.players[i].name!='zhaoyun'&&game.players[i].name!='machao'&&game.players[i].name!='huangyueying'&&game.players[i].name!='sunquan'&&game.players[i].name!='ganning'&&game.players[i].name!='lvmeng'&&game.players[i].name!='huanggai'&&game.players[i].name!='zhouyu'&&game.players[i].name!='daqiao'&&game.players[i].name!='luxun'&&game.players[i].name!='sunshangxiang'&&game.players[i].name!='huatuo'&&game.players[i].name!='diaochan'&&game.players[i].name!='lvbu'&&game.players[i].name!='re_yuanshao'&&game.players[i].name!='re_lusu'&&game.players[i].name!='jiangwei'&&game.players[i].name!='liushan'&&game.players[i].name!='zhanghe'&&game.players[i].name!='dengai'&&game.players[i].name!='sunce'&&game.players[i].name!='zhangzhang'&&game.players[i].name!='caiwenji'&&game.players[i].name!='zuoci'&&game.players[i].name!='zhurong'&&game.players[i].name!='menghuo'&&game.players[i].name!='caopi'&&game.players[i].name!='xuhuang'&&game.players[i].name!='lusu'&&game.players[i].name!='sunjian'&&game.players[i].name!='jiaxu'&&game.players[i].name!='dongzhuo'&&game.players[i].name!='xiahouyuan'&&game.players[i].name!='caoren'&&game.players[i].name!='huangzhong'&&game.players[i].name!='sp_zhangjiao'&&game.players[i].name!='xiaoqiao'&&game.players[i].name!='zhoutai'&&game.players[i].name!='sp_zhugeliang'&&game.players[i].name!='weiyan'&&game.players[i].name!='pangtong'&&game.players[i].name!='xunyu'&&game.players[i].name!='dianwei'&&game.players[i].name!='taishici'&&game.players[i].name!='yanwen'&&game.players[i].name!='yuanshao'&&game.players[i].name!='pangde'&&game.players[i].name!='liuye'&&game.players[i].name!='quyi'&&game.players[i].name!='xizhicai'&&game.players[i].name!='sunqian'&&game.players[i].name!='wangyun'&&game.players[i].name!='taoqian'&&game.players[i].name!='miheng'&&game.players[i].name!='huangfusong'&&game.players[i].name!='dongyun'&&game.players[i].name!='mazhong'&&game.players[i].name!='kanze'&&game.players[i].name!='heqi'&&game.players[i].name!='zhaoxiang'&&game.players[i].name!='dongbai'&&game.players[i].name!='sp_liubei'&&game.players[i].name!='caochun'&&game.players[i].name!='wanglang'&&game.players[i].name!='yanbaihu'&&game.players[i].name!='tadun'&&game.players[i].name!='guansuo'&&game.players[i].name!='wangji'&&game.players[i].name!='sp_lvmeng'&&game.players[i].name!='jsp_huangyueying'&&game.players[i].name!='wenpin'&&game.players[i].name!='cuiyan'&&game.players[i].name!='sp_xiahoudun'&&game.players[i].name!='sp_zhangfei'&&game.players[i].name!='sp_ganning'&&game.players[i].name!='sp_daqiao'&&game.players[i].name!='daxiaoqiao'&&game.players[i].name!='zumao'&&game.players[i].name!='panfeng'&&game.players[i].name!='hanba'&&game.players[i].name!='sunluyu'&&game.players[i].name!='jsp_guanyu'&&game.players[i].name!='zhuling'&&game.players[i].name!='lifeng'&&game.players[i].name!='lingju'&&game.players[i].name!='sunru'&&game.players[i].name!='lingcao'&&game.players[i].name!='liuzan'&&game.players[i].name!='zhugeguo'&&game.players[i].name!='sp_caiwenji'&&game.players[i].name!='mateng'&&game.players[i].name!='wutugu'&&game.players[i].name!='zhanglu'&&game.players[i].name!='shixie'&&game.players[i].name!='mayunlu'&&game.players[i].name!='zhangbao'&&game.players[i].name!='sp_jiangwei'&&game.players[i].name!='zhugedan'&&game.players[i].name!='sp_machao'&&game.players[i].name!='sp_sunshangxiang'&&game.players[i].name!='sp_pangde'&&game.players[i].name!='fuwan'&&game.players[i].name!='kongrong'&&game.players[i].name!='caoang'&&game.players[i].name!='yangxiu'&&game.players[i].name!='zhangxingcai'&&game.players[i].name!='dingfeng'&&game.players[i].name!='hetaihou'&&game.players[i].name!='jiangqing'&&game.players[i].name!='jiangfei'&&game.players[i].name!='chendong'&&game.players[i].name!='sp_dongzhuo'&&game.players[i].name!='mifuren'&&game.players[i].name!='yuejin'&&game.players[i].name!='sp_caoren'&&game.players[i].name!='maliang'&&game.players[i].name!='sp_jiaxu'&&game.players[i].name!='sp_pangtong'&&game.players[i].name!='tianfeng'&&game.players[i].name!='zhangliang'&&game.players[i].name!='simalang'&&game.players[i].name!='chengyu'&&game.players[i].name!='sunhao'&&game.players[i].name!='ganfuren'&&game.players[i].name!='guanyinping'&&game.players[i].name!='zhugeke'&&game.players[i].name!='zhugejin'&&game.players[i].name!='xiahouba'&&game.players[i].name!='liuxie'&&game.players[i].name!='caohong'&&game.players[i].name!='jsp_zhaoyun'&&game.players[i].name!='sp_zhaoyun'&&game.players[i].name!='sp_diaochan'&&game.players[i].name!='gongsunzan'&&game.players[i].name!='re_yuanshu'&&game.players[i].name!='yuanshu'&&game.players[i].name!='chenlin'&&game.players[i].name!='buzhi'&&game.players[i].name!='mizhu'&&game.players[i].name!='litong'&&game.players[i].name!='jiling'&&game.players[i].name!='zangba'&&game.players[i].name!='zoushi'&&game.players[i].name!='zhangren'&&game.players[i].name!='caiyong'&&game.players[i].name!='jikang'&&game.players[i].name!='qinmi'&&game.players[i].name!='caojie'&&game.players[i].name!='xuezong'&&game.players[i].name!='xushi'&&game.players[i].name!='wuxian'&&game.players[i].name!='xinxianying'&&game.players[i].name!='zhangrang'&&game.players[i].name!='cenhun'&&game.players[i].name!='huanghao'&&game.players[i].name!='sunziliufang'&&game.players[i].name!='liyan'&&game.players[i].name!='sundeng'&&game.players[i].name!='liuyu'&&game.players[i].name!='guohuanghou'&&game.players[i].name!='xin_liru'&&game.players[i].name!='xin_yujin'&&game.players[i].name!='gaoshun'&&game.players[i].name!='hanhaoshihuan'&&game.players[i].name!='chengpu'&&game.players[i].name!='wuyi'&&game.players[i].name!='caozhen'&&game.players[i].name!='liaohua'&&game.players[i].name!='guanping'&&game.players[i].name!='zhoucang'&&game.players[i].name!='guotufengji'&&game.players[i].name!='quancong'&&game.players[i].name!='gongsunyuan'&&game.players[i].name!='quancong'&&game.players[i].name!='zhuzhi'&&game.players[i].name!='sunxiu'&&game.players[i].name!='zhangyi'&&game.players[i].name!='liuchen'&&game.players[i].name!='zhongyao'&&game.players[i].name!='caoxiu'&&game.players[i].name!='caorui'&&game.players[i].name!='panzhangmazhong'&&game.players[i].name!='xiahoushi'&&game.players[i].name!='zhuhuan'&&game.players[i].name!='yj_jushou'&&game.players[i].name!='guanzhang'&&game.players[i].name!='liru'&&game.players[i].name!='liufeng'&&game.players[i].name!='manchong'&&game.players[i].name!='xin_xushu'&&game.players[i].name!='madai'&&game.players[i].name!='jianyong'&&game.players[i].name!='guyong'&&game.players[i].name!='zhangsong'&&game.players[i].name!='chenqun'&&game.players[i].name!='sunluban'&&game.players[i].name!='zhonghui'&&game.players[i].name!='old_zhonghui'&&game.players[i].name!='caifuren'&&game.players[i].name!='fuhuanghou'&&game.players[i].name!='handang'&&game.players[i].name!='bulianshi'&&game.players[i].name!='caochong'&&game.players[i].name!='guohuai'&&game.players[i].name!='xusheng'&&game.players[i].name!='wuguotai'&&game.players[i].name!='xin_fazheng'&&game.players[i].name!='fazheng'&&game.players[i].name!='xin_masu'&&game.players[i].name!='masu'&&game.players[i].name!='yujin'&&game.players[i].name!='zhuran'&&game.players[i].name!='liubiao'&&game.players[i].name!='huaxiong'&&game.players[i].name!='caozhang'&&game.players[i].name!='xunyou'&&game.players[i].name!='lingtong'&&game.players[i].name!='zhangchunhua'&&game.players[i].name!='caozhi'&&game.players[i].name!='xushu'&&game.players[i].name!='wangyi'&&game.players[i].name!='yufan'&&game.players[i].name!='chengong'&&game.players[i].name!='old_chenqun'&&game.players[i].name!='old_maliang'&&game.players[i].name!='old_huaxiong'&&game.players[i].name!='old_quancong'&&game.players[i].name!='old_caoxiu') num++;
+     }
+							 if(num<1){
 				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-100</span>');
 				game.changeCoin(-100);
 				game.me.logSkill('Money');
-				 }
-				}
+				}else{
+				var Coins3=num*333;
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins3)+'</span>');
+				game.changeCoin(-Coins3);
+				game.me.logSkill('Money');
+	     			}
+  				 }
+		 		}
 			};
 			}else{
 			lib.skill._identity_loseSkills={   
@@ -3068,6 +3801,20 @@ game.forceOver(false);
 }
 				}
 			};		
+			lib.skill._boss_changeCoins5={  
+//			mode:['identity','brawl'],   
+   forbid:["boss","guozhan"],        
+			trigger:{global:'gameStart'},
+			popup:false,
+			forced:true,
+			filter:function (event,player){     
+			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&(lib.config.coin<500||!game.changeCoin);
+			},
+			content:function(){
+  	game.log('失败原因：未开启“富甲天下”/金币不足');
+			game.forceOver(false);
+			}
+			};
 			lib.skill._boss_changeCoins4={  
 //			mode:['identity','brawl'],   
    forbid:["boss","guozhan"],        
@@ -3075,29 +3822,917 @@ game.forceOver(false);
 			popup:false,
 			forced:true,
 			filter:function (event,player){     
-			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin;
+			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin&&lib.config.coin>=500;
 			},
 			content:function(){
 			if(lib.character[game.me.name][4].contains('Unaffected')&&game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected')){
-			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-450</span>');
-				game.changeCoin(-450);
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-500</span>');
+				game.changeCoin(-500);
 				}else{
-				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-150</span>');
-				game.changeCoin(-150);				
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-200</span>');
+				game.changeCoin(-200);				
   		}
    	game.me.logSkill('Money');
 		   		}
 		  	};		   
 			};			    
        game.addCharacterPack({
-       skill:{       
+       skill:{ 
+       Coins_mingyun:{
+       mode:["boss"],
+       group:['Coins_mingyun1','Coins_mingyun2'],
+       noLose:true,
+     noGain:true,
+     noDeprive:true,
+     unique:true,
+     locked:true,
+       },
+       Coins_mingyun1:{
+                trigger:{
+                    player:"phaseUseBegin",
+                },
+                forced:true,
+                unique:true,
+                noLose:true,
+     noGain:true,
+     noDeprive:true,
+                filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;              
+                return true;
+            },
+                content:function (){
+                if(Math.random()<=0.5){
+                player.draw(2+Math.floor(Math.random()*6));  
+                }else{
+                var he=player.get('he',{type:['delay','trick','equip']});
+                var he2=player.get('he',{name:['du','tao']});
+                if(he.length||he2.length){
+                player.discard(he);
+                player.discard(he2);
+                player.draw(he.length+he2.length)
+                }                
+                player.addTempSkill('paoxiao');
+                game.log(player,'获得了技能：咆哮');
+                }
+                }
+                },
+       Coins_mingyun2:{
+                trigger:{
+                    global:["dying","phaseDrawAfter"],
+                },
+                forced:true,
+                unique:true,
+                noLose:true,
+     noGain:true,
+     noDeprive:true,
+                priority:233,
+                filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;              
+                return event.player!=player;
+            },
+                content:function (){    
+                var Judge=['Draw','Discard','Recover','Remove'].randomGet();
+    						if(Judge=='Draw'){
+    						trigger.player.popup('吉');	
+    						trigger.player.draw(3);
+    						}
+    						if(Judge=='Recover'){
+    						trigger.player.popup('吉');	
+    						trigger.player.gainMaxHp();
+    						trigger.player.recover();
+    						}
+    						if(Judge=='Discard'){
+    						trigger.player.popup('凶');	
+    						trigger.player.discardPlayerCard(true,'he',3,trigger.player);
+    						}
+    						if(Judge=='Remove'){
+    						trigger.player.popup('凶');	
+    						var info=lib.character[trigger.player.name];
+    						var skills=trigger.player.getSkills();
+    						var list=[];
+    						for(var i=0;i<info[3].length;i++){
+                                if(lib.skill[info[3][i]].fixed||lib.skill[info[3][i]].zhuSkill) continue;
+    							if(skills.contains(info[3][i])){
+    								list.push(info[3][i]);
+    							}
+    						}
+    						if(list.length){
+    							var skill=list.randomGet();
+    							trigger.player.popup(skill);				  
+				  game.log(trigger.player,'失去了技能“',skill,'”')
+				  trigger.player.removeSkill(skill);
+    			}else{
+    			trigger.player.loseMaxHp()._triggered=null;
+    			}
+    			}
+    			}
+    			},
+       Coins_sishen:{
+       mode:["boss"],
+       group:['Coins_sishen1','Coins_sishen2','Coins_sishen3','Coins_sishen4','Coins_sishen5','boss_immune'],
+       noLose:true,
+     noGain:true,
+     noDeprive:true,
+     unique:true,
+     locked:true,
+       },
+       Coins_sishen1:{
+                trigger:{
+                    global:"phaseEnd",
+                },
+                direct:true,
+                unique:true,
+                noLose:true,
+     noGain:true,
+     noDeprive:true,
+                filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;              
+                return Math.random()<=game.roundNumber/100;
+            },
+                content:function (){        
+                "step 0"      
+    player.chooseTarget(get.prompt('Coins_sishen1','一名角色'),function(card,player,target){
+                    if(player==target) return false;
+                    return true;
+                }).set('ai',function(target){
+                    return -ai.get.attitude(_status.event.player,target);
+                });
+                game.delay(0.5);   
+                "step 1"
+                if(result.bool){                       
+player.logSkill('Coins_sishen1',result.targets);        
+         event.targets=result.targets
+         if(result.targets.length>=1){  
+         if(game.me==game.boss){
+				var Coins2=100+Math.floor(Math.random()*100);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
+				game.changeCoin(Coins2);
+				game.me.logSkill('Money');
+				}else{
+				var Coins=100+Math.floor(Math.random()*100);
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
+				game.changeCoin(-Coins);
+				game.me.logSkill('Money');
+				}
+         event.targets[0].die({source:player})._triggered=null;                    
+       }                 
+                else{
+                    event.finish();         
+                }           
+        }
+            },
+            ai:{
+		  	threaten:2,
+					effect:{
+						target:function(card,player,target,current){
+						 if(card.name=='sha'||card.name=='juedou') return [1,-9];
+							if(card.name=='shandian'||card.name=='fulei') return [1,-999];
+	       					}
+      					}
+     				}
+       },
+       Coins_sishen2:{
+				audio:false,
+				trigger:{player:['phaseBegin','loseHpEnd','damageEnd'],source:'damageEnd'},
+				priority:99,
+				unique:true,
+				popup:false,
+				forced:true,
+				usable:2,
+				logTarget:'player',
+				filter:function(event,player){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;
+					return true;
+				},
+				content:function(){
+				  var list=[];
+					var list2=[];
+					var players=game.players.concat(game.dead);
+					for(var i=0;i<players.length;i++){
+						list2.add(players[i].name);
+						list2.add(players[i].name1);
+						list2.add(players[i].name2);
+					}
+					for(var i in lib.character){
+						if(lib.character[i][4].contains('boss')) continue;
+						if(lib.character[i][4].contains('minskin')) continue;
+						if(list2.contains(i)) continue;
+						list.push(i);
+					}
+					var name=list.randomGet();
+					game.playAudio('die',name);
+				  }
+				  },
+				  Coins_sishen3:{
+		 		forced:true,
+     noLose:true,
+     noGain:true,
+     noDeprive:true,
+     popup:false,
+     nopo:true,
+				filter:function(event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;
+       return player.hp!=Infinity||player.maxHp!=Infinity;
+       },
+       unique:true,
+       priority:999,
+        trigger:{global:['changeHp','dying','loseEnd','useCard','useCardEnd','gainEnd','phaseEnd','phaseUseBegin','phaseDrawAfter','phaseUseEnd','phaseBegin']},			
+				content:function(){
+				  player.maxHp=Infinity;
+				  player.hp=player.maxHp;
+				  player.update();
+				   }
+				  },
+				  Coins_sishen4:{
+		 		forced:true,
+     noLose:true,
+     noGain:true,
+     noDeprive:true,
+     popup:false,
+     nopo:true,
+				filter:function(event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;
+       return event.card&&(event.card.name=='shandian'||event.card.name=='fulei')&&event.cards[0]&&event.cards[0]==event.card&&Math.random()<=game.roundNumber/100;
+       },
+       unique:true,
+       priority:999,
+        trigger:{player:['damageEnd']},			
+				content:function(){
+				if(game.me!=game.boss){
+				var Coins2=1000+Math.floor(Math.random()*3501);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
+				game.changeCoin(Coins2);
+				game.me.logSkill('Money');
+				}else{
+				var Coins=1000+Math.floor(Math.random()*3501);
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
+				game.changeCoin(-Coins);
+				game.me.logSkill('Money');
+				}
+				player.die()._triggered=null;
+				}
+				},
+				Coins_sishen5:{
+		 		forced:true,
+     noLose:true,
+     noGain:true,
+     noDeprive:true,
+     popup:false,
+     nopo:true,
+				filter:function(event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_Azrael'&&player.name2!='Coins_Azrael') return false;
+       return event.card&&(event.card.name=='juedou'||event.card.name=='sha')&&event.cards[0]&&event.cards[0]==event.card&&Math.random()<=game.roundNumber/10000;
+       },
+       unique:true,
+       priority:999,
+        trigger:{player:['damageEnd']},			
+				content:function(){
+				if(game.me!=game.boss){
+				var Coins2=900+Math.floor(Math.random()*2601);
+				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
+				game.changeCoin(Coins2);
+				game.me.logSkill('Money');
+				}else{
+				var Coins=800+Math.floor(Math.random()*2201);
+				game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
+				game.changeCoin(-Coins);
+				game.me.logSkill('Money');
+				}
+				player.die()._triggered=null;
+				}
+				},
+       Coins_fuxi:{
+				audio:1,
+				trigger:{global:'dying'},
+				priority:99,
+				unique:true,
+				logTarget:'player',
+				check:function (event,player){              
+                return ai.get.attitude(player,event.player)<0;
+            },            
+				filter:function(event,player){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_liubiao'&&player.name2!='Coins_liubiao') return false;
+					return player!=_status.currentPhase&&event.player!=player&&event.player.countCards('he');
+				},
+				content:function(){
+				  trigger.player.discard(true,trigger.player.get('he',{type:['trick','delay','equip']}));
+				  }
+				  },
+				   Coins_fuxi1:{
+				   mode:["boss"],
+				   audio:true,
+				   unique:true,
+				   },
+				   Coins_hanshi1:{
+				   audio:true,
+				   mode:["boss"],
+				   unique:true,
+				   },
+       Coins_hanshi:{
+       group:['Coins_hanshi2','Coins_hanshi3'],
+				audio:'ext:风华绝代:2',
+				trigger:{player:['recoverBegin','drawBegin']},
+				forced:true,
+				unique:true,
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_liubiao'&&player.name2!='Coins_liubiao') return false;
+					return event.name=='recover'&&player.hp<player.maxHp-1||event.name=='draw';
+				},
+				content:function(){
+				if(trigger.name=='recover'){
+					trigger.num+=game.players.length-1+Math.floor(game.roundNumber/5);
+					}else{
+					trigger.num=Math.min(ui.cardPile.childElementCount,trigger.num+game.players.length-1+Math.floor(game.roundNumber/5));
+					}
+				},
+				ai:{
+					threaten:3
+				},
+				mod:{
+					maxHandcard:function(player,num){
+					return num+(game.players.length-1+Math.floor(game.roundNumber/5));
+					},
+					globalFrom:function (from,to,current){
+            return current-(game.players.length-1+Math.floor(game.roundNumber/5));
+        },
+			 	  cardUsable:function(card,player,num){
+						if(card.name=='sha') return num+(game.players.length-1+Math.floor(game.roundNumber/5));
+					 	}
+			 	}
+			},
+			    Coins_hanshi2:{
+			    trigger:{player:'turnOverBefore'},
+				priority:20,
+				forced:true,
+				audio:'ext:风华绝代:2',
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_liubiao'&&player.name2!='Coins_liubiao') return false;
+					return !player.isTurnedOver();
+				},
+				content:function(){
+					trigger.cancel();
+					game.log(player,'取消了翻面');
+					 }
+				},
+				Coins_hanshi3:{
+				trigger:{player:'phaseJudgeBegin'},
+				forced:true,
+				popup:false,
+				content:function(){
+				player.logSkill('Coins_hanshi2');
+					player.discard(player.getCards('j').randomGet());
+				},
+				filter:function(event ,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_liubiao'&&player.name2!='Coins_liubiao') return false;
+					return player.countCards('j')>0;
+				},
+				ai:{
+				 noturn:true,
+					effect:{
+	 				player:function (card,player,target){
+      if(card.name=='tiesuo') return [1,-99];
+      },
+						target:function(card,player,target,current){
+						if(get.tag(card,'draw')){
+						return [1,1+game.players.length+Math.floor(game.roundNumber/5)];
+						}
+						if(get.tag(card,'recover')&&target==player){
+						if(player.hp<player.maxHp-1||player.countCards('h','tao')>1)
+						return [1,2+game.players.length-1+Math.floor(game.roundNumber/5)];
+						return [0,0];
+						}
+							if(get.type(card)=='delay'&&target.countCards('j')==0) return 0.1;
+						}
+					}
+				}
+			},
+       Coins_changeBoss:{
+       mode:["boss"],
+				trigger:{global:'gameDrawAfter'},
+				forced:true,
+				priority:15,
+				fixed:true,
+				globalFixed:true,
+				unique:true,
+				filter:function(event,player){
+					if(lib.config.mode!='boss') return false;
+					return (game.me!=game.boss||game.changeCoin)&&player.name=='Coins_yuanshu';
+				},
+				content:function(){
+					'step 0'
+					game.delay();
+					'step 1'
+					if(game.me!=game.boss){
+						game.boss.changeSeat(6);
+					}
+					else{
+						game.boss.nextSeat.changeSeat(3);
+						game.boss.previousSeat.changeSeat(5);
+					}
+		//			game.changeBoss('boss_huoshenzhurong');
+					game.delay(0.5);
+					'step 2'
+					game.addBossFellow(game.me==game.boss?1:7,'Coins_jiling');
+					game.addBossFellow(game.me==game.boss?7:5,'Coins_sunce');
+					'step 3'
+					if(game.bossinfo){
+						game.bossinfo.loopType=2;
+					}
+				}
+			},  
+			    Coins_duxian2:{
+			    audio:'xueyi',
+			    mode:["boss"],
+       unique:true,
+			    },
+			    Coins_yongchang2:{
+			    audio:'weidi2',
+			    mode:["boss"],
+       unique:true,
+			    },
+			    Coins_yongsi2:{
+			    audio:'yongsi',
+			    mode:["boss"],
+       unique:true,
+       },
+       Coins_yongsi:{
+				group:['Coins_yongsi1','Coins_yongsi3'],
+				ai:{
+					threaten:2.5
+				}
+			},
+			Coins_yongsi1:{
+				audio:'yongsi',
+				trigger:{player:'phaseDrawBegin'},
+				forced:true,
+				filter:function(event,player){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshu'&&player.name2!='Coins_yuanshu') return false;
+					return true;
+					},
+				content:function(){
+					var list=['wei','shu','wu','qun','shen','mo','xian','wang','yao','dan','qin','qi','zhao','yan','chu','han'];
+					var num=game.countPlayer(function(current){
+						if(list.contains(current.group)){
+							list.remove(current.group);
+							return true;
+						}
+					});
+					trigger.num+=num;
+				}
+			},
+			Coins_yongsi3:{
+				audio:'yongsi',
+				trigger:{player:'phaseDiscardBegin'},
+				forced:true,
+				content:function(){
+					var list=['wei','shu','wu','qun','shen','mo','xian','wang','yao','dan','qin','qi','zhao','yan','chu','han'];
+					var num=game.countPlayer(function(current){
+						if(list.contains(current.group)){
+							list.remove(current.group);
+							return true;
+						}
+					});
+					player.chooseToDiscard(num,'h',true);
+				}
+			},
+			    Coins_yongchang:{
+				audio:true,
+				trigger:{global:'dieEnd'},
+				forced:true,
+				unique:true,
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshu'&&player.name2!='Coins_yuanshu') return false;
+    return event.player!=player&&event.player.identity=='zhong';
+    },
+				content:function(){
+				 player.recover(player.maxHp-player.hp);
+					player.draw(player.maxHp-player.countCards('h'));
+		  	},
+		  	ai:{
+		  	threaten:3,
+					effect:{
+						target:function(card,player,target){
+							if(get.tag(card,'recover')&&player==target&&player.hp<player.maxHp) return [1,3];
+						}
+					}
+				}
+			},
+			    Coins_duxian:{
+			     audio:'xueyi',
+            priority:10,
+            mode:["boss"],
+            unique:true,
+            trigger:{global:'dying'},
+            filter:function(event,player){
+            if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshu'&&player.name2!='Coins_yuanshu') return false;
+           return event.player!=player&&event.player==_status.currentPhase;
+            },
+			prompt:function(event,player){
+				return '是否对'+get.translation(event.player)+'发动【妒贤】？'
+			},
+          check:function (event,player){              
+                return ai.get.attitude(player,event.player)<0;
+            },
+            logTarget:'player',
+            content:function(){          
+				    trigger.player.loseHp(); 
+				    if(player.countCards('h','du')){
+				    trigger.player.gain(player.get('h','du'));  
+				    trigger.player.$give(player.countCards('h','du'),player);
+				    } 
+           },
+            ai:{
+                expose:0.3,
+                threaten:3
+            }
+        },
+       _Coins_sj:{
+      mode:["boss"],
+			trigger:{global:'phaseBefore'},
+			forced:true,
+     unique:true,
+     popup:false,
+     filter:function (event,player){                
+     return game.roundNumber<1&&player.identity=='zhong'&& (player.name=='Coins_sunce'||player.name=='Coins_jiling')&&game.me!=game.boss;
+    },
+			content:function(){
+			console.log(player);
+			player.disableSkill = function (all) {
+   player.draw();
+   };
+   player.clearSkills = function (all) {
+   player.draw();
+   };
+       }
+     },           
+       Coins_yinghun1:{
+       audio:'yinghun_sunce1',
+       },
+       Coins_yinghun2:{
+       audio:'yinghun_sunce2',
+       },
+       Coins_yinghun:{
+				audio:['yinghun_sunce',2],
+				trigger:{player:'phaseBegin'},
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhong'||player.name!='Coins_sunce'&&player.name2!='Coins_sunce') return false;
+					return player.hp<player.maxHp;
+				},
+				direct:true,
+				content:function(){
+					"step 0"
+					player.chooseTarget(get.prompt('yinghun'),function(card,player,target){
+						return player!=target;
+					}).set('ai',function(target){
+						var player=_status.event.player;
+						if(player.maxHp-player.hp==1&&target.countCards('he')==0){
+							return 0;
+						}
+						if(get.attitude(_status.event.player,target)>0){
+							return 10+get.attitude(_status.event.player,target);
+						}
+						if(player.maxHp-player.hp==1){
+							return -1;
+						}
+						return 1;
+					});
+					"step 1"
+					if(result.bool){
+						event.num=player.maxHp-player.hp;
+						if(player.countCards('e')>=player.hp){
+							event.num=player.maxHp;
+						}						
+						event.target=result.targets[0];
+						if(event.num==1){
+							event.directcontrol=true;
+						}
+						else{
+							var str1='摸'+get.cnNumber(event.num,true)+'弃一';
+							var str2='摸一弃'+get.cnNumber(event.num,true);
+							player.chooseControl(str1,str2,function(event,player){
+								return _status.event.choice;
+							}).set('choice',get.attitude(player,event.target)>0?str1:str2);
+							event.str=str1;
+						}
+					}
+					else{
+						event.finish();
+					}
+					"step 2"
+					if(event.directcontrol||result.control==event.str){
+					player.logSkill('Coins_yinghun1',event.target);
+						event.target.draw(event.num);
+						event.target.chooseToDiscard(true,'he');
+					}
+					else{
+					 player.logSkill('Coins_yinghun2',event.target);
+						event.target.draw();
+						event.target.chooseToDiscard(event.num,true,'he');
+					}
+				},
+				ai:{
+					threaten:function(player,target){
+						if(target.hp==1||target.countCards('e')>=target.hp) return 2;
+						if(target.hp==target.maxHp) return 0.5;
+						if(target.hp==2) return 1.5;
+						return 0.5;
+					},
+					maixie:true,
+					effect:{
+						target:function(card,player,target){
+							if(target.maxHp<=3) return;
+							if(get.tag(card,'damage')){
+								if(target.hp==target.maxHp) return [0,1];
+							}
+							if(get.tag(card,'recover')&&player==target&&player.hp>=player.maxHp-1) return [0,0];
+						}
+					}
+				}
+			},
+			   Coins_yingzi:{
+				audio:['yingzi_sunce',2],
+				trigger:{player:'phaseDrawBegin'},
+				forced:true,
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhong'||player.name!='Coins_sunce'&&player.name2!='Coins_sunce') return false;
+					return true;
+					},
+				content:function(){
+					trigger.num++;
+				},
+				ai:{
+					threaten:1.5
+				},
+				mod:{
+					maxHandcard:function(player,num){
+						if(player.hp<player.maxHp) return num+player.maxHp-player.hp;
+					}
+				}
+			},
+       Coins_shuangren:{
+				trigger:{player:'phaseUseBegin'},
+				direct:true,
+				priority:15,
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhong'||player.name!='Coins_jiling'&&player.name2!='Coins_jiling') return false;
+					return player.countCards('h');
+					},
+				content:function(){
+					'step 0'
+					var goon;
+					if(player.needsToDiscard()>1){
+						goon=player.hasCard(function(card){
+							return card.number>10&&get.value(card)<=5;
+						});
+					}
+					else{
+						goon=player.hasCard(function(card){
+							return (card.number>=9&&get.value(card)<=6)||get.value(card)<=3;
+						});
+					}
+					player.chooseTarget(get.prompt('Coins_shuangren'),function(card,player,target){
+						return target!=player&&target.countCards('h');
+					}).set('ai',function(target){
+						var player=_status.event.player;
+						if(_status.event.goon&&get.attitude(player,target)<0||_status.event.goon){
+							return get.effect(target,{name:'sha'},player,player);
+						}
+						return 0;
+					}).set('goon',goon);
+					'step 1'
+					if(result.bool){
+						var target=result.targets[0];
+						event.target=target;
+						player.logSkill('shuangren',target);
+						player.chooseToCompare(target);
+					}
+					else{
+						event.finish();
+					}
+					'step 2'
+					if(result.bool){
+					 player.draw(3);
+						var target=event.target;
+						if(target.identity!='ye'&&target.identity!='unknown'&&game.hasPlayer(function(current){
+							if(!player.canUse('sha',current,false)) return false;
+							if(target==current) return false;
+							if(get.mode()=='guozhan'){
+								return target.identity==current.identity;
+							}
+							return true;
+						})){
+							var str='对一名';
+							if(get.mode()=='guozhan'){
+								str+=get.translation(target.identity)+'势力的';
+							}
+							player.chooseTarget(str+'角色使用一张杀',true,function(card,player,target){
+								if(!player.canUse('sha',target,false)) return false;
+								if(get.mode()=='guozhan'){
+									return target.identity==_status.event.identity;
+								}
+								return true;
+							}).set('ai',function(target){
+								var player=_status.event.player;
+								return get.effect(target,{name:'sha'},player,player);
+							}).set('identity',target.identity);
+						}
+						else{
+							player.useCard({name:'sha'},target,false);
+							event.finish();
+						}
+					}
+					else{
+						trigger.cancel();
+						event.finish();
+					}
+					'step 3'
+					if(result.bool&&result.targets&&result.targets.length){
+					 result.targets[0].addTempSkill('fengyin');
+						player.useCard({name:'sha'},result.targets[0],false);
+					}
+				}
+			},
+       Coins_mingmens:{
+       mode:["boss"],
+       unique:true,
+       },
+       Coins_guaduans:{
+       mode:["boss"],
+       unique:true,
+       },
+       Coins_jianzhens:{
+       mode:["boss"],
+       unique:true,
+       },
+       Coins_qianzhis:{
+       mode:["boss"],
+       unique:true,
+       },
+       Coins_mingmen:{
+       audio:2,
+       group:['Coins_mingmen2','Coins_mingmen1'],
+       unique:true,
+       locked:true,
+       },
+       Coins_mingmen1:{
+				audio:true,
+				trigger:{player:'phaseDrawBegin'},
+				forced:true,
+				filter:function(event,player){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshao'&&player.name2!='Coins_yuanshao') return false;
+					return true;
+				},
+				content:function(){
+					trigger.num+=1+Math.floor((player.maxHp-player.hp)/9);
+				},
+				ai:{
+					threaten:5,
+				}
+			},
+			   Coins_qianzhi:{
+   		audio:true,
+				trigger:{target:'shaBegin'},
+				direct:true,
+				unique:true,
+				locked:true,
+				filter:function(event,player){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshao'&&player.name2!='Coins_yuanshao') return false;
+					return event.player!=player;
+				},
+		//		logTarget:'player',
+				content:function(){
+					"step 0"
+					var att=get.attitude(player,trigger.player);
+					player.choosePlayerCard(get.prompt('Coins_qianzhi',trigger.player),'he',trigger.player).ai=function(button){
+						if(att<0)
+						if(button.name=='tengjia')
+						return 3.5;
+						if(button.name=='zhuge')
+						return trigger.player.countCards('h','sha')/1.5;
+						var val=get.buttonValue(button);
+						if(att>0) return -val;
+						return val;
+					};
+					"step 1"
+					if(result.bool){
+					player.logSkill('Coins_qianzhi',trigger.player);
+						trigger.player.discard(result.links);
+				    }
+	  			}
+				},
+				Coins_mingmen2:{
+				unique:true,
+				mod:{
+					judge:function(player,result){
+						if(_status.event.type=='phase'){
+							if(result.bool==false){
+								result.bool=null;
+							}
+							else{
+								result.bool=false;
+							}
+						}
+					}
+				},
+				trigger:{player:'turnOverBefore'},
+				priority:20,
+				forced:true,
+				audio:true,
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshao'&&player.name2!='Coins_yuanshao') return false;
+					return !player.isTurnedOver();
+				},
+				content:function(){
+					trigger.cancel();
+					game.log(player,'取消了翻面');
+				},
+				ai:{
+					noturn:true,
+					nodu:true,
+					effect:{
+						target:function(card,player,target){
+						if(card.name=='du') return [1,3];
+							if(get.type(card)=='delay') return 0.5;
+						}
+					}
+				}
+			},
+       Coins_guaduan:{
+       unique:true,
+       mod:{
+					maxHandcard:function(player,num){
+					if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshao'&&player.name2!='Coins_yuanshao') return;
+						return num=player.maxHp-player.hp;
+				},
+				cardEnabled:function(card,player){
+				if(player!=_status.currentPhase){
+				if(card.name=='wuxie') return false;
+				}
+       },
+       cardRespondable:function(card,player){
+      if(player!=_status.currentPhase){
+						if(card.name=='wuxie') return false;
+						}
+				},
+       cardSavable:function(card,player){
+      if(player!=_status.currentPhase){
+						if(card.name=='wuxie') return false;
+			  			}
+  				}
+ 			}
+		},  
+       Coins_jianzhen:{
+				audio:2,
+				enable:'phaseUse',
+				viewAs:{name:'wanjian'},
+				filter:function(event,player){
+				if(get.mode()=='boss'&&player.identity!='zhu'||player.name!='Coins_yuanshao'&&player.name2!='Coins_yuanshao') return false;
+				return player.countCards('h',{type:'delay'})||player.countCards('h',{type:'trick'});
+				},
+				filterCard:function(card,player){
+					return get.type(card)=='delay'||get.type(card)=='trick';
+				},
+				position:'he',
+				check:function(card){
+					var player=_status.event.player;
+					var targets=game.filterPlayer(function(current){
+						return player.canUse('wanjian',current);
+					});
+					var num=0;
+					for(var i=0;i<targets.length;i++){
+						var eff=get.sgn(get.effect(targets[i],{name:'wanjian'},player,player));
+						if(targets[i].hp==1){
+							eff*=1.5;
+						}
+						num+=eff;
+					}
+					if(!player.needsToDiscard(-1)){
+						if(targets.length>=7){
+							if(num<2) return 0;
+						}
+						else if(targets.length>=5){
+							if(num<1.5) return 0;
+						}
+					}
+					return 15-get.value(card);
+				},
+				ai:{
+					basic:{
+						order:function(){
+						if(game.players.length<3)
+						return 5;
+						return 12;
+						   }
+	  				}
+	 			}
+			},
        Coins_zizhu:{
 				audio:'ziyuan',
 				trigger:{global:'phaseDrawBegin'},
 				forced:true,
 				unique:true,
 				filter:function(event,player){
-					return game.me!=game.boss&&game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&event.player.isDamaged();
+					return game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&event.player.isDamaged();
 				},
 				logTarget:'player',
 				content:function(){
@@ -3131,7 +4766,7 @@ game.forceOver(false);
 				locked:true,
 				unique:true,
 				filter:function(event,player){
-					return game.me!=game.boss&&game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&event.cards&&event.cards.length&&event.player.countCards('h')>3&&event.player.countCards('h')>player.hp;
+					return game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&event.cards&&event.cards.length&&event.player.countCards('h')>2&&event.player.countCards('h')>player.hp;
 				},
 		//		logTarget:'player',
 				content:function(){
@@ -3146,7 +4781,7 @@ game.forceOver(false);
 				filter:function(event,player){
 				if(!event.player.isAlive())
 				return false;
-					return game.me!=game.boss&&game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&player.isDamaged();
+					return game.boss==player&&game.boss.name=='Coins_mizhu'&&event.player!=player&&player.isDamaged();
 				},
 		//		logTarget:'player',
 				content:function(){
@@ -3170,12 +4805,26 @@ game.forceOver(false);
 			var num=0;
                 for(var i=0;i<game.players.length;i++){
                 if(game.players[i]==game.boss) continue;
-if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.players[i].name!='shen_lvbu'&&game.players[i].name!='shen_zhugeliang'&&game.players[i].name!='shen_lvmeng'&&game.players[i].name!='shen_zhaoyun'&&game.players[i].name!='shen_caocao'&&game.players[i].name!='shen_simayi'&&game.players[i].name!='re_lvmeng'&&game.players[i].name!='re_simayi'&&game.players[i].name!='re_xiahoudun'&&game.players[i].name!='re_xuzhu'&&game.players[i].name!='re_zhaoyun'&&game.players[i].name!='re_luxun'&&game.players[i].name!='re_zhouyu'&&game.players[i].name!='re_daqiao'&&game.players[i].name!='re_guanyu'&&game.players[i].name!='re_zhangfei'&&game.players[i].name!='re_zhangliao'&&game.players[i].name!='re_liubei'&&game.players[i].name!='re_lidian'&&game.players[i].name!='re_ganning'&&game.players[i].name!='re_gongsunzan'&&game.players[i].name!='re_huanggai'&&game.players[i].name!='re_lvbu'&&game.players[i].name!='re_xushu'&&game.players[i].name!='re_caocao'&&game.players[i].name!='re_guojia'&&game.players[i].name!='re_machao'&&game.players[i].name!='caocao'&&game.players[i].name!='simayi'&&game.players[i].name!='xiahoudun'&&game.players[i].name!='zhangliao'&&game.players[i].name!='xuzhu'&&game.players[i].name!='guojia'&&game.players[i].name!='zhenji'&&game.players[i].name!='liubei'&&game.players[i].name!='guanyu'&&game.players[i].name!='zhangfei'&&game.players[i].name!='zhugeliang'&&game.players[i].name!='zhaoyun'&&game.players[i].name!='machao'&&game.players[i].name!='huangyueying'&&game.players[i].name!='sunquan'&&game.players[i].name!='ganning'&&game.players[i].name!='lvmeng'&&game.players[i].name!='huanggai'&&game.players[i].name!='zhouyu'&&game.players[i].name!='daqiao'&&game.players[i].name!='luxun'&&game.players[i].name!='sunshangxiang'&&game.players[i].name!='huatuo'&&game.players[i].name!='diaochan'&&game.players[i].name!='lvbu'&&game.players[i].name!='re_yuanshao'&&game.players[i].name!='re_lusu'&&game.players[i].name!='jiangwei'&&game.players[i].name!='liushan'&&game.players[i].name!='zhanghe'&&game.players[i].name!='dengai'&&game.players[i].name!='sunce'&&game.players[i].name!='zhangzhang'&&game.players[i].name!='caiwenji'&&game.players[i].name!='zuoci'&&game.players[i].name!='zhurong'&&game.players[i].name!='menghuo'&&game.players[i].name!='caopi'&&game.players[i].name!='xuhuang'&&game.players[i].name!='lusu'&&game.players[i].name!='sunjian'&&game.players[i].name!='jiaxu'&&game.players[i].name!='dongzhuo'&&game.players[i].name!='xiahouyuan'&&game.players[i].name!='caoren'&&game.players[i].name!='huangzhong'&&game.players[i].name!='sp_zhangjiao'&&game.players[i].name!='xiaoqiao'&&game.players[i].name!='zhoutai'&&game.players[i].name!='sp_zhugeliang'&&game.players[i].name!='weiyan'&&game.players[i].name!='pangtong'&&game.players[i].name!='xunyu'&&game.players[i].name!='dianwei'&&game.players[i].name!='taishici'&&game.players[i].name!='yanwen'&&game.players[i].name!='yuanshao'&&game.players[i].name!='pangde'&&game.players[i].name!='liuye'&&game.players[i].name!='quyi'&&game.players[i].name!='xizhicai'&&game.players[i].name!='sunqian'&&game.players[i].name!='wangyun'&&game.players[i].name!='taoqian'&&game.players[i].name!='miheng'&&game.players[i].name!='huangfusong'&&game.players[i].name!='dongyun'&&game.players[i].name!='mazhong'&&game.players[i].name!='kanze'&&game.players[i].name!='heqi'&&game.players[i].name!='zhaoxiang'&&game.players[i].name!='dongbai'&&game.players[i].name!='sp_liubei'&&game.players[i].name!='caochun'&&game.players[i].name!='wanglang'&&game.players[i].name!='yanbaihu'&&game.players[i].name!='tadun'&&game.players[i].name!='guansuo'&&game.players[i].name!='wangji'&&game.players[i].name!='sp_lvmeng'&&game.players[i].name!='jsp_huangyueying'&&game.players[i].name!='wenpin'&&game.players[i].name!='cuiyan'&&game.players[i].name!='sp_xiahoudun'&&game.players[i].name!='sp_zhangfei'&&game.players[i].name!='sp_ganning'&&game.players[i].name!='sp_daqiao'&&game.players[i].name!='daxiaoqiao'&&game.players[i].name!='zumao'&&game.players[i].name!='panfeng'&&game.players[i].name!='hanba'&&game.players[i].name!='sunluyu'&&game.players[i].name!='jsp_guanyu'&&game.players[i].name!='zhuling'&&game.players[i].name!='lifeng'&&game.players[i].name!='lingju'&&game.players[i].name!='sunru'&&game.players[i].name!='lingcao'&&game.players[i].name!='liuzan'&&game.players[i].name!='zhugeguo'&&game.players[i].name!='sp_caiwenji'&&game.players[i].name!='mateng'&&game.players[i].name!='wutugu'&&game.players[i].name!='zhanglu'&&game.players[i].name!='shixie'&&game.players[i].name!='mayunlu'&&game.players[i].name!='zhangbao'&&game.players[i].name!='sp_jiangwei'&&game.players[i].name!='zhugedan'&&game.players[i].name!='sp_machao'&&game.players[i].name!='sp_sunshangxiang'&&game.players[i].name!='sp_pangde'&&game.players[i].name!='fuwan'&&game.players[i].name!='kongrong'&&game.players[i].name!='caoang'&&game.players[i].name!='yangxiu'&&game.players[i].name!='zhangxingcai'&&game.players[i].name!='dingfeng'&&game.players[i].name!='hetaihou'&&game.players[i].name!='jiangqing'&&game.players[i].name!='jiangfei'&&game.players[i].name!='chendong'&&game.players[i].name!='sp_dongzhuo'&&game.players[i].name!='mifuren'&&game.players[i].name!='yuejin'&&game.players[i].name!='sp_caoren'&&game.players[i].name!='maliang'&&game.players[i].name!='sp_jiaxu'&&game.players[i].name!='sp_pangtong'&&game.players[i].name!='tianfeng'&&game.players[i].name!='zhangliang'&&game.players[i].name!='simalang'&&game.players[i].name!='chengyu'&&game.players[i].name!='sunhao'&&game.players[i].name!='ganfuren'&&game.players[i].name!='guanyinping'&&game.players[i].name!='zhugeke'&&game.players[i].name!='zhugejin'&&game.players[i].name!='xiahouba'&&game.players[i].name!='liuxie'&&game.players[i].name!='caohong'&&game.players[i].name!='jsp_zhaoyun'&&game.players[i].name!='sp_zhaoyun'&&game.players[i].name!='sp_diaochan'&&game.players[i].name!='gongsunzan'&&game.players[i].name!='re_yuanshu'&&game.players[i].name!='yuanshu'&&game.players[i].name!='chenlin'&&game.players[i].name!='buzhi'&&game.players[i].name!='mizhu'&&game.players[i].name!='litong'&&game.players[i].name!='jiling'&&game.players[i].name!='zangba'&&game.players[i].name!='zoushi'&&game.players[i].name!='zhangren'&&game.players[i].name!='caiyong'&&game.players[i].name!='jikang'&&game.players[i].name!='qinmi'&&game.players[i].name!='caojie'&&game.players[i].name!='xuezong'&&game.players[i].name!='xushi'&&game.players[i].name!='wuxian'&&game.players[i].name!='xinxianying'&&game.players[i].name!='zhangrang'&&game.players[i].name!='cenhun'&&game.players[i].name!='huanghao'&&game.players[i].name!='sunziliufang'&&game.players[i].name!='liyan'&&game.players[i].name!='sundeng'&&game.players[i].name!='liuyu'&&game.players[i].name!='guohuanghou'&&game.players[i].name!='xin_liru'&&game.players[i].name!='xin_yujin'&&game.players[i].name!='gaoshun'&&game.players[i].name!='hanhaoshihuan'&&game.players[i].name!='chengpu'&&game.players[i].name!='wuyi'&&game.players[i].name!='caozhen'&&game.players[i].name!='liaohua'&&game.players[i].name!='guanping'&&game.players[i].name!='zhoucang'&&game.players[i].name!='guotufengji'&&game.players[i].name!='quancong'&&game.players[i].name!='gongsunyuan'&&game.players[i].name!='quancong'&&game.players[i].name!='zhuzhi'&&game.players[i].name!='sunxiu'&&game.players[i].name!='zhangyi'&&game.players[i].name!='liuchen'&&game.players[i].name!='zhongyao'&&game.players[i].name!='caoxiu'&&game.players[i].name!='caorui'&&game.players[i].name!='panzhangmazhong'&&game.players[i].name!='xiahoushi'&&game.players[i].name!='zhuhuan'&&game.players[i].name!='yj_jushou'&&game.players[i].name!='guanzhang'&&game.players[i].name!='liru'&&game.players[i].name!='liufeng'&&game.players[i].name!='manchong'&&game.players[i].name!='xin_xushu'&&game.players[i].name!='madai'&&game.players[i].name!='jianyong'&&game.players[i].name!='guyong'&&game.players[i].name!='zhangsong'&&game.players[i].name!='chenqun'&&game.players[i].name!='sunluban'&&game.players[i].name!='zhonghui'&&game.players[i].name!='old_zhonghui'&&game.players[i].name!='caifuren'&&game.players[i].name!='fuhuanghou'&&game.players[i].name!='handang'&&game.players[i].name!='bulianshi'&&game.players[i].name!='caochong'&&game.players[i].name!='guohuai'&&game.players[i].name!='xusheng'&&game.players[i].name!='wuguotai'&&game.players[i].name!='xin_fazheng'&&game.players[i].name!='fazheng'&&game.players[i].name!='xin_masu'&&game.players[i].name!='masu'&&game.players[i].name!='yujin'&&game.players[i].name!='zhuran'&&game.players[i].name!='liubiao'&&game.players[i].name!='huaxiong'&&game.players[i].name!='caozhang'&&game.players[i].name!='xunyou'&&game.players[i].name!='lingtong'&&game.players[i].name!='zhangchunhua'&&game.players[i].name!='caozhi'&&game.players[i].name!='xushu'&&game.players[i].name!='wangyi'&&game.players[i].name!='yufan'&&game.players[i].name!='chengong'&&game.players[i].name!='old_zhuran'&&game.players[i].name!='old_chenqun'&&game.players[i].name!='old_maliang'&&game.players[i].name!='old_huaxiong'&&game.players[i].name!='old_quancong'&&game.players[i].name!='old_caoxiu') num++;
+                if(game.players[i].identity=='zhong') continue;
+if(game.players[i].name!='old_yuanshu'&&game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.players[i].name!='shen_lvbu'&&game.players[i].name!='shen_zhugeliang'&&game.players[i].name!='shen_lvmeng'&&game.players[i].name!='shen_zhaoyun'&&game.players[i].name!='shen_caocao'&&game.players[i].name!='shen_simayi'&&game.players[i].name!='re_lvmeng'&&game.players[i].name!='re_simayi'&&game.players[i].name!='re_xiahoudun'&&game.players[i].name!='re_xuzhu'&&game.players[i].name!='re_zhaoyun'&&game.players[i].name!='re_luxun'&&game.players[i].name!='re_zhouyu'&&game.players[i].name!='re_daqiao'&&game.players[i].name!='re_guanyu'&&game.players[i].name!='re_zhangfei'&&game.players[i].name!='re_zhangliao'&&game.players[i].name!='re_liubei'&&game.players[i].name!='re_lidian'&&game.players[i].name!='re_ganning'&&game.players[i].name!='re_gongsunzan'&&game.players[i].name!='re_huanggai'&&game.players[i].name!='re_lvbu'&&game.players[i].name!='re_xushu'&&game.players[i].name!='re_caocao'&&game.players[i].name!='re_guojia'&&game.players[i].name!='re_machao'&&game.players[i].name!='caocao'&&game.players[i].name!='simayi'&&game.players[i].name!='xiahoudun'&&game.players[i].name!='zhangliao'&&game.players[i].name!='xuzhu'&&game.players[i].name!='guojia'&&game.players[i].name!='zhenji'&&game.players[i].name!='liubei'&&game.players[i].name!='guanyu'&&game.players[i].name!='zhangfei'&&game.players[i].name!='zhugeliang'&&game.players[i].name!='zhaoyun'&&game.players[i].name!='machao'&&game.players[i].name!='huangyueying'&&game.players[i].name!='sunquan'&&game.players[i].name!='ganning'&&game.players[i].name!='lvmeng'&&game.players[i].name!='huanggai'&&game.players[i].name!='zhouyu'&&game.players[i].name!='daqiao'&&game.players[i].name!='luxun'&&game.players[i].name!='sunshangxiang'&&game.players[i].name!='huatuo'&&game.players[i].name!='diaochan'&&game.players[i].name!='lvbu'&&game.players[i].name!='re_yuanshao'&&game.players[i].name!='re_lusu'&&game.players[i].name!='jiangwei'&&game.players[i].name!='liushan'&&game.players[i].name!='zhanghe'&&game.players[i].name!='dengai'&&game.players[i].name!='sunce'&&game.players[i].name!='zhangzhang'&&game.players[i].name!='caiwenji'&&game.players[i].name!='zuoci'&&game.players[i].name!='zhurong'&&game.players[i].name!='menghuo'&&game.players[i].name!='caopi'&&game.players[i].name!='xuhuang'&&game.players[i].name!='lusu'&&game.players[i].name!='sunjian'&&game.players[i].name!='jiaxu'&&game.players[i].name!='dongzhuo'&&game.players[i].name!='xiahouyuan'&&game.players[i].name!='caoren'&&game.players[i].name!='huangzhong'&&game.players[i].name!='sp_zhangjiao'&&game.players[i].name!='xiaoqiao'&&game.players[i].name!='zhoutai'&&game.players[i].name!='sp_zhugeliang'&&game.players[i].name!='weiyan'&&game.players[i].name!='pangtong'&&game.players[i].name!='xunyu'&&game.players[i].name!='dianwei'&&game.players[i].name!='taishici'&&game.players[i].name!='yanwen'&&game.players[i].name!='yuanshao'&&game.players[i].name!='pangde'&&game.players[i].name!='liuye'&&game.players[i].name!='quyi'&&game.players[i].name!='xizhicai'&&game.players[i].name!='sunqian'&&game.players[i].name!='wangyun'&&game.players[i].name!='taoqian'&&game.players[i].name!='miheng'&&game.players[i].name!='huangfusong'&&game.players[i].name!='dongyun'&&game.players[i].name!='mazhong'&&game.players[i].name!='kanze'&&game.players[i].name!='heqi'&&game.players[i].name!='zhaoxiang'&&game.players[i].name!='dongbai'&&game.players[i].name!='sp_liubei'&&game.players[i].name!='caochun'&&game.players[i].name!='wanglang'&&game.players[i].name!='yanbaihu'&&game.players[i].name!='tadun'&&game.players[i].name!='guansuo'&&game.players[i].name!='wangji'&&game.players[i].name!='sp_lvmeng'&&game.players[i].name!='jsp_huangyueying'&&game.players[i].name!='wenpin'&&game.players[i].name!='cuiyan'&&game.players[i].name!='sp_xiahoudun'&&game.players[i].name!='sp_zhangfei'&&game.players[i].name!='sp_ganning'&&game.players[i].name!='sp_daqiao'&&game.players[i].name!='daxiaoqiao'&&game.players[i].name!='zumao'&&game.players[i].name!='panfeng'&&game.players[i].name!='hanba'&&game.players[i].name!='sunluyu'&&game.players[i].name!='jsp_guanyu'&&game.players[i].name!='zhuling'&&game.players[i].name!='lifeng'&&game.players[i].name!='lingju'&&game.players[i].name!='sunru'&&game.players[i].name!='lingcao'&&game.players[i].name!='liuzan'&&game.players[i].name!='zhugeguo'&&game.players[i].name!='sp_caiwenji'&&game.players[i].name!='mateng'&&game.players[i].name!='wutugu'&&game.players[i].name!='zhanglu'&&game.players[i].name!='shixie'&&game.players[i].name!='mayunlu'&&game.players[i].name!='zhangbao'&&game.players[i].name!='sp_jiangwei'&&game.players[i].name!='zhugedan'&&game.players[i].name!='sp_machao'&&game.players[i].name!='sp_sunshangxiang'&&game.players[i].name!='sp_pangde'&&game.players[i].name!='fuwan'&&game.players[i].name!='kongrong'&&game.players[i].name!='caoang'&&game.players[i].name!='yangxiu'&&game.players[i].name!='zhangxingcai'&&game.players[i].name!='dingfeng'&&game.players[i].name!='hetaihou'&&game.players[i].name!='jiangqing'&&game.players[i].name!='jiangfei'&&game.players[i].name!='chendong'&&game.players[i].name!='sp_dongzhuo'&&game.players[i].name!='mifuren'&&game.players[i].name!='yuejin'&&game.players[i].name!='sp_caoren'&&game.players[i].name!='maliang'&&game.players[i].name!='sp_jiaxu'&&game.players[i].name!='sp_pangtong'&&game.players[i].name!='tianfeng'&&game.players[i].name!='zhangliang'&&game.players[i].name!='simalang'&&game.players[i].name!='chengyu'&&game.players[i].name!='sunhao'&&game.players[i].name!='ganfuren'&&game.players[i].name!='guanyinping'&&game.players[i].name!='zhugeke'&&game.players[i].name!='zhugejin'&&game.players[i].name!='xiahouba'&&game.players[i].name!='liuxie'&&game.players[i].name!='caohong'&&game.players[i].name!='jsp_zhaoyun'&&game.players[i].name!='sp_zhaoyun'&&game.players[i].name!='sp_diaochan'&&game.players[i].name!='gongsunzan'&&game.players[i].name!='re_yuanshu'&&game.players[i].name!='yuanshu'&&game.players[i].name!='chenlin'&&game.players[i].name!='buzhi'&&game.players[i].name!='mizhu'&&game.players[i].name!='litong'&&game.players[i].name!='jiling'&&game.players[i].name!='zangba'&&game.players[i].name!='zoushi'&&game.players[i].name!='zhangren'&&game.players[i].name!='caiyong'&&game.players[i].name!='jikang'&&game.players[i].name!='qinmi'&&game.players[i].name!='caojie'&&game.players[i].name!='xuezong'&&game.players[i].name!='xushi'&&game.players[i].name!='wuxian'&&game.players[i].name!='xinxianying'&&game.players[i].name!='zhangrang'&&game.players[i].name!='cenhun'&&game.players[i].name!='huanghao'&&game.players[i].name!='sunziliufang'&&game.players[i].name!='liyan'&&game.players[i].name!='sundeng'&&game.players[i].name!='liuyu'&&game.players[i].name!='guohuanghou'&&game.players[i].name!='xin_liru'&&game.players[i].name!='xin_yujin'&&game.players[i].name!='gaoshun'&&game.players[i].name!='hanhaoshihuan'&&game.players[i].name!='chengpu'&&game.players[i].name!='wuyi'&&game.players[i].name!='caozhen'&&game.players[i].name!='liaohua'&&game.players[i].name!='guanping'&&game.players[i].name!='zhoucang'&&game.players[i].name!='guotufengji'&&game.players[i].name!='quancong'&&game.players[i].name!='gongsunyuan'&&game.players[i].name!='quancong'&&game.players[i].name!='zhuzhi'&&game.players[i].name!='sunxiu'&&game.players[i].name!='zhangyi'&&game.players[i].name!='liuchen'&&game.players[i].name!='zhongyao'&&game.players[i].name!='caoxiu'&&game.players[i].name!='caorui'&&game.players[i].name!='panzhangmazhong'&&game.players[i].name!='xiahoushi'&&game.players[i].name!='zhuhuan'&&game.players[i].name!='yj_jushou'&&game.players[i].name!='guanzhang'&&game.players[i].name!='liru'&&game.players[i].name!='liufeng'&&game.players[i].name!='manchong'&&game.players[i].name!='xin_xushu'&&game.players[i].name!='madai'&&game.players[i].name!='jianyong'&&game.players[i].name!='guyong'&&game.players[i].name!='zhangsong'&&game.players[i].name!='chenqun'&&game.players[i].name!='sunluban'&&game.players[i].name!='zhonghui'&&game.players[i].name!='old_zhonghui'&&game.players[i].name!='caifuren'&&game.players[i].name!='fuhuanghou'&&game.players[i].name!='handang'&&game.players[i].name!='bulianshi'&&game.players[i].name!='caochong'&&game.players[i].name!='guohuai'&&game.players[i].name!='xusheng'&&game.players[i].name!='wuguotai'&&game.players[i].name!='xin_fazheng'&&game.players[i].name!='fazheng'&&game.players[i].name!='xin_masu'&&game.players[i].name!='masu'&&game.players[i].name!='yujin'&&game.players[i].name!='zhuran'&&game.players[i].name!='liubiao'&&game.players[i].name!='huaxiong'&&game.players[i].name!='caozhang'&&game.players[i].name!='xunyou'&&game.players[i].name!='lingtong'&&game.players[i].name!='zhangchunhua'&&game.players[i].name!='caozhi'&&game.players[i].name!='xushu'&&game.players[i].name!='wangyi'&&game.players[i].name!='yufan'&&game.players[i].name!='chengong'&&game.players[i].name!='old_chenqun'&&game.players[i].name!='old_maliang'&&game.players[i].name!='old_huaxiong'&&game.players[i].name!='old_quancong'&&game.players[i].name!='old_caoxiu') num++;
               }
-								return num<1&&player!=game.boss&&game.me!=game.boss&&event.player==game.boss&&game.boss.name=='Coins_mizhu'&&game.changeCoin;
+								return num<1&&player!=game.boss&&player.identity=='cai'&&game.me!=game.boss&&(event.player==game.boss||event.player.identity=='zhong')&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_liubiao')&&game.changeCoin;
 							},
 			content:function(){
-				var Coins2=300+Math.floor(Math.random()*951);
+			if(trigger.player==game.boss){
+			if(game.boss.name!='Coins_liubiao'){
+			if(game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshu'){
+				var Coins2=750+Math.floor(Math.random()*1251);
+				}
+				if(game.boss.name=='Coins_yuanshao'){
+				var Coins2=950+Math.floor(Math.random()*1551);
+				}
+				}else{
+				var Coins2=1150+Math.floor(Math.random()*1851);
+				}
+				}else{
+				var Coins2=55+Math.floor(Math.random()*46);
+				}
 				game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins2)+'</span>');
 				game.changeCoin(Coins2);
 				game.me.logSkill('Money');
@@ -3188,7 +4837,7 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
 			forced:true,
 			priority:99,
 			filter:function (event,player){
-   return player.name!='old_madai'&&player.name!='shen_zhouyu'&&player.name!='shen_lvbu'&&player.name!='shen_zhugeliang'&&player.name!='shen_lvmeng'&&player.name!='shen_zhaoyun'&&player.name!='shen_caocao'&&player.name!='shen_simayi'&&player.name!='re_lvmeng'&&player.name!='re_simayi'&&player.name!='re_xiahoudun'&&player.name!='re_xuzhu'&&player.name!='re_zhaoyun'&&player.name!='re_luxun'&&player.name!='re_zhouyu'&&player.name!='re_daqiao'&&player.name!='re_guanyu'&&player.name!='re_zhangfei'&&player.name!='re_zhangliao'&&player.name!='re_liubei'&&player.name!='re_lidian'&&player.name!='re_ganning'&&player.name!='re_gongsunzan'&&player.name!='re_huanggai'&&player.name!='re_lvbu'&&player.name!='re_xushu'&&player.name!='re_caocao'&&player.name!='re_guojia'&&player.name!='re_machao'&&player.name!='caocao'&&player.name!='simayi'&&player.name!='xiahoudun'&&player.name!='zhangliao'&&player.name!='xuzhu'&&player.name!='guojia'&&player.name!='zhenji'&&player.name!='liubei'&&player.name!='guanyu'&&player.name!='zhangfei'&&player.name!='zhugeliang'&&player.name!='zhaoyun'&&player.name!='machao'&&player.name!='huangyueying'&&player.name!='sunquan'&&player.name!='ganning'&&player.name!='lvmeng'&&player.name!='huanggai'&&player.name!='zhouyu'&&player.name!='daqiao'&&player.name!='luxun'&&player.name!='sunshangxiang'&&player.name!='huatuo'&&player.name!='diaochan'&&player.name!='lvbu'&&player.name!='re_yuanshao'&&player.name!='re_lusu'&&player.name!='jiangwei'&&player.name!='liushan'&&player.name!='zhanghe'&&player.name!='dengai'&&player.name!='sunce'&&player.name!='zhangzhang'&&player.name!='caiwenji'&&player.name!='zuoci'&&player.name!='zhurong'&&player.name!='menghuo'&&player.name!='caopi'&&player.name!='xuhuang'&&player.name!='lusu'&&player.name!='sunjian'&&player.name!='jiaxu'&&player.name!='dongzhuo'&&player.name!='xiahouyuan'&&player.name!='caoren'&&player.name!='huangzhong'&&player.name!='sp_zhangjiao'&&player.name!='xiaoqiao'&&player.name!='zhoutai'&&player.name!='sp_zhugeliang'&&player.name!='weiyan'&&player.name!='pangtong'&&player.name!='xunyu'&&player.name!='dianwei'&&player.name!='taishici'&&player.name!='yanwen'&&player.name!='yuanshao'&&player.name!='pangde'&&player.name!='liuye'&&player.name!='quyi'&&player.name!='xizhicai'&&player.name!='sunqian'&&player.name!='wangyun'&&player.name!='taoqian'&&player.name!='miheng'&&player.name!='huangfusong'&&player.name!='dongyun'&&player.name!='mazhong'&&player.name!='kanze'&&player.name!='heqi'&&player.name!='zhaoxiang'&&player.name!='dongbai'&&player.name!='sp_liubei'&&player.name!='caochun'&&player.name!='wanglang'&&player.name!='yanbaihu'&&player.name!='tadun'&&player.name!='guansuo'&&player.name!='wangji'&&player.name!='sp_lvmeng'&&player.name!='jsp_huangyueying'&&player.name!='wenpin'&&player.name!='cuiyan'&&player.name!='sp_xiahoudun'&&player.name!='sp_zhangfei'&&player.name!='sp_ganning'&&player.name!='sp_daqiao'&&player.name!='daxiaoqiao'&&player.name!='zumao'&&player.name!='panfeng'&&player.name!='hanba'&&player.name!='sunluyu'&&player.name!='jsp_guanyu'&&player.name!='zhuling'&&player.name!='lifeng'&&player.name!='lingju'&&player.name!='sunru'&&player.name!='lingcao'&&player.name!='liuzan'&&player.name!='zhugeguo'&&player.name!='sp_caiwenji'&&player.name!='mateng'&&player.name!='wutugu'&&player.name!='zhanglu'&&player.name!='shixie'&&player.name!='mayunlu'&&player.name!='zhangbao'&&player.name!='sp_jiangwei'&&player.name!='zhugedan'&&player.name!='sp_machao'&&player.name!='sp_sunshangxiang'&&player.name!='sp_pangde'&&player.name!='fuwan'&&player.name!='kongrong'&&player.name!='caoang'&&player.name!='yangxiu'&&player.name!='zhangxingcai'&&player.name!='dingfeng'&&player.name!='hetaihou'&&player.name!='jiangqing'&&player.name!='jiangfei'&&player.name!='chendong'&&player.name!='sp_dongzhuo'&&player.name!='mifuren'&&player.name!='yuejin'&&player.name!='sp_caoren'&&player.name!='maliang'&&player.name!='sp_jiaxu'&&player.name!='sp_pangtong'&&player.name!='tianfeng'&&player.name!='zhangliang'&&player.name!='simalang'&&player.name!='chengyu'&&player.name!='sunhao'&&player.name!='ganfuren'&&player.name!='guanyinping'&&player.name!='zhugeke'&&player.name!='zhugejin'&&player.name!='xiahouba'&&player.name!='liuxie'&&player.name!='caohong'&&player.name!='jsp_zhaoyun'&&player.name!='sp_zhaoyun'&&player.name!='sp_diaochan'&&player.name!='gongsunzan'&&player.name!='re_yuanshu'&&player.name!='yuanshu'&&player.name!='chenlin'&&player.name!='buzhi'&&player.name!='mizhu'&&player.name!='litong'&&player.name!='jiling'&&player.name!='zangba'&&player.name!='zoushi'&&player.name!='zhangren'&&player.name!='caiyong'&&player.name!='jikang'&&player.name!='qinmi'&&player.name!='caojie'&&player.name!='xuezong'&&player.name!='xushi'&&player.name!='wuxian'&&player.name!='xinxianying'&&player.name!='zhangrang'&&player.name!='cenhun'&&player.name!='huanghao'&&player.name!='sunziliufang'&&player.name!='liyan'&&player.name!='sundeng'&&player.name!='liuyu'&&player.name!='guohuanghou'&&player.name!='xin_liru'&&player.name!='xin_yujin'&&player.name!='gaoshun'&&player.name!='hanhaoshihuan'&&player.name!='chengpu'&&player.name!='wuyi'&&player.name!='caozhen'&&player.name!='liaohua'&&player.name!='guanping'&&player.name!='zhoucang'&&player.name!='guotufengji'&&player.name!='quancong'&&player.name!='gongsunyuan'&&player.name!='quancong'&&player.name!='zhuzhi'&&player.name!='sunxiu'&&player.name!='zhangyi'&&player.name!='liuchen'&&player.name!='zhongyao'&&player.name!='caoxiu'&&player.name!='caorui'&&player.name!='panzhangmazhong'&&player.name!='xiahoushi'&&player.name!='zhuhuan'&&player.name!='yj_jushou'&&player.name!='guanzhang'&&player.name!='liru'&&player.name!='liufeng'&&player.name!='manchong'&&player.name!='xin_xushu'&&player.name!='madai'&&player.name!='jianyong'&&player.name!='guyong'&&player.name!='zhangsong'&&player.name!='chenqun'&&player.name!='sunluban'&&player.name!='zhonghui'&&player.name!='old_zhonghui'&&player.name!='caifuren'&&player.name!='fuhuanghou'&&player.name!='handang'&&player.name!='bulianshi'&&player.name!='caochong'&&player.name!='guohuai'&&player.name!='xusheng'&&player.name!='wuguotai'&&player.name!='xin_fazheng'&&player.name!='fazheng'&&player.name!='xin_masu'&&player.name!='masu'&&player.name!='yujin'&&player.name!='zhuran'&&player.name!='liubiao'&&player.name!='huaxiong'&&player.name!='caozhang'&&player.name!='xunyou'&&player.name!='lingtong'&&player.name!='zhangchunhua'&&player.name!='caozhi'&&player.name!='xushu'&&player.name!='wangyi'&&player.name!='yufan'&&player.name!='chengong'&&player.name!='old_zhuran'&&player.name!='old_chenqun'&&player.name!='old_maliang'&&player.name!='old_huaxiong'&&player.name!='old_quancong'&&player.name!='old_caoxiu'&&player!=game.boss&&game.me!=game.boss&&game.boss.name=='Coins_mizhu';
+   return player.name!='old_yuanshu'&&player.name!='old_madai'&&player.name!='shen_zhouyu'&&player.name!='shen_lvbu'&&player.name!='shen_zhugeliang'&&player.name!='shen_lvmeng'&&player.name!='shen_zhaoyun'&&player.name!='shen_caocao'&&player.name!='shen_simayi'&&player.name!='re_lvmeng'&&player.name!='re_simayi'&&player.name!='re_xiahoudun'&&player.name!='re_xuzhu'&&player.name!='re_zhaoyun'&&player.name!='re_luxun'&&player.name!='re_zhouyu'&&player.name!='re_daqiao'&&player.name!='re_guanyu'&&player.name!='re_zhangfei'&&player.name!='re_zhangliao'&&player.name!='re_liubei'&&player.name!='re_lidian'&&player.name!='re_ganning'&&player.name!='re_gongsunzan'&&player.name!='re_huanggai'&&player.name!='re_lvbu'&&player.name!='re_xushu'&&player.name!='re_caocao'&&player.name!='re_guojia'&&player.name!='re_machao'&&player.name!='caocao'&&player.name!='simayi'&&player.name!='xiahoudun'&&player.name!='zhangliao'&&player.name!='xuzhu'&&player.name!='guojia'&&player.name!='zhenji'&&player.name!='liubei'&&player.name!='guanyu'&&player.name!='zhangfei'&&player.name!='zhugeliang'&&player.name!='zhaoyun'&&player.name!='machao'&&player.name!='huangyueying'&&player.name!='sunquan'&&player.name!='ganning'&&player.name!='lvmeng'&&player.name!='huanggai'&&player.name!='zhouyu'&&player.name!='daqiao'&&player.name!='luxun'&&player.name!='sunshangxiang'&&player.name!='huatuo'&&player.name!='diaochan'&&player.name!='lvbu'&&player.name!='re_yuanshao'&&player.name!='re_lusu'&&player.name!='jiangwei'&&player.name!='liushan'&&player.name!='zhanghe'&&player.name!='dengai'&&player.name!='sunce'&&player.name!='zhangzhang'&&player.name!='caiwenji'&&player.name!='zuoci'&&player.name!='zhurong'&&player.name!='menghuo'&&player.name!='caopi'&&player.name!='xuhuang'&&player.name!='lusu'&&player.name!='sunjian'&&player.name!='jiaxu'&&player.name!='dongzhuo'&&player.name!='xiahouyuan'&&player.name!='caoren'&&player.name!='huangzhong'&&player.name!='sp_zhangjiao'&&player.name!='xiaoqiao'&&player.name!='zhoutai'&&player.name!='sp_zhugeliang'&&player.name!='weiyan'&&player.name!='pangtong'&&player.name!='xunyu'&&player.name!='dianwei'&&player.name!='taishici'&&player.name!='yanwen'&&player.name!='yuanshao'&&player.name!='pangde'&&player.name!='liuye'&&player.name!='quyi'&&player.name!='xizhicai'&&player.name!='sunqian'&&player.name!='wangyun'&&player.name!='taoqian'&&player.name!='miheng'&&player.name!='huangfusong'&&player.name!='dongyun'&&player.name!='mazhong'&&player.name!='kanze'&&player.name!='heqi'&&player.name!='zhaoxiang'&&player.name!='dongbai'&&player.name!='sp_liubei'&&player.name!='caochun'&&player.name!='wanglang'&&player.name!='yanbaihu'&&player.name!='tadun'&&player.name!='guansuo'&&player.name!='wangji'&&player.name!='sp_lvmeng'&&player.name!='jsp_huangyueying'&&player.name!='wenpin'&&player.name!='cuiyan'&&player.name!='sp_xiahoudun'&&player.name!='sp_zhangfei'&&player.name!='sp_ganning'&&player.name!='sp_daqiao'&&player.name!='daxiaoqiao'&&player.name!='zumao'&&player.name!='panfeng'&&player.name!='hanba'&&player.name!='sunluyu'&&player.name!='jsp_guanyu'&&player.name!='zhuling'&&player.name!='lifeng'&&player.name!='lingju'&&player.name!='sunru'&&player.name!='lingcao'&&player.name!='liuzan'&&player.name!='zhugeguo'&&player.name!='sp_caiwenji'&&player.name!='mateng'&&player.name!='wutugu'&&player.name!='zhanglu'&&player.name!='shixie'&&player.name!='mayunlu'&&player.name!='zhangbao'&&player.name!='sp_jiangwei'&&player.name!='zhugedan'&&player.name!='sp_machao'&&player.name!='sp_sunshangxiang'&&player.name!='sp_pangde'&&player.name!='fuwan'&&player.name!='kongrong'&&player.name!='caoang'&&player.name!='yangxiu'&&player.name!='zhangxingcai'&&player.name!='dingfeng'&&player.name!='hetaihou'&&player.name!='jiangqing'&&player.name!='jiangfei'&&player.name!='chendong'&&player.name!='sp_dongzhuo'&&player.name!='mifuren'&&player.name!='yuejin'&&player.name!='sp_caoren'&&player.name!='maliang'&&player.name!='sp_jiaxu'&&player.name!='sp_pangtong'&&player.name!='tianfeng'&&player.name!='zhangliang'&&player.name!='simalang'&&player.name!='chengyu'&&player.name!='sunhao'&&player.name!='ganfuren'&&player.name!='guanyinping'&&player.name!='zhugeke'&&player.name!='zhugejin'&&player.name!='xiahouba'&&player.name!='liuxie'&&player.name!='caohong'&&player.name!='jsp_zhaoyun'&&player.name!='sp_zhaoyun'&&player.name!='sp_diaochan'&&player.name!='gongsunzan'&&player.name!='re_yuanshu'&&player.name!='yuanshu'&&player.name!='chenlin'&&player.name!='buzhi'&&player.name!='mizhu'&&player.name!='litong'&&player.name!='jiling'&&player.name!='zangba'&&player.name!='zoushi'&&player.name!='zhangren'&&player.name!='caiyong'&&player.name!='jikang'&&player.name!='qinmi'&&player.name!='caojie'&&player.name!='xuezong'&&player.name!='xushi'&&player.name!='wuxian'&&player.name!='xinxianying'&&player.name!='zhangrang'&&player.name!='cenhun'&&player.name!='huanghao'&&player.name!='sunziliufang'&&player.name!='liyan'&&player.name!='sundeng'&&player.name!='liuyu'&&player.name!='guohuanghou'&&player.name!='xin_liru'&&player.name!='xin_yujin'&&player.name!='gaoshun'&&player.name!='hanhaoshihuan'&&player.name!='chengpu'&&player.name!='wuyi'&&player.name!='caozhen'&&player.name!='liaohua'&&player.name!='guanping'&&player.name!='zhoucang'&&player.name!='guotufengji'&&player.name!='quancong'&&player.name!='gongsunyuan'&&player.name!='quancong'&&player.name!='zhuzhi'&&player.name!='sunxiu'&&player.name!='zhangyi'&&player.name!='liuchen'&&player.name!='zhongyao'&&player.name!='caoxiu'&&player.name!='caorui'&&player.name!='panzhangmazhong'&&player.name!='xiahoushi'&&player.name!='zhuhuan'&&player.name!='yj_jushou'&&player.name!='guanzhang'&&player.name!='liru'&&player.name!='liufeng'&&player.name!='manchong'&&player.name!='xin_xushu'&&player.name!='madai'&&player.name!='jianyong'&&player.name!='guyong'&&player.name!='zhangsong'&&player.name!='chenqun'&&player.name!='sunluban'&&player.name!='zhonghui'&&player.name!='old_zhonghui'&&player.name!='caifuren'&&player.name!='fuhuanghou'&&player.name!='handang'&&player.name!='bulianshi'&&player.name!='caochong'&&player.name!='guohuai'&&player.name!='xusheng'&&player.name!='wuguotai'&&player.name!='xin_fazheng'&&player.name!='fazheng'&&player.name!='xin_masu'&&player.name!='masu'&&player.name!='yujin'&&player.name!='zhuran'&&player.name!='liubiao'&&player.name!='huaxiong'&&player.name!='caozhang'&&player.name!='xunyou'&&player.name!='lingtong'&&player.name!='zhangchunhua'&&player.name!='caozhi'&&player.name!='xushu'&&player.name!='wangyi'&&player.name!='yufan'&&player.name!='chengong'&&player.name!='old_chenqun'&&player.name!='old_maliang'&&player.name!='old_huaxiong'&&player.name!='old_quancong'&&player.name!='old_caoxiu'&&player!=game.boss&&game.me!=game.boss&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_liubiao');
 							},
 			content:function(){
  			'step 0'
@@ -3311,7 +4960,7 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
     			trigger:{player:['damageBefore']},
     			filter:function(event,player){
     				if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_mizhu'&&player.name2!='Coins_mizhu') return false;
-     return game.me!=player&&!event.source;
+     return !event.source;
     			},
     			forced:true,
       unique:true,
@@ -3339,6 +4988,7 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
 				},
 				content:function(){
 					trigger.cancel();
+					game.log(player,'取消了失去体力上限');
 					player.loseHp(trigger.num);
  					}
  			},
@@ -3359,11 +5009,12 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
        Coins_tuhao1:{    			
     			trigger:{global:['phaseBefore']},
     			filter:function(event,player){
-     return game.me==game.boss&&game.boss.name=='Coins_mizhu';
+     return game.me==game.boss&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao');
     			},
     			forced:true,
-      unique:true,
-     priority:99,
+       unique:true,
+       priority:99,
+       popup:false,
     			content:function(){
     			player.init('sunce');
     			player.maxHp++;
@@ -3372,10 +5023,12 @@ if(game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.
     	 		}
     			},
        Coins_tuhao2:{    			
-    			trigger:{player:['drawAfter','recoverAfter','discardAfter']},
+    			trigger:{player:['drawAfter','useCardAfter','discardAfter']},
     			filter:function(event,player){
+    			if(event.name=='useCard'&&event.card.name!='tao'&&event.card.name!='jiu')
+    			return false;
     				if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='Coins_mizhu'&&player.name2!='Coins_mizhu') return false;
-     return game.me!=player;
+     return true;
     			},
     			forced:true,
       unique:true,
@@ -3395,7 +5048,7 @@ forced:true,
 unique:true,
 popup:false,
 filter:function(event,player){
-     return game.boss!=game.me&&game.boss==player&&game.boss.name=='Coins_mizhu'&&(game.roundNumber==3||game.roundNumber==18||game.roundNumber==35||game.roundNumber==54||game.roundNumber==75||game.roundNumber==98||game.roundNumber==113||game.roundNumber==140||game.roundNumber==169||game.roundNumber>=199)&&Math.random()<=0.7;
+     return game.boss==player&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_liubiao')&&(game.roundNumber==3||game.roundNumber==18||game.roundNumber==35||game.roundNumber==54||game.roundNumber==75||game.roundNumber==98||game.roundNumber==113||game.roundNumber==140||game.roundNumber==169||game.roundNumber>=199)&&Math.random()<=0.65;
 },
 content:function (){
 if(game.roundNumber>199){
@@ -3405,6 +5058,61 @@ ui.backgroundMusic.src=lib.assetURL+'extension/风华绝代/START_GAME2.mp3';
         }
       }
     },
+    _Coins_tuhao4:{
+    mode:["boss"],
+    trigger:{source:'dieBegin'},
+			popup:false,
+			forced:true,
+			priority:-9,
+			filter:function (event,player){   
+			return (game.boss==game.me&&player.identity=='zhong'&&event.player.identity=='cai'||game.boss==player&&game.me==player&&game.me.identity!=event.player.identity&&event.source==game.me||game.boss!=player&&game.me!=game.boss&&player.identity==game.me.identity&&player.identity!=event.player.identity)&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_liubiao')&&game.boss==game.me&&game.changeCoin;
+			},
+			content:function(){	
+			if(game.me==game.boss){
+			if(lib.character[trigger.player.name][4].contains('boss')||lib.character[trigger.player.name][4].contains('hiddenboss')){
+			var Coins1=150+Math.floor(Math.random()*151);
+			}else{
+			var Coins1=75+Math.floor(Math.random()*81);
+			}
+			game.log('<span style=\"font-weight:bold;font-style: oblique;color: gold\">金币+'+get.translation(Coins1)+'</span>');
+				game.changeCoin(Coins1);
+				game.me.logSkill('Money');
+				    }
+			  	}
+				},
+    _Coins_tuhao3:{
+    mode:["boss"],
+trigger:{global:"gameDrawAfter"},
+forced:true,
+priority:Infinity,
+unique:true,
+popup:false,
+filter:function(event,player){
+     return game.me!=game.boss&&game.me==player&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_liubiao');
+},
+content:function (){
+    'step 0'
+    if(!game.changeCoin){
+    game.forceOver(false);
+    game.log('失败原因：未开启“富甲天下”');
+    }
+    'step 1'
+    var num=0;
+                for(var i=0;i<game.players.length;i++){
+                if(game.players[i]==game.boss) continue;
+if(game.players[i].name!='old_yuanshu'&&game.players[i].name!='old_madai'&&game.players[i].name!='shen_zhouyu'&&game.players[i].name!='shen_lvbu'&&game.players[i].name!='shen_zhugeliang'&&game.players[i].name!='shen_lvmeng'&&game.players[i].name!='shen_zhaoyun'&&game.players[i].name!='shen_caocao'&&game.players[i].name!='shen_simayi'&&game.players[i].name!='re_lvmeng'&&game.players[i].name!='re_simayi'&&game.players[i].name!='re_xiahoudun'&&game.players[i].name!='re_xuzhu'&&game.players[i].name!='re_zhaoyun'&&game.players[i].name!='re_luxun'&&game.players[i].name!='re_zhouyu'&&game.players[i].name!='re_daqiao'&&game.players[i].name!='re_guanyu'&&game.players[i].name!='re_zhangfei'&&game.players[i].name!='re_zhangliao'&&game.players[i].name!='re_liubei'&&game.players[i].name!='re_lidian'&&game.players[i].name!='re_ganning'&&game.players[i].name!='re_gongsunzan'&&game.players[i].name!='re_huanggai'&&game.players[i].name!='re_lvbu'&&game.players[i].name!='re_xushu'&&game.players[i].name!='re_caocao'&&game.players[i].name!='re_guojia'&&game.players[i].name!='re_machao'&&game.players[i].name!='caocao'&&game.players[i].name!='simayi'&&game.players[i].name!='xiahoudun'&&game.players[i].name!='zhangliao'&&game.players[i].name!='xuzhu'&&game.players[i].name!='guojia'&&game.players[i].name!='zhenji'&&game.players[i].name!='liubei'&&game.players[i].name!='guanyu'&&game.players[i].name!='zhangfei'&&game.players[i].name!='zhugeliang'&&game.players[i].name!='zhaoyun'&&game.players[i].name!='machao'&&game.players[i].name!='huangyueying'&&game.players[i].name!='sunquan'&&game.players[i].name!='ganning'&&game.players[i].name!='lvmeng'&&game.players[i].name!='huanggai'&&game.players[i].name!='zhouyu'&&game.players[i].name!='daqiao'&&game.players[i].name!='luxun'&&game.players[i].name!='sunshangxiang'&&game.players[i].name!='huatuo'&&game.players[i].name!='diaochan'&&game.players[i].name!='lvbu'&&game.players[i].name!='re_yuanshao'&&game.players[i].name!='re_lusu'&&game.players[i].name!='jiangwei'&&game.players[i].name!='liushan'&&game.players[i].name!='zhanghe'&&game.players[i].name!='dengai'&&game.players[i].name!='sunce'&&game.players[i].name!='zhangzhang'&&game.players[i].name!='caiwenji'&&game.players[i].name!='zuoci'&&game.players[i].name!='zhurong'&&game.players[i].name!='menghuo'&&game.players[i].name!='caopi'&&game.players[i].name!='xuhuang'&&game.players[i].name!='lusu'&&game.players[i].name!='sunjian'&&game.players[i].name!='jiaxu'&&game.players[i].name!='dongzhuo'&&game.players[i].name!='xiahouyuan'&&game.players[i].name!='caoren'&&game.players[i].name!='huangzhong'&&game.players[i].name!='sp_zhangjiao'&&game.players[i].name!='xiaoqiao'&&game.players[i].name!='zhoutai'&&game.players[i].name!='sp_zhugeliang'&&game.players[i].name!='weiyan'&&game.players[i].name!='pangtong'&&game.players[i].name!='xunyu'&&game.players[i].name!='dianwei'&&game.players[i].name!='taishici'&&game.players[i].name!='yanwen'&&game.players[i].name!='yuanshao'&&game.players[i].name!='pangde'&&game.players[i].name!='liuye'&&game.players[i].name!='quyi'&&game.players[i].name!='xizhicai'&&game.players[i].name!='sunqian'&&game.players[i].name!='wangyun'&&game.players[i].name!='taoqian'&&game.players[i].name!='miheng'&&game.players[i].name!='huangfusong'&&game.players[i].name!='dongyun'&&game.players[i].name!='mazhong'&&game.players[i].name!='kanze'&&game.players[i].name!='heqi'&&game.players[i].name!='zhaoxiang'&&game.players[i].name!='dongbai'&&game.players[i].name!='sp_liubei'&&game.players[i].name!='caochun'&&game.players[i].name!='wanglang'&&game.players[i].name!='yanbaihu'&&game.players[i].name!='tadun'&&game.players[i].name!='guansuo'&&game.players[i].name!='wangji'&&game.players[i].name!='sp_lvmeng'&&game.players[i].name!='jsp_huangyueying'&&game.players[i].name!='wenpin'&&game.players[i].name!='cuiyan'&&game.players[i].name!='sp_xiahoudun'&&game.players[i].name!='sp_zhangfei'&&game.players[i].name!='sp_ganning'&&game.players[i].name!='sp_daqiao'&&game.players[i].name!='daxiaoqiao'&&game.players[i].name!='zumao'&&game.players[i].name!='panfeng'&&game.players[i].name!='hanba'&&game.players[i].name!='sunluyu'&&game.players[i].name!='jsp_guanyu'&&game.players[i].name!='zhuling'&&game.players[i].name!='lifeng'&&game.players[i].name!='lingju'&&game.players[i].name!='sunru'&&game.players[i].name!='lingcao'&&game.players[i].name!='liuzan'&&game.players[i].name!='zhugeguo'&&game.players[i].name!='sp_caiwenji'&&game.players[i].name!='mateng'&&game.players[i].name!='wutugu'&&game.players[i].name!='zhanglu'&&game.players[i].name!='shixie'&&game.players[i].name!='mayunlu'&&game.players[i].name!='zhangbao'&&game.players[i].name!='sp_jiangwei'&&game.players[i].name!='zhugedan'&&game.players[i].name!='sp_machao'&&game.players[i].name!='sp_sunshangxiang'&&game.players[i].name!='sp_pangde'&&game.players[i].name!='fuwan'&&game.players[i].name!='kongrong'&&game.players[i].name!='caoang'&&game.players[i].name!='yangxiu'&&game.players[i].name!='zhangxingcai'&&game.players[i].name!='dingfeng'&&game.players[i].name!='hetaihou'&&game.players[i].name!='jiangqing'&&game.players[i].name!='jiangfei'&&game.players[i].name!='chendong'&&game.players[i].name!='sp_dongzhuo'&&game.players[i].name!='mifuren'&&game.players[i].name!='yuejin'&&game.players[i].name!='sp_caoren'&&game.players[i].name!='maliang'&&game.players[i].name!='sp_jiaxu'&&game.players[i].name!='sp_pangtong'&&game.players[i].name!='tianfeng'&&game.players[i].name!='zhangliang'&&game.players[i].name!='simalang'&&game.players[i].name!='chengyu'&&game.players[i].name!='sunhao'&&game.players[i].name!='ganfuren'&&game.players[i].name!='guanyinping'&&game.players[i].name!='zhugeke'&&game.players[i].name!='zhugejin'&&game.players[i].name!='xiahouba'&&game.players[i].name!='liuxie'&&game.players[i].name!='caohong'&&game.players[i].name!='jsp_zhaoyun'&&game.players[i].name!='sp_zhaoyun'&&game.players[i].name!='sp_diaochan'&&game.players[i].name!='gongsunzan'&&game.players[i].name!='re_yuanshu'&&game.players[i].name!='yuanshu'&&game.players[i].name!='chenlin'&&game.players[i].name!='buzhi'&&game.players[i].name!='mizhu'&&game.players[i].name!='litong'&&game.players[i].name!='jiling'&&game.players[i].name!='zangba'&&game.players[i].name!='zoushi'&&game.players[i].name!='zhangren'&&game.players[i].name!='caiyong'&&game.players[i].name!='jikang'&&game.players[i].name!='qinmi'&&game.players[i].name!='caojie'&&game.players[i].name!='xuezong'&&game.players[i].name!='xushi'&&game.players[i].name!='wuxian'&&game.players[i].name!='xinxianying'&&game.players[i].name!='zhangrang'&&game.players[i].name!='cenhun'&&game.players[i].name!='huanghao'&&game.players[i].name!='sunziliufang'&&game.players[i].name!='liyan'&&game.players[i].name!='sundeng'&&game.players[i].name!='liuyu'&&game.players[i].name!='guohuanghou'&&game.players[i].name!='xin_liru'&&game.players[i].name!='xin_yujin'&&game.players[i].name!='gaoshun'&&game.players[i].name!='hanhaoshihuan'&&game.players[i].name!='chengpu'&&game.players[i].name!='wuyi'&&game.players[i].name!='caozhen'&&game.players[i].name!='liaohua'&&game.players[i].name!='guanping'&&game.players[i].name!='zhoucang'&&game.players[i].name!='guotufengji'&&game.players[i].name!='quancong'&&game.players[i].name!='gongsunyuan'&&game.players[i].name!='quancong'&&game.players[i].name!='zhuzhi'&&game.players[i].name!='sunxiu'&&game.players[i].name!='zhangyi'&&game.players[i].name!='liuchen'&&game.players[i].name!='zhongyao'&&game.players[i].name!='caoxiu'&&game.players[i].name!='caorui'&&game.players[i].name!='panzhangmazhong'&&game.players[i].name!='xiahoushi'&&game.players[i].name!='zhuhuan'&&game.players[i].name!='yj_jushou'&&game.players[i].name!='guanzhang'&&game.players[i].name!='liru'&&game.players[i].name!='liufeng'&&game.players[i].name!='manchong'&&game.players[i].name!='xin_xushu'&&game.players[i].name!='madai'&&game.players[i].name!='jianyong'&&game.players[i].name!='guyong'&&game.players[i].name!='zhangsong'&&game.players[i].name!='chenqun'&&game.players[i].name!='sunluban'&&game.players[i].name!='zhonghui'&&game.players[i].name!='old_zhonghui'&&game.players[i].name!='caifuren'&&game.players[i].name!='fuhuanghou'&&game.players[i].name!='handang'&&game.players[i].name!='bulianshi'&&game.players[i].name!='caochong'&&game.players[i].name!='guohuai'&&game.players[i].name!='xusheng'&&game.players[i].name!='wuguotai'&&game.players[i].name!='xin_fazheng'&&game.players[i].name!='fazheng'&&game.players[i].name!='xin_masu'&&game.players[i].name!='masu'&&game.players[i].name!='yujin'&&game.players[i].name!='zhuran'&&game.players[i].name!='liubiao'&&game.players[i].name!='huaxiong'&&game.players[i].name!='caozhang'&&game.players[i].name!='xunyou'&&game.players[i].name!='lingtong'&&game.players[i].name!='zhangchunhua'&&game.players[i].name!='caozhi'&&game.players[i].name!='xushu'&&game.players[i].name!='wangyi'&&game.players[i].name!='yufan'&&game.players[i].name!='chengong'&&game.players[i].name!='old_chenqun'&&game.players[i].name!='old_maliang'&&game.players[i].name!='old_huaxiong'&&game.players[i].name!='old_quancong'&&game.players[i].name!='old_caoxiu') num++;
+      }
+						if(num>0){
+						game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-200</span>');
+				game.changeCoin(-200);
+				game.me.logSkill('Money');
+						}else{
+    game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-100</span>');
+				game.changeCoin(-100);
+				game.me.logSkill('Money');
+				}
+				}
+				},
     _Coins_tuhao1:{
     mode:["boss"],
 trigger:{global:"gameDrawAfter"},
@@ -3413,37 +5121,89 @@ priority:Infinity,
 unique:true,
 popup:false,
 filter:function(event,player){
-     return game.me==game.boss&&game.boss==player&&game.boss.name=='Coins_mizhu';
+     return game.me==game.boss&&game.boss==player&&(game.boss.name=='Coins_yuanshu'||game.boss.name=='Coins_mizhu'||game.boss.name=='Coins_yuanshao'||game.boss.name=='Coins_liubiao');
 },
 content:function (){
-    player.addSkill('Coins_tuhao1');
-     }
+    if(!game.changeCoin){
+    game.forceOver(false);
+    game.log('失败原因：未开启“富甲天下”');
+    }
+    if(game.changeCoin&&lib.config.coin>=666){
+    if(lib.config.coin<88888){
+    var Coins=666;
+    }else{
+    var Coins=Math.floor(lib.config.coin/2);
+    }
+			game.log('<span style=\"font-weight:bold;font-style: oblique\">金币-'+get.translation(Coins)+'</span>');
+				game.changeCoin(-Coins);
+				game.me.logSkill('Money');
+    }else{
+       player.gain(get.cards(4))._trggered=null;
+       player.init('sunce');
+    			player.maxHp+=2;
+    			player.hp=1;
+    			player.update();
+ //   player.addSkill('Coins_tuhao1');
+        }
+      }
     },
     _Coins_tuhao2:{
     mode:["boss"],
-trigger:{global:"gameDrawAfter"},
+trigger:{global:["gameDrawAfter","phaseBegin","phaseUseBegin","loseEnd","gainEnd"]},
 forced:true,
-priority:Infinity,
+priority:20,
 unique:true,
 popup:false,
 filter:function(event,player){
-     return game.me!=game.boss&&game.boss==player&&game.boss.name=='Coins_mizhu';
+     return game.boss==player&&(game.boss.name=='Coins_yuanshu'&&(!game.boss.hasSkill('Coins_yongsi')||!game.boss.hasSkill('Coins_duxian')||!game.boss.hasSkill('Coins_yongchang'))||game.boss.name=='Coins_mizhu'&&(!game.boss.hasSkill('Coins_tuhao')||!game.boss.hasSkill('Coins_zizhu')||!game.boss.hasSkill('Coins_jingshang'))||game.boss.name=='Coins_yuanshao'&&(!game.boss.hasSkill('Coins_guaduan')||!game.boss.hasSkill('Coins_jianzhen')||!game.boss.hasSkill('Coins_qianzhi')||!game.boss.hasSkill('Coins_mingmen'))||game.boss.name=='Coins_liubiao'&&(!game.boss.hasSkill('Coins_hanshi')||!game.boss.hasSkill('Coins_fuxi')));
 },
 content:function (){
-//= function (all) {
-//   player.draw();
-  // };
-player.removeSkill('challenge_caixiong')._triggered=null;
-player.removeSkill('Coins_jingshang3')._triggered=null;
-player.removeSkill('Coins_zizhu2')._triggered=null;
+if(trigger.name=='gameDraw'){
+player.skip('phase');
+if(game.boss.name=='Coins_liubiao'&&game.me!=game.boss){
+player.gain(get.cards(7))._trggered=null;
+}else{
 player.gain(get.cards(4))._trggered=null;
+ }
+//}
 player.next.gain(get.cards(3))._trggered=null;
 player.next.next.gain(get.cards(2))._trggered=null;
 player.previous.gain(get.cards(1))._trggered=null;
+}
+if(game.boss.name=='Coins_mizhu'){
+player.removeSkill('challenge_caixiong')._triggered=null;
+player.removeSkill('Coins_jingshang3')._triggered=null;
+player.removeSkill('Coins_zizhu2')._triggered=null;
 player.addTempSkill('Coins_tuhao',{player:'dieAfter'})._triggered=null;
 player.addTempSkill('Coins_jingshang',{player:'dieAfter'})._triggered=null;
 player.addTempSkill('Coins_zizhu',{player:'dieAfter'})._triggered=null;
-   }
+ }else{
+ if(game.boss.name=='Coins_liubiao'){
+ player.removeSkill('Coins_hanshi1')._triggered=null;
+ player.removeSkill('Coins_fuxi1')._triggered=null;
+ player.addTempSkill('Coins_hanshi',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_fuxi',{player:'dieAfter'})._triggered=null;
+ }
+ if(game.boss.name=='Coins_yuanshu'){
+ player.removeSkill('Coins_yongchang2')._triggered=null;
+ player.removeSkill('Coins_yongsi2')._triggered=null;
+ player.removeSkill('Coins_duxian2')._triggered=null;
+ player.addTempSkill('Coins_duxian',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_yongsi',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_yongchang',{player:'dieAfter'})._triggered=null;
+ }else{
+ if(game.boss.name=='Coins_yuanshao'){
+ player.removeSkill('Coins_mingmens')._triggered=null;
+ player.removeSkill('Coins_guaduans')._triggered=null;
+ player.removeSkill('Coins_jianzhens')._triggered=null;
+ player.removeSkill('Coins_qianzhis')._triggered=null;
+ player.addTempSkill('Coins_jianzhen',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_guaduan',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_mingmen',{player:'dieAfter'})._triggered=null;
+ player.addTempSkill('Coins_qianzhi',{player:'dieAfter'})._triggered=null;
+    }}
+       }       
+      }
     },
        challenge_fengchi:{
        group:['challenge_fengchi2','challenge_fengchi3','challenge_fengchi4'],
@@ -3850,6 +5610,9 @@ player.draw();
 					    target.draw(3);
          target.goMad();       
         }
+        if(game.players.length-1<2){
+        event.finish();
+        }else{
    //  'step 1'  
      var list2=game.filterPlayer(function(target){
 					return target!=player&&!target.isMad();
@@ -3871,7 +5634,7 @@ player.draw();
 					    game.log(target2,'获得了技能：激昂、咆哮、奇袭、断粮');
 					    target2.draw(3);
          target2.goMad();       
-         }
+         }}
        }
      },
      challenge_huodi3:{
@@ -4865,6 +6628,7 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
     			content:function(){
     			if(trigger.name=='loseMaxHp'){
     			trigger.cancel();
+    			game.log(player,'取消了失去体力上限');
     			}else{
     			player.maxHp=108;
     			player.hp=player.maxHp;
@@ -5329,7 +7093,8 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;     
       return true;       
      },      
-			content:function(){			   player.draw(3+Math.ceil(player.countCards('e')/2))._triggered=null;
+			content:function(){			   
+			player.draw(3+Math.ceil(player.countCards('e')/2))._triggered=null;
       },      
       mod:{
        globalFrom:function(from,to,distance){
@@ -5354,6 +7119,8 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
      noDeprive:true,
       filter:function(event,player){
       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&&player.name2!='boss_panfeng') return false;
+      if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
       if(event.name=='damage'){
       return event.source==undefined;
        }
@@ -5364,7 +7131,16 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
      },      
 			content:function(){     
 					trigger.finish();
-         trigger.untrigger();		  		
+         trigger.untrigger();		
+         if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
+         if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+         if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }		
         }
       },
      boss_shangjiang3:{
@@ -5405,12 +7181,13 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
       trigger.player.$give(trigger.player.countCards('e'),player);
        }
         'step 1'      
-     if(player.hp<player.maxHp&&Math.random()<=0.12){			  player.recover(Math.max(1,Math.round((player.maxHp-player.hp)*0.2)))._triggered=null;
+     if(player.hp<player.maxHp&&Math.random()<=0.12){		
+  	  player.recover(Math.max(1,Math.round((player.maxHp-player.hp)*0.2)))._triggered=null;
           }      
         }
       },
      boss_shangjiang5:{ 
-		trigger:{player:'damageEnd'},
+		trigger:{player:'damageAfter'},
 			direct:true,
       audio:true,
       unique:true,
@@ -5426,9 +7203,9 @@ if(get.tag(card,'recover')&&player.hp>=player.maxHp-1&&player.countCards('h','ta
      player.addSkill('boss_shangjiangx');
       "step 1"     
      player.logSkill('boss_shangjiang5');
-     player.draw(2)._triggered=null;       	
+     player.draw(trigger.num)._triggered=null;       	
       "step 2"
-     game.delay(1.5); 
+     game.delay(1); 
 player.useCard({name:'juedou'},trigger.source,false);      
       "step 3"
      player.removeSkill('boss_shangjiangx');    
@@ -5437,6 +7214,8 @@ player.useCard({name:'juedou'},trigger.source,false);
         noturn:true,                                    
          effect:{
         target:function (card,player,target,current){
+         if(card.name=='bingliang')
+         return 0.9;
         if(!target.getEquip(2)){
         if(get.subtype(card)=='equip2')
 return [1,3];
@@ -5834,7 +7613,8 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_gy'&&player.name!='boss_gyc'&&player.name2!='boss_gy'&&player.name2!='boss_gyc')
 
        return false;
-
+       if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
         return true;
 
        },            
@@ -5842,6 +7622,12 @@ if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_panfeng'&
 				content:function(){	
 
         trigger.cancel();
+        if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+        if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
 
        },
 
@@ -6126,7 +7912,7 @@ current.damage(current.maxHp)._triggered=null;
        trigger.target.update();
        }
        'step 1'
-        if(get.number(trigger.card)>trigger.target.hp){
+        if(get.number(trigger.card)>trigger.target.hp||trigger.cards.length>1){
         trigger.directHit=true;
         }        
        else{       
@@ -6194,7 +7980,10 @@ return [1,3];
        },
 				content:function(){	
         trigger.finish();
-      trigger.untrigger();       
+      trigger.untrigger();   
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }      
        },
        ai:{
        nothunder:true,
@@ -6379,10 +8168,18 @@ return [1,3];
      noDeprive:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong') return false;
+        if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
         return true;
        },            
 				content:function(){	
         trigger.cancel();
+        if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+        if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
        },
        mod:{
     				targetEnabled:function(card){
@@ -6909,6 +8706,9 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
       content:function(){
       trigger.finish();
       trigger.untrigger();
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
       }      
      },
        boss_kangxing:{
@@ -6930,11 +8730,16 @@ player.addTempSkill('boss_moqux',{player:'damageAfter'})
       audio:2,
    filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue') return false;
+     if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
      return true;
       },      
 			content:function(){
       trigger.finish();
       trigger.untrigger();
+      if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
      },   
     			mod:{
     				targetEnabled:function(card,player,target,now){
@@ -7036,11 +8841,19 @@ player.node.name.dataset.nature='metal';          player.node.name.style.color="
      noDeprive:true,
     filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici'&&player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
+      if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
       return true;
       },      
 			content:function(){     
 					trigger.finish();
          trigger.untrigger();
+         if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+         if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
 				}
 			},    
       boss_shenyou3:{				
@@ -7172,7 +8985,7 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.15) ap+=2;
        }
       var sh=0;
       if(trigger.player.maxHp>=8){
-      sh+=Math.round(trigger.player.maxHp*0.15);
+      sh+=Math.round(trigger.player.maxHp*0.15+trigger.num);
       }
       else{
       sh+=1;
@@ -7948,6 +9761,9 @@ if(get.tag(card,'recover')&&player.hp==4) return [0,0];
        noLose:true,
      noGain:true,
      noDeprive:true,
+     filter:function(event,player){
+     return !player.isTurnedOver();
+				},
 			content:function(){
 		 trigger.finish();
      trigger.untrigger();
@@ -8249,11 +10065,16 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      noDeprive:true,
       filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_sunce'&&player.name2!='boss_sunce') return false;
+     if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
      return true;
      },    
 			content:function(){
       trigger.finish();
      trigger.untrigger();
+     if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
      }},      
      boss_dianji2:{    
        audio:1,
@@ -8574,7 +10395,7 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
 					var target=list.randomGet();
 					player.line(target,'green');
           if(target.num('he')<2){        
-         player.draw(4);
+         player.draw(3);
          if(target.maxHp>=1000000000||target.hp>=Infinity){
        player.line(target,'green');
        target.maxHp=1000000000;
@@ -8593,12 +10414,25 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
      noDeprive:true,
      filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;
+     if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
      return true;
      },   
 			content:function(){
      trigger.untrigger();
       trigger.finish();
-      }},
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
+      if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+      if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
+      player.phase();
+      }
+    },
     boss_yuanlv2:{        
                 audio:1,
                 trigger:{player:'damageBefore'},
@@ -8609,22 +10443,29 @@ event.targets[0].damage(Math.max(1,Math.round(event.targets[0].maxHp*0.3)))._tri
      noDeprive:true,
      filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_simayi'&&player.name2!='boss_simayi') return false;  
-     return get.type(event.card)!='trick'&&get.type(event.card)!='delay';				
+     return !event.card||event.nature!='fire';				
 			},   
 			content:function(){     
      trigger.untrigger();
       trigger.finish();
+      player.phase();
      },
      ai:{
-      noturn:true,
+      //noturn:true,
+      nothunder:true,
+      //noDamage:true,
 				effect:{
-					target:function(card,player,target){          
-          if(get.tag(card,'damage')&&get.type(card)=='basic')         
-          return -1;
-						}
-					}
+					target:function(card,player,target){  
+					if(get.tag(card,'turnOver')){        
+          return [0,3];
+          }
+          if(get.tag(card,'damage')&&!get.tag(card,'fireDamage')){      
+          return [0,3];
+          }
+			  			}
+		 			}
 				}
-			},
+		},
     boss_shenmou:{
     group:['boss_shenmou1','boss_shenmou2','boss_shenmou3'],
      locked:true,
@@ -8758,7 +10599,8 @@ player.removeSkill(['duanliang','lianhuan','zhiheng','jizhi','luanji','wansha'])
            effect:{         
           player:function (card,player,target){          
 if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
-           if(card.name=='du') return 1;                  
+           if(card.name=='du') return 9;               if(card.name=='shandian') return [1,5]; 
+           if(card.name=='fulei') return [1,5];
            if(card.name=='sha'&&get.attitude(player,target)<0) return [1,Infinity];
            if(card.name=='tao') return 0;
     }}}},
@@ -8877,6 +10719,8 @@ player.gainPlayerCard(true,'he',current)._triggered=null;
      noDeprive:true,
     filter:function (event,player){
  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai') return false;
+     if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
      return true;
      },    
 			content:function(){
@@ -9373,6 +11217,12 @@ return [1,3];
 			content:function(){
       trigger.finish();
       trigger.untrigger();
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
+      if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
       player.gainMaxHp()._triggered=null;
       player.draw(3)._triggered=null;      
      }
@@ -9778,6 +11628,11 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 			content:function(){     
       trigger.finish();
       trigger.untrigger();
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }else{
+      game.log(trigger.card,'对',player,'失效');
+      }  
       player.sex=['male','female'].randomGet();
       player.draw(3);
       player.update();
@@ -9829,6 +11684,7 @@ current.loseHp(Math.max(1,current.maxHp-current.hp));
 			content:function(){
       trigger.finish();
       trigger.untrigger();
+      game.log(player,'取消了翻面');
       player.draw(3);
        }
 		},
@@ -9876,17 +11732,17 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.skip = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 if(get.mode()!='boss'){
 player.clearSkills = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 }
 }},
@@ -10014,6 +11870,9 @@ player.useCard({name:'sha'},trigger.source,false);
     },  
    	content:function(){
     trigger.cancel();
+    if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
     game.log(player,'：呵呵！😁😁');
       player.draw();
        }
@@ -10496,12 +12355,23 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
      noGain:true,
      noDeprive:true,
      filter:function(event,player){ 
-  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;  			 
+  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_machao'&&player.name2!='boss_machao') return false;  
+       if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;			 
        return true;
 	     },
 			content:function(){
      trigger.finish();
       trigger.untrigger();
+      if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
+      if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
+      if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');
+      }
       player.gainMaxHp()._triggered=null;
        }
       },
@@ -10645,7 +12515,10 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
       },
     	content:function(){
      trigger.finish();
-     trigger.untrigger();      
+     trigger.untrigger(); 
+     if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }     
        }
       },
            boss_beifen:{
@@ -10691,11 +12564,13 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
    if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_cwj'&&player.name2!='boss_cwj') return false;
                 return event.player!=player;
             },           	           
-                 forced:true,
+                 check:function (event,player){             return ai.get.attitude(player,event.player)<1;
+            },
                 unique:true,
                 noLose:true,
      noGain:true,
-     noDeprive:true,          
+     noDeprive:true,    
+                logTarget:'player',      
                 content:function (){               
                 "step 0"
                 trigger.player.addSkill('fengyin');
@@ -10706,7 +12581,7 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
 					player.draw(2);
 				}            
                game.delay(2);
-                player.line(trigger.player,'green');
+           //     player.line(trigger.player,'green');
               //  trigger.player.line(player,'green');
                 trigger.player.judge();
                 if(trigger.player.maxHp>1000000000||trigger.player.hp>1000000000){       
@@ -10768,7 +12643,7 @@ return [1,3];
                 return true;
                 }
                 else{
-                    return event.source==undefined||event.num>1;
+                    return event.name=='damage'&&event.source==undefined||event.num>1;
                  }
                  return false;
                 },
@@ -11058,7 +12933,10 @@ return [1,3];
     },
     	content:function(){
      trigger.finish();
-     trigger.untrigger();      
+     trigger.untrigger();   
+     if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }   
       }
       },
        boss_jianyu:{                
@@ -11287,7 +13165,7 @@ if(player.countCards('e','zhuge')&&player.countCards('h','sha')>0&&get.subtype(c
      noDeprive:true,
        filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan') return false;
-                return true;
+                return player.hp<0;
                 },            
                 content:function (){
                 trigger.cancel();               
@@ -11501,7 +13379,7 @@ noLose:true,
      noGain:true,
      noDeprive:true,
 filter:function(event,player){
-   return player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_sunce'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
+   return player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_sunce'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
 },
 content:function (){
 console.log(player);
@@ -11551,19 +13429,19 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.init = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.delete = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.clearSkills = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 }},
     boss_immune2:{
@@ -11574,7 +13452,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
      noDeprive:true,
 		trigger:{player:'dieBefore'},
     filter:function(event,player){
-    return (player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&(player.hp>0||player.maxHp<1);
+    return (player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&(player.hp>0||player.maxHp<1);
     },    
     content:function(){
     trigger.finish();
@@ -11590,7 +13468,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
      popup:false,
 		trigger:{player:'dying'},
     filter:function(event,player){
-    return (player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
+    return (player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
     },   
     priority:100, 
     content:function(){
@@ -11667,19 +13545,19 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.init = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.delete = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.skip = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 }},
     boss_dcmy2:{
@@ -11768,16 +13646,16 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.link = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.turnOver = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
+player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
 }},
     boss_dcmyg2:{
@@ -11834,15 +13712,19 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
       return _status.currentPhase!=player;
 			},
      check:function (event,player){            
-                return        ai.get.attitude(player,event.player)<1;
+     return ai.get.attitude(player,event.player)<1;
             },
             priority:99,
             logTarget:'player',
 			content:function(){
+			  'step 0'
+			  player.storage.baonu-=1;
      trigger.finish();
-     trigger.untrigger();       
+     trigger.untrigger();  
+     'step 1'     
      player.draw(3);
-     player.storage.baonu-=1;
+     player.turnOver(false);
+     player.discard(player.get('j'));     
      },    
 		},
      feijiangx:{     
@@ -11860,12 +13742,19 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
      return true;
      },  
 			content:function(){
+			 'step 0'
+			 player.draw(4,false)._triggered=null;
+			 'step 1'
 				for(var i=0;i<game.players.length;i++){
 					if(game.players[i]==player) continue;
-					player.maxHp+=game.players[i].maxHp;		
+					player.maxHp+=game.players[i].maxHp*game.players[i].maxHp;		
 				}
 				player.hp=player.maxHp;
 				player.update();
+				'step 2'
+				if(get.mode()=='boss'){
+				player.skip('phase');
+				}
       }
 			},
     feijiangx2:{
@@ -11884,13 +13773,15 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">Miss'+'</span>');
 			},
 						content:function(){
 							"step 0"
-							player.phase();
+							player.draw(2);
 							"step 1"
-							while(_status.event.name!='phase'){
-								_status.event=_status.event.parent;
-							}            
-							_status.event.finish();
-							_status.event.untrigger(true);						
+						player.chooseToUse({name:'sha'},trigger.player,-1,'飞将：是否对'+get.translation(trigger.player)+'使用一张【杀】？').set('targetRequired',true);		
+						"step 2"
+						if(result.bool&&trigger.player.isAlive()){
+						event.goto(1);
+						}else{
+						event.finish();
+					 }
 					},
      mod:{		
 				globalFrom:function(from,to,current){
@@ -11945,7 +13836,7 @@ player.gainPlayerCard(trigger.player,true,trigger.player.num('he'),'he');
 				return player.storage.baonu>=8;
 			},     
 			skillAnimation:true,
-			animationColor:'fire',
+			animationColor:'thunder',
      unique:true,
      noLose:true,
      noGain:true,
@@ -11960,7 +13851,7 @@ player.gainPlayerCard(trigger.player,true,trigger.player.num('he'),'he');
 				player.line(event.targets,'white');
 				"step 1"
           if(event.targets.length){
-         var            tl=event.targets.shift();                                     
+         var  tl=event.targets.shift();                                     
         tl.damage(2);	
 					event.redo(); 
         }     
@@ -11978,7 +13869,7 @@ player.gainPlayerCard(cur,'he',true,cur.num('he'));
       }
 			},			
 			ai:{
-				order:10,
+				order:15,
 				result:{
 					player:function(player){
 						return game.countPlayer(function(current){
@@ -12126,7 +14017,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
      },
      boss_piaomiao2:{
      audio:"huanhua2",
-     trigger:{player:'phaseBegin'},
+     trigger:{player:['turnOverEnd','phaseBegin']},
 			unique:true,
       forced:true,
      priority:99999,
@@ -12203,8 +14094,14 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/3)))._triggered=nul
                 content:function (){         
                 trigger.finish();
                 trigger.untrigger();
+                if(trigger.name=='loseHp'){
+      game.log(player,'取消了失去体力');
+      }  
+                if(trigger.name=='loseMaxHp'){
+      game.log(player,'取消了失去体力上限');
+      }
                 player.gainMaxHp()._triggered=null;
-                player.recover()._triggered=null;  
+                player.recover(2)._triggered=null;  
          },
         ai:{
 					maixie:true,
@@ -12299,7 +14196,7 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/3)))._triggered=nul
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){ 
                             var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
+                            if(info&&(info.gainable||!info.unique&&!info.locked&&!info.mark&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -12312,7 +14209,7 @@ current.damage('thunder',Math.max(1,Math.round(current.maxHp/3)))._triggered=nul
                         content:lib.translate[link+'_info']
                     });
                     }
-                    game.log(player,'获得技能','【'+get.translation(link)+'】');  
+                    game.log(player,'获得了技能','【'+get.translation(link)+'】');  
                "step 1"
               player.draw(3)._triggered=null;             
                 },
@@ -12604,6 +14501,7 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='BO
 			position:'e',
 			ai:{
 				order:10,
+				damage:true,
 				result:{
 					player:function(player,target){						
 						return 0.5;
@@ -12780,7 +14678,7 @@ player.logSkill('boss_xuanfeng',result.targets);
         ai:{     
      effect:{               
      target:function(card,player,target,current){
-      if(card.name=='bingliang') return 0.1;
+      if(card.name=='bingliang') return 0.5;
       if(card.name=='lebu') return 0;      
              }
             }
@@ -12902,6 +14800,12 @@ return;
 		},
        },
        translate:{
+            Coins_Azrael:'死神来了',
+            Coins_liubiao:'荆襄霸主',
+            Coins_sunce:'孙策',
+            Coins_jiling:'纪灵',
+            Coins_yuanshu:'妄尊僭帝',
+            Coins_yuanshao:'乱箭肃敌',
             Coins_mizhu:'豪商巨贾',
             challenge_xiahouyuan:'风驰电掣',
             challenge_masu:'恃才傲物',
@@ -13272,12 +15176,75 @@ return;
        Coins_jingshang:'经商',
        Coins_zizhu2:'资助',
        Coins_zizhu:'资助',
+       Coins_jianzhen:'箭阵',
+       Coins_jianzhens:'箭阵',
+       Coins_guaduan:'寡断',
+       Coins_guaduans:'寡断',
+       Coins_mingmens:'名门',
+       Coins_mingmen:'名门',
+       Coins_mingmen2:'名门',
+       Coins_mingmen1:'名门',
+       Coins_mingmen3:'名门',
+       Coins_qianzhi:'箝制',
+       Coins_qianzhis:'箝制',
+       Coins_yongsi:'庸肆',
+       Coins_yongsi1:'庸肆',
+       Coins_yongsi2:'庸肆',
+       Coins_yongsi3:'庸肆',
+       Coins_yongchang:'永昌',
+       Coins_yongchang2:'永昌',
+       Coins_fuxi:'伏袭',
+       Coins_fuxi1:'伏袭',
+       Coins_hanshi:'汉室',
+       Coins_hanshi1:'汉室',
+       Coins_hanshi2:'汉室',
+       Coins_hanshi3:'汉室',
+       Coins_hanshi4:'汉室',
+       Coins_sishen:'死神',
+       Coins_sishen1:'死神',
+       Coins_sishen2:'死神',
+       Coins_sishen3:'死神',
+       Coins_sishen4:'死神',
+       Coins_sishen5:'死神',
+       Coins_mingyun:'命运',
+       Coins_mingyun1:'命运',
+       Coins_mingyun2:'命运',
+       Coins_mingyun_info:'<span class="greentext">锁定技'+'</span>，出牌阶段开始时，你随机执行以下其中一种效果：①摸X张牌（X为2到7间的随机值）；②弃掉你牌里所有的【桃】、【毒】、锦囊和装备牌并摸等量的牌，然后你获得技能“咆哮”直到回合结束；任意一名其他角色摸牌阶段结束或进入濒死状态时，该角色随机执行以下其中一种效果：①摸三张牌；②加1点体力上限并回复1点体力；③弃置三张牌；④随机失去武将牌上的一个技能（若武将牌上没有技能，则改为扣减1点体力上限）',
+       Coins_sishen_info:'任意一名角色回合结束阶段开始时，你可以令一名其他角色立即阵亡，触发几率：X%（X为游戏轮数）；<span class="greentext">锁定技'+'</span>，每当你受到未转化的【闪电】【浮雷】或【杀】【决斗】造成的伤害时，X%几率你阵亡（【闪电】【浮雷】：X为游戏轮数；【杀】【决斗】：X改为游戏轮数/100），若你不为此角色的控制者，你获得海量的金币奖励，否则你获得相应的扣除金币惩罚；你的体力和体力上限不会发生变化',
+       Coins_hanshi_info:'锁定技，摸牌数（最多不超过牌堆剩余牌数）、回复体力、计算与其他角色的距离、手牌上限和使用【杀】的次数上限均+X（X为游戏轮数/5且向下取整加上场上存活其他角色个数）；锁定技，准备阶段结束时，若你的判定区内有牌，你随机弃置其中一张牌，你的武将牌始终正面向上',
+       Coins_hanshi1_info:'锁定技，摸牌数（最多不超过牌堆剩余牌数）、回复体力、计算与其他角色的距离、手牌上限和使用【杀】的次数上限均+X（X为游戏轮数/5且向下取整加上场上存活其他角色个数）；锁定技，准备阶段结束时，若你的判定区内有牌，你随机弃置其中一张牌，你的武将牌始终正面向上',
+       Coins_fuxi_info:'当任意一名其他角色于你的回合外进入濒死状态时，你可以令该角色弃置其所有的装备牌和锦囊牌',
+       Coins_fuxi1_info:'当任意一名其他角色于你的回合外进入濒死状态时，你可以令该角色弃置其所有的装备牌和锦囊牌',
+       Coins_yongchang_info:'锁定技，游戏开始时，你召唤出两名随从（孙策、纪灵）；锁定技，当随从阵亡时，你回复体力至体力上限并将手牌补至体力上限',
+       Coins_yongchang2_info:'锁定技，游戏开始时，你召唤出两名随从（孙策、纪灵）；锁定技，当随从阵亡时，你回复体力至体力上限并将手牌补至体力上限',
+       Coins_yongsi_info:'锁定技，摸牌阶段，你额外摸X张牌，X为场上现存势力数。弃牌阶段，你至少须弃置等同于场上现存势力数的手牌（不足则全弃）',
+       Coins_yongsi2_info:'锁定技，摸牌阶段，你额外摸X张牌，X为场上现存势力数。弃牌阶段，你至少须弃置等同于场上现存势力数的手牌（不足则全弃）',
+       Coins_yingzi:'英姿',
+       Coins_yingzi_info:'锁定技，摸牌阶段摸牌时，你额外摸一张牌；你的手牌上限不会因体力值的减少而减少',
+       Coins_yinghun:'英魂',
+       Coins_yinghun1:'英魂',
+       Coins_yinghun2:'英魂',
+			    Coins_yinghun_info:'准备阶段开始时，若你已受伤，你可令一名其他角色执行一项：摸X张牌，然后弃置一张牌；或摸一张牌，然后弃置X张牌（X为你已损失的体力值，若你装备区里牌的数量不小于你的体力值，则X改为你的体力上限）',
+       Coins_duxian:'妒贤',
+       Coins_duxian_info:'其他角色于其回合内进入濒死状态时，你可以令其失去1点体力并获得你手牌里所有的【毒】',
+       Coins_duxian2:'妒贤',
+       Coins_duxian2_info:'其他角色于其回合内进入濒死状态时，你可以令其失去1点体力并获得你手牌里所有的【毒】',
+       Coins_shuangren:'双刃',
+			    Coins_shuangren_info:'出牌阶段开始时，你可以与一名角色拼点。若你赢，你摸三张牌并令任意一名其他角色的非锁定技失效，直到回合结束，然后你视为对该角色使用一张【杀】（此【杀】不计入出牌阶段使用次数的限制）。若你没赢，你结束出牌阶段',
+       Coins_qianzhi_info:'当其他角色使用【杀】指定你为目标后，你可以弃置该角色的一张牌',
+       Coins_qianzhis_info:'当其他角色使用【杀】指定你为目标后，你可以弃置该角色的一张牌',
+       Coins_mingmen_info:'锁定技，摸牌阶段摸牌时，你额外摸X+1张牌（X为你已损失的体力值的1/9且向下取整）；锁定技，你不会受到【毒】的影响；锁定技，你的武将牌始终正面向上，你的判定区内的牌效果反转',
+       Coins_mingmens_info:'锁定技，摸牌阶段摸牌时，你额外摸X+1张牌（X为你已损失的体力值的1/9且向下取整）；锁定技，你不会受到【毒】的影响；锁定技，你的武将牌始终正面向上，你的判定区内的牌效果反转',
+       Coins_guaduan_info:'锁定技，你的手牌上限为你已损失的体力值；锁定技，你的回合外，你不能使用【无懈可击】',
+       Coins_guaduans_info:'锁定技，你的手牌上限为你已损失的体力值；锁定技，你的回合外，你不能使用【无懈可击】',
+       Coins_jianzhen_info:'出牌阶段，你可以将任意一张锦囊当【万箭齐发】使用',
+       Coins_jianzhens_info:'出牌阶段，你可以将任意一张锦囊当【万箭齐发】使用',
        Coins_zizhu2_info:'锁定技，任一其他角色摸牌阶段摸牌时，若该角色已受伤，你令其额外摸一张牌，若其体力是全场唯一最小的，你令其额外摸两张牌；其本回合内手牌上限+1',
        Coins_zizhu_info:'锁定技，任一其他角色摸牌阶段摸牌时，若该角色已受伤，你令其额外摸一张牌，若其体力是全场唯一最小的，你令其额外摸两张牌；其本回合内手牌上限+1',
-       Coins_jingshang_info:'其他角色获得牌后，若其手牌数不小于4且大于你的体力值，你可以获得其1/3的手牌且向下取整；锁定技，当其他角色脱离濒死状态后，若你已受伤，你回复1点体力，然后该角色获得你的一张手牌',
-       Coins_jingshang3_info:'其他角色获得牌后，若其手牌数不小于4且大于你的体力值，你可以获得其1/3的手牌且向下取整；锁定技，当其他角色脱离濒死状态后，若你已受伤，你回复1点体力，然后该角色获得你的一张手牌',
-       challenge_caixiong_info:'锁定技，每当你回复体力、弃置牌、被弃置牌或不因此技能效果摸牌后，你摸一张牌；若你的手牌数小于你的体力上限，你摸两张牌；锁定技，每当你失去最后一张手牌时，你将手牌补至体力上限；若你已受伤，你将手牌补至你已损失的体力值；锁定技，你受到的无伤害来源的伤害均视为回复1点体力；锁定技，你的武将牌始终正面向上，乐不思蜀判定时，你的方块判定牌视为红桃；兵粮寸断判定时，你的黑桃判定牌视为草花；锁定技，你扣减体力上限均视为体力流失；锁定技，出牌阶段，若你装备区里牌数不小于4，你可以额外使用一张【杀】',
-       Coins_tuhao_info:'锁定技，每当你回复体力、弃置牌、被弃置牌或不因此技能效果摸牌后，你摸一张牌；若你的手牌数小于你的体力上限，你摸两张牌；锁定技，每当你失去最后一张手牌时，你将手牌补至体力上限；若你已受伤，你将手牌补至你已损失的体力值；锁定技，你受到的无伤害来源的伤害均视为回复1点体力；锁定技，你的武将牌始终正面向上，乐不思蜀判定时，你的方块判定牌视为红桃；兵粮寸断判定时，你的黑桃判定牌视为草花；锁定技，你扣减体力上限均视为体力流失；锁定技，出牌阶段，若你装备区里牌数不小于4，你可以额外使用一张【杀】',
+       Coins_jingshang_info:'其他角色获得牌后，若其手牌数不小于3且大于你的体力值，你可以获得其1/3的手牌且向下取整；锁定技，当其他角色脱离濒死状态后，若你已受伤，你回复1点体力，然后该角色获得你的一张手牌',
+       Coins_jingshang3_info:'其他角色获得牌后，若其手牌数不小于3且大于你的体力值，你可以获得其1/3的手牌且向下取整；锁定技，当其他角色脱离濒死状态后，若你已受伤，你回复1点体力，然后该角色获得你的一张手牌',
+       challenge_caixiong_info:'锁定技，每当你使用【桃】【酒】、弃置牌、被弃置牌或不因此技能效果摸牌后，你摸一张牌；若你的手牌数小于你的体力上限，你摸两张牌；锁定技，每当你失去最后一张手牌时，你将手牌补至体力上限；若你已受伤，你将手牌补至你已损失的体力值；锁定技，你受到的无伤害来源的伤害均视为回复1点体力；锁定技，你的武将牌始终正面向上，乐不思蜀判定时，你的方块判定牌视为红桃；兵粮寸断判定时，你的黑桃判定牌视为草花；锁定技，你扣减体力上限均视为体力流失；锁定技，出牌阶段，若你装备区里牌数不小于4，你可以额外使用一张【杀】',
+       Coins_tuhao_info:'锁定技，每当你使用【桃】【酒】、弃置牌、被弃置牌或不因此技能效果摸牌后，你摸一张牌；若你的手牌数小于你的体力上限，你摸两张牌；锁定技，每当你失去最后一张手牌时，你将手牌补至体力上限；若你已受伤，你将手牌补至你已损失的体力值；锁定技，你受到的无伤害来源的伤害均视为回复1点体力；锁定技，你的武将牌始终正面向上，乐不思蜀判定时，你的方块判定牌视为红桃；兵粮寸断判定时，你的黑桃判定牌视为草花；锁定技，你扣减体力上限均视为体力流失；锁定技，出牌阶段，若你装备区里牌数不小于4，你可以额外使用一张【杀】',
        challenge_fengchi_info:'每当一名角色进行/响应以下阶段/时机时，你可以视为使用一张无距离限制且无视防具并令目标角色的非锁定技失效直到结算完毕的【杀】或将手牌补至体力上限（开始阶段、判定阶段、摸牌阶段、出牌阶段、弃牌阶段、翻面、结束阶段、回复体力、获得牌）；<span class="greentext">锁定技'+'</span>，当你使用【杀】对目标角色造成伤害时，X%几率令此【杀】伤害+1~X（X为该角色的体力上限）并获得与此【杀】伤害等量的护甲',
        challenge_juechen_info:'<span class="greentext">锁定技'+'</span>，你不会失去体力和体力上限；其他角色计算与你的距离+X（X为场上存活其他角色个数）',
        challenge_kongxin_info:'<span class="greentext">锁定技'+'</span>，每当处于混乱状态的其他角色造成1点伤害时，你摸一张牌',
@@ -13338,7 +15305,7 @@ return;
       boss_shangjiang4:'上将',
       boss_shangjiang5:'上将',
       boss_shangjiang6:'上将',
-      boss_shangjiang_info:'<span class="greentext">锁定技'+'</span>，1、回合开始阶段和结束阶段，你摸3+X张牌（X为你装备区里牌数的一半且向上取整）；你的手牌上限始终为5+X（X改为你装备区里牌数的六倍）；2、当你使用【杀】或【决斗】对一名其他角色造成伤害后，你获得该角色所有装备区里的牌，若你已受伤，则12%几率回复X点体力（X改为你已损失的体力值的20%四舍五入取整，且至少为1）；3、每当你受到一次伤害后，你摸两张牌，然后你视为对伤害来源使用一张【决斗】。(此【决斗】不能被【无懈可击】响应)；4、你每次最多受到4点伤害，任何外界伤害、翻面、体力流失、失去体力上限均对你无效；5、当你成为【乐不思蜀】的目标时，55%几率取消之；6、你计算与其他角色的距离-1',
+      boss_shangjiang_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段和回合结束阶段，你摸X+3张牌（X为你装备区里牌数的一半且向上取整）；你的手牌上限始终为X+5（X改为你装备区里牌数的六倍）；当你使用【杀】或【决斗】对一名其他角色造成伤害后，你获得该角色所有装备区里的牌，若你已受伤，12%几率回复X点体力（X改为你已损失的体力值的20%四舍五入取整，且至少为1）；每当你受到伤害后，你摸取与此伤害等量的牌，然后你视为对伤害来源使用一张【决斗】（此【决斗】不能被【无懈可击】响应）；你每次最多受到4点伤害；无来源的伤害、翻面、体力流失、失去体力上限均对你无效；当你成为【乐不思蜀】的目标时，55%几率取消之；你计算与其他角色的距离-1',
       boss_zhanfu:'神斧',     
       boss_zhanfu_info:'<span class="greentext">锁定技'+'</span>，你视为拥有【贯石斧】的技能效果，出牌阶段，你可以额外使用三张【杀】',
        boss_zhuihun_info:'<span class="greentext">锁定技'+'</span>，当你即将死亡时，若你的体力上限不小于2，你须减1点体力上限并回复体力至体力上限，然后依次获得每名敌方角色一半的牌且向上取整，并对其造成X点伤害（X为其最大体力值）且不触发任何技能',
@@ -13394,7 +15361,7 @@ return;
        boss_dianji_info:'<span class="greentext">锁定技'+'</span>，1、游戏开始时，你将手牌设为7张；2、摸牌阶段开始时，你不摸牌；若你的手牌数小于7时，你将手牌补至7张；3、当你成为【乐不思蜀】或被翻面的目标时，你取消之',
        boss_fengzi_info:'每当你失去装备区里的牌、使用或打出一张♥♦牌时，你可以获得一名其他角色的两张牌，若该角色牌数大于7，描述中的“两张牌”改为“四张牌”，然后对该角色造成X点伤害（X为其最大体力值的30%四舍五入取整，且至少为1）',
        boss_lizhi_info:'<span class="greentext">锁定技'+'</span>，1、你摸牌的数量和回复的体力值为基数的三倍；2、你的手牌上限不会因体力值的减少而减少；3、当你成为【杀】、【决斗】、【顺手牵羊】、【过河拆桥】、【乐不思蜀】、【兵粮寸断】、【铁索连环】或翻面的目标时，(50+3X)%几率取消之（X为你已损失的体力值）并摸一张牌（不受技能加成影响）；4、你使用的非延时类锦囊牌不能被【无懈可击】响应',
-       boss_yuanlv_info:'<span class="greentext">锁定技'+'</span>，回合开始和结束时，你随机获得一名其他角色的所有手牌和装备区，若该角色牌数小于2，你摸4张牌，并令其进入混乱状态，直到其下一回合结束，然后对其造成X点伤害，X为其最大体力值的一半且向上取整；2、你防止体力流失、失去体力上限、翻面或伤害来源不为锦囊牌的伤害',
+       boss_yuanlv_info:'<span class="greentext">锁定技'+'</span>，回合阶段开始和结束时，你随机获得一名其他角色的所有牌，若该角色的牌数小于2，你摸三张牌并令其进入混乱状态，直到其下回合结束，然后对其造成X点伤害，X为其最大体力值的一半且向上取整；每当你即将受到（来源不为卡牌或非火属性的伤害）、失去体力、失去体力上限或翻面时，防止之，然后你执行一个额外的回合',
        boss_shenmou_info:'<span class="greentext">锁定技'+'</span>，1、回合开始时，你随机获得以下其中两项技能:【<span class="bluetext" style="color:	#5F9EA0">断粮'+'</span>、<span class="bluetext" style="color:	#5F9EA0">集智'+'</span>】、【<span class="bluetext" style="color:	#5F9EA0">制衡'+'</span>、<span class="bluetext" style="color:	#5F9EA0">连环'+'</span>】或【<span class="bluetext" style="color:	#5F9EA0">乱击'+'</span>、<span class="bluetext" style="color:	#5F9EA0">完杀'+'</span>】直到回合结束；2、摸牌阶段，你进行一次判定，你的摸牌数改为判定牌的点数',      
        boss_xuezhan_info:'<span class="greentext">锁定技'+'</span>，游戏开始时，你获得血战标记，称为“血”，血战标记数量等同于你已损失的体力值，标记数量随着你已损失体力值变化而变化；你的手牌上限等同于浴血标记的数量；你使用【杀】的次数上限+X；回合结束时，你令所有敌方角色进入“混乱状态”直到其回合开始，并令这些角色弃置1~X张牌（随机值），然后受到你造成的X点伤害（X为你的血战标记数）；每当你即将死亡时，你亮出牌堆顶的一张牌，若此牌的点数不等于你的手牌数，则你不会死亡，并获得此牌，然后摸四张牌，最后你依次获得每名敌方角色的一张牌并视为你对其使用一张【杀】（此【杀】无视目标防具）；你武将牌始终正面朝上', 
        tiaozhan_bianshen_info:'你死亡后，召唤“小怜”并立即进入其回合阶段',
@@ -13418,8 +15385,8 @@ return;
        boss_hudui_info:'<span class="greentext">锁定技'+'</span>，1、当你受到伤害时，你立即视为对伤害来源共计使用X张【杀】（X为你已损失的体力值）此【杀】无视目标防具；2、每当你即将流失体力、受到没有伤害来源或自己的伤害时，防止之，然后你摸一张牌；3、当你于回合外造成伤害时，你摸X张牌，X为你已损失的体力值；若你已受伤，35%几率回复2点体力；4、你防止受到来源为你和没有伤害来源的伤害',
        boss_xionglie_info:'<span class="greentext">锁定技'+'</span>，1、每当你成为【乐不思蜀】、【兵粮寸断】、【顺手牵羊】、【过河拆桥】、【火攻】、【草木皆兵】、【声东击西】、【弃甲曳兵】武将牌被翻面、流失体力、失去体力上限的目标或在回合内受到伤害时，取消之，然后你增加1点体力上限；2、摸牌阶段，你改为摸X张牌，X为你最大体力值-当前手牌数；3、你回复体力时，回复额外+X，X为你已损失体力值的一半且向下取整；4、你的回合外，其他角色回复体力时，若你已受伤，你回复1点体力(回复效果受到条件3的影响)；5、当你使用【杀】指定一名角色为目标后，无视其防具',
        boss_pimi_info:'<span class="greentext">锁定技'+'</span>，1、你为伤害来源的【杀】或【决斗】对装备区里牌数不大于你的其他角色造成的伤害+X（若该角色体力上限不大于999，X为0~999间的随机值，否则X为0~999×其体力上限的1%且四舍五入取整间的随机值）；2、当你使用【杀】或【决斗】指定一名角色为目标后，该角色的技能失效直到此【杀】或【决斗】结算后，且20X%几率令该角色不能使用【闪】或【杀】响应之（X为你装备区里牌数）；3、你计算与体力值、手牌数或装备区里牌数小于你的其他角色的距离始终为1；4、出牌阶段，你可额外使用X张【杀】（X为场上其他男性角色个数）',
-       boss_bieli_info:'<span class="greentext">锁定技'+'</span>，1、当你即将死亡时，你亮出牌堆中的一张牌，若你的体力值不为0或此牌不为♣4，则你不会死亡，然后你获得之且回复体力至1点，否则你死亡；2、你防止受到外界的伤害或失去体力上限',
-       boss_beifen_info:'<span class="greentext">锁定技'+'</span>，1、一名其他角色出牌阶段时，你摸X张牌（X为2到其最大体力值间的随机值）；然后令其进行一次判定，若判定结果为：♥你对其造成X点伤害（X为其最大体力值的50%~200%间的随机值且四舍五入取整）；♦你获得其所有装备区里的牌和手牌；♣其须弃置所有装备区里的牌和手牌；♠①其有几率随机失去一个技能；②其进入“混乱状态”，直到其下个摸牌阶段结束；2、你对体力值大于你的其他角色使用的【杀】不计入次数限制；3、你的手牌上限+4X（X为你装备区里牌数）',
+       boss_bieli_info:'<span class="greentext">锁定技'+'</span>，当你即将死亡时，你亮出牌堆顶的一张牌，若你的体力值不为0或此牌不为♣4，则你不会死亡，然后你获得之且回复体力至1点，否则你死亡；你防止受到无来源的伤害和失去体力上限',
+       boss_beifen_info:'其他角色出牌阶段开始时，你可以摸X张牌（X为2到其最大体力值间的随机值）；然后该角色进行一次判定，若判定结果为：♥你对该角色造成X点伤害（X为其最大体力值的50%~200%间的随机值且四舍五入取整）；♦你获得该角色的所有牌；♣该角色弃置其所有牌；♠①该角色有几率随机失去一个技能；②该角色进入“混乱状态”，直到其下一摸牌阶段结束；<span class="greentext">锁定技'+'</span>，你对体力值大于你的其他角色使用的【杀】不计入次数限制，你的手牌上限+4X（X为你装备区里牌数）',
        boss_shemian_info:'<span class="greentext">锁定技'+'</span>，每当你即将受到多于1点伤害、流失多于1点体力、外界的伤害或失去体力上限时，防止之，然后你摸与之等量的牌',
        boss_tongyi_info:'<span class="greentext">锁定技'+'</span>，当你受到伤害、流失体力或武将牌翻面时，若场上其他角色手牌或装备区里有牌，则你获得每名其他角色一半的牌向上取整并对其造成1点伤害（若其体力上限大于6，你将其体力值和体力上限设为6）；<span class="greentext">锁定技'+'</span>，每当你获得牌时，若你的当前牌数大于牌堆与弃牌堆的牌数，你立即获得胜利',
        boss_liaoshang_info:'<span class="greentext">锁定技'+'</span>，当你回复体力时，你额外回复X点体力（X为你已损失的体力值的12%向下取整，且至少为1）',
@@ -13431,15 +15398,15 @@ return;
        boss_biyue_info:'<span class="greentext">锁定技'+'</span>，1、每当你受到伤害时，若伤害来源为男性：该角色须弃置与此伤害的三倍等量的牌，否则其失去与此伤害的三倍等量的体力；若伤害来源不为男性：该角色进入“混乱状态”，直到其进入濒死状态；2、回合结束阶段开始时，你增加X点体力上限（X为你装备区里牌数加上游戏轮数）并摸X+2张牌（X改为你装备区里牌数），然后你回复一半已损失的体力值且向上取整（当你受到无伤害来源的伤害时，防止之并执行此项）；3、当你即将死亡时，若你的体力值小于0，你不会死亡，然后回复体力至体力上限',
        boss_guose_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限3次，你可以将一张♥或♦牌当【乐不思蜀】使用；若如此做，你摸两张牌',
        challenge_meihuo_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限一次，你可以指定一至两名其他角色，若其有牌且体力上限大于其牌数，将其体力上限设为其牌数，获得其所有的牌；令其失去所有技能直到你回合结束，然后你获得之（主公技、限定技和觉醒技除外）直到你下一回合开始',
-       feijiangx_info:'<span class="greentext">锁定技'+'</span>，1、游戏开始时，你的体力上限变为其他角色体力上限之和；2、其他角色回合阶段结束时，你额外执行一个回合；3、你的进攻距离和手牌上限为无限',
-       shenshi_info:'你的回合外，其他角色回复体力时，若该角色体力值不低于1，你可以弃1个暴怒标记取消之，然后你摸三张牌',
-       shensha_info:'其他角色在其回合内武将牌被翻面，你可以获得其所有手牌和装备区，然后令其立即死亡',
+       feijiangx_info:'<span class="greentext">锁定技'+'</span>，游戏开始时，你的体力和体力上限改为所有其他角色的体力上限的二次方相加之和；其他角色回合结束阶段开始时，你摸两张牌，然后你可以对该角色使用任意张【杀】；你计算与其他角色的距离始终为1；你的手牌上限为无限',
+       shenshi_info:'你的回合外，其他角色回复体力时，若该角色的体力不小于1，你可以弃1个暴怒标记取消之，然后你摸三张牌，将武将牌翻到正面向上并弃置判定区内的所有牌',
+       shensha_info:'其他角色于其回合内武将牌被翻面时，你可以获得其所有的牌，然后令其立即死亡',
 	    	shenmie_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段，你可以弃8个暴怒标记，令场上所有其他角色受到你造成的2点伤害，然后令武将牌正面朝上的所有其他角色翻面，最后你获得这些角色所有牌',
        boss_jieliang_info:'其他角色从牌堆获得牌时，你可以令其失去非锁定技直到其回合结束，然后你获得其X张牌，X为其所有手牌和装备区里牌数-1，并偷取其1/3的体力上限且四舍五入取整，转化为你的体力和体力上限',
 		boss_yaohuo_info:'<span class="greentext">锁定技'+'</span>，每当你失去手牌时，你令未处于“混乱状态”的随机一名其他角色进入“混乱状态”直到其下一回合结束，若没有可以选定的角色，则你摸两张牌',
-       boss_piaomiao_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段，你对所有手牌数大于1的敌方角色造成X点雷电伤害（X为目标角色最大体力值的1/3四舍五入取整，且至少为1）并令其弃置其一半的牌且向上取整',
-            boss_qimen_info:'<span class="greentext">锁定技'+'</span>，当你体力值发生变化或回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外），然后你摸三张牌',
-            boss_dunjia_info:'<span class="greentext">锁定技'+'</span>，1、你每次最多受到1点伤害；2、你流失体力或失去体力上限时，取消之，改为增加1点体力上限并回复1点体力；3、每当你于回合外失去一张牌，立即摸两张牌、重置武将牌并弃置判定区里所有的牌；4、每当你对自己使用【桃】时，额外回复1点体力',
+       boss_piaomiao_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段或武将牌被翻面时，你对所有手牌数大于1的敌方角色造成X点雷电伤害（X为目标角色最大体力值的1/3四舍五入取整，且至少为1）并令其弃置其一半的牌且向上取整',
+            boss_qimen_info:'<span class="greentext">锁定技'+'</span>，当你体力值发生变化或回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技和限定技除外），然后你摸三张牌',
+            boss_dunjia_info:'<span class="greentext">锁定技'+'</span>，你每次最多受到1点伤害；每当你即将失去体力或失去体力上限时，取消之，然后你增加1点体力上限并回复2点体力；每当你于回合外失去一张牌，立即摸两张牌、重置武将牌并弃置判定区里所有的牌；每当你对自己使用【桃】时，额外回复1点体力',
         boss_shemao_info:'<span style=\"color: cyan\">主动技</span>，你可以将两张手牌当【杀】使用或打出',
         challenge_yongmou_info:'<span class="greentext">锁定技'+'</span>，回合结束阶段开始时，若你没有手牌或你于出牌阶段未使用过【杀】，你将武将牌正面朝上的所有敌方角色的武将牌翻面',
         boss_nuxiao_info:'<span class="greentext">锁定技'+'</span>，1、当你使用【杀】指定一名其他角色为目标时，若你的当前手牌数小于你的体力值，则你令该角色的技能失效直到回合结束，然后你展示牌堆顶的四张牌，获得其中的基本牌和装备牌；2、你为伤害来源的【杀】对其他角色造成的伤害+X(X为该角色已损失的体力值的33%且向下取整)；3、出牌阶段，你使用【杀】无数量限制；4、你计算与其他角色的距离始终为1',
@@ -13455,7 +15422,10 @@ return;
      lib.config.background_music='music_off';
 			game.addCharacterPack({
 				character:{
-				   Coins_mizhu:['male','shu',24,['challenge_caixiong','Coins_jingshang3','Coins_zizhu2'],['zhu','boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧或SP武将挑战并击败它，可获得大量的金币。"]],
+				   Coins_liubiao:['male','qun',48,['Coins_hanshi1','Coins_fuxi1'],['zhu','boss',"des:强度：★★★☆☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"]],
+				   Coins_yuanshu:['male','qun',20,['Coins_duxian2','Coins_yongsi2','Coins_yongchang2'],['zhu','boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"]],
+				   Coins_yuanshao:['male','shu',99,['Coins_jianzhens','Coins_guaduans','Coins_mingmens','Coins_qianzhis'],['zhu','boss',"des:强度：★★★☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将挑战并击败他，可获得大量的金币。"]],
+				   Coins_mizhu:['male','shu',24,['challenge_caixiong','Coins_jingshang3','Coins_zizhu2'],['zhu','boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将挑战并击败他，可获得大量的金币。"]],
        challenge_yuangujulong:['none','mo',20,['challenge_shanggushengwu','challenge_julongkuangnu'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()],['qun','shu','wei','wu'].randomGet()],
        wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
        wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],['zhu',['qun','shu','wei','wu'].randomGet()]],
@@ -13474,7 +15444,7 @@ return;
          boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],['zhu',['qun','shu','wei','wu'].randomGet(),"des:武藝天下無雙。"]],
          boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],['zhu',['qun','shu','wei','wu'].randomGet()]],         
          boss_sunce:['male','mo',7,['boss_dianji','boss_angyang'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
-        boss_simayi:['male','mo',9,['boss_shenmou','boss_yuanlv','guicai'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
+        boss_simayi:['male','mo',9,['reguicai','refankui','boss_shenmou','boss_yuanlv'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_daqiao:['female','mo',15,['boss_lizhi','boss_fengzi'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
         boss_zhoutai:['male','mo',5,['boss_xuezhan'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
          boss_machao:["male","mo",12,["boss_pimi","boss_xionglie"],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],        
@@ -13483,7 +15453,7 @@ return;
          boss_yinxian:["male","mo",10,["boss_qingxu","yinxian","tiaozhan_bianshen4"],[['qun','shu','wei','wu'].randomGet()]],
          boss_huaji:["male","mo",11,["boss_qingxu","huaji","tiaozhan_bianshen5"],[['qun','shu','wei','wu'].randomGet()]],        
         boss_fennu:["female","mo",12,["boss_qingxu","fennu","fennu1","tiaozhan_bianshen6"],[['qun','shu','wei','wu'].randomGet(),'Unaffected']],
-        boss_yishunjianyiwang:["female","mo",3,["boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','zhu','hiddenboss'].randomGet(),'Unaffected',['qun','shu','wei','wu'].randomGet(),"des:水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
+        boss_yishunjianyiwang:["female","mo",3,["boss_shunjian","boss_yiwang","boss_shuitie","boss_wanzun"],[['unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','zhu','hiddenboss'].randomGet(),'Unaffected',['qun','shu','wei','wu'].randomGet(),"des:水的清澈，并非因为它不含杂质，而是在于懂得沉淀；心的通透，不是因为没有杂念，而是在于明白取舍。"]],
          boss_cwj:["female","mo",1,["boss_beifen","boss_bieli"],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:蔡琰，字文姬，又字昭姬[1]。生卒年不详。东汉陈留郡圉县（今河南开封杞县）人，东汉大文学家蔡邕的女儿。初嫁于卫仲道，丈夫死去而回到自己家里，后值因匈奴入侵，蔡琰被匈奴左贤王掳走，嫁给匈奴人，并生育了两个儿子。十二年后，曹操统一北方，用重金将蔡琰赎回，并将其嫁给董祀。[2]蔡琰同时擅长文学、音乐、书法。《隋书·经籍志》著录有《蔡文姬集》一卷，但已经失传。现在能看到的蔡文姬作品只有《悲愤诗》二首和《胡笳十八拍》。"]],
          boss_simayan:["male","mo",50,["boss_tongyi","boss_shemian"],['zhu','Unaffected',"des:司马炎（236年－290年5月16日），字安世，河内温县（今河南省温县）人，晋朝开国皇帝（265年－290年在位）。晋宣帝司马懿之孙、晋文帝司马昭嫡长子、晋元帝司马睿从父。",['qun','shu','wei','wu'].randomGet()]],
          boss_jianwu:["male","mo",100,["victory","boss_xiushen","boss_pojia","boss_jianqi","boss_jianyu"],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet()]],
@@ -13501,6 +15471,9 @@ return;
        challenge_xiahouyuan:['male','mo',8,['battle_song','challenge_fengchi','challenge_juechen'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:夏侯渊（？－219年），字妙才，沛国谯（今安徽亳州）人，东汉末年名将，擅长千里奔袭作战，官至征西将军，封博昌亭侯。初期随曹操征伐，官渡之战为曹操督运粮草，又督诸将先后平定昌豨、徐和、雷绪、商曜等叛乱。后率军驻凉州，逐马超、破韩遂、灭宋建、横扫羌、氐，虎步关右。张鲁降曹操后，夏侯渊留守汉中，与刘备相拒逾年，于定军山被刘备部将黄忠所袭，战死，谥曰愍侯。'],['qun','shu','wei','wu'].randomGet()],
        },
        characterTitle:{
+       Coins_liubiao:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他（挑战模式），可获得大量的金币（强度：★★★☆☆）',
+       Coins_yuanshu:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他（挑战模式），可获得大量的金币（强度：★★★，行动顺序：从→魔→人→魔→人→魔→人→魔→从→魔）',
+       Coins_yuanshao:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他（挑战模式），可获得大量的金币（强度：★★★☆）',
        Coins_mizhu:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他（挑战模式），可获得大量的金币（强度：★★★）',
        },
        },'挑战BOSS')
@@ -13515,7 +15488,13 @@ return;
      if(lib.config.mode=='boss'){
 			game.addCharacterPack({
 				character:{  
-				   Coins_mizhu:['male','shu',24,['challenge_caixiong','Coins_jingshang3','Coins_zizhu2'],['boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧或SP武将挑战并击败它，可获得大量的金币。"],'shu'],     
+				    Coins_Azrael:[['none','male','female'].randomGet(),'mo',Infinity,['boss_winsong','Coins_mingyun','Coins_sishen'],[['unseen','unseen','unseen','unseen','unseen','unseen','unseen','boss'].randomGet(),'Unaffected',"des:强度：！！。死神是古希腊神话人物，即死亡之神，居住在冥府。死神常穿一身黑斗篷，手中拿着一把巨大的镰刀。在古代人想象中，睡眠与死亡是孪生兄弟，赫西奥德认为，他们都是夜晚的孩子，都居住在冥府，他们从冥府来到地面，悄悄地走近尘世中的人。"],'wei'],
+				   Coins_liubiao:['male','qun',48,['Coins_hanshi1','Coins_fuxi1'],['boss',"des:强度：★★★☆☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"],'wei'],
+				   Coins_yuanshu:['male','qun',20,['Coins_duxian2','Coins_yongsi2','Coins_yongchang2','Coins_changeBoss'],['boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"],'qun'],
+				   Coins_sunce:['male','wu',5,['jiang','Coins_yingzi','Coins_yinghun','tianyi'],['hiddenboss']],
+				   Coins_jiling:['male','qun',5,['Coins_shuangren'],['hiddenboss']],
+				   Coins_yuanshao:['male','shu',99,['Coins_jianzhens','Coins_guaduans','Coins_mingmens','Coins_qianzhis'],['boss',"des:强度：★★★☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"],'shu'],     
+				   Coins_mizhu:['male','shu',24,['challenge_caixiong','Coins_jingshang3','Coins_zizhu2'],['boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币。"],'shu'],     
        wang_liubei:['male','wang',7,['boss_qibing','boss_qidun','boss_jiezhou','boss_tianwei','boss_taofa','boss_zhaoxian','boss_dilu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。乱世枭雄。"],['qun','shu','wei','wu'].randomGet()],
          wang_caocao:['male','wang',8,['boss_tuba','boss_qidun','boss_ningfu','boss_tianwei','boss_chengtian','boss_shanmou','boss_zhulu'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。乱世奸雄。"],['qun','shu','wei','wu'].randomGet()],
          wang_sunquan:['male','wang',7,['boss_wentao','boss_qidun','boss_shouye','boss_tianwei','boss_quanxue','boss_renru','boss_fuzhong'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。少年贤君。"],['qun','shu','wei','wu'].randomGet()],
@@ -13539,7 +15518,7 @@ return;
         boss_taishici:['male','mo',6,['battle_song','boss_shenyou','boss_yingyi'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。北海侠士。"],['qun','shu','wei','wu'].randomGet()],         
          boss_jiaxu:['male','mo',7,['battle_song','boss_shenyou','boss_weimu','boss_wansha','boss_duce'],[['qun','shu','wei','wu'].randomGet(),'zhu','boss','Unaffected',"des:强度：★★★★。乱世之毒士。"],['qun','shu','wei','wu'].randomGet()],                  
          boss_sunce:['male','mo',7,['battle_song','boss_dianji','boss_angyang'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。孙策（175年—200年），字伯符，吴郡富春（今浙江富阳）人。孙坚长子，孙权长兄。东汉末年割据江东一带的军阀，汉末群雄之一，三国时期孙吴的奠基者之一。《三国演义》中绰号“小霸王”。为继承父亲孙坚的遗业而屈事袁术，后脱离袁术，统一江东。在一次狩猎中为刺客所伤，不久后身亡，年仅二十六岁。其弟孙权接掌孙策势力，并于称帝后，追谥孙策为长沙桓王。"],'shu'],
-        boss_simayi:['male','mo',9,['battle_song','boss_shenmou','boss_yuanlv','guicai'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。司马懿（179年—251年9月7日[1]），字仲达，河内郡温县孝敬里（今河南省焦作市温县）人。三国时期魏国杰出的政治家、军事家、战略家，西晋王朝的奠基人。曾任职过曹魏的大都督、大将军、太尉、太傅。是辅佐了魏国三代的托孤辅政之重臣，后期成为掌控魏国朝政的权臣。善谋奇策，多次征伐有功，其中最显著的功绩是两次率大军成功抵御诸葛亮北伐和远征平定辽东。对屯田、水利等农耕经济发展有重要贡献。73岁去世，辞郡公和殊礼，葬于首阳山。谥号宣文；次子司马昭封晋王后，追封司马懿为宣王；司马炎称帝后，追尊司马懿为宣皇帝，庙号高祖[2]。"],'wu'],
+        boss_simayi:['male','mo',9,['battle_song','reguicai','refankui','boss_shenmou','boss_yuanlv'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。司马懿（179年—251年9月7日[1]），字仲达，河内郡温县孝敬里（今河南省焦作市温县）人。三国时期魏国杰出的政治家、军事家、战略家，西晋王朝的奠基人。曾任职过曹魏的大都督、大将军、太尉、太傅。是辅佐了魏国三代的托孤辅政之重臣，后期成为掌控魏国朝政的权臣。善谋奇策，多次征伐有功，其中最显著的功绩是两次率大军成功抵御诸葛亮北伐和远征平定辽东。对屯田、水利等农耕经济发展有重要贡献。73岁去世，辞郡公和殊礼，葬于首阳山。谥号宣文；次子司马昭封晋王后，追封司马懿为宣王；司马炎称帝后，追尊司马懿为宣皇帝，庙号高祖[2]。"],'wu'],
         boss_daqiao:['female','mo',15,['battle_song','boss_lizhi','boss_fengzi'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。大乔（乔字古作“桥”），（180年代－？），庐江郡皖县（今安徽安庆潜山），中国汉末三国时期的女性，系乔公之女、孙策之妾、小乔之姊。"],'wei'],
         boss_zhoutai:['male','mo',5,['battle_song','boss_xuezhan'],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。字幼平，九江下蔡人，三国时期吴国武将。早年与蒋钦随孙策左右，立过数次战功。孙策讨伐六县山贼时，周泰胆气绝伦，保卫孙权，勇战退敌，身受十二处伤。有诗云：三番救主出重围，忠勇如公世所稀。遍体疮痍犹痛饮，血痕残酒满征衣。"],'wu'],
          boss_machao:["male","mo",12,['battle_song',"boss_pimi","boss_xionglie"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。马超（176年－223年1月），字孟起，司隶部扶风郡茂陵（今陕西杨凌五泉镇）人，东汉卫尉马腾之子，汉末群雄之一，蜀汉开国名将。早年随父征战，平阳之战大破并州刺史高干和南匈奴呼厨泉的联军。后马腾入京，马超拜将封侯割据雍州，潼关之战被曹操击败，退守凉州。失败后依附张鲁，又转投刘备。带头上表刘协扶刘备称王，又辅佐刘备称帝。于章武二年十二月病逝（223年1月），终年47岁，追谥威侯。有阵中剑术“出手法”流传后世。"],'shu'],        
@@ -13555,13 +15534,16 @@ return;
         BOSS_diaochan:["female","mo",7,['battle_song',"boss_biyue","boss_guose","challenge_meihuo"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。中国古代四大美女之一，有闭月羞花之貌。司徒王允之义女，由王允授意施行连环计，离间董卓、吕布，借布手除卓。后貂蝉成为吕布的妾。"],'qun'],
         BOSS_xuhuang:["male","mo",12,['battle_song',"boss_jieliang"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。徐晃（？－227年），字公明，河东杨（今山西洪洞东南）人。三国时期曹魏名将。本为杨奉帐下骑都尉，杨奉被曹操击败后转投曹操，在曹操手下多立功勋，参与官渡、赤壁、关中征伐、汉中征伐等几次重大战役。樊城之战中徐晃作为曹仁的援军击败关羽，因于此役中治军严整而被曹操称赞“有周亚夫之风”。曹丕称帝后，徐晃被加为右将军，于公元227年病逝，谥曰壮侯。"],'wei'],
         BOSS_yuji:["male","mo",4,['battle_song',"boss_yaohuo"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。于吉（？-200年，一作干吉、干室）东汉末年黄老道代表人物之一，史书有两种说法：（1）认为其即《太平经》作者。《后汉书·襄楷传》：“顺帝时，琅邪宫崇诣阙，上其师干吉于曲阳泉水上所得神书百七十卷，皆缥白素朱介青首朱目，号《太平青领书》。”（2）认为其乃三国时道士，《三国志·孙策传》注引《江表传》：“时有道士琅邪于吉，先寓居东方，往来吴会，立精舍，烧香读道书，制作符水以治病，吴会人多事之。”后为孙策所杀。"],'wu'],
-        BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。左慈（156？--289？），字元放，汉族，安徽庐江郡人，东汉末年方士。少明五经，兼通星纬，学道术，明六甲，传说能役使鬼神，坐致行厨。见汉祚将尽，天下向乱，叹曰：“值此衰运，官高者危，财多者死。当世荣华，不足贪矣。”在安徽天柱山中得石室而精思。左慈授予葛玄道家真经数部。"],'qun'],
+        BOSS_zuoci:["male","mo",20,['battle_song',"boss_piaomiao","boss_qimen","boss_dunjia"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★。左慈（156？--289？），字元放，汉族，安徽庐江郡人，东汉末年方士。少明五经，兼通星纬，学道术，明六甲，传说能役使鬼神，坐致行厨。见汉祚将尽，天下向乱，叹曰：“值此衰运，官高者危，财多者死。当世荣华，不足贪矣。”在安徽天柱山中得石室而精思。左慈授予葛玄道家真经数部。"],'qun'],
         BOSS_zhangfei:["male","mo",7,['battle_song',"boss_shemao","boss_nuxiao","challenge_yongmou","boss_yuhai"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★★☆。张飞（？－221年），字益德[1]，幽州涿郡（今河北省保定市涿州市）人氏，三国时期蜀汉名将。刘备长坂坡败退，张飞仅率二十骑断后，据水断桥，曹军没人敢逼近；与诸葛亮、赵云扫荡西川时，于江州义释严颜；汉中之战时又于宕渠击败张郃，对蜀汉贡献极大，官至车骑将军、领司隶校尉，封西乡侯，后被范强、张达刺杀。后主时代追谥为“桓侯”。在中国传统文化中，张飞以其勇猛、鲁莽、嫉恶如仇而著称，虽然此形象主要来源于小说和戏剧等民间艺术，但已深入人心。"],'shu'],
-         BOSS_zhanshen:["male","mo",6,['battle_song',"boss_chitu","boss_shenwu","boss_zhanshen"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆。吕布（？－199年2月7日[1]），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
+         BOSS_zhanshen:["male","mo",6,['battle_song',"boss_chitu","boss_shenwu","boss_zhanshen"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。吕布（？－199年2月7日[1]），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
             BOSS_shenhua:["male","mo",0,['battle_song',"baonu","wushuang","feijiangx","shenshi","shensha","shenmie"],[['qun','shu','wei','wu'].randomGet(),'boss','Unaffected',"des:强度：★★★☆☆。吕布（？－199年2月7日），字奉先，五原郡九原县人（今内蒙古包头九原区），东汉末年名将，汉末群雄之一。先后为丁原、董卓的部将，后与司徒王允合力诛杀董卓，旋即被董卓旧部李傕等击败，依附袁绍。与曹操争夺兖州失败后，吕布袭取徐州，割据一方。建安三年十二月（199年2月）吕布于下邳被曹操击败并处死。"],'qun'],
        },
        characterTitle:{
-       Coins_mizhu:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他，可获得大量的金币（强度：★★★）',
+       Coins_liubiao:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他，可获得大量的金币（强度：★★★☆☆，行动顺序：人→人→人→魔）',
+       Coins_yuanshu:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他，可获得大量的金币（强度：★★★，行动顺序：从→魔→人→魔→人→魔→人→魔→从→魔）',
+       Coins_yuanshao:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他，可获得大量的金币（强度：★★★☆，行动顺序：人→人→人→魔）',
+       Coins_mizhu:'#r使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将组合挑战并击败他，可获得大量的金币（强度：★★★，行动顺序：人→人→人→魔）',
        },
        },'挑战BOSS')
        }}else{
@@ -13711,6 +15693,11 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6',
 			forced:true,
      unique:true,
   //   popup:false,
+   filter:function(event,player){
+   if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
+   return true;
+			},
 			content:function(){
 			 trigger.cancel();
 			 if(trigger.name=='turnOver'){
@@ -13731,11 +15718,11 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6',
  		 	 }
 			 },
    //——————亂世魔王——————//
-    lib.translate.boss_qiangzheng_info='锁定技，结束阶段，你获得每个其他角色的X张牌（X为目标角色牌数的一半向下取整，且至少为1）',   
+    lib.translate.boss_qiangzheng_info='锁定技，受到伤害或回合结束阶段，你获得每个其他角色的X张牌（X为目标角色牌数的一半向下取整，且至少为1）',   
     lib.skill.boss_qiangzheng={
       group:'boss_qiangzheng2',
 				audio:2,
-				trigger:{player:'phaseEnd'},
+				trigger:{player:['damageEnd','phaseEnd']},
 	            forced:true,
 				       unique:true,
 	            filter:function(event,player){
@@ -13773,7 +15760,7 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6',
                 }
               },
    //——————洛水仙子——————//
-    lib.translate.fanghua_info='锁定技，结束阶段，你抽取所有武将牌背面朝上的所有其他角色的一张牌并令这些角色各流失1点体力',
+    lib.translate.fanghua_info='锁定技，结束阶段，你抽取所有武将牌背面朝上的所有其他角色的一张牌并令这些角色各失去1点体力',
     lib.skill.fanghua={
 				trigger:{player:'phaseEnd'},
 				forced:true,
@@ -13894,7 +15881,7 @@ player.gain(true,current.get('he').randomGet());
       },
     },       
    //——————冷血皇后——————//
-   lib.translate.shangshix_info='锁定技，若你的手牌数至少为6，你将手牌补至6张；结束阶段，若你的体力值大于1，你令场上所有角色流失1点体力',
+   lib.translate.shangshix_info='锁定技，若你的手牌数至少为6，你将手牌补至6张；结束阶段，若你的体力值大于1，你令场上所有角色失去1点体力',
    lib.skill.shangshix={
 				trigger:{player:['loseEnd','changeHp']},
 				forced:true,
@@ -13949,6 +15936,9 @@ player.gain(true,current.get('he').randomGet());
 				unique:true,
 				trigger:{player:'turnOverBefore'},
 				forced:true,
+				filter:function(event,player){
+   return !player.isTurnedOver();
+			},
 				content:function(){
        trigger.finish();
        trigger.untrigger();
@@ -17399,7 +19389,7 @@ return 0.1;
     				"step 0"
     				event.num=Math.round(trigger.num/30000);
     				"step 1"
-    				trigger.source.chooseCard('交给'+get.translation(player)+'一张手牌或流失1点体力').set('ai',function(card){
+    				trigger.source.chooseCard('交给'+get.translation(player)+'一张手牌或失去1点体力').set('ai',function(card){
     					if(get.attitude(_status.event.player,_status.event.getParent().player)>0){
     						return 11-get.value(card);
     					}
@@ -18096,6 +20086,9 @@ lib.skill.qinggang_skill.animationColor='thunder';
     };
 },precontent:function (really){
     lib.arenaReady.push(function(){
+    lib.skill.Timereflux1={
+       audio:'ext:风华绝代:2',
+       };
     lib.skill._globalDying={
                 trigger:{
                     player:'dying'
@@ -19598,28 +21591,29 @@ return distance+1;
  	  },
      ai:{
 				effect:{
-					target:function(card){
-         if(get.tag(card,'damage')&&card){
-         if(get.tag(card,'thunderDamage')||get.tag(card,'fireDamage')||get.tag(card,'poisonDamage'))          
-          return [1,-2];
-          return [0,1];                        
-           }          
-					 }
-				 }
-			 }
+					target:function(card,player,target,current){
+         if(get.tag(card,'damage')){
+         if(get.tag(card,'natureDamage'))               return [1,-2];
+          return [0,1];      
+            }                  
+          }          
+    			 }
+  			 }
     },
      new_yibian:{
      trigger:{
-        target:"shaBefore",
+        target:["huogongBefore","shaBefore"]
     },
     forced:true,
     unique:true,
     audio:'ext:风华绝代:2',
     filter:function(event,player){   
-    return event.card&&event.card.name=='sha'&&event.card.nature;
+    if(event.card.name=='huogong')
+    return true;
+    return event.card.name=='sha'&&event.card.nature;
     },
     content:function (){    
-    	player.chooseToDiscard(true,'h');
+    	player.chooseToDiscard(true,'he');
      },
      ai:{
 				effect:{
@@ -20791,7 +22785,6 @@ if(_status.currentPhase==player) return false;
      filter:function(event,player){
 				return player.countCards('he',{type:'equip'})>0;
 			},
-			selectCard:true,
       position:'he',			
       prompt:'将一张装备牌当【南蛮入侵】使用',
 			check:function(card){
@@ -21227,7 +23220,7 @@ mod:{
             group:['new_xiuxing1'],
             mark:true,
                 init:function(player){
-					player.storage.new_xiuxing=4;
+					player.storage.new_xiuxing=5;
          game.addVideo('storage',player,['new_xiuxing',player.storage.new_xiuxing]);				
 			          	},
             locked:true,
@@ -21244,7 +23237,7 @@ player:['damageEnd','loseHpEnd']
                 forced:true,
                 unique:true,              
                 filter:function (event,player){
-                return player.storage.new_xiuxing<=4&&player.storage.new_xiuxing>0&&event.num>0;
+                return player.storage.new_xiuxing<=5&&player.storage.new_xiuxing>0&&event.num>0;
                 },
                 content:function (){               
                    "step 0"
@@ -21253,7 +23246,7 @@ player:['damageEnd','loseHpEnd']
                     for(var i in lib.character){ 
                         for(var j=0;j<lib.character[i][3].length;j++){
        var info=lib.skill[lib.character[i][3][j]];
-                            if(info&&(info.gainable||!info.unique&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
+                            if(info&&(info.gainable||!info.unique&&!info.locked&&!info.mark&&!info.zhuSkill&&!info.nobracket&&!info.fixed)){
                                 skills.add(lib.character[i][3][j]); 
                             }
                         } 
@@ -21264,7 +23257,7 @@ player:['damageEnd','loseHpEnd']
                         name:get.translation(link),
                         content:lib.translate[link+'_info']
                     });
-                    game.log(player,'获得技能','【'+get.translation(link)+'】');
+                    game.log(player,'获得了技能','【'+get.translation(link)+'】');
                    "step 1"
                  if(player.storage.new_xiuxing<1){
                  player.removeSkill('new_xiuxing');
@@ -25063,6 +27056,8 @@ trigger.source.chooseToDiscard(true,'he');
                 filter:function (event,player){
    if(lib.config.mode=='boss'&&player.identity!='zhu') 
        return false;   
+                if(event.name=='turnOver'&&player.isTurnedOver())
+				return false;
                 return player.name=='xiongnu'||player.name2=='xiongnu';
                 }, 
                 content:function (){
@@ -25479,8 +27474,8 @@ trigger.source.chooseToDiscard(true,'he');
            new_mashu_qibing_info:'<span style=\"color: gold\">锁定技</span>，你计算与其他角色的距离-1。',
            new_mashu_pangde_info:'<span style=\"color: gold\">锁定技</span>，你计算与其他角色的距离-1。',
            new_mashu_machao_info:'<span style=\"color: gold\">锁定技</span>，你计算与其他角色的距离-1。',
-           new_manqu_info:'<span style=\"color: gold\">锁定技</span>，当你受到非属性牌造成的伤害时，防止之，然后你摸一张牌。',
-           new_yibian_info:'<span style=\"color: gold\">锁定技</span>，当你成为属性【杀】的目标时，你须弃置一张手牌。',
+           new_manqu_info:'<span style=\"color: gold\">锁定技</span>，当你即将受到非属性卡牌造成的伤害时，防止之，然后你摸一张牌。',
+           new_yibian_info:'<span style=\"color: gold\">锁定技</span>，当你成为属性【杀】或【火攻】的目标时，你须弃置一张牌。',
            new_shichou_info:'你使用【杀】可以多选择至多X名角色为目标（X为你已经损失的体力值)。',
            new_chongfeng_info:'<span style=\"color: gold\">锁定技</span>，准备阶段，你执行一个额外的出牌阶段。',                             
            xionghan_info:"<span style=\"color: gold\">锁定技</span>，你使用【杀】或【决斗】造成的伤害+1。",                      
@@ -25495,7 +27490,7 @@ trigger.source.chooseToDiscard(true,'he');
            new_shenshi_info:'<span style=\"color: gold\">锁定技</span>，回合结束时，你须弃置所有手牌，然后将手牌数补至最大体力值，且不超过4。',
            new_longyin_info:'每当一名角色在其出牌阶段使用【杀】时，你可弃置一张牌令该角色摸一张牌并令此【杀】不计入出牌阶段使用次数，若此【杀】为红色，你摸一张牌。',
            new_wuji_info:'<span style=\"color: gold\">锁定技</span>，回合结束阶段开始时，若你于此回合内造成过3点或更多伤害，你加1点体力上限并回复1点体力，然后从场上、牌堆或弃牌堆中获得【青龙偃月刀】。',          
-		       new_zhenlie_info:'每当你成为其他角色的卡牌的目标时，你可以流失1点体力取消之，然后获得对方一张牌',         
+		       new_zhenlie_info:'每当你成为其他角色的卡牌的目标时，你可以失去1点体力取消之，然后获得对方一张牌',         
         		new_xingwu_info:'弃牌阶段开始时，你可以将一张与你本回合使用的牌颜色均不同的手牌置于武将牌上：若你有至少三张“星舞”牌，你移去“星舞”牌并选择一名其他角色，该角色受到3点伤害并弃置其所有牌，若其武将牌正面朝上则将其武将牌翻面。',           
            new_huangtian_info:'<span style=\"color: DarkOrange\">主公技</span>，<span style=\"color: yellow\">主动技</span>，群雄角色可在他们各自的回合里给你一张♠或【闪电】。',
            new_xiongyi_info:'<span style=\"color: orange\">限定技</span>，<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以令至多三名角色各摸四张牌，然后你增加1点体力上限并获得技能【猛进】，若你指定的角色数不超过2，你回复1点体力并摸两张牌。（国战：<span style=\"color: orange\">限定技</span>，出牌阶段，你可以令与你势力相同的所有角色各摸四张牌，然后你增加1点体力上限并获得技能【猛进】，若你的势力是角色最少的势力（或之一），则你回复1点体力并摸一张牌。）',
@@ -25523,7 +27518,7 @@ trigger.source.chooseToDiscard(true,'he');
             "xinfenji_info":"每当一名已受伤的角色于回合外失去牌时，你可以失去1点体力，然后该角色摸两张牌。",
             new_xiuxing:"修行",
             new_xiuxing1:"修行",
-            new_xiuxing_info:"<span style=\"color: gold\">锁定技</span>，每当你受到伤害或体力流失时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。每局游戏限4次。",
+            new_xiuxing_info:"<span style=\"color: gold\">锁定技</span>，每当你受到伤害或体力流失时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技和限定技除外）。每局游戏限5次。",
             new_liujia:"六甲",
             new_liujia_info:"<span style=\"color: gold\">锁定技</span>，你每次受到伤害时，最多承受1点伤害（防止多余的伤害)",            
             xinyanzhu:"宴诛",
@@ -25681,7 +27676,7 @@ game.addVideo('storage',player,['boss_winsong',player.storage.boss_winsong]);
 			forced:true,	     
      unique:true,
       filter:function(event,player){  
-      return player==game.boss&&(player.name=='boss_nashinanjue'||player.name=='challenge_yuangujulong')&&(!player.hasSkill('The_Dawnlose')||player.storage.boss_winsong>=25);  
+      return player==game.boss&&(player.name=='Coins_Azrael'||player.name=='boss_nashinanjue'||player.name=='challenge_yuangujulong')&&(!player.hasSkill('The_Dawnlose')||player.storage.boss_winsong>=25);  
      },     	
 			content:function(){
      player.addSkill('The_Dawnlose');
@@ -28922,7 +30917,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>【2018年6月12日20:09】更新内容：修复BUG、新增刷金币BOSS、增加击杀奖励<li>赠送6666游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年5月6日19:00】更新内容：修复BUG、新增刷金币BOSS<li>—————————————————<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>—————————————————<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【無名殺玩家交流群】</span><span style=\"font-size:13px;font-weight:550;color: DarkOrange;font-style: oblique\">需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可私聊群主，价格人性化不设下限</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

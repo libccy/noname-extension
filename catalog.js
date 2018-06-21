@@ -59,13 +59,13 @@ extension["剧情战役"]={
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",
-	  intro:"更新内容：修复BUG、新增挑战武将、增加挑战金币奖励（详情在游戏内查看）；更新注意事项：删除旧版/开启本扩展所有按钮(首局游戏)，打开“富甲天下”可获得更新奖励金币：6666(至少补至6666)；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年6月12日 22:23:09；欢迎加入無名殺玩家交流群，群号码：658152910。",
+	  intro:"更新内容：修复已知BUG、增加挑战金币奖励、减少金币消耗（详情在游戏内查看）；更新注意事项：删除旧版/开启本扩展所有按钮(首局游戏)，打开“富甲天下”可获得更新奖励金币：9999(至少补至9999)；内容简介：可玩9~13人场身份/国战；内含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；更新时间：2018年6月21日 21:06:16；欢迎加入無名殺玩家交流群，群号码：658152910。",
   //intro:"（更新内容：修复已知BUG、修复国战武将/配音；新增9~13人场身份/国战；其它详细内容请查看游戏帮助）1.90%武将原创、99%武将含配音、高清图；2.包含古典武侠、神将&民间、英雄联盟、改版武将、挑战BOSS等武将，部分武将支持联机（详情查看帮助）；3.食用时请删除原有与此扩展内容相关的所有扩展，例如：★改版武将；4.请认真查阅扩展按钮选择开/关；5.更新时间：2018年1月25日；6.欢迎加入无名杀玩家交流群，群号码：658152910。",
   size:"330.50MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
   version:20180612,
-	files:["Coins_Azrael.jpg","new_xiahouyuan.jpg","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
+	files:["new_wutugu.jpg","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
 		"boss_tiaopi.jpg","boss_yinxian.jpg","boss_huaji.jpg","Armor.ogg","Armor.png","challenge_xiahouyuan.jpg",
 		"challenge_fengchi2.mp3","challenge_fengchi1.mp3","challenge_fengchi4.mp3","challenge_fengchi3.mp3",
 		"new_zhanghe.jpg","new_sunxiu.jpg","new_kanpo.ogg","new_bazhen.ogg","new_huoji.ogg",
@@ -80,9 +80,9 @@ extension["风华绝代"]={
 		"challenge_huodi21.mp3","challenge_masu.jpg","Myth_Athena.jpg","challenge_fangxin22.mp3",
 		"challenge_fangxin21.mp3","challenge_juelun32.mp3","challenge_juelun31.mp3","challenge_jinghong.mp3",
 		"challenge_cifu2.mp3","challenge_cifu1.mp3","challenge_biyue32.mp3","challenge_biyue31.mp3",
-		"challenge_biyue2.mp3","Timereflux12.mp3","Timereflux.png","Magic.png","guardian.png",
-		"fachuan.png","jingji.png","shuiyin.png","wujin.png","yinxue.png","zhenfen.png",
-		"kuangtu.png","challenge_zhenji.jpg","challenge_qiangnu3.mp3","challenge_lianzhu2.mp3",
+		"challenge_biyue2.mp3","Coins_Azrael.jpg","Timereflux12.mp3","Timereflux.png","Magic.png",
+		"guardian.png","fachuan.png","jingji.png","shuiyin.png","wujin.png","yinxue.png",
+		"zhenfen.png","kuangtu.png","challenge_zhenji.jpg","challenge_qiangnu3.mp3","challenge_lianzhu2.mp3",
 		"challenge_lianzhu.mp3","challenge_zhengquan21.mp3","challenge_fuji2.mp3","challenge_zhengquan22.mp3",
 		"challenge_xianxi22.mp3","challenge_xianxi21.mp3","challenge_aogu22.mp3","challenge_aogu21.mp3",
 		"challenge_huangzhong.jpg","challenge_weiyan.jpg","boss_cwj.jpg","new_qinzong.ogg",
@@ -149,7 +149,7 @@ extension["风华绝代"]={
 		"new_xuhuang.jpg","new_xiuxing2.mp3","new_xiuxing13.mp3","new_xiuxing12.mp3","new_xiuxing11.mp3",
 		"new_xiongyi2.mp3","new_xiongyi1.mp3","new_xionglue4.mp3","new_xionglue3.mp3","new_xionglue2.mp3",
 		"new_xionglue1.mp3","new_xingwu2.mp3","new_xingwu1.mp3","new_xiaolongnv.jpg","new_xiangle2.mp3",
-		"new_xiangle1.mp3","extension.js","new_wutugu.jpg","new_wuji3.mp3","new_wuji2.mp3",
+		"new_xiangle1.mp3","new_xiahouyuan.jpg","extension.js","new_wuji3.mp3","new_wuji2.mp3",
 		"new_wuji1.mp3","new_wangyun.jpg","new_wangyi.jpg","new_tieji2.mp3","new_tieji1.mp3",
 		"new_tianyi3.mp3","new_tianyi2.mp3","new_tianyi1.mp3","new_tanlan3.mp3","new_tanlan2.mp3",
 		"new_tanlan1.mp3","new_taishici.jpg","new_szhugeliang.jpg","new_szhaoyun.jpg","new_sunquan.jpg",
@@ -239,7 +239,7 @@ extension["风华绝代"]={
 		"Coins_jianzhen2.mp3","Coins_mingmen1.mp3","Coins_jiling.jpg","Coins_mingmen2.mp3",
 		"Coins_yuanshu.jpg","Coins_jianzhen1.mp3","Coins_sunce.jpg","Timereflux11.mp3","Coins_hanshi1.mp3",
 		"Coins_fuxi1.mp3","Coins_yongchang.mp3","Coins_hanshi2.mp3","Coins_hanshi21.mp3",
-		"Coins_hanshi22.mp3","Coins_liubiao.jpg"]
+		"Coins_hanshi22.mp3","Coins_liubiao.jpg","boss_shenpan21.mp3","boss_shenpan22.mp3"]
 };
 extension["极略三国"]={
     author:"可乐加冰24",

@@ -41,7 +41,7 @@ extension["剧情战役"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.0622",
+	version:"1.80622",
 	files:["Insane_yexin2.mp3","extension.js","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
 		"Insane_yuanshao.jpg","Insane_sunshangxiang.jpg","Insane_zhenji.jpg","lnsane_shuaiwang62.mp3",
 		"lnsane_shuaiwang61.mp3","Insane_caiwenji.jpg","Insane_jiangwei.jpg","Insane_huaxiong.jpg",
@@ -55,7 +55,7 @@ extension["剧情战役"]={
 		"wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg","Battle_yuanshao.jpg",
 		"Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg","Battle_huben.mp3",
 		"Battle_huben_shan.mp3","Battle_gongshang.mp3"],
-	size:"4.42MB"
+	size:"4.43MB"
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",

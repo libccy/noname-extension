@@ -33,9 +33,8 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
                 if(target==player) return false;
                 return player.canUse({name:'sha'},target,false)&&get.distance(player,target,'attack')<=1;
             },
-                content:function (){
-              //  player.addTempSkill('gods_fengqiang2');
-               player.useCard({name:'sha'},target,false);               
+           content:function (){
+            player.useCard({name:'sha'},target,false);               
             },
             ai:{                 
                   order:15,               
@@ -83,16 +82,20 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
 		 		}
 			},
 			gods_juejing:{
-				trigger:{player:'phaseDrawBefore'},
+				trigger:{player:'drawBegin'},
 				forced:true,
 				audio:'ext:浑身是胆:3',
+			//	popup:false,
+				filter:function(event,player){
+					return event.num>4-player.countCards('h');
+				},
 				content:function(){
-					trigger.cancel();
+					trigger.num=4-player.countCards('h');
 				},
 				ai:{
 					noh:true,
 				},
-				group:'gods_juejing2'
+				group:['gods_juejing2']
 			},
 			gods_fengqiang2:{},
 			gods_juejing2:{
@@ -132,8 +135,9 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
    gods_zhanjiang:'斩将',
 			gods_zhanjiang_info:'准备阶段开始时，如果其他角色的装备区内有【青釭剑】，你可以获得之',
 			gods_juejing:'绝境',
+			gods_juejing1:'绝境',
 			gods_juejing2:'绝境',
-			gods_juejing_info:'锁定技，摸牌阶段开始时，你不摸牌；锁定技，若你的手牌数小于4，你将手牌补至四张',
+			gods_juejing_info:'锁定技，摸牌时，若你手牌数不小于4，你不摸牌；锁定技，若你的手牌数小于4，你将手牌补至4张',
     },
     });
     };

@@ -10759,7 +10759,7 @@ return 0; });
 			content:function(){
 			var skills=[['duanliang','jizhi'],['zhiheng','lianhuan'],['luanji','wansha']].randomGet();
 player.addSkill(skills,{player:'phaseAfter'});
-   game.log(player,'获得了技能',skills);
+   game.log(player,'获得了技能：',skills);
     }},
      boss_shenmou2:{        
       audio:2,
@@ -14266,13 +14266,10 @@ player.gainPlayerCard(cur,'he',true,cur.num('he'));
             noLose:true,
      noGain:true,
      noDeprive:true,
-            trigger:{global:'drawAfter'},
+            trigger:{global:'gainAfter'},
             filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='BOSS_xuhuang'&&player.name2!='BOSS_xuhuang') return false;
-       		if(event.player.isFriendOf(player)){
-					return false;
-				}
-                return event.num>0&&event.player!=player;
+          return event.cards&&event.cards.length&&event.player!=player;
             },
 			prompt:function(event,player){
 				return '是否对'+get.translation(event.player)+'发动【劫粮】？'
@@ -14288,17 +14285,22 @@ player.gainPlayerCard(cur,'he',true,cur.num('he'));
        trigger.player.hp=1000000000;
        trigger.player.update();     
        }    
-         trigger.player.addTempSkill('fengyin',{player:'phaseAfter'});
-         player.gainPlayerCard(true,trigger.player,trigger.player.num('he')-1)._triggered=null;  
-          "step 1"
-         var mhp=Math.max(1,Math.round(trigger.player.maxHp/3));
+         trigger.player.addTempSkill('fengyin',{player:'phaseAfter'});              
+         var mhp=Math.min(trigger.player.maxHp,Math.max(1,Math.round(trigger.player.maxHp/3)));
          if(lib.character[trigger.player.name][4].contains('Unaffected')||trigger.player.name2&&lib.character[trigger.player.name2][4].contains('Unaffected')){
          trigger.player.loseMaxHp(mhp);
          }else{
 trigger.player.loseMaxHp(mhp)._triggered=null;
         }
- player.gainMaxHp(mhp)._triggered=null;
- player.recover(mhp)._triggered=null;
+        if(trigger.player.maxHp>0){  
+        var mp=mhp;
+        }else{
+        var mp=1+Math.floor(Math.random()*99);
+        }
+ player.gainMaxHp(mp)._triggered=null;
+ player.recover(mp*3)._triggered=null;
+          "step 1"
+          player.gainPlayerCard(true,trigger.player,trigger.player.num('he')-1)._triggered=null;
 // player.update();       
        },        
       ai:{
@@ -15790,7 +15792,7 @@ return;
        shenshi_info:'你的回合外，其他角色回复体力时，若该角色的体力不小于1，你可以弃1个暴怒标记取消之，然后你摸三张牌，将武将牌翻到正面向上并弃置判定区内的所有牌',
        shensha_info:'其他角色于其回合内武将牌被翻面时，你可以获得其所有的牌，然后令其立即死亡',
 	    	shenmie_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段，你可以弃8个暴怒标记，令场上所有其他角色受到你造成的2点伤害，然后令武将牌正面朝上的所有其他角色翻面，最后你获得这些角色所有牌',
-       boss_jieliang_info:'其他角色从牌堆获得牌时，你可以令其失去非锁定技直到其回合结束，然后你获得其X张牌，X为其所有手牌和装备区里牌数-1，并偷取其1/3的体力上限且四舍五入取整，转化为你的体力和体力上限',
+       boss_jieliang_info:'当一名其他角色获得牌时，你可以令该角色的非锁定技失效直到其回合结束，其失去N点体力上限（N为其1/3的体力上限且四舍五入取整），然后你增加N点体力上限并回复3N点体力，若其体力上限不大于0，描述中的你增加N点体力上限并回复3N点体力的N，改为1到99间的随机值，最后你获得其X张牌，X为其所有牌数-1',
 		boss_yaohuo_info:'<span class="greentext">锁定技'+'</span>，每当你失去手牌时，你令未处于“混乱状态”的随机一名其他角色进入“混乱状态”直到其下一回合结束，若没有可以选定的角色，则你摸两张牌',
        boss_piaomiao_info:'<span class="greentext">锁定技'+'</span>，回合开始阶段或武将牌被翻面时，你对所有手牌数大于1的敌方角色造成X点雷电伤害（X为目标角色最大体力值的1/3四舍五入取整，且至少为1）并令其弃置其一半的牌且向上取整',
             boss_qimen_info:'<span class="greentext">锁定技'+'</span>，当你体力值发生变化或回合阶段开始时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技和限定技除外），然后你摸三张牌',

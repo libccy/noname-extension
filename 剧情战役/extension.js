@@ -832,7 +832,7 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
     if(lib.config.mode!='boss'&&lib.config.mode!='brawl'&&lib.config.mode!='guozhan')
     lib.arenaReady.push(function(){
     //————————————SP————————————//
-    lib.translate.daxiaoqiao='大乔小乔'
+    lib.translate.daxiaoqiao='大乔小乔';
        lib.translate.xingwu_info='弃牌阶段开始时，你可以将一张与你本回合使用的牌颜色均不同的手牌置于武将牌上。若此时你武将牌上的牌达到三张，则弃置这些牌，然后对一名男性角色造成3点伤害并弃置其装备区中所有的牌。',   
        lib.skill.xingwu={
     			audio:2,
@@ -945,9 +945,88 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
     			ai:{
     				threaten:1.5
     			}
-    		};
+    		},
+    		lib.translate.reyicong_info='锁定技，你计算与其他角色的距离-X（X你当前体力值），其他角色计算与你的距离+X（X改为你已损失的体力值）。',
+    		lib.skill.reyicong={
+    trigger:{
+        player:['damageEnd','loseHpEnd','recoverEnd'],
+    },
+      audio:['yicong',2],
+    forced:true,
+    content:function (){},
+    mod:{
+        globalFrom:function (from,to,current){
+            return current-from.hp;
+        },
+        globalTo:function (from,to,current){
+            return current+(to.maxHp-to.hp);
+        },
+    },
+    ai:{
+        threaten:0.8,
+      }
+    };
    //————————————神话再临————————————//
-   lib.translate.buqu_info='锁定技，当你处于濒死状态时，亮出牌堆顶的一张牌并置于你的武将牌上，若此牌的花色或点数与你武将牌上已有的牌花色或点数均不同，则你回复至1体力；只要你的武将牌上有牌，你的手牌上限便与这些牌数量相等。'
+   lib.translate.anjian_info='当你使用的【杀】对目标角色造成伤害时，若你不在其攻击范围内，则此【杀】伤害+X（X你与该角色的手牌数间的差值）。',
+   lib.skill.anjian={
+				audio:2,
+				trigger:{source:'damageBegin'},
+				check:function(event,player){
+					return get.attitude(player,event.player)<=0;
+				},
+				frequent:true,
+				filter:function(event,player){
+					return event.card&&event.card.name=='sha'&&get.distance(event.player,player,'attack')>1&&
+						event.parent.name!='_lianhuan'&&event.parent.name!='_lianhuan2';
+				},
+				content:function(){
+				var sh=Math.abs(player.countCards('h')-trigger.player.countCards('h'));
+					trigger.num+=sh;
+				}
+			},
+   lib.skill.shuangxiong={
+				audio:2,
+				trigger:{player:'phaseUseBegin'},
+				check:function(event,player){
+					return true;
+				},
+				content:function(){
+					"step 0"
+					player.judge(ui.special);
+					"step 1"
+					player.gain(result.card);
+					player.$gain2(result.card);
+					player.addTempSkill('shuangxiong2');
+					player.storage.shuangxiong=get.color(result.card);
+				}
+			};
+			lib.skill.shuangxiong2.audio='shuangxiong';
+			lib.translate.shuangxiong_info='出牌阶段开始时，你可以进行一次判定，你获得此判定牌，且此回合你的每张与该判定牌不同颜色的手牌均可当【决斗】使用。',
+			lib.skill.bazhen={
+				audio:2,
+				inherit:'bagua_skill',
+				locked:true,
+				filter:function(event,player){
+					if(!lib.skill.bagua_skill.filter(event,player)) return false;
+					return true;
+					}
+				},
+			lib.translate.bazhen_info='锁定技，始终视为你装备着【八卦阵】。 ',
+			lib.translate.huoji_info='你可以将一张红色手牌当【火攻】使用；锁定技，每当你造成1点火属性伤害时，你摸一张牌。',
+			lib.translate.huoji2='火计',
+			lib.skill.huoji.group='huoji2';
+			lib.skill.huoji2={
+				audio:'huoji',
+				trigger:{source:'damageEnd'},
+				filter:function(event,player){
+					return event.num>0&&event.nature=='fire';
+				},
+				forced:true,
+				content:function(){
+					player.draw(trigger.num);
+					}
+				},
+   lib.translate.buqu_info='锁定技，当你处于濒死状态时，亮出牌堆顶的一张牌并置于你的武将牌上，若此牌的花色或点数与你武将牌上已有的牌花色或点数均不同，则你回复至1体力；只要你的武将牌上有牌，你的手牌上限便与这些牌数量相等。',
     lib.skill.buqu={
     			audio:2,
     			trigger:{player:'dying'},
@@ -1902,6 +1981,9 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
      check:function(event,player){
 				return get.attitude(player,event.player)<0;
 			},
+			filter:function(event,player){
+					return !player.hasSkill('chongzhen');
+					},
 			content:function(){
      if(trigger.player.countCards('he')>0){
      player.line(trigger.player,'green');	player.gainPlayerCard('he',trigger.player,true);
@@ -1921,7 +2003,7 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
 			trigger:{player:'useCardToBefore'},
 			priority:10,			
      filter:function(event,player){
-					return event.card.name=='sha';
+					return !player.hasSkill('chongzhen')&&event.card.name=='sha';
 				},
      check:function(event,player){
 				return get.attitude(player,event.target)<0;
@@ -2746,7 +2828,7 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
 			lib.translate.kongcheng_info='锁定技，若你没有手牌，你不是【杀】、【决斗】、【万箭齐发】、【南蛮入侵】和【火烧连营】的合法目标；每当你失去最后一张手牌时，你回复1点体力。',
      lib.translate.longdan_gain='龙胆',
      lib.translate.longdan_gain2='龙胆',
-			lib.translate.longdan_info='你可以将【杀】当【闪】，【闪】当【杀】使用或打出；每当你使用【杀】或打出【闪】响应【杀】时，可以获得对方的一张牌。',
+			lib.translate.longdan_info='你可以将【杀】当【闪】，【闪】当【杀】使用或打出；每当你使用【杀】或打出【闪】响应【杀】时，若你未拥有技能【冲阵】，可以获得对方的一张牌。',
 			lib.translate.mashu_info='锁定技，你计算与其他角色的距离-1。',
 			lib.translate.feiying_info='锁定技，其他角色计算与你的距离+1。',
 			lib.translate.tieji_info='当你使用【杀】指定一个目标后，你可以判定，若结果为红色，该角色须弃置所有的红色牌，若其牌里没有红色牌，则受到你造成的1点伤害，若结果为黑色，你摸一张牌。',
@@ -3393,29 +3475,4 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
       Battle_yingyong_info:'你使用【杀】造成的伤害+1，你的任何梅花手牌均可以当【杀】使用。',
       },
       });
-}}},config:{"Judgetianze":{"name":"天择","intro":"天择：每名角色回合阶段开始时，50%的几率摸两张牌/受到1点伤害","init":true},"shashunpi":{"name":"顺劈","intro":"顺劈：使用【杀】对目标造成伤害的角色，可以额外使用一张【杀】","init":true},"shapozhan":{"name":"破绽","intro":"破绽：当一名角色使用【杀】指定一个目标后，该角色35%的几率不能使用【闪】响应此【杀】","init":false},"recoverjuejing":{"name":"绝境","intro":"绝境：只有处于濒死状态的角色，才能回复体力","init":false},"linkbamen":{"name":"八门","intro":"八门：一名角色的回合阶段开始时或游戏开始时，将场上所有角色的武将牌横置","init":false},"juedousidou":{"name":"死斗","intro":"死斗：决斗失败的一方进入濒死状态","init":false},"skillhunluan":{"name":"混乱","intro":"混乱：当一名角色回合阶段开始时，该角色失去所有技能，然后随机获得X个技能（限定技/觉醒技/主公技除外）（X为5-其体力上限，且至少为1）【建议禁用防止失去技能的武将】","init":false},"Insane":{"name":"Insane","intro":"Insane武将","init":true},"enhancement":{"name":"标准武将增强","intro":"增强标准武将","init":true},"Scenario":{"name":"剧情战役","intro":"在乱斗模式进行游戏","init":true}},help:{剧情战役:'<li>2018年3月22日更新内容：优化<li>——————————————<li>新增Buff：天择/绝境/八门/死斗/顺劈/破绽/混乱：【长按按钮查看详情介绍，配合群里的配音扩展使用起来效果更佳哦】（乱斗/挑战无效）<li>降低关卡难度（old）<li>Insane：目前内含6个武将（待更）<li>标准增强：增强标准武将（乱斗/国战无效）<li>剧情战役：三国剧情战役，需开启“诸神降临”在乱斗模式进行游戏（路径：扩展→诸神降临），否则会卡死；若已有旧版“剧情战役”扩展，须先删除/关闭该扩展重启游戏，然后删除该关卡，再重新导入此扩展关卡新数据才会生效<li>更新时间：2018-1-12-21:29',},package:{
-    character:{
-        character:{
-        },
-        translate:{
-        },
-    },
-    card:{
-        card:{
-        },
-        translate:{
-        },
-        list:[],
-    },
-    skill:{
-        skill:{
-        },
-        translate:{
-        },
-    },
-    intro:"",
-    author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【无名杀玩家交流群】</span>",
-    diskURL:"",
-    forumURL:"",
-    version:"",
-},files:{"character":[],"card":[],"skill":[]},editable:false}})
+}}},config:{"Judgetianze":{"name":"天择","intro":"天择：每名角色回合阶段开始时，50%的几率摸两张牌/受到1点伤害","init":true},"shashunpi":{"name":"顺劈","intro":"顺劈：使用【杀】对目标造成伤害的角色，可以额外使用一张【杀】","init":true},"shapozhan":{"name":"破绽","intro":"破绽：当一名角色使用【杀】指定一个目标后，该角色35%的几率不能使用【闪】响应此【杀】","init":false},"recoverjuejing":{"name":"绝境","intro":"绝境：只有处于濒死状态的角色，才能回复体力","init":false},"linkbamen":{"name":"八门","intro":"八门：一名角色的回合阶段开始时或游戏开始时，将场上所有角色的武将牌横置","init":false},"juedousidou":{"name":"死斗","intro":"死斗：决斗失败的一方进入濒死状态","init":false},"skillhunluan":{"name":"混乱","intro":"混乱：当一名角色回合阶段开始时，该角色失去所有技能，然后随机获得X个技能（限定技/觉醒技/主公技除外）（X为5-其体力上限，且至少为1）【建议禁用防止失去技能的武将】","init":false},"Insane":{"name":"Insane","intro":"Insane武将","init":true},"enhancement":{"name":"标准武将增强","intro":"增强标准武将","init":true},"Scenario":{"name":"剧情战役","intro":"在乱斗模式进行游戏","init":true}},help:{剧情战役:'<li>2018年3月22日更新内容：优化<li>——————————————<li>新

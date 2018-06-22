@@ -55,7 +55,7 @@ extension["剧情战役"]={
 		"wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg","Battle_yuanshao.jpg",
 		"Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg","Battle_huben.mp3",
 		"Battle_huben_shan.mp3","Battle_gongshang.mp3"],
-	size:"4.43MB"
+	size:"4.44MB"
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",

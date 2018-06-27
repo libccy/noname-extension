@@ -690,7 +690,7 @@ extension["虚空虫翼"]={
 };
 extension["弹丸杀"]={
     author:"fux2",
-    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（新增音无凉子和战刃骸20180405补充图片）",
+    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（新增不二咲千寻Alter Ego）",
     size:"2.5MB",
     netdisk:"https://pan.baidu.com/s/1mhXRd9m",
     forum:"https://tieba.baidu.com/p/4802167753",

@@ -697,11 +697,11 @@ extension["弹丸杀"]={
     version:9,
     files:[
         "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg","dan_zhanren.jpg","dan_liangzi.jpg",
-		"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg",
+		"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg","dan_ego.png",
 		"dan_kamukura.jpg","dan_lingtian.jpg","dan_monokuma.jpg","dan_nuller.jpg","dan_qihai.jpg",
 		"dan_rixianga.jpg","dan_rixiangb.jpg","dan_sonia.jpg","dan_tianzhong.jpg","dan_tumei.jpg",
 		"dan_wuqie.jpg","dan_xiaoquan.jpg","dan_xiyuansi.jpg","dan_zhaorinai.jpg","dan_zhongyin.jpg",
-		"dan_zuimu.jpg","dan_zuoyou.jpg","dunzi11.mp3","dunzi12.mp3","dunzi13.mp3",
+		"dan_zuimu.jpg","dan_zuoyou.jpg","dunzi11.mp3","dunzi12.mp3","dunzi13.mp3","dan_ego.jpg",
 		"huacunSkill1.mp3","lingtianSkill1.mp3","monokuma11.mp3","monokuma12.mp3","monokuma2.mp3",
 		"tianzhongSkill1.mp3","wuqie1.mp3","wuqie2.mp3","xiaoquanSkill1.mp3","xiyuansiSkill1.mp3",
 		"zhaorinai1.mp3","zhaorinai2.mp3","zuoyouSkill1.mp3"

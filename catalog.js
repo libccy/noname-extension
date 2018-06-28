@@ -522,7 +522,7 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音，已增加联机功能！但联机版本要一致！（更新：完善真禅圣王。目前版本为2.2版，短期内不再更新！）建议打开兼容模式！更新日期：2018-06-27",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，基本上都有配音，已增加联机功能！但联机版本要一致！（更新：完善真禅圣王、宇智波斑。目前版本为2.2版）建议打开兼容模式！更新日期：2018-06-28",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -531,7 +531,7 @@ extension["新武将"]={
     version:2.2,
     files:
 
-["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png",
+["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
 		"xwj_xu_jiuwei.png","zbfs.png","xwj_xu_houzi.png","extension.js","Sukincen.jpg",
 		"xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3","xwj_xhuoying_ansha1.mp3",
 		"xwj_xhuoying_ansha2.mp3","xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3","xwj_xhuoying_baihao2.mp3",

@@ -65,7 +65,7 @@ extension["风华绝代"]={
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
   version:1.80622,
-	files:["new_wutugu.jpg","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
+	files:["new_tianyi2.mp3","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
 		"boss_tiaopi.jpg","boss_yinxian.jpg","boss_huaji.jpg","Armor.ogg","Armor.png","challenge_xiahouyuan.jpg",
 		"challenge_fengchi2.mp3","challenge_fengchi1.mp3","challenge_fengchi4.mp3","challenge_fengchi3.mp3",
 		"new_zhanghe.jpg","new_sunxiu.jpg","new_kanpo.ogg","new_bazhen.ogg","new_huoji.ogg",
@@ -149,9 +149,9 @@ extension["风华绝代"]={
 		"new_xuhuang.jpg","new_xiuxing2.mp3","new_xiuxing13.mp3","new_xiuxing12.mp3","new_xiuxing11.mp3",
 		"new_xiongyi2.mp3","new_xiongyi1.mp3","new_xionglue4.mp3","new_xionglue3.mp3","new_xionglue2.mp3",
 		"new_xionglue1.mp3","new_xingwu2.mp3","new_xingwu1.mp3","new_xiaolongnv.jpg","new_xiangle2.mp3",
-		"new_xiangle1.mp3","new_xiahouyuan.jpg","extension.js","new_wuji3.mp3","new_wuji2.mp3",
+		"new_xiangle1.mp3","new_xiahouyuan.jpg","new_wutugu.jpg","new_wuji3.mp3","new_wuji2.mp3",
 		"new_wuji1.mp3","new_wangyun.jpg","new_wangyi.jpg","new_tieji2.mp3","new_tieji1.mp3",
-		"new_tianyi3.mp3","new_tianyi2.mp3","new_tianyi1.mp3","new_tanlan3.mp3","new_tanlan2.mp3",
+		"new_tianyi3.mp3","extension.js","new_tianyi1.mp3","new_tanlan3.mp3","new_tanlan2.mp3",
 		"new_tanlan1.mp3","new_taishici.jpg","new_szhugeliang.jpg","new_szhaoyun.jpg","new_sunquan.jpg",
 		"new_sunjian.jpg","new_sunce.jpg","new_sluxun.jpg","new_simayi.jpg","new_shichou2.mp3",
 		"new_shichou1.mp3","new_shensu2.ogg","new_shensu1.ogg","new_shenshi2.ogg","new_shenshi1.ogg",
@@ -239,7 +239,13 @@ extension["风华绝代"]={
 		"Coins_jianzhen2.mp3","Coins_mingmen1.mp3","Coins_jiling.jpg","Coins_mingmen2.mp3",
 		"Coins_yuanshu.jpg","Coins_jianzhen1.mp3","Coins_sunce.jpg","Timereflux11.mp3","Coins_hanshi1.mp3",
 		"Coins_fuxi1.mp3","Coins_yongchang.mp3","Coins_hanshi2.mp3","Coins_hanshi21.mp3",
-		"Coins_hanshi22.mp3","Coins_liubiao.jpg","boss_shenpan21.mp3","boss_shenpan22.mp3"]
+		"Coins_hanshi22.mp3","Coins_liubiao.jpg","States_zhou.jpg","boss_shenpan21.mp3",
+		"boss_shenpan22.mp3","challenge_daqiaoxiaoqiao.jpg","challenge_hongyan21.mp3","challenge_hongyan22.mp3",
+		"challenge_qingshi12.mp3","challenge_qingshi11.mp3","States_wei.jpg","States_yan.jpg",
+		"States_chu.jpg","States_zhao.jpg","States_qi.jpg","States_han.jpg","States_qin.jpg",
+		"Warring_States.jpg","Coins_xiongju1.mp3","challenge_hongyan2.mp3","challenge_hongyan1.mp3",
+		"challenge_qingshi3.mp3","challenge_guahuan2.mp3"]
+
 };
 extension["极略三国"]={
     author:"可乐加冰24",

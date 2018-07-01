@@ -53,7 +53,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
                 },
                 forced:true,      
                 content:function (){
-                player.draw(7);
+                player.draw(8);
                 }
              },
              States_bianfa:{    
@@ -68,13 +68,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
                 'step 0'   
                 player.discard(player.get('j'));
                 if(player.maxHp>10){ 
-                player.draw(player.maxHp-player.countCards('h'));  
+                player.draw(Math.min(32,player.maxHp-player.countCards('h')));  
                 }else{    
                 player.draw(player.maxHp*2-player.countCards('h'));  
                 }          
               //  player.turnOver(true);
                 'step 1'
-                player.loseMaxHp(Math.floor(player.maxHp/5));
+                player.loseMaxHp(Math.floor(player.maxHp/4));
                 player.link(true);
                 }
              },
@@ -174,7 +174,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
 				effect:{
         player:function(card,player,target){
         if(card.name=='sha'&&(target.identity!='zhu'||target.identity=='zhu'&&target.maxHp>2))
-        return [1,Math.abs(get.damageEffect(target,player))+target.countCards('he')*3];
+        return [1,target.maxHp/1.5+target.countCards('he')];
         }
         },
 				skillTagFilter:function(player,tag,arg){
@@ -212,7 +212,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
       effect:{
         target:function(card,player,target){
         if(get.tag(card,'damage')&&target.maxHp>3)
-        return 6;
+        return target.maxHp/2;
              }
           }
        }
@@ -556,8 +556,8 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
 			 States_shaxue_info:'出牌阶段，你可以将你的【桃】当【无中生有】使用。',
 			 States_fuqiang_info:'锁定技，回合结束阶段开始时，你增加2点体力上限并回复2点体力。',
 			 States_yuli_info:'锁定技，每当你距离1以内的一名其他角色造成或受到1点伤害时，若伤害来源和受伤角色均不为你，你摸一张牌。',
-			 States_wubo_info:'锁定技，回合阶段开始时，你摸七张牌。',
-			 States_bianfa_info:'锁定技，回合开始阶段，你弃掉判定区里所有的牌，若你的体力上限不为全场最多（或之一），你的体力上限大于10：你将手牌补至体力上限；你的体力上限不大于10：你将手牌补至体力上限的两倍；然后你失去X点体力上限（X为你体力上限的1/5且向下取整）并横置武将牌。',
+			 States_wubo_info:'锁定技，回合阶段开始时，你摸八张牌。',
+			 States_bianfa_info:'锁定技，回合开始阶段，若你的体力上限不为全场最多（或之一），你弃掉判定区里所有的牌，你的体力上限大于10：你将手牌补至体力上限(最多32张)；你的体力上限不大于10：你将手牌补至体力上限的两倍；然后你失去X点体力上限（X为你体力上限的1/4且向下取整）并横置武将牌。',
 			 States_hufu_info:'锁定技，当装备牌进入你的装备区时，你增加1点体力上限、回复1点体力并摸一张牌；每当你失去装备区里的一张牌时，你摸一张牌；锁定技，若你没装备进攻马，你计算与其他角色的距离-1。',
 			 States_jueqi_info:'锁定技，出牌阶段开始时，若你的手牌数不为全场最多（或之一），你将你的手牌补至当前牌数的两倍，若你没有牌，你增加两点体力上限并回复2点体力。',
 			 States_hezong:'合纵',

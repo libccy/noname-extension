@@ -171,17 +171,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"风�
                   },
                   ai:{
 				unequip:true,
+				skillTagFilter:function(player,tag,arg){
+					if(arg&&arg.name=='sha') return true;
+					return false;
+	        			},
 				effect:{
         player:function(card,player,target){
         if(card.name=='sha'&&(target.identity!='zhu'||target.identity=='zhu'&&target.maxHp>2))
         return [1,target.maxHp/1.5+target.countCards('he')];
-        }
-        },
-				skillTagFilter:function(player,tag,arg){
-					if(arg&&arg.name=='sha') return true;
-					return false;
-	        			}
-	        	}
+             }
+           }			
+	       	}
 	      },
 	   States_weiwu2:{
     trigger:{
@@ -287,12 +287,12 @@ if(game.players[i].get('j')) num+=game.players[i].countCards('j');
 						filter:function(event,player){
           if(event.player==player||event.player.isLinked())
           return false;
-          return true;
+          return !player.isMaxHandcard();
           },   
  						content:function(){
- 						player.gainMaxHp();
- 						player.recover();
- 						player.draw();
+ 						//player.gainMaxHp();
+ 						//player.recover();
+ 						player.draw(2);
  						}
  					 },
  					 States_shaxue:{
@@ -513,6 +513,21 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
        game.over(false);        
         }
       },
+      _WarringMusic:{
+trigger:{player:["phaseBefore"]},
+forced:true,
+unique:true,
+popup:false,
+silent:true,
+filter:function(event,player){
+     return lib.character[player.name][4].contains('Warring')&&game.zhu==player&&game.zhu.name=='States_zhou'&&(game.roundNumber==1||game.roundNumber%11==0);
+},
+content:function (){
+ 						if(Math.random()<=0.33||!lib.skill['victory']){
+     player.logSkill('START_GAME');}
+     else{player.logSkill('victory');}    
+        }
+      },
 			 },
 			 translate:{
 			 States_zhou:'周朝',
@@ -561,7 +576,7 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
 			 States_hufu_info:'锁定技，当装备牌进入你的装备区时，你增加1点体力上限、回复1点体力并摸一张牌；每当你失去装备区里的一张牌时，你摸一张牌；锁定技，若你没装备进攻马，你计算与其他角色的距离-1。',
 			 States_jueqi_info:'锁定技，出牌阶段开始时，若你的手牌数不为全场最多（或之一），你将你的手牌补至当前牌数的两倍，若你没有牌，你增加两点体力上限并回复2点体力。',
 			 States_hezong:'合纵',
-			 States_lianheng_info:'锁定技，当其他角色重置武将牌时，你增加1点体力上限并回复1点体力，然后你摸一张牌。',
+			 States_lianheng_info:'锁定技，当其他角色重置武将牌时，若你的手牌数不为全场最多（或之一），你摸两张牌。',
 			 States_hezong_info:'锁定技，当你的武将牌被横置时，若你的手牌和体力不为全场最多（或之一），你摸两张牌。',
 			 States_guoli_info:'摸牌阶段，你可以额外摸X张牌（X为你的体力上限/10，且四舍五入取整），若你的体力上限为全场最多（或之一），你可以额外摸2X张牌；锁定技，你使用【杀】的次数上限+X，若你的体力上限为全场最多（或之一），你使用【杀】的次数上限+2X。',
 			 States_weiwu_info:'锁定技，出牌阶段，你可以额外使用四张【杀】；锁定技，你使用的【杀】无视目标角色的防具、不可被【闪】响应且对目标角色造成的伤害+1；锁定技，你不能成为【兵粮寸断】的目标。',
@@ -634,9 +649,16 @@ _status.extensionmade.push("横扫六合");
 					// 	frequent:true,
 					// }, 
 					lib.onover.push(function(result){
+					if(get.mode()=='boss'&&config.boss){	
+					if(result!=true){
+					game.log('<span style=\"font-style: oblique;font-size:14px;color: orange\">再接再厉！换一个武将组合可能就挑战成功了！（选择三个武将→点击“确定”）</span>')
+					}
+					}
+					});
+					lib.onover.push(function(result){
 					if(game.zhu.name=='States_zhou'&&lib.character[game.me.name][4].contains('Warring')&&game.changeCoin){	
 					if(result==true){
-			 var Coins=666+Math.floor(Math.random()*666);		
+			 var Coins=999+Math.floor(Math.random()*1999);		
 			 game.changeCoin(Coins);
 			 game.me.logSkill('Money');
 			 game.log('<span style=\"font-style: oblique;color: gold\">获得'+get.translation(Coins)+'金</span>');			
@@ -953,7 +975,7 @@ target:function(card,player,target){
                     	}
                     	};
                     FHJD_update=[
-  '修复BUG、新增BOSS武将',
+  '修复国战卡死BUG、新增国战武将（李丰、凌操）',
 //		'优化武将图、新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',  
 		'本次更新赠送9999金币，若当前金币为负数，将金币补至9999（未开启“富甲天下”或未开启此扩展任意武将包则不会获得奖励）',
 		'其它获取金币方式：身份、国战、挑战',
@@ -963,7 +985,7 @@ target:function(card,player,target){
 // 	'cards://["Charms"]',
  	'players://["challenge_daqiaoxiaoqiao","Coins_liubiao","Coins_yuanshu","Coins_yuanshao","Coins_mizhu","new_zuoci","new_zhoutai","BOSS_shenhua","boss_simayi"]',
 	];
-	FHJD_version='1.8.0701';
+	FHJD_version='1.8.0709';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -1467,6 +1489,7 @@ target:function(card,player,target){
      lib.characterPack.mode_guozhan.gz_liubiao=['male','qun',4,['zishou'],[]],
      lib.characterPack.mode_guozhan.gz_caifuren=['female','qun',3,['qieting','xianzhou'],[]],
      //蜀
+     lib.characterPack.mode_guozhan.gz_lifeng=['male','shu',3,['tunchu','shuliang'],[]],
      lib.characterPack.mode_guozhan.gz_xushu=['male','shu',3,['wuyan','jujian'],[]],
      lib.characterPack.mode_guozhan.gz_zhangyi=['male','shu',4,['wurong','shizhi'],[]],
      lib.characterPack.mode_guozhan.gz_mazhong=['male','shu',4,['fuman'],[]],
@@ -1477,12 +1500,20 @@ target:function(card,player,target){
      lib.characterPack.mode_guozhan.gz_zhangsong=['male','shu',3,['qiangzhi','xiantu'],[]],
      lib.characterPack.mode_guozhan.gz_masu=['male','shu',3,['xinzhan','huilei'],[]],
      //吴
+     lib.characterPack.mode_guozhan.gz_lingcao=['male','wu',4,['dujin'],[]],
      lib.characterPack.mode_guozhan.gz_sunhao=['male','wu',4,['canshi','chouhai'],[]],
      lib.characterPack.mode_guozhan.gz_sunxiu=['male','wu',3,['yanzhu','xingxue'],[]],
      lib.characterPack.mode_guozhan.gz_lingtong=['male','wu',4,['xuanfeng'],[]],
      lib.characterPack.mode_guozhan.gz_zhugejin=['male','wu',3,['hongyuan','huanshi','mingzhe'],[]],
      lib.characterPack.mode_guozhan.gz_guyong=['male','wu',3,['shenxing','bingyi'],[]],
      lib.characterPack.mode_guozhan.gz_bulianshi=['female','wu',3,['anxu','zhuiyi'],[]],
+    //lib.skill.shuliang.direct=false;
+    lib.skill.tunchu.ai={
+    threaten:1.5,
+    };
+    lib.skill.dujin.ai={
+    threaten:1.5,
+    };
     lib.skill.longyin.usable=2,
     lib.translate.longyin_info='每当一名角色在其出牌阶段使用【杀】时，你可弃置一张牌令此【杀】不计入出牌阶段使用次数，若此【杀】为红色，你摸一张牌。每名角色的回合限两次',
     lib.translate.gzyicong='义从',
@@ -4252,10 +4283,10 @@ return -2;
 			forced:true,
 			silent:true,
 			filter:function (event,player){     
-			return game.me!=game.boss&&game.boss!=player&&player.identity!='zhong'&&(!game.changeCoin||lib.config.coin<300);
+			return game.me!=game.boss&&game.boss!=player&&player.identity!='zhong'&&(!game.changeCoin||lib.config.coin<300||lib.config.coin>=Infinity);
 			},
 			content:function(){
-  	game.log('未开启“富甲天下”/金币不足！<br/>',player,'获得了负面效果！');
+  	game.log('未开启“富甲天下”/金币不足/金币参数错误！<br>获取更多金币途径：身份、国战、挑战、乱斗<br/>',player,'获得了负面效果！');
 			var info=lib.character[player.name];
     						var skills=player.getSkills();
     						var list=[];
@@ -4284,11 +4315,11 @@ return -2;
 			return (lib.character[game.boss.name][4].contains('Unaffected')||game.boss.name2&&lib.character[game.boss.name2][4].contains('Unaffected'))&&game.me==player&&game.changeCoin;
 			},
 			content:function(){
-  		if(lib.config.coin<500&&game.me==game.boss){
+  		if((lib.config.coin<500||lib.config.coin>=Infinity)&&game.me==game.boss){
   		game.log('<span style=\"font-style: oblique\">失去200金</span>');
 				game.changeCoin(-200);
 				game.me.logSkill('Money');
-  	game.log('失败原因：金币不足');
+  	game.log('失败原因以下之一：<br>1.金币不足<br>2.金币参数错误<br>获取更多金币途径：身份、国战、挑战、乱斗');
 			game.forceOver(false);
 			}else{
 			if(game.me==game.boss){
@@ -4580,10 +4611,10 @@ game.forceOver(false);
 			popup:false,
 			forced:true,
 			filter:function (event,player){     
-			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&(lib.config.coin<500||!game.changeCoin);
+			return (lib.character[game.me.name][4].contains('Unaffected')||game.me.name2&&lib.character[game.me.name2][4].contains('Unaffected'))&&game.me==player&&(lib.config.coin<500||lib.config.coin>=Infinity||!game.changeCoin);
 			},
 			content:function(){
-  	game.log('失败原因：未开启“富甲天下”/金币不足');
+  	game.log('失败原因以下之一：<br>1.未开启“富甲天下”<br>2.金币不足<br>3.金币参数错误<br>获取更多金币途径：身份、国战、挑战、乱斗');
 			game.forceOver(false);
 			}
 			};
@@ -4993,6 +5024,21 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.reinit = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
+player.out = function (all) {
 return game.countPlayer(function(current){
 						if(current!=player){
 						player.line(current);
@@ -12960,6 +13006,21 @@ game.forceOver(false);
 }
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
+player.out = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
 player.disableSkill = function (all) {
 player.popup('<span style="color: palegreen">😎</span>');
 player.gainMaxHp();
@@ -13388,6 +13449,21 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.reinit = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
+player.out = function (all) {
 return game.countPlayer(function(current){
 						if(current!=player){
 						player.line(current);
@@ -15107,6 +15183,21 @@ game.forceOver(false);
 }
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
+player.out = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
 player.init = function (all) {
 player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
@@ -15223,6 +15314,21 @@ game.forceOver(false);
 }
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
+player.out = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
 player.init = function (all) {
 player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
 };
@@ -15310,6 +15416,21 @@ game.forceOver(false);
 player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
 };
 player.reinit = function (all) {
+return game.countPlayer(function(current){
+						if(current!=player){
+						player.line(current);
+						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
+						current.die({source:player})._triggered=null;
+								}
+						});
+if(game.me==player){
+game.forceOver(true);
+}else{
+game.forceOver(false);
+}
+player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
+};
+player.out = function (all) {
 return game.countPlayer(function(current){
 						if(current!=player){
 						player.line(current);
@@ -29393,7 +29514,7 @@ trigger.source.chooseToDiscard(true,'he');
       for(var i=0;i<game.players.length;i++){    
 if(game.players[i].hasSkill('victory')) return false;
       }
-      return !game.me.hasSkill('victory')&&game.me==player&&(lib.config.mode!='connect'&&lib.config.mode!='boss'&&Math.random()<=0.1||lib.config.mode=='connect'&&Math.random()<=0.2||lib.character[player.name][4].contains('Warring')&&game.zhu.name=='States_zhou');
+      return !game.me.hasSkill('victory')&&game.me==player&&(lib.config.mode!='connect'&&lib.config.mode!='boss'&&Math.random()<=0.1||lib.config.mode=='connect'&&Math.random()<=0.2);
      },     	
 			content:function(){
 			if(Math.random()<=0.33||!lib.skill['victory']){
@@ -30204,7 +30325,7 @@ return [1,-3];
       new_buhui:{
                 mod:{
                     targetEnabled:function (card,player,target,now){
-                    if(card.name=='sha') return false;
+                    if(card.name=='sha'||card.name=='tao') return false;
                 },
               },
             },
@@ -30482,7 +30603,7 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,3];
            new_zhongyi_info:'当你失去最后一张手牌时，你可以摸取与当前最大体力值相同的牌数且至多为4。',
            new_sheji_info:'<span style=\"color: gold\">锁定技</span>，出牌阶段，若你在目标角色的攻击范围内，则你对该角色使用的【杀】不可被闪避。',
            new_juelu_info:'当打出的【杀】为最后一张手牌，攻击范围无限，你可以为这张【杀】指定至多两名目标角色。',
-           new_buhui_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【杀】的目标。',
+           new_buhui_info:'<span style=\"color: gold\">锁定技</span>，你不能成为【杀】和【桃】的目标。',
             slianying3_info:"当你对其他角色造成伤害后，可将其武将牌横置，每名角色的回合限一次；<span style=\"color: gold\">锁定技</span>，回合结束阶段，若场上存在武将牌被横置的其他角色，你视为对这些角色使用一张火属性的【杀】。",
          },
      };
@@ -32679,7 +32800,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【完整版】游戏内的版本缺失部分文件<li>其它获取金币方式：身份、国战、挑战<li>【2018年7月1日21:23】更新内容：修复BUG、新增BOSS武将<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月21日21:23】更新内容：修复BUG、增加BOSS击杀奖励、减少金币消耗<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月12日20:09】更新内容：修复BUG、新增刷金币BOSS、增加击杀奖励<li>赠送6666游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年5月6日19:00】更新内容：修复BUG、新增刷金币BOSS<li>—————————————————<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>—————————————————<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【完整版】游戏内的版本可能缺失部分文件<li>其它获取金币方式：身份、国战、挑战<li>【2018年7月9日21:50】更新内容：修复国战卡死BUG、新增国战武将（李丰、凌操）<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年7月1日21:23】更新内容：修复BUG、新增BOSS武将<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月21日21:23】更新内容：修复BUG、增加BOSS击杀奖励、减少金币消耗<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月12日20:09】更新内容：修复BUG、新增刷金币BOSS、增加击杀奖励<li>赠送6666游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年5月6日19:00】更新内容：修复BUG、新增刷金币BOSS<li>—————————————————<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>—————————————————<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【無名殺玩家交流群】</span><span style=\"font-size:13px;font-weight:550;color: DarkOrange;font-style: oblique\">需要剧情三英（极略三英武将+七杀包+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可私聊群主，价格人性化不设下限</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

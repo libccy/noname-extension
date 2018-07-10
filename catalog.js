@@ -64,7 +64,7 @@ extension["风华绝代"]={
   size:"333MB",
   netdisk:"http://pan.baidu.com/s/1pKRjIcz",
   forum:"https://tieba.baidu.com/p/5063284116",
-  version:1.80710,
+  version:1.80711,
 	files:["new_tianyi2.mp3","victory5.mp3","Money.mp3","boss_fennu.jpg","boss_kelian.jpg",
 		"boss_tiaopi.jpg","boss_yinxian.jpg","boss_huaji.jpg","Armor.ogg","Armor.png","challenge_xiahouyuan.jpg",
 		"challenge_fengchi2.mp3","challenge_fengchi1.mp3","challenge_fengchi4.mp3","challenge_fengchi3.mp3",

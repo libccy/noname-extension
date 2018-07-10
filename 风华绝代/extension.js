@@ -5132,7 +5132,7 @@ return game.countPlayer(function(current){
                 content:function (){
                 player.addSkill(['liuli','retianxiang','xingwu']);
                 game.log(player,'获得了技能：流离、天香、星舞');
-                player.awakenSkill('challenge_qingshi3');
+                //player.awakenSkill('challenge_qingshi3');
     	        			player.storage.challenge_qingshi3=true;
                 },
                 intro:{

@@ -42,17 +42,326 @@ _status.extensionmade.push("剧情战役");
      //Insane_daqiao:['female','shen',Infinity,['Insane_weichu'],['forbidai']],
      //Insane_caiwenji:['female','shen',Infinity,['Insane_weichu'],['forbidai']],
      //Insane_caopi:['male','shen',Infinity,['Insane_weichu'],['forbidai']],
-     //Insane_huaxiong:['male','shen',Infinity,['Insane_weichu'],['forbidai']],
+     Insane_huaxiong:['male','shen',8,['Insane_yingzhan','Insane_zhansha'],['zhu']],
      //Insane_sunluban:['female','shen',Infinity,['Insane_weichu'],['forbidai']],
-     Insane_zhenji:['female','shen',Infinity,['Insane_weichu'],['forbidai']],
+     Insane_zhenji:['female','shen',Infinity,['Insane_luoshen','Insane_fangze','Insane_shengchen'],['zhu']],
      Insane_zhouyu:["male","shen",3,["Insane_weilue","fanjian","Insane_huoji","lnsane_yingnian"],["zhu"]],
      Insane_simayi:["male","shen",3,["Insane_yexin","Insane_tumou","reguicai","Insane_zhuangbing"],["zhu"]],
      Insane_dianchan:["female","shen",3,["Insane_meihuo","lijian","Insane_lianmin"],["zhu"]],
      Insane_zhugeliang:["male","shen",3,["lnsane_liaoyuan","lnsane_mingshu"],["zhu"]],
      Insane_jiaxu:["male","shen",3,["lnsane_mouji","lnsane_sunji","wansha","weimu"],["zhu"]],
-     Insane_sunce:["male","shen",3,["lnsane_zixin","lnsane_shuaiwang"],["zhu"]],
+     Insane_sunce:["male","shen",3,[],["zhu"]],
     },
     skill:{
+     Insane_zhansha:{
+      group:['Insane_zhansha1','Insane_zhansha2'],
+      locked:true,
+      unique:true,      
+ 				},
+      Insane_zhansha1:{
+				audio:2,
+				trigger:{player:'shaBegin'},
+				forced:true,
+				filter:function(event,player){
+					return !event.directHit;
+				},
+				priority:-1,
+				popup:false,
+				content:function(){
+					if(typeof trigger.shanRequired=='number'){
+						trigger.shanRequired++;
+					}
+					else{
+						trigger.shanRequired=2;
+					}
+				},
+				ai:{
+		 			threaten:3.5,
+     effect:{
+     player:function(card,player,target,current){		
+     if(player.countCards('h','tao')&&player.hp<player.maxHp&&card.name=='sha')
+					return [0,2*(player.hp-player.maxHp)];
+					},
+					target:function(card,player,target,current){		
+					if(target.hp>0){
+					if(card.name=='jiu')
+					return [0,0];
+					}
+					if(card.name=='tao')
+					return [1,3];					
+					     }
+        }
+      }
+ 			},
+     Insane_zhansha2:{
+			audio:2,
+			trigger:{source:'damageBegin'},		
+     filter:function(event,player){
+     if(player.name!='Insane_huaxiong'&&player.name2!='Insane_huaxiong') return false;   
+					return event.card&&event.card.name=='sha'&&event.notLink();
+				},
+				unique:true,
+				forced:true,
+			content:function(){
+			 trigger.num=player.hp;
+			 }
+			 },
+     Insane_yingzhan:{
+      group:'Insane_yingzhan2',
+      locked:true,
+      unique:true,
+      }, 
+     Insane_yingzhan2:{
+		   audio:2,
+			trigger:{target:'useCardToEnd'},
+     filter:function(event,player){
+     if(player.name!='Insane_huaxiong'&&player.name2!='Insane_huaxiong') return false;   
+					return _status.currentPhase!=player&&event.card.name!='wuxie'&&event.card.name!='Timereflux'&&event.player!=player;
+				},
+				unique:true,
+				direct:true,
+			content:function(){
+							"step 0"
+							player.draw(1);
+							"step 1"
+						player.logSkill('Insane_yingzhan2');
+						player.chooseToUse({name:'sha'},trigger.player,-1,'迎战：是否对'+get.translation(trigger.player)+'使用一张【杀】？').set('targetRequired',true);
+					 }
+					},
+     Insane_shengchen:{
+     audio:'qingguo',
+      group:['Insane_shengchen1','Insane_shengchen2'],
+      locked:true,
+      unique:true,       
+      },
+     Insane_shengchen1:{
+				audio:'qingguo',
+				trigger:{player:'phaseUseBegin'},
+				direct:true,
+				unique:true,
+				filter:function(event,player){
+				if(player.name!='Insane_zhenji'&&player.name2!='Insane_zhenji') return false;   
+				var num=game.countPlayer(function(current){
+						return current.countCards('he');
+					});
+					return num>0;
+				},
+				content:function(){
+					"step 0"
+					player.chooseTarget(get.prompt('Insane_shengchen'),[1,Infinity],function(card,player,target){
+						return player!=target
+					}).ai=function(target){
+					var num=game.countPlayer(function(current){
+						return current.countCards('he');
+					});
+					if(num%2==1){
+						if(target.hasSkillTag('noturn')) return 0;
+						var player=_status.event.player;
+						if(get.attitude(player,target)<=0&&!target.classList.contains('turnedover')) return 1;
+						if(get.attitude(player,target)>0&&target.classList.contains('turnedover')) return 1;
+						return 0;
+						}
+						if(num%2==0){
+						return -get.attitude(_status.event.player,target);
+						}
+					}
+					"step 1"
+					if(result.bool){		
+		 			player.logSkill('Insane_shengchen',result.targets);
+						for(var i=0;i<result.targets.length;i++){
+									//result.targets.push(result.targets[i]);
+					//	result.targets[0].draw(player.maxHp-player.hp);				 	
+				 	var num2=game.countPlayer(function(current){
+						return current.countCards('he');
+					});
+					if(num2%2==1){
+						result.targets[i].turnOver();
+						}else{
+						if(result.targets[i].countCards('he')==0){
+						result.targets[i].loseHp();
+						result.targets[i].link(true);
+						}else{
+						player.discardPlayerCard(true,'he',2,result.targets[i]);
+			        			}
+		      				}
+				    		}
+		   			}
+		 			},
+		 			ai:{
+		 			threaten:4,
+     effect:{
+					target:function(card,player,target,current){		
+					if(get.color(card)=='black')
+					return 0;
+						if(get.tag(card,'damage')&&!player.hasSkillTag('jueqing')) return [1,-3];
+          }
+        }
+      }
+				},
+				 Insane_shengchen2:{
+			audio:true,
+			trigger:{player:'damageAfter'},
+     filter:function(event,player){
+     if(player.name!='Insane_zhenji'&&player.name2!='Insane_zhenji') return false;   
+					return event.num>0;
+				},
+				unique:true,
+				forced:true,
+				init:function(player){
+		  player.storage.Insane_shengchen2=0;
+		 	},
+				intro:{
+content:function (storage){
+return ''+storage/0.1+'%'
+      }
+    },
+			content:function(){
+			 'step 0'
+			  player.syncStorage('Insane_shengchen2');
+    player.markSkill('Insane_shengchen2');
+				player.storage.Insane_shengchen2+=trigger.num;
+		  game.addVideo('storage',player,['Insane_shengchen2',player.storage.Insane_shengchen2]);
+		  'step 1'
+		  if(player.storage.Insane_shengchen2>9){
+		  player.maxHp=3;
+		  player.hp=player.maxHp;
+		  player.update();
+		  player.removeSkill(['Insane_shengchen2','Insane_shengchen1','Insane_shengchen']);
+		       }
+	      }
+	    },
+     Insane_fangze:{
+      group:'Insane_fangze2',
+      locked:true,
+      unique:true,
+      }, 
+     Insane_fangze2:{
+			audio:true,
+			trigger:{target:'useCardToBefore'},
+			priority:20,			
+     filter:function(event,player){
+     if(player.name!='Insane_zhenji'&&player.name2!='Insane_zhenji') return false;   
+					return event.card.name!='wuxie'&&event.card.name!='Timereflux'&&get.type(event.card)!='equip';
+				},
+				unique:true,
+				forced:true,
+			content:function(){
+			 if(get.color(trigger.card)=='black'){
+			  trigger.cancel();
+			  player.line(trigger.player);
+     trigger.player.damage();
+     }else{
+     if(get.color(trigger.card)=='red')
+     player.draw(2);
+         }
+       }
+			  },
+			   Insane_luoshen:{
+			   audio:'luoshen',
+			   group:['Insane_luoshen1','Insane_luoshen2'],
+      locked:true,
+      unique:true,
+      }, 
+     Insane_luoshen1:{
+				audio:'luoshen',
+				trigger:{player:'phaseBefore'},
+				frequent:true,
+				filter:function(event,player){
+     if(player.name!='Insane_zhenji'&&player.name2!='Insane_zhenji') return false;   
+					return true;
+				},
+				content:function(){
+					"step 0"
+					if(event.cards==undefined) event.cards=[];
+					player.judge(function(card){
+						if(get.color(card)=='black') return 1.5;
+						return -1.5;
+					},ui.special);
+					"step 1"
+					if(result.judge>0){
+						event.cards.push(result.card);
+						if(lib.config.autoskilllist.contains('luoshen')){
+							player.chooseBool('是否再次发动【洛神】？');
+						}
+						else{
+							event._result={bool:true};
+						}
+					}
+					else{
+						for(var i=0;i<event.cards.length;i++){
+							if(get.position(event.cards[i])!='s'){
+								event.cards.splice(i,1);i--;
+							}
+						}
+						player.gain(event.cards);
+						if(event.cards.length){
+							player.$draw(event.cards);
+						}
+						event.finish();
+					}
+					"step 2"
+					if(result.bool){
+					player.logSkill('luoshen');
+						event.goto(0);
+					}
+					else{
+						player.gain(event.cards);
+						if(event.cards.length){
+							player.$draw(event.cards);
+						}
+					}
+				}
+			},
+			  Insane_luoshen2:{
+				audio:'luoshen',
+				trigger:{player:'phaseEnd'},
+				frequent:true,
+				filter:function(event,player){
+     if(player.name!='Insane_zhenji'&&player.name2!='Insane_zhenji') return false;   
+					return true;
+				},
+				content:function(){
+					"step 0"
+					if(event.cards==undefined) event.cards=[];
+					player.judge(function(card){
+						if(get.color(card)=='red') return 1.5;
+						return -1.5;
+					},ui.special);
+					"step 1"
+					if(result.judge>0){
+						event.cards.push(result.card);
+						if(lib.config.autoskilllist.contains('luoshen')){
+							player.chooseBool('是否再次发动【洛神】？');
+						}
+						else{
+							event._result={bool:true};
+						}
+					}
+					else{
+						for(var i=0;i<event.cards.length;i++){
+							if(get.position(event.cards[i])!='s'){
+								event.cards.splice(i,1);i--;
+							}
+						}
+						player.gain(event.cards);
+						if(event.cards.length){
+							player.$draw(event.cards);
+						}
+						event.finish();
+					}
+					"step 2"
+					if(result.bool){
+					player.logSkill('luoshen');
+						event.goto(0);
+					}
+					else{
+						player.gain(event.cards);
+						if(event.cards.length){
+							player.$draw(event.cards);
+						}
+					}
+				}
+			},
      Insane_weichu:{
       locked:true,
       unique:true,
@@ -410,7 +719,7 @@ current.damage('fire',get.number(result.card));
      unique:true,
      popup:false,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                      
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;
      return true;
      },
 			content:function(){
@@ -424,7 +733,7 @@ current.damage('fire',get.number(result.card));
      unique:true,
      popup:false,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                      
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;
      return true;
      },
 			content:function(){
@@ -438,7 +747,7 @@ current.damage('fire',get.number(result.card));
      unique:true,
      popup:false,     
     filter:function (event,player){
-  if(player.name!='Insane_sunce') return false;                      
+  if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;
     return player.hp==player.maxHp;
     },
 			content:function(){
@@ -446,34 +755,23 @@ current.damage('fire',get.number(result.card));
        }
     },
     lnsane_shuaiwang3:{
-			trigger:{target:'useCardToBefore'},
+			trigger:{target:'useCardToAfter'},
 			forced:true,
      unique:true,
      popup:false,
-     priority:1000,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                      
-     return event.card.name!='wuxie'&&(player.hp>0||event.player!=player);
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false; 
+     return event.card.name!='wuxie'&&event.card.name!='Timereflux'&&(player.hp>0||event.player!=player);
      },
 			content:function(){
-     trigger.cancel();    
-     player.loseHp();
-     if(trigger.player!=player){
-     if(get.suit(trigger.card)=='spade'){
-     player.useCard({name:'sha'},trigger.player,false);}
-     if(get.suit(trigger.card)=='club'){
-     player.useCard({name:'shunshou'},trigger.player,false);}
-     if(get.suit(trigger.card)=='diamond'){
-     player.useCard({name:'juedou'},trigger.player,false);}
-    if(get.suit(trigger.card)=='heart'){
-     player.useCard({name:'huogong'},trigger.player,false);}}
+    eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[02-9a-d]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.cancel();2.loseHp();3(0.2!=2){3(7.8(0.9)==\'spade\'){2.4({5:\'sha\'},0.2,6)}3((0.c.d<1||0.c.d>1)&&0.2.a(\'b\')){2.4({5:\'guohe\'},0.2,6)}3(7.8(0.9)==\'club\'&&0.2.a(\'b\')){2.4({5:\'shunshou\'},0.2,6)}3(7.8(0.9)==\'diamond\'){2.4({5:\'juedou\'},0.2,6)}3(7.8(0.9)==\'heart\'&&0.2.a(\'b\')){2.4({5:\'huogong\'},0.2,6)}}',[],14,'trigger||player|if|useCard|name|false|get|suit|card|countCards|hej|cards|length'.split('|'),0,{}))
        },
      ai:{
      effect:{
 					target:function(card,player,target){
         if(target.hp>0) return [1,3];
         if(card.name=='jiu'&&target.hp<=0&&target==player) return [0,-3];
-					if(get.tag(card,'recover')) return [0,-10];
+					if(get.tag(card,'recover')) return [1,-10];
           }
         }
       }
@@ -485,7 +783,7 @@ current.damage('fire',get.number(result.card));
      popup:false,
      priority:1000,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;  
      if((event.name=='die'||event.name=='dying')&&player.maxHp==player.hp) 
      return false;                   
      return true;
@@ -502,16 +800,20 @@ current.damage('fire',get.number(result.card));
      popup:false,
      priority:-9999999,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                 
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;
      return event.num>player.hp;
      },
 			content:function(){
-     trigger.cancel();     
+     trigger.cancel();
        }
      },
      lnsane_shuaiwang6:{
      audio:2,
 				enable:['chooseToUse'],
+				filter:function (event,player){
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;
+     return player.countCards('he',{type:['basic','equip']})>0;
+     },
 				filterCard:function(card,player){			
 					return get.type(card)=='equip'||get.type(card)=='basic';
 				},
@@ -542,13 +844,28 @@ current.damage('fire',get.number(result.card));
 					  }
         }
       },
-     lnsane_zixin1:{
+     _lnsane_addSkills:{
 			trigger:{global:'gameStart'},
+			  forced:true,
+     unique:true,
+     popup:false,
+     silent:true,
+     priority:99999,
+     filter:function (event,player){
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;    
+     return true;
+     },
+			content:function(){
+			 player.addSkill(["lnsane_zixin","lnsane_shuaiwang"]);
+			 }
+			 },
+     lnsane_zixin1:{
+			trigger:{global:'gameDrawBegin'},
 			forced:true,
      unique:true,
      popup:false,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                      
+   if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;    
      return true;
      },
 			content:function(){
@@ -556,7 +873,7 @@ current.damage('fire',get.number(result.card));
      player.hp=0;
      player.update();
       'step 1' 
-player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
+player.gain(get.cards(Math.min(49,player.maxHp*player.maxHp-4)))._triggered=null;
        }
      },
     lnsane_zixin2:{
@@ -565,15 +882,17 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
      unique:true,
      popup:false,
      filter:function (event,player){
-   if(player.name!='Insane_sunce') return false;                      
+ if(player.name!='Insane_sunce'&&player.name2!='Insane_sunce') return false;     
      return player.countCards('h')<player.maxHp;
      },
 			content:function(){
-     player.draw(player.maxHp*player.maxHp);
+     player.draw(Math.min(49,player.maxHp*player.maxHp));
        }
      },
     },
     translate:{
+     Insane_huaxiong:'跋扈魔将',
+     Insane_zhenji:'惊鸿洛神',
      Insane_zhouyu:'英才周郎',
      Insane_simayi:'狼相仲达',
      Insane_dianchan:'月下仙子',
@@ -605,7 +924,24 @@ player.gain(get.cards(player.maxHp*player.maxHp-4))._triggered=null;
      lnsane_yingnian1:'英年',
      lnsane_yingnian2:'早逝',
      Insane_weichu:'待更',
- 
+     Insane_luoshen:'洛神',
+     Insane_luoshen1:'洛神',
+     Insane_luoshen2:'洛神',
+     Insane_fangze:'芳泽',
+     Insane_fangze2:'芳泽',
+     Insane_shengchen:'生尘',
+     Insane_shengchen1:'生尘',
+     Insane_shengchen2:'生尘',
+     Insane_shengchen2_bg:'尘',
+     Insane_yingzhan:'迎战',
+     Insane_yingzhan2:'迎战',
+     Insane_zhansha:'斩杀',
+     Insane_zhansha2:'斩杀',
+     Insane_yingzhan_info:'当你于回合外成为其他角色使用牌的目标后，你摸一张牌，然后你可以对该角色使用一张【杀】',
+     Insane_zhansha_info:'锁定技，你使用【杀】对目标角色造成的伤害始终为X，X为你当前体力；锁定技，当你使用【杀】指定一个目标后，该角色需依次使用两张【闪】才能抵消此【杀】',
+     Insane_shengchen_info:'出牌阶段开始时，若场上角色的总牌数为奇数，你可以将任意名其他角色翻面；若场上角色的总牌数为偶数，你可以弃置任意名其他角色的两张牌，若目标角色没有牌，则其失去1点体力并横置武将牌；锁定技，当你受到累计10点或更多伤害后，你的体力和体力上限变为3，然后你失去此技能直到游戏结束',
+     Insane_fangze_info:'锁定技，每当你成为♠♣非装备牌的目标时，取消之，然后你对该牌使用者造成1点伤害；锁定技，每当你成为♥♦非装备牌的目标时，你摸两张牌',
+     Insane_luoshen_info:'准备阶段开始时，你可以进行判定，若结果为♠♣，你获得生效后的判定牌且你可以重复此流程；结束阶段开始时，你可以进行判定，若结果为♥♦，你获得生效后的判定牌且你可以重复此流程',
      Insane_weichu_info:'该武将暂时未更新，敬请期待！',
      lnsane_yingnian_info:'锁定技，当你处于濒死状态时，若当前游戏轮数小于35，你回复体力至体力上限；回合结束阶段开始时，若当前游戏轮数不小于35，你立即死亡',
      Insane_weilue_info:'摸牌阶段，你可以额外摸X张牌；你的手牌上限+X（X为当前游戏轮数）',
@@ -3503,7 +3839,7 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
         },
     },
     intro:"",
-    author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【无名杀玩家交流群】</span>",
+    author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">加入qq群【無名殺玩家交流群】</span>",
     diskURL:"",
     forumURL:"",
     version:"",

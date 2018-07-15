@@ -37,25 +37,27 @@ extension["浑身是胆"]={
 	size:"685.13KB"
 };
 extension["剧情战役"]={
-	intro:"三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將（緩更）",
+	intro:"更新内容：新增Insane武將<br/>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.80623",
-	files:["Insane_yexin2.mp3","extension.js","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
+	version:"1.80716",
+	files:["Insane_simayi.jpg","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
 		"Insane_yuanshao.jpg","Insane_sunshangxiang.jpg","Insane_zhenji.jpg","lnsane_shuaiwang62.mp3",
 		"lnsane_shuaiwang61.mp3","Insane_caiwenji.jpg","Insane_jiangwei.jpg","Insane_huaxiong.jpg",
 		"Insane_caopi.jpg","Insane_wangyi.jpg","Insane_lingtong.jpg","Insane_sunluban.jpg",
 		"Insane_xiaoqiao.jpg","Insane_daqiao.jpg","Insane_lvbu.jpg","Battle_dongzhuo.jpg",
 		"lnsane_sunji2.mp3","Insane_weilue3.mp3","Insane_weilue2.mp3","Insane_weilue1.mp3",
-		"Insane_zhouyu.jpg","Insane_zhuangbing.mp3","Judgetz.ogg","Insane_yexin1.mp3","Insane_simayi.jpg",
-		"Insane_meihuo23.ogg","Insane_meihuo22.ogg","Insane_meihuo21.ogg","Insane_meihuo24.ogg",
-		"Insane_dianchan.jpg","Insane_jiaxu.jpg","lnsane_mingshu2.mp3","lnsane_liaoyuan22.mp3",
-		"lnsane_liaoyuan21.mp3","Battle_zengyuan.mp3","Insane_zhugeliang.jpg","Insane_sunce.jpg",
-		"wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg","Battle_yuanshao.jpg",
-		"Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg","Battle_huben.mp3",
-		"Battle_huben_shan.mp3","Battle_gongshang.mp3"],
-	size:"4.44MB"
+		"Insane_zhouyu.jpg","Insane_zhuangbing.mp3","Insane_yexin2.mp3","Insane_yexin1.mp3",
+		"Judgetz.ogg","Insane_meihuo23.ogg","Insane_meihuo22.ogg","Insane_meihuo21.ogg",
+		"Insane_meihuo24.ogg","Insane_dianchan.jpg","Insane_jiaxu.jpg","lnsane_mingshu2.mp3",
+		"lnsane_liaoyuan22.mp3","lnsane_liaoyuan21.mp3","Battle_zengyuan.mp3","Insane_zhugeliang.jpg",
+		"Insane_sunce.jpg","wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg",
+		"Battle_yuanshao.jpg","Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg",
+		"Battle_huben.mp3","Battle_huben_shan.mp3","Battle_gongshang.mp3","extension.js",
+		"Insane_yingzhan22.mp3","Insane_fangze2.mp3","Insane_zhansha22.mp3","Insane_yingzhan21.mp3",
+		"Insane_zhansha21.mp3"],
+	size:"4.93MB"
 }; 
 extension["风华绝代"]={
   author:"一瞬间丶遗忘",

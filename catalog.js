@@ -37,7 +37,7 @@ extension["浑身是胆"]={
 	size:"685.13KB"
 };
 extension["剧情战役"]={
-	intro:"更新内容：新增Insane武將<br/>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",
+	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",

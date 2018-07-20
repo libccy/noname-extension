@@ -26,15 +26,15 @@ extension["官渡之战"]={
 	size:"2.66MB"
 };
 extension["浑身是胆"]={
-	intro:"模式（在亂鬥模式查看介紹/進行遊戲），如果不能正常進行遊戲，請關閉劇情戰役擴展",
+	intro:"<li>修復BUG、增強高達一號<li>模式（在亂鬥模式查看介紹/進行遊戲）",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.6",
+	version:"1.7",
 	files:["gods_juejing21.mp3","extension.js","gods_fengqiang3.mp3","gods_fengqiang2.mp3",
 		"gods_juejing23.mp3","gods_juejing22.mp3","gods_fengqiang1.mp3","gods_zhaoyun.jpg",
 		"gods_juejing3.mp3","gods_juejing2.mp3","gods_juejing1.mp3","extension.js.bak"],
-	size:"685.13KB"
+	size:"739.91KB"
 };
 extension["剧情战役"]={
 	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",

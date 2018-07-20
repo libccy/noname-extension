@@ -3375,14 +3375,11 @@ if(lib.config.mode=="brawl"){
 						silent:true,
           priority:Infinity,    
           filter:function(event,player){
-          return game.zhu.name!='gods_zhaoyun';
+          return game.me.name!='gods_zhaoyun'&&game.zhu.name!='gods_zhaoyun';
           },      
  						content:function(){
         console.log(player);
-        game.swapPlayer= function (all) {
-        game.over(false);};
-        player.revive= function (all) {
-        game.over(false);};
+        eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[6-9d]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(6(p,a,c,k,e,r){e=String;8(\'0\'.9(0,e)==0){d(c--)r[e(c)]=k[c];k=[6(e){7 r[e]||e}];e=6(){7\'[0-4]\'};c=1};d(c--)8(k[c])p=p.9(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);7 p}(\'0.swapPlayer=1(2){0.3(4)};player.revive=1(2){0.3(4)};\',[],5,\'game|6|all|over|false\'.split(\'|\'),0,{}))',[],14,'||||||function|return|if|replace||||while'.split('|'),0,{}));
       }
      },      
          lib.skill._nodedamage={
@@ -3392,6 +3389,8 @@ if(lib.config.mode=="brawl"){
 						silent:true,
           priority:Infinity,
           filter:function(event,player){
+          if(game.me.name=='gods_zhaoyun'||game.zhu.name=='gods_zhaoyun')
+          return false;
           if(event.name=='damage'){
 if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
           return false;

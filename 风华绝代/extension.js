@@ -499,6 +499,8 @@ player.node.name.dataset.nature='water';
 						silent:true,
           priority:999,
           filter:function(event,player){
+          if(!lib.character[player.name][4].contains('Warring')||game.zhu.name!='States_zhou'||game.me==game.zhu)
+          return false;
           if(event.name=='damage'){
 if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
           return false;
@@ -507,7 +509,6 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
           else{         
           return !event.source;
           }
-          return lib.character[player.name][4].contains('Warring')&&game.zhu.name=='States_zhou'&&game.me!=game.zhu;
           },
  						content:function(){
        game.over(false);        
@@ -921,6 +922,10 @@ target:function(card,player,target){
 					// 			game.saveConfig('hiddenCardPack',pack);
 					//
                     //             var pack=lib.config.all.characters.slice(0);
+                     if(lib.config.FHJD_YW_JUEDOU==undefined){
+                    	lib.config.FHJD_YW_JUEDOU=0;
+                    	game.saveConfig('FHJD_YW_JUEDOU',lib.config.FHJD_YW_JUEDOU);
+                    	};
                      if(lib.config.FHJD_DXQ_CHALLENGE==undefined){
                     	lib.config.FHJD_DXQ_CHALLENGE=0;
                     	game.saveConfig('FHJD_DXQ_CHALLENGE',lib.config.FHJD_DXQ_CHALLENGE);
@@ -975,7 +980,7 @@ target:function(card,player,target){
                     	}
                     	};
                     FHJD_update=[
-  '修复国战卡死BUG、新增国战武将（李丰、凌操）',
+  '新增古典武侠武将、新增改版武将、新增BOSS武将、新增国战武将（李丰、凌操）',
 //		'优化武将图、新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG（历史更新内容请查看游戏帮助）',  
 		'本次更新赠送9999金币，若当前金币为负数，将金币补至9999（未开启“富甲天下”或未开启此扩展任意武将包则不会获得奖励）',
 		'其它获取金币方式：身份、国战、挑战',
@@ -983,9 +988,9 @@ target:function(card,player,target){
 		'开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）',
  //	'长按/右键下列图标查看详情（往上滑动/鼠标滚动查看更多内容）',
 // 	'cards://["Charms"]',
- 	'players://["yao_zhoutai","challenge_daqiaoxiaoqiao","Coins_liubiao","Coins_yuanshu","Coins_yuanshao","Coins_mizhu","new_zuoci","new_zhoutai","BOSS_shenhua","boss_simayi"]',
+ 	'players://["challenge_yanliangwenchou","Revision_zhugeke","Revision_bulianshi","Revision_fazheng","Revision_jushou","Revision_zhugeke","Revision_chengong","Revision_caozhi","Revision_guotufengji","Revision_zhangrang","Revision_liuchen","Swordsman_yaoyue","Swordsman_jiangxiaoyu","Swordsman_huawuque","Swordsman_xishi","yao_zhoutai","challenge_daqiaoxiaoqiao","Coins_liubiao","Coins_yuanshu","Coins_yuanshao","Coins_mizhu","new_zuoci","new_zhoutai","BOSS_shenhua","boss_simayi"]',
 	];
-	FHJD_version='1.8.0709';
+	FHJD_version='1.8.0720';
 	game.FHJD_update=function(){
 		var ul=document.createElement('ul');
 		ul.style.textAlign='left';
@@ -4198,25 +4203,29 @@ return -2;
 			content:function(){
 			if(get.mode()=='identity'&&(lib.character[trigger.player.name][4].contains('bossallowed')||trigger.player.name2&&lib.character[trigger.player.name2][4].contains('bossallowed')||lib.character[trigger.player.name][4].contains('boss')||trigger.player.name2&&lib.character[trigger.player.name2][4].contains('boss'))){
 			if(player.identity=='nei'){
-			var Coins=99+Math.floor(Math.random()*99);
+			var Coins=99+Math.floor(Math.random()*99)+game.players.length+game.dead.length;
 			}else{
-			var Coins=66+Math.floor(Math.random()*99);
+			var Coins=66+Math.floor(Math.random()*99)+game.players.length+game.dead.length;
 			}
 			}else{
 			if(get.mode()=='identity'&&player.identity=='nei'&&!player.name2){
-			var Coins=19+Math.floor(Math.random()*39);
+			var Coins=23+Math.floor(Math.random()*23)+game.players.length+game.dead.length;
 			}else{
 			if(player.name2||get.mode()=='guozhan'){
 			if(get.mode()=='guozhan'&&player.identity=='ye'){
-			var Coins=9+Math.floor(Math.random()*21);
+			var Coins=16+Math.floor(Math.random()*19)+game.players.length+game.dead.length;
 			}else{
-			var Coins=5+Math.floor(Math.random()*15);
+			var Coins=9+Math.floor(Math.random()*15)+game.players.length+game.dead.length;
 			}
 			}else{
 			if(get.mode()=='identity'&&lib.character[game.me.name][4].contains('elegance')&&!game.me.name2){
-			var Coins=7+Math.floor(Math.random()*24);
+			var Coins=8+Math.floor(Math.random()*12)+game.players.length+game.dead.length;
 			}else{
-			var Coins=9+Math.floor(Math.random()*29);
+			if(!game.me.name2){
+			var Coins=9+Math.floor(Math.random()*16)+game.players.length+game.dead.length;
+			}else{
+			var Coins=8+Math.floor(Math.random()*12)+game.players.length+game.dead.length;
+			}
 			}
 			}
 			}}
@@ -4235,7 +4244,7 @@ return -2;
 			return game.me==player&&game.changeCoin;
 			},
 			content:function(){
-			var Coins=36+Math.floor(Math.random()*66);
+			var Coins=46+Math.floor(Math.random()*56)-(game.players.length+game.dead.length);
 				game.log('<span style=\"font-style: oblique\">失去'+get.translation(Coins)+'金</span>');
 				game.changeCoin(-Coins);
 				game.me.logSkill('Money');
@@ -4650,6 +4659,246 @@ game.forceOver(false);
 			};			    
        game.addCharacterPack({
        skill:{ 
+       challenge_shuangxiong:{
+       group:['boss_immune','challenge_shuangxiong1'],
+       audio:['shuangxiong',2],
+      noLose:true,
+     noGain:true,
+     noDeprive:true,
+     unique:true,
+     locked:true,
+       },
+       challenge_shuangxiong1:{
+				audio:['shuangxiong',2],
+				trigger:{player:'phaseBefore'},
+	 		 forced:true,
+		 		unique:true,
+				 noLose:true,
+     noGain:true,
+     noDeprive:true,
+     priority:20,
+				content:function(){
+					"step 0"
+					player.judge(ui.special);
+					"step 1"					
+					result.card.discard();
+					event.players=get.players(player);
+			 	"step 2"
+		 	if(get.type(result.card)=='basic'){
+				if(event.players.length){
+					var target=event.players.shift();
+					if(target.isEnemyOf(player)){
+					 player.line(target,'green');
+                if(target.hasSkill('challenge_shuangxiong3')==false){
+                    var list=[];
+                    for(var i=0;i<target.skills.length;i++){                        
+                            list.push(target.skills[i]);
+                    }
+                    target.disableSkill('challenge_shuangxiong',list);
+                    target.addSkill('challenge_shuangxiong3');
+                }   
+                target.discard(target.get('he',{type:['delay','equip','trick']}));                       
+      }
+      event.redo();
+      }
+      }else{
+      player.discard(player.get('j'));
+      player.addTempSkill('wushuang');
+      game.log(player,'获得了技能：无双');
+      }
+     "step 3"
+					player.draw(get.number(result.card))._triggered=null;
+					player.addTempSkill('challenge_shuangxiong2');
+					player.storage.challenge_shuangxiong=get.type(result.card);
+				}
+			},
+			challenge_shuangxiong2:{
+				audio:['shuangxiong',2],
+				enable:'phaseUse',
+				viewAs:{name:'juedou'},
+				filter:function(event,player){
+if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='challenge_yanliangwenchou'&&event.player.name2!='challenge_yanliangwenchou') return false;   
+    var num=0;
+    var cards=player.get('he');
+					for(var i=0;i<cards.length;i++){
+						if(get.type(cards[i])!=player.storage.challenge_shuangxiong) num++;
+					} 
+    return player.countCards('he')&&num>0;
+    },
+				filterCard:function(card,player){
+					return get.type(card)!=player.storage.challenge_shuangxiong;
+				},
+				check:function(card){
+					return 20-get.value(card);
+				},
+				position:'he',
+				ai:{
+					basic:{
+						order:15
+					}
+				}
+			},
+		     challenge_shuangxiong3:{
+                audio:true,
+                trigger:{
+                    global:"phaseEnd"
+                },
+                forced:true,
+                unique:true,
+                mark:true,
+                popup:false,
+                filter:function(event,player){
+if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='challenge_yanliangwenchou'&&event.player.name2!='challenge_yanliangwenchou') return false;    
+                return true;
+                },
+                content:function (){
+                player.enableSkill('challenge_shuangxiong');
+                player.removeSkill('challenge_shuangxiong3');
+               },
+                marktext:'怯',
+    			intro:{
+    				content:'技能失效'
+    			}
+            },   
+       challenge_guanjue:{
+       group:['challenge_guanjue1','challenge_guanjue2','challenge_guanjue3','challenge_guanjue4','challenge_guanjue6','challenge_guanjue8'],
+       noLose:true,
+     noGain:true,
+     noDeprive:true,
+     unique:true,
+     locked:true,
+       },
+       challenge_guanjue1:{
+				trigger:{player:'juedouAfter'},
+				forced:true,
+				unique:true,
+				noLose:true,
+     noGain:true,
+     noDeprive:true,
+     priority:20,
+      filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;              
+     return true;
+     },
+				content:function(){
+				'step 0'
+				if(trigger.getParent(2).name!='challenge_guanjue1'&&trigger.target.isIn()){
+				player.useCard(trigger.card,trigger.target,false);
+				}
+				'step 1'
+				lib.config.FHJD_YW_JUEDOU++;
+                    	game.saveConfig('FHJD_YW_JUEDOU',lib.config.FHJD_YW_JUEDOU);
+    'step 2'
+    game.log(player,'共计已使用'+lib.config.FHJD_YW_JUEDOU+'张【决斗】');
+       }
+    	},
+     	challenge_guanjue2:{
+				trigger:{player:'damageBegin'},
+				forced:true,
+				unique:true,
+				noLose:true,
+     noGain:true,
+     noDeprive:true,
+     priority:-7,
+      filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;              
+     return event.source&&event.card&&event.card.name=='sha'&&(event.source.name=='jsp_guanyu'||event.source.name=='re_guanyu'||event.source.name=='guanyu')&&event.source!=player&&event.source.getEquip('chitu')&&event.source.getEquip('qinglong')&&event.num>0;
+     },
+				content:function(){
+				player.addTempSkill('challenge_guanjue5',{player:'damageAfter'});
+				}
+				},
+				challenge_guanjue3:{
+				trigger:{player:'dieBefore'},
+				forced:true,
+				unique:true,
+				noLose:true,
+     noGain:true,
+     noDeprive:true,
+      filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;              
+     return !player.hasSkill('challenge_guanjue5');
+     },
+				content:function(){
+				   trigger.cancel();
+				   player.maxHp+=game.roundNumber;
+				   player.hp=player.maxHp;
+				   player.update();
+				   }
+				   },
+				   challenge_guanjue4:{
+				trigger:{source:'damageBegin'},
+				forced:true,
+				unique:true,
+				noLose:true,
+     noGain:true,
+     noDeprive:true,
+      audio:['shuangxiong',2],
+      filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;              
+     return event.player!=player&&event.card&&event.card.name=='juedou';
+     },
+				content:function(){
+				if(trigger.player.maxHp>=Infinity||trigger.player.hp>=Infinity){
+       trigger.player.maxHp=100000000;
+       trigger.player.hp=trigger.player.maxHp;
+       trigger.player.update();
+     }
+				if(trigger.player.maxHp<=player.maxHp){
+				trigger.num+=lib.config.FHJD_YW_JUEDOU;
+			}else{
+			trigger.num+=lib.config.FHJD_YW_JUEDOU*Math.round(trigger.player.maxHp*0.15);
+     			}
+	  			}
+				},
+				   challenge_guanjue5:{},
+				   challenge_guanjue6:{
+				trigger:{player:'useCard'},
+				forced:true,
+				unique:true,
+				noLose:true,
+     noGain:true,
+     noDeprive:true,
+     popup:false,
+      filter:function (event,player){
+       if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;              
+     return event.card.name=='juedou';
+     },
+				content:function(){
+				player.addTempSkill('challenge_guanjue7',{player:'juedouAfter'});
+				}
+				},
+				   challenge_guanjue7:{
+				   ai:{
+     playernowuxie:true,
+       }
+     },
+     challenge_guanjue8:{
+      trigger:{player:['turnOverBefore','loseMaxHpBefore']},			
+      forced:true,
+      unique:true,
+     noLose:true,
+     noGain:true,
+     noDeprive:true,
+   filter:function(event,player){
+  if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou') return false;
+     if(player.isTurnedOver()&&event.name=='turnOver')
+     return false;
+     return true;
+      },      
+			content:function(){
+      trigger.finish();
+      trigger.untrigger();  
+      if(trigger.name=='turnOver'){
+      game.log(player,'取消了翻面');  
+      }else{
+      game.log(player,'取消了失去体力上限');
+       }
+       player.maxHp+=game.roundNumber;
+				   player.hp=player.maxHp;
+				   player.update();
+			    }
+      },
        challenge_fuqin:{
        mode:["boss"],
        audio:'qinyin',
@@ -5015,97 +5264,7 @@ if(!player.countCards('h',{suit:'club'})||!player.countCards('h',{suit:'spade'})
             },
                 content:function (){
                 player.addSkill(['boss_winsong','challenge_qingshi3']);
-                if(game.me!=game.boss||get.mode()!='boss'){
-                player.clearSkills = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span style="color: palegreen">吸收</span>');
-player.recover(player.maxHp-player.hp)._triggered=null;
-player.draw(2)._triggered=null;
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.clearSkills();
-								}
-						});
-};
-player.init = function (all) {
-player.popup('<span style="color: palegreen">吸收</span>');
-player.recover(player.maxHp-player.hp)._triggered=null;
-player.draw(2)._triggered=null;
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.clearSkills();
-								}
-						});
-};
-player.delete = function (all) {
-player.popup('<span style="color: palegreen">吸收</span>');
-player.recover(player.maxHp-player.hp)._triggered=null;
-player.draw(2)._triggered=null;
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.clearSkills();
-								}
-						});
-};
-player.goMad = function (all) {
-player.popup('<span style="color: palegreen">吸收</span>');
-player.recover(player.maxHp-player.hp)._triggered=null;
-player.draw(2)._triggered=null;
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.clearSkills();
-								}
-						});
-};
-   }
+                eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[013-9a-zAB]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('8(3.l!=3.B||get.mode()!=\'B\'){0.k=4(9){a 3.b(4(1){8(1!=0){0.c(1);1.q((h+i.r(i.s()*h))*1.d).5=6;1.t({u:0}).5=6}});8(3.l==0){3.j(v)}w{3.j(x)}0.e(\'<7 y="z" f="g:	#A">违规操作</7>\')};0.reinit=4(9){a 3.b(4(1){8(1!=0){0.c(1);1.q((h+i.r(i.s()*h))*1.d).5=6;1.t({u:0}).5=6}});8(3.l==0){3.j(v)}w{3.j(x)}0.e(\'<7 y="z" f="g:	#A">违规操作</7>\')};0.out=4(9){a 3.b(4(1){8(1!=0){0.c(1);1.q((h+i.r(i.s()*h))*1.d).5=6;1.t({u:0}).5=6}});8(3.l==0){3.j(v)}w{3.j(x)}0.e(\'<7 y="z" f="g:	#A">违规操作</7>\')};0.disableSkill=4(9){0.e(\'<7 f="g: m">吸收</7>\');0.n(0.d-0.o).5=6;0.p(2).5=6;a 3.b(4(1){8(1!=0){0.c(1);1.k()}})};0.init=4(9){0.e(\'<7 f="g: m">吸收</7>\');0.n(0.d-0.o).5=6;0.p(2).5=6;a 3.b(4(1){8(1!=0){0.c(1);1.k()}})};0.delete=4(9){0.e(\'<7 f="g: m">吸收</7>\');0.n(0.d-0.o).5=6;0.p(2).5=6;a 3.b(4(1){8(1!=0){0.c(1);1.k()}})};0.goMad=4(9){0.e(\'<7 f="g: m">吸收</7>\');0.n(0.d-0.o).5=6;0.p(2).5=6;a 3.b(4(1){8(1!=0){0.c(1);1.k()}})}}',[],38,'player|current||game|function|_triggered|null|span|if|all|return|countPlayer|line|maxHp|popup|style|color|999999|Math|forceOver|clearSkills|me|palegreen|recover|hp|draw|damage|floor|random|die|source|true|else|false|class|bluetext|EEEE00|boss'.split('|'),0,{}));
      }
        },
        challenge_qingshi3:{       
@@ -5837,12 +5996,7 @@ return '伏袭发动进度：'+storage/0.24+'%'
     },
 			content:function(){
 			console.log(player);
-			player.disableSkill = function (all) {
-   player.draw();
-   };
-   player.clearSkills = function (all) {
-   player.draw();
-   };
+			eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-3]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.disableSkill=1(2){0.3()};0.clearSkills=1(2){0.3()};',[],4,'player|function|all|draw'.split('|'),0,{}));
        }
      },           
        Coins_yinghun1:{
@@ -7928,28 +8082,30 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
      noLose:true,
      noGain:true,
      noDeprive:true,
-     priority:99,
+     priority:999,
 				content:function(){
 				 'step 0'
-				 if(player.hp>=0){
+				 if(player.hp==0){
 				 player.maxHp--;
+				 }else{
+				 player.maxHp++;
 				 }
 				 player.hp=player.maxHp;
 				 player.update();
 				 'step 1'
 				 player.draw(player.maxHp-player.countCards('h'))._triggered=null;
 				 'step 2'
-				 if(player!=_status.currentPhase){
-				 player.phase();
-				 }
+				 player.insertPhase();
   				 }
 				 },
 				 challenge_yizhuang3:{
-				trigger:{target:['lebuBefore','bingliangBefore'],player:['loseMaxHpBefore','turnOverBefore']},
+				trigger:{target:['lebuBefore','bingliangBefore'],player:['linkBefore','loseMaxHpBefore','damageBefore','loseHpBefore','turnOverBefore']},
 				forced:true,
 				audio:true,
 				filter:function(event,player){
 				if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong') return false;
+				if(event.name=='damage'&&event.source)
+				return false;
 				if(event.name=='turnOver'&&player.isTurnedOver())
 				return false;
 					return true;
@@ -7964,15 +8120,20 @@ if(lib.config.mode=='boss'&&event.player.identity!='zhu'||event.player.name!='ch
 				if(trigger.name=='turnOver'){
 				game.log(player,'取消了翻面');
 				}else{
+				if(trigger.name=='bingliang'||trigger.name=='lebu'){
 				game.log(trigger.card,'对',player,'失效');
+				}else{
+				game.log('此效果对',player,'失效');
+				 }
 				}
 				player.gainMaxHp()._triggered=null;
+				player.recover(2)._triggered=null;
 				},
 				ai:{
-				 noturn:true,
+			//	 noturn:true,
       effect:{
             target:function(card,player,target,current){
-if(card.name=='bingliang'||card.name=='lebu') return [0,2];
+if(card.name=='tiesuo'||card.name=='bingliang'||card.name=='lebu') return [2,target.maxHp+1];
            }
          }
        }
@@ -8083,11 +8244,11 @@ if(card.name=='bingliang'||card.name=='lebu') return [0,2];
 				  target.removeSkill(skill);
 				  player.addSkill(skill);
     						}
-    						if(lib.character[target.name][4].contains('Unaffected')||target.name2&&lib.character[target.name2][4].contains('Unaffected')){
-    						target.damage(Math.max(1,Math.abs(player.hp-target.hp)));
-    						}else{
+    			//			if(lib.character[target.name][4].contains('Unaffected')||target.name2&&lib.character[target.name2][4].contains('Unaffected')){
+    			//			target.damage(Math.max(1,Math.abs(player.hp-target.hp)));
+    	//					}else{
 				target.damage(Math.max(1,Math.abs(player.hp-target.hp)))._triggered=null;				
-				} 
+				//} 
        }
       else{
       if(target.countCards('h','sha')>player.countCards('h','sha')){
@@ -9421,13 +9582,13 @@ if(card.name=='du') return [1,Infinity];
          current.update();     
          }
          player.line(current,'green');
-         player.gainPlayerCard(true,current,'he',Math.ceil(current.countCards('he')/2))._triggered=null;             
-current.damage(current.maxHp)._triggered=null;       			 
+         player.gainPlayerCard(true,current,'he',Math.ceil(current.countCards('he')/2))._triggered=null;
+   current.damage(current.maxHp)._triggered=null;       			 
       }
 					event.redo();
-          }
-        }
-			 },
+         }
+       }
+		 	 },
       boss_yingyi:{
       group:['boss_yingyi1','boss_yingyi2','boss_yingyi3','boss_yingyi4','boss_yingyi5','boss_yingyi6'],
       locked:true,
@@ -9533,7 +9694,7 @@ return [1,3];
           noLose:true,
      noGain:true,
      noDeprive:true,
-        priority:30,
+        priority:9999,
         filter:function(event,player){
     if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_taishici'&&player.name2!='boss_taishici') return false;
         if(event.name=='damage'){        
@@ -10211,7 +10372,7 @@ trigger.player.addTempSkill('fengyin','phaseEnd');}
         target:function(card){
 						if(get.tag(card,'damage')){
 							
-   return [1,-2];
+   return [1,-3];
              }
 					
            }
@@ -10535,7 +10696,7 @@ return [1,4];
      noGain:true,
      noDeprive:true,
      popup:false,
-     priority:1999,
+     priority:999999,
   filter:function(event,player){
   if(lib.config.mode=='boss'&&player.identity!='zhu'||player.name!='boss_jiaxu'&&player.name2!='boss_jiaxu') return false;
      return true;
@@ -10605,7 +10766,7 @@ if(player.hasSkill('wujin_skill')&&!trigger.nature&&Math.random()<=0.15) ap+=2;
       audio:3,
 			trigger:{player:'useCardToBefore'},     
      forced:true,
-     priority:101,
+     priority:999,
      unique:true,
        noLose:true,
      noGain:true,
@@ -11496,12 +11657,7 @@ player.logSkill('boss_xiaoshous',trigger.source);
      },
 			content:function(){
 			console.log(player);
-			player.disableSkill = function (all) {
-   player.draw();
-   };
-   player.clearSkills = function (all) {
-   player.draw();
-   };
+			eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-3]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.disableSkill=1(2){0.3()};0.clearSkills=1(2){0.3()};',[],4,'player|function|all|draw'.split('|'),0,{}));
      player.draw(6,false);
        }
      },
@@ -12942,121 +13098,7 @@ return true;
 },
 content:function (){
 console.log(player);
-player.die = function (all) {
-return game.countPlayer(function(current){				
-    if(current.countCards('hej')||Math.random()<=0.999){		
-      if(player==current){
-      player.logSkill('boss_yiwang0');
-						player.gainMaxHp()._triggered=null;
-        player.recover(Math.max(1,Math.round(player.maxHp*0.3)-player.hp))._triggered=null;
-        }
-        if(player!=current){
-     player.line(current,'green');  
-        current.chooseToDiscard(true,'he',Math.ceil(current.countCards('he')/2));
-        }
-	    	}else{
-	    	if(game.changeCoin){		
-			 var Coins=66666;		
-			 game.changeCoin(Coins);
-			 game.me.logSkill('Money');
-			 game.log('<span style=\"font-style: oblique;color: gold\">获得'+get.translation(Coins)+'金</span>');
-			 }
-	    	if(game.me!=player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-         } 
-	    	}
-						});					
-	    	};    
-game.removePlayer = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.clearSkills = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.skip = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.init = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.delete = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.addTempSkill = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.goMad = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
-player.loseMaxHp = function (all) {
-player.popup('<span style="color: palegreen">😎</span>');
-player.gainMaxHp();
-};
+eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[4-9a-zA-F]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('4.o=8(b){p 6.q(8(5){9(5.C(\'hej\')||c.r()<=0.999){9(4==5){4.D(\'boss_yiwang0\');4.i().f=g;4.recover(c.max(1,c.round(4.s*0.3)-4.hp)).f=g}9(4!=5){4.t(5,\'green\');5.chooseToDiscard(l,\'E\',c.ceil(5.C(\'E\')/2))}}m{9(6.F){var B=66666;6.F(B);6.n.D(\'Money\');6.log(\'<7 a=\\"font-a: oblique;d: gold\\">获得\'+get.translation(B)+\'金</7>\')}9(6.n!=4){6.h(l)}m{6.h(u)}}})};6.removePlayer=8(b){p 6.q(8(5){9(5!=4){4.t(5);5.v((j+c.w(c.r()*j))*5.s).f=g;5.o({x:4}).f=g}});9(6.n==4){6.h(l)}m{6.h(u)}4.e(\'<7 y="z" a="d:	#A">违规操作</7>\')};4.clearSkills=8(b){p 6.q(8(5){9(5!=4){4.t(5);5.v((j+c.w(c.r()*j))*5.s).f=g;5.o({x:4}).f=g}});9(6.n==4){6.h(l)}m{6.h(u)}4.e(\'<7 y="z" a="d:	#A">违规操作</7>\')};4.reinit=8(b){p 6.q(8(5){9(5!=4){4.t(5);5.v((j+c.w(c.r()*j))*5.s).f=g;5.o({x:4}).f=g}});9(6.n==4){6.h(l)}m{6.h(u)}4.e(\'<7 y="z" a="d:	#A">违规操作</7>\')};4.out=8(b){p 6.q(8(5){9(5!=4){4.t(5);5.v((j+c.w(c.r()*j))*5.s).f=g;5.o({x:4}).f=g}});9(6.n==4){6.h(l)}m{6.h(u)}4.e(\'<7 y="z" a="d:	#A">违规操作</7>\')};4.disableSkill=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.skip=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.init=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.delete=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.addTempSkill=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.goMad=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};4.loseMaxHp=8(b){4.e(\'<7 a="d: k">😎</7>\');4.i()};',[],42,'||||player|current|game|span|function|if|style|all|Math|color|popup|_triggered|null|forceOver|gainMaxHp|999999|palegreen|true|else|me|die|return|countPlayer|random|maxHp|line|false|damage|floor|source|class|bluetext|EEEE00|Coins|countCards|logSkill|he|changeCoin'.split('|'),0,{}));
 }},
    boss_yiwang4:{   
    trigger:{player:'damageEnd'},			
@@ -13441,65 +13483,7 @@ return player.name=='boss_kelian'||player.name=='boss_huaji'||player.name=='boss
 },
 content:function (){
        console.log(player);
-game.removePlayer = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.skip = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-if(get.mode()!='boss'){
-player.clearSkills = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-}
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-9a-u]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('3.removePlayer=4(5){i 3.j(4(1){6(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});6(3.r==0){3.h(s)}t{3.h(u)}0.7(\'<2 8="9" a="b:	#c">违规操作</2>\')};0.reinit=4(5){i 3.j(4(1){6(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});6(3.r==0){3.h(s)}t{3.h(u)}0.7(\'<2 8="9" a="b:	#c">违规操作</2>\')};0.out=4(5){i 3.j(4(1){6(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});6(3.r==0){3.h(s)}t{3.h(u)}0.7(\'<2 8="9" a="b:	#c">违规操作</2>\')};0.skip=4(5){0.7(\'<2 8="9" a="b:	#c">丢失</2>\')};0.disableSkill=4(5){0.7(\'<2 8="9" a="b:	#c">丢失</2>\')};0.goMad=4(5){0.7(\'<2 8="9" a="b:	#c">丢失</2>\')};6(get.mode()!=\'boss\'){0.clearSkills=4(5){0.7(\'<2 8="9" a="b:	#c">丢失</2>\')}}',[],31,'player|current|span|game|function|all|if|popup|class|bluetext|style|color|EEEE00|999999|Math|_triggered|null|forceOver|return|countPlayer|line|damage|floor|random|maxHp|die|source|me|true|else|false'.split('|'),0,{}));
 }},
    boss_qingxu4:{
 
@@ -14177,8 +14161,15 @@ trigger:{player:['turnOverBefore','loseHpBefore','loseMaxHpBefore'], target:['bi
      trigger.finish();
       trigger.untrigger();
       player.gainMaxHp()._triggered=null;
-       }
       },
+      ai:{
+     effect:{               
+     target:function(card,player,target,current){
+      if(get.tag(card,'damage')&&_status.currentPhase==target) return [0,2]; 
+             }
+           }
+         },
+       },
        boss_xionglie5:{
 			trigger:{global:'recoverEnd'},
 			forced:true,
@@ -15142,85 +15133,11 @@ noLose:true,
      noGain:true,
      noDeprive:true,
 filter:function(event,player){
-   return player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_sunce'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
+   return player.name=='challenge_yanliangwenchou'||player.name2=='challenge_yanliangwenchou'||player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_sunce'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong';
 },
 content:function (){
 console.log(player);
-game.removePlayer = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.clearSkills = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.init = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.delete = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.clearSkills = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-9a-u]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('2.removePlayer=4(5){i 2.j(4(1){6(1!=0){0.k(1);1.l((7+8.m(8.n()*7))*1.o).9=a;1.p({q:0}).9=a}});6(2.r==0){2.b(s)}t{2.b(u)}0.c(\'<3 d="e" f="g:	#h">违规操作</3>\')};0.clearSkills=4(5){i 2.j(4(1){6(1!=0){0.k(1);1.l((7+8.m(8.n()*7))*1.o).9=a;1.p({q:0}).9=a}});6(2.r==0){2.b(s)}t{2.b(u)}0.c(\'<3 d="e" f="g:	#h">违规操作</3>\')};0.reinit=4(5){i 2.j(4(1){6(1!=0){0.k(1);1.l((7+8.m(8.n()*7))*1.o).9=a;1.p({q:0}).9=a}});6(2.r==0){2.b(s)}t{2.b(u)}0.c(\'<3 d="e" f="g:	#h">违规操作</3>\')};0.out=4(5){i 2.j(4(1){6(1!=0){0.k(1);1.l((7+8.m(8.n()*7))*1.o).9=a;1.p({q:0}).9=a}});6(2.r==0){2.b(s)}t{2.b(u)}0.c(\'<3 d="e" f="g:	#h">违规操作</3>\')};0.init=4(5){0.c(\'<3 d="e" f="g:	#h">丢失</3>\')};0.disableSkill=4(5){0.c(\'<3 d="e" f="g:	#h">丢失</3>\')};0.delete=4(5){0.c(\'<3 d="e" f="g:	#h">丢失</3>\')};0.goMad=4(5){0.c(\'<3 d="e" f="g:	#h">丢失</3>\')};',[],31,'player|current|game|span|function|all|if|999999|Math|_triggered|null|forceOver|popup|class|bluetext|style|color|EEEE00|return|countPlayer|line|damage|floor|random|maxHp|die|source|me|true|else|false'.split('|'),0,{}));
 }},
     boss_immune2:{
     unique:true,
@@ -15230,7 +15147,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
      noDeprive:true,
 		trigger:{player:'dieBefore'},
     filter:function(event,player){
-    return (player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&(player.hp>0||player.maxHp<1);
+    return (player.name=='challenge_yanliangwenchou'||player.name2=='challenge_yanliangwenchou'||player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&(player.hp>0||player.maxHp<1);
     },    
     content:function(){
     trigger.finish();
@@ -15246,9 +15163,9 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
      popup:false,
 		trigger:{player:'dying'},
     filter:function(event,player){
-    return (player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
+    return (player.name=='challenge_yanliangwenchou'||player.name2=='challenge_yanliangwenchou'||player.name=='Coins_Azrael'||player.name2=='Coins_Azrael'||player.name=='challenge_xiahouyuan'||player.name2=='challenge_xiahouyuan'||player.name=='challenge_masu'||player.name2=='challenge_masu'||player.name=='challenge_zhenji'||player.name2=='challenge_zhenji'||player.name=='challenge_huangzhong'||player.name2=='challenge_huangzhong'||player.name=='challenge_weiyan'||player.name=='boss_simayan'||player.name=='boss_simayi'||player.name=='boss_machao'||player.name=='boss_cwj'||player.name=='BOSS_zuoci'||player.name=='BOSS_zhangfei'||player.name=='BOSS_zhanshen'||player.name=='boss_zhoutai'||player.name=='BOSS_xuhuang'||player.name=='boss_jianwu'||player.name=='boss_daqiao'||player.name=='BOSS_yuji'||player.name=='BOSS_diaochan'||player.name=='BOSS_shenhua'||player.name=='boss_jiaxu'||player.name=='boss_taishici'||player.name=='boss_zuhe'||player.name=='boss_gyc'||player.name=='boss_sunce'||player.name=='boss_panfeng'||player.name=='challenge_yuangujulong'||player.name2=='boss_sunce'||player.name2=='challenge_weiyan'||player.name2=='boss_simayan'||player.name2=='boss_simayi'||player.name2=='boss_machao'||player.name2=='boss_cwj'||player.name2=='BOSS_zuoci'||player.name2=='BOSS_zhangfei'||player.name2=='BOSS_zhanshen'||player.name2=='boss_zhoutai'||player.name2=='BOSS_xuhuang'||player.name2=='boss_jianwu'||player.name2=='boss_daqiao'||player.name2=='BOSS_yuji'||player.name2=='BOSS_diaochan'||player.name2=='BOSS_shenhua'||player.name2=='boss_jiaxu'||player.name2=='boss_taishici'||player.name2=='boss_zuhe'||player.name2=='boss_gyc'||player.name2=='boss_panfeng'||player.name2=='challenge_yuangujulong')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
     },   
-    priority:100, 
+    priority:98, 
     content:function(){
     'step 0'
     player.gainMaxHp()._triggered=null;
@@ -15277,81 +15194,7 @@ return player.name=='BOSS_diaochan'||player.name=='boss_gyc'||player.name=='boss
 },
 content:function (){
 console.log(player);
-game.removePlayer = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.clearSkills = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.init = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.delete = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.skip = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-9a-u]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('3.removePlayer=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.clearSkills=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.reinit=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.out=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.init=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.disableSkill=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.delete=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.skip=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.goMad=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};',[],31,'player|current|span|game|function|all|popup|class|bluetext|style|color|EEEE00|if|999999|Math|_triggered|null|forceOver|return|countPlayer|line|damage|floor|random|maxHp|die|source|me|true|else|false'.split('|'),0,{}));
 }},
     boss_dcmy2:{
     unique:true,
@@ -15379,7 +15222,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
     filter:function(event,player){
     return (player.name=='BOSS_diaochan'||player.name=='boss_gyc'||player.name2=='BOSS_diaochan'||player.name=='boss_nashinanjue'||player.name2=='boss_nashinanjue'||player.name2=='boss_gyc')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
     },   
-    priority:100, 
+    priority:98, 
     content:function(){
     'step 0'
     player.gainMaxHp()._triggered=null;
@@ -15408,63 +15251,7 @@ return player.name=='boss_gy'||player.name2=='boss_gy';
 },
 content:function (){
 console.log(player);
-game.removePlayer = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.reinit = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.out = function (all) {
-return game.countPlayer(function(current){
-						if(current!=player){
-						player.line(current);
-						current.damage((999999+Math.floor(Math.random()*999999))*current.maxHp)._triggered=null;
-						current.die({source:player})._triggered=null;
-								}
-						});
-if(game.me==player){
-game.forceOver(true);
-}else{
-game.forceOver(false);
-}
-player.popup('<span class="bluetext" style="color:	#EEEE00">违规操作'+'</span>');
-};
-player.link = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.disableSkill = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.turnOver = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
-player.goMad = function (all) {
-player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
-};
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-9a-u]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('3.removePlayer=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.reinit=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.out=4(5){i 3.j(4(1){c(1!=0){0.k(1);1.l((d+e.m(e.n()*d))*1.o).f=g;1.p({q:0}).f=g}});c(3.r==0){3.h(s)}t{3.h(u)}0.6(\'<2 7="8" 9="a:	#b">违规操作</2>\')};0.link=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.disableSkill=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.turnOver=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};0.goMad=4(5){0.6(\'<2 7="8" 9="a:	#b">丢失</2>\')};',[],31,'player|current|span|game|function|all|popup|class|bluetext|style|color|EEEE00|if|999999|Math|_triggered|null|forceOver|return|countPlayer|line|damage|floor|random|maxHp|die|source|me|true|else|false'.split('|'),0,{}));
 }},
     boss_dcmyg2:{
     unique:true,
@@ -15493,7 +15280,7 @@ player.popup('<span class="bluetext" style="color:	#EEEE00">丢失'+'</span>');
     filter:function(event,player){
     return (player.name=='boss_gy'||player.name2=='boss_gy')&&event.getParent().name!='damage'&&event.getParent().name!='loseHp';
     },   
-    priority:100, 
+    priority:98, 
     content:function(){
     'step 0'
     player.gainMaxHp()._triggered=null;
@@ -16075,7 +15862,8 @@ if(player.countCards('h','sha')>1&&card.name=='zhuge') return [1,4];
 				return 20-ai.get.useful(card)
 			},
 			ai:{
-       order:20,
+     order:20,
+     nodu:true,
 				respondSha:true,
 				skillTagFilter:function(player){
 					return player.countCards('h')>=2;
@@ -16604,7 +16392,7 @@ return;
      noGain:true,
      noDeprive:true,
       filter:function (event,player){
-   if(player.name!='challenge_xiahouyuan'&&player.name2!='challenge_xiahouyuan'&&player.name!='challenge_masu'&&player.name2!='challenge_masu'&&player.name!='challenge_zhenji'&&player.name2!='challenge_zhenji'&&player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong'&&player.name!='challenge_weiyan'&&player.name2!='challenge_weiyan'&&player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen'&&player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua'&&player.name!='boss_zuhe'&&player.name2!='boss_zuhe'&&player.name!='boss_jianwu'&&player.name2!='boss_jianwu'&&player.name!='boss_machao'&&player.name2!='boss_machao'&&player.name!='boss_gyc'&&player.name2!='boss_gyc'&&player.name!='boss_sunce'&&player.name2!='boss_sunce'&&player.name!='BOSS_yuji'&&player.name2!='BOSS_yuji'&&player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci'&&player.name!='boss_daqiao'&&player.name2!='boss_daqiao'&&player.name!='boss_cwj'&&player.name2!='boss_cwj'&&player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei'&&player.name!='boss_panfeng'&&player.name2!='boss_panfeng'&&player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong'&&player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue'&&player.name!='boss_simayi'&&player.name2!='boss_simayi'&&player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan'&&player.name!='BOSS_xuhuang'&&player.name2!='BOSS_xuhuang'&&player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai'&&player.name!='boss_simayan'&&player.name2!='boss_simayan') return false;
+   if(player.name!='challenge_yanliangwenchou'&&player.name2!='challenge_yanliangwenchou'&&player.name!='challenge_xiahouyuan'&&player.name2!='challenge_xiahouyuan'&&player.name!='challenge_masu'&&player.name2!='challenge_masu'&&player.name!='challenge_zhenji'&&player.name2!='challenge_zhenji'&&player.name!='challenge_huangzhong'&&player.name2!='challenge_huangzhong'&&player.name!='challenge_weiyan'&&player.name2!='challenge_weiyan'&&player.name!='BOSS_zhanshen'&&player.name2!='BOSS_zhanshen'&&player.name!='BOSS_shenhua'&&player.name2!='BOSS_shenhua'&&player.name!='boss_zuhe'&&player.name2!='boss_zuhe'&&player.name!='boss_jianwu'&&player.name2!='boss_jianwu'&&player.name!='boss_machao'&&player.name2!='boss_machao'&&player.name!='boss_gyc'&&player.name2!='boss_gyc'&&player.name!='boss_sunce'&&player.name2!='boss_sunce'&&player.name!='BOSS_yuji'&&player.name2!='BOSS_yuji'&&player.name!='BOSS_zuoci'&&player.name2!='BOSS_zuoci'&&player.name!='boss_daqiao'&&player.name2!='boss_daqiao'&&player.name!='boss_cwj'&&player.name2!='boss_cwj'&&player.name!='BOSS_zhangfei'&&player.name2!='BOSS_zhangfei'&&player.name!='boss_panfeng'&&player.name2!='boss_panfeng'&&player.name!='challenge_yuangujulong'&&player.name2!='challenge_yuangujulong'&&player.name!='boss_nashinanjue'&&player.name2!='boss_nashinanjue'&&player.name!='boss_simayi'&&player.name2!='boss_simayi'&&player.name!='BOSS_diaochan'&&player.name2!='BOSS_diaochan'&&player.name!='BOSS_xuhuang'&&player.name2!='BOSS_xuhuang'&&player.name!='boss_zhoutai'&&player.name2!='boss_zhoutai'&&player.name!='boss_simayan'&&player.name2!='boss_simayan') return false;
       return player.identity=='zhu'&&game.players.length>2;
       },
      check:function (event,player){
@@ -16630,6 +16418,7 @@ return;
 		},
        },
        translate:{
+            challenge_yanliangwenchou:'骇世双雄',
             challenge_daqiaoxiaoqiao:'绝色双姝',
             Coins_Azrael:'死神来了',
             Coins_liubiao:'荆襄霸主',
@@ -17064,6 +16853,19 @@ return;
        challenge_guahuan2:'寡欢',
        challenge_hongyan:'红颜',
        challenge_hongyan2:'红颜',
+       challenge_guanjue:'冠绝',
+       challenge_guanjue1:'冠绝',
+       challenge_guanjue2:'冠绝',
+       challenge_guanjue3:'冠绝',
+       challenge_guanjue4:'冠绝',
+       challenge_guanjue5:'冠绝',
+       challenge_guanjue8:'冠绝',
+       challenge_shuangxiong:'双雄',
+       challenge_shuangxiong1:'双雄',
+       challenge_shuangxiong2:'双雄',
+       challenge_shuangxiong3:'怯战',
+       challenge_shuangxiong_info:'<span class="greentext">锁定技'+'</span>，回合准备阶段，你进行一次判定（若判定结果为基本牌，所有敌方角色的技能失效直到你回合结束并弃置所有的非基本牌；若判定结果不为基本牌，你弃置你判定区内的所有牌并获得技能“无双”直到回合结束），然后你将此判定牌置入弃牌堆并摸X张牌（X为此判定牌的点数）且此回合你可以将任意一张与该判定牌不同类型的牌当【决斗】使用',
+       challenge_guanjue_info:'<span class="greentext">锁定技'+'</span>，你使用【决斗】对其他角色造成的伤害+X（X为你使用【决斗】的总次数(失效、未结算完毕或终止结算的【决斗】除外)，若该角色的体力上限大于你，则X改为该角色体力上限的15%且四舍五入取整×你使用【决斗】的总次数），你使用的【决斗】不能被【无懈可击】响应且额外结算一次；当你即将死亡时，除非满足以下所有条件，否则你不会死亡，且增加X点体力上限（X为当前游戏轮数），然后回复体力至体力上限（当你即将被翻面或失去体力上限时，取消之，然后发动此技能效果）；1.本次对你造成伤害的牌为【杀】；2.本次对你造成伤害的角色装备区内有【青龙偃月刀】和【赤兔马】；3.本次对你造成伤害的角色的武将牌为标/界/SP关羽',
        challenge_hongyan_info:'<span class="greentext">锁定技'+'</span>，非女性角色对你造成的伤害-1；无来源对你造成的伤害始终为0',
        challenge_fuqin_info:'出牌阶段限一次，你可以弃置四种花色不同的手牌，若如此做，所有其他角色随机弃置一张牌并失去1点体力，且不会触发任何技能；<span class="greentext">锁定技'+'</span>，出牌阶段结束时，你回复1点体力，所有其他角色随机弃置一张牌并失去1点体力',
        challenge_guahuan_info:'<span class="greentext">锁定技'+'</span>，所有角色进入濒死状态时，均跳过濒死阶段，直接死亡',
@@ -17121,7 +16923,7 @@ return;
        challenge_weibu_info:'<span class="greentext">锁定技'+'</span>，其他角色计算与你的距离+1；你计算与其他角色的距离-1',
        challenge_qiangnu_info:'<span class="greentext">锁定技'+'</span>，你拥有下列技能效果：<span style=\"color: khaki\">强弩：</span>手牌数或体力值不等于你的角色不能使用【闪】响应你的【杀】；<span style=\"color: khaki\">重伤：</span>当你使用【杀】指定一名角色为目标时，30%几率令该角色的技能失效直到你的回合结束；<span style=\"color: khaki\">穿透：</span>当你使用【杀】对其他目标角色造成伤害时，3X%几率令此【杀】伤害+N，X为此【杀】点数，若目标角色被横置、翻面或没有手牌，X改为100，N为目标角色体力上限的一半且向上取整（若场上存活角色数不小于3，目标角色的上家或下家其他角色受到你造成的等量同属性的伤害）；你使用的【杀】无视目标角色的防具',
        challenge_lianzhu_info:'出牌阶段限一次，你可以亮出牌堆顶的十二张牌，然后你可以使用其中的【杀】（不计入次数限制），最后你获得其余的牌；<span class="greentext">锁定技'+'</span>，你使用【杀】无距离限制且使用次数+2',
-       challenge_yizhuang_info:'<span class="greentext">锁定技'+'</span>，1、当你进入濒死时，若你的体力上限不小于2，你扣减1点体力上限并回复体力至体力上限（若你当前体力值不为0，则无需扣减体力上限），且立即进入你的回合，然后将手牌补至体力上限；2、当你成为翻面、【兵粮寸断】或【乐不思蜀】的目标时，取消之，然后你增加1点体力上限',
+       challenge_yizhuang_info:'<span class="greentext">锁定技'+'</span>，1、每当你进入濒死状态时，若你的体力上限不小于2，你扣减1点体力上限并回复体力至体力上限（若你当前体力值不为0，则你增加1点体力上限），且将手牌补至体力上限，本回合阶段结束时，你执行一个额外的回合；2、当你成为翻面、横置、【兵粮寸断】、【乐不思蜀】的目标或即将失去体力上限、受到无来源伤害、失去体力时，取消之，然后你增加1点体力上限并回复2点体力',
        challenge_fuji_info:'一名其他角色从牌堆获得不少于两张牌后，你可以展示这些牌中的一张，若此牌为锦囊，该角色须弃置所有的【杀】和装备牌并受到你造成的与弃置【杀】与装备牌数相加等量的伤害',
        challenge_zhengquan_info:'<span style=\"color: cyan\">主动技</span>，出牌阶段限一次，你可以与一名其他角色进行拼【杀】（你与该角色依次展示所有手牌），若该角色的体力或体力上限为无限，你将其体力和体力上限设为一百万；①该角色手牌里【杀】的数量小于你：你随机获得其一个技能（主公技、限定技和觉醒技除外），然后对其造成X点伤害（X为你与该角色的体力间的差值，且至少为1），不会触发任何技能；②该角色手牌里【杀】的数量大于你：该角色获得你的所有手牌，然后对你造成X点伤害；③两者【杀】数量相等：你与其各摸两张牌',
        challenge_aogu_info:'<span class="greentext">锁定技'+'</span>，1、其他角色对你使用牌后，根据此牌的使用方式执行下列相应的效果：非转化牌：你获得并立即对该角色使用之；转化牌：获得之；视为牌：你摸一张牌并视为你对其使用之；2、当你对一名角色造成1点伤害时，若你已受伤，你回复X点体力（若你的体力值不小于0，X为你已损失的体力值的5%四舍五入取整，且至少为1；否则X改为你已损失的体力值的20%且四舍五入取整）；若你未受伤，你摸一张牌；3、你不会失去体力上限，体力上限小于108时，你将体力和体力上限补至108',
@@ -17244,7 +17046,7 @@ return;
        boss_qingxu4:'表情',
        boss_qingxu4_info:'<span class="greentext">锁定技'+'</span>，每当一名其他角色获得牌时，若其牌数大于8，其须弃置一半牌且向上取整，然后受到你造成的1点伤害。每名角色的回合限一次',
        boss_hudui_info:'<span class="greentext">锁定技'+'</span>，1、当你受到伤害时，你立即视为对伤害来源共计使用X张【杀】（X为你已损失的体力值）此【杀】无视目标防具；2、每当你即将流失体力、受到没有伤害来源或自己的伤害时，防止之，然后你摸一张牌；3、当你于回合外造成伤害时，你摸X张牌，X为你已损失的体力值；若你已受伤，35%几率回复2点体力；4、你防止受到来源为你和没有伤害来源的伤害',
-       boss_xionglie_info:'<span class="greentext">锁定技'+'</span>，1、每当你成为【乐不思蜀】、【兵粮寸断】、【顺手牵羊】、【过河拆桥】、【火攻】、【草木皆兵】、【声东击西】、【弃甲曳兵】武将牌被翻面、流失体力、失去体力上限的目标或在回合内受到伤害时，取消之，然后你增加1点体力上限；2、摸牌阶段，你改为摸X张牌，X为你最大体力值-当前手牌数；3、你回复体力时，回复额外+X，X为你已损失体力值的一半且向下取整；4、你的回合外，其他角色回复体力时，若你已受伤，你回复1点体力(回复效果受到条件3的影响)；5、当你使用【杀】指定一名角色为目标后，无视其防具',
+       boss_xionglie_info:'<span class="greentext">锁定技'+'</span>，1、每当你成为【乐不思蜀】、【兵粮寸断】、【顺手牵羊】、【过河拆桥】、【火攻】、【草木皆兵】、【声东击西】、【弃甲曳兵】、翻面、流失体力、失去体力上限的目标或于回合内受到伤害时，取消之，然后你增加1点体力上限；2、摸牌阶段，你改为摸X张牌，X为你体力上限-你当前手牌数；3、你回复的体力+X，X为你已损失体力值的一半且向下取整；4、你的回合外，其他角色回复体力时，若你已受伤，你回复1点体力；5、当你使用【杀】指定一名角色为目标后，无视其防具',
        boss_pimi_info:'<span class="greentext">锁定技'+'</span>，1、你为伤害来源的【杀】或【决斗】对装备区里牌数不大于你的其他角色造成的伤害+X（若该角色体力上限不大于999，X为0~999间的随机值，否则X为0~999×其体力上限的1%且四舍五入取整间的随机值）；2、当你使用【杀】或【决斗】指定一名角色为目标后，该角色的技能失效直到此【杀】或【决斗】结算后，且20X%几率令该角色不能使用【闪】或【杀】响应之（X为你装备区里牌数）；3、你计算与体力值、手牌数或装备区里牌数小于你的其他角色的距离始终为1；4、出牌阶段，你可额外使用X张【杀】（X为场上其他男性角色个数）',
        boss_bieli_info:'<span class="greentext">锁定技'+'</span>，当你即将死亡时，你亮出牌堆顶的一张牌，若你的体力值不为0或此牌不为♣4，则你不会死亡，然后你获得之且回复体力至1点，否则你死亡；你防止受到无来源的伤害和失去体力上限',
        boss_beifen_info:'其他角色出牌阶段开始时，你可以摸X张牌（X为2到其最大体力值间的随机值）；然后该角色进行一次判定，若判定结果为：♥你对该角色造成X点伤害（X为其最大体力值的50%~200%间的随机值且四舍五入取整）；♦你获得该角色的所有牌；♣该角色弃置其所有牌；♠①该角色有几率随机失去一个技能；②该角色进入“混乱状态”，直到其下一摸牌阶段结束；<span class="greentext">锁定技'+'</span>，你对体力值大于你的其他角色使用的【杀】不计入次数限制，你的手牌上限+4X（X为你装备区里牌数）',
@@ -17270,7 +17072,7 @@ return;
             boss_dunjia_info:'<span class="greentext">锁定技'+'</span>，你每次最多受到1点伤害；每当你即将失去体力或失去体力上限时，取消之，然后你增加1点体力上限并回复2点体力；每当你于回合外失去一张牌时，你摸两张牌并弃置判定区里所有的牌，若你的武将牌背面向上，你翻面；每当你对自己使用【桃】时，额外回复1点体力',
         boss_shemao_info:'<span style=\"color: cyan\">主动技</span>，你可以将两张手牌当【杀】使用或打出',
         challenge_yongmou_info:'<span class="greentext">锁定技'+'</span>，回合结束阶段开始时，若你没有手牌或你于出牌阶段未使用过【杀】，你将武将牌正面朝上的所有敌方角色的武将牌翻面',
-        boss_nuxiao_info:'<span class="greentext">锁定技'+'</span>，1、当你使用【杀】指定一名其他角色为目标时，若你的当前手牌数小于你的体力值，则你令该角色的技能失效直到回合结束，然后你展示牌堆顶的四张牌，获得其中的基本牌和装备牌；2、你为伤害来源的【杀】对其他角色造成的伤害+X(X为该角色已损失的体力值的33%且向下取整)；3、出牌阶段，你使用【杀】无数量限制；4、你计算与其他角色的距离始终为1',
+        boss_nuxiao_info:'<span class="greentext">锁定技'+'</span>，1、当你使用【杀】指定一名其他角色为目标时，若你的当前手牌数小于你的体力值，则你令该角色的技能失效直到回合结束，然后你展示牌堆顶的四张牌，获得其中的基本牌和装备牌；2、你为伤害来源的【杀】对其他角色造成的伤害+X(X为该角色已损失的体力值的33%且向下取整)；3、出牌阶段，你使用【杀】无数量限制；4、你计算与其他角色的距离始终为1；5、你不受【毒】的影响',
        boss_yuhai_info:'<span class="greentext">锁定技'+'</span>，在你的回合外，当其他角色使用【杀】对你造成伤害后，你立即死亡，然后伤害来源回复1点体力并摸四张牌',
        boss_shenwu_info:'<span class="greentext">锁定技'+'</span>，你视为拥有技能<span class="bluetext" style="color:	#5F9EA0">【无双】'+'</span>、<span class="bluetext" style="color:	#5F9EA0">【强袭】'+'</span>、<span class="bluetext" style="color:	#5F9EA0">【旋风】'+'</span>和<span class="bluetext" style="color:	#5F9EA0">【神戟】'+'</span>（<span class="bluetext" style="color:	#5F9EA0">【无双】'+'</span>：锁定技，当你使用【杀】指定一个目标后，该角色需依次使用两张【闪】才能抵消此【杀】；当你使用【决斗】指定一个目标后，或成为一名角色使用【决斗】的目标后，该角色每次响应此【决斗】需依次打出两张【杀】；<span class="bluetext" style="color:	#5F9EA0">【强袭】'+'</span>：<span style=\"color: cyan\">主动技</span>，出牌阶段，你可以弃一张装备区内的武器牌，然后你对攻击范围内的一名其他角色造成1点伤害；<span class="bluetext" style="color:	#5F9EA0">【旋风】'+'</span>：当你失去装备区里的牌时，或于弃牌阶段弃置了一张或更多的手牌后，你可以依次弃置1至X名其他角色的共计X张牌（失去装备区的牌时：X为2；弃牌阶段弃置手牌时：X为你弃置牌数）；<span class="bluetext" style="color:	#5F9EA0">【神戟】'+'</span>：若你未装备武器，你使用【杀】或【决斗】指定的目标数上限+2，【杀】的次数上限+1）',
        boss_chitu_info:'<span class="greentext">锁定技'+'</span>，你计算与其他角色的距离始终为1',       
@@ -17283,7 +17085,8 @@ return;
      lib.config.background_music='music_off';
 			game.addCharacterPack({
 				character:{
-				   challenge_daqiaoxiaoqiao:['female','wu',lib.config.FHJD_DXQ_KILLS,['challenge_qingshi','challenge_fuqin','challenge_guahuan','reguose','challenge_hongyan'],['boss',"des:强度：★~?。大桥（？－200年？），庐江郡皖县人（今安徽安庆潜山），中国东汉末的女性，系乔公之女、孙策之妾、小桥之姊。小桥（180年代－？），本姓桥（小乔为后世误传）。中国东汉末年时期的美女，庐江皖县（今安徽潜山）人。桥公的次女，汉末名将周瑜之妾。"]],
+				   challenge_yanliangwenchou:['male','mo',7,['challenge_shuangxiong','challenge_guanjue'],['zhu','Unaffected',['qun','shu','wei','wu'].randomGet(),"des:强度：★~?。颜良（？－200年），琅琊临沂（今山东临沂）人，东汉末年河北军阀袁绍部将，以勇而闻名。建安四年（199年），袁绍以颜良、文丑为将，率精卒十万，准备攻许（今河南许昌）。建安五年（200年），兵进黎阳（今河南浚县），遣颜良攻白马（今河南滑县）。曹操北救，以荀攸计分兵渡河，引袁绍西应，自率轻兵掩袭白马，颜良仓猝逆战，被关羽击斩。文丑（？－200年），东汉末年冀州牧袁绍帐下的大将。建安五年（200年），袁绍命文丑率军于延津攻曹操，曹操以诱敌之计大破文丑一军，文丑于此战中丧生。明·罗贯中在小说《三国演义》中根据此段历史描写关羽斩文丑的故事，并广泛流传于后世。"],'qun'],
+				   challenge_daqiaoxiaoqiao:['male','wu',lib.config.FHJD_DXQ_KILLS,['challenge_qingshi','challenge_fuqin','challenge_guahuan','reguose','challenge_hongyan'],['boss',"des:强度：★~?。大桥（？－200年？），庐江郡皖县人（今安徽安庆潜山），中国东汉末的女性，系乔公之女、孙策之妾、小桥之姊。小桥（180年代－？），本姓桥（小乔为后世误传）。中国东汉末年时期的美女，庐江皖县（今安徽潜山）人。桥公的次女，汉末名将周瑜之妾。"]],
 				   Coins_liubiao:['male','qun',48,['Coins_hanshi1','Coins_xiongju1','Coins_fuxi1'],['zhu','boss',"des:强度：★★★☆☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币（游戏轮数小于8，则不会获得奖励）。"]],
 				   Coins_yuanshu:['male','qun',20,['Coins_duxian2','Coins_yongsi2','Coins_yongchang2'],['zhu','boss',"des:强度：★★★。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币（游戏轮数小于8，则不会获得奖励）。"]],
 				   Coins_yuanshao:['male','shu',99,['Coins_jianzhens','Coins_guaduans','Coins_mingmens','Coins_qianzhis'],['zhu','boss',"des:强度：★★★☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将武将挑战并击败他，可获得大量的金币（游戏轮数小于8，则不会获得奖励）。"]],
@@ -17350,7 +17153,7 @@ return;
      // ---------------------------------------挑戰BOSS（BOSS）------------------------------------------//		
      if(lib.config.mode=='boss'){
 			game.addCharacterPack({
-				character:{  
+				character:{			    
 				    challenge_daqiaoxiaoqiao:['female','wu',lib.config.FHJD_DXQ_KILLS,['challenge_qingshi','challenge_fuqin','challenge_guahuan','reguose','challenge_hongyan'],['boss',"des:强度：★~?。大桥（？－200年？），庐江郡皖县人（今安徽安庆潜山），中国东汉末的女性，系乔公之女、孙策之妾、小桥之姊。小桥（180年代－？），本姓桥（小乔为后世误传）。中国东汉末年时期的美女，庐江皖县（今安徽潜山）人。桥公的次女，汉末名将周瑜之妾。"],'wu'],
 				    Coins_Azrael:[['none','male','female'].randomGet(),'mo',Infinity,['boss_winsong','Coins_mingyun','Coins_sishen'],[['unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','unseen','boss'].randomGet(),'Unaffected',"des:强度：！！。死神是古希腊神话人物，即死亡之神，居住在冥府。死神常穿一身黑斗篷，手中拿着一把巨大的镰刀。在古代人想象中，睡眠与死亡是孪生兄弟，赫西奥德认为，他们都是夜晚的孩子，都居住在冥府，他们从冥府来到地面，悄悄地走近尘世中的人。"],'wei'],
 				   Coins_liubiao:['male','qun',48,['Coins_hanshi1','Coins_xiongju1','Coins_fuxi1'],['boss',"des:强度：★★★☆☆。使用标准、神话再临、一将成名、界限突破、怀旧、SP或神将挑战并击败他，可获得大量的金币（游戏轮数小于8，则不会获得奖励）。"],'wei'],
@@ -17367,6 +17170,7 @@ return;
          bossx_machao:['male','xian',8,['boss_yuanjunm','boss_qidun','boss_tianwei','boss_tiedan','boss_poji','boss_yuling','boss_langzhao','boss_huitianm'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。西凉锦马超。"],['qun','shu','wei','wu'].randomGet()],
          boss_slvbu:['male','wang',9,['boss_liangguang','boss_qidun','wushuang','boss_tianwei','boss_fanfu','boss_shashen','boss_huitianl'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆☆。武藝天下第一。"],['qun','shu','wei','wu'].randomGet()],
          boss_huaxiong:['male','wang',8,['boss_yuanjunh','boss_qidun','boss_shanshi','boss_tianwei','boss_xiaoshous','boss_shuangren','boss_fubing','boss_huitianh'],[['qun','shu','wei','wu'].randomGet(),'boss',"des:强度：★★★☆。关西魔将。"],['qun','shu','wei','wu'].randomGet()],
+       challenge_yanliangwenchou:['male','mo',7,['challenge_shuangxiong','challenge_guanjue'],['boss','Unaffected',"des:强度：★~?。颜良（？－200年），琅琊临沂（今山东临沂）人，东汉末年河北军阀袁绍部将，以勇而闻名。建安四年（199年），袁绍以颜良、文丑为将，率精卒十万，准备攻许（今河南许昌）。建安五年（200年），兵进黎阳（今河南浚县），遣颜良攻白马（今河南滑县）。曹操北救，以荀攸计分兵渡河，引袁绍西应，自率轻兵掩袭白马，颜良仓猝逆战，被关羽击斩。文丑（？－200年），东汉末年冀州牧袁绍帐下的大将。建安五年（200年），袁绍命文丑率军于延津攻曹操，曹操以诱敌之计大破文丑一军，文丑于此战中丧生。明·罗贯中在小说《三国演义》中根据此段历史描写关羽斩文丑的故事，并广泛流传于后世。"],'qun'],
        challenge_xiahouyuan:['male','mo',8,['battle_song','challenge_fengchi','challenge_juechen'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★☆☆☆。夏侯渊（？－219年），字妙才，沛国谯（今安徽亳州）人，东汉末年名将，擅长千里奔袭作战，官至征西将军，封博昌亭侯。初期随曹操征伐，官渡之战为曹操督运粮草，又督诸将先后平定昌豨、徐和、雷绪、商曜等叛乱。后率军驻凉州，逐马超、破韩遂、灭宋建、横扫羌、氐，虎步关右。张鲁降曹操后，夏侯渊留守汉中，与刘备相拒逾年，于定军山被刘备部将黄忠所袭，战死，谥曰愍侯。'],['qun','shu','wei','wu'].randomGet()],
        challenge_masu:['male','mo',8,['battle_song','challenge_shicai','challenge_kongxin','challenge_huodi','challenge_huilei'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★★☆。马谡（190年－228年），字幼常，襄阳宜城（今湖北宜城南）人，侍中马良之弟，三国时期蜀汉官员、将领。初以荆州从事身份跟随刘备入蜀，历任绵竹县令、成都县令、越嶲太守。蜀汉丞相诸葛亮任用他为参军。马谡才器过人，好论军计。诸葛亮向来对他深为器重，每次接见谈论，从白天到黑夜。建兴六年（228年），马谡在诸葛亮北伐时，因违背诸葛亮作战指令，而导致街亭失守，撤军后被诸葛亮斩首。'],['qun','shu','wei','wu'].randomGet()],
        challenge_zhenji:['female','mo',Infinity,['battle_song','challenge_biyue','challenge_weibu','challenge_juelun','challenge_fangxin'],['boss','Unaffected',['qun','shu','wei','wu'].randomGet(),'des:强度：★★★★☆☆。文昭甄皇后（183年1月26日—221年8月4日），名不明，相传为甄宓，实则无记载。史称甄夫人。中山无极（今河北省无极县）人，上蔡令甄逸之女。魏文帝曹丕的妻子，魏明帝曹叡的生母。甄氏三岁丧父。建安中期，袁绍为次子袁熙纳之为妻。建安四年（199年）袁熙出任幽州刺史，甄氏留在冀州侍奉袁绍的妻子刘氏。建安九年（204年），曹操率军攻下邺城，甄氏因为姿貌绝伦，被曹丕所纳，甚得宠爱，生下儿子曹叡和女儿曹氏（即东乡公主）。延康元年（220年），曹丕继位魏王，六月率军南征，甄氏被留在邺城。黄初元年（220年），曹丕称帝，山阳公刘协进献二女为曹丕妃嫔，后宫中文德郭皇后，李贵人和阴贵人都得到宠幸，甄氏愈发失意，流露出一些怨恨的话语，曹丕大怒，黄初二年（221）年六月，遣使赐死甄氏，葬于邺城。[3]黄初七年（226）五月，曹丕病重，立甄氏的儿子平原王曹叡为太子。曹叡即位后，追谥甄氏曰文昭皇后。太和四年十二月辛未日（231年2月17日），明帝曹叡将甄氏改葬于朝阳陵。'],['qun','shu','wei','wu'].randomGet()],
@@ -17473,9 +17277,9 @@ return;
 				}
 			},
    //——————世之奇才——————//
-   lib.translate.boss_guimou_info='结束阶段，你可以摸两张牌并令一名随机的其他角色进入混乱状态直到其下一回合结束',
+   lib.translate.boss_guimou_info='回合开始/结束阶段开始时，你可以摸两张牌并令随机一名其他角色进入混乱状态直到其下一回合结束',
    lib.skill.boss_guimou={
-				trigger:{player:'phaseEnd'},
+				trigger:{player:['phaseBegin','phaseEnd']},
 				frequent:true,
 				content:function(){
 				 'step 0'
@@ -17618,15 +17422,19 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6',
 				       unique:true,
               popup:false,
 	            filter:function(event,player){
-					return player.name=='boss_dongzhuo'||player.name=='boss_dongzhuo2';				
+					return player.name=='boss_dongzhuo'||player.name2=='boss_dongzhuo';				
 	            },
 	            content:function(){
               player.addSkill('roulin');
+              player.maxHp+=30;
+					         player.hp=player.maxHp;
+					         player.update();
                 }
               },
    //——————洛水仙子——————//
-    lib.translate.fanghua_info='锁定技，结束阶段，你抽取所有武将牌背面朝上的所有其他角色的一张牌并令这些角色各失去1点体力',
+    lib.translate.fanghua_info='锁定技，结束阶段，你抽取武将牌背面朝上的所有其他角色的两张牌并令这些角色各失去1点体力',
     lib.skill.fanghua={
+    group:'fanghua2',
 				trigger:{player:'phaseEnd'},
 				forced:true,
 				unique:true,
@@ -17647,21 +17455,43 @@ lib.skill.huanhua.group=['huanhua2','huanhua3','huanhua4','huanhua5','huanhua6',
 					"step 1"
 					if(event.players.length){
         var current=event.players.shift();
-        if(current.countCards('he')){
-        player.line(current,'green');        
-player.gain(true,current.get('he').randomGet());
+        player.line(current,'green');      
+        if(current.countCards('he')){          
+        player.gain(true,current.get('he').randomGets(2));
        current.$give(1,player);
-         }
+      }
 						current.loseHp();
 						event.redo();
 					}
 				}
 			},			
+			lib.skill.fanghua2={     
+				audio:false,
+				trigger:{global:'gameStart'},
+	            forced:true,
+				       unique:true,
+              popup:false,
+	            filter:function(event,player){
+					return player.name=='boss_zhenji'||player.name2=='boss_zhenji';				
+	            },
+	            content:function(){
+	            if(game.bossinfo){
+						      game.bossinfo.loopType=2;
+						      _status.roundStart=game.boss;
+					        }					
+	             player.draw(4,false);
+              player.addSkill('qingguo');
+              player.maxHp+=4;
+					         player.hp=player.maxHp;
+					         player.update();
+              }
+             },
    //——————藥壇聖手——————//
-			lib.translate.guizhen_info='每当你失去最后一张手牌，你可以所有敌人失去所有的牌，没有牌的角色失去2点体力（不触发技能）',			
-			lib.translate.boss_shengshou_info='锁定技，每当你使用或打出一张牌时，若你已受伤，你进行一次判定，若结果为红色，你回复1点体力，否则你须弃置一张手牌',			
-			lib.translate.wuqin_info='锁定技，每当你失去最后一张手牌后，你回复1点体力并摸三张牌',						
+			lib.translate.guizhen_info='每当你失去最后一张手牌、翻面或回合结束阶段开始时，你可以回复1点体力并令所有其他角色各失去所有的牌，没有牌的角色各失去2点体力（不触发技能）',			
+			lib.translate.boss_shengshou_info='锁定技，每当你使用或打出一张牌时，若你已受伤，你进行一次判定，若结果为红色，你回复2点体力，否则你须弃置两张手牌',			
+			lib.translate.wuqin_info='锁定技，每当你失去最后一张手牌后，你摸五张牌',						
    lib.skill.wuqin={
+    group:'wuqin2',
 				audio:2,       
 				trigger:{
                     player:"loseAfter",
@@ -17676,28 +17506,52 @@ player.gain(true,current.get('he').randomGet());
                 return false;
             },
                 content:function (){
-                player.recover();
-					           player.draw(3)
+					           player.draw(5)
 				}
-			},			
+			},	
+			lib.skill.wuqin2={
+				trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                unique:true,   
+                silent:true,  
+                mode:['boss'],      
+                filter:function (event,player){
+                return player.name=='boss_huatuo'||player.name2=='boss_huatuo';
+            },
+                content:function (){
+                player.draw(4,false);
+                player.maxHp+=14;
+					           player.hp=player.maxHp;
+					           player.update();
+		     		}
+			},					
    lib.skill.guizhen={
 				audio:2,
-				trigger:{player:'loseEnd'},
+				trigger:{player:['turnOverEnd','loseEnd','phaseEnd']},
 				frequent:true,
        unique:true,
 				filter:function(event,player){
+				 if(event.name=='lose'){
 					if(player.countCards('h')) return false;
 					for(var i=0;i<event.cards.length;i++){
 						if(event.cards[i].original=='h') return true;
+					}
+					}else{
+					return true;
 					}
 					return false;
 				},
 				content:function(){
 					"step 0"
+					player.recover();
+					"step 1"
 					var players=get.players(player);
 					players.remove(player);
 					event.players=players;
-					"step 1"
+					player.line(players);
+					"step 2"
 					if(event.players.length){
 						var current=event.players.shift();
 						var hs=current.getCards('he');
@@ -17728,10 +17582,10 @@ player.gain(true,current.get('he').randomGet());
 					});
 					"step 1"
 					if(result.bool){
-						player.recover();
+						player.recover(2);
 					}
          else{
-          player.chooseToDiscard(true,'h');
+          player.chooseToDiscard(true,2,'h');
          }
 				},
 			ai:{                    
@@ -17739,6 +17593,10 @@ player.gain(true,current.get('he').randomGet());
                         player:1,
                     },
                     effect:{
+                        target:function (card,player,target,current){
+                        if(get.type(card)=='delay')
+                        return [1,-99];
+                        },
                         player:function (card,player,target){
                 if(get.type(card)!='basic'&&card.name!='tiesuo'&&card.name!='wuxie'&&card.name!='huogong'||(card.name=='tiesuo'||card.name=='huogong')&&target!=player) return [1,3];
           },
@@ -17746,7 +17604,7 @@ player.gain(true,current.get('he').randomGet());
       },
     },       
    //——————冷血皇后——————//
-   lib.translate.shangshix_info='锁定技，若你的手牌数至少为6，你将手牌补至6张；结束阶段，若你的体力值大于1，你令场上所有角色失去1点体力',
+   lib.translate.shangshix_info='锁定技，若你的手牌数小于6，你回复1点体力并将手牌补至6张；回合结束阶段开始时，若你的体力大于1，你令场上所有角色各失去1点体力',
    lib.skill.shangshix={
 				trigger:{player:['loseEnd','changeHp']},
 				forced:true,
@@ -17756,6 +17614,7 @@ player.gain(true,current.get('he').randomGet());
 					return player.countCards('h')<6;
 				},
 				content:function(){
+	 			player.recover();
 					player.draw(6-player.countCards('h'));
 				},
 				group:'shangshix2',
@@ -17764,6 +17623,10 @@ player.gain(true,current.get('he').randomGet());
         player:1,
         },
 					effect:{
+					     target:function (card,player,target,current){
+                        if(get.type(card)=='delay')
+                        return [1,-99];
+                        },
           player:function(card,player,target){
           if(get.type(card)!='basic'&&card.name!='wuxie'&&card.name!='tiesuo'||(card.name=='tiesuo'||card.name=='huogong')&&target!=player) return [1,3];
           },
@@ -17783,7 +17646,7 @@ player.gain(true,current.get('he').randomGet());
    //——————絕代舞姬——————//
    lib.translate.yuehun_info='结束阶段，你可以回复1点体力并摸三张牌',
    lib.translate.yunshen1='云身',	
-   lib.translate.yunshen_info='每当你打出一张闪，你可以令你的防御距离+1；准备阶段，你将累计的防御距离清零，然后摸等量的牌；锁定技，你的武将牌始终正面朝上',		
+   lib.translate.yunshen_info='每当你使用或打出一张【闪】、【桃】或【无懈可击】，你可以令你的防御距离+1；准备阶段，你将累计的防御距离清零，然后摸等量的牌；锁定技，你的武将牌始终正面朝上',		
   	lib.translate.fengwu_info='出牌阶段限一次，可以令除你外的所有角色依次弃置随机一张牌；然后依次对与其距离最近的另一名角色使用一张【杀】，无法如此做者失去1点体力。',
    lib.skill.yuehun={
 				unique:true,
@@ -17794,10 +17657,45 @@ player.gain(true,current.get('he').randomGet());
 					player.draw(3);
 				}
 			},
-     lib.skill.yunshen.group=['yunshen1','yunshen2'];
-     lib.skill.yunshen.locked=true;
-     lib.skill.yunshen.unique=true;
+     lib.skill.yunshen={     
+				trigger:{player:["useCard","respond"]},
+				filter:function(event,player){
+					return event.card.name=='shan'||event.card.name=='wuxie'||event.card.name=='tao';
+				},
+				frequent:true,
+				locked:true,
+				unique:true,
+				init:function(player){
+					player.storage.yunshen=0;
+				},
+				content:function(){
+					player.storage.yunshen++;
+					player.markSkill('yunshen');
+				},
+				ai:{
+					effect:{
+						target:function(card,player,target){
+							if(get.tag(card,'respondShan')){
+								var shans=target.countCards('h','shan');
+								var hs=target.countCards('h');
+								if(shans>1) return [1,1];
+								if(shans&&hs>2) return [1,1];
+								if(shans) return [1,0.5];
+								if(hs>2) return [1,0.3];
+								if(hs>1) return [1,0.2];
+								return [1.2,0];
+							}
+						}
+					},
+					threaten:0.8
+				},
+				intro:{
+					content:'mark'
+				},
+				group:['yunshen1','yunshen2']
+			},
      lib.skill.yunshen1={
+     //group:'fengwu2',
 				unique:true,
 				trigger:{player:'turnOverBefore'},
 				forced:true,
@@ -17810,7 +17708,8 @@ player.gain(true,current.get('he').randomGet());
 				game.log(player,'取消了翻面');
 				}
 			},		
-			lib.skill.fengwu={
+			lib.skill.fengwu={			 
+			group:'fengwu2',
 				audio:2,
 				unique:true,
 				enable:'phaseUse',
@@ -17856,8 +17755,26 @@ player.gain(true,current.get('he').randomGet());
 					}
 				}
 			},
+			lib.skill.fengwu2={
+				trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                unique:true,   
+                silent:true,  
+                mode:['boss'],      
+                filter:function (event,player){
+                return player.name=='boss_diaochan'||player.name2=='boss_diaochan';
+            },
+                content:function (){
+                player.draw(4,false);
+                player.maxHp+=4;
+					           player.hp=player.maxHp;
+					           player.update();
+		     		}
+			},					
    //——————異鄉孤女——————//
-     lib.translate.boss_guihan_info='<span style=\"color: orange\">限定技</span>，当你处于濒死状态时，你可以丢弃你所有判定区里的牌，并重置你的武将牌，且回复体力至体力上限，然后摸四张牌，令所有敌人的技能恢复，并获得技能【听琴】、【蕙质】',
+     lib.translate.boss_guihan_info='<span style=\"color: orange\">限定技</span>，当你处于濒死状态时，你可以丢弃你判定区里所有的牌，并重置你的武将牌，增加4点体力上限且回复体力至体力上限，然后摸八张牌并获得技能【听琴】、【蕙质】，且令所有敌人的技能恢复，',
      lib.skill.boss_guihan={
        group:'yixianggunv',
 				audio:2,
@@ -17877,14 +17794,16 @@ player.gain(true,current.get('he').randomGet());
        skillAnimation:true,
 				content:function(){
 					"step 0"
-					player.removeSkill('boss_guihan');					
-        player.discard(player.getCards('j'));
+					  player.removeSkill('boss_guihan');					
+       player.discard(player.getCards('j'));
     		 player.link(false);    		
     		 player.turnOver(false);
-        player.recover(player.maxHp-player.hp);
-					player.storage.boss_guihan=true;
+    		 player.maxHp+=4;
+					  player.hp=player.maxHp;
+					  player.update();  
+					  player.storage.boss_guihan=true;
 					"step 1"
-					player.draw(4);
+					player.draw(8);
 					"step 2"
 					for(var i=0;i<game.players.length;i++){
 						game.players[i].enableSkill('boss_hujia');
@@ -17904,7 +17823,7 @@ player.gain(true,current.get('he').randomGet());
 					},
 					save:true,
 					result:{
-						player:4,
+						player:8,
 					},
 				},
 				intro:{
@@ -17921,10 +17840,11 @@ player.gain(true,current.get('he').randomGet());
     			}
     		},
    //——————赤壁火神——————//
-     lib.translate.boss_xianyin_info='每当你于回合外失去牌时，你可以进行一次判定，若为黑色，你令一名其他角色失去1点体力，若为红色，你回复1点体力',
-     lib.translate.boss_honglian_info='锁定技，每当你武将牌被翻面或结束阶段，你摸三张牌，然后对所有其他角色造成1点火焰伤害并令其弃置一张牌',  
+     lib.translate.boss_xianyin_info='每当你于回合外失去牌时，你可以进行一次判定，若结果为黑色，你令一名其他角色失去1点体力，若结果为红色，你回复1点体力',
+     lib.translate.boss_honglian_info='锁定技，每当你回复体力、武将牌被翻面或回合结束阶段开始时，你摸三张牌，然后对所有其他角色造成1点火焰伤害并令其弃置一张牌',  
 			lib.translate.huoshen_info='锁定技，你防止即将受到的火焰伤害，若你已受伤，改为你回复1点体力，否则改为你摸两张牌',						
    lib.skill.huoshen={
+    group:'huoshen2',
 				trigger:{player:'damageBefore'},
 				forced:true,
 				unique:true,
@@ -17951,6 +17871,24 @@ player.gain(true,current.get('he').randomGet());
 					}
 				},
 			},
+			lib.skill.huoshen2={
+				trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                unique:true,   
+                silent:true,  
+                mode:['boss'],      
+                filter:function (event,player){
+                return player.name=='boss_zhouyu'||player.name2=='boss_zhouyu';
+            },
+                content:function (){
+                player.draw(4,false);
+                player.maxHp+=6;
+					           player.hp=player.maxHp;
+					           player.update();
+		     		}
+			},					
 			lib.skill.boss_xianyin={
 				trigger:{player:'loseEnd'},
 				frequent:true,
@@ -17993,7 +17931,7 @@ player.gain(true,current.get('he').randomGet());
 			},
    lib.skill.boss_honglian={
 				audio:2,
-				trigger:{player:['phaseEnd','turnOverEnd']},
+				trigger:{player:['recoverEnd','phaseEnd','turnOverEnd']},
 				forced:true,
 				unique:true,
 				content:function(){
@@ -18014,24 +17952,45 @@ player.gain(true,current.get('he').randomGet());
 				},
 			},
    //——————涅槃鳳雛——————//
-    lib.translate.boss_yuhuo_info='<span style=\"color: orange\">觉醒技</span>，在你涅槃后，你获得技能【神威】、【神躯】、【朱羽】和【看破】',
+    lib.translate.boss_yuhuo_info='<span style=\"color: orange\">觉醒技</span>，在你涅槃后，你回复体力至体力上限并获得技能【神威】、【神躯】、【朱羽】、【火计】和【看破】',
     lib.skill.boss_yuhuo={
+    group:'boss_yuhuo2',
 				trigger:{player:'niepanAfter'},
 				forced:true,
 				unique:true,
-				derivation:['shenwei','shenqu','zhuyu','kanpo'],
-				content:function(){					
+				derivation:['shenwei','shenqu','zhuyu','huoji','kanpo'],
+				content:function(){			
+				    player.recover(player.maxHp-player.hp);
 					player.addSkill('shenwei');
         player.addSkill('shenqu');
-				 player.addSkill('zhuyu');
+			   	 player.addSkill('zhuyu');
+				    player.addSkill('huoji');
         player.addSkill('kanpo');
-        game.log(player,'获得了技能','shenwei','、','shenqu','、','zhuyu','、','kanpo');
+        game.log(player,'获得了技能','shenwei','、','shenqu','、','zhuyu','、','huoji','、','kanpo');
 					if(game.bossinfo){
 						game.bossinfo.loopType=1;
 						_status.roundStart=game.boss;
 					}
 				}
 			},
+			lib.skill.boss_yuhuo2={
+				trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                unique:true,   
+                silent:true,  
+                mode:['boss'],      
+                filter:function (event,player){
+                return player.name=='boss_pangtong'||player.name2=='boss_pangtong';
+            },
+                content:function (){
+                player.draw(4,false);
+                player.maxHp+=4;
+					           player.hp=player.maxHp;
+					           player.update();
+		     		}
+			},					
     //——————高達一號——————//
       lib.skill.boss_juejing2={
      trigger:{player:'loseEnd'},
@@ -18057,11 +18016,11 @@ player.gain(true,current.get('he').randomGet());
      }
    },
       //——————天公將軍——————//
-       lib.translate.boss_leiji_info='每当你使用或打出一张【闪】，可令任意一名角色进行一次判定，若结果为黑色，你对该角色造成两点雷电伤害，然后你回复1点体力；否则你摸三张牌',
-			lib.translate.jidian_info='每当你造成一次伤害，你可以令受伤害角色以外的一名其他角色进行判定，若结果为黑色，该角色随机弃置一张牌并受到你造成的1点雷电伤害，否则你回复1点体力，然后摸两张牌',
+       lib.translate.boss_leiji_info='每当一名角色使用或打出一张【闪】，你可令任意一名其他角色进行一次判定，若结果为黑色，你对该角色造成2点雷电伤害，然后你回复1点体力；否则你摸两张牌',
+			lib.translate.jidian_info='每当你造成或受到一次伤害后，你可以令受伤害角色以外的一名其他角色进行一次判定，若结果为黑色，该角色随机弃置一张牌并受到你造成的1点雷电伤害，否则你摸三张牌',
        lib.skill.boss_leiji={
 				audio:2,
-				trigger:{player:'respond'},
+				trigger:{global:['respond']},
 				filter:function(event,player){
 					return event.card.name=='shan';
 				},
@@ -18069,9 +18028,12 @@ player.gain(true,current.get('he').randomGet());
        unique:true,
 				content:function(){
 					"step 0";
-					player.chooseTarget(get.prompt('boss_leiji')).ai=function(target){
+					player.chooseTarget(get.prompt('boss_leiji'),function(card,player,target){
+						if(player==target) return false;
+						return true;
+					}).set('ai',function(target){
 						return get.damageEffect(target,player,player,'thunder');
-					};
+					});
 					"step 1"
 					if(result.bool){
 						player.logSkill('boss_leiji',result.targets,'thunder');
@@ -18080,7 +18042,7 @@ player.gain(true,current.get('he').randomGet());
 							// var suit=get.suit(card);
 							// if(suit=='spade') return -4;
 							// if(suit=='club') return -2;
-							if(get.color(card)=='black') return -2;
+							if(get.color(card)=='black') return -4;
 							return 0;
 						});
 					}
@@ -18093,7 +18055,7 @@ player.gain(true,current.get('he').randomGet());
           player.recover();					
 					}
         else{
-        player.draw(3);
+        player.draw(2);
          }
 				},
 				ai:{
@@ -18132,8 +18094,9 @@ player.gain(true,current.get('he').randomGet());
 				}
 			},
 			lib.skill.jidian={
+			 group:'jidian2',
 				audio:2,
-				trigger:{source:'damageAfter'},
+				trigger:{player:'damageAfter',source:'damageAfter'},
 				direct:true,
 				unique:true,
 				content:function(){
@@ -18161,12 +18124,29 @@ target.discard(target.get('he').randomGet());
 						event.target.damage('thunder');
 					}
         else{
-          player.recover();
-						player.draw(2);
+						player.draw(3);
 					}
 				}
-			}
-     };    
+			},
+     lib.skill.jidian2={
+				trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                unique:true,   
+                silent:true,  
+                mode:['boss'],      
+                filter:function (event,player){
+                return player.name=='boss_zhangjiao'||player.name2=='boss_zhangjiao';
+            },
+                content:function (){
+                player.draw(4,false);
+                player.maxHp+=16;
+					           player.hp=player.maxHp;
+					           player.update();
+		     		}
+		    };
+			};			
     //——————伏皇后——————//
      if(lib.config.mode!='brawl'&&lib.config.mode!='boss'){    
      lib.translate.zhuikong_info='其他角色的回合开始时，若你已受伤，你可以与其拼点；若你赢，该角色跳过其出牌阶段；若你没赢，该角色与你的距离视为1，直到回合结束。',
@@ -19297,10 +19277,10 @@ target.discard(target.get('he').randomGet());
 			};
      //——————神呂布——————//
      if(lib.character['shen_lvbu']){lib.character.shen_lvbu=['male','shen',5,['baonu','wumou','wuqian','shenfen'],['qun']]};
-			lib.translate.shenfen_info='出牌阶段，你可以弃置6枚暴怒标记，对场上所有其他角色造成1点伤害，然后你获得场上每名其他角色2张牌，最后你将你的武将牌翻面。每阶段限一次。',
+			lib.translate.shenfen_info='出牌阶段，你可以弃6枚“暴怒”标记并选择所有其他角色，你获得这些角色各两张牌，然后对这些角色各造成1点伤害，最后你将你的武将牌翻面。每阶段限一次。',
       lib.translate.baonu_info='锁定技，游戏开始时，你获得2枚暴怒标记，每当你造成或受到1点伤害，你获得1枚暴怒标记。',			
 			lib.translate.wuqian_info='出牌阶段，你可以弃置1枚暴怒标记，获得技能【无双】并无视所有防具，直到回合结束。',
-     lib.translate.wumou_info='锁定技，每当你使用非延时类锦囊牌选择目标后，你选择一项：1.弃1枚“暴怒”标记；2.失去1点体力。',      
+     lib.translate.wumou_info='锁定技，每当你使用非延时类锦囊牌选择目标后，你选择一项：1.弃1枚“暴怒”标记；2.受到1点伤害。',      
      lib.translate.baonu='狂暴',
      lib.skill.baonu.marktext='暴',
      lib.translate.wumou='无谋',     
@@ -19314,14 +19294,14 @@ target.discard(target.get('he').randomGet());
 						content:function(){
 							'step 0'
 							if(player.storage.baonu>0){
-								player.chooseControl('选项一','选项二').set('prompt','无谋<br><br><div class="text">1:弃1枚“暴怒”标记</div><br><div class="text">2:失去1点体力</div></br>').ai=function(){
+								player.chooseControl('选项一','选项二').set('prompt','无谋<br><br><div class="text">1:弃1枚“暴怒”标记</div><br><div class="text">2:受到1点伤害</div></br>').ai=function(){
 									if(player.storage.baonu>6) return '选项一';
 									if(player.hp+player.countCards('h','tao')>3) return '选项二';
 									return '选项一';
 								};
 							}
 							else{
-								player.loseHp();
+								player.damage();
 								event.finish();
 							}
 							'step 1'
@@ -19330,7 +19310,7 @@ target.discard(target.get('he').randomGet());
 								player.syncStorage('baonu');
 							}
 							else{
-								player.loseHp();
+								player.damage();
 							}
 						},
 					},     
@@ -19350,25 +19330,26 @@ target.discard(target.get('he').randomGet());
 					event.targets.remove(player);
 					event.targets.sort(lib.sort.seat);
 					event.targets2=event.targets.slice(0);
-					player.line(event.targets,['fire','thunder'].randomGet());
+					player.line(event.targets,'green');
 					"step 1"
 					if(event.targets.length){
-						event.targets.shift().damage();
+					 var current=event.targets.shift();
+						if(current&&current.countCards('he')){
+						player.gainPlayerCard('he',current,true,2);
+						}
 						event.redo();
 					}
 					"step 2"
 					if(event.targets2.length){
-						var cur=event.targets2.shift();
-						if(cur&&cur.countCards('he')){
-						player.gainPlayerCard('he',cur,true,2);
-						}
+						var current2=event.targets2.shift();
+						current2.damage();
 						event.redo();
 					}         
-       "step 3"
-        player.turnOver();
+      "step 3"
+     player.turnOver();
 				},       
 				ai:{
-					order:10,
+					order:10.8,
 					result:{
 						player:function(player){
            if(player.isTurnedOver()){
@@ -19402,7 +19383,8 @@ return 10;
 				},
 				content:function(){
 					player.storage.baonu-=1;
-         player.addTempSkill('wuqian2','phaseAfter');                     player.addTempSkill('wushuang','phaseAfter');
+         player.addTempSkill('wuqian2','phaseAfter');                   
+           player.addTempSkill('wushuang','phaseAfter');
         player.update();
 				},
 				ai:{
@@ -22028,10 +22010,10 @@ lib.skill.qinggang_skill.animationColor='thunder';
        forced:true,
        unique:true,       
        filter:function(event,player){
-					return Math.random()<=0.012333;
+					return Math.random()<=0.013333;
 				},
 				content:function(){
-    var Satin = ['所有的工作，做久了都会觉得无聊。差别在于，别人无聊还赚得比你多。','在你最需要帮助的时候，只有鬼才来帮你。不要因为工作中遇到什么问题就怀疑自己不适合这份工作，很可能是因为你干啥都不行。','以前我以为钱可以买到一切，后来才发现没有办法，因为我钱不够。','谁说你没有毅力的，单身这事你不就坚持了好几十年吗？','你不是一无所有，你还有病啊。','生活会让你苦上一阵子。等你适应了之后。再苦上一辈子。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','别总是把事情想的太糟糕，因为还有更糟糕的事情等着你。','哪有什么孤独，不就是没人爱吗?哪有什么寂寞，不就是闲的吗？哪有什么绝望，不就是穷的吗?','对今天解决不了的事情，也不必着急。因为明天还是解决不了','两情若是久长时，分手也是家常便饭事。','普通人一生的四个阶段：心比天高的无知快乐和希望--愧不如人后的奋斗与煎熬--毫无回报的愤懑与失望--坦然的平凡和颓废。你走到哪一步了？','没事，笑一笑，明天可能还不如今天呢','我一直坚信，社会真正需要的，不是那些虚伪做作的娱乐明星，不是那些尔虞我诈的政客，不是那些昧着良心挣钱的企业家。而这个社会最不需要的，就是我这种没本事还天天扯淡抱怨的傻逼。','哪怕抛掉出身的因素。我觉得你也未必干得过别人。','以前一直听老师说，成功是百分之九十九的汗水加百分之一的运气， 我也傻傻的一直相信着。经过了这么多年，我终于明白了， 原来这百分之一的几率是投胎，多么痛的领悟！','努力了这么多年，但凡是有点天赋的，也该有点成功迹象了。','不要把负能量看做是消极，仇恨。其实它的作用是激励，它其实是现实。','毛主席说过：做一天的好人并不难，难的是做一辈子有钱人。','可怕的是你平庸度过这一生，还要骗自己平淡是真。可怕的是你能力不够，还骗自己说是知足常乐。','机会如雨点般的向我打来，但我却一一躲过。','假如生活欺骗了你，不要悲伤，不要心急，多骗几次就好了。','上帝向人间撒满智慧，唯独你打了把伞。','公主病的成因就两个 不是长得丑就是穷。那又漂亮又有钱的呢?。别逗了 那不是病。那就是公主。','只要是正义的一方，无论手段多么卑鄙都可以被原谅。','失恋的时候很多年轻人以为整个世界抛弃了你。别傻了 世界根本就没需要过你。','多照照镜子，很多事情你就明白原因了。','如果没有见过光明，我本可以忍受黑暗。','真正努力过的人，就会明白天赋的重要。','天下熙熙皆为利来，天下攘攘皆为利往。','看到一对中学生情侣在街上手牵手，不禁回想起了中学时代的自己。当年的我，也是在街上看着一对中学生情侣在街上手牵手。','直到三十岁才知道，和不同的人说不同的话，表现出不一样的态度，是一种非常可贵的能力，而不是虚伪。','如果你很忙，除了你真的很重要以 外，更可能的原因是：你很弱，你没有什 么更好的事情去做，你生活太差不得不努 力来弥补，或者你装作很忙，让自己显得 很重要。','小孩问富翁：叔叔为什么你这么有钱呢？富翁说：我给你讲个故事吧。很小的时候，我注意到楼下的矿泉水卖一块钱，而三站地外的篮球场上，要卖一块五。我拿着一个大书包，从楼下买水带到球场去卖，卖一块二。一个月我挣了十块钱。小孩说：我好像明白了。富翁说：你明白个屁。后来我爸死了，把钱留给我了。','一些人的情商比较低。没法扮演好自己的社会角色。只能一直以最真实的自己面对世界。','基因是你给的，成长环境是你给的，社会阶层是你给的——还有脸埋怨自己孩子没出息。','这个世界没有错，谁让你长得不好看又没钱。','有一种病叫看过听过励志演讲励志电影励志书籍励志歌曲知乎励志答案仿佛就已经奋斗努力过了。','如果你每天干的活明显多于别人。但自己很高兴还感觉得到器重。那么与其说你很有才干。不如说你的领导很会管人。','我5岁的弟弟曾对我说：“当别人和你道歉时你要说‘我接受你的道歉’而不是‘没事’，因为你那样说会让他们觉得是真的没关系，然后他们还会对你做同样的事。”','社会精英阶层一边啃着心灵鸡腿和心灵鸡胸。一边为我们送上了心灵鸡汤。说人生的价值并不在于你挣了多少钱和外在是否美。','小时候知道，坚强的孩子没人疼，长大就才发现，没人疼的孩子更坚强。','我去找心理医生看抑郁症。他听完我的陈述，说道：如果你说的都真的话，为什么你不去自杀呢？你这不是抑郁症。抑郁症是看事情悲观，本来好，却认为不行。你是本来就过得不如别人。','又一天过去了。今天过得怎么样，梦想是不是更远了？','做个爱笑的人，其实更容易受伤。你总是笑，别人就觉得怎么伤你都没关系。','26岁的他辞掉工作，和朋友建了支乐队，到各民办大学演出，反响平淡。30岁钱花完了，父亲得病要很多钱。“唱完这场就放弃，青春就到这里了。”甘肃七里河大学演唱会前，他留下眼泪说。一位女学生递上纸条：我喜欢你的歌，要坚持梦想。他把纸条檬紧决定坚持梦想。34岁，他欠了十几万的债，父亲也病逝了。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','只要你真的爱他，不管他送的iphonex多丑，他送的法拉利颜色多难看，他送的房子位置多喧闹，你都会一声不吭地收下，不会介意。喜欢一个人会喜欢他的一切，喜欢他开跑车的专注，喜欢他给你带钻石项链时的绅士，就连给你打钱时多打了几个0的粗心你都觉得无比可爱，人生就是要这样平淡的爱情～~~~我喜欢这样的。。。。。平淡。。。。。。','很多时候别人对你好，并不是因为别人喜欢你，而是因为他们喜欢对人好。','别减肥了。你丑不仅是因为胖。','大部分人之关心你飞的高不高，没人管你飞的累不累。你怕你的孩子输在起跑线上，可是你的孩子在娘胎里的时候就离起跑线很远了，因为你就是你孩子的起跑线。','是 生活 是生活强奸了所有人。','小时候以为有钱人都很跋息，心都是黑的。长大后才发现，很多有钱人都懂得很多，经历很丰富，做事儿很认真，为人很宽厚，理性，比穷人更好相处。','徐志摩对林徽因着迷时，他的妻子张幼仪千里迢迢来寻他来了。张幼仪告诉他，自己已有他的骨肉了。他居然说：去打掉吧。妻子说：听说有人因打胎死掉的。徐志摩这时说了一句经典的话：还有人坐火车死掉的呢，难道你看到人家就不坐火车了吗？','把放纵当潇洒，把颓废当自由，把逃避责任当追求自我价值。一句话这就是；懒，怕吃苦。哪来那么多好听的理由。','以前喜欢看光明的东西，现在喜欢看黑暗的东西，因为黑暗的事物更真实','多人发现自己在钱 权 女人的问题上比不过别人。于是开始试着在道德和人生境界上做文章。','我发现没有任何一个煤矿工人靠挖煤多又快当上了煤老板。','晚上和外甥女聊天，都快30 的人了还是单身，我问她想找啥样的？她放下茶杯，天真的说：“这种事情得看缘分，只想找个癌症晚期的土豪，和他粗茶淡饭，平平淡淡的过完这一生。”这世界纷繁复杂，像外甥女这样单纯的女孩，说实话，不多了。','若是想自杀了 就不要到处宣扬 告诉人家干吗？给你鼓掌喝彩夸扬称赞吗？大家都很忙的 没空管你。','没有人有义务必须透过你邋遢的外表去发现你优秀的内在。你必须干净、整洁、甚至是精致，这是你做人的基本与尊严，不分男女。越活越理解以貌取人的积极之处，为过去的自己羞愧，自勉互勉','所有抱怨社会不公和制度的人翻译过来只有一句话：请给我金钱，女人和社会地位！','多年过去，再回忆高考，其实本质上没有考到好与坏的说法，重要的是年轻人在一起，做份试题，然后决定去哪座城市做代购。','父母一直注重对我的品德教育。到了社会上。我按照父母教我的接人待物。却发现自己并不受人待见。','一个人久了，连喜欢上一个人都好难。','几年前BBS有女生写道：不知为什么，每次有丑男看我，我都感觉他很狠琐，特别反感；但帅哥看我就感觉很好。今日又看到有男生写：我发现我老是喜欢抢着给漂亮的女生帮忙，不自觉地就会问她需要什么；但每次丑女让我帮忙，我就感觉：你自己不会干吗？','你喝着心灵鸡汤，鸡谁吃了。','我有一些漂亮又受过教育的姐妹，本来有机会嫁给官富二代，但很多被那些长得不错、有名校高学历、刚毕业在知名外企工作、加班到很晚还健身的男生所吸引。觉得人家上进又有潜力。五六年后，她们悔得肠子都青了。','不要因为别人对你不好而不开心，没有人有义务必须对你好','你的冷言冷语，我要用什么样的态度去面对。我的明知故问，你就连敷衍都懒得施舍给我。','有些人，社交能力很差，只能和那些志同道合，彼此欣赏的人做朋友。而那些性格不随和，不喜欢自己，但是能给自己带来提升的人，他们没有能力搞定。','现实阻挡了我多少发财梦…','每次觉得自己混得还行的时候，就背起书包四处走走，让中介带着看几套房，就什么都清醒了。','被女人抛弃没什么，可悲的是几年后依然碌碌无为，证明她是对的','从前有一个一事无成的人，看正能量看多了之后有一天终于顿悟，明白正能量就是坑爹，跟传销有什么区别？还是负能量真实，能够帮助他认清现实。从此他开始看负能量，他更加深刻地认识了这个世界。然后，他还是一事无成。','年轻的时候开始工作，不要只看薪水，特别是头三年，不要老比钱，应该看看学到多少东西，收获才是真，要知道头三年的年轻人其实不能为公司创造多少价值，充其量是个跑腿的份，就不要老想着赚多少钱。当企业HR给你讲这句话的时候就要小心了，十有八九是黑心企业。','网上有两拨学生在激烈争论。一方认为应该利用业余时间去旅游，去流浪，去支教，尽情体验生活；另一波认为业余时间应当用来学英语，考雅思，做实习，为事业做储备。其实，他们的业余时间都去上网了。','吹牛逼是一些人的天性。当对于一些话题自己乏善可陈时。就会搬弄外援：我有个朋友 拥有比你们更牛逼的经历。讲完后洋洋得意 潜台词是作为其朋友。自己肯定也不会差到哪去。','我发现很多混得不好的人看得都很开。也不知道他们是因为看得透彻而不屑于世俗的成功，还是因为不成功而不得不看得开。','“老师您好，请问像我这样的，没有背景的北大毕业生应该如何定位自己？"“社会底层群众中受教育程度最高的一批人。”','难过的时候就笑吧，那样显得你更狼狈。','我有位家境一般的朋友，一直觉得如果自己有钱一定会更幸福。后来他妈做婴幼教育发财了。快十年后我见他，问：现在你倒是有钱了，你真的幸福吗？他回答：爽翻啦！我默默地走开了。','一些年轻人的痛苦在于：眼界打开了，本事却没跟上来。','人生的自由和无限可能性都是错觉。每个人都被社会压力，亲近的人和自己束缚的死死的，每天做着自己一定会去做的事情。','一个富豪可以坦然的骑自行车、穿布鞋、喝粥，因为他什么都买的起。穷人却要努力去赢得他们不需要的东西。我们的不满只是因为无法选择，如果能轻易杀死敌人，你可能就宽恕了他，不屑去做。如果随时可以逃离，你反而更安于现状。','有时候你会怀疑自己的能力，别担心，偶尔你是对的，你能力真的有问题。','你年轻时一事无成。时而自怨自艾颓废堕落。时而咬紧牙关拼命努力 经营关系。但你的生活一直没有改善 你一直很痛苦 直到三十岁。他听后兴奋地问：那三十岁之后呢？。有转机吗？。算命先生微微抬起头：三十岁后……你就开始习惯了。','成功者说什么不重要，他们不说的才是成功的真谛！','刚上大学的时候我纠结以后是该娶一个大家闺秀，在事业上提携自己；还是娶个美丽贤惠的小家碧玉，过舒心的小日子。现在发现当时自己真是想太多了。','人人生而平等，只是在生的那一刻而已。','社会学家研究表明：难看和没钱的男人，并不比高帅富更加靠谱。','有些人说，看负能量久了会变负面思考。我笑了，说得好像你在思考一样。','敏感是怎么回事？。同样一件事情。自己比别人更容易把它认为是挫折。脆弱是怎么回事？。同样的挫折 产生比别人更多的负面情绪。什么是抑郁？。同样的负面情绪从中恢复比别人要花更多的时间和精力。什么是弱者？。敏感 脆弱 抑郁的人。','很同情那些名校毕业生。这些人中的绝大多数，一生最大的成就就是高考的成功，一下超越了社会中的各种阶层，仿佛升到顶端。之后一辈子都在走下坡路。','爱迪生会告诉你：天才是由百分之一的灵感加百分之九十九的汗水。但是他绝对不会告诉你他名下的大部分发明都不是来自于自己创造而是手下员工的专利。他甚至为了获得利益而不惜不择手段攻击同行尼古拉·特拉斯。盖茨他会告诉你努力拼搏，但是他绝对不会告诉你他从小就有病态性占有人格，正是这种人格驱使着他追逐梦想，成为世界首富。','时间总是逼我成长，让我看清这世态炎凉。','什么样的人造就了什么样的国家，不要老觉得我们的祖国配不上你。','有些人没有好的出身，聪明的脑子和善于与人打交道的能力，妄图通过单纯的努力获得成功，就和只靠面粉就想包出好吃的饺子一样可笑。','自己不努力 别人想帮你 都找不到你的手在哪里','我本就是这么一个人。负面情绪总是像巨浪瞬间把我击垮，它逼迫我在自卑的万丈深渊边缘行走。我在黑暗中小心翼翼得前进，前面好似有光，我向前跑去，然后倒下，爬不起来。我在地上艰难地爬行，以为自己能够逃离，却发现在沼泽里越陷越深，没人看见，没人关心，无法呼救，也不愿求救。因为没人能救。','一些年轻人。通过高端消费来营造自己高端收入的形象。','这个世界已经腐朽，你我只能在此沉沦','自由从来不是什么理所当然的东西，而是一项需要极高成本的特权。','那些一直嚷着 【 老子做的是自己 管别人屁事 爱看不看】 的人 你真的觉得是别人的问题嘛 别天真了 要想活下去 处的好 就该改变自己 否则活该被孤立死','你身边没那么多朋友，只有两个原因，第一你太丑，第二你太穷。','到现在都记着你的名字纯属是为了让我记住过去那段日子。','不是什么都要人懂 很多事只能自己难过','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','嘴上一直说着 【钱根本不是重要的东西 没有钱我也可以活得很好】 的人 简直笑话 年轻的时候钱不多没关系 等到不惑之年 你的老婆 孩子 没有办法过上理想1点的生活 你不自责？ 这时候还能笑着说 钱不重要嘛 抡圆了胳膊扇自己两巴掌吧','没钱没事业的人。才有时间去提高自己的人生境界。','哭吧，干嘛忍着。你笑得再美 哭得再丑。他都不会多看你一眼。','有些人努力了一辈子。就是从社会的四流挤入了三流。','碰到一个认识的人，想一起聊聊天。她说自己去香港和希腊玩了，又买了苹果和化妆品。我不知道怎么回应，因为我很久没有出去玩和买东西了。我又说我最近思考了人为什么活着和出身的问题，她也沉默，因为很久没有思考这样的问题。此后再也无话。','平时很胆小 干什么都小心翼翼 学习却很好 因为她父亲对她说 如果考不上大学 就打断她的腿 我不知道这位父亲说这话的神态语气 但我觉得 这样很过分 你对一个妈妈去世的有抑郁症的小女孩说 考不上我就打断你的腿 她经常熬夜到半夜 一直在做题 一直在做题 有时候会和我语音聊天 说 这个世界太危险了 我1点都不喜欢 这时候我就忙安慰她 没关系考上大学你就可以离开你的故乡了 可以到我这来啊 到时候我们还能一起玩 一切本来都很好 直到有一天 我至今还记得 那个晚上没有月亮 也没有星星 天很黑 我下楼买吃的 突然接到了她的QQ电话 当时还犹豫呢 我流量不是很多啊 算了还是挂断吧 她又打了一遍 我又挂断了 我跟她说 诶抱歉啊 我流量没多少了 有啥打字说吧','别再抱怨缘分了！美女一直在那，你只不过是没有资格、没有能力遇见罢了','有些事情就是，你用99分的努力也赶不上别人一分的天才。','女孩子希望你有上进心，是想看到你做成事情赚到钱的结果，而不是态度坚决忙乎半天一事无成的过程。','你再这样 咱们友谊的小船 说 翻 就翻 换 大 船。','三十岁时。大部分人都卡在初级职位上。现有的工作升不上去。又无法承担转行的时间成本。更来不及再去读书。父母开始多病 自己收入有限。也没有存款 更大的痛苦。是看到身边没有背景但努力又聪明的人已经小有成就。有背景的人已经开始过上贵族生活了。','有些年轻人。一毕业就到某些大型国企和机关中工作。每天没什么事儿 就是吃饭喝酒。福利好得不得了 人生还没有奋斗过就开始养老。自己的理想被丢在一旁。用民脂民膏来享受特权。对于这样的年轻人。我只想问你们四个字：哪投简历？','我已经被生活虐得千疮百孔、体无完肤，不知还能否在见到明天的太阳。','有的人喜欢说人人平等，说这话的人你能把钱给我花花吗？','凡人甲正在被人揍。他心想："这个肌肉男这么壮，都是健身的结果；每天得拿出好几个小时来锻炼吧。正所谓要想人前显贵，必须人后受罪。他现在表面上过瘾了，其实背后吃的苦可能是这些的好几倍。"想完后，他脸上和身上，却依然那么疼。','天天念叨人生、社会、道德的人慧根往往不高。真正有悟性的人，已经把这些思想视为理所当然的，内化到自己的行动中去，在物质世界获得成功。','“有些人，真是坏的让人害怕。”“大概是因为，做坏事的代价，太低了吧。”这个世界上也没有上帝的存在。','很多朋友喜欢分享旅游经验，看着他们把钱花光出去走一趟。回来后生活没有任何改变，我就感到放心了。','成功不单需要努力，努力只是其中一部分，还需要时势，能力，人脉，更多。你努力不代表你就能成功，你的努力没有得到回报时，果然把自己感动得要哭。','他日若能活着荣回故土，便是福分；客死异乡，也算报应。','我就是不争气，我碍到你了？你凭什么对我指指点点？你他妈是谁？','不要一味的向前行，回头看看，失去的也不少呢。','年轻人不要总抱怨没钱，没钱算什么?以后没钱的日子还多着呢？。','爱情就是，如果没有更好的选择了~我才陪你到天荒地老。','都怪自己太失败了，都怪自己太无能了。但怪自己干嘛，自己本来就没本事。认了吧！','那些人人羡慕的精英，其实过得并不如你想象的那样好，但肯定比你是强得多。','是不是人在年轻时活得越没有自我，才越会在老时拼命想从孩子身上索取点什么。','质疑过许多人，矛盾的是自己。','我们极其自然的擦肩而过，像是本来就该如此','别人在大声骂，大声叫好的时候，你却在冷静而全面地了解事实，理性分析。这样固然是好，但也不是什么值得产生优越感的事情，或者成为高人一等奚落别人的理由。','在发现自己不太可能取得事业上的成功后，一部分人把自己的人生目标修改为“尽情地去体验，做想做的事情”，另一部分人改成了“努力，让自己不后悔。”','我不想努力了，甚至不想再对那个人说话了。我对他报以信任，他却不断伤害我。我想有一个值得我相信的人，也许只能是我自己。','装B不是一件羞耻的事情，只有那些成功者才能去实现自我。而平凡的你最好还是骗骗别人和自己，假装有钱，假装有文化或者假装有品味。','这个世界。正常人犯错会被指责。而精神病仅凭这唯一的理由。抹去所有的罪过。何来公平。最后的崩溃被信仰之人说成报应。我却认为那是解脱。','世界上没有那么多出类拔萃改变世界的人，你、我、他只是这个世界的稳定剂。','人生不是只有独木桥，而是你只有独木桥可走。','很多人都觉得自己的遭遇特别不幸，种种原因导致自己陷入了糟糕的境地。其实这些结果并没有特殊的原因，无非就是出身不好、教育不够、交友不慎、人品太差其中之一','出身不好的限制也不光是平台问题。出身不好。说明你父母混的也不怎么样。也许你基因里就写着“不行”两个字。','秋天是收获的季节。别人的收获是成功与快乐，你的收获是认识到并不是每个人都会成功与快乐。','很多人其实自己并没有正能量。和明天要好好看书一样，只是个美好的愿望。天天嚷嚷自己有，不过是虚张声势。','生活不止有眼前的苟且还有梦想和希望，勇敢的去相信自己试着去爱去改变。男主就是相信这些被乱枪打死的，堕落时他感到迷茫但改变确让他死亡。','我写着别人快乐的故事，自己心中却有着无限哀伤。我看着别人被温暖，自己却双手发冷。','每天显得无聊或寂寞了，去找朋友一起吃饭和逛，只不过是为了满足自己与人交往的需求，算不上是社交。','不要总和你好的人比 多和比你差的人比 这样你就会发现—搬砖的路上 一路有你','爱情开始时都差不多。但当两个人平淡到左手牵右手时，是加班挤地铁还房贷然后给他农村父母寄钱假期在屋里大眼瞪小眼，还是开小车朝九晚五住大房子周末采购装点自己的小家出国旅游，区别就非常大了。','年轻时总是缺乏对自己的正确认识。时而觉得自己能力超群，海阔天空，时而觉得一无是处，平凡无能。长大后，经历得多了，逐渐认清自己，才发现自己原来是一无是处，平凡无能。','别每天趴在桌子上胡思乱想，不是每个王子都会爱上灰姑娘','如果你是个普通人，请一定学会应对挫折；就好象作为一条鱼就一定要学好游泳一样','你自己也清楚无论你怎么努力，这辈子都注定默默无闻','未来不应该由过去决定，只有现在才有这个权力','如果你有过因为突然回想起以前做过的糗事而i尴尬不已，请铭记这句话：“你穷极一生所做的万千件事里，没有任何一件重要到能对这个世界有任何实质性的影响从而被世人铭记。”','坏女人爱男人的钱和权；好女人爱男人因有钱和有权儿产生的自信、宽大、精力充沛、乐观进取。还好，殊途同归。','哪有热爱与爱。从来都是一时兴起。','我们在困难时候最能依靠的人，也是得意时最容易忽视的人。比如备胎，父母，好心但是不优秀的朋友。','努力做一个更好再更好的我，然后他告诉我，我再好他都不要','我就是这么可恶。你不稀罕我所做出的努力，我也不稀罕你精心准备的东西。是不是很生气？我也是。','在激烈的社会竞争中，细腻敏感而且脆弱的年轻人逐渐在社会选择中被淘汰。在被淘汰前他们在SNS上振臂高呼：人生的幸福并不在于你挣了多少钱。','不属于我的我从来不强求，都是跪求。','我已经遍体鳞伤，所以我不在乎还有什么东西伤害我。我止不住流泪，是因为我在告诉自己，不要对世界绝望。','谅解还是惩罚都只是限制罢了，只是刻意的施加桎梏，要说原因…因为人是不会悔改的生物啊。不管多少次，不管愉悦还是痛苦，其本质都不会改变…','长相不行的人，为人也未必好。只不过由于长久寂寞的折磨，有时会发疯似地对人好。','什么？你问有没有那么一个人签名是为你而换，网名是为你而取，脾气是为你而改，性格是为你而变？你先想想自己有没有为一个人签名是为Ta而换，网名是为Ta而取，脾气是为Ta而改，性格是为Ta而变，OK？没有？那就对了。','有人说：你这是在浪费青春！我想说：青春不用来浪费 还能存起来吗？把握好机会，未来的选择，在于青春的你。','健康的身体，双全的父母，能养活自 己，几个能谈心的朋友，可以自由欣赏的 美景，这些幸福的东西我们都已经得到了 ——所以比别人强和获得社会的承认这样 的需求就被凸显出来了。','男人会拒绝一个女人通常是她不够漂亮!','你想念的人，也在想念着别人。','长得丑是病!不然整形医院为什么会是医院!','说不羡慕有钱人，却都爱谈论有钱人。','一边被教育勤劳一定可以致富，一边又被灌输有钱人都很坏','疯狂迷恋一个人，大多数是因为你并不了解TA，你只是迷恋那个你自以为是想象出来的形象。月亮美不?离远了看很美，登上月球后，才发现是坑坑洼洼的一片荒芜死寂之地，令人失望。','“不要让孩子输在起跑线上”是没有意义的，因为你就是起跑线本人，你的孩子早就输了。','努力不一定成功，但是不努力肯定失败，如果经过一番奋斗，你还是过着屌丝生活，那只能说明是你智商(男)/长相(女)问题了','自拍过的人都知道，一个角度拍出来不好看的因素，不一定是长相问题，光线，背景，pose，等等都是影响因素。只要你试着换几个角度再拍几张就会发现，你怎么拍也不好看。','小时候我们经常被教育说不要追求金钱，还嘲笑那些有钱人，说他们穷得只剩下钱。长大后才发现，我们自己穷得连钱也没有啊。','每次电话里听到父母再次提起那些童年伙伴的名字，就感觉在听一场赛事解说，某人结婚，某人生子，某人买车，某人副科。而作为父母的赛马，我还需要跑得更快些。','那些说喜欢吃货女友的男生其实是喜欢长得漂亮身材好的吃货吧，那些说喜欢女朋友素颜的汉子要么是没得选要么也是喜欢漂亮的妹子的素颜吧','总是觉得过去的自己很傻逼，其实再过一段时间，你就会发现，现在的你也很傻逼。','别听那些边抠脚边绞尽脑汁编心灵鸡汤的人告诉你应该怎么活着，说人生意义不在于赚了多少钱的不是巨有钱就是穷。只追求精神境界大多肉体不中看。','我发现很多人总是认不清现实，自命不凡或者觉得“自己没那么差”，事实上你就那么差。你之所以感觉道不公平，是因为你一直都认不清自己的身份觉得自己的社会地位与真正的自己不相符。如果真的认清自己，就会释然了，我本来就该这样。','很多父母对子女的关心就是想知道你活着，活的稳定，在所有人做“该做的事”的年龄做了相同的事情。至于你的梦想理想幻想，心情友情爱情之类的，那太矫情，忘了它吧。','每个人都以为自己与众不同，其实很容易分门别类。你没有什么不同的，你和你差不多环境成长的人基本都是一样的。','我们总会去想几年后的生活会不会就是自己想过的了，那时的自己是不是已经变得更加优秀了，就像几年前的自己憧憬过如今的生活，结果发现，大部分时候，除了环境换了些，大体上生活和我们还是那个老样子。','如果你对目前的工作不太满意，觉得事业发展到了一个瓶颈，那么就去进修一个更高的学历吧，这样的话，毕业以后你就会明白，之前的失败跟学历根本没什么关系。','再下贱的女人在内心深处也觉得自己是好姑娘。再出轨的男人也觉得自己是事出有因，不得已而为之。成绩优异的瞧不起成绩差的，觉得他们不学无术，前途暗淡。学习不好的人普遍觉得学习没什么没用，闯社会靠的是能力和情商。人们永远觉得自己的想法才是对的，凡是跟自己相对立的就是错的。','年轻人如果不知道自己想过什么样的生活，要成为什么样的人，那就先以世俗的看法来作为标准。一定不会错得太远。','当你厌恶你身边的人，你表达厌恶最好的方式不是和他们争吵，而是自己勤快点儿，加把劲离开他们。那样，他们就永远从你的生活中消失，和死了差不多。','你是一个好姑娘，一个人读书、看电影、旅行，直到那个彩虹般绚丽的人出现在你的生命里。和你一起读没读过的书、看没看过的电影、去没去过的目的地。然后你会惊奇地发现，他陪你做这些，只是为了能跟你上床而已。','比起教你如何振作，人们更喜欢教你如何放弃。','为什么谁一说自己的爸妈养育自己特别不容易，其他人就感动啊!不容易有可能是因为他爸妈不努力啊，自己都没混好呢就非生个孩子出来让他受罪。','一个没有很多钱的中国老人，60岁以后的日子就是不停滴重复，吃饭，睡觉，坐着，尽量少生病，慢慢等死。','每天夜里下定决心从明天开始改变，好好生活努力奋斗，第二天中午在被窝里翻个身：操，改天吧。','如果一个姑娘不喜欢你，那你怎么追她都没用。这世界上不存在“精诚所至金石为开”，也根本没有“备胎逆袭女神”这回事，而最傻逼的就是“死缠烂打”。因为对她来说，“你喜欢她"这件事本身，就是一件极讨厌的事。','生活中难免会遇到各种各样的烦心事压的我们喘不过气，孤独和无助将我们团团围住，难以解脱。其实很多事并没有我们想象的那么糟糕，往往是心态使然，只要好好的睡上一觉，早上醒来的时候会惊喜的发现，我们还是和以前一样又胖又穷又丑。','很多年纪大还一事无成的长辈喜欢在年轻人面前吹牛逼。对于这种人，我们要尊敬。因为我们不仅同样一事无成，而且还是晚辈。','那些所谓的各种梦想，用通俗的语言讲无非是”多挣点儿钱”','其实你觉得难吃的菜，没几个人爱吃。你觉得累的事，谁都不爱干。你总以为会有人在未来替你所有的缺陷买单，所以放任自己而去等待一个完美契合的另一半。你指望爱情就是两个五十分，恰恰巧巧能拼出张一百的卷子。可事实上两个不及格的人，甚至给不出一个七十分的答案。','任何的高尚背后都有不为人知自私的用意，这是本能，无可厚非。','今天的事不用放在今天做，万一明天死了呢，就可以不用做了','上帝为你关上一道防盗门，同时还给你上了一把钛合金锁。','有什么好悲伤的？人生不就是起起落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落的吗？','你只看到别人在表面上活得春风得意，却不知道人家在背后也过得也风生水起。','每当我找到成功的钥匙，就发现有人把锁芯给换了','注重细节，从小事做起，因为你根本做不了大事','你无法叫醒一个不回你消息的人，但是红包能','谁说我不会乐器？我退堂鼓打的可好了','秒回并不是喜欢你，只是碰巧在玩手机','如果觉得今天运气挺好，就去买一张彩票吧，至少开奖的时候日期能对的上。','生活不止眼前的苟且，还有前任发来的请帖。','小伙子们现在好好奋斗，将来给你心爱的女生多添点份子钱','有时候你会觉得自己就是个sb，别灰心，至少感觉是对的。','男女之间一定有纯友谊，每一个我认识的女生都说最多只能跟我当朋友','之前我听到过这么一句话，如人饮水冷暖自知，那么你喝热水烫嘴了还不叫唤几声吗？','其实好多时候我们都说过，曾经有好多机会没有把握，那么回到曾经，你有能力把握吗？没有马云就会有你吗？别多想了，洗洗睡吧。','丑小鸭能变天鹅不是因为它多努力，是因为它爸妈本来就是天鹅','童话里的灰姑娘虽然穷，但都很漂亮，你漂亮吗？','我一朋友，特别爱一个女孩，那女孩特别爱吃，所以他每天都想着法带她吃好吃的，大概交往一年，我那朋友都跟着胖了30斤，那一年他俩在一起特别甜蜜。然后女孩跟一个请她吃了一顿豆浆油条的富二代结婚了。','谁说爱笑的人运气都不会差？就是因为你爱笑别人才会觉得你好欺负。','这个世界本没有选择恐惧症，因为你穷了，所以你就病了，地摊跟专卖店就那么难选吗？硬座跟卧铺也很难选吗？吃盖饭还是吃必胜客难选吗？','从前书信很慢，车马很远，一生只能爱一个人，但可以纳很多妾。','记者问王思聪：钱是万能的吗？王思聪：不，钱都是万达的。','你任何为人称道的美丽，都有ps的痕迹。','多少摊煎饼的人，经过不懈的努力，终于摊了更多的煎饼。','比你优秀的人还在努力，那你还努力有什么用？','好人成佛要经历九九八十一难，而坏人只需放下屠刀。','一个残疾的富二代说，上帝给我关上了一扇门，那就请把窗户也关上吧，我要开空调了。','好多人谈读书无用论，其实不是读书没用，是你没用。','我不是不会搭配，只是没钱买齐一整套搭配。','黄鼠狼在养鸡场的悬崖边上立了一块牌，上面写道：不勇敢的飞下去，你怎么知道自己是一只搏击长空的雄鹰？从此黄鼠狼每天都能吃到跳下悬崖摔死的鸡。','有时候你不努力，就不会知道什么叫绝望。','如果你真的想要做好一件事，全世界都会为你挡路。','不要抱怨你在十四亿人中还找不到一个对的人，选择题就四个，你也没对过','只要坚持下去，你就发现幸运一定会发生在别人身上。','上帝为你关上一扇门，还会为你放出一条狗。','跟你谈理想的老板就是为了不给你长工资。','你，成功的话在简介上的形容词就是出身贫寒；失败的话就是在烂泥里打滚。富二代，成功的形容词是出身名门，你也绝对不会看到他失败的那一天','人们常说失败乃成功之母，其实那是骗人的，失败了之后能学到的只有失望和自卑。','作为屌丝的你天天说着人生平平淡淡才是真，得了吧，有成就的人才配说平凡可贵，你那也就是碌碌无为。','自来水不干净不能直接喝，苹果不干净不能直接吃，为什么自来水洗过苹果就能吃了？','沉默不一定是金子，有时候是孙子。','富二代看了鸡汤会越来越成功，而你看了为什么还是那么失败？因为你只有鸡汤而没有勺子。','屌丝这辈子经历最精心动魄的事就是手机还有百分之一的电','世界上没有什么是钱办不到的，如果有，那就是钱不够。','如果你还在坚持，说明你还不够绝望。','跌倒了就得爬起来，不然怎么可能有第二次跌倒摔断腿的机会？','懒惰的人舒服的潦倒一生，勤奋的人累出了病，勤奋换的钱都看了病，然后痛哭的潦倒一生。','如果比尔盖茨没有在IBM做董事的母亲，他会是现在的比尔盖茨吗？若是巴菲特没有美国国会议员的父亲，会有巴菲特的今天吗？','新闻说得重病父亲为了给女儿治病，自己放弃了治疗并捐献了身体器官，好像很感人。其实这篇新闻是要告诉你，如果没有钱，你连活着的资格都没有。','别跟我说什么团结就是力量，难道全世界的鸡蛋联合起来就能打破石头？','万事开头难，中间更难，结尾？不，你没有结尾。','撩你的人多并不代表你很优秀，只是他们觉得你很容易艹。','你现在的生活也许不是你想要的，但绝对是你自找的','别人赖床是因为有钱 想睡多晚就睡多晚 我赖床是因为没钱 能省一餐是一餐','生活上碰到SB怎么办？支持他所有的观点，争取把他培养成大SB。','你所做的事情，也许暂时看不到成果，但不要灰心或焦虑，再坚持一会儿你就会发现其实你在浪费时间。','没事试着联系一下你的初中同学，你就会发现，全班除了你单身，其他同学的孩子都上幼儿园了。','我是一个胖子，有一天被男神嘲笑了，之后我开始努力，每天不坐电梯，爬26楼锻炼身体，终于坚持1个月后，我因为每天迟到被公司开除了。','小时候看电视觉得有钱人都很跋扈，长大后才发现，有钱人（除了村里拆迁的暴发户）其实懂的很多，做事认真，为人宽厚，比穷人更好相处。','你全力做到的最好，可能还不如别人随便搞搞。','出生好的努力是为了成功，而你是为了活下去。','20岁就做了保安的不要担心，坚持下去，至少在下次当保安的时候，你有了工作经验呢。','陈安之说要成功，需要跟成功者在一起，对呀，我一直在给成功者打工呀，可是然后呢？','你以为你是一颗洋葱，你的经历会让人一层一层的剥开感动到哭？其实你就是个卷心菜，别人根本没有耐心剥下去，直接一刀切。','世上无难事只怕有钱人。物以类聚人以穷分。有钱人终成眷属','懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。','以前跪着挣钱很少，于是我也模仿那些优秀的人，试着站起来，结果饭碗就丢了。','“假如我又丑又穷又矮又笨，你还会爱我吗？”“别他妈假如了，你本来就又丑又穷又矮又笨。','除了有钱人，世上还有两种人：其一是省吃俭用买奢侈品装逼的，其二是省吃俭用也买不起奢侈品的。','盖茨休学创业成世界首富，但人家休的是哈佛大学，而你休的蓝翔技校。','现在父母从小就让孩子参加各种兴趣班，为了不让孩子输在起跑线上，殊不知，有些人，出生在终点线上。','幸福离我们并不遥远，它一直在我们那些长相姣好、家庭优越、脑瓜子好使并且积极乐观的朋友身上，和你毛的关系都没有','别人问你有谈恋爱吗？就说现在没有，就可以机智的盖过以前也没有的事实。','我相信只要努力工作就一定能取得成功，当年刚工作的我身无分文，凭借着踏实的工作和勤奋好学，我银行里不仅不在是零存款，而且还欠了银行一大笔钱。','有很多遗憾，我们叫它美丽的错误，如果你坚持去做了，那就只剩下错误了。','我追逐自己的梦想，别人笑我幼稚可笑，但我坚持了下来，最后发现，还真是幼稚可笑。','在公司有一个潜规则，那就是不管你如何有才华，如何专注的工作，如何的真诚待人，都不如一个每天什么都不干，却人美嘴甜的废物。','我敏锐的看清了人生的一些真相，但我的人生却并没有因此而改变。','这个社会是不是就欺负我这种心地善良，脸皮又薄的人？不，是社会只欺负弱者。','每天闹钟响时，午饭吃饱后，周末休息时，你的雄心壮志就变得微不足道。','苦难的生活并不会改变你，它只是让你越来越接近自己本来的样子。','只有看尽人世繁华并有能力随意享受繁华的人，才有资格说淡泊名利之类的话。','人生就是这样，有欢笑就有泪水，只是一部分人主要负责欢笑，另一部分人主要负责泪水。','这世上99%的事都可以用钱来解决。','知道为什么自古红颜多薄命吗？因为没有人在意丑的人活多久。','上帝是公平的，给了你一张丑的脸，还会给你一个没钱的家。','只有努力过了才知道…智商上的差距是不可逾越的。','出卖自己的灵魂和原则并不丢人，丢人的是没能卖一个好价钱。'].randomGet();
+    var Satin = ['坏女人爱男人的钱和权;好女人爱男人因有钱和有权儿产生的自信、宽大、精力充沛、乐观进取。还好，殊途同归。','有些年轻人，一毕业就到某些大型国企和机关中工作。每天没什么事儿，就是吃饭喝酒，福利好得不得了。人生还没有奋斗过就开始养老，自己的理想被丢在一旁，用民脂民膏来享受特权。对于这样的年轻人，我只想问你们四个字：哪投简历?','朋友，那不是懒，懒是可以克服的。你只是脑子比较弱(笨)，没办法长时间经受高强度的思考，去搞逻辑太复杂的东西和处理太多的信息量。','所有抱怨社会不公和制度的人翻译过来只有一句话：请给我金钱，女人和社会地位。','常听到别人说：我希望他/她有什么话当面说，不要在别后中伤人。一些人信以为真，而实际上，我的实践证明，当面说别人坏话，别人会非常愤怒，难堪。所以中伤别人一定要在背后。','人生的自由和无限可能性都是错觉。每个人都被社会压力，亲近的人和自己束缚的死死的，每天做着自己一定会去做的事情。','老板和领导很清楚哪些人能够得到晋升。对于那些不能的人，他们也会不断地鼓励和给她们希望。','以前每次看到网上的青年在微博校内大谈国事，我担心他们会干出些什么事情来。后来我发现他们还同时说着“明天一定要早起”，“这个假期要多看几本书”，“再也不能多吃了”，于是我放心了。','有些人，社交能力很差。只能和那些志同道合，彼此欣赏的人做朋友。而那些性格不随和，不喜欢自己，但是能给自己带来提升的人，他们没有能力搞定。','尽量不要和比自己生活质量高的人起冲突，不论你是假装若无其事、努力争辩或者破口大骂，在别人看来，都是自己很可笑并且已经输了。','很难想象让敏感多变的年轻人去做Leader，进行重大的决策。这些人睡一觉起来，被别人说了几句，或者吃了顿好饭，人生观世界观就可以发生翻天覆地的变化。','青年靠什么混日子?头等青年靠出身，二等青年靠关系，三等青年靠天资，四等青年靠努力，五等青年耍文艺，六等青年打游戏，穷游，看美剧。','如果外貌好能够获得他人的关注，又有钱能够支持各种娱乐活动，谁会愿意每天呆在家里打游戏，刷微博，看电视剧。','优秀幸福的人是喜欢撒娇的，告诉别人自己这儿过得不好，那儿过得也不好。有些人当真的了，觉得别人天天是在宝马车中哭泣。','每一个经常失恋的人，都会对自己说，没关系，只要有耐心，总有一个人会等着我。阎王爷说，没想到是我吧。','爱情开始时都差不多。但当两个人平淡到左手牵右手时，是加班挤地铁还房贷然后给他农村父母寄钱假期在屋里大眼瞪小眼，还是开小车朝九晚五住大房子周末采购装点自己的小家出国旅游，区别就非常大了。','爱情多半是不成功的，要么苦于终成眷属的厌倦，要么苦于未能终成眷属的悲哀。','只要你真的喜欢他，不管他送的iphone X多丑，他送的法拉利颜色多难看，他送的房子位置多喧闹，你都会一声不吭地收下，不会介意。喜欢一个人会喜欢他的一切，喜欢他开跑车的专注，喜欢他给你带钻石项链时的绅士，就连给你打钱时多打了几个0的粗心，你都觉得无比可爱。人生就是要这样平淡的爱情。','人一旦有了感情就窝囊得不行，你说要敬往事一杯酒，再爱也不回头。实际上就算你醉到黄昏独自愁，如果那人伸手，你还是会跟她走。','有些事不是努力就可以改变的，五十块的人民币设计得再好看，也没有一百块的招人喜欢。','有些人感概自己岁数已经不小了，还没成熟起来。其实你们已经成熟起来了，只是你们成熟起来就这样。','你打游戏时，别人在熬夜加班赶项目；你上班摸鱼时，别人在卖命拼酒陪客户；你晚上睡大觉时，别人在废寝忘食的工作；你跟朋友出去旅游时，别人在通宵做商业计划书。这就是别人二十多岁猝死在工作岗位上，而你皮肤好、气色好、精神好的原因。','岁月是把杀猪刀，是针对那些长得好看的说的，对于那些丑的，岁月拿他们一点办法也没有。','如果你是长得好看的话，在公车地铁上睡着了，头靠在旁边人的肩上，旁边的人会一直陪着你直到醒来。你要是长的丑的话，头一旦靠在旁边的人肩上，他会立即拍醒你，并温馨提醒你保管好财物。','爱笑的女生运气不会太差。说实话，如果一个女生运气一直不好，我不知道她怎么笑得出来。','你住的城市下雨了，很想问你有没有带伞。如果没有，我希望下的是刀子。','一个金钥匙插进一把普通的锁，怎么都打不开，然后来了一把铁钥匙，一下就打开了。铁钥匙对金钥匙说：“你知道你为什么打不开吗？因为我才是原配，无论你出生再高贵，你都得不到她的心。”金钥匙说：“你特么有病吧，我就没事捅着玩，我要她的心干嘛？”','一个人如果没有梦想，跟无忧无虑有什么区别呢？','如果你的脑海里出现了“放弃”两个字，一定要坚定地告诉自己，你都一无所有了，哪来东西让你放弃。','孩子，穷怎么了？穷也要挺起胸膛来，让别人看看，你不仅穷而且还矮。矮又如何？抬起你的头来，让他们知道，你不仅矮，而且还丑。丑不要紧，用你的言谈举止让其他人明白，你还是一个没有内涵的人。没有内涵也不要放弃，从现在开始学习。当你读了足够多的书的时候，你会发现自己还笨。','哪有什么选择恐惧症，还不是因为穷；哪有什么优柔寡断，还不是因为怂。','竹子用了4年的时间， 仅仅长了3cm， 在第5年开始，却以每天30cm的速度疯狂生长， 仅仅用了6周的时间就长到了15米。其实，在前面的4年， 竹子把根放土壤里延伸了数百平米。做人做事亦是如此，不必担心你此时此刻的付出得不到回报，因为这些付出都是为了扎根，厚积薄发。所以，不要浮躁，每天做好自己，努力扎根，努力成长，不要轻言放弃，总有一天，你会发现原来自己是个土豆。','别以为你有多独特，你的想法有多牛逼，其实大家都是这么想的。','你以为世界上有很多条道路通向成功，这是国为你看的不够远。如果你看的足够远，你会发现每条路都是通向悬崖。','生活从来不会对你客气地招手说，“你过来，我们讲讲道理”，生活只会一个大嘴巴子把你打倒在地上，然后说：“傻逼，学着点！”。','动不动就好吃到炸，美哭了，萌翻了，笑死了，惊呆了，整个人生就像一场漫长的乡巴佬进城。','迟早会有一个眼瞎的看上你，然后对你好得没话说。','以后要对女朋友好一点，毕竟她已经瞎了，不能再受伤害了。','真的很幸运，很感激，多年认识你们这些真挚的朋友，对我的态度一直不变，比如去年的春节礼物没有，今年的依然没有。','你必须非常努力，才能相信自己真的是无能无力。','那些你装作满不在乎的事，其实就是你无能为力的事。','以前认为穷不过三代的意思是，穷到三代以后就不会再穷了，长大后才知道穷到第三代已经穷的连媳妇都娶不到了，也就没有第四代了。','人生不如意的事十有八九，剩下的一二是特别不如意。','做什么事都要试试啊，不试怎么知道自己原来真的干啥啥不行呢？','人生最大的耻辱是什么，考试作弊了还不及格。','以前不离不弃是夫妻，现在不离不弃是手机，一机在手，天长地久，机不在手，魂都没有。','等你以后老了走不动了，我就每天用轮椅推你到广场上去，让你看着我和别的老头跳舞。','好好活下去，每天都会有新的打击。','每天夜里下定决心，从明天开始改变好好生活，努力奋斗，第二天中午在被窝里翻个身：操，改天吧。','所谓复习，就是把不会的东西再确认一遍，你确实不会。','下雨天我走在路上，一辆大奔从我身旁飞驰而过，溅了我一身泥，看着远去的大奔，我在心里暗暗发誓，等我有钱了，一定要买一件属于自己的雨衣。','以我的资历，以我的文凭，将来这个城市的大街都归我扫。','你把性格交给星座，把努力交给鸡汤，然后对自己说，听过许多道理，但依然过不好这一生。','年轻时要多吃苦，这样老了才会习惯。','好希望可以用钱买自己喜欢的人，这样我就可以彻底死心了。','人生就像愤怒的小鸟，你失败时，总有几只猪在笑。','小时候被奶奶叫龟孙子，被妈妈叫兔崽子长大了，被别人叫单身狗 ，这一辈子就是一部禽兽史。','很多人都有一种病，谁喜欢他，他就不喜欢谁，这就是单身汪这么多的原因！','生活就是一场逃亡，不能坐以待毙。','虽然失去了很多的东西，但不要遗憾，因为以后还会失去更多。','道德和原则固然重要，但却总是要给手里的利益让道。','所有的工作，做久了都会觉得无聊。差别在于，别人无聊还赚得比你多。','在你最需要帮助的时候，只有鬼才来帮你。不要因为工作中遇到什么问题就怀疑自己不适合这份工作，很可能是因为你干啥都不行。','以前我以为钱可以买到一切，后来才发现没有办法，因为我钱不够。','谁说你没有毅力的，单身这事你不就坚持了好几十年吗？','你不是一无所有，你还有病啊。','生活会让你苦上一阵子。等你适应了之后。再苦上一辈子。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','别总是把事情想的太糟糕，因为还有更糟糕的事情等着你。','哪有什么孤独，不就是没人爱吗?哪有什么寂寞，不就是闲的吗？哪有什么绝望，不就是穷的吗?','对今天解决不了的事情，也不必着急。因为明天还是解决不了','两情若是久长时，分手也是家常便饭事。','普通人一生的四个阶段：心比天高的无知快乐和希望--愧不如人后的奋斗与煎熬--毫无回报的愤懑与失望--坦然的平凡和颓废。你走到哪一步了？','没事，笑一笑，明天可能还不如今天呢','我一直坚信，社会真正需要的，不是那些虚伪做作的娱乐明星，不是那些尔虞我诈的政客，不是那些昧着良心挣钱的企业家。而这个社会最不需要的，就是我这种没本事还天天扯淡抱怨的傻逼。','哪怕抛掉出身的因素。我觉得你也未必干得过别人。','以前一直听老师说，成功是百分之九十九的汗水加百分之一的运气， 我也傻傻的一直相信着。经过了这么多年，我终于明白了， 原来这百分之一的几率是投胎，多么痛的领悟！','努力了这么多年，但凡是有点天赋的，也该有点成功迹象了。','不要把负能量看做是消极，仇恨。其实它的作用是激励，它其实是现实。','毛主席说过：做一天的好人并不难，难的是做一辈子有钱人。','可怕的是你平庸度过这一生，还要骗自己平淡是真。可怕的是你能力不够，还骗自己说是知足常乐。','机会如雨点般的向我打来，但我却一一躲过。','假如生活欺骗了你，不要悲伤，不要心急，多骗几次就好了。','上帝向人间撒满智慧，唯独你打了把伞。','公主病的成因就两个 不是长得丑就是穷。那又漂亮又有钱的呢?。别逗了 那不是病。那就是公主。','只要是正义的一方，无论手段多么卑鄙都可以被原谅。','失恋的时候很多年轻人以为整个世界抛弃了你。别傻了 世界根本就没需要过你。','多照照镜子，很多事情你就明白原因了。','如果没有见过光明，我本可以忍受黑暗。','真正努力过的人，就会明白天赋的重要。','天下熙熙皆为利来，天下攘攘皆为利往。','看到一对中学生情侣在街上手牵手，不禁回想起了中学时代的自己。当年的我，也是在街上看着一对中学生情侣在街上手牵手。','直到三十岁才知道，和不同的人说不同的话，表现出不一样的态度，是一种非常可贵的能力，而不是虚伪。','如果你很忙，除了你真的很重要以 外，更可能的原因是：你很弱，你没有什 么更好的事情去做，你生活太差不得不努 力来弥补，或者你装作很忙，让自己显得 很重要。','小孩问富翁：叔叔为什么你这么有钱呢？富翁说：我给你讲个故事吧。很小的时候，我注意到楼下的矿泉水卖一块钱，而三站地外的篮球场上，要卖一块五。我拿着一个大书包，从楼下买水带到球场去卖，卖一块二。一个月我挣了十块钱。小孩说：我好像明白了。富翁说：你明白个屁。后来我爸死了，把钱留给我了。','一些人的情商比较低。没法扮演好自己的社会角色。只能一直以最真实的自己面对世界。','基因是你给的，成长环境是你给的，社会阶层是你给的——还有脸埋怨自己孩子没出息。','这个世界没有错，谁让你长得不好看又没钱。','有一种病叫看过听过励志演讲励志电影励志书籍励志歌曲知乎励志答案仿佛就已经奋斗努力过了。','如果你每天干的活明显多于别人。但自己很高兴还感觉得到器重。那么与其说你很有才干。不如说你的领导很会管人。','我5岁的弟弟曾对我说：“当别人和你道歉时你要说‘我接受你的道歉’而不是‘没事’，因为你那样说会让他们觉得是真的没关系，然后他们还会对你做同样的事。”','社会精英阶层一边啃着心灵鸡腿和心灵鸡胸。一边为我们送上了心灵鸡汤。说人生的价值并不在于你挣了多少钱和外在是否美。','小时候知道，坚强的孩子没人疼，长大就才发现，没人疼的孩子更坚强。','我去找心理医生看抑郁症。他听完我的陈述，说道：如果你说的都真的话，为什么你不去自杀呢？你这不是抑郁症。抑郁症是看事情悲观，本来好，却认为不行。你是本来就过得不如别人。','又一天过去了。今天过得怎么样，梦想是不是更远了？','做个爱笑的人，其实更容易受伤。你总是笑，别人就觉得怎么伤你都没关系。','26岁的他辞掉工作，和朋友建了支乐队，到各民办大学演出，反响平淡。30岁钱花完了，父亲得病要很多钱。“唱完这场就放弃，青春就到这里了。”甘肃七里河大学演唱会前，他留下眼泪说。一位女学生递上纸条：我喜欢你的歌，要坚持梦想。他把纸条檬紧决定坚持梦想。34岁，他欠了十几万的债，父亲也病逝了。','你这么努力。忍受那么多寂寞和纠结。我们也没觉得你有多优秀。','只要你真的爱他，不管他送的iphonex多丑，他送的法拉利颜色多难看，他送的房子位置多喧闹，你都会一声不吭地收下，不会介意。喜欢一个人会喜欢他的一切，喜欢他开跑车的专注，喜欢他给你带钻石项链时的绅士，就连给你打钱时多打了几个0的粗心你都觉得无比可爱，人生就是要这样平淡的爱情～~~~我喜欢这样的。。。。。平淡。。。。。。','很多时候别人对你好，并不是因为别人喜欢你，而是因为他们喜欢对人好。','别减肥了。你丑不仅是因为胖。','大部分人之关心你飞的高不高，没人管你飞的累不累。你怕你的孩子输在起跑线上，可是你的孩子在娘胎里的时候就离起跑线很远了，因为你就是你孩子的起跑线。','是 生活 是生活强奸了所有人。','小时候以为有钱人都很跋息，心都是黑的。长大后才发现，很多有钱人都懂得很多，经历很丰富，做事儿很认真，为人很宽厚，理性，比穷人更好相处。','徐志摩对林徽因着迷时，他的妻子张幼仪千里迢迢来寻他来了。张幼仪告诉他，自己已有他的骨肉了。他居然说：去打掉吧。妻子说：听说有人因打胎死掉的。徐志摩这时说了一句经典的话：还有人坐火车死掉的呢，难道你看到人家就不坐火车了吗？','把放纵当潇洒，把颓废当自由，把逃避责任当追求自我价值。一句话这就是；懒，怕吃苦。哪来那么多好听的理由。','以前喜欢看光明的东西，现在喜欢看黑暗的东西，因为黑暗的事物更真实','多人发现自己在钱 权 女人的问题上比不过别人。于是开始试着在道德和人生境界上做文章。','我发现没有任何一个煤矿工人靠挖煤多又快当上了煤老板。','晚上和外甥女聊天，都快30 的人了还是单身，我问她想找啥样的？她放下茶杯，天真的说：“这种事情得看缘分，只想找个癌症晚期的土豪，和他粗茶淡饭，平平淡淡的过完这一生。”这世界纷繁复杂，像外甥女这样单纯的女孩，说实话，不多了。','若是想自杀了 就不要到处宣扬 告诉人家干吗？给你鼓掌喝彩夸扬称赞吗？大家都很忙的 没空管你。','没有人有义务必须透过你邋遢的外表去发现你优秀的内在。你必须干净、整洁、甚至是精致，这是你做人的基本与尊严，不分男女。越活越理解以貌取人的积极之处，为过去的自己羞愧，自勉互勉','所有抱怨社会不公和制度的人翻译过来只有一句话：请给我金钱，女人和社会地位！','多年过去，再回忆高考，其实本质上没有考到好与坏的说法，重要的是年轻人在一起，做份试题，然后决定去哪座城市做代购。','父母一直注重对我的品德教育。到了社会上。我按照父母教我的接人待物。却发现自己并不受人待见。','一个人久了，连喜欢上一个人都好难。','几年前BBS有女生写道：不知为什么，每次有丑男看我，我都感觉他很狠琐，特别反感；但帅哥看我就感觉很好。今日又看到有男生写：我发现我老是喜欢抢着给漂亮的女生帮忙，不自觉地就会问她需要什么；但每次丑女让我帮忙，我就感觉：你自己不会干吗？','你喝着心灵鸡汤，鸡谁吃了。','我有一些漂亮又受过教育的姐妹，本来有机会嫁给官富二代，但很多被那些长得不错、有名校高学历、刚毕业在知名外企工作、加班到很晚还健身的男生所吸引。觉得人家上进又有潜力。五六年后，她们悔得肠子都青了。','不要因为别人对你不好而不开心，没有人有义务必须对你好','你的冷言冷语，我要用什么样的态度去面对。我的明知故问，你就连敷衍都懒得施舍给我。','有些人，社交能力很差，只能和那些志同道合，彼此欣赏的人做朋友。而那些性格不随和，不喜欢自己，但是能给自己带来提升的人，他们没有能力搞定。','现实阻挡了我多少发财梦…','每次觉得自己混得还行的时候，就背起书包四处走走，让中介带着看几套房，就什么都清醒了。','被女人抛弃没什么，可悲的是几年后依然碌碌无为，证明她是对的','从前有一个一事无成的人，看正能量看多了之后有一天终于顿悟，明白正能量就是坑爹，跟传销有什么区别？还是负能量真实，能够帮助他认清现实。从此他开始看负能量，他更加深刻地认识了这个世界。然后，他还是一事无成。','年轻的时候开始工作，不要只看薪水，特别是头三年，不要老比钱，应该看看学到多少东西，收获才是真，要知道头三年的年轻人其实不能为公司创造多少价值，充其量是个跑腿的份，就不要老想着赚多少钱。当企业HR给你讲这句话的时候就要小心了，十有八九是黑心企业。','网上有两拨学生在激烈争论。一方认为应该利用业余时间去旅游，去流浪，去支教，尽情体验生活；另一波认为业余时间应当用来学英语，考雅思，做实习，为事业做储备。其实，他们的业余时间都去上网了。','吹牛逼是一些人的天性。当对于一些话题自己乏善可陈时。就会搬弄外援：我有个朋友 拥有比你们更牛逼的经历。讲完后洋洋得意 潜台词是作为其朋友。自己肯定也不会差到哪去。','我发现很多混得不好的人看得都很开。也不知道他们是因为看得透彻而不屑于世俗的成功，还是因为不成功而不得不看得开。','“老师您好，请问像我这样的，没有背景的北大毕业生应该如何定位自己？"“社会底层群众中受教育程度最高的一批人。”','难过的时候就笑吧，那样显得你更狼狈。','我有位家境一般的朋友，一直觉得如果自己有钱一定会更幸福。后来他妈做婴幼教育发财了。快十年后我见他，问：现在你倒是有钱了，你真的幸福吗？他回答：爽翻啦！我默默地走开了。','一些年轻人的痛苦在于：眼界打开了，本事却没跟上来。','人生的自由和无限可能性都是错觉。每个人都被社会压力，亲近的人和自己束缚的死死的，每天做着自己一定会去做的事情。','一个富豪可以坦然的骑自行车、穿布鞋、喝粥，因为他什么都买的起。穷人却要努力去赢得他们不需要的东西。我们的不满只是因为无法选择，如果能轻易杀死敌人，你可能就宽恕了他，不屑去做。如果随时可以逃离，你反而更安于现状。','有时候你会怀疑自己的能力，别担心，偶尔你是对的，你能力真的有问题。','你年轻时一事无成。时而自怨自艾颓废堕落。时而咬紧牙关拼命努力 经营关系。但你的生活一直没有改善 你一直很痛苦 直到三十岁。他听后兴奋地问：那三十岁之后呢？。有转机吗？。算命先生微微抬起头：三十岁后……你就开始习惯了。','成功者说什么不重要，他们不说的才是成功的真谛！','刚上大学的时候我纠结以后是该娶一个大家闺秀，在事业上提携自己；还是娶个美丽贤惠的小家碧玉，过舒心的小日子。现在发现当时自己真是想太多了。','人人生而平等，只是在生的那一刻而已。','社会学家研究表明：难看和没钱的男人，并不比高帅富更加靠谱。','有些人说，看负能量久了会变负面思考。我笑了，说得好像你在思考一样。','敏感是怎么回事？。同样一件事情。自己比别人更容易把它认为是挫折。脆弱是怎么回事？。同样的挫折 产生比别人更多的负面情绪。什么是抑郁？。同样的负面情绪从中恢复比别人要花更多的时间和精力。什么是弱者？。敏感 脆弱 抑郁的人。','很同情那些名校毕业生。这些人中的绝大多数，一生最大的成就就是高考的成功，一下超越了社会中的各种阶层，仿佛升到顶端。之后一辈子都在走下坡路。','爱迪生会告诉你：天才是由百分之一的灵感加百分之九十九的汗水。但是他绝对不会告诉你他名下的大部分发明都不是来自于自己创造而是手下员工的专利。他甚至为了获得利益而不惜不择手段攻击同行尼古拉·特拉斯。盖茨他会告诉你努力拼搏，但是他绝对不会告诉你他从小就有病态性占有人格，正是这种人格驱使着他追逐梦想，成为世界首富。','时间总是逼我成长，让我看清这世态炎凉。','什么样的人造就了什么样的国家，不要老觉得我们的祖国配不上你。','有些人没有好的出身，聪明的脑子和善于与人打交道的能力，妄图通过单纯的努力获得成功，就和只靠面粉就想包出好吃的饺子一样可笑。','自己不努力 别人想帮你 都找不到你的手在哪里','我本就是这么一个人。负面情绪总是像巨浪瞬间把我击垮，它逼迫我在自卑的万丈深渊边缘行走。我在黑暗中小心翼翼得前进，前面好似有光，我向前跑去，然后倒下，爬不起来。我在地上艰难地爬行，以为自己能够逃离，却发现在沼泽里越陷越深，没人看见，没人关心，无法呼救，也不愿求救。因为没人能救。','一些年轻人。通过高端消费来营造自己高端收入的形象。','这个世界已经腐朽，你我只能在此沉沦','自由从来不是什么理所当然的东西，而是一项需要极高成本的特权。','那些一直嚷着 【 老子做的是自己 管别人屁事 爱看不看】 的人 你真的觉得是别人的问题嘛 别天真了 要想活下去 处的好 就该改变自己 否则活该被孤立死','你身边没那么多朋友，只有两个原因，第一你太丑，第二你太穷。','到现在都记着你的名字纯属是为了让我记住过去那段日子。','不是什么都要人懂 很多事只能自己难过','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','过了那么多年，你还是喜欢一个人坐在楼顶俯视整个世界，即便这个世界不再有我。','嘴上一直说着 【钱根本不是重要的东西 没有钱我也可以活得很好】 的人 简直笑话 年轻的时候钱不多没关系 等到不惑之年 你的老婆 孩子 没有办法过上理想1点的生活 你不自责？ 这时候还能笑着说 钱不重要嘛 抡圆了胳膊扇自己两巴掌吧','没钱没事业的人。才有时间去提高自己的人生境界。','哭吧，干嘛忍着。你笑得再美 哭得再丑。他都不会多看你一眼。','有些人努力了一辈子。就是从社会的四流挤入了三流。','碰到一个认识的人，想一起聊聊天。她说自己去香港和希腊玩了，又买了苹果和化妆品。我不知道怎么回应，因为我很久没有出去玩和买东西了。我又说我最近思考了人为什么活着和出身的问题，她也沉默，因为很久没有思考这样的问题。此后再也无话。','平时很胆小 干什么都小心翼翼 学习却很好 因为她父亲对她说 如果考不上大学 就打断她的腿 我不知道这位父亲说这话的神态语气 但我觉得 这样很过分 你对一个妈妈去世的有抑郁症的小女孩说 考不上我就打断你的腿 她经常熬夜到半夜 一直在做题 一直在做题 有时候会和我语音聊天 说 这个世界太危险了 我1点都不喜欢 这时候我就忙安慰她 没关系考上大学你就可以离开你的故乡了 可以到我这来啊 到时候我们还能一起玩 一切本来都很好 直到有一天 我至今还记得 那个晚上没有月亮 也没有星星 天很黑 我下楼买吃的 突然接到了她的QQ电话 当时还犹豫呢 我流量不是很多啊 算了还是挂断吧 她又打了一遍 我又挂断了 我跟她说 诶抱歉啊 我流量没多少了 有啥打字说吧','别再抱怨缘分了！美女一直在那，你只不过是没有资格、没有能力遇见罢了','有些事情就是，你用99分的努力也赶不上别人一分的天才。','女孩子希望你有上进心，是想看到你做成事情赚到钱的结果，而不是态度坚决忙乎半天一事无成的过程。','你再这样 咱们友谊的小船 说 翻 就翻 换 大 船。','三十岁时。大部分人都卡在初级职位上。现有的工作升不上去。又无法承担转行的时间成本。更来不及再去读书。父母开始多病 自己收入有限。也没有存款 更大的痛苦。是看到身边没有背景但努力又聪明的人已经小有成就。有背景的人已经开始过上贵族生活了。','有些年轻人。一毕业就到某些大型国企和机关中工作。每天没什么事儿 就是吃饭喝酒。福利好得不得了 人生还没有奋斗过就开始养老。自己的理想被丢在一旁。用民脂民膏来享受特权。对于这样的年轻人。我只想问你们四个字：哪投简历？','我已经被生活虐得千疮百孔、体无完肤，不知还能否在见到明天的太阳。','有的人喜欢说人人平等，说这话的人你能把钱给我花花吗？','凡人甲正在被人揍。他心想："这个肌肉男这么壮，都是健身的结果；每天得拿出好几个小时来锻炼吧。正所谓要想人前显贵，必须人后受罪。他现在表面上过瘾了，其实背后吃的苦可能是这些的好几倍。"想完后，他脸上和身上，却依然那么疼。','天天念叨人生、社会、道德的人慧根往往不高。真正有悟性的人，已经把这些思想视为理所当然的，内化到自己的行动中去，在物质世界获得成功。','“有些人，真是坏的让人害怕。”“大概是因为，做坏事的代价，太低了吧。”这个世界上也没有上帝的存在。','很多朋友喜欢分享旅游经验，看着他们把钱花光出去走一趟。回来后生活没有任何改变，我就感到放心了。','成功不单需要努力，努力只是其中一部分，还需要时势，能力，人脉，更多。你努力不代表你就能成功，你的努力没有得到回报时，果然把自己感动得要哭。','他日若能活着荣回故土，便是福分；客死异乡，也算报应。','我就是不争气，我碍到你了？你凭什么对我指指点点？你他妈是谁？','不要一味的向前行，回头看看，失去的也不少呢。','年轻人不要总抱怨没钱，没钱算什么?以后没钱的日子还多着呢？。','爱情就是，如果没有更好的选择了~我才陪你到天荒地老。','都怪自己太失败了，都怪自己太无能了。但怪自己干嘛，自己本来就没本事。认了吧！','那些人人羡慕的精英，其实过得并不如你想象的那样好，但肯定比你是强得多。','是不是人在年轻时活得越没有自我，才越会在老时拼命想从孩子身上索取点什么。','质疑过许多人，矛盾的是自己。','我们极其自然的擦肩而过，像是本来就该如此','别人在大声骂，大声叫好的时候，你却在冷静而全面地了解事实，理性分析。这样固然是好，但也不是什么值得产生优越感的事情，或者成为高人一等奚落别人的理由。','在发现自己不太可能取得事业上的成功后，一部分人把自己的人生目标修改为“尽情地去体验，做想做的事情”，另一部分人改成了“努力，让自己不后悔。”','我不想努力了，甚至不想再对那个人说话了。我对他报以信任，他却不断伤害我。我想有一个值得我相信的人，也许只能是我自己。','装B不是一件羞耻的事情，只有那些成功者才能去实现自我。而平凡的你最好还是骗骗别人和自己，假装有钱，假装有文化或者假装有品味。','这个世界。正常人犯错会被指责。而精神病仅凭这唯一的理由。抹去所有的罪过。何来公平。最后的崩溃被信仰之人说成报应。我却认为那是解脱。','世界上没有那么多出类拔萃改变世界的人，你、我、他只是这个世界的稳定剂。','人生不是只有独木桥，而是你只有独木桥可走。','很多人都觉得自己的遭遇特别不幸，种种原因导致自己陷入了糟糕的境地。其实这些结果并没有特殊的原因，无非就是出身不好、教育不够、交友不慎、人品太差其中之一','出身不好的限制也不光是平台问题。出身不好。说明你父母混的也不怎么样。也许你基因里就写着“不行”两个字。','秋天是收获的季节。别人的收获是成功与快乐，你的收获是认识到并不是每个人都会成功与快乐。','很多人其实自己并没有正能量。和明天要好好看书一样，只是个美好的愿望。天天嚷嚷自己有，不过是虚张声势。','生活不止有眼前的苟且还有梦想和希望，勇敢的去相信自己试着去爱去改变。男主就是相信这些被乱枪打死的，堕落时他感到迷茫但改变确让他死亡。','我写着别人快乐的故事，自己心中却有着无限哀伤。我看着别人被温暖，自己却双手发冷。','每天显得无聊或寂寞了，去找朋友一起吃饭和逛，只不过是为了满足自己与人交往的需求，算不上是社交。','不要总和你好的人比 多和比你差的人比 这样你就会发现—搬砖的路上 一路有你','爱情开始时都差不多。但当两个人平淡到左手牵右手时，是加班挤地铁还房贷然后给他农村父母寄钱假期在屋里大眼瞪小眼，还是开小车朝九晚五住大房子周末采购装点自己的小家出国旅游，区别就非常大了。','年轻时总是缺乏对自己的正确认识。时而觉得自己能力超群，海阔天空，时而觉得一无是处，平凡无能。长大后，经历得多了，逐渐认清自己，才发现自己原来是一无是处，平凡无能。','别每天趴在桌子上胡思乱想，不是每个王子都会爱上灰姑娘','如果你是个普通人，请一定学会应对挫折；就好象作为一条鱼就一定要学好游泳一样','你自己也清楚无论你怎么努力，这辈子都注定默默无闻','未来不应该由过去决定，只有现在才有这个权力','如果你有过因为突然回想起以前做过的糗事而i尴尬不已，请铭记这句话：“你穷极一生所做的万千件事里，没有任何一件重要到能对这个世界有任何实质性的影响从而被世人铭记。”','坏女人爱男人的钱和权；好女人爱男人因有钱和有权儿产生的自信、宽大、精力充沛、乐观进取。还好，殊途同归。','哪有热爱与爱。从来都是一时兴起。','我们在困难时候最能依靠的人，也是得意时最容易忽视的人。比如备胎，父母，好心但是不优秀的朋友。','努力做一个更好再更好的我，然后他告诉我，我再好他都不要','我就是这么可恶。你不稀罕我所做出的努力，我也不稀罕你精心准备的东西。是不是很生气？我也是。','在激烈的社会竞争中，细腻敏感而且脆弱的年轻人逐渐在社会选择中被淘汰。在被淘汰前他们在SNS上振臂高呼：人生的幸福并不在于你挣了多少钱。','不属于我的我从来不强求，都是跪求。','我已经遍体鳞伤，所以我不在乎还有什么东西伤害我。我止不住流泪，是因为我在告诉自己，不要对世界绝望。','谅解还是惩罚都只是限制罢了，只是刻意的施加桎梏，要说原因…因为人是不会悔改的生物啊。不管多少次，不管愉悦还是痛苦，其本质都不会改变…','长相不行的人，为人也未必好。只不过由于长久寂寞的折磨，有时会发疯似地对人好。','什么？你问有没有那么一个人签名是为你而换，网名是为你而取，脾气是为你而改，性格是为你而变？你先想想自己有没有为一个人签名是为Ta而换，网名是为Ta而取，脾气是为Ta而改，性格是为Ta而变，OK？没有？那就对了。','有人说：你这是在浪费青春！我想说：青春不用来浪费 还能存起来吗？把握好机会，未来的选择，在于青春的你。','健康的身体，双全的父母，能养活自 己，几个能谈心的朋友，可以自由欣赏的 美景，这些幸福的东西我们都已经得到了 ——所以比别人强和获得社会的承认这样 的需求就被凸显出来了。','男人会拒绝一个女人通常是她不够漂亮!','你想念的人，也在想念着别人。','长得丑是病!不然整形医院为什么会是医院!','说不羡慕有钱人，却都爱谈论有钱人。','一边被教育勤劳一定可以致富，一边又被灌输有钱人都很坏','疯狂迷恋一个人，大多数是因为你并不了解TA，你只是迷恋那个你自以为是想象出来的形象。月亮美不?离远了看很美，登上月球后，才发现是坑坑洼洼的一片荒芜死寂之地，令人失望。','“不要让孩子输在起跑线上”是没有意义的，因为你就是起跑线本人，你的孩子早就输了。','努力不一定成功，但是不努力肯定失败，如果经过一番奋斗，你还是过着屌丝生活，那只能说明是你智商(男)/长相(女)问题了','自拍过的人都知道，一个角度拍出来不好看的因素，不一定是长相问题，光线，背景，pose，等等都是影响因素。只要你试着换几个角度再拍几张就会发现，你怎么拍也不好看。','小时候我们经常被教育说不要追求金钱，还嘲笑那些有钱人，说他们穷得只剩下钱。长大后才发现，我们自己穷得连钱也没有啊。','每次电话里听到父母再次提起那些童年伙伴的名字，就感觉在听一场赛事解说，某人结婚，某人生子，某人买车，某人副科。而作为父母的赛马，我还需要跑得更快些。','那些说喜欢吃货女友的男生其实是喜欢长得漂亮身材好的吃货吧，那些说喜欢女朋友素颜的汉子要么是没得选要么也是喜欢漂亮的妹子的素颜吧','总是觉得过去的自己很傻逼，其实再过一段时间，你就会发现，现在的你也很傻逼。','别听那些边抠脚边绞尽脑汁编心灵鸡汤的人告诉你应该怎么活着，说人生意义不在于赚了多少钱的不是巨有钱就是穷。只追求精神境界大多肉体不中看。','我发现很多人总是认不清现实，自命不凡或者觉得“自己没那么差”，事实上你就那么差。你之所以感觉道不公平，是因为你一直都认不清自己的身份觉得自己的社会地位与真正的自己不相符。如果真的认清自己，就会释然了，我本来就该这样。','很多父母对子女的关心就是想知道你活着，活的稳定，在所有人做“该做的事”的年龄做了相同的事情。至于你的梦想理想幻想，心情友情爱情之类的，那太矫情，忘了它吧。','每个人都以为自己与众不同，其实很容易分门别类。你没有什么不同的，你和你差不多环境成长的人基本都是一样的。','我们总会去想几年后的生活会不会就是自己想过的了，那时的自己是不是已经变得更加优秀了，就像几年前的自己憧憬过如今的生活，结果发现，大部分时候，除了环境换了些，大体上生活和我们还是那个老样子。','如果你对目前的工作不太满意，觉得事业发展到了一个瓶颈，那么就去进修一个更高的学历吧，这样的话，毕业以后你就会明白，之前的失败跟学历根本没什么关系。','再下贱的女人在内心深处也觉得自己是好姑娘。再出轨的男人也觉得自己是事出有因，不得已而为之。成绩优异的瞧不起成绩差的，觉得他们不学无术，前途暗淡。学习不好的人普遍觉得学习没什么没用，闯社会靠的是能力和情商。人们永远觉得自己的想法才是对的，凡是跟自己相对立的就是错的。','年轻人如果不知道自己想过什么样的生活，要成为什么样的人，那就先以世俗的看法来作为标准。一定不会错得太远。','当你厌恶你身边的人，你表达厌恶最好的方式不是和他们争吵，而是自己勤快点儿，加把劲离开他们。那样，他们就永远从你的生活中消失，和死了差不多。','你是一个好姑娘，一个人读书、看电影、旅行，直到那个彩虹般绚丽的人出现在你的生命里。和你一起读没读过的书、看没看过的电影、去没去过的目的地。然后你会惊奇地发现，他陪你做这些，只是为了能跟你上床而已。','比起教你如何振作，人们更喜欢教你如何放弃。','为什么谁一说自己的爸妈养育自己特别不容易，其他人就感动啊!不容易有可能是因为他爸妈不努力啊，自己都没混好呢就非生个孩子出来让他受罪。','一个没有很多钱的中国老人，60岁以后的日子就是不停滴重复，吃饭，睡觉，坐着，尽量少生病，慢慢等死。','每天夜里下定决心从明天开始改变，好好生活努力奋斗，第二天中午在被窝里翻个身：操，改天吧。','如果一个姑娘不喜欢你，那你怎么追她都没用。这世界上不存在“精诚所至金石为开”，也根本没有“备胎逆袭女神”这回事，而最傻逼的就是“死缠烂打”。因为对她来说，“你喜欢她"这件事本身，就是一件极讨厌的事。','生活中难免会遇到各种各样的烦心事压的我们喘不过气，孤独和无助将我们团团围住，难以解脱。其实很多事并没有我们想象的那么糟糕，往往是心态使然，只要好好的睡上一觉，早上醒来的时候会惊喜的发现，我们还是和以前一样又胖又穷又丑。','很多年纪大还一事无成的长辈喜欢在年轻人面前吹牛逼。对于这种人，我们要尊敬。因为我们不仅同样一事无成，而且还是晚辈。','那些所谓的各种梦想，用通俗的语言讲无非是”多挣点儿钱”','其实你觉得难吃的菜，没几个人爱吃。你觉得累的事，谁都不爱干。你总以为会有人在未来替你所有的缺陷买单，所以放任自己而去等待一个完美契合的另一半。你指望爱情就是两个五十分，恰恰巧巧能拼出张一百的卷子。可事实上两个不及格的人，甚至给不出一个七十分的答案。','任何的高尚背后都有不为人知自私的用意，这是本能，无可厚非。','今天的事不用放在今天做，万一明天死了呢，就可以不用做了','上帝为你关上一道防盗门，同时还给你上了一把钛合金锁。','有什么好悲伤的？人生不就是起起落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落落的吗？','你只看到别人在表面上活得春风得意，却不知道人家在背后也过得也风生水起。','每当我找到成功的钥匙，就发现有人把锁芯给换了','注重细节，从小事做起，因为你根本做不了大事','你无法叫醒一个不回你消息的人，但是红包能','谁说我不会乐器？我退堂鼓打的可好了','秒回并不是喜欢你，只是碰巧在玩手机','如果觉得今天运气挺好，就去买一张彩票吧，至少开奖的时候日期能对的上。','生活不止眼前的苟且，还有前任发来的请帖。','小伙子们现在好好奋斗，将来给你心爱的女生多添点份子钱','有时候你会觉得自己就是个sb，别灰心，至少感觉是对的。','男女之间一定有纯友谊，每一个我认识的女生都说最多只能跟我当朋友','之前我听到过这么一句话，如人饮水冷暖自知，那么你喝热水烫嘴了还不叫唤几声吗？','其实好多时候我们都说过，曾经有好多机会没有把握，那么回到曾经，你有能力把握吗？没有马云就会有你吗？别多想了，洗洗睡吧。','丑小鸭能变天鹅不是因为它多努力，是因为它爸妈本来就是天鹅','童话里的灰姑娘虽然穷，但都很漂亮，你漂亮吗？','我一朋友，特别爱一个女孩，那女孩特别爱吃，所以他每天都想着法带她吃好吃的，大概交往一年，我那朋友都跟着胖了30斤，那一年他俩在一起特别甜蜜。然后女孩跟一个请她吃了一顿豆浆油条的富二代结婚了。','谁说爱笑的人运气都不会差？就是因为你爱笑别人才会觉得你好欺负。','这个世界本没有选择恐惧症，因为你穷了，所以你就病了，地摊跟专卖店就那么难选吗？硬座跟卧铺也很难选吗？吃盖饭还是吃必胜客难选吗？','从前书信很慢，车马很远，一生只能爱一个人，但可以纳很多妾。','记者问王思聪：钱是万能的吗？王思聪：不，钱都是万达的。','你任何为人称道的美丽，都有ps的痕迹。','多少摊煎饼的人，经过不懈的努力，终于摊了更多的煎饼。','比你优秀的人还在努力，那你还努力有什么用？','好人成佛要经历九九八十一难，而坏人只需放下屠刀。','一个残疾的富二代说，上帝给我关上了一扇门，那就请把窗户也关上吧，我要开空调了。','好多人谈读书无用论，其实不是读书没用，是你没用。','我不是不会搭配，只是没钱买齐一整套搭配。','黄鼠狼在养鸡场的悬崖边上立了一块牌，上面写道：不勇敢的飞下去，你怎么知道自己是一只搏击长空的雄鹰？从此黄鼠狼每天都能吃到跳下悬崖摔死的鸡。','有时候你不努力，就不会知道什么叫绝望。','如果你真的想要做好一件事，全世界都会为你挡路。','不要抱怨你在十四亿人中还找不到一个对的人，选择题就四个，你也没对过','只要坚持下去，你就发现幸运一定会发生在别人身上。','上帝为你关上一扇门，还会为你放出一条狗。','跟你谈理想的老板就是为了不给你长工资。','你，成功的话在简介上的形容词就是出身贫寒；失败的话就是在烂泥里打滚。富二代，成功的形容词是出身名门，你也绝对不会看到他失败的那一天','人们常说失败乃成功之母，其实那是骗人的，失败了之后能学到的只有失望和自卑。','作为屌丝的你天天说着人生平平淡淡才是真，得了吧，有成就的人才配说平凡可贵，你那也就是碌碌无为。','自来水不干净不能直接喝，苹果不干净不能直接吃，为什么自来水洗过苹果就能吃了？','沉默不一定是金子，有时候是孙子。','富二代看了鸡汤会越来越成功，而你看了为什么还是那么失败？因为你只有鸡汤而没有勺子。','屌丝这辈子经历最精心动魄的事就是手机还有百分之一的电','世界上没有什么是钱办不到的，如果有，那就是钱不够。','如果你还在坚持，说明你还不够绝望。','跌倒了就得爬起来，不然怎么可能有第二次跌倒摔断腿的机会？','懒惰的人舒服的潦倒一生，勤奋的人累出了病，勤奋换的钱都看了病，然后痛哭的潦倒一生。','如果比尔盖茨没有在IBM做董事的母亲，他会是现在的比尔盖茨吗？若是巴菲特没有美国国会议员的父亲，会有巴菲特的今天吗？','新闻说得重病父亲为了给女儿治病，自己放弃了治疗并捐献了身体器官，好像很感人。其实这篇新闻是要告诉你，如果没有钱，你连活着的资格都没有。','别跟我说什么团结就是力量，难道全世界的鸡蛋联合起来就能打破石头？','万事开头难，中间更难，结尾？不，你没有结尾。','撩你的人多并不代表你很优秀，只是他们觉得你很容易艹。','你现在的生活也许不是你想要的，但绝对是你自找的','别人赖床是因为有钱 想睡多晚就睡多晚 我赖床是因为没钱 能省一餐是一餐','生活上碰到SB怎么办？支持他所有的观点，争取把他培养成大SB。','你所做的事情，也许暂时看不到成果，但不要灰心或焦虑，再坚持一会儿你就会发现其实你在浪费时间。','没事试着联系一下你的初中同学，你就会发现，全班除了你单身，其他同学的孩子都上幼儿园了。','我是一个胖子，有一天被男神嘲笑了，之后我开始努力，每天不坐电梯，爬26楼锻炼身体，终于坚持1个月后，我因为每天迟到被公司开除了。','小时候看电视觉得有钱人都很跋扈，长大后才发现，有钱人（除了村里拆迁的暴发户）其实懂的很多，做事认真，为人宽厚，比穷人更好相处。','你全力做到的最好，可能还不如别人随便搞搞。','出生好的努力是为了成功，而你是为了活下去。','20岁就做了保安的不要担心，坚持下去，至少在下次当保安的时候，你有了工作经验呢。','陈安之说要成功，需要跟成功者在一起，对呀，我一直在给成功者打工呀，可是然后呢？','你以为你是一颗洋葱，你的经历会让人一层一层的剥开感动到哭？其实你就是个卷心菜，别人根本没有耐心剥下去，直接一刀切。','世上无难事只怕有钱人。物以类聚人以穷分。有钱人终成眷属','懒是一个很好的托辞，说得好像勤快了就真能干出什么大事儿一样。','以前跪着挣钱很少，于是我也模仿那些优秀的人，试着站起来，结果饭碗就丢了。','“假如我又丑又穷又矮又笨，你还会爱我吗？”“别他妈假如了，你本来就又丑又穷又矮又笨。','除了有钱人，世上还有两种人：其一是省吃俭用买奢侈品装逼的，其二是省吃俭用也买不起奢侈品的。','盖茨休学创业成世界首富，但人家休的是哈佛大学，而你休的蓝翔技校。','现在父母从小就让孩子参加各种兴趣班，为了不让孩子输在起跑线上，殊不知，有些人，出生在终点线上。','幸福离我们并不遥远，它一直在我们那些长相姣好、家庭优越、脑瓜子好使并且积极乐观的朋友身上，和你毛的关系都没有','别人问你有谈恋爱吗？就说现在没有，就可以机智的盖过以前也没有的事实。','我相信只要努力工作就一定能取得成功，当年刚工作的我身无分文，凭借着踏实的工作和勤奋好学，我银行里不仅不在是零存款，而且还欠了银行一大笔钱。','有很多遗憾，我们叫它美丽的错误，如果你坚持去做了，那就只剩下错误了。','我追逐自己的梦想，别人笑我幼稚可笑，但我坚持了下来，最后发现，还真是幼稚可笑。','在公司有一个潜规则，那就是不管你如何有才华，如何专注的工作，如何的真诚待人，都不如一个每天什么都不干，却人美嘴甜的废物。','我敏锐的看清了人生的一些真相，但我的人生却并没有因此而改变。','这个社会是不是就欺负我这种心地善良，脸皮又薄的人？不，是社会只欺负弱者。','每天闹钟响时，午饭吃饱后，周末休息时，你的雄心壮志就变得微不足道。','苦难的生活并不会改变你，它只是让你越来越接近自己本来的样子。','只有看尽人世繁华并有能力随意享受繁华的人，才有资格说淡泊名利之类的话。','人生就是这样，有欢笑就有泪水，只是一部分人主要负责欢笑，另一部分人主要负责泪水。','这世上99%的事都可以用钱来解决。','知道为什么自古红颜多薄命吗？因为没有人在意丑的人活多久。','上帝是公平的，给了你一张丑的脸，还会给你一个没钱的家。','只有努力过了才知道…智商上的差距是不可逾越的。','出卖自己的灵魂和原则并不丢人，丢人的是没能卖一个好价钱。'].randomGet();
        player.chat(Satin,3);
        game.log(player,'：',Satin);
       }
@@ -22158,6 +22140,15 @@ lib.skill.qinggang_skill.animationColor='thunder';
                     name: 'Revision',
                     connect:true,
       character:{
+               Revision_jushou:['male','qun',3,['Revision_jianying','Revision_shibei'],['elegance']],
+               Revision_fazheng:['male','shu',3,['Revision_enyuan','Revision_xuanhuo'],['elegance']],
+               Revision_chengong:['male','qun',3,['Revision_mingce','Revision_zhichi'],['elegance']],
+               Revision_caozhi:['male','wei',3,['Revision_luoying','Revision_jiushi'],['elegance']],
+               Revision_bulianshi:['female','wu',3,['Revision_anxu','Revision_zhuiyi'],['elegance']],
+               Revision_zhugeke:['male','wu',3,['Revision_aocai','Revision_duwu'],['elegance']],
+               Revision_guotufengji:['male','qun',3,['Revision_jigong','Revision_shifei'],['elegance']],
+               Revision_liuchen:['male','shu',4,['Revision_zhanjue','Revision_qinwang'],['zhu','elegance']],
+               Revision_zhangrang:['male','qun',3,['Revision_taoluan'],['elegance']],
                new_jiaxu:['male','qun',3,['new_wansha','luanwu','new_weimu'],['elegance']],
                new_pangtong:['male','shu',3,['xinlianhuan','new_jicheng','new_niepan'],['elegance']],
                new_dongchana:['male','qun',4,['new_manqu','new_yibian'],['elegance']],
@@ -22184,7 +22175,7 @@ lib.skill.qinggang_skill.animationColor='thunder';
 		         new_taishici:['male','wu',4,['new_tianyi'],['elegance']],
              new_gongsunzan:['male','qun',4,['new_yicong','mubing'],['elegance']],
              new_zhurong:['female','shu',4,['juxiang','manbing'],['elegance']],
-             new_wutugu:['male','qun',5,['new_tengjia','new_hanyong'],['elegance']],
+             new_wutugu:['male','qun',20,['new_tengjia','Revision_ranshang','new_hanyong'],['elegance']],
              new_yuanshao:['male','qun',4,['new_gangbi','new_luanji','xueyi'],['zhu','elegance']],
             	new_xuhuang:['male','wei',4,['xinduanliangx'],['elegance']],
 		           new_lusu:['male','wu',3,['new_haoshi','dimeng'],['elegance']],
@@ -22349,6 +22340,1446 @@ lib.skill.qinggang_skill.animationColor='thunder';
             new_diaochan:"中国古代四大美女之一，有闭月羞花之貌。司徒王允之义女，由王允授意施行连环计，离间董卓、吕布，借布手除卓。后貂蝉成为吕布的妾。",             
        },
         skill:{
+        Revision_shibei:{
+				trigger:{player:'damageEnd'},
+				forced:true,
+				audio:'ext:风华绝代:2',
+				content:function(){
+					if(player.hasSkill('Revision_shibei_damaged')){
+						player.loseHp();
+						player.chooseToDiscard(2,true,'he');
+					}
+					else{
+						player.recover();
+						player.draw(2);
+					}
+				},
+				group:'Revision_shibei_mark',
+				subSkill:{
+					mark:{
+						trigger:{player:'damageAfter'},
+						silent:true,
+						content:function(){
+							player.addTempSkill('Revision_shibei_damaged');
+						}
+					},
+					damaged:{},
+					ai:{}
+				},
+				ai:{
+					maixie_defend:true,
+					threaten:0.9,
+					effect:{
+						target:function(card,player,target){
+							if(player.hasSkillTag('jueqing')) return;
+							if(target.hujia) return;
+							if(player._Revision_shibei_tmp) return;
+							if(target.hasSkill('Revision_shibei_ai')) return;
+							if(_status.event.getParent('useCard',true)||_status.event.getParent('_wuxie',true)) return;
+							if(get.tag(card,'damage')){
+								if(target.hasSkill('Revision_shibei_damaged')){
+									return [1,-4];
+								}
+								else{
+									if(get.attitude(player,target)>0&&target.hp>1){
+										return [1,2];
+									}
+									if(get.attitude(player,target)<0&&!player.hasSkillTag('damageBonus')){
+										if(card.name=='sha') return;
+										var sha=false;
+										player._Revision_shibei_tmp=true;
+										var num=player.countCards('h',function(card){
+											if(card.name=='sha'){
+												if(sha){
+													return false;
+												}
+												else{
+													sha=true;
+												}
+											}
+											return get.tag(card,'damage')&&player.canUse(card,target)&&get.effect(target,card,player,player)>0;
+										});
+										delete player._Revision_shibei_tmp;
+										if(player.hasSkillTag('damage')){
+											num++;
+										}
+										if(num<2){
+											var enemies=player.getEnemies();
+											if(enemies.length==1&&enemies[0]==target&&player.needsToDiscard()){
+												return;
+											}
+											return 0;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			Revision_shibei2:{},
+			Revision_jianying:{
+				audio:'ext:风华绝代:2',
+				trigger:{player:'useCard'},
+				frequent:true,
+				filter:function(event,player){
+					if(!event.cards||event.cards.length!=1) return false;
+					if(_status.currentPhase!=player) return false;
+					if(!player.storage.Revision_jianying) return false;
+					return player.storage.Revision_jianying.name==event.cards[0].name||get.suit(player.storage.Revision_jianying)==get.suit(event.cards[0])||
+						player.storage.Revision_jianying.number==event.cards[0].number;
+				},
+				content:function(){
+					player.draw();
+				},
+				intro:{
+					content:'card'
+				},
+				group:['Revision_jianying2','Revision_jianying3']
+			},
+			Revision_jianying3:{
+				trigger:{player:'useCard'},
+				priority:-1,
+				silent:true,
+				filter:function(event,player){
+					if(!event.cards||event.cards.length!=1) return false;
+					if(_status.currentPhase!=player) return false;
+					return true;
+				},
+				content:function(){
+					player.storage.Revision_jianying=trigger.cards[0];
+				}
+			},
+			Revision_jianying2:{
+				trigger:{player:'phaseAfter'},
+				silent:true,
+				content:function(){
+					player.storage.Revision_jianying=null;
+				}
+			},
+        Revision_xuanhuo:{
+				audio:'ext:风华绝代:2',
+				trigger:{player:'phaseDrawBegin'},
+				direct:true,
+				content:function(){
+					"step 0"
+					player.chooseTarget(get.prompt('Revision_xuanhuo'),function(card,player,target){
+						return player!=target;
+					}).set('ai',function(target){
+						var att=get.attitude(_status.event.player,target);
+						if(att>0){
+							if(target.countCards('h')<target.hp) att+=2;
+							return att-target.countCards('h')/3;
+						}
+						else{
+							return -1;
+						}
+					});
+					"step 1"
+					if(result.bool){
+						trigger.num--;
+						player.logSkill('Revision_xuanhuo',result.targets);
+						event.target=result.targets[0];
+						event.target.draw(2);
+						player.chooseTarget('选择出杀的目标',true,function(card,player,target){
+							return _status.event.target.canUse('sha',target)&&player!=target;
+						}).set('ai',function(target){
+							return get.effect(target,{name:'sha'},_status.event.target,_status.event.player);
+						}).set('target',event.target);
+					}
+					else{
+						event.finish();
+					}
+					"step 2"
+					if(result.bool&&result.targets.length){
+						game.log(player,'指定的出杀目标为',result.targets);
+						event.target.line(result.targets);
+						event.target.chooseToUse('对'+get.translation(result.targets)+'使用一张杀，或令'+get.translation(player)+'获得你的两张牌',{name:'sha'},result.targets[0],-1);
+					}
+					else{
+						event.bool=true;
+					}
+					"step 3"
+					if(event.bool||result.bool==false){
+						player.gainPlayerCard('he',event.target,Math.min(2,event.target.countCards('he')),true);
+					}
+				},
+				ai:{
+				 threaten:1.5,
+					expose:0.2
+				}
+			},
+			     Revision_enyuan:{
+				audio:'ext:风华绝代:true',
+				trigger:{player:'damageEnd'},
+				check:function(event,player){
+					var att=get.attitude(player,event.source);
+					var num=event.source.countCards('h');
+					if(att<=0) return true;
+					if(num>2) return true;
+					if(num) return att<4;
+					return false;
+				},
+				filter:function(event,player){
+					return event.source&&event.source!=player&&event.num>0&&event.source.isAlive();
+				},
+				content:function(){
+					"step 0"
+					event.num=trigger.num;
+					"step 1"
+					trigger.source.chooseCard('交给'+get.translation(player)+'一张手牌或流失1点体力').set('ai',function(card){
+						if(get.attitude(_status.event.player,_status.event.getParent().player)>0){
+							return 11-get.value(card);
+						}
+						else{
+							return 7-get.value(card);
+						}
+					});
+					"step 2"
+					if(result.bool){
+						player.gain(result.cards[0],trigger.source);
+						trigger.source.$give(1,player);
+					}
+					else{
+						trigger.source.loseHp();
+					}
+					if(event.num>1){
+					 player.logSkill('Revision_enyuan',trigger.source)
+						event.num--;
+						event.goto(1);
+					}
+				},
+				ai:{
+					maixie_defend:true,
+					effect:{
+						target:function(card,player,target){
+							if(player.hasSkillTag('jueqing',false,target)) return [1,-1.5];
+							if(!target.hasFriend()) return;
+							if(get.tag(card,'damage')) return [1,0,0,-0.7];
+						}
+					}
+				},
+				group:'Revision_enyuan2'
+			},
+			Revision_enyuan2:{
+			 audio:'ext:风华绝代:true',
+				trigger:{player:['recoverAfter','gainAfter']},
+				filter:function(event,player){
+					return event.source&&event.source.isAlive()&&event.source!=player&&(event.name=='recover'||event.name=='gain'&&event.cards.length>=2);
+				},
+				logTarget:'source',
+				check:function(event,player){
+					return get.attitude(player,event.source)>0;
+				},
+				content:function(){
+				 if(trigger.name=='recover'){
+					trigger.source.draw(trigger.num);
+					}else{
+					trigger.source.draw(Math.floor(trigger.cards.length/2));
+					}
+				}
+			},
+        Revision_mingce:{
+				enable:'phaseUse',
+				usable:1,
+				audio:'ext:风华绝代:2',
+				position:'he',
+				filterCard:function(card){
+					return card.name=='sha'||get.type(card)=='equip';
+				},
+				filter:function(event,player){
+					return player.countCards('h','sha')>0||player.countCards('he',{type:'equip'})>0;
+				},
+				check:function(card){return 8-get.value(card)},
+				selectTarget:2,
+				multitarget:true,
+				discard:false,
+				targetprompt:['获得牌','被杀目标'],
+				prepare:'give',
+				filterTarget:function(card,player,target){
+					if(ui.selected.targets.length==0){
+						return player!=target;
+					}
+					else{
+						return lib.filter.filterTarget({name:'sha'},ui.selected.targets[0],target);
+					}
+				},
+				content:function(){
+					"step 0"
+					targets[0].gain(cards,player);
+					"step 1"
+					targets[0].chooseControl('draw_card','出杀',function(){
+						var player=_status.event.player;
+						var target=_status.event.target;
+						if(get.effect(_status.event.target,{name:'sha'},player,player)>0){
+							return 1;
+						}
+						return 0;
+					}).set('target',targets[1]).set('prompt','对'+get.translation(targets[1])+'使用一张杀，或摸一张牌');
+					"step 2"
+					if(result.control=='draw_card'){
+						targets[0].draw();
+					}
+					else{
+					 player.draw();
+						targets[0].useCard({name:'sha'},targets[1]);
+					}
+				},
+				ai:{
+				 threaten:1.7,
+					result:{
+						player:function(player){
+							var players=game.filterPlayer();
+							for(var i=0;i<players.length;i++){
+								if(players[i]!=player&&get.attitude(player,players[i])>1&&get.attitude(players[i],player)>1){
+									return 1;
+								}
+							}
+							return 0;
+						},
+						target:function(player,target){
+							if(ui.selected.targets.length){
+								return -0.1;
+							}
+							return 1;
+						}
+					},
+					order:8.5,
+					expose:0.2
+				}
+			},
+			     Revision_zhichi:{
+				audio:'ext:风华绝代:2',
+				trigger:{player:'damageEnd'},
+				forced:true,
+				filter:function(event,player){
+					return _status.currentPhase!=player;
+				},
+				content:function(){
+					player.addTempSkill('Revision_zhichi2',{player:['phaseBefore']});
+				}
+			},
+			Revision_zhichi2:{
+			 audio:'ext:风华绝代:2',
+				trigger:{target:'useCardToBefore'},
+				forced:true,
+				priority:15,
+				filter:function(event,player){
+					return get.type(event.card)=='trick'||event.card.name=='sha';
+				},
+				content:function(){
+					game.log(player,'发动了智迟，',trigger.card,'对',trigger.target,'失效')
+					trigger.cancel();
+					player.draw();
+				},
+				mark:true,
+				intro:{
+					content:'【杀】和非延时类锦囊牌对你无效（触发此效果时，你摸一张牌）'
+				},
+				ai:{
+					effect:{
+						target:function(card,player,target,current){
+							if(get.type(card)=='trick'||card.name=='sha') return [0,1];
+						}
+					}
+				}
+			},
+        Revision_luoying:{
+				unique:true,
+				gainable:true,
+				audio:'ext:风华绝代:2',
+				group:['Revision_luoying1','Revision_luoying2'],
+			},
+			Revision_luoying1:{
+				audio:'ext:风华绝代:2',
+				trigger:{global:'discardAfter'},
+				filter:function(event,player){
+					if(event.player==player) return false;
+					for(var i=0;i<event.cards.length;i++){
+						if(get.suit(event.cards[i])=='club'&&get.position(event.cards[i])=='d'){
+							return true;
+						}
+					}
+					return false;
+				},
+				frequent:'check',
+				check:function(event,player){
+					for(var i=0;i<event.cards.length;i++){
+						if(get.suit(event.cards[i])=='club'&&get.position(event.cards[i])=='d'){
+							if(event.cards[i].name=='du') return false;
+						}
+					}
+					return true;
+				},
+				content:function(){
+					"step 0"
+					if(trigger.delay==false) game.delay();
+					"step 1"
+					var cards=[];
+					for(var i=0;i<trigger.cards.length;i++){
+						if(get.suit(trigger.cards[i])=='club'&&get.position(trigger.cards[i])=='d'){
+							cards.push(trigger.cards[i]);
+						}
+					}
+					if(cards.length){
+						player.gain(cards,'log');
+						player.$gain2(cards);
+					}
+				},
+			},
+			Revision_luoying2:{
+				audio:'ext:风华绝代:2',
+				trigger:{global:'judgeAfter'},
+				frequent:'check',
+				check:function(event,player){
+					return event.result.card.name!='du';
+				},
+				filter:function(event,player){
+					if(event.player==player) return false;
+					if(event.result.card.parentNode.id!='discardPile') return false;
+					return (get.suit(event.result.card)=='club');
+				},
+				content:function(){
+					player.gain(trigger.result.card,'log');
+					player.$gain2(trigger.result.card);
+				}
+			},
+			Revision_jiushi:{
+			 audio:'ext:风华绝代:2',
+				group:['Revision_jiushi1','Revision_jiushi2','Revision_jiushi3','Revision_jiushi4'],
+			},
+			Revision_jiushi1:{
+				audio:'ext:风华绝代:2',
+				enable:'chooseToUse',
+				filter:function(event,player){
+					if(player.classList.contains('turnedover')) return false;
+					if(event.parent.name=='phaseUse'){
+						return lib.filter.filterCard({name:'jiu'},player,event);
+					}
+					if(event.type!='dying') return false;
+					if(player!=event.dying) return false;
+					return true;
+				},
+				content:function(){
+					if(_status.event.getParent(2).type=='dying'){
+						event.dying=player;
+					}
+					player.turnOver();
+					player.useCard({name:'jiu'},player);
+				},
+				ai:{
+					save:true,
+					threaten:1.6,
+					skillTagFilter:function(player){
+						return player.hp<=0&&!player.isTurnedOver();
+					},
+					order:5,
+					result:{
+						player:function(player){
+							if(_status.event.parent.name=='phaseUse'){
+								if(player.countCards('h','jiu')>0) return 0;
+								if(player.getEquip('zhuge')&&player.countCards('h','sha')>1) return 0;
+								if(!player.countCards('h','sha')) return 0;
+								var targets=[];
+								var target;
+								var players=game.filterPlayer();
+								for(var i=0;i<players.length;i++){
+									if(get.attitude(player,players[i])<0){
+										if(player.canUse('sha',players[i],true,true)){
+											targets.push(players[i]);
+										}
+									}
+								}
+								if(targets.length){
+									target=targets[0];
+								}
+								else{
+									return 0;
+								}
+								var num=get.effect(target,{name:'sha'},player,player);
+								for(var i=1;i<targets.length;i++){
+									var num2=get.effect(targets[i],{name:'sha'},player,player);
+									if(num2>num){
+										target=targets[i];
+										num=num2;
+									}
+								}
+								if(num<=0) return 0;
+								var e2=target.getEquip(2);
+								if(e2){
+									if(e2.name=='tengjia'){
+										if(!player.countCards('h',{name:'sha',nature:'fire'})&&!player.getEquip('zhuque')) return 0;
+									}
+									if(e2.name=='renwang'){
+										if(!player.countCards('h',{name:'sha',color:'red'})) return 0;
+									}
+									if(e2.name=='baiyin') return 0;
+								}
+								if(player.getEquip('guanshi')&&player.countCards('he')>2) return 1;
+								return target.countCards('h')>3?0:1;
+							}
+							if(player==_status.event.dying||player.isTurnedOver()) return 3;
+						}
+					},
+					effect:{
+						target:function(card,player,target){
+						 if(card.name=='jiu'&&target.countCards('h')>target.hp) return [0,1];
+							if(card.name=='guiyoujie') return [0,0.5];
+							if(target.isTurnedOver()){
+								if(get.tag(card,'damage')){
+									if(target.hp==1) return;
+									return [1,target.countCards('h')/2];
+								}
+							}
+						}
+					}
+				},
+			},
+			Revision_jiushi2:{
+				trigger:{player:'damageBegin'},
+				silent:true,
+				filter:function(event,player){
+					return player.classList.contains('turnedover');
+				},
+				content:function(){
+					player.storage.Revision_jiushi=true;
+				}
+			},
+			Revision_jiushi3:{
+				audio:'ext:风华绝代:2',
+				trigger:{player:['loseHpAfter','damageAfter']},
+				check:function(event,player){
+					return player.isTurnedOver();
+				},
+				filter:function(event,player){
+					if(player.storage.Revision_jiushi){
+						return true;
+					}
+					return false;
+				},
+				content:function(){
+					player.storage.Revision_jiushi=false;
+					player.turnOver();
+					player.discard(player.get('j'));
+					player.link(false);
+				//	if(player.hasSkill('fengyin')){
+		//			player.removeSkill('fengyin');
+		//			}
+				}
+			},
+			     Revision_jiushi4:{
+				popup:false,
+				forced:true,
+				trigger:{player:'useCardAfter'},
+				filter:function(event,player){
+					return event.card.name=='jiu';
+				},
+				content:function(){
+				   player.draw();
+				    }
+				   },
+        Revision_zhuiyi:{
+    			audio:'ext:风华绝代:2',
+    			trigger:{player:'dieBegin'},
+    			direct:true,
+    			content:function(){
+    				"step 0"
+    				player.chooseTarget(get.prompt('Revision_zhuiyi'),function(card,player,target){
+    					return player!=target&&_status.event.source!=target;
+    				}).set('ai',function(target){
+    					var num=get.attitude(_status.event.player,target);
+    					if(num>0){
+    						if(target.hp==1){
+    							num+=2;
+    						}
+    						if(target.hp<target.maxHp){
+    							num+=2;
+    						}
+    					}
+    					return num;
+    				}).set('source',trigger.source);
+    				"step 1"
+    				if(result.bool){
+    					var target=result.targets[0];
+    					player.logSkill('Revision_zhuiyi',target);    					
+    					target.draw(3);
+    					target.recover();
+         target.addSkill('Revision_zhuiyi');
+    				}
+    			},
+    			ai:{
+    				expose:0.5,
+    			}
+    		},
+    		Revision_anxu:{
+    			enable:'phaseUse',
+    			usable:1,
+    			multitarget:true,
+    			audio:'ext:风华绝代:2',
+    			filterTarget:function(card,player,target){
+    				if(player==target) return false;
+    				var num=target.countCards('he');
+    				if(ui.selected.targets.length){
+    					return num<ui.selected.targets[0].countCards('he');
+    				}
+    				var players=game.filterPlayer();
+    				for(var i=0;i<players.length;i++){
+    					if(num>players[i].countCards('he')) return true;
+    				}
+    				return false;
+    			},
+    			selectTarget:2,
+    			content:function(){
+    				'step 0'
+    				var gainner,giver;
+    		 	if(targets[0].countCards('he')<targets[1].countCards('he')){
+    					gainner=targets[0];
+    					giver=targets[1];
+    				}
+    				else{
+    					gainner=targets[1];
+    					giver=targets[0];
+    				}
+    				event.gainner=gainner;
+    				event.giver=giver;
+    				'step 1'
+    				var card=event.giver.get('he').randomGet();
+    				event.gainner.gain(card);
+    				event.giver.$give(1,event.gainner); 
+    				event.gainner.showCards(card);
+    				if(get.suit(card)!='spade'){
+    				player.draw();
+    				}
+    				'step 2'
+    				if(event.gainner.countCards('he')==event.giver.countCards('he')){
+    					player.chooseDrawRecover(true);
+    				}
+    			},
+    			ai:{
+    				order:10.5,
+    				threaten:2.2,
+    				result:{
+    					target:function(player,target){
+    						var num=target.countCards('he');
+    						var att=get.attitude(player,target);
+    						if(ui.selected.targets.length==0){
+    							if(att>0) return -1;
+    							var players=game.filterPlayer();
+    							for(var i=0;i<players.length;i++){
+    								var num2=players[i].countCards('he');
+    								var att2=get.attitude(player,players[i]);
+    								if(att2>=0&&num2<num) return -1;
+    							}
+    							return 0;
+    						}
+    						else{
+    							return 1;
+    						}
+    					},
+    					player:0.1
+    				}
+    			}
+    		},
+        Revision_duwu:{
+				audio:'ext:风华绝代:2',
+				enable:'phaseUse',
+				filter:function(event,player){
+					return player.hasSkill('Revision_duwu2')==false;
+				},
+				filterCard:function(){
+					if(ui.selected.targets.length) return false;
+					return true;
+				},
+				position:'he',
+				selectCard:[1,Infinity],
+				complexSelect:true,
+				complexCard:true,
+				filterTarget:function(card,player,target){
+					return target!=player&&get.distance(player,target,'attack')<=1&&ui.selected.cards.length==target.hp;
+				},
+				check:function(card){
+					switch(ui.selected.cards.length){
+						case 0:return 20-get.value(card);
+						case 1:return 15-get.value(card);
+						case 2:return 8-get.value(card);
+						case 3:return 5-get.value(card);
+						case 4:return 3-get.value(card);
+						case 5:return 3-get.value(card);
+						default:return 0;
+					}
+				},
+				content:function(){
+					"step 0"
+					player.addSkill('Revision_duwu3');
+					target.damage();
+					"step 1"
+					if(!player.hasSkill('Revision_duwu3')){
+						player.addSkill('Revision_duwu2');
+						player.loseHp();
+						player.draw(2);
+					}
+					else{
+						player.removeSkill('Revision_duwu3');
+					}
+				},
+				ai:{
+					damage:true,
+					order:2,
+					result:{
+						target:function(player,target){
+							return get.damageEffect(target,player);
+						}
+					},
+					threaten:1.7,
+					expose:0.3
+				}
+			},
+			Revision_duwu2:{
+				trigger:{player:'phaseBegin'},
+				forced:true,
+				popup:false,
+				audio:false,
+				content:function(){
+					player.removeSkill('Revision_duwu2');
+				}
+			},
+			Revision_duwu3:{
+				trigger:{global:'dying'},
+				priority:15,
+				silent:true,
+				filter:function(event,player){
+					return event.reason&&event.reason.getParent().name=='Revision_duwu';
+				},
+				content:function(){
+					player.removeSkill('Revision_duwu3');
+				}
+			},
+			     Revision_aocai:{
+				audio:'ext:风华绝代:2',trigger:{player:'chooseToRespondBegin'},
+				frequent:true,
+				filter:function(event,player){
+					if(event.responded) return false;
+					return true;
+				},
+				content:function(){
+					"step 0"
+					var cards=[];
+					if(ui.cardPile.childNodes.length<2){
+						var discardcards=get.cards(2);
+						for(var i=0;i<discardcards.length;i++){
+							discardcards[i].discard();
+						}
+					}
+					for(var i=0;i<2;i++){
+						cards.push(ui.cardPile.childNodes[i]);
+					}
+					player.chooseCardButton('傲才：选择一张卡牌打出',cards).set('filterButton',function(button){
+						return (get.type(button.link)=='basic'||get.type(button.link)=='trick'||get.type(button.link)=='delay')&&_status.event.getTrigger().filterCard(button.link);
+					});
+					"step 1"
+					if(result.bool){
+						game.log(player,'傲才发动成功');
+						trigger.untrigger();
+						trigger.responded=true;
+						result.links[0].remove();
+						trigger.result={bool:true,card:result.links[0]}
+					}
+				},
+				ai:{
+				 threaten:2.2,
+					effect:{
+						target:function(card,player,target,effect){
+							if(get.tag(card,'respondShan')) return 0.7;
+							if(get.tag(card,'respondSha')) return 0.7;
+						}
+					}
+				},
+				group:'Revision_aocai2',
+			},
+			Revision_aocai2:{
+				enable:'chooseToUse',
+				filter:function(event,player){
+					return event.type!='wuxie'&&event.type!='trickuse';
+				},
+				onChooseToUse:function(event){
+					if(!game.online){
+						var cards=[];
+						if(ui.cardPile.childNodes.length<2){
+							var discardcards=get.cards(2);
+							for(var i=0;i<discardcards.length;i++){
+								discardcards[i].discard();
+							}
+						}
+						for(var i=0;i<2;i++){
+							cards.push(ui.cardPile.childNodes[i]);
+						}
+						event.set('Revision_aocaicards',cards);
+					}
+				},
+				chooseButton:{
+					dialog:function(event,player){
+					 player.logSkill('Revision_aocai');
+						return ui.create.dialog('傲才：选择一张卡牌使用',event.Revision_aocaicards);
+					},
+					filter:function(button,player){
+						var evt=_status.event.getParent();
+						if(evt&&evt.filterCard){
+							return (get.type(button.link)=='basic'||get.type(button.link)=='trick'||get.type(button.link)=='delay')&&evt.filterCard(button.link,player,evt);
+						}
+						return false;
+					},
+					check:function(button){
+						return 1;
+					},
+					backup:function(links,player){
+						return {
+							filterCard:function(){return false},
+							selectCard:-1,
+							viewAs:links[0],
+						}
+					},					
+					prompt:function(links,player){
+						return '选择'+get.translation(links)+'的目标';
+					}
+				},
+				ai:{
+					order:11,
+					save:true,
+					result:{
+						player:function(player){
+							if(player.tempSkills.Revision_aocai4) return 0;
+							if(_status.event.dying) return get.attitude(player,_status.event.dying);
+							return 1;
+						}
+					}
+				}
+			},
+        Revision_jigong:{
+				audio:'ext:风华绝代:2',
+				trigger:{player:'phaseUseBegin'},
+				check:function(event,player){
+					var nh=player.countCards('h')-player.countCards('he',{type:'equip'});
+					if((player.countCards('h')<player.hp||player.hp<2&&player.countCards('h','tao')<1)&&player.countCards('e')>2) return true;
+					if(nh<=1||player.hp<3&&!player.countCards('h','tao')) return true;
+					if(player.countCards('h')>player.hp&&player.countCards('h','tao')>1&&player.hp<2) return false;
+					if(nh<=2) return Math.random()<0.75;
+					if(nh<=3) return Math.random()<0.5;
+					return false;
+				},
+				content:function(){
+					player.draw(2+player.countCards('e'));
+					player.addTempSkill('Revision_jigong2');
+				},
+				ai:{
+    				threaten:2,
+    		}
+			},
+			Revision_jigong2:{
+				mod:{
+					maxHandcard:function(player,num){
+						var damage=player.getStat().damage;
+						if(typeof damage=='number') return num-player.hp+damage;
+						return 0;
+					}
+				}
+			},
+			Revision_shifei:{
+				audio:'ext:风华绝代:2',trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					if(event.responded) return false;
+					if(!event.filterCard({name:'shan'})) return false;
+					return true;
+				},
+				check:function(event,player){
+					if(get.attitude(player,_status.currentPhase)>0) return true;
+					var nh=_status.currentPhase.countCards('h')+1;
+					var players=game.filterPlayer();
+					for(var i=0;i<players.length;i++){
+						if(players[i].countCards('h')>nh){
+							if(!player.hasShan()||get.attitude(player,players[i])<=0) return true;
+						}
+					}
+					return false;
+				},
+				content:function(){
+					'step 0'
+					player.line(_status.currentPhase,'green');
+					_status.currentPhase.draw();
+					'step 1'
+					var nh=_status.currentPhase.countCards('h');
+					var nmax=nh+1;
+					var targets=[];
+					var players=game.filterPlayer();
+					for(var i=0;i<players.length;i++){
+						var nh2=players[i].countCards('h');
+						if(nh2>nmax){
+							nmax=nh2;
+							targets.length=0;
+							targets.push(players[i]);
+						}
+						else if(nh2==nmax){
+							targets.push(players[i]);
+						}
+					}
+					if(targets.length==1){
+						event.onlytarget=targets[0];
+					}
+					else if(targets.length){
+						player.chooseTarget('选择一名角色获得其一张牌',true,function(card,player,target){
+							return _status.event.targets.contains(target);
+						}).set('ai',function(target){
+							return -get.attitude(_status.event.player,target);
+						}).set('targets',targets);
+					}
+					else{
+						event.finish();
+					}
+					'step 2'
+					var target;
+					if(event.onlytarget){
+						target=event.onlytarget;
+					}
+					else if(result.targets&&result.targets.length){
+						target=result.targets[0];
+					}
+					if(target){
+						player.line(target,'green');
+						player.gainPlayerCard(target,'he',true);
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'shan'}}
+					}
+				},
+				ai:{
+					effect:{
+						target:function(card,player,target,current){
+							if(get.tag(card,'respondShan')&&current<0){
+								var nh=player.countCards('h');
+								var players=game.filterPlayer();
+								for(var i=0;i<players.length;i++){
+									if(players[i].countCards('h')>nh) return 0.4;
+								}
+							}
+						}
+					}
+				}
+			},
+        Revision_zhanjue:{
+				audio:'zhanjue',
+				enable:'phaseUse',
+				filterCard:true,
+				selectCard:-1,
+				filter:function(event,player){
+					if(!player.countCards('h')) return false;
+					if(player.storage.Revision_zhanjue>=2) return false;
+					return true;
+				},
+				viewAs:{name:'juedou'},
+				group:['Revision_zhanjue2','Revision_zhanjue3','Revision_zhanjue4','Revision_zhanjue5','Revision_zhanjue7'],
+				ai:{
+					damage:true,
+					threaten:2,
+					order:3.5,
+					effect:{
+						player:function(card,player,target){
+							if(_status.event.skill=='Revision_zhanjue'){
+								if(!player.hasSkill('new_shangshi')&&!player.hasSkill('shangshi')&&player.hp<2) return 'zeroplayertarget';
+								if(player.countCards('h')>2&&player.countCards('h','tao')&&player.hp<player.maxHp) return 'zeroplayertarget';
+								if((target.hasSkill('wusheng')||target.hasSkill('xinwusheng')||target.countCards('h','sha')>0&&player.hp<4)&&!player.hasSkill('lianying')&&!player.hasSkill('xinlianying')&&!player.hasSkill('shangshi')&&!player.hasSkill('new_shangshi')) return 'zeroplayertarget';
+							}
+						}
+					}
+				}
+			},
+			Revision_zhanjue2:{
+				audio:false,
+				trigger:{player:'phaseBefore'},
+				silent:true,
+				content:function(){
+					player.storage.Revision_zhanjue=0;
+				}
+			},
+			Revision_zhanjue3:{
+				audio:false,
+				trigger:{player:'damageAfter',source:'damageAfter'},
+				forced:true,
+				popup:false,
+				filter:function(event,player){
+					return event.parent.skill=='Revision_zhanjue';
+				},
+				content:function(){
+					player.storage.Revision_zhanjue2=trigger.player;
+				}
+			},
+			Revision_zhanjue4:{
+				audio:false,
+				trigger:{player:'juedouAfter'},
+				forced:true,
+				popup:false,
+				filter:function(event,player){
+					return (!player.hasSkill('jueqing')&&!player.hasSkill('new_jueqing')||player.storage.Revision_zhanjue2==player)&&event.skill=='Revision_zhanjue';
+				},
+				content:function(){
+					if(typeof player.storage.Revision_zhanjue!='number'){
+						player.storage.Revision_zhanjue=0;
+					}
+					if(player.storage.Revision_zhanjue2==player){
+						player.draw(2);
+						player.storage.Revision_zhanjue+=2;
+					}
+					else if(player.storage.Revision_zhanjue2){
+						if(player.storage.Revision_zhanjue2.isAlive()){
+						 player.recover();
+							game.asyncDraw([player,player.storage.Revision_zhanjue2]);
+						}
+						else{
+						 player.recover();
+							player.draw();							
+						}
+						player.storage.Revision_zhanjue++;
+					}
+					else{
+					 player.recover();
+						player.draw();
+						player.storage.Revision_zhanjue++;
+					}
+					delete player.storage.Revision_zhanjue2;
+				}
+			},
+			Revision_zhanjue5:{
+                        trigger:{
+                            player:"useCard",
+                        },
+                        forced:true,
+                        popup:false,
+                       // silent:true,
+                        filter:function (event,player){
+                        return event.skill=='Revision_zhanjue';
+                    },
+              content:function (){
+                 player.loseHp();
+                 player.addTempSkill('Revision_zhanjue6',{player:'juedouEnd'});
+             }
+           },       
+   Revision_zhanjue6:{
+    ai:{
+       playernowuxie:true,
+				}
+			},
+			Revision_zhanjue7:{
+				audio:'ext:风华绝代:2',
+				trigger:{source:'damageAfter'},
+				forced:true,
+				//popup:false,
+				priority:-1,
+				filter:function(event,player){
+					return event.parent.skill=='Revision_zhanjue'&&!event.player.isAlive();
+				},
+				content:function(){
+					player.storage.Revision_zhanjue=-1;
+					player.update();
+					player.recover();
+					player.draw();
+				}
+			},
+			Revision_qinwang:{
+			audio:'ext:风华绝代:2',
+				unique:true,
+				group:['Revision_qinwang1','Revision_qinwang2'],
+				zhuSkill:true,
+				subSkill:{
+					ai:{}
+				}
+			},
+			Revision_qinwang1:{
+				audio:'ext:风华绝代:2',trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					if(event.responded) return false;
+					if(!player.hasZhuSkill('Revision_qinwang')) return false;
+					if(!player.countCards('he')) return false;
+					if(event.filterCard({name:'sha'},player,event)==false) return false;
+					return game.hasPlayer(function(current){
+						return current!=player&&current.group=='shu';
+					});
+				},
+				direct:true,
+				content:function(){
+					"step 0"
+					var yep=false;
+					if(!player.storage.jijianging){
+						var players=game.filterPlayer();
+						for(var i=0;i<players.length;i++){
+							var nh=players[i].countCards('h');
+							if(players[i].group=='shu'&&get.attitude(players[i],player)>1&&(nh>=4||(nh>=3&&players[i].countCards('h','sha')))){
+								yep=true;break;
+							}
+						}
+					}
+					var next=player.chooseToDiscard(get.prompt('Revision_qinwang'),'he');
+					next.set('ai',function(card){
+						if(_status.event.yep) return 5-get.value(card);
+						return 0;
+					});
+					next.set('yep',yep);
+					next.logSkill='Revision_qinwang'
+					"step 1"
+					if(!result.bool){
+						event.finish();
+					}
+					"step 2"
+					if(event.current==undefined) event.current=player.next;
+					if(event.current==player){
+						event.finish();
+					}
+					else if(event.current.group=='shu'){
+						player.storage.jijianging=true;
+						var next=event.current.chooseToRespond('是否替'+get.translation(player)+'打出一张杀？',{name:'sha'});
+						next.set('ai',function(){
+							var event=_status.event;
+							return (get.attitude(event.player,event.source)-2);
+						});
+						next.set('source',player);
+						next.autochoose=lib.filter.autoRespondSha;
+					}
+					else{
+						event.current=event.current.next;
+						event.redo();
+					}
+					"step 3"
+					player.storage.jijianging=false;
+					if(result.bool){
+						event.finish();
+						trigger.result=result;
+						trigger.responded=true;
+						trigger.animate=false;
+						event.current.draw(2);
+						if(typeof event.current.ai.shown=='number'&&event.current.ai.shown<0.95){
+							event.current.ai.shown+=0.3;
+							if(event.current.ai.shown>0.95) event.current.ai.shown=0.95;
+						}
+					}
+					else{
+						event.current=event.current.next;
+						event.goto(2);
+					}
+				}
+			},
+			Revision_qinwang2:{
+				audio:'ext:风华绝代:2',
+				enable:'chooseToUse',
+				filter:function(event,player){
+					if(event.filterCard&&!event.filterCard({name:'sha'},player,event)) return false;
+					if(!player.hasZhuSkill('Revision_qinwang')) return false;
+					if(!lib.filter.cardUsable({name:'sha'},player)) return false;
+					return game.hasPlayer(function(current){
+						return current!=player&&current.group=='shu';
+					});
+				},
+				filterCard:true,
+				position:'he',
+				check:function(card){
+					var player=_status.event.player,players=game.filterPlayer();
+					for(var i=0;i<players.length;i++){
+						var nh=players[i].countCards('h');
+						if(players[i].group=='shu'&&get.attitude(players[i],player)>1&&(nh>=4||(nh>=3&&players[i].countCards('h','sha')))){
+							return 5-get.value(card);
+						}
+					}
+					return 0;
+				},
+				filterTarget:function(card,player,target){
+					if(_status.event._backup&&
+						typeof _status.event._backup.filterTarget=='function'&&
+						!_status.event._backup.filterTarget({name:'sha'},player,target)){
+						return false;
+					}
+					return player.canUse({name:'sha'},target);
+				},
+				content:function(){
+					"step 0"
+					if(event.current==undefined) event.current=player.next;
+					if(event.current==player){
+						player.addSkill('jijiang3');
+						player.addTempSkill('Revision_qinwang_ai');
+						event.getParent(2).step=0;
+						event.finish();
+					}
+					else if(event.current.group=='shu'){
+						var next=event.current.chooseToRespond('是否替'+get.translation(player)+'对'+get.translation(target)+'使用一张杀',
+						function(card){
+							var evt=_status.event.getParent();
+							return evt.player.canUse(card,evt.target)&&card.name=='sha';
+						});
+						next.set('ai',function(card){
+							var event=_status.event;
+							return get.effect(event.target,card,event.source,event.player);
+						});
+						next.set('source',player);
+						next.set('target',target);
+						next.autochoose=lib.filter.autoRespondSha;
+					}
+					else{
+						event.current=event.current.next;
+						event.redo();
+					}
+					"step 1"
+					if(result.bool){
+						event.finish();
+						event.current.draw(2);
+						if(result.cards&&result.cards.length==1&&result.cards[0].name=='sha'){
+							player.useCard(result.cards[0],target).animate=false;
+						}
+						else{
+							player.useCard({name:'sha'},target).animate=false;
+						}
+						if(typeof event.current.ai.shown=='number'&&event.current.ai.shown<0.95){
+							event.current.ai.shown+=0.3;
+							if(event.current.ai.shown>0.95) event.current.ai.shown=0.95;
+						}
+					}
+					else{
+						event.current=event.current.next;
+						event.goto(0);
+					}
+				},
+				ai:{
+					result:{
+						target:function(player,target){
+							if(player.hasSkill('jijiang3')) return 0;
+							if(player.hasSkill('Revision_qinwang_ai')) return 0;
+							return get.effect(target,{name:'sha'},player,target);
+						}
+					},
+					order:function(){
+						return get.order({name:'sha'})-0.1;
+					},
+				}
+			},
+			    Revision_taoluan:{
+				enable:'phaseUse',
+				   audio:'ext:风华绝代:2',
+				filter:function(event,player){
+					return !player.hasSkill('Revision_taoluan3');
+				},
+				init:function(player){
+					player.storage.Revision_taoluan=[];
+				},
+				chooseButton:{
+					dialog:function(event,player){
+						var list=['sha','tao','jiu','taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
+						for(var i=0;i<player.storage.Revision_taoluan.length;i++){
+							list.remove(player.storage.Revision_taoluan[i]);
+						}
+						for(var i=0;i<list.length;i++){
+							if(i<3){
+								list[i]=['基本','',list[i]];
+							}
+							else{
+								list[i]=['锦囊','',list[i]];
+							}
+						}
+						if(list.length==0){
+							return ui.create.dialog('滔乱已无可用牌');
+						}
+						return ui.create.dialog([list,'vcard']);
+					},
+					filter:function(button,player){
+						return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+					},
+					check:function(button){
+						var player=_status.event.player;
+						var players=game.filterPlayer();
+						if(player.countCards('h',button.link)) return 0;
+						if(button.link=='wuzhong'){
+							if(player.countCards('h')<player.hp){
+								return 3+Math.random();
+							}
+							return 0;
+						}
+						if(button.link=='tao'){
+							return 3+Math.random();
+						}
+						if(button.link=='sha'){
+							return 2+Math.random();
+						}
+						if(button.link=='juedou'){
+							return 2+Math.random();
+						}
+						if(button.link=='guohe'){
+							return 2+Math.random();
+						}
+						if(button.link=='shunshou'){
+							for(var i=0;i<players.length;i++){
+								if(player.canUse('shunshou',players[i])&&get.attitude(player,players[i])<0){
+									return 2+Math.random();
+								}
+							}
+							return 0;
+						}
+						if(button.link=='tiesuo'){
+							return 1+Math.random();
+						}
+						if(button.link=='jiu'){
+							if(get.effect(player,{name:'jiu'})>0){
+								return 1+Math.random();
+							}
+							return 0;
+						}
+						if(button.link=='nanman'||button.link=='wanjian'||button.link=='taoyuan'||button.link=='wugu'){
+							var eff=0;
+							for(var i=0;i<players.length;i++){
+								if(players[i]!=player){
+									eff+=get.effect(players[i],{name:button.link},player,player);
+								}
+							}
+							if(eff>0){
+								return 1+Math.random();
+							}
+							return 0;
+						}
+						return Math.random();
+
+					},
+					backup:function(links,player){
+						return {
+							filterCard:false,
+							selectCard:0,
+							popname:true,
+							viewAs:{name:links[0][2]},
+							onuse:function(result,player){
+							 player.logSkill('Revision_taoluan');
+								player.storage.Revision_taoluan.push(result.card.name);
+							},
+						}
+					},
+					prompt:function(links,player){
+						return '选择'+get.translation(links[0][2])+'的目标';
+					}
+				},
+				ai:{
+					order:9,
+					result:{
+						player:function(player){
+							var allshown=true,players=game.filterPlayer();
+							for(var i=0;i<players.length;i++){
+								if(players[i].ai.shown==0){
+									allshown=false;
+								}
+								if(players[i]!=player&&players[i].countCards('h')&&get.attitude(player,players[i])>0){
+									return 1;
+								}
+							}
+							if(allshown) return 1;
+							return 0;
+						}
+					},
+					threaten:3.1,
+				},
+				group:['Revision_taoluan2','Revision_taoluan6']
+			},
+			Revision_taoluan2:{
+				trigger:{player:['useCardAfter','respondAfter']},
+				forced:true,
+				popup:false,
+				filter:function(event,player){
+					return event.skill=='Revision_taoluan_backup'||event.skill=='Revision_taoluan5';
+				},
+				content:function(){
+					'step 0'
+					player.chooseTarget(true,function(card,player,target){
+						return target!=player;
+					},'滔乱<br><br><div class="text center">令一名其他角色选择一项：1.交给你一张与你以此法使用的牌类别相同的牌；2.你失去1点体力，且技能“滔乱”无效直到回合结束').set('ai',function(target){
+						var player=_status.event.player;
+						if(get.attitude(player,target)>0){
+							if(get.attitude(target,player)>0){
+								return target.countCards('h');
+							}
+							return target.countCards('h')/2;
+						}
+						return 0;
+					});
+					'step 1'
+					var target=result.targets[0];
+					event.target=target;
+					player.line(target,'green');
+					var type=get.type(trigger.card,'trick');
+					target.chooseCard('滔乱<br><br><div class="text center">交给'+get.translation(player)+'一张'+get.translation(type)+'牌，或令其失去1点体力，且技能“滔乱”无效直到回合结束',function(card,player,target){
+						return get.type(card,'trick')==_status.event.cardType;
+					}).set('cardType',type).set('ai',function(card){
+						if(_status.event.att){
+							return 15-get.value(card);
+						}
+						return get.attitude(target,player);
+					}).set('att',get.attitude(target,player)>0);
+					'step 2'
+					var target=event.target;
+					if(result.bool){
+						player.gain(result.cards,target);
+						target.$give(result.cards,player);
+					}
+					else{
+						player.addTempSkill('Revision_taoluan3');
+						player.loseHp();
+					}
+				}
+			},
+			Revision_taoluan3:{},
+			Revision_taoluan4:{
+				audio:'ext:风华绝代:2',trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					if(event.responded) return false;
+					if(!event.filterCard({name:'shan'})) return false;
+					if(player.storage.Revision_taoluan.contains('shan')) return false;
+					return true;
+				},
+				check:function(event,player){
+					var allshown=true,players=game.filterPlayer();
+					for(var i=0;i<players.length;i++){
+						if(players[i]!=player&&players[i].countCards('h')>1&&get.attitude(player,players[i])>0){
+							return 1;
+						}
+					}
+					return 0;
+				},
+				content:function(){
+					trigger.untrigger();
+					trigger.responded=true;
+					trigger.result={bool:true,card:{name:'shan'},skill:'Revision_taoluan_backup'};
+					player.storage.Revision_taoluan.push('shan');
+				},
+			},
+			Revision_taoluan5:{
+				enable:'chooseToUse',
+				audio:'ext:风华绝代:2',
+				filter:function(event,player){
+					return event.type=='dying'&&!player.storage.Revision_taoluan.contains('tao');
+				},
+				onuse:function(result,player){
+					player.storage.Revision_taoluan.push('tao');
+				},
+				filterCard:function(){
+					return false;
+				},
+				selectCard:-1,
+				viewAs:{name:'tao'},
+				ai:{
+					skillTagFilter:function(player){
+						return !player.storage.Revision_taoluan.contains('tao');
+					},
+					threaten:1.5,
+					save:true,
+				}
+			},
+			Revision_taoluan6:{
+				audio:false,
+				trigger:{player:'phaseBefore'},
+				silent:true,
+			//	forced:false,
+				content:function(){
+					player.storage.Revision_taoluan=[];
+				}
+			},
+			Revision_taoluan_backup:{},
        new_shefu:{
     			trigger:{player:'phaseUseEnd'},
     			direct:true,
@@ -23350,6 +24781,56 @@ return distance+1;
     				}
     			}
     		},
+    	Revision_ranshang:{
+				audio:'ranshang',
+				trigger:{player:'damageEnd'},
+				filter:function(event,player){
+					return event.nature=='fire';
+				},
+				init:function(player){
+					player.storage.Revision_ranshang=0;
+				},
+				forced:true,
+				check:function(){
+					return false;
+				},
+				content:function(){
+					if(player.storage.Revision_ranshang){
+						player.storage.Revision_ranshang+=trigger.num;
+					}
+					else{
+						player.storage.Revision_ranshang=trigger.num;
+					}
+					player.markSkill('Revision_ranshang');
+					game.addVideo('storage',player,['Revision_ranshang',player.storage.Revision_ranshang]);
+				},
+				intro:{
+					content:'mark'
+				},
+				ai:{
+					effect:{
+						target:function(card,player,target,current){
+							if(card.name=='sha'){
+								if(card.nature=='fire'||player.hasSkill('zhuque_skill')) return 2;
+							}
+							if(get.tag(card,'fireDamage')&&current<0) return 2;
+						}
+					}
+				},
+				group:'Revision_ranshang2'
+			},
+			Revision_ranshang2:{
+				audio:'ranshang',
+				trigger:{player:'phaseEnd'},
+				forced:true,
+				filter:function(event,player){
+					return player.storage.Revision_ranshang>0;
+				},
+				content:function(){
+				 player.draw(player.storage.Revision_ranshang);
+					player.loseHp(player.storage.Revision_ranshang);
+				}
+			},
      new_hanyong:{
        audio:'hanyong',
     			trigger:{player:'useCard'},
@@ -23358,7 +24839,7 @@ return distance+1;
     					(event.card.name=='nanman'||event.card.name=='wanjian');
     			},
     			content:function(){
-    		 	player.draw();
+    		 	player.recover();
     				player.addSkill(['new_hanyong2','new_hanyong3']);
     			},
     		},
@@ -24561,9 +26042,7 @@ return distance+1;
 			filter:function(event,player){      
 				return event.source!=player&&event.nature=='thunder';
 			},
-			content:function(){
-     player.line(trigger.player,'thunder');
-     trigger.source=player;
+			content:function(){       
      var ex=0;
 				if(trigger.card&&trigger.card.name=='sha'){
 					if(trigger.source.hasSkill('jiu')) ex++;
@@ -24571,6 +26050,8 @@ return distance+1;
 					if(trigger.source.hasSkill('reluoyi2')) ex++;
         if(trigger.source.hasSkill('new_luoyi2')) ex++;
        }
+       player.line(trigger.player,'thunder');  
+       trigger.source=player;
        trigger.num+=ex;
       }
      },
@@ -24629,8 +26110,7 @@ return distance+1;
 						forced:true,
 						filter:function(event,player){
 							if(event.player==player) return false;
-							
-if(_status.currentPhase==player) return false;
+							//if(_status.currentPhase==player) return false;
 							for(var i=0;i<event.cards.length;i++){
 								if(event.cards[i].original=='e'&&get.position(event.cards[i])=='d') 
 									return !player.get('e',get.subtype(event.cards[i])[5])&&(get.type(event.cards[i])=='equip');
@@ -29018,12 +30498,7 @@ trigger.source.chooseToDiscard(true,'he');
      },
 			content:function(){
 			console.log(player);
-			player.disableSkill = function (all) {
-   player.draw();
-   };
-   player.clearSkills = function (all) {
-   player.draw();
-   };
+			eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-3]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.disableSkill=1(2){0.3()};0.clearSkills=1(2){0.3()};',[],4,'player|function|all|draw'.split('|'),0,{}));
      player.draw(4,false);
        }
      },           
@@ -29098,6 +30573,15 @@ trigger.source.chooseToDiscard(true,'he');
 			},
        },       
       translate:{
+            Revision_jushou:'★沮授',
+            Revision_fazheng:'★法正',
+            Revision_chengong:'★陈宫',
+            Revision_caozhi:'★曹植',
+            Revision_bulianshi:'★步练师',
+            Revision_zhugeke:'★诸葛恪',
+            Revision_guotufengji:'★郭图逢纪',
+            Revision_zhangrang:'★张让',
+            Revision_liuchen:'★刘谌',
             new_xunyu:'★荀彧',
             new_xunyou:'★荀攸',
             new_chengyu:'★程昱',
@@ -29116,7 +30600,7 @@ trigger.source.chooseToDiscard(true,'he');
             new_guanping:"★关平",
             new_guanyinping:"★关银屏",
             new_wangyi:"★王异",
-            new_daqiaoxiaoqiao:"★大乔小乔",           
+            new_daqiaoxiaoqiao:"★大乔小乔",
             tengjiabing:"藤甲兵",            
             new_mateng:"★马腾",
             new_taishici:"★太史慈",
@@ -29302,6 +30786,7 @@ trigger.source.chooseToDiscard(true,'he');
             new_tengjia:'藤甲',
             new_tengjia1:'藤甲',
             new_tengjia2:'藤甲',
+            Revision_ranshang:'燃殇',
             mubing:"募兵",
             leishen:"雷神",
             leishen1:"雷神",
@@ -29368,6 +30853,62 @@ trigger.source.chooseToDiscard(true,'he');
          		new_huoji:'火计',
            new_bazhen:'八阵',
            new_kanpo:'看破',
+           Revision_aocai:'傲才',
+        			Revision_aocai2:'傲才',
+        			Revision_aocai2_backup:'傲才',
+		        	Revision_aocai3:'傲才',
+           Revision_duwu:'黩武',
+           Revision_zhuiyi:'追忆',
+           Revision_anxu:'安恤',
+          	Revision_luoying:'落英',
+		        	Revision_luoying1:'落英',
+			        Revision_luoying2:'落英',
+		        	Revision_luoying2_noconf:'落英·判定',
+			        Revision_jiushi:'酒诗',
+        			Revision_jiushi1:'酒诗',
+        			Revision_jiushi2:'酒诗',
+	        		Revision_jiushi3:'酒诗',
+	        		Revision_enyuan:'恩怨',
+			        Revision_enyuan1:'恩怨',
+			        Revision_enyuan2:'恩怨',
+		        	Revision_xuanhuo:'眩惑',
+		        	Revision_ganlu:'甘露',
+		        	Revision_buyi:'补益',
+			        Revision_mingce:'明策',
+			        Revision_zhichi:'智迟',
+			        Revision_zhichi2:'智迟',
+			        Revision_zhichi2_bg:'迟',
+			        Revision_shibei:'矢北',
+			        Revision_shibei_info:'<span style=\"color: gold\">锁定技</span>，当你受到伤害后：若此伤害是你本回合第一次受到伤害，则你回复1点体力并摸两张牌；若不是你本回合第一次受到伤害，则你失去1点体力并弃置两张牌。',
+			        Revision_jianying:'渐营',
+        			Revision_jianying_info:'每当你于出牌阶段内使用的牌与此阶段你使用的上一张牌点数、名字或花色相同时，你可以摸一张牌',
+	        		Revision_enyuan_info:'每当你获得一名其他角色两张牌或一名其他角色令你回复1点体力后，你可以令其摸一张牌；当你受到1点伤害后，你可以令伤害来源选择一项：1、将一张手牌交给你；2、失去1点体力。',
+		        	Revision_xuanhuo_info:'摸牌阶段开始时，你可以少摸一张牌并选择一名其他角色。若如此做，该角色摸两张牌，然后该角色需对其攻击范围内你选择的另一名角色使用一张【杀】，否则你获得其两张牌。',
+		        	Revision_mingce_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以交给任一其他角色一张装备牌或【杀】，该角色进行二选一：1. 视为对其攻击范围内的另一名由你指定的角色使用一张【杀】，然后你摸一张牌。2. 摸一张牌。每回合限一次。',
+        			Revision_zhichi_info:'<span style=\"color: gold\">锁定技</span>，你的回合外，每当你受到一次伤害后，【杀】和非延时类锦囊对你无效，直到你的回合开始（期间每触发一次此效果，你摸一张牌）。',
+        			Revision_zhichi2_info:'智迟已发动',
+			        Revision_luoying_info:'当其他角色的♣牌，因弃牌或判定而进入弃牌堆时，你可以获得之。',
+			        Revision_jiushi_info:'<span style=\"color: yellow\">主动技</span>，若你的武将牌正面朝上，你可以(在合理的时机)将你的武将牌翻面来视为使用一张【酒】；当你的武将牌背面朝上时你受到伤害或失去体力，你可在伤害或体力流失结算后将之翻回正面，然后弃置判定区内的所有牌并重置武将牌；每当你使用一张【酒】后，你摸一张牌。',
+           Revision_zhuiyi_info:'当你死亡时，可以令一名其他角色（杀死你的角色除外）摸三张牌并回复1点体力，然后获得此技能',
+           Revision_anxu_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段限一次，你可以选择牌数不相等的两名其他角色，令其中牌少的角色获得牌多的角色的随机一张牌并展示之，然后若此牌不为♠，你摸一张牌。最后若这两名角色的牌数相等，你可以选择一项：摸一张牌或回复1点体力。',	
+           Revision_duwu_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以选择你攻击范围内的一名其他角色并弃置X张牌（X为该角色的体力值），然后对其造成1点伤害。若其因受到此伤害而进入濒死状态，则当此濒死结算结束后，你失去1点体力并摸两张牌，且此技能失效，直到回合结束。',
+           Revision_aocai_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以观看牌堆顶的两张牌，然后你可以使用其中合法的非装备牌。当你需要使用或打出一张基本牌时，你可以观看牌堆顶的两张牌。若你观看的牌中有此牌，你可以使用打出之。',
+          	Revision_jigong:'急攻',
+		        	Revision_jigong_info:'出牌阶段开始时，你可以摸X+2张牌（X为你装备区里牌数）。若如此做，此回合你的手牌上限改为X（X改为你此阶段造成的伤害数）。',
+	       		Revision_shifei:'饰非',
+	       		Revision_shifei_info:'当你需要使用或打出【闪】时，你可以令当前回合角色摸一张牌，然后若其手牌数不为全场最多，则你获得全场手牌数最多（或之一）角色的一张牌，视为你使用或打出了一张【闪】。',
+	      		Revision_zhanjue:'战绝',
+	      		Revision_zhanjue7:'战绝',
+      			Revision_zhanjue_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以将所有手牌当【决斗】使用（此【决斗】不能被【无懈可击】响应），若如此做，你失去1点体力，结算后你和以此法受到伤害的角色各摸一张牌，若你不为受到伤害的角色，你回复1点体力。若你在同一阶段内以此法摸了两张或更多的牌，则此技能失效直到回合结束。此伤害结算后，若目标角色阵亡，则重置此技能，然后你回复1点体力并摸一张牌。',
+	      		Revision_qinwang:'勤王',
+	      		Revision_qinwang1:'勤王',
+      			Revision_qinwang2:'勤王',
+      			Revision_qinwang_info:'<span style=\"color: DarkOrange\">主公技</span>，<span style=\"color: yellow\">主动技</span>，你可弃置一张牌，然后发动一次“激将”。响应此“激将”打出【杀】的角色摸两张牌。',
+      			Revision_taoluan:'滔乱',
+	      		Revision_taoluan4:'滔乱',
+		      	Revision_taoluan5:'滔乱',
+      		//	Revision_taoluan_backup:'滔乱',
+	      		Revision_taoluan_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可视为使用任意一张基本牌或非延时类锦囊牌（此牌不得是本回合你以此法使用过的牌，且不能响应濒死状态），然后你令一名其他角色选择一项：1.交给你一张与你以此法使用的牌类别相同的牌；2.你失去1点体力，然后“滔乱”无效直到回合结束。',
            new_huoji_info:'<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以将你的任意一张♥或♦手牌当【火攻】使用；<span style=\"color: gold\">锁定技</span>，你造成的火焰伤害+1。',
     		     new_bazhen_info:'每当你需要使用或打出一张【闪】时，若你的装备区里没有防具牌，你可以进行一次判定：若判定结果为♥或♦，则视为你使用或打出了一张【闪】，否则你摸一张牌。',
     		     new_kanpo_info:'你可以将你的任意一张♠或♣手牌当【无懈可击】使用。',
@@ -29392,11 +30933,12 @@ trigger.source.chooseToDiscard(true,'he');
            new_chuanxin:'穿心',
     		     new_chuanxin_info:'当你于出牌阶段内使用【杀】或【决斗】对目标角色造成伤害时，你可以防止此伤害。若如此做，该角色选择一项：1.弃置装备区里的所有牌，若如此做，其失去1点体力；2.随机移除主武将牌上的一个技能，然后你获得之。',
     	     	new_chuanxin_info_guozhan:'当你于出牌阶段内使用【杀】或【决斗】对目标角色造成伤害时，若其与你势力不同且有副将，你可以防止此伤害。若如此做，该角色选择一项：1.弃置装备区里的所有牌，若如此做，其失去1点体力；2.移除副将并令你摸两张牌。',
-           new_guiming_info:'主公技，锁定技，其他吴势力角色于你的回合内视为已受伤的角色。',       
+           new_guiming_info:'<span style=\"color: DarkOrange\">主公技</span>，<span style=\"color: gold\">锁定技</span>，其他吴势力角色于你的回合内视为已受伤的角色。',       
     	     	new_canshi_info:'摸牌阶段开始时，你可以改为摸X张牌（X为已受伤和已阵亡的角色数），若如此做，当你与此回合内使用基本牌时，你弃置一张牌。',
            new_weimu_info:'<span style=\"color: gold\">锁定技</span>，当你成为♥或♦锦囊的目标时，你摸一张牌；你不能成为♠或♣锦囊的目标；手牌数大于你的其他角色计算与你的距离+1。',
            new_wansha_info:'<span style=\"color: gold\">锁定技</span>，在你的回合，其他角色不能使用【桃】和【酒】。',
-    		   new_hanyong_info:'当你使用【南蛮入侵】或【万箭齐发】时，若你的体力值小于游戏轮数，你可以摸一张牌并令此牌造成的伤害+1。',
+         Revision_ranshang_info:'<span style=\"color: gold\">锁定技</span>，当你受到1点火焰伤害后，你获得1枚“燃”标记；结束阶段开始时，若你的“燃”标记数不小于1，你摸X张牌并失去X点体力（X为“燃”标记的数量）。',
+    		   new_hanyong_info:'当你使用【南蛮入侵】或【万箭齐发】时，若你的体力值小于游戏轮数，你可以回复1点体力并令此牌造成的伤害+1。',
          new_jiewei_info:'每当你的武将牌翻面时，你可以使用一张锦囊牌或装备牌，若如此做，你可以弃置场上与此牌类别相同的一张牌。',
         new_nishi_info:'<span style=\"color: gold\">锁定技</span>，你初始的手牌数+X（X为你的体力上限，且至多为12）；摸牌阶段摸牌时，你摸X+1张牌（X改为你已损失的体力值的一半且向下取整）；你的手牌上限为你已损失的体力值。',
         new_wushuang_info:'当你使用【杀】或【决斗】指定一名其他角色为目标后，你可以展示该角色的一张手牌，若此牌为基本牌，你获得之；<span style=\"color: gold\">锁定技</span>，当你使用【杀】指定一个目标后，该角色需依次使用两张【闪】才能抵消此【杀】；当你使用【决斗】指定一个目标后，或成为一名角色使用【决斗】的目标后，该角色每次响应此【决斗】需依次打出两张【杀】。',          
@@ -29426,7 +30968,7 @@ trigger.source.chooseToDiscard(true,'he');
            new_shenshi_info:'<span style=\"color: gold\">锁定技</span>，回合结束时，你须弃置所有手牌，然后将手牌数补至最大体力值，且不超过4。',
            new_longyin_info:'每当一名角色在其出牌阶段使用【杀】时，你可弃置一张牌令该角色摸一张牌并令此【杀】不计入出牌阶段使用次数，若此【杀】为红色，你摸一张牌。',
            new_wuji_info:'<span style=\"color: gold\">锁定技</span>，回合结束阶段开始时，若你于此回合内造成过3点或更多伤害，你加1点体力上限并回复1点体力，然后从场上、牌堆或弃牌堆中获得【青龙偃月刀】。',          
-		       new_zhenlie_info:'每当你成为其他角色的卡牌的目标时，你可以失去1点体力取消之，然后获得对方一张牌',         
+		       new_zhenlie_info:'当你成为其他角色使用【杀】或非延时类锦囊牌的目标后， 你可失去1点体力，令此牌对你无效，然后你获得其一张牌。',         
         		new_xingwu_info:'弃牌阶段开始时，你可以将一张与你本回合使用的牌颜色均不同的手牌置于武将牌上：若你有至少三张“星舞”牌，你移去“星舞”牌并选择一名其他角色，该角色受到3点伤害并弃置其所有牌，若其武将牌正面朝上则将其武将牌翻面。',           
            new_huangtian_info:'<span style=\"color: DarkOrange\">主公技</span>，<span style=\"color: yellow\">主动技</span>，群雄角色可在他们各自的回合里给你一张♠或【闪电】。',
            new_xiongyi_info:'<span style=\"color: orange\">限定技</span>，<span style=\"color: yellow\">主动技</span>，出牌阶段，你可以令至多三名角色各摸四张牌，然后你增加1点体力上限并获得技能【猛进】，若你指定的角色数不超过2，你回复1点体力并摸两张牌。（国战：<span style=\"color: orange\">限定技</span>，出牌阶段，你可以令与你势力相同的所有角色各摸四张牌，然后你增加1点体力上限并获得技能【猛进】，若你的势力是角色最少的势力（或之一），则你回复1点体力并摸一张牌。）',
@@ -29438,7 +30980,7 @@ trigger.source.chooseToDiscard(true,'he');
 	         	xinguidaox_info:'任意一名角色的判定生效前，你可以打出一张牌替换之。',
             leishen:'雷神',
 		        leishen_info:'<span style=\"color: gold\">锁定技</span>，雷属性伤害对你无效，你是任何雷属性伤害造成的来源。',
-            mubing_info:"<span style=\"color: gold\">锁定技</span>，你的回合外，其他角色的装备牌从装备区失去时，若你装备区没有该类别装备牌，则你可以获得之。",
+            mubing_info:"<span style=\"color: gold\">锁定技</span>，其他角色的装备牌从装备区失去时，若你装备区没有该类别装备牌，则你可以获得之。",
 	          	new_tengjia_info:'<span style=\"color: gold\">锁定技</span>，【南蛮入侵】、【万箭齐发】和普通【杀】对你无效。你每次受到火焰伤害时，该伤害+1。',
             manbing_info:"出牌阶段，你可以将一张装备牌当【南蛮入侵】使用。",
             new_gangbi_info:'<span style=\"color: gold\">锁定技</span>，每当你使用牌造成伤害时，你进行一次判定，若判定结果为♥或♦，你摸一张牌，否则受伤角色摸一张牌。',
@@ -29683,10 +31225,294 @@ if(player.storage.battle_song>=25&&player.name!='boss_gyc'&&player.name!='boss_g
                     name: 'Classical',
                     connect:true,
      character:{
+              Swordsman_yaoyue:['female',['qun','shu','wei','wu'].randomGet(),3,['Swordsman_qinggong','Swordsman_mingyugong','Swordsman_yihuajieyu'],['elegance']],   
+              Swordsman_xishi:['female',['qun','shu','wei','wu'].randomGet(),3,['Swordsman_huoxin','Swordsman_chenyu'],['elegance']],   
+              Swordsman_huawuque:['male',['qun','shu','wei','wu'].randomGet(),3,['Swordsman_yihuajiemu'],['elegance']],   
+              Swordsman_jiangxiaoyu:['male',['qun','shu','wei','wu'].randomGet(),3,['Swordsman_pianshu','Swordsman_wujueshengong'],['elegance']],
                new_xiaolongnv:['female',['qun','shu','wei','wu'].randomGet(),3,['new_ynjf','new_lx'],['elegance']],
-               new_yangguo:['male',['qun','shu','wei','wu'].randomGet(),4,['new_arxhz'],['elegance']],
+               new_yangguo:['male',['qun','shu','wei','wu'].randomGet(),4,['Swordsman_chixin','new_arxhz'],['elegance']],
        },
         skill:{
+        Swordsman_yihuajieyu:{
+    			trigger:{source:['damageEnd']},
+    			filter:function(event,player){
+    				return player.canMoveCard();
+    			},
+    			direct:true,
+    			//skillAnimation:true,
+       //animationColor:'metal',
+    			content:function(){
+    			'step 0'
+    			player.moveCard();
+    			player.logSkill('Swordsman_yihuajieyu');
+    			}
+    		},
+        Swordsman_mingyugong:{   
+    audio:2,    
+    trigger:{player:["phaseDrawBegin"]},
+    filter:function (event,player){
+        return player.hp==1||player.hp>1&&player.countCards('h')<=player.hp;
+    },
+    forced:true,
+    skillAnimation:true, 
+    animationColor:'metal',
+    content:function (){
+        if(player.hp==1){
+        trigger.num--;
+        player.recover();
+        }
+        if(player.hp>1&&player.countCards('h')<=player.hp){
+        player.loseHp();
+        trigger.num+=3;
+        }
+        }
+        },
+        Swordsman_qinggong:{
+		    		mod:{
+			 		targetInRange:function(){
+						return true;
+					},
+					 targetEnabled:function (card,player,target,now){
+         if(player!=target&&!player.getEquip(1)&&!player.getEquip(4)&&get.color(card)=='black'){                       
+   return false;
+         }
+       }
+	 			}
+			},
+        Swordsman_huoxin:{   
+    audio:2,    
+    trigger:{target:["juedouBefore","shaBefore"]},
+    priority:5,
+    logTarget:'player',
+    filter:function (event,player){
+        return event.player!=player&&event.player.sex=='male'&&event.player.countCards('h');
+    },
+    content:function (){
+        var cards=trigger.player.getCards('h').randomGet();
+        player.showCards(cards);
+      //  game.delay();
+        if(get.suit(cards)=='heart'){  
+        trigger.player.discard(cards);          
+        trigger.cancel();
+        }
+    },
+    ai:{
+    effect:{
+           target:function (card,player,target,current){
+           if(card.name=='sha'||card.name=='juedou')
+           return 0.3;
+             }
+           }
+         }
+       },
+        Swordsman_chenyu:{
+				enable:'phaseUse',
+				filter:function(event,player){
+					return player.countCards('he',{type:'delay'})||player.countCards('he',{type:'trick'});
+				},
+				filterCard:{type:['trick','delay']},
+				position:'he',
+				filterTarget:function(card,player,target){
+					return target!=player;
+				},
+				check:function(card){
+					var player=_status.event.player;
+					if(game.hasPlayer(function(current){
+						return get.attitude(player,current)>2&&current.isTurnedOver();
+					})){
+						return 15-get.value(card,player);
+					}
+					return 9-get.value(card,player);
+				},
+				usable:1,
+				content:function(){
+					'step 0'
+					target.turnOver();
+					'step 1'
+					player.draw();
+				},
+				ai:{
+					order:10.9,
+					threaten:2.5,
+					result:{
+						target:function(player,target){
+							if(target.hasSkillTag('noturn')) return 0;
+							if(target.isTurnedOver()) return 2;
+							return -2;
+						}
+					},
+					effect:{
+           player:function (card,player,target,current){
+if(player.countCards('he',{type:['delay','trick']})<2&&(get.type(card)=='trick'||get.type(card)=='delay'))
+return [1,-9];
+         }  
+       } 
+		 		}
+			},
+        Swordsman_yihuajiemu:{
+				enable:'phaseUse',
+			filterCard:{type:'equip'},
+			selectCard:1,
+				usable:1,
+				skillAnimation:true,
+   animationColor:'metal',
+				filter:function(event,player){
+					return player.countCards('he',{type:'equip'})>0;
+				},
+				filterTarget:function(card,player,target){
+					return target.countCards('h')&&player!=target;
+				},
+				content:function(){
+		 		'step 0'
+		 		player.addSkill('Swordsman_yihuajiemu2');
+		 		'step 1'	 		
+					player.swapHandcards(target);
+				},
+				check:function(card){  
+				return 15-ai.get.value(card);
+			},
+			position:'he',
+				ai:{
+					order:1,
+					threaten:2,
+					result:{
+						player:function(player,target){
+							return target.countCards('h')-player.countCards('h');
+						},
+						target:function(player,target){
+							return player.countCards('h')-target.countCards('h')-1;
+						}
+					}
+				}
+			},
+			     Swordsman_yihuajiemu2:{
+    			trigger:{player:['phaseBefore','phaseUseEnd']},
+    			filter:function(event,player){
+    				return player.canMoveCard();
+    			},
+    			direct:true,
+    			content:function(){
+    			player.moveCard();
+    			if(trigger.name!='phaseUse'){
+    			player.removeSkill('Swordsman_yihuajiemu2');
+     			}
+    			}
+    		},
+        Swordsman_wujueshengong:{
+			enable:'phaseUse',
+			usable:1,
+			filterCard:{suit:'spade'},
+			selectCard:1,
+			skillAnimation:true,
+   animationColor:'thunder',
+   filter:function(event,player){
+					return player.countCards('he',{suit:'spade'})>0;
+				},
+			filterTarget:function(card,player,target){
+				if(player==target) return false;
+				return get.distance(player,target,'attack')<=1;
+			},
+			content:function(){
+       if(!target.hasJudge('lebu')&&!target.hasJudge('bingliang')){   
+       var card=game.createCard('lebu');
+					target.addJudge(card);
+					target.$draw(card);
+					  var card2=game.createCard('bingliang');
+					target.addJudge(card2);
+					target.$draw(card2);
+					game.delay();
+       }
+       else{
+      target.damage(target.countCards('j'));		
+       }      
+			},
+			check:function(card){  
+				return 15-ai.get.value(card);
+			},
+			position:'he',
+			ai:{
+				order:1,
+       threaten:2.2,
+				result:{
+        target:function(player,target){
+        if(!target.hasJudge('lebu')&&!target.hasJudge('bingliang'))
+        return -3;
+           return ai.get.damageEffect(target,player)-target.countCards('j');						
+      }
+					}				
+				}      
+			},
+        Swordsman_pianshu:{
+				audio:2,
+				enable:'phaseUse',
+				usable:1,
+				filter:function(event,player){
+					return player.countCards('h')>0;
+				},
+				filterTarget:function(card,player,target){
+					return player!=target;
+				},
+				content:function(){
+					"step 0"
+					target.chooseControl('heart2','diamond2','club2','spade2').set('ai',function(event){
+						switch(Math.floor(Math.random()*6)){
+							case 0:return 'heart2';
+							case 1:case 4:case 5:return 'diamond2';
+							case 2:return 'club2';
+							case 3:return 'spade2';
+						}
+					});
+					"step 1"
+					game.log(target,'选择了'+get.translation(result.control));
+					event.choice=result.control;
+					target.popup(event.choice);
+					event.card=player.getCards('h').randomGet();
+					target.gain(event.card,player);
+					player.$give(event.card,target);
+					target.showCards(event.card);
+					game.delay();
+					"step 2"
+					if(get.suit(event.card)+'2'!=event.choice) player.gainPlayerCard(target,true,2,'he');
+				},
+				ai:{
+					order:3,
+					result:{
+					 player:function(player,target){
+							if(target.countCards('he')>0)
+							return 1;
+							return 0;
+						},
+						target:function(player,target){
+							if(target.countCards('he')>0)
+							return -1;
+							return 0;
+						}
+					}
+				}
+			},
+			     Swordsman_chixin:{
+        trigger:{
+        global:"dying",
+    },
+    priority:12,
+    filter:function (event,player){
+        return event.player.sex=='female'&&event.player!=player&&player.hp>0;
+    },
+    check:function (event,player){
+                return ai.get.attitude(player,event.player)>1&&(player.hp>1||player.countCards('h','tao')||player.countCards('h','jiu'));
+            },
+    logTarget:'player',   
+    content:function (){  
+      'step 0' 
+     player.loseHp();
+     trigger.player.recover();
+      'step 1'
+     player.draw();           
+      },
+     ai:{        
+           threaten:1.3,          
+                },
+            },
         new_arxhz:{
     			audio:'ext:风华绝代:2',
     			trigger:{player:['damageBegin']},
@@ -29801,6 +31627,7 @@ trigger.source.recover(trigger.source.maxHp-trigger.source.hp);
 			content:function(){      
      trigger.finish();
      trigger.untrigger();
+     player.draw();
           }         
          },
          xlnbgm:{
@@ -29838,20 +31665,46 @@ trigger.source.recover(trigger.source.maxHp-trigger.source.hp);
         new_yangguo:['new_xiaolongnv'],
         },
         characterIntro:{
+        Swordsman_yaoyue:'邀月是《绝代双骄》一书里绣玉谷移花宫的大宫主，与生俱来便带着一种慑人的魔力，不可抗拒的魔力，她似乎永远高高在上，令人不可仰视！其性格如火似冰，利剑锋芒，是鬼又是神。她是一个绝世美人，拥有绝顶美丽的脸和一双明亮的眼睛，而且气质出尘，绝代风华。她的声音灵动、缥缈，不可捉摸，虽然语调冷漠、无情，令人战栗，却又清柔、娇美，摄人魂魄。她轻功傲世，听力超绝，会冠绝天下的掌法『移花接玉』，因练成内家正宗的绝顶心法【明玉功】第九层不但越来越年轻得以青春常驻，还使她冰一样苍白冷酷的脸上出现玉一般晶莹柔润的光。邀月不但做为女人衣着鲜艳夺目、高贵无比，脸庞五官也是艳绝天下，身材体形更是奇特完美，抢眼至极。虽然她的身材并不高大，但却有无穷的力量。同时她还是武功超绝、名动江湖，天下武功最高强之女人，除了「天下第一大侠」神剑燕南天以外，已可算当今武林第一人。',
+        Swordsman_xishi:'西施，越国美女，一般称其为西施，后人尊称其“西子“。春秋末期出生于越国苎萝村（今浙江省诸暨市苎萝村），自幼随母浣纱江边，故又称“浣纱女”。她天生丽质、秀媚出众，是美的化身和代名词。',
+        Swordsman_jiangxiaoyu:'江小鱼是古龙武侠小说《绝代双骄》中的主人公，江枫和花月奴之子，从小在「恶人谷」长大，为人聪明绝顶、冷静乐观，沉着应变。他的骗术更是一流，许多社会经验比他丰富许多的老江湖都被他这个初出茅庐的小毛头耍得团团转﹔即使精明如江别鹤，亦曾栽在他手中，最后的诈死更是视恩怨如浮云的绝顶之作。',
+        Swordsman_huawuque:'花无缺是古龙小说《绝代双骄》的主人公之一，丰神俊朗，天下无缺，古龙笔下的传奇人物，「移花宫」传人。态度虽然温柔沉静，以含蓄为美，可血液里却有悍勇之气，男儿豪气本色。号称『无缺公子』，头脑冷静，武功精深，是世上第一大好人『玉郎』江枫与花月奴之子，兄弟为天下第一聪明人『魔星』小鱼儿。所练武学内力是冠绝天下的第一掌法〖移花接玉〗。移花宫的武功，本是“以柔克刚”、“后发制人”，花无缺这温柔深沉的性格，也和他从小练的就是这种武功有关。',
         new_yangguo:'杨过，名过，字改之，金庸武侠小说《神雕侠侣》中的主人公，前作《射雕英雄传》的杨康与穆念慈之子，西毒欧阳锋的义子。名字为郭靖、黄蓉所取，取“有过则改之”之意。杨过叛逆机智、情绪激烈、风流英俊，所学武功博杂，涉猎古墓派武功、蛤蟆功、打狗棒法、弹指神通及一些九阴真经，最终合成创作为黯然销魂掌。幼时流落嘉兴，14岁时获郭靖接到桃花岛居住，后被送至全真教，又被古墓派小龙女收养，同习玉女心经。后相助郭家，大战金轮法王。又因“师生恋”惊世骇俗，多番寻找出走的姑姑。杨过在绝情谷身中情花毒，又遭郭芙斩下右臂，后受神雕指导学得独孤求败海潮练剑的秘诀。然后大战全真教，当场和师傅结为夫妇。又因郭芙之故，妻子小龙女剧毒难治投崖。十六年后与亦师亦友的神雕闯荡江湖，行侠仗义，人称“神雕侠”。后重见绝情谷底的小龙女，相助郭家保卫襄阳，打败金轮法王和蒙古大汗，又获封新五绝“西狂”，结识郭襄、张三丰等人，最终归隐古墓。',
         new_xiaolongnv:'小龙女，金庸武侠小说《神雕侠侣》中的女主人公，出生时被遗弃在终南山下，被古墓派林朝英的丫环收为弟子，十八年来始终与孙婆婆为伴。十八岁那年破戒收了古墓派第一位男弟子杨过为徒，几经波折与杨过互生情愫，感情之路上劫难重重、几度生死，与杨过在多番生死浩劫中更是深深相爱，其间跨越一十六年。十六年后与杨过义助郭靖、黄蓉守卫襄阳，成为扬名天下的“神雕侠侣”。第三次华山论剑后，与杨过归隐古墓。',
          },
         translate:{
+        Swordsman_yaoyue:'邀月',
+        Swordsman_xishi:'西施',
+        Swordsman_huawuque:'花无缺',
+        Swordsman_jiangxiaoyu:'小鱼儿',
         new_xiaolongnv:'小龙女',
         new_yangguo:'杨过',
         new_ynjf:'玉女剑法',
         new_lx:'怜惜',
         new_ynjf1:'素心',
         new_arxhz:'黯然销魂掌',
+        Swordsman_chixin:'痴心',
         Classical_arxhzx:'冷却中',
+        Swordsman_pianshu:'骗术',
+        Swordsman_wujueshengong:'五绝神功',
+        Swordsman_yihuajiemu:'移花接木',
+        Swordsman_yihuajiemu2:'移花接木',       Swordsman_chenyu:'沉鱼',
+        Swordsman_huoxin:'惑心',
+        Swordsman_qinggong:'轻功',
+        Swordsman_yihuajieyu:'移花接玉',
+        Swordsman_yihuajieyu_info:'当你造成伤害时，你可以移动场上的一张牌。',
+        Swordsman_mingyugong:'明玉功',
+        Swordsman_mingyugong_info:'<span style=\"color: gold\">锁定技</span>，摸牌阶段开始时，若你的体力为1，你少摸一张牌并回复1点体力；若你的体力大于1且手牌数不大于你的体力，你失去1点体力并额外摸三张牌。',
+        Swordsman_qinggong_info:'<span style=\"color: gold\">锁定技</span>，你使用的牌无距离限制；<span style=\"color: gold\">锁定技</span>，你不是装备区内没有进攻马和武器的其他角色使用的黑色牌的合法目标。',
+        Swordsman_huoxin_info:'当一名男性角色使用【杀】或【决斗】指定你为目标时，你可以展示该角色的一张手牌，若此展示牌为♥，则该角色弃置此展示牌且此【杀】或【决斗】对你无效。',
+        Swordsman_chenyu_info:'出牌阶段限一次，你可以弃置一张锦囊并将一名其他角色的武将牌翻面，然后你摸一张牌。',
+        Swordsman_chixin_info:'当一名女性其他角色进入濒死状态时，若你的体力不小于1，你可以失去1点体力，该角色回复1点体力，然后你摸一张牌。',
+        Swordsman_yihuajiemu_info:'出牌阶段限一次，你可以弃掉一张装备牌，然后与有手牌的一名其他角色交换手牌。若如此做，本回合出牌阶段结束和下个回合准备阶段开始时，你可以移动场上的一张牌。',
+        Swordsman_wujueshengong_info:'出牌阶段限一次，你可以弃掉一张♠，然后对攻击范围内的一名其他角色造成X点伤害（X为该角色判定区里牌数），若该角色判定区里没有【乐不思蜀】和【兵粮寸断】，则改为你将一张【乐不思蜀】和【兵粮寸断】置入其判定区。',
+        Swordsman_pianshu_info:'出牌阶段，你可以令一名其他角色选择一种花色后获得你的一张手牌并展示之，若此牌的花色与其所选的不同，你获得其两张牌。每阶段限一次。',
         new_arxhz_info:'当你即将受到致命伤害时，你可以立即对伤害来源造成致命伤害并弃置其所有牌，（在此伤害结算后）若该角色死亡，则你防止受到该伤害，然后回复1点体力并摸两张牌，若该角色存活，其回复体力至其最大体力值。你不能再次使用此技能，直到该回合结束。',
            new_ynjf_info:'当你使用【杀】指定一名角色为目标后，若目标为男性，你可以令该角色不能使用和打出♥和♠牌，直到其回合结束；若为女性，你可以令其失去1点体力。',
-           new_lx_info:'<span style=\"color: gold\">锁定技</span>，当你即将受到伤害时，若你已受伤，且伤害来源为男性角色，50%几率防止之。',
+           new_lx_info:'<span style=\"color: gold\">锁定技</span>，当你即将受到伤害时，若你已受伤，且伤害来源为男性角色，50%几率防止之，然后你摸一张牌。',
         },
     };
      if(lib.device||lib.node){
@@ -30296,7 +32149,7 @@ return [1,-3];
      },
      marktext:"诈",
                 intro:{
-                    content:"该角色防止受到任何伤害",               
+                    content:"防止受到任何伤害",               
          },
        ai:{
 				effect:{
@@ -32862,7 +34715,7 @@ player.draw(player.storage.lol_baonu);
                 lib.config.characters.push('yxlm');
             };
             lib.translate['yxlm_character_config'] = '英雄联盟';};
-},help:{"风华绝代":"<li>【完整版】游戏内的版本可能缺失部分文件<li>其它获取金币方式：身份、国战、挑战<li>【2018年7月9日21:50】更新内容：修复国战卡死BUG、新增国战武将（李丰、凌操）<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年7月1日21:23】更新内容：修复BUG、新增BOSS武将<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月21日21:23】更新内容：修复BUG、增加BOSS击杀奖励、减少金币消耗<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月12日20:09】更新内容：修复BUG、新增刷金币BOSS、增加击杀奖励<li>赠送6666游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年5月6日19:00】更新内容：修复BUG、新增刷金币BOSS<li>—————————————————<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>—————————————————<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
+},help:{"风华绝代":"<li>【完整版】游戏内的版本可能缺失部分文件<li>其它获取金币方式：身份、国战、挑战<li>【2018年7月13日20:19】更新内容：新增古典武侠武将、新增改版武将、新增BOSS武将<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）有几率额外获得9999游戏金币<li>—————————————————<li>【2018年7月9日21:50】更新内容：修复国战卡死BUG、新增国战武将（李丰、凌操）<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年7月1日21:23】更新内容：修复BUG、新增BOSS武将<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月21日21:23】更新内容：修复BUG、增加BOSS击杀奖励、减少金币消耗<li>赠送9999游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年6月12日20:09】更新内容：修复BUG、新增刷金币BOSS、增加击杀奖励<li>赠送6666游戏金币（须开启富甲天下和开启此扩展武将包所有按钮）<li>—————————————————<li>【2018年5月6日19:00】更新内容：修复BUG、新增刷金币BOSS<li>—————————————————<li>【2018年5月2日19:22】更新内容：修复BUG、新增卡牌、刷金币BOSS<li>—————————————————<li>【2018年4月1日21:12】更新内容：修复国战卡死BUG、挑战其它BOSS也可以获得金币（注：挑战模式进行游戏需要消耗金币。玩家作为BOSS时，挑战角色有几率出现BOSS武将，击杀它可以获得更多的金币）<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月30日22:37】更新内容：修复卡死BUG<li>赠送5000游戏金币（须开启富甲天下）<li>—————————————————<li>【2018年3月29日20:09】更新内容：修复BUG<li>赠送3000游戏金币<li>—————————————————<li>【2018年3月28日20:38】更新内容：新增原创卡牌、新增挑战BOOS武将、新增改版武将、修复已知BUG<li>—————————————————<li>【2018年3月22日12:22】更新内容：修复BUG<li>赠送5000游戏金币<li>—————————————————<li>【2018年3月21日20:29】更新内容：修复BUG、修复/重做武将、优化ai<li>赠送5000游戏金币（在挑战模式使用/挑战本扩展BOSS需要消耗金币：BOSS：500，击杀挑战者：+100~200；挑战：300，击杀BOSS：+600~900；金币少于500会导致游戏失败）<li>开启增加游戏人数时，为避免武将数量不够导致游戏崩溃，请开启改版武将和英雄联盟（若游戏崩溃，可退出游戏重新进入界面选一个模式（身份/国战除外）然后开启改版武将和英雄联盟即可恢复正常）<li>☆需要剧情三英（极略三英武将+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可加無名殺玩家群私聊群主，价格人性化不设下限☆<li>—————————————————<li>【2018年3月10日11:28】更新内容：修复BUG、简化扩展包<li>—————————————————<li>【2018年1月25日21:27】更新内容：修复国战武将<li>—————————————————<li>【2018年1月23日20:28】更新内容：新增国战武将、再修复国战配音、修复本扩展频繁显示（游戏似乎未正常载入，是否禁用扩展并重新打开？）的BUG；完善优化若干个内容<li>国战配音：有一小部分技能存在配音文件缺失，须到群内下载配音扩展素材文件解压到相应的文件夹内<li>增强&还原：新增伏皇后、张星彩、张春华；兵粮寸断标记：“粮”→“兵”；明鉴标记：“明”→“鉴”<li>属性强化：须关闭挑战BOSS/非挑战模式启用BOSS，否则不会生效<li>身份/国战模式可设置9~13人局<li>极端锦囊：长按/鼠标指针停留“极端锦囊”查看详情<li>其它内容：自行探索<li>—————————————————<li>【2018年1月20日21:59】更新内容：优化属性强化、修复已知BUG<li>属性强化：初始手牌数：5；摸牌阶段摸牌数：3；体力、体力上限伤害、失去体力、失去体力上限、回复体力基数×30000~30250；单次回复体力小于30000补摸一张牌；击杀角色可摸两张牌；游戏内原有的三国武将以每1点计算的技能已优化转换；建议关闭另类或强度过高的武将，使用游戏自带的标准、神话降临、SP等武将以免出现不必要的BUG——【挑战、炉石和乱斗无效】<li>武将伪增强→还原&增强；受影响武将：张飞、凌统、界公孙瓒、留赞、界夏侯惇、神关羽、神周瑜、神吕布、神赵云、夏侯渊、华雄、旧华雄、大乔小乔、孙策、蒋琬费祎、药坛圣手、冷血皇后、乱世魔王…<li>关闭挑战BOSS和Background_Music可恢复背景音乐<li>—————————————————<li>【2017年12月29日19:29】更新内容：修复已知BUG、削弱无双上将；冷酷毒士“毒策”：判定为♥对该角色造成X点伤害（X为其体力上限的50%）→判定为♥对该角色造成X+2点伤害（X为其已损失的体力值）；你对体力上限不小于8的其他角色造成的伤害+X→每点伤害+X；修复荆棘之甲AI<li>优化AI、调整部分技能、部分BOSS武将在身份模式身份为主公时，可选择将所有其他角色设为反贼、调整属性强化，增加开关按钮<li>改版武将、古典武侠、神将&民间和英雄联盟武将可在联机模式中使用（须双方都有此扩展才能正常使用）<li>—————————————————<li>此扩展为★改版武将的继承版。坚守本心：90%原创、99%武将配音、高清武将插图（各个武将身躯占比差异较小）<li>修复AI、缩小属性增强的增强属性跨度<li>食用时请删除原有与此扩展内容相关的所有扩展<li>本扩展中的武将拥有独立【马术】、【英姿】等（例如：主副将均拥有“马术”，则显示两个“马术”，且效果叠加）；新增武将★庞统、王刘备、王曹操、王孙权、远古巨龙<li>新增武器伪特效、属性增强（可在扩展中关闭）<li>本扩展所有按钮默认全开启，请认真查阅选择开启或关闭<li>挑战BOSS全武将非挑战模式可选、AI可选（可选择开启或关闭）<li>修剪了部分大小差异突出的武将插图<li>对原有村内部分太弱的挑战武将作了增强；对此扩展部分武将技能稍作了调整<li>修复正常情况下挑战模式BGM重叠播放现象<li>其他详情自行探索<li>欢迎加入无名杀玩家交流群，群号码：658152910"},
     config:{"tips1":{"name":"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【無名殺玩家交流群】</span><span style=\"font-size:13px;font-weight:550;color: DarkOrange;font-style: oblique\">需要剧情三英（极略三英武将+七杀包+杀敌模式+连杀特效+剧情战役）、极略神将扩展（原画、有ai、全配音、不卡死）、配音扩展（游戏内该有声音的几乎都有，含击杀音效特效）、订做武将/扩展/技能可私聊群主，价格人性化不设下限</span>","clear":true,"nopointer":true,},  
                   Revision:{
                   name:'改版武将',

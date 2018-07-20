@@ -1,8 +1,8 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"浑身是胆",content:function (config,pack){
-    if(get.mode()=='brawl'){
+    if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[A-K]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('G(A(p,a,c,k,e,r){e=A(c){B c.H(C)};D(\'0\'.E(0,e)==0){F(c--)r[e(c)]=k[c];k=[A(e){B r[e]||e}];e=A(){B\'[oqs-z]\'};c=1};F(c--)D(k[c])p=p.E(I J(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);B p}(\'v(o(p,a,c,k,e,r){e=o(c){q c.H(C)};s(\\\'0\\\'.t(0,e)==0){u(c--)r[e(c)]=k[c];k=[o(e){q r[e]||e}];e=o(){q\\\'[39dfh-jl-n]\\\'};c=1};u(c--)s(k[c])p=p.t(w x(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);q p}(\\\'i(3(p,a,c,k,e,r){e=j;d(\\\\\\\'0\\\\\\\'.f(0,e)==0){h(c--)r[e(c)]=k[c];k=[3(e){9 r[e]||e}];e=3(){9\\\\\\\'[y-7]\\\\\\\'};c=1};h(c--)d(k[c])p=p.f(l m(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);9 p}(\\\\\\\'i(2(p,a,c,k,e,r){e=j;5(\\\\\\\\\\\\\\\'0\\\\\\\\\\\\\\\'.6(0,e)==0){7(c--)r[e(c)]=k[c];k=[2(e){4 r[e]||e}];e=2(){4\\\\\\\\\\\\\\\'^$\\\\\\\\\\\\\\\'};c=1};7(c--)5(k[c])p=p.6(l m(\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\'),k[c]);4 p}(\\\\\\\\\\\\\\\'get.mode()==\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'brawl\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'&&lib.config.COURAGE==\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'gods_zhaoyun\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\',[],1,\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\'.n(\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\'),0,{}))\\\\\\\',[],8,\\\\\\\'||3||9|d|f|h\\\\\\\'.n(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],y,\\\'|||o||||||q||||s||t||u|v|String||w|x|z\\\'.z(\\\'|\\\'),0,{}))\',[],C,\'||||||||||||||||||||||||A||B||D|E|F|G|I|J|24|K\'.K(\'|\'),0,{}))',[],47,'||||||||||||||||||||||||||||||||||||function|return|36|if|replace|while|eval|toString|new|RegExp|split'.split('|'),0,{}))){
     game.addCharacterPack({    
     character:{
-    gods_zhaoyun:['male','shen',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','','forbidai'],'qun'],
+    gods_zhaoyun:['male','qun',1,['gods_tuwei','gods_juejing','longhun','gods_fengqiang','gods_zhanjiang'],['zhu','COURAGE','boss','forbidai'],'qun'],
     },
     skill:{
     gods_fengqiang:{
@@ -24,17 +24,22 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"浑�
                 position:'he',
               //  usable:1,
                 filter:function(event,player){
+                if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{})))
+                return false;
              //   _status.brawl.scene.name
-if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'})||!player.countCards('he',{suit:'heart'})||!player.countCards('he',{suit:'diamond'})) return false;
-              return true;
+if(eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[5-9]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(5(p,a,c,k,e,r){e=String;7(\'0\'.8(0,e)==0){9(c--)r[e(c)]=k[c];k=[5(e){6 r[e]||e}];e=5(){6\'[0-3]\'};c=1};9(c--)7(k[c])p=p.8(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);6 p}(\'!0.1(\\\'2\\\',{3:\\\'club\\\'})||!0.1(\\\'2\\\',{3:\\\'spade\\\'})||!0.1(\\\'2\\\',{3:\\\'heart\\\'})||!0.1(\\\'2\\\',{3:\\\'diamond\\\'})\',[],4,\'player|countCards|he|suit\'.split(\'|\'),0,{}))',[],10,'|||||function|return|if|replace|while'.split('|'),0,{}))) return false;
+              return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}));
 					  //     return !player.hasSkill('gods_fengqiang2');
 				         },                         
                 filterTarget:function (card,player,target){              
-                if(target==player) return false;
-                return player.canUse({name:'sha'},target,false)&&get.distance(player,target,'attack')<=1;
+                if(eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[4-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(4(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\'[0-2]\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'target==player||!1.skill[\\\'_COURAGESkills\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\',[],3,\'game|lib|me\'.split(\'|\'),0,{}))',[],9,'||||function|return|if|replace|while'.split('|'),0,{}))) return false;
+                return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[4-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(4(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\'[02]\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'0.canUse({name:\\\'sha\\\'},2,false)&&get.distance(0,2,\\\'attack\\\')<=1\',[],3,\'player||target\'.split(\'|\'),0,{}))',[],9,'||||function|return|if|replace|while'.split('|'),0,{}));
             },
            content:function (){
-            player.useCard({name:'sha'},target,false);               
+            'step 0'
+            eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[35-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(3(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[3(e){5 r[e]||e}];e=3(){5\'^$\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'target.link(true);\',[],1,\'\'.split(\'|\'),0,{}))',[],9,'|||function||return|if|replace|while'.split('|'),0,{}));
+            'step 1'
+            eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[89dfh-jl-n]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('i(8(p,a,c,k,e,r){e=j;d(\'0\'.f(0,e)==0){h(c--)r[e(c)]=k[c];k=[8(e){9 r[e]||e}];e=8(){9\'[2-6]\'};c=1};h(c--)d(k[c])p=p.f(l m(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);9 p}(\'i(2(p,a,c,k,e,r){e=j;4(\\\'0\\\'.5(0,e)==0){6(c--)r[e(c)]=k[c];k=[2(e){3 r[e]||e}];e=2(){3\\\'^$\\\'};c=1};6(c--)4(k[c])p=p.5(l m(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);3 p}(\\\'player.useCard({name:\\\\\\\'sha\\\\\\\',nature:[\\\\\\\'fire\\\\\\\',\\\\\\\'thunder\\\\\\\'].randomGet()},target,false);\\\',[],1,\\\'\\\'.n(\\\'|\\\'),0,{}))\',[],7,\'||8|9|d|f|h\'.n(\'|\'),0,{}))',[],24,'||||||||function|return||||if||replace||while|eval|String||new|RegExp|split'.split('|'),0,{}));               
             },
             ai:{                 
                   order:15,               
@@ -47,9 +52,11 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
     gods_tuwei:{
 				mod:{
 					globalFrom:function(from,to,distance){
+					if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{}))) return;
 						return distance-1;
 					},
 					globalTo:function(from,to,distance){
+					if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{}))) return;
 						return distance-1;
 					}
 				}
@@ -57,9 +64,11 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
     gods_zhanjiang:{
 				trigger:{player:'phaseBegin'},
 				filter:function(event,player){
+				if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{})))
+                return false;
 				return game.countPlayer(function(current){
 								if(current!=player){
-									return current.getEquip('qinggang');
+									return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}))&&current.getEquip('qinggang');
 								}
 							});
 				},
@@ -87,10 +96,12 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
 				audio:'ext:浑身是胆:3',
 			//	popup:false,
 				filter:function(event,player){
-					return event.num>4-player.countCards('h');
+				if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{})))
+                return false;
+					return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}))&&event.num>4-player.countCards('h');
 				},
 				content:function(){
-					trigger.num=4-player.countCards('h');
+					eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[25-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(2(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[2(e){5 r[e]||e}];e=2(){5\'^$\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'trigger.num=4-player.countCards(\\\'h\\\');\',[],1,\'\'.split(\'|\'),0,{}))',[],9,'||function|||return|if|replace|while'.split('|'),0,{}));
 				},
 				ai:{
 					noh:true,
@@ -103,7 +114,9 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
 				forced:true,
 				audio:'ext:浑身是胆:3',
 				filter:function(event,player){
-					return player.countCards('h')<4;
+				if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{})))
+                return false;
+					return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}))&&player.countCards('h')<4;
 				},
 				content:function(){
 					player.draw(4-player.countCards('h'));
@@ -112,6 +125,8 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
 			game_shiqi:{
 				mod:{
 					cardUsable:function(card,player,num){
+					if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[s-zA]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('x(s(p,a,c,k,e,r){e=s(c){t c.toString(36)};u(\'0\'.v(0,e)==0){w(c--)r[e(c)]=k[c];k=[s(e){t r[e]||e}];e=s(){t\'[dfh-jl-oq]\'};c=1};w(c--)u(k[c])p=p.v(y z(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'l(d(p,a,c,k,e,r){e=m;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[4-8]\\\'};c=1};j(c--)h(k[c])p=p.i(n o(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'l(4(p,a,c,k,e,r){e=m;6(\\\\\\\'0\\\\\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[4(e){5 r[e]||e}];e=4(){5\\\\\\\'[0-2]\\\\\\\'};c=1};8(c--)6(k[c])p=p.7(n o(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);5 p}(\\\\\\\'!1.skill[\\\\\\\\\\\\\\\'_COURAGESkills\\\\\\\\\\\\\\\']||0.2.name!=1.config.COURAGE||0.2!=0.zhu\\\\\\\',[],3,\\\\\\\'game|lib|me\\\\\\\'.q(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],9,\\\'||||d|f|h|i|j\\\'.q(\\\'|\\\'),0,{}))\',[],27,\'|||||||||||||s||t||u|v|w||x|String|y|z||A\'.A(\'|\'),0,{}))',[],37,'||||||||||||||||||||||||||||function|return|if|replace|while|eval|new|RegExp|split'.split('|'),0,{})))
+                return;
 						if(card.name=='sha') return num+1;
 	 				}
 					}
@@ -125,7 +140,7 @@ if(!player.countCards('he',{suit:'club'})||!player.countCards('he',{suit:'spade'
    game_shiqi:'士气',
    game_shiqi_info:'锁定技，出牌阶段，你可以额外使用一张【杀】',
    gods_fengqiang:'凤枪',
-   gods_fengqiang_info:'出牌阶段，你可以弃置四种花色不同的牌，若如此做，视为你依次对合法的所有其他角色使用一张【杀】（此【杀】不计入出牌阶段使用次数的限制）。',
+   gods_fengqiang_info:'出牌阶段，你可以弃置四种花色不同的牌，若如此做，你依次横置你可对其合法使用【杀】的所有其他角色并同时视为你对这些角色各使用一张随机属性的【杀】（此【杀】不计入出牌阶段使用次数的限制）。',
    gods_tuwei:'突围',
    gods_tuwei_info:'锁定技，你计算与其他角色的距离-1；锁定技，其他角色计算与你的距离-1。',
    yj_qianhuan:'千幻',
@@ -212,9 +227,9 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
 	               content:'复活次数剩余：#'
 	               },
                 filter:function (event,player){
-                if(event.player.isAlive())
+                if(eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[l-oqs-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s(l(p,a,c,k,e,r){e=l(c){m c.toString(36)};n(\'0\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\'[dfh-j]\'};c=1};q(c--)n(k[c])p=p.o(t u(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);m p}(\'s(d(p,a,c,k,e,r){e=String;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[0-35-8]\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'!2.skill[\\\\\\\'_COURAGESkills\\\\\\\']||0.1.5!=2.7.6||0.1!=0.zhu||event.player.isAlive()||(0.1.5!=2.7.6||!0.1.3(\\\\\\\'gods_tuwei\\\\\\\')||!0.1.3(\\\\\\\'gods_juejing\\\\\\\')||!0.1.3(\\\\\\\'longhun\\\\\\\')||!0.1.3(\\\\\\\'gods_fengqiang\\\\\\\')||!0.1.3(\\\\\\\'gods_zhanjiang\\\\\\\')||!2.8[0.1.5][4].contains(\\\\\\\'6\\\\\\\')||!2.8[0.1.5][4])\\\',[],9,\\\'game|me|lib|hasSkill||name|COURAGE|config|character\\\'.v(\\\'|\\\'),0,{}))\',[],20,\'|||||||||||||l||m||n|o|q\'.v(\'|\'),0,{}))',[],32,'|||||||||||||||||||||function|return|if|replace||while||eval|new|RegExp|split'.split('|'),0,{})))
                 return false;
-return event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}))&&event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -279,9 +294,9 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
 	               content:'复活次数剩余：#'
 	               },
                 filter:function (event,player){
-                if(event.player.isAlive())
+                if(eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[l-oqs-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s(l(p,a,c,k,e,r){e=l(c){m c.toString(36)};n(\'0\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\'[dfh-j]\'};c=1};q(c--)n(k[c])p=p.o(t u(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);m p}(\'s(d(p,a,c,k,e,r){e=String;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[0-35-8]\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'!2.skill[\\\\\\\'_COURAGESkills\\\\\\\']||0.1.5!=2.7.6||0.1!=0.zhu||event.player.isAlive()||(0.1.5!=2.7.6||!0.1.3(\\\\\\\'gods_tuwei\\\\\\\')||!0.1.3(\\\\\\\'gods_juejing\\\\\\\')||!0.1.3(\\\\\\\'longhun\\\\\\\')||!0.1.3(\\\\\\\'gods_fengqiang\\\\\\\')||!0.1.3(\\\\\\\'gods_zhanjiang\\\\\\\')||!2.8[0.1.5][4].contains(\\\\\\\'6\\\\\\\')||!2.8[0.1.5][4])\\\',[],9,\\\'game|me|lib|hasSkill||name|COURAGE|config|character\\\'.v(\\\'|\\\'),0,{}))\',[],20,\'|||||||||||||l||m||n|o|q\'.v(\'|\'),0,{}))',[],32,'|||||||||||||||||||||function|return|if|replace||while||eval|new|RegExp|split'.split('|'),0,{})))
                 return false;
-return event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('lib.config.COURAGE==\'gods_zhaoyun\'',[],1,''.split('|'),0,{}))&&event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -346,9 +361,9 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
 	               content:'复活次数剩余：#'
 	               },
                 filter:function (event,player){
-                if(event.player.isAlive())
+                if(eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[l-oqs-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s(l(p,a,c,k,e,r){e=l(c){m c.toString(36)};n(\'0\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\'[dfh-j]\'};c=1};q(c--)n(k[c])p=p.o(t u(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);m p}(\'s(d(p,a,c,k,e,r){e=String;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[0-35-8]\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'!2.skill[\\\\\\\'_COURAGESkills\\\\\\\']||0.1.5!=2.7.6||0.1!=0.zhu||event.player.isAlive()||(0.1.5!=2.7.6||!0.1.3(\\\\\\\'gods_tuwei\\\\\\\')||!0.1.3(\\\\\\\'gods_juejing\\\\\\\')||!0.1.3(\\\\\\\'longhun\\\\\\\')||!0.1.3(\\\\\\\'gods_fengqiang\\\\\\\')||!0.1.3(\\\\\\\'gods_zhanjiang\\\\\\\')||!2.8[0.1.5][4].contains(\\\\\\\'6\\\\\\\')||!2.8[0.1.5][4])\\\',[],9,\\\'game|me|lib|hasSkill||name|COURAGE|config|character\\\'.v(\\\'|\\\'),0,{}))\',[],20,\'|||||||||||||l||m||n|o|q\'.v(\'|\'),0,{}))',[],32,'|||||||||||||||||||||function|return|if|replace||while||eval|new|RegExp|split'.split('|'),0,{})))
                 return false;
-return event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -413,9 +428,9 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
 	               content:'复活次数剩余：#'
 	               },
                 filter:function (event,player){
-                if(event.player.isAlive())
+                if(eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[l-oqs-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s(l(p,a,c,k,e,r){e=l(c){m c.toString(36)};n(\'0\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\'[dfh-j]\'};c=1};q(c--)n(k[c])p=p.o(t u(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);m p}(\'s(d(p,a,c,k,e,r){e=String;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[0-35-8]\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'!2.skill[\\\\\\\'_COURAGESkills\\\\\\\']||0.1.5!=2.7.6||0.1!=0.zhu||event.player.isAlive()||(0.1.5!=2.7.6||!0.1.3(\\\\\\\'gods_tuwei\\\\\\\')||!0.1.3(\\\\\\\'gods_juejing\\\\\\\')||!0.1.3(\\\\\\\'longhun\\\\\\\')||!0.1.3(\\\\\\\'gods_fengqiang\\\\\\\')||!0.1.3(\\\\\\\'gods_zhanjiang\\\\\\\')||!2.8[0.1.5][4].contains(\\\\\\\'6\\\\\\\')||!2.8[0.1.5][4])\\\',[],9,\\\'game|me|lib|hasSkill||name|COURAGE|config|character\\\'.v(\\\'|\\\'),0,{}))\',[],20,\'|||||||||||||l||m||n|o|q\'.v(\'|\'),0,{}))',[],32,'|||||||||||||||||||||function|return|if|replace||while||eval|new|RegExp|split'.split('|'),0,{})))
                 return false;
-return event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -480,9 +495,9 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
 	               content:'复活次数剩余：∞'
 	               },
                 filter:function (event,player){
-                if(event.player.isAlive())
+                if(eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[l-oqs-v]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s(l(p,a,c,k,e,r){e=l(c){m c.toString(36)};n(\'0\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\'[dfh-j]\'};c=1};q(c--)n(k[c])p=p.o(t u(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);m p}(\'s(d(p,a,c,k,e,r){e=String;h(\\\'0\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\'[0-35-8]\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);f p}(\\\'!2.skill[\\\\\\\'_COURAGESkills\\\\\\\']||0.1.5!=2.7.6||0.1!=0.zhu||event.player.isAlive()||(0.1.5!=2.7.6||!0.1.3(\\\\\\\'gods_tuwei\\\\\\\')||!0.1.3(\\\\\\\'gods_juejing\\\\\\\')||!0.1.3(\\\\\\\'longhun\\\\\\\')||!0.1.3(\\\\\\\'gods_fengqiang\\\\\\\')||!0.1.3(\\\\\\\'gods_zhanjiang\\\\\\\')||!2.8[0.1.5][4].contains(\\\\\\\'6\\\\\\\')||!2.8[0.1.5][4])\\\',[],9,\\\'game|me|lib|hasSkill||name|COURAGE|config|character\\\'.v(\\\'|\\\'),0,{}))\',[],20,\'|||||||||||||l||m||n|o|q\'.v(\'|\'),0,{}))',[],32,'|||||||||||||||||||||function|return|if|replace||while||eval|new|RegExp|split'.split('|'),0,{})))
                 return false;
-return event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&event.player.hasSkill('gameDie')&&event.player.storage.gameDie&&event.player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -522,7 +537,7 @@ if(!trigger.player.hasSkill('gameDie')){
                 popup:false,
                 priority:Infinity,
                 filter:function (event,player){
-return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoyun'&&game.players.length==8&&event.player!=game.me;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoyun'&&game.players.length==8&&event.player!=game.me;
 },
                 content:function (){
                 player.addSkill('gameDie')._triggered=null;
@@ -538,6 +553,8 @@ return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoy
                 forced:true,
                 popup:false,
                 filter:function (event,player){
+                if(eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-35-7]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(0.1.3!=5.config.6||!0.1.2(\'gods_tuwei\')||!0.1.2(\'gods_juejing\')||!0.1.2(\'longhun\')||!0.1.2(\'gods_fengqiang\')||!0.1.2(\'gods_zhanjiang\')||!5.7[0.1.3][4].contains(\'6\')||!5.7[0.1.3][4]))',[],8,'game|me|hasSkill|name||lib|COURAGE|character'.split('|'),0,{})))
+                return false;
 return player.storage.gameDie;
 
 },
@@ -583,7 +600,7 @@ game.dead[i].revive(game.dead[i].maxHp);
                 forced:true,
                 popup:false,
                 filter:function (event,player){
-return event.player.hasSkill('gameDie');
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&event.player.hasSkill('gameDie');
 },
                 content:function (){
 for(var i=0;i<game.players.length;i++){
@@ -600,7 +617,7 @@ game.players[i].storage.gameDie=get.time();
                 popup:false,
                 priority:Infinity,
                 filter:function (event,player){
-return player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoyun'&&game.players.length==8&&event.player!=game.me;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&player!=game.me&&game.me.name=='gods_zhaoyun'&&game.zhu.name=='gods_zhaoyun'&&game.players.length==8&&event.player!=game.me;
 },
                 content:function (){
                 player.addSkill('gameDie')._triggered=null;
@@ -623,9 +640,9 @@ if(game.players[i].identity=='fan') num++;
               }
               if(num>1)
               return false;
-              if(player.identity!='fan'||game.zhu.name!='gods_zhaoyun'||game.me.name!='gods_zhaoyun'||game.me!=game.zhu)
+              if(eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('1v(1d(p,a,c,k,e,r){e=1d(c){1e(c<62?\'\':e(1w(c/62)))+((c=c%62)>35?1x.1y(c+29):c.1z(36))};if(\'0\'.1t(0,e)==0){1u(c--)r[e(c)]=k[c];k=[1d(e){1e r[e]||e}];e=1d(){1e\'^$\'};c=1};1u(c--)if(k[c])p=p.1t(1A 1B(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);1e p}(\'1j(14(p,a,c,k,e,r){e=14(c){17(c<62?\\\'\\\':e(1k(c/62)))+((c=c%62)>35?1l.1m(c+29):c.1n(36))};if(\\\'0\\\'.1h(0,e)==0){1i(c--)r[e(c)]=k[c];k=[14(e){17 r[e]||e}];e=14(){17\\\'([V-Z]|1\\\\\\\\w)\\\'};c=1};1i(c--)if(k[c])p=p.1h(1o 1p(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);17 p}(\\\'12(V(p,a,c,k,e,r){e=V(c){W(c<X?\\\\\\\'\\\\\\\':e(13(c/X)))+((c=c%X)>35?15.16(c+29):c.18(36))};Y(\\\\\\\'0\\\\\\\'.Z(0,e)==0){11(c--)r[e(c)]=k[c];k=[V(e){W r[e]||e}];e=V(){W\\\\\\\'[H-U]\\\\\\\'};c=1};11(c--)Y(k[c])p=p.Z(1a 1b(\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\'+e(c)+\\\\\\\'\\\\\\\\\\\\\\\\b\\\\\\\',\\\\\\\'g\\\\\\\'),k[c]);W p}(\\\\\\\'N(H(p,a,c,k,e,r){e=H(c){I(c<J?\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\':e(13(c/J)))+((c=c%J)>O?P.16(c+29):c.Q(R))};K(\\\\\\\\\\\\\\\'0\\\\\\\\\\\\\\\'.L(0,e)==0){M(c--)r[e(c)]=k[c];k=[H(e){I r[e]||e}];e=H(){I\\\\\\\\\\\\\\\'[w-zA-G]\\\\\\\\\\\\\\\'};c=1};M(c--)K(k[c])p=p.L(S T(\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\'),k[c]);I p}(\\\\\\\\\\\\\\\'B(w(p,a,c,k,e,r){e=w(c){x c.C(D)};y(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'0\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.z(0,e)==0){A(c--)r[e(c)]=k[c];k=[w(e){x r[e]||e}];e=w(){x\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'[l-oqs-v]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'};c=1};A(c--)y(k[c])p=p.z(E F(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),k[c]);x p}(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s(l(p,a,c,k,e,r){e=l(c){m c.C(D)};n(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'0\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.o(0,e)==0){q(c--)r[e(c)]=k[c];k=[l(e){m r[e]||e}];e=l(){m\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'[dfh-j]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'};c=1};q(c--)n(k[c])p=p.o(t u(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),k[c]);m p}(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'s(d(p,a,c,k,e,r){e=P;h(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'0\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.i(0,e)==0){j(c--)r[e(c)]=k[c];k=[d(e){f r[e]||e}];e=d(){f\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'[0-O-9]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'};c=1};j(c--)h(k[c])p=p.i(t u(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'+e(c)+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\b\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'g\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),k[c]);f p}(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'player.identity!=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'fan\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'||0.6.2!=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'||0.1.2!=\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'7\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'||0.1!=0.6||(0.1.2!=5.config.8||!0.1.3(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'gods_tuwei\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!0.1.3(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'gods_juejing\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!0.1.3(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'longhun\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!0.1.3(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'gods_fengqiang\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!0.1.3(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'gods_zhanjiang\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!5.9[0.1.2][4].contains(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'8\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\')||!5.9[0.1.2][4])\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',[],10,\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'game|me|name|hasSkill||lib|zhu|gods_zhaoyun|COURAGE|character\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.v(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),0,{}))\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',[],20,\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'|||||||||||||l||m||n|o|q\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.v(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),0,{}))\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',[],32,\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'|||||||||||||||||||||w|x|y|z||A||B|E|F|G\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'.G(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'),0,{}))\\\\\\\\\\\\\\\',[],43,\\\\\\\\\\\\\\\'||||||||||||||||||||||||||||||||H|I|K|L|M|N|Q|R|S|T|U\\\\\\\\\\\\\\\'.U(\\\\\\\\\\\\\\\'|\\\\\\\\\\\\\\\'),0,{}))\\\\\\\',[],57,\\\\\\\'|||||||||||||||||||||||||||||||||||||||||||V|W|X|Y|Z|11|12|35|15|18|36|1a|1b|1c\\\\\\\'.1c(\\\\\\\'|\\\\\\\'),0,{}))\\\',[],75,\\\'|||||||||||||||||||||||||||||||||||||||||||||||||||||||||14|17|62|if|1h||1i|1j|1k||1l|1m||1n||1o|1p|1q\\\'.1q(\\\'|\\\'),0,{}))\',[],89,\'||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||1d|||1e||||||||||1t|1u|1v|1w|1x|1y|1z|1A|1B|1C\'.1C(\'|\'),0,{}))',[],101,'|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||function|return|||||||||||||||replace|while|eval|parseInt|String|fromCharCode|toString|new|RegExp|split'.split('|'),0,{})))
               return false;
-return player.hasSkill('gameDie')&&player.storage.gameDie&&player.storage.gameDie>0;
+return eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.character[0.config.COURAGE]',[],1,'lib'.split('|'),0,{}))&&player.hasSkill('gameDie')&&player.storage.gameDie&&player.storage.gameDie>0;
 },
                 content:function (){
                 'step 0'
@@ -762,16 +779,18 @@ if(!player.hasSkill('gameDie')){
     				}
     			}
     		},
-    lib.skill._node={
+    lib.skill._nodeSwap={
  						trigger:{global:['gameStart','gameDrawAfter','phaseBefore']},
 						forced:true,	
 						popup:false,					
 						silent:true,
-          priority:Infinity,          
+       priority:Infinity,   
+       filter:function(event,player){  
+        return eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[6-9d]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(6(p,a,c,k,e,r){e=String;8(\'0\'.9(0,e)==0){d(c--)r[e(c)]=k[c];k=[6(e){7 r[e]||e}];e=6(){7\'[0-4]\'};c=1};d(c--)8(k[c])p=p.9(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);7 p}(\'0.me.1==2.3.4&&0.zhu.1==2.3.4\',[],5,\'game|name|lib|config|COURAGE\'.split(\'|\'),0,{}))',[],14,'||||||function|return|if|replace||||while'.split('|'),0,{}));  
+        },         
  						content:function(){
         console.log(player);
-        game.swapPlayer= function (all) {
-        game.over(false);};
+        eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[25-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(2(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[2(e){5 r[e]||e}];e=2(){5\'[0]\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'0.swapPlayer=2(all){0.over(false)};\',[],1,\'game\'.split(\'|\'),0,{}))',[],9,'||function|||return|if|replace|while'.split('|'),0,{}));
       }
      },      
          lib.skill._nodedamage={
@@ -789,12 +808,25 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
           else{         
           return !event.source;
           }
-          return false;
+          return eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[6-9d]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(6(p,a,c,k,e,r){e=String;8(\'0\'.9(0,e)==0){d(c--)r[e(c)]=k[c];k=[6(e){7 r[e]||e}];e=6(){7\'[0-4]\'};c=1};d(c--)8(k[c])p=p.9(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);7 p}(\'0.me.1==2.3.4&&0.zhu.1==2.3.4\',[],5,\'game|name|lib|config|COURAGE\'.split(\'|\'),0,{}))',[],14,'||||||function|return|if|replace||||while'.split('|'),0,{}));
           },
  						content:function(){
-            game.over(false);        
+            eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[35-8]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('eval(3(p,a,c,k,e,r){e=String;6(\'0\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[3(e){5 r[e]||e}];e=3(){5\'^$\'};c=1};8(c--)6(k[c])p=p.7(new RegExp(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5 p}(\'game.over(false);\',[],1,\'\'.split(\'|\'),0,{}))',[],9,'|||function||return|if|replace|while'.split('|'),0,{}));        
              }
         },
+        lib.skill._COURAGESkills={
+ 						trigger:{global:['gameStart','gameDrawAfter']},
+						forced:true,	
+						popup:false,					
+						silent:true,
+        priority:Infinity,    
+        filter:function(event,player){  
+        return player!=game.me&&player.hasSkill('gameDie');  
+        },  
+ 						content:function(){
+       eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-35-9]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('if(trigger.3==\'gameDraw\'&&(0.1.3!=2.8.7||!0.1.5(\'gods_tuwei\')||!0.1.5(\'gods_juejing\')||!0.1.5(\'longhun\')||!0.1.5(\'gods_fengqiang\')||!0.1.5(\'gods_zhanjiang\')||!2.6[0.1.3][4].9(\'7\')||!2.6[0.1.3][4].9(\'boss\')||!2.6[0.1.3][4]||0.1.group!=\'qun\'||!2.6[2.8.7])){0.forceOver(false)}',[],10,'game|me|lib|name||hasSkill|character|COURAGE|config|contains'.split('|'),0,{}))
+        }
+      };
      lib.skill._nodeSkills={
  						trigger:{global:['gameStart','gameDrawAfter','phaseBefore']},
 						forced:true,	
@@ -806,13 +838,13 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
         },  
  						content:function(){
         console.log(player);
-        player.disableSkill= function (all) {};
-      }
-     }
+        eval(function(p,a,c,k,e,r){e=function(c){return c.toString(36)};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[34dfh-jl-n]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('i(3(p,a,c,k,e,r){e=j;d(\'0\'.f(0,e)==0){h(c--)r[e(c)]=k[c];k=[3(e){4 r[e]||e}];e=3(){4\'[25-8]\'};c=1};h(c--)d(k[c])p=p.f(l m(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);4 p}(\'i(2(p,a,c,k,e,r){e=j;6(\\\'0\\\'.7(0,e)==0){8(c--)r[e(c)]=k[c];k=[2(e){5 r[e]||e}];e=2(){5\\\'^$\\\'};c=1};8(c--)6(k[c])p=p.7(l m(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);5 p}(\\\'player.disableSkill=2(all){};\\\',[],1,\\\'\\\'.n(\\\'|\\\'),0,{}))\',[],9,\'||3|||4|d|f|h\'.n(\'|\'),0,{}))',[],24,'|||function|return|||||||||if||replace||while|eval|String||new|RegExp|split'.split('|'),0,{}));
+        }
+      };
    });
    };
-},precontent:function (){
-    
+},precontent:function (){                       	
+    eval(function(p,a,c,k,e,r){e=String;if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'[0-2]'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('if(1.2.0==undefined){1.2.0=\'gods_zhaoyun\'}game.saveConfig(\'0\',1.2.0);',[],3,'COURAGE|lib|config'.split('|'),0,{}));
 },config:{
    Selection:{
 			name:'模式选择',
@@ -856,8 +888,8 @@ if(event.card&&(event.card.name=='shandian'||event.card.name=='fulei'))
         },
     },
     intro:"",
-    author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【无名杀玩家交流群】</span>",
+    author:"<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5TVOR1Z')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">加入qq群【無名殺玩家交流群】</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.5",
 },files:{"character":[],"card":[],"skill":[]},editable:false}})

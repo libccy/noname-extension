@@ -41,7 +41,7 @@ extension["剧情战役"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.80716",
+	version:"1.80721",
 	files:["Insane_simayi.jpg","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
 		"Insane_yuanshao.jpg","Insane_sunshangxiang.jpg","Insane_zhenji.jpg","lnsane_shuaiwang62.mp3",
 		"lnsane_shuaiwang61.mp3","Insane_caiwenji.jpg","Insane_jiangwei.jpg","Insane_huaxiong.jpg",

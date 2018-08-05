@@ -30,11 +30,11 @@ extension["浑身是胆"]={
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.7",
+	version:"1.8",
 	files:["gods_juejing21.mp3","extension.js","gods_fengqiang3.mp3","gods_fengqiang2.mp3",
 		"gods_juejing23.mp3","gods_juejing22.mp3","gods_fengqiang1.mp3","gods_zhaoyun.jpg",
 		"gods_juejing3.mp3","gods_juejing2.mp3","gods_juejing1.mp3","extension.js.bak"],
-	size:"739.91KB"
+	size:"742.8KB"
 };
 extension["剧情战役"]={
 	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",

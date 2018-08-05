@@ -24,8 +24,8 @@
 		if(config.sgk_sr){
 			game.addCharacterPack({
 				character:{
-					sgksr_zhangliao:['male','wei',5,['sgk_wuwei','sgk_yansha'],['die_audio']],
-					sgksr_xiahoudun:['male','wei',4,['sgk_zhonghou','sgk_ganglie'],['die_audio']],
+					sgksr_zhangliao:['male','wei',4,['sgk_wuwei','sgk_yansha'],['die_audio']],
+// 					sgksr_xiahoudun:['male','wei',4,['sgk_zhonghou','sgk_ganglie'],['die_audio']],
 					sgksr_zhenji:['female','wei',3,['sgk_liuyun','sgk_lingbo','sgk_qingcheng'],['die_audio']],
 					sgksr_xuchu:['male','wei',4,['sgk_aozhan','sgk_huxiao'],['die_audio']],
 					sgksr_simayi:['male','wei',3,['sgk_guicai','sgk_langgu','sgk_zhuizun'],['die_audio']],
@@ -4843,7 +4843,7 @@
 					sgksk_miheng:['male','qun',3,['sgk_shejian','sgk_kuangao'],['die_audio']],
 					sgksk_zumao:['male','wu',4,['sgk_yinbing'],['die_audio']],
 					sgksk_huaxiong:['male','qun',5,['sgk_fenwei','sgk_shiyong'],['die_audio']],
-					sgksk_sunce:['male','wu',4,['sgk_angyang','sgk_weifeng','sgk_xieli'],['zhu','die_audio']],
+// 					sgksk_sunce:['male','wu',4,['sgk_angyang','sgk_weifeng','sgk_xieli'],['zhu','die_audio']],
 					sgksk_caoren:['male','wei',4,['sgk_jushou'],['die_audio']],
 					sgksk_gongsunzan:['male','qun',4,['sgk_yicong','sgk_muma'],['die_audio']],
 					sgksk_sunqian:['male','shu',3,['sgk_suiji','sgk_fengyi'],['die_audio']],
@@ -4862,7 +4862,7 @@
 					sgksk_zhoucang:['male','shu',4,['sgk_daoshi'],['die_audio']],
 					sgksk_kongrong:['male','qun',3,['sgk_lirang','sgk_xianshi'],['die_audio']],
 					sgksk_caochong:['male','wei',3,['sgk_chengxiang','sgk_renxin'],['die_audio']],
-					sgksk_zhanglu:['male','qun',3,['sgk_midao','sgk_yishe','sgk_pudu'],['die_audio']],
+// 					sgksk_zhanglu:['male','qun',3,['sgk_midao','sgk_yishe','sgk_pudu'],['die_audio']],
 					sgksk_guanlu:['male','wei',3,['sgk_zongqing','sgk_bugua'],['die_audio']],
 					sgksk_simazhao:['male','wei',3,['sgk_zhaoxin','sgk_zhihe'],['die_audio']],
 					sgksk_yangxiu:['male','wei',3,['sgk_caijie','sgk_jilei'],['die_audio']],
@@ -9092,9 +9092,9 @@
 			game.addCharacterPack({
 				character:{
 					sgksoul_ganning:['male','wu',4,['sgk_lvezhen','sgk_youlong'],['die_audio']],
-					sgksoul_simahui:['male','qun',4,['sgk_zhitian','sgk_yinshi'],['die_audio']],
+					sgksoul_simahui:['male','qun',3,['sgk_zhitian','sgk_yinshi'],['die_audio']],
 					sgksoul_zhangfei:['male','shu',4,['sgk_shayi','sgk_zhenhun'],['die_audio']],
-					sgksoul_sunquan:['male','wu',4,['sgk_huju'],['die_audio']],
+// 					sgksoul_sunquan:['male','wu',4,['sgk_huju'],['die_audio']],
 					sgksoul_jiaxu:['male','qun',3,['sgk_yanmie','sgk_shunshi'],['die_audio']],
 					sgksoul_liubei:['male','shu',4,['sgk_junwang','sgk_jizhao'],['die_audio']],
 					sgksoul_zhugeliang:['male','shu',3,['sgk_qixing','sgk_kuangfeng','sgk_dawu'],['die_audio']],
@@ -9107,15 +9107,15 @@
 					sgksoul_huangyueying:['female','shu',3,['sgk_zhiming','sgk_suyin'],['die_audio']],
 					sgksoul_zhangjiao:['male','qun',3,['sgk_dianjie','sgk_shendao','sgk_leihun'],['die_audio']],
 					sgksoul_lvmeng:['male','wu',3,['sgk_shelie','sgk_gongxin'],['die_audio']],
-					sgksoul_guojia:['male','wei',3,['sgk_tianqi','sgk_tianji'],['die_audio']],
+// 					sgksoul_guojia:['male','wei',3,['sgk_tianqi','sgk_tianji'],['die_audio']],
 					sgksoul_diaochan:['female','qun',3,['sgk_tianzi','sgk_meixin'],['die_audio']],
 					sgksoul_sunshangxiang:['female','wu',3,['sgk_xianzhu','sgk_liangyuan'],['die_audio']],
 					sgksoul_xiahoudun:['male','wei',5,['sgk_danjing','sgk_zhonghun'],['die_audio']],
 					sgksoul_dianwei:['male','wei',6,['sgk_zhiji'],['die_audio']],
 					sgksoul_huatuo:['male','qun',3,['sgk_jishi','sgk_xuanxin'],['die_audio']],
-					sgksoul_zhouyu:['male','wu',4,['sgk_qinyin','sgk_yeyan'],['die_audio']],
+// 					sgksoul_zhouyu:['male','wu',4,['sgk_qinyin','sgk_yeyan'],['die_audio']],
 				},
-				skill:{
+ 				skill:{
 					sgk_huju:{
 						audio:1,		
 						trigger:{global:'phaseBegin'},
@@ -9258,7 +9258,7 @@
 					},
 					sgk_junwang:{
 						audio:2,
-						trigger:{global:'phaseUseBegin'},
+						trigger:{global:'drawAfter'},
 						forced:true,
 						filter:function(event,player){
 							return event.player!=player&&event.player.countCards('h')>=player.countCards('h');
@@ -11040,7 +11040,7 @@
 								player.addTempSkill('sgk_shayi_buff','phaseAfter');
 							}
 							else{
-								player.draw();
+								player.draw(2);
 							}
 						},
 						mod:{
@@ -11636,7 +11636,7 @@
 					sgk_hufu_info:'出牌阶段限一次，你可以令一名其他角色弃置X张牌（X为其装备区的牌数）。',
 					sgk_yanmie_info:'出牌阶段，你可以弃置一张黑桃牌，令一名其他角色先弃置所有手牌再摸等量的牌并展示之，然后你可以弃置其中所有非基本牌，并对其造成等量的伤害。',
 					sgk_shunshi_info:'当你成为其他角色使用【杀】、【桃】或【梅】的目标后，你可以令你与至少一名除该角色外的其他角色各摸一张牌，然后这些角色也成为此牌的目标。',
-					sgk_junwang_info:'锁定技，其他角色的出牌阶段开始时，若其手牌数不小于你，其须交给你一张手牌。',
+					sgk_junwang_info:'锁定技，其他角色摸牌结束时，若其手牌数不小于你，其须交给你一张手牌。',
 					sgk_jizhao_info:'出牌阶段对每名其他角色限一次，你可以交给其至少一张手牌，并令其获得一个“诏”标记。拥有“诏”标记的角色回合结束时，若其本回合内未造成过伤害，其受到你造成的1点伤害并失去“诏”标记。',
 					sgk_qixing_info:'分发起始手牌时，你将获得起始手牌改为观看牌堆顶十一张牌并获得其中四张手牌，然后将其余七张牌扣置于武将牌上，称为[星]，摸牌阶段结束时，你可以用至少一张手牌替换等量的[星]',
 					sgk_kuangfeng_info:'回合开始阶段开始时，你可以将一张[星]置入弃牌堆，然后选择一名角色获得一枚[风]标记，若如此做，当其于你的下回合开始前受到火焰伤害时，该伤害加一；雷电伤害时，你令其弃置两张牌；普通伤害时，你将牌堆顶一张牌置入[星]',
@@ -11669,7 +11669,7 @@
 					sgk_liangyuan_info:'限定技，出牌阶段，你可以选择一名其他男性角色，则于本局游戏中，你的自然回合结束时，该角色进行一个额外的回合。',
 					sgk_tianzi_info:'摸牌阶段，你可以放弃摸牌，然后令所有其他角色依次选择一项：1、交给你一张牌；2、令你摸一张牌。',
 					sgk_meixin_info:'出牌阶段限一次，你可以选择一名其他男性角色，若如此做，本阶段当你使用一张基本牌后，你令其弃置一张牌；当你使用一张锦囊牌后，你获得其一张牌；当你使用一张装备牌后，你对其造成1点伤害。',
-					sgk_shayi_info:'锁定技，出牌阶段开始时，你展示所有手牌，若有【杀】，你摸一张牌；若没有【杀】，你于本阶段可以将一张黑色牌当【杀】使用。你使用【杀】无距离限制、无次数限制。',
+					sgk_shayi_info:'锁定技，出牌阶段开始时，你展示所有手牌，若有【杀】，你摸两张牌；若没有【杀】，你于本阶段可以将一张黑色牌当【杀】使用。你使用【杀】无距离限制、无次数限制。',
 					sgk_zhenhun_info:'出牌阶段限一次，你可以弃置一张牌令所有其他角色的非锁定技于本阶段内无效。',
 					sgk_zhitian_info:'锁定技，回合开始时，你须将所有手牌交给一名角色，并令其随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外），然后你失去1点体力。',
 					sgk_yinshi_info:'锁定技，当你受到伤害时，你防止之，改为摸此伤害值数量的牌。',

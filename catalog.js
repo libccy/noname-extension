@@ -353,13 +353,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，有配音，可联机！目前版本为2.3版！更新日期：2018-08-07",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，有配音，可联机！目前版本为2.4版！（更新：新增天、十刑复活换皮肤）更新日期：2018-08-18",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.3",
-	size:"48MB",
-    version:2.3,
+	version:"2.4",
+	size:"50MB",
+    version:2.4,
     files:
 
 ["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",

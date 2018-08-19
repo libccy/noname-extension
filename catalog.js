@@ -1,11 +1,9 @@
 extension["孙策81难"]={
-	intro:"在亂鬥模式進行游戲（更新請刪除舊擴展和關卡）",
+	intro:"在亂鬥模式進行游戲（更新請刪除舊擴展和關卡）<li>请移步到群内下载，点击下方网盘链接/参与评论",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	version:"1.03",
-	files:["extension.js","Dawn_heroes.mp3","brawl_jiang1.mp3","brawl_jiang2.mp3","brawl_sunce.jpg",
-		"brawl_zhiba2.mp3","brawl_zhiba1.mp3"],
 	size:"6.92MB"
 };
 extension["官渡之战"]={
@@ -26,37 +24,19 @@ extension["官渡之战"]={
 	size:"2.66MB"
 };
 extension["浑身是胆"]={
-	intro:"<li>修復BUG、增強高達一號<li>模式（在亂鬥模式查看介紹/進行遊戲）",
+	intro:"<li>修復BUG、增強高達一號<li>模式（在亂鬥模式查看介紹/進行遊戲）<li>请移步到群内下载，点击下方网盘链接/参与评论",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	version:"1.8",
-	files:["gods_juejing21.mp3","extension.js","gods_fengqiang3.mp3","gods_fengqiang2.mp3",
-		"gods_juejing23.mp3","gods_juejing22.mp3","gods_fengqiang1.mp3","gods_zhaoyun.jpg",
-		"gods_juejing3.mp3","gods_juejing2.mp3","gods_juejing1.mp3","extension.js.bak"],
 	size:"742.8KB"
 };
 extension["剧情战役"]={
-	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將",
+	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將<li>请移步到群内下载，点击下方网盘链接/参与评论",
 	author:"孤芳不自賞",
 	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
 	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.80721",
-	files:["Insane_simayi.jpg","Insane_luxun.jpg","Battle_yongguan22.mp3","Battle_yongguan21.mp3",
-		"Insane_yuanshao.jpg","Insane_sunshangxiang.jpg","Insane_zhenji.jpg","lnsane_shuaiwang62.mp3",
-		"lnsane_shuaiwang61.mp3","Insane_caiwenji.jpg","Insane_jiangwei.jpg","Insane_huaxiong.jpg",
-		"Insane_caopi.jpg","Insane_wangyi.jpg","Insane_lingtong.jpg","Insane_sunluban.jpg",
-		"Insane_xiaoqiao.jpg","Insane_daqiao.jpg","Insane_lvbu.jpg","Battle_dongzhuo.jpg",
-		"lnsane_sunji2.mp3","Insane_weilue3.mp3","Insane_weilue2.mp3","Insane_weilue1.mp3",
-		"Insane_zhouyu.jpg","Insane_zhuangbing.mp3","Insane_yexin2.mp3","Insane_yexin1.mp3",
-		"Judgetz.ogg","Insane_meihuo23.ogg","Insane_meihuo22.ogg","Insane_meihuo21.ogg",
-		"Insane_meihuo24.ogg","Insane_dianchan.jpg","Insane_jiaxu.jpg","lnsane_mingshu2.mp3",
-		"lnsane_liaoyuan22.mp3","lnsane_liaoyuan21.mp3","Battle_zengyuan.mp3","Insane_zhugeliang.jpg",
-		"Insane_sunce.jpg","wu_shibing.jpg","wei_shibing.jpg","shu_shibing.jpg","qun_shibing.jpg",
-		"Battle_yuanshao.jpg","Battle_wuju_juedou.mp3","Battle_mengzhu.mp3","Battle_lvbu.jpg",
-		"Battle_huben.mp3","Battle_huben_shan.mp3","Battle_gongshang.mp3","extension.js",
-		"Insane_yingzhan22.mp3","Insane_fangze2.mp3","Insane_zhansha22.mp3","Insane_yingzhan21.mp3",
-		"Insane_zhansha21.mp3"],
+	version:"1.80721",	
 	size:"4.93MB"
 }; 
 extension["风华绝代"]={

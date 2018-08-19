@@ -8728,7 +8728,7 @@ player.revive(player.maxHp)
 
 
  translate:{
-	 "xwugeng_tian":"天",
+	 "xwj_xwugeng_tian":"天",
 	  "xwj_xwugeng_baiqian":"白墙",
             "xwj_xwugeng_baiqian_info":"<font color=#F0F>无色界神力</font><br><li> 锁定技，游戏开始阶段，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择一名其他角色，令其所有技能失效且不能使用或打出牌，直到其回合开始<br><li>锁定技，当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
             "xwj_xwugeng_baiqian5":"墙",

@@ -333,13 +333,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，有配音，可联机！目前版本为2.4版！（更新：新增天、十刑复活换皮肤）更新日期：2018-08-18",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、武庚纪（封神纪）等作品的人物，强度略高，有配音，可联机！目前版本为2.4.1版！（更新：新增武将及皮肤，修复缺失图片的BUG）更新日期：2018-08-20",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.4",
+	version:"2.4.1",
 	size:"50MB",
-    version:2.4,
+    version:2.4.1,
     files:
 
 ["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -455,7 +455,8 @@ extension["新武将"]={
 		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3",
 		"xwj_xu_xibie2.mp3","xwj_xu_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3",
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",
-		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","zbfs1.mp3"
+		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
+                "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg",
   
 ]
 

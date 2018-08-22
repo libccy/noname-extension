@@ -1,11 +1,3 @@
-extension["孙策81难"]={
-	intro:"在亂鬥模式進行游戲（更新請刪除舊擴展和關卡）<li>请移步到群内下载，点击下方网盘链接/参与评论",
-	author:"孤芳不自賞",
-	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.03",
-	size:"6.92MB"
-};
 extension["官渡之战"]={
 	intro:"<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>"+
 	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>"+
@@ -22,22 +14,6 @@ extension["官渡之战"]={
 		"cxyXunYu.jpg","cxyXuYou.jpg","cxyYanWen.jpg","cxyYuanJun.png","cxyYuanShao.jpg",
 		"cxyYuJin.jpg","cxyZhangHe.jpg","cxyZhangLiao.jpg","extension.js","style.css"],
 	size:"2.66MB"
-};
-extension["浑身是胆"]={
-	intro:"<li>修復BUG、增強高達一號<li>模式（在亂鬥模式查看介紹/進行遊戲）<li>请移步到群内下载，点击下方网盘链接/参与评论",
-	author:"孤芳不自賞",
-	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.8",
-	size:"742.8KB"
-};
-extension["剧情战役"]={
-	intro:"<li>更新内容：新增Insane武將；<li>三國劇情戰役（亂鬥模式）、標準武將增強、Insane武將<li>请移步到群内下载，点击下方网盘链接/参与评论",
-	author:"孤芳不自賞",
-	netdisk:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	forum:"https://jq.qq.com/?_wv=1027&k=5TVOR1Z",
-	version:"1.80721",	
-	size:"4.93MB"
 }; 
 extension["风华绝代"]={
  author:"某群主",

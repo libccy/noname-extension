@@ -55,8 +55,8 @@ characterTitle:{
 					"xwj_xsanguo_jiangwei":"龙的衣钵",
 					"xwj_xsanguo_wangyun":"司徒",
 					"xwj_xsanguo_nanhua":"虚包-南华真人",
-					"xwj_xsanguo_oldyuji":"于吉",
-					"xwj_xsanguo_xinyuji":"新于吉",
+					"xwj_xsanguo_oldyuji":"可乐加冰24",
+					"xwj_xsanguo_xinyuji":"可乐加冰24",
 									},
 
 

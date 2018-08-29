@@ -420,6 +420,7 @@ extension["新武将"]={
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",
 		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",
+ "wms_background1.jpg",
   
 ]
 

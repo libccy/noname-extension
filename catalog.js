@@ -392,7 +392,7 @@ extension["新武将"]={
 		"xwj_xhuoying_xmudun_respond2.mp3","xwj_xhuoying_xuzuo1.mp3","xwj_xhuoying_xuzuo2.mp3",
 		"xwj_xhuoying_yan1.mp3","xwj_xhuoying_yandun1.mp3","xwj_xhuoying_yandun2.mp3","xwj_xhuoying_yandun3.mp3",
 		"xwj_xhuoying_yiliao1.mp3","xwj_xhuoying_yiliao2.mp3","xwj_xhuoying_yingmo1.mp3",
-		"xwj_xhuoying_yingmo2.mp3","xwj_xhuoying_yinmou1.mp3","xwj_xhuoying_yinmou2.mp3",
+		"xwj_xhuoying_yingmo2.mp3","xwj_xhuoying_yinmou1.mp3","xwj_xhuoying_yinmou2.mp3","xwj_xhuoying_yuanyu1.mp3","xwj_xhuoying_yuanyu2.mp3",
 		"xwj_xhuoying_yiwu1.mp3","xwj_xhuoying_yiwu2.mp3","xwj_xhuoying_yiyuan1.mp3","xwj_xhuoying_yiyuan2.mp3",
 		"xwj_xhuoying_yizhi1.mp3","xwj_xhuoying_yizhi2.mp3","xwj_xhuoying_yuanfeirizhan.jpg",
 		"xwj_xhuoying_yuanmo1.mp3","xwj_xhuoying_yuanmo2.mp3","xwj_xhuoying_yuedu1.mp3",

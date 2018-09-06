@@ -306,7 +306,7 @@ extension["新武将"]={
     files:
 
 ["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
-		"xwj_xu_jiuwei.png","zbfs.png","xwj_xu_houzi.png","extension.js","Sukincen.jpg",
+		"xwj_xu_jiuwei.png","zbfs.png","xwj_xu_houzi.png","extension.js",
 		"xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3","xwj_xhuoying_ansha1.mp3",
 		"xwj_xhuoying_ansha2.mp3","xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3","xwj_xhuoying_baihao2.mp3",
 		"xwj_xhuoying_baiji1.mp3","xwj_xhuoying_baiji2.mp3","xwj_xhuoying_baiyan1.mp3","xwj_xhuoying_baiyan2.mp3",

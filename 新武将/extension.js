@@ -9843,7 +9843,7 @@ content:function (){
                 },
             },
             "xwj_xwugeng_fuchou2":{
-                audio:"ext:新武将:2",
+                audio:"ext:新武将:3",
                 trigger:{
                     source:"damageBegin",
                 },

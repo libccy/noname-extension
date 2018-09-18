@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：优化十刑的技能。更新日期：2018-09-09",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：优化十刑的技能。更新日期：2018-09-18",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.9",
+	version:"2.10",
 	size:"56MB",
-    version:2.9,
+    version:2.10,
     files:
 
 ["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -416,9 +416,9 @@ extension["新武将"]={
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_wangyun.jpg","xwj_xsanguo_xiangfu1.mp3","xwj_xsanguo_yujin.jpg",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xu_houzi1.mp3","xwj_xu_jiuwei1.mp3","xwj_xu_jiuwei2.mp3",
 		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3",
-		"xwj_xu_xibie2.mp3","xwj_xu_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3",
+		"xwj_xu_xibie2.mp3","xwj_xu_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuchou23.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",
-		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
+		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","xwj_xwugeng_eshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",
  "wms_background1.jpg","xwj_xwugeng_baiqian21.mp3","xwj_xwugeng_baiqian22.mp3","xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3",
  "wms_backgroundmusic.mp3","wms_shixing_background.jpg",

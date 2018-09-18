@@ -9821,7 +9821,7 @@ content:function (){
 
 
             "xwj_xwugeng_fuchou":{
-                audio:"ext:新武将:2",
+                audio:"ext:新武将:3",
                 trigger:{
                     player:"phaseDrawBegin",
                 },

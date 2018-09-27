@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：优化十刑的技能。更新日期：2018-09-18",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：新增武将玄风圣王。更新日期：2018-09-27",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.10",
-	size:"56MB",
-    version:2.10,
+	version:"2.11",
+	size:"57MB",
+    version:2.11,
     files:
 
 ["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -421,7 +421,7 @@ extension["新武将"]={
 		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","xwj_xwugeng_eshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",
  "wms_background1.jpg","xwj_xwugeng_baiqian21.mp3","xwj_xwugeng_baiqian22.mp3","xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3",
- "wms_backgroundmusic.mp3","wms_shixing_background.jpg",
+ "wms_backgroundmusic.mp3","wms_shixing_background.jpg","xwj_xwugeng_xuanfeng.jpg",
   
 ]
 

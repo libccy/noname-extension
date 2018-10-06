@@ -10933,5 +10933,5 @@ if(lib.device||lib.node){
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.2",
+    version:"2.12",
 },files:{"character":[],"card":["xwj_xu_jiuwei.png"],"skill":[]}}})

@@ -296,17 +296,17 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：新增武将“六道仙人”，补充武将玄风圣王的配音。更新日期：2018-10-06",
+	intro:"本扩展包含部分三国新将和火影忍者、秦时明月、封神纪（武庚纪）等作品的人物，强度略高，有配音，可联机！更新：小改南华老仙、完善武将“六道仙人”和补充配音、卡牌联机化。更新日期：2018-10-08",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.13",
-	size:"58MB",
-    version:2.13,
+	version:"2.14",
+	size:"59MB",
+    version:2.14,
     files:
 
-["xwj_xu_mianju.png","xwj_xu_shoulijian.png","xwj_xu_kuwu.png","xwj_xu_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
-		"xwj_xu_jiuwei.png","zbfs.png","xwj_xu_houzi.png","extension.js",
+["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
+		"xwj_xus_jiuwei.png","zbfs.png","xwj_xus_houzi.png","extension.js",
 		"xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3","xwj_xhuoying_ansha1.mp3",
 		"xwj_xhuoying_ansha2.mp3","xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3","xwj_xhuoying_baihao2.mp3",
 		"xwj_xhuoying_baiji1.mp3","xwj_xhuoying_baiji2.mp3","xwj_xhuoying_baiyan1.mp3","xwj_xhuoying_baiyan2.mp3",
@@ -407,22 +407,24 @@ extension["新武将"]={
 		"xwj_xhuoying_zhoushu1.mp3","xwj_xhuoying_zhoushu2.mp3","xwj_xhuoying_zhouyin1.mp3",
 		"xwj_xhuoying_zhouyin2.mp3","xwj_xhuoying_zhuansheng1.mp3","xwj_xhuoying_zhuansheng2.mp3",
 		"xwj_xhuoying_zhuanxin1.mp3","xwj_xhuoying_zhuanxin2.mp3","xwj_xhuoying_zhujian.jpg",
-		"xwj_xhuoying_zhuozhu.jpg","xwj_xhuoying_zibao1.mp3","xwj_xhuoying_zibao2.mp3","xwj_xqinshi_genie.jpg",
+		"xwj_xhuoying_zhuozhu.jpg","xwj_xhuoying_zibao1.mp3","xwj_xhuoying_zibao2.mp3",
+"xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg",
+ "xwj_xhuoying_renzong1.mp3","xwj_xhuoying_renzong2.mp3", "xwj_xqinshi_genie.jpg",
 		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3","xwj_xqinshi_hengjian3.mp3",
 		"xwj_xqinshi_jiansheng1.mp3","xwj_xqinshi_jiansheng2.mp3","xwj_xqinshi_jusha21.mp3",
 		"xwj_xqinshi_jusha22.mp3","xwj_xqinshi_renzhong1.mp3","xwj_xqinshi_renzhong2.mp3",
 		"xwj_xqinshi_weizhuang.jpg","xwj_xqinshi_xiaoyaozi.jpg","xwj_xqinshi_zongjian1.mp3",
 		"xwj_xqinshi_zongjian2.mp3","xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_jiangwei.jpg",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_wangyun.jpg","xwj_xsanguo_xiangfu1.mp3","xwj_xsanguo_yujin.jpg",
-		"xwj_xsanguo_zhangfei.jpg","xwj_xu_houzi1.mp3","xwj_xu_jiuwei1.mp3","xwj_xu_jiuwei2.mp3",
+		"xwj_xsanguo_zhangfei.jpg","xwj_xus_houzi1.mp3","xwj_xus_jiuwei1.mp3","xwj_xus_jiuwei2.mp3",
 		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3",
-		"xwj_xu_xibie2.mp3","xwj_xu_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
+		"xwj_xu_xibie2.mp3","xwj_xus_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuchou23.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",
 		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","xwj_xwugeng_eshan.jpg","zbfs1.mp3","xwj_xwugeng_xinshixing.jpg",
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",
  "wms_background1.jpg","xwj_xwugeng_baiqian21.mp3","xwj_xwugeng_baiqian22.mp3","xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3",
  "wms_backgroundmusic.mp3","wms_shixing_background.jpg","xwj_xwugeng_xuanfeng.jpg","xwj_xwugeng_baofeng1.mp3","xwj_xwugeng_baofeng2.mp3",
- "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3","xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg",
+ "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3",
 ]
 
 };

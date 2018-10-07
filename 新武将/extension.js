@@ -11211,5 +11211,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.push('xwj_xus_e
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.13",
+    version:"2.14",
 },files:{"character":[],"card":["xwj_xus_jiuwei.png"],"skill":[]}}})

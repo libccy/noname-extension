@@ -300,9 +300,9 @@ extension["新武将"]={
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.14",
-	size:"59MB",
-    version:2.14,
+	version:"2.15",
+	size:"60MB",
+    version:2.15,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -408,7 +408,7 @@ extension["新武将"]={
 		"xwj_xhuoying_zhouyin2.mp3","xwj_xhuoying_zhuansheng1.mp3","xwj_xhuoying_zhuansheng2.mp3",
 		"xwj_xhuoying_zhuanxin1.mp3","xwj_xhuoying_zhuanxin2.mp3","xwj_xhuoying_zhujian.jpg",
 		"xwj_xhuoying_zhuozhu.jpg","xwj_xhuoying_zibao1.mp3","xwj_xhuoying_zibao2.mp3",
-"xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg",
+"xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg","xwj_xus_shoulijian1.mp3",
  "xwj_xhuoying_renzong1.mp3","xwj_xhuoying_renzong2.mp3", "xwj_xqinshi_genie.jpg",
 		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3","xwj_xqinshi_hengjian3.mp3",
 		"xwj_xqinshi_jiansheng1.mp3","xwj_xqinshi_jiansheng2.mp3","xwj_xqinshi_jusha21.mp3",

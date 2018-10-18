@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高 </span><font color=#f00>有配音</font> 可联机！更新：修复佐井伪兽、团藏惑梦技能BUG。更新日期：2018-10-17",
+	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高 </span><font color=#f00>有配音</font> 可联机！更新：修复波风水门闪捷、佐井伪兽、团藏惑梦技能BUG，新增并完善武将佐井、天天，同时优化部分其他技能。更新日期：2018-10-18",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.19",
+	version:"2.20",
 	size:"60MB",
-    version:2.19,
+    version:2.20,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -408,7 +408,7 @@ extension["新武将"]={
 		"xwj_xhuoying_zhouyin2.mp3","xwj_xhuoying_zhuansheng1.mp3","xwj_xhuoying_zhuansheng2.mp3",
 		"xwj_xhuoying_zhuanxin1.mp3","xwj_xhuoying_zhuanxin2.mp3","xwj_xhuoying_zhujian.jpg",
 		"xwj_xhuoying_zhuozhu.jpg","xwj_xhuoying_zibao1.mp3","xwj_xhuoying_zibao2.mp3",
- "xwj_xhuoying_zuojin.jpg",
+ "xwj_xhuoying_zuojin.jpg","xwj_xhuoying_tiantian.jpg",
 "xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg","xwj_xus_kuwu1.mp3",
  "xwj_xhuoying_renzong1.mp3","xwj_xhuoying_renzong2.mp3", "xwj_xqinshi_genie.jpg","xwj_xus_shoulijian1.mp3",
 		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3","xwj_xqinshi_hengjian3.mp3",

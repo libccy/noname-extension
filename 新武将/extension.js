@@ -9227,7 +9227,7 @@ translate:{
             "xwj_xhuoying_jiju":"集具",
             "xwj_xhuoying_jiju_info":"当其他角色使用武器牌或进攻马时，你可令视为你使用之",
 			"xwj_xhuoying_anqi":"暗器",
-            "xwj_xhuoying_anqi_info":"当你失去一张装备区的牌时，你可视为对任意一名其他角色使用一张无距离【杀】，然后你摸一张牌",
+            "xwj_xhuoying_anqi_info":"当你失去一张装备区的牌时，你可视为对任意一名其他角色使用一张无距离、不计入次数限制的【杀】，然后你摸一张牌",
             "xwj_xhuoying_zuojin":"佐井",
 	     		   "xwj_xhuoying_weishou":"伪兽",
 		     	   "xwj_xhuoying_wodi":"卧底",

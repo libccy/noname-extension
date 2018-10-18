@@ -470,11 +470,11 @@ extension["虚空虫翼"]={
 };
 extension["弹丸杀"]={
     author:"fux2",
-    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（新增不二咲千寻Alter Ego）",
+    intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（2018-9-20更新：修复一些bug，神座去掉所有其他角色的技能，没啥意义（x避免冲突）2018-10-19此处更新",
     size:"2.5MB",
     netdisk:"https://pan.baidu.com/s/1mhXRd9m",
     forum:"https://tieba.baidu.com/p/4802167753",
-    version:9,
+    version:10,
     files:[
         "bozhi21.mp3","bozhi22.mp3","bozhi23.mp3","dan_biangu.jpg","dan_bozhi.jpg","dan_zhanren.jpg","dan_liangzi.jpg",
 		"dan_dunzi.jpg","dan_erdaa.jpg","dan_erdab.jpg","dan_huacun.jpg","dan_jiutoulong.jpg","dan_ego.png",

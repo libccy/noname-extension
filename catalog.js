@@ -427,7 +427,7 @@ extension["新武将"]={
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",
  "wms_background1.jpg","xwj_xwugeng_baiqian21.mp3","xwj_xwugeng_baiqian22.mp3","xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3",
  "wms_backgroundmusic.mp3","wms_shixing_background.jpg","xwj_xwugeng_xuanfeng.jpg","xwj_xwugeng_baofeng1.mp3","xwj_xwugeng_baofeng2.mp3",
- "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_pili1.mp3","xwj_xwugeng_pili2.mp3",
+ "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3",
 ]
 
 };

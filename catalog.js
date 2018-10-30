@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高，有配音，可联机！更新：优化几个开局即发动的技能的时机，让其能在对决模式中出场即发动技能。更新日期：2018-10-29",
+	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高，有配音，可联机！更新：小改飞段的咒术。更新日期：2018-10-29",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.26",
+	version:"2.27",
 	size:"64MB",
-    version:2.26,
+    version:2.27,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",

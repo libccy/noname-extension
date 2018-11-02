@@ -9973,7 +9973,7 @@ if(lib.device||lib.node){
 					"xwj_xwugeng_zhengshan":["male","shen",3,["xwj_xwugeng_zhuanlun","xwj_xwugeng_chenjie","xwj_xwugeng_kongjing","xwj_xwugeng_zhuzhan"],[]],           
       "xwj_xwugeng_shixing":["male","shen",3,["xwj_xwugeng_fuhuo","xwj_xwugeng_fuchou"],[]],
 					"xwj_xwugeng_xuanfeng":["male","shen",4,["xwj_xwugeng_shensu","xwj_xwugeng_baofeng","xwj_xwugeng_zhengkong"],[]],
-					"xwj_xwugeng_tianwu":["male","shen",4,["xwj_xwugeng_pili","xwj_xwugeng_zhengnu"],[]],
+					"xwj_xwugeng_tianwu":["male","shen",3,["xwj_xwugeng_pili","xwj_xwugeng_zhengnu"],[]],
 					
 },
 

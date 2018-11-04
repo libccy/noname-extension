@@ -9992,7 +9992,7 @@ if(lib.device||lib.node){
       "xwj_xwugeng_shixing":["male","shen",3,["xwj_xwugeng_fuhuo","xwj_xwugeng_fuchou"],[]],
 					"xwj_xwugeng_xuanfeng":["male","shen",4,["xwj_xwugeng_shensu","xwj_xwugeng_baofeng","xwj_xwugeng_zhengkong"],[]],
 					"xwj_xwugeng_tianwu":["male","shen",3,["xwj_xwugeng_pili","xwj_xwugeng_zhengnu"],[]],
-					"xwj_xwugeng_tiankui":["male","shen",3,["xwj_xwugeng_suiyue","xwj_xwugeng_shenqu"],[]],
+					"xwj_xwugeng_tiankui":["male","shen",4,["xwj_xwugeng_suiyue","xwj_xwugeng_shenqu"],[]],
 		
 },
 
@@ -10655,7 +10655,7 @@ player.chooseTarget('选择【碎岳】的目标',lib.translate.xwj_xwugeng_suiy
                 noDeprive:true,
                 noRemove:true,
                 noDisable:true,
-                priority:20181023,
+                priority:Infinity,
                 content:function (){
 					"step 0"
 	 				player.logSkill('xwj_xwugeng_baiqian1');
@@ -12071,5 +12071,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.push('xwj_xus_e
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.30",
+    version:"2.31",
 },files:{"character":[],"card":[],"skill":[]}}})

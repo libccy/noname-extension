@@ -9607,7 +9607,7 @@ translate:{
             "xwj_xhuoying_shouyu":"守玉",
             "xwj_xhuoying_shouyu_info":"当其他角色因成为【杀】的目标而受到伤害时，你可以弃置一张基本牌，将此伤害转移给你；锁定技，当你受到一次伤害后，你可以摸x张牌(x为你已损失的体力值)",
             "xwj_xhuoying_fengdun":"风遁",
-            "xwj_xhuoying_fengdun_info":"锁定技，当你的手牌数大于你的体力值，你使用的杀无法闪避",
+            "xwj_xhuoying_fengdun_info":"锁定技，当你的手牌数大于你的体力值，你使用的【杀】无法闪避",
             "xwj_xhuoying_jinshao":"烬烧",
             "xwj_xhuoying_jinshao_info":"<font color=#F0F>灰烬烧</font>限定技。出牌阶段，你可令任意名其他角色依次选择一项：弃置2X张牌；或受到两点火焰伤害。(X为该角色装备区里牌的数量且至少为1)",
             "xwj_xhuoying_rongdun":"溶遁",

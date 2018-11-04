@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高，有配音，可联机！更新：小改飞段的咒术、带土的献眼、止水的守护、天武圣王的体力上限。更新日期：2018-11-02",
+	intro:"本扩展包含部分<span class=browntext>三国新将</span>  <font color=#f00>火影忍者</font>  <span class=greentext>秦时明月</span>和<span class=bluetext>封神纪</span>等作品的人物，强度略高，有配音，可联机！更新：新增武将：天魁；修复多个敌我不分的AI智商；小改波风水门的封印、李洛克的旋风、飞段的咒术、带土的献眼、止水的守护、天武圣王的体力上限。更新日期：2018-11-04",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.28",
-	size:"64MB",
-    version:2.28,
+	version:"2.29",
+	size:"65MB",
+    version:2.29,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -413,7 +413,7 @@ extension["新武将"]={
  "xwj_xhuoying_wodi1.mp3","xwj_xhuoying_wodi2.mp3",
 "xwj_xhuoying_tianyan1.mp3","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_yuyi.jpg",
  "xwj_xhuoying_renzong1.mp3","xwj_xhuoying_renzong2.mp3", "xwj_xqinshi_genie.jpg",
-		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3","xwj_xqinshi_hengjian3.mp3",
+		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3",
 		"xwj_xqinshi_jiansheng1.mp3","xwj_xqinshi_jiansheng2.mp3","xwj_xqinshi_jusha21.mp3",
 		"xwj_xqinshi_jusha22.mp3","xwj_xqinshi_renzhong1.mp3","xwj_xqinshi_renzhong2.mp3",
 		"xwj_xqinshi_weizhuang.jpg","xwj_xqinshi_xiaoyaozi.jpg","xwj_xqinshi_zongjian1.mp3",
@@ -428,6 +428,7 @@ extension["新武将"]={
  "wms_background1.jpg","xwj_xwugeng_baiqian21.mp3","xwj_xwugeng_baiqian22.mp3","xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3",
  "wms_backgroundmusic.mp3","wms_shixing_background.jpg","xwj_xwugeng_xuanfeng.jpg","xwj_xwugeng_baofeng1.mp3","xwj_xwugeng_baofeng2.mp3",
  "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_pili1.mp3","xwj_xwugeng_pili2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",
+ "xwj_xwugeng_tiankui.jpg","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3",
 ]
 
 };

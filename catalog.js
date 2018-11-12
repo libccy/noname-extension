@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，因采用高清图片、高质配音，故体积略大；可联机！更新：新增武将：天魁；修复多个敌我不分的AI智商；小改波风水门的封印、李洛克的旋风、飞段的咒术、带土的献眼、止水的守护、天武圣王的体力上限。更新日期：2018-11-04",
+	intro:"本扩展包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，因采用高清图片、高质配音，故体积略大；可联机！更新：新增武将：天魁、小徐；修复BUG，修改多个敌我不分的AI智商；小改波风水门的封印、李洛克的旋风、飞段的咒术、带土的献眼、止水的守护、天武圣王的体力上限。更新日期：2018-11-12",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.32",
+	version:"2.33",
 	size:"65MB",
-    version:2.32,
+    version:2.33,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",
@@ -421,7 +421,8 @@ extension["新武将"]={
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_wangyun.jpg","xwj_xsanguo_xiangfu1.mp3","xwj_xsanguo_yujin.jpg",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xus_houzi1.mp3","xwj_xus_jiuwei1.mp3","xwj_xus_jiuwei2.mp3","xwj_xus_kuwu1.mp3","xwj_xus_shoulijian_female.mp3","xwj_xus_shoulijian_male.mp3",
 		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3",
-		"xwj_xu_xibie2.mp3","xwj_xus_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
+		"xwj_xu_xibie2.mp3","xwj_xu_xiaoxu.jpg","xwj_xu_tuiyin1.mp3","xwj_xu_tuiyin2.mp3","xwj_xu_xwj_xu_yunchou1.mp3",
+		"xwj_xu_xwj_xu_yunchou2.mp3","xwj_xus_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuchou23.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",
 		"xwj_xwugeng_shixing.jpg","xwj_xwugeng_zhengshan.jpg","xwj_xwugeng_eshan.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_tianwu.jpg",
                 "xwj_xwugeng_tian.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_xinyuji.jpg",

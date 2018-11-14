@@ -10082,7 +10082,7 @@ player.chooseTarget('选择【碎岳】的目标',lib.translate.xwj_xwugeng_suiy
             }
     },
                 ai:{
-                //unequip:true,
+                unequip:true,
                     order:2,
                     result:{
                         player:function (player){

@@ -386,7 +386,7 @@ skill:{
  "xwj_xsanguo_wuniang":{
                 audio:['fanghun',2],
                 trigger:{
-                    player:["chooseToUse","useCard","chooseToResponse"],
+                    player:["useCardAfter","respondAfter"],
                 },
                 direct:true,
                 filter:function (event,player){

@@ -2251,7 +2251,7 @@ game.import('character',function(){
             "xwj_xhuoying_leiying":["male","xren",4,["xwj_xhuoying_duanbi","xwj_xhuoying_leishu","xwj_xhuoying_zhongbao"],[]],
             "xwj_xhuoying_zhaomeimeng":["female","xren",3,["xwj_xhuoying_feidun","xwj_xhuoying_rongdun"],[]],
             "xwj_xhuoying_feijian":["male","xhuo",3,["xwj_xhuoying_jinshu","xwj_xhuoying_baofu","xwj_xhuoying_shuidun"],[]],
-            "xwj_xhuoying_liudaoxianren":["male","xren",Infinity,["xwj_xhuoying_renzong","xwj_xhuoying_liudao"],[]],
+            "xwj_xhuoying_liudaoxianren":["male",["xhuo","xren","xxiao"].randomGet(),Infinity,["xwj_xhuoying_renzong","xwj_xhuoying_liudao"],[]],
             "xwj_xhuoying_zuojin":["male","xhuo",3,["xwj_xhuoying_weishou","xwj_xhuoying_wodi"],[]],
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
            

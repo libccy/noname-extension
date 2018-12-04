@@ -437,6 +437,19 @@ extension["新武将"]={
 
 };
 
+
+extension["baosanniang"]={
+    author:"Sukincen",
+    intro:"三国杀OL的鲍三娘，因为GitHub暂上传图片和音频失败，迟点再补。",
+    size:"6kb",
+    netdisk:"",
+    version:2.0,
+    files:[
+        "extension.js",
+    ]
+};
+
+
 extension["战国七雄"]={
     author:"何子风云",
     intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",

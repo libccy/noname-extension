@@ -1631,7 +1631,7 @@ skill:{
     },
             },
             "xwj_xsanguo_xiandao2":{
-                audio:"ext:新武将:2",
+                audio:["huashen",2],
                 forced:true,
                 noLose:true,                     
                 locked:true,
@@ -12990,5 +12990,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.44",
+    version:"2.45",
 },files:{"character":[],"card":[],"skill":[]}}})

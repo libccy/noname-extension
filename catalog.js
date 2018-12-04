@@ -440,12 +440,12 @@ extension["新武将"]={
 
 extension["baosanniang"]={
     author:"Sukincen",
-    intro:"三国杀OL的鲍三娘，因为GitHub暂上传图片和音频失败，迟点再补。",
+    intro:"三国杀OL的鲍三娘，因为GitHub暂时上传不了配音，迟点再补。",
     size:"6kb",
     netdisk:"",
     version:2.0,
     files:[
-        "extension.js",
+        "extension.js","bsn_baosanniang.jpg",
     ]
 };
 

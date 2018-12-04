@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。另外，请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。更新：彻底修复天魁碎岳BUG”。更新日期：2018-11-30",
+	intro:"本扩展包含部分三国新将、火影忍者、秦时明月、封神纪、魔法少女小圆等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。另外，请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。更新：可自由开关扩展小包。更新日期：2018-12-04",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.43",
+	version:"2.44",
 	size:"68MB",
-    version:2.43,
+    version:2.44,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",

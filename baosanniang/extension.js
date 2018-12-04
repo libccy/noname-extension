@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"鲍三娘",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"baosanniang",editable:false,content:function (config,pack){
     
 },precontent:function (){
     

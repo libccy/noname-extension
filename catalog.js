@@ -421,7 +421,7 @@ extension["新武将"]={
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_wangyun.jpg","xwj_xsanguo_xiangfu1.mp3","xwj_xsanguo_yujin.jpg","xwj_xsanguo_baosanniang.jpg",
  "xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xushen1.mp3","xwj_xsanguo_xushen2.mp3","xwj_xsanguo_zhengnan1.mp3","xwj_xsanguo_zhengnan2.mp3",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xus_houzi1.mp3","xwj_xus_jiuwei1.mp3","xwj_xus_jiuwei2.mp3","xwj_xus_kuwu1.mp3","xwj_xus_shoulijian.mp3",
-		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3",
+		"xwj_xu_qingshang1.mp3","xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_xibie1.mp3","xwj_xu_cheng.jpg",
 		"xwj_xu_xibie2.mp3","xwj_xu_xiaoxu.jpg","xwj_xu_tuiyin1.mp3","xwj_xu_tuiyin2.mp3","xwj_xu_xwj_xu_yunchou1.mp3",
 		"xwj_xu_xwj_xu_yunchou2.mp3","xwj_xus_xuelunyang1.mp3","xwj_xwugeng_fuchou1.mp3","xwj_xwugeng_fuchou2.mp3","xwj_xwugeng_fuchou3.mp3",
 		"xwj_xwugeng_fuchou21.mp3","xwj_xwugeng_fuchou22.mp3","xwj_xwugeng_fuchou23.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3",

@@ -12006,19 +12006,73 @@ game.import('character',function(){
 				character:{
 					 "xwj_xu_Sukincen":["male","shen",3,["xwj_xu_qingshang","xwj_xu_xibie"],[]],
         "xwj_xu_xiaoxu":["male","shen",3,["xwj_xu_yunchou","xwj_xu_tuiyin"],[]],
-
+         "xwj_xu_cheng":["male","shen",3,["xwj_xu_tiandun"],[]],
 
 },
 characterIntro:{
 					"xwj_xu_Sukincen":"原武将和技能设计均源于橙续缘的作品《吧友列传》扩展中的人物，为本扩展的作者Sukincen所设计的形象。原技能名分别为“探索”和“拷贝”，这里略作修改。小苏与Sukincen皆为化名。",					
      	"xwj_xu_xiaoxu":"特别感谢神座◎sagiri大佬对技能【运筹】所作的贡献，该技能与其作品《作者包》中的“小苏”的作者技异曲同工。小徐，乃吾友，其人熟读《三国演义》，为人处世颇具领导力，如运筹帷幄的元帅，但有时却是个死宅，如同隐退江湖一般销声匿迹",					
-     					
+     	"xwj_xu_cheng":"小诚，一个善于思考、乐于学习的人，喜欢钻研新技术知识，尤其是计算机软件技术，爱好艺术、文学、历史、时政热点话题……世人皆赞其学识渊博、多才多艺",	
+								
 												},
 characterTitle:{
 					"xwj_xu_Sukincen":"Sukincen",
 								},
 skill:{
-
+"xwj_xu_tiandun":{
+                audio:["xinsheng",2],
+                trigger:{
+                    player:"damageBegin",
+                },
+                forced:true,
+                popup:false,
+                silent:true,
+                unique:true,
+                filter:function (event,player){
+        return player!=trigger.source;
+    },
+                content:function (){  
+        'step 0'
+        var skill=trigger.source.skills.randomGet()
+        player.addSkill(skill);
+        'step 1'                   
+        var list;
+        if(_status.connectMode){
+           list=get.charactersOL(function(i){
+               return lib.character[i][1]!='shu';
+           });
+        }
+        else{        
+        list=get.gainableCharacters(function(info){
+                return info[1]==['shu','wei','wu','qun','xhuo','xren','xxiao'].randomGet();
+            });
+        }
+        var name=list.randomGet();        
+        var a=trigger.source.hp;
+        var b=trigger.source.maxHp;
+        trigger.source.reinit(trigger.source.name,name,false);
+        trigger.source.hp=a; 
+        trigger.source.maxHp=b;
+        trigger.source.update();
+        'step 2'          
+       player.draw(Math.ceil(trigger.card.number/3));
+    },
+          ai:{
+                    maixie:true,
+                    "maixie_hp":true,
+                    effect:{
+                        target:function (card,player,target){
+                if(get.tag(card,'damage')){
+                    if(player.hasSkillTag('jueqing')) return [1,-2];
+                    if(!target.hasFriend()) return;
+                    if(target.hp>=4) return [1,get.tag(card,'damage')*3];
+                    if(target.hp==3) return [1,get.tag(card,'damage')*2];
+                    if(target.hp==2) return [1,get.tag(card,'damage')*1];
+                }
+            },
+                    },
+                },      
+            },
 "xwj_xu_tuiyin":{
                 trigger:{
                     player:"damageEnd",
@@ -12236,10 +12290,13 @@ else {
             },           
 },
 
- translate:{     
+ translate:{  
+	    "xwj_xu_cheng":"小诚",
+            "xwj_xu_tiandun":"天遁",
+            "xwj_xu_tiandun_info":"锁定技，当你受到其他角色造成的伤害后，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌，然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
-             "xwj_xu_tuiyin":"退隐",
-              "xwj_xu_tuiyin_info":"锁定技，当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
+            "xwj_xu_tuiyin":"退隐",
+            "xwj_xu_tuiyin_info":"锁定技，当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
             "xwj_xu_Sukincen":"小苏",
             "xwj_xu_xibie":"惜别",
             "xwj_xu_xibie_info":"当你失去装备区的牌时（包括替换和弃置等），你可以摸一张牌并弃置其他角色区域内的一张牌。",
@@ -12990,5 +13047,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.45",
+    version:"2.46",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -427,7 +427,7 @@ skill:{
                         list.push(['基本','','sha','thunder']);
                     }
                 }
-                if(player.canUse('tao',player,current,true)){
+                if(player.canUse('tao',player,true,true)){
                     list.push(['基本','','tao']);
                 }
                 if(player.canUse('jiu',player,true,true)){
@@ -490,6 +490,8 @@ skill:{
         }
     },
                 ai:{
+                save:true,
+                wuxie:false,
                     respondShan:true,
                     skillTagFilter:function (player){
             if(!player.num('h','sha')) return false;
@@ -508,7 +510,7 @@ skill:{
                 audio:["chongzheng",2],
                 unique:true,
                 trigger:{
-                    player:"phaseBegin",
+                    player:["respond","useCard"],
                 },
                 forced:true,
                 filter:function (event,player){
@@ -524,7 +526,7 @@ skill:{
      
         player.awakenSkill('xwj_xsanguo_longyuan');
         
-        player.remoceSkill('xwj_xsanguo_longyuan');        
+        player.removeSkill('xwj_xsanguo_longyuan');        
         
         player.update();
     
@@ -537,12 +539,8 @@ skill:{
                 selectCard:function (){
         return 1;
     },
-                filterCard:function (card){
-        if(ui.selected.cards.length){
-            if(get.type(ui.selected.cards[0],'trick')=='basic') return true;
+                filterCard:function (card){          
             return get.type(card)=='basic';
-        }
-        return true;
     },
                 filter:function (event,player){
         return player.countCards('h',{type:'basic'})>0;
@@ -622,6 +620,8 @@ skill:{
         }
     },
                 ai:{
+                save:true,
+                wuxie:false,
                     respondShan:true,
                     skillTagFilter:function (player){
             if(!player.num('h','sha')) return false;
@@ -11094,6 +11094,9 @@ init:function(player){
         player.init = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
+	player.reinit = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
         player.delete = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
@@ -11107,33 +11110,7 @@ init:function(player){
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
 },               
-               /* content:function (){
-                console.log(player);
-           player.die = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.skip = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.disableSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.init = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.delete = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.goMad = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.clearSkills = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-    },*/
+              
                 group:["xwj_xwugeng_baiqian1","xwj_xwugeng_baiqian2","xwj_xwugeng_baiqian3"],
             },
             "xwj_xwugeng_baiqian5":{
@@ -11183,6 +11160,9 @@ init:function(player){
         player.init = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
+	player.reinit = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };		
         player.delete = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
@@ -13047,5 +13027,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.46",
+    version:"2.47",
 },files:{"character":[],"card":[],"skill":[]}}})

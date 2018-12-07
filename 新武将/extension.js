@@ -11097,6 +11097,12 @@ init:function(player){
 	player.reinit = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
+	player.remove = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+	player.removeSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
         player.delete = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
@@ -11161,6 +11167,12 @@ init:function(player){
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
 	player.reinit = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };	
+	player.remove = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+	player.removeSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };		
         player.delete = function (all) {

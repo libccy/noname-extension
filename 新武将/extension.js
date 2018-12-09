@@ -1,4 +1,4 @@
-﻿﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新武将",editable:false,content:function (config,pack){
+﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新武将",editable:false,content:function (config,pack){
 	 // ---------------------------------------定义势力------------------------------------------//
 	lib.group.push('shen');
 			lib.translate.shen='神';
@@ -2374,7 +2374,7 @@ translate:{
 	  "xwj_xsanguo_yizan":"翊赞",
             "xwj_xsanguo_yizan_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
             "xwj_xsanguo_longyuan":"龙渊",
-            "xwj_xsanguo_longyuan_info":"觉醒技，当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】, 你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",
+            "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】, 你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",
             "xwj_xsanguo_yizan2":"翊赞",
             "xwj_xsanguo_yizan2_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
       "xwj_xsanguo_wuniang":"武娘",
@@ -2394,8 +2394,8 @@ translate:{
     		"xwj_xsanguo_guhuo7":"蛊惑",
     		"xwj_xsanguo_chanyuan":"缠怨",
 		   	"xwj_xsanguo_oldguhuo_info":"你可以说出任何一种基本牌或非延时类锦囊牌，并正面朝下使用或打出一张手牌。体力值不为0的其他角色依次选择是否质疑。若无人质疑，则该牌按你所述之牌结算。若有人质疑则亮出验明：若为真，质疑者各失去1点体力；若为假，质疑者各摸一张牌。无论真假，弃置被质疑的牌。仅当被质疑的牌为红桃花色且为真时，该牌仍然可以进行结算",
-         	"xwj_xsanguo_guhuo_info":"每名角色的回合限一次，你可以扣置一张手牌当一张基本牌或普通锦囊牌使用或打出。其他角色依次选择是否质疑。一旦有其他角色质疑则翻开此牌：若为假则此牌作废，若为真，则质疑角色获得技能“缠怨”（锁定技，你不能质疑于吉，只要你的体力值为1，你失去你的武将技能）",
-          	"xwj_xsanguo_chanyuan_info":"锁定技，你不能质疑于吉，只要你的体力值为1，你失去你的武将技能",		
+         	"xwj_xsanguo_guhuo_info":"每名角色的回合限一次，你可以扣置一张手牌当一张基本牌或普通锦囊牌使用或打出。其他角色依次选择是否质疑。一旦有其他角色质疑则翻开此牌：若为假则此牌作废，若为真，则质疑角色获得技能“缠怨”（<font color=#f00>锁定技</font> 你不能质疑于吉，只要你的体力值为1，你失去你的武将技能）",
+          	"xwj_xsanguo_chanyuan_info":"<font color=#f00>锁定技</font> 你不能质疑于吉，只要你的体力值为1，你失去你的武将技能",		
             "xwj_xsanguo_jiangwei":"姜伯约",  
             "xwj_xsanguo_guanxing":"继志",
             "xwj_xsanguo_guanxing_info":"每当你受到一次伤害后，你可以观看牌堆顶的4张牌，并将其以任意顺序置于牌堆项或牌堆底，然后你摸一张牌。",
@@ -2403,11 +2403,11 @@ translate:{
             "xwj_xsanguo_tiaoxin_info":"出牌阶段，你可以指定一名使用【杀】能攻击到你的角色，该角色需对你使用一张【杀】，若该角色不如此做，你弃掉他的一张牌，每回合限一次。",                  
             "xwj_xsanguo_menghuo":"孟获",  
             "xwj_xsanguo_manwang":"蛮王",
-            "xwj_xsanguo_manwang_info":"锁定技，你的手牌上限为3，你当主公时不增加体力上限。",
+            "xwj_xsanguo_manwang_info":"<font color=#f00>锁定技</font> 你的手牌上限为3，你当主公时不增加体力上限。",
             "xwj_xsanguo_xiangfu":"降服",
-            "xwj_xsanguo_xiangfu_info":"觉醒技，回合开始阶段，若你的体力上限不少于7，你立即死亡。",
+            "xwj_xsanguo_xiangfu_info":"<span class=greentext>觉醒技</span> 回合开始阶段，若你的体力上限不少于7，你立即死亡。",
             "xwj_xsanguo_xiongqi":"雄起",
-            "xwj_xsanguo_xiongqi_info":"非限定技，当你处于濒死状态时，你可以丢弃你判定区里的牌，并重置你的武将牌，然后摸1张牌且体力回至体力上限，然后加一体力上限。",    
+            "xwj_xsanguo_xiongqi_info":"<span class=yellowtext>非限定技</span>当你处于濒死状态时，你可以丢弃你判定区里的牌，并重置你的武将牌，然后摸1张牌且体力回至体力上限，然后加一体力上限。",    
             "xwj_xsanguo_wangyun":"王允",
             "xwj_xsanguo_huanji":"环计",
             "xwj_xsanguo_huanji_info":"出牌阶段限一次，你可以选择一名其他角色并将一张手牌置于其武将牌上。目标角色于摸牌阶段开始时，获得此牌。若其为男性角色，则获得技能【无双】，若其为女性角色，则获得技能【离间】，直到回合结束。",
@@ -2417,25 +2417,25 @@ translate:{
             "xwj_xsanguo_jugong_info":"回合外每名角色的回合限一次，每当场上有角色因受到【杀】或【决斗】造成的伤害，你可以摸一张牌并且将一张手牌置于你的武将牌上，称之为“功”。在你即将受到伤害时，你可以弃置两张“功”，防止此伤害。",
             "xwj_xsanguo_zhangfei":"张飞",
             "xwj_xsanguo_tannan":"探囊",
-            "xwj_xsanguo_tannan_info":"锁定技，若你已受伤，你的进攻距离+X（X为你已损失体力值）",
+            "xwj_xsanguo_tannan_info":"<font color=#f00>锁定技</font> 若你已受伤，你的进攻距离+X（X为你已损失体力值）",
             "xwj_xsanguo_tishen":"替身",
-            "xwj_xsanguo_tishen_info":"限定技，准备阶段开始时，你可以将体力回复至体力上限，然后你每以此法回复1点体力，便摸一张牌。",
+            "xwj_xsanguo_tishen_info":"<span class=yellowtext>限定技</span> 准备阶段开始时，你可以将体力回复至体力上限，然后你每以此法回复1点体力，便摸一张牌。",
             "xwj_xsanguo_yujin":"于禁",
             "xwj_xsanguo_zhenjun":"镇军",
             "xwj_xsanguo_zhenjun_info":"准备阶段，你可以弃置一名手牌数多于体力值的角色的X张牌（X为其手牌数和体力值之差），然后选择一项：1.你弃置等同于其中非装备牌数量的牌；2.其摸等量的牌。",
             "xwj_xsanguo_nanhua":"南华老仙",
           	"xwj_xsanguo_shoushu":"授书",
-            "xwj_xsanguo_shoushu_info":"限定技，当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【授书】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你刷新技能【授书】",
+            "xwj_xsanguo_shoushu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【授书】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你刷新技能【授书】",
             "xwj_xsanguo_xiandao1":"道",
             "xwj_xsanguo_xiandao1_info":"游戏开始和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段开始",
             "xwj_xsanguo_xiandao2":"道",
-            "xwj_xsanguo_xiandao2_info":"锁定技，你防止受到任何属性伤害",
+            "xwj_xsanguo_xiandao2_info":"<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
             "xwj_xsanguo_xiandao":"仙道",
-            "xwj_xsanguo_xiandao_info":"游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。锁定技，你防止受到任何属性伤害",
+            "xwj_xsanguo_xiandao_info":"游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
             "xwj_xsanguo_shoushu2":"书",
-            "xwj_xsanguo_shoushu2_info":"锁定技，当你造成或受到一次伤害后，南华老仙摸一张牌",
+            "xwj_xsanguo_shoushu2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，南华老仙摸一张牌",
             "xwj_xsanguo_shoushu3":"书",
-            "xwj_xsanguo_shoushu3_info":"锁定技，当你【授书】的角色阵亡后，你刷新技能【授书】",
+            "xwj_xsanguo_shoushu3_info":"<font color=#f00>锁定技</font> 当你【授书】的角色阵亡后，你刷新技能【授书】",
             "xwj_xsanguo_xiuzheng":"修真",
             "xwj_xsanguo_xiuzheng_info":"出牌阶段限一次，你可选择一名其他角色，然后展示牌堆顶的两张牌，若同为红色，则其回复一点体力；若同为黑色，其受到一点雷电伤害；若颜色不相同，你弃置其区域内的一张牌。然后你获得这两张展示的牌并再弃置一张牌",
         },
@@ -5644,7 +5644,7 @@ var skill=trigger.player.skills.randomGet()
                 mark:true,
                 forced:true,
                 intro:{
-                    content:"锁定技，你防止受到属性伤害",
+                    content:"<font color=#f00>锁定技</font> 你防止受到属性伤害",
                 },
                 trigger:{
                     player:"damageBefore",
@@ -6611,7 +6611,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     player:"damageBefore",
                 },
                 intro:{
-                    content:"锁定技，你防止受到锦囊牌的伤害",
+                    content:"<font color=#f00>锁定技</font> 你防止受到锦囊牌的伤害",
                 },
                 forced:true,
                 priority:15,
@@ -6629,7 +6629,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
             "xwj_xhuoying_chunshu2":{
                 marktext:"杀",
                 intro:{
-                    content:"锁定技，你不能成为【杀】的目标",
+                    content:"<font color=#f00>锁定技</font> 你不能成为【杀】的目标",
                 },
                 mod:{
                     targetEnabled:function (card,player,target,now){
@@ -6699,7 +6699,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 mark:true,
                 forced:true,
                 intro:{
-                    content:"锁定技，你防止受到属性伤害",
+                    content:"<font color=#f00>锁定技</font> 你防止受到属性伤害",
                 },
                 trigger:{
                     player:"damageBefore",
@@ -7131,7 +7131,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
        }      
     },
                 intro:{
-                    content:"锁定技，开始阶段，若你有“黑炎”标记，你须进行判定，若判定结果为黑桃，你受到一点无来源的火焰伤害",
+                    content:"<font color=#f00>锁定技</font> 开始阶段，若你有“黑炎”标记，你须进行判定，若判定结果为黑桃，你受到一点无来源的火焰伤害",
                 },
             },
             "xwj_xhuoying_retianzhao2":{
@@ -9696,21 +9696,21 @@ translate:{
             "xwj_xhuoying_qianshou":"千手",
             "xwj_xhuoying_qianshou_info":"<font color=#F0F>千手神通</font> 当一名角色使用的锦囊牌指定了至少两名角色为目标时，你可以令此牌对其中任意名角色无效。（能阻止我的，只有千手柱间。——宇智波斑）",
             "xwj_xhuoying_xianti":"仙体",
-            "xwj_xhuoying_xianti_info":"锁定技，结束阶段，你可以将手牌数补至体力上限，然后回复一点体力",	
+            "xwj_xhuoying_xianti_info":"<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至体力上限，然后回复一点体力",	
         			"xwj_xhuoying_liudaoxianren":"六道仙人",
 	        		"xwj_xhuoying_renzong":"忍宗",
-            "xwj_xhuoying_renzong_info":"锁定技，当一名非主公的其他角色进入濒死状态，你可选择技能【天眼】或【仙体】令其永久获得之，其回复体力至两点并摸两张牌，且阵营调整与你一致（你为主公时视为忠臣），然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
+            "xwj_xhuoying_renzong_info":"<font color=#f00>锁定技</font> 当一名非主公的其他角色进入濒死状态，你可选择技能【天眼】或【仙体】令其永久获得之，其回复体力至两点并摸两张牌，且阵营调整与你一致（你为主公时视为忠臣），然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
             "xwj_xhuoying_renzong2":"宗",
-            "xwj_xhuoying_renzong2_info":"锁定技，当你造成或受到一次伤害后，你随机获得一张基本牌",
+            "xwj_xhuoying_renzong2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，你随机获得一张基本牌",
 				    		"xwj_xhuoying_tianyan":"天眼",
             "xwj_xhuoying_tianyan_info":"回合开始阶段，你可以选择一名其他角色，然后获得其一项技能，直到回合结束",	
 		        	"xwj_xhuoying_liudao":"六道",
-        			"xwj_xhuoying_liudao_info":"锁定技：<font color=#F0F>阴遁</font>当你的体力不为全场最高之一，你不能成为【杀】的目标；<font color=#F0F>阳遁</font>若你的体力值为全场最高之一，则你不能成为锦囊牌的目标",
+        			"xwj_xhuoying_liudao_info":"<font color=#f00>锁定技</font> <font color=#F0F>阴遁</font>当你的体力不为全场最高之一，你不能成为【杀】的目标；<font color=#F0F>阳遁</font>若你的体力值为全场最高之一，则你不能成为锦囊牌的目标",
             "xwj_xhuoying_itachi":"宇智波鼬",
             "xwj_xhuoying_yuedu":"月读",
             "xwj_xhuoying_yuedu_info":"出牌阶段限一次，你可选择一名角色进行拼点，若你赢，则该角色翻面，并且直到回合结束，你与该角色距离为1，其非锁定技失效，不能使用或打出牌。",
             "xwj_xhuoying_xuzuo":"须佐",
-            "xwj_xhuoying_xuzuo_info":"<font color=#F0F>须佐能乎</font> 锁定技，你的防御距离+1，当你有手牌时，防止受到属性伤害，无手牌时，防止受到非属性伤害。",
+            "xwj_xhuoying_xuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 你的防御距离+1，当你有手牌时，防止受到属性伤害，无手牌时，防止受到非属性伤害。",
             "xwj_xhuoying_gangshou":"千手纲手",
             "xwj_xhuoying_dashewan":"大蛇丸",
             "xwj_xhuoying_zhilaiye":"自来也",
@@ -9724,7 +9724,7 @@ translate:{
             "xwj_xhuoying_guazhang_info":"<font color=#F0F>八卦掌</font> 每当你于出牌阶段内使用的牌与此阶段你使用的上一张牌的花色相同时，你可以摸一张牌",
             "xwj_xhuoying_feiduan":"飞段",
             "xwj_xhuoying_rebusi":"邪徒",
-            "xwj_xhuoying_rebusi_info":"<font color=#F0F>不死之身</font> 锁定技，在你死亡前，若你的体力值不大于0，亮出牌堆顶的一张牌并置于你的武将牌上，若此牌的点数与你武将牌上已有的牌点数均不同，则你回复体力至2并摸一张牌，若出现重复点数则你死亡。只要你的武将牌上有牌，你的手牌上限便与这些牌数量相等",
+            "xwj_xhuoying_rebusi_info":"<font color=#F0F>不死之身</font> <font color=#f00>锁定技</font> 在你死亡前，若你的体力值不大于0，亮出牌堆顶的一张牌并置于你的武将牌上，若此牌的点数与你武将牌上已有的牌点数均不同，则你回复体力至2并摸一张牌，若出现重复点数则你死亡。只要你的武将牌上有牌，你的手牌上限便与这些牌数量相等",
             "xwj_xhuoying_zhoushu":"咒术",
             "xwj_xhuoying_zhoushu_info":"<font color=#F0F>死司凭血</font> 当你对任意一名其他角色造成伤害后，你可施展咒术诅咒该角色，然后技能【咒术】进入冷却状态，直到该被诅咒的角色死亡后方可再次发动。当你受到伤害后，同时该被诅咒的角色视为受到来源为你的等量的伤害，直到其死亡为止",
             "xwj_xhuoying_zhoushu3":"咒术",
@@ -9737,22 +9737,22 @@ translate:{
             "xwj_xhuoying_zhenxing":"震星",
             "xwj_xhuoying_zhenxing_info":"<font color=#F0F>天碍震星</font> 出牌阶段限一次，你可以将两张【杀】当作【万箭齐发】使用",
             "xwj_xhuoying_yiyuan":"遗志",
-            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font> 限定技，觉醒技，濒死阶段，若你有手牌，你可以将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
+            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font> <span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 濒死阶段，若你有手牌，你可以将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
             "xwj_xhuoying_xinxuzuo":"须佐",
-            "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> 锁定技，出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
+            "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_dayemu":"大野木",
             "xwj_xhuoying_chendun":"尘遁",
             "xwj_xhuoying_chendun_info":"出牌阶段限一次，你可与一名有手牌的角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌。若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_kai":"迈特凯",
             "xwj_xhuoying_bamen":"八门",
-            "xwj_xhuoying_bamen_info":"<font color=#F0F>八门遁甲</font> 锁定技，出牌阶段开始时，若你的体力值为4或更少，你视为拥有技能“马术”（朝孔雀）；若你的体力值为3或更少，你视为拥有技能“咆哮”（昼虎）；若你的体力值为2或更少；你视为拥有技能“伏骑”（夕象）；若你的体力值为1，你视为拥有技能“暗箭”（夜凯）",
+            "xwj_xhuoying_bamen_info":"<font color=#F0F>八门遁甲</font> <font color=#f00>锁定技</font> 出牌阶段开始时，若你的体力值为4或更少，你视为拥有技能“马术”（朝孔雀）；若你的体力值为3或更少，你视为拥有技能“咆哮”（昼虎）；若你的体力值为2或更少；你视为拥有技能“伏骑”（夕象）；若你的体力值为1，你视为拥有技能“暗箭”（夜凯）",
             "xwj_xhuoying_resizhan":"死战",
-            "xwj_xhuoying_resizhan_info":"<font color=#F0F>八门遁甲</font> 限定技，出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
+            "xwj_xhuoying_resizhan_info":"<font color=#F0F>八门遁甲</font> <span class=yellowtext>限定技</span> 出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
             "xwj_xhuoying_dou":"药师兜",
             "xwj_xhuoying_yizhi":"移植",
-            "xwj_xhuoying_yizhi_info":"锁定技，每当受到伤害时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。",
+            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。",
             "xwj_xhuoying_xianfa":"仙法",
-            "xwj_xhuoying_xianfa_info":"锁定技，当你失去最后的手牌时，你可以摸一张牌，然后回复一点体力。",
+            "xwj_xhuoying_xianfa_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸一张牌，然后回复一点体力。",
             "xwj_xhuoying_zhuansheng":"转生",
             "xwj_xhuoying_zhuansheng_info":"<font color=#F0F>秽土转生</font> 出牌阶段限一次，你可弃置一张【桃】并选择一名已阵亡角色，令其复活，其体力回复至2，摸两张的牌，并且身份阵营与你一致（若你为主公则视阵营为忠臣），然后你失去一点体力上限（限身份局）",
             "xwj_xhuoying_kakasi":"卡卡西",
@@ -9779,29 +9779,29 @@ translate:{
             "xwj_xhuoying_yandun":"炎遁",
             "xwj_xhuoying_yandun_info":"出牌阶段限一次，你可与一名有手牌的角色进行拼点，若你赢，你观看其手牌并对目标角色造成一点火焰伤害，并令其获得“黑炎”标记。若你没赢，你可以摸一张牌，你令其失去“黑炎”标记（佐助能控制天照之炎的形态变化） ",
             "xwj_xhuoying_rexuzuo":"须佐",
-            "xwj_xhuoying_rexuzuo_info":"锁定技，你的手牌上限+1，当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
+            "xwj_xhuoying_rexuzuo_info":"<font color=#f00>锁定技</font> 你的手牌上限+1，当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_qianniao":"千鸟",
             "xwj_xhuoying_qianniao_info":"出牌阶段，你使用的普通杀可附带雷属性",
             "xwj_xhuoying_woailuo":"我爱罗",
             "xwj_xhuoying_shazang":"沙葬",
             "xwj_xhuoying_shazang_info":"<font color=#F0F>沙瀑大葬</font> 当你起码满足以下两个条件之一时：1、使用的牌为最后一张手牌；2、你的体力值为1。（一尾守鹤）你使用的牌可无视距离，此时你使用的【杀】【决斗】【火攻】【过河拆桥】【顺手牵羊】可指定任意名目标角色。你使用杀时若手牌数或体力值小于2，此杀可无视对方防具且不可闪避",
             "xwj_xhuoying_juefang":"绝防",
-            "xwj_xhuoying_juefang_info":"锁定技，当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
+            "xwj_xhuoying_juefang_info":"<font color=#f00>锁定技</font> 当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
             "xwj_xhuoying_mingren":"漩涡鸣人",
             "xwj_xhuoying_xianshu":"仙术",
-            "xwj_xhuoying_xianshu_info":"锁定技，当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
+            "xwj_xhuoying_xianshu_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
             "xwj_xhuoying_fenshen":"分身",
-            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与任意名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。锁定技，你的进攻距离+X（X为你的“分身”标记数，若你有9个或以上的分身标记时，你因耗尽九尾的查克拉而立即死亡）",
+            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与任意名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。<font color=#f00>锁定技</font> 你的进攻距离+X（X为你的“分身”标记数，若你有9个或以上的分身标记时，你因耗尽九尾的查克拉而立即死亡）",
             "xwj_xhuoying_shuimen":"波风水门",
             "xwj_xhuoying_shanguang":"闪光",
-            "xwj_xhuoying_shanguang_info":"<font color=#F0F>飞雷神</font> 锁定技，你的防御距离始终+1，你的进攻距离无限",
+            "xwj_xhuoying_shanguang_info":"<font color=#F0F>飞雷神</font> <font color=#f00>锁定技</font> 你的防御距离始终+1，你的进攻距离无限",
             "xwj_xhuoying_luoxuan":"螺旋",
             "xwj_xhuoying_luoxuan_info":"<font color=#F0F>螺旋丸</font> 出牌阶段，你可以将任意一张装备牌当做任意一张普通锦囊牌使用，每阶段限一次。",
             "xwj_xhuoying_refengyin":"封印",
-            "xwj_xhuoying_refengyin_info":"<font color=#F0F>尸鬼封尽</font> 限定技，出牌阶段开始时，你可令任意一名角色永久失去当前的所有技能，然后你进入濒死状态。",
+            "xwj_xhuoying_refengyin_info":"<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 出牌阶段开始时，你可令任意一名角色永久失去当前的所有技能，然后你进入濒死状态。",
             "xwj_xhuoying_changmen":"漩涡长门",
             "xwj_xhuoying_lunhui":"轮回",
-            "xwj_xhuoying_lunhui_info":"<font color=#F0F>轮回天生</font> 限定技，出牌阶段你可弃置两张[桃]并选择一名已阵亡角色，令其复活，其体力回复至X，并摸X张的牌（X为该角色的体力上限），然后你将你的武将牌翻面",
+            "xwj_xhuoying_lunhui_info":"<font color=#F0F>轮回天生</font> <span class=yellowtext>限定技</span> 出牌阶段你可弃置两张[桃]并选择一名已阵亡角色，令其复活，其体力回复至X，并摸X张的牌（X为该角色的体力上限），然后你将你的武将牌翻面",
             "xwj_xhuoying_tianyin":"天引",
             "xwj_xhuoying_tianyin_info":"<font color=#F0F>万象天引</font> 回合结束阶段限一次，你可以随机获得每名角色区域内的一张牌，然后你将你的武将牌翻面",
             "xwj_xhuoying_tianzheng":"天征",
@@ -9848,7 +9848,7 @@ translate:{
             "xwj_xhuoying_baihao":"百豪",
             "xwj_xhuoying_baihao_info":"<font color=#F0F>阴封印•百豪之术</font> 出牌阶段结束或濒死状态时，若你已受伤，你可选择回复体力至体力上限，然后失去一点体力上限（创造再生•百豪之术是能提高自愈能力但会减少寿命的禁术）",
             "xwj_xhuoying_xianren":"仙人",
-            "xwj_xhuoying_xianren_info":"<font color=#F0F>蛤蟆仙人</font> 觉醒技，准备阶段开始时，若你的“忍”的数量不小于3，你减1点体力上限，选择一项：1、回复1点体力；2、摸两张牌。然后你获得技能“仙术”",
+            "xwj_xhuoying_xianren_info":"<font color=#F0F>蛤蟆仙人</font> <span class=greentext>觉醒技</span> 准备阶段开始时，若你的“忍”的数量不小于3，你减1点体力上限，选择一项：1、回复1点体力；2、摸两张牌。然后你获得技能“仙术”",
             "xwj_xhuoying_renfa":"忍法",
             "xwj_xhuoying_renfa_info":"你每受到一点伤害时，你可以摸一张牌并将一张手牌移出游戏，称为\"忍\"。然后为\"忍\"记录一个基本牌或锦囊牌名称（须与其他\"忍\"记录的名称均不同）。出牌阶段，你可以用任意数量的手牌与等量的“忍”交换，每阶段限一次。你的回合外，当有其他角色使用与你记录的\"忍\"牌名相同的牌时，你可以令此牌无效，然后移去该\"忍\"，你的手牌上限+X（X为“忍”的数量）",
             "xwj_xhuoying_renfa2":"忍法",
@@ -9860,29 +9860,29 @@ translate:{
             "xwj_xhuoying_rechendun":"尘遁",
             "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名有手牌的角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌。若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_wuchen":"无尘",
-            "xwj_xhuoying_wuchen_info":"<font color=#F0F>无尘迷塞</font> 锁定技，当你没有手牌时，你防止受到任何伤害",
+            "xwj_xhuoying_wuchen_info":"<font color=#F0F>无尘迷塞</font> <font color=#f00>锁定技</font> 当你没有手牌时，你防止受到任何伤害",
             "xwj_xhuoying_rexianshu":"仙术",
-            "xwj_xhuoying_rexianshu_info":"锁定技，当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
+            "xwj_xhuoying_rexianshu_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
             "xwj_xhuoying_shunsheng":"瞬身",
-            "xwj_xhuoying_shunsheng_info":"<font color=#F0F>瞬身止水</font>锁定技，回合结束后， 你和一名随机角色交换位置",
+            "xwj_xhuoying_shunsheng_info":"<font color=#F0F>瞬身止水</font><font color=#f00>锁定技</font> 回合结束后， 你和一名随机角色交换位置",
             "xwj_xhuoying_renfa3":"忍法",
             "xwj_xhuoying_renfa3_info":"出牌阶段，你可以用任意数量的手牌与等量的“忍”交换，每阶段限一次。",
             "xwj_xhuoying_reshouhu":"守护",
-            "xwj_xhuoying_reshouhu_info":"<font color=#F0F>别天神</font> 限定技，出牌阶段，你可以把所有手牌交给一名存活的非主公角色，令其身份与你一致（你不为主公限身份局），并且其之后的一切行动受你控制，然后你（止水）自杀身亡（无伤害来源）",
+            "xwj_xhuoying_reshouhu_info":"<font color=#F0F>别天神</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以把所有手牌交给一名存活的非主公角色，令其身份与你一致（你不为主公限身份局），并且其之后的一切行动受你控制，然后你（止水）自杀身亡（无伤害来源）",
             "xwj_xhuoying_linghua":"灵化",
             "xwj_xhuoying_linghua_info":"<font color=#F0F>灵化之术</font> 出牌阶段，你可弃置一张基本牌，选择一名存活角色，令其与你交换角色（仅游戏玩家交换），然后你（加藤断）翻面，失去此技能，获得技能【回魂】，并对目标造成一点伤害，结算完后当前回合立即结束",
             "xwj_xhuoying_aiyuan":"爱愿",
             "xwj_xhuoying_aiyuan_info":"当一名角色流失体力或失去体力上限时，你可以选择一项：1、你摸两张牌；2、令该角色摸两张牌（配合纲手的技能） ",
             "xwj_xhuoying_huihun":"回魂",
-            "xwj_xhuoying_huihun_info":"锁定技，你的防御距离+X（X为你的体力值）。回合开始阶段，你与【灵化】的对象交换角色（即使该角色已阵亡），然后失去此技能，获得技能【灵化】（灵体归位，此忍者适合单机，不适合联机！）",
+            "xwj_xhuoying_huihun_info":"<font color=#f00>锁定技</font> 你的防御距离+X（X为你的体力值）。回合开始阶段，你与【灵化】的对象交换角色（即使该角色已阵亡），然后失去此技能，获得技能【灵化】（灵体归位，此忍者适合单机，不适合联机！）",
             "xwj_xhuoying_jiaoji":"鲛肌",
             "xwj_xhuoying_jiaoji_info":"<font color=#F0F>无尾尾兽</font> 每名角色的回合限一次，当一名其他角色受到一次伤害，你可以选择回复1点体力或摸一张牌",
             "xwj_xhuoying_shuilao":"水牢",
             "xwj_xhuoying_shuilao_info":"<font color=#F0F>水牢之术</font> 一名其他角色的准备阶段，若你的体力值不大于你的装备区的牌数，你可以与该角色拼点，若你赢，该角色本回合使用的牌不能指定除该角色外的角色为目标（类似队友鼬的月读封锁对方行动）",
             "xwj_xhuoying_relianhua":"莲华",
-            "xwj_xhuoying_relianhua_info":"锁定技，摸牌阶段摸牌时，你额外摸X张牌（X为游戏轮数）；你的手牌上限等于体力上限。",
+            "xwj_xhuoying_relianhua_info":"<font color=#f00>锁定技</font> 摸牌阶段摸牌时，你额外摸X张牌（X为游戏轮数）；你的手牌上限等于体力上限。",
             "xwj_xhuoying_rexuanfeng":"旋风",
-            "xwj_xhuoying_rexuanfeng_info":"<font color=#F0F>木叶旋风</font> 锁定技，若你的手牌数是全场唯一最多的，你使用的【杀】造成的伤害+1",
+            "xwj_xhuoying_rexuanfeng_info":"<font color=#F0F>木叶旋风</font> <font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你使用的【杀】造成的伤害+1",
             "xwj_xhuoying_jiaodan":"鲛弹",
             "xwj_xhuoying_jiaodan_info":"<font color=#F0F>水遁•水鲛弹之术</font> 出牌阶段限一次，你可以弃置X张牌对一名其他角色造成1点伤害(X为该角色的体力值)。若你以此法令该角色进入濒死状态，则濒死状态结算后你摸一张牌",
             "xwj_xhuoying_jiaodan2":"鲛弹",
@@ -9890,7 +9890,7 @@ translate:{
             "xwj_xhuoying_jiaodan3":"鲛弹",
             "xwj_xhuoying_jiaodan3_info":"",
             "xwj_xhuoying_leidun":"雷盾",
-            "xwj_xhuoying_leidun_info":"<font color=#F0F>最强之盾</font> 锁定技，游戏开始或你进入游戏时，你的体力上限改为X（X为其他角色的体力上限之和的一半（向下取整））",
+            "xwj_xhuoying_leidun_info":"<font color=#F0F>最强之盾</font> <font color=#f00>锁定技</font> 游戏开始或你进入游戏时，你的体力上限改为X（X为其他角色的体力上限之和的一半（向下取整））",
             "xwj_xhuoying_yingmo":"影模",
             "xwj_xhuoying_yingmo_info":"<font color=#F0F>影子模仿术</font> 当你造成一次伤害，可随机获得此受伤害角色的一项技能，直到你下个出牌阶段开始才解除",
             "xwj_xhuoying_zhimou":"智谋",
@@ -9920,7 +9920,7 @@ translate:{
             "xwj_xhuoying_yiliao":"医疗",
             "xwj_xhuoying_yiliao_info":"当有角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之。",
             "xwj_xhuoying_jinshu":"禁术",
-            "xwj_xhuoying_jinshu_info":"<font color=#F0F>禁术宗师</font> 锁定技，回合开始阶段，你随机获得技能【分身】（鸣人）、【闪光】（波风水门）、【转生】（药师兜）中的一个，直到下一次回合开始。",
+            "xwj_xhuoying_jinshu_info":"<font color=#F0F>禁术宗师</font> <font color=#f00>锁定技</font> 回合开始阶段，你随机获得技能【分身】（鸣人）、【闪光】（波风水门）、【转生】（药师兜）中的一个，直到下一次回合开始。",
             "xwj_xhuoying_baoli":"爆力",
             "xwj_xhuoying_baoli_info":"出牌阶段限一次，你可与一名角色拼点，若你赢，你获得以下技能效果：1、直到你的下回合开始，你为伤害来源的【杀】或【决斗】造成的伤害+1；2、你使用【杀】指定一名角色为目标后，你可以弃置该角色一张牌。",
             "xwj_xhuoying_baoli2":"爆力",
@@ -9934,13 +9934,13 @@ translate:{
             "xwj_xhuoying_baofu":"爆符",
             "xwj_xhuoying_baofu_info":"<font color=#F0F>互乘起爆符</font> 出牌阶段限一次，你可以对一名其他角色造成1点火焰伤害。每当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1的一名角色造成等量的火焰伤害。（单张起爆符即可无限连续通灵出起爆符集中于一点无限连续爆炸）",
             "xwj_xhuoying_wuyin":"雾隐",
-            "xwj_xhuoying_wuyin_info":"<font color=#F0F>雾隐之术</font> 锁定技，当你的武将牌背面朝上时，你防止受到任何伤害",
+            "xwj_xhuoying_wuyin_info":"<font color=#F0F>雾隐之术</font> <font color=#f00>锁定技</font> 当你的武将牌背面朝上时，你防止受到任何伤害",
             "xwj_xhuoying_ansha":"暗杀",
             "xwj_xhuoying_ansha_info":"出牌阶段限一次，你可以选择一名有牌的其他角色，令其弃置一张牌，若如此做，你与其依次将武将牌翻面，直到该回合结束，其非锁定技失效。（水龙弹之术）然后你可以弃置一张手牌视为对任意一名角色使用一张不计入次数限制的无距离限制的【杀】",
             "xwj_xhuoying_reshuilao":"水牢",
             "xwj_xhuoying_reshuilao_info":"<font color=#F0F>水牢之术</font> 一名其他角色的准备阶段，若你的武将牌背面朝上，你可以与该角色拼点，若你赢，你将你的武将牌翻面，该角色本回合使用的牌不能指定除该角色外的角色为目标",
             "xwj_xhuoying_huadie":"化蝶",
-            "xwj_xhuoying_huadie_info":"锁定技，若你的手牌数是全场唯一最多的，你造成的伤害+1",
+            "xwj_xhuoying_huadie_info":"<font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你造成的伤害+1",
             "xwj_xhuoying_beihua":"倍化",
             "xwj_xhuoying_beihua_info":"<font color=#F0F>三色药丸 倍化之术</font> 出牌阶段限3次，你可以展示牌堆顶的X张牌，其中每有一张梅花牌，你回复1点体力（梅花引蝶）然后你将这些牌收入手牌，并且弃牌阶段你的手牌上限－X（X为你发动倍化的次数）",
             "xwj_xhuoying_beihua2":"倍化",
@@ -9951,17 +9951,17 @@ translate:{
             "xwj_xhuoying_reyiliao_info":"当有角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之。",
             "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色后，你永久获得该角色的随机一项技能，然后你依次增加一点体力上限（不得超过5）和回复一点体力",
             "xwj_xhuoying_zhongquan":"硬拳",
-            "xwj_xhuoying_zhongquan_info":"锁定技，若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
+            "xwj_xhuoying_zhongquan_info":"<font color=#f00>锁定技</font> 若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
             "xwj_xhuoying_newkuilei":"傀儡",
             "xwj_xhuoying_newkuilei_info":"<font color=#F0F>傀儡术</font> 每当你失去一张装备区的牌，你可以获得1名其他角色的一张手牌或判定区的牌",
             "xwj_xhuoying_huomeng":"惑梦",
             "xwj_xhuoying_huomeng_info":"<font color=#F0F>伊邪那歧</font> 结束阶段，你可以弃置一张装备区的牌，对自己施加终极幻术，然后进入伊邪那歧梦境：直到下回合开始，你防止受到非属性伤害（佐助可破之）",
             "xwj_xhuoying_huomeng2":"梦境",
-            "xwj_xhuoying_huomeng2_info":"（伊邪那歧）锁定技，你防止受到非属性伤害",
+            "xwj_xhuoying_huomeng2_info":"（伊邪那歧）<font color=#f00>锁定技</font> 你防止受到非属性伤害",
             "xwj_xhuoying_duoyang":"夺眼",
             "xwj_xhuoying_duoyang_info":"每当你造成伤害后，你可以选择一项：1、获得受到伤害的角色装备区里的一张牌（你的装备区相应位置不能有此类装备牌）；2、摸一张牌。",
             "xwj_xhuoying_kongbo":"空波",
-            "xwj_xhuoying_kongbo_info":"<font color=#F0F>风遁•真空波</font> 锁定技，若你的装备区有牌，你无视对方的防具",
+            "xwj_xhuoying_kongbo_info":"<font color=#F0F>风遁•真空波</font> <font color=#f00>锁定技</font> 若你的装备区有牌，你无视对方的防具",
             "xwj_xhuoying_sixiang":"四象",
             "xwj_xhuoying_sixiang_info":"<font color=#F0F>四象封印</font> 当你死亡时，若伤害来源与你距离为1，你可令其失去当前的所有技能，直到游戏结束。",
             "xwj_xhuoying_chengyi":"承艺",
@@ -9973,37 +9973,37 @@ translate:{
             "xwj_xhuoying_baozi":"孢子",
             "xwj_xhuoying_baozi_info":"<font color=#F0F>孢子之术</font> 回合外，当你需要打出一张卡牌【杀】或者【闪】时，你可以观看任意一名其他角色的手牌并将其视为你的手牌打出（白绝有柱间细胞，故类似千手柱间的技能木遁，兼有侦察能力）",
             "xwj_xhuoying_leishu":"雷速",
-            "xwj_xhuoying_leishu_info":"锁定技，你使用的任何卡牌无数量限制，可选择距离不大于此牌点数的目标",
+            "xwj_xhuoying_leishu_info":"<font color=#f00>锁定技</font> 你使用的任何卡牌无数量限制，可选择距离不大于此牌点数的目标",
             "xwj_xhuoying_duanbi":"断臂",
             "xwj_xhuoying_duanbi_info":"<font color=#F0F>雷犁热刀</font> 出牌阶段，你可以流失一点体力并摸两张牌，若如此做，你获得以下效果：1、无视对方的防具，2、你使用的【决斗】造成的伤害+1",
             "xwj_xhuoying_duanbi2":"断臂",
             "xwj_xhuoying_duanbi2_info":"（雷犁热刀）你无视对方防具，并且你使用的【决斗】造成的伤害+1",
             "xwj_xhuoying_yiwu":"易物",
-            "xwj_xhuoying_yiwu_info":"<font color=#F0F>易物变化</font> 限定技，出牌阶段，你可以弃置一张【无懈可击】，选择一名存活的其他角色，令你的武将牌与技能均同化与目标角色一致，若如此做，你摸两张牌并先失去发动此技能前的角色“绝”的所有技能",
+            "xwj_xhuoying_yiwu_info":"<font color=#F0F>易物变化</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以弃置一张【无懈可击】，选择一名存活的其他角色，令你的武将牌与技能均同化与目标角色一致，若如此做，你摸两张牌并先失去发动此技能前的角色“绝”的所有技能",
             "xwj_xhuoying_juneng":"聚能",
-            "xwj_xhuoying_juneng_info":"（查克拉之祖）锁定技，每名角色的回合限一次：当一名角色受到伤害，你摸一张牌；当一名角色回复一点体力，若你已受伤，你回复一点体力",
+            "xwj_xhuoying_juneng_info":"（查克拉之祖）<font color=#f00>锁定技</font> 每名角色的回合限一次：当一名角色受到伤害，你摸一张牌；当一名角色回复一点体力，若你已受伤，你回复一点体力",
             "xwj_xhuoying_yinmou":"阴谋",
-            "xwj_xhuoying_yinmou_info":"限定技，出牌阶段，你可以弃置一张【闪电】，选择一名存活的其他角色，令其将武将牌更换为大筒木辉夜，然后你与其各回复一点体力（黑绝阴阳遁•精神附体•同化，谋划复活母亲辉夜）",
+            "xwj_xhuoying_yinmou_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可以弃置一张【闪电】，选择一名存活的其他角色，令其将武将牌更换为大筒木辉夜，然后你与其各回复一点体力（黑绝阴阳遁•精神附体•同化，谋划复活母亲辉夜）",
             "xwj_xhuoying_zhongbao":"重瀑",
-            "xwj_xhuoying_zhongbao_info":"<font color=#F0F>雷我暴弹</font> 锁定技，当你于回合内重复使用同名卡牌时，你摸一张牌",
+            "xwj_xhuoying_zhongbao_info":"<font color=#F0F>雷我暴弹</font> <font color=#f00>锁定技</font> 当你于回合内重复使用同名卡牌时，你摸一张牌",
             "xwj_xhuoying_juneng2":"聚能",
-            "xwj_xhuoying_juneng2_info":"（回收查克拉）锁定技，每名角色的回合限一次，当一名角色受到伤害，你摸一张牌",
+            "xwj_xhuoying_juneng2_info":"（回收查克拉）<font color=#f00>锁定技</font> 每名角色的回合限一次，当一名角色受到伤害，你摸一张牌",
             "xwj_xhuoying_tianyu":"天御",
             "xwj_xhuoying_tianyu_info":"<font color=#F0F>天之御中</font> 出牌阶段限一次，若存活人数大于2，你可以令所有其他角色与随机角色交换位置",
             "xwj_xhuoying_baodun":"爆遁",
             "xwj_xhuoying_baodun_info":"出牌阶段限一次，你可以选择一名有手牌的其他角色，然后声名一种花色，并展示该角色随机一张手牌，若两者花色一致，你获得该手牌；若花色不一致，其受到一点火焰伤害，并且你可弃置其一张牌",
             "xwj_xhuoying_zibao":"自爆",
-            "xwj_xhuoying_zibao_info":"限定技，出牌阶段，你可令所有其他角色受到一点火焰伤害，若如此做，与你距离为1的角色额外受到一点火焰伤害，然后你死亡。",
+            "xwj_xhuoying_zibao_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可令所有其他角色受到一点火焰伤害，若如此做，与你距离为1的角色额外受到一点火焰伤害，然后你死亡。",
             "xwj_xhuoying_huigu":"灰骨",
             "xwj_xhuoying_huigu_info":"<font color=#F0F>共杀灰骨</font> 出牌阶段限一次，你可以令攻击范围内的一名有手牌的其他角色展示一下其手牌，该角色陷入瞳术中：直到回合结束，其不能使用或打出牌。然后你须弃置其一张牌",
             "xwj_xhuoying_feiniao":"飞鸟",
-            "xwj_xhuoying_feiniao_info":"锁定技，你的防御距离+1",
+            "xwj_xhuoying_feiniao_info":"<font color=#f00>锁定技</font> 你的防御距离+1",
             "xwj_xhuoying_lunxue":"轮写",
             "xwj_xhuoying_lunxue_info":"不能使用或打出牌",
             "xwj_xhuoying_shayu":"砂雨",
             "xwj_xhuoying_shayu_info":"<font color=#F0F>砂铁时雨</font> 当你失去一张装备区的牌后，你可以选择一项：1、摸一张牌；2、弃置一名其他角色的一张牌",
             "xwj_xhuoying_feixian":"飞翔",
-            "xwj_xhuoying_feixian_info":"锁定技，你的防御距离+1",
+            "xwj_xhuoying_feixian_info":"<font color=#f00>锁定技</font> 你的防御距离+1",
             "xwj_xhuoying_xfenlie":"分裂",
             "xwj_xhuoying_xfenlie_info":"（分裂、通灵）出牌阶段限一次，你可以弃置所有手牌并摸两张牌",
             "xwj_xhuoying_reguaili3":"爆发",
@@ -10027,19 +10027,19 @@ translate:{
             "xwj_xhuoying_chunshu":"蜃术",
             "xwj_xhuoying_chunshu_info":"<font color=#F0F>海市蜃楼</font>结束阶段，你可以进行一次判定，若判定结果为：黑色，你防止受到锦囊牌的伤害；红色：你不能成为【杀】的目标，且均防止受到属性伤害，直到下个出牌阶段开始为止",
             "xwj_xhuoying_chunshu1":"锦囊",
-            "xwj_xhuoying_chunshu1_info":"锁定技，你防止受到锦囊牌的伤害",
+            "xwj_xhuoying_chunshu1_info":"<font color=#f00>锁定技</font> 你防止受到锦囊牌的伤害",
             "xwj_xhuoying_chunshu2":"禁杀",
-            "xwj_xhuoying_chunshu2_info":"锁定技，你不能成为【杀】的目标",
+            "xwj_xhuoying_chunshu2_info":"<font color=#f00>锁定技</font> 你不能成为【杀】的目标",
             "xwj_xhuoying_zhengbao":"蒸爆",
-            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font>限定技，觉醒技，当你处于濒死状态时，你可以丢弃你所有判定区的牌，并复原你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
+            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font><span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你可以丢弃你所有判定区的牌，并复原你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
             "xwj_xhuoying_chunshu3":"属性",
-            "xwj_xhuoying_chunshu3_info":"锁定技，你防止受到属性伤害",
+            "xwj_xhuoying_chunshu3_info":"<font color=#f00>锁定技</font> 你防止受到属性伤害",
             "xwj_xhuoying_shuipao":"水炮",
             "xwj_xhuoying_shuipao_info":"<font color=#F0F>水铁炮之术</font> 出牌阶段限一次，你可以弃置一张装备区的牌，对一名其他角色造成1点伤害",
             "xwj_xhuoying_lianbao":"循爆",
             "xwj_xhuoying_lianbao_info":"回合开始时，如果场上角色的判定区内没有【蒸危暴威】，你可以使用一张【蒸危暴威】",
             "xwj_xhuoying_tuci":"突刺",
-            "xwj_xhuoying_tuci_info":"<font color=#F0F>地狱突刺</font>锁定技，你使用的杀造成的伤害+X（X为你损失的体力值的25%进位取整）",
+            "xwj_xhuoying_tuci_info":"<font color=#F0F>地狱突刺</font><font color=#f00>锁定技</font> 你使用的杀造成的伤害+X（X为你损失的体力值的25%进位取整）",
             "xwj_xhuoying_gu":"骨舞",
             "xwj_xhuoying_gu_info":"<font color=#F0F>尸骨脉</font> 出牌阶段限一次，你可将所有手牌发动以下效果：所有其他角色须打出两张【闪】响应，否则其受到一点雷属性伤害",
             "xwj_xhuoying_zhouyin":"咒印",
@@ -10047,23 +10047,23 @@ translate:{
             "xwj_xhuoying_shuochang":"说唱",
             "xwj_xhuoying_shuochang_info":"出牌阶段开始时，你可以令你此阶段内每种牌名的牌限使用一次。若如此做，你使用的牌没距离限制，且每当你于此阶段内使用牌时，你摸一张牌",
             "xwj_xhuoying_xianhua":"仙化",
-            "xwj_xhuoying_xianhua_info":"锁定技，其他角色在弃牌阶段若有弃牌，你摸一张牌，否则你回复一点体力<font color=#F0F>类似咒印且配合君麻吕</font> ",
+            "xwj_xhuoying_xianhua_info":"<font color=#f00>锁定技</font> 其他角色在弃牌阶段若有弃牌，你摸一张牌，否则你回复一点体力<font color=#F0F>类似咒印且配合君麻吕</font> ",
             "xwj_xhuoying_leidao":"雷刀",
             "xwj_xhuoying_leidao_info":"<font color=#F0F>绝牛•雷犁热刀</font>当其他角色使用一张非转化的【杀】指定目标且结算后，你可对其视为再使用一张【杀】<font color=#F0F>配合四代雷影</font>",
             "xwj_xhuoying_huizhan":"挥战",
             "xwj_xhuoying_huizhan_info":"每两轮的出牌阶段限一次，你可以弃置所有手牌，指定一个目标，从你开始场上所有角色依次视为对其使用一张【杀】，直到其体力值不大于1",
             "xwj_xhuoying_xfengyin":"封印",
-            "xwj_xhuoying_xfengyin_info":"<font color=#F0F>尸鬼封尽</font> 限定技，回合结束阶段你可令任意一名角色永久失去当前的所有技能，然后你进入濒死状态。",
+            "xwj_xhuoying_xfengyin_info":"<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 回合结束阶段你可令任意一名角色永久失去当前的所有技能，然后你进入濒死状态。",
             "xwj_xhuoying_yuanmo":"猿魔",
-            "xwj_xhuoying_yuanmo_info":"<font color=#F0F>召唤猿魔</font> 锁定技，结束阶段，你可以将手牌数补至当前体力的张数<font color=#F0F>猿飞日斩是千手柱间弟子，故技能类似仙体</font> ",
+            "xwj_xhuoying_yuanmo_info":"<font color=#F0F>召唤猿魔</font> <font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数<font color=#F0F>猿飞日斩是千手柱间弟子，故技能类似仙体</font> ",
             "xwj_xhuoying_yan":"黑炎",
-            "xwj_xhuoying_yan_info":"锁定技，开始阶段，若你有此“黑炎”标记，你须进行判定，若判定结果为黑桃，你受到一点无来源的火焰伤害（直到该角色阵亡，否则黑炎不会消失）",
+            "xwj_xhuoying_yan_info":"<font color=#f00>锁定技</font> 开始阶段，若你有此“黑炎”标记，你须进行判定，若判定结果为黑桃，你受到一点无来源的火焰伤害（直到该角色阵亡，否则黑炎不会消失）",
             "xwj_xhuoying_retianzhao2":"天照",
-            "xwj_xhuoying_retianzhao2_info":"锁定技，当你造成火焰伤害时，你令该受伤害的角色获得“黑炎”标记",
+            "xwj_xhuoying_retianzhao2_info":"<font color=#f00>锁定技</font> 当你造成火焰伤害时，你令该受伤害的角色获得“黑炎”标记",
             "xwj_xhuoying_retianzhao1":"天照",
             "xwj_xhuoying_retianzhao1_info":"出牌阶段，你可将普通杀当火杀使用",
             "xwj_xhuoying_retianzhao":"天照",
-            "xwj_xhuoying_retianzhao_info":"出牌阶段，你可将普通杀当火杀使用。锁定技，当你造成火焰伤害时，你令该受伤害的角色获得“黑炎”标记",
+            "xwj_xhuoying_retianzhao_info":"出牌阶段，你可将普通杀当火杀使用。<font color=#f00>锁定技</font> 当你造成火焰伤害时，你令该受伤害的角色获得“黑炎”标记",
             "xwj_xhuoying_baoxing":"爆星",
             "xwj_xhuoying_baoxing_info":"<font color=#F0F>地爆天星</font>出牌阶段限一次，你可以将所有的手牌发动【地爆天星】：此为无视防具的【南蛮入侵】，所有角色必须弃置打出一张【杀】，否则受到一点伤害",
             "xwj_xhuoying_tiancheng":"天秤",
@@ -10077,15 +10077,15 @@ translate:{
             "xwj_xhuoying_xmudun":"木遁",
             "xwj_xhuoying_xmudun_info":"当你需要使用或打出牌时，你可以观看牌堆顶的一张牌，若其中有你可以使用或打出的牌，则你可以使用或打出之",
             "xwj_xhuoying_daiban":"代班",
-            "xwj_xhuoying_daiban_info":"锁定技，身份模式下，当你存活时，你先获得当前主公的主公技，然后主公的主公技失效",
+            "xwj_xhuoying_daiban_info":"<font color=#f00>锁定技</font> 身份模式下，当你存活时，你先获得当前主公的主公技，然后主公的主公技失效",
             "xwj_xhuoying_daiban_1":"代班",
             "xwj_xhuoying_daiban_1_info":"当前的主公的主公技失效",
             "xwj_xhuoying_duizhang":"领队",
-            "xwj_xhuoying_duizhang_info":"锁定技，当场上有角色拼点或武将牌被横置／重置后，你摸一张牌",
+            "xwj_xhuoying_duizhang_info":"<font color=#f00>锁定技</font> 当场上有角色拼点或武将牌被横置／重置后，你摸一张牌",
             "xwj_xhuoying_shouyu":"守玉",
-            "xwj_xhuoying_shouyu_info":"当其他角色因成为【杀】的目标而受到伤害时，你可以弃置一张基本牌，将此伤害转移给你；锁定技，当你受到一次伤害后，你可以摸x张牌(x为你已损失的体力值)",
+            "xwj_xhuoying_shouyu_info":"当其他角色因成为【杀】的目标而受到伤害时，你可以弃置一张基本牌，将此伤害转移给你；<font color=#f00>锁定技</font> 当你受到一次伤害后，你可以摸x张牌(x为你已损失的体力值)",
             "xwj_xhuoying_fengdun":"风遁",
-            "xwj_xhuoying_fengdun_info":"锁定技，当你的手牌数大于你的体力值，你使用的【杀】无法闪避",
+            "xwj_xhuoying_fengdun_info":"<font color=#f00>锁定技</font> 当你的手牌数大于你的体力值，你使用的【杀】无法闪避",
             "xwj_xhuoying_jinshao":"烬烧",
             "xwj_xhuoying_jinshao_info":"<font color=#F0F>灰烬烧</font>限定技。出牌阶段，你可令任意名其他角色依次选择一项：弃置2X张牌；或受到两点火焰伤害。(X为该角色装备区里牌的数量且至少为1)",
             "xwj_xhuoying_rongdun":"溶遁",
@@ -11080,7 +11080,7 @@ skill:{
                 locked:true,
                 noRemove:true,
                 noDisable:true,               
-init:function(player){
+        init:function(player){
         console.log(player);
            player.turnOver = function (all) {
            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
@@ -11094,13 +11094,13 @@ init:function(player){
         player.init = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-	player.reinit = function (all) {
+      	player.reinit = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-	player.remove = function (all) {
+      	player.remove = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-	player.removeSkill = function (all) {
+      	player.removeSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
         player.delete = function (all) {
@@ -11166,15 +11166,15 @@ init:function(player){
         player.init = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-	player.reinit = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };	
-	player.remove = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-	player.removeSkill = function (all) {
+      	player.reinit = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };		
+      	player.remove = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+      	player.removeSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
         player.delete = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
@@ -11675,7 +11675,7 @@ content:function (){
  translate:{
   "xwj_xwugeng_tiankui":"天魁",
   "xwj_xwugeng_shenqu":"神躯", 
-  "xwj_xwugeng_shenqu_info":"<font color=#F0F>金刚界神力</font>锁定技，当你受到伤害时，若此伤害值大于1，则改为1；若伤害来源的体力值大于你的体力值，则取消此伤害",
+  "xwj_xwugeng_shenqu_info":"<font color=#F0F>金刚界神力</font><font color=#f00>锁定技</font> 当你受到伤害时，若此伤害值大于1，则改为1；若伤害来源的体力值大于你的体力值，则取消此伤害",
   "xwj_xwugeng_suiyue":"碎岳",
   "xwj_xwugeng_suiyue_info":"<font color=#F0F>神技•天斗碎岳</font>出牌阶段限一次，若你的体力值不为全场最高之一，你可选择一名体力值不小于你的其他角色，然后你失去一点体力，视为对其连续使用无视防具的【杀】，直到其体力值比你的小为止",
 	 "xwj_xwugeng_tianwu":"天武圣王",
@@ -11685,7 +11685,7 @@ content:function (){
 	 "xwj_xwugeng_pili_info":"<font color=#F0F>神技•真武大霹雳</font> 每两轮限一次，若你的体力值不大于当前存活的角色数，你可弃置X张相同颜色的手牌，并对X名攻击范围内的其他角色各造成X点伤害（X为你以此法弃置的手牌数）", 
          	 "xwj_xwugeng_xuanfeng":"玄风圣王",
 		         "xwj_xwugeng_shensu":"神速",
-           "xwj_xwugeng_shensu_info":"锁定技，你的进攻距离＋X（X为你的体力值），你的防御距离+Y（Y为你损失的体力值）",           
+           "xwj_xwugeng_shensu_info":"<font color=#f00>锁定技</font> 你的进攻距离＋X（X为你的体力值），你的防御距离+Y（Y为你损失的体力值）",           
 	          "xwj_xwugeng_baofeng3":"防",
             "xwj_xwugeng_baofeng3_info":"防御距离+Y（Y为你损失的体力值）",
             "xwj_xwugeng_baofeng4":"攻",
@@ -11695,7 +11695,7 @@ content:function (){
             "xwj_xwugeng_baofeng1":"暴风",
             "xwj_xwugeng_baofeng1_info":"当你受到伤害后，你可令一名其他角色的进攻距离-X（X为其体力值），并视为对其使用一张【杀】",
             "xwj_xwugeng_zhengkong2":"真空",
-            "xwj_xwugeng_zhengkong2_info":"锁定技，你的回合结束起计时，九九八十一秒后，你因窒息而死亡",
+            "xwj_xwugeng_zhengkong2_info":"<font color=#f00>锁定技</font> 你的回合结束起计时，九九八十一秒后，你因窒息而死亡",
             "xwj_xwugeng_baofeng":"暴风",
             "xwj_xwugeng_baofeng_info":"当你受到伤害后，你可选择一项：<br><li><font color=#F0F>远逐</font> <font color=#F0F>银翼破空</font>令伤害来源的进攻距离－X（X为其体力值），<font color=#F0F>无形剑</font>并视为你对其使用一张【杀】<br><li><font color=#F0F>救护</font> 你选择一名其他角色，令其摸一张牌，且防御距离＋Y（Y为其损失的体力值）",
             "xwj_xwugeng_zhengkong":"真空",
@@ -11706,11 +11706,11 @@ content:function (){
           	 "xwj_xwugeng_xuemao_info":"出牌阶段限一次，你可以展示牌堆顶的一张牌，若该牌为：装备牌，你回复一点体力并使用之；锦囊牌，你弃置此展示的牌后再摸两张牌；基本牌，你获得此牌，视为对任意一名其他角色使用一张不计距离、不计入次数限制的【杀】",	 
           	 "xwj_xwugeng_xuemao2_info":"",
           	 "xwj_xwugeng_baiqian":"白墙",
-            "xwj_xwugeng_baiqian_info":"<font color=#F0F>无色界神力</font><br><li>你免疫部分负面效果<br><li> 锁定技，游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择攻击范围内的一名其他角色，令其所有技能失效（直到其回合结束）；且不能使用或打出牌（直到其回合开始）<br><li>锁定技：①你使用的【杀】可指定任意名角色; ②当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
+            "xwj_xwugeng_baiqian_info":"<font color=#F0F>无色界神力</font><br><li>你免疫部分负面效果<br><li> <font color=#f00>锁定技</font> 游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择攻击范围内的一名其他角色，令其所有技能失效（直到其回合结束）；且不能使用或打出牌（直到其回合开始）<br><li><font color=#f00>锁定技</font> ①你使用的【杀】可指定任意名角色; ②当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
             "xwj_xwugeng_baiqian5":"墙",
             "xwj_xwugeng_baiqian5_info":"不能使用或打出牌",
             "xwj_xwugeng_baiqian1":"白墙",
-            "xwj_xwugeng_baiqian1_info":"锁定技，游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止",
+            "xwj_xwugeng_baiqian1_info":"<font color=#f00>锁定技</font> 游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止",
             "xwj_xwugeng_baiqian3":"白墙",
             "xwj_xwugeng_baiqian3_info":"你使用的【杀】可指定任意名角色；当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
             "xwj_xwugeng_baiqian4":"墙",
@@ -11720,9 +11720,9 @@ content:function (){
             "xwj_xwugeng_zhengshan":"真禅圣王",
 		         "xwj_xwugeng_eshan":"恶禅",
             "xwj_xwugeng_yinguo":"因果",
-            "xwj_xwugeng_yinguo_info":"锁定技，你使用的杀造成一次伤害后，你获得一枚“因果”标记",
+            "xwj_xwugeng_yinguo_info":"<font color=#f00>锁定技</font> 你使用的杀造成一次伤害后，你获得一枚“因果”标记",
             "xwj_xwugeng_zhuanlun":"转轮",
-            "xwj_xwugeng_zhuanlun_info":"锁定技，限定技，游戏开始所有角色摸牌或你进入游戏后，你令所有其他角色获得技能“因果”",
+            "xwj_xwugeng_zhuanlun_info":"<font color=#f00>锁定技</font> <span class=yellowtext>限定技</span> 游戏开始所有角色摸牌或你进入游戏后，你令所有其他角色获得技能“因果”",
             "xwj_xwugeng_kongjing":"空镜",
             "xwj_xwugeng_kongjing_info":"<font color=#F0F>空镜映月</font>每当你成为其他角色的某张卡牌的惟一目标时，你可以弃置一张手牌，将使用者与目标对调",
             "xwj_xwugeng_chenjie":"惩戒",
@@ -11732,14 +11732,14 @@ content:function (){
         			"xwj_xwugeng_zhuzhan":"助战",
             "xwj_xwugeng_zhuzhan_info":"<font color=#F0F>长生界神力•生死轮回限</font>当一名角色处于濒死状态时，你可以亮出牌堆顶的一张牌，若该牌为红色牌，则该角色回复一点体力，然后将这张红色牌置入弃牌堆；若该牌为黑色牌，你获得之",
             "xwj_xwugeng_jingang":"金身",
-        			"xwj_xwugeng_jingang_info":"<font color=#F0F>金刚不灭之身</font>锁定技，当你没装备防具时，你防止受到一切伤害",
+        			"xwj_xwugeng_jingang_info":"<font color=#F0F>金刚不灭之身</font><font color=#f00>锁定技</font> 当你没装备防具时，你防止受到一切伤害",
 		        	"xwj_xwugeng_shixing":"十刑",
             "xwj_xwugeng_fuhuo":"复活",
-            "xwj_xwugeng_fuhuo_info":"<font color=#F0F>亡者之印</font> 锁定技，当你阵亡七七四十九秒后，你自动复活，增加一点体力上限并回复体力至体力上限",
+            "xwj_xwugeng_fuhuo_info":"<font color=#F0F>亡者之印</font> <font color=#f00>锁定技</font> 当你阵亡七七四十九秒后，你自动复活，增加一点体力上限并回复体力至体力上限",
             "xwj_xwugeng_fuchou":"复仇",
-            "xwj_xwugeng_fuchou_info":"<li><font color=#F0F>修罗界神力</font>锁定技，你的进攻距离+X，摸牌阶段摸牌时，你额外摸X张牌（X为你损失的体力值）；<br><li><font color=#F0F>元始界神力</font>你使用的【杀】额外造成Y点的伤害（Y为你的损失的体力值的一半向下取整）",
+            "xwj_xwugeng_fuchou_info":"<li><font color=#F0F>修罗界神力</font><font color=#f00>锁定技</font> 你的进攻距离+X，摸牌阶段摸牌时，你额外摸X张牌（X为你损失的体力值）；<br><li><font color=#F0F>元始界神力</font>你使用的【杀】额外造成Y点的伤害（Y为你的损失的体力值的一半向下取整）",
             "xwj_xwugeng_fuchou2":"复仇",
-            "xwj_xwugeng_fuchou2_info":"锁定技，你使用的【杀】额外造成Y点伤害（Y为你的损失的体力值的一半向下取整）",
+            "xwj_xwugeng_fuchou2_info":"<font color=#f00>锁定技</font> 你使用的【杀】额外造成Y点伤害（Y为你的损失的体力值的一半向下取整）",
                                
         },
 };
@@ -11754,7 +11754,7 @@ content:function (){
 		if(!lib.config.characters.contains('xwugeng')) lib.config.characters.remove('xwugeng');
 		lib.translate['xwugeng_character_config']='<span class=bluetext>封神纪</span>';
 		
-	game.import('character',function(){
+	/*game.import('character',function(){
 			var xxiaoyuan={
 				name:'xxiaoyuan',
 				connect:true,
@@ -11959,7 +11959,7 @@ if(_status.currentPhase!=player) return false;
                     expose:0.1,
                 },
             },
-*/
+
 			
 			
 },
@@ -11989,7 +11989,7 @@ if(lib.device||lib.node){
 		lib.config.all.characters.push('xxiaoyuan');
 		if(!lib.config.characters.contains('xxiaoyuan')) lib.config.characters.remove('xxiaoyuan');
 		lib.translate['xxiaoyuan_character_config']='<font color=#F0F>魔法少女</font>';
-		
+		*/
 
 game.import('character',function(){
 			var xu={
@@ -11997,20 +11997,79 @@ game.import('character',function(){
 				connect:true,
 				character:{
 					 "xwj_xu_Sukincen":["male","shen",3,["xwj_xu_qingshang","xwj_xu_xibie"],[]],
-        "xwj_xu_xiaoxu":["male","shen",3,["xwj_xu_yunchou","xwj_xu_tuiyin"],[]],
-         "xwj_xu_cheng":["male","shen",3,["xwj_xu_tiandun"],[]],
-
+        "xwj_xu_xiaoxu":["male","shen",3,["xwj_xu_yunchou","xwj_xu_dingju","xwj_xu_tuiyin"],[]],
+        "xwj_xu_cheng":["male","shen",3,["xwj_xu_tiandun"],[]],
+       
 },
 characterIntro:{
 					"xwj_xu_Sukincen":"原武将和技能设计均源于橙续缘的作品《吧友列传》扩展中的人物，为本扩展的作者Sukincen所设计的形象。原技能名分别为“探索”和“拷贝”，这里略作修改。小苏与Sukincen皆为化名。",					
-     	"xwj_xu_xiaoxu":"特别感谢神座◎sagiri大佬对技能【运筹】所作的贡献，该技能与其作品《作者包》中的“小苏”的作者技异曲同工。小徐，乃吾友，其人熟读《三国演义》，为人处世颇具领导力，如运筹帷幄的元帅，但有时却是个死宅，如同隐退江湖一般销声匿迹",					
+     	"xwj_xu_xiaoxu":"特别感谢神座◎sagiri大佬对技能【运筹】、【定局】所作的贡献，该技能与其作品《作者包》中的“小苏”的作者技异曲同工。小徐，乃吾友，其人熟读《三国演义》，为人处世颇具领导力，如运筹帷幄的元帅，但有时却是个死宅，如同隐退江湖一般销声匿迹",					
      	"xwj_xu_cheng":"小诚，一个善于思考、乐于学习的人，喜欢钻研新技术知识，尤其是计算机软件技术，爱好艺术、文学、历史、时政热点话题……世人皆赞其学识渊博、多才多艺",	
-								
+					
 												},
 characterTitle:{
 					"xwj_xu_Sukincen":"Sukincen",
 								},
+								
 skill:{
+
+  "xwj_xu_dingju":{
+                audio:"ext:新武将:2",
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (event,player,target){
+        return player!=target;
+    },
+                multitarget:true,
+                multiline:true,
+                selectTarget:-1,
+                content:function (){                 
+        "step 0" 
+        event.current=player.next;
+        player.storage.wujiang=[];
+        for (var i=0;i<game.players.length;i++){
+            if(game.players[i]!=player){
+            game.players[i].hide();
+            player.storage.wujiang.push(game.players[i].name);
+            }
+        }
+       "step 1"
+        if(event.current.isAlive()){                        
+          for (var i=0;i<game.players.length;i++){              
+              var namex=event.current.name;                                      
+              var str='请选择'+get.translation(namex)+'的武将牌';  
+          }
+        }          
+                player.chooseControl(player.storage.wujiang,ui.create.dialog(str,'hidden')).ai=function(){
+                      return Math.floor(Math.random()*player.storage.wujiang.length);
+                  };        
+                    "step 2"
+                    if(result.control){                
+                        var a=event.current.hp;          
+                        var b=event.current.maxHp;           
+                        event.current.reinit(event.current.name,result.control,false);
+                        event.current.maxHp=b;
+                        event.current.hp=a;       
+                        event.current.show();
+                        event.current.update();
+                        player.storage.wujiang.remove(result.control);                  
+                    }             
+                 else{
+                     event.finish();
+                 }          
+               "step 3"
+            if (event.current.next==player){     
+                player.removeSkill("xwj_xu_dingju");            
+                event.finish();               
+            }      
+            else {
+                event.current=event.current.next;   
+             event.goto(1);
+            }
+            
+    },
+            },    
+
 "xwj_xu_tiandun":{
                 audio:["xinsheng",2],
                 trigger:{
@@ -12145,7 +12204,8 @@ skill:{
             event.current.update();
             }
         }                                        
-            if (event.current.next==player){                 
+            if (event.current.next==player){      
+                player.removeSkill("xwj_xu_yunchou");      
                 event.finish();               
             }      
 else {
@@ -12283,19 +12343,22 @@ else {
 },
 
  translate:{  
-	    "xwj_xu_cheng":"小诚",
+     
+            "xwj_xu_dingju":"定局",
+            "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
+	           "xwj_xu_cheng":"小诚",
             "xwj_xu_tiandun":"天遁",
-            "xwj_xu_tiandun_info":"锁定技，当你受到其他角色造成的伤害后，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌，然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
+            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害后，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌，然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
-            "xwj_xu_tuiyin_info":"锁定技，当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
+            "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
             "xwj_xu_Sukincen":"小苏",
             "xwj_xu_xibie":"惜别",
             "xwj_xu_xibie_info":"当你失去装备区的牌时（包括替换和弃置等），你可以摸一张牌并弃置其他角色区域内的一张牌。",
             "xwj_xu_qingshang":"情殇",
             "xwj_xu_qingshang_info":"当你受到伤害后，你可以弃置一张牌并声明一种牌的类型，然后从牌堆顶亮出五张牌，获得其中与你所声明类型相同的牌，将其余的牌置入弃牌堆。",
             "xwj_xu_yunchou":"运筹",
-            "xwj_xu_yunchou_info":"出牌阶段限一次，你可回收除主公外的其他角色的身份牌，然后重新分配身份牌（限身份局）",
+            "xwj_xu_yunchou_info":"<span class=yellowtext>限定技</span> 你可回收除主公外的其他角色的身份牌，然后重新分配身份牌（限身份局）",
             
          },
 };
@@ -12985,11 +13048,11 @@ trigger:{
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里",
             "xwj_xus_mianju":"漩涡面具",
-            "xwj_xus_mianju_info":"锁定技，武将牌不能被翻面",
+            "xwj_xus_mianju_info":"<font color=#f00>锁定技</font> 武将牌不能被翻面",
             "xwj_xus_shoulijian":"手里剑",
             "xwj_xus_shoulijian_info":"出牌阶段，对一名距离1以外的角色使用，令其弃置一张装备牌或受到一点伤害",
             "xwj_xus_kuwu":"苦无",
-            "xwj_xus_kuwu_info":"锁定技，每当你使用【杀】造成一次伤害，受伤角色须弃置一张牌",
+            "xwj_xus_kuwu_info":"<font color=#f00>锁定技</font> 每当你使用【杀】造成一次伤害，受伤角色须弃置一张牌",
             "xwj_xus_xuelunyang":"写轮眼",
             "xwj_xus_xuelunyang_info":"回合开始阶段，你可以选择一名角色，然后获得其一项技能，直到回合结束",
             "xwj_xus_jiuwei":"九尾",
@@ -13039,5 +13102,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.48",
+    version:"2.49",
 },files:{"character":[],"card":[],"skill":[]}}})

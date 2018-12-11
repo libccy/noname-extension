@@ -296,13 +296,13 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"本扩展已下架",
+	intro:"再三强调：本扩展大部分角色非三国人物，强度高出官方一大截，官方将平衡党Balanceddogs等无法接受者请勿下载使用，不接受任何反驳与点评，谢谢",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"2.50",
-	size:"0MB",
-    version:2.50,
+	version:"2.51",
+	size:"70MB",
+    version:2.51,
     files:
 
 ["xwj_xus_mianju.png","xwj_xus_shoulijian.png","xwj_xus_kuwu.png","xwj_xus_xuelunyang.png","xwj_xhuoying_liudaoban.jpg",

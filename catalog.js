@@ -296,7 +296,7 @@ extension["列女传"]={
 
 
 extension["新武将"]={
-	intro:"再三强调：本扩展大部分角色非三国人物，强度高出官方一大截，官方平衡党等无法接受者请勿下载、安装、更新和使用，不接受任何反驳、点评与指责，谢谢",
+	intro:"再三强调：本扩展大部分角色非三国人物，强度高出官方一大截，收益论学者、官方平衡党等无法接受者请勿下载、安装、更新和使用，不接受任何反驳、点评与无理指责，谢谢！（包含部分三国新将、火影忍者、秦时明月、封神纪、魔法少女小圆等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。另外，请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。更新：修复BUG。更新日期：2018-12-11）",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -432,7 +432,7 @@ extension["新武将"]={
  "xwj_xwugeng_zhengkong1.mp3","xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_pili1.mp3","xwj_xwugeng_pili2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",
  "xwj_xwugeng_tiankui.jpg","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3",
   "xwj_xxiaoyuan_mssyj.jpg", "xwj_xxiaoyuan_ylwg.jpg",
- //包含部分三国新将、火影忍者、秦时明月、封神纪、魔法少女小圆等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。另外，请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。更新：修复BUG、新增一个娱乐性强的武将。更新日期：2018-12-06
+ 
 ]
 
 };

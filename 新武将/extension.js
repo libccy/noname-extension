@@ -6946,22 +6946,32 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 audio:"ext:新武将:2",
                 trigger:{
                     global:"shaAfter",
-                },
+                },           
+                direct:true, 
                 priority:-10,
-                check:function (event,player){
-        return get.attitude(player,event.player)>0;
-    },
+            //    check:function (event,player){
+     //   return get.attitude(player,event.player)>0;
+  //  },
                 filter:function (event,player){
         return player!=event.player&&event.card&&event.card.name=='sha'&&event.notLink()&&event.cards[0]&&event.cards[0]==event.card;
     },
-                content:function (){
-
-      game.delay(1.5);
-
- player.useCard({name:'sha'},trigger.target,false);       
+                content:function (){         
+              'step 0'
+          player.chooseBool('是否对'+get.translation(trigger.target)+'发动【雷刀】？').set('ai',function(){               
+                        if(get.attitude(_status.event.player,trigger.target)<0) return true;       
+                        return false;
+          });
+       'step 1'
+        if(result.bool){
+      game.delay();
+      player.useCard({name:'sha'},trigger.target,false);       
         var chat=['能与大哥配合使用雷犁热刀的只有我','明明就很弱……'].randomGet();
-            player.say(chat); 
-
+        player.say(chat); 
+        player.logSkill('xwj_xhuoying_leidao');         
+        }
+        else{
+        event.finish();
+        }                                                             
  },
                 ai:{
                     expose:2.4,
@@ -7241,8 +7251,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 content:function (){
         "step 0"
         var chat=['地爆天星','人只有感受到了痛苦，才会珍惜和平'].randomGet();
-            player.say(chat);  
-            player.logSkill('xwj_xhuoying_baoxing');
+            player.say(chat);              
         var next=target.chooseToRespond({name:'sha'});
         next.set('ai',function(card){
             var evt=_status.event.getParent();
@@ -7415,21 +7424,34 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
     },
             },
             "xwj_xhuoying_kuangbao":{
-                audio:"ext:新武将:2",
+                 audio:"ext:新武将:2",
+                direct:true,
                 trigger:{
                     global:"damageAfter",
                 },
                 filter:function (event){
         return event.nature=='fire'||event.nature=='thunder';
     },
-                check:function (event,player){
-        return get.attitude(player,event.player)<0;
-    },
+               // check:function (event,player){
+    //    return get.attitude(player,event.player)<0;
+ //   },
                 content:function (){   
+                'step 0'
+          player.chooseBool('是否对'+get.translation(trigger.player)+'发动【狂暴】？').set('ai',function(){              
+                       if(get.attitude(_status.event.player,trigger.player)<0) return true;       
+                       return false;  
+           });
+       'step 1'
+        if(result.bool){
         game.delay(1);
         var chat=['杀……哈哈……把你们通通杀光','君麻吕，佐助，你们都是我信赖的朋友'].randomGet();
             player.say(chat);                  
             trigger.player.damage(trigger.num);
+        player.logSkill('xwj_xhuoying_kuangbao');      
+        }
+        else{
+            event.finish();
+        }                               
     },
                 ai:{
                     order:2,
@@ -8014,29 +8036,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     threaten:function (player,target){
             if(target.hp==1) return 1.5;
             return 1;
-        },
-                    effect:{
-                        target:function (card,player,target){
-                if(get.tag(card,'damage')){
-                    if(player.hasSkill('jueqing')) return [1,-2];
-                    if(target.hp==1) return;
-                    if(target.isTurnedOver()) return [0,-2];
-                    var num=0;
-                    for(var i=0;i<game.players.length;i++){
-                        if(game.players[i].countCards('he')&&game.players[i]!=player&&
-                            ai.get.attitude(player,game.players[i])>0){
-                            num++;
-                        }
-                        if(game.players[i].countCards('j')&&game.players[i]!=player&&
-                            ai.get.attitude(player,game.players[i])>0){
-                            num++;
-                        }
-                        if(num>2) return [0,1];
-                        if(num==2) return [0.5,1];
-                    }
-                }
-            },
-                    },
+        },                                     
                 },
             },
             "xwj_xhuoying_yuedu":{
@@ -10557,7 +10557,7 @@ skill:{
                  return !player.isMaxHp();
     },
     filterTarget:function (card,player,target){ 
-               return player.canUse({name:'sha'},target,false)&&target!=player&&!target.hasSkill('xiangle')&&!target.hasSkill('new_xiangle')&&!target.hasSkill('bingjia')&&!target.hasSkill('bingjia2')&&target.hp>=player.hp;
+               return player.canUse({name:'sha'},target,false)&&target!=player&&!target.hasSkill('xiangle')&&!target.hasSkill('fenyong')&&!target.hasSkill('new_xiangle')&&!target.hasSkill('new_tengjia')&&!target.hasSkill('zhichi')&&!target.hasSkill('new_tengjia')&&!target.hasSkill('xwj_xhuoying_chunshu')&&!target.hasSkill('xwj_xhuoying_huomeng2')&&!target.hasSkill('xwj_xhuoying_wuyin')&&!target.hasSkill('xwj_xhuoying_wuchen')&&!target.hasSkill('xwj_xhuoying_juefang')&&!target.hasSkill('xwj_xhuoying_rexuzuo')&&!target.hasSkill('xwj_xhuoying_xinxuzuo')&&!target.hasSkill('xwj_xhuoying_xuzuo')&&!target.hasSkill('xwj_xwugeng_jingang')&&!target.hasSkill('bingjia')&&!target.hasSkill('bingjia2')&&target.hp>=player.hp;
     },
     check:function (event,player){
     return ai.get.attitude(player,event.target)<=0;
@@ -13112,5 +13112,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"2.51",
+    version:"2.52",
 },files:{"character":[],"card":[],"skill":[]}}})

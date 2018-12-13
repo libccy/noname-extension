@@ -719,9 +719,8 @@ skill:{
         if(result.bool){
             player.logSkill('xwj_xsanguo_zhengnan');
             var target=result.targets[0];
-            player.line(target);
-            var num=[1,2,3].randomGet();          
-            target.damage(num);            
+            player.line(target);         
+            target.damage([1,2,3].randomGet());            
         }
     },
             },

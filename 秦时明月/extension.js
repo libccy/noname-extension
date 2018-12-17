@@ -6760,5 +6760,5 @@ image:'ext:秦时明月/MYjiguanbaihu.png',
     author:"呲牙哥！",
     diskURL:"",
     forumURL:"",
-    version:"",
+    version:"2.6",
 },files:{"character":[],"card":[],"skill":[]}}})

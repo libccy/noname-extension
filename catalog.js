@@ -453,10 +453,10 @@ extension["baosanniang"]={
 
 extension["秦时明月"]={
     author:"呲牙哥",
-    intro:"<h2>联机完结版</h2>可在联机设置里设为联机禁用<br><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)",
+    intro:"<li>注意：当前版本为2.7版，联机时需要版本一致。另外12月18日21：20之前在此下载过此扩展的请先删除再下载，因为之前素材有缺失，现已补完整<br><li><a href="https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw">点击这里下载本人更多扩展<a><h2>联机完结版</h2>可在联机设置里设为联机禁用<br><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)",
     size:"11.5MB",
     netdisk:"",
-    version:2.6,
+    version:2.7,
     files:[
        "extension.js","MYagang.jpg","MYbadao1.mp3","MYbaifeng.jpg","MYbaihe1.mp3","MYbaihe2.mp3",
 		"MYbaixue1.mp3","MYbaixue2.mp3","MYbandashi.jpg","MYbingdun1.mp3","MYbingdun2.mp3",

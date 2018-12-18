@@ -1,4 +1,4 @@
-﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",content:function (config,pack){
 	if(config.qinshimingyue){
 		for(var i in lib.characterPack['qinshimingyue']) {
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
@@ -6756,9 +6756,9 @@ image:'ext:秦时明月/MYjiguanbaihu.png',
         translate:{
         },
     },
-    intro:"<h2>联机完结版</h2>可在联机设置里设为联机禁用<br><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)",
+    intro:"<h2>联机完结版</h2>可在联机设置里设为联机禁用<br><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><a href=\"https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw\">点击下载本人更多扩展<a>",
     author:"呲牙哥！",
     diskURL:"",
     forumURL:"",
-    version:"2.6",
+    version:"2.7",
 },files:{"character":[],"card":[],"skill":[]}}})

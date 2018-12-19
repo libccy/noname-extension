@@ -438,7 +438,7 @@ extension["新武将"]={
 };
 
 
-extension["baosanniang"]={
+/*extension["baosanniang"]={
     author:"Sukincen",
     intro:"三国杀OL的鲍三娘",
     size:"1MB",
@@ -448,7 +448,7 @@ extension["baosanniang"]={
         "extension.js","bsn_baosanniang.jpg","bsn_wuniang1.mp3","bsn_wuniang2.mp3",
 	    "bsn_xushen1.mp3","bsn_xushen2.mp3","bsn_zhengnan1.mp3","bsn_zhengnan2.mp3",
     ]
-};
+}; */
 
 
 extension["秦时明月"]={

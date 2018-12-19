@@ -438,17 +438,17 @@ extension["新武将"]={
 };
 
 
-/*extension["baosanniang"]={
+extension["鲍三娘"]={
     author:"Sukincen",
-    intro:"三国杀OL的鲍三娘",
+    intro:"三国杀OL的鲍三娘，增加联机功能和技能指示线",
     size:"1MB",
     netdisk:"",
-    version:2.5,
+    version:3.6,
     files:[
         "extension.js","bsn_baosanniang.jpg","bsn_wuniang1.mp3","bsn_wuniang2.mp3",
 	    "bsn_xushen1.mp3","bsn_xushen2.mp3","bsn_zhengnan1.mp3","bsn_zhengnan2.mp3",
     ]
-}; */
+}; 
 
 
 extension["秦时明月"]={

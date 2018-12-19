@@ -1,26 +1,32 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"鲍三娘",editable:false,content:function (config,pack){
-    
-},precontent:function (){
-    
-},help:{},config:{},package:{
-    character:{
-        character:{
-            "bsn_baosanniang":["female","shu",3,["bsn_wuniang","bsn_xushen"],["des:有关妹子的介绍资料详看百度"]],
-        },
-        translate:{
-            "bsn_baosanniang":"鲍三娘",
-        },
-    },
-    card:{
-        card:{
-        },
-        translate:{
-        },
-        list:[],
-    },
-    skill:{
-        skill:{       
-                 "bsn_wuniang":{
+﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"鲍三娘",editable:false,content:function (config,pack){
+			
+    if(config.bsn){
+		for(var i in lib.characterPack[ 'bsn']) {
+			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
+		};
+	};
+	
+},precontent:function (olbsn){
+     if(olbsn.enable){
+		
+game.import('character',function(){
+			var bsn={
+				name:'bsn',
+				connect:true,
+				character:{
+					 "bsn_baosanniang":["female","shu",3,["bsn_wuniang","bsn_xushen"],["des:有关妹子的介绍资料详看百度"]],
+       
+},
+characterIntro:{
+					
+												},
+characterTitle:{
+					"bsn_baosanniang":"关索之妻",
+								},
+								
+skill:{
+
+  "bsn_wuniang":{
                 audio:"ext:鲍三娘:2",
                 trigger:{
                     player:["useCard","respond"],
@@ -152,21 +158,59 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"鲍�
             event.finish();
         }        
     },
-            },
+            },          
+},
 
-        },
-        translate:{
+ translate:{  
+            "bsn_baosanniang":"鲍三娘",
             "bsn_wuniang":"武娘",
             "bsn_wuniang_info":"你使用或打出【杀】时，你可以获得一名其他角色的一张牌，然后该角色摸一张牌；若“关索”在场，你可令“关索”也摸一张牌",
             "bsn_xushen":"许身",
             "bsn_xushen_info":"当其他男性角色令你脱离濒死状态时，若“关索”不在场，其可以选择是否用“关索”替换其武将牌，然后你回复一点体力并获得技能【镇南】",
             "bsn_zhengnan":"镇南",
             "bsn_zhengnan_info":"当你成为【南蛮入侵】的目标时，你可令一名其他角色随机受到一至三点伤害",
+         },
+};
+if(lib.device||lib.node){
+				for(var i in bsn.character){bsn.character[i][4].push('ext:鲍三娘/'+i+'.jpg');}
+			}else{
+				for(var i in bsn.character){bsn.character[i][4].push('db:extension-鲍三娘:'+i+'.jpg');}
+			}
+			return bsn;
+		});
+		lib.config.all.characters.push('bsn');
+		if(!lib.config.characters.contains('bsn')) lib.config.characters.remove('bsn');
+		lib.translate['bsn_character_config']='<span class=yellowtext>鲍三娘</span>';
+
+	
+};
+},help:{},config:{},package:{
+    character:{
+        character:{
+        },
+        translate:{
+        },
+    },
+    card:{
+        card:{
+            
+        },
+        translate:{
+            
+        },
+        list:[
+		
+		],
+    },
+    skill:{
+        skill:{
+        },
+        translate:{
         },
     },
     intro:"",
-    author:"小苏",
+    author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"3.0",
-},files:{"character":["bsn_baosanniang.jpg"],"card":[],"skill":[]}}})
+    version:"3.6",
+},files:{"character":[],"card":[],"skill":[]}}})

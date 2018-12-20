@@ -306,7 +306,7 @@ extension["群雄乱舞"]={
     version:1.1,
     files:
 
-["extension.js","extension.js.bak","wms_tian_background.jpg","wms_backgroundmusic.mp3",
+["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3",
 		"wms_shixing_background.jpg","xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3",
 		"xwj_xhuoying_anqi1.mp3","xwj_xhuoying_anqi2.mp3","xwj_xhuoying_ansha1.mp3","xwj_xhuoying_ansha2.mp3",
 		"xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3","xwj_xhuoying_baihao2.mp3","xwj_xhuoying_baiji1.mp3",

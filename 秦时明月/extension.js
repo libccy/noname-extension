@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",editable:false,content:function (config,pack){
 	if(config.qinshimingyue){
 		for(var i in lib.characterPack['qinshimingyue']) {
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");

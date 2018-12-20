@@ -303,10 +303,10 @@ extension["群雄乱舞"]={
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	version:"1.0",
 	size:"70MB",
-    version:1.0,
+    version:1.1,
     files:
 
-["extension.js","extension.js.bak","wms_background1.jpg","wms_backgroundmusic.mp3",
+["extension.js","extension.js.bak","wms_tian_background.jpg","wms_backgroundmusic.mp3",
 		"wms_shixing_background.jpg","xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3",
 		"xwj_xhuoying_anqi1.mp3","xwj_xhuoying_anqi2.mp3","xwj_xhuoying_ansha1.mp3","xwj_xhuoying_ansha2.mp3",
 		"xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3","xwj_xhuoying_baihao2.mp3","xwj_xhuoying_baiji1.mp3",

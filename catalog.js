@@ -659,6 +659,30 @@ extension["秦时明月"]={
     ]
 };
 
+
+extension["烽火绘卷"]={
+    author:"阿七",
+    intro:"原创三国武将，以及个别虚拟武将，强度适宜官方强度，可能会有个别失衡，后续有机会再做调整。",
+    size:"6.75MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+        "extension.js","ex_dongzhao.jpg","ex_guanxing11.mp3","ex_guanxing12.mp3","ex_guanxing21.mp3",
+		"ex_guanxing22.mp3","ex_guojia.jpg","ex_hezong1.mp3","ex_hezong2.mp3","ex_jiangwei.jpg",
+		"ex_jinjiu1.mp3","ex_jinjiu2.mp3","ex_jiuyi1.mp3","ex_jiuyi2.mp3","ex_julie1.mp3",
+		"ex_julie2.mp3","ex_liangqin1.mp3","ex_liangqin2.mp3","ex_liepo1.mp3","ex_liepo2.mp3",
+		"ex_lietu11.mp3","ex_lietu12.mp3","ex_lietu21.mp3","ex_lietu22.mp3","ex_liuhuan1.mp3",
+		"ex_liuhuan2.mp3","ex_lvbu.jpg","ex_majunjian.jpg","ex_niwu1.mp3","ex_niwu2.mp3",
+		"ex_panhuanghou.jpg","ex_qianhuan1.mp3","ex_qianhuan2.mp3","ex_qianhuan21.mp3","ex_qianhuan22.mp3",
+		"ex_qijin.jpg","ex_qinyin1.mp3","ex_qinyin2.mp3","ex_renxian1.mp3","ex_renxian2.mp3",
+		"ex_rongshou1.mp3","ex_rongshou2.mp3","ex_shanmou1.mp3","ex_shanmou2.mp3","ex_shanmou21.mp3",
+		"ex_shanmou22.mp3","ex_sheji1.mp3","ex_sunhuan.jpg","ex_tiandu11.mp3","ex_tiandu12.mp3",
+		"ex_xiahouen.jpg","ex_xiongzi11.mp3","ex_xiongzi12.mp3","ex_yanzuo1.mp3","ex_yanzuo2.mp3",
+		"ex_yiji1.mp3","ex_yiji2.mp3","ex_zhangyue.jpg","ex_zhouyu.jpg","ex_zhujun.jpg",
+		"fh_yuxi.png","sk_zuoci.jpg"
+    ]
+}; 
+
 extension["战国七雄"]={
     author:"何子风云",
     intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",

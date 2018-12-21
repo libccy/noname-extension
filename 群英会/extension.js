@@ -13098,7 +13098,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》、《魔法少女小圆》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>开始游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{},package:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》、《魔法少女小圆》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>开始游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{},package:{
     character:{
         character:{
         },

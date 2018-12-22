@@ -301,9 +301,9 @@ extension["群英会"]={
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"1.0",
+	version:"1.1",
 	size:"70MB",
-    version:1.0,
+    version:1.1,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3",
@@ -447,7 +447,7 @@ extension["群英会"]={
 
 
 
-extension["新武将"]={
+/*extension["新武将"]={
 	intro:"本扩展已阵亡，现改名为：群英会。请删除此扩展，再移步到“群英会”处下载更新",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
@@ -587,7 +587,7 @@ extension["新武将"]={
  
 ]
 
-}; 
+}; */
 
 
 extension["鲍三娘"]={

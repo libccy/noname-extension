@@ -1,0 +1,13 @@
+extension["异界四国"]={
+	intro:"存在于异世界的武将",
+	author:"谜之仙人",
+	netdisk:"",
+	forum:"",
+	version:"1.0",
+	files:["王华.jpg","魏羽.jpg","孙仁.jpg","嵇授获.jpg","夏侯嘉.jpg","曹侯淳.jpg","刘恪.jpg","诸昏.jpg","夏侯昂.jpg",
+		"吴义.jpg","凌权.jpg","朱盖.jpg","郭佗.jpg","刘亮.jpg","黄志.jpg","祝宓.jpg","吕瑜.jpg","孟康.jpg",
+		"太史宓.jpg","典盖.jpg","孙瑜慈.jpg","黄奉.jpg","乐仁.jpg","董获.jpg","关松.jpg","曹智仁.jpg","许蝉.jpg",
+		"华异.jpg","甘逊.jpg","貂仁.jpg","高宓.jpg","刘攸.jpg","甄懿.jpg","袁华.jpg","吕羽.jpg","赵飞.jpg",
+		"张芝.jpg","孙华.jpg","马平.jpg","沮康.jpg","荀睿.jpg","extension.js"],
+	size:"13.3MB"
+};

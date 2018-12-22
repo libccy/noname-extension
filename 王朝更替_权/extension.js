@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",editable:false,content:function (config,pack){
     if(config.shenchoose==true){
     lib.group.push('shen');
 			lib.translate.shen='神';
@@ -6528,9 +6528,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王�
             "starhuaiju_info":"锁定技，游戏开始时，你获得3个\"橘\";摸牌阶段，若你没有\"橘\"，你少摸一张牌并获得一个\"橘\"。",
         },
     },
-    intro:"作者QQ:3145656381，此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑",
+    intro:"此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑",
     author:":+࿈࿆剑牙雷少kiva࿈࿆+:",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.1",
 },files:{"character":["lujijustar.jpg"],"card":["starchusanhai.png"],"skill":[]}}})

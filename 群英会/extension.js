@@ -11224,7 +11224,7 @@ skill:{
         });
 		"step 1"
 	   	game.delay(2);
-      game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_background1.jpg");
+      game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_tian_background.jpg");
       game.log(player,'将场地切换为无色之境');
 	  ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
     },
@@ -13126,5 +13126,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":[],"card":[],"skill":[]}}})

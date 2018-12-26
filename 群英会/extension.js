@@ -2406,7 +2406,7 @@ translate:{
             "xwj_xsanguo_zhenjun_info":"准备阶段，你可以弃置一名手牌数多于体力值的角色的X张牌（X为其手牌数和体力值之差），然后选择一项：1.你弃置等同于其中非装备牌数量的牌；2.其摸等量的牌。",
             "xwj_xsanguo_nanhua":"南华老仙",
           	"xwj_xsanguo_shoushu":"授书",
-            "xwj_xsanguo_shoushu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【授书】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你刷新技能【授书】",
+            "xwj_xsanguo_shoushu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【授书】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你重置技能【授书】",
             "xwj_xsanguo_xiandao1":"道",
             "xwj_xsanguo_xiandao1_info":"游戏开始和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段开始",
             "xwj_xsanguo_xiandao2":"道",

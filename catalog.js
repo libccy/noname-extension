@@ -713,17 +713,23 @@ extension["铜雀台"]={
 };
 
 extension["异界四国"]={
-    author:"谜之仙人Niugnep",
-    intro:"存在于异世界的武将，融合了原武将而产生的新武将，大概三十几个武将吧，强度比原版稍微高一点点，可玩性高",
-    size:"12.6MB",
+    author:"Niugnep",
+    intro:"存在于异世界的武将，把原版各种技能进行组合，产生出新的武将，强度和原版差不多，目前五十六个武将",
+    size:"16.7MB",
     netdisk:"",
-    version:1.0,
+    version:1.2,
     files:[
         "王华.jpg","魏羽.jpg","孙仁.jpg","嵇授获.jpg","夏侯嘉.jpg","曹侯淳.jpg","刘恪.jpg","诸昏.jpg","夏侯昂.jpg",
 		"吴义.jpg","凌权.jpg","朱盖.jpg","郭佗.jpg","刘亮.jpg","黄志.jpg","祝宓.jpg","吕瑜.jpg","孟康.jpg",
 		"太史宓.jpg","典盖.jpg","孙瑜慈.jpg","黄奉.jpg","乐仁.jpg","董获.jpg","关松.jpg","曹智仁.jpg","许蝉.jpg",
 		"华异.jpg","甘逊.jpg","貂仁.jpg","高宓.jpg","刘攸.jpg","甄懿.jpg","袁华.jpg","吕羽.jpg","赵飞.jpg",
-		"张芝.jpg","孙华.jpg","马平.jpg","沮康.jpg","荀睿.jpg","extension.js"
+		"张芝.jpg","孙华.jpg","马平.jpg","沮康.jpg","荀睿.jpg","extension.js","严香.jpg","张芝.jpg","太史宓.jpg","孙瑜慈.jpg","董获.jpg","高宓.jpg","吕羽.jpg","貂仁.jpg","王华.jpg",
+		"满攸.jpg","刘香.jpg","简乾灵.jpg","孙佗.jpg","诸昏育.jpg","诸超嘉.jpg","荀睿.jpg","夏侯昂.jpg","袁华.jpg",
+		"凌权.jpg","甄懿.jpg","诸马逊.jpg","田逊.jpg","马嘉.jpg","吴义.jpg","祝宓.jpg","乐仁.jpg",
+		"关松.jpg","典盖.jpg","刘亮.jpg","刘恪.jpg","刘攸.jpg","华异.jpg","吕瑜.jpg","夏侯嘉.jpg","孔白权.jpg",
+		"孙仁.jpg","孙华.jpg","孟康.jpg","嵇授获.jpg","张顿.jpg","曹侯淳.jpg","曹智仁.jpg","朱盖.jpg","李姬.jpg",
+		"沮康.jpg","甘逊.jpg","荀逊.jpg","许蝉.jpg","诸昏.jpg","赵飞.jpg","郭佗.jpg","钟邕.jpg","马平.jpg",
+		"魏羽.jpg","黄奉.jpg","黄志.jpg"
     ]
 };
 

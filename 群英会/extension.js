@@ -1,4 +1,4 @@
-﻿﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
+﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
 	 // ---------------------------------------定义势力------------------------------------------//
 	lib.group.push('shen');
 			lib.translate.shen='神';
@@ -358,7 +358,7 @@
  "xwj_xsanguo_jiangwei":["male","shu",4,["xwj_xsanguo_tiaoxin","xwj_xsanguo_guanxing"],[]], 
  "xwj_xsanguo_wangyun":["male","qun",4,["xwj_xsanguo_huanji","xwj_xsanguo_jugong","xwj_xsanguo_chengmou"],[]],
  "xwj_xsanguo_menghuo":["male","qun",1,["xwj_xsanguo_xiongqi","xwj_xsanguo_xiangfu","xwj_xsanguo_manwang"],[]],
- "xwj_xsanguo_nanhua":["male","qun",3,["xwj_xsanguo_xiandao","xwj_xsanguo_xiuzheng","xwj_xsanguo_shoushu"],[]],
+ "xwj_xsanguo_nanhua":["male","qun",3,["xwj_xsanguo_xiandao","xwj_xsanguo_xiuzheng","xwj_xsanguo_chuanshu"],[]],
  "xwj_xsanguo_oldyuji":['male','qun',3,['xwj_xsanguo_oldguhuo'],[]],
  "xwj_xsanguo_xinyuji":['male','qun',3,['xwj_xsanguo_guhuo'],[]], 
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
@@ -1570,7 +1570,7 @@ skill:{
 	
 	
 	
-	 "xwj_xsanguo_shoushu":{
+	 "xwj_xsanguo_chuanshu":{
                 audio:["xingshuai",2],
                 trigger:{
                     global:"dying",
@@ -1588,7 +1588,7 @@ skill:{
                 logTarget:"player",
                 content:function (){
        'step 0'
-            player.logSkill('xwj_xsanguo_shoushu',trigger.player);                       
+            player.logSkill('xwj_xsanguo_chuanshu',trigger.player);                       
                 trigger.player.chooseControl('releiji','guidao').set('prompt',''+get.translation(trigger.player)+'获得一项技能');
                 goon=true;                    
         
@@ -1599,10 +1599,10 @@ skill:{
          trigger.player.addSkillLog(result.control);
          trigger.player.recover(2-trigger.player.hp);
          trigger.player.draw(2);       
-         trigger.player.storage.xwj_xsanguo_shoushu2=player; 
-         trigger.player.addSkill('xwj_xsanguo_shoushu2');              
+         trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
+         trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
          game.broadcastAll()+trigger.player.node.avatar.setBackgroundImage('extension/群英会/xwj_xsanguo_zhangjiao.jpg');        
-         player.removeSkill('xwj_xsanguo_shoushu');            
+         player.removeSkill('xwj_xsanguo_chuanshu');            
     },
             },
             "xwj_xsanguo_xiandao1":{
@@ -1659,7 +1659,7 @@ skill:{
                 noDisable:true,
                 group:["xwj_xsanguo_xiandao1","xwj_xsanguo_xiandao2"],
             },
-            "xwj_xsanguo_shoushu2":{
+            "xwj_xsanguo_chuanshu2":{
                 audio:["songwei",2],
                 mark:"character",
                 intro:{
@@ -1673,21 +1673,21 @@ skill:{
                 forced:true,
                 popup:false,
                 filter:function (event,player){
-        return player.storage.xwj_xsanguo_shoushu2&&player.storage.xwj_xsanguo_shoushu2.isIn()&&event.num>0;
+        return player.storage.xwj_xsanguo_chuanshu2&&player.storage.xwj_xsanguo_chuanshu2.isIn()&&event.num>0;
     },
                 content:function (){
         'step 0'
         game.delayx();
         'step 1'
-        var target=player.storage.xwj_xsanguo_shoushu2;      
+        var target=player.storage.xwj_xsanguo_chuanshu2;      
         player.line(target,'green');
         target.draw();
         game.delay();
     },
                 onremove:true,
-                group:"xwj_xsanguo_shoushu3",
+                group:"xwj_xsanguo_chuanshu3",
             },
-            "xwj_xsanguo_shoushu3":{
+            "xwj_xsanguo_chuanshu3":{
                 audio:"ext:群英会:1",
                 trigger:{
                     player:"dieBegin",
@@ -1695,15 +1695,15 @@ skill:{
                 silent:true,
                 onremove:true,
                 filter:function (event,player){
-        return player.storage.xwj_xsanguo_shoushu2&&player.storage.xwj_xsanguo_shoushu2.isIn();
+        return player.storage.xwj_xsanguo_chuanshu2&&player.storage.xwj_xsanguo_chuanshu2.isIn();
     },
                 content:function (){   
          'step 0'
         game.delayx();
         'step 1'
-        var target=player.storage.xwj_xsanguo_shoushu2;      
+        var target=player.storage.xwj_xsanguo_chuanshu2;      
         player.line(target,'green');                     
-        target.addSkill('xwj_xsanguo_shoushu');
+        target.addSkill('xwj_xsanguo_chuanshu');
           
     },
                 forced:true,
@@ -2405,18 +2405,18 @@ translate:{
             "xwj_xsanguo_zhenjun":"镇军",
             "xwj_xsanguo_zhenjun_info":"准备阶段，你可以弃置一名手牌数多于体力值的角色的X张牌（X为其手牌数和体力值之差），然后选择一项：1.你弃置等同于其中非装备牌数量的牌；2.其摸等量的牌。",
             "xwj_xsanguo_nanhua":"南华老仙",
-          	"xwj_xsanguo_shoushu":"授书",
-            "xwj_xsanguo_shoushu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【授书】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你重置技能【授书】",
+          	"xwj_xsanguo_chuanshu":"传术",
+            "xwj_xsanguo_chuanshu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【传术】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你重置技能【传术】",
             "xwj_xsanguo_xiandao1":"道",
             "xwj_xsanguo_xiandao1_info":"游戏开始和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段开始",
             "xwj_xsanguo_xiandao2":"道",
             "xwj_xsanguo_xiandao2_info":"<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
             "xwj_xsanguo_xiandao":"仙道",
             "xwj_xsanguo_xiandao_info":"游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
-            "xwj_xsanguo_shoushu2":"书",
-            "xwj_xsanguo_shoushu2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，南华老仙摸一张牌",
-            "xwj_xsanguo_shoushu3":"书",
-            "xwj_xsanguo_shoushu3_info":"<font color=#f00>锁定技</font> 当你【授书】的角色阵亡后，你刷新技能【授书】",
+            "xwj_xsanguo_chuanshu2":"术",
+            "xwj_xsanguo_chuanshu2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，南华老仙摸一张牌",
+            "xwj_xsanguo_chuanshu3":"术",
+            "xwj_xsanguo_chuanshu3_info":"<font color=#f00>锁定技</font> 当你【传术】的角色阵亡后，你重置技能【传术】",
             "xwj_xsanguo_xiuzheng":"修真",
             "xwj_xsanguo_xiuzheng_info":"出牌阶段限一次，你可选择一名其他角色，然后展示牌堆顶的两张牌，若同为红色，则其回复一点体力；若同为黑色，其受到一点雷电伤害；若颜色不相同，你弃置其区域内的一张牌。然后你获得这两张展示的牌并再弃置一张牌",
         },
@@ -2749,7 +2749,24 @@ skill:{
                 noDeprive:true,
                 noRemove:true,
                 noDisable:true,
-             
+               init:function(player){
+        console.log(player);
+           player.die = function (all) {
+           player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };      
+        player.disableSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.addTempSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.goMad = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.clearSkills = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+},         
                 mod:{
                     targetEnabled:function (card,player,target,now){
             if(!target.isMaxHp()){        
@@ -3362,10 +3379,7 @@ audio:"ext:群英会:2",
                         audio:"ext:群英会:2",
                         trigger:{
                             player:"chooseToRespondBegin",
-                        },
-						
-						
-	
+                        },										
                         filter:function (event,player){
                 if(event.responded) return false;
                 return (ui.cardPile.childElementCount+ui.discardPile.childElementCount)>=2;//新增条件，待测试，原为return true;
@@ -8940,43 +8954,23 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                 forced:true,
                 priority:20,
                 unique:true,
-                content:function (){
-
-
-   "step 0"              
-
-        var skills=[]; 
-
-        for(var i in lib.character){ 
-
-            for(var j=0;j<lib.character[i][3].length;j++){
-
-   var info=lib.skill[lib.character[i][3][j]];
-
-                if(info&&(info.gainable||!info.unique)){
-
-                    skills.add(lib.character[i][3][j]); 
-
-                }
-
-            } 
-
-        }
-
-        var link=skills.randomGet();                    
-
+                content:function (){                         
+                           var skills=[]; 
+                                  for(var i in lib.character){ 
+                                           for(var j=0;j<lib.character[i][3].length;j++){
+                                           var info=lib.skill[lib.character[i][3][j]];
+                                                          if(info&&(info.gainable||!info.unique)){
+                                                                         skills.add(lib.character[i][3][j]); 
+                                                                                     }
+                                                                               } 
+                                                                                }
+                                                       var link=skills.randomGet();                    
         player.addSkill(link);                    
-
         player.mark(link,{
-
             name:get.translation(link),
-
             content:lib.translate[link+'_info']
-
         });
-
         game.log(player,'获得技能','【'+get.translation(link)+'】');        
-
     },
                 ai:{
                     threaten:1.8,
@@ -11103,44 +11097,7 @@ skill:{
                 noDeprive:true,
                 locked:true,
                 noRemove:true,
-                noDisable:true,               
-        init:function(player){
-        console.log(player);
-           player.turnOver = function (all) {
-           player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.skip = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.disableSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.init = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-      	player.reinit = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-      	player.remove = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-      	player.removeSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.delete = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.goMad = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.clearSkills = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-},               
-              
+                noDisable:true,                         
                 group:["xwj_xwugeng_baiqian1","xwj_xwugeng_baiqian2","xwj_xwugeng_baiqian3"],
             },
             "xwj_xwugeng_baiqian5":{
@@ -11174,8 +11131,7 @@ skill:{
                 noDeprive:true,
                 noRemove:true,
                 noDisable:true,
-                priority:Infinity,
-                
+                priority:Infinity,           
                 init:function(player){
         console.log(player);
            player.turnOver = function (all) {
@@ -11238,6 +11194,42 @@ skill:{
                 noDeprive:true,
                 noRemove:true,
                 noDisable:true,
+                 init:function(player){
+        console.log(player);
+           player.turnOver = function (all) {
+           player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.skip = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.disableSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.init = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+      	player.reinit = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+      	player.remove = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+      	player.removeSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.delete = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.addTempSkill = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.goMad = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+        player.clearSkills = function (all) {
+            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
+        };
+},               
                 mod:{             	
 					selectTarget:function(card,player,range){
 						if(card.name=='sha'&&range[1]!=-1) range[1]+=Infinity;
@@ -11312,6 +11304,7 @@ skill:{
                 trigger:{
                     source:"damageEnd",
                 },
+               // mark:true,
                 filter:function (event){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
@@ -11319,14 +11312,12 @@ skill:{
         player.storage.xwj_xwugeng_yinguo=0;
     },
                 forced:true,
-                check:function (){
-        return false;
-    },
-                content:function (){          
+             content:function (){          
          var chat=['日后再说，管他什么报应','不入虎穴，焉得虎子？'].randomGet();
-            player.say(chat);                                                            
-        player.storage.xwj_xwugeng_yinguo++;                
-        player.markSkill('xwj_xwugeng_yinguo');      
+            player.say(chat);         
+        player.markSkill('xwj_xwugeng_yinguo');                                                         
+        player.storage.xwj_xwugeng_yinguo++;                     
+        player.update();  
     },
                 intro:{
                     content:"mark",
@@ -11416,35 +11407,6 @@ skill:{
     trigger:{
         player:"damageBefore",
     },
-    
-  /*  init:function(player){
-        //console.log(player);
-           //player.die = function (all) {
-           // player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        //};
-        player.skip = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.disableSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.init = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.delete = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        //player.goMad = function (all) {
-            //player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-       // };
-        //player.clearSkills = function (all) {
-            //player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-      //  };
-},               
-    */
     filter:function (event,player){		
         if(player.getEquip(2)) return false;
         return true;
@@ -11474,41 +11436,45 @@ skill:{
                 enable:"phaseUse",
                 usable:1,
                 unique:true,
-                mark:true,
-    filter:function (event,player){
-        return player.hp>0;
+                //mark:true,
+    filter:function (event,player){                                                  
+          return player.isAlive();                                                                                          
     },
     prepare:function (cards,player){
         player.line(game.players);
         for(var i=0;i<game.players.length;i++){
-            if(game.players[i]!=player){
+            if(game.players[i]!=player&&game.players[i].storage.xwj_xwugeng_yinguo>0){
                 game.players[i].animate('target');
             }
         }
     },
 	derivation:['xwj_xwugeng_chenzhui','xwj_xwugeng_jingang'],
-        content:function (){   			
+        content:function (){   			    
         for(var i=0;i<game.players.length;i++){                                                       
-                if(!game.players[i].hasSkill('xwj_xwugeng_yinguo')&&game.players[i].storage.xwj_xwugeng_yinguo<1){
+                if(game.players[i].storage.xwj_xwugeng_yinguo<=0){
                 event.finish();
-                }                                       
-            else{                                                            
-              game.players[i].damage();
+               }                                       
+           else{                                                                         
+                if(game.players[i].storage.xwj_xwugeng_yinguo>=1){                                                                                    
+              game.players[i].damage();                            
               game.players[i].storage.xwj_xwugeng_yinguo--; 
-			  if(game.players[i].storage.xwj_xwugeng_yinguo<1){
+			   if(game.players[i].storage.xwj_xwugeng_yinguo<1){
 				  game.players[i].unmarkSkill('xwj_xwugeng_yinguo');
+				  }
 			  }
+		  }		  
 			          game.delay(0.5);
               player.removeSkill('xwj_xwugeng_kongjing');
               player.removeSkill('xwj_xwugeng_zhuzhan');			  
               player.removeSkill('xwj_xwugeng_chenjie');
               player.addSkill('xwj_xwugeng_chenzhui');
 			  player.addSkill('xwj_xwugeng_jingang');
-	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_eshan.jpg'); 		
-    var chat=['如是因，如是果，你们这一生对他人所做的伤害，都会一次过回到自己身上','让我代天惩罚你们……神技•因果转轮！'].randomGet();
-            player.say(chat); 
-            }                                    
-        }  
+			 // player.name=='xwj_xwugeng_eshan';
+    	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_eshan.jpg'); 		
+	    player.update();
+     var chat=['如是因，如是果，你们这一生对他人所做的伤害，都会一次过回到自己身上','让我代天惩罚你们……神技•因果转轮！'].randomGet();
+            player.say(chat);         
+            }                               
     },
     ai:{
         order:2,
@@ -11552,8 +11518,10 @@ content:function (){
             player.addSkill('xwj_xwugeng_chenjie');
             player.addSkill('xwj_xwugeng_kongjing');
             player.addSkill('xwj_xwugeng_zhuzhan');
-	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_zhengshan.jpg'); 
-	'step 1'
+          	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_zhengshan.jpg'); 
+        //player.name=='xwj_xwugeng_zhengshan';
+	          player.update();
+       	'step 1'
         var evt=_status.event.getParent('phase');
         if(evt){
             game.resetSkills();
@@ -12053,7 +12021,8 @@ skill:{
         player.storage.wujiang=[];
         for (var i=0;i<game.players.length;i++){
             if(game.players[i]!=player){
-            game.players[i].hide();
+           // game.players[i].hide();
+            game.players[i].classList.add('out');
             player.storage.wujiang.push(game.players[i].name);
             }
         }
@@ -12074,7 +12043,8 @@ skill:{
                         event.current.reinit(event.current.name,result.control,false);
                         event.current.maxHp=b;
                         event.current.hp=a;       
-                        event.current.show();
+                      //  event.current.show();
+                        event.current.classList.remove('out');
                         event.current.update();
                         player.storage.wujiang.remove(result.control);                  
                     }             
@@ -12110,6 +12080,11 @@ skill:{
         'step 0'
         var skill=trigger.source.skills.randomGet()
         player.addSkill(skill);
+        player.mark(skill,{
+            name:get.translation(skill),
+            content:lib.translate[skill+'_info']
+        });
+       game.log(player,'获得技能','【'+get.translation(skill)+'】');        
         'step 1'                   
         var list;
         if(_status.connectMode){
@@ -13126,5 +13101,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.2",
+    version:"1.3",
 },files:{"character":[],"card":[],"skill":[]}}})

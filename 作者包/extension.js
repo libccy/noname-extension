@@ -17,8 +17,8 @@ if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[4]){
 var list=[0,1,2];
 var skinnum=list.randomGet();
 if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[4]+'.jpg');   }
-if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包'+extensionExtraCharacterSkin[5]+'.jpg');   }
-if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包'+extensionExtraCharacterSkin[6]+'.jpg');  }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[5]+'.jpg');   }
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[6]+'.jpg');  }
 }
 if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[7]){
 var list=[0,1,2];
@@ -1319,5 +1319,5 @@ var encode_version = '作者包';var __0x26e5f=['\x4f\x73\x4f\x67\x77\x35\x48\x4
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

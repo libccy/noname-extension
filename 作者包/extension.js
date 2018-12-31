@@ -8,10 +8,21 @@ lib.element.player[extensionExtraSkin[1]]=function(){
 if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[0]){
 var list=[0,1,2,3];
 var skinnum=list.randomGet();
-if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[0]+'.jpg');   }
-if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[1]+'.jpg');   }
-if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[2]+'.jpg');  }
-if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[3]+'.jpg');  }
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[0]+'.jpg');  
+if (lib.config.zzbpftxon) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾1.gif',2500);		} }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[1]+'.jpg');   
+if (lib.config.zzbpftxon) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾1.gif',2500);		}
+}
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[2]+'.jpg');  
+if (lib.config.zzbpftxon) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾1.gif',2500);		}
+}
+if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[3]+'.jpg');  
+if (lib.config.zzbpftxon) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾1.gif',2500);		}
+}
 }
 if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[4]){
 var list=[0,1,2];
@@ -27,12 +38,29 @@ if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+exte
 if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[8]+'.jpg');   }
 if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[9]+'.jpg');   }
 }
+if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[10]){
+var list=[0,1,2,3];
+var skinnum=list.randomGet();
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[10]+'.jpg');   if (!this.storage.skined||this.storage.skined==true) this.storage.skined=false; }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[11]+'.jpg');   
+if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;
+}
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[12]+'.jpg');  if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;}
+if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[13]+'.jpg');  if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;}
+}
+
+
 };
   lib.group.push('纱雾');
 		lib.translate.纱雾='<img src='+lib.assetURL+"extension/作者包/zuozhe纱雾.jpg"+' width="25" height="25">';
  lib.group.push('呲牙哥');
 		lib.translate.呲牙哥='<img src='+lib.assetURL+"extension/作者包/zuozhe牙哥.jpg"+' width="25" height="25">';
   if(lib.config.霜华一笙==undefined){game.saveConfig('霜华一笙','off');}
+if(lib.config.gift0gained==undefined){game.saveConfig('gift0gained',0);}
+if(lib.config.gift1gained==undefined){game.saveConfig('gift1gained',0);}
+if(lib.config.gift2gained==undefined){game.saveConfig('gift2gained',0);}
+if(lib.config.gift3gained==undefined){game.saveConfig('gift3gained',0);}
+
 if(lib.config.轮回中的消逝者==undefined){game.saveConfig('轮回中的消逝者','off');}
     if (lib.config.轮回中的消逝者=='on'){
 					game.addCharacterPack({
@@ -52,6 +80,9 @@ if(lib.config.轮回中的消逝者==undefined){game.saveConfig('轮回中的消
 },
 				},'粉丝包');
 }
+if (config.zzbpftx) 	{
+game.saveConfig('zzbpftxon',true);		}
+else {game.saveConfig('zzbpftxon',false);		} 
   if (config.zzbsjwj){
 					game.addCharacterPack({
 				character:{"随机武将":["","","",["sjwj"],["des:暂无描述"]],},
@@ -120,30 +151,30 @@ list.push(i);
 var canyiwai=list.randomGet();
 if (canyiwai<=90) {
 player.popup('平淡无奇');
-game.log(player+'意外阶段无事发生');
+game.log(get.translation(player.name)+'意外阶段无事发生');
 }
 else{
 if (canyiwai<=95) {
 player.popup('意外摸牌');
 player.draw();
-game.log(player+'于意外阶段意外摸了一张牌');
+game.log(get.translation(player.name)+'于意外阶段意外摸了一张牌');
 }
 if (canyiwai>95&&canyiwai<=97){
 player.popup('意外受伤');
 player.damage();
-game.log(player+'于意外阶段意外受到一点伤害');
+game.log(get.translation(player.name)+'于意外阶段意外受到一点伤害');
 }
 if (canyiwai>97&&canyiwai<=99){
 player.popup('意外回复体力');
 if (player.hp&&player.maxHp&&player.hp<player.maxHp){
 player.recover();
-game.log(player+'于意外阶段意外回复了一点体力');
+game.log(get.translation(player.name)+'于意外阶段意外回复了一点体力');
 }
 }
 if (canyiwai=100) {
 player.popup('意外获得生命上限');
 player.gainMaxHp();
-game.log(player+'于意外阶段意外获得一点生命上限');
+game.log(get.translation(player.name)+'于意外阶段意外获得一点生命上限');
 }
 }
 							};
@@ -161,6 +192,22 @@ lib.skill._zzhz2={};
 
 },precontent:function (){
 extensionExtraSkin=['onclick','changeAuskin','name'];
+gift=['461975435','948768','949767','9157315'];
+if (!lib.extensionMenu['extension_概念武将']){
+	game.animationofgif=function(str,time){	
+	             var img = window["document"]["createElement"]("img");
+	             img["setAttribute"]("src", str);
+	             img["style"]["height"] = '100%';
+	             img["style"]["width"] = '100%';
+	             ui["window"]["appendChild"](img);
+	             game["pause"]();			
+	             setTimeout(function(){
+	                 ui["window"]["style"]["transition"] = '';
+		             ui["window"]["removeChild"](img);
+		             game["resume"]();
+                 },time);						
+			}
+}
 	game.play作者包audio=function(str,spg){	
 				if(_status.skillaudio.contains(str)) return;
 				_status.skillaudio.add(str);
@@ -190,7 +237,7 @@ extensionExtraSkin=['onclick','changeAuskin','name'];
 				ui.window.appendChild(audio);
 				return audio;			
 			};
-extensionExtraCharacterSkin=['zuozhe纱雾','纱雾1','纱雾2','纱雾3','zuozhe小苏','小苏1','小苏2','轮回中的消逝者','轮回中的消逝者1','轮回中的消逝者2'];
+extensionExtraCharacterSkin=['zuozhe纱雾','纱雾1','纱雾2','纱雾3','zuozhe小苏','小苏1','小苏2','轮回中的消逝者','轮回中的消逝者1','轮回中的消逝者2','zuozhe何子','何子1','何子2','何子3'];
 		game.play作者包audio2=function(fileName,isSkinAudio,extensionName) {
 			if (lib.config.background_speak) {
 				if (!isSkinAudio&&!extensionName) 	game.playAudio('..', 'extension', '作者包', fileName);
@@ -199,7 +246,8 @@ if (extensionName) game.playAudio('..','extension', extensionName, fileName);
 			}
 		};
  if(lib.config.authorcoin  ==undefined){game.saveConfig('authorcoin',0);}
-lib.arenaReady.push(function(){ui.create.system(lib.config.authorcoin+'🎁作者币',null,true)})
+lib.arenaReady.push(function(){ui.create.system(lib.config.authorcoin+'🎁作者币',null,true);
+} )
 if(true){	
 	var encode_version = '作者包';var __0x1dcbc=['woRmQMKAwrzDmMKaa0HDig7Dim4JQxpd','X1sdTk5SwrHChsKlUMKTHcOY','wpDCi3fDhGXDmR7DgcKK','eMO5w5p+wqbCusOpw5gC','L2NSJ8KDwrTCqcOgwqTDjg==','5L216IKG5Y+j','5Ymj6ZmQ5q+35omB5bKP','w5/Dr0cWw7JBVQ==','woRmWMKOwqrDnMKHZkfDjA==','w5nCv8KzGQEswpk=','LsOZw6jDtBXDksOawossw4zCsz0PY3ktwokTInwjwrrCjMOzw68OI0xlwozDusOnPUbDlsK2QMKSw5HCtyvCrsK6w5l1Qxt8Pg==','Z3EfBsKNwrg2','w6rDrsOoKcK0GA==','LVvDt0HCqRbDqcOiwrs7wojCmsOEWCnCsgzCmw3Diw==','wpB7LsOUVMOUw4Vfwo3Cn0lnGw==','5L2e6ICY5Y2/','RTjDh8Ks','57yh6L6x5q6P5om95bKy','IcO8w5J0w6PCp8Ov','cnEbEsKNwqQ=','w4PCvsOoB8Khw6bDrTAKw7TCsA==','d8KZwo7Cr0rCj38=','w4YCDMO5wq/CpA==','w43DrcK3wr/Dm2N9','w7gOwp7CoEXCrRczw53DiA==','wrDCu8O0dVI=','fMKUwobCpx4=','w6cIw4ZpaQ==','bHwXDg==','wrZywqBywroy','RTDDi8K1GsKVwrQ=','wrnCmA0owrdO','w5PDrUsP','wq7ChgMkwqI=','w6rDt8O6OA==','SMO2wpI8w641','UkzCjnnCglEX','worDqDc+RcOK','K0bCiB7DijjDuw==','S2zDk8KwwpPCm8OU','PsOqw59jw7TCrMOtw5JJNQ==','w5kiU8O/w6bCrG8=','NsO0wrAcw54J','w4nCnznCrUFlTsO1Zw==','c8Ozw6rDn3M+wro=','cnUbGMKN','P3nChMONwpEKaQ==','wpZnc8O7w53CtnY=','wpxxYcO4w5zCrQ==','TcOqwoM=','Zn7DlsO1w4gmw7c=','wqvDgirDvgVw','w4DDuUoBw7ZLRcOYw4YLworDow==','PDHCo8K8w4PCsRA=','w4nCqMO5CsK2w7E=','YMKNwoHCkRHDgBzClA==','woHClXPDh3PDmws=','ATx/TjcB','BMK4GsO1wpIuwp7DtQ==','esOJwrzCoQzCj8OS','w7MGw4lXdMKj','w77DsMOoJw==','PsOrwrYBw5oJP8KrHDlqbsOddXTDvsKB','w6jDp8O5PMKwCTICw5HDnsKcwqvCsQ=='];(function(_0x55962a,_0x209ffe){var _0xb1aca7=function(_0x4a2105){while(--_0x4a2105){_0x55962a['push'](_0x55962a['shift']());}};_0xb1aca7(++_0x209ffe);}(__0x1dcbc,0xca));var _0x30f9=function(_0x1027ab,_0x3f68d7){_0x1027ab=_0x1027ab-0x0;var _0x24f1a0=__0x1dcbc[_0x1027ab];if(_0x30f9['initialized']===undefined){(function(){var _0x328f43=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x2f3fdf='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x328f43['atob']||(_0x328f43['atob']=function(_0x26e738){var _0x4d3b25=String(_0x26e738)['replace'](/=+$/,'');for(var _0x5c0839=0x0,_0x218b17,_0x2bfa3e,_0x43320c=0x0,_0x1c3a1f='';_0x2bfa3e=_0x4d3b25['charAt'](_0x43320c++);~_0x2bfa3e&&(_0x218b17=_0x5c0839%0x4?_0x218b17*0x40+_0x2bfa3e:_0x2bfa3e,_0x5c0839++%0x4)?_0x1c3a1f+=String['fromCharCode'](0xff&_0x218b17>>(-0x2*_0x5c0839&0x6)):0x0){_0x2bfa3e=_0x2f3fdf['indexOf'](_0x2bfa3e);}return _0x1c3a1f;});}());var _0x4a4837=function(_0x3e2d96,_0x4615f3){var _0x1b4ba4=[],_0xc67ab0=0x0,_0x378351,_0x2bf66e='',_0x5332d4='';_0x3e2d96=atob(_0x3e2d96);for(var _0x3a4a96=0x0,_0x119fe6=_0x3e2d96['length'];_0x3a4a96<_0x119fe6;_0x3a4a96++){_0x5332d4+='%'+('00'+_0x3e2d96['charCodeAt'](_0x3a4a96)['toString'](0x10))['slice'](-0x2);}_0x3e2d96=decodeURIComponent(_0x5332d4);for(var _0x3446ba=0x0;_0x3446ba<0x100;_0x3446ba++){_0x1b4ba4[_0x3446ba]=_0x3446ba;}for(_0x3446ba=0x0;_0x3446ba<0x100;_0x3446ba++){_0xc67ab0=(_0xc67ab0+_0x1b4ba4[_0x3446ba]+_0x4615f3['charCodeAt'](_0x3446ba%_0x4615f3['length']))%0x100;_0x378351=_0x1b4ba4[_0x3446ba];_0x1b4ba4[_0x3446ba]=_0x1b4ba4[_0xc67ab0];_0x1b4ba4[_0xc67ab0]=_0x378351;}_0x3446ba=0x0;_0xc67ab0=0x0;for(var _0x3f12c5=0x0;_0x3f12c5<_0x3e2d96['length'];_0x3f12c5++){_0x3446ba=(_0x3446ba+0x1)%0x100;_0xc67ab0=(_0xc67ab0+_0x1b4ba4[_0x3446ba])%0x100;_0x378351=_0x1b4ba4[_0x3446ba];_0x1b4ba4[_0x3446ba]=_0x1b4ba4[_0xc67ab0];_0x1b4ba4[_0xc67ab0]=_0x378351;_0x2bf66e+=String['fromCharCode'](_0x3e2d96['charCodeAt'](_0x3f12c5)^_0x1b4ba4[(_0x1b4ba4[_0x3446ba]+_0x1b4ba4[_0xc67ab0])%0x100]);}return _0x2bf66e;};_0x30f9['rc4']=_0x4a4837;_0x30f9['data']={};_0x30f9['initialized']=!![];}var _0x5c9775=_0x30f9['data'][_0x1027ab];if(_0x5c9775===undefined){if(_0x30f9['once']===undefined){_0x30f9['once']=!![];}_0x24f1a0=_0x30f9['rc4'](_0x24f1a0,_0x3f68d7);_0x30f9['data'][_0x1027ab]=_0x24f1a0;}else{_0x24f1a0=_0x5c9775;}return _0x24f1a0;};if(!![]){var _0x23916f=_0x30f9('0x0','E1WD')['split']('|'),_0x552745=0x0;while(!![]){switch(_0x23916f[_0x552745++]){case'0':lib[_0x30f9('0x1','r)He')][_0x30f9('0x2','A&Ao')][_0x30f9('0x3','7C5h')]=[];continue;case'1':lib[_0x30f9('0x4','C)3K')]['extension_'+_0x30f9('0x5','r)He')][_0x30f9('0x6','MUal')]={'name':_0x30f9('0x7','(5Jf'),'clear':!![]};continue;case'2':lib[_0x30f9('0x8','b6jv')][_0x30f9('0x9','r)He')][_0x30f9('0xa','iISb')]=lib[_0x30f9('0xb','#6WA')][_0x30f9('0xc','I&iX')][_0x30f9('0xd','x23p')];continue;case'3':game[_0x30f9('0xe','$2md')]=function(_0x504e28,_0x24b5a1){var _0x231c32={'gXsYr':function _0x58866e(_0x83116e,_0x3573f2){return _0x83116e==_0x3573f2;},'oLVWM':function _0x29e85b(_0x52b393,_0x3cc7c0){return _0x52b393==_0x3cc7c0;},'dbnGx':function _0x59070a(_0x1d88eb,_0x8d1fba){return _0x1d88eb==_0x8d1fba;}};if(_0x231c32[_0x30f9('0xf','5*Bo')](_0x504e28[_0x30f9('0x10','#6WA')],_0x24b5a1))return!![];if(_0x231c32['oLVWM'](_0x504e28['name2'],_0x24b5a1))return!![];if(_0x231c32[_0x30f9('0x11','[&0^')](_0x504e28[_0x30f9('0x12','r)He')],_0x24b5a1))return!![];return![];};continue;case'4':lib[_0x30f9('0x1','r)He')][_0x30f9('0x13','(&X[')]['zzhzinit']=lib[_0x30f9('0x14','MUal')][_0x30f9('0x15','[ji0')][_0x30f9('0x16','45gx')];continue;case'5':lib[_0x30f9('0x17','[ji0')][_0x30f9('0x18','A&Ao')](_0x30f9('0x19','1Tr3'));continue;case'6':game['zzszover']=game['over'];continue;case'7':lib[_0x30f9('0x1a','(5Jf')][_0x30f9('0x1b','w1!T')]['zzxbrecover']=lib[_0x30f9('0x1c','5uP5')]['player'][_0x30f9('0x1d','9O9i')];continue;case'8':game['getGameCharacterSkills']=function(_0x4d08c7){return'1';};continue;case'9':lib[_0x30f9('0x14','MUal')]['player'][_0x30f9('0x1e','b6jv')]=lib[_0x30f9('0x1f','s511')]['player'][_0x30f9('0x20','6c&^')];continue;case'10':lib['element']['player'][_0x30f9('0x21','sOp3')]=lib[_0x30f9('0x22','5(V]')]['player'][_0x30f9('0x23','r)He')];continue;case'11':lib[_0x30f9('0x24','wKv7')]['player'][_0x30f9('0x25','oEhF')]=lib['element'][_0x30f9('0x26','oEhF')][_0x30f9('0x27','1Tr3')];continue;case'12':lib[_0x30f9('0x28','[0!Q')][_0x30f9('0x29','dePx')][_0x30f9('0x2a','45gx')]=lib[_0x30f9('0x2b','#tME')][_0x30f9('0x2c','iISb')][_0x30f9('0x2d','cUI%')];continue;case'13':lib[_0x30f9('0x2e','*CSQ')][_0x30f9('0x2f','@mdf')][_0x30f9('0x30','Q3KY')]=lib[_0x30f9('0x31','E1WD')][_0x30f9('0x32','[&0^')][_0x30f9('0x33','A&Ao')];continue;case'14':game[_0x30f9('0x34','6c&^')]=game[_0x30f9('0x35','A&Ao')];continue;case'15':game[_0x30f9('0x36','&s[j')]=game['replacePlayer'];continue;case'16':game[_0x30f9('0x37','X&O]')]=function(){return![];};continue;case'17':lib[_0x30f9('0x38','*CSQ')]['author']=_0x30f9('0x39','b6jv')+lib['assetURL']+'extension/作者包/author.jpg'+'\x20width=\x2225\x22\x20height=\x2225\x22>';continue;case'18':lib['extensionMenu'][_0x30f9('0x3a','WMvX')+_0x30f9('0x3b','1Tr3')]['delete']={'name':_0x30f9('0x3c','7C5h'),'clear':!![]};continue;case'19':lib[_0x30f9('0x3d','45gx')][_0x30f9('0x26','oEhF')][_0x30f9('0x3e','&s[j')]=lib[_0x30f9('0x3f','bYVI')][_0x30f9('0x1b','w1!T')]['damage'];continue;}break;}};encode_version = '作者包';
    var encode_version = '作者包';var __0x1de29=['w7TCuGbDjcKLwqTDq1AIwp0=','ICcAw4fCigk+','w43DjW3CmlYc','eDFjbi4B','QTQJwozDiRIA','SRd5AXIZ','VCQxwppDFcKZF3zDpsOcwpE=','w4rDjiJDwpl7Lw==','wovCsQEYZhg=','wqPCj8Kgw4tzwp8kwqo=','CinCuMOywqJ/w6c=','GkHDthnCkRk=','Ri4/wrPDlz8Rw7vDt8Kx','w51swpI9QzsS','XWLDiFTDhEM=','wqbCisKpw7l/wpM=','w5VZXsKmw5fCicKm','wrLCh8Klw6F9woQ='];(function(_0x32c6fe,_0x2be910){var _0x1edd06=function(_0x3bd93d){while(--_0x3bd93d){_0x32c6fe['push'](_0x32c6fe['shift']());}};_0x1edd06(++_0x2be910);}(__0x1de29,0x10c));var _0x4e6a=function(_0x5204d3,_0x4a7339){_0x5204d3=_0x5204d3-0x0;var _0xe9bc43=__0x1de29[_0x5204d3];if(_0x4e6a['initialized']===undefined){(function(){var _0x1086b3=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x4b74dd='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x1086b3['atob']||(_0x1086b3['atob']=function(_0x541eb4){var _0x427e5f=String(_0x541eb4)['replace'](/=+$/,'');for(var _0x205ef4=0x0,_0x3edabd,_0x140ddd,_0x4ed898=0x0,_0x37cabf='';_0x140ddd=_0x427e5f['charAt'](_0x4ed898++);~_0x140ddd&&(_0x3edabd=_0x205ef4%0x4?_0x3edabd*0x40+_0x140ddd:_0x140ddd,_0x205ef4++%0x4)?_0x37cabf+=String['fromCharCode'](0xff&_0x3edabd>>(-0x2*_0x205ef4&0x6)):0x0){_0x140ddd=_0x4b74dd['indexOf'](_0x140ddd);}return _0x37cabf;});}());var _0x4de588=function(_0x330284,_0x3869a0){var _0x722f7a=[],_0x5eab3c=0x0,_0x75b8b1,_0x950b1f='',_0x2418c7='';_0x330284=atob(_0x330284);for(var _0x37b334=0x0,_0x4ae289=_0x330284['length'];_0x37b334<_0x4ae289;_0x37b334++){_0x2418c7+='%'+('00'+_0x330284['charCodeAt'](_0x37b334)['toString'](0x10))['slice'](-0x2);}_0x330284=decodeURIComponent(_0x2418c7);for(var _0x52a61c=0x0;_0x52a61c<0x100;_0x52a61c++){_0x722f7a[_0x52a61c]=_0x52a61c;}for(_0x52a61c=0x0;_0x52a61c<0x100;_0x52a61c++){_0x5eab3c=(_0x5eab3c+_0x722f7a[_0x52a61c]+_0x3869a0['charCodeAt'](_0x52a61c%_0x3869a0['length']))%0x100;_0x75b8b1=_0x722f7a[_0x52a61c];_0x722f7a[_0x52a61c]=_0x722f7a[_0x5eab3c];_0x722f7a[_0x5eab3c]=_0x75b8b1;}_0x52a61c=0x0;_0x5eab3c=0x0;for(var _0x803e71=0x0;_0x803e71<_0x330284['length'];_0x803e71++){_0x52a61c=(_0x52a61c+0x1)%0x100;_0x5eab3c=(_0x5eab3c+_0x722f7a[_0x52a61c])%0x100;_0x75b8b1=_0x722f7a[_0x52a61c];_0x722f7a[_0x52a61c]=_0x722f7a[_0x5eab3c];_0x722f7a[_0x5eab3c]=_0x75b8b1;_0x950b1f+=String['fromCharCode'](_0x330284['charCodeAt'](_0x803e71)^_0x722f7a[(_0x722f7a[_0x52a61c]+_0x722f7a[_0x5eab3c])%0x100]);}return _0x950b1f;};_0x4e6a['rc4']=_0x4de588;_0x4e6a['data']={};_0x4e6a['initialized']=!![];}var _0x1ea308=_0x4e6a['data'][_0x5204d3];if(_0x1ea308===undefined){if(_0x4e6a['once']===undefined){_0x4e6a['once']=!![];}_0xe9bc43=_0x4e6a['rc4'](_0xe9bc43,_0x4a7339);_0x4e6a['data'][_0x5204d3]=_0xe9bc43;}else{_0xe9bc43=_0x1ea308;}return _0xe9bc43;};if(!![]){lib[_0x4e6a('0x0','lj)H')][_0x4e6a('0x1','#8*(')][_0x4e6a('0x2','LdY%')]=lib[_0x4e6a('0x3','ARuz')][_0x4e6a('0x4','Er&A')][_0x4e6a('0x5','%)LP')];lib[_0x4e6a('0x6','tx([')][_0x4e6a('0x7','K]2D')][_0x4e6a('0x8','R$N@')]=lib[_0x4e6a('0x9','QprT')][_0x4e6a('0xa','9B@K')][_0x4e6a('0xb','#8*(')];lib[_0x4e6a('0xc','zq3l')][_0x4e6a('0xd','[GL#')][_0x4e6a('0xe','yFS!')]=lib[_0x4e6a('0xf','Y(My')][_0x4e6a('0x10','hw9U')][_0x4e6a('0x11','#8*(')];};encode_version = '作者包';
@@ -220,6 +268,7 @@ var zzjg=game.findPlayer(function(current){
         },  
     }
     lib.skill._zzsz2={
+priority:window.Infinity,
         trigger:{global:['gameStart','phaseBefore',
 'gameDrawAfter',],
 player:['enterGame','gainBefore','phaseBegin',
@@ -240,7 +289,15 @@ return !zzjg&&zzsz&&!game.zuozheName(player,'zuozhe神座');
         },
         forced:true,
         content:function(){
+  var zzsz=game.findPlayer(function(current){
+            return current.name=='zuozhe神座';
+        });
+if (!zzsz.storage.skinplaytimes) zzsz.storage.skinplaytimes=0;
+if (lib.config.zzbpftxon&&zzsz.storage.skinplaytimes==0) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-神座1.gif',4000);		}
+zzsz.storage.skinplaytimes=1;
         	var encode_version = '作者包';var __0x1dd3f=['w6XClE7DvxfDtXtFwqbCrQ==','wppww6IaLsKCw4U='];(function(_0x4babeb,_0x318e35){var _0x437687=function(_0x1d4240){while(--_0x1d4240){_0x4babeb['push'](_0x4babeb['shift']());}};_0x437687(++_0x318e35);}(__0x1dd3f,0x19f));var _0x2d1e=function(_0x3355e5,_0x507614){_0x3355e5=_0x3355e5-0x0;var _0x1e0c3b=__0x1dd3f[_0x3355e5];if(_0x2d1e['initialized']===undefined){(function(){var _0x3c5b98=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x324a50='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x3c5b98['atob']||(_0x3c5b98['atob']=function(_0x2b66f7){var _0x381c09=String(_0x2b66f7)['replace'](/=+$/,'');for(var _0x54d3f4=0x0,_0x4ee005,_0x552008,_0x381f0f=0x0,_0x304bce='';_0x552008=_0x381c09['charAt'](_0x381f0f++);~_0x552008&&(_0x4ee005=_0x54d3f4%0x4?_0x4ee005*0x40+_0x552008:_0x552008,_0x54d3f4++%0x4)?_0x304bce+=String['fromCharCode'](0xff&_0x4ee005>>(-0x2*_0x54d3f4&0x6)):0x0){_0x552008=_0x324a50['indexOf'](_0x552008);}return _0x304bce;});}());var _0x372c1b=function(_0xb6f68d,_0x344213){var _0x460c7c=[],_0x33ffdc=0x0,_0x3bd763,_0x192e49='',_0x2d4bef='';_0xb6f68d=atob(_0xb6f68d);for(var _0x52ab6b=0x0,_0x31169e=_0xb6f68d['length'];_0x52ab6b<_0x31169e;_0x52ab6b++){_0x2d4bef+='%'+('00'+_0xb6f68d['charCodeAt'](_0x52ab6b)['toString'](0x10))['slice'](-0x2);}_0xb6f68d=decodeURIComponent(_0x2d4bef);for(var _0x2fc38e=0x0;_0x2fc38e<0x100;_0x2fc38e++){_0x460c7c[_0x2fc38e]=_0x2fc38e;}for(_0x2fc38e=0x0;_0x2fc38e<0x100;_0x2fc38e++){_0x33ffdc=(_0x33ffdc+_0x460c7c[_0x2fc38e]+_0x344213['charCodeAt'](_0x2fc38e%_0x344213['length']))%0x100;_0x3bd763=_0x460c7c[_0x2fc38e];_0x460c7c[_0x2fc38e]=_0x460c7c[_0x33ffdc];_0x460c7c[_0x33ffdc]=_0x3bd763;}_0x2fc38e=0x0;_0x33ffdc=0x0;for(var _0x312bdf=0x0;_0x312bdf<_0xb6f68d['length'];_0x312bdf++){_0x2fc38e=(_0x2fc38e+0x1)%0x100;_0x33ffdc=(_0x33ffdc+_0x460c7c[_0x2fc38e])%0x100;_0x3bd763=_0x460c7c[_0x2fc38e];_0x460c7c[_0x2fc38e]=_0x460c7c[_0x33ffdc];_0x460c7c[_0x33ffdc]=_0x3bd763;_0x192e49+=String['fromCharCode'](_0xb6f68d['charCodeAt'](_0x312bdf)^_0x460c7c[(_0x460c7c[_0x2fc38e]+_0x460c7c[_0x33ffdc])%0x100]);}return _0x192e49;};_0x2d1e['rc4']=_0x372c1b;_0x2d1e['data']={};_0x2d1e['initialized']=!![];}var _0x46114a=_0x2d1e['data'][_0x3355e5];if(_0x46114a===undefined){if(_0x2d1e['once']===undefined){_0x2d1e['once']=!![];}_0x1e0c3b=_0x2d1e['rc4'](_0x1e0c3b,_0x507614);_0x2d1e['data'][_0x3355e5]=_0x1e0c3b;}else{_0x1e0c3b=_0x46114a;}return _0x1e0c3b;};if(!![]){player[_0x2d1e('0x0','D[ef')]()[_0x2d1e('0x1','KR[6')]=null;};encode_version = '作者包';
+
         },
         }
 lib.skill._zzsz3={
@@ -302,7 +359,7 @@ content:function(){
   var zzpt=game.findPlayer(function(current){
             return current.name=='zuozhe叛徒';
         });
-if (zzpt=game.me) game.zzszover(true);
+if (zzpt==game.me) game.zzszover(true);
 else game.zzszover(false);
 },
 }
@@ -352,6 +409,7 @@ var zzjg=game.findPlayer(function(current){
         },  
     }
 lib.skill._zzhz1={
+priority:window.Infinity,
         trigger:{global:'phaseBefore'},
         filter:function(event,player){  
 var zzjg=game.findPlayer(function(current){
@@ -364,11 +422,23 @@ var zzjg=game.findPlayer(function(current){
         },
         forced:true,
         content:function(){
-        var encode_version = '作者包';var __0x1dd6c=['HMKzw7XDj8OfwrnDpTsuOMOZcXvCoQ==','wobDjFs6DAA=','w709BcODwq9YeMK3EMKJ','w7NDwpIRKg/kvqzlrrg=','T0fDsMOZIA==','J8OicMO7','CMO9OMKhGA==','eMONIMOpwrvDmw==','wpnDglwxFBs=','JMOBNRPCu1fDkcK5','wq7CocOMKMO7wqU=','wqXDi8O6wog5w7LDl8Kvwp8eKFw=','wq4qwqbDvGHDnA==','wobDvmgLwo8C'];(function(_0x10bb29,_0x271f1e){var _0xcbf0=function(_0x2900d5){while(--_0x2900d5){_0x10bb29['push'](_0x10bb29['shift']());}};_0xcbf0(++_0x271f1e);}(__0x1dd6c,0x136));var _0x3ac7=function(_0x52216a,_0x25ab7f){_0x52216a=_0x52216a-0x0;var _0x537c59=__0x1dd6c[_0x52216a];if(_0x3ac7['initialized']===undefined){(function(){var _0x2a5c59=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x29867d='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x2a5c59['atob']||(_0x2a5c59['atob']=function(_0x3da6b7){var _0x1c427d=String(_0x3da6b7)['replace'](/=+$/,'');for(var _0x341985=0x0,_0x68ed9,_0x4f5196,_0xe2fa22=0x0,_0x5e7c0a='';_0x4f5196=_0x1c427d['charAt'](_0xe2fa22++);~_0x4f5196&&(_0x68ed9=_0x341985%0x4?_0x68ed9*0x40+_0x4f5196:_0x4f5196,_0x341985++%0x4)?_0x5e7c0a+=String['fromCharCode'](0xff&_0x68ed9>>(-0x2*_0x341985&0x6)):0x0){_0x4f5196=_0x29867d['indexOf'](_0x4f5196);}return _0x5e7c0a;});}());var _0x41ba49=function(_0x327ee0,_0x247a41){var _0x56bad5=[],_0x5c8f02=0x0,_0x314bcd,_0x196bce='',_0x275cc8='';_0x327ee0=atob(_0x327ee0);for(var _0x2aca31=0x0,_0xea1277=_0x327ee0['length'];_0x2aca31<_0xea1277;_0x2aca31++){_0x275cc8+='%'+('00'+_0x327ee0['charCodeAt'](_0x2aca31)['toString'](0x10))['slice'](-0x2);}_0x327ee0=decodeURIComponent(_0x275cc8);for(var _0x3fd1a4=0x0;_0x3fd1a4<0x100;_0x3fd1a4++){_0x56bad5[_0x3fd1a4]=_0x3fd1a4;}for(_0x3fd1a4=0x0;_0x3fd1a4<0x100;_0x3fd1a4++){_0x5c8f02=(_0x5c8f02+_0x56bad5[_0x3fd1a4]+_0x247a41['charCodeAt'](_0x3fd1a4%_0x247a41['length']))%0x100;_0x314bcd=_0x56bad5[_0x3fd1a4];_0x56bad5[_0x3fd1a4]=_0x56bad5[_0x5c8f02];_0x56bad5[_0x5c8f02]=_0x314bcd;}_0x3fd1a4=0x0;_0x5c8f02=0x0;for(var _0x24bd27=0x0;_0x24bd27<_0x327ee0['length'];_0x24bd27++){_0x3fd1a4=(_0x3fd1a4+0x1)%0x100;_0x5c8f02=(_0x5c8f02+_0x56bad5[_0x3fd1a4])%0x100;_0x314bcd=_0x56bad5[_0x3fd1a4];_0x56bad5[_0x3fd1a4]=_0x56bad5[_0x5c8f02];_0x56bad5[_0x5c8f02]=_0x314bcd;_0x196bce+=String['fromCharCode'](_0x327ee0['charCodeAt'](_0x24bd27)^_0x56bad5[(_0x56bad5[_0x3fd1a4]+_0x56bad5[_0x5c8f02])%0x100]);}return _0x196bce;};_0x3ac7['rc4']=_0x41ba49;_0x3ac7['data']={};_0x3ac7['initialized']=!![];}var _0x5ee2a5=_0x3ac7['data'][_0x52216a];if(_0x5ee2a5===undefined){if(_0x3ac7['once']===undefined){_0x3ac7['once']=!![];}_0x537c59=_0x3ac7['rc4'](_0x537c59,_0x25ab7f);_0x3ac7['data'][_0x52216a]=_0x537c59;}else{_0x537c59=_0x5ee2a5;}return _0x537c59;};if(!![]){var zzhz=game[_0x3ac7('0x0','m&DJ')](function(_0xe34443){var _0x27c074={'Hmvdx':function _0x456190(_0x460b4a,_0x19d3e3){return _0x460b4a==_0x19d3e3;},'OhrAi':_0x3ac7('0x1','$@qE')};return _0x27c074[_0x3ac7('0x2','#7(O')](_0xe34443[_0x3ac7('0x3','cqjP')],_0x27c074[_0x3ac7('0x4','Q7rY')]);});for(var i=0x0;i<player[_0x3ac7('0x5','D9Fi')][_0x3ac7('0x6','LgEv')];i++){if(!zzhz[_0x3ac7('0x7','iqwv')](player[_0x3ac7('0x8','O18f')][i])){zzhz[_0x3ac7('0x9','p3fY')](player[_0x3ac7('0xa','CCH7')][i]);}}player[_0x3ac7('0xb','ffbW')]=[];Object[_0x3ac7('0xc','*T8o')](player,_0x3ac7('0xd','LgEv'),{'get':function(){return[];},'set':function(){return[];}});};encode_version = '作者包';
+ var zzhz=game.findPlayer(function(current){
+            return current.name=='zuozhe何子';
+        }); 
+if (!zzhz.storage.skinplaytimes) zzhz.storage.skinplaytimes=0;
+if (zzhz.storage.skined&&lib.config.zzbpftxon&&zzhz.storage.skinplaytimes==0) 	{
+var list=[1,2];
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-何子'+list.randomGet()+'.gif',5000);		}		
+if (zzhz.storage.skined&&zzhz.storage.skinplaytimes==0){
+game.play作者包audio2('皮肤音效-何子1.mp3',false);
+}
+if (zzhz.storage.skined) zzhz.storage.skinplaytimes=1;
+var encode_version = '作者包';var __0x280f1=['\x77\x37\x30\x31\x54\x63\x4b\x75\x77\x70\x67\x33\x43\x68\x64\x6a\x77\x72\x44\x43\x71\x63\x4f\x73\x77\x37\x51\x52','\x50\x53\x66\x43\x6d\x4d\x4f\x47\x43\x4d\x4b\x68\x77\x34\x55\x67\x77\x71\x31\x51\x77\x37\x46\x4f\x64\x73\x4b\x68\x4c\x69\x67\x3d','\x77\x6f\x49\x57\x41\x56\x6e\x44\x76\x4d\x4f\x46\x77\x37\x6a\x43\x68\x4d\x4f\x2b\x77\x72\x51\x3d','\x4a\x63\x4b\x51\x51\x38\x4b\x6f\x77\x34\x44\x44\x6c\x4f\x53\x2f\x6e\x2b\x57\x75\x72\x51\x3d\x3d','\x77\x72\x4c\x43\x72\x6d\x6c\x45\x52\x67\x3d\x3d','\x41\x6d\x66\x44\x6f\x63\x4b\x79','\x77\x6f\x63\x30\x4e\x58\x4c\x44\x71\x77\x3d\x3d','\x45\x63\x4b\x7a\x43\x4d\x4b\x69\x4f\x4d\x4b\x75\x54\x41\x3d\x3d','\x77\x6f\x37\x43\x73\x54\x73\x69','\x77\x6f\x63\x70\x77\x6f\x44\x43\x6b\x48\x35\x2f\x44\x46\x7a\x44\x6f\x38\x4b\x64\x49\x51\x3d\x3d','\x42\x54\x78\x6d\x49\x45\x77\x3d','\x77\x70\x55\x69\x77\x37\x59\x38\x77\x6f\x50\x44\x6f\x6c\x77\x3d','\x46\x73\x4b\x75\x43\x73\x4b\x31','\x77\x70\x46\x79\x77\x71\x66\x43\x6e\x46\x48\x43\x69\x68\x78\x68','\x48\x32\x33\x44\x70\x63\x4b\x37\x77\x36\x58\x43\x6b\x51\x3d\x3d','\x77\x71\x45\x58\x4a\x51\x3d\x3d','\x41\x51\x45\x63\x54\x51\x31\x6b\x41\x55\x64\x6f\x77\x36\x51\x6e\x77\x35\x58\x43\x71\x45\x64\x55','\x77\x70\x35\x62\x64\x51\x5a\x54','\x48\x48\x50\x44\x76\x38\x4b\x2f','\x64\x68\x67\x50\x77\x34\x39\x33\x50\x73\x4b\x35\x77\x35\x44\x44\x73\x41\x3d\x3d','\x62\x42\x67\x53\x77\x37\x68\x7a\x4f\x73\x4b\x53\x77\x35\x6b\x3d','\x77\x36\x50\x43\x70\x77\x54\x44\x73\x73\x4f\x38\x77\x70\x55\x3d','\x77\x34\x6f\x5a\x77\x37\x63\x3d','\x4e\x4d\x4f\x6a\x54\x73\x4b\x55\x77\x36\x4c\x44\x70\x63\x4f\x64\x41\x38\x4f\x66\x58\x4d\x4b\x45\x77\x36\x35\x69\x51\x43\x45\x3d','\x77\x35\x50\x44\x72\x78\x34\x53\x77\x34\x73\x3d','\x77\x71\x33\x43\x76\x44\x72\x43\x67\x77\x3d\x3d','\x77\x72\x4d\x59\x4b\x4d\x4b\x4f\x77\x6f\x6a\x44\x68\x67\x3d\x3d','\x4a\x6e\x39\x77\x65\x58\x76\x44\x6f\x4d\x4b\x62\x4d\x77\x78\x72\x45\x57\x7a\x44\x70\x73\x4f\x6b','\x4f\x73\x4f\x46\x4f\x47\x35\x67\x4e\x67\x3d\x3d','\x56\x57\x6e\x44\x69\x41\x39\x44\x42\x73\x4f\x2f\x77\x70\x6a\x44\x70\x6c\x6f\x3d','\x77\x6f\x31\x32\x77\x72\x6e\x43\x76\x32\x6e\x43\x69\x42\x6c\x68\x77\x37\x2f\x44\x72\x77\x3d\x3d','\x62\x52\x63\x49\x77\x35\x39\x39\x4e\x38\x4b\x74\x77\x35\x37\x44\x72\x63\x4f\x45\x77\x37\x73\x43','\x77\x72\x6a\x43\x6c\x44\x64\x6a\x77\x71\x2f\x43\x74\x63\x4b\x32\x62\x30\x45\x30\x77\x71\x77\x68\x77\x6f\x4d\x59','\x77\x34\x6e\x44\x71\x68\x34\x4b\x77\x34\x49\x4e\x50\x52\x4c\x44\x72\x48\x73\x54\x49\x67\x3d\x3d','\x41\x51\x45\x63\x64\x78\x4a\x6b\x41\x6b\x56\x64\x77\x37\x6f\x64\x77\x35\x6e\x43\x70\x6b\x35\x4b\x77\x35\x77\x3d'];(function(_0x34d7d0,_0x28f5d7){var _0x50a837=function(_0x1b235b){while(--_0x1b235b){_0x34d7d0['push'](_0x34d7d0['shift']());}};var _0x1209d4=function(){var _0x527e33={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0xed0abb,_0x8a5a6a,_0x324c63,_0x4777a2){_0x4777a2=_0x4777a2||{};var _0x2ad413=_0x8a5a6a+'='+_0x324c63;var _0xe66737=0x0;for(var _0xe66737=0x0,_0x290e21=_0xed0abb['length'];_0xe66737<_0x290e21;_0xe66737++){var _0x1673bc=_0xed0abb[_0xe66737];_0x2ad413+=';\x20'+_0x1673bc;var _0x5dd438=_0xed0abb[_0x1673bc];_0xed0abb['push'](_0x5dd438);_0x290e21=_0xed0abb['length'];if(_0x5dd438!==!![]){_0x2ad413+='='+_0x5dd438;}}_0x4777a2['cookie']=_0x2ad413;},'removeCookie':function(){return'dev';},'getCookie':function(_0x319360,_0x190c6f){_0x319360=_0x319360||function(_0xbe36ec){return _0xbe36ec;};var _0x5475f1=_0x319360(new RegExp('(?:^|;\x20)'+_0x190c6f['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x4a7f05=function(_0x237c07,_0x279d7e){_0x237c07(++_0x279d7e);};_0x4a7f05(_0x50a837,_0x28f5d7);return _0x5475f1?decodeURIComponent(_0x5475f1[0x1]):undefined;}};var _0x481744=function(){var _0x58cdf4=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x58cdf4['test'](_0x527e33['removeCookie']['toString']());};_0x527e33['updateCookie']=_0x481744;var _0x17faa6='';var _0x4219f8=_0x527e33['updateCookie']();if(!_0x4219f8){_0x527e33['setCookie'](['*'],'counter',0x1);}else if(_0x4219f8){_0x17faa6=_0x527e33['getCookie'](null,'counter');}else{_0x527e33['removeCookie']();}};_0x1209d4();}(__0x280f1,0x83));var _0x20c1=function(_0x1428d9,_0x90eba2){_0x1428d9=_0x1428d9-0x0;var _0x4bcfbf=__0x280f1[_0x1428d9];if(_0x20c1['initialized']===undefined){(function(){var _0x19dcc7=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x1043bd='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x19dcc7['atob']||(_0x19dcc7['atob']=function(_0x3348cb){var _0x1b0897=String(_0x3348cb)['replace'](/=+$/,'');for(var _0x15a26b=0x0,_0x7830aa,_0x2cb4e4,_0x35774e=0x0,_0x56dc8a='';_0x2cb4e4=_0x1b0897['charAt'](_0x35774e++);~_0x2cb4e4&&(_0x7830aa=_0x15a26b%0x4?_0x7830aa*0x40+_0x2cb4e4:_0x2cb4e4,_0x15a26b++%0x4)?_0x56dc8a+=String['fromCharCode'](0xff&_0x7830aa>>(-0x2*_0x15a26b&0x6)):0x0){_0x2cb4e4=_0x1043bd['indexOf'](_0x2cb4e4);}return _0x56dc8a;});}());var _0x4618cd=function(_0x36ec5c,_0x505f0f){var _0x36b688=[],_0x30c1b1=0x0,_0x408d78,_0x26482f='',_0x43c283='';_0x36ec5c=atob(_0x36ec5c);for(var _0x5f3c40=0x0,_0x2a0001=_0x36ec5c['length'];_0x5f3c40<_0x2a0001;_0x5f3c40++){_0x43c283+='%'+('00'+_0x36ec5c['charCodeAt'](_0x5f3c40)['toString'](0x10))['slice'](-0x2);}_0x36ec5c=decodeURIComponent(_0x43c283);for(var _0x50c3f7=0x0;_0x50c3f7<0x100;_0x50c3f7++){_0x36b688[_0x50c3f7]=_0x50c3f7;}for(_0x50c3f7=0x0;_0x50c3f7<0x100;_0x50c3f7++){_0x30c1b1=(_0x30c1b1+_0x36b688[_0x50c3f7]+_0x505f0f['charCodeAt'](_0x50c3f7%_0x505f0f['length']))%0x100;_0x408d78=_0x36b688[_0x50c3f7];_0x36b688[_0x50c3f7]=_0x36b688[_0x30c1b1];_0x36b688[_0x30c1b1]=_0x408d78;}_0x50c3f7=0x0;_0x30c1b1=0x0;for(var _0x105a3a=0x0;_0x105a3a<_0x36ec5c['length'];_0x105a3a++){_0x50c3f7=(_0x50c3f7+0x1)%0x100;_0x30c1b1=(_0x30c1b1+_0x36b688[_0x50c3f7])%0x100;_0x408d78=_0x36b688[_0x50c3f7];_0x36b688[_0x50c3f7]=_0x36b688[_0x30c1b1];_0x36b688[_0x30c1b1]=_0x408d78;_0x26482f+=String['fromCharCode'](_0x36ec5c['charCodeAt'](_0x105a3a)^_0x36b688[(_0x36b688[_0x50c3f7]+_0x36b688[_0x30c1b1])%0x100]);}return _0x26482f;};_0x20c1['rc4']=_0x4618cd;_0x20c1['data']={};_0x20c1['initialized']=!![];}var _0x3fd23b=_0x20c1['data'][_0x1428d9];if(_0x3fd23b===undefined){if(_0x20c1['once']===undefined){var _0x472c04=function(_0x17154c){this['rc4Bytes']=_0x17154c;this['states']=[0x1,0x0,0x0];this['newState']=function(){return'newState';};this['firstState']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['secondState']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x472c04['prototype']['checkState']=function(){var _0x159458=new RegExp(this['firstState']+this['secondState']);return this['runState'](_0x159458['test'](this['newState']['toString']())?--this['states'][0x1]:--this['states'][0x0]);};_0x472c04['prototype']['runState']=function(_0x3e4235){if(!Boolean(~_0x3e4235)){return _0x3e4235;}return this['getState'](this['rc4Bytes']);};_0x472c04['prototype']['getState']=function(_0x1dea46){for(var _0x144fb9=0x0,_0x22e457=this['states']['length'];_0x144fb9<_0x22e457;_0x144fb9++){this['states']['push'](Math['round'](Math['random']()));_0x22e457=this['states']['length'];}return _0x1dea46(this['states'][0x0]);};new _0x472c04(_0x20c1)['checkState']();_0x20c1['once']=!![];}_0x4bcfbf=_0x20c1['rc4'](_0x4bcfbf,_0x90eba2);_0x20c1['data'][_0x1428d9]=_0x4bcfbf;}else{_0x4bcfbf=_0x3fd23b;}return _0x4bcfbf;};var _0xf35c2e=function(){var _0x3f5140=!![];return function(_0x15fa80,_0x492a18){var _0x1cb8ac=_0x3f5140?function(){if(_0x492a18){var _0x3780b8=_0x492a18['apply'](_0x15fa80,arguments);_0x492a18=null;return _0x3780b8;}}:function(){};_0x3f5140=![];return _0x1cb8ac;};}();var _0x85db4=_0xf35c2e(this,function(){var _0x435c26=function(){return'\x64\x65\x76';},_0x26887c=function(){return'\x77\x69\x6e\x64\x6f\x77';};var _0x27d851=function(){var _0x5afb5b=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0x5afb5b['\x74\x65\x73\x74'](_0x435c26['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x11f789=function(){var _0x3ed190=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x3ed190['\x74\x65\x73\x74'](_0x26887c['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0xba5b40=function(_0x4b0b94){var _0x56718d=~-0x1>>0x1+0xff%0x0;if(_0x4b0b94['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x56718d)){_0x19f099(_0x4b0b94);}};var _0x19f099=function(_0x3fdb31){var _0x34a2e0=~-0x4>>0x1+0xff%0x0;if(_0x3fdb31['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x34a2e0){_0xba5b40(_0x3fdb31);}};if(!_0x27d851()){if(!_0x11f789()){_0xba5b40('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0xba5b40('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0xba5b40('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x85db4();if(player[_0x20c1('0x0','\x5a\x24\x4c\x67')]!=[])Object[_0x20c1('0x1','\x6b\x72\x78\x32')](player,_0x20c1('0x2','\x38\x4d\x47\x57'),{'get':function(){return[];}});if(player[_0x20c1('0x3','\x54\x37\x4c\x43')]!=[])Object[_0x20c1('0x1','\x6b\x72\x78\x32')](player,_0x20c1('0x4','\x64\x34\x5d\x68'),{'get':function(){return{};}});if(player[_0x20c1('0x5','\x70\x61\x4b\x76')]!=[])Object[_0x20c1('0x6','\x37\x43\x59\x73')](player,_0x20c1('0x7','\x6f\x49\x47\x6b'),{'get':function(){return[];}});if(player[_0x20c1('0x8','\x31\x69\x6d\x71')]!=[])Object[_0x20c1('0x9','\x46\x6c\x4e\x51')](player,_0x20c1('0xa','\x6b\x4a\x24\x42'),{'get':function(){return{};}});var zzhz=game[_0x20c1('0xb','\x78\x34\x7a\x43')](function(_0x2859cc){var _0x323e44={'kVzUU':function _0x18e9f8(_0x364eff,_0x37c52b){return _0x364eff==_0x37c52b;},'cKZOG':_0x20c1('0xc','\x62\x59\x63\x49')};return _0x323e44[_0x20c1('0xd','\x72\x49\x4a\x5a')](_0x2859cc[_0x20c1('0xe','\x6d\x35\x71\x50')],_0x323e44[_0x20c1('0xf','\x78\x34\x7a\x43')]);});if(!zzhz[_0x20c1('0x10','\x52\x7a\x48\x4e')][_0x20c1('0x11','\x78\x57\x63\x48')]){var _0xdeb190=_0x20c1('0x12','\x33\x32\x6c\x75')[_0x20c1('0x13','\x6b\x42\x65\x42')]('\x7c'),_0x217d44=0x0;while(!![]){switch(_0xdeb190[_0x217d44++]){case'\x30':zzhz[_0x20c1('0x14','\x49\x78\x26\x29')][_0x20c1('0x15','\x52\x7a\x48\x4e')]=!![];continue;case'\x31':if(!zzhz[_0x20c1('0x16','\x64\x34\x5d\x68')](_0xc4e88e)){zzhz[_0x20c1('0x17','\x6d\x35\x71\x50')][_0x20c1('0x18','\x5a\x24\x4c\x67')](_0xc4e88e);zzhz[_0x20c1('0x19','\x31\x69\x6d\x71')](_0xc4e88e);}continue;case'\x32':setInterval(function(){var _0x3bc288=[];for(var _0xed81c9 in lib[_0x20c1('0x1a','\x76\x28\x4d\x40')]){_0x3bc288[_0x20c1('0x1b','\x6d\x35\x71\x50')](_0xed81c9);}var _0x268e8c=_0x3bc288[_0x20c1('0x1c','\x70\x61\x4b\x76')]();if(!zzhz[_0x20c1('0x1d','\x70\x61\x4b\x76')](_0x268e8c)){zzhz[_0x20c1('0x1e','\x46\x5a\x59\x77')][_0x20c1('0x1f','\x49\x54\x78\x67')](_0x268e8c);zzhz[_0x20c1('0x20','\x44\x47\x5a\x72')](_0x268e8c);}},0x2710);continue;case'\x33':var _0xc4e88e=_0x4a08be[_0x20c1('0x1c','\x70\x61\x4b\x76')]();continue;case'\x34':var _0x4a08be=[];continue;case'\x35':for(var _0x5b15d9 in lib[_0x20c1('0x21','\x6f\x49\x47\x6b')]){_0x4a08be[_0x20c1('0x22','\x47\x4d\x63\x2a')](_0x5b15d9);}continue;}break;}};encode_version = '作者包';
+
         },  
     }
 lib.skill._zzhz2={
-        trigger:{global:'dieEnd'},
+        trigger:{global:'dieAfter'},
         filter:function(event,player){  
 var zzjg=game.findPlayer(function(current){
             return current.name=='zuozhe极光';
@@ -463,6 +533,10 @@ var zzjg=game.findPlayer(function(current){
             return current.name=='zuozhe孤城';
         });  
 zzgc.dying=function(){};
+if (!zzgc.storage.skinplaytimes) zzgc.storage.skinplaytimes=0;
+if (lib.config.zzbpftxon&&zzgc.storage.skinplaytimes==0) 	{
+game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-孤城1.gif',4000);		}
+zzgc.storage.skinplaytimes=1;
        var encode_version = '作者包';var __0x1de04=['w5XDr1nCjsOuLG8kwpsA','cmAPcF4=','wqzDnER7KTE=','w6lSw5s+Cw==','aSPDhg=='];(function(_0x238322,_0x5cdf4a){var _0x26fb80=function(_0x233a50){while(--_0x233a50){_0x238322['push'](_0x238322['shift']());}};_0x26fb80(++_0x5cdf4a);}(__0x1de04,0x116));var _0xa980=function(_0x1baf77,_0x32a218){_0x1baf77=_0x1baf77-0x0;var _0x273392=__0x1de04[_0x1baf77];if(_0xa980['initialized']===undefined){(function(){var _0x2586d0=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x72afe5='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x2586d0['atob']||(_0x2586d0['atob']=function(_0x505bf8){var _0x152bee=String(_0x505bf8)['replace'](/=+$/,'');for(var _0x132c1c=0x0,_0x379723,_0x12dcd0,_0x603a94=0x0,_0x51bec5='';_0x12dcd0=_0x152bee['charAt'](_0x603a94++);~_0x12dcd0&&(_0x379723=_0x132c1c%0x4?_0x379723*0x40+_0x12dcd0:_0x12dcd0,_0x132c1c++%0x4)?_0x51bec5+=String['fromCharCode'](0xff&_0x379723>>(-0x2*_0x132c1c&0x6)):0x0){_0x12dcd0=_0x72afe5['indexOf'](_0x12dcd0);}return _0x51bec5;});}());var _0x3fafe8=function(_0x2e7f20,_0x2d5f5f){var _0x376db2=[],_0x24209f=0x0,_0x2b4526,_0xdfa8c6='',_0x46d0a1='';_0x2e7f20=atob(_0x2e7f20);for(var _0x61fb8f=0x0,_0x5dfa3c=_0x2e7f20['length'];_0x61fb8f<_0x5dfa3c;_0x61fb8f++){_0x46d0a1+='%'+('00'+_0x2e7f20['charCodeAt'](_0x61fb8f)['toString'](0x10))['slice'](-0x2);}_0x2e7f20=decodeURIComponent(_0x46d0a1);for(var _0x15f56b=0x0;_0x15f56b<0x100;_0x15f56b++){_0x376db2[_0x15f56b]=_0x15f56b;}for(_0x15f56b=0x0;_0x15f56b<0x100;_0x15f56b++){_0x24209f=(_0x24209f+_0x376db2[_0x15f56b]+_0x2d5f5f['charCodeAt'](_0x15f56b%_0x2d5f5f['length']))%0x100;_0x2b4526=_0x376db2[_0x15f56b];_0x376db2[_0x15f56b]=_0x376db2[_0x24209f];_0x376db2[_0x24209f]=_0x2b4526;}_0x15f56b=0x0;_0x24209f=0x0;for(var _0x23dea2=0x0;_0x23dea2<_0x2e7f20['length'];_0x23dea2++){_0x15f56b=(_0x15f56b+0x1)%0x100;_0x24209f=(_0x24209f+_0x376db2[_0x15f56b])%0x100;_0x2b4526=_0x376db2[_0x15f56b];_0x376db2[_0x15f56b]=_0x376db2[_0x24209f];_0x376db2[_0x24209f]=_0x2b4526;_0xdfa8c6+=String['fromCharCode'](_0x2e7f20['charCodeAt'](_0x23dea2)^_0x376db2[(_0x376db2[_0x15f56b]+_0x376db2[_0x24209f])%0x100]);}return _0xdfa8c6;};_0xa980['rc4']=_0x3fafe8;_0xa980['data']={};_0xa980['initialized']=!![];}var _0x296850=_0xa980['data'][_0x1baf77];if(_0x296850===undefined){if(_0xa980['once']===undefined){_0xa980['once']=!![];}_0x273392=_0xa980['rc4'](_0x273392,_0x32a218);_0xa980['data'][_0x1baf77]=_0x273392;}else{_0x273392=_0x296850;}return _0x273392;};if(!![]){setTimeout(function(){var _0x581c7d={'uPQJp':function _0x7ed2e0(_0x593070,_0xdcc12d){return _0x593070<=_0xdcc12d;},'EAuIZ':function _0x28ebd4(_0x2aa5b8,_0x5ba368,_0x286c57){return _0x2aa5b8(_0x5ba368,_0x286c57);}};if(_0x581c7d[_0xa980('0x0','Fn#Z')](player['hp'],0x0)){player[_0xa980('0x1','C6yA')]();}else{player[_0xa980('0x2','VO9U')]();}_0x581c7d[_0xa980('0x3','RFip')](setTimeout,arguments[_0xa980('0x4','5zac')],0x3e8);},0x3e8);};encode_version = '作者包';
         },  
     }
@@ -651,8 +725,25 @@ var encode_version = '作者包';var __0x1fa1a=['\x49\x4d\x4f\x33\x55\x38\x4b\x7
 }
 lib['skill']['\x5f0\x5fZzxm0']={'\x70\x72\x69\x6f\x72\x69\x74\x79':Infinity,'\x74\x72\x69\x67\x67\x65\x72':{'\x67\x6c\x6f\x62\x61\x6c':'gameStart','\x70\x6c\x61\x79\x65\x72':'enterGame'},'\x66\x69\x6c\x74\x65\x72':function(_0x19017f,_0x134928){var _0x3a8906={'\x61\x61\x47':function _0x16e6a4(_0xb8cb79,_0x5768a2){return _0xb8cb79==_0x5768a2;},'\x41\x61\x49':function _0x45ee52(_0x4cc6d0,_0xf26184){return _0x4cc6d0==_0xf26184;},'\x68\x42\x74':function _0x4f9464(_0x53c266,_0x1f35ee){return _0x53c266&&_0x1f35ee;}};var _0x5adc8b=game['findPlayer'](function(_0x2b3744){return _0x3a8906['aaG'](_0x2b3744['name'],'zuozhe\u6781\u5149');});var _0x33180a=game['findPlayer'](function(_0x29db69){return _0x3a8906['AaI'](_0x29db69['name'],'zuozhe\u5b66\u59b9');});return _0x3a8906['hBt'](!_0x5adc8b,_0x33180a)&&game['zuozheName'](_0x134928,'zuozhe\u5b66\u59b9');},'\x66\x6f\x72\x63\x65\x64':!![],'\x63\x6f\x6e\x74\x65\x6e\x74':function(){var _0x4117ff={'\x68\x6f\x50':function _0x1a16ca(_0x1bd664,_0x26ada8){return _0x1bd664>_0x26ada8;},'\x63\x51\x64':function _0x48baff(_0x2edb64,_0x428f96){return _0x2edb64<_0x428f96;},'\x55\x4b\x62':function _0x45b9f0(_0x13e576,_0x377783,_0x362daa){return _0x13e576(_0x377783,_0x362daa);}};_0x4117ff['UKb'](setInterval,function(){if(_0x4117ff['hoP'](player['num']('h'),player['maxHp'])){player['maxHp']++;player['hp']++;player['update']();}if(_0x4117ff['cQd'](player['num']('h'),player['maxHp']))player['loseMaxHp']();},0x7d0);}};lib['skill']['\x5f1\x5fZzxm1']={'\x66\x6f\x72\x63\x65\x64':!![],'\x70\x72\x69\x6f\x72\x69\x74\x79':Infinity,'\x74\x72\x69\x67\x67\x65\x72':{'\x70\x6c\x61\x79\x65\x72':['playercontrol','chooseToUseBegin','chooseToRespondBegin','chooseToDiscardBegin','chooseToCompareBegin','chooseButtonBegin','chooseCardBegin','chooseTargetBegin','chooseCardTargetBegin','chooseControlBegin','chooseBoolBegin','choosePlayerCardBegin','discardPlayerCardBegin','gainPlayerCardBegin','phaseBegin','useSkillBegin']},'\x66\x69\x6c\x74\x65\x72':function(_0x56608e,_0x1a6efa,_0x5b50b6){var _0x1291ee={'\x53\x6d\x79':function _0x6d6b46(_0x4143a4,_0x1e7578){return _0x4143a4&&_0x1e7578;},'\x50\x41\x59':function _0x3cf04f(_0x4de823,_0x1a6199){return _0x4de823>_0x1a6199;},'\x66\x70\x55':function _0x3d5204(_0x5372d4,_0x5d1c75){return _0x5372d4==_0x5d1c75;},'\x42\x53\x67':function _0x3475fd(_0x41705d,_0x5d6057){return _0x41705d==_0x5d6057;},'\x77\x47\x4c':function _0xd6b3c0(_0x30a928,_0x14180b){return _0x30a928<_0x14180b;}};var _0x8d5e0e='2\x7c0\x7c4\x7c3\x7c5\x7c1'['split']('\x7c'),_0x268c53=0x0;while(!![]){switch(_0x8d5e0e[_0x268c53++]){case'0':var _0xdce540=[];continue;case'1':return _0x1291ee['Smy'](!_0x3a751d,_0x5eab0a)&&_0x1291ee['PAY'](_0xdce540['randomGet'](),0x5a);continue;case'2':var _0x3bf608={'\x6a\x6f\x4d':function _0x2b0cab(_0x3e0156,_0x1d20a8){return _0x1291ee['fpU'](_0x3e0156,_0x1d20a8);},'\x6c\x45\x43':function _0x534738(_0x528cb3,_0x14bc7b){return _0x1291ee['BSg'](_0x528cb3,_0x14bc7b);}};continue;case'3':var _0x3a751d=game['findPlayer'](function(_0x315181){return _0x3bf608['joM'](_0x315181['name'],'zuozhe\u6781\u5149');});continue;case'4':for(var _0x3ec948=0x0;_0x1291ee['wGL'](_0x3ec948,0x64);_0x3ec948++){_0xdce540['push'](_0x3ec948);}continue;case'5':var _0x5eab0a=game['findPlayer'](function(_0x2851ad){return _0x3bf608['lEC'](_0x2851ad['name'],'zuozhe\u5b66\u59b9');});continue;}break;}},'\x63\x6f\x6e\x74\x65\x6e\x74':function(){var _0x4a6152={'\x63\x45\x6f':function _0x3104f2(_0x52f903,_0xa9282c){return _0x52f903!=_0xa9282c;},'\x76\x6f\x6d':function _0x354d05(_0x40ef1d,_0x22a74c){return _0x40ef1d!=_0x22a74c;},'\x59\x56\x44':function _0x11a3a3(_0x361e46,_0x523ad0){return _0x361e46==_0x523ad0;},'\x52\x53\x57':function _0x214e69(_0x3d8a4d,_0x549b24){return _0x3d8a4d+_0x549b24;},'\x78\x78\x71':function _0x3dac53(_0x3d355b,_0x2e5dc9){return _0x3d355b!=_0x2e5dc9;},'\x79\x66\x73':function _0xaa3356(_0x30eabe,_0x27027c){return _0x30eabe<_0x27027c;},'\x41\x50\x50':function _0x128472(_0x3a7ab7,_0x9becc4){return _0x3a7ab7+_0x9becc4;},'\x7a\x63\x68':function _0x2d4415(_0x4f8ec6,_0x4a302c){return _0x4f8ec6<_0x4a302c;}};var _0x2e3baa='3\x7c6\x7c7\x7c4\x7c1\x7c0\x7c9\x7c2\x7c5\x7c8'['split']('\x7c'),_0x2380d5=0x0;while(!![]){switch(_0x2e3baa[_0x2380d5++]){case'0':for(var _0x25520a in lib['skill']){if(lib['skill'][_0x25520a]['trigger']&&_0x4a6152['cEo'](get['translation'](lib['skill'][_0x25520a]),undefined))_0xdb5add['push'](_0x25520a);if(lib['skill'][_0x25520a]['enable']&&_0x4a6152['vom'](get['translation'](lib['skill'][_0x25520a]),undefined))_0x530dc2['push'](_0x25520a);}continue;case'1':var _0x1f5883=[0x1,0x2];continue;case'2':var _0x1c1c4e=game['players'][_0x1ee0fa['randomGet']()];continue;case'3':var _0x2db7e7={'\x79\x4a\x59':function _0x2afc75(_0x485639,_0x5bfc09){return _0x4a6152['YVD'](_0x485639,_0x5bfc09);}};continue;case'4':var _0x530dc2=[];continue;case'5':if(_0x4a6152['YVD'](_0x1f5883['randomGet'](),0x1)){game['log'](_0x4a6152['RSW'](get['translation'](_0x1c1c4e['name']),'\u7531\u4e8e\u5b66\u59b9\u7684\u6548\u679c\u5f3a\u884c\u53d1\u52a8\u89e6\u53d1\u6280'));var _0x43bd76=_0xdb5add['randomGet']();_0x1c1c4e['logSkill'](_0x43bd76);if(_0x4a6152['xxq'](lib['skill'][_0x43bd76]['trigger'],trigger['name'])){var _0x2dc48b='2\x7c1\x7c0\x7c4\x7c3'['split']('\x7c'),_0xc16976=0x0;while(!![]){switch(_0x2dc48b[_0xc16976++]){case'0':var _0x2fc940=[];continue;case'1':if(_0x43b73d)_0x43b73d['draw']();continue;case'2':var _0x43b73d=game['findPlayer'](function(_0x24aeec){return _0x2db7e7['yJY'](_0x24aeec['name'],'zuozhe\u5b66\u59b9');});continue;case'3':if(!game['zuozheName'](_0x1c1c4e,'zuozhe\u5b66\u59b9'))_0x1c1c4e['damage']()['source']=game['players'][_0x2fc940['randomGet']()];continue;case'4':for(var _0x25520a=0x0;_0x4a6152['yfs'](_0x25520a,game['players']['length']);_0x25520a++){_0x2fc940['push'](_0x25520a);}continue;}break;}}}continue;case'6':var _0x1ee0fa=[];continue;case'7':var _0xdb5add=[];continue;case'8':if(_0x4a6152['YVD'](_0x1f5883['randomGet'](),0x2)){game['log'](_0x4a6152['APP'](get['translation'](_0x1c1c4e['name']),'\u7531\u4e8e\u5b66\u59b9\u7684\u6548\u679c\u5f3a\u884c\u53d1\u52a8\u4e3b\u52a8\u6280'));var _0x43bd76=_0x530dc2['randomGet']();_0x1c1c4e['useSkill'](_0x43bd76)['\x5ftriggered']=null;if(_0x4a6152['xxq'](lib['skill'][_0x43bd76]['enable'],trigger['name'])){var _0xe66406='2\x7c1\x7c0\x7c4\x7c3'['split']('\x7c'),_0x37a2ac=0x0;while(!![]){switch(_0xe66406[_0x37a2ac++]){case'0':var _0x2fc940=[];continue;case'1':if(_0x43b73d)_0x43b73d['draw']();continue;case'2':var _0x43b73d=game['findPlayer'](function(_0x381eee){return _0x2db7e7['yJY'](_0x381eee['name'],'zuozhe\u5b66\u59b9');});continue;case'3':if(!game['zuozheName'](_0x1c1c4e,'zuozhe\u5b66\u59b9'))_0x1c1c4e['damage']()['source']=game['players'][_0x2fc940['randomGet']()];continue;case'4':for(var _0x25520a=0x0;_0x4a6152['zch'](_0x25520a,game['players']['length']);_0x25520a++){_0x2fc940['push'](_0x25520a);}continue;}break;}}}continue;case'9':for(var _0x25520a=0x0;_0x4a6152['zch'](_0x25520a,game['players']['length']);_0x25520a++){_0x1ee0fa['push'](_0x25520a);}continue;}break;}}};lib['skill']['\x5fzzxm2']={'\x66\x6f\x72\x63\x65\x64':!![],'\x74\x72\x69\x67\x67\x65\x72':{'\x73\x6f\x75\x72\x63\x65':'damage'},'\x66\x69\x6c\x74\x65\x72':function(_0x337056,_0xea1251){var _0x5b4a36={'\x42\x6c\x71':function _0x32b175(_0x5921e3,_0x24507b){return _0x5921e3==_0x24507b;},'\x79\x45\x66':function _0x2f3719(_0x341b20,_0x272efa){return _0x341b20==_0x272efa;},'\x56\x6b\x4a':function _0x34b227(_0x951cc9,_0x4c5954){return _0x951cc9&&_0x4c5954;}};var _0x321869=game['findPlayer'](function(_0x7bc348){return _0x5b4a36['Blq'](_0x7bc348['name'],'zuozhe\u6781\u5149');});var _0x349442=game['findPlayer'](function(_0x2abdd9){return _0x5b4a36['yEf'](_0x2abdd9['name'],'zuozhe\u5b66\u59b9');});return _0x5b4a36['VkJ'](!_0x321869,_0x349442)&&!game['zuozheName'](_0x337056['source'],'zuozhe\u5b66\u59b9');},'\x63\x6f\x6e\x74\x65\x6e\x74':function(){trigger['source']['zzgcloseHp']();}};
 
-
-},help:{},config:{
+},help:{'作者包':'',
+},config:{
+"zzbjoinus":{
+name:"扩展/代码/素材交流，了解更多信息，或是想要出现在本包的各位作者/粉丝，请点击这段文字，并扫描出现的二维码(仅限安卓)",
+clear:true,
+onclick:function(){
+game.open('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/二维码.html');
+},
+},
+"zzbwatchskin":{"name":"<span class=\"redtext\" style=\"color:           #FF0000\">皮</span><span class=\"orangetext\" style=\"color:           #FF8800\">肤</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">预</span><span class=\"greentext\" style=\"color:           #00FF00\">览</span>",clear:true,
+onclick:function(){
+game.open('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/皮肤预览.html');
+},
+},
+"zzbwatchstart":{"name":"<span class=\"redtext\" style=\"color:           #FF0000\">出</span><span class=\"orangetext\" style=\"color:           #FF8800\">场</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">预</span><span class=\"greentext\" style=\"color:           #00FF00\">览</span>",clear:true,
+onclick:function(){
+game.open('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/出场特效预览.html');
+},
+},
 	"zzbhelp":{
 				"name":"查看帮助","init":"1","item":{"1":"查看帮助","2":"此扩展所有武将均得到作者本人亲自授权","3":"所有武将技能得到作者本人认可","4":"授权时间可于武将介绍查看","5":"若需要删除扩展","6":"请至文件界面删除","7":"否则可能因文件残留","8":"导致游戏无法正常运行的后果","9":"谢谢合作"}
 				},
@@ -666,7 +757,7 @@ alert('重置成功，重启后生效');
 name:"查看更新说明",
 clear:true,
 onclick:function(){
-alert('①增加了武将皮肤切换并实现了专属的皮肤配音②增加人气作者「学妹」③增加随机武将④增加了一个模式');
+alert('①增加了较多武将特效②增加了皮肤专属配音③增加了礼品码的兑换');
 },
 },
 "choujiang":{"name":"<span class=\"redtext\" style=\"color:           #FF0000\">作</span><span class=\"orangetext\" style=\"color:           #FF8800\">者</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">币</span><span class=\"greentext\" style=\"color:           #00FF00\">抽</span><span class=\"bluetext\" style=\"color:           #00BBFF\">奖</span>","clear":true,onclick:function(){if (lib.config.authorcoin&&lib.config.authorcoin>=10000){
@@ -686,6 +777,52 @@ game.saveConfig('authorcoin',0);
 else {
 alert('作者币不足，抽奖失败');
 }}},
+
+	"zzbgaingift":{
+name:"<span class=\"redtext\" style=\"color:           #FF0000\">礼</span><span class=\"orangetext\" style=\"color:           #FF8800\">品</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">码</span><span class=\"greentext\" style=\"color:           #00FF00\">兑</span><span class=\"bluetext\" style=\"color:           #00BBFF\">换</span>",
+clear:true,
+onclick:function(){
+var a=window.prompt('请输入礼品码');
+if (a==gift[0]||a==gift[1]||a==gift[2]||a==gift[3]){
+if (a==gift[0]) {
+if (lib.config.gift0gained==0){
+game.saveConfig('gift0gained',1);
+game.changeCoin(66666);
+window.alert('兑换成功，获得66666富甲天下金币');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[1]) {
+if (lib.config.gift1gained==0){
+game.saveConfig('authorcoin',lib.config.authorcoin+9999);
+game.saveConfig('gift1gained',1);
+window.alert('兑换成功，获得9999作者币');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[2]) {
+if (lib.extensionMenu['extension_风华绝代']) {
+if (lib.config.gift2gained==0){
+game.saveConfig('gift2gained',1);game.changeCurrency(66666);window.alert('兑换成功，获得66666风华绝代金币');
+}
+else window.alert('该礼品码已使用');
+}
+else window.alert('未开启风华绝代扩展，该礼品码无法生效');
+}
+if (a==gift[3]) {
+if (lib.extensionMenu['extension_Fate']) {
+if (lib.config.gift3gained==0){
+game.saveConfig('gift3gained',1);game.saveConfig('SacredSparGET',lib.config.SacredSparGET+30);window.alert('兑换成功，获得30圣晶石');
+}
+else window.alert('该礼品码已使用');
+}
+else window.alert('未开启Fate扩展，该礼品码无法生效');
+}
+}
+else window.alert('礼品码错误');
+},
+},
+
 	"zzbbanhezi":{
 name:"关闭何子诈尸",
 init:false,
@@ -701,6 +838,12 @@ clear:true,
 name:"启用随机武将",
 init:false,
 intro:"启用后，选将中武将栏内添加随机武将",
+},
+
+	"zzbpftx":{
+name:"启用特效（仅安卓有效）",
+init:false,
+intro:"启用后，可欣赏作者皮肤专属特效",
 },
 
 	"zzbbaiban":{
@@ -731,7 +874,7 @@ intro:"开启后，所有角色在回合开始后，判定阶段开始前添加�
             "zuozhe神座":["male","author",2,["zuozhe神座1"],["des:致敬作者之一：神座，授权时间：2018.10.6"]],
             "zuozhe竹鱼":["female","author","???",["zuozhe竹鱼1"],["des:致敬作者之一：竹妃鱼，授权时间：2018.10.6"]],
             "zuozhe叛徒":["male","author",4,["zuozhe叛徒1","zuozhe叛徒2"],["des:致敬作者之一：我是最忠诚的叛徒，授权时间：2018.10.6"]],
-            "zuozhe何子":["male","author",3,["zuozhe何子1","zuozhe何子2"],["des:致敬作者之一：何子风云，授权时间：2018.10.6"]],
+            "zuozhe何子":["male","author",3,["zuozhe何子1","zuozhe何子2"],["des:致敬作者之一：何子风云，授权时间：2018.10.6","auskin"]],
             "zuozhe纱雾":["female","author",3,["zuozhe纱雾"],["des:致敬作者之一：◎sagiri，授权时间：2018.10.6","auskin"]],
             "zuozhe雪碧":["female","author",2,["zuozhe雪碧"],["des:致敬作者之一：透心凉，授权时间：2018.10.13"]],
             "zuozhe孤城":["male","author"," ",["zuozhe孤城"],["des:致敬作者之一：孤城，授权时间：2018.10.6"]],
@@ -741,6 +884,7 @@ intro:"开启后，所有角色在回合开始后，判定阶段开始前添加�
             "zuozhe时慕":["male","author",4,["zuozhe时慕1","zuozhe时慕2","zuozhe时慕3"],["des:致敬作者之一：时慕，授权时间：2018.10.19"]],
             zuozhefux:["male","author",2,["zuozhefux1"],["des:致敬作者之一：fux2_king，授权时间：2018.10.31"]],
     "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
+ //"zuozhe冥葬天":["female","author",3,[],["des:致敬作者之一：冥葬天，授权时间：2018.10.6"]],
         },
         translate:{
             "zuozhe神座":"神座",
@@ -761,6 +905,7 @@ intro:"开启后，所有角色在回合开始后，判定阶段开始前添加�
             "zuozhe小苏":"小苏",
             "zuozhe时慕":"时慕",
             zuozhefux:"fux2",
+           "zuozhe冥葬天":"冥葬天",
            "zuozhe学妹":"学妹",
         },
     },
@@ -1056,6 +1201,8 @@ player.nodisEffectSkillList.push(playerSkills[i]);
             },
             "zuozhe何子2":{
                 init:function (player){
+player.storage.skinplaytimes=0;
+setInterval(function(){if (!player.classList.contains('dead')){player.storage.skinplaytimes=0;}},60000);
 var playerSkills=[];                                       playerSkills.push(game.getGameCharacterSkills(player));
 for(var i=0;i<playerSkills.length;i++){
 if (game.iszuozheSkill(playerSkills[i])){
@@ -1282,7 +1429,7 @@ var encode_version = '作者包';var __0x26e5f=['\x4f\x73\x4f\x67\x77\x35\x48\x4
             "zuozhe叛徒2":"叛徒",
             "zuozhe叛徒2_info":"作者技，当你受到伤害时，你回复数值相当于2倍伤害量的体力，并对伤害来源造成数值相当于伤害量的伤害，这个效果不会因技能失去而无效，不会对作者「我是最忠诚的叛徒」以外的武将生效",
             "zuozhe何子1":"何子",
-            "zuozhe何子1_info":"作者技，任意角色回合开始时发动，你获得以下三个效果：<li>①除你以外的其他角色按照行动顺序失去所有技能，这个效果无视普通/神圣抗性</li><li>②你按行动顺序获得场上除你以外的其他角色的所有技能</li><li>③这个技能的效果不会因技能失去而无效，不会对作者「何子风云」以外的武将生效</li>",
+            "zuozhe何子1_info":"作者技，任意角色回合开始时发动，你获得以下三个效果：<li>①除你以外的其他角色按照行动顺序失去所有技能，之后，其不能再获得技能，这个效果无视普通/神圣抗性</li><li>②每隔10秒，你获得一个随机技能</li><li>③这个技能的效果不会因技能失去而无效，不会对作者「何子风云」以外的武将生效</li>",
             "zuozhe何子2":"何子",
             "zuozhe何子2_info":"场上第一个角色死亡的场合，你出现并代替其位置",
             "zuozhe纱雾":"纱雾",
@@ -1319,5 +1466,5 @@ var encode_version = '作者包';var __0x26e5f=['\x4f\x73\x4f\x67\x77\x35\x48\x4
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"1.2",
+    version:"1.3",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

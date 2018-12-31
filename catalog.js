@@ -296,16 +296,17 @@ extension["列女传"]={
 
 extension["作者包"]={
     author:"神座sagiri",
-    intro:"本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快。",
-    size:"8.10MB",
+    intro:"本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快。更新：新增部分特效",
+    size:"17.35MB",
     netdisk:"",
-    version:1.2,
+    version:1.3,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
 	    "zuozhe竹鱼.jpg","轮回中的消逝者.jpg","轮回中的消逝者1.jpg","轮回中的消逝者2.jpg","纱雾1.jpg","纱雾2.jpg","纱雾3.jpg","时慕的矿山.jpg",
-	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3",
-	    "zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
+	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3","zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
+	    "皮肤音效-何子1.mp3","zuozhe冥葬天.jpg","何子1.jpg","何子2.jpg","何子3.jpg","二维码.gif","特效-孤城1.gif","特效-何子1.gif","特效-何子2.gif",
+	    "特效-纱雾1.gif","特效-神座1.gif","出场特效预览.html","二维码.html","皮肤预览.html",
     ]
 }; 
 

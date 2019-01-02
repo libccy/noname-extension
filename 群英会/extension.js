@@ -336,11 +336,6 @@
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
 		};
 	};	
-	if(config.xxiaoyuan){
-		for(var i in lib.characterPack['xxiaoyuan']) {
-			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
-		};
-	};	
     if(config.xu){
 		for(var i in lib.characterPack['xu']) {
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
@@ -2748,25 +2743,7 @@ skill:{
                 noGain:true,
                 noDeprive:true,
                 noRemove:true,
-                noDisable:true,
-               init:function(player){
-        console.log(player);
-           player.die = function (all) {
-           player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };      
-        player.disableSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.goMad = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.clearSkills = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-},         
+                noDisable:true,             
                 mod:{
                     targetEnabled:function (card,player,target,now){
             if(!target.isMaxHp()){        
@@ -11170,19 +11147,18 @@ skill:{
 },         
 
                 content:function (){
-					"step 0"
-	 				player.logSkill('xwj_xwugeng_baiqian1');
+					"step 0" 				
         game.countPlayer(function(current){
-            if(current!=player){
+            if(current!=player){           
                 player.line(current,'green');
                 current.addTempSkill('xwj_xwugeng_baiqian4',{player:'damageAfter'});                                       
             }
         });
 		"step 1"
-	   	game.delay(2);
+	   	game.delay();
       game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_tian_background.jpg");
       game.log(player,'将场地切换为无色之境');
-	  ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
     },
             },
             "xwj_xwugeng_baiqian3":{
@@ -11746,243 +11722,6 @@ content:function (){
 		if(!lib.config.characters.contains('xwugeng')) lib.config.characters.remove('xwugeng');
 		lib.translate['xwugeng_character_config']='<span class=bluetext>封神纪</span>';
 		
-	game.import('character',function(){
-			var xxiaoyuan={
-				name:'xxiaoyuan',
-				connect:true,
-				character:{
-			"xwj_xxiaoyuan_mssyj":["female","qun",4,["xwj_xxiaoyuan_shengge","xwj_xxiaoyuan_xiemu"],[]],
-            "xwj_xxiaoyuan_ylwg":["male","qun",4,["xwj_xxiaoyuan_jianzhi"],[]],
-
-
-},
-characterIntro:{
-					
-												},
-characterTitle:{
-					
-								},
-skill:{
- "xwj_xxiaoyuan_shengge":{
-                audio:"ext:群英会:2",
-                enable:"phaseUse",
-                usable:1,
-                priority:15,
-                filter:function (event, player,target){
-        return player.isAlive();
-    },
-                prepare:function (cards, player, targets) {
-        player.line(targets);
-    },
-                content:function (){
-        "step 0"
-        player.loseHp();       
-      // player.addTempSkill('mzshengge2','shaAfter');    
-        "step 1"
-        player.chooseTarget('选择【圣歌】的目标',lib.translate.xwj_xxiaoyuan_shengge_info,true,function(card,player,target){
-            return player.canUse({name:'sha'},target,false)&&target!=player;
-        }).set('ai',function(target){
-            return -get.attitude(_status.event.player,target);            
-        });        
-        "step 2"
-        if(result.bool){
-         player.$fullscreenpop('蓝莲圣歌','fire'); 
-            var target=result.targets[0];                                                           
-            player.useCard({name:'sha'},target,false);          
-        }
-            "step 3"   
-         if(player.getStat('damage')>=1){
-            event.goto(4);
-        }
-        else{
-            event.finish();
-        } 
-        "step 4"    
-        player.chooseTarget('选择【圣歌】的目标',lib.translate.xwj_xxiaoyuan_shengge_info,true,function(card,player,target){
-       return target.hp<target.maxHp;
-        }).set('ai',function(target){
-            return get.attitude(_status.event.player,target);            
-        });        
-        "step 5"
-        if(result.bool){     
-            var target=result.targets[0];
-            target.recover();
-        }  
-        else{
-            event.finish();
-        }
-    },
-                ai:{
-                    order:2,
-                    result:{
-                        player:function (player){
-                if(player.hp<2) return 0;
-                return 0.8;
-            },
-                    },
-                },
-            },
-            "xwj_xxiaoyuan_xiemu2":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    player:"phaseEnd",
-                },
-                forced:true,
-                filter:function (event,player){
-        return player.storage.xwj_xxiaoyuan_xiemu>0;
-    },
-                content:function (){       
-        player.draw(player.storage.xwj_xxiaoyuan_xiemu);
-        player.storage.xwj_xxiaoyuan_xiemu=0;
-        player.unmarkSkill('xwj_xxiaoyuan_xiemu'); 
-        player.update();
-     },
-            },
-            "xwj_xxiaoyuan_jianzhi":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    player:"phaseBegin",
-                },
-                filter:function (event,player){
-        return player.isAlive();
-    },
-                content:function (){
-       'step 0'
-        var equip=null;
-        for(var i=0;i<ui.discardPile.childElementCount;i++){
-            var type=get.type(ui.discardPile.childNodes[i],'equip');            
-            if(type=='equip'){
-                equip=ui.discardPile.childNodes[i];
-            }
-            if(equip){
-                break;
-            }
-        }
-        var list=[];      
-        if(equip) list.push(equip);
-        if(list.length){
-         //   player.gain(list,'gain2');        
-            ui.cardPile.insertBefore(equip,ui.cardPile.firstChild);
-        }  
-        else{
-            event.finish();
-        }        
-       'step 1' 
-       player.chooseTarget('选择【剑制】的目标',lib.translate.xwj_xxiaoyuan_jianzhi_info,true,function(card,player,target){
-            return player.canUse({name:'sha'},target,false)&&target!=player;
-        }).set('ai',function(target){
-            return -get.attitude(_status.event.player,target);            
-        });        
-        'step 2'
-        if(result.bool){         
-            var target=result.targets[0];                                                           
-            player.useCard({name:'sha'},target,false);   
-        }
-        
-        
-        
-    },
-                ai:{
-                    order:7,
-                    result:{
-                        player:1,
-                    },
-                },
-            },
-            "xwj_xxiaoyuan_xiemu":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    global:"recoverAfter",
-                },
-                forced:true,
-                intro:{
-                    content:"mark",
-                },
-                init:function (player){
-        player.storage.xwj_xxiaoyuan_xiemu=0;
-    },
-                filter:function (event,player){
-if(_status.currentPhase!=player) return false;
-        return event.player.hp>=event.player.maxHp;
-    },
-                content:function (){ 
-        player.markSkill('xwj_xxiaoyuan_xiemu'); 
-        player.storage.xwj_xxiaoyuan_xiemu++;      
-        player.update();
-    },
-                group:"xwj_xxiaoyuan_xiemu2",
-            },
-           
-		  /* "xwj_xxiaoyuan_jinmie":{
-                trigger:{
-                    player:"shaBegin",
-                },
-                direct:true,
-                audio:"ext:群英会:2",
-                content:function (){
-        "step 0"     
-        if(trigger.target.countCards('he')){
-            controls.push('discard_card');
-        }
-        controls.push('cancel');
-        player.chooseControl(controls).set('ai',function(){
-            var trigger=_status.event.getTrigger();
-            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
-                return 'discard_card';
-            }
-            else{
-                return 'cancel';
-            }
-        }).set('prompt',get.prompt('moukui'));
-        "step 1"
-        if(result.control=='discard_card'){
-            player.$gain('card');
-            trigger.target.gain('card');
-            player.logSkill('moukui');
-        }
-        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
-            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
-        }
-        else event.finish();
-        "step 2"
-        player.addTempSkill('moukui2','shaEnd');
-    },
-                ai:{
-                    expose:0.1,
-                },
-            },
-*/
-			
-			
-},
-
- translate:{     
-             "xwj_xxiaoyuan_mssyj":"美树沙耶加",
-            "xwj_xxiaoyuan_ylwg":"英灵卫宫",
-            "xwj_xxiaoyuan_shengge":"圣歌",
-            "xwj_xxiaoyuan_shengge_info":"<font color=#F0F>蓝莲圣歌</font>出牌阶段限一次，你可以失去一点体力，视为对一名其他角色使用一张【杀】，若此【杀】造成伤害，你可令一名角色回复一点体力 ",
-            "xwj_xxiaoyuan_xiemu2":"谢幕",
-            "xwj_xxiaoyuan_xiemu2_info":"",
-            "xwj_xxiaoyuan_jianzhi":"剑制",
-            "xwj_xxiaoyuan_jianzhi_info":"准备阶段，你可将弃牌堆的一张装备牌置于牌堆顶，然后你可视为使用一张无距离限制的【杀】",
-            "xwj_xxiaoyuan_xiemu":"谢幕",
-            "xwj_xxiaoyuan_xiemu_info":"结束阶段，每有一名角色本回合回复体力至体力上限，你可以摸一张牌",
-            "xwj_xxiaoyuan_jinmie":"尽灭",
-            "xwj_xxiaoyuan_jinmie_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
-         },
-};
-if(lib.device||lib.node){
-				for(var i in xxiaoyuan.character){xxiaoyuan.character[i][4].push('ext:群英会/'+i+'.jpg');}
-			}else{
-				for(var i in xxiaoyuan.character){xxiaoyuan.character[i][4].push('db:extension-群英会:'+i+'.jpg');}
-			}
-			return xxiaoyuan;
-		});
-		lib.config.all.characters.push('xxiaoyuan');
-		if(!lib.config.characters.contains('xxiaoyuan')) lib.config.characters.remove('xxiaoyuan');
-		lib.translate['xxiaoyuan_character_config']='<font color=#F0F>魔法少女</font>';
-		
-
 game.import('character',function(){
 			var xu={
 				name:'xu',
@@ -12079,7 +11818,7 @@ skill:{
                 content:function (){  
         'step 0'
         var skill=trigger.source.skills.randomGet()
-        player.addSkill(skill);
+        player.addSkill(skill);       
         player.mark(skill,{
             name:get.translation(skill),
             content:lib.translate[skill+'_info']
@@ -13101,5 +12840,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.3",
+    version:"1.4",
 },files:{"character":[],"card":[],"skill":[]}}})

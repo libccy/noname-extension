@@ -476,7 +476,7 @@ extension["鲍三娘"]={
 
 
 extension["耀世三国"]={
-    author:"<li>代码：<li>咫尺天涯<br><li>Sukincen<br><li>技能设计：丫奶",
+    author:"代码：咫尺天涯<br>Sukincen<br>技能设计：丫奶",
     intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。年底忙碌，天气寒冷，故目前只写了魏国和部分蜀国共32个将，持续缓更中。。。",
     size:"9.5MB",
     netdisk:"",

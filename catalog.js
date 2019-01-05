@@ -452,8 +452,8 @@ extension["群英会"]={
 		"xwj_xwugeng_tianwu.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_xuanfeng.jpg",
 		"xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3","xwj_xwugeng_zhengkong1.mp3",
 		"xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",
-		"xwj_xwugeng_zhengshan.jpg","xwj_xxiaoyuan_mssyj.jpg","xwj_xxiaoyuan_ylwg.jpg","zbfs.mp3",
-		"zbfs.png"
+		"xwj_xwugeng_zhengshan.jpg","zbfs.mp3","zbfs.png"
+		
  
 ]
 

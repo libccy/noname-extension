@@ -312,7 +312,7 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"更新：删除魔术少女系列，因为技能不是我设计的。修复BUG完善个别技能。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2018-12-21",
+	intro:"本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2018-12-21",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -614,10 +614,10 @@ extension["弹丸杀"]={
 
 extension["王朝更替_权"]={
     author:"剑牙雷少kiva",
-    intro:"内含众多历史武将，且主要为三国;增添更多模式，可在扩展内下载更多副本;庆元旦，抢红包，红包模式开启，与你共度新年！",
-    size:"31.8MB",
+    intro:"此扩展多为历史武将，少数为小说武将(如关索之类);多种模式，副本;长按模式/副本开关会出现介绍",
+    size:"34.3MB",
     netdisk:"",
-    version:1.2,
+    version:1.3,
     files:[
        "boss_jiangweizhanjuestar.jpg","boss_jiaxuzhanjuestar.jpg","boss_simahuishuijingstar.jpg",
 		"caocaoweiwustar.jpg","chendaodsstar.jpg","daxiaoqiaohunstar.jpg","dingfengmingstar.jpg",

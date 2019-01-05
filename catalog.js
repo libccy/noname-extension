@@ -474,6 +474,26 @@ extension["鲍三娘"]={
 }; 
 
 
+
+extension["耀世三国"]={
+    author:"<li>代码：<li>咫尺天涯<br><li>Sukincen<br><li>技能设计：丫奶",
+    intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。年底忙碌，天气寒冷，故目前只写了魏国和部分蜀国共32个将，持续缓更中。。。",
+    size:"9.5MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+       "YSSG_xiahoudun.jpg","YSSG_caoren.jpg","YSSG_guojia.jpg","YSSG_xiahouyuan.jpg",
+		"YSSG_zhanghe.jpg","YSSG_xuhuang.jpg","YSSG_yuejin.jpg","YSSG_yujin.jpg","YSSG_jiaxu.jpg",
+		"YSSG_xunyu.jpg","YSSG_xunyou.jpg","YSSG_xuzhu.jpg","YSSG_lidian.jpg","YSSG_simayi.jpg",
+		"YSSG_zhaoyun.jpg","YSSG_fazheng.jpg","YSSG_caozheng.jpg","YSSG_wangling.jpg","YSSG_caoxiu.jpg",
+		"YSSG_pangtong.jpg","YSSG_caozhi.jpg","YSSG_zhugeliang.jpg","YSSG_guohuai.jpg","YSSG_machao.jpg",
+		"YSSG_huangzhong.jpg","YSSG_guanyu.jpg","YSSG_wenxin.jpg","YSSG_dianwei.jpg","YSSG_liubei.jpg",
+		"YSSG_caocao.jpg","YSSG_wangshuang.jpg","extension.js","YSSG_jizui1.mp3","YSSG_jizui2.mp3",
+		"YSSG_jizui21.mp3",
+    ]
+}; 
+
+
 extension["秦时明月"]={
     author:"呲牙哥",
     intro:"<li>注意：当前版本为2.7版，联机时需要版本一致。另外12月18日21：20之前在此下载过此扩展的请先删除再下载，因为之前素材有缺失，现已补完整<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",

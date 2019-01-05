@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",editable:false,content:function (config,pack){
     
 },precontent:function (){
     
@@ -2585,7 +2585,7 @@ if(result.bool){
             "YSSG_shengong_info":"锁定技，当你使用【杀】指定目标后，若目标角色有与此【杀】相同花色的牌，此【杀】不可被响应。",
         },
     },
-    intro:"<li>代码：咫尺天涯",
+    intro:"<li>代码：<li>咫尺天涯<br><li>Sukincen",
     author:"<li>技能设计：丫奶",
     diskURL:"",
     forumURL:"",

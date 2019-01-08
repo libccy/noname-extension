@@ -1,4 +1,4 @@
-﻿﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
+﻿﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
 	 // ---------------------------------------定义势力------------------------------------------//
 	lib.group.push('shen');
 			lib.translate.shen='神';
@@ -313,6 +313,28 @@
 			};
 			game.log(player,'恢复了',get.translation(skill),'栏');
 		};
+
+	 // ---------------------------------------击杀特效------------------------------------------//		
+		lib.skill._xwj_jisha={
+        trigger:{
+        global:"dieAfter",
+        },
+        forced:true,
+        priority:2018,
+     content:function (){
+     if(game.dead.length==1) trigger.source.$fullscreenpop('一血★卧龙出山','thunder');
+     if(game.dead.length==2) trigger.source.$fullscreenpop('二连☆一战成名','fire');
+     if(game.dead.length==3) trigger.source.$fullscreenpop('三连★举世皆惊','thunder');
+     if(game.dead.length==4) trigger.source.$fullscreenpop('四连☆天下无敌','fire');
+     if(game.dead.length==5) trigger.source.$fullscreenpop('五连★诛天灭地','thunder');
+     if(game.dead.length==6) trigger.source.$fullscreenpop('六连☆独孤求败','fire');
+     if(game.dead.length==7) trigger.source.$fullscreenpop('七连★战神降世','thunder');
+         },
+         }
+					 	
+     
+		
+		
 			
 	// ---------------------------------------武将分栏------------------------------------------//		
 			
@@ -382,6 +404,7 @@ characterTitle:{
 									},
 
 skill:{	
+
 "xwj_xsanguo_yizan":{
                 audio:["longdan",2],
                 enable:["chooseToRespond","chooseToUse"],
@@ -2345,6 +2368,7 @@ event.target.draw(event.num1);
 },
 
 translate:{
+ "xwj_jisha":"击杀",
      "xwj_xsanguo_baosanniang":"鲍三娘",
 	 "xwj_xsanguo_zhaotongzhaoguang":"赵统赵广",
 	  "xwj_xsanguo_yizan":"翊赞",
@@ -12842,5 +12866,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.5",
+    version:"1.6",
 },files:{"character":[],"card":[],"skill":[]}}})

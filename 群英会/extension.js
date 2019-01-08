@@ -315,23 +315,79 @@
 		};
 
 	 // ---------------------------------------击杀特效------------------------------------------//		
-		lib.skill._xwj_jisha={
+	/*		lib.skill._xwj_jisha={
         trigger:{
         global:"dieAfter",
         },
         forced:true,
-        priority:2018,
+        priority:2019,
      content:function (){
-     if(game.dead.length==1) trigger.source.$fullscreenpop('一血★卧龙出山','thunder');
-     if(game.dead.length==2) trigger.source.$fullscreenpop('二连☆一战成名','fire');
-     if(game.dead.length==3) trigger.source.$fullscreenpop('三连★举世皆惊','thunder');
-     if(game.dead.length==4) trigger.source.$fullscreenpop('四连☆天下无敌','fire');
-     if(game.dead.length==5) trigger.source.$fullscreenpop('五连★诛天灭地','thunder');
-     if(game.dead.length==6) trigger.source.$fullscreenpop('六连☆独孤求败','fire');
-     if(game.dead.length==7) trigger.source.$fullscreenpop('七连★战神降世','thunder');
+     if(game.dead.length==1) trigger.source.$fullscreenpop('一血★卧龙出山','fire');
+     if(game.dead.length==2) trigger.source.$fullscreenpop('双杀☆一战成名','fire');
+     if(game.dead.length==3) trigger.source.$fullscreenpop('三杀★举世皆惊','fire');
+     if(game.dead.length==4) trigger.source.$fullscreenpop('四杀☆天下无敌','fire');
+     if(game.dead.length==5) trigger.source.$fullscreenpop('五杀★诛天灭地','fire');
+     if(game.dead.length==6) trigger.source.$fullscreenpop('六杀☆独孤求败','fire');
+     if(game.dead.length==7) trigger.source.$fullscreenpop('七杀★战神降世','fire');
          },
          }
-					 	
+         */
+         
+        lib.skill._xwj_jisha={
+        trigger:{
+        global:"gameStart",      
+        source:"dieAfter",
+                		    },
+        forced:true,
+        priority:2019,
+     content:function (){
+     game.countPlayer(function(current){
+     current.addSkill('xwj_jisha');
+     if(current==player){
+     if(trigger.name=='die'){
+     if(current.storage.xwj_jisha==1) current.$fullscreenpop('一血★卧龙出山','thunder');
+     if(current.storage.xwj_jisha==2) current.$fullscreenpop('双杀☆一战成名','fire');
+     if(current.storage.xwj_jisha==3) current.$fullscreenpop('三杀★举世皆惊','thunder');
+     if(current.storage.xwj_jisha==4) current.$fullscreenpop('四杀☆天地无敌','fire');
+     if(current.storage.xwj_jisha==5) current.$fullscreenpop('五杀★诛天灭地','thunder');
+     if(current.storage.xwj_jisha==6) current.$fullscreenpop('六杀☆独孤求败','fire');
+     if(current.storage.xwj_jisha==7) current.$fullscreenpop('七杀★战神降世','thunder');
+         }
+         }
+         });
+         },
+         }
+					 	     
+		  lib.skill.xwj_jisha={
+                		trigger:{source:"dieBegin"},
+                		forced:true,
+                  mark:true,            
+                  locked:true,
+                  priority:Infinity,
+                  init:function (player){
+                  player.storage.xwj_jisha=0;
+                  player.markSkill('xwj_jisha');
+                  player.syncStorage('xwj_jisha');
+                  },
+            /*      onremove:function(player){
+                  //player.clearSkills();
+                 	player.name='死亡';
+                  player.popup('死亡');
+                  player.init=function (all){};
+                 	player.node.name.delete()._triggered = null;
+                  }, */
+                  content:function (){
+                  player.storage.xwj_jisha++;
+                  player.markSkill('xwj_jisha');
+                  player.syncStorage('xwj_jisha');
+                  },
+            						marktext:"杀",
+                 	intro:{
+          		 					content:function (storage){
+         				 				return '你已击杀'+storage+'名角色';
+          	 						},
+            						},
+                  }		
      
 		
 		
@@ -12866,5 +12922,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.6",
+    version:"1.7",
 },files:{"character":[],"card":[],"skill":[]}}})

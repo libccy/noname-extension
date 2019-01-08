@@ -319,9 +319,9 @@ extension["群英会"]={
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	version:"1.5",
+	//version:"1.6",
 	size:"68MB",
-    version:1.5,
+    version:1.6,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3",

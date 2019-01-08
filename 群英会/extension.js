@@ -11159,6 +11159,8 @@ skill:{
       game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_tian_background.jpg");
       game.log(player,'将场地切换为无色之境');
 	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+	     player.node.name.innerHTML='黑<br>龙';
+	     player.update();
     },
             },
             "xwj_xwugeng_baiqian3":{
@@ -11292,7 +11294,7 @@ skill:{
          var chat=['日后再说，管他什么报应','不入虎穴，焉得虎子？'].randomGet();
             player.say(chat);         
         player.markSkill('xwj_xwugeng_yinguo');                                                         
-        player.storage.xwj_xwugeng_yinguo++;                     
+        player.storage.xwj_xwugeng_yinguo+=trigger.num;                     
         player.update();  
     },
                 intro:{
@@ -11445,8 +11447,8 @@ skill:{
               player.removeSkill('xwj_xwugeng_chenjie');
               player.addSkill('xwj_xwugeng_chenzhui');
 			  player.addSkill('xwj_xwugeng_jingang');
-			 // player.name=='xwj_xwugeng_eshan';
-    	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_eshan.jpg'); 		
+			 player.node.name.innerHTML='恶<br>禅';
+ 			game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_eshan.jpg'); 		
 	    player.update();
      var chat=['如是因，如是果，你们这一生对他人所做的伤害，都会一次过回到自己身上','让我代天惩罚你们……神技•因果转轮！'].randomGet();
             player.say(chat);         
@@ -11494,8 +11496,8 @@ content:function (){
             player.addSkill('xwj_xwugeng_chenjie');
             player.addSkill('xwj_xwugeng_kongjing');
             player.addSkill('xwj_xwugeng_zhuzhan');
-          	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_zhengshan.jpg'); 
-        //player.name=='xwj_xwugeng_zhengshan';
+          	game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_zhengshan.jpg');      
+           player.node.name.innerHTML='真<br>禅<br>圣<br>王';
 	          player.update();
        	'step 1'
         var evt=_status.event.getParent('phase');
@@ -11688,7 +11690,7 @@ content:function (){
             "xwj_xwugeng_zhengshan":"真禅圣王",
 		         "xwj_xwugeng_eshan":"恶禅",
             "xwj_xwugeng_yinguo":"因果",
-            "xwj_xwugeng_yinguo_info":"<font color=#f00>锁定技</font> 你使用的杀造成一次伤害后，你获得一枚“因果”标记",
+            "xwj_xwugeng_yinguo_info":"<font color=#f00>锁定技</font> 你使用的杀造成一次伤害后，你获得等同伤害值数量的“因果”标记",
             "xwj_xwugeng_zhuanlun":"转轮",
             "xwj_xwugeng_zhuanlun_info":"<font color=#f00>锁定技</font> <span class=yellowtext>限定技</span> 游戏开始所有角色摸牌或你进入游戏后，你令所有其他角色获得技能“因果”",
             "xwj_xwugeng_kongjing":"空镜",
@@ -12812,7 +12814,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》、《魔法少女小圆》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>开始游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{},package:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>开始游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{},package:{
     character:{
         character:{
         },
@@ -12840,5 +12842,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.4",
+    version:"1.5",
 },files:{"character":[],"card":[],"skill":[]}}})

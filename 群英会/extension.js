@@ -315,7 +315,9 @@
 		};
 
 	 // ---------------------------------------击杀特效------------------------------------------//		
-/*		lib.skill._xwj_jisha={
+/*		
+    //旧特效：
+    lib.skill._xwj_jisha={
         trigger:{
         global:"dieAfter",
         },
@@ -332,7 +334,7 @@
          },
          }
          */
-         
+         //新特效：
         lib.skill._xwj_jisha={
         trigger:{
         global:"gameStart",      
@@ -346,11 +348,11 @@
      if(current==player){
      if(trigger.name=='die'){
      if(current.storage.xwj_jisha==1) current.$fullscreenpop('一血★卧龙出山','fire');
-     if(current.storage.xwj_jisha==2) current.$fullscreenpop('双杀☆一战成名','thunder');
+     if(current.storage.xwj_jisha==2) current.$fullscreenpop('双杀★一战成名','thunder');
      if(current.storage.xwj_jisha==3) current.$fullscreenpop('三杀★举世皆惊','fire');
-     if(current.storage.xwj_jisha==4) current.$fullscreenpop('四杀☆天地无敌','fire');
+     if(current.storage.xwj_jisha==4) current.$fullscreenpop('四杀★天地无敌','fire');
      if(current.storage.xwj_jisha==5) current.$fullscreenpop('五杀★诛天灭地','thunder');
-     if(current.storage.xwj_jisha==6) current.$fullscreenpop('六杀☆独孤求败','fire');
+     if(current.storage.xwj_jisha==6) current.$fullscreenpop('六杀★独孤求败','fire');
      if(current.storage.xwj_jisha==7) current.$fullscreenpop('七杀★战神降世','fire');
          }
          }
@@ -369,14 +371,7 @@
                   player.markSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
                   },
-            /*      onremove:function(player){
-                  //player.clearSkills();
-                 	player.name='死亡';
-                  player.popup('死亡');
-                  player.init=function (all){};
-                 	player.node.name.delete()._triggered = null;
-                  }, */
-                  content:function (){
+                content:function (){
                   player.storage.xwj_jisha++;
                   player.markSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
@@ -389,6 +384,7 @@
             						},
                   }
 		
+			
 			
 	// ---------------------------------------武将分栏------------------------------------------//		
 			

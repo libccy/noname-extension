@@ -362,7 +362,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
      if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀★举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
      if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
      if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀★诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
-     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀★癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
      if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双★万军取首','fire'); game.playXu('xwj_jisha7'); }
          }
          }
@@ -464,7 +464,7 @@ characterTitle:{
 skill:{	
 
 "xwj_xsanguo_yizan":{
-                audio:["longdan",2],
+                audio:"ext:群英会:2",
                 enable:["chooseToRespond","chooseToUse"],
                 position:"he",
                 complexCard:true,
@@ -583,7 +583,7 @@ skill:{
                 },
             },
             "xwj_xsanguo_longyuan":{
-                audio:["chongzheng",2],
+                audio:"ext:群英会:2",
                 unique:true,
                 trigger:{
                     player:["respond","useCard"],
@@ -610,7 +610,7 @@ skill:{
     },
             },
             "xwj_xsanguo_yizan2":{
-                audio:["longdan",2],
+                audio:"ext:群英会:2",
                 enable:["chooseToRespond","chooseToUse"],
                 selectCard:function (){
         return 1;
@@ -12928,5 +12928,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.10",
+    version:"1.11",
 },files:{"character":[],"card":[],"skill":[]}}})

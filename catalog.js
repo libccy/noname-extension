@@ -315,12 +315,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"（更新：补充完整击杀特效与击杀配音，要删了audio目录下的liansha1至liansha7的七个配音文件，否则可能会与配音扩展一起播放音效）本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2019-01-09",
+	intro:"（更新：补充完整击杀特效与击杀配音和二赵配音，要删了audio目录下的liansha1至liansha7的七个配音文件，否则可能会与配音扩展一起播放音效）本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2019-01-09",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	size:"68MB",
-    version:1.10,
+	size:"69MB",
+    version:1.11,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3",
@@ -439,7 +439,8 @@ extension["群英会"]={
 		"xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xiangfu1.mp3",
 		"xwj_xsanguo_xinyuji.jpg","xwj_xsanguo_xushen1.mp3","xwj_xsanguo_xushen2.mp3","xwj_xsanguo_yujin.jpg",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_zhaotongzhaoguang.jpg",
-		"xwj_xsanguo_zhengnan1.mp3","xwj_xsanguo_zhengnan2.mp3","xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
+		"xwj_xsanguo_zhengnan1.mp3","xwj_xsanguo_zhengnan2.mp3","xwj_xsanguo_yizan1.mp3","xwj_xsanguo_yizan2.mp3",
+                "xwj_xsanguo_yizan21.mp3","xwj_xsanguo_yizan22.mp3","xwj_xsanguo_longyuan1.mp3","xwj_xsanguo_longyuan2.mp3", "xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
 		"xwj_xus_jiuwei.png","xwj_xus_jiuwei1.mp3","xwj_xus_jiuwei2.mp3","xwj_xus_kuwu.png",
 		"xwj_xus_kuwu1.mp3","xwj_xus_mianju.png","xwj_xus_shoulijian.mp3","xwj_xus_shoulijian.png",
 		"xwj_xus_xuelunyang.png","xwj_xus_xuelunyang1.mp3","xwj_xu_cheng.jpg","xwj_xu_qingshang1.mp3",

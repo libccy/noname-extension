@@ -1,5 +1,6 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-	 // ---------------------------------------定义势力------------------------------------------//
+
+	 	 // ---------------------------------------定义势力------------------------------------------//
 	lib.group.push('shen');
 			lib.translate.shen='神';
 			lib.translate.shenColor="#1874CD",
@@ -329,8 +330,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
      if(game.dead.length==3) trigger.source.$fullscreenpop('三杀★举世皆惊','fire');
      if(game.dead.length==4) trigger.source.$fullscreenpop('四杀☆天下无敌','fire');
      if(game.dead.length==5) trigger.source.$fullscreenpop('五杀★诛天灭地','fire');
-     if(game.dead.length==6) trigger.source.$fullscreenpop('六杀☆独孤求败','fire');
-     if(game.dead.length==7) trigger.source.$fullscreenpop('七杀★战神降世','fire');
+     if(game.dead.length==6) trigger.source.$fullscreenpop('六杀☆癫狂杀戮','fire');
+     if(game.dead.length==7) trigger.source.$fullscreenpop('七杀★万军取首','fire');
          },
          }
          */
@@ -347,13 +348,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
      current.addSkill('xwj_jisha');
      if(current==player){
      if(trigger.name=='die'){
-     if(current.storage.xwj_jisha==1) current.$fullscreenpop('一血★卧龙出山','thunder');
-     if(current.storage.xwj_jisha==2) current.$fullscreenpop('双杀★一战成名','fire');
-     if(current.storage.xwj_jisha==3) current.$fullscreenpop('三杀★举世皆惊','thunder');
-     if(current.storage.xwj_jisha==4) current.$fullscreenpop('四杀★天下无敌','fire');
-     if(current.storage.xwj_jisha==5) current.$fullscreenpop('五杀★诛天灭地','thunder');
-     if(current.storage.xwj_jisha==6) current.$fullscreenpop('六杀★独孤求败','fire');
-     if(current.storage.xwj_jisha==7) current.$fullscreenpop('七杀★战神降世','fire');
+     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血★卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
+     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀★一战成名','fire'); game.playXu('xwj_jisha2'); }
+     if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀★举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
+     if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
+     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀★诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双★万军取首','fire'); game.playXu('xwj_jisha7'); }
          }
          }
          });
@@ -371,21 +372,33 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
                   player.markSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
                   },
-                content:function (){
+                 content:function (){
                   player.storage.xwj_jisha++;
                   player.markSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
                   },
-            						marktext:"杀",
+            					marktext:"杀",
                  	intro:{
           		 					content:function (storage){
          				 				return '你已击杀'+storage+'名角色';
           	 						},
             						},
-                  }
-		
-			
-			
+                  }	
+                  
+				// ---------------------------------------音频播放器------------------------------------------//		
+				
+					game.playXu = function(fn, dir, sex) {
+			if (lib.config.background_speak) {
+				if (dir && sex)
+					game.playAudio(dir, sex, fn);
+				else if (dir)
+					game.playAudio(dir, fn);
+				else
+					game.playAudio('..', 'extension', '群英会', fn);
+
+			}
+		};
+					
 	// ---------------------------------------武将分栏------------------------------------------//		
 			
     if(config.xsanguo){
@@ -12890,8 +12903,8 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 };
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
-	"name":"群英会","init":"1","item":{"1":"查看帮助","2":"<li>此扩展原名为：新武将。若发现BUG烦请到无名杀设计群：852740627 反馈，有技能建议（尤其是《封神纪》的角色）也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，但各扩展小包内相对平衡。有技能特效，AI聊天妙趣横生，还可联机与好友一起玩！","4":"<li>游戏时最好打开兼容模式，另请关闭“火影忍者”的新版替换开关，否则会有部分武将的技能会缺失"}
-},
+				"name":"群英会","init":"1","item":{"1":"查看帮助","2":"<li>此扩展原名为：新武将。若发现BUG烦请到无名杀设计群：852740627 反馈，有技能建议（尤其是《封神纪》的角色）也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，但各扩展小包内相对平衡。有技能特效，AI聊天妙趣横生，还可联机与好友一起玩！","4":"<li>游戏时最好打开兼容模式，另请关闭“火影忍者”的新版替换开关，否则会有部分武将的技能会缺失"}
+				},
 },package:{
     character:{
         character:{
@@ -12920,5 +12933,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.9",
+    version:"1.10",
 },files:{"character":[],"card":[],"skill":[]}}})

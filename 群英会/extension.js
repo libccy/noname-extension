@@ -313,9 +313,18 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 				if(player.storage.lose_pos_equip.length==0) player.unmarkSkill('_support');
 			};
 			game.log(player,'恢复了',get.translation(skill),'栏');
-		};
+		};	
+	game.playXu = function(fn, dir, sex) {
+			if (lib.config.background_speak) {
+				if (dir && sex)
+					game.playAudio(dir, sex, fn);
+				else if (dir)
+					game.playAudio(dir, fn);
+				else
+					game.playAudio('..', 'extension', '群英会', fn);
 
-	 // ---------------------------------------击杀特效------------------------------------------//		
+			}
+		};
 /*		
     //旧特效：
     lib.skill._xwj_jisha={
@@ -383,22 +392,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
          				 				return '你已击杀'+storage+'名角色';
           	 						},
             						},
-                  }	
-                  
-				// ---------------------------------------音频播放器------------------------------------------//		
-				
-					game.playXu = function(fn, dir, sex) {
-			if (lib.config.background_speak) {
-				if (dir && sex)
-					game.playAudio(dir, sex, fn);
-				else if (dir)
-					game.playAudio(dir, fn);
-				else
-					game.playAudio('..', 'extension', '群英会', fn);
-
-			}
-		};
-					
+                  }	                  	
+														
 	// ---------------------------------------武将分栏------------------------------------------//		
 			
     if(config.xsanguo){

@@ -939,7 +939,7 @@ skill:{
         }
         trigger.source.update();
         player.logSkill('xwj_xsanguo_xushen');  
-            player.removeSkill('xwj_xsanguo_xushen');          
+            player.awakenSkill('xwj_xsanguo_xushen');          
             player.recover();
             player.addSkill('xwj_xsanguo_zhengnan');
             player.update();

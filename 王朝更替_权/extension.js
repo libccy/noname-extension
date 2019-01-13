@@ -70,6 +70,20 @@ _status.extensionscene=true;}
 if(!_status.extensionmade) _status.extensionmade=[];
 _status.extensionmade.push("伯温镇敌");
 }}
+    if(config.liangshantime==true){
+        lib.skill._songjiang_skill={
+            trigger:{
+        global:"gameStart",
+    },
+    forced:true,
+    filter:function (event,player){
+        return player.identity=='zhu';
+    },
+    content:function (){
+        player.init('time_songjiangjishiyustar');
+    },
+        }
+    }
     if(config.baizhantime==true){
         lib.skill._tanzhan_skill={
             trigger:{
@@ -375,7 +389,7 @@ _status.extensionmade.push("三分天下");
     
 },precontent:function (){
     
-},help:{},config:{"shenchoose":{"init":false,"intro":"如果你的势力为'神'，你可以选择改变势力。","name":"神将可以选择势力"},"fubenkiva":{"init":false,"intro":"刘备关通关为1打7;曹操关通关为1打7;孙权关需要与众英雄好汉们过牌。","name":"下载副本[三分天下]"},"fuben2kiva":{"init":false,"intro":"元朝末年，人民起义，刘伯温在此时辅佐朱元璋建立大明王朝。","name":"下载副本[伯温镇敌]"},"fuben3kiva":{"init":false,"intro":"诸葛亮与王司徒，不解释。","name":"下载副本[饶舌决战]"},"fuben4kiva":{"init":false,"intro":"曹操专场，看看你是否能排除异己，建立基业，封妻荫子，54320......(总感觉，好像说偏了)","name":"下载副本[挥刃除异]"},"fuben5kiva":{"init":false,"intro":"临战董卓时，董卓派出了华雄，上将潘凤已经被斩，此时，孙坚站了出来......","name":"下载副本[讨逆血战]"},"rometime":{"init":false,"intro":"开启此模式后，每当一名角色对一名角色造成伤害，伤害来源获得其目标一张牌。","name":"[罗马战场]模式"},"suijitime":{"init":false,"intro":"开启此模式后，游戏开始时，每名角色随机获得一个技能。","name":"[随机技能]模式"},"suijishatime":{"init":false,"intro":"开启此模式后，游戏每进行一轮，所有玩家因体力上限随机更改技能。","name":"[随机杀]模式"},"hongbaotime":{"init":false,"intro":"祝各位新年大吉，大吉大利，今晚吃鸡，文体两开花。","name":"[红包模式]模式"},"yitiantulongtime":{"init":false,"intro":"开启此模式后，每名玩家因体力上限获得装备[屠龙刀]或者[倚天剑]。","name":"[倚天屠龙]模式"},"baizhantime":{"init":false,"intro":"开启此模式后，出牌阶段开始时，玩家可弃置一张牌并选择一名其他角色，视为对其使用了一张[知己知彼]。","name":"[百战不殆]模式"}},package:{
+},help:{},config:{"shenchoose":{"init":false,"intro":"如果你的势力为'神'，你可以选择改变势力。","name":"神将可以选择势力"},"fubenkiva":{"init":false,"intro":"刘备关通关为1打7;曹操关通关为1打7;孙权关需要与众英雄好汉们过牌。","name":"下载副本[三分天下]"},"fuben2kiva":{"init":false,"intro":"元朝末年，人民起义，刘伯温在此时辅佐朱元璋建立大明王朝。","name":"下载副本[伯温镇敌]"},"fuben3kiva":{"init":false,"intro":"诸葛亮与王司徒，不解释。","name":"下载副本[饶舌决战]"},"fuben4kiva":{"init":false,"intro":"曹操专场，看看你是否能排除异己，建立基业，封妻荫子，54320......(总感觉，好像说偏了)","name":"下载副本[挥刃除异]"},"fuben5kiva":{"init":false,"intro":"临战董卓时，董卓派出了华雄，上将潘凤已经被斩，此时，孙坚站了出来......","name":"下载副本[讨逆血战]"},"rometime":{"init":false,"intro":"开启此模式后，每当一名角色对一名角色造成伤害，伤害来源获得其目标一张牌。","name":"[罗马战场]模式"},"suijitime":{"init":false,"intro":"开启此模式后，游戏开始时，每名角色随机获得一个技能。","name":"[随机技能]模式"},"suijishatime":{"init":false,"intro":"开启此模式后，游戏每进行一轮，所有玩家因体力上限随机更改技能。","name":"[随机杀]模式"},"hongbaotime":{"init":false,"intro":"祝各位新年大吉，大吉大利，今晚吃鸡，文体两开花。","name":"[红包模式]模式"},"yitiantulongtime":{"init":false,"intro":"开启此模式后，每名玩家因体力上限获得装备[屠龙刀]或者[倚天剑]。","name":"[倚天屠龙]模式"},"baizhantime":{"init":false,"intro":"开启此模式后，出牌阶段开始时，玩家可弃置一张牌并选择一名其他角色，视为对其使用了一张[知己知彼]。","name":"[百战不殆]模式"},"liangshantime":{"init":false,"intro":"开启此模式后，主公改为'宋江'。","name":"[梁山模式]模式"},"daqintime":{"init":false,"intro":"开启此模式后，主公可以令一名其他角色变成'白起'。","name":"[大秦一统]模式"}},package:{
     character:{
         character:{
             "キバ秦":["male","qinkivastar",1,[],["forbidai"]],
@@ -474,6 +488,9 @@ _status.extensionmade.push("三分天下");
             "fuben_chengyistar":["male","shen",1,[],["forbidai"]],
             "fuben_huaxiongxueaostar":["male","shen",6,["shiyong","starmojiang"],["forbidai"]],
             "fuben_sunjianduanzeistar":["male","shen",4,["yinghun","starxuanzhan","starbaodao"],["forbidai"]],
+            "time_wusongstar":["male","shen",4,["starzuijiu"],["forbidai"]],
+            "time_likuistar":["male","shen",4,["starfuchou"],["forbidai"]],
+            "time_songjiangjishiyustar":["male","shen",5,["starcaishu","stardianjiang","starzhaoan"],["forbidai"]],
         },
         perfectPair:{
             wangjitgstar:["luxundsstar"],
@@ -611,6 +628,9 @@ _status.extensionmade.push("三分天下");
             "fuben_chengyistar":"援军程昱",
             "fuben_huaxiongxueaostar":"血鏖华雄",
             "fuben_sunjianduanzeistar":"断贼孙坚",
+            "time_wusongstar":"武松",
+            "time_likuistar":"李逵",
+            "time_songjiangjishiyustar":"及时雨宋江",
         },
     },
     card:{
@@ -8565,6 +8585,217 @@ _status.extensionmade.push("三分天下");
         },
                 },
             },
+            starzuijiu:{
+                "init2":function (player){
+player.markSkill('starzuijiu')
+player.storage.starzuijiu=1;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='starzuijiu'){
+player.node.marks.childNodes[i].setBackground('time_wusongstar','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                mark:true,
+                intro:{
+                    content:function (storage){
+return '武松:醉酒'
+},
+                },
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                check:function (event,player){
+        if(player.countCards('h')<3) return false;
+        if(!player.hasSha()) return false;
+        return game.hasPlayer(function(current){
+            return get.attitude(player,current)<0&&player.canUse('sha',current);
+        });
+    },
+                content:function (){
+        player.addTempSkill('starzuijiu2','phaseEnd');
+        trigger.num--;
+    },
+            },
+            starfuchou:{
+                "init2":function (player){
+player.markSkill('starfuchou')
+player.storage.starfuchou=1;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='starfuchou'){
+player.node.marks.childNodes[i].setBackground('time_likuistar','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                mark:true,
+                intro:{
+                    content:function (storage){
+return '李逵:复仇'
+},
+                },
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"damageEnd",
+                },
+                filter:function (event,player){
+        return (event.source!=undefined);
+    },
+                check:function (event,player){
+        return (get.attitude(player,event.source)<=0);
+    },
+                logTarget:"source",
+                content:function (){
+        "step 0"
+        player.judge(function(card){
+            if(get.suit(card)=='heart') return -2;
+            return 2;
+        })
+        "step 1"
+        if(result.judge<2){
+            event.finish();return;
+        }
+        trigger.source.chooseToDiscard(2).set('ai',function(card){
+            if(card.name=='tao') return -10;
+            if(card.name=='jiu'&&_status.event.player.hp==1) return -10;
+            return get.unuseful(card)+2.5*(5-get.owner(card).hp);
+        });
+        "step 2"
+        if(result.bool==false){
+            trigger.source.damage();
+        }
+    },
+                ai:{
+                    "maixie_defend":true,
+                    effect:{
+                        target:function (card,player,target){
+                if(player.hasSkillTag('jueqing',false,target)) return [1,-1];
+                return 0.8;
+                // if(get.tag(card,'damage')&&get.damageEffect(target,player,player)>0) return [1,0,0,-1.5];
+            },
+                    },
+                },
+            },
+            "starzuijiu2":{
+                "init2":function (player){
+player.markSkill('starzuijiu2')
+player.storage.starzuijiu2=1;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='starzuijiu2'){
+player.node.marks.childNodes[i].setBackground('time_songjiangjishiyustar','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                mark:true,
+                intro:{
+                    content:function (storage){
+return '宋江:武松:醉酒'
+},
+                },
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageBegin",
+                },
+                filter:function (event){
+        return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();
+    },
+                forced:true,
+                content:function (){
+        trigger.num++;
+    },
+                ai:{
+                    damageBonus:true,
+                },
+            },
+            starcaishu:{
+                audio:"ext:王朝更替_权:2",
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                filterCard:true,
+                selectCard:[1,Infinity],
+                discard:false,
+                lose:true,
+                content:function (){
+        player.$give(cards.length,target);
+        target.gain(cards,player);
+        player.chooseDrawRecover(true);
+    },
+                ai:{
+                    order:1,
+                    result:{
+                        target:function (player,target){
+                if(target.hasSkillTag('nogain')) return 0;
+                if(player.countCards('h')==1&&player.countCards('h','du')) return -1;
+                if(player.hp<=2&&player.countCards('h','shan')) return 0;
+                if(target.countCards('h')+player.countCards('h')>target.hp+2) return 0;
+                if(get.attitude(player,target)>3) return 1;
+                return 0;
+            },
+                    },
+                },
+            },
+            stardianjiang:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"roundStart",
+                },
+                forced:true,
+                filter:function (event,player){
+        return game.roundNumber==2;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget('选择【点将】的目标',lib.translate.stardianjiang_info,true,function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            var att=get.attitude(_status.event.player,target);
+            if(att>0) return att+1;
+            if(att==0) return Math.random();
+            return att;
+        });
+        'step 1'
+        var list=['starzuijiu','starfuchou'];
+        if(result.bool){
+            var target=result.targets[0];
+            player.line(target,'green');
+            game.log(target,'成为了','【点将】','的目标');
+            target.addSkill(list.randomGet());
+        }
+    },
+            },
+            starzhaoan:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"roundStart",
+                },
+                filter:function (event,player){
+        return game.roundNumber==1;
+    },
+                forced:true,
+                content:function (){
+      ui.backgroundMusic.src=lib.assetURL+'extension/王朝更替_权/梁山模式.mp3';
+        var skills=[]; 
+            for(var i in lib.character){ 
+                for(var j=0;j<lib.character[i][3].length;j++){ 
+                    var info=lib.skill[lib.character[i][3][j]];
+                    if(info&&(info.gainable||!info.unique)&&!info.zhuSkill){
+                        skills.add(lib.character[i][3][j]); 
+                    }
+                } 
+            }
+            var link=skills.randomGet();            
+            player.addSkill(link);                                
+           game.log(player,'获得技能','【'+get.translation(link)+'】');
+    },
+            },
         },
         translate:{
             "starzhihui1":"制回",
@@ -9041,11 +9272,23 @@ _status.extensionmade.push("三分天下");
             "starzumao_info":"每当援兵受到伤害时，你可以令其获得一枚护甲。",
             "starmojiang2":"魔将",
             "starmojiang2_info":"",
+            starzuijiu:"醉酒",
+            "starzuijiu_info":"摸牌阶段，你可以少摸一张牌，若如此做，你本回合内[杀]或[决斗]造成的伤害+1",
+            starfuchou:"复仇",
+            "starfuchou_info":"每当你受到一次伤害，可进行一次判定，若结果不为红桃，则伤害来源须弃置两张手牌或受到来自你的一点伤害",
+            "starzuijiu2":"醉酒",
+            "starzuijiu2_info":"",
+            starcaishu:"财疏",
+            "starcaishu_info":"出牌阶段限一次，你可以将任意张牌交给一名其他角色，然后你回复一点体力或摸一张牌。",
+            stardianjiang:"点将",
+            "stardianjiang_info":"聚义技，第二轮开始时，你令一名其他角色随机获得\"李逵\"标记或者\"武松\"标记。",
+            starzhaoan:"招安",
+            "starzhaoan_info":"忠义技，第一轮开始时，你随机获得一个技能。",
         },
     },
-    intro:"作者QQ:3145656381，(若无大事勿扰)此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑",
+    intro:"作者QQ:3145656381(若无大事勿扰)，作者Q群:431196258(欢迎加入并交流)，此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑",
     author:":+࿈࿆剑牙雷少kiva࿈࿆+:",
     diskURL:"",
-    forumURL:"",
-    version:"1.3",
-},files:{"character":["fuben_sunjianduanzeistar.jpg"],"card":["fuben_guosistar.jpg"],"skill":[]}}})
+    forumURL:"https://jq.qq.com/?_wv=1027&k=5uKmouC",
+    version:"1.4",
+},files:{"character":["time_songjiangjishiyustar.jpg"],"card":["fuben_guosistar.jpg"],"skill":[]}}})

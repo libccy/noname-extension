@@ -371,18 +371,19 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 		  lib.skill.xwj_jisha={
                 		trigger:{source:"dieBegin"},
                 		forced:true,                        
-                  locked:true,
-                  mark:true,
+                  locked:true,     
+                  unique:true,            
                   priority:Infinity,
                   init:function (player){
                   player.storage.xwj_jisha=0;
-                  player.markSkill('xwj_jisha');
+                  player.unmarkSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
                   },
                  content:function (){
                   player.storage.xwj_jisha++;
                   player.markSkill('xwj_jisha');
                   player.syncStorage('xwj_jisha');
+                  player.update();
                   },
             					marktext:"杀",
                  	intro:{
@@ -477,7 +478,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 							lib.skill._Background={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,
-							priority:100,
+							priority:20,
 							content:function(){
 							game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_background.jpg");
    				},
@@ -1775,7 +1776,7 @@ skill:{
         }
         'step 1'
          trigger.player.addSkillLog(result.control);
-         trigger.player.recover(2-trigger.player.hp);
+         trigger.player.recover(1-trigger.player.hp);
          trigger.player.draw(2);       
          trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
          trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
@@ -2585,13 +2586,13 @@ translate:{
             "xwj_xsanguo_zhenjun_info":"准备阶段，你可以弃置一名手牌数多于体力值的角色的X张牌（X为其手牌数和体力值之差），然后选择一项：1.你弃置等同于其中非装备牌数量的牌；2.其摸等量的牌。",
             "xwj_xsanguo_nanhua":"南华老仙",
           	"xwj_xsanguo_chuanshu":"传术",
-            "xwj_xsanguo_chuanshu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至2并摸两张牌。当该被【传术】的角色造成或受到一次伤害后，你摸一张牌，其阵亡后，你重置技能【传术】",
-            "xwj_xsanguo_xiandao1":"道",
-            "xwj_xsanguo_xiandao1_info":"游戏开始和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段开始",
-            "xwj_xsanguo_xiandao2":"道",
+            "xwj_xsanguo_chuanshu_info":"<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至1并摸两张牌。当该被【传术】的角色造成或受到一次伤害后，你摸一张牌。其阵亡后，你重置技能【传术】",
+            "xwj_xsanguo_xiandao1":"仙道",
+            "xwj_xsanguo_xiandao1_info":"<font color=#f00>锁定技</font> 游戏开始和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段开始",
+            "xwj_xsanguo_xiandao2":"仙道",
             "xwj_xsanguo_xiandao2_info":"<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
             "xwj_xsanguo_xiandao":"仙道",
-            "xwj_xsanguo_xiandao_info":"游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。<font color=#f00>锁定技</font> 你防止受到任何属性伤害",
+            "xwj_xsanguo_xiandao_info":"<font color=#f00>锁定技</font> 游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。你防止受到任何属性伤害",
             "xwj_xsanguo_chuanshu2":"术",
             "xwj_xsanguo_chuanshu2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，南华老仙摸一张牌",
             "xwj_xsanguo_chuanshu3":"术",
@@ -2975,7 +2976,7 @@ audio:"ext:群英会:2",
         	trigger.player.addSkillLog(result.control);
          trigger.player.storage.xwj_xhuoying_renzong2=player; 
          trigger.player.addSkill('xwj_xhuoying_renzong2');    
-         trigger.player.recover(2-trigger.player.hp);
+         trigger.player.recover(1-trigger.player.hp);
          trigger.player.draw(2);        
          var myid=player.identity;
             if(player.identity=='zhu'){
@@ -5546,16 +5547,17 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
        
     },
                 ai:{
-                    order:5,
+                    order:5,                                     
                     result:{
+                    target:function (player,target){
+                       var att=get.attitude(player,target);          
+                if(player.countCards('h')>target.countCards('h')) return 0;                               
+                return get.damageEffect(target,player);
+            },
                         player:function (player,target){
                 var att=get.attitude(player,target);          
                 if(player.countCards('h')>target.countCards('h')) return 0;                 
-                if(target==player.previous&&att>0) return att;
-                if(target==player.next&&att<0) return -att;
-                var att2=get.attitude(player,player.next);
-                if(target==player.next.next&&att<0&&att2<0) return -att-att2;
-                return 0;
+                return get.damageEffect(target,player);
             },
                     },
                 },
@@ -7275,12 +7277,12 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 frequent:true,
                 alter:true,
                 filter:function (event,player){
-        if(get.is.altered('xwj_xhuoying_yuanmo')){
+   //     if(get.is.altered('xwj_xhuoying_yuanmo')){
             return player.countCards('h')<player.hp;
-        }
-        else{
-            return player.countCards('h')<player.maxHp;
-        }
+    //    }
+     //   else{
+            //return player.countCards('h')<player.maxHp;
+        //}
     },
                 content:function (){
         if(get.is.altered('xwj_xhuoying_yuanmo')){
@@ -9222,10 +9224,13 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                 filterTarget:function (card,player,target){
         return target!=player&&target.countCards('h')>0;
     },
-                selectTarget:[1,Infinity],
+               // selectTarget:[1,Infinity],
+                 selectTarget:function (){
+        return [1,_status.event.player.storage.xwj_xhuoying_fenshen];
+    },
                 filter:function (event,player){
         return player.countCards('h')>0;
-    },
+    },     
                 multitarget:true,
                 multiline:true,
                 content:function (){
@@ -9253,6 +9258,7 @@ else{
     game.delay(0.5);
     player.storage.xwj_xhuoying_fenshen++;
     player.markSkill('xwj_xhuoying_fenshen');
+    player.update();
     if(player.storage.xwj_xhuoying_fenshen>=9){
         player.die();
     }                 
@@ -9567,8 +9573,8 @@ player.$skill('助君成王','fire','red','avatar');
                 expose:0.8,
                 order:0.8,
                      result:{
-                        target:function (player,target){
-                return get.damageEffect(target,player);
+                        player:function (player,target){
+                return get.damageEffect(player,target);
             },
                     },
                 },
@@ -9885,8 +9891,8 @@ translate:{
             "xwj_xhuoying_xianti_info":"<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至体力上限，然后回复一点体力",	
         			"xwj_xhuoying_liudaoxianren":"六道仙人",
 	        		"xwj_xhuoying_renzong":"忍宗",
-            "xwj_xhuoying_renzong_info":"<font color=#f00>锁定技</font> 当一名非主公的其他角色进入濒死状态，你可选择技能【天眼】或【仙体】令其永久获得之，其回复体力至两点并摸两张牌，且阵营调整与你一致（你为主公时视为忠臣），然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
-            "xwj_xhuoying_renzong2":"宗",
+            "xwj_xhuoying_renzong_info":"<font color=#f00>锁定技</font> 当一名非主公的其他角色进入濒死状态，你选择技能【天眼】或【仙体】令其永久获得之，其回复体力至1并摸两张牌，且阵营调整与你一致（你为主公时视为忠臣），然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
+            "xwj_xhuoying_renzong2":"忍宗",
             "xwj_xhuoying_renzong2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，你随机获得一张基本牌",
 				    		"xwj_xhuoying_tianyan":"天眼",
             "xwj_xhuoying_tianyan_info":"回合开始阶段，你可以选择一名其他角色，然后获得其一项技能，直到回合结束",	
@@ -9977,7 +9983,7 @@ translate:{
             "xwj_xhuoying_xianshu":"仙术",
             "xwj_xhuoying_xianshu_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
             "xwj_xhuoying_fenshen":"分身",
-            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与任意名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。<font color=#f00>锁定技</font> 你的进攻距离+X（X为你的“分身”标记数，若你有9个或以上的分身标记时，你因耗尽九尾的查克拉而立即死亡）",
+            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与一至X名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。你的进攻距离+X（X为你的“分身”标记数，若你有9个或以上的分身标记时，你因耗尽九尾的查克拉而立即死亡）",
             "xwj_xhuoying_shuimen":"波风水门",
             "xwj_xhuoying_shanguang":"闪光",
             "xwj_xhuoying_shanguang_info":"<font color=#F0F>飞雷神</font> <font color=#f00>锁定技</font> 你的防御距离始终+1，你的进攻距离无限",
@@ -11992,12 +11998,13 @@ skill:{
 "xwj_xu_tiandun":{
                 audio:["xinsheng",2],
                 trigger:{
-                    player:"damageBegin",
+                    player:"damage",
                 },
                 forced:true,
                 popup:false,
                 silent:true,
                 unique:true,
+                priority:2019,
                 filter:function (event,player){
         return player!=trigger.source;
     },
@@ -12272,7 +12279,7 @@ else {
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
             "xwj_xu_tiandun":"天遁",
-            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害后，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影忍者包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
+            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影忍者包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
             "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
@@ -12295,7 +12302,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xu');
 		if(!lib.config.characters.contains('xu')) lib.config.characters.remove('xu');
-		lib.translate['xu_character_config']='<span class=yellowtext>空城遗殇</span>';
+		lib.translate['xu_character_config']='<span class=yellowtext>Sukincen</span>';
 
 		
 	// ---------------------------------------卡牌------------------------------------------//	
@@ -12994,7 +13001,7 @@ trigger:{
 			};
 			return xwj_xus_equip;
 			});
-		lib.translate['xwj_xus_equip_card_config']='新卡牌';
+		lib.translate['xwj_xus_equip_card_config']='群英会';
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
@@ -13047,5 +13054,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.14",
+    version:"1.15",
 },files:{"character":[],"card":[],"skill":[]}}})

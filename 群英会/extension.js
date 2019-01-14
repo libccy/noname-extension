@@ -1,6 +1,7 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
 
-	 	 // ---------------------------------------定义势力------------------------------------------//
+// ---------------------------------------定义势力------------------------------------------//
+	 	 
 	lib.group.push('shen');
 			lib.translate.shen='神';
 			lib.translate.shenColor="#1874CD",
@@ -82,9 +83,20 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 				lib.skill._save.filter=event.filter;
 			};
 			
-    // ---------------------------------------定义装备栏------------------------------------------//
-			
-	lib.element.content.gain=function(){
+			game.playXu = function(fn, dir, sex) {
+			if (lib.config.background_speak) {
+				if (dir && sex)
+					game.playAudio(dir, sex, fn);
+				else if (dir)
+					game.playAudio(dir, fn);
+				else
+					game.playAudio('..', 'extension', '群英会', fn);
+			}
+		};
+		
+// ---------------------------------------定义装备区------------------------------------------//
+	 	 
+		lib.element.content.gain=function(){
 					"step 0"
 					if(cards){
 						var owner=event.source||get.owner(cards[0]);
@@ -314,18 +326,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 			};
 			game.log(player,'恢复了',get.translation(skill),'栏');
 		};	
-	game.playXu = function(fn, dir, sex) {
-			if (lib.config.background_speak) {
-				if (dir && sex)
-					game.playAudio(dir, sex, fn);
-				else if (dir)
-					game.playAudio(dir, fn);
-				else
-					game.playAudio('..', 'extension', '群英会', fn);
-			}
-		};
+		
 			if(config.xjisha){		
-/*		
+/*		//old:
     lib.skill._jwj_jisha={
         trigger:{
         global:"dieAfter",
@@ -343,6 +346,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
          },
          }
          */        
+         //new:
         lib.skill._xwj_jisha={
         trigger:{
         global:"gameStart",      
@@ -463,8 +467,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 						lib.translate._xxyishugaochao='医术高超';
 			
 											}
-							
-							if(config._chooseTime){																
+					if(config._chooseTime){																
 							lib.skill._chooseTime={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,
@@ -472,9 +475,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 								player.forceCountChoose={chooseToUse:15,default:15};
 							},
 						}
-						}											
-						
-										if(config._Background){																
+						}							
+		 				if(config._Background){																
 							lib.skill._Background={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,
@@ -483,9 +485,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 							game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_background.jpg");
    				},
 						}
-						}																			
-						
-									if(config._BackgroundMusic){																
+						}						
+		 				if(config._BackgroundMusic){																
 							lib.skill._BackgroundMusic={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,
@@ -495,9 +496,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
  						},
 						}
 						}																																																																																											
-																																																																																																																					
-						
-	// ---------------------------------------武将分栏------------------------------------------//		
+																																																																																																																											
+// ---------------------------------------武将分栏------------------------------------------//		
 			
     if(config.xsanguo){
 		for(var i in lib.characterPack[ 'xsanguo']) {
@@ -705,7 +705,7 @@ skill:{
      
         player.awakenSkill('xwj_xsanguo_longyuan');
         
-        player.removeSkill('xwj_xsanguo_longyuan');        
+        //player.removeSkill('xwj_xsanguo_longyuan');        
         
         player.update();
     
@@ -6170,7 +6170,7 @@ var skill=trigger.player.skills.randomGet()
         var name2=player.name;
         player.reinit(name2,name1,false);
         player.draw(2);     
-       
+       player.update();
     },
                 ai:{
                     order:2,
@@ -13007,7 +13007,7 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 };
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则会有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
-				"name":"群英会","init":"1","item":{"1":"查看帮助","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计的建议（尤其是《封神纪》的角色）也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可关闭任意一个扩展小包，关闭后会隐藏武将图片且禁选、禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效、AI聊天，还可联机！","4":"<li>游戏时最好打开兼容模式，另请关闭“火影忍者”的新版替换开关，否则有部分武将的技能会缺失"}
+				"name":"群英会","init":"1","item":{"1":"查看帮助","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计的建议（尤其是玄机动画《武庚纪》的角色）也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可关闭任意一个扩展小包，关闭后会隐藏武将图片且禁选、禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效、AI聊天，还可联机！","4":"<li>游戏时最好打开兼容模式，另请关闭“火影忍者”的新版替换开关，否则有部分武将的技能会缺失。更多介绍详看：其它→帮助"}
 				},
 					"xjisha":{
             name:'击杀特效',
@@ -13054,5 +13054,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.16",
+    version:"1.17",
 },files:{"character":[],"card":[],"skill":[]}}})

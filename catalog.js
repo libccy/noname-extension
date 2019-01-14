@@ -296,10 +296,10 @@ extension["列女传"]={
 
 extension["作者包"]={
     author:"神座sagiri",
-    intro:"本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快。更新：新增部分特效",
+    intro:"(更新：修复BUG。输入:com.shenzuo 可获得6666作者币;I want authorcoin 可获得131420作者币;dan_kamukura 可开启武将包“关于武将”) 本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快。更新：新增部分特效",
     size:"48MB",
     netdisk:"",
-    version:1.5,
+    version:1.6,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
@@ -309,7 +309,13 @@ extension["作者包"]={
 	    "特效-纱雾1.gif","特效-神座1.gif","出场特效预览.html","二维码.html","皮肤预览.html","预览.html","随机作者.jpg",	    
 	     "特效-fux21.gif","特效-极光1.gif", "特效-极光2.gif","特效-极光3.gif", "特效-冥葬天1.gif","特效-冥葬天2.gif", "特效-冥葬天3.gif","特效-叛徒1.gif",
 	     "特效-叛徒2.gif","特效-纱雾2.gif", "特效-神座2.gif","特效-时慕1.gif", "特效-时慕2.gif","特效-随机作者1.gif", "特效-小苏1.gif","特效-小苏2.gif",
-	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif", 
+	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif",  "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",
+	    "lscale_0.png","lscale_1.png","lscale_2.png","lscale_3.png","lscale_4.png","lscale_5.png","lscale_6.png","lscale_7.png","lscale_8.png",
+	    "lscale_9.png","lscale_10.png","lscale_11.png","lscale_12.png","lscale_13.png",
+	     "rscale_0.png","rscale_1.png","rscale_2.png","rscale_3.png","rscale_4.png","rscale_5.png","rscale_6.png","rscale_7.png","rscale_8.png",
+	    "rscale_9.png","rscale_10.png","rscale_11.png","rscale_12.png","rscale_13.png",
+	    "zzbabout.jpg","皮肤音效-纱雾1.mp3","皮肤音效-纱雾2.mp3","皮肤音效-纱雾3.mp3","皮肤音效-神座1.mp3",
+	    
     ]
 }; 
 

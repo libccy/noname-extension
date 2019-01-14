@@ -926,6 +926,7 @@ skill:{
                     });
        'step 1'
         if(result.bool){
+	game.delay(1.8);
         player.$fullscreenpop('有情人终成眷属','fire'); 
         game.delay(0.8);
         var name1=trigger.source.name;

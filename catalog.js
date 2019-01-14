@@ -779,22 +779,24 @@ extension["铜雀台"]={
 
 extension["异界四国"]={
     author:"Niugnep",
-    intro:"存在于异世界的武将，把原版各种技能进行组合，产生出新的武将，强度和原版差不多，目前五十六个武将",
-    size:"16.7MB",
+    intro:"本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。无特殊情况不再更新",
+    size:"35MB",
     netdisk:"",
-    version:1.2,
+    version:1.3,
     files:[
-        "王华.jpg","魏羽.jpg","孙仁.jpg","嵇授获.jpg","夏侯嘉.jpg","曹侯淳.jpg","刘恪.jpg","诸昏.jpg","夏侯昂.jpg",
-		"吴义.jpg","凌权.jpg","朱盖.jpg","郭佗.jpg","刘亮.jpg","黄志.jpg","祝宓.jpg","吕瑜.jpg","孟康.jpg",
-		"太史宓.jpg","典盖.jpg","孙瑜慈.jpg","黄奉.jpg","乐仁.jpg","董获.jpg","关松.jpg","曹智仁.jpg","许蝉.jpg",
-		"华异.jpg","甘逊.jpg","貂仁.jpg","高宓.jpg","刘攸.jpg","甄懿.jpg","袁华.jpg","吕羽.jpg","赵飞.jpg",
-		"张芝.jpg","孙华.jpg","马平.jpg","沮康.jpg","荀睿.jpg","extension.js","严香.jpg","张芝.jpg","太史宓.jpg","孙瑜慈.jpg","董获.jpg","高宓.jpg","吕羽.jpg","貂仁.jpg","王华.jpg",
-		"满攸.jpg","刘香.jpg","简乾灵.jpg","孙佗.jpg","诸昏育.jpg","诸超嘉.jpg","荀睿.jpg","夏侯昂.jpg","袁华.jpg",
-		"凌权.jpg","甄懿.jpg","诸马逊.jpg","田逊.jpg","马嘉.jpg","吴义.jpg","祝宓.jpg","乐仁.jpg",
-		"关松.jpg","典盖.jpg","刘亮.jpg","刘恪.jpg","刘攸.jpg","华异.jpg","吕瑜.jpg","夏侯嘉.jpg","孔白权.jpg",
-		"孙仁.jpg","孙华.jpg","孟康.jpg","嵇授获.jpg","张顿.jpg","曹侯淳.jpg","曹智仁.jpg","朱盖.jpg","李姬.jpg",
-		"沮康.jpg","甘逊.jpg","荀逊.jpg","许蝉.jpg","诸昏.jpg","赵飞.jpg","郭佗.jpg","钟邕.jpg","马平.jpg",
-		"魏羽.jpg","黄奉.jpg","黄志.jpg"
+       "extension.js","严香.jpg","乐仁.jpg","伏彩.jpg","何雉.jpg","兀突坚.jpg","关华.jpg","关彩.jpg",
+		"关松.jpg","典盖.jpg","凌宁逊.jpg","凌权.jpg","刘丰.jpg","刘亮.jpg","刘尚姬.jpg","刘恪.jpg","刘攸.jpg",
+		"刘葛禅.jpg","华异.jpg","吕丰践.jpg","吕瑜.jpg","吕羽.jpg","吕虎.jpg","吴义.jpg","吴姬操.jpg","夏侯嘉.jpg",
+		"夏侯昂.jpg","夏恒奉.jpg","太史宓.jpg","孔白权.jpg","孙仁.jpg","孙佗.jpg","孙华.jpg","孙姒.jpg","孙瑜慈.jpg",
+		"孟姒延.jpg","孟康.jpg","嵇授获.jpg","异界四国(代码).zip","异界四国(图片).zip","张坚.jpg","张宓昂.jpg","张维.jpg",
+		"张芝.jpg","张超.jpg","张顿.jpg","徐浩纪协.jpg","徐羽策.jpg","文亮.jpg","曹侯淳.jpg","曹儒.jpg","曹嘉.jpg",
+		"曹智仁.jpg","曹盖.jpg","曹虎渊.jpg","朱盖.jpg","李延.jpg","桥昭纮.jpg","植丕.jpg","步雍.jpg","沮康.jpg",
+		"满攸.jpg","王华.jpg","王盖.jpg","甄懿.jpg","甄白.jpg","甘逊.jpg","田逊.jpg","祝宓.jpg","简乾灵.jpg",
+		"荀睿.jpg","荀逊.jpg","董获.jpg","蔡文彧.jpg","蔡星.jpg","袁华.jpg","袁延奉.jpg","许蝉.jpg","诸攸节.jpg",
+		"诸昏.jpg","诸昏育.jpg","诸葛冲.jpg","诸葛姬.jpg","诸葛获.jpg","诸超嘉.jpg","诸马逊.jpg","貂仁.jpg","贺操.jpg",
+		"贾禁华.jpg","赵飞.jpg","邓协.jpg","郭佗.jpg","郭图刘协.jpg","钟邕.jpg","阚宫.jpg","陈坚统.jpg","陈岑董昏.jpg",
+		"颜貂文蝉.jpg","马嘉.jpg","马岱超.jpg","马平.jpg","马松.jpg","马茹.jpg","高宓.jpg","魏羽.jpg","鲁然.jpg",
+		"黄休.jpg","黄奉.jpg","黄志.jpg","黄恩月.jpg","黄朗.jpg"
     ]
 };
 

@@ -1781,7 +1781,7 @@ skill:{
          trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
          trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
          game.broadcastAll()+trigger.player.node.avatar.setBackgroundImage('extension/群英会/xwj_xsanguo_zhangjiao.jpg');        
-         player.removeSkill('xwj_xsanguo_chuanshu');            
+         player.awakenSkill('xwj_xsanguo_chuanshu');            
     },
             },
             "xwj_xsanguo_xiandao1":{
@@ -1883,7 +1883,7 @@ skill:{
         var target=player.storage.xwj_xsanguo_chuanshu2;      
         player.line(target,'green');                     
         target.addSkill('xwj_xsanguo_chuanshu');
-          
+        target.update();
     },
                 forced:true,
                 popup:false,
@@ -2989,8 +2989,8 @@ audio:"ext:群英会:2",
           		player.maxHp=6;
          		 player.hp=6;		 
          		 game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_yuyi.jpg'); 
-				 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
-         		 player.removeSkill('xwj_xhuoying_renzong');           
+		      		 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+         		 player.awakenSkill('xwj_xhuoying_renzong');           
          		 player.update();    
          		 	 },                  		 	                		 	 
          		 	  },
@@ -4173,7 +4173,7 @@ audio:"ext:群英会:2",
             };                                   
                 target.identity=myid;
                 target.setIdentity();          
-        player.removeSkill('xwj_xhuoying_reshouhu');
+        player.awakenSkill('xwj_xhuoying_reshouhu');
         player.die();
     },
                 ai:{
@@ -6242,7 +6242,7 @@ var skill=trigger.player.skills.randomGet()
         targets[0].reinit(name1,name2,false);
         targets[0].recover();
         player.recover();        
-        player.removeSkill('xwj_xhuoying_yinmou');
+        player.awakenSkill('xwj_xhuoying_yinmou');
     },
                 ai:{
                     order:5,
@@ -7255,7 +7255,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 player.logSkill('xwj_xhuoying_xfengyin',result.targets);            
                 result.targets[i].clearSkills();                                   
                 player.loseHp(player.hp);
-                player.removeSkill('xwj_xhuoying_xfengyin');                                                         
+                player.awakenSkill('xwj_xhuoying_xfengyin');                                                         
            }
           }
           else{
@@ -8142,7 +8142,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                      dead.revive(dead.maxHp);
                      dead.draw(dead.maxHp);
                      player.turnOver();                     
-                     player.removeSkill('xwj_xhuoying_lunhui');
+                     player.awakenSkill('xwj_xhuoying_lunhui');
      }
      },
                 direct:true,
@@ -9029,7 +9029,7 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                 player.logSkill('xwj_xhuoying_refengyin',result.targets);            
                 result.targets[i].clearSkills();                                   
                 player.loseHp(player.hp);
-                player.removeSkill('xwj_xhuoying_refengyin');                                                         
+                player.awakenSkill('xwj_xhuoying_refengyin');                                                         
            }
           }
           else{
@@ -9479,7 +9479,7 @@ player.$skill('助君成王','fire','red','avatar');
         player.draw(8);
         player.loseMaxHp(player.maxHp-1);
         player.update();
-        player.removeSkill('xwj_xhuoying_resizhan');       
+        player.awakenSkill('xwj_xhuoying_resizhan');       
         game.delay(2);      
         var chat=['燃烧吧，青春！','我会化为养分，来年春天定会长出新芽'].randomGet();
         player.say(chat);    
@@ -9725,7 +9725,7 @@ player.$skill('助君成王','fire','red','avatar');
 			game.delay(0.5);
 			game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_liudaoban.jpg');             
             player.addSkill('xwj_xhuoying_lunmu');
-            player.removeSkill('xwj_xhuoying_yiyuan');
+            player.awakenSkill('xwj_xhuoying_yiyuan');
         }
     },
                 ai:{
@@ -11984,7 +11984,7 @@ skill:{
                  }          
                "step 3"
             if (event.current.next==player){     
-                player.removeSkill("xwj_xu_dingju");            
+                player.awakenSkill("xwj_xu_dingju");            
                 event.finish();               
             }      
             else {
@@ -12136,7 +12136,7 @@ skill:{
             }
         }                                        
             if (event.current.next==player){      
-                player.removeSkill("xwj_xu_yunchou");      
+                player.awakenSkill("xwj_xu_yunchou");      
                 event.finish();               
             }      
 else {
@@ -13054,5 +13054,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.15",
+    version:"1.16",
 },files:{"character":[],"card":[],"skill":[]}}})

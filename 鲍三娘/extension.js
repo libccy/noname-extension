@@ -149,7 +149,7 @@ skill:{
         }
         trigger.source.update();
         player.logSkill('bsn_xushen');  
-            player.removeSkill('bsn_xushen');          
+            player.awakenSkill('bsn_xushen');          
             player.recover();
             player.addSkill('bsn_zhengnan');
             player.update();
@@ -212,5 +212,5 @@ if(lib.device||lib.node){
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"3.6",
+    version:"3.7",
 },files:{"character":[],"card":[],"skill":[]}}})

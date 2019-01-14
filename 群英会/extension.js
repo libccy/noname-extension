@@ -1781,7 +1781,7 @@ skill:{
          trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
          trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
          game.broadcastAll()+trigger.player.node.avatar.setBackgroundImage('extension/群英会/xwj_xsanguo_zhangjiao.jpg');        
-         player.awakenSkill('xwj_xsanguo_chuanshu');            
+         player.removeSkill('xwj_xsanguo_chuanshu');            
     },
             },
             "xwj_xsanguo_xiandao1":{

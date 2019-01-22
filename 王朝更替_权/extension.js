@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",editable:false,content:function (config,pack){
     if(config.fuben5kiva==true){
     if(lib.config.mode=="brawl"){
 if(!lib.storage.scene) lib.storage.scene={};

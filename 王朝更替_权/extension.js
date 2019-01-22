@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",content:function (config,pack){
     if(config.fuben5kiva==true){
     if(lib.config.mode=="brawl"){
 if(!lib.storage.scene) lib.storage.scene={};
@@ -127,6 +127,22 @@ _status.extensionmade.push("伯温镇敌");
             player.useCard(target,{name:'zhibi'})
         }
 
+    },
+        }
+    }
+    if(config.goujiantime==true){
+        lib.skill._goujianjian_skill={
+            audio:2,
+    trigger:{
+        global:"gameStart",
+        player:"enterGame",
+    },
+    filter:function (player){
+        return player.identity=='zhu';
+    },
+    forced:true,
+    content:function (){
+        player.useCard(game.createCard('staryuewanggoujianjian','spade',1),player);
     },
         }
     }
@@ -282,6 +298,15 @@ _status.extensionmade.push("伯温镇敌");
     },
         }
     }
+    var style2=document.createElement('style');
+        style2.innerHTML=".player .identity[data-color='zhancolor'],";
+	    style2.innerHTML+="div[data-nature='zhancolor'],";
+    	style2.innerHTML+="span[data-nature='zhancolor'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 10px,rgba(255, 0, 0,1) 0 0 10px}";
+    	style2.innerHTML+="div[data-nature='zhancolorm'],";
+	    style2.innerHTML+="span[data-nature='zhancolorm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,black 0 0 1px;}";
+    	style2.innerHTML+="div[data-nature='zhancolormm'],";
+    	style2.innerHTML+="span[data-nature='zhancolormm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style2);
     if(config.fubenkiva==true){
     if(lib.config.mode=="brawl"){
 if(!lib.storage.stage) lib.storage.stage={};
@@ -359,6 +384,8 @@ _status.extensionmade.push("三分天下");
                         case 'qingkivastar':player.node.name.dataset.nature='fire';break;
                         case 'xikivastar':player.node.name.dataset.nature='thunder';break;
                         case 'luokivastar':player.node.name.dataset.nature='thunder';break;
+                        case 'rikivastar':player.node.name.dataset.nature='fire';break;
+                        case 'zhankivastar':player.node.name.dataset.nature='fire';break;
 						default:player.node.name.dataset.nature='fire';break;
 					}	
 				}			
@@ -373,7 +400,8 @@ _status.extensionmade.push("三分天下");
 				case 'wu':nature='wood';break;
 				case 'qun':nature='metal';break;
 				case 'mingkivastar':nature='metal';break;
-				default:return '';
+                case 'zhankivastar':nature='zhancolor';break
+			    default:return '';
 			}
 			if(method=='raw'){
 				return nature;
@@ -402,7 +430,10 @@ _status.extensionmade.push("三分天下");
         lib.translate.xikivastar='<span style=color:#000000>西</span>';
         lib.group.push('luokivastar');
         lib.translate.luokivastar='罗';
-    
+        lib.group.push('rikivastar');
+        lib.translate.rikivastar='日';
+        lib.group.push('zhankivastar');
+        lib.translate.zhankivastar='战';
 },precontent:function (){
     
 },help:{},config:{"shenchoose":{"init":false,"intro":"如果你的势力为'神'，你可以选择改变势力。","name":"神将可以选择势力"},"fubenkiva":{"init":false,"intro":"刘备关通关为1打7;曹操关通关为1打7;孙权关需要与众英雄好汉们过牌。","name":"下载副本[三分天下]"},"fuben2kiva":{"init":false,"intro":"元朝末年，人民起义，刘伯温在此时辅佐朱元璋建立大明王朝。","name":"下载副本[伯温镇敌]"},"fuben3kiva":{"init":false,"intro":"诸葛亮与王司徒，不解释。","name":"下载副本[饶舌决战]"},"fuben4kiva":{"init":false,"intro":"曹操专场，看看你是否能排除异己，建立基业，封妻荫子，54320......(总感觉，好像说偏了)","name":"下载副本[挥刃除异]"},"fuben5kiva":{"init":false,"intro":"临战董卓时，董卓派出了华雄，上将潘凤已经被斩，此时，孙坚站了出来......","name":"下载副本[讨逆血战]"},"rometime":{"init":false,"intro":"开启此模式后，每当一名角色对一名角色造成伤害，伤害来源获得其目标一张牌。","name":"[罗马战场]模式"},"suijitime":{"init":false,"intro":"开启此模式后，游戏开始时，每名角色随机获得一个技能。","name":"[随机技能]模式"},"suijishatime":{"init":false,"intro":"开启此模式后，游戏每进行一轮，所有玩家因体力上限随机更改技能。","name":"[随机杀]模式"},"hongbaotime":{"init":false,"intro":"祝各位新年大吉，大吉大利，今晚吃鸡，文体两开花。","name":"[红包模式]模式"},"yitiantulongtime":{"init":false,"intro":"开启此模式后，每名玩家因体力上限获得装备[屠龙刀]或者[倚天剑]。","name":"[倚天屠龙]模式"},"baizhantime":{"init":false,"intro":"开启此模式后，出牌阶段开始时，玩家可弃置一张牌并选择一名其他角色，视为对其使用了一张[知己知彼]。","name":"[百战不殆]模式"},"liangshantime":{"init":false,"intro":"开启此模式后，主公改为'宋江'。","name":"[梁山模式]模式"}},package:{
@@ -411,6 +442,9 @@ _status.extensionmade.push("三分天下");
             "swk_tangseng2":["male","tangkivastar",1,[],["forbidai"]],
             "swk_bajie2":["male","tangkivastar",1,[],["forbidai"]],
             "swk_shaseng2":["male","tangkivastar",1,[],["forbidai"]],
+            "yz_jingke":["male","qinkivastar",1,[],["forbidai"]],
+            "yz_gaojianli":["male","qinkivastar",1,[],["forbidai"]],
+            "yz_zhangliang":["male","hankivastar",1,[],["forbidai"]],
             "キバ秦":["male","qinkivastar",1,[],["forbidai"]],
             "キバ楚":["male","chukivastar",1,[],["forbidai"]],
             "キバ汉":["male","hankivastar",1,[],["forbidai"]],
@@ -421,6 +455,8 @@ _status.extensionmade.push("三分天下");
             "キバ清":["male","qingkivastar",1,[],["forbidai"]],
             "キバ西":["male","xikivastar",1,[],["forbidai"]],
             "キバ罗":["male","luokivastar",1,[],["forbidai"]],
+            "キバ日":["male","rikivastar",1,[],["forbidai"]],
+            "キバ战":["male","zhankivastar",1,[],["forbidai"]],
             wangjitgstar:["male","shen",3,["starjuexing","starjince","starzhihui1"],["zhu"]],
             luxundsstar:["male","shen",3,["starduoshi","starjunqian"],["zhu"]],
             simayitgstar:["male","shen",3,["starlangxin","starguxing","starzhonghu"],["zhu"]],
@@ -515,6 +551,16 @@ _status.extensionmade.push("三分天下");
             jiabaoyuyihongstar:["male","shen",3,["starjiafu","starlingxian"],["zhu"]],
             liuyuzongstar:["male","shen",3,["starrenzi","starzhizhan"],["zhu"]],
             gongsunzanbaistar:["male","shen",3,["starjueyi","starjima"],["zhu"]],
+            xushuzhustar:["male","shen",3,["starxsjueyan","starzhujue","stardanfu"],["zhu"]],
+            huangfuzhaoyunsuistar:["male","shen",3,["starxionglue","longdan","starlongduan","bazhen"],["zhu"]],
+            xumuyunxingstar:["male","shen",3,["xinjizhi","tianbian","starjibian","starzhujue"],["zhu"]],
+            lvmengyinstar:["male","shen",3,["staryinren","starbaiyi"],["zhu"]],
+            lusudistar:["male","shen",3,["starronghu","starmengjiao"],["zhu"]],
+            zhentianxingcunwanstar:["male","zhankivastar","1<img src='file:///storage/emulated/0/Android/data/com.widget.noname/theme/style/hp/image/emotion1.png' width='12' height='12'>2",["starzhentian","starfujun"],["zhu"]],
+            "boss_pangdegongwustar":["male","shen",8,["starjiece","starsongzang","starzhujue","startianxing","staryouzhu","starpdgyinji"],["boss","bossallowed"]],
+            kaisahuistar:["male","shen",4,["starluoma","starzhengzhan","starcaiguo"],["zhu"]],
+            gongbenwuzangliustar:["male","zhankivastar",3,["startianliu","starshanji","starlongjue"],["zhu"]],
+            yingzhengzunstar:["male","shen",4,["stardinu","starfenshu","starhuangzun"],["zhu"]],
         },
         perfectPair:{
             wangjitgstar:["luxundsstar"],
@@ -566,13 +612,17 @@ _status.extensionmade.push("三分天下");
             zhanghejistar:["caocaoweiwustar"],
             "time_baiqibubaistar":["yingzhengzunstar"],
             "boss_sunwukongdouzhanshengfostar":["liubeizhaoliestar"],
-            "gongsunzanbaistar":["liubeizhaoliestar"],
-            "liuyuzongstar":["gongsunzanbaistar"],
-            "jiabaoyuyihongstar":["liubeizhaoliestar"],
-            
+            gongsunzanbaistar:["liubeizhaoliestar"],
+            liuyuzongstar:["gongsunzanbaistar"],
+            jiabaoyuyihongstar:["liubeizhaoliestar"],
+            xushuzhustar:["liubeizhaoliestar","zhugeliangzuodistar"],
+            huangfuzhaoyunsuistar:["xumuyunxingstar","zhaoyuntgstar"],
+            lvmengyinstar:["sunquanwudistar","luxundsstar"],
+            lusudistar:["zhouyutgstar","zhugeliangzuodistar"],
+            kaisahuistar:["liubangtgstar"],
         },
         translate:{
-            special:"<span style=color:#FF0000>特殊</span>",
+            special:"<span style=color:#FF0000>进阶</span>",
             wangjitgstar:"天罡王基",
             luxundsstar:"地煞陆逊",
             simayitgstar:"天罡司马懿",
@@ -667,6 +717,16 @@ _status.extensionmade.push("三分天下");
             jiabaoyuyihongstar:"怡红贾宝玉",
             liuyuzongstar:"宗刘虞",
             gongsunzanbaistar:"白公孙瓒",
+            xushuzhustar:"诛徐庶",
+            huangfuzhaoyunsuistar:"碎皇甫朝云",
+            xumuyunxingstar:"醒徐暮云",
+            lvmengyinstar:"隐吕蒙",
+            lusudistar:"缔鲁肃",
+            zhentianxingcunwanstar:"丸真田幸村",
+            "boss_pangdegongwustar":"舞庞德公",
+            kaisahuistar:"毁凯撒",
+            gongbenwuzangliustar:"流宫本武藏",
+            yingzhengzunstar:"尊嬴政",
         },
     },
     card:{
@@ -1928,6 +1988,125 @@ _status.extensionmade.push("三分天下");
                 },
                 fullimage:true,
             },
+            staryuewanggoujianjian:{
+                fullskin:true,
+                type:"equip",
+                subtype:"equip1",
+                nomod:true,
+                nopower:true,
+                unique:true,
+                skills:["starlijian","startuqiangshenghua","starzhenqian"],
+                enable:function (card,player){
+        return !player.hasSkill('yuewang');
+    },
+                distance:{
+                    attackFrom:-2,
+                },
+                onEquip:function (){
+        if(player.hasSkill('staryuewang')){
+            player.discard(card);
+        }
+    },
+                ai:{
+                    equipValue:9,
+                    basic:{
+                        order:function (card,player){
+                if(player&&player.hasSkillTag('reverseEquip')){
+                    return 8.5-get.equipValue(card,player)/20;
+                }
+                else{
+                    return 8+get.equipValue(card,player)/20;
+                }
+            },
+                        useful:2,
+                        equipValue:1,
+                        value:function (card,player){
+                var value=0;
+                var info=get.info(card);
+                var current=player.getEquip(info.subtype);
+                if(current&&card!=current){
+                    value=get.value(current,player);
+                }
+                var equipValue=info.ai.equipValue;
+                if(equipValue==undefined){
+                    equipValue=info.ai.basic.equipValue;
+                }
+                if(typeof equipValue=='function') return equipValue(card,player)-value;
+                if(typeof equipValue!='number') equipValue=0;
+                return equipValue-value;
+            },
+                    },
+                    result:{
+                        target:function (player,target){
+                return get.equipResult(player,target,name);
+            },
+                    },
+                },
+                selectTarget:-1,
+                filterTarget:function (card,player,target){
+        return target==player;
+    },
+                modTarget:true,
+                allowMultiple:false,
+                content:function (){
+        target.equip(card);
+    },
+                toself:true,
+            },
+            starqixinglongyuanjian:{
+                fullskin:true,
+                type:"equip",
+                subtype:"equip1",
+                distance:{
+                    attackFrom:-1,
+                },
+                skills:["starlongquan","starxiansuo","starshixian"],
+                ai:{
+                    basic:{
+                        equipValue:4,
+                        order:function (card,player){
+                if(player&&player.hasSkillTag('reverseEquip')){
+                    return 8.5-get.equipValue(card,player)/20;
+                }
+                else{
+                    return 8+get.equipValue(card,player)/20;
+                }
+            },
+                        useful:2,
+                        value:function (card,player){
+                var value=0;
+                var info=get.info(card);
+                var current=player.getEquip(info.subtype);
+                if(current&&card!=current){
+                    value=get.value(current,player);
+                }
+                var equipValue=info.ai.equipValue;
+                if(equipValue==undefined){
+                    equipValue=info.ai.basic.equipValue;
+                }
+                if(typeof equipValue=='function') return equipValue(card,player)-value;
+                if(typeof equipValue!='number') equipValue=0;
+                return equipValue-value;
+            },
+                    },
+                    result:{
+                        target:function (player,target){
+                return get.equipResult(player,target,name);
+            },
+                    },
+                },
+                enable:true,
+                selectTarget:-1,
+                filterTarget:function (card,player,target){
+        return target==player;
+    },
+                modTarget:true,
+                allowMultiple:false,
+                content:function (){
+        target.equip(card);
+    },
+                toself:true,
+            },
         },
         translate:{
             nanguastar:"万圣节南瓜🎃",
@@ -1982,8 +2161,12 @@ _status.extensionmade.push("三分天下");
             "swk_bajie_info":"",
             "swk_shaseng":"沙僧",
             "swk_shaseng_info":"",
+            staryuewanggoujianjian:"越王勾践剑",
+            "staryuewanggoujianjian_info":"每当你造成伤害，你可以弃置此装备并摸两张牌，然后此伤害+1;每当你打出一张牌，你摸一张牌。<br>专属技，准备阶段，若此剑主人为\"勾践\"，你失去所有技能并获得\"图强(升华)\"，\"八阵\"和\"薪胆\"。",
+            starqixinglongyuanjian:"七星龙渊剑",
+            "starqixinglongyuanjian_info":"出牌阶段限一次，你可以展示所有手牌并观看一名其他角色的手牌;一名角色的结束阶段，你可以弃置一张牌并观看其手牌。<br>专属技，准备阶段，若此剑主人为\"李白\"，你永久获得技能\"仙索\"并升华技能\"谪仙\"。",
         },
-        list:[["heart","13","starqiceliulong"],["diamond","7","starqiceliulong"],["club","13","nanguastar"],["heart","13","starqiceliulong"],["diamond","7","starqiceliulong"],["club","13","nanguastar"]],
+        list:[["heart","13","starqiceliulong"],["diamond","7","starqiceliulong"],["club","13","nanguastar"],["heart","13","starqiceliulong"],["spade","1","starqixinglongyuanjian"],["spade","1","starqixinglongyuanjian"],["heart","1","staryuewanggoujianjian"],["heart","1","staryuewanggoujianjian"]],
     },
     skill:{
         skill:{
@@ -2747,6 +2930,7 @@ _status.extensionmade.push("三分天下");
             starxionglue:{
                 audio:"ext:王朝更替_权:1",
                 group:"starxionglue2",
+                direct:true,
                 trigger:{
                     player:"phaseDiscardEnd",
                 },
@@ -2984,13 +3168,19 @@ _status.extensionmade.push("三分天下");
                     player:"respond",
                 },
                 forced:true,
-                filter:function (event,player){
-        if(event.skill!='longdan_sha'||event.skill!='longdan_shan') return false;
-        return player.countCards('h')>=0;
-    },
-                logTarget:"source",
                 content:function (){
-        player.draw();
+        'step 0'
+        player.chooseTarget(get.prompt('starlongduan2'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('starlongduan2',result.targets);
+            result.targets[0].draw();
+            if(player.name=='huangfuzhaoyunsuistar')player.draw();
+        }
     },
             },
             starlongduan:{
@@ -5068,9 +5258,9 @@ _status.extensionmade.push("三分天下");
                         position:"e",
                         viewAs:{
                             name:"sha",
-                            suit:"diamond",
-                            number:5,
-                            cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":5,"name":"guanshi","cardid":"7530487342","clone":{"name":"guanshi","suit":"diamond","number":5,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":2823},"original":"e","timeout":2792}],
+                            suit:"spade",
+                            number:2,
+                            cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{},"wuxing":{}},"inits":[null],"storage":{},"vanishtag":[],"_uncheck":[],"suit":"spade","number":2,"name":"cixiong","wunature":"soil","cardid":"5427052319","clone":{"name":"cixiong","suit":"spade","number":2,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":1157},"original":"e","timeout":1086}],
                         },
                         viewAsFilter:function (player){
         if(get.zhu(player,'shouyue')){
@@ -8409,11 +8599,17 @@ _status.extensionmade.push("三分天下");
         return event.player==player;
     },
                 content:function (){
+        'step 0'
         if(trigger.player==player){
             trigger.num++;
         }
         else{
             trigger.num--;
+        }
+        'step 1'
+        if(player.name=='xumuyunxingstar'){
+            player.awakenSkill('starjibian');
+            player.storage.starjibian=true;
         }
     },
             },
@@ -8640,6 +8836,7 @@ _status.extensionmade.push("三分天下");
     },
             },
             "starmojiang2":{
+                audio:"ext:王朝更替_权:2",
                 trigger:{
                     player:"damageEnd",
                 },
@@ -9048,13 +9245,18 @@ player.node.marks.childNodes[i].innerHTML='';
             },
             "swk9981":{
                 forbid:["boss"],
+                popup:false,
                 audio:"ext:王朝更替_权:2",
                 trigger:{
                     global:"gameStart",
                 },
                 forced:true,
                 content:function (){
+        'step 0'
+        game.log('正在载入音乐......');
         ui.backgroundMusic.src=lib.assetURL+'extension/王朝更替_权/悟空.mp3';
+        'step 1'
+        game.log('正在播放音乐:《悟空》');
     },
             },
             starshengun:{
@@ -9315,6 +9517,1044 @@ player.node.marks.childNodes[i].innerHTML='';
                 },
                 mark:true,
             },
+            starxsjueyan:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageBegin",
+                    player:"damageBegin",
+                },
+                filter:function (event,player){
+        return get.type(event.card,'trick')=='trick';
+    },
+                content:function (){
+        trigger.cancel();
+    },
+            },
+            starzhujue:{
+                audio:"ext:王朝更替_权:2",
+                enable:"phaseUse",
+                filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('h')>0;
+    },
+                filter:function (event,player){
+        var num;
+        if(get.mode()=='identity'){
+            num=get.population('zhong');
+        }
+        else{
+            num=1;
+        }
+        if(player.getStat().skill.starzhujue>=num) return false;
+        return player.countCards('h')>0;
+    },
+                content:function (){
+        "step 0"
+        player.chooseToCompare(target);
+        "step 1"
+        if(result.bool){
+        var list=['sha','juedou','jingleishan'];
+            player.useCard(target,game.createCard(list.randomGet()));
+        }
+        else{
+            if(player.name=='xumuyunxingstar'){
+                player.draw();
+            }
+            else{
+                target.chooseToDiscard('he',true);
+            }
+        }
+    },
+                ai:{
+                    order:function (name,player){
+            var cards=player.getCards('h');
+            if(player.countCards('h','sha')==0){
+                return 1;
+            }
+            for(var i=0;i<cards.length;i++){
+                if(cards[i].name!='sha'&&cards[i].number>11&&get.value(cards[i])<7){
+                    return 9;
+                }
+            }
+            return get.order({name:'sha'})-1;
+        },
+                    result:{
+                        player:function (player){
+                if(player.countCards('h','sha')>0) return 0.6;
+                var num=player.countCards('h');
+                if(num>player.hp) return 0;
+                if(num==1) return -2;
+                if(num==2) return -1;
+                return -0.7;
+            },
+                        target:function (player,target){
+                var num=target.countCards('h');
+                if(num==1) return -1;
+                if(num==2) return -0.7;
+                return -0.5
+            },
+                    },
+                    threaten:1.3,
+                },
+            },
+            stardanfu:{
+                audio:"ext:王朝更替_权:2",
+                skillAnimation:"legend",
+                animationColor:"metal",
+                enable:"phaseUse",
+                content:function (){
+        player.turnOver();
+        player.addTempSkill('qianxing',{player:"phaseBegin"});
+        player.awakenSkill('stardanfu');
+        player.storage.stardanfu=true;
+    },
+                ai:{
+                    result:{
+                        target:-1,
+                        player:function (player){
+                if(player.hp==1)return 4;
+            },
+                    },
+                    order:2,
+                    expose:0.3,
+                    effect:{
+                        target:function (card){
+                if(card.name=='tiesuo'){
+                    return 0.5;
+                }
+            },
+                    },
+                },
+            },
+            staryinren:{
+                audio:"ext:王朝更替_权:2",
+                mod:{
+                    maxHandcard:function (player,num){
+            return num+player.maxHp;
+        },
+                },
+                trigger:{
+                    player:"phaseDiscardBegin",
+                },
+                forced:true,
+                content:function (){
+        'step 0'
+        player.chooseToDiscard('he','请重铸一张牌');
+        'step 1'
+        if(result.bool){
+            player.draw();
+        }
+        else{
+            event.finish();
+        }
+    },
+            },
+            starbaiyi:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseEnd",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.countUsed()>=4&&player.countCards('h')<player.hp;
+    },
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('starbaiyi'),function(card,player,target){
+            return player!=target;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            var num=[0,0,1,1,1,2].randomGet();
+            player.logSkill('starbaiyi',result.targets);
+            event.target=result.targets[0];
+            event.target.damage(num);
+            game.log(event.target,'受到了'+num+'点伤害');
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            starronghu:{
+                mod:{
+                    maxHandcard:function (player,num){
+            return num+1;
+        },
+                },
+                trigger:{
+                    global:"gainBegin",
+                },
+                audio:"ext:王朝更替_权:2",
+                forced:true,
+                popup:false,
+                filter:function (event,player){
+        if(event.source==player&&event.player!=player){
+            for(var i=0;i<event.cards.length;i++){
+                if(get.color(event.cards[i])=='black') return true;
+            }
+        }
+        return false;
+    },
+                content:function (){
+        trigger.player.showHandcards();
+    },
+            },
+            starmengjiao:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                content:function (){
+        trigger.num+=player.hp-1;
+        player.addTempSkill('starmengjiao2');
+    },
+                ai:{
+                    threaten:1.3,
+                },
+            },
+            "starmengjiao2":{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDrawEnd",
+                },
+                popup:false,
+                forced:true,
+                filter:function (event){
+        return event.cards&&event.cards.length;
+    },
+                content:function (){
+        'step 0'
+        event.cards=trigger.cards.slice(0);
+        player.chooseCardTarget({
+            filterCard:function(card){
+                return _status.event.getParent().cards.contains(card);
+            },
+            selectCard:[2,Infinity],
+            filterTarget:function(card,player,target){
+                return player!=target;
+            },
+            ai1:function(card){
+                if(ui.selected.cards.length>0) return -1;
+                if(card.name=='du') return 20;
+                return (_status.event.player.countCards('h')-_status.event.player.hp);
+            },
+            ai2:function(target){
+                var att=get.attitude(_status.event.player,target);
+                if(ui.selected.cards.length&&ui.selected.cards[0].name=='du'){
+                    return 1-att;
+                }
+                return att-4;
+            },
+            forced:true,
+            prompt:'请选择要送人的卡牌'
+        });
+        "step 1"
+        if(result.bool){
+            player.line(result.targets,'green');
+            result.targets[0].gain(result.cards,player);
+            player.$give(result.cards.length,result.targets[0]);
+            game.delay(0.7);
+        }
+    },
+            },
+            starzhentian:{
+                audio:"ext:王朝更替_权:2",
+                enable:"phaseUse",
+                prompt:"摸两张牌并封印技能",
+                content:function (){
+        "step 0"
+        player.draw(2);
+        "step 1"
+        player.addTempSkill('fengyin');
+        player.say('真田家族的荣耀，由我来守护！');
+    },
+                ai:{
+                    basic:{
+                        order:1,
+                    },
+                    result:{
+                        player:function (player){
+                if(player.countCards('h')>=player.hp-1) return -1;
+                if(player.hp<3) return -1;
+                return 1;
+            },
+                    },
+                },
+            },
+            starfujun:{
+                group:"starfujun2",
+                trigger:{
+                    global:"gameStart",
+                    player:"enterGame",
+                },
+                forced:true,
+                content:function (){
+        var num=[1,2].randomGet();
+        player.recover(num);
+    },
+            },
+            "starfujun2":{
+                trigger:{
+                    player:"recoverEnd",
+                },
+                forced:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        player.chooseTarget(true,get.prompt('starfujun2'),function(card,player,target){
+            return player!=target;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('starfujun2',result.targets);
+            event.target=result.targets[0];
+            event.target.damage();
+            player.removeSkill('fengyin');
+            player.say('整顿大军，复丰臣天下！');
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "_starzhentianxingcun":{
+                trigger:{
+                    global:"gameStart",
+                },
+                forced:true,
+                popup:false,
+                filter:function (event,player){
+        return player.name=='zhentianxingcunwanstar'||player.name2=='zhentianxingcunwanstar';
+    },
+                content:function (){
+        var num=3;
+        var num1=1;
+        if(game.zhu==player&&game.players.length>=5){
+            num++;
+            num1++;
+        };
+        player.maxHp=num;
+        player.hp=num1;
+        player.update();
+    },
+            },
+            staryouzhu:{
+                audio:"ext:王朝更替_权:4",
+                trigger:{
+                    player:"phaseBegin",
+                },
+                frequent:true,
+                content:function (){
+        var friend=['staryinji','starzhanji','starxsjueyan','staryuhuo','starzhencheng'].randomGet();
+        player.addTempSkill(friend,{player:"phaseBefore"});
+    },
+            },
+            starpdgyinji:{
+                mod:{
+                    maxHandcard:function (player,num){
+            return num=4;
+        },
+                },
+                trigger:{
+                    player:"phaseBefore",
+                },
+                audio:"ext:王朝更替_权:2",
+                forced:true,
+                content:function (){
+        player.chooseToDiscard(100,'j',true);
+        if(player.countCards('h','sha')==0){
+            player.recover();
+            player.turnOver(false);
+            player.link(false);
+        }
+    },
+            },
+            starluoma:{
+                zhuSkill:true,
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"damageEnd",
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.hasZhuSkill('starluoma')&&event.player.isAlive();
+    },
+                content:function (){
+        trigger.source.gainPlayerCard(true,'hej',trigger.player);
+    },
+            },
+            starzhengzhan:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDrawBegin",
+                },
+                direct:true,
+                content:function (){
+        "step 0"
+        trigger.num+=Math.floor(player.storage.starcaiguo/3);
+        player.chooseTarget(get.prompt('starzhengzhan'),function(card,player,target){
+            return lib.filter.targetEnabled({name:'sha'},player,target);
+        }).set('ai',function(target){
+            return get.effect(target,{name:'sha'},_status.event.player);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('starzhengzhan');
+            player.useCard({name:'sha'},result.targets,false);
+        }
+    },
+                ai:{
+                    threaten:function (player,target){
+            return 1.6;
+        },
+                },
+            },
+            starcaiguo:{
+                marktext:"裁",
+                init:function (player){
+        player.storage.starcaiguo=0;
+    },
+                intro:{
+                    content:function (storage){
+            return '当前有'+storage+'个“裁国”';
+        },
+                },
+                mark:true,
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"dieAfter",
+                },
+                forced:true,
+                content:function (){
+        player.storage.starcaiguo++;
+        player.syncStorage('starcaiguo');
+        game.log(player,'获得了一枚“裁国”');
+    },
+            },
+            startianliu:{
+                audio:"ext:王朝更替_权:2",
+                enable:"phaseUse",
+                content:function (){
+        "step 0"
+        player.addSkill('starzhanwu');
+        player.addSkill('fengyin');
+        "step 1"
+        player.say('战胜自己，才能成为最高的强者。');
+    },
+                derivation:"starzhanwu",
+                ai:{
+                    basic:{
+                        order:1,
+                    },
+                    result:{
+                        player:function (player){
+                if(player.countCards('h')>=player.hp-1) return -1;
+                if(player.hp<3) return -1;
+                return 1;
+            },
+                    },
+                },
+            },
+            starshanji:{
+                forced:true,
+                mod:{
+                    maxHandcard:function (player,num){
+            if(player.hasSkill('fengyin')) return num+1;
+        },
+                    globalFrom:function (from,to,distance){
+            if(from.hasSkill('fengyin')) return distance-1;
+        },
+                },
+            },
+            starzhanwu:{
+                group:"starzhanwu_remove",
+                trigger:{
+                    player:"useCard",
+                },
+                filter:function (event,player){
+        if(event.card.name!='sha') return false;
+        return game.hasPlayer(function(current){
+            return !event.targets.contains(current)&&get.distance(player,current)<=1&&player.canUse('sha',current);
+        });
+    },
+                forced:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starzhanwu'),function(card,player,target){
+            return !_status.event.source.contains(target)&&get.distance(player,target)<=1&&player.canUse('sha',target);
+        }).set('source',trigger.targets).set('ai',function(target){
+            var player=_status.event.player;
+            return get.effect(target,{name:'sha'},player,player);
+        });
+        'step 1'
+        if(result.bool){
+            if(!event.isMine()&&!_status.connectMode) game.delayx();
+            event.target=result.targets[0];
+            player.say('武士之道，定将乱舞天下！');
+        }
+        else{
+            event.finish();
+        }
+        'step 2'
+        player.logSkill('starzhanwu',event.target);
+        trigger.targets.push(event.target);
+    },
+                subSkill:{
+                    remove:{
+                        trigger:{
+                            player:"phaseEnd",
+                        },
+                        forced:true,
+                        filter:function (event,player){
+        return player.countUsed()>=3;
+    },
+                        content:function (){
+        player.removeSkill('fengyin');
+        player.removeSkill('starzhanwu');
+    },
+                        sub:true,
+                    },
+                },
+                ai:{
+                    effect:{
+                        player:function (card,player,target){
+                if(card.name=='sha'){
+                    if(player._starzhanwutmp) return;
+                    player._starzhanwutmp=true;
+                    if(get.effect(target,{name:'sha'},player,player)<=0){
+                        delete player._starzhanwutmp;
+                        return;
+                    }
+                    if(game.hasPlayer(function(current){
+                        return current!=target&&get.distance(player,current)<=1&&
+                        player.canUse('sha',current)&&get.effect(current,{name:'sha'},player,player)>0;
+                    })){
+                        delete player._starzhanwutmp;
+                        return [1,1];
+                    }
+                    delete player._starzhanwutmp;
+                }
+            },
+                    },
+                },
+            },
+            starlongjue:{
+                group:["starlongjue_one","starlongjue_two","starlongjue_there"],
+            },
+            "starlongjue_theone":{
+                mark:false,
+            },
+            "starlongjue_thetwo":{
+                mark:false,
+            },
+            "starlongjue_one":{
+                trigger:{
+                    player:"phaseUseEnd",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.countUsed()>=5;
+    },
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('starlongjue_one'),function(card,player,target){
+            return player!=target;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('starlongjue_one',result.targets);
+            event.target=result.targets[0];
+            event.target.damage('thunder');
+            player.addSkill('starlongjue_theone');
+            event.target.addSkill('starlongjue_mark');
+            player.say('上吧！二天一流！');
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "starlongjue_two":{
+                trigger:{
+                    player:"phaseUseEnd",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.hasSkill('starlongjue_theone');
+    },
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('starlongjue_two'),function(card,player,target){
+            return player!=target&&!target.hasSkill('starlongjue_mark');
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('starlongjue_two',result.targets);
+            event.target=result.targets[0];
+            event.target.damage('thunder');
+            player.addSkill('starlongjue_thetwo');
+            event.target.addSkill('starlongjue_mark');
+        }
+        else{
+            player.awakenSkill('starlongjue');
+        player.storage.starlongjue=true;
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "starlongjue_there":{
+                trigger:{
+                    player:"phaseUseEnd",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.hasSkill('starlongjue_thetwo');
+    },
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('starlongjue_there'),function(card,player,target){
+            return player!=target&&!target.hasSkill('starlongjue_mark');
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('starlongjue_there',result.targets);
+            event.target=result.targets[0];
+            event.target.damage('thunder');
+            player.awakenSkill('starlongjue');
+        player.storage.starlongjue=true;
+        }
+        else{
+            player.awakenSkill('starlongjue');
+        player.storage.starlongjue=true;
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            "starlongjue_mark":{
+                mark:false,
+            },
+            stardinu:{
+                derivation:"stardinu_zhu",
+                trigger:{
+                    player:"phaseDrawEnd",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('stardinu'),function(card,player,target){
+            return player!=target;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('stardinu',result.targets);
+            event.target=result.targets[0];
+            player.draw();
+            event.target.damage();
+            player.addTempSkill('stardinu2');
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            starfenshu:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDiscardBegin",
+                },
+                content:function (){
+        "step 0"
+        if(typeof event.count!='number'){
+            // event.count=trigger.cards.length-1;
+            event.count=1;
+        }
+        var recover=0,lose=0,players=game.filterPlayer();
+        for(var i=0;i<players.length;i++){
+            if(players[i].hp<players[i].maxHp){
+                if(get.attitude(player,players[i])>0){
+                    if(players[i].hp<2){
+                        lose--;
+                        recover+=0.5;
+                    }
+                    lose--;
+                    recover++;
+                }
+                else if(get.attitude(player,players[i])<0){
+                    if(players[i].hp<2){
+                        lose++;
+                        recover-=0.5;
+                    }
+                    lose++;
+                    recover--;
+                }
+            }
+            else{
+                if(get.attitude(player,players[i])>0){
+                    lose--;
+                }
+                else if(get.attitude(player,players[i])<0){
+                    lose++;
+                }
+            }
+        }
+        var prompt=get.prompt('starfenshu')+'（剩余'+get.cnNumber(event.count)+'次）';
+        player.chooseControl('发动',
+        ui.create.dialog(get.prompt('starfenshu'),'hidden')).ai=function(){
+            if(lose>recover&&lose>0) return 0;
+            if(lose<recover&&recover>0) return 1;
+            return 2;
+        }
+        "step 1"
+        if(result.control=='cancel2'){
+            event.finish();
+        }
+        else{
+            player.logSkill('starfenshu');
+            event.bool=(result.control=='发动');
+            event.num=0;
+            event.players=game.filterPlayer();
+        }
+        "step 2"
+        if(event.num<event.players.length){
+            var target=event.players[event.num];
+            if(event.bool){
+                target.chooseToDiscard('he',true,'请弃置一张牌');
+                
+            }
+            event.num++;
+            event.redo();
+        }
+        "step 3"
+        if(event.count>1){
+            event.count--;
+            event.goto(0);
+        }
+        'step 4'
+        player.draw(player.maxHp);
+                player.awakenSkill('starfenshu');
+        player.storage.starfenshu=true;
+    },
+                ai:{
+                    expose:0.1,
+                    threaten:2,
+                },
+            },
+            starhuangzun:{
+                zhuSkill:true,
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"respond",
+                },
+                filter:function (event,player){
+        return event.card.name=='shan'&&player.hasZhuSkill('starhuangzun')&&!player.hasSkill('starciqin');
+    },
+                frequent:true,
+                content:function (){
+        'step 0'
+        var list=[];
+        if(!player.hasSkill('starjingke')){
+            list.push('starjingke');
+        }
+        if(!player.hasSkill('stargaojianli')){
+            list.push('stargaojianli');
+        }
+        if(!player.hasSkill('starzhangliang')){
+            list.push('starzhangliang');
+        }
+        if(list.length){
+            player.chooseControl(list).set('prompt','选择获得一项技能');
+        }
+        'step 1'
+        player.addSkill(result.control);
+        player.popup(result.control);
+        game.log(player,'获得技能','【'+get.translation(result.control)+'】');
+        if(player.hasSkill('starjingke')&&player.hasSkill('stargaojianli')&&player.hasSkill('starzhangliang')){
+            player.addSkill('starciqin');
+                player.removeSkill('stardinu');
+                player.addSkill('stardinu_zhu');
+        }
+    },
+                subSkill:{
+                    end:{
+                        trigger:{
+                            player:"phaseEnd",
+                        },
+                        filter:function (player){
+                return player.hasSkill('starjingke')&&player.hasSkill('stargaojianli')&&player.hasSkill('starzhangliang');
+            },
+                        content:function (){
+                
+            },
+                        sub:true,
+                    },
+                },
+            },
+            "stardinu2":{
+                mod:{
+                    cardEnabled:function (card){if(card.name=='sha') return false},
+                },
+            },
+            "stardinu_zhu":{
+                trigger:{
+                    player:"phaseDrawEnd",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        player.chooseTarget(get.prompt('stardinu'),function(card,player,target){
+            return player!=target;
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('stardinu',result.targets);
+            event.target=result.targets[0];
+            event.target.damage();     
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    expose:0.2,
+                },
+            },
+            starciqin:{
+                mark:true,
+                marktext:"刺",
+                intro:{
+                    name:"刺秦",
+                    content:"你躲过了三次危机",
+                },
+            },
+            starjingke:{
+                mark:true,
+                "init2":function (player){
+player.markSkill('starjingke')
+player.storage.starjingke=0;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='starjingke'){
+player.node.marks.childNodes[i].setBackground('yz_jingke','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                intro:{
+                    content:function (storage){
+            return '荆轲:图穷匕见:已发动'
+      },
+                },
+            },
+            stargaojianli:{
+                mark:true,
+                "init2":function (player){
+player.markSkill('stargaojianli')
+player.storage.stargaojianli=0;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='stargaojianli'){
+player.node.marks.childNodes[i].setBackground('yz_gaojianli','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                intro:{
+                    content:function (storage){
+            return '高渐离:铅鼓盲袭:已发动'
+      },
+                },
+            },
+            starzhangliang:{
+                mark:true,
+                "init2":function (player){
+player.markSkill('starzhangliang')
+player.storage.starzhangliang=0;
+for(var i=0;i<player.node.marks.childNodes.length;i++){
+if(player.node.marks.childNodes[i].name=='starzhangliang'){
+player.node.marks.childNodes[i].setBackground('yz_zhangliang','character');
+player.node.marks.childNodes[i].innerHTML='';
+}
+}    
+},
+                intro:{
+                    content:function (storage){
+            return '张良:力士砸車:已发动'
+      },
+                },
+            },
+            starxindan:{
+                audio:"ext:王朝更替_权:2",
+                mod:{
+                    maxHandcard:function (player,num){
+            return num+2;
+        },
+                },
+            },
+            startuqiangshenghua:{
+                audio:"tuqiang",
+                trigger:{
+                    player:"respond",
+                },
+                frequent:true,
+                content:function (){
+        player.draw();
+    },
+                ai:{
+                    mingzhi:false,
+                    effect:{
+                        target:function (card,player,target){
+                if(get.tag(card,'respondShan')){
+                    return 0.8;
+                }
+            },
+                    },
+                },
+            },
+            starzhenqian:{
+                audio:"ext:王朝更替_权:2",
+                filter:function (event,player){
+        return player.name=='yxs_goujian'||player.name2=='yxs_goujian';
+    },
+                trigger:{
+                    player:"phaseBegin",
+                },
+                forced:true,
+                content:function (){
+        player.clearSkills();
+        player.addSkill('startuqiangshenghua');
+        player.addSkill('bazhen');
+        player.addSkill('starxindan');
+    },
+            },
+            starzhexianshenghua:{
+                trigger:{
+                    player:"loseEnd",
+                },
+                filter:function (event,player){
+        if(player==_status.currentPhase) return false;
+        for(var i=0;i<event.cards.length;i++){
+            if(event.cards[i].original&&event.cards[i].original!='j') return true;
+        }
+        return false;
+    },
+                frequent:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            starxiansuo:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"phaseEnd",
+                },
+                filter:function (event,player){
+        return event.player!=player;
+    },
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseToDiscard('he',1,'请弃置一张牌');
+        'step 1'
+        if(result.bool){
+            player.viewHandcards(trigger.player);
+        }
+        else{
+            event.finish();
+        }
+    },
+            },
+            starlongquan:{
+                enable:"phaseUse",
+                usable:1,
+                audio:"ext:王朝更替_权:2",
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                content:function (){
+        "step 0"
+        player.showHandcards();
+        "step 1"
+        player.viewHandcards(target);
+    },
+                ai:{
+                    result:{
+                        target:-1,
+                        player:function (player){
+                return player.isLinked()?0:-0.8;
+            },
+                    },
+                    order:2,
+                    expose:0.3,
+                    effect:{
+                        target:function (card){
+                if(card.name=='tiesuo'){
+                    return 0.5;
+                }
+            },
+                    },
+                },
+            },
+            starlijian:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageBegin",
+                },
+                content:function (){
+        var e1=player.getEquip('staryuewanggoujianjian');
+        if(e1){
+        player.discard(e1);
+             }
+        player.draw(2);
+        trigger.num++;
+    },
+            },
+            staryuewang:{
+            },
+            starshixian:{
+                audio:"ext:王朝更替_权:2",
+                filter:function (event,player){
+        return player.name=='yxs_libai'||player.name2=='yxs_libai';
+    },
+                trigger:{
+                    player:"phaseBegin",
+                },
+                forced:true,
+                content:function (){
+        player.removeSkill('zhexian');
+        player.addSkill('starzhexianshenghua');
+        player.addSkill('starxiansuo');
+    },
+            },
         },
         translate:{
             "starzhihui1":"制回",
@@ -9398,7 +10638,7 @@ player.node.marks.childNodes[i].innerHTML='';
             "starlongduan2":"龙断",
             "starlongduan2_info":"",
             starlongduan:"龙断",
-            "starlongduan_info":"锁定技，每当你因\"龙胆\"使用或打出一张牌时，你摸一张牌;你的手牌上限+1。",
+            "starlongduan_info":"锁定技，每当你因\"龙胆\"使用一张牌，你摸一张牌;每当你打出一张牌，你可以令一名其他角色摸一张牌，若你为\"碎皇甫朝云\"，你摸一张牌;你的手牌上限+1。",
             starhuzhu:"护主",
             "starhuzhu_info":"锁定技，游戏开始时，你获得技能\"龙胆\"，然后你指定一名角色并令其成为\"护主\"目标。(护主:你视为拥有\"天乐\"。)",
             "starhuzhu3":"护主",
@@ -9770,7 +11010,7 @@ player.node.marks.childNodes[i].innerHTML='';
             starjilian:"计连",
             "starjilian_info":"出牌阶段限一次，你可以弃置一张手牌并选择一名角色，若其性别为男且不为你，其获得技能\"无双\"直到其回合结束;若其性别为女且不为你，其获得技能\"离间\"直到其回合结束;若其为你，你摸三张牌。",
             starjibian:"汲变",
-            "starjibian_info":"一名体力值未满的角色的摸牌阶段开始时，若其为你，你可以多摸一张牌，否则你可以令其少摸一张牌。",
+            "starjibian_info":"一名体力值未满的角色的摸牌阶段开始时，若其为你，你可以多摸一张牌，否则你可以令其少摸一张牌;若你为\"醒徐暮云\"，此技能改为限定技。",
             starxuanzhan:"玄战",
             "starxuanzhan_info":"摸牌阶段，你可以多摸一张牌并令任意名体力值为1的其他角色各摸一张牌。",
             starbaodao:"宝刀",
@@ -9839,11 +11079,101 @@ player.node.marks.childNodes[i].innerHTML='';
             "starjueyi_info":"锁定技，你的进攻距离+X;你的防御距离+Y;你的手牌上限+Z。(X为你的体力值-1，Y为你已损失的体力值，Z为你的\"白\"数)",
             starjima:"疾马",
             "starjima_info":"出牌阶段，你可以弃置一张装备牌，然后获得一匹\"白马\"并摸一张牌。",
+            starxsjueyan:"绝言",
+            "starxsjueyan_info":"每当你即将造成/受到一点伤害，若此伤害来源为锦囊牌，你可以停止此结算。",
+            starzhujue:"诛决",
+            "starzhujue_info":"出牌阶段限X次，你可以与一名角色拼点，若你赢，你随机对其使用【杀】,[决斗]或[惊雷闪]，否则你其弃置一张手牌，若你为\"醒徐暮云\"，你改为摸一张牌。(X为场上忠臣数量)",
+            stardanfu:"单福",
+            "stardanfu_info":"限定技，你可以翻面并获得潜行效果直到下个回合开始。",
+            staryinren:"隐忍",
+            "staryinren_info":"锁定技，你的手牌上限+X;弃牌阶段开始时，你可以重铸一张牌。(X为你的体力上限)",
+            starbaiyi:"白衣",
+            "starbaiyi_info":"结束阶段，若你在本回合内使用过不小于4张牌且你的手牌数小于你的体力值，你可以对一名其他角色造成随机0~2点伤害。",
+            starronghu:"容虎",
+            "starronghu_info":"锁定技，你的手牌上限+1;获得你黑色手牌的角色展示所有手牌。",
+            starmengjiao:"盟交",
+            "starmengjiao_info":"摸牌阶段，你可以多摸X张牌，然后你将其中至少两张牌交给其他角色。(X为你的体力值-1)",
+            "starmengjiao2":"盟交",
+            "starmengjiao2_info":"",
+            starzhentian:"真田",
+            "starzhentian_info":"出牌阶段，你可以摸两张牌并封印技能直到回合结束。",
+            starfujun:"复军",
+            "starfujun_info":"锁定技，每当你回复一点体力，你对一名其他角色造成一点伤害并解除封印;游戏开始时，你随机回复1~2点体力。",
+            "starfujun2":"复军",
+            "starfujun2_info":"",
+            "_starzhentianxingcun":"真田丸",
+            "_starzhentianxingcun_info":"",
+            staryouzhu:"友助",
+            "staryouzhu_info":"准备阶段，你随机获得\"佐帝诸葛亮\"，\"小鸟庞统\"，\"水镜司马徽\",\"诛徐庶\"的技能之一直到下个回合开始。",
+            starpdgyinji:"隐机",
+            "starpdgyinji_info":"锁定技，你的手牌上限始终为4;准备阶段，你弃置所有判定牌，若你手牌没有【杀】，你回复一点体力并消除状态。",
+            starluoma:"罗马",
+            "starluoma_info":"主公技，锁定技，当你在场时，每当一名角色对一名角色造成伤害，伤害来源可以获得其目标的一张牌。",
+            starzhengzhan:"征战",
+            "starzhengzhan_info":"摸牌阶段，你可以多摸X张牌并对一名其他角色使用一张无距离限制的【杀】。(X为你的\"裁国\"标记数的三分之一且向下取整)",
+            starcaiguo:"裁国",
+            "starcaiguo_info":"锁定技，每当有一名角色死亡，你获得一枚\"裁国\"标记。",
+            startianliu:"天流",
+            "startianliu_info":"出牌阶段，你可以令自己进入封印状态，然后你获得技能\"斩舞\"。",
+            starshanji:"闪击",
+            "starshanji_info":"锁定技，若你已被封印，你的手牌上限与进攻距离+1。",
+            starzhanwu:"斩舞",
+            "starzhanwu_info":"抗击技，每当你使用一张【杀】，你可以多指定一名与你距离为1的角色为目标;结束阶段，若你使用了至少三张牌，你解除封印并失去此技能",
+            starlongjue:"龙诀",
+            "starlongjue_info":"限定技，出牌阶段结束时，若你于本回合使用了至少五张牌，你可以依次对三名角色各造成一点雷电伤害。",
+            "starlongjue_theone":"starlongjue_theone",
+            "starlongjue_theone_info":"",
+            "starlongjue_thetwo":"starlongjue_thetwo",
+            "starlongjue_thetwo_info":"",
+            "starlongjue_one":"龙诀",
+            "starlongjue_one_info":"",
+            "starlongjue_two":"龙诀",
+            "starlongjue_two_info":"",
+            "starlongjue_there":"龙诀",
+            "starlongjue_there_info":"",
+            "starlongjue_mark":"starlongjue_mark",
+            "starlongjue_mark_info":"",
+            stardinu:"帝怒",
+            "stardinu_info":"摸牌阶段结束时，你可以摸一张牌并对一名其他角色造成一点伤害，若如此做，本回合你不能使用【杀】。",
+            starfenshu:"焚书",
+            "starfenshu_info":"限定技，弃牌阶段开始前，你可以令所有角色弃置一张牌，然后你摸X张牌。(X为你的体力上限)",
+            starhuangzun:"皇尊",
+            "starhuangzun_info":"主公技，超转技:①每当你打出一张【闪】，你选择获得\"荆轲\"，\"高渐离\"，\"张良\"标记之一。②若你拥有三种标记，你获得一枚\"刺秦\"标记，然后修改技能\"帝怒\"。",
+            "stardinu2":"帝怒",
+            "stardinu2_info":"",
+            "stardinu_zhu":"帝怒",
+            "stardinu_zhu_info":"摸牌阶段结束时，你可以对一名其他角色造成一点伤害。",
+            starciqin:"刺秦",
+            "starciqin_info":"",
+            starjingke:"荆轲",
+            "starjingke_info":"",
+            stargaojianli:"高渐离",
+            "stargaojianli_info":"",
+            starzhangliang:"张良",
+            "starzhangliang_info":"",
+            starxindan:"薪胆",
+            "starxindan_info":"锁定技，你的手牌上限+2。",
+            startuqiangshenghua:"图强",
+            "startuqiangshenghua_info":"每当你打出一张牌，你可以摸一张牌。",
+            starzhenqian:"鸩浅",
+            "starzhenqian_info":"",
+            starzhexianshenghua:"谪仙",
+            "starzhexianshenghua_info":"当你于一名其他角色的回合内失去牌时，你可以摸一张牌。",
+            starxiansuo:"仙索",
+            "starxiansuo_info":"一名其他角色的结束阶段，你可以弃置一张牌并观看其手牌。",
+            starlongquan:"龙泉",
+            "starlongquan_info":"出牌阶段限一次，你可以展示所有手牌并观看一名角色的手牌。",
+            starlijian:"利剑",
+            "starlijian_info":"",
+            staryuewang:"越王",
+            "staryuewang_info":"",
+            starshixian:"诗仙",
+            "starshixian_info":"",
         },
     },
     intro:"作者QQ:3145656381(若无大事勿扰)<br>作者Q群:<a href=\"http://qm.qq.com/cgi-bin/qm/qr?k=56rl2GZIwaMDwM_pYqeupKVrZYbLx_TA\">431196258<a>(欢迎加入并交流)<br>此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑<br><a href=\"https://www.baidu.com/\">萌新查询处<a>",
     author:":+࿈࿆剑牙雷少kiva࿈࿆+:",
     diskURL:"",
     forumURL:"https://jq.qq.com/?_wv=1027&k=5uKmouC",
-    version:"1.5",
-},files:{"character":["gongsunzanbaistar.jpg"],"card":["swk_shaseng.jpg"],"skill":[]}}})
+    version:"1.6",
+},files:{"character":["yingzhengzunstar.jpg"],"card":["starqixinglongyuanjian.png"],"skill":[]}}})

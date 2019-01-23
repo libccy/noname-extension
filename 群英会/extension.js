@@ -2822,6 +2822,7 @@ skill:{
     },
                 content:function (){
 player.awakenSkill('xwj_xhuoying_nishou');
+game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.jpg');
 player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
 name:'xwj_xhuoying_chiwan',
 image:'ext:群英会/xwj_xhuoying_chiwan.jpg',
@@ -13321,5 +13322,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.18",
+    version:"1.19",
 },files:{"character":[],"card":[],"skill":[]}}})

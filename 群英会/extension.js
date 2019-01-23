@@ -531,6 +531,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 				name:'xsanguo',
 				connect:true,
 				character:{
+ "xwj_xsanguo_zhihuaxiong":["male","qun",4,["xwj_xsanguo_wenjiu","xwj_xsanguo_badao"],[]],
  "xwj_xsanguo_yujin":["male","wei",4,["xwj_xsanguo_zhenjun"],[]], 
  "xwj_xsanguo_zhangfei":["male","shu",4,["paoxiao","xwj_xsanguo_tishen","xwj_xsanguo_tannan"],[]], 
  "xwj_xsanguo_jiangwei":["male","shu",4,["xwj_xsanguo_tiaoxin","xwj_xsanguo_guanxing"],[]], 
@@ -541,16 +542,15 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
  "xwj_xsanguo_xinyuji":['male','qun',3,['xwj_xsanguo_guhuo'],[]], 
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
  "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
-       
-       
- 
+              
         },
 characterIntro:{
 	     "xwj_xsanguo_xinyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
 	     "xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
 					"xwj_xsanguo_yujin":"代码来源于贴吧和QQ群的大佬之手，此扩展代为收集。",
 					"xwj_xsanguo_menghuo":"七擒七纵之孟获。",
-					"xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",
+                    "xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",
+					"xwj_xsanguo_zhihuaxiong":"太阳神三国杀智包的华雄。",
 					"xwj_xsanguo_wangyun":"貂蝉的义父，详看百度百科。",
 					"xwj_xsanguo_jiangwei":"诸葛亮弟子",
 					"xwj_xsanguo_nanhua":"南华老仙，古典小说《三国演义》中张角的师傅，在《三国演义》中将三卷天书【太平要术】传给张角，让他普救世人。张角得此书，晓夜攻习，能呼风唤雨，号为 “天公将军”，开启三国乱世。南华老仙与迷之仙人左慈，太平道人于吉，被称为汉末三仙",
@@ -909,6 +909,7 @@ skill:{
                 },
                 direct:true,
                 unique:true,
+                priority:18,
                 logTarget:"source",
                 audio:"ext:群英会:2",
                 derivation:['xwj_xsanguo_zhengnan'],
@@ -926,8 +927,9 @@ skill:{
                     });
        'step 1'
         if(result.bool){
+        game.delay(2.8);
         player.$fullscreenpop('有情人终成眷属','fire'); 
-        game.delay(0.8);
+        game.delay(0.5);
         var name1=trigger.source.name;
         var name2='guansuo';        
         trigger.source.reinit(name1,name2,false);
@@ -949,7 +951,6 @@ skill:{
         }        
     },
             },
-
 
 	"xwj_xsanguo_oldguhuo":{
          audio:2,
@@ -1934,6 +1935,56 @@ skill:{
                 },
             },
 	
+	"xwj_xsanguo_wenjiu":{
+                trigger:{
+                    source:"damageBegin",
+                },
+                filter:function (event){
+        return event.card&&event.card.name=='sha'&&get.color(event.card)=='black'&&event.notLink();
+    },
+                forced:true,
+                content:function (){
+        trigger.num++;
+    },
+                subSkill:{
+                    "1":{
+                        trigger:{
+                            target:"shaBefore",
+                        },
+                        direct:true,
+                        priority:11,
+                        filter:function (event){
+        if(event.player.hp<0) return false;
+        return (event.card.name=='sha'&&get.color(event.card)=='red')
+    },
+                        content:function (){ 
+        game.playXu('xwj_xsanguo_wenjiu1');						               
+        trigger.directHit=true;         
+    },
+                        ai:{
+                            threaten:1,
+                        },
+                        sub:true,
+                    },
+                },
+                audio:"ext:群英会:1",
+                group:"xwj_xsanguo_wenjiu_1",
+            },
+            "xwj_xsanguo_badao":{
+                audio:"ext:群英会:1",
+                trigger:{
+                    target:"shaBefore",
+                },
+                direct:true,
+                priority:11,
+                filter:function (event){      
+        return event.card.name=='sha'&&get.color(event.card)=='black';
+    },
+                content:function (){        
+         player.chooseToUse({name:'sha'},'霸刀：是否使用一张杀？').logSkill='xwj_xsanguo_badao';
+    },
+            },
+			
 "xwj_xsanguo_zhenjun":{
                 audio:["jieyue",2],
                 trigger:{
@@ -2449,10 +2500,10 @@ event.target.draw(event.num1);
     },
                 content:function (){
         'step 0'
-        player.gainMaxHp(1);
+        player.gainMaxHp();
         player.discard(player.get('j'));
         player.hp=Math.min(9,player.maxHp);  
-        player.draw(1);
+        player.draw();
         'step 1'     
         player.link(false);
         player.turnOver(false);
@@ -2466,9 +2517,9 @@ event.target.draw(event.num1);
                     save:true,
                     result:{
                         player:function (player){
-                if(player.hp==0) return 10;
+                if(player.hp<=0) return 10;
                 if(player.hp<=2&&player.countCards('he')<=1) return 10;
-                return 0;
+                return 8;
             },
                     },
                     threaten:function (player,target){
@@ -2529,7 +2580,11 @@ event.target.draw(event.num1);
 },
 
 translate:{
-
+ "xwj_xsanguo_zhihuaxiong":"智华雄",
+ "xwj_xsanguo_wenjiu":"温酒",
+            "xwj_xsanguo_wenjiu_info":"锁定技，你使用的黑色【杀】造成的伤害+1，你无法闪避红色【杀】",
+            "xwj_xsanguo_badao":"霸刀",
+            "xwj_xsanguo_badao_info":"当你成为黑色杀的目标时，你可以对你攻击范围内的一名其他角色使用一张【杀】",
      "xwj_xsanguo_baosanniang":"鲍三娘",
 	 "xwj_xsanguo_zhaotongzhaoguang":"赵统赵广",
 	  "xwj_xsanguo_yizan":"翊赞",
@@ -2576,7 +2631,7 @@ translate:{
             "xwj_xsanguo_chengmou_info":"摸牌阶段开始时，若你有“功”牌，你获得之，若你所获得的“功”牌多于两张，你须失去一点体力。",
             "xwj_xsanguo_jugong":"居功",
             "xwj_xsanguo_jugong_info":"回合外每名角色的回合限一次，每当场上有角色因受到【杀】或【决斗】造成的伤害，你可以摸一张牌并且将一张手牌置于你的武将牌上，称之为“功”。在你即将受到伤害时，你可以弃置两张“功”，防止此伤害。",
-            "xwj_xsanguo_zhangfei":"张飞",
+            "xwj_xsanguo_zhangfei":"智张飞",
             "xwj_xsanguo_tannan":"探囊",
             "xwj_xsanguo_tannan_info":"<font color=#f00>锁定技</font> 若你已受伤，你的进攻距离+X（X为你已损失体力值）",
             "xwj_xsanguo_tishen":"替身",
@@ -2668,12 +2723,17 @@ game.import('character',function(){
             "xwj_xhuoying_liudaoxianren":["male",["xhuo","xren","xxiao"].randomGet(),Infinity,["xwj_xhuoying_renzong","xwj_xhuoying_liudao"],[]],
             "xwj_xhuoying_zuojin":["male","xhuo",3,["xwj_xhuoying_weishou","xwj_xhuoying_wodi"],[]],
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
+            "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
+			"xwj_xhuoying_quanzhongya":["male","qun",3,["xwj_xhuoying_nishou","xwj_xhuoying_tongya"],[]],
+            "xwj_xhuoying_chiwan":["male","qun",4,["xwj_xhuoying_renquan"],[]],
            
                 },
-				
-				
-			characterIntro:{					
-	        "xwj_xhuoying_itachi":"宇智波鼬，木叶村宇智波一族的天才忍者，7岁忍校毕业，13岁当上暗部队长，忍术高超，擅长手里剑。宇智波一族少数开了万花筒写轮眼的人，左眼月读，能瞬间让对手陷入鼬控制的幻术之中，包括时间、空间、质量皆由鼬控制，让其受到极重的精神攻击，属精神攻击类幻术。右眼天照，聚焦即发出能烧毁一切的黑色火焰，烧毁目标前永不熄灭。双眼须佐能乎，拥有极强的攻击与防御力。少年鼬是名双重间谍，为了村子，在宇智波一族叛变木叶前选择灭族，后逃离加入并暗中调查晓组织。后与其弟佐助决战而死，佐助因此开了万花筒写轮眼。第4次忍界大战被兜用秽土转生术复活，然后与鸣人相遇发动最强幻术“别天神”，摆脱控制，与兜一战，发动禁术“伊邪那美”，让兜陷入循环的幻术中。",
+							
+			characterIntro:{	
+			"xwj_xhuoying_shouju":"手鞠，日本漫画《火影忍者》及其衍生作品中的女性角色。风之国砂隐村的女忍者，第四代风影罗砂的长女，第五代风影我爱罗和勘九郎的姐姐。性格爽朗，擅长使用三星扇进行大范围的远程风遁忍术攻击。最后嫁给木叶的奈良鹿丸并育有一子奈良鹿戴。",
+	        "xwj_xhuoying_quanzhongya":"犬冢牙，日本漫画《火影忍者》及其衍生作品中的角色，火之国木叶隐村的中忍，犬冢一族的族长犬冢爪之子。擅长与忍犬赤丸合作，最常使用的忍术是“牙通牙”，性格好强，冲动有自信，喜欢充当别人的领袖。与忍犬赤丸形影不离，犹如兄弟一样。有着历害的野外生存的技能，其实这和他每天都和赤丸一起“散步”是很有关系的。",
+	        "xwj_xhuoying_chiwan":"赤丸是日本动漫《火影忍者》中的一只忍犬，是犬冢牙的得力助手，经常和牙呆在一起。当牙作战时，赤丸可以起到很好的辅助作用。曾经把鸣人的裤子连同臀部咬烂，牙齿十分锋利。赤丸是犬冢牙永不分离的伙伴，亦为忍术道具，具有灵敏的嗅觉，能感受敌人的查克拉力量及危险性。因为吃下兵粮丸后身体会变成赤红色，故名赤丸。 它能化成犬冢牙的分身，然后合作使出忍术--‘牙通牙’，化成两股龙卷风攻击敌人。及后更能与犬冢牙进行人兽混合变身，化成双头一身的双头狼，并使出超必杀技--“牙狼牙”，形成具有极大破坏力、可将敌人切开的龙卷风。小时候不会说话，只有犬冢牙听得懂赤丸的叫声所表达的意思。",
+		    "xwj_xhuoying_itachi":"宇智波鼬，木叶村宇智波一族的天才忍者，7岁忍校毕业，13岁当上暗部队长，忍术高超，擅长手里剑。宇智波一族少数开了万花筒写轮眼的人，左眼月读，能瞬间让对手陷入鼬控制的幻术之中，包括时间、空间、质量皆由鼬控制，让其受到极重的精神攻击，属精神攻击类幻术。右眼天照，聚焦即发出能烧毁一切的黑色火焰，烧毁目标前永不熄灭。双眼须佐能乎，拥有极强的攻击与防御力。少年鼬是名双重间谍，为了村子，在宇智波一族叛变木叶前选择灭族，后逃离加入并暗中调查晓组织。后与其弟佐助决战而死，佐助因此开了万花筒写轮眼。第4次忍界大战被兜用秽土转生术复活，然后与鸣人相遇发动最强幻术“别天神”，摆脱控制，与兜一战，发动禁术“伊邪那美”，让兜陷入循环的幻术中。",
 	        "xwj_xhuoying_zhujian":"千手柱间，初代目火影，战乱时代中千手一族的首领，木叶村的建立者之一，二代火影千手扉间的兄长，六道仙人大筒木羽衣次子阿修罗上一代转世者 。擅长使用“木遁”，能瞬间使出仙术，其身体能量和回复力极其惊人，具有操控尾兽的能力；平定乱世，平均分配尾兽给五大国，并在终结之谷之战中一举击败宇智波斑，是宇智波斑唯一敬畏的忍者。因此凡见过其风采的人皆称其是“如同六道仙人一般的神话”，被忍界誉为“忍者之神”。在第四次忍界大战中一度被大蛇丸以秽土转生的形式复活，与同被复活的历代火影一起前往战场支援忍者联军。",
             "xwj_xhuoying_gangshou":"千手纲手，日本动漫《火影忍者》中的女性人物，火之国木叶隐村的第五代火影，初代火影千手柱间及其妻子漩涡水户的孙女，与自来也、大蛇丸并称传说中的“三忍”，最重要的人是恋人加藤断与弟弟绳树。擅长体术和医疗忍术，尤其是禁术创造再生•百豪之术，能迅速让伤口再生，从而达到疗伤效果，但风险就是术者会因此缩短寿命。 受自来也的请求，回村就任第五代火影。在后来的佩恩袭击等事件中保护着村子。在后来的第四次忍界大战中担任忍者联军总参谋，发挥着重大作用。",
             "xwj_xhuoying_dashewan":"大蛇丸，日本动漫《火影忍者》中的人物。火之国木叶村的叛忍，木叶村的“三忍”之一，与自来也、纲手同为第三代火影猿飞日斩的弟子。具有独身攻陷一个小国的强大实力，和近乎不老不死的恢复力，被认为比蛇还难缠。擅长研究忍术且渴望得到写轮眼，闻名于忍界。野心勃勃，由于目睹了太多人的死亡、知道生命是脆弱的而误入歧途，他认为人体中蕴含着一生都无法使用的力量，因此他想获得长生不老从而学习世间所有忍术，掌握世间的真理。其野心被多次阻断，在佐助与鼬一战中被鼬的十拳剑封印。后在第四次忍界大战中，从御手洗红豆和药师兜的身上看见了药师兜的失败，有所醒悟。之后被佐助复活，与历代火影和鹰小队前往战场支援忍者联军。",
@@ -2747,14 +2807,203 @@ game.import('character',function(){
 			"xwj_xhuoying_leiying":['xwj_xhuoying_qilabi'],
 			"xwj_xhuoying_junmalv":['xwj_xhuoying_zhongwu'],
 			"xwj_xhuoying_shuimen":['xwj_xhuoying_feijian'],
-				"xwj_xhuoying_zuojin":['xwj_xhuoying_jinye'],
+			"xwj_xhuoying_zuojin":['xwj_xhuoying_jinye'],
 					},
 				
 skill:{
+"xwj_xhuoying_nishou":{
+	audio:"ext:群英会:2",
+                trigger:{
+                    player:"phaseUseBegin",
+                },
+                unique:true,
+                filter:function (event,player){
+                return player.hp<=2;
+    },
+                content:function (){
+player.awakenSkill('xwj_xhuoying_nishou');
+player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
+name:'xwj_xhuoying_chiwan',
+image:'ext:群英会/xwj_xhuoying_chiwan.jpg',
+hp:3,
+maxHp:5,
+skills:lib.character.xwj_xhuoying_chiwan[3],
+hs:get.cards(4),
+});
+player.callSubPlayer(player.storage.xwj_xhuoying_nishou);                   
+    },
+            },
+            "xwj_xhuoying_renquan":{
+                mod:{
+                    cardEnabled:function (card,player){
+            if(_status.event.skill!='xwj_xhuoying_renquan'&&card.name!='juedou'&&(get.type(card)=='trick'||get.type(card)=='delay')) return false;
+        },
+                    cardUsable:function (card,player){
+            if(_status.event.skill!='xwj_xhuoying_renquan'&&card.name!='juedou'&&(get.type(card)=='trick'||get.type(card)=='delay')) return false;
+        },
+                    cardRespondable:function (card,player){
+            if(_status.event.skill!='xwj_xhuoying_renquan'&&card.name!='juedou'&&(get.type(card)=='trick'||get.type(card)=='delay')) return false;
+        },
+                    cardSavable:function (card,player){
+            if(_status.event.skill!='xwj_xhuoying_renquan'&&card.name!='juedou'&&(get.type(card)=='trick'||get.type(card)=='delay')) return false;
+        },
+                    targetInRange:function (card){
+            if(get.type(card)=='trick'||get.type(card)=='delay'||_status.event.skill=='xwj_xhuoying_renquan') return true;
+        },
+                },
+                audio:"ext:群英会:1",
+                enable:"chooseToUse",
+                filter:function (event,player){
+                return player.countCards('h',{type:'trick'})>0||player.countCards('h',{type:'delay'})>0;
+    },
+                filterCard:{
+                    type:["trick","delay"],
+                },
+                viewAs:{
+                    name:"juedou",
+                },
+                check:function (){return 1},
+                ai:{
+                    basic:{
+                        order:5,
+                        useful:1,
+                        value:5.5,
+                    },
+                    result:{
+                        target:-1.5,
+                        player:function (player,target){
+                            if(get.damageEffect(target,player,target)>0&&get.attitude(player,target)>0&&get.attitude(target,player)>0){
+                                return 0;
+                            }
+                            var hs1=target.getCards('h','sha');
+                            var hs2=player.getCards('h','sha');
+                            if(hs1.length>hs2.length+1){
+                                return -2;
+                            }
+                            var hsx=target.getCards('h');
+                            if(hsx.length>2&&hs2.length==0&&hsx[0].number<6){
+                                return -2;
+                            }
+                            if(hsx.length>3&&hs2.length==0){
+                                return -2;
+                            }
+                            if(hs1.length>hs2.length&&(!hs2.length||hs1[0].number>hs2[0].number)){
+                                return -2;
+                            }
+                            return -0.5;
+                        },
+                    },
+                    tag:{
+                        respond:2,
+                        respondSha:2,
+                        damage:1,
+                    },
+                },
+            },
+            "xwj_xhuoying_tongya":{
+                audio:"ext:群英会:2",
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){ 
+               return target!=player&&target.countCards('he')>0&&player.countCards('he')>0;
+    },
+                check:function (event,player){
+        return ai.get.attitude(player,target)<=0;
+    },
+                content:function (){
+        "step 0"
+         player.chooseToDiscard([1,player.countCards('he')],true,'he','请弃置任意张牌').ai=function(card){
+                return 6-get.value(card);
+            }; 
+            "step 1" 
+        if(result.bool){  
+         event.num=result.cards.length; 
+           target.chooseToDiscard(event.num,true,'he','弃置等量的牌').set('ai',function(card){             
+            return 6-get.value(card);
+        });          
+        }
+        else{
+            event.finish();
+        }            
+          "step 2"
+          player.useCard({name:'juedou'},target,false);            
+    },
+                ai:{
+                    order:8,
+                    result:{
+                        target:function (player,target){
+                return get.damageEffect(target,player);
+            },
+                    },
+                },
+            },
+			
+	"xwj_xhuoying_lianyou":{   
+ 		audio:"ext:群英会:2", 
+    trigger:{
+				player:"phaseBegin",
+				},
+				priority:18,
+    filter:function (event,player){
+        return player.isAlive();
+    },
+    check:function (event,player){
+        var active=0;
+        for(var i=0;i<game.players.length;i++){
+            if(game.players[i]==player) continue;
+            if(!game.players[i].isOut()){
+                if(ai.get.attitude(player,game.players[i])>0){
+                    active++;
+                }
+                else if(ai.get.attitude(player,game.players[i])<0){
+                    active--;
+                }
+            }
+        }
+        if(active>0) return 1;
+        if(Math.random()<0.4) return 1;
+        return 0;
+    },
+    content:function (){
+        "step 0"      
+        event.current=player.next;        
+          var chat=['老娘来了，刚才谁在放肆？','知道危险还不滚到一边去？'].randomGet();
+            player.say(chat);    
+        "step 1"
+        event.current.chooseControl('弃牌','让牌').set('ai',function(){         
+            if(ai.get.attitude(event.current,player)>0) return '让牌';
+            if(ai.get.attitude(event.current,player)<0&&event.current.countCards('e')>=2) return '弃牌';
+            return '让牌';
+        }).set('prompt','镰鼬：请选择一项');    
+        "step 2"
+        if(result.control=='弃牌'){          
+             event.current.chooseToDiscard(1,'e',true);
+        }
+        else{
+            player.line(event.current,'green');
+            player.gainPlayerCard(event.current,'h',true); 
+        }
+        if(event.current.next!=player){
+            event.current=event.current.next;
+            game.delay(0.5);
+            event.goto(1);
+        }                    
+    },
+    ai:{    
+       threaten:1.4,
+                    order:9,
+                    result:{
+                        player:function (player){
+                   return 3;  
+            },
+                    },     
+					},
+},
+
 "xwj_xhuoying_anqi":{
 				audio:"ext:群英会:2",
 				trigger:{
-				player:'loseEnd'
+				player:'loseEnd',
 				},
 				frequent:true,
 				filter:function(event,player){
@@ -7455,8 +7704,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
             },
            
 
- "xwj_xhuoying_tiancheng":{
-                audio:"ext:群英会:2",
+ "xwj_xhuoying_tiancheng":{            
                 trigger:{
                     player:"compare",
                     target:"compare",
@@ -7478,18 +7726,22 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
             if(result.index==0){
                 game.log(player,'超重岩之术');
                 if(player==trigger.player){
+                game.playXu('xwj_xhuoying_tiancheng1');
                     trigger.num1+=num;
                 }
                 else{
+                game.playXu('xwj_xhuoying_tiancheng1');
                     trigger.num2+=num;
                 }
             }
             else{
                 game.log(player,'超轻岩之术');
                 if(player==trigger.player){
+                game.playXu('xwj_xhuoying_tiancheng2');
                     trigger.num1-=num;
                 }
                 else{
+                game.playXu('xwj_xhuoying_tiancheng2');
                     trigger.num2-=num;
                 }
             }
@@ -9860,7 +10112,7 @@ if(card.name=='sha'&&range[1]!=-1) range[1]++;
     },
                 
                 content:function (){                  
-       var chat=['扑街，滚远点','回天！'].randomGet();
+       var chat=['扑街，滚远点','看我的秘术——回天！'].randomGet();
             player.say(chat);                
         player.draw();
     },
@@ -9871,7 +10123,14 @@ if(card.name=='sha'&&range[1]!=-1) range[1]++;
 },
          
 translate:{
-            
+	        "xwj_xhuoying_quanzhongya":"犬冢牙",
+            "xwj_xhuoying_chiwan":"赤丸",
+            "xwj_xhuoying_nishou":"拟兽",
+            "xwj_xhuoying_nishou_info":"限定技，出牌阶段开始时，若你的体力值不大于2，你可以选择“召唤”随从忍兽“赤丸”（起始5体力上限3体力，起始手牌为4）替你作战，直到其死亡，才会切换你回到战场",
+            "xwj_xhuoying_renquan":"忍犬",
+            "xwj_xhuoying_renquan_info":"锁定技，你的锦囊牌均视为【决斗】",
+            "xwj_xhuoying_tongya":"通牙",
+            "xwj_xhuoying_tongya_info":"出牌阶段限一次，你可以选择一名有手牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃），若如此做，视为你对其使用一张【决斗】。",       
             "xwj_xhuoying_tiantian":"天天",
             "xwj_xhuoying_jiju":"集具",
             "xwj_xhuoying_jiju_info":"当其他角色使用武器牌或进攻马时，你可令视为你使用之",
@@ -9963,7 +10222,7 @@ translate:{
             "xwj_xhuoying_reshenwei":"神威",
             "xwj_xhuoying_reshenwei_info":"你可以将任意一张装备牌当【无懈可击】使用（右眼虚化）；当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",
             "xwj_xhuoying_xishou":"吸收",
-            "xwj_xhuoying_xishou_info":"回合结束阶段限一次，你可弃置一张牌并将你的武将牌翻面，若如此做，你指定一名角色，获得其所有牌。",
+            "xwj_xhuoying_xishou_info":"回合结束阶段限一次，你可指定一名其他角色，然后弃置一张牌并将你的武将牌翻面，若如此做，你获得其所有的牌。",
             "xwj_xhuoying_xianyan":"献眼",
             "xwj_xhuoying_xianyan_info":"当你死亡时，你可将所有手牌交给一名其他角色，然后该角色随机获得你的除此技能外的另一项其他技能，并回复一点体力。",
             "xwj_xhuoying_xieshen":"飞段",
@@ -10286,7 +10545,11 @@ translate:{
             "xwj_xhuoying_feidun_info":"<font color=#F0F>沸遁•巧雾之术</font>出牌阶段限一次，你可以观看一名其他角色的牌，然后你可以用一张手牌替换其中的一张牌，若如此做，该角色受到一点火焰伤害",
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
-                                                                        
+            "xwj_xhuoying_shouju":"手鞠",
+            "xwj_xhuoying_lianyou":"镰鼬",
+            "xwj_xhuoying_lianyou_info":"回合开始阶段，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌",
+                 
+                                                                                                                                
 },
           };
 if(lib.device||lib.node){
@@ -13005,15 +13268,15 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放音效。<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止已解决大部分已知的可能会卡死的BUG<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放音效。<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止已解决大部分已知的可能会卡死的BUG<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式。另请关闭“火影忍者”的新版替换开关，否则有部分武将的技能会缺失。更多介绍详看：其它→帮助"}
 				},
 					"xjisha":{
             name:'击杀特效',
-           "intro":"击杀特效：开启后重启游戏生效。任意一个角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
+           "intro":"击杀特效：开启后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
             init:true
-		},				
+		},							
 						"_chooseTime":{
             name:'出牌计时器',
             "intro":"出牌计时器：开启后重启游戏生效。玩家在出牌阶段会自动倒计时，时长15秒，超出时间会直接结束出牌阶段",          
@@ -13021,12 +13284,12 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 		},				
 			"_Background":{
             name:'Background',
-            "intro":"背景图片：开启后重启游戏生效。开场所有角色摸牌会切换精美背景图片",
+            "intro":"背景图片：开启后重启游戏生效。开场所有角色摸牌后会切换精美背景图片",
             init:false
 		},				
 			"_BackgroundMusic":{
             name:'BackgroundMusic',
-               "intro":"背景音乐：开启后重启游戏生效。开场所有角色摸牌会切换优质动听的背景音乐",
+               "intro":"背景音乐：开启后重启游戏生效。开场所有角色摸牌后会切换优质动听的背景音乐",
             init:false
 		},				
 			
@@ -13058,5 +13321,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.17",
+    version:"1.18",
 },files:{"character":[],"card":[],"skill":[]}}})

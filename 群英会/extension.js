@@ -2815,6 +2815,8 @@ skill:{
                 },
             content:function (){      
                  player.logSkill('xwj_xhuoying_nishou');
+                 var chat=['忍法•牙狼牙之术','赤丸，上！'].randomGet();
+            player.say(chat);    
                  player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
                  name:'xwj_xhuoying_chiwan',
                  maxHp:5,
@@ -2911,6 +2913,8 @@ skill:{
             "step 1" 
         if(result.bool){  
         player.logSkill('xwj_xhuoying_tongya');
+         var chat=['牙通牙','赤丸，上！'].randomGet();
+            player.say(chat);    
          event.num=result.cards.length; 
            target.chooseToDiscard(event.num,true,'he','弃置等量的牌').set('ai',function(card){             
             return 6-get.value(card);

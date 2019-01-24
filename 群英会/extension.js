@@ -2717,7 +2717,7 @@ game.import('character',function(){
             "xwj_xhuoying_zuojin":["male","xhuo",3,["xwj_xhuoying_weishou","xwj_xhuoying_wodi"],[]],
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
             "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
-			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_nishou","xwj_xhuoying_tongya"],[]],
+			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_tongya","xwj_xhuoying_nishou"],[]],
             "xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
            
                 },

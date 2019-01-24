@@ -3726,8 +3726,7 @@ audio:"ext:群英会:2",
                 },
                
 				filter:function (event,player){
-        if(ui.cardPile.childElementCount>=2) return true;
-        return false;
+        return ui.cardPile.childElementCount>=2;
     },
                             filter:function (button,player){
                     var evt=_status.event.getParent();
@@ -7922,8 +7921,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     return ui.create.dialog('木遁',player.storage.xwj_xhuoying_xmudun,'hidden');
                 },
 				filter:function (event,player){
-        if(ui.cardPile.childElementCount>=1) return true;
-        return false;
+        return ui.cardPile.childElementCount>=1;
     },
                             filter:function (button,player){
                     var evt=_status.event.getParent();
@@ -10128,7 +10126,7 @@ translate:{
             "xwj_xhuoying_renquan":"忍犬",
             "xwj_xhuoying_renquan_info":"锁定技，你的锦囊牌均视为【决斗】",
             "xwj_xhuoying_tongya":"通牙",
-            "xwj_xhuoying_tongya_info":"出牌阶段限一次，你可以选择一名有手牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃），若如此做，视为你对其使用一张【决斗】。",       
+            "xwj_xhuoying_tongya_info":"出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃），若如此做，视为你对其使用一张【决斗】。",       
             "xwj_xhuoying_tiantian":"天天",
             "xwj_xhuoying_jiju":"集具",
             "xwj_xhuoying_jiju_info":"当其他角色使用武器牌或进攻马时，你可令视为你使用之",
@@ -13266,7 +13264,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放音效。<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止已解决大部分已知的可能会卡死的BUG<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放音效。<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决大部分已知的可能会卡死的BUG<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式。另请关闭“火影忍者”的新版替换开关，否则有部分武将的技能会缺失。更多介绍详看：其它→帮助"}
 				},

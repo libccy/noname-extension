@@ -2815,7 +2815,7 @@ skill:{
                 },
             content:function (){      
                  player.logSkill('xwj_xhuoying_nishou');
-                 var chat=['忍法•牙狼牙之术','赤丸，上！'].randomGet();
+                 var chat=['忍法•牙狼牙之术','赤丸，一起上！'].randomGet();
             player.say(chat);    
                  player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
                  name:'xwj_xhuoying_chiwan',
@@ -2913,7 +2913,7 @@ skill:{
             "step 1" 
         if(result.bool){  
         player.logSkill('xwj_xhuoying_tongya');
-         var chat=['牙通牙','赤丸，上！'].randomGet();
+         var chat=['牙通牙','赤丸，咬他！'].randomGet();
             player.say(chat);    
          event.num=result.cards.length; 
            target.chooseToDiscard(event.num,true,'he','弃置等量的牌').set('ai',function(card){             
@@ -13319,5 +13319,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.21",
+    version:"1.22",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -321,12 +321,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"更新：新增日杀之智包华雄、手鞠、犬冢牙及赤丸。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2019-01-13",
+	intro:"更新：新增日杀之智包华雄、手鞠、犬冢牙及赤丸。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。（再三强调：本扩展占用内存大，大部分角色非三国人物，强度高出官方武将一大截，不接受任何反驳、恶意点评与无理指责，收益论学者、官方平衡党等无法接受者请勿下载使用，谢谢！）更新日期：2019-01-24",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"76MB",
-    version:1.20,
+    version:1.21,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_default.mp3",
@@ -434,7 +434,7 @@ extension["群英会"]={
 		"xwj_xhuoying_zhongquan2.mp3","xwj_xhuoying_zhongwu.jpg","xwj_xhuoying_zhoushu1.mp3",
 		"xwj_xhuoying_zhoushu2.mp3","xwj_xhuoying_zhouyin1.mp3","xwj_xhuoying_zhouyin2.mp3",
                 "xwj_xhuoying_lianyou1.mp3","xwj_xhuoying_lianyou2.mp3","xwj_xhuoying_nishou1.mp3","xwj_xhuoying_nishou2.mp3",
-                "xwj_xhuoying_renquan1.mp3","xwj_xhuoying_tongya1.mp3","xwj_xhuoying_tongya2.mp3",
+                "xwj_xhuoying_tongya1.mp3","xwj_xhuoying_tongya2.mp3",
 		"xwj_xhuoying_zhuansheng1.mp3","xwj_xhuoying_zhuansheng2.mp3","xwj_xhuoying_zhuanxin1.mp3",
 		"xwj_xhuoying_zhuanxin2.mp3","xwj_xhuoying_zhujian.jpg","xwj_xhuoying_zhuozhu.jpg",
                 "xwj_xhuoying_chiwan.jpg","xwj_xhuoying_quanzhongya.jpg","xwj_xhuoying_shouju.jpg",

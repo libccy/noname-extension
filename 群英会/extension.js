@@ -2140,9 +2140,7 @@ event.target.draw(event.num1);
             if(!stopped){
                 cards.sort(function(a,b){
                     return get.value(b,player)-get.value(a,player);
-                });
-               
-           
+                });                        
             }
             bottom=cards;
             for(var i=0;i<top.length;i++){
@@ -2264,11 +2262,8 @@ event.target.draw(event.num1);
         else{
             event.switchToAuto();
             event.finish();
-        }
-      
-        
-          player.draw();         
-        
+        }             
+          player.draw();                 
         "step 1"
         if(event.result=='ai'||!event.result){
             event.switchToAuto();
@@ -2290,9 +2285,7 @@ event.target.draw(event.num1);
             }
             player.popup(get.cnNumber(top.length)+'上'+get.cnNumber(event.cards.length-top.length)+'下');
             game.log(player,'将'+get.cnNumber(top.length)+'张牌置于牌堆顶');
-            game.delay(2);
-             
-            
+            game.delay(2);                        
         }
                   
     },
@@ -2724,8 +2717,8 @@ game.import('character',function(){
             "xwj_xhuoying_zuojin":["male","xhuo",3,["xwj_xhuoying_weishou","xwj_xhuoying_wodi"],[]],
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
             "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
-			"xwj_xhuoying_quanzhongya":["male","qun",3,["xwj_xhuoying_nishou","xwj_xhuoying_tongya"],[]],
-            "xwj_xhuoying_chiwan":["male","qun",4,["xwj_xhuoying_renquan"],[]],
+			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_nishou","xwj_xhuoying_tongya"],[]],
+            "xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
            
                 },
 							
@@ -2811,29 +2804,28 @@ game.import('character',function(){
 					},
 				
 skill:{
-"xwj_xhuoying_nishou":{
-	audio:"ext:群英会:2",
+               "xwj_xhuoying_nishou":{
+	               audio:"ext:群英会:2",
                 trigger:{
                     player:"phaseUseBegin",
                 },
                 unique:true,
                 filter:function (event,player){
                 return player.hp<=2;
-    },
-                content:function (){
-player.awakenSkill('xwj_xhuoying_nishou');
-game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.jpg');
-player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
-name:'xwj_xhuoying_chiwan',
-image:'ext:群英会/xwj_xhuoying_chiwan.jpg',
-hp:3,
-maxHp:5,
-skills:lib.character.xwj_xhuoying_chiwan[3],
-hs:get.cards(4),
-});
-player.callSubPlayer(player.storage.xwj_xhuoying_nishou);                   
-    },
-            },
+                },
+            content:function (){      
+                 player.logSkill('xwj_xhuoying_nishou');
+                 player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
+                 name:'xwj_xhuoying_chiwan',
+                 maxHp:5,
+                 hp:3,                
+                 skills:lib.character.xwj_xhuoying_chiwan[3],
+                 hs:get.cards(4),
+                 });
+             player.callSubPlayer(player.storage.xwj_xhuoying_nishou);   
+             player.awakenSkill('xwj_xhuoying_nishou');
+             },
+             },
             "xwj_xhuoying_renquan":{
                 mod:{
                     cardEnabled:function (card,player){
@@ -2918,6 +2910,7 @@ player.callSubPlayer(player.storage.xwj_xhuoying_nishou);
             }; 
             "step 1" 
         if(result.bool){  
+        player.logSkill('xwj_xhuoying_tongya');
          event.num=result.cards.length; 
            target.chooseToDiscard(event.num,true,'he','弃置等量的牌').set('ai',function(card){             
             return 6-get.value(card);
@@ -13322,5 +13315,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.20",
+    version:"1.21",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -14,7 +14,7 @@ game.import('character',function(){
 				name:'bsn',
 				connect:true,
 				character:{
-					 "bsn_baosanniang":["female","shu",3,["bsn_wuniang","bsn_xushen"],["des:有关妹子的介绍资料详看百度"]],
+					 "bsn_baosanniang":["female","shu",3,["bsn_wuniang","bsn_xushen"],["des:在武将栏处关闭可设置为禁用，关闭重启后会隐藏图片。有关妹子的介绍资料详看百度"]],
        
 },
 characterIntro:{

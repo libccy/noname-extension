@@ -13274,7 +13274,7 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 						"_chooseTime":{
             name:'出牌计时器',
             "intro":"出牌计时器：开启后重启游戏生效。玩家在出牌阶段会自动倒计时，时长15秒，超出时间会直接结束出牌阶段",          
-            init:true
+            init:false
 		},				
 			"_Background":{
             name:'Background',

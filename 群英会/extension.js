@@ -2722,7 +2722,7 @@ translate:{
 			 "xwj_xsanguo_shouye":"授业",
             "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
             "xwj_xsanguo_jiehuo":"解惑",
-            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计多于七个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”",
+            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计多于七个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用非延时锦囊时，可以让你摸一张牌）",
             "xwj_xsanguo_shouye2":"授业",
             "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
             "xwj_xsanguo_shien":"师恩",

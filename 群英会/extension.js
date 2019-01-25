@@ -327,6 +327,21 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 			game.log(player,'恢复了',get.translation(skill),'栏');
 		};	
 		
+			if(config.xwansha){		
+		     lib.skill._xwj_wansha={
+        trigger:{
+        global:"gameStart",      
+        },
+        forced:true,
+        priority:20190124,
+     content:function (){
+     game.countPlayer(function(current){
+     current.addSkill('wansha');
+     });
+     },
+     }
+     }
+		
 			if(config.xjisha){		
 /*		//old:
     lib.skill._jwj_jisha={
@@ -542,6 +557,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
  "xwj_xsanguo_xinyuji":['male','qun',3,['xwj_xsanguo_guhuo'],[]], 
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
  "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
+"xwj_xsanguo_simahui":["male","qun",4,["xwj_xsanguo_shouye","xwj_xsanguo_jiehuo"],[]], 
               
         },
 characterIntro:{
@@ -549,10 +565,12 @@ characterIntro:{
 	     "xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
 					"xwj_xsanguo_yujin":"代码来源于贴吧和QQ群的大佬之手，此扩展代为收集。",
 					"xwj_xsanguo_menghuo":"七擒七纵之孟获。",
-                    "xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",
+       "xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",
 					"xwj_xsanguo_zhihuaxiong":"太阳神三国杀智包的华雄。",
+					"xwj_xsanguo_simahui":"太阳神三国杀智包的司马徽，略有改动。",
 					"xwj_xsanguo_wangyun":"貂蝉的义父，详看百度百科。",
 					"xwj_xsanguo_jiangwei":"诸葛亮弟子",
+					"xwj_xsanguo_zhaotongzhaoguang":"赵云的儿子",
 					"xwj_xsanguo_nanhua":"南华老仙，古典小说《三国演义》中张角的师傅，在《三国演义》中将三卷天书【太平要术】传给张角，让他普救世人。张角得此书，晓夜攻习，能呼风唤雨，号为 “天公将军”，开启三国乱世。南华老仙与迷之仙人左慈，太平道人于吉，被称为汉末三仙",
 				},
 
@@ -565,7 +583,133 @@ characterTitle:{
 									},
 
 skill:{	
-
+"xwj_xsanguo_shouye":{
+                audio:"ext:群英会:1",
+                enable:"phaseUse",
+                selectTarget:[1,2],
+                init:function (player){
+        player.storage.xwj_xsanguo_shouye=0;
+    },
+                intro:{
+                    content:"mark",
+                },
+                filterTarget:function (card,player,target){ 
+               return target!=player&&player.countCards('h',{color:'red'})>0;
+    },
+                filterCard:{
+                    color:"red",
+                },
+                check:function (event,player){
+        return ai.get.attitude(player,target)>0;
+    },
+                content:function (){ 
+        'step 0'
+        num==2;   
+        'step 1'
+            player.storage.xwj_xsanguo_shouye++;
+        player.markSkill("xwj_xsanguo_shouye");
+        player.update();
+       num--;
+       target.draw(); 
+            if(num>0){
+                event.redo();           
+        }                                   
+    },
+                ai:{
+                    threaten:1.5,
+                    result:{
+                        target:function (player,target){
+                return -target.countCards('h');
+            },
+                    },
+                    order:10,
+                    expose:0.4,
+                },
+            },
+            "xwj_xsanguo_jiehuo":{
+                audio:"ext:群英会:1",
+                unique:true,
+                trigger:{
+                    player:"phaseEnd",
+                },
+                forced:true,
+                	derivation:['xwj_xsanguo_shouye2','xwj_xsanguo_shien'],
+                filter:function (event,player){
+        return player.storage.xwj_xsanguo_shouye>7;
+    },
+                content:function (){
+       'step 0'  
+    player.$fullscreenpop('授业解惑','fire'); 
+        'step 1'        
+        player.loseMaxHp();        
+        player.removeSkill('xwj_xsanguo_shouye'); 
+        player.addSkill('xwj_xsanguo_shouye2'); 
+        player.addSkill('xwj_xsanguo_shien'); 
+        player.update(); 
+        player.awakenSkill('xwj_xsanguo_jiehuo');             
+    },
+            },
+            "xwj_xsanguo_shouye2":{          
+                enable:"phaseUse",
+                usable:1,
+                selectTarget:[1,2],
+                filterTarget:function (card,player,target){ 
+               return target!=player&&player.countCards('h',{color:'red'})>0;
+    },
+                filterCard:{
+                    color:"red",
+                },
+                check:function (event,player){
+        return ai.get.attitude(player,target)>0;
+    },
+                content:function (){ 
+        'step 0'
+        num==2;  
+        game.playXu('xwj_xsanguo_shouye1'); 
+        'step 1'
+        target.draw(); 
+        num--;
+            if(num>0){
+                event.redo();           
+        }                                   
+    },
+                ai:{
+                    order:8,
+                    threaten:1.5,
+                    result:{
+                        target:function (player,target){
+                return -target.countCards('h');
+            },
+                    },
+                    expose:0.4,
+                },
+            },
+            "xwj_xsanguo_shien":{
+                audio:"ext:司马扩展:3",
+                trigger:{
+                    global:"useCard",
+                },
+                direct:true,
+                alter:true,
+                filter:function (event,player){
+        if(!get.is.altered('xwj_xsanguo_shien')&&get.type(event.card)!='delay') return false;
+        return event.player!=player&&(get.type(event.card,'trick')=='trick'&&event.cards[0]&&event.cards[0]==event.card);
+    },
+                content:function (){     
+        'step 0'  
+         event.current=trigger.player;
+       event.current.chooseBool('是否令司马徽摸一张牌？').set('ai',function(){                    
+                     return get.attitude(player,event.current)>0;     
+                    }); 
+            'step 1'
+            if(result.bool){
+            player.draw();    
+            }
+       else{
+           event.finish();
+       }
+    },
+            },
 "xwj_xsanguo_yizan":{
                 audio:"ext:群英会:2",
                 enable:["chooseToRespond","chooseToUse"],
@@ -2573,6 +2717,15 @@ event.target.draw(event.num1);
 },
 
 translate:{
+	 "xwj_xsanguo_simahui":"智司马徽",
+			 "xwj_xsanguo_shouye":"授业",
+            "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
+            "xwj_xsanguo_jiehuo":"解惑",
+            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计多于七个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”",
+            "xwj_xsanguo_shouye2":"授业",
+            "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
+            "xwj_xsanguo_shien":"师恩",
+            "xwj_xsanguo_shien_info":"其他角色使用非延时锦囊时，可以让你摸一张牌",
  "xwj_xsanguo_zhihuaxiong":"智华雄",
  "xwj_xsanguo_wenjiu":"温酒",
             "xwj_xsanguo_wenjiu_info":"锁定技，你使用的黑色【杀】造成的伤害+1，你无法闪避红色【杀】",
@@ -13267,11 +13420,16 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放音效。<li>游戏时请关闭“火影忍者”武将栏的新版替换开关，否则有部分武将的技能会缺失<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决大部分已知的可能会卡死的BUG<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式。另请关闭“火影忍者”的新版替换开关，否则有部分武将的技能会缺失。更多介绍详看：其它→帮助"}
-				},
+				},				
 					"xjisha":{
             name:'击杀特效',
            "intro":"击杀特效：开启后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
             init:true
+		},							
+						"xwansha":{
+            name:'完杀模式',
+           "intro":"完杀模式：开启后重启游戏生效。场上所有角色视为拥有技能“完杀”",
+            init:false
 		},							
 						"_chooseTime":{
             name:'出牌计时器',
@@ -13317,5 +13475,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.22",
+    version:"1.23",
 },files:{"character":[],"card":[],"skill":[]}}})

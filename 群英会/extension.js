@@ -703,6 +703,7 @@ skill:{
                     }); 
             'step 1'
             if(result.bool){
+            player.logSkill("xwj_xsanguo_shien");
             player.draw();    
             }
        else{

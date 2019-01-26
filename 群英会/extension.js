@@ -649,7 +649,8 @@ skill:{
         player.awakenSkill('xwj_xsanguo_jiehuo');             
     },
             },
-            "xwj_xsanguo_shouye2":{          
+            "xwj_xsanguo_shouye2":{  
+			audio:"ext:群英会:1",
                 enable:"phaseUse",
                 usable:1,
                 selectTarget:[1,2],
@@ -664,8 +665,7 @@ skill:{
     },
                 content:function (){ 
         'step 0'
-        num==2;  
-        game.playXu('xwj_xsanguo_shouye1'); 
+        num==2;          
         'step 1'
         target.draw(); 
         num--;
@@ -684,15 +684,14 @@ skill:{
                     expose:0.4,
                 },
             },
-            "xwj_xsanguo_shien":{
-                audio:"ext:司马扩展:3",
+            "xwj_xsanguo_shien":{               
                 trigger:{
                     global:"useCard",
                 },
                 direct:true,
                 alter:true,
                 filter:function (event,player){
-        if(!get.is.altered('xwj_xsanguo_shien')&&get.type(event.card)!='delay') return false;
+        if(!get.is.altered('xwj_xsanguo_shien')&&get.type(event.card)=='delay') return false;
         return event.player!=player&&(get.type(event.card,'trick')=='trick'&&event.cards[0]&&event.cards[0]==event.card);
     },
                 content:function (){     
@@ -703,6 +702,7 @@ skill:{
                     }); 
             'step 1'
             if(result.bool){
+			game.playXu(['xwj_xsanguo_shien1','xwj_xsanguo_shien2','xwj_xsanguo_shien3'].randomGet());
             player.logSkill("xwj_xsanguo_shien");
             player.draw();    
             }
@@ -8862,7 +8862,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 usable:1,
                 audio:"ext:群英会:2",
                 filter:function (card,player){
-        return player.countCards('he',{type:'equip'});
+        return player.countCards('he',{type:'equip'})>0;
     },
                 chooseButton:{
                     dialog:function (){
@@ -8933,17 +8933,12 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     result:{
                         player:function (player){
                 var num=0;
-                var cards=player.getCards('he');                                  
-                if(card.name=='bagua'&&card.name=='renwang') return 0         
+                var cards=player.getCards('he');                                                  
                 for(var i=0;i<cards.length;i++){
                     num+=Math.max(0,get.value(cards[i],player,'raw'));
-                }
-                num/=cards.length;
-                num*=Math.min(cards.length,player.hp);
-                return 12-num;
+                }              
             },
                     },
-                    threaten:1.5,
                 },
             },
             "xwj_xhuoying_yandun":{
@@ -9389,8 +9384,8 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                 direct:true,
                 trigger:{
                     player:"phaseUseBegin",
-                },
-                filter:function (event,player){
+                },								
+				filter:function (event,player){
         return player.hp>0;
     },
                 init:function (player){
@@ -9400,7 +9395,7 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                     content:"limited",
                 },
                 content:function (){
-          'step 0'            
+               'step 0'            
        player.chooseControl('尸鬼封尽','cancel2').set('ai',function(){         
               if(player.countCards('h','tao')>0||player.countCards('h','jiu')>0) return '尸鬼封尽';
               if(player.hp<=1) return '尸鬼封尽';
@@ -9413,7 +9408,7 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
         else{
         event.finish();
         }
-        'step 2' 
+        'step 2'         
          player.chooseTarget('请选择一名目标，令其技能失效',get.prompt('xwj_xhuoying_refengyin'),function(card,player,target){
             return target!=player;
         }).set("ai",function(target){
@@ -9421,12 +9416,12 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
             
         });
         'step 3'           
-          if(result.bool){      
+          if(result.bool){       
           player.storage.xwj_xhuoying_refengyin=true; 
-          player.unmarkSkill('xwj_xhuoying_refengyin');                  
-            player.$skill('尸鬼封尽','fire','red','avatar'); 
+          player.unmarkSkill('xwj_xhuoying_refengyin');                             
+             player.$skill('尸鬼封尽','fire','red','avatar'); 
                  var chat=['尸鬼封尽','守护村子，背负着影的名号，这是我该做的事'].randomGet();
-            player.say(chat);              
+            player.say(chat);                  
             for(var i=0;i<result.targets.length;i++){
                 player.logSkill('xwj_xhuoying_refengyin',result.targets);            
                 result.targets[i].clearSkills();                                   
@@ -9442,7 +9437,7 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                     threaten:0.3,
                     expose:0.6,                  
                     order:2,
-                },
+                }, 					
             },
             "xwj_xhuoying_leique":{
                 enable:"phaseUse",
@@ -13476,5 +13471,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.23",
+    version:"1.24",
 },files:{"character":[],"card":[],"skill":[]}}})

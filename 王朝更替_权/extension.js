@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",editable:false,content:function (config,pack){
     if(config.moreguozhan==true){
         lib.characterPack.mode_guozhan.gz_caoang=["male","wei",4,["gz_kangkaistar"],[]]
 lib.characterPack.mode_guozhan.gz_guanping=["male","shu",4,["gz_longyinstar"],[]]

@@ -2726,7 +2726,7 @@ translate:{
             "xwj_xsanguo_shouye2":"授业",
             "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
             "xwj_xsanguo_shien":"师恩",
-            "xwj_xsanguo_shien_info":"其他角色使用非延时锦囊时，可以让你摸一张牌",
+            "xwj_xsanguo_shien_info":"其他角色使用锦囊牌时，可以让你摸一张牌",
  "xwj_xsanguo_zhihuaxiong":"智华雄",
  "xwj_xsanguo_wenjiu":"温酒",
             "xwj_xsanguo_wenjiu_info":"锁定技，你使用的黑色【杀】造成的伤害+1，你无法闪避红色【杀】",
@@ -10692,7 +10692,7 @@ translate:{
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
             "xwj_xhuoying_shouju":"手鞠",
             "xwj_xhuoying_lianyou":"镰鼬",
-            "xwj_xhuoying_lianyou_info":"回合开始阶段，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌",
+            "xwj_xhuoying_lianyou_info":"回合开始阶段，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌（<font color=#F0F>勘九郞</font>）",
                  
                                                                                                                                 
 },
@@ -13471,5 +13471,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.24",
+    version:"1.25",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -10,11 +10,11 @@ var list=[0,1,2,3];
 var skinnum=list.randomGet();
 if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[0]+'.jpg');  
 if (lib.config.zzbpftxon) 	{
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾1.gif',2500);		} }
+game[otherFunction[7]](game.authorGif('特效-纱雾1.gif',null,null,true),2500);		} }
 if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[1]+'.jpg');   
 if (lib.config.zzbpftxon) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾'+list.randomGet()+'.gif',3000);		
+game[otherFunction[7]](game.authorGif('特效-纱雾'+list.randomGet()+'.gif',null,null,true),3000);		
 if (!game.audioplaying||game.audioplaying==false) {
 game.play作者包audio2('皮肤音效-纱雾1.mp3',false);
 game.audioplaying=true;
@@ -25,7 +25,7 @@ setTimeout(function(){game.audioplaying=false},60000);
 if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[2]+'.jpg');  
 if (lib.config.zzbpftxon) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾'+list.randomGet()+'.gif',3000);		
+game[otherFunction[7]](game.authorGif('特效-纱雾'+list.randomGet()+'.gif',null,null,true),3000);		
 if (!game.audioplaying||game.audioplaying==false) {
 game.play作者包audio2('皮肤音效-纱雾2.mp3',false);
 game.audioplaying=true;
@@ -36,7 +36,7 @@ setTimeout(function(){game.audioplaying=false},60000);
 if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+extensionExtraCharacterSkin[3]+'.jpg');  
 if (lib.config.zzbpftxon) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-纱雾'+list.randomGet()+'.gif',3000);		
+game[otherFunction[7]](game.authorGif('特效-纱雾'+list.randomGet()+'.gif',null,null,true),3000);		
 if (!game.audioplaying||game.audioplaying==false) {
 game.play作者包audio2('皮肤音效-纱雾3.mp3',false);
 game.audioplaying=true;
@@ -76,8 +76,86 @@ if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+exte
 		lib.translate.纱雾='<img src='+lib.assetURL+"extension/作者包/zuozhe纱雾.jpg"+' width="25" height="25">';
  lib.group.push('呲牙哥');
 		lib.translate.呲牙哥='<img src='+lib.assetURL+"extension/作者包/zuozhe牙哥.jpg"+' width="25" height="25">';
+game.zzbpets={
+xfz:{
+gained:lib.config.zzbpetxfz,
+attack:3,
+attackup:2,
+defence:1,
+defenceup:1,
+hp:2,
+hpup:1,
+mp:1,
+mpup:1,
+level:1,
+exp:0,
+maxlevel:10,
+levelList:[1,2,4,8,16,32,64,128,256,512],
+  },
+xfn:{
+gained:lib.config.zzbpetxfn,
+attack:1,
+attackup:1,
+defence:3,
+defenceup:1,
+hp:3,
+hpup:1,
+mp:1,
+mpup:1,
+level:1,
+exp:0,
+maxlevel:10,
+levelList:[1,2,4,8,16,32,64,128,256,512],
+  },
+lyy:{
+gained:lib.config.zzbpetlyy,
+attack:1,
+attackup:1,
+defence:1,
+defenceup:1,
+hp:2,
+hpup:1,
+mp:4,
+mpup:2,
+level:1,
+exp:0,
+maxlevel:10,
+levelList:[1,2,4,8,16,32,64,128,256,512],
+  },
+xlh:{
+gained:lib.config.zzbpetxlh,
+attack:3,
+attackup:2,
+defence:1,
+defenceup:1,
+hp:2,
+hpup:1,
+mp:1,
+mpup:1,
+level:1,
+exp:0,
+maxlevel:10,
+levelList:[1,2,4,8,16,32,64,128,256,512],
+  },
+ljs:{
+gained:lib.config.zzbpetljs,
+attack:2,
+attackup:2,
+defence:1,
+defenceup:1,
+hp:2,
+hpup:1,
+mp:1,
+mpup:1,
+level:1,
+exp:0,
+maxlevel:10,
+levelList:[1,2,4,8,16,32,64,128,256,512],
+  },
+};
   if(lib.config.霜华一笙==undefined){game[uiFunction[0]]('霜华一笙','off');}
 if(lib.config.monitorPlayers==undefined){game[uiFunction[0]]('monitorPlayers','off');}
+if(lib.config.authorzima==undefined){game[uiFunction[0]]('authorzima',0);}
 if(lib.config.gift0gained==undefined){game[uiFunction[0]]('gift0gained',0);}
 if(lib.config.gift1gained==undefined){game[uiFunction[0]]('gift1gained',0);}
 if(lib.config.gift2gained==undefined){game[uiFunction[0]]('gift2gained',0);}
@@ -85,9 +163,17 @@ if(lib.config.gift3gained==undefined){game[uiFunction[0]]('gift3gained',0);}
 if(lib.config.gift5gained==undefined){game[uiFunction[0]]('gift5gained',0);}
 if(lib.config.gift6gained==undefined){game[uiFunction[0]]('gift6gained',0);}
 if(lib.config.gift7gained==undefined){game[uiFunction[0]]('gift7gained',0);}
+if(lib.config.gift8gained==undefined){game[uiFunction[0]]('gift8gained',0);}
+if(lib.config.gift9gained==undefined){game[uiFunction[0]]('gift9gained',0);}
+if(lib.config.gift10gained==undefined){game[uiFunction[0]]('gift10gained',0);}
+if(lib.config.zzbpetxfz==undefined){game[uiFunction[0]]('zzbpetxfz',0);}
+if(lib.config.zzbpetxfn==undefined){game[uiFunction[0]]('zzbpetxfn',0);}
+if(lib.config.zzbpetlyy==undefined){game[uiFunction[0]]('zzbpetlyy',0);}
+if(lib.config.zzbpetxlh==undefined){game[uiFunction[0]]('zzbpetxlh',0);}
+if(lib.config.zzbpetljs==undefined){game[uiFunction[0]]('zzbpetljs',0);}
 if(lib.config.about==undefined){game[uiFunction[0]](uiFunction[16],0);}
     if (lib.config.about==uiFunction[17]){
-		game.addCharacterPack({
+		game[otherFunction[9]]({
 				character:{ 
  zzbabout:["female","author",3,["zzbaboutfux2","zzbaboutkamukura","zzbaboutvenominaga","zzbaboutcj","zzbaboutex_wuzang","zzbaboutchallenge_zhenji"],[]],
 },
@@ -209,7 +295,7 @@ var encode_version = 'www.github.noname.extensionPack.作者包.net';var __0x2a2
 }
 if(lib.config.轮回中的消逝者==undefined){game[uiFunction[0]]('轮回中的消逝者','off');}
     if (lib.config.轮回中的消逝者=='on'){
-					game.addCharacterPack({
+					game[otherFunction[9]]({
 				character:{  "轮回中的消逝者":["male","呲牙哥",4,["fsxs1","fsxs2"],["auskin"]],},
 				skill:{},
 				translate:{
@@ -218,7 +304,7 @@ if(lib.config.轮回中的消逝者==undefined){game[uiFunction[0]]('轮回中�
 				},'粉丝包');
 }
     if (lib.config.霜华一笙=='on'){
-					game.addCharacterPack({
+					game[otherFunction[9]]({
 				character:{"霜华一笙":["male","纱雾",6,["fssh1","fssh2"],["des:暂无描述"]],},
 				skill:{},
 				translate:{
@@ -251,7 +337,7 @@ if (config.zzbpftx) 	{
 game[uiFunction[0]]('zzbpftxon',true);		}
 else {game[uiFunction[0]]('zzbpftxon',false);		} 
   if (config.zzbsjwj){
-					game.addCharacterPack({
+					game[otherFunction[9]]({
 				character:{"随机武将":["","","",["sjwj"],["des:暂无描述"]],},
 				skill:{},
 				translate:{
@@ -354,15 +440,128 @@ var encode_version = '白板模式';var __0x1fd7b=['\x77\x70\x68\x75\x77\x35\x7a
 		if (config.zzbbanhezi)					{
 lib.skill._zzhz2={};
 }	
-			
+			if (
+lib.config.authorzima===otherFunction[8]){
+game[otherFunction[9]]({
+				character:{
+ "zuozhe神座":["male","author",2,["zuozhe神座1"],["des:致敬作者之一：神座，授权时间：2018.10.6"]],
+            "zuozhe竹鱼":["female","author","???",["zuozhe竹鱼1"],["des:致敬作者之一：竹妃鱼，授权时间：2018.10.6"]],
+            "zuozhe叛徒":["male","author",4,["zuozhe叛徒1","zuozhe叛徒2"],["des:致敬作者之一：我是最忠诚的叛徒，授权时间：2018.10.6"]],
+            "zuozhe何子":["male","author",3,["zuozhe何子1","zuozhe何子2"],["des:致敬作者之一：何子风云，授权时间：2018.10.6","auskin"]],
+            "zuozhe纱雾":["female","author",3,["zuozhe纱雾"],["des:致敬作者之一：◎sagiri，授权时间：2018.10.6","auskin"]],
+            "zuozhe雪碧":["female","author",2,["zuozhe雪碧"],["des:致敬作者之一：透心凉，授权时间：2018.10.13"]],
+            "zuozhe孤城":["male","author"," ",["zuozhe孤城"],["des:致敬作者之一：孤城，授权时间：2018.10.6"]],
+            "zuozhe牙哥":["male","author",4,["zuozhe牙哥1"],["des:致敬作者之一：呲牙哥，授权时间：2018.10.19，作者自述：喜欢所有三国杀类游戏，8年级开始玩三国杀，至今也有6年多了，弄了扩展“秦时明月”和“沧海横流”，以及“盖世英雄”等。无名杀边框弄过很多，最喜欢自己弄的“彩色卡牌”。 最喜欢秦时明月。"]],
+            "zuozhe极光":["female","author","???",["zuozhe极光","zuozhe极光2","zuozhe极光3"],["des:致敬作者之一：极光，授权时间：2018.10.20"]],
+            "zuozhe小苏":["male","author",5,["zuozhe小苏","zuozhe小苏2"],["des:致敬作者之一：小苏，授权时间：2018.10.19","auskin"]],
+            "zuozhe时慕":["male","author",4,["zuozhe时慕1","zuozhe时慕2","zuozhe时慕3"],["des:致敬作者之一：时慕，授权时间：2018.10.19"]],
+            zuozhefux:["male","author",2,["zuozhefux1"],["des:致敬作者之一：fux2_king，授权时间：2018.10.31"]],
+            "随机作者":["","author","",["sjzz"],[""]],
+    "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
+    "zuozhe紫妈":["male","author",3,["zuozhe紫妈1","zuozhe紫妈2"],["des:致敬作者之一：紫妈是谁1，授权时间：2018.10.31"]],
+},
+				skill:{},
+				translate:{
+"zuozhe神座":"神座",
+            "zuozhe竹鱼":"竹妃鱼",
+            "zuozhe叛徒":"最忠臣的叛徒",
+            "zuozhe何子":"何子风云",
+            "zuozhe纱雾":"纱雾",
+            "zuozhe雪碧":"透心凉",
+            "zuozhe孤城":"孤城葬月洛飞雪",
+            "zuozhe牙哥":"呲牙哥",
+            "zuozhe极光":"极光",
+            "_zzxs1":"更改身份",
+            "_zzxs2":"更改武将",
+            "_zzsm1":"时慕",
+            "_zzsm2":"时慕",
+            "_zzsm3":"圣晶石召唤",
+            "_zzjg2":"极光",
+            "zuozhe小苏":"小苏",
+            "zuozhe时慕":"时慕",
+            zuozhefux:"fux2",
+           "zuozhe冥葬天":"冥葬天",
+           "随机作者":"随机作者",
+           "zuozhe紫妈":"紫妈",
+           "zuozhe学妹":"学妹",
+},
+				},'作者包');
+}
+else{
+game[otherFunction[9]]({
+				character:{
+ "zuozhe神座":["male","author",2,["zuozhe神座1"],["des:致敬作者之一：神座，授权时间：2018.10.6"]],
+            "zuozhe竹鱼":["female","author","???",["zuozhe竹鱼1"],["des:致敬作者之一：竹妃鱼，授权时间：2018.10.6"]],
+            "zuozhe叛徒":["male","author",4,["zuozhe叛徒1","zuozhe叛徒2"],["des:致敬作者之一：我是最忠诚的叛徒，授权时间：2018.10.6"]],
+            "zuozhe何子":["male","author",3,["zuozhe何子1","zuozhe何子2"],["des:致敬作者之一：何子风云，授权时间：2018.10.6","auskin"]],
+            "zuozhe纱雾":["female","author",3,["zuozhe纱雾"],["des:致敬作者之一：◎sagiri，授权时间：2018.10.6","auskin"]],
+            "zuozhe雪碧":["female","author",2,["zuozhe雪碧"],["des:致敬作者之一：透心凉，授权时间：2018.10.13"]],
+            "zuozhe孤城":["male","author"," ",["zuozhe孤城"],["des:致敬作者之一：孤城，授权时间：2018.10.6"]],
+            "zuozhe牙哥":["male","author",4,["zuozhe牙哥1"],["des:致敬作者之一：呲牙哥，授权时间：2018.10.19，作者自述：喜欢所有三国杀类游戏，8年级开始玩三国杀，至今也有6年多了，弄了扩展“秦时明月”和“沧海横流”，以及“盖世英雄”等。无名杀边框弄过很多，最喜欢自己弄的“彩色卡牌”。 最喜欢秦时明月。"]],
+            "zuozhe极光":["female","author","???",["zuozhe极光","zuozhe极光2","zuozhe极光3"],["des:致敬作者之一：极光，授权时间：2018.10.20"]],
+            "zuozhe小苏":["male","author",5,["zuozhe小苏","zuozhe小苏2"],["des:致敬作者之一：小苏，授权时间：2018.10.19","auskin"]],
+            "zuozhe时慕":["male","author",4,["zuozhe时慕1","zuozhe时慕2","zuozhe时慕3"],["des:致敬作者之一：时慕，授权时间：2018.10.19"]],
+            zuozhefux:["male","author",2,["zuozhefux1"],["des:致敬作者之一：fux2_king，授权时间：2018.10.31"]],
+            "随机作者":["","author","",["sjzz"],[""]],
+    "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
+},
+				skill:{},
+				translate:{
+"zuozhe神座":"神座",
+            "zuozhe竹鱼":"竹妃鱼",
+            "zuozhe叛徒":"最忠臣的叛徒",
+            "zuozhe何子":"何子风云",
+            "zuozhe纱雾":"纱雾",
+            "zuozhe雪碧":"透心凉",
+            "zuozhe孤城":"孤城葬月洛飞雪",
+            "zuozhe牙哥":"呲牙哥",
+            "zuozhe极光":"极光",
+            "_zzxs1":"更改身份",
+            "_zzxs2":"更改武将",
+            "_zzsm1":"时慕",
+            "_zzsm2":"时慕",
+            "_zzsm3":"圣晶石召唤",
+            "_zzjg2":"极光",
+            "zuozhe小苏":"小苏",
+            "zuozhe时慕":"时慕",
+            zuozhefux:"fux2",
+           "zuozhe冥葬天":"冥葬天",
+           "随机作者":"随机作者",
+           "zuozhe紫妈":"紫妈",
+           "zuozhe学妹":"学妹",
+},
+				},'作者包');
+}
+lib.arenaReady.push(function(){
+ui.authorcoin=ui.create.system(lib.config.authorcoin+'🎁作者币',null,true);
+				lib.setPopped(ui.authorcoin,function(){
+		var uiintro=ui.create.dialog('hidden');
+					uiintro.add('作者币商店');
+		uiintro.listen(function(e){
+						e.stopPropagation();
+					});
+			uiintro.add('测试1');
+			uiintro.add('测试2');
+});
+} );
+game.authorGif=function(str,width,height,isAnimation){
+var str1='';
+if (isAnimation) {
+str1=lib.assetURL+'extension/作者包/'+str;
+return str1;
+}
+else {
+str1='<img src='+lib.assetURL+'extension/作者包/'+str+' width='+width+'   height='+height+'>';
+return str1;
+}
+}
 
 },precontent:function (){
 extensionExtraSkin=['onclick','changeAuskin','name'];
-gift=[461935,9468,94977,57315,'www.github.net','dan_kamukura','com.shenzuo','I want authorcoin'];
+gift=[461935,9468,94977,57315,'www.github.net','dan_kamukura','com.shenzuo','I want authorcoin','gitbub',6451879,23333];
 uiFunction=['saveConfig','changeCurrency','findPlayer','boss','zzsz','die','fux2','ka','revive','ra','null','undefined','classList','mu','ku','contains','about','havegetted','You now have the right to use character 「About」'];
-otherFunction=['zuozheName','dead','element','over','gameStart','observe'];
-if (!lib.extensionMenu['extension_概念武将']){
-	game.animationofgif=function(str,time){	
+otherFunction=['zuozheName','dead','element','over','gameStart','observe','game','showauthoranimation','getted','addCharacterPack'];
+	game[otherFunction[7]]=function(str,time){	
 	             var img = window["document"]["createElement"]("img");
 	             img["setAttribute"]("src", str);
 	             img["style"]["height"] = '100%';
@@ -375,7 +574,6 @@ if (!lib.extensionMenu['extension_概念武将']){
 		             game["resume"]();
                  },time);						
 			}
-}
 	game.play作者包audio=function(str,spg){	
 				if(_status.skillaudio.contains(str)) return;
 				_status.skillaudio.add(str);
@@ -414,9 +612,7 @@ if (extensionName) game.playAudio('..','extension', extensionName, fileName);
 			}
 		};
  if(lib.config.authorcoin  ==undefined){game[uiFunction[0]]('authorcoin',0);}
-lib.arenaReady.push(function(){ui.create.system(lib.config.authorcoin+'🎁作者币',null,true);
-	
-} )
+
 if(true){	
 	var encode_version = '作者包';var __0x1dcbc=['woRmQMKAwrzDmMKaa0HDig7Dim4JQxpd','X1sdTk5SwrHChsKlUMKTHcOY','wpDCi3fDhGXDmR7DgcKK','eMO5w5p+wqbCusOpw5gC','L2NSJ8KDwrTCqcOgwqTDjg==','5L216IKG5Y+j','5Ymj6ZmQ5q+35omB5bKP','w5/Dr0cWw7JBVQ==','woRmWMKOwqrDnMKHZkfDjA==','w5nCv8KzGQEswpk=','LsOZw6jDtBXDksOawossw4zCsz0PY3ktwokTInwjwrrCjMOzw68OI0xlwozDusOnPUbDlsK2QMKSw5HCtyvCrsK6w5l1Qxt8Pg==','Z3EfBsKNwrg2','w6rDrsOoKcK0GA==','LVvDt0HCqRbDqcOiwrs7wojCmsOEWCnCsgzCmw3Diw==','wpB7LsOUVMOUw4Vfwo3Cn0lnGw==','5L2e6ICY5Y2/','RTjDh8Ks','57yh6L6x5q6P5om95bKy','IcO8w5J0w6PCp8Ov','cnEbEsKNwqQ=','w4PCvsOoB8Khw6bDrTAKw7TCsA==','d8KZwo7Cr0rCj38=','w4YCDMO5wq/CpA==','w43DrcK3wr/Dm2N9','w7gOwp7CoEXCrRczw53DiA==','wrDCu8O0dVI=','fMKUwobCpx4=','w6cIw4ZpaQ==','bHwXDg==','wrZywqBywroy','RTDDi8K1GsKVwrQ=','wrnCmA0owrdO','w5PDrUsP','wq7ChgMkwqI=','w6rDt8O6OA==','SMO2wpI8w641','UkzCjnnCglEX','worDqDc+RcOK','K0bCiB7DijjDuw==','S2zDk8KwwpPCm8OU','PsOqw59jw7TCrMOtw5JJNQ==','w5kiU8O/w6bCrG8=','NsO0wrAcw54J','w4nCnznCrUFlTsO1Zw==','c8Ozw6rDn3M+wro=','cnUbGMKN','P3nChMONwpEKaQ==','wpZnc8O7w53CtnY=','wpxxYcO4w5zCrQ==','TcOqwoM=','Zn7DlsO1w4gmw7c=','wqvDgirDvgVw','w4DDuUoBw7ZLRcOYw4YLworDow==','PDHCo8K8w4PCsRA=','w4nCqMO5CsK2w7E=','YMKNwoHCkRHDgBzClA==','woHClXPDh3PDmws=','ATx/TjcB','BMK4GsO1wpIuwp7DtQ==','esOJwrzCoQzCj8OS','w7MGw4lXdMKj','w77DsMOoJw==','PsOrwrYBw5oJP8KrHDlqbsOddXTDvsKB','w6jDp8O5PMKwCTICw5HDnsKcwqvCsQ=='];(function(_0x55962a,_0x209ffe){var _0xb1aca7=function(_0x4a2105){while(--_0x4a2105){_0x55962a['push'](_0x55962a['shift']());}};_0xb1aca7(++_0x209ffe);}(__0x1dcbc,0xca));var _0x30f9=function(_0x1027ab,_0x3f68d7){_0x1027ab=_0x1027ab-0x0;var _0x24f1a0=__0x1dcbc[_0x1027ab];if(_0x30f9['initialized']===undefined){(function(){var _0x328f43=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x2f3fdf='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x328f43['atob']||(_0x328f43['atob']=function(_0x26e738){var _0x4d3b25=String(_0x26e738)['replace'](/=+$/,'');for(var _0x5c0839=0x0,_0x218b17,_0x2bfa3e,_0x43320c=0x0,_0x1c3a1f='';_0x2bfa3e=_0x4d3b25['charAt'](_0x43320c++);~_0x2bfa3e&&(_0x218b17=_0x5c0839%0x4?_0x218b17*0x40+_0x2bfa3e:_0x2bfa3e,_0x5c0839++%0x4)?_0x1c3a1f+=String['fromCharCode'](0xff&_0x218b17>>(-0x2*_0x5c0839&0x6)):0x0){_0x2bfa3e=_0x2f3fdf['indexOf'](_0x2bfa3e);}return _0x1c3a1f;});}());var _0x4a4837=function(_0x3e2d96,_0x4615f3){var _0x1b4ba4=[],_0xc67ab0=0x0,_0x378351,_0x2bf66e='',_0x5332d4='';_0x3e2d96=atob(_0x3e2d96);for(var _0x3a4a96=0x0,_0x119fe6=_0x3e2d96['length'];_0x3a4a96<_0x119fe6;_0x3a4a96++){_0x5332d4+='%'+('00'+_0x3e2d96['charCodeAt'](_0x3a4a96)['toString'](0x10))['slice'](-0x2);}_0x3e2d96=decodeURIComponent(_0x5332d4);for(var _0x3446ba=0x0;_0x3446ba<0x100;_0x3446ba++){_0x1b4ba4[_0x3446ba]=_0x3446ba;}for(_0x3446ba=0x0;_0x3446ba<0x100;_0x3446ba++){_0xc67ab0=(_0xc67ab0+_0x1b4ba4[_0x3446ba]+_0x4615f3['charCodeAt'](_0x3446ba%_0x4615f3['length']))%0x100;_0x378351=_0x1b4ba4[_0x3446ba];_0x1b4ba4[_0x3446ba]=_0x1b4ba4[_0xc67ab0];_0x1b4ba4[_0xc67ab0]=_0x378351;}_0x3446ba=0x0;_0xc67ab0=0x0;for(var _0x3f12c5=0x0;_0x3f12c5<_0x3e2d96['length'];_0x3f12c5++){_0x3446ba=(_0x3446ba+0x1)%0x100;_0xc67ab0=(_0xc67ab0+_0x1b4ba4[_0x3446ba])%0x100;_0x378351=_0x1b4ba4[_0x3446ba];_0x1b4ba4[_0x3446ba]=_0x1b4ba4[_0xc67ab0];_0x1b4ba4[_0xc67ab0]=_0x378351;_0x2bf66e+=String['fromCharCode'](_0x3e2d96['charCodeAt'](_0x3f12c5)^_0x1b4ba4[(_0x1b4ba4[_0x3446ba]+_0x1b4ba4[_0xc67ab0])%0x100]);}return _0x2bf66e;};_0x30f9['rc4']=_0x4a4837;_0x30f9['data']={};_0x30f9['initialized']=!![];}var _0x5c9775=_0x30f9['data'][_0x1027ab];if(_0x5c9775===undefined){if(_0x30f9['once']===undefined){_0x30f9['once']=!![];}_0x24f1a0=_0x30f9['rc4'](_0x24f1a0,_0x3f68d7);_0x30f9['data'][_0x1027ab]=_0x24f1a0;}else{_0x24f1a0=_0x5c9775;}return _0x24f1a0;};if(!![]){var _0x23916f=_0x30f9('0x0','E1WD')['split']('|'),_0x552745=0x0;while(!![]){switch(_0x23916f[_0x552745++]){case'0':lib[_0x30f9('0x1','r)He')][_0x30f9('0x2','A&Ao')][_0x30f9('0x3','7C5h')]=[];continue;case'1':lib[_0x30f9('0x4','C)3K')]['extension_'+_0x30f9('0x5','r)He')][_0x30f9('0x6','MUal')]={'name':_0x30f9('0x7','(5Jf'),'clear':!![]};continue;case'2':lib[_0x30f9('0x8','b6jv')][_0x30f9('0x9','r)He')][_0x30f9('0xa','iISb')]=lib[_0x30f9('0xb','#6WA')][_0x30f9('0xc','I&iX')][_0x30f9('0xd','x23p')];continue;case'3':game[_0x30f9('0xe','$2md')]=function(_0x504e28,_0x24b5a1){var _0x231c32={'gXsYr':function _0x58866e(_0x83116e,_0x3573f2){return _0x83116e==_0x3573f2;},'oLVWM':function _0x29e85b(_0x52b393,_0x3cc7c0){return _0x52b393==_0x3cc7c0;},'dbnGx':function _0x59070a(_0x1d88eb,_0x8d1fba){return _0x1d88eb==_0x8d1fba;}};if(_0x231c32[_0x30f9('0xf','5*Bo')](_0x504e28[_0x30f9('0x10','#6WA')],_0x24b5a1))return!![];if(_0x231c32['oLVWM'](_0x504e28['name2'],_0x24b5a1))return!![];if(_0x231c32[_0x30f9('0x11','[&0^')](_0x504e28[_0x30f9('0x12','r)He')],_0x24b5a1))return!![];return![];};continue;case'4':lib[_0x30f9('0x1','r)He')][_0x30f9('0x13','(&X[')]['zzhzinit']=lib[_0x30f9('0x14','MUal')][_0x30f9('0x15','[ji0')][_0x30f9('0x16','45gx')];continue;case'5':lib[_0x30f9('0x17','[ji0')][_0x30f9('0x18','A&Ao')](_0x30f9('0x19','1Tr3'));continue;case'6':game[uiFunction[4]+otherFunction[3]]=game[otherFunction[3]];continue;case'7':lib[_0x30f9('0x1a','(5Jf')][_0x30f9('0x1b','w1!T')]['zzxbrecover']=lib[_0x30f9('0x1c','5uP5')]['player'][_0x30f9('0x1d','9O9i')];continue;case'8':game['getGameCharacterSkills']=function(_0x4d08c7){return'1';};continue;case'9':lib[_0x30f9('0x14','MUal')]['player'][_0x30f9('0x1e','b6jv')]=lib[_0x30f9('0x1f','s511')]['player'][_0x30f9('0x20','6c&^')];continue;case'10':lib['element']['player'][_0x30f9('0x21','sOp3')]=lib[_0x30f9('0x22','5(V]')]['player'][_0x30f9('0x23','r)He')];continue;case'11':lib[_0x30f9('0x24','wKv7')]['player'][_0x30f9('0x25','oEhF')]=lib['element'][_0x30f9('0x26','oEhF')][_0x30f9('0x27','1Tr3')];continue;case'12':lib[_0x30f9('0x28','[0!Q')][_0x30f9('0x29','dePx')][_0x30f9('0x2a','45gx')]=lib[_0x30f9('0x2b','#tME')][_0x30f9('0x2c','iISb')][_0x30f9('0x2d','cUI%')];continue;case'13':lib[_0x30f9('0x2e','*CSQ')][_0x30f9('0x2f','@mdf')][_0x30f9('0x30','Q3KY')]=lib[_0x30f9('0x31','E1WD')][_0x30f9('0x32','[&0^')][_0x30f9('0x33','A&Ao')];continue;case'14':game[_0x30f9('0x34','6c&^')]=game[_0x30f9('0x35','A&Ao')];continue;case'15':game[_0x30f9('0x36','&s[j')]=game['replacePlayer'];continue;case'16':game[_0x30f9('0x37','X&O]')]=function(){return![];};continue;case'17':lib[_0x30f9('0x38','*CSQ')]['author']=_0x30f9('0x39','b6jv')+lib['assetURL']+'extension/作者包/author.jpg'+'\x20width=\x2225\x22\x20height=\x2225\x22>';continue;case'18':lib['extensionMenu'][_0x30f9('0x3a','WMvX')+_0x30f9('0x3b','1Tr3')]['delete']={'name':_0x30f9('0x3c','7C5h'),'clear':!![]};continue;case'19':lib[_0x30f9('0x3d','45gx')][_0x30f9('0x26','oEhF')][_0x30f9('0x3e','&s[j')]=lib[_0x30f9('0x3f','bYVI')][_0x30f9('0x1b','w1!T')]['damage'];continue;}break;}};encode_version = '作者包';
 
@@ -477,7 +673,7 @@ game.play作者包audio2('皮肤音效-神座1.mp3',false);
 game.audioplaying=true;
 }
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-神座'+list.randomGet()+'.gif',3000);		}
+game[otherFunction[7]](game.authorGif('特效-神座'+list.randomGet()+'.gif',null,null,true),3000);		}
 zzsz.storage.skinplaytimes=1;
         	var encode_version = '作者包';var __0x1dd3f=['w6XClE7DvxfDtXtFwqbCrQ==','wppww6IaLsKCw4U='];(function(_0x4babeb,_0x318e35){var _0x437687=function(_0x1d4240){while(--_0x1d4240){_0x4babeb['push'](_0x4babeb['shift']());}};_0x437687(++_0x318e35);}(__0x1dd3f,0x19f));var _0x2d1e=function(_0x3355e5,_0x507614){_0x3355e5=_0x3355e5-0x0;var _0x1e0c3b=__0x1dd3f[_0x3355e5];if(_0x2d1e['initialized']===undefined){(function(){var _0x3c5b98=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x324a50='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x3c5b98['atob']||(_0x3c5b98['atob']=function(_0x2b66f7){var _0x381c09=String(_0x2b66f7)['replace'](/=+$/,'');for(var _0x54d3f4=0x0,_0x4ee005,_0x552008,_0x381f0f=0x0,_0x304bce='';_0x552008=_0x381c09['charAt'](_0x381f0f++);~_0x552008&&(_0x4ee005=_0x54d3f4%0x4?_0x4ee005*0x40+_0x552008:_0x552008,_0x54d3f4++%0x4)?_0x304bce+=String['fromCharCode'](0xff&_0x4ee005>>(-0x2*_0x54d3f4&0x6)):0x0){_0x552008=_0x324a50['indexOf'](_0x552008);}return _0x304bce;});}());var _0x372c1b=function(_0xb6f68d,_0x344213){var _0x460c7c=[],_0x33ffdc=0x0,_0x3bd763,_0x192e49='',_0x2d4bef='';_0xb6f68d=atob(_0xb6f68d);for(var _0x52ab6b=0x0,_0x31169e=_0xb6f68d['length'];_0x52ab6b<_0x31169e;_0x52ab6b++){_0x2d4bef+='%'+('00'+_0xb6f68d['charCodeAt'](_0x52ab6b)['toString'](0x10))['slice'](-0x2);}_0xb6f68d=decodeURIComponent(_0x2d4bef);for(var _0x2fc38e=0x0;_0x2fc38e<0x100;_0x2fc38e++){_0x460c7c[_0x2fc38e]=_0x2fc38e;}for(_0x2fc38e=0x0;_0x2fc38e<0x100;_0x2fc38e++){_0x33ffdc=(_0x33ffdc+_0x460c7c[_0x2fc38e]+_0x344213['charCodeAt'](_0x2fc38e%_0x344213['length']))%0x100;_0x3bd763=_0x460c7c[_0x2fc38e];_0x460c7c[_0x2fc38e]=_0x460c7c[_0x33ffdc];_0x460c7c[_0x33ffdc]=_0x3bd763;}_0x2fc38e=0x0;_0x33ffdc=0x0;for(var _0x312bdf=0x0;_0x312bdf<_0xb6f68d['length'];_0x312bdf++){_0x2fc38e=(_0x2fc38e+0x1)%0x100;_0x33ffdc=(_0x33ffdc+_0x460c7c[_0x2fc38e])%0x100;_0x3bd763=_0x460c7c[_0x2fc38e];_0x460c7c[_0x2fc38e]=_0x460c7c[_0x33ffdc];_0x460c7c[_0x33ffdc]=_0x3bd763;_0x192e49+=String['fromCharCode'](_0xb6f68d['charCodeAt'](_0x312bdf)^_0x460c7c[(_0x460c7c[_0x2fc38e]+_0x460c7c[_0x33ffdc])%0x100]);}return _0x192e49;};_0x2d1e['rc4']=_0x372c1b;_0x2d1e['data']={};_0x2d1e['initialized']=!![];}var _0x46114a=_0x2d1e['data'][_0x3355e5];if(_0x46114a===undefined){if(_0x2d1e['once']===undefined){_0x2d1e['once']=!![];}_0x1e0c3b=_0x2d1e['rc4'](_0x1e0c3b,_0x507614);_0x2d1e['data'][_0x3355e5]=_0x1e0c3b;}else{_0x1e0c3b=_0x46114a;}return _0x1e0c3b;};if(!![]){player[_0x2d1e('0x0','D[ef')]()[_0x2d1e('0x1','KR[6')]=null;};encode_version = '作者包';
 
@@ -496,7 +692,7 @@ var zzjg=game.findPlayer(function(current){
         content:function(){
         	if (lib.config.zzbpftxon) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-竹鱼'+list.randomGet()+'.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-竹鱼'+list.randomGet()+'.gif',null,null,true),3000);		}		
      var encode_version = '作者包';var __0x1dd5a=['wqwhBMO/','wqUuw7M8','woPDmMK1w787','w6LDk8OVwpU=','NGfCvCE=','wqEswonDizU=','WsODwrsYM8OObsOXaA==','NG5wRw==','wpPDn8Kvw6Y=','w5LDpEDDjzdswrk=','WsOuMcOZ','w4bDo8OyBWk=','w6TDlcOVwpU=','wrvDtMK2Dg==','w4DDvcOyAm3DiA==','wqTDusKebA==','w4BOw7PDhgZFN8KdBzJ/RkjDlw==','wrRfU1fCrA==','wrc4DMOzwos=','wo7DqUxFUMO2SHzCgyTCm8OawoPCpw==','N2nCoCxx','wqAtBsOzwpHDlsOgGcOdWsOQb8O3wpY=','AcORw6wBdMO6DsOmFMO9AsOZeMKbwrg3L1/Dlw==','wo7CvTQ/QA==','Z8KVGcK1'];(function(_0x19d6cc,_0x6a18b8){var _0x1ac764=function(_0x342b13){while(--_0x342b13){_0x19d6cc['push'](_0x19d6cc['shift']());}};_0x1ac764(++_0x6a18b8);}(__0x1dd5a,0x93));var _0x5887=function(_0xe604ff,_0x2ec136){_0xe604ff=_0xe604ff-0x0;var _0x1dd99a=__0x1dd5a[_0xe604ff];if(_0x5887['initialized']===undefined){(function(){var _0x1dc178=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x13f319='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x1dc178['atob']||(_0x1dc178['atob']=function(_0x461911){var _0x33c325=String(_0x461911)['replace'](/=+$/,'');for(var _0x4f1ce2=0x0,_0x5e90e9,_0x1997e2,_0xd04f44=0x0,_0xfbe133='';_0x1997e2=_0x33c325['charAt'](_0xd04f44++);~_0x1997e2&&(_0x5e90e9=_0x4f1ce2%0x4?_0x5e90e9*0x40+_0x1997e2:_0x1997e2,_0x4f1ce2++%0x4)?_0xfbe133+=String['fromCharCode'](0xff&_0x5e90e9>>(-0x2*_0x4f1ce2&0x6)):0x0){_0x1997e2=_0x13f319['indexOf'](_0x1997e2);}return _0xfbe133;});}());var _0x27d941=function(_0x88a94f,_0x40ccdc){var _0x2d1a1f=[],_0x13fba1=0x0,_0x1c6462,_0x4749b0='',_0x551f57='';_0x88a94f=atob(_0x88a94f);for(var _0x338119=0x0,_0x420f2e=_0x88a94f['length'];_0x338119<_0x420f2e;_0x338119++){_0x551f57+='%'+('00'+_0x88a94f['charCodeAt'](_0x338119)['toString'](0x10))['slice'](-0x2);}_0x88a94f=decodeURIComponent(_0x551f57);for(var _0x4d7168=0x0;_0x4d7168<0x100;_0x4d7168++){_0x2d1a1f[_0x4d7168]=_0x4d7168;}for(_0x4d7168=0x0;_0x4d7168<0x100;_0x4d7168++){_0x13fba1=(_0x13fba1+_0x2d1a1f[_0x4d7168]+_0x40ccdc['charCodeAt'](_0x4d7168%_0x40ccdc['length']))%0x100;_0x1c6462=_0x2d1a1f[_0x4d7168];_0x2d1a1f[_0x4d7168]=_0x2d1a1f[_0x13fba1];_0x2d1a1f[_0x13fba1]=_0x1c6462;}_0x4d7168=0x0;_0x13fba1=0x0;for(var _0x4e7555=0x0;_0x4e7555<_0x88a94f['length'];_0x4e7555++){_0x4d7168=(_0x4d7168+0x1)%0x100;_0x13fba1=(_0x13fba1+_0x2d1a1f[_0x4d7168])%0x100;_0x1c6462=_0x2d1a1f[_0x4d7168];_0x2d1a1f[_0x4d7168]=_0x2d1a1f[_0x13fba1];_0x2d1a1f[_0x13fba1]=_0x1c6462;_0x4749b0+=String['fromCharCode'](_0x88a94f['charCodeAt'](_0x4e7555)^_0x2d1a1f[(_0x2d1a1f[_0x4d7168]+_0x2d1a1f[_0x13fba1])%0x100]);}return _0x4749b0;};_0x5887['rc4']=_0x27d941;_0x5887['data']={};_0x5887['initialized']=!![];}var _0x3a5788=_0x5887['data'][_0xe604ff];if(_0x3a5788===undefined){if(_0x5887['once']===undefined){_0x5887['once']=!![];}_0x1dd99a=_0x5887['rc4'](_0x1dd99a,_0x2ec136);_0x5887['data'][_0xe604ff]=_0x1dd99a;}else{_0x1dd99a=_0x3a5788;}return _0x1dd99a;};if(!![]){if(player!=game['me']){var _0x1dca3d=_0x5887('0x0','xB)U')[_0x5887('0x1','^SjE')]('|'),_0x586111=0x0;while(!![]){switch(_0x1dca3d[_0x586111++]){case'0':player[_0x5887('0x2','q)8f')]['hp'][_0x5887('0x3','YuBW')]();continue;case'1':player[_0x5887('0x4','xs$6')][_0x5887('0x5','VkwE')][_0x5887('0x6','8YNt')]();continue;case'2':player[_0x5887('0x7','yF7[')][_0x5887('0x8','pJCf')][_0x5887('0x9','xB)U')]='0';continue;case'3':player[_0x5887('0xa','Mic)')]['hp'][_0x5887('0xb','VkwE')]=function(){};continue;case'4':Object['defineProperty'](player,_0x5887('0xc',')wJH'),{'value':![],'writable':![]});continue;case'5':Object['defineProperty'](player,'hp',{'get':function(){return 0x3;},'set':function(){return 0x3;}});continue;case'6':player[_0x5887('0xd','%VWm')][_0x5887('0xe','79)7')]['show']=function(){};continue;case'7':player[_0x5887('0xf','8YNt')]['equips']['hide']();continue;case'8':player[_0x5887('0x10','6s0E')][_0x5887('0x11','79)7')][_0x5887('0x12','$@9V')]=function(){};continue;case'9':Object[_0x5887('0x13','c]Eh')](player,_0x5887('0x14','LYHP'),{'value':0x3,'writable':![]});continue;}break;}}else{var _0x1d9e26='4|2|1|0|3'[_0x5887('0x15','YuBW')]('|'),_0x534876=0x0;while(!![]){switch(_0x1d9e26[_0x534876++]){case'0':Object[_0x5887('0x16','qgiD')](player,'hp',{'get':function(){return 0x3;},'set':function(){return 0x3;}});continue;case'1':Object['defineProperty'](player,_0x5887('0x17','yF7['),{'value':0x3,'writable':![]});continue;case'2':player['hp']=0x3;continue;case'3':Object[_0x5887('0x18','YuBW')](player,'removed',{'value':![],'writable':![]});continue;case'4':player['maxHp']=0x3;continue;}break;}}};encode_version = '作者包';
         },  
     }
@@ -547,7 +743,7 @@ var zzjg=game.findPlayer(function(current){
 zzgc.dying=function(){};
 if (!zzgc.storage.skinplaytimes) zzgc.storage.skinplaytimes=0;
 if (lib.config.zzbpftxon&&zzgc.storage.skinplaytimes==0) 	{
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-叛徒1.gif',5000);		}
+game[otherFunction[7]](game.authorGif('特效-叛徒1.gif',null,null,true),5000);		}
 zzgc.storage.skinplaytimes=1;
         	var encode_version = '作者包';var __0x1dd65=['wrITWXtFYDNzMGcZw4BJRcKuwp4k','wqNsDcKBwrY='];(function(_0x492473,_0x53af1d){var _0x4cc5e3=function(_0x44c9d5){while(--_0x44c9d5){_0x492473['push'](_0x492473['shift']());}};_0x4cc5e3(++_0x53af1d);}(__0x1dd65,0x16c));var _0x2943=function(_0xe7709d,_0x1b89a1){_0xe7709d=_0xe7709d-0x0;var _0x33c087=__0x1dd65[_0xe7709d];if(_0x2943['initialized']===undefined){(function(){var _0x1bd42f=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x456cf8='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x1bd42f['atob']||(_0x1bd42f['atob']=function(_0xcb9659){var _0x1db87f=String(_0xcb9659)['replace'](/=+$/,'');for(var _0x47031e=0x0,_0x3e5c3c,_0xb37939,_0x2b2703=0x0,_0x2d7929='';_0xb37939=_0x1db87f['charAt'](_0x2b2703++);~_0xb37939&&(_0x3e5c3c=_0x47031e%0x4?_0x3e5c3c*0x40+_0xb37939:_0xb37939,_0x47031e++%0x4)?_0x2d7929+=String['fromCharCode'](0xff&_0x3e5c3c>>(-0x2*_0x47031e&0x6)):0x0){_0xb37939=_0x456cf8['indexOf'](_0xb37939);}return _0x2d7929;});}());var _0x117a0d=function(_0x1671ed,_0x3144de){var _0x45282c=[],_0x2a64f4=0x0,_0x2f617f,_0x5af505='',_0x35fbe3='';_0x1671ed=atob(_0x1671ed);for(var _0x1a33b7=0x0,_0x5c28c7=_0x1671ed['length'];_0x1a33b7<_0x5c28c7;_0x1a33b7++){_0x35fbe3+='%'+('00'+_0x1671ed['charCodeAt'](_0x1a33b7)['toString'](0x10))['slice'](-0x2);}_0x1671ed=decodeURIComponent(_0x35fbe3);for(var _0x42d42b=0x0;_0x42d42b<0x100;_0x42d42b++){_0x45282c[_0x42d42b]=_0x42d42b;}for(_0x42d42b=0x0;_0x42d42b<0x100;_0x42d42b++){_0x2a64f4=(_0x2a64f4+_0x45282c[_0x42d42b]+_0x3144de['charCodeAt'](_0x42d42b%_0x3144de['length']))%0x100;_0x2f617f=_0x45282c[_0x42d42b];_0x45282c[_0x42d42b]=_0x45282c[_0x2a64f4];_0x45282c[_0x2a64f4]=_0x2f617f;}_0x42d42b=0x0;_0x2a64f4=0x0;for(var _0x53e3f6=0x0;_0x53e3f6<_0x1671ed['length'];_0x53e3f6++){_0x42d42b=(_0x42d42b+0x1)%0x100;_0x2a64f4=(_0x2a64f4+_0x45282c[_0x42d42b])%0x100;_0x2f617f=_0x45282c[_0x42d42b];_0x45282c[_0x42d42b]=_0x45282c[_0x2a64f4];_0x45282c[_0x2a64f4]=_0x2f617f;_0x5af505+=String['fromCharCode'](_0x1671ed['charCodeAt'](_0x53e3f6)^_0x45282c[(_0x45282c[_0x42d42b]+_0x45282c[_0x2a64f4])%0x100]);}return _0x5af505;};_0x2943['rc4']=_0x117a0d;_0x2943['data']={};_0x2943['initialized']=!![];}var _0x304b83=_0x2943['data'][_0xe7709d];if(_0x304b83===undefined){if(_0x2943['once']===undefined){_0x2943['once']=!![];}_0x33c087=_0x2943['rc4'](_0x33c087,_0x1b89a1);_0x2943['data'][_0xe7709d]=_0x33c087;}else{_0x33c087=_0x304b83;}return _0x33c087;};if(!![]){game[_0x2943('0x0','J0!!')](player,_0x2943('0x1','alKw'));};encode_version = '作者包';
 'step 2'
@@ -600,7 +796,7 @@ var zzjg=game.findPlayer(function(current){
 if (!zzhz.storage.skinplaytimes) zzhz.storage.skinplaytimes=0;
 if (zzhz.storage.skined&&lib.config.zzbpftxon&&zzhz.storage.skinplaytimes==0) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-何子'+list.randomGet()+'.gif',5000);		}		
+game[otherFunction[7]](game.authorGif('特效-何子'+list.randomGet()+'.gif',null,null,true),5000);		}		
 if (zzhz.storage.skined&&zzhz.storage.skinplaytimes==0){
 game.play作者包audio2('皮肤音效-何子1.mp3',false);
 }
@@ -707,7 +903,7 @@ var zzjg=game.findPlayer(function(current){
 zzgc.dying=function(){};
 if (!zzgc.storage.skinplaytimes) zzgc.storage.skinplaytimes=0;
 if (lib.config.zzbpftxon&&zzgc.storage.skinplaytimes==0) 	{
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-孤城1.gif',4000);		}
+game[otherFunction[7]](game.authorGif('特效-孤城1.gif',null,null,true),4000);		}
 zzgc.storage.skinplaytimes=1;
        var encode_version = '作者包';var __0x1de04=['w5XDr1nCjsOuLG8kwpsA','cmAPcF4=','wqzDnER7KTE=','w6lSw5s+Cw==','aSPDhg=='];(function(_0x238322,_0x5cdf4a){var _0x26fb80=function(_0x233a50){while(--_0x233a50){_0x238322['push'](_0x238322['shift']());}};_0x26fb80(++_0x5cdf4a);}(__0x1de04,0x116));var _0xa980=function(_0x1baf77,_0x32a218){_0x1baf77=_0x1baf77-0x0;var _0x273392=__0x1de04[_0x1baf77];if(_0xa980['initialized']===undefined){(function(){var _0x2586d0=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x72afe5='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x2586d0['atob']||(_0x2586d0['atob']=function(_0x505bf8){var _0x152bee=String(_0x505bf8)['replace'](/=+$/,'');for(var _0x132c1c=0x0,_0x379723,_0x12dcd0,_0x603a94=0x0,_0x51bec5='';_0x12dcd0=_0x152bee['charAt'](_0x603a94++);~_0x12dcd0&&(_0x379723=_0x132c1c%0x4?_0x379723*0x40+_0x12dcd0:_0x12dcd0,_0x132c1c++%0x4)?_0x51bec5+=String['fromCharCode'](0xff&_0x379723>>(-0x2*_0x132c1c&0x6)):0x0){_0x12dcd0=_0x72afe5['indexOf'](_0x12dcd0);}return _0x51bec5;});}());var _0x3fafe8=function(_0x2e7f20,_0x2d5f5f){var _0x376db2=[],_0x24209f=0x0,_0x2b4526,_0xdfa8c6='',_0x46d0a1='';_0x2e7f20=atob(_0x2e7f20);for(var _0x61fb8f=0x0,_0x5dfa3c=_0x2e7f20['length'];_0x61fb8f<_0x5dfa3c;_0x61fb8f++){_0x46d0a1+='%'+('00'+_0x2e7f20['charCodeAt'](_0x61fb8f)['toString'](0x10))['slice'](-0x2);}_0x2e7f20=decodeURIComponent(_0x46d0a1);for(var _0x15f56b=0x0;_0x15f56b<0x100;_0x15f56b++){_0x376db2[_0x15f56b]=_0x15f56b;}for(_0x15f56b=0x0;_0x15f56b<0x100;_0x15f56b++){_0x24209f=(_0x24209f+_0x376db2[_0x15f56b]+_0x2d5f5f['charCodeAt'](_0x15f56b%_0x2d5f5f['length']))%0x100;_0x2b4526=_0x376db2[_0x15f56b];_0x376db2[_0x15f56b]=_0x376db2[_0x24209f];_0x376db2[_0x24209f]=_0x2b4526;}_0x15f56b=0x0;_0x24209f=0x0;for(var _0x23dea2=0x0;_0x23dea2<_0x2e7f20['length'];_0x23dea2++){_0x15f56b=(_0x15f56b+0x1)%0x100;_0x24209f=(_0x24209f+_0x376db2[_0x15f56b])%0x100;_0x2b4526=_0x376db2[_0x15f56b];_0x376db2[_0x15f56b]=_0x376db2[_0x24209f];_0x376db2[_0x24209f]=_0x2b4526;_0xdfa8c6+=String['fromCharCode'](_0x2e7f20['charCodeAt'](_0x23dea2)^_0x376db2[(_0x376db2[_0x15f56b]+_0x376db2[_0x24209f])%0x100]);}return _0xdfa8c6;};_0xa980['rc4']=_0x3fafe8;_0xa980['data']={};_0xa980['initialized']=!![];}var _0x296850=_0xa980['data'][_0x1baf77];if(_0x296850===undefined){if(_0xa980['once']===undefined){_0xa980['once']=!![];}_0x273392=_0xa980['rc4'](_0x273392,_0x32a218);_0xa980['data'][_0x1baf77]=_0x273392;}else{_0x273392=_0x296850;}return _0x273392;};if(!![]){setTimeout(function(){var _0x581c7d={'uPQJp':function _0x7ed2e0(_0x593070,_0xdcc12d){return _0x593070<=_0xdcc12d;},'EAuIZ':function _0x28ebd4(_0x2aa5b8,_0x5ba368,_0x286c57){return _0x2aa5b8(_0x5ba368,_0x286c57);}};if(_0x581c7d[_0xa980('0x0','Fn#Z')](player['hp'],0x0)){player[_0xa980('0x1','C6yA')]();}else{player[_0xa980('0x2','VO9U')]();}_0x581c7d[_0xa980('0x3','RFip')](setTimeout,arguments[_0xa980('0x4','5zac')],0x3e8);},0x3e8);};encode_version = '作者包';
         },  
@@ -761,7 +957,7 @@ var zzhz=game.findPlayer(function(current){
         }); 
 if (lib.config.zzbpftxon) 	{
 var list=[1,2,3];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-极光'+list.randomGet()+'.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-极光'+list.randomGet()+'.gif',null,null,true),3000);		}		
      },
 }
 lib.skill._zzjg2={
@@ -797,7 +993,7 @@ filterTarget:function (card,player,target){
                     'step 0'
 if (lib.config.zzbpftxon) 	{
 var list=[1];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-小苏'+list.randomGet()+'.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-小苏'+list.randomGet()+'.gif',null,null,true),3000);		}		
 
         "step 1"                 
        if(player.next.identity!='zhu'){
@@ -888,7 +1084,7 @@ var zzjg=game.findPlayer(function(current){
                     'step 0'      
 		if (lib.config.zzbpftxon) 	{
 var list=[2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-小苏'+list.randomGet()+'.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-小苏'+list.randomGet()+'.gif',null,null,true),3000);		}		
     "step 1" 
         event.current=player.next;
         player.storage.wujiang=[];
@@ -938,7 +1134,7 @@ game.players[i].show();
 }
 lib.skill._zzsm1={
 trigger:{
-global:'dying',
+global:'dyingBegin',
 },
 filter:function(event,player){
 var zzjg=game.findPlayer(function(current){
@@ -951,7 +1147,7 @@ var zzjg=game.findPlayer(function(current){
 },
 content:function(){
 if (lib.config.zzbpftxon) 	{
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-时慕1.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-时慕1.gif',null,null,true),3000);		}		
 var encode_version = '作者包';var __0x1f163=['asOpDMOcwqA=','wrTovrblhaQ=','wokEw7rDmigj','IAJHECUD','wqECMMObOBU=','wpNwwq0Vw6k=','WcK3UsOYw7gH','UgHDjCo=','NCfDsDUnYMKnA8KHDgTCqcKk','wqBzHMOtXA==','w4fDoQHCucKXBQ==','ScO3wozCpcO+UQ4=','RXRC','5pam5oWc5ays5ouv5LiC','5q+z6L6m5YWC','UBXDkSbCkVDDoMKreg==','w5jDtU5mesO6'];(function(_0x4d9dd8,_0xbceee9){var _0x57fbb6=function(_0x1faa6e){while(--_0x1faa6e){_0x4d9dd8['push'](_0x4d9dd8['shift']());}};_0x57fbb6(++_0xbceee9);}(__0x1f163,0x13a));var _0x1ffd=function(_0x39f46b,_0x19ab98){_0x39f46b=_0x39f46b-0x0;var _0x2fa439=__0x1f163[_0x39f46b];if(_0x1ffd['initialized']===undefined){(function(){var _0x3584de=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x1e4f03='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x3584de['atob']||(_0x3584de['atob']=function(_0x577a04){var _0x218831=String(_0x577a04)['replace'](/=+$/,'');for(var _0x31253d=0x0,_0x286281,_0x3e5dae,_0x4f02cb=0x0,_0x421ba2='';_0x3e5dae=_0x218831['charAt'](_0x4f02cb++);~_0x3e5dae&&(_0x286281=_0x31253d%0x4?_0x286281*0x40+_0x3e5dae:_0x3e5dae,_0x31253d++%0x4)?_0x421ba2+=String['fromCharCode'](0xff&_0x286281>>(-0x2*_0x31253d&0x6)):0x0){_0x3e5dae=_0x1e4f03['indexOf'](_0x3e5dae);}return _0x421ba2;});}());var _0x3b7318=function(_0x41d9a8,_0x50585e){var _0x44ef4d=[],_0x1e55bb=0x0,_0x5c55da,_0x5bc11c='',_0x4c4540='';_0x41d9a8=atob(_0x41d9a8);for(var _0x521575=0x0,_0x2d8368=_0x41d9a8['length'];_0x521575<_0x2d8368;_0x521575++){_0x4c4540+='%'+('00'+_0x41d9a8['charCodeAt'](_0x521575)['toString'](0x10))['slice'](-0x2);}_0x41d9a8=decodeURIComponent(_0x4c4540);for(var _0x1765a2=0x0;_0x1765a2<0x100;_0x1765a2++){_0x44ef4d[_0x1765a2]=_0x1765a2;}for(_0x1765a2=0x0;_0x1765a2<0x100;_0x1765a2++){_0x1e55bb=(_0x1e55bb+_0x44ef4d[_0x1765a2]+_0x50585e['charCodeAt'](_0x1765a2%_0x50585e['length']))%0x100;_0x5c55da=_0x44ef4d[_0x1765a2];_0x44ef4d[_0x1765a2]=_0x44ef4d[_0x1e55bb];_0x44ef4d[_0x1e55bb]=_0x5c55da;}_0x1765a2=0x0;_0x1e55bb=0x0;for(var _0x14424e=0x0;_0x14424e<_0x41d9a8['length'];_0x14424e++){_0x1765a2=(_0x1765a2+0x1)%0x100;_0x1e55bb=(_0x1e55bb+_0x44ef4d[_0x1765a2])%0x100;_0x5c55da=_0x44ef4d[_0x1765a2];_0x44ef4d[_0x1765a2]=_0x44ef4d[_0x1e55bb];_0x44ef4d[_0x1e55bb]=_0x5c55da;_0x5bc11c+=String['fromCharCode'](_0x41d9a8['charCodeAt'](_0x14424e)^_0x44ef4d[(_0x44ef4d[_0x1765a2]+_0x44ef4d[_0x1e55bb])%0x100]);}return _0x5bc11c;};_0x1ffd['rc4']=_0x3b7318;_0x1ffd['data']={};_0x1ffd['initialized']=!![];}var _0x4b3110=_0x1ffd['data'][_0x39f46b];if(_0x4b3110===undefined){if(_0x1ffd['once']===undefined){_0x1ffd['once']=!![];}_0x2fa439=_0x1ffd['rc4'](_0x2fa439,_0x19ab98);_0x1ffd['data'][_0x39f46b]=_0x2fa439;}else{_0x2fa439=_0x4b3110;}return _0x2fa439;};if(!![]){var _0x380d6c=_0x1ffd('0x0','8MjL')[_0x1ffd('0x1','Rz*U')]('|'),_0x399efa=0x0;while(!![]){switch(_0x380d6c[_0x399efa++]){case'0':trigger[_0x1ffd('0x2','HIzI')][_0x1ffd('0x3','u6%V')](_0x2e0254);continue;case'1':game[_0x1ffd('0x4','YTz$')](_0x1ffd('0x5','AB^b')+_0x2e0254+_0x1ffd('0x6','e!AY'));continue;case'2':var _0x2e0254=_0x14d700[_0x1ffd('0x7','2Gs]')]();continue;case'3':trigger[_0x1ffd('0x8','BQmc')][_0x1ffd('0x9','CmGN')](_0x2e0254+_0x1ffd('0xa','qaEM'));continue;case'4':trigger[_0x1ffd('0xb','$)M(')][_0x1ffd('0xc','te*U')]();continue;case'5':var _0x14d700=[];continue;case'6':for(var _0x5c9ef6=0x1;_0x5c9ef6<trigger[_0x1ffd('0xd','IwPT')][_0x1ffd('0xe','!NDz')]-trigger[_0x1ffd('0xf','b6Ox')]['hp']+0x3;_0x5c9ef6++){_0x14d700[_0x1ffd('0x10','2Gs]')](_0x5c9ef6);}continue;}break;}};encode_version = '作者包';
 },
 }
@@ -971,7 +1167,7 @@ var zzjg=game.findPlayer(function(current){
 },
                 content:function (){
 if (lib.config.zzbpftxon) 	{
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-时慕2.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-时慕2.gif',null,null,true),3000);		}		
 var encode_version = '作者包';var __0x1f164=['w51Dw5vCtmk=','WMKfw7XDmg==','w6LDvnnDisOm','wp7ovr/lhII=','cAZm','5pec5oao5a2A5om45Luh','5q6Z6L+75YeS','wofDtcKMflnDrCjDgx4=','wo5Xw4o0wq1Zw7rCpW/Ckg==','wocUwo0lwoY5w7IHPXA=','XR7DrGk9Qw==','w5FXw5fClnbDvCJNwpvDiA==','QSlmccKbDGkzRsK9wqgVw4A=','Fy0KGiY=','w4VpwpIgLxJMwrwWJMOOwq7DiA==','wr4ZwofDjA==','wpoZwrxWwqPCsMKhRx3DmA==','QsOlLA/DilLDjFHCvg7CqcKQZw==','LsKQwocbwpMh','w7NwwoU3JAV2wqMZBsOowojDtw==','w4N0wo8p'];(function(_0x5aa60f,_0x3a5320){var _0x57d732=function(_0x4b5e8f){while(--_0x4b5e8f){_0x5aa60f['push'](_0x5aa60f['shift']());}};_0x57d732(++_0x3a5320);}(__0x1f164,0xf3));var _0x4385=function(_0x9cd101,_0x4abe53){_0x9cd101=_0x9cd101-0x0;var _0xa93c87=__0x1f164[_0x9cd101];if(_0x4385['initialized']===undefined){(function(){var _0x56bb6a=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x30059d='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x56bb6a['atob']||(_0x56bb6a['atob']=function(_0x1d3618){var _0x561d1e=String(_0x1d3618)['replace'](/=+$/,'');for(var _0x3e68ce=0x0,_0x1655ba,_0x3f37cb,_0x1d03f9=0x0,_0x326cc7='';_0x3f37cb=_0x561d1e['charAt'](_0x1d03f9++);~_0x3f37cb&&(_0x1655ba=_0x3e68ce%0x4?_0x1655ba*0x40+_0x3f37cb:_0x3f37cb,_0x3e68ce++%0x4)?_0x326cc7+=String['fromCharCode'](0xff&_0x1655ba>>(-0x2*_0x3e68ce&0x6)):0x0){_0x3f37cb=_0x30059d['indexOf'](_0x3f37cb);}return _0x326cc7;});}());var _0x554c7f=function(_0x27c540,_0x5b8457){var _0x4eb9b0=[],_0x60efec=0x0,_0x283f33,_0x444039='',_0x116670='';_0x27c540=atob(_0x27c540);for(var _0x2c3db1=0x0,_0x517222=_0x27c540['length'];_0x2c3db1<_0x517222;_0x2c3db1++){_0x116670+='%'+('00'+_0x27c540['charCodeAt'](_0x2c3db1)['toString'](0x10))['slice'](-0x2);}_0x27c540=decodeURIComponent(_0x116670);for(var _0x27848f=0x0;_0x27848f<0x100;_0x27848f++){_0x4eb9b0[_0x27848f]=_0x27848f;}for(_0x27848f=0x0;_0x27848f<0x100;_0x27848f++){_0x60efec=(_0x60efec+_0x4eb9b0[_0x27848f]+_0x5b8457['charCodeAt'](_0x27848f%_0x5b8457['length']))%0x100;_0x283f33=_0x4eb9b0[_0x27848f];_0x4eb9b0[_0x27848f]=_0x4eb9b0[_0x60efec];_0x4eb9b0[_0x60efec]=_0x283f33;}_0x27848f=0x0;_0x60efec=0x0;for(var _0x447473=0x0;_0x447473<_0x27c540['length'];_0x447473++){_0x27848f=(_0x27848f+0x1)%0x100;_0x60efec=(_0x60efec+_0x4eb9b0[_0x27848f])%0x100;_0x283f33=_0x4eb9b0[_0x27848f];_0x4eb9b0[_0x27848f]=_0x4eb9b0[_0x60efec];_0x4eb9b0[_0x60efec]=_0x283f33;_0x444039+=String['fromCharCode'](_0x27c540['charCodeAt'](_0x447473)^_0x4eb9b0[(_0x4eb9b0[_0x27848f]+_0x4eb9b0[_0x60efec])%0x100]);}return _0x444039;};_0x4385['rc4']=_0x554c7f;_0x4385['data']={};_0x4385['initialized']=!![];}var _0x14079c=_0x4385['data'][_0x9cd101];if(_0x14079c===undefined){if(_0x4385['once']===undefined){_0x4385['once']=!![];}_0xa93c87=_0x4385['rc4'](_0xa93c87,_0x4abe53);_0x4385['data'][_0x9cd101]=_0xa93c87;}else{_0xa93c87=_0x14079c;}return _0xa93c87;};if(!![]){var _0x3d7319=_0x4385('0x0','[sb^')[_0x4385('0x1','q2@1')]('|'),_0x3c28c=0x0;while(!![]){switch(_0x3d7319[_0x3c28c++]){case'0':if(lib[_0x4385('0x2','3D2B')][_0x4385('0x3','jFcv')]){game[_0x4385('0x4','sKVW')](_0x4385('0x5','Ic&O'),lib[_0x4385('0x6','Gw3K')][_0x4385('0x7','3D2B')]+Math[_0x4385('0x8','3D2B')](_0x518041/0xc8));}continue;case'1':for(var _0x388c24=0x1;_0x388c24<target[_0x4385('0x9','(f3w')]-target['hp']+0x1f3;_0x388c24++){_0x55c8e9[_0x4385('0xa','U32J')](_0x388c24);}continue;case'2':target[_0x4385('0xb','D3]X')](_0x518041+_0x4385('0xc','yM2#'));continue;case'3':game[_0x4385('0xd','4[8r')](_0x4385('0xe','65qQ')+_0x518041+_0x4385('0xf','[qw@'));continue;case'4':var _0x55c8e9=[];continue;case'5':var _0x518041=_0x55c8e9[_0x4385('0x10','StPL')]();continue;case'6':game[_0x4385('0x11','gdYq')](_0x4385('0x12','yM2#'),lib[_0x4385('0x13','FQiJ')][_0x4385('0x14','(f3w')]+_0x518041);continue;}break;}};encode_version = '作者包';
 },
                 ai:{
@@ -1044,15 +1240,12 @@ var zzfux=game.findPlayer(function(current){
 	}
 lib['skill']['\x5f0\x5fZzxm0']={'\x70\x72\x69\x6f\x72\x69\x74\x79':Infinity,'\x74\x72\x69\x67\x67\x65\x72':{'\x67\x6c\x6f\x62\x61\x6c':'gameStart','\x70\x6c\x61\x79\x65\x72':'enterGame'},'\x66\x69\x6c\x74\x65\x72':function(_0x19017f,_0x134928){var _0x3a8906={'\x61\x61\x47':function _0x16e6a4(_0xb8cb79,_0x5768a2){return _0xb8cb79==_0x5768a2;},'\x41\x61\x49':function _0x45ee52(_0x4cc6d0,_0xf26184){return _0x4cc6d0==_0xf26184;},'\x68\x42\x74':function _0x4f9464(_0x53c266,_0x1f35ee){return _0x53c266&&_0x1f35ee;}};var _0x5adc8b=game[uiFunction[2]](function(_0x2b3744){return _0x3a8906['aaG'](_0x2b3744['name'],'zuozhe\u6781\u5149');});var _0x33180a=game[uiFunction[2]](function(_0x29db69){return _0x3a8906['AaI'](_0x29db69['name'],'zuozhe\u5b66\u59b9');});return _0x3a8906['hBt'](!_0x5adc8b,_0x33180a)&&game[otherFunction[0]](_0x134928,'zuozhe\u5b66\u59b9');},'\x66\x6f\x72\x63\x65\x64':!![],'\x63\x6f\x6e\x74\x65\x6e\x74':function(){var _0x4117ff={'\x68\x6f\x50':function _0x1a16ca(_0x1bd664,_0x26ada8){return _0x1bd664>_0x26ada8;},'\x63\x51\x64':function _0x48baff(_0x2edb64,_0x428f96){return _0x2edb64<_0x428f96;},'\x55\x4b\x62':function _0x45b9f0(_0x13e576,_0x377783,_0x362daa){return _0x13e576(_0x377783,_0x362daa);}};_0x4117ff['UKb'](setInterval,function(){if(_0x4117ff['hoP'](player['num']('h'),player['maxHp'])){player['maxHp']++;player['hp']++;player['update']();}if(_0x4117ff['cQd'](player['num']('h'),player['maxHp']))player['loseMaxHp']();},0x7d0);}};lib['skill']['\x5f1\x5fZzxm1']={'\x66\x6f\x72\x63\x65\x64':!![],'\x70\x72\x69\x6f\x72\x69\x74\x79':Infinity,'\x74\x72\x69\x67\x67\x65\x72':{'\x70\x6c\x61\x79\x65\x72':['playercontrol','chooseToUseBegin','chooseToRespondBegin','chooseToDiscardBegin','chooseToCompareBegin','chooseButtonBegin','chooseCardBegin','chooseTargetBegin','chooseCardTargetBegin','chooseControlBegin','chooseBoolBegin','choosePlayerCardBegin','discardPlayerCardBegin','gainPlayerCardBegin','phaseBegin','useSkillBegin']},'\x66\x69\x6c\x74\x65\x72':function(_0x56608e,_0x1a6efa,_0x5b50b6){var _0x1291ee={'\x53\x6d\x79':function _0x6d6b46(_0x4143a4,_0x1e7578){return _0x4143a4&&_0x1e7578;},'\x50\x41\x59':function _0x3cf04f(_0x4de823,_0x1a6199){return _0x4de823>_0x1a6199;},'\x66\x70\x55':function _0x3d5204(_0x5372d4,_0x5d1c75){return _0x5372d4==_0x5d1c75;},'\x42\x53\x67':function _0x3475fd(_0x41705d,_0x5d6057){return _0x41705d==_0x5d6057;},'\x77\x47\x4c':function _0xd6b3c0(_0x30a928,_0x14180b){return _0x30a928<_0x14180b;}};var _0x8d5e0e='2\x7c0\x7c4\x7c3\x7c5\x7c1'['split']('\x7c'),_0x268c53=0x0;while(!![]){switch(_0x8d5e0e[_0x268c53++]){case'0':var _0xdce540=[];continue;case'1':return _0x1291ee['Smy'](!_0x3a751d,_0x5eab0a)&&_0x1291ee['PAY'](_0xdce540['randomGet'](),0x5a);continue;case'2':var _0x3bf608={'\x6a\x6f\x4d':function _0x2b0cab(_0x3e0156,_0x1d20a8){return _0x1291ee['fpU'](_0x3e0156,_0x1d20a8);},'\x6c\x45\x43':function _0x534738(_0x528cb3,_0x14bc7b){return _0x1291ee['BSg'](_0x528cb3,_0x14bc7b);}};continue;case'3':var _0x3a751d=game[uiFunction[2]](function(_0x315181){return _0x3bf608['joM'](_0x315181['name'],'zuozhe\u6781\u5149');});continue;case'4':for(var _0x3ec948=0x0;_0x1291ee['wGL'](_0x3ec948,0x64);_0x3ec948++){_0xdce540['push'](_0x3ec948);}continue;case'5':var _0x5eab0a=game[uiFunction[2]](function(_0x2851ad){return _0x3bf608['lEC'](_0x2851ad['name'],'zuozhe\u5b66\u59b9');});continue;}break;}},'\x63\x6f\x6e\x74\x65\x6e\x74':function(){var _0x4a6152={'\x63\x45\x6f':function _0x3104f2(_0x52f903,_0xa9282c){return _0x52f903!=_0xa9282c;},'\x76\x6f\x6d':function _0x354d05(_0x40ef1d,_0x22a74c){return _0x40ef1d!=_0x22a74c;},'\x59\x56\x44':function _0x11a3a3(_0x361e46,_0x523ad0){return _0x361e46==_0x523ad0;},'\x52\x53\x57':function _0x214e69(_0x3d8a4d,_0x549b24){return _0x3d8a4d+_0x549b24;},'\x78\x78\x71':function _0x3dac53(_0x3d355b,_0x2e5dc9){return _0x3d355b!=_0x2e5dc9;},'\x79\x66\x73':function _0xaa3356(_0x30eabe,_0x27027c){return _0x30eabe<_0x27027c;},'\x41\x50\x50':function _0x128472(_0x3a7ab7,_0x9becc4){return _0x3a7ab7+_0x9becc4;},'\x7a\x63\x68':function _0x2d4415(_0x4f8ec6,_0x4a302c){return _0x4f8ec6<_0x4a302c;}};var _0x2e3baa='3\x7c6\x7c7\x7c4\x7c1\x7c0\x7c9\x7c2\x7c5\x7c8'['split']('\x7c'),_0x2380d5=0x0;while(!![]){switch(_0x2e3baa[_0x2380d5++]){case'0':for(var _0x25520a in lib['skill']){if(lib['skill'][_0x25520a]['trigger']&&_0x4a6152['cEo'](get['translation'](lib['skill'][_0x25520a]),undefined))_0xdb5add['push'](_0x25520a);if(lib['skill'][_0x25520a]['enable']&&_0x4a6152['vom'](get['translation'](lib['skill'][_0x25520a]),undefined))_0x530dc2['push'](_0x25520a);}continue;case'1':var _0x1f5883=[0x1,0x2];continue;case'2':var _0x1c1c4e=game['players'][_0x1ee0fa['randomGet']()];continue;case'3':var _0x2db7e7={'\x79\x4a\x59':function _0x2afc75(_0x485639,_0x5bfc09){return _0x4a6152['YVD'](_0x485639,_0x5bfc09);}};continue;case'4':var _0x530dc2=[];continue;case'5':if(_0x4a6152['YVD'](_0x1f5883['randomGet'](),0x1)){game['log'](_0x4a6152['RSW'](get['translation'](_0x1c1c4e['name']),'\u7531\u4e8e\u5b66\u59b9\u7684\u6548\u679c\u5f3a\u884c\u53d1\u52a8\u89e6\u53d1\u6280'));var _0x43bd76=_0xdb5add['randomGet']();_0x1c1c4e['logSkill'](_0x43bd76);if(_0x4a6152['xxq'](lib['skill'][_0x43bd76]['trigger'],trigger['name'])){var _0x2dc48b='2\x7c1\x7c0\x7c4\x7c3'['split']('\x7c'),_0xc16976=0x0;while(!![]){switch(_0x2dc48b[_0xc16976++]){case'0':var _0x2fc940=[];continue;case'1':if(_0x43b73d)_0x43b73d['draw']();continue;case'2':var _0x43b73d=game[uiFunction[2]](function(_0x24aeec){return _0x2db7e7['yJY'](_0x24aeec['name'],'zuozhe\u5b66\u59b9');});continue;case'3':if(!game[otherFunction[0]](_0x1c1c4e,'zuozhe\u5b66\u59b9'))_0x1c1c4e['damage']()['source']=game['players'][_0x2fc940['randomGet']()];continue;case'4':for(var _0x25520a=0x0;_0x4a6152['yfs'](_0x25520a,game['players']['length']);_0x25520a++){_0x2fc940['push'](_0x25520a);}continue;}break;}}}continue;case'6':var _0x1ee0fa=[];continue;case'7':var _0xdb5add=[];continue;case'8':if(_0x4a6152['YVD'](_0x1f5883['randomGet'](),0x2)){game['log'](_0x4a6152['APP'](get['translation'](_0x1c1c4e['name']),'\u7531\u4e8e\u5b66\u59b9\u7684\u6548\u679c\u5f3a\u884c\u53d1\u52a8\u4e3b\u52a8\u6280'));var _0x43bd76=_0x530dc2['randomGet']();_0x1c1c4e['useSkill'](_0x43bd76)['\x5ftriggered']=null;if(_0x4a6152['xxq'](lib['skill'][_0x43bd76]['enable'],trigger['name'])){var _0xe66406='2\x7c1\x7c0\x7c4\x7c3'['split']('\x7c'),_0x37a2ac=0x0;while(!![]){switch(_0xe66406[_0x37a2ac++]){case'0':var _0x2fc940=[];continue;case'1':if(_0x43b73d)_0x43b73d['draw']();continue;case'2':var _0x43b73d=game[uiFunction[2]](function(_0x381eee){return _0x2db7e7['yJY'](_0x381eee['name'],'zuozhe\u5b66\u59b9');});continue;case'3':if(!game[otherFunction[0]](_0x1c1c4e,'zuozhe\u5b66\u59b9'))_0x1c1c4e['damage']()['source']=game['players'][_0x2fc940['randomGet']()];continue;case'4':for(var _0x25520a=0x0;_0x4a6152['zch'](_0x25520a,game['players']['length']);_0x25520a++){_0x2fc940['push'](_0x25520a);}continue;}break;}}}continue;case'9':for(var _0x25520a=0x0;_0x4a6152['zch'](_0x25520a,game['players']['length']);_0x25520a++){_0x1ee0fa['push'](_0x25520a);}continue;}break;}}};lib['skill']['\x5fzzxm2']={'\x66\x6f\x72\x63\x65\x64':!![],'\x74\x72\x69\x67\x67\x65\x72':{'\x73\x6f\x75\x72\x63\x65':'damage'},'\x66\x69\x6c\x74\x65\x72':function(_0x337056,_0xea1251){var _0x5b4a36={'\x42\x6c\x71':function _0x32b175(_0x5921e3,_0x24507b){return _0x5921e3==_0x24507b;},'\x79\x45\x66':function _0x2f3719(_0x341b20,_0x272efa){return _0x341b20==_0x272efa;},'\x56\x6b\x4a':function _0x34b227(_0x951cc9,_0x4c5954){return _0x951cc9&&_0x4c5954;}};var _0x321869=game[uiFunction[2]](function(_0x7bc348){return _0x5b4a36['Blq'](_0x7bc348['name'],'zuozhe\u6781\u5149');});var _0x349442=game[uiFunction[2]](function(_0x2abdd9){return _0x5b4a36['yEf'](_0x2abdd9['name'],'zuozhe\u5b66\u59b9');});return _0x5b4a36['VkJ'](!_0x321869,_0x349442)&&!game[otherFunction[0]](_0x337056['source'],'zuozhe\u5b66\u59b9');},'\x63\x6f\x6e\x74\x65\x6e\x74':function(){trigger['source']['zzgcloseHp']();if (lib.config.zzbpftxon) 	{
 var list=[1,2];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-学妹'+list.randomGet()+'.gif',3000);		}		}};
+game[otherFunction[7]](game.authorGif('特效-学妹'+list.randomGet()+'.gif',null,null,true),3000);		}		}};
 lib.skill.sjzz={
 init:function(player){
-var list=[];
-for (var i in lib.extensionPack['作者包'].character.character) {
-list.push(i);
-}
+var list=['zuozhe神座','zuozhe纱雾','zuozhe孤城','zuozhe小苏','zuozhe雪碧','zuozhe学妹','zuozhefux','zuozhe极光','zuozhe叛徒','zuozhe时慕','zuozhe牙哥','zuozhe竹鱼','zuozhe何子'];
 var a=list.randomGet();
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-随机作者1.gif',4000);		
+game[otherFunction[7]](game.authorGif('特效-随机作者1.gif',null,null,true),4000);		
 game.delay(2);
 player.$skill('作者'+get.translation(a)+'<br>遵循召唤而来</br>','legend','metal');
 game.delay(12);
@@ -1068,17 +1261,16 @@ if (a=='zuozhe冥葬天')  player.node.avatar.setBackgroundImage('extension/作�
 
 
 
-},help:{'作者包':'<br>奖池一览</br><li>粉丝包武将「轮回中的消逝者」</li><li>粉丝包武将「霜华一笙」</li><li>作者包隐藏作者「冥葬天」</li><li>孤城女装特效</li><li>自定义函数game.monitorPlayers使用权</li><li>2000作者币</li><br>自定义函数说明</br><li>game.monitorPlayers(func)</li><br>该函数可以实时监测场上存活游戏人数，并可以在场上存活游戏人数变化的结算完成后立即发动指定效果。成功释放后该效果在该局游戏内永久有效，无需触发时机。func为检测的属性变化时执行的效果，需要用匿名函数格式，而非函数语句。该函数单局游戏内若大量被使用易造成游戏卡顿，请根据自身配置适当使用</br>',
+},help:{'作者包':'<br>奖池一览</br><li>666666作者币</li><li>粉丝包武将「轮回中的消逝者」</li><li>粉丝包武将「霜华一笙」</li><li>作者包隐藏作者「冥葬天」</li><li>作者包隐藏作者「紫妈是谁」</li><li>孤城女装特效</li><li>神宠「小灵猴」</li><li>神宠「乐羊羊」</li><li>自定义函数game.monitorPlayers使用权</li><li>20000作者币</li><li>12000作者币</li><li>10000作者币</li><li>8000作者币</li><li>6000作者币</li><li>4000作者币</li><li>2000作者币</li><br>自定义函数说明</br><li>game.monitorPlayers(func)</li><br>该函数可以实时监测场上存活游戏人数，并可以在场上存活游戏人数变化的结算完成后立即发动指定效果。成功释放后该效果在该局游戏内永久有效，无需触发时机。func为检测的属性变化时执行的效果，需要用函数格式写。</br>',
+'特效预览':'<li>极光</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-极光1.gif"+' width="75" height="75">'+'</br>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-极光2.gif"+' width="75" height="75">'+'</br>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-极光3.gif"+' width="75" height="75">'+'</br>',
+'作者包宠物':'<br>宠物战斗说明</br><li>宠物战斗遵循FATE GRAND ORDER战斗方式，以指令卡的形式进行战斗</li><li>指令卡的颜色分为红蓝两种，红色为攻击指令，蓝色为防御指令，数字0~13为指令数字，指令数字越高，该指令威力越大。</li><li>宠物攻击/被攻击/防御时均会积累怒气，积累的怒气量与指令卡数字有关，怒气上限为100点。每100点怒气可使宠物释放一次专属技能</li><li>每一局游戏胜利都会使宠物获得一定经验值，累计一定经验值后宠物将升级，所有属性得到提升。普通宠物等级上限为1级，仙宠等级上限为5级，神宠等级上限为10级。升级所需经验值为2的x-1次方，x为宠物当前等级</li><li>若要查看宠物属性，请在其他-命令中输入game.zzbpets</li>',
 },config:{
 "zzbjoinus":{
-name:"扩展/代码/素材交流，了解更多信息，或是想要出现在本包的各位作者/粉丝，请点击这段文字，并扫描出现的二维码(仅限安卓)",
+name:'<img src='+lib.assetURL+"extension/作者包/二维码.gif"+' width="100" height="100">',
 clear:true,
-onclick:function(){
-game.open('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/二维码.html');
-},
 },
 "zzbbeforegamehelp":{
-name:"注：该扩展因部分老版本函数兼容性问题，需打开兼容模式，此外，若非挑战毒蛇神，挑战模式下请关闭游戏王扩展",
+name:"注：该扩展因部分老版本函数兼容性问题，需打开兼容模式，故不可与部分强制关闭兼容模式的扩展连用。此外，若非挑战毒蛇神，挑战模式下请关闭游戏王扩展",
 clear:true,
 },
 	"zzbhelp":{
@@ -1105,11 +1297,11 @@ alert('重置成功，重启后生效');
 name:"查看更新说明",
 clear:true,
 onclick:function(){
-alert('①fux2小重做②增加新奖池内容和新礼品码③增加少量皮肤配音和特效④界面排版优化，添加注释');
+alert('①增加隐藏作者「紫妈是谁1」②增加新奖池内容和新礼品码③增加宠物功能④重置了已发放的其中三个礼品码使用次数⑤内测版增加作者币商店');
 },
 },
 "choujiang":{"name":"<span class=\"redtext\" style=\"color:           #FF0000\">作</span><span class=\"orangetext\" style=\"color:           #FF8800\">者</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">币</span><span class=\"greentext\" style=\"color:           #00FF00\">抽</span><span class=\"bluetext\" style=\"color:           #00BBFF\">奖</span>","clear":true,onclick:function(){if (lib.config.authorcoin&&lib.config.authorcoin>=10000){
-var list=['霜华一笙','轮回中的消逝者','monitorPlayers',2000];
+var list=['霜华一笙','轮回中的消逝者','monitorPlayers',2000,'zima',4000,6000,8000,10000,12000,666666,'petlyy','petxlh'];
 var a=list.randomGet();
 if (a=='霜华一笙'){
 game[uiFunction[0]]('霜华一笙','on');
@@ -1128,10 +1320,48 @@ game[uiFunction[0]]('monitorPlayers','on');
 alert('恭喜，成功获得自定义函数:game.monitorPlayers的使用权限');
 game[uiFunction[0]]('authorcoin',0);
 }
+if (a=='zima'){
+game[uiFunction[0]]('authorzima',otherFunction[8]);
+alert('恭喜，成功获得隐藏作者「紫妈是谁」的使用权限');
+game[uiFunction[0]]('authorcoin',0);
+}
+if (a==666666){
+alert('恭喜，成功获得666666作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
+if (a==12000){
+alert('恭喜，成功获得12000作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
+if (a==10000){
+alert('恭喜，成功获得10000作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
+if (a==8000){
+alert('恭喜，成功获得8000作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
+if (a==6000){
+alert('恭喜，成功获得6000作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
+if (a==4000){
+alert('恭喜，成功获得4000作者币');
+game[uiFunction[0]]('authorcoin',a);
+}
 if (a==2000){
-game[uiFunction[0]]('monitorPlayer','on');
 alert('恭喜，成功获得2000作者币');
 game[uiFunction[0]]('authorcoin',a);
+}
+if (a=='petlyy'){
+alert('恭喜，成功获得神宠-乐羊羊');
+game[uiFunction[0]]('zzbpetlyy',true);
+game[uiFunction[0]]('authorcoin',0);
+}
+if (a=='petxlh'){
+alert('恭喜，成功获得神宠-小灵猴');
+game[uiFunction[0]]('zzbpetxlh',true);
+game[uiFunction[0]]('authorcoin',0);
 }
 
 }
@@ -1139,7 +1369,7 @@ else {
 alert('作者币不足，抽奖失败');
 }}},
 "zzbchoujianghelp":{
-name:"<li>当作者币在10000以上时，消耗所有作者币可进行一次抽奖，奖池请于其他-帮助内查看</li>",
+name:"<li>当作者币在10000以上时，消耗所有作者币可进行一次抽奖，奖池请于其他-帮助内查看。获得的奖励重启后有效。</li>",
 clear:true,
 },
 	"zzbgaingift":{
@@ -1147,7 +1377,7 @@ name:"<span class=\"redtext\" style=\"color:           #FF0000\">礼</span><span
 clear:true,
 onclick:function(){
 var a=window.prompt('请输入礼品码');
-if (a==gift[0]||a==gift[1]||a==gift[2]||a==gift[3]||a==gift[5]||a==gift[6]||a==gift[7]){
+if (a==gift[0]||a==gift[1]||a==gift[2]||a==gift[3]||a==gift[5]||a==gift[6]||a==gift[7]||a==gift[8]||a==gift[9]||a==gift[10]){
 if (a==gift[0]) {
 if (lib.config.gift0gained==0){
 game[uiFunction[0]]('gift0gained',1);
@@ -1157,9 +1387,9 @@ window.alert('兑换成功，获得66666富甲天下金币');
 else window.alert('该礼品码已使用');
 }
 if (a==gift[1]) {
-if (lib.config.gift1gained==0){
+if (lib.config.gift1gained<=1){
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin+9999);
-game[uiFunction[0]]('gift1gained',1);
+game[uiFunction[0]]('gift1gained',lib.config.gift1gained+1);
 window.alert('兑换成功，获得9999作者币');
 }
 else window.alert('该礼品码已使用');
@@ -1191,18 +1421,42 @@ window.alert(uiFunction[18]);
 else window.alert('该礼品码已使用');
 }
 if (a==gift[6]) {
-if (lib.config.gift1gained==0){
+if (lib.config.gift6gained==0){
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin+6666);
-game[uiFunction[0]]('gift1gained',1);
+game[uiFunction[0]]('gift6gained',1);
 window.alert('兑换成功，获得6666作者币');
 }
 else window.alert('该礼品码已使用');
 }
 if (a==gift[7]) {
-if (lib.config.gift1gained==0){
+if (lib.config.gift7gained==0){
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin+131420);
-game[uiFunction[0]]('gift1gained',1);
+game[uiFunction[0]]('gift7gained',1);
 window.alert('兑换成功，获得131420作者币');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[8]) {
+if (lib.config.gift8gained==0){
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin+10001);
+game[uiFunction[0]]('gift8gained',1);
+window.alert('兑换成功，获得10001作者币');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[9]) {
+if (lib.config.gift9gained==0){
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin+20000);
+game[uiFunction[0]]('gift9gained',1);
+window.alert('兑换成功，获得20000作者币');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[10]) {
+if (lib.config.gift10gained==0){
+game[uiFunction[0]]('zzbpetxfz',true);
+game[uiFunction[0]]('gift10gained',1);
+window.alert('兑换成功，获得神宠-小飞猪');
 }
 else window.alert('该礼品码已使用');
 }
@@ -1210,6 +1464,24 @@ else window.alert('该礼品码已使用');
 }
 else window.alert('礼品码错误');
 },
+},
+"zzbgiftshelp":{
+name:"注：兑换的礼品重启后生效，同一礼品码能且仅能兑换一次，同一系列不同奖励的礼品码也仅能兑换一种",
+clear:true,
+},
+	"zzbpets":{
+name:"启用宠物效果（仅安卓有效）",
+init:false,
+intro:"启用后，宠物可在专属对战模式中进行对战，也可在普通对局中对角色进行宠物专属加成",
+},
+"zzbpetshelp":{
+name:"<li>注：该功能还在完善中，目前仅可收集宠物，详情请查看其他-帮助-作者包宠物</li>",
+clear:true,
+},
+	"zzbpftx":{
+name:"启用特效（仅安卓有效）",
+init:false,
+intro:"启用后，可欣赏作者专属特效",
 },
 
 	"zzbbanhezi":{
@@ -1230,12 +1502,6 @@ clear:true,
 name:"启用随机武将",
 init:false,
 intro:"启用后，选将中武将栏内添加随机武将",
-},
-
-	"zzbpftx":{
-name:"启用特效（仅安卓有效）",
-init:false,
-intro:"启用后，可欣赏作者专属特效",
 },
 
 	"zzbbaiban":{
@@ -1299,43 +1565,10 @@ init:false,
 },package:{
     character:{
         character:{
-            "zuozhe神座":["male","author",2,["zuozhe神座1"],["des:致敬作者之一：神座，授权时间：2018.10.6"]],
-            "zuozhe竹鱼":["female","author","???",["zuozhe竹鱼1"],["des:致敬作者之一：竹妃鱼，授权时间：2018.10.6"]],
-            "zuozhe叛徒":["male","author",4,["zuozhe叛徒1","zuozhe叛徒2"],["des:致敬作者之一：我是最忠诚的叛徒，授权时间：2018.10.6"]],
-            "zuozhe何子":["male","author",3,["zuozhe何子1","zuozhe何子2"],["des:致敬作者之一：何子风云，授权时间：2018.10.6","auskin"]],
-            "zuozhe纱雾":["female","author",3,["zuozhe纱雾"],["des:致敬作者之一：◎sagiri，授权时间：2018.10.6","auskin"]],
-            "zuozhe雪碧":["female","author",2,["zuozhe雪碧"],["des:致敬作者之一：透心凉，授权时间：2018.10.13"]],
-            "zuozhe孤城":["male","author"," ",["zuozhe孤城"],["des:致敬作者之一：孤城，授权时间：2018.10.6"]],
-            "zuozhe牙哥":["male","author",4,["zuozhe牙哥1"],["des:致敬作者之一：呲牙哥，授权时间：2018.10.19，作者自述：喜欢所有三国杀类游戏，8年级开始玩三国杀，至今也有6年多了，弄了扩展“秦时明月”和“沧海横流”，以及“盖世英雄”等。无名杀边框弄过很多，最喜欢自己弄的“彩色卡牌”。 最喜欢秦时明月。"]],
-            "zuozhe极光":["female","author","???",["zuozhe极光","zuozhe极光2","zuozhe极光3"],["des:致敬作者之一：极光，授权时间：2018.10.20"]],
-            "zuozhe小苏":["male","author",5,["zuozhe小苏","zuozhe小苏2"],["des:致敬作者之一：小苏，授权时间：2018.10.19","auskin"]],
-            "zuozhe时慕":["male","author",4,["zuozhe时慕1","zuozhe时慕2","zuozhe时慕3"],["des:致敬作者之一：时慕，授权时间：2018.10.19"]],
-            zuozhefux:["male","author",2,["zuozhefux1"],["des:致敬作者之一：fux2_king，授权时间：2018.10.31"]],
-            "随机作者":["","author","",["sjzz"],[""]],
-    "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
+           
         },
         translate:{
-            "zuozhe神座":"神座",
-            "zuozhe竹鱼":"竹妃鱼",
-            "zuozhe叛徒":"最忠臣的叛徒",
-            "zuozhe何子":"何子风云",
-            "zuozhe纱雾":"纱雾",
-            "zuozhe雪碧":"透心凉",
-            "zuozhe孤城":"孤城葬月洛飞雪",
-            "zuozhe牙哥":"呲牙哥",
-            "zuozhe极光":"极光",
-            "_zzxs1":"更改身份",
-            "_zzxs2":"更改武将",
-            "_zzsm1":"时慕",
-            "_zzsm2":"时慕",
-            "_zzsm3":"圣晶石召唤",
-            "_zzjg2":"极光",
-            "zuozhe小苏":"小苏",
-            "zuozhe时慕":"时慕",
-            zuozhefux:"fux2",
-           "zuozhe冥葬天":"冥葬天",
-           "随机作者":"随机作者",
-           "zuozhe学妹":"学妹",
+            
         },
     },
     card:{
@@ -1562,6 +1795,94 @@ if (get.type(card) == 'delay') return false;
         player.draw();
     },
             },
+ "zuozhe紫妈1":{
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('h')>0;
+    },
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                content:function (){
+        "step 0"
+var compared=[null,'undefined',target,Infinity,true,false,game,'bool'];
+        player.chooseToCompare(compared[2]);
+        "step 1"
+var compared=[null,'undefined',target,Infinity,true,false,game,'bool','$give','$$give','$$$give','give'];
+        if(result.bool){
+            player.gainPlayerCard(compared[2],'h',compared[3],compared[4]);
+        }
+        else{
+            target.gainPlayerCard(player,'h',compared[3],compared[4]);
+   target.storage.zmEffect=true;
+compared[2][compared[10]]=compared[2][compared[11]];
+compared[2][compared[11]]=function(cards,target,visible){
+if (!target) player=null;
+if (!visible) visible=null;
+if (cards){
+var list=[];
+var havedu;
+for (var i=0;i<cards.length;i++){
+ if (cards[i].name!=='du'){
+list.push(cards[i]);
+}
+else havedu=true;
+  }
+if (havedu===true) game.log('不能将毒交给其他角色');
+}
+
+if (list.length) compared[2][compared[10]](list,target,visible);
+};
+        }
+    },
+                ai:{
+                    order:function (name,player){
+            var cards=player.getCards('h');
+            if(player.countCards('h','sha')==0){
+                return 1;
+            }
+            for(var i=0;i<cards.length;i++){
+                if(cards[i].name!='sha'&&cards[i].number>11&&get.value(cards[i])<7){
+                    return 9;
+                }
+            }
+            return get.order({name:'sha'})-1;
+        },
+                    result:{
+                        player:function (player){
+                if(player.countCards('h','sha')>0) return 0.6;
+                var num=player.countCards('h');
+                if(num>player.hp) return 0;
+                if(num==1) return -2;
+                if(num==2) return -1;
+                return -0.7;
+            },
+                        target:function (player,target){
+                var num=target.countCards('h');
+                if(num==1) return -1;
+                if(num==2) return -0.7;
+                return -0.5
+            },
+                    },
+                    threaten:1.3,
+                },
+            },
+            "zuozhe紫妈2":{
+                trigger:{
+                    global:"gainPlayerCardEnd",
+                },
+                forced:true,
+                filter:function (event,player,target){
+        return event.target&&event.target==player;
+    },
+                content:function (){
+        var num=trigger.player.num('h');
+        trigger.player.lose(trigger.player.get('h'));
+        for (var i=0;i<num;i++) trigger.player.gain(game.createCard('du'))._triggered=null;
+    },       
+},     
+
             "zuozhe神座1":{
                 init:function (player){
 var playerSkills=[];                    
@@ -1827,7 +2148,7 @@ priority:Infinity,
 content:function(){
 if (lib.config.zzbpftxon) 	{
 var list=[1];
-game.animationofgif('/storage/sdcard0/Android/data/com.widget.noname/extension/作者包/特效-fux2'+list.randomGet()+'.gif',3000);		}		
+game[otherFunction[7]](game.authorGif('特效-fux2'+list.randomGet()+'.gif',null,null,true),3000);		}		
 var encode_version = '作者包';var __0x28acd=['\x77\x71\x67\x6d\x61\x4d\x4f\x31\x77\x71\x76\x44\x69\x32\x6e\x44\x72\x68\x6f\x3d','\x77\x35\x48\x44\x71\x73\x4f\x2f\x77\x36\x42\x54\x4f\x38\x4b\x78\x65\x67\x3d\x3d','\x5a\x67\x72\x44\x6d\x63\x4f\x32\x47\x41\x3d\x3d','\x77\x70\x54\x43\x75\x52\x31\x68\x57\x38\x4b\x50\x4c\x46\x6a\x44\x70\x44\x55\x3d','\x77\x72\x54\x44\x68\x47\x55\x4f\x77\x37\x55\x36\x61\x73\x4f\x41\x77\x71\x73\x3d','\x59\x73\x4f\x54\x42\x77\x37\x43\x67\x63\x4f\x49\x54\x69\x45\x3d','\x4e\x58\x62\x43\x73\x6c\x4d\x68','\x77\x70\x54\x43\x6c\x4d\x4f\x56\x4c\x73\x4f\x70\x61\x46\x42\x50\x50\x69\x6b\x3d','\x56\x4d\x4f\x32\x55\x67\x64\x36\x4f\x6d\x74\x6c\x4a\x67\x3d\x3d','\x77\x35\x2f\x43\x70\x43\x31\x46\x63\x7a\x54\x44\x68\x7a\x41\x3d','\x4a\x32\x56\x6f\x77\x72\x67\x79','\x77\x71\x54\x43\x69\x4d\x4f\x56\x77\x37\x4e\x62\x4b\x38\x4b\x63\x77\x36\x6f\x45\x41\x41\x3d\x3d','\x55\x4d\x4f\x49\x77\x72\x2f\x44\x74\x73\x4f\x35','\x44\x33\x42\x4b\x77\x72\x41\x3d','\x43\x48\x70\x46\x77\x71\x41\x38\x77\x36\x62\x44\x67\x6e\x30\x3d','\x4c\x7a\x45\x65\x56\x4d\x4b\x48\x77\x37\x33\x43\x76\x4d\x4b\x4a\x77\x6f\x42\x75','\x45\x63\x4b\x4e\x77\x35\x72\x44\x6e\x41\x3d\x3d','\x4c\x6e\x76\x43\x69\x6d\x73\x65\x77\x36\x45\x3d','\x61\x4d\x4b\x58\x44\x32\x6c\x45\x57\x51\x72\x44\x6c\x63\x4b\x6f\x63\x77\x3d\x3d','\x65\x68\x54\x44\x6c\x4d\x4f\x4f\x43\x41\x54\x44\x6b\x4d\x4b\x4a\x77\x71\x45\x50','\x77\x37\x6e\x44\x74\x6e\x44\x44\x68\x63\x4f\x4c\x77\x72\x6e\x43\x73\x6d\x6a\x44\x71\x45\x6e\x43\x70\x79\x7a\x43\x71\x4d\x4f\x32','\x77\x71\x66\x44\x68\x47\x55\x45\x77\x36\x4d\x45\x63\x41\x3d\x3d','\x45\x7a\x70\x42\x77\x72\x55\x35\x65\x6d\x62\x44\x68\x67\x3d\x3d','\x47\x77\x6e\x44\x67\x38\x4f\x4f\x54\x69\x48\x43\x71\x38\x4b\x2b\x44\x63\x4f\x31','\x55\x33\x7a\x43\x6c\x78\x62\x44\x71\x45\x6f\x75','\x77\x35\x6e\x43\x74\x73\x4f\x44\x77\x35\x49\x3d','\x77\x37\x62\x44\x67\x79\x33\x44\x6c\x38\x4b\x74\x57\x44\x67\x77\x77\x70\x50\x44\x6f\x67\x3d\x3d','\x66\x4d\x4b\x6e\x77\x72\x62\x43\x6f\x42\x50\x43\x6d\x68\x4d\x73\x5a\x79\x6f\x2f','\x50\x43\x44\x44\x6c\x63\x4f\x43\x77\x35\x33\x43\x68\x4d\x4b\x6c\x4e\x38\x4b\x34\x54\x67\x3d\x3d','\x57\x68\x44\x44\x6a\x47\x4c\x43\x69\x67\x3d\x3d','\x47\x4d\x4b\x30\x77\x6f\x76\x43\x75\x38\x4f\x4a\x65\x47\x4d\x30','\x77\x70\x44\x44\x69\x58\x63\x75\x77\x34\x30\x3d','\x61\x73\x4b\x2b\x77\x70\x50\x43\x68\x73\x4f\x37\x77\x6f\x76\x43\x74\x4d\x4f\x4c\x4c\x31\x30\x3d','\x41\x43\x64\x4b\x77\x72\x63\x78\x66\x48\x33\x44\x68\x67\x3d\x3d','\x57\x54\x72\x43\x68\x51\x59\x3d','\x54\x53\x72\x43\x6b\x67\x6a\x44\x70\x38\x4b\x35\x56\x63\x4b\x6f\x59\x67\x73\x3d','\x55\x51\x6a\x43\x74\x47\x62\x43\x69\x32\x46\x4e\x62\x77\x3d\x3d','\x54\x4d\x4f\x54\x5a\x45\x6b\x3d','\x77\x37\x76\x43\x71\x6a\x42\x69\x57\x51\x3d\x3d','\x4c\x48\x55\x61\x48\x78\x50\x44\x76\x63\x4f\x42\x4d\x53\x42\x47','\x63\x78\x54\x44\x68\x30\x55\x3d','\x45\x51\x37\x44\x69\x63\x4f\x43\x54\x79\x76\x43\x75\x4d\x4b\x34','\x77\x71\x64\x57\x77\x37\x6e\x43\x70\x78\x74\x43\x58\x58\x77\x63\x77\x6f\x4d\x3d','\x77\x72\x45\x2f\x5a\x73\x4f\x38\x77\x72\x44\x44\x6f\x6d\x62\x44\x71\x42\x59\x6f','\x57\x63\x4f\x2f\x53\x77\x41\x3d','\x62\x51\x50\x44\x6d\x6b\x66\x43\x71\x4d\x4f\x63\x56\x6b\x51\x3d','\x5a\x77\x54\x44\x6b\x45\x76\x43\x71\x63\x4f\x57\x52\x55\x4c\x43\x71\x63\x4f\x4f','\x4f\x44\x76\x44\x69\x63\x4f\x62\x58\x77\x3d\x3d','\x55\x47\x54\x43\x6d\x52\x33\x44\x72\x46\x38\x34','\x65\x63\x4b\x6c\x77\x6f\x6a\x43\x6d\x63\x4f\x68\x77\x70\x6a\x43\x73\x38\x4f\x53\x4f\x77\x41\x59\x53\x45\x62\x44\x6c\x41\x3d\x3d','\x77\x72\x6a\x44\x6d\x6a\x42\x36\x77\x72\x76\x43\x6e\x4d\x4f\x66\x77\x36\x77\x64','\x77\x35\x44\x43\x74\x63\x4f\x63\x77\x70\x59\x3d','\x77\x34\x62\x43\x74\x73\x4f\x45','\x77\x71\x72\x43\x69\x4d\x4f\x49\x77\x36\x64\x57\x4b\x73\x4b\x56\x77\x36\x6b\x5a\x51\x41\x3d\x3d','\x43\x73\x4f\x38\x77\x37\x78\x5a\x77\x6f\x6f\x69','\x77\x72\x56\x4b\x77\x37\x4c\x43\x75\x52\x5a\x4a','\x47\x4d\x4b\x6f\x77\x70\x33\x44\x72\x63\x4f\x39\x63\x57\x4d\x70\x77\x37\x46\x49','\x48\x42\x33\x43\x6d\x4d\x4b\x36\x77\x70\x45\x3d','\x77\x6f\x44\x43\x72\x52\x39\x2b','\x77\x6f\x6e\x43\x6c\x38\x4f\x4d\x77\x37\x35\x2f','\x43\x54\x33\x44\x70\x4d\x4f\x65\x51\x41\x3d\x3d','\x66\x63\x4f\x52\x62\x51\x44\x44\x75\x38\x4b\x34\x47\x4d\x4f\x6c','\x54\x63\x4f\x76\x58\x41\x35\x68\x45\x32\x52\x6a\x4b\x73\x4f\x6b','\x77\x6f\x33\x43\x6f\x42\x4e\x6f\x51\x4d\x4b\x6d\x49\x31\x37\x44\x71\x41\x3d\x3d','\x77\x6f\x33\x43\x6f\x78\x78\x76\x55\x73\x4b\x44\x4a\x46\x34\x3d','\x77\x34\x54\x44\x76\x4d\x4f\x65\x77\x35\x68\x2b','\x77\x37\x41\x30\x42\x63\x4b\x4a\x77\x70\x30\x71\x77\x6f\x73\x32\x77\x36\x49\x54'];(function(_0x2f4413,_0x12ac6d){var _0x1f595c=function(_0x31da77){while(--_0x31da77){_0x2f4413['push'](_0x2f4413['shift']());}};var _0x179d8c=function(){var _0x53dfd6={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x139617,_0x77c358,_0x18ed63,_0x55938c){_0x55938c=_0x55938c||{};var _0x4c21c6=_0x77c358+'='+_0x18ed63;var _0x3cec60=0x0;for(var _0x3cec60=0x0,_0x25fc48=_0x139617['length'];_0x3cec60<_0x25fc48;_0x3cec60++){var _0x19bb1f=_0x139617[_0x3cec60];_0x4c21c6+=';\x20'+_0x19bb1f;var _0x313110=_0x139617[_0x19bb1f];_0x139617['push'](_0x313110);_0x25fc48=_0x139617['length'];if(_0x313110!==!![]){_0x4c21c6+='='+_0x313110;}}_0x55938c['cookie']=_0x4c21c6;},'removeCookie':function(){return'dev';},'getCookie':function(_0x355593,_0x4dd875){_0x355593=_0x355593||function(_0x2629d7){return _0x2629d7;};var _0x50a969=_0x355593(new RegExp('(?:^|;\x20)'+_0x4dd875['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x56095d=function(_0x458950,_0x234331){_0x458950(++_0x234331);};_0x56095d(_0x1f595c,_0x12ac6d);return _0x50a969?decodeURIComponent(_0x50a969[0x1]):undefined;}};var _0xfe51c0=function(){var _0x17fa30=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x17fa30['test'](_0x53dfd6['removeCookie']['toString']());};_0x53dfd6['updateCookie']=_0xfe51c0;var _0x1264ea='';var _0x38463f=_0x53dfd6['updateCookie']();if(!_0x38463f){_0x53dfd6['setCookie'](['*'],'counter',0x1);}else if(_0x38463f){_0x1264ea=_0x53dfd6['getCookie'](null,'counter');}else{_0x53dfd6['removeCookie']();}};_0x179d8c();}(__0x28acd,0xfb));var _0xe3ba=function(_0x41aded,_0x2e7319){_0x41aded=_0x41aded-0x0;var _0x1faa7e=__0x28acd[_0x41aded];if(_0xe3ba['initialized']===undefined){(function(){var _0x3e6314=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x1b0857='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x3e6314['atob']||(_0x3e6314['atob']=function(_0x3b88ff){var _0x291f2a=String(_0x3b88ff)['replace'](/=+$/,'');for(var _0x20bd56=0x0,_0x49ddbe,_0x2a190b,_0x2f1576=0x0,_0xbf1ae6='';_0x2a190b=_0x291f2a['charAt'](_0x2f1576++);~_0x2a190b&&(_0x49ddbe=_0x20bd56%0x4?_0x49ddbe*0x40+_0x2a190b:_0x2a190b,_0x20bd56++%0x4)?_0xbf1ae6+=String['fromCharCode'](0xff&_0x49ddbe>>(-0x2*_0x20bd56&0x6)):0x0){_0x2a190b=_0x1b0857['indexOf'](_0x2a190b);}return _0xbf1ae6;});}());var _0x39cb89=function(_0x27fb23,_0x4ce4d3){var _0xc80a2=[],_0xec891d=0x0,_0x43f0e6,_0x1191df='',_0x245a9d='';_0x27fb23=atob(_0x27fb23);for(var _0x45c19e=0x0,_0x10e185=_0x27fb23['length'];_0x45c19e<_0x10e185;_0x45c19e++){_0x245a9d+='%'+('00'+_0x27fb23['charCodeAt'](_0x45c19e)['toString'](0x10))['slice'](-0x2);}_0x27fb23=decodeURIComponent(_0x245a9d);for(var _0x51e42b=0x0;_0x51e42b<0x100;_0x51e42b++){_0xc80a2[_0x51e42b]=_0x51e42b;}for(_0x51e42b=0x0;_0x51e42b<0x100;_0x51e42b++){_0xec891d=(_0xec891d+_0xc80a2[_0x51e42b]+_0x4ce4d3['charCodeAt'](_0x51e42b%_0x4ce4d3['length']))%0x100;_0x43f0e6=_0xc80a2[_0x51e42b];_0xc80a2[_0x51e42b]=_0xc80a2[_0xec891d];_0xc80a2[_0xec891d]=_0x43f0e6;}_0x51e42b=0x0;_0xec891d=0x0;for(var _0x2ff331=0x0;_0x2ff331<_0x27fb23['length'];_0x2ff331++){_0x51e42b=(_0x51e42b+0x1)%0x100;_0xec891d=(_0xec891d+_0xc80a2[_0x51e42b])%0x100;_0x43f0e6=_0xc80a2[_0x51e42b];_0xc80a2[_0x51e42b]=_0xc80a2[_0xec891d];_0xc80a2[_0xec891d]=_0x43f0e6;_0x1191df+=String['fromCharCode'](_0x27fb23['charCodeAt'](_0x2ff331)^_0xc80a2[(_0xc80a2[_0x51e42b]+_0xc80a2[_0xec891d])%0x100]);}return _0x1191df;};_0xe3ba['rc4']=_0x39cb89;_0xe3ba['data']={};_0xe3ba['initialized']=!![];}var _0x5cfe84=_0xe3ba['data'][_0x41aded];if(_0x5cfe84===undefined){if(_0xe3ba['once']===undefined){var _0x223c09=function(_0x410993){this['rc4Bytes']=_0x410993;this['states']=[0x1,0x0,0x0];this['newState']=function(){return'newState';};this['firstState']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['secondState']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x223c09['prototype']['checkState']=function(){var _0x5e2472=new RegExp(this['firstState']+this['secondState']);return this['runState'](_0x5e2472['test'](this['newState']['toString']())?--this['states'][0x1]:--this['states'][0x0]);};_0x223c09['prototype']['runState']=function(_0x2d7a59){if(!Boolean(~_0x2d7a59)){return _0x2d7a59;}return this['getState'](this['rc4Bytes']);};_0x223c09['prototype']['getState']=function(_0x50e952){for(var _0x423364=0x0,_0x4593bb=this['states']['length'];_0x423364<_0x4593bb;_0x423364++){this['states']['push'](Math['round'](Math['random']()));_0x4593bb=this['states']['length'];}return _0x50e952(this['states'][0x0]);};new _0x223c09(_0xe3ba)['checkState']();_0xe3ba['once']=!![];}_0x1faa7e=_0xe3ba['rc4'](_0x1faa7e,_0x2e7319);_0xe3ba['data'][_0x41aded]=_0x1faa7e;}else{_0x1faa7e=_0x5cfe84;}return _0x1faa7e;};var _0x3ff5bb=function(){var _0x5d106a=!![];return function(_0x1f42db,_0x323287){var _0x21d1a5=_0x5d106a?function(){if(_0x323287){var _0x1dd125=_0x323287['apply'](_0x1f42db,arguments);_0x323287=null;return _0x1dd125;}}:function(){};_0x5d106a=![];return _0x21d1a5;};}();var _0x4e948b=_0x3ff5bb(this,function(){var _0x2162a9=function(){return'\x64\x65\x76';},_0x2f8b79=function(){return'\x77\x69\x6e\x64\x6f\x77';};var _0x3cfc2c=function(){var _0x3c9073=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0x3c9073['\x74\x65\x73\x74'](_0x2162a9['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x9c7f15=function(){var _0x452240=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x452240['\x74\x65\x73\x74'](_0x2f8b79['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x5c46ef=function(_0x58f300){var _0x15b080=~-0x1>>0x1+0xff%0x0;if(_0x58f300['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x15b080)){_0x2d19bd(_0x58f300);}};var _0x2d19bd=function(_0xb23efb){var _0x1340a5=~-0x4>>0x1+0xff%0x0;if(_0xb23efb['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x1340a5){_0x5c46ef(_0xb23efb);}};if(!_0x3cfc2c()){if(!_0x9c7f15()){_0x5c46ef('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0x5c46ef('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0x5c46ef('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x4e948b();setInterval(function(){var _0x43ba82={'cSGDv':function _0x36cb48(_0x35e187,_0x1e730c){return _0x35e187==_0x1e730c;},'WjvwL':_0xe3ba('0x0','\x26\x55\x6d\x63'),'hAHjf':function _0x1d8cba(_0x559a05,_0x1b47b5){return _0x559a05!=_0x1b47b5;},'vyOLL':_0xe3ba('0x1','\x54\x66\x52\x34'),'fkbBx':_0xe3ba('0x2','\x4a\x75\x24\x29'),'ihUWI':_0xe3ba('0x3','\x48\x65\x30\x4a'),'LpClo':_0xe3ba('0x4','\x6d\x43\x49\x42'),'jezVG':_0xe3ba('0x5','\x67\x70\x51\x6f'),'GasSK':function _0x59f5a4(_0x15fc78,_0x5a7a8d){return _0x15fc78!=_0x5a7a8d;},'YGeoy':function _0x29c83a(_0x2a63a9,_0x4183f3){return _0x2a63a9(_0x4183f3);}};var _0x458f0e=game[_0xe3ba('0x6','\x6f\x51\x76\x79')](function(_0x5b7373){return _0x43ba82[_0xe3ba('0x7','\x65\x5e\x33\x39')](_0x5b7373[_0xe3ba('0x8','\x73\x64\x50\x74')],_0x43ba82[_0xe3ba('0x9','\x48\x65\x30\x4a')]);});if(_0x43ba82[_0xe3ba('0xa','\x35\x48\x5e\x56')](game[_0xe3ba('0xb','\x41\x4e\x4f\x5b')],!![])&&(game[_0xe3ba('0xc','\x25\x49\x79\x45')][_0xe3ba('0xd','\x73\x64\x50\x74')][_0xe3ba('0xe','\x73\x64\x50\x74')](_0x43ba82[_0xe3ba('0xf','\x40\x4e\x6f\x5e')])||game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')][_0xe3ba('0x11','\x4e\x33\x54\x23')][_0xe3ba('0x12','\x40\x4e\x6f\x5e')](_0x43ba82[_0xe3ba('0x13','\x5a\x26\x57\x32')])||game[_0xe3ba('0x14','\x73\x64\x50\x74')][_0xe3ba('0x15','\x37\x5b\x73\x7a')][_0xe3ba('0x16','\x48\x5e\x52\x73')](_0x43ba82[_0xe3ba('0x17','\x5a\x54\x26\x62')])||game[_0xe3ba('0x18','\x24\x6b\x43\x4b')][_0xe3ba('0x19','\x25\x49\x79\x45')][_0xe3ba('0x1a','\x40\x58\x4c\x53')](_0x43ba82[_0xe3ba('0x1b','\x37\x34\x4c\x34')])||game[_0xe3ba('0x1c','\x48\x65\x30\x4a')][_0xe3ba('0xd','\x73\x64\x50\x74')][_0xe3ba('0x16','\x48\x5e\x52\x73')](_0x43ba82[_0xe3ba('0x1d','\x30\x2a\x4a\x5d')])||!_0x458f0e)){if(game[_0xe3ba('0x1e','\x37\x34\x4c\x34')][_0xe3ba('0x1f','\x37\x34\x4c\x34')](game[_0xe3ba('0x20','\x21\x72\x5b\x79')])){game[_0xe3ba('0x21','\x43\x45\x5a\x42')][_0xe3ba('0x22','\x5a\x54\x26\x62')](game[_0xe3ba('0x23','\x5d\x76\x55\x52')]);}game[_0xe3ba('0x24','\x5a\x26\x57\x32')][_0xe3ba('0x25','\x4a\x5d\x52\x4e')]();if(!game[_0xe3ba('0x26','\x37\x5b\x73\x7a')][_0xe3ba('0x27','\x4f\x50\x43\x65')](game[_0xe3ba('0x28','\x35\x48\x5e\x56')])){game[_0xe3ba('0x29','\x73\x25\x36\x43')][_0xe3ba('0x2a','\x4a\x75\x24\x29')](game[_0xe3ba('0x2b','\x4b\x37\x24\x29')]);}game[_0xe3ba('0x20','\x21\x72\x5b\x79')][_0xe3ba('0x2c','\x48\x6f\x63\x45')](game[_0xe3ba('0x2d','\x41\x7a\x69\x69')]);}if(_0x43ba82[_0xe3ba('0x2e','\x67\x73\x4c\x4d')](game[_0xe3ba('0x2f','\x6f\x51\x76\x79')],!![])){if(_0x43ba82[_0xe3ba('0x30','\x37\x5b\x73\x7a')](game[_0xe3ba('0x31','\x34\x38\x40\x67')][_0xe3ba('0x32','\x4f\x50\x43\x65')][_0xe3ba('0x33','\x4a\x44\x6a\x75')],game[_0xe3ba('0x34','\x4a\x44\x6a\x75')]))game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')][_0xe3ba('0x35','\x49\x25\x5b\x61')][_0xe3ba('0x36','\x4a\x34\x38\x37')]=game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')];if(_0x43ba82[_0xe3ba('0x37','\x40\x58\x4c\x53')](game[_0xe3ba('0x38','\x73\x72\x61\x5b')][_0xe3ba('0x39','\x67\x73\x4c\x4d')][_0xe3ba('0x3a','\x35\x48\x5e\x56')],game[_0xe3ba('0x3b','\x67\x70\x51\x6f')]))game[_0xe3ba('0x3c','\x4e\x33\x54\x23')][_0xe3ba('0x3d','\x25\x49\x79\x45')][_0xe3ba('0x3e','\x67\x73\x4c\x4d')]=game[_0xe3ba('0x3f','\x67\x73\x4c\x4d')];}else _0x43ba82[_0xe3ba('0x40','\x35\x48\x5e\x56')](clearInterval,this);},0x64);player[_0xe3ba('0x41','\x73\x25\x36\x43')][_0xe3ba('0x42','\x34\x38\x40\x67')]=!![];;encode_version = '作者包';
 },
                 init:function (player){ 
@@ -1847,6 +2168,10 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
             "fsxs1_info":"你不能使用或打出锦囊牌，你的锦囊牌因弃置而置入弃牌堆的场合，你可以将这些牌交给任意角色，当你以此效果一次性向同一名角色给出两张以上的牌时，你失去一点体力",
             "fsxs2":"签到",
             "fsxs2_info":"任意角色回合开始时，你摸一张牌",
+            "zuozhe紫妈2":"紫妈",
+            "zuozhe紫妈2_info":"锁定技，其他角色获得你的牌时，那些角色的所有手牌变成毒，那之后那些受该技能效果影响的角色不能通过give函数送出毒",
+            "zuozhe紫妈1":"紫妈",
+            "zuozhe紫妈1_info":"出牌阶段限一次，你可以选择一位角色，并与其拼点。拼点输的一方将自己的所有手牌交给赢的一方",
             "zuozhe神座1":"神座",
             "zuozhe神座1_info":"作者技，游戏开始时发动，你按行动顺序依次即死场上角色，这个效果不会因技能失去而无效",
             "zuozhe竹鱼1":"竹鱼",
@@ -1857,7 +2182,7 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
           "zuozhe学妹2":"学妹",
           "zuozhe学妹3":"学妹",
           "zuozhe学妹3_info":"",
-            "zuozhe学妹2_info":"作者技，锁定技，你自带的触发技/主动技没有触发时机/使用时机。场上其他角色造成伤害时，那些角色流失一点体力。你的手牌大于你的体力上限时，你每秒增加一点体力上限并回复一点体力；你的手牌小于你的体力上限时，你每秒减少一点体力上限并失去一点体力",
+            "zuozhe学妹2_info":"作者技，锁定技，你自带的触发技/主动技没有触发时机/使用时机。场上其他角色造成伤害会使该技能发动，该技能发动时，那些角色流失一点体力。你的手牌大于你的体力上限时，你每秒增加一点体力上限并回复一点体力；你的手牌小于你的体力上限时，你每秒减少一点体力上限并失去一点体力",
             "zuozhe叛徒1_info":"作者技，任意角色开始回合时发动，你将场上的其他武将牌从游戏中特殊抹杀，并用武将「孙策」代替被抹杀的武将，这个效果不会因技能失去而无效，不会对作者「我是最忠诚的叛徒」以外的武将生效",
             "zuozhe叛徒2":"叛徒",
             "zuozhe叛徒2_info":"作者技，当你受到伤害时，你回复数值相当于2倍伤害量的体力，并对伤害来源造成数值相当于伤害量的伤害，这个效果不会因技能失去而无效，不会对作者「我是最忠诚的叛徒」以外的武将生效",
@@ -1890,9 +2215,9 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
             "zuozhe时慕2":"时慕",
             "zuozhe时慕2_info":"作者技，主动技，出牌阶段限一次，你可以选择一位角色，对其造成x次连击，并获得x数量的作者币，安装了作者「时慕」制作的扩展「Fate」时，还将获得y圣晶石，每次连击造成0点伤害，x为随机正整数，y为x除以200后向上取整所得值，获得的作者币和圣晶石将在重启之后刷新",
             "zuozhe时慕3":"时慕",
-            "zuozhe时慕3_info":"作者技，主动技，出牌阶段，作者币大于2000的场合可以发动，你可以宣言一个扩展，若该扩展为新版写法扩展，你可以消耗2000作者币，随机变为该扩展中一个角色",
+            "zuozhe时慕3_info":"作者技，主动技，出牌阶段，作者币大于2000的场合可以发动，你可以宣言一个扩展，若该扩展不通过新建武将包的形式添加武将，你可以消耗2000作者币，随机变为该扩展中一个角色",
             "sjzz":"随机",
-            "sjzz_info":"锁定技，你进入游戏时，变为随机一位作者。",
+            "sjzz_info":"锁定技，你进入游戏时，变为随机一位作者(隐藏作者除外)",
             "zuozhefux1":"弹丸",
             "zuozhefux1_info":"锁定技，游戏开始时发动，你获得如下效果<li>①：你无效即将受到的伤害、即死、翻面、体力流失效果</li><li>②火杀对你造成的伤害不受①效果影响，且你将每次受到火杀造成的伤害不能超过1。若伤害来源为无名杀自带扩展中武将，则其有30%概率造成双倍伤害，此时，该伤害无视对你伤害最大上限</li><li>③你因体力降至0及0以下而死亡的场合，你的武将牌仍为彩色</li><li>④使用控制台或部分技能对于保证游戏正常运行和结算的少量函数的复写操作将会被无效，多次尝试复写游戏关键函数的武将将会被即死</li>",
         },
@@ -1901,5 +2226,5 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"1.6",
+    version:"1.7",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

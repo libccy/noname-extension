@@ -2872,7 +2872,7 @@ game.import('character',function(){
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
             "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
 			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_tongya","xwj_xhuoying_nishou"],[]],
-            "xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
+            //"xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
            
                 },
 							
@@ -2967,11 +2967,26 @@ skill:{
                 filter:function (event,player){
                 return player.hp<=2;
                 },
-            content:function (){      
+            content:function (){   
+			'step 0'
                  player.logSkill('xwj_xhuoying_nishou');
                  var chat=['忍法•牙狼牙之术','赤丸，一起上！'].randomGet();
-            player.say(chat);    
-                 player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
+            player.say(chat);  
+lib.character.xwj_xhuoying_chiwan=["male","xhuo",4,["xwj_xhuoying_renquan"],[]];
+player.callSubPlayer(player.addSubPlayer({
+name:'xwj_xhuoying_chiwan',
+maxHp:5,
+hp:3,
+skills:lib.character.xwj_xhuoying_chiwan[3],
+hs:get.cards(4),
+}));       
+'step 1'
+game.delay(0.5);
+setTimeout(function(){
+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.jpg'); 
+},500);
+	player.awakenSkill('xwj_xhuoying_nishou');		
+                /* player.storage.xwj_xhuoying_nishou=player.addSubPlayer({
                  name:'xwj_xhuoying_chiwan',
                  maxHp:5,
                  hp:3,                
@@ -2979,7 +2994,7 @@ skill:{
                  hs:get.cards(4),
                  });
              player.callSubPlayer(player.storage.xwj_xhuoying_nishou);   
-             player.awakenSkill('xwj_xhuoying_nishou');
+             */
              },
              },
             "xwj_xhuoying_renquan":{
@@ -13471,5 +13486,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.25",
+    version:"1.26",
 },files:{"character":[],"card":[],"skill":[]}}})

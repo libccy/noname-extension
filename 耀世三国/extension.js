@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",content:function (config,pack){
     
 },precontent:function (){
     
@@ -36,39 +36,43 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀�
             "YSSG_fazheng":["male","shu",3,["YSSG_xuanhuo","YSSG_yirong"],[]],
             "YSSG_machao":["male","shu",4,["YSSG_xiaoxi","YSSG_chiqu"],[]],
             "YSSG_huangzhong":["male","shu",4,["YSSG_shengong"],[]],
+            "YSSG_liushan":["male","shu",3,["YSSG_xiangle","YSSG_wenquan"],[]],
+            "YSSG_zhangfei":["male","shu",4,["YSSG_duanke"],[]],
         },
         translate:{
-            "YSSG_xiahoudun":"夏侯惇",
-            "YSSG_caoren":"曹仁",
-            "YSSG_xunyu":"荀彧",
-            "YSSG_xiahouyuan":"夏侯渊",
-            "YSSG_xunyou":"荀攸",
-            "YSSG_guojia":"郭嘉",
-            "YSSG_zhanghe":"张郃",
-            "YSSG_jiaxu":"贾诩",
-            "YSSG_yujin":"于禁",
-            "YSSG_xuhuang":"徐晃",
-            "YSSG_yuejin":"乐进",
-            "YSSG_simayi":"司马懿",
-            "YSSG_dianwei":"典韦",
-            "YSSG_caoxiu":"曹休",
-            "YSSG_xuzhu":"许褚",
-            "YSSG_caozhi":"曹植",
-            "YSSG_wangshuang":"王双",
-            "YSSG_caocao":"曹操",
-            "YSSG_lidian":"李典",
-            "YSSG_guohuai":"郭淮",
-            "YSSG_liubei":"刘备",
-            "YSSG_wangling":"王凌",
-            "YSSG_caozheng":"曹真",
-            "YSSG_wenxin":"文钦",
-            "YSSG_guanyu":"关羽",
-            "YSSG_zhugeliang":"诸葛亮",
-            "YSSG_zhaoyun":"赵云",
-            "YSSG_pangtong":"庞统",
-            "YSSG_fazheng":"法正",
-            "YSSG_machao":"马超",
-            "YSSG_huangzhong":"黄忠",
+            "YSSG_xiahoudun":"耀夏侯惇",
+            "YSSG_caoren":"耀曹仁",
+            "YSSG_xunyu":"耀荀彧",
+            "YSSG_xiahouyuan":"耀夏侯渊",
+            "YSSG_xunyou":"耀荀攸",
+            "YSSG_guojia":"耀郭嘉",
+            "YSSG_zhanghe":"耀张郃",
+            "YSSG_jiaxu":"耀贾诩",
+            "YSSG_yujin":"耀于禁",
+            "YSSG_xuhuang":"耀徐晃",
+            "YSSG_yuejin":"耀乐进",
+            "YSSG_simayi":"耀司马懿",
+            "YSSG_dianwei":"耀典韦",
+            "YSSG_caoxiu":"耀曹休",
+            "YSSG_xuzhu":"耀许褚",
+            "YSSG_caozhi":"耀曹植",
+            "YSSG_wangshuang":"耀王双",
+            "YSSG_caocao":"耀曹操",
+            "YSSG_lidian":"耀李典",
+            "YSSG_guohuai":"耀郭淮",
+            "YSSG_liubei":"耀刘备",
+            "YSSG_wangling":"耀王凌",
+            "YSSG_caozheng":"耀曹真",
+            "YSSG_wenxin":"耀文钦",
+            "YSSG_guanyu":"耀关羽",
+            "YSSG_zhugeliang":"耀诸葛亮",
+            "YSSG_zhaoyun":"耀赵云",
+            "YSSG_pangtong":"耀庞统",
+            "YSSG_fazheng":"耀法正",
+            "YSSG_machao":"耀马超",
+            "YSSG_huangzhong":"耀黄忠",
+            "YSSG_liushan":"耀刘禅",
+            "YSSG_zhangfei":"张飞",
         },
     },
     card:{
@@ -1984,34 +1988,8 @@ if(result.bool){
         return true;
     },
                 content:function (){
-        'step 0'
-    trigger.target.chooseCardTarget({
-    filterTarget:function(card,player,target){
-        return target!=player&&target.countCards('h')>0;
-    },
-     filterCard:function(card){
-        return target.countCards('h',{name:'sha'})>0;
-    },                    
-        });
-        'step 1'
-        if(result.bool){
-            event.target=result.targets[0];
-            event.card=result.cards[0];
-            event.target.useCard(event.card,event.target);
-        }
-        else{
-            event.finish();
-        }
-        
-    'step 2'
-        if(result.bool){
-            trigger.untrigger();
-            trigger.responded=true;
-            trigger.result={bool:true,card:{name:'shan'}}
-        }
-        else{
-            event.finish();
-        }          
+     trigger.target.chooseToUse({name:'sha'},'断喝：是否使用一张杀？').logSkill='YSSG_duanke';    
+        trigger.cancel();      
     },
                 ai:{
                     effect:{
@@ -2049,34 +2027,9 @@ if(result.bool){
         return false;
     },
                 content:function (){
-        'step 0'
-    player.chooseTarget('选择一个目标',lib.translate.YSSG_duanke_info,true,function(card,player,target){
-    return player.canUse({name:'sha'},target,false)&&target!=player;
-}).set('ai',function(target){
-    return -attitude(_status.event.player,target);            
-});            
-   'step 2'
-if(result.bool){
-    event.goto(3);
-}
-  else{
-            event.finish();
-        }        
-   'step 3'     
-    var target=result.targets[0];   
-    player.chooseToUse({name:'sha'},target,-1,'对'+get.translation(target)+'使用一张杀').set('targetRequired',true);
-
-    'step 4'
-        if(result.bool){
-            trigger.untrigger();
-            trigger.responded=true;
-            trigger.result={bool:true,card:{name:'shan'}}
-        }
-        else{
-            event.finish();
-        }        
-      
-   
+       player.chooseToUse({name:'sha'},'断喝：是否使用一张杀？').logSkill='YSSG_duanke';
+     trigger.cancel();
+  
     },
                 ai:{
                     effect:{
@@ -2328,7 +2281,7 @@ if(result.bool){
                 },
                 frequent:true,
                 filter:function (event,player){
-        return !player.isTurnedOver()&&!player.isLink();
+        return player.isTurnedOver()&&player.isLink();
     },
                 content:function (){
        player.draw();
@@ -2458,6 +2411,112 @@ if(result.bool){
                     threaten:1.4,
                 },
             },
+            "YSSG_xiangle":{
+                audio:["xiangle",2],
+                filter:function (event,player){
+        return player.countCards('he',{color:'red'})>0;
+    },
+                enable:"phaseUse",
+                usable:1,
+                filterCard:function (card){
+        return get.color(card)=='red';
+    },
+                filterTarget:function (card,player,target){
+        return target==player;
+    },
+                position:"he",
+                viewAs:{
+                    name:"lebu",
+                    suit:"diamond",
+                    number:7,
+                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":7,"name":"shan","cardid":"9015764319","clone":{"name":"shan","suit":"diamond","number":7,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":1912},"original":"j","_transform":"translateX(0px)","viewAs":"lebu","timeout":1876}],
+                },
+                prompt:"将一张红色牌当【乐不思蜀】对自己使用，然后回复一点体力并摸两张牌",
+                check:function (card){
+        return 6-get.value(card);
+    },
+                onuse:function (result,player){
+        player.recover();
+        player.draw(2);
+    },
+                ai:{
+                    basic:{
+                        order:1,
+                        useful:1,
+                        value:8,
+                    },
+                    result:{
+                        target:function (player,target){
+                var num=target.hp-target.countCards('h')-2;
+                if(num>-1) return -0.01;
+                if(target.hp<3) num--;
+                if(target.isTurnedOver()) num/=2;
+                var dist=get.distance(player,target,'absolute');
+                if(dist<1) dist=1;
+                return num/Math.sqrt(dist);
+            },
+                    },
+                    tag:{
+                        skip:"phaseUse",
+                    },
+                },
+            },
+            "YSSG_wenquan":{
+                audio:"ext:耀世三国:2",
+                trigger:{
+                    player:"judge",
+                },
+                filterTarget:function (card,player,target){
+        return target!=player&&target.countCards('h')>0;
+    },
+                direct:true,
+                content:function (){
+        "step 0"
+        event.card=target.getCards('h').randomGet();
+        target.showCards(event.card);            
+        "step 1"
+         player.chooseControl('替换','获得','cancel2',function(){
+            var player=_status.event.player;
+            if(get.suit(event.card)=='heart'){
+                return '替换';
+            }
+            if(get.suit(event.card)!='heart'){
+                return '获得';
+            }           
+            return 'cancel2';
+        });
+        "step 2"
+        if(result.control=='获得'){
+            player.gain(event.card,target);
+            target.$give(event.card,player);   
+            player.logSkill('YSSG_wenquan');
+            event.finish();
+        }
+        else if(result.control=='替换'){
+           event.goto(3);
+        }
+        "step 3"      
+            target.respond(event.card,'highlight');      
+        "step 4"
+        if(result.bool){
+            player.logSkill('YSSG_wenquan');
+            target.$gain2(player.judging[0]);
+            target.gain(player.judging[0]);
+            player.judging[0]=result.cards[0];
+            if(!get.owner(result.cards[0],'judge')){
+                trigger.position.appendChild(result.cards[0]);
+            }
+            game.log(player,'的判定牌改为',result.cards[0]);
+        }
+        "step 3"
+        game.delay(2);
+    },
+                ai:{
+                    tag:{
+                        rejudge:1,
+                    },
+                },
+            },
         },
         translate:{
             "YSSG_danjing":"啖睛",
@@ -2583,11 +2642,15 @@ if(result.bool){
             "YSSG_chiqu_info":"锁定技，你的进攻距离+1",
             "YSSG_shengong":"神弓",
             "YSSG_shengong_info":"锁定技，当你使用【杀】指定目标后，若目标角色有与此【杀】相同花色的牌，此【杀】不可被响应。",
+            "YSSG_xiangle":"享乐",
+            "YSSG_xiangle_info":"出牌阶段，你可以将一张红色牌当【乐不思蜀】对自己使用，然后回复一点体力并摸两张牌",
+            "YSSG_wenquan":"问权",
+            "YSSG_wenquan_info":"当你的判定牌生效前，你可以令一名其他角色展示一张手牌，然后你选择一项：1.将之替换判定牌；2.获得之。",
         },
     },
-    intro:"<li>代码：<li>咫尺天涯<br><li>Sukincen",
+    intro:"<li>代码：咫尺天涯",
     author:"<li>技能设计：丫奶",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.1",
 },files:{"character":["YSSG_zhangfei.jpg"],"card":[],"skill":[]}}})

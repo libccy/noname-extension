@@ -3357,7 +3357,6 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
                 },
             },
 "xwj_xhuoying_renzong":{
-mode:["identity"],
 audio:"ext:群英会:2",
   	trigger:{
                     global:"dying",
@@ -10728,7 +10727,7 @@ if(lib.device||lib.node){
 				character:{
 		 		 "xwj_xqinshi_genie":["male","qun",3,["xwj_xqinshi_zongjian","xwj_xqinshi_jiansheng"],[]],
        "xwj_xqinshi_weizhuang":["male","qun",4,["xwj_xqinshi_hengjian","xwj_xqinshi_jusha"],[]],                         
-       "xwj_xqinshi_xiaoyaozi":["male","qun",4,["xwj_xqinshi_renzhong","xwj_xqinshi_diedun"],[]],
+       "xwj_xqinshi_xiaoyaozi":["male","qun",3,["xwj_xqinshi_renzhong","xwj_xqinshi_diedun"],[]],
 
 },        
 
@@ -13485,5 +13484,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.27",
+    version:"1.28",
 },files:{"character":[],"card":[],"skill":[]}}})

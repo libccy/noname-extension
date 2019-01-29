@@ -2720,11 +2720,11 @@ event.target.draw(event.num1);
 translate:{
 	 "xwj_xsanguo_simahui":"智司马徽",
 			 "xwj_xsanguo_shouye":"授业",
-            "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
+            "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定至多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_jiehuo":"解惑",
-            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计多于七个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用非延时锦囊时，可以让你摸一张牌）",
+            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计至少8个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用锦囊牌时，可以让你摸一张牌）",
             "xwj_xsanguo_shouye2":"授业",
-            "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色各摸一张牌。",
+            "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_shien":"师恩",
             "xwj_xsanguo_shien_info":"其他角色使用锦囊牌时，可以让你摸一张牌",
  "xwj_xsanguo_zhihuaxiong":"智华雄",
@@ -3387,20 +3387,13 @@ audio:"ext:群英会:2",
          	 event.finish(); 
          	} 	         	          	 	
          		'step 1' 		 
-         	   var chat=['忍宗对查克拉的定义是连接个体的力量，而非只增强个体的力量','忍界大战，尸横遍野，生灵涂炭。我现在赐予你新的力量，让你替我去拯救世界','我有两个儿子，一个与生俱来继承了我的瞳术，一个继承了我的生命力'].randomGet();
+         	   var chat=['忍宗对查克拉的定义是连接个体的力量，而非只增强个体的力量','忍界大战，尸横遍野，生灵涂炭。我现在赐予你新的力量，让你替我去拯救世界，但愿我没看错人……','我有两个儿子，一个与生俱来继承了我的瞳术，一个继承了我的生命力'].randomGet();
             player.say(chat);  
         	trigger.player.addSkillLog(result.control);
          trigger.player.storage.xwj_xhuoying_renzong2=player; 
          trigger.player.addSkill('xwj_xhuoying_renzong2');    
          trigger.player.recover(1-trigger.player.hp);
-         trigger.player.draw(2);        
-         var myid=player.identity;
-            if(player.identity=='zhu'){
-            myid='zhong'
-            };                          
-                trigger.player.identity=myid;
-                trigger.player.setIdentity();            
-                trigger.player.update();   		
+         trigger.player.draw(2);              
          	  		 'step 2'      
           		player.maxHp=6;
          		 player.hp=6;		 
@@ -4018,6 +4011,7 @@ audio:"ext:群英会:2",
         }).set('prompt','百豪：请选择是否发动');    
         "step 1"
         if(result.control=='百豪'){
+        player.logSkill('xwj_xhuoying_baihao');
             player.recover(player.maxHp-player.hp);
              player.loseMaxHp();    
         }
@@ -4825,8 +4819,13 @@ audio:"ext:群英会:2",
                 forced:true,
                 content:function (){        
     var chat=['我要贯彻我的忍道：只要努力，即使不会忍术也能打败天才！','这招本来是为了打败宁次而准备的，今天破例让你见识见识'].randomGet();
-        player.say(chat);              
-        trigger.num+=game.roundNumber;
+        player.say(chat);      
+        if(game.roundNumber<=5){        
+        trigger.num+=Math.ceil(game.roundNumber/2);
+        }
+        else{
+        trigger.num+=Math.floor(game.roundNumber/3);
+        }
     },
                 ai:{
                     threaten:1.5,
@@ -10310,7 +10309,7 @@ translate:{
             "xwj_xhuoying_xianti_info":"<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至体力上限，然后回复一点体力",	
         			"xwj_xhuoying_liudaoxianren":"六道仙人",
 	        		"xwj_xhuoying_renzong":"忍宗",
-            "xwj_xhuoying_renzong_info":"<font color=#f00>锁定技</font> 当一名非主公的其他角色进入濒死状态，你选择技能【天眼】或【仙体】令其永久获得之，其回复体力至1并摸两张牌，且阵营调整与你一致（你为主公时视为忠臣），然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
+            "xwj_xhuoying_renzong_info":"<font color=#f00>锁定技</font> 当一名非主公的其他角色进入濒死状态，你选择技能【天眼】或【仙体】令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能【忍宗】，体力上限和体力值改为6。当该被授予【忍宗】的角色造成或受到一次伤害后，你随机获得一张基本牌",
             "xwj_xhuoying_renzong2":"忍宗",
             "xwj_xhuoying_renzong2_info":"<font color=#f00>锁定技</font> 当你造成或受到一次伤害后，你随机获得一张基本牌",
 				    		"xwj_xhuoying_tianyan":"天眼",
@@ -10491,7 +10490,7 @@ translate:{
             "xwj_xhuoying_shuilao":"水牢",
             "xwj_xhuoying_shuilao_info":"<font color=#F0F>水牢之术</font> 一名其他角色的准备阶段，若你的体力值不大于你的装备区的牌数，你可以与该角色拼点，若你赢，该角色本回合使用的牌不能指定除该角色外的角色为目标（类似队友鼬的月读封锁对方行动）",
             "xwj_xhuoying_relianhua":"莲华",
-            "xwj_xhuoying_relianhua_info":"<font color=#f00>锁定技</font> 摸牌阶段摸牌时，你额外摸X张牌（X为游戏轮数）；你的手牌上限等于体力上限。",
+            "xwj_xhuoying_relianhua_info":"<font color=#f00>锁定技</font> 摸牌阶段摸牌时，若游戏轮数：①不大于5，你额外摸X张牌（X为游戏轮数的一半向上取整）；②大于5，你额外摸Y张牌（Y为游戏轮数的三分之一向下取整）。你的手牌上限等于体力上限。",
             "xwj_xhuoying_rexuanfeng":"旋风",
             "xwj_xhuoying_rexuanfeng_info":"<font color=#F0F>木叶旋风</font> <font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你使用的【杀】造成的伤害+1",
             "xwj_xhuoying_jiaodan":"鲛弹",
@@ -13486,5 +13485,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.26",
+    version:"1.27",
 },files:{"character":[],"card":[],"skill":[]}}})

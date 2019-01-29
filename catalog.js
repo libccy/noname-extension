@@ -296,20 +296,22 @@ extension["列女传"]={
 
 extension["作者包"]={
     author:"神座sagiri",
-    intro:"更新：修复不少BUG。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快。更新：新增部分特效",
-    size:"48MB",
+    intro:"更新：优化界面，修复不少BUG，新增商店系统、支付系统、作者紫妈和部分特效【2月4日新年有惊喜】。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快",
+    size:"54.3MB",
     netdisk:"",
-    version:1.7,
+    version:2.0,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
-	    "zuozhe竹鱼.jpg","轮回中的消逝者.jpg","轮回中的消逝者1.jpg","轮回中的消逝者2.jpg","纱雾1.jpg","纱雾2.jpg","纱雾3.jpg","时慕的矿山.jpg",
+	    "zuozhe竹鱼.jpg","轮回中的消逝者.jpg","轮回中的消逝者1.jpg","轮回中的消逝者2.jpg","纱雾1.jpg","纱雾2.jpg","纱雾3.jpg","时慕的矿山.jpg","随机作者.jpg",
+	    "zuozhe紫妈.jpg",
 	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3","zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
 	    "皮肤音效-何子1.mp3","zuozhe冥葬天.jpg","何子1.jpg","何子2.jpg","何子3.jpg","二维码.gif","特效-孤城1.gif","特效-何子1.gif","特效-何子2.gif",
-	    "特效-纱雾1.gif","特效-神座1.gif","出场特效预览.html","二维码.html","皮肤预览.html","预览.html","随机作者.jpg",	    
+	    "特效-纱雾1.gif","特效-神座1.gif",    
 	     "特效-fux21.gif","特效-极光1.gif", "特效-极光2.gif","特效-极光3.gif", "特效-冥葬天1.gif","特效-冥葬天2.gif", "特效-冥葬天3.gif","特效-叛徒1.gif",
 	     "特效-叛徒2.gif","特效-纱雾2.gif", "特效-神座2.gif","特效-时慕1.gif", "特效-时慕2.gif","特效-随机作者1.gif", "特效-小苏1.gif","特效-小苏2.gif",
-	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif",  "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",
+	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif", "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",
+	    "神宠-乐羊羊.gif","神宠-雷吉斯.gif", "神宠-小飞猪.gif","神宠-小福牛.gif","神宠-小灵猴.gif","作者币支付服务协议.txt",
 	    "lscale_0.png","lscale_1.png","lscale_2.png","lscale_3.png","lscale_4.png","lscale_5.png","lscale_6.png","lscale_7.png","lscale_8.png",
 	    "lscale_9.png","lscale_10.png","lscale_11.png","lscale_12.png","lscale_13.png",
 	     "rscale_0.png","rscale_1.png","rscale_2.png","rscale_3.png","rscale_4.png","rscale_5.png","rscale_6.png","rscale_7.png","rscale_8.png",
@@ -321,12 +323,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"更新：修复犬冢牙召唤出的赤丸没图片的BUG。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包，关闭后会隐藏图片且禁用），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-01-26",
+	intro:"更新：削弱六道仙人与李洛克。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包，关闭后会隐藏图片且禁用），强度略高但彼此平衡，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-01-26",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"76MB",
-    version:1.26,
+    version:1.28,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_default.mp3",

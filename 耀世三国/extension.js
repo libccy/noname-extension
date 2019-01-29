@@ -36,7 +36,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"è€€ä¸
             "YSSG_fazheng":["male","shu",3,["YSSG_xuanhuo","YSSG_yirong"],[]],
             "YSSG_machao":["male","shu",4,["YSSG_xiaoxi","YSSG_chiqu"],[]],
             "YSSG_huangzhong":["male","shu",4,["YSSG_shengong"],[]],
-            "YSSG_liushan":["male","shu",3,["YSSG_xiangle","YSSG_wenquan"],[]],
+            //"YSSG_liushan":["male","shu",3,["YSSG_xiangle","YSSG_wenquan"],[]],
             "YSSG_zhangfei":["male","shu",4,["YSSG_duanke"],[]],
         },
         translate:{

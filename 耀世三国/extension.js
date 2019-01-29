@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀世三国",editable:false,content:function (config,pack){
     
 },precontent:function (){
     

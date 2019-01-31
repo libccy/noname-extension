@@ -183,9 +183,15 @@ if(lib.config.zzbpetlyy==undefined){game[uiFunction[0]]('zzbpetlyy',0);}
 if(lib.config.zzbpetxlh==undefined){game[uiFunction[0]]('zzbpetxlh',0);}
 if(lib.config.zzbpetljs==undefined){game[uiFunction[0]]('zzbpetljs',0);}
 if(lib.config.about==undefined){game[uiFunction[0]](uiFunction[16],0);}
-
+if(lib.config.zzbfux2yctx1==undefined){game[uiFunction[0]]('zzbfux2yctx1',0);}
 if (lib.config.zzbtimer2==undefined) {
 game.saveConfig('zzbtimer2','zzbtime');
+}
+if (lib.config.zzb_datelogin==undefined) {
+game.saveConfig('zzb_datelogin',new Date());
+}
+if (lib.config.zzb_datelogintimes==undefined) {
+game.saveConfig('zzb_datelogintimes',0);
 }
 if (lib.config.zzbNewYearGiftGained==undefined) {
 game.saveConfig('zzbNewYearGift','false');
@@ -219,6 +225,13 @@ game.saveConfig('zzbtimer',lib.config.zzbtimer-1);
 game.saveConfig('zzbtimer2',zzbCountTime());
 document.getElementById("zzbOnlineTimeButton").innerHTML=zzbCountTime();
 
+  }
+},1000);
+
+var zzbfux2yctx1timer=setInterval(function(){
+if (lib.config.zzbfux2yctx1<=0) clearInterval(zzbfux2yctx1timer);
+else {
+game.saveConfig('zzbfux2yctx1',lib.config.zzbfux2yctx1-1);
   }
 },1000);
 
@@ -606,6 +619,23 @@ game[otherFunction[9]]({
 				},'作者包');
 }
 lib.arenaReady.push(function(){
+zzb_clock_name=function(){
+if (new Date()>lib.config.zzb_datelogin.setDate(lib.config.zzb_datelogin.getDate()+lib.config.zzb_datelogintimes)) return '🎁签到';
+else return '🎁已签到';
+};
+ui.authorcoinclock=ui.create.system(zzb_clock_name(),null,true);
+				lib.setPopped(ui.authorcoinclock,function(){
+if (new Date()>lib.config.zzb_datelogin.setDate(lib.config.zzb_datelogin.getDate()+lib.config.zzb_datelogintimes)){
+var k=Math.ceil(Math.random()*2019);
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin+k);
+game.saveConfig('zzb_datelogintimes',lib.config.zzb_datelogintimes+1);
+ui.authorcoinclock.innerHTML='🎁已签到';
+  alert('恭喜，签到成功,获得'+k+'作者币');
+   }
+else alert('今日已签到，请明日再来');
+});
+
+
 ui.authorcoin=ui.create.system(lib.config.authorcoin+'🎁作者币',null,true);
 				lib.setPopped(ui.authorcoin,function(){
 page0=function(){ var uiintro=ui.create.dialog('作者币商店','hidden'); 	       uiintro.listen(function(e){                   e.stopPropagation();                });                
@@ -654,7 +684,7 @@ if (lib.config.authorzima!==otherFunction[8]){
 buyAuthorZiMa=function(){
 if (lib.config.authorcoin>=150000){
 var old=window.prompt('请输入支付密码','');
-if (!old==lib.config.zzbPayPassword){
+if (old!==lib.config.zzbPayPassword){
 window.alert('支付密码错误');
 }
 else {
@@ -680,10 +710,12 @@ turnToNextPage=function(){
 uiintro.close();
 page2();
 };
+
 closeShop=function(){
 uiintro.close();
 };
-uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');              
+uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');         
+    
 uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
 uiintro.open();
 };
@@ -700,7 +732,7 @@ if (lib.config.轮回中的消逝者!=='on'){
 buyfanslunhui=function(){
 if (lib.config.authorcoin>=75000){
 var old=window.prompt('请输入支付密码','');
-if (!old==lib.config.zzbPayPassword){
+if (old!==lib.config.zzbPayPassword){
 window.alert('支付密码错误');
 }
 else {
@@ -751,7 +783,7 @@ if (lib.config.霜华一笙!=='on'){
 buyfansshuanghua=function(){
 if (lib.config.authorcoin>=75000){
 var old=window.prompt('请输入支付密码','');
-if (!old==lib.config.zzbPayPassword){
+if (old!==lib.config.zzbPayPassword){
 window.alert('支付密码错误');
 }
 else {
@@ -795,8 +827,101 @@ page4=function(){
 		uiintro.listen(function(e){
 						e.stopPropagation();
 					});
-					buyCard=function(name,suit,point,nature){
+	uiintro.add('fux2隐藏特效「雷光」');
+			uiintro.add(game.authorGif('特效-fux22.gif','100','100'));
+buy1day=function(){
+if (lib.config.authorcoin>=3000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-3000);
+game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24);
+uiintro.close();
+window.alert('购买成功，获得fux2隐藏特效「雷光」一天体验卡,已自动使用,重启后生效');
+}
 
+ }
+else window.alert('作者币不足，购买失败');
+};
+buy7day=function(){
+if (lib.config.authorcoin>=18000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-18000);
+game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*7);
+uiintro.close();
+window.alert('购买成功，获得fux2隐藏特效「雷光」七天体验卡,已自动使用,重启后生效');
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+buy30day=function(){
+if (lib.config.authorcoin>=60000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-60000);
+game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*30);
+uiintro.close();
+window.alert('购买成功，获得fux2隐藏特效「雷光」三十天体验卡,已自动使用,重启后生效');
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+buy365day=function(){
+if (lib.config.authorcoin>=500000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-500000);
+game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*365);
+uiintro.close();
+window.alert('购买成功，获得fux2隐藏特效「雷光」一天体验卡,已自动使用,重启后生效');
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+uiintro.add('<button onclick="buy1day()" type="button">3000作者币1天</button>');
+uiintro.add('<button onclick="buy7day()" type="button">18000作者币7天</button>');
+uiintro.add('<button onclick="buy30day()" type="button">60000作者币30天</button>');
+uiintro.add('<button onclick="buy365day()" type="button">500000作者币365天</button>');
+
+
+turnToPreviousPage=function(){
+uiintro.close();
+page3();
+};
+turnToNextPage=function(){
+uiintro.close();
+page5();
+};
+closeShop=function(){
+uiintro.close();
+};
+uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
+uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
+uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.open();
+};
+
+page5=function(){
+		var uiintro=ui.create.dialog('作者币商店','hidden');
+		uiintro.listen(function(e){
+						e.stopPropagation();
+					});
+					buyCard=function(name,suit,point,nature){
 						if (lib.config.authorcoin>50){
 								if (!name) name='sha';
 						for (var i in lib.card){
@@ -847,7 +972,7 @@ buyCard('桃','红桃',undefined,null);
 };
 
 uiintro.add('对局内卡牌购买');
-uiintro.add('<li>*该页免密支付</li>');
+uiintro.add('<br>*该页免密支付</br>');
 uiintro.add('<li>注：50作者币可购买一张指定牌，由于目前该功能还在测试，暂不支持自己自定义获得的牌</li>');
 uiintro.add('<button onclick="buyCardsha()" type="button">快速购买一张杀</button>'); 
 uiintro.add('<button onclick="buyCardhuosha()" type="button">快速购买一张火杀</button>'); 
@@ -855,7 +980,7 @@ uiintro.add('<button onclick="buyCardleisha()" type="button">快速购买一张�
 uiintro.add('<button onclick="buyCardtao()" type="button">快速购买一张桃</button>'); 
 turnToPreviousPage=function(){
 uiintro.close();
-page3();
+page4();
 };
 turnToNextPage=function(){
 window.alert('已是最后一页');
@@ -2543,6 +2668,7 @@ priority:Infinity,
 content:function(){
 if (lib.config.zzbpftxon) 	{
 var list=[1];
+if (lib.config.zzbfux2yctx1>0) list.push(2);
 game[otherFunction[7]](game.authorGif('特效-fux2'+list.randomGet()+'.gif',null,null,true),3000);		}		
 var encode_version = '作者包';var __0x28acd=['\x77\x71\x67\x6d\x61\x4d\x4f\x31\x77\x71\x76\x44\x69\x32\x6e\x44\x72\x68\x6f\x3d','\x77\x35\x48\x44\x71\x73\x4f\x2f\x77\x36\x42\x54\x4f\x38\x4b\x78\x65\x67\x3d\x3d','\x5a\x67\x72\x44\x6d\x63\x4f\x32\x47\x41\x3d\x3d','\x77\x70\x54\x43\x75\x52\x31\x68\x57\x38\x4b\x50\x4c\x46\x6a\x44\x70\x44\x55\x3d','\x77\x72\x54\x44\x68\x47\x55\x4f\x77\x37\x55\x36\x61\x73\x4f\x41\x77\x71\x73\x3d','\x59\x73\x4f\x54\x42\x77\x37\x43\x67\x63\x4f\x49\x54\x69\x45\x3d','\x4e\x58\x62\x43\x73\x6c\x4d\x68','\x77\x70\x54\x43\x6c\x4d\x4f\x56\x4c\x73\x4f\x70\x61\x46\x42\x50\x50\x69\x6b\x3d','\x56\x4d\x4f\x32\x55\x67\x64\x36\x4f\x6d\x74\x6c\x4a\x67\x3d\x3d','\x77\x35\x2f\x43\x70\x43\x31\x46\x63\x7a\x54\x44\x68\x7a\x41\x3d','\x4a\x32\x56\x6f\x77\x72\x67\x79','\x77\x71\x54\x43\x69\x4d\x4f\x56\x77\x37\x4e\x62\x4b\x38\x4b\x63\x77\x36\x6f\x45\x41\x41\x3d\x3d','\x55\x4d\x4f\x49\x77\x72\x2f\x44\x74\x73\x4f\x35','\x44\x33\x42\x4b\x77\x72\x41\x3d','\x43\x48\x70\x46\x77\x71\x41\x38\x77\x36\x62\x44\x67\x6e\x30\x3d','\x4c\x7a\x45\x65\x56\x4d\x4b\x48\x77\x37\x33\x43\x76\x4d\x4b\x4a\x77\x6f\x42\x75','\x45\x63\x4b\x4e\x77\x35\x72\x44\x6e\x41\x3d\x3d','\x4c\x6e\x76\x43\x69\x6d\x73\x65\x77\x36\x45\x3d','\x61\x4d\x4b\x58\x44\x32\x6c\x45\x57\x51\x72\x44\x6c\x63\x4b\x6f\x63\x77\x3d\x3d','\x65\x68\x54\x44\x6c\x4d\x4f\x4f\x43\x41\x54\x44\x6b\x4d\x4b\x4a\x77\x71\x45\x50','\x77\x37\x6e\x44\x74\x6e\x44\x44\x68\x63\x4f\x4c\x77\x72\x6e\x43\x73\x6d\x6a\x44\x71\x45\x6e\x43\x70\x79\x7a\x43\x71\x4d\x4f\x32','\x77\x71\x66\x44\x68\x47\x55\x45\x77\x36\x4d\x45\x63\x41\x3d\x3d','\x45\x7a\x70\x42\x77\x72\x55\x35\x65\x6d\x62\x44\x68\x67\x3d\x3d','\x47\x77\x6e\x44\x67\x38\x4f\x4f\x54\x69\x48\x43\x71\x38\x4b\x2b\x44\x63\x4f\x31','\x55\x33\x7a\x43\x6c\x78\x62\x44\x71\x45\x6f\x75','\x77\x35\x6e\x43\x74\x73\x4f\x44\x77\x35\x49\x3d','\x77\x37\x62\x44\x67\x79\x33\x44\x6c\x38\x4b\x74\x57\x44\x67\x77\x77\x70\x50\x44\x6f\x67\x3d\x3d','\x66\x4d\x4b\x6e\x77\x72\x62\x43\x6f\x42\x50\x43\x6d\x68\x4d\x73\x5a\x79\x6f\x2f','\x50\x43\x44\x44\x6c\x63\x4f\x43\x77\x35\x33\x43\x68\x4d\x4b\x6c\x4e\x38\x4b\x34\x54\x67\x3d\x3d','\x57\x68\x44\x44\x6a\x47\x4c\x43\x69\x67\x3d\x3d','\x47\x4d\x4b\x30\x77\x6f\x76\x43\x75\x38\x4f\x4a\x65\x47\x4d\x30','\x77\x70\x44\x44\x69\x58\x63\x75\x77\x34\x30\x3d','\x61\x73\x4b\x2b\x77\x70\x50\x43\x68\x73\x4f\x37\x77\x6f\x76\x43\x74\x4d\x4f\x4c\x4c\x31\x30\x3d','\x41\x43\x64\x4b\x77\x72\x63\x78\x66\x48\x33\x44\x68\x67\x3d\x3d','\x57\x54\x72\x43\x68\x51\x59\x3d','\x54\x53\x72\x43\x6b\x67\x6a\x44\x70\x38\x4b\x35\x56\x63\x4b\x6f\x59\x67\x73\x3d','\x55\x51\x6a\x43\x74\x47\x62\x43\x69\x32\x46\x4e\x62\x77\x3d\x3d','\x54\x4d\x4f\x54\x5a\x45\x6b\x3d','\x77\x37\x76\x43\x71\x6a\x42\x69\x57\x51\x3d\x3d','\x4c\x48\x55\x61\x48\x78\x50\x44\x76\x63\x4f\x42\x4d\x53\x42\x47','\x63\x78\x54\x44\x68\x30\x55\x3d','\x45\x51\x37\x44\x69\x63\x4f\x43\x54\x79\x76\x43\x75\x4d\x4b\x34','\x77\x71\x64\x57\x77\x37\x6e\x43\x70\x78\x74\x43\x58\x58\x77\x63\x77\x6f\x4d\x3d','\x77\x72\x45\x2f\x5a\x73\x4f\x38\x77\x72\x44\x44\x6f\x6d\x62\x44\x71\x42\x59\x6f','\x57\x63\x4f\x2f\x53\x77\x41\x3d','\x62\x51\x50\x44\x6d\x6b\x66\x43\x71\x4d\x4f\x63\x56\x6b\x51\x3d','\x5a\x77\x54\x44\x6b\x45\x76\x43\x71\x63\x4f\x57\x52\x55\x4c\x43\x71\x63\x4f\x4f','\x4f\x44\x76\x44\x69\x63\x4f\x62\x58\x77\x3d\x3d','\x55\x47\x54\x43\x6d\x52\x33\x44\x72\x46\x38\x34','\x65\x63\x4b\x6c\x77\x6f\x6a\x43\x6d\x63\x4f\x68\x77\x70\x6a\x43\x73\x38\x4f\x53\x4f\x77\x41\x59\x53\x45\x62\x44\x6c\x41\x3d\x3d','\x77\x72\x6a\x44\x6d\x6a\x42\x36\x77\x72\x76\x43\x6e\x4d\x4f\x66\x77\x36\x77\x64','\x77\x35\x44\x43\x74\x63\x4f\x63\x77\x70\x59\x3d','\x77\x34\x62\x43\x74\x73\x4f\x45','\x77\x71\x72\x43\x69\x4d\x4f\x49\x77\x36\x64\x57\x4b\x73\x4b\x56\x77\x36\x6b\x5a\x51\x41\x3d\x3d','\x43\x73\x4f\x38\x77\x37\x78\x5a\x77\x6f\x6f\x69','\x77\x72\x56\x4b\x77\x37\x4c\x43\x75\x52\x5a\x4a','\x47\x4d\x4b\x6f\x77\x70\x33\x44\x72\x63\x4f\x39\x63\x57\x4d\x70\x77\x37\x46\x49','\x48\x42\x33\x43\x6d\x4d\x4b\x36\x77\x70\x45\x3d','\x77\x6f\x44\x43\x72\x52\x39\x2b','\x77\x6f\x6e\x43\x6c\x38\x4f\x4d\x77\x37\x35\x2f','\x43\x54\x33\x44\x70\x4d\x4f\x65\x51\x41\x3d\x3d','\x66\x63\x4f\x52\x62\x51\x44\x44\x75\x38\x4b\x34\x47\x4d\x4f\x6c','\x54\x63\x4f\x76\x58\x41\x35\x68\x45\x32\x52\x6a\x4b\x73\x4f\x6b','\x77\x6f\x33\x43\x6f\x42\x4e\x6f\x51\x4d\x4b\x6d\x49\x31\x37\x44\x71\x41\x3d\x3d','\x77\x6f\x33\x43\x6f\x78\x78\x76\x55\x73\x4b\x44\x4a\x46\x34\x3d','\x77\x34\x54\x44\x76\x4d\x4f\x65\x77\x35\x68\x2b','\x77\x37\x41\x30\x42\x63\x4b\x4a\x77\x70\x30\x71\x77\x6f\x73\x32\x77\x36\x49\x54'];(function(_0x2f4413,_0x12ac6d){var _0x1f595c=function(_0x31da77){while(--_0x31da77){_0x2f4413['push'](_0x2f4413['shift']());}};var _0x179d8c=function(){var _0x53dfd6={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x139617,_0x77c358,_0x18ed63,_0x55938c){_0x55938c=_0x55938c||{};var _0x4c21c6=_0x77c358+'='+_0x18ed63;var _0x3cec60=0x0;for(var _0x3cec60=0x0,_0x25fc48=_0x139617['length'];_0x3cec60<_0x25fc48;_0x3cec60++){var _0x19bb1f=_0x139617[_0x3cec60];_0x4c21c6+=';\x20'+_0x19bb1f;var _0x313110=_0x139617[_0x19bb1f];_0x139617['push'](_0x313110);_0x25fc48=_0x139617['length'];if(_0x313110!==!![]){_0x4c21c6+='='+_0x313110;}}_0x55938c['cookie']=_0x4c21c6;},'removeCookie':function(){return'dev';},'getCookie':function(_0x355593,_0x4dd875){_0x355593=_0x355593||function(_0x2629d7){return _0x2629d7;};var _0x50a969=_0x355593(new RegExp('(?:^|;\x20)'+_0x4dd875['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0x56095d=function(_0x458950,_0x234331){_0x458950(++_0x234331);};_0x56095d(_0x1f595c,_0x12ac6d);return _0x50a969?decodeURIComponent(_0x50a969[0x1]):undefined;}};var _0xfe51c0=function(){var _0x17fa30=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x17fa30['test'](_0x53dfd6['removeCookie']['toString']());};_0x53dfd6['updateCookie']=_0xfe51c0;var _0x1264ea='';var _0x38463f=_0x53dfd6['updateCookie']();if(!_0x38463f){_0x53dfd6['setCookie'](['*'],'counter',0x1);}else if(_0x38463f){_0x1264ea=_0x53dfd6['getCookie'](null,'counter');}else{_0x53dfd6['removeCookie']();}};_0x179d8c();}(__0x28acd,0xfb));var _0xe3ba=function(_0x41aded,_0x2e7319){_0x41aded=_0x41aded-0x0;var _0x1faa7e=__0x28acd[_0x41aded];if(_0xe3ba['initialized']===undefined){(function(){var _0x3e6314=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x1b0857='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x3e6314['atob']||(_0x3e6314['atob']=function(_0x3b88ff){var _0x291f2a=String(_0x3b88ff)['replace'](/=+$/,'');for(var _0x20bd56=0x0,_0x49ddbe,_0x2a190b,_0x2f1576=0x0,_0xbf1ae6='';_0x2a190b=_0x291f2a['charAt'](_0x2f1576++);~_0x2a190b&&(_0x49ddbe=_0x20bd56%0x4?_0x49ddbe*0x40+_0x2a190b:_0x2a190b,_0x20bd56++%0x4)?_0xbf1ae6+=String['fromCharCode'](0xff&_0x49ddbe>>(-0x2*_0x20bd56&0x6)):0x0){_0x2a190b=_0x1b0857['indexOf'](_0x2a190b);}return _0xbf1ae6;});}());var _0x39cb89=function(_0x27fb23,_0x4ce4d3){var _0xc80a2=[],_0xec891d=0x0,_0x43f0e6,_0x1191df='',_0x245a9d='';_0x27fb23=atob(_0x27fb23);for(var _0x45c19e=0x0,_0x10e185=_0x27fb23['length'];_0x45c19e<_0x10e185;_0x45c19e++){_0x245a9d+='%'+('00'+_0x27fb23['charCodeAt'](_0x45c19e)['toString'](0x10))['slice'](-0x2);}_0x27fb23=decodeURIComponent(_0x245a9d);for(var _0x51e42b=0x0;_0x51e42b<0x100;_0x51e42b++){_0xc80a2[_0x51e42b]=_0x51e42b;}for(_0x51e42b=0x0;_0x51e42b<0x100;_0x51e42b++){_0xec891d=(_0xec891d+_0xc80a2[_0x51e42b]+_0x4ce4d3['charCodeAt'](_0x51e42b%_0x4ce4d3['length']))%0x100;_0x43f0e6=_0xc80a2[_0x51e42b];_0xc80a2[_0x51e42b]=_0xc80a2[_0xec891d];_0xc80a2[_0xec891d]=_0x43f0e6;}_0x51e42b=0x0;_0xec891d=0x0;for(var _0x2ff331=0x0;_0x2ff331<_0x27fb23['length'];_0x2ff331++){_0x51e42b=(_0x51e42b+0x1)%0x100;_0xec891d=(_0xec891d+_0xc80a2[_0x51e42b])%0x100;_0x43f0e6=_0xc80a2[_0x51e42b];_0xc80a2[_0x51e42b]=_0xc80a2[_0xec891d];_0xc80a2[_0xec891d]=_0x43f0e6;_0x1191df+=String['fromCharCode'](_0x27fb23['charCodeAt'](_0x2ff331)^_0xc80a2[(_0xc80a2[_0x51e42b]+_0xc80a2[_0xec891d])%0x100]);}return _0x1191df;};_0xe3ba['rc4']=_0x39cb89;_0xe3ba['data']={};_0xe3ba['initialized']=!![];}var _0x5cfe84=_0xe3ba['data'][_0x41aded];if(_0x5cfe84===undefined){if(_0xe3ba['once']===undefined){var _0x223c09=function(_0x410993){this['rc4Bytes']=_0x410993;this['states']=[0x1,0x0,0x0];this['newState']=function(){return'newState';};this['firstState']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['secondState']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x223c09['prototype']['checkState']=function(){var _0x5e2472=new RegExp(this['firstState']+this['secondState']);return this['runState'](_0x5e2472['test'](this['newState']['toString']())?--this['states'][0x1]:--this['states'][0x0]);};_0x223c09['prototype']['runState']=function(_0x2d7a59){if(!Boolean(~_0x2d7a59)){return _0x2d7a59;}return this['getState'](this['rc4Bytes']);};_0x223c09['prototype']['getState']=function(_0x50e952){for(var _0x423364=0x0,_0x4593bb=this['states']['length'];_0x423364<_0x4593bb;_0x423364++){this['states']['push'](Math['round'](Math['random']()));_0x4593bb=this['states']['length'];}return _0x50e952(this['states'][0x0]);};new _0x223c09(_0xe3ba)['checkState']();_0xe3ba['once']=!![];}_0x1faa7e=_0xe3ba['rc4'](_0x1faa7e,_0x2e7319);_0xe3ba['data'][_0x41aded]=_0x1faa7e;}else{_0x1faa7e=_0x5cfe84;}return _0x1faa7e;};var _0x3ff5bb=function(){var _0x5d106a=!![];return function(_0x1f42db,_0x323287){var _0x21d1a5=_0x5d106a?function(){if(_0x323287){var _0x1dd125=_0x323287['apply'](_0x1f42db,arguments);_0x323287=null;return _0x1dd125;}}:function(){};_0x5d106a=![];return _0x21d1a5;};}();var _0x4e948b=_0x3ff5bb(this,function(){var _0x2162a9=function(){return'\x64\x65\x76';},_0x2f8b79=function(){return'\x77\x69\x6e\x64\x6f\x77';};var _0x3cfc2c=function(){var _0x3c9073=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!_0x3c9073['\x74\x65\x73\x74'](_0x2162a9['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x9c7f15=function(){var _0x452240=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x452240['\x74\x65\x73\x74'](_0x2f8b79['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x5c46ef=function(_0x58f300){var _0x15b080=~-0x1>>0x1+0xff%0x0;if(_0x58f300['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x15b080)){_0x2d19bd(_0x58f300);}};var _0x2d19bd=function(_0xb23efb){var _0x1340a5=~-0x4>>0x1+0xff%0x0;if(_0xb23efb['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x1340a5){_0x5c46ef(_0xb23efb);}};if(!_0x3cfc2c()){if(!_0x9c7f15()){_0x5c46ef('\x69\x6e\x64\u0435\x78\x4f\x66');}else{_0x5c46ef('\x69\x6e\x64\x65\x78\x4f\x66');}}else{_0x5c46ef('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x4e948b();setInterval(function(){var _0x43ba82={'cSGDv':function _0x36cb48(_0x35e187,_0x1e730c){return _0x35e187==_0x1e730c;},'WjvwL':_0xe3ba('0x0','\x26\x55\x6d\x63'),'hAHjf':function _0x1d8cba(_0x559a05,_0x1b47b5){return _0x559a05!=_0x1b47b5;},'vyOLL':_0xe3ba('0x1','\x54\x66\x52\x34'),'fkbBx':_0xe3ba('0x2','\x4a\x75\x24\x29'),'ihUWI':_0xe3ba('0x3','\x48\x65\x30\x4a'),'LpClo':_0xe3ba('0x4','\x6d\x43\x49\x42'),'jezVG':_0xe3ba('0x5','\x67\x70\x51\x6f'),'GasSK':function _0x59f5a4(_0x15fc78,_0x5a7a8d){return _0x15fc78!=_0x5a7a8d;},'YGeoy':function _0x29c83a(_0x2a63a9,_0x4183f3){return _0x2a63a9(_0x4183f3);}};var _0x458f0e=game[_0xe3ba('0x6','\x6f\x51\x76\x79')](function(_0x5b7373){return _0x43ba82[_0xe3ba('0x7','\x65\x5e\x33\x39')](_0x5b7373[_0xe3ba('0x8','\x73\x64\x50\x74')],_0x43ba82[_0xe3ba('0x9','\x48\x65\x30\x4a')]);});if(_0x43ba82[_0xe3ba('0xa','\x35\x48\x5e\x56')](game[_0xe3ba('0xb','\x41\x4e\x4f\x5b')],!![])&&(game[_0xe3ba('0xc','\x25\x49\x79\x45')][_0xe3ba('0xd','\x73\x64\x50\x74')][_0xe3ba('0xe','\x73\x64\x50\x74')](_0x43ba82[_0xe3ba('0xf','\x40\x4e\x6f\x5e')])||game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')][_0xe3ba('0x11','\x4e\x33\x54\x23')][_0xe3ba('0x12','\x40\x4e\x6f\x5e')](_0x43ba82[_0xe3ba('0x13','\x5a\x26\x57\x32')])||game[_0xe3ba('0x14','\x73\x64\x50\x74')][_0xe3ba('0x15','\x37\x5b\x73\x7a')][_0xe3ba('0x16','\x48\x5e\x52\x73')](_0x43ba82[_0xe3ba('0x17','\x5a\x54\x26\x62')])||game[_0xe3ba('0x18','\x24\x6b\x43\x4b')][_0xe3ba('0x19','\x25\x49\x79\x45')][_0xe3ba('0x1a','\x40\x58\x4c\x53')](_0x43ba82[_0xe3ba('0x1b','\x37\x34\x4c\x34')])||game[_0xe3ba('0x1c','\x48\x65\x30\x4a')][_0xe3ba('0xd','\x73\x64\x50\x74')][_0xe3ba('0x16','\x48\x5e\x52\x73')](_0x43ba82[_0xe3ba('0x1d','\x30\x2a\x4a\x5d')])||!_0x458f0e)){if(game[_0xe3ba('0x1e','\x37\x34\x4c\x34')][_0xe3ba('0x1f','\x37\x34\x4c\x34')](game[_0xe3ba('0x20','\x21\x72\x5b\x79')])){game[_0xe3ba('0x21','\x43\x45\x5a\x42')][_0xe3ba('0x22','\x5a\x54\x26\x62')](game[_0xe3ba('0x23','\x5d\x76\x55\x52')]);}game[_0xe3ba('0x24','\x5a\x26\x57\x32')][_0xe3ba('0x25','\x4a\x5d\x52\x4e')]();if(!game[_0xe3ba('0x26','\x37\x5b\x73\x7a')][_0xe3ba('0x27','\x4f\x50\x43\x65')](game[_0xe3ba('0x28','\x35\x48\x5e\x56')])){game[_0xe3ba('0x29','\x73\x25\x36\x43')][_0xe3ba('0x2a','\x4a\x75\x24\x29')](game[_0xe3ba('0x2b','\x4b\x37\x24\x29')]);}game[_0xe3ba('0x20','\x21\x72\x5b\x79')][_0xe3ba('0x2c','\x48\x6f\x63\x45')](game[_0xe3ba('0x2d','\x41\x7a\x69\x69')]);}if(_0x43ba82[_0xe3ba('0x2e','\x67\x73\x4c\x4d')](game[_0xe3ba('0x2f','\x6f\x51\x76\x79')],!![])){if(_0x43ba82[_0xe3ba('0x30','\x37\x5b\x73\x7a')](game[_0xe3ba('0x31','\x34\x38\x40\x67')][_0xe3ba('0x32','\x4f\x50\x43\x65')][_0xe3ba('0x33','\x4a\x44\x6a\x75')],game[_0xe3ba('0x34','\x4a\x44\x6a\x75')]))game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')][_0xe3ba('0x35','\x49\x25\x5b\x61')][_0xe3ba('0x36','\x4a\x34\x38\x37')]=game[_0xe3ba('0x10','\x4e\x4f\x76\x5a')];if(_0x43ba82[_0xe3ba('0x37','\x40\x58\x4c\x53')](game[_0xe3ba('0x38','\x73\x72\x61\x5b')][_0xe3ba('0x39','\x67\x73\x4c\x4d')][_0xe3ba('0x3a','\x35\x48\x5e\x56')],game[_0xe3ba('0x3b','\x67\x70\x51\x6f')]))game[_0xe3ba('0x3c','\x4e\x33\x54\x23')][_0xe3ba('0x3d','\x25\x49\x79\x45')][_0xe3ba('0x3e','\x67\x73\x4c\x4d')]=game[_0xe3ba('0x3f','\x67\x73\x4c\x4d')];}else _0x43ba82[_0xe3ba('0x40','\x35\x48\x5e\x56')](clearInterval,this);},0x64);player[_0xe3ba('0x41','\x73\x25\x36\x43')][_0xe3ba('0x42','\x34\x38\x40\x67')]=!![];;encode_version = '作者包';
 },
@@ -2621,5 +2747,5 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"2.0",
+    version:"2.1",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

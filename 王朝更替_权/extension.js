@@ -1,8 +1,10 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"王朝更替_权",content:function (config,pack){
     if(config.moreguozhan==true){
         lib.characterPack.mode_guozhan.gz_caoang=["male","wei",4,["gz_kangkaistar"],[]]
 lib.characterPack.mode_guozhan.gz_guanping=["male","shu",4,["gz_longyinstar"],[]]
 lib.characterPack.mode_guozhan.gz_liyan=["male","shu",4,["starjianglue"],[]]
+lib.characterPack.mode_guozhan.gz_yangxiu=["male","wei",4,["starweilin"],[]]
+lib.characterPack.mode_guozhan.gz_miheng=["male","qun",4,["starhuicai"],[]]
     }
     if(config.fuben5kiva==true){
     if(lib.config.mode=="brawl"){
@@ -75,7 +77,27 @@ _status.extensionscene=true;}
 if(!_status.extensionmade) _status.extensionmade=[];
 _status.extensionmade.push("伯温镇敌");
 }}
-    
+    if(config.zhanbutime==true){
+        lib.skill._zhanbu_skill={
+            trigger:{
+        global:"gameStart",
+        player:"enterGame",
+    },
+    forced:true,
+    filter:function (event,player,game){
+        return player.identity=='zhu';
+    },
+    content:function (){
+        'step 0'
+        game.log('占卜系统'); 
+        'step 1'
+        game.log('正在进行占卜......');
+        'step 2'
+        var list=['爆发技','控场技','输出技','卖血技'].randomGet();
+        game.log('本轮的运势是',''+get.translation(list)+'');
+    },
+        }
+    }
     if(config.liangshantime==true){
         lib.skill._songjiang_skill={
             trigger:{
@@ -304,14 +326,86 @@ _status.extensionmade.push("伯温镇敌");
         }
     }
     var style2=document.createElement('style');
-        style2.innerHTML=".player .identity[data-color='zhancolor'],";
-	    style2.innerHTML+="div[data-nature='zhancolor'],";
-    	style2.innerHTML+="span[data-nature='zhancolor'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 10px,rgba(255, 0, 0,1) 0 0 10px}";
-    	style2.innerHTML+="div[data-nature='zhancolorm'],";
-	    style2.innerHTML+="span[data-nature='zhancolorm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,black 0 0 1px;}";
-    	style2.innerHTML+="div[data-nature='zhancolormm'],";
-    	style2.innerHTML+="span[data-nature='zhancolormm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,black 0 0 1px;}";
+        style2.innerHTML=".player .identity[data-color='红star'],";
+	    style2.innerHTML+="div[data-nature='红star'],";
+    	style2.innerHTML+="span[data-nature='红star'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 10px,rgba(255, 0, 0,1) 0 0 10px}";
+    	style2.innerHTML+="div[data-nature='红starm'],";
+	    style2.innerHTML+="span[data-nature='红starm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,rgba(255, 0, 0,1) 0 0 5px,black 0 0 1px;}";
+    	style2.innerHTML+="div[data-nature='红starmm'],";
+    	style2.innerHTML+="span[data-nature='红starmm'] {text-shadow: black 0 0 1px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,rgba(255, 0, 0,1) 0 0 2px,black 0 0 1px;}";
     	document.head.appendChild(style2);
+    var style3=document.createElement('style');
+        style3.innerHTML=".player .identity[data-color='紫star'],";
+	    style3.innerHTML+="div[data-nature='紫star'],";
+    	style3.innerHTML+="span[data-nature='紫star'] {text-shadow: black 0 0 1px,rgba(154, 0, 152,1) 0 0 2px,rgba(154, 0, 152,1) 0 0 5px,rgba(154, 0, 152,1) 0 0 10px,rgba(154, 0, 152,1) 0 0 10px}";
+    	style3.innerHTML+="div[data-nature='紫starm'],";
+	    style3.innerHTML+="span[data-nature='紫starm'] {text-shadow: black 0 0 1px,rgba(154, 0, 152,1) 0 0 2px,rgba(154, 0, 152,1) 0 0 5px,rgba(154, 0, 152,1) 0 0 5px,rgba(154, 0, 152,1) 0 0 5px,black 0 0 1px;}";
+    	style3.innerHTML+="div[data-nature='紫starmm'],";
+    	style3.innerHTML+="span[data-nature='紫starmm'] {text-shadow: black 0 0 1px,rgba(154, 0, 152,1) 0 0 2px,rgba(154, 0, 152,1) 0 0 2px,rgba(154, 0, 152,1) 0 0 2px,rgba(154, 0, 152,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style3);
+    var style4=document.createElement('style');
+        style4.innerHTML=".player .identity[data-color='棕star'],";
+	    style4.innerHTML+="div[data-nature='棕star'],";
+    	style4.innerHTML+="span[data-nature='棕star'] {text-shadow: black 0 0 1px,rgba(146, 136, 23,1) 0 0 2px,rgba(146, 136, 23,1) 0 0 5px,rgba(146, 136, 23,1) 0 0 10px,rgba(146, 136, 23,1) 0 0 10px}";
+    	style4.innerHTML+="div[data-nature='棕starm'],";
+	    style4.innerHTML+="span[data-nature='棕starm'] {text-shadow: black 0 0 1px,rgba(146, 136, 23,1) 0 0 2px,rgba(146, 136, 23,1) 0 0 5px,rgba(146, 136, 23,1) 0 0 5px,rgba(146, 136, 23,1) 0 0 5px,black 0 0 1px;}";
+    	style4.innerHTML+="div[data-nature='棕starmm'],";
+    	style4.innerHTML+="span[data-nature='棕starmm'] {text-shadow: black 0 0 1px,rgba(146, 136, 23,1) 0 0 2px,rgba(146, 136, 23,1) 0 0 2px,rgba(146, 136, 23,1) 0 0 2px,rgba(146, 136, 23,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style4);
+    var style5=document.createElement('style');
+        style5.innerHTML=".player .identity[data-color='黑star'],";
+	    style5.innerHTML+="div[data-nature='黑star'],";
+    	style5.innerHTML+="span[data-nature='黑star'] {text-shadow: black 0 0 1px,rgba(0, 0, 0,1) 0 0 2px,rgba(0, 0, 0,1) 0 0 5px,rgba(0, 0, 0,1) 0 0 10px,rgba(0, 0, 0,1) 0 0 10px}";
+    	style5.innerHTML+="div[data-nature='黑starm'],";
+	    style5.innerHTML+="span[data-nature='黑starm'] {text-shadow: black 0 0 1px,rgba(0, 0, 0,1) 0 0 2px,rgba(0, 0, 0,1) 0 0 5px,rgba(0, 0, 0,1) 0 0 5px,rgba(0, 0, 0,1) 0 0 5px,black 0 0 1px;}";
+    	style5.innerHTML+="div[data-nature='黑starmm'],";
+    	style5.innerHTML+="span[data-nature='黑starmm'] {text-shadow: black 0 0 1px,rgba(0, 0, 0,1) 0 0 2px,rgba(0, 0, 0,1) 0 0 2px,rgba(0, 0, 0,1) 0 0 2px,rgba(0, 0, 0,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style5);
+    var style6=document.createElement('style');
+        style6.innerHTML=".player .identity[data-color='天蓝star'],";
+	    style6.innerHTML+="div[data-nature='天蓝star'],";
+    	style6.innerHTML+="span[data-nature='天蓝star'] {text-shadow: black 0 0 1px,rgba(77, 225, 255,1) 0 0 2px,rgba(77, 225, 255,1) 0 0 5px,rgba(77, 225, 255,1) 0 0 10px,rgba(77, 225, 255,1) 0 0 10px}";
+    	style6.innerHTML+="div[data-nature='天蓝starm'],";
+	    style6.innerHTML+="span[data-nature='天蓝starm'] {text-shadow: black 0 0 1px,rgba(77, 225, 255,1) 0 0 2px,rgba(77, 225, 255,1) 0 0 5px,rgba(77, 225, 255,1) 0 0 5px,rgba(77, 225, 255,1) 0 0 5px,black 0 0 1px;}";
+    	style6.innerHTML+="div[data-nature='天蓝starmm'],";
+    	style6.innerHTML+="span[data-nature='天蓝starmm'] {text-shadow: black 0 0 1px,rgba(77, 225, 255,1) 0 0 2px,rgba(77, 225, 255,1) 0 0 2px,rgba(77, 225, 255,1) 0 0 2px,rgba(77, 225, 255,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style6);
+    var style7=document.createElement('style');
+        style7.innerHTML=".player .identity[data-color='深红star'],";
+	    style7.innerHTML+="div[data-nature='深红star'],";
+    	style7.innerHTML+="span[data-nature='深红star'] {text-shadow: black 0 0 1px,rgba(72, 16, 0,1) 0 0 2px,rgba(72, 16, 0,1) 0 0 5px,rgba(72, 16, 0,1) 0 0 10px,rgba(72, 16, 0,1) 0 0 10px}";
+    	style7.innerHTML+="div[data-nature='深红starm'],";
+	    style7.innerHTML+="span[data-nature='深红starm'] {text-shadow: black 0 0 1px,rgba(72, 16, 0,1) 0 0 2px,rgba(72, 16, 0,1) 0 0 5px,rgba(72, 16, 0,1) 0 0 5px,rgba(72, 16, 0,1) 0 0 5px,black 0 0 1px;}";
+    	style7.innerHTML+="div[data-nature='深红starmm'],";
+    	style7.innerHTML+="span[data-nature='深红starmm'] {text-shadow: black 0 0 1px,rgba(72, 16, 0,1) 0 0 2px,rgba(72, 16, 0,1) 0 0 2px,rgba(72, 16, 0,1) 0 0 2px,rgba(72, 16, 0,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style7);
+    var style8=document.createElement('style');
+        style8.innerHTML=".player .identity[data-color='浅蓝star'],";
+	    style8.innerHTML+="div[data-nature='浅蓝star'],";
+    	style8.innerHTML+="span[data-nature='浅蓝star'] {text-shadow: black 0 0 1px,rgba(133, 254, 255,1) 0 0 2px,rgba(133, 254, 255,1) 0 0 5px,rgba(133, 254, 255,1) 0 0 10px,rgba(133, 254, 255,1) 0 0 10px}";
+    	style8.innerHTML+="div[data-nature='浅蓝starm'],";
+	    style8.innerHTML+="span[data-nature='浅蓝starm'] {text-shadow: black 0 0 1px,rgba(133, 254, 255,1) 0 0 2px,rgba(133, 254, 255,1) 0 0 5px,rgba(133, 254, 255,1) 0 0 5px,rgba(133, 254, 255,1) 0 0 5px,black 0 0 1px;}";
+    	style8.innerHTML+="div[data-nature='浅蓝starmm'],";
+    	style8.innerHTML+="span[data-nature='浅蓝starmm'] {text-shadow: black 0 0 1px,rgba(133, 254, 255,1) 0 0 2px,rgba(133, 254, 255,1) 0 0 2px,rgba(133, 254, 255,1) 0 0 2px,rgba(133, 254, 255,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style8);
+    var style9=document.createElement('style');
+        style9.innerHTML=".player .identity[data-color='黄star'],";
+	    style9.innerHTML+="div[data-nature='黄star'],";
+    	style9.innerHTML+="span[data-nature='黄star'] {text-shadow: black 0 0 1px,rgba(225, 255, 11,1) 0 0 2px,rgba(225, 255, 11,1) 0 0 5px,rgba(225, 255, 11,1) 0 0 10px,rgba(225, 255, 11,1) 0 0 10px}";
+    	style9.innerHTML+="div[data-nature='黄starm'],";
+	    style9.innerHTML+="span[data-nature='黄starm'] {text-shadow: black 0 0 1px,rgba(225, 255, 11,1) 0 0 2px,rgba(225, 255, 11,1) 0 0 5px,rgba(225, 255, 11,1) 0 0 5px,rgba(225, 255, 11,1) 0 0 5px,black 0 0 1px;}";
+    	style9.innerHTML+="div[data-nature='黄starmm'],";
+    	style9.innerHTML+="span[data-nature='黄starmm'] {text-shadow: black 0 0 1px,rgba(225, 255, 11,1) 0 0 2px,rgba(225, 255, 11,1) 0 0 2px,rgba(225, 255, 11,1) 0 0 2px,rgba(225, 255, 11,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style9);
+    var style10=document.createElement('style');
+        style10.innerHTML=".player .identity[data-color='深蓝star'],";
+	    style10.innerHTML+="div[data-nature='深蓝star'],";
+    	style10.innerHTML+="span[data-nature='深蓝star'] {text-shadow: black 0 0 1px,rgba(27, 127, 139,1) 0 0 2px,rgba(27, 127, 139,1) 0 0 5px,rgba(27, 127, 139,1) 0 0 10px,rgba(27, 127, 139,1) 0 0 10px}";
+    	style10.innerHTML+="div[data-nature='深蓝starm'],";
+	    style10.innerHTML+="span[data-nature='深蓝starm'] {text-shadow: black 0 0 1px,rgba(27, 127, 139,1) 0 0 2px,rgba(27, 127, 139,1) 0 0 5px,rgba(27, 127, 139,1) 0 0 5px,rgba(27, 127, 139,1) 0 0 5px,black 0 0 1px;}";
+    	style10.innerHTML+="div[data-nature='深蓝starmm'],";
+    	style10.innerHTML+="span[data-nature='深蓝starmm'] {text-shadow: black 0 0 1px,rgba(27, 127, 139,1) 0 0 2px,rgba(27, 127, 139,1) 0 0 2px,rgba(27, 127, 139,1) 0 0 2px,rgba(27, 127, 139,1) 0 0 2px,black 0 0 1px;}";
+    	document.head.appendChild(style10);
     if(config.fubenkiva==true){
     if(lib.config.mode=="brawl"){
 if(!lib.storage.stage) lib.storage.stage={};
@@ -378,19 +472,19 @@ _status.extensionmade.push("三分天下");
 						case 'shu':player.node.name.dataset.nature='soilmm';break;
 						case 'wu':player.node.name.dataset.nature='woodmm';break;
 						case 'qun':player.node.name.dataset.nature='metalmm';break;
-                        case 'qinkivastar':player.node.name.dataset.nature='fire';break;
-                        case 'chukivastar':player.node.name.dataset.nature='fire';break;
-                        case 'hankivastar':player.node.name.dataset.nature='fire';break;
-                        case 'jinkivastar':player.node.name.dataset.nature='fire';break;
-                        case 'suikivastar':player.node.name.dataset.nature='fire';break;
-                        case 'tangkivastar':player.node.name.dataset.nature='fire';break;
-                        case 'songkivastar':player.node.name.dataset.nature='fire';break;
-                        case 'mingkivastar':player.node.name.dataset.nature='metalmm';break;
-                        case 'qingkivastar':player.node.name.dataset.nature='fire';break;
-                        case 'xikivastar':player.node.name.dataset.nature='thunder';break;
+                        case 'qinkivastar':player.node.name.dataset.nature='棕star';break;
+                        case 'chukivastar':player.node.name.dataset.nature='黑star';break;
+                        case 'hankivastar':player.node.name.dataset.nature='紫star';break;
+                        case 'jinkivastar':player.node.name.dataset.nature='天蓝star';break;
+                        case 'suikivastar':player.node.name.dataset.nature='深红star';break;
+                        case 'tangkivastar':player.node.name.dataset.nature='红star';break;
+                        case 'songkivastar':player.node.name.dataset.nature='浅蓝star';break;
+                        case 'mingkivastar':player.node.name.dataset.nature='黄star';break;
+                        case 'qingkivastar':player.node.name.dataset.nature='深蓝star';break;
+                        case 'xikivastar':player.node.name.dataset.nature='黑star';break;
                         case 'luokivastar':player.node.name.dataset.nature='thunder';break;
                         case 'rikivastar':player.node.name.dataset.nature='fire';break;
-                        case 'zhankivastar':player.node.name.dataset.nature='fire';break;
+                        case 'zhankivastar':player.node.name.dataset.nature='红star';break;
 						default:player.node.name.dataset.nature='fire';break;
 					}	
 				}			
@@ -404,8 +498,17 @@ _status.extensionmade.push("三分天下");
 				case 'shu':nature='soil';break;
 				case 'wu':nature='wood';break;
 				case 'qun':nature='metal';break;
-				case 'mingkivastar':nature='metal';break;
-                case 'zhankivastar':nature='zhancolor';break
+				case 'mingkivastar':nature='黄star';break;
+                case 'zhankivastar':nature='红star';break;
+                case 'hankivastar':nature='紫star';break;
+                case 'tangkivastar':nature='红star';break;
+                case 'qinkivastar':nature='棕star';break;
+                case 'chukivastar':nature='黑star';break;
+                case 'jinkivastar':nature='天蓝star';break;
+                case 'suikivastar':nature='深红star';break;
+                case 'songkivastar':nature='浅蓝star';break;
+                case 'qingkivastar':nature='深蓝star';break;
+                case 'xikivastar':nature='黑star';break;
 			    default:return '';
 			}
 			if(method=='raw'){
@@ -414,25 +517,25 @@ _status.extensionmade.push("三分天下");
 			return nature+'mm';
 		},
         lib.group.push('qinkivastar');
-        lib.translate.qinkivastar='<span style=color:#928817>秦</span>';
+        lib.translate.qinkivastar='秦';
         lib.group.push('chukivastar');
-        lib.translate.chukivastar='<span style=color:#000000>楚</span>';
+        lib.translate.chukivastar='楚';
         lib.group.push('hankivastar');
-        lib.translate.hankivastar='<span style=color:#F0F>汉</span>';
+        lib.translate.hankivastar='汉';
         lib.group.push('jinkivastar');
-        lib.translate.jinkivastar='<span style=color:#4DE1FF>晋</span>';
+        lib.translate.jinkivastar='晋';
         lib.group.push('suikivastar');
-        lib.translate.suikivastar='<span style=color:#481000>隋</span>';
+        lib.translate.suikivastar='隋';
         lib.group.push('tangkivastar');
-        lib.translate.tangkivastar='<span style=color:#FF0000>唐</span>';
+        lib.translate.tangkivastar='唐'
         lib.group.push('songkivastar');
-        lib.translate.songkivastar='<span style=color:#85FEFF>宋</span>';
+        lib.translate.songkivastar='宋';
         lib.group.push('mingkivastar');
-        lib.translate.mingkivastar='<span style=color:#E1FF0B>明</span>';
+        lib.translate.mingkivastar='明';
         lib.group.push('qingkivastar');
-        lib.translate.qingkivastar='<span style=color:#1B7F8B>清</span>';
+        lib.translate.qingkivastar='清';
         lib.group.push('xikivastar');
-        lib.translate.xikivastar='<span style=color:#000000>西</span>';
+        lib.translate.xikivastar='西';
         lib.group.push('luokivastar');
         lib.translate.luokivastar='罗';
         lib.group.push('rikivastar');
@@ -441,7 +544,7 @@ _status.extensionmade.push("三分天下");
         lib.translate.zhankivastar='战';
 },precontent:function (){
     
-},help:{},config:{"shenchoose":{"init":false,"intro":"如果你的势力为'神'，你可以选择改变势力。","name":"神将可以选择势力"},"moreguozhan":{"init":false,"intro":"开启后出现国战武将，但关闭此包身份武将","name":"更多国战武将"},"fubenkiva":{"init":false,"intro":"刘备关通关为1打7;曹操关通关为1打7;孙权关需要与众英雄好汉们过牌。","name":"下载副本[三分天下]"},"fuben2kiva":{"init":false,"intro":"元朝末年，人民起义，刘伯温在此时辅佐朱元璋建立大明王朝。","name":"下载副本[伯温镇敌]"},"fuben3kiva":{"init":false,"intro":"诸葛亮与王司徒，不解释。","name":"下载副本[饶舌决战]"},"fuben4kiva":{"init":false,"intro":"曹操专场，看看你是否能排除异己，建立基业，封妻荫子，54320......(总感觉，好像说偏了)","name":"下载副本[挥刃除异]"},"fuben5kiva":{"init":false,"intro":"临战董卓时，董卓派出了华雄，上将潘凤已经被斩，此时，孙坚站了出来......","name":"下载副本[讨逆血战]"},"rometime":{"init":false,"intro":"开启此模式后，每当一名角色对一名角色造成伤害，伤害来源获得其目标一张牌。","name":"[罗马战场]模式"},"suijitime":{"init":false,"intro":"开启此模式后，游戏开始时，每名角色随机获得一个技能。","name":"[随机技能]模式"},"suijishatime":{"init":false,"intro":"开启此模式后，游戏每进行一轮，所有玩家因体力上限随机更改技能。","name":"[随机杀]模式"},"hongbaotime":{"init":false,"intro":"祝各位新年大吉，大吉大利，今晚吃鸡，文体两开花。","name":"[红包模式]模式"},"yitiantulongtime":{"init":false,"intro":"开启此模式后，每名玩家因体力上限获得装备[屠龙刀]或者[倚天剑]。","name":"[倚天屠龙]模式"},"baizhantime":{"init":false,"intro":"开启此模式后，出牌阶段开始时，玩家可弃置一张牌并选择一名其他角色，视为对其使用了一张[知己知彼]。","name":"[百战不殆]模式"},"liangshantime":{"init":false,"intro":"开启此模式后，主公改为'宋江'。","name":"[梁山模式]模式"}},package:{
+},help:{},config:{"shenchoose":{"init":false,"intro":"如果你的势力为'神'，你可以选择改变势力。","name":"神将可以选择势力"},"moreguozhan":{"init":false,"intro":"开启后出现国战武将，但关闭此包身份武将","name":"更多国战武将"},"fubenkiva":{"init":false,"intro":"刘备关通关为1打7;曹操关通关为1打7;孙权关需要与众英雄好汉们过牌。","name":"下载副本[三分天下]"},"fuben2kiva":{"init":false,"intro":"元朝末年，人民起义，刘伯温在此时辅佐朱元璋建立大明王朝。","name":"下载副本[伯温镇敌]"},"fuben3kiva":{"init":false,"intro":"诸葛亮与王司徒，不解释。","name":"下载副本[饶舌决战]"},"fuben4kiva":{"init":false,"intro":"曹操专场，看看你是否能排除异己，建立基业，封妻荫子，54320......(总感觉，好像说偏了)","name":"下载副本[挥刃除异]"},"fuben5kiva":{"init":false,"intro":"临战董卓时，董卓派出了华雄，上将潘凤已经被斩，此时，孙坚站了出来......","name":"下载副本[讨逆血战]"},"rometime":{"init":false,"intro":"开启此模式后，每当一名角色对一名角色造成伤害，伤害来源获得其目标一张牌。","name":"[罗马战场]模式"},"suijitime":{"init":false,"intro":"开启此模式后，游戏开始时，每名角色随机获得一个技能。","name":"[随机技能]模式"},"suijishatime":{"init":false,"intro":"开启此模式后，游戏每进行一轮，所有玩家因体力上限随机更改技能。","name":"[随机杀]模式"},"hongbaotime":{"init":false,"intro":"祝各位新年大吉，大吉大利，今晚吃鸡，文体两开花。","name":"[红包模式]模式"},"yitiantulongtime":{"init":false,"intro":"开启此模式后，每名玩家因体力上限获得装备[屠龙刀]或者[倚天剑]。","name":"[倚天屠龙]模式"},"baizhantime":{"init":false,"intro":"开启此模式后，出牌阶段开始时，玩家可弃置一张牌并选择一名其他角色，视为对其使用了一张[知己知彼]。","name":"[百战不殆]模式"},"liangshantime":{"init":false,"intro":"开启此模式后，主公改为'宋江'。","name":"[梁山模式]模式"},"zhanbutime":{"init":true,"intro":"开启此模式后，游戏开始时会进行一次占卜(注意观看记录)","name":"[占卜模式]模式"}},package:{
     character:{
         character:{
             "swk_tangseng2":["male","tangkivastar",1,[],["forbidai"]],
@@ -573,6 +676,25 @@ _status.extensionmade.push("三分天下");
             caoangdunstar:["male","shen",4,["starjiangkai","starweima"],["zhu"]],
             jianyongshistar:["male","shen",3,["stardaotan","starzongxin"],["zhu"]],
             dengaitoudustar:["male","shen",4,["startianxi","starliangzi"],["zhu"]],
+            zhugedanshangstar:["male","shen",3,["starweilin","starjigong","starkunzhan"],["zhu"]],
+            xuyoushistar:["male","shen",3,["starhualue","staraogong","starhuicai"],["zhu"]],
+            liuxietianzhustar:["male","hankivastar",3,["starmolong","startianzhao","starhantong"],["zhu"]],
+            mifurenhanstar:["female","shen",3,["starguihou","starsunxiang"],["zhu"]],
+            guanzhongdsstar:["male","shen",3,["starxihuan","starzuoming"],["zhu","des:<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/管辂.jpg' width='90' height='100'>由于设计时把管仲想成了管辂，所以会修改技能，所以在此致以歉意的将原稿修改并发出。<br>竹音管辂 999 周/齐 ◎竹音管辂/天罡王基<br>[袭桓]同管仲<br>[仙卦]每当有一名角色受到一点伤害或失去一点体力，你可以进行一次判定，然后获得一枚\"X\"标记。(X为判定牌花色)<br>[卦迹]摸牌阶段开始时，你可以弃置一枚红色标记，然后执行以下效果:①♥，你回复一点体力。②♦，你多摸一张牌;弃牌阶段开始时，你可以弃置一枚黑色标记，然后执行以下效果:①你跳过弃牌阶段并弃置一张牌。②你弃置一名角色的一张牌;结束阶段，若你拥有四种花色标记，你各弃置一枚并随机获得一张祭器牌。"]],
+            baoshuyatgstar:["male","shen",3,["starshicai","starshijie"],["zhu"]],
+            jiangfeishoustar:["male","shen",4,["staryangxi","stardaizhan"],["zhu"]],
+            dongyunzhenjiestar:["male","shen",3,["starqiyan","starxiancai"],["zhu"]],
+            caiwenjiduqingstar:["female","shen",3,["starhujia","starqiuqing"],["zhu","des:<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/蔡文姬.jpg' width='76' height='100'>"]],
+            baosanniangmeistar:["female","shen",3,["starxijun","starmeiying"],["zhu"]],
+            caopiguixiestar:["male","shen",3,["starguibian","starjueshang","starxieyin"],["zhu"]],
+            caojietianhoustar:["female","hankivastar",3,["starhuxi","starshoujun","starweimin"],["zhu"]],
+        },
+        characterTitle:{
+            "boss_sunwukongdouzhanshengfo":"<span style=color:#FF0000>斗战胜佛</span>",
+            "boss_simahuishuijingstar":"<span style=color:#4FF6FF>水镜先生</span>",
+            "boss_pangdegongwustar":"<span style=color:#FFFFFF>贤才之友</span>",
+            "boss_jiangweizhanjuestar":"<span style=color:#4BB5FF>天水麒麟</span>",
+            "boss_jiaxuzhanjuestar":"<span style=color:#8300FF>乱武天下</span>",
         },
         perfectPair:{
             wangjitgstar:["luxundsstar"],
@@ -623,7 +745,7 @@ _status.extensionmade.push("三分天下");
             wangyunlianstar:["caocaoweiwustar"],
             zhanghejistar:["caocaoweiwustar"],
             "time_baiqibubaistar":["yingzhengzunstar"],
-            "boss_sunwukongdouzhanshengfostar":["liubeizhaoliestar"],
+            "boss_sunwukongdouzhanshengfo":["liubeizhaoliestar"],
             gongsunzanbaistar:["liubeizhaoliestar"],
             liuyuzongstar:["gongsunzanbaistar"],
             jiabaoyuyihongstar:["liubeizhaoliestar"],
@@ -634,11 +756,24 @@ _status.extensionmade.push("三分天下");
             kaisahuistar:["liubangtgstar"],
             wangpingstar:["masujinstar"],
             liyan:["zhugeliang"],
+            miheng:["kongrong"],
+            yangxiu:["xunyu"],
             jianyongshistar:["qinmiyingstar"],
             dianweimaostar:["caoangdunstar","caocaoweiwustar"],
             caoangdunstar:["caopiguixiestar","caocaoweiwustar"],
+            baoshuyatgstar:["guanzhongdsstar"],
+            guanzhongdsstar:["wangjitgstar"],
+            caojietianhoustar:["liuxietianzhustar"],
+            baosanniangmeistar:["guansuohuastar"],
+            caiwenjiduqingstar:["caocaoweiwustar"],
+            jiangfeishoustar:["liushanlongyistar","zhugeliangzuodistar","dongyunzhenjiestar"],
+            dongyunzhenjiestar:["liushanlongyistar","zhugeliangzuodistar"],
         },
         translate:{
+            rjoker:"",
+            bjoker:"",
+            joker:"    <img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/JOKER.png' width='14' height='14'>",
+            "joker2":"    <img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/JOKER2.png' width='14' height='14'>",
             special:"<span style=color:#FF0000>进阶</span>",
             wangjitgstar:"天罡王基",
             luxundsstar:"地煞陆逊",
@@ -751,6 +886,18 @@ _status.extensionmade.push("三分天下");
             caoangdunstar:"盾曹昂",
             jianyongshistar:"狮简雍",
             dengaitoudustar:"偷渡邓艾",
+            zhugedanshangstar:"殇诸葛诞",
+            xuyoushistar:"恃许攸",
+            liuxietianzhustar:"天主刘协",
+            mifurenhanstar:"寒糜夫人",
+            guanzhongdsstar:"地煞管仲",
+            baoshuyatgstar:"天罡鲍叔牙",
+            jiangfeishoustar:"守蒋琬&守费祎",
+            dongyunzhenjiestar:"贞节董允",
+            caiwenjiduqingstar:"毒情蔡文姬",
+            baosanniangmeistar:"魅鲍三娘",
+            caopiguixiestar:"鬼蝎曹丕",
+            caojietianhoustar:"天后曹节",
         },
     },
     card:{
@@ -1492,7 +1639,7 @@ _status.extensionmade.push("三分天下");
             },
             starhongbao:{
                 audio:true,
-                type:"basic",
+                type:"special",
                 enable:true,
                 selectTarget:-1,
                 cardcolor:"red",
@@ -2131,6 +2278,132 @@ _status.extensionmade.push("三分天下");
     },
                 toself:true,
             },
+            "gz_huaxinstar":{
+                type:"jiqi",
+                enable:true,
+                selectTarget:-1,
+                modTarget:true,
+                toself:true,
+                filterTarget:function (card,player,target){return player==target},
+                content:function (){
+        target.skip('phaseUse');
+        target.draw(5);
+    },
+                ai:{
+                    basic:{
+                        useful:[1,1],
+                        value:[1,1],
+                    },
+                    order:1,
+                    result:{
+                        target:function (player,target){
+                if(target.countCards('h','tao')) return 0;
+                var nh=target.countCards('h');
+                if(nh<=2) return 1;
+                if(target.hp==1&&target.maxHp>2) return 1;
+                return 0;
+            },
+                    },
+                    tag:{
+                        recover:1,
+                    },
+                },
+                fullimage:true,
+            },
+            "gz_guanningstar":{
+                audio:true,
+                type:"jiqi",
+                enable:function (card,player){
+        if(get.mode()=='guozhan'&&player.isUnseen()) return false;
+        return true;
+    },
+                filterTarget:function (card,player,target){
+        if(get.mode()!='guozhan') return player!=target;
+        if(target.identity=='unknown'||player.identity=='unknown') return false;
+        if(player==target) return false;
+        if(player.identity=='ye') return true;
+        return player.identity!=target.identity;
+    },
+                content:function (){
+        var karfb=get.cardPile2(function(card){
+                return get.type(card)=='jiqi';
+            });
+        target.gain(karfb,'draw');
+        game.log(target,'摸了一张祭器牌');
+    },
+                ai:{
+                    basic:{
+                        useful:4,
+                        value:8,
+                        order:9,
+                    },
+                    result:{
+                        target:1,
+                        player:3,
+                    },
+                },
+                selectTarget:1,
+                fullimage:true,
+            },
+            "gz_fuwanstar":{
+                audio:true,
+                type:"jiqi",
+                enable:true,
+                selectTarget:1,
+                postAi:function (targets){
+        return targets.length==1&&targets[0].countCards('j');
+    },
+                filterTarget:function (card,player,target){
+        if(player==target) return false;
+        return target.countDiscardableCards(player,'he');
+    },
+                content:function (){
+        if(target.countDiscardableCards(player,'he')){
+            player.discardPlayerCard('he',target,true);
+            player.useCard({name:'sha'},target);
+        }
+    },
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+                fullimage:true,
+            },
         },
         translate:{
             nanguastar:"万圣节南瓜🎃",
@@ -2189,8 +2462,14 @@ _status.extensionmade.push("三分天下");
             "staryuewanggoujianjian_info":"每当你造成伤害，你可以弃置此装备并摸两张牌，然后此伤害+1;每当你打出一张牌，你摸一张牌。<br>专属技，准备阶段，若此剑主人为\"勾践\"，你失去所有技能并获得\"图强(升华)\"，\"八阵\"和\"薪胆\"。",
             starqixinglongyuanjian:"七星龙渊剑",
             "starqixinglongyuanjian_info":"出牌阶段限一次，你可以展示所有手牌并观看一名其他角色的手牌;一名角色的结束阶段，你可以弃置一张牌并观看其手牌。<br>专属技，准备阶段，若此剑主人为\"李白\"，你永久获得技能\"仙索\"并升华技能\"谪仙\"。",
+            "gz_huaxinstar":"华歆",
+            "gz_huaxinstar_info":"跳过出牌阶段，然后摸五张牌。",
+            "gz_guanningstar":"管宁",
+            "gz_guanningstar_info":"出牌阶段，你令一名其他角色获得一张祭器牌。",
+            "gz_fuwanstar":"付完",
+            "gz_fuwanstar_info":"出牌阶段，对一名其他角色使用。你弃置其区域里的一张牌并对其使用一张【杀】。",
         },
-        list:[["heart","13","starqiceliulong"],["diamond","7","starqiceliulong"],["club","13","nanguastar"],["heart","13","starqiceliulong"],["spade","1","starqixinglongyuanjian"],["spade","1","starqixinglongyuanjian"],["heart","1","staryuewanggoujianjian"],["heart","1","staryuewanggoujianjian"]],
+        list:[["club","4","nanguastar"],["diamond","7","starqiceliulong"],["spade","6","staryuewanggoujianjian"],["heart","13","starqixinglongyuanjian"],["heart","13","starqixinglongyuanjian"],["club","13","staryuewanggoujianjian"],["diamond","1","gz_huaxinstar"],["joker2","<span style=color:#FF0000>☆</span>","gz_guanningstar"],["joker","<span style=color:#000000>☆</span>","nanguastar"],["spade","1","gz_fuwanstar"]],
     },
     skill:{
         skill:{
@@ -2898,7 +3177,7 @@ _status.extensionmade.push("三分天下");
                 viewAs:{
                     name:"shan",
                     suit:"club",
-                    number:7,
+                    number:11,
                 },
                 viewAsFilter:function (player){
         if(!player.countCards('h',{color:'black'})) return false;
@@ -11208,6 +11487,1471 @@ player.node.marks.childNodes[i].innerHTML='';
    
     },
             },
+            starweilin:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseEnd",
+                },
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starweilin'),[1,2]).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('starweilin',result.targets);
+            game.asyncDraw(result.targets);
+        }
+    },
+                ai:{
+                    expose:0.3,
+                    threaten:1.3,
+                },
+            },
+            starjigong:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"chooseToRespondBegin",
+                },
+                filter:function (event,player){
+        if(event.responded) return false;
+        if(!event.filterCard({name:'shan'})) return false;
+        if(player.isLinked()) return false;
+        return true;
+    },
+                check:function (event,player){
+        if(get.attitude(player,_status.currentPhase)>0) return true;
+        var nh=_status.currentPhase.countCards('h')+1;
+        var players=game.filterPlayer();
+        for(var i=0;i<players.length;i++){
+            if(players[i].countCards('h')>nh){
+                if(!player.hasShan()||get.attitude(player,players[i])<=0) return true;
+            }
+        }
+        return false;
+    },
+                content:function (){
+        player.link(true);
+        trigger.untrigger();
+        trigger.responded=true;
+        trigger.result={bool:true,card:{name:'shan'}}
+    },
+                ai:{
+                    effect:{
+                        target:function (card,player,target,current){
+                if(get.tag(card,'respondShan')&&current<0){
+                    var nh=player.countCards('h');
+                    var players=game.filterPlayer();
+                    for(var i=0;i<players.length;i++){
+                        if(players[i].countCards('h')>nh) return 0.4;
+                    }
+                }
+            },
+                    },
+                },
+            },
+            starkunzhan:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseBegin",
+                },
+                frequent:true,
+                filter:function (event,player){
+        return player.isLinked();
+    },
+                content:function (){
+        "step 0"
+        event.cards=get.cards(3);
+        player.showCards(event.cards);
+        "step 1"
+        var num=0;
+        for(var i=0;i<event.cards.length;i++){
+            if(get.suit(event.cards[i])!='spade'){
+                num++;
+                event.cards[i].discard();
+                event.cards.splice(i--,1);
+            }
+        }
+        if(num){
+            player.gain(event.cards);
+            player.$gain2(event.cards);
+        }
+        "step 2"
+        player.link(false);
+    },
+            },
+            starhualue:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"gameStart",
+                    player:"enterGame",
+                },
+                forced:true,
+                content:function (){
+        player.forceCountChoose={chooseToUse:5,default:5};
+        ui.auto.hide();
+    },
+                subSkill:{
+                    red:{
+                        trigger:{
+                            player:"useCard",
+                        },
+                        forced:true,
+                        content:function (){   
+                delete player.forceCountChoose;
+                ui.auto.show();
+                player.logSkill('starhualue');
+            },
+                        sub:true,
+                    },
+                },
+            },
+            staraogong:{
+                mod:{
+                    maxHandcard:function (player,num){
+            return num+1;
+        },
+                },
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDiscardBefore",
+                },
+                forced:true,
+                content:function (){
+        
+    },
+            },
+            starhuicai:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseEnd",
+                },
+                filter:function (event,player){
+        return player.countUsed()==0;
+    },
+                forced:true,
+                content:function (){
+        player.draw(2);
+    },
+            },
+            "占卜系统":{
+                nobracket:true,
+            },
+            "爆发技":{
+                nobracket:true,
+            },
+            "控场技":{
+                nobracket:true,
+            },
+            "卖血技":{
+                nobracket:true,
+            },
+            "输出技":{
+                nobracket:true,
+            },
+            "占卜系统测试":{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"gameStart",
+                    player:"enterGame",
+                },
+                forced:true,
+                filter:function (event,player,game){
+        return player.identity=='zhu';
+    },
+                content:function (){
+        'step 0'
+        game.log('占卜系统'); 
+        'step 1'
+        game.log('正在进行占卜......');
+        'step 2'
+        var list=['爆发技','控场技','输出技','卖血技'].randomGet();
+        game.log('本轮的运势是',''+get.translation(list)+'');
+    },
+            },
+            starmolong:{
+                subSkill:{
+                    draw:{
+                        trigger:{
+                            player:"phaseDrawBegin",
+                        },
+                        forced:true,
+                        filter:function (event,player){
+                return player.hp==1;
+            },
+                        content:function (){
+                player.logSkill('starmolong');
+                trigger.num++;
+            },
+                        sub:true,
+                    },
+                },
+                group:"starmolong_draw",
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:["damageBegin","loseHpBegin"],
+                },
+                priority:null,
+                forced:true,
+                filter:function (event,player){
+        return player.countCards('e')>=4
+    },
+                content:function (){
+        trigger.cancel();
+    },
+                mod:{
+                    targetInRange:function (card,player,target,now){
+            if(!player.getEquip(1)&&card.name=='sha') return true;
+        },
+                },
+            },
+            startianzhao:{
+                enable:"phaseUse",
+                usable:1,
+                position:"he",
+                audio:"ext:王朝更替_权:2",
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                filterCard:true,
+                selectCard:[1,Infinity],
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                discard:false,
+                prepare:"give2",
+                ai:{
+                    order:1,
+                    result:{
+                        player:0,
+                        target:function (player,target){
+                if(target.hasSkillTag('nogain')) return 0;
+                if(player.countCards('h')>1){
+                    return 1;
+                }
+                var players=game.filterPlayer();
+                for(var i=0;i<players.length;i++){
+                    if(players[i].countCards('h')&&players[i]!=target&&players[i]!=player&&get.attitude(player,players[i])<0){
+                        break;
+                    }
+                }
+                if(i==players.length){
+                    return 1;
+                }
+                return -2/(target.countCards('h')+1);
+            },
+                    },
+                },
+                content:function (){
+        "step 0"
+        event.target1=targets[0];
+        targets[0].gain(cards,player);
+        var players=game.filterPlayer();
+        for(var i=0;i<players.length;i++){
+            if(players[i].countCards('h')&&players[i]!=event.target1&&players[i]!=player){
+                break;
+            }
+        }
+        if(i==players.length){
+            event.finish();
+        }
+        "step 1"
+        player.chooseTarget(true,'选择拼点目标',function(card,player,target){
+            return target.countCards('h')&&target!=_status.event.target1&&target!=player;
+        }).set('ai',function(target){
+            var player=_status.event.player;
+            var eff=get.effect(target,{name:'sha'},_status.event.target1,player);
+            var att=get.attitude(player,target);
+            if(att>0){
+                return eff-10;
+            }
+            return eff;
+        }).set('target1',event.target1);
+        "step 2"
+        if(result.targets.length){
+            event.target2=result.targets[0];
+            event.target1.line(event.target2);
+            event.target1.chooseToCompare(event.target2);
+        }
+        else{
+            event.finish();
+        }
+        "step 3"
+        if(!result.tie){
+            if(result.bool){
+                event.target2.damage('fire',event.target1);
+            }
+            else{
+                event.target1.damage('fire',event.target2);
+            }
+        }
+    },
+            },
+            starhantong:{
+                zhuSkill:true,
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageBegin",
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.hasZhuSkill('starhantong');
+    },
+                content:function (){
+        trigger.nature='fire';
+    },
+            },
+            starguihou:{
+                trigger:{
+                    player:"recoverEnd",
+                },
+                audio:"ext:王朝更替_权:2",
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starguihou'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        var smath=get.cardPile2(function(card){
+                return get.suit(card)=='heart'&&get.type(card)=='basic';
+            });
+        if(result.bool){
+            player.logSkill('starguihou',result.targets);
+            var target=result.targets[0];
+            player.draw(2);
+            target.gain(smath,'draw');
+            game.log(target,'摸了一张牌。');
+        }
+    },
+            },
+            starsunxiang:{
+                trigger:{
+                    player:"dying",
+                },
+                priority:10,
+                audio:"ext:王朝更替_权:2",
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starsunxiang'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('starsunxiang',result.targets);
+            result.targets[0].addSkill('starmfrjueyi');
+            player.storage.starsunxiang=true;
+            player.awakenSkill('starsunxiang');
+        }
+        'step 2'
+        for(var i=0;i<game.players.length;i++){
+        if(game.players[i].name=='zhaoyuntgstar'){
+                player.chooseBool('是否令赵云摸三张牌？').set('ai',function(){                    
+                     return get.attitude(player,game.players[i]);     
+                    });    
+             }
+            
+            }
+            'step 3'
+            if(result.bool){
+            for(var i=0;i<game.players.length;i++){
+            if(game.players[i].name=='zhaoyuntgstar'){
+                game.players[i].draw(3);    
+            }
+            }
+            }            
+       else{
+           event.finish();
+       }
+        'step 4'
+        for(var i=0;i<game.players.length;i++){
+            if(game.players[i].hasSkill('starmfrjueyi')){
+            player.die();    
+            }
+            }
+    },
+            },
+            starmfrjueyi:{
+                mark:true,
+                intro:{
+                    name:"决意",
+                    content:"每当你使用或打出一张【杀】或【闪】，你摸一张点数为K的牌",
+                },
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:["shaEnd","shanEnd"],
+                },
+                frequent:true,
+                content:function (){
+        var hyper=get.cardPile2(function(card){
+                return get.number(card)==13;
+            });
+        player.gain(hyper);
+    },
+            },
+            starxihuan:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"phaseDiscardBegin",
+                },
+                filter:function (event,player){
+        return event.player.countCards('h')>event.player.hp;
+    },
+                content:function (){
+        player.useCard({name:'sha'},trigger.player);
+        trigger.cancel();
+        player.say('奉公子之令，此箭诚不可偏！');
+    },
+            },
+            starzuoming:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:"phaseDrawEnd",
+                },
+                filter:function (event,player){
+        return player.countCards('h')>player.hp;
+    },
+                content:function (){
+        player.skip('phaseUse');
+        var hkdkd=get.cardPile2(function(card){
+                return get.type(card)=='jiqi';
+            });
+        player.gain(hkdkd);
+        player.say('辅佐齐桓公，当靠此物！');
+    },
+            },
+            "gz_fuwanstar_equip1":{
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        var controls=['draw_card'];
+        if(trigger.target.countCards('he')){
+            controls.push('discard_card');
+        }
+        controls.push('cancel');
+        player.chooseControl(controls).set('ai',function(){
+            var trigger=_status.event.getTrigger();
+            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
+                return 'discard_card';
+            }
+            else{
+                return 'draw_card';
+            }
+        }).set('prompt',get.prompt('gz_fuwanstar_equip1'));
+        "step 1"
+        if(result.control=='draw_card'){
+            player.draw();
+            player.logSkill('moukui');
+        }
+        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
+            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
+        }
+        else event.finish();
+        "step 2"
+        player.addTempSkill('moukui2','shaEnd');
+    },
+                ai:{
+                    expose:0.1,
+                },
+            },
+            "gz_fuwanstar_equip2":{
+                inherit:"gz_fuwanstar_equip1",
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        var controls=['draw_card'];
+        if(trigger.target.countCards('he')){
+            controls.push('discard_card');
+        }
+        controls.push('cancel');
+        player.chooseControl(controls).set('ai',function(){
+            var trigger=_status.event.getTrigger();
+            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
+                return 'discard_card';
+            }
+            else{
+                return 'draw_card';
+            }
+        }).set('prompt',get.prompt('gz_fuwanstar_equip1'));
+        "step 1"
+        if(result.control=='draw_card'){
+            player.draw();
+            player.logSkill('moukui');
+        }
+        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
+            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
+        }
+        else event.finish();
+        "step 2"
+        player.addTempSkill('moukui2','shaEnd');
+    },
+                ai:{
+                    expose:0.1,
+                },
+            },
+            "gz_fuwanstar_equip3":{
+                inherit:"gz_fuwanstar_equip1",
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        var controls=['draw_card'];
+        if(trigger.target.countCards('he')){
+            controls.push('discard_card');
+        }
+        controls.push('cancel');
+        player.chooseControl(controls).set('ai',function(){
+            var trigger=_status.event.getTrigger();
+            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
+                return 'discard_card';
+            }
+            else{
+                return 'draw_card';
+            }
+        }).set('prompt',get.prompt('gz_fuwanstar_equip1'));
+        "step 1"
+        if(result.control=='draw_card'){
+            player.draw();
+            player.logSkill('moukui');
+        }
+        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
+            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
+        }
+        else event.finish();
+        "step 2"
+        player.addTempSkill('moukui2','shaEnd');
+    },
+                ai:{
+                    expose:0.1,
+                },
+            },
+            "gz_fuwanstar_equip4":{
+                inherit:"gz_fuwanstar_equip1",
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        var controls=['draw_card'];
+        if(trigger.target.countCards('he')){
+            controls.push('discard_card');
+        }
+        controls.push('cancel');
+        player.chooseControl(controls).set('ai',function(){
+            var trigger=_status.event.getTrigger();
+            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
+                return 'discard_card';
+            }
+            else{
+                return 'draw_card';
+            }
+        }).set('prompt',get.prompt('gz_fuwanstar_equip1'));
+        "step 1"
+        if(result.control=='draw_card'){
+            player.draw();
+            player.logSkill('moukui');
+        }
+        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
+            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
+        }
+        else event.finish();
+        "step 2"
+        player.addTempSkill('moukui2','shaEnd');
+    },
+                ai:{
+                    expose:0.1,
+                },
+            },
+            "gz_fuwanstar_equip5":{
+                inherit:"gz_fuwanstar_equip1",
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                audio:"ext:王朝更替_权:2",
+                content:function (){
+        "step 0"
+        var controls=['draw_card'];
+        if(trigger.target.countCards('he')){
+            controls.push('discard_card');
+        }
+        controls.push('cancel');
+        player.chooseControl(controls).set('ai',function(){
+            var trigger=_status.event.getTrigger();
+            if(trigger.target.countCards('he')&&get.attitude(_status.event.player,trigger.target)<0){
+                return 'discard_card';
+            }
+            else{
+                return 'draw_card';
+            }
+        }).set('prompt',get.prompt('gz_fuwanstar_equip1'));
+        "step 1"
+        if(result.control=='draw_card'){
+            player.draw();
+            player.logSkill('moukui');
+        }
+        else if(result.control=='discard_card'&&trigger.target.countCards('he')){
+            player.discardPlayerCard(trigger.target,'he',true).logSkill=['moukui',trigger.target];
+        }
+        else event.finish();
+        "step 2"
+        player.addTempSkill('moukui2','shaEnd');
+    },
+                ai:{
+                    expose:0.1,
+                },
+            },
+            "gz_guanningstar_equip1":{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "gz_guanningstar_equip2":{
+                inherit:"gz_guanningstar_equip1",
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "gz_guanningstar_equip3":{
+                inherit:"gz_guanningstar_equip1",
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "gz_guanningstar_equip4":{
+                inherit:"gz_guanningstar_equip1",
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "gz_guanningstar_equip5":{
+                inherit:"gz_guanningstar_equip1",
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    source:"damageEnd",
+                },
+                forced:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "gz_huaxinstar_equip1":{
+                audio:"ext:王朝更替_权:4",
+                enable:"chooseToUse",
+                filterCard:function (card){
+        return get.suit(card)=='spade';
+    },
+                position:"h",
+                viewAs:{
+                    name:"guohe",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{suit:'spade'})) return false;
+    },
+                prompt:"将一张黑桃手牌当过河拆桥使用",
+                check:function (card){return 4-get.value(card)},
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+            },
+            "gz_huaxinstar_equip2":{
+                inherit:"gz_huaxinstar_equip1",
+                audio:"ext:王朝更替_权:4",
+                enable:"chooseToUse",
+                filterCard:function (card){
+        return get.suit(card)=='spade';
+    },
+                position:"h",
+                viewAs:{
+                    name:"guohe",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{suit:'spade'})) return false;
+    },
+                prompt:"将一张黑桃手牌当过河拆桥使用",
+                check:function (card){return 4-get.value(card)},
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+            },
+            "gz_huaxinstar_equip3":{
+                inherit:"gz_huaxinstar_equip1",
+                audio:"ext:王朝更替_权:4",
+                enable:"chooseToUse",
+                filterCard:function (card){
+        return get.suit(card)=='spade';
+    },
+                position:"h",
+                viewAs:{
+                    name:"guohe",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{suit:'spade'})) return false;
+    },
+                prompt:"将一张黑桃手牌当过河拆桥使用",
+                check:function (card){return 4-get.value(card)},
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+            },
+            "gz_huaxinstar_equip4":{
+                inherit:"gz_huaxinstar_equip1",
+                audio:"ext:王朝更替_权:4",
+                enable:"chooseToUse",
+                filterCard:function (card){
+        return get.suit(card)=='spade';
+    },
+                position:"h",
+                viewAs:{
+                    name:"guohe",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{suit:'spade'})) return false;
+    },
+                prompt:"将一张黑桃手牌当过河拆桥使用",
+                check:function (card){return 4-get.value(card)},
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+            },
+            "gz_huaxinstar_equip5":{
+                inherit:"gz_huaxinstar_equip1",
+                audio:"ext:王朝更替_权:4",
+                enable:"chooseToUse",
+                filterCard:function (card){
+        return get.suit(card)=='spade';
+    },
+                position:"h",
+                viewAs:{
+                    name:"guohe",
+                },
+                viewAsFilter:function (player){
+        if(!player.countCards('he',{suit:'spade'})) return false;
+    },
+                prompt:"将一张黑桃手牌当过河拆桥使用",
+                check:function (card){return 4-get.value(card)},
+                ai:{
+                    basic:{
+                        order:9,
+                        useful:1,
+                        value:5,
+                    },
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                var nh=target.countCards('h');
+                if(att>0){
+                    var js=target.getCards('j');
+                    if(js.length){
+                        var jj=js[0].viewAs?{name:js[0].viewAs}:js[0];
+                        if(jj.name=='guohe'||js.length>1||get.effect(target,jj,target,player)<0){
+                            return 3;
+                        }
+                    }
+                    if(target.getEquip('baiyin')&&target.isDamaged()&&
+                        get.recoverEffect(target,player,player)>0){
+                        if(target.hp==1&&!target.hujia) return 1.6;
+                        if(target.hp==2) return 0.01;
+                        return 0;
+                    }
+                }
+                var es=target.getCards('e');
+                var noe=(es.length==0||target.hasSkillTag('noe'));
+                var noe2=(es.length==1&&es[0].name=='baiyin'&&target.isDamaged());
+                var noh=(nh==0||target.hasSkillTag('noh'));
+                if(noh&&(noe||noe2)) return 0;
+                if(att<=0&&!target.countCards('he')) return 1.5;
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        loseCard:1,
+                        discard:1,
+                    },
+                },
+            },
+            starshicai:{
+                enable:"phaseUse",
+                usable:1,
+                audio:"ext:王朝更替_权:2",
+                filterCard:true,
+                selectCard:1,
+                discard:false,
+                lose:true,
+                filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('hej')>0;
+    },
+                content:function (){
+        var dofwgdgebz=['你妈的，为什么？','将军才略，万人莫追。','将军才略，万人莫追。','将军才略，万人莫追。','将军才略，万人莫追。'].randomGet;
+        player.gainPlayerCard('hej',target,'visible',true);
+        player.say('将军才略，万人莫追。');
+    },
+                ai:{
+                    result:{
+                        target:-1,
+                        player:function (player){
+                return player.isLinked()?0:-0.8;
+            },
+                    },
+                    order:10,
+                    expose:0.3,
+                    effect:{
+                        target:function (card){
+                if(card.name=='tiesuo'){
+                    return 0.5;
+                }
+            },
+                    },
+                },
+            },
+            starshijie:{
+                trigger:{
+                    player:["phaseEnd"],
+                },
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starshijie'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            var target=result.targets[0];
+            target.draw();
+            target.turnOver(false);
+            target.link(false);
+            player.say('吾与管夷吾，自幼交好。');
+        }
+        'step 2'
+        for(var i=0;i<game.players.length;i++){
+        if(game.players[i].name=='guanzhongdsstar'){
+                player.chooseBool('是否令管仲摸一张牌？').set('ai',function(){                    
+                     return get.attitude(player,game.players[i]);     
+                    });    
+             }
+            
+            }
+            'step 3'
+            if(result.bool){
+            for(var i=0;i<game.players.length;i++){
+            if(game.players[i].name=='guanzhongdsstar'){
+                game.players[i].draw();    
+            }
+            }
+            }            
+       else{
+           event.finish();
+       }
+    },
+            },
+            staryangxi:{
+                audio:"shengxi",
+                trigger:{
+                    player:"phaseJudgeBefore",
+                },
+                forced:true,
+                content:function (){
+        trigger.cancel();
+    },
+                mod:{
+                    cardEnabled:function (card){if(card.name=='sha') return false},
+                },
+            },
+            stardaizhan:{
+                enable:"phaseUse",
+                audio:"shoucheng",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                prepare:"give",
+                filterCard:{
+                    name:"sha",
+                },
+                selectCard:[1,Infinity],
+                discard:false,
+                lose:true,
+                content:function (){
+        player.$give(cards.length,target);
+        target.gain(cards,player);
+        if(target.countCards('h')>player.countCards('h'))target.damage();
+    },
+                ai:{
+                    order:1,
+                    result:{
+                        target:function (player,target){
+                if(target.hasSkillTag('nogain')) return 0;
+                if(player.countCards('h')==1&&player.countCards('h','du')) return -1;
+                if(player.hp<=2&&player.countCards('h','shan')) return 0;
+                if(target.countCards('h')+player.countCards('h')>target.hp+2) return 0;
+                if(get.attitude(player,target)>3) return 1;
+                return 0;
+            },
+                    },
+                },
+            },
+            starqiyan:{
+                enable:"phaseUse",
+                audio:"ext:王朝更替_权:2",
+                filterCard:{
+                    suit:"spade",
+                },
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                content:function (){
+        "step 0"
+        target.chooseToDiscard('he',player.maxHp-player.hp+1,true);
+        "step 1"
+        if(player.hp==1) player.recover();
+        if(player.countCards('h')==0)player.gain(result.cards);
+    },
+                ai:{
+                    result:{
+                        target:-1,
+                        player:function (player){
+                return player.isLinked()?0:-0.8;
+            },
+                    },
+                    order:2,
+                    expose:0.3,
+                    effect:{
+                        target:function (card){
+                if(card.name=='tiesuo'){
+                    return 0.5;
+                }
+            },
+                    },
+                },
+            },
+            starxiancai:{
+                trigger:{
+                    global:"gameStart",
+                    player:"enterGame",
+                },
+                audio:"ext:王朝更替_权:2",
+                derivation:"starzuozhu",
+                forced:true,
+                filter:function (){
+        return game.players.length>1;
+    },
+                content:function (){
+        'step 0'
+        player.chooseTarget('选择【贤才】的目标',lib.translate.starxiancai_info,true,function(card,player,target){
+            return target!=player&&!target.hasSkill('starzuozhu');
+        }).set('ai',function(target){
+            var att=get.attitude(_status.event.player,target);
+            if(att>0) return att+1;
+            if(att==0) return Math.random();
+            return att;
+        });
+        'step 1'
+        if(result.bool){
+            var target=result.targets[0];
+            player.line(target,'green');
+            game.log(target,'成为了','【贤才】','的目标');
+            target.storage.starzuozhu=player;
+            target.removeSkill('startianle');
+            target.addSkill('starzuozhu');
+        }
+    },
+            },
+            starzuozhu:{
+                trigger:{
+                    player:"dying",
+                },
+                mark:"character",
+                intro:{
+                    name:"佐助",
+                    content:"每当你进入濒死状态时，若你没有手牌，你回复一点体力，若'贞节董允'在场，其摸一张牌。",
+                },
+                priority:10,
+                forced:true,
+                content:function (){
+        var rider=[0,1].randomGet;
+        if(player.countCards('h')==0){player.recover();}
+        player.logSkill('starxiancai');
+        for(var i=0;i<game.players.length;i++){
+            if(game.players[i].name=='dongyunzhenjiestar'){
+                game.players[i].draw();    
+            }
+            }
+    },
+            },
+            starhujia:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"damageEnd",
+                },
+                filter:function (event,player){
+        return (event.card&&event.card.name=='sha'&&event.source&&
+            event.player.classList.contains('dead')==false&&player.countCards('he'));
+    },
+                direct:true,
+                checkx:function (event,player){
+        var att1=get.attitude(player,event.player);
+        var att2=get.attitude(player,event.source);
+        return att1>0&&att2<=0;
+    },
+                content:function (){
+        "step 0"
+        var next=player.chooseToDiscard('he',get.prompt('starhujia'));
+        var check=lib.skill.starhujia.checkx(trigger,player);
+        next.set('ai',function(card){
+            if(_status.event.goon) return 8-get.value(card);
+            return 0;
+        });
+        next.set('logSkill','starhujia');
+        next.set('goon',check);
+        "step 1"
+        if(result.bool){
+            trigger.source.gain(result.cards);
+            trigger.source.chooseToDiscard('he',2,'请弃置两张牌并失去一点体力，否则其回复一点体力或摸一张牌。');
+        }
+        else{
+            event.finish();
+        }
+        "step 2"
+        if(result.bool){
+            player.loseHp();
+        }
+        else{
+            trigger.player.chooseDrawRecover(true,2);
+        }
+    },
+                ai:{
+                    expose:0.3,
+                },
+            },
+            starqiuqing:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"dieBefore",
+                },
+                filter:function (event,player){
+        return event.player!=player;
+    },
+                content:function (){
+        trigger.cancel();
+        player.loseHp();
+    },
+                ai:{
+                    expose:0.3,
+                },
+            },
+            starxijun:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"dying",
+                },
+                direct:true,
+                priority:10,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starxijun'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('starxijun',result.targets);
+            var target=result.targets[0];
+             target.draw();
+            if(target==trigger.player)player.chooseDrawRecover(true);
+        }
+    },
+            },
+            starmeiying:{
+                audio:"ext:王朝更替_权:2",
+                enable:"phaseUse",
+                filterCard:{
+                    name:"sha",
+                },
+                usable:1,
+                filterTarget:true,
+                content:function (){
+        'step 0'
+        player.$give(cards.length,target);
+        target.gain(cards,player);
+        target.chooseToUse({name:'sha'},'魅影:使用一张杀并令鲍三娘回复一点体力，或者受到其一点伤害。');
+        'step 1'
+        if(result.bool){
+            player.recover();
+        }
+        else{
+            target.damage();
+        }
+    },
+            },
+            starguibian:{
+                audio:2,
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                filterCard:true,
+                selectCard:1,
+                discard:false,
+                lose:true,
+                content:function (){
+        'step 0'
+        player.$give(cards.length,target);
+        target.gain(cards,player);
+        if(target.group!='shen'){
+            if(target.group=='wei'){
+                target.showHandcards();
+            }
+            if(target.group=='shu'){
+                target.damage();
+            }
+            if(target.group=='wu'){
+                target.addTempSkill('fengyin');
+            }
+            if(target.group=='qun'){
+                target.draw(player.maxHp-player.hp);
+                target.turnOver();
+            }
+        }
+        else{
+            target.chooseToDiscard([2,Infinity],true);
+        }
+        'step 1'
+        if(result.bool){
+            player.gain(result.cards);
+        }
+    },
+                ai:{
+                    result:{
+                        target:-1,
+                        player:function (player){
+                return player.isLinked()?0:-0.8;
+            },
+                    },
+                    order:2,
+                    expose:0.3,
+                    effect:{
+                        target:function (card){
+                if(card.name=='tiesuo'){
+                    return 0.5;
+                }
+            },
+                    },
+                },
+            },
+            starjueshang:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    global:"dieBefore",
+                },
+                forced:true,
+                priority:2000,
+                content:function (){
+        'step 0'
+        trigger.player.clearSkills();
+        trigger.player.chooseToDiscard(true,'he',3);
+        'step 1'
+        player.gain(result.cards);
+    },
+            },
+            starxieyin:{
+                mode:["guozhan"],
+                audio:"ext:王朝更替_权:2",
+                "init2":function (player){
+        player.logSkill('starxieyin');
+        player.setIdentity('ye');
+        player.identity="ye";
+        player.node.identity.dataset.color='starxieyin';
+        player.identityShown=true;
+    },
+            },
+            starxiyou:{
+                trigger:{
+                    player:["phaseBegin","damageEnd"],
+                },
+                forced:true,
+                filter:function (event,player){
+        return !player.getEquip('yuxi');
+    },
+                content:function (){
+        if(trigger.name=='phase'){
+            player.useCard(game.createCard('yuxi','spade',1),player);
+        }
+    },
+                mod:{
+                    canBeGained:function (card){
+            if(get.position(card)=='e'&&get.subtype(card)=='equip5') return false;
+        },
+                },
+            },
+            starhuxi:{
+                audio:2,
+                mod:{
+                    targetEnabled:function (card,player,target){
+            if(player!=target&&player.getEquip(5)) return false;
+        },
+                },
+                trigger:{
+                    player:"turnOverBefore",
+                },
+                priority:20,
+                forced:true,
+                filter:function (event,player){
+        return !player.isTurnedOver();
+    },
+                content:function (){
+        trigger.cancel();
+        game.log(player,'取消了翻面');
+    },
+            },
+            starshoujun:{
+                audio:"ext:王朝更替_权:2",
+                trigger:{
+                    player:["phaseBegin"],
+                },
+                derivation:"starxiyou",
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('starshoujun'),function(card,player,target){
+            return target!=player&&target.identity=='zhu';
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('starshoujun',result.targets);
+            var target=result.targets[0];
+            target.addSkill('starxiyou');
+        player.removeSkill('starhuxi');
+        player.gainMaxHp();
+        player.recover();
+        player.storage.starshoujun=true;
+        player.awakenSkill('starshoujun');
+        }
+    },
+            },
+            starweimin:{
+                enable:"phaseUse",
+                audio:2,
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target;
+    },
+                selectTarget:3,
+                filterCard:true,
+                selectCard:1,
+                discard:false,
+                lose:true,
+                content:function (){
+        target.draw();
+    },
+                ai:{
+                    order:1,
+                    result:{
+                        target:function (player,target){
+                if(target.hasSkillTag('nogain')) return 0;
+                if(player.countCards('h')==1&&player.countCards('h','du')) return -1;
+                if(player.hp<=2&&player.countCards('h','shan')) return 0;
+                if(target.countCards('h')+player.countCards('h')>target.hp+2) return 0;
+                if(get.attitude(player,target)>3) return 1;
+                return 0;
+            },
+                    },
+                },
+            },
         },
         translate:{
             "starzhihui1":"制回",
@@ -11235,7 +12979,7 @@ player.node.marks.childNodes[i].innerHTML='';
             starshijun:"侍君",
             "starshijun_info":"锁定技，每当你进入濒死状态时，你回复1点体力并解除自身异常状态;游戏进行到第二轮时，你可以指定一名其他角色并令其成为\"君\"。",
             starshibai:"十败",
-            "starshibai_info":"锁定技，你的手牌上限+2;当你死亡时，你弃置三张牌，然后你可以将这些牌分给任意角色。。",
+            "starshibai_info":"锁定技，你的手牌上限+2;当你死亡时，你弃置三张牌，然后你可以将这些牌分给任意角色。",
             starshisheng:"十胜",
             "starshisheng_info":"你可令\"君\"的摸牌阶段多摸一张牌;每当\"君\"使用一张牌，若其体力值为1，你可以摸一张牌;当\"君\"即将死亡时，你可以停止此结算并令其回复两点体力，然后你死亡。",
             "starshisheng3":"十胜",
@@ -11860,11 +13604,120 @@ player.node.marks.childNodes[i].innerHTML='';
             "startianxi_info":"一名角色的出牌阶段，其可以给你一张牌。",
             starliangzi:"粮资",
             "starliangzi_info":"结束阶段，你观看牌堆顶的五张牌，你可以选择其中一张非基本牌对自己使用。",
+            starweilin:"威凛",
+            "starweilin_info":"结束阶段，你可以令两名角色各摸一张牌。",
+            starjigong:"极功",
+            "starjigong_info":"当你需要打出【闪】时，若你没有横置，你可以横置自身并打出一张【闪】。",
+            starkunzhan:"困战",
+            "starkunzhan_info":"准备阶段，若你处于连环状态，你可以亮出排堆顶的三张牌，然后你获得其中的♠牌并解除连环状态。",
+            starhualue:"划略",
+            "starhualue_info":"锁定技，你的思考时间只有5秒。",
+            staraogong:"傲功",
+            "staraogong_info":"锁定技，你的手牌上限+1。",
+            starhuicai:"挥才",
+            "starhuicai_info":"锁定技，结束阶段，若你没有在你的回合出过牌，你摸两张牌。",
+            "占卜系统":"<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/占卜系统.jpg' width='71' height='100'>",
+            "占卜系统_info":"",
+            "爆发技":"爆发技<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/占卜_爆发技.jpg' width='71' height='100'>",
+            "爆发技_info":"",
+            "控场技":"控场技<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/占卜_控场技.jpg' width='100' height='71'>",
+            "控场技_info":"",
+            "卖血技":"卖血技<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/占卜_卖血技.jpg' width='100' height='71'>",
+            "卖血技_info":"",
+            "输出技":"输出技<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/占卜_输出技.jpg' width='76' height='100'>",
+            "输出技_info":"",
+            "占卜系统测试":"占卜系统测试",
+            "占卜系统测试_info":"",
+            starmolong:"末龙",
+            "starmolong_info":"锁定技，若你没有武器牌，你的【杀】不受距离限制;若你装备区的牌不小于4，你不受任何伤害或流失体力;若你体力值为1，你的摸牌阶段多摸一张牌。",
+            startianzhao:"天诏",
+            "startianzhao_info":"出牌阶段，你可以将任意张牌交给一名角色并令其与另一名角色拼点，若如此做，拼点成功的角色对另一名角色造成一点火属性伤害。牌",
+            starhantong:"汉统",
+            "starhantong_info":"主公技，锁定技，你造成的伤害均视为火属性伤害。",
+            starguihou:"闺后",
+            "starguihou_info":"每当你回复一点体力，你可以摸两张牌并令一名其他角色摸一张红桃基本牌。",
+            starsunxiang:"损香",
+            "starsunxiang_info":"限定技，每当你进入濒死状态时，你可以令一名其他角色获得\"决意\"标记，若场上有\"天罡赵云\"，你可以令其摸三张牌，然后你死亡。(决意:每当你使用或打出一张【杀】或【闪】，你摸一张点数为K的牌。)",
+            starmfrjueyi:"决意",
+            "starmfrjueyi_info":"",
+            starxihuan:"袭桓",
+            "starxihuan_info":"一名角色的弃牌阶段开始时，若其手牌数大于其体力值，你可以对其使用一张无距离限制的【杀】，然后你终止其弃牌阶段。",
+            starzuoming:"佐明",
+            "starzuoming_info":"摸牌阶段结束时，若你手牌数大于你的体力值，你可以跳过出牌阶段并从牌堆中获得一张祭器牌。",
+            "gz_fuwanstar_equip1":"谋溃",
+            "gz_fuwanstar_duanzao":"谋溃",
+            "gz_fuwanstar_equip1_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
+            "gz_fuwanstar_equip2":"谋溃",
+            "gz_fuwanstar_equip2_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
+            "gz_fuwanstar_equip3":"谋溃",
+            "gz_fuwanstar_equip3_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
+            "gz_fuwanstar_equip4":"谋溃",
+            "gz_fuwanstar_equip4_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
+            "gz_fuwanstar_equip5":"谋溃",
+            "gz_fuwanstar_equip5_info":"当你使用【杀】指定一名角色为目标后，你可以选择一项：摸一张牌，或弃置其一张牌。若如此做，此【杀】被【闪】抵消时，该角色弃置你的一张牌。 ",
+            "gz_guanningstar_equip1":"断席",
+            "gz_guanningstar_duanzao":"断席",
+            "gz_guanningstar_equip1_info":"每当你造成一点伤害，你摸一张牌。",
+            "gz_guanningstar_equip2":"断席",
+            "gz_guanningstar_equip2_info":"每当你造成一点伤害，你摸一张牌。",
+            "gz_guanningstar_equip3":"断席",
+            "gz_guanningstar_equip3_info":"每当你造成一点伤害，你摸一张牌。",
+            "gz_guanningstar_equip4":"断席",
+            "gz_guanningstar_equip4_info":"每当你造成一点伤害，你摸一张牌。",
+            "gz_guanningstar_equip5":"断席",
+            "gz_guanningstar_equip5_info":"每当你造成一点伤害，你摸一张牌。",
+            "gz_huaxinstar_equip1":"位逼",
+            "gz_huaxinstar_duanzao":"位逼",
+            "gz_huaxinstar_equip1_info":"你可以使用一张黑桃手牌当做[过河拆桥]使用。",
+            "gz_huaxinstar_equip2":"位逼",
+            "gz_huaxinstar_equip2_info":"你可以使用一张黑桃手牌当做[过河拆桥]使用。",
+            "gz_huaxinstar_equip3":"位逼",
+            "gz_huaxinstar_equip3_info":"你可以使用一张黑桃手牌当做[过河拆桥]使用。",
+            "gz_huaxinstar_equip4":"位逼",
+            "gz_huaxinstar_equip4_info":"你可以使用一张黑桃手牌当做[过河拆桥]使用。",
+            "gz_huaxinstar_equip5":"位逼",
+            "gz_huaxinstar_equip5_info":"你可以使用一张黑桃手牌当做[过河拆桥]使用。",
+            starshicai:"识才",
+            "starshicai_info":"出牌阶段限一次，你可以弃置一张牌并观看一名其他角色的牌，然后获得其区域内的牌。",
+            starshijie:"释杰",
+            "starshijie_info":"结束阶段，你可以令一名其他角色摸一张牌并解除负面状态，若场上有\"地煞管仲\"，你可以令其摸一张牌。",
+            staryangxi:"养息",
+            "staryangxi_info":"锁定技，你不能使用【杀】;你没有判定阶段。",
+            stardaizhan:"怠战",
+            "stardaizhan_info":"出牌阶段限一次，你可以将任意张【杀】交给一名角色，若其手牌数大于你，你对其造成一点伤害。",
+            starqiyan:"弃宴",
+            "starqiyan_info":"出牌阶段，你可以弃置一张黑桃牌并选择一名其他角色，并令其弃置X张牌，若你体力值为1，你回复一点体力，若你没有手牌，你获得其弃置的牌。",
+            starxiancai:"贤才",
+            "starxiancai_info":"锁定技，游戏开始时，你可以选择一名其他角色，若其拥有技能\"天乐\"，你令其失去\"天乐\"并获得技能\"佐助\"，否则你令其获得技能\"佐助\"。",
+            starzuozhu:"佐助",
+            "starzuozhu_info":"锁定技，每当你进入濒死状态时，若你没有手牌，你回复一点体力，若\"贞节董允\"在场，其摸一张牌。",
+            starhujia:"胡笳",
+            "starhujia_info":"一名角色每受到【杀】造成的一次伤害，你可以交给伤害来源一张牌，并令其弃置两张牌并失去一点体力，否则其目标回复一点体力或摸两张牌。",
+            starqiuqing:"求情",
+            "starqiuqing_info":"每当有一名其他角色即将死亡时，你可以失去一点体力并停止此结算。",
+            starxijun:"系君",
+            "starxijun_info":"每当有一名角色进入濒死状态，你可以令一名其他角色摸一张牌，若其为濒死角色，你回复一点体力或摸一张牌。",
+            starmeiying:"魅影",
+            "starmeiying_info":"出牌阶段限一次，你可以将一张杀交给一名角色，然后其可以对一名角色使用一张杀，若如此做，你回复一点体力，否则其受到一点伤害。",
+            starguibian:"诡变",
+            "starguibian_info":"出牌阶段限一次，你可以交给一名其他角色一张牌，若其势力为\"魏\"，其展示所有手牌;若其势力为\"蜀\"，其受到一点伤害;若其势力为\"吴\"，其非锁定技失效;若其势力为\"群\"，其摸X张牌并翻面，否则其交给你至少两张牌。(X为你已损失的体力)",
+            starjueshang:"绝殇",
+            "starjueshang_info":"锁定技，当一名角色即将死亡时，你令其失去所有技能，然后其交给你三张牌。",
+            starxieyin:"蝎饮",
+            "starxieyin_info":"国战技，当你明置武将时，你的身份变为\"野心家\"。",
+            starxiyou:"玺佑",
+            "starxiyou_info":"锁定技，回合开始时，若你没有[玉玺]，你装备一张[玉玺]，你的宝物牌不能被其他角色获取。",
+            starhuxi:"护玺",
+            "starhuxi_info":"锁定技，你始终正面朝上;若你拥有宝物牌，你不能成为其他角色的目标。",
+            starshoujun:"守君",
+            "starshoujun_info":"准备阶段，你可以令一名其他角色获得技能\"玺佑\"，然后你失去技能\"护君\"，增加一点体力上限并回复一点体力。",
+            starweimin:"遗民",
+            "starweimin_info":"出牌阶段限一次，你可以弃置一张手牌并令至多三名角色各摸一张牌。",
         },
     },
-    intro:"作者QQ:3145656381(若无大事勿扰)<br>作者Q群:<a href=\"http://qm.qq.com/cgi-bin/qm/qr?k=56rl2GZIwaMDwM_pYqeupKVrZYbLx_TA\">431196258<a>(欢迎加入并交流)<br>此扩展可以和[王朝更替_策]扩展联动，作者预计下一作:王朝更替_骑<br><a href=\"https://www.baidu.com/\">萌新查询处<a>",
-    author:":+࿈࿆剑牙雷少kiva࿈࿆+:",
+    intro:"作者QQ:3145656381(若无大事勿扰)<br>作者Q群:<a href=\"http://qm.qq.com/cgi-bin/qm/qr?k=56rl2GZIwaMDwM_pYqeupKVrZYbLx_TA\">431196258<a>(欢迎加入并交流)<br><img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/荆轲刺秦王.gif' width='100' height='56'><br>此扩展可以和[王朝更替_策]扩展联动<br>扩展状态:已完结<br>尽情期待[王朝更替_骑]扩展与[王朝更替_剑]扩展<br><a href=\"https://www.baidu.com/\">萌新查询处<a><br><img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/φstarkiva.jpg' width='98' height='98'>",
+    author:":<img src='file:///storage/emulated/0/Android/data/com.widget.noname/extension/王朝更替_权/φstarkiva.jpg' width='14' height='14'>+࿈࿆剑牙雷少kiva࿈࿆+:",
     diskURL:"",
     forumURL:"https://jq.qq.com/?_wv=1027&k=5uKmouC",
-    version:"1.7",
-},files:{"character":[],"card":[],"skill":[]}}})
+    version:"1.8",
+},files:{"character":["caojietianhoustar.jpg"],"card":["gz_fuwanstar.jpg"],"skill":[]}}})

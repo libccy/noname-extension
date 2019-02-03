@@ -3000,8 +3000,8 @@ skill:{
                     expose:0.5,
                     order:2,
                 },
-            },
-            xwj_xhuoying_chongyu:{
+            },			
+			xwj_xhuoying_chongyu:{
                 trigger:{
                     global:"discardAfter",
                 },
@@ -3042,6 +3042,8 @@ skill:{
                                 }
                             }
                             if(cards.length){
+								 var chat=['让你见识下木叶油女一族的秘术','不瞒你说，我全身都爬满了虫子'].randomGet();
+            player.say(chat);
                              player.logSkill('xwj_xhuoying_chongyu');
             player.storage.xwj_xhuoying_chongyu=player.storage.xwj_xhuoying_chongyu.concat(cards);
             player.syncStorage('xwj_xhuoying_chongyu');
@@ -3049,7 +3051,7 @@ skill:{
             }
             },
                 ai:{
-                    threaten:1.4,
+                    threaten:0.4,
                 },
                 group:"xwj_xhuoying_chongyu2",
             },
@@ -3064,14 +3066,15 @@ skill:{
     },
                 direct:true,
                 content:function (){
-        "step 0"
-        var att=get.attitude(player,trigger.player);
-        player.chooseCardButton(get.prompt('xwj_xhuoying_chongyu',trigger.player),player.storage.xwj_xhuoying_chongyu).set('ai',function(button){
-            if(_status.event.att<=0) return 1;
-            return 0;
-        }).set('-att',-att);
+        "step 0"       
+        player.chooseCardButton(get.prompt('xwj_xhuoying_chongyu',trigger.player),player.storage.xwj_xhuoying_chongyu).set('ai',function(button){       
+            if(get.attitude(_status.event.player,trigger.player)<=0) return true;       
+                       return false; 
+        });
         "step 1"
         if(result.bool){
+        var chat=['秘术•虫玉','被我的虫子盯上你的查克拉后，你是逃不掉的'].randomGet();
+            player.say(chat);  
             player.logSkill('xwj_xhuoying_chongyu',trigger.player);
             player.$throw(result.links);
             player.storage.xwj_xhuoying_chongyu.remove(result.links[0]);
@@ -3095,7 +3098,7 @@ skill:{
                 ai:{
                     expose:0.5,
                 },
-            },
+            },					
             xwj_xhuoying_ganzhi:{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -3107,6 +3110,8 @@ skill:{
         return player.isAlive();
     },
                 content:function (){
+                var chat=['佐助的查克拉好冰冷，这……还是佐助吗？','怎么回事？团藏的查克拉变动了'].randomGet();
+            player.say(chat);  
                 player.logSkill('xwj_xhuoying_ganzhi');
       for(var i=0;i<game.players.length;i++){
             if(game.players[i].countCards('h','tao')>0||game.players[i].countCards('h',{type:'equip'})>0){
@@ -4515,8 +4520,10 @@ audio:"ext:群英会:2",
          
         },
                     save:true,
-                    result:{
-                        target:-1,
+                    result:{                    
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
                         player:1,
                     },
                     threaten:0.2,
@@ -4551,27 +4558,11 @@ audio:"ext:群英会:2",
     },
                 ai:{
                     threaten:2.3,
-                    result:{
-                        target:function (player,target){
-                var hs=player.getCards('h');
-                if(hs.length<1) return 0;
-                var bool=false;
-                for(var i=0;i<hs.length;i++){
-                    if(hs[i].number>=9&&get.value(hs[i])<7){
-                        bool=true;
-                        break;
-                    }
-                }
-                if(!bool) return 0;
-                if(target.countCards('h')>target.hp+1&&get.recoverEffect(target)>0){
-                    return 1;
-                }
-                if(player.canUse('sha',target)&&(player.countCards('h','sha')||player.countCards('he',{color:'red'}))){
-                    return -2;
-                }
-                return -0.5;
+             result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
             },
-                    },
+        },
                     order:9,
                 },
             },
@@ -4969,6 +4960,14 @@ audio:"ext:群英会:2",
             trigger.player.addTempSkill('zishou2');
         }
     },
+     ai:{
+                    order:6,
+    result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
+        },
+        },
             },
             "xwj_xhuoying_relianhua":{
                 audio:"ext:群英会:2",
@@ -5773,12 +5772,9 @@ audio:"ext:群英会:2",
                 if(num==1) return -2;
                 if(num==2) return -1;
                 return -0.7;
-            },
-                        target:function (player,target){
-                var num=target.countCards('h');
-                if(num==1) return -1;
-                if(num==2) return -0.7;
-                return -0.5
+            },              
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
             },
                     },
                     threaten:1.3,
@@ -6010,6 +6006,14 @@ audio:"ext:群英会:2",
             trigger.player.addTempSkill('zishou2');
         }
     },
+     ai:{
+                    order:6,
+    result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
+        },
+        },
             },
             "xwj_xhuoying_huadie":{
                 audio:"ext:群英会:2",
@@ -9145,35 +9149,12 @@ var chat=['木叶的高层，拿命来！','这就是……万花筒写轮眼的
         }
     },
                 ai:{
-                    order:function (name,player){
-            var cards=player.getCards('h');
-            if(player.countCards('h','sha')==0){
-                return 1;
-            }
-            for(var i=0;i<cards.length;i++){
-                if(cards[i].name!='sha'&&cards[i].number>11&&get.value(cards[i])<7){
-                    return 9;
-                }
-            }
-            return get.order({name:'sha'})-1;
+            result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
         },
-                    result:{
-                        player:function (player){
-                if(player.countCards('h','sha')>0) return 0;
-                var num=player.countCards('h');
-                if(num>player.hp) return 0;
-                if(num==1) return -2;
-                if(num==2) return -1;
-                return -0.7;
-            },
-                        target:function (player,target){
-                var num=target.countCards('h');
-                if(num==1) return -1;
-                if(num==2) return -0.7;
-                return -0.5
-            },
-                    },
-                    threaten:1.3,
+                    threaten:0.5,
                 },
             },
             "xwj_xhuoying_rexuzuo":{
@@ -10095,27 +10076,11 @@ player.$skill('助君成王','fire','red','avatar');
     },
                 ai:{
                     threaten:2.3,
-                    result:{
-                        target:function (player,target){
-                var hs=player.getCards('h');
-                if(hs.length<2) return 0;
-                var bool=false;
-                for(var i=0;i<hs.length;i++){
-                    if(hs[i].number>=9&&get.value(hs[i])<7){
-                        bool=true;
-                        break;
-                    }
-                }
-                if(!bool) return 0;
-                if(target.countCards('h')>target.hp+1&&get.recoverEffect(target)>0){
-                    return 1;
-                }
-                if(player.canUse('sha',target)&&(player.countCards('h','sha')||player.countCards('he',{color:'red'}))){
-                    return -2;
-                }
-                return -0.5;
+                   result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
             },
-                    },
+        },
                     order:9,
                 },
             },
@@ -10445,7 +10410,7 @@ translate:{
             "xwj_xhuoying_liaoshang":"疗伤",
             "xwj_xhuoying_liaoshang_info":"当一名角色受到火属性或雷属性伤害后，你可令伤害来源回复等量的体力，若伤害来源未受伤，改为摸等量的牌<font color=#F0F>配合佐助与重吾</font> ",
             "xwj_xhuoying_chongyu":"虫玉",
-            "xwj_xhuoying_chongyu_info":"当其他角色的黑桃牌因弃牌进入弃牌堆时，改为置于你的武将牌上，称为“虫”（<font color=#F0F>唤虫</font>）。当一名其他角色回复体力时，你可以移去一张“虫”，改为你回复一点体力，若你未受伤，则改为你摸一张牌（<font color=#F0F>吸食查克拉</font>）",
+            "xwj_xhuoying_chongyu_info":"当其他角色的黑桃牌因弃牌进入弃牌堆时，若你武将牌上的“虫”数量不大于你的体力值，改为置于你的武将牌上，称为“虫”（<font color=#F0F>唤虫</font>）。当一名其他角色回复体力时，你可以移去一张“虫”，改为你回复一点体力，若你未受伤，则改为你摸一张牌（<font color=#F0F>吸食查克拉</font>）",
             "xwj_xhuoying_chongyu2":"虫玉",
             "xwj_xhuoying_chongyu2_info":"",
             "xwj_xhuoying_ganzhi":"感知",
@@ -10457,7 +10422,7 @@ translate:{
             "xwj_xhuoying_renquan":"忍犬",
             "xwj_xhuoying_renquan_info":"锁定技，你的锦囊牌均视为【决斗】",
             "xwj_xhuoying_tongya":"通牙",
-            "xwj_xhuoying_tongya_info":"出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃），若如此做，视为你对其使用一张【决斗】。",       
+            "xwj_xhuoying_tongya_info":"出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃），若如此做，视为你对其使用一张【决斗】（<font color=#F0F>配合油女志乃</font>）",       
             "xwj_xhuoying_tiantian":"天天",
             "xwj_xhuoying_jiju":"集具",
             "xwj_xhuoying_jiju_info":"当其他角色使用武器牌或进攻马时，你可令视为你使用之",
@@ -13006,6 +12971,7 @@ image:"ext:群英会/zbfs.png",
                     },
                 },
                 content:function (){
+                game.playXu('zbfs');
         target.addJudge(card,cards);
     },
                 allowMultiple:false,
@@ -13073,6 +13039,7 @@ image:"ext:群英会/zbfs.png",
     },
                 content:function (){
         "step 0"
+        game.playXu('xwj_xus_shoulijian');
         if(!target.countCards('he',{type:'equip'})){
             target.damage();
             event.finish();
@@ -13253,14 +13220,11 @@ image:"ext:群英会/xwj_xus_shoulijian.png",
                 allowMultiple:false,               
                 toself:true,
             },	
-
-			
+            			
                 },
 				
-				
 				skill:{	
-				
-				
+								
 				 "zbfs":{
                 audio:true,
                 audio:"ext:群英会:1",    
@@ -13313,6 +13277,7 @@ image:"ext:群英会/xwj_xus_shoulijian.png",
                     },
                 },
                 content:function (){
+                game.playXu('zbfs');
         target.addJudge(card,cards);
     },
                 allowMultiple:false,
@@ -13325,6 +13290,7 @@ image:"ext:群英会/xwj_xus_shoulijian.png",
     },
                 content:function (){
         "step 0"
+        game.playXu('xwj_xus_shoulijian');
         if(!target.countCards('he',{type:'equip'})){
             target.damage();
             event.finish();
@@ -13595,7 +13561,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。请自行将配音文件xwj_xus_shoulijian和zbfs复制到audio-card-male/female这两个文件夹里（两处各一个）。另外，须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决绝大部分已知的可能会卡死的BUG，暂时未发现其他卡死情况<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决绝大部分已知的可能会卡死的BUG，暂时未发现其他卡死情况<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
 				},				
@@ -13653,5 +13619,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.29",
+    version:"1.30",
 },files:{"character":[],"card":[],"skill":[]}}})

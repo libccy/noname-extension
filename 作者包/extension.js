@@ -72,10 +72,9 @@ if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/作者包/'+exte
 
 
 };
-  lib.group.push('纱雾');
-		lib.translate.纱雾='<img src='+lib.assetURL+"extension/作者包/zuozhe纱雾.jpg"+' width="25" height="25">';
- lib.group.push('呲牙哥');
-		lib.translate.呲牙哥='<img src='+lib.assetURL+"extension/作者包/zuozhe牙哥.jpg"+' width="25" height="25">';
+if (lib.config.zzb_shopPage==undefined) {
+game.saveConfig('zzb_shopPage',0);
+}
 if (lib.config.zzbtimer==undefined) {
 game.saveConfig('zzbtimer',5400);
 }
@@ -164,7 +163,7 @@ zzbIsNewYear=function(){
 		if (today.toString().indexOf('Mon Feb 04 2019')>-1&&today.toString().indexOf('GMT+0800 (CST)')>-1) return 'isNewYear';
 		else return 'isNotNewYear';
 		};
-  if(lib.config.霜华一笙==undefined){game[uiFunction[0]]('霜华一笙','off');}
+ if(lib.config.zzbfsb==undefined){game[uiFunction[0]]('zzbfsb','nofans');}
 if(lib.config.monitorPlayers==undefined){game[uiFunction[0]]('monitorPlayers','off');}
 if(lib.config.authorzima==undefined){game[uiFunction[0]]('authorzima',0);}
 if(lib.config.gift0gained==undefined){game[uiFunction[0]]('gift0gained',0);}
@@ -177,6 +176,7 @@ if(lib.config.gift7gained==undefined){game[uiFunction[0]]('gift7gained',0);}
 if(lib.config.gift8gained==undefined){game[uiFunction[0]]('gift8gained',0);}
 if(lib.config.gift9gained==undefined){game[uiFunction[0]]('gift9gained',0);}
 if(lib.config.gift10gained==undefined){game[uiFunction[0]]('gift10gained',0);}
+if(lib.config.gift11gained==undefined){game[uiFunction[0]]('gift11gained',0);}
 if(lib.config.zzbpetxfz==undefined){game[uiFunction[0]]('zzbpetxfz',0);}
 if(lib.config.zzbpetxfn==undefined){game[uiFunction[0]]('zzbpetxfn',0);}
 if(lib.config.zzbpetlyy==undefined){game[uiFunction[0]]('zzbpetlyy',0);}
@@ -356,8 +356,9 @@ var encode_version = 'www.github.noname.extensionPack.作者包.net';var __0x2a2
 				},'关于武将');
 
 }
-if(lib.config.轮回中的消逝者==undefined){game[uiFunction[0]]('轮回中的消逝者','off');}
-    if (lib.config.轮回中的消逝者=='on'){
+    if (lib.config.zzbfsb==='轮回中的消逝者'){
+ lib.group.push('呲牙哥');
+		lib.translate.呲牙哥='<img src='+lib.assetURL+"extension/作者包/zuozhe牙哥.jpg"+' width="25" height="25">';
 					game[otherFunction[9]]({
 				character:{  "轮回中的消逝者":["male","呲牙哥",4,["fsxs1","fsxs2"],["auskin"]],},
 				skill:{},
@@ -389,12 +390,37 @@ clearInterval(zzbIsNewYearTimer);
 		},
 	1000);
 
-    if (lib.config.霜华一笙=='on'){
+    if (lib.config.zzbfsb==='霜华一笙'){
+ lib.group.push('纱雾');
+		lib.translate.纱雾='<img src='+lib.assetURL+"extension/作者包/zuozhe纱雾.jpg"+' width="25" height="25">';
 					game[otherFunction[9]]({
 				character:{"霜华一笙":["male","纱雾",6,["fssh1","fssh2"],["des:暂无描述"]],},
 				skill:{},
 				translate:{
 "霜华一笙":"霜华一笙",
+},
+				},'粉丝包');
+}
+ if (lib.config.zzbfsb==='哎别管我是谁'){
+lib.group.push('孤城');
+		lib.translate.孤城='<img src='+lib.assetURL+"extension/作者包/zuozhe孤城.jpg"+' width="25" height="25">';
+					game[otherFunction[9]]({
+				character:{"哎别管我是谁":["male","孤城",3,["fsbms"],["des:暂无描述"]],},
+				skill:{},
+				translate:{
+"哎别管我是谁":"哎别管我是谁",
+},
+				},'粉丝包');
+}
+ if (lib.config.zzbfsb==='涂藤'){
+lib.skill.fsbtuteng2={};
+lib.group.push('fux2');
+		lib.translate.fux2='<img src='+lib.assetURL+"extension/作者包/zuozhefux.jpg"+' width="25" height="25">';
+					game[otherFunction[9]]({
+				character:{"涂藤":["male","fux2",3,["fsbtuteng1","fsbtuteng2"],["des:暂无描述"]],},
+				skill:{},
+				translate:{
+"涂藤":"涂藤",
 },
 				},'粉丝包');
 }
@@ -545,11 +571,13 @@ game[otherFunction[9]]({
             "随机作者":["","author","",["sjzz"],[""]],
     "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
     "zuozhe紫妈":["male","author",3,["zuozhe紫妈1","zuozhe紫妈2"],["des:致敬作者之一：紫妈是谁1，授权时间：2018.10.31"]],
+"zuozheMC":["male","author",3,["zuozheMC1"],["des:致敬作者之一：剑牙雷少，授权时间：2018.11.3"]],
 },
 				skill:{},
 				translate:{
 "zuozhe神座":"神座",
             "zuozhe竹鱼":"竹妃鱼",
+"zuozheMC":"剑牙雷少",
             "zuozhe叛徒":"最忠臣的叛徒",
             "zuozhe何子":"何子风云",
             "zuozhe纱雾":"纱雾",
@@ -590,6 +618,7 @@ game[otherFunction[9]]({
             zuozhefux:["male","author",2,["zuozhefux1"],["des:致敬作者之一：fux2_king，授权时间：2018.10.31"]],
             "随机作者":["","author","",["sjzz"],[""]],
     "zuozhe学妹":["female","author",3,["zuozhe学妹1","zuozhe学妹2","zuozhe学妹3"],["des:致敬作者之一：学妹，授权时间：2018.10.31"]],
+"zuozheMC":["male","author",3,["zuozheMC1"],["des:致敬作者之一：剑牙雷少，授权时间：2018.11.3"]],
 },
 				skill:{},
 				translate:{
@@ -615,17 +644,20 @@ game[otherFunction[9]]({
            "随机作者":"随机作者",
            "zuozhe紫妈":"紫妈",
            "zuozhe学妹":"学妹",
+  "zuozheMC":"剑牙雷少",
 },
 				},'作者包');
 }
 lib.arenaReady.push(function(){
 zzb_clock_name=function(){
-if (new Date()>lib.config.zzb_datelogin.setDate(lib.config.zzb_datelogin.getDate()+lib.config.zzb_datelogintimes)) return '🎁签到';
+var k=new Date();
+if (k.setDate(k.getDate())>lib.config.zzb_datelogin.setDate(lib.config.zzb_datelogin.getDate()+lib.config.zzb_datelogintimes)) return '🎁签到';
 else return '🎁已签到';
 };
 ui.authorcoinclock=ui.create.system(zzb_clock_name(),null,true);
 				lib.setPopped(ui.authorcoinclock,function(){
-if (new Date()>lib.config.zzb_datelogin.setDate(lib.config.zzb_datelogin.getDate()+lib.config.zzb_datelogintimes)){
+var k=new Date();
+if (ui.authorcoinclock.innerHTML==='🎁签到'){
 var k=Math.ceil(Math.random()*2019);
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin+k);
 game.saveConfig('zzb_datelogintimes',lib.config.zzb_datelogintimes+1);
@@ -638,7 +670,8 @@ else alert('今日已签到，请明日再来');
 
 ui.authorcoin=ui.create.system(lib.config.authorcoin+'🎁作者币',null,true);
 				lib.setPopped(ui.authorcoin,function(){
-page0=function(){ var uiintro=ui.create.dialog('作者币商店','hidden'); 	       uiintro.listen(function(e){                   e.stopPropagation();                });                
+page0=function(){ var uiintro=ui.create.dialog('作者币商店','hidden'); 	   
+    uiintro.listen(function(e){                   e.stopPropagation();                });                
 uiintro.add("设置您的支付密码");               
 uiintro.add("<li>①该密码为本扩展玩家以作者币为支付媒介享受本扩展提供的相应服务*时使用，请妥善保管</li>");       
 uiintro.add("<li>②更改密码请于扩展主界面点击相应按钮，目前暂不支持找回密码服务</li>"); 
@@ -673,8 +706,9 @@ default:x.type='password';
 uiintro.add('<button id="showPassword" onclick="showPassword(this)" type="button">显示密码</button>');
 uiintro.open();
 }
-  page1=function(){
+  page2=function(){
 		var uiintro=ui.create.dialog('作者币商店','hidden');
+
 		uiintro.listen(function(e){
 						e.stopPropagation();
 					});
@@ -693,6 +727,7 @@ game[uiFunction[0]]('authorcoin',lib.config.authorcoin-150000);
 game[uiFunction[0]]('authorzima',otherFunction[8]);
 uiintro.close();
 window.alert('购买成功，获得隐藏作者「紫妈是谁」的使用权限，重启后生效');
+game["resume"]();
 }
 
  }
@@ -706,29 +741,40 @@ else window.alert('作者币不足，购买失败');
 uiintro.add('<button type="button">已拥有</button>');
 
 }
+turnToPreviousPage=function(){
+uiintro.close();
+page1();
+};
+
 turnToNextPage=function(){
 uiintro.close();
-page2();
+page3();
 };
 
 closeShop=function(){
 uiintro.close();
+game["resume"]();
 };
+uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');         
+
 uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');         
-    
+
 uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
 uiintro.open();
+
 };
 
-page2=function(){
+page3=function(){
 		var uiintro=ui.create.dialog('作者币商店','hidden');
+
 		uiintro.listen(function(e){
 						e.stopPropagation();
 					});
 	uiintro.add('隐藏粉丝「轮回中的消逝者」');
 uiintro.add('<li>注：由于粉丝包特色，购买该武将后，其他已开通的粉丝包角色会再度隐藏</li>');
 			uiintro.add(game.authorGif('轮回中的消逝者.jpg','100','100'));
-if (lib.config.轮回中的消逝者!=='on'){
+if (lib.config.zzbfsb!='轮回中的消逝者'){
 buyfanslunhui=function(){
 if (lib.config.authorcoin>=75000){
 var old=window.prompt('请输入支付密码','');
@@ -737,67 +783,16 @@ window.alert('支付密码错误');
 }
 else {
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin-75000);
-game[uiFunction[0]]('霜华一笙','off');
-game[uiFunction[0]]('轮回中的消逝者','on');
+game[uiFunction[0]]('zzbfsb','轮回中的消逝者');
 uiintro.close();
 window.alert('购买成功，获得隐藏粉丝「轮回中的消逝者」的使用权限，重启后生效');
+game["resume"]();
 }
 
  }
 else window.alert('作者币不足，购买失败');
 };
 uiintro.add('<button onclick="buyfanslunhui()" type="button">75000作者币</button>');
-
-
-}
- else{ 
-uiintro.add('<button type="button">已拥有</button>');
-
-}
-turnToPreviousPage=function(){
-uiintro.close();
-page1();
-};
-turnToNextPage=function(){
-uiintro.close();
-page3();
-};
-closeShop=function(){
-uiintro.close();
-};
-uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
-uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
-uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
-uiintro.open();
-};
-
-page3=function(){
-		var uiintro=ui.create.dialog('作者币商店','hidden');
-		uiintro.listen(function(e){
-						e.stopPropagation();
-					});
-	uiintro.add('隐藏粉丝「霜华一笙」');
-uiintro.add('<li>注：由于粉丝包特色，购买该武将后，其他已开通的粉丝包角色会再度隐藏</li>');
-			uiintro.add(game.authorGif('霜华一笙.jpg','100','100'));
-if (lib.config.霜华一笙!=='on'){
-buyfansshuanghua=function(){
-if (lib.config.authorcoin>=75000){
-var old=window.prompt('请输入支付密码','');
-if (old!==lib.config.zzbPayPassword){
-window.alert('支付密码错误');
-}
-else {
-game[uiFunction[0]]('authorcoin',lib.config.authorcoin-75000);
-game[uiFunction[0]]('轮回中的消逝者','off');
-game[uiFunction[0]]('霜华一笙','on');
-uiintro.close();
-window.alert('购买成功，获得隐藏粉丝「霜华一笙」的使用权限，重启后生效');
-}
-
- }
-else window.alert('作者币不足，购买失败');
-};
-uiintro.add('<button onclick="buyfansshuanghua()" type="button">75000作者币</button>');
 
 
 }
@@ -815,15 +810,180 @@ page4();
 };
 closeShop=function(){
 uiintro.close();
+game["resume"]();
 };
 uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
 uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
 uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
 uiintro.open();
 };
 
 page4=function(){
 		var uiintro=ui.create.dialog('作者币商店','hidden');
+
+		uiintro.listen(function(e){
+						e.stopPropagation();
+					});
+	uiintro.add('隐藏粉丝「霜华一笙」');
+uiintro.add('<li>注：由于粉丝包特色，购买该武将后，其他已开通的粉丝包角色会再度隐藏</li>');
+			uiintro.add(game.authorGif('霜华一笙.jpg','100','100'));
+if (lib.config.zzbfsb!='霜华一笙'){
+buyfansshuanghua=function(){
+if (lib.config.authorcoin>=75000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-75000);
+game[uiFunction[0]]('zzbfsb','霜华一笙');
+uiintro.close();
+window.alert('购买成功，获得隐藏粉丝「霜华一笙」的使用权限，重启后生效');
+game["resume"]();
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+uiintro.add('<button onclick="buyfansshuanghua()" type="button">75000作者币</button>');
+
+
+}
+ else{ 
+uiintro.add('<button type="button">已拥有</button>');
+
+}
+turnToPreviousPage=function(){
+uiintro.close();
+page3();
+};
+turnToNextPage=function(){
+uiintro.close();
+page5();
+};
+closeShop=function(){
+uiintro.close();
+game["resume"]();
+};
+uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
+uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
+uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
+uiintro.open();
+};
+
+page5=function(){
+		var uiintro=ui.create.dialog('作者币商店','hidden');
+
+		uiintro.listen(function(e){
+						e.stopPropagation();
+					});
+	uiintro.add('隐藏粉丝「哎别管我是谁」');
+uiintro.add('<li>注：由于粉丝包特色，购买该武将后，其他已开通的粉丝包角色会再度隐藏</li>');
+			uiintro.add(game.authorGif('哎别管我是谁.jpg','100','100'));
+if (lib.config.zzbfsb!='哎别管我是谁'){
+buyfanswhoiam=function(){
+if (lib.config.authorcoin>=75000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-75000);
+game[uiFunction[0]]('zzbfsb','哎别管我是谁');
+uiintro.close();
+window.alert('购买成功，获得隐藏粉丝「哎别管我是谁」的使用权限，重启后生效');
+game["resume"]();
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+uiintro.add('<button onclick="buyfanswhoiam()" type="button">75000作者币</button>');
+
+
+}
+ else{ 
+uiintro.add('<button type="button">已拥有</button>');
+
+}
+turnToPreviousPage=function(){
+uiintro.close();
+page4();
+};
+turnToNextPage=function(){
+uiintro.close();
+page6();
+};
+closeShop=function(){
+uiintro.close();
+game["resume"]();
+};
+uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
+uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
+uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
+uiintro.open();
+};
+
+page6=function(){
+		var uiintro=ui.create.dialog('作者币商店','hidden');
+
+		uiintro.listen(function(e){
+						e.stopPropagation();
+					});
+	uiintro.add('隐藏粉丝「涂藤」');
+uiintro.add('<li>注：由于粉丝包特色，购买该武将后，其他已开通的粉丝包角色会再度隐藏</li>');
+			uiintro.add(game.authorGif('涂藤.jpg','100','100'));
+if (lib.config.zzbfsb!='涂藤'){
+buyfanstuteng=function(){
+if (lib.config.authorcoin>=75000){
+var old=window.prompt('请输入支付密码','');
+if (old!==lib.config.zzbPayPassword){
+window.alert('支付密码错误');
+}
+else {
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-75000);
+game[uiFunction[0]]('zzbfsb','涂藤');
+uiintro.close();
+window.alert('购买成功，获得隐藏粉丝「涂藤」的使用权限，重启后生效');
+game["resume"]();
+}
+
+ }
+else window.alert('作者币不足，购买失败');
+};
+uiintro.add('<button onclick="buyfanstuteng()" type="button">75000作者币</button>');
+
+
+}
+ else{ 
+uiintro.add('<button type="button">已拥有</button>');
+
+}
+turnToPreviousPage=function(){
+uiintro.close();
+page5();
+};
+turnToNextPage=function(){
+uiintro.close();
+page7();
+};
+closeShop=function(){
+uiintro.close();
+game["resume"]();
+};
+uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
+uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
+uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
+uiintro.open();
+};
+
+page7=function(){
+		var uiintro=ui.create.dialog('作者币商店','hidden');
+
 		uiintro.listen(function(e){
 						e.stopPropagation();
 					});
@@ -840,6 +1000,7 @@ game[uiFunction[0]]('authorcoin',lib.config.authorcoin-3000);
 game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24);
 uiintro.close();
 window.alert('购买成功，获得fux2隐藏特效「雷光」一天体验卡,已自动使用,重启后生效');
+game["resume"]();
 }
 
  }
@@ -856,6 +1017,7 @@ game[uiFunction[0]]('authorcoin',lib.config.authorcoin-18000);
 game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*7);
 uiintro.close();
 window.alert('购买成功，获得fux2隐藏特效「雷光」七天体验卡,已自动使用,重启后生效');
+game["resume"]();
 }
 
  }
@@ -872,6 +1034,7 @@ game[uiFunction[0]]('authorcoin',lib.config.authorcoin-60000);
 game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*30);
 uiintro.close();
 window.alert('购买成功，获得fux2隐藏特效「雷光」三十天体验卡,已自动使用,重启后生效');
+game["resume"]();
 }
 
  }
@@ -888,6 +1051,7 @@ game[uiFunction[0]]('authorcoin',lib.config.authorcoin-500000);
 game[uiFunction[0]]('zzbfux2yctx1',lib.config.zzbfux2yctx1+3600*24*365);
 uiintro.close();
 window.alert('购买成功，获得fux2隐藏特效「雷光」一天体验卡,已自动使用,重启后生效');
+game["resume"]();
 }
 
  }
@@ -901,23 +1065,25 @@ uiintro.add('<button onclick="buy365day()" type="button">500000作者币365天</
 
 turnToPreviousPage=function(){
 uiintro.close();
-page3();
+page6();
 };
 turnToNextPage=function(){
-uiintro.close();
-page5();
+window.alert('已是最后一页');
 };
 closeShop=function(){
 uiintro.close();
+game["resume"]();
 };
 uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
 uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
 uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
 uiintro.open();
 };
 
-page5=function(){
+page1=function(){
 		var uiintro=ui.create.dialog('作者币商店','hidden');
+
 		uiintro.listen(function(e){
 						e.stopPropagation();
 					});
@@ -953,11 +1119,24 @@ page5=function(){
 						game[uiFunction[0]]('authorcoin',lib.config.authorcoin-50);			
 						game.me.gain(game.createCard(name,suit,point,nature))._triggered=null;
 game.log(get.translation(game.me.name)+'购买了一张'+get.translation(name));
-alert('购买成功，游戏内进行任意操作后生效');
+alert('购买成功，关闭商店立即生效');
 							}
 					else alert('作者币不足，购买失败');
 						};
-
+clearEffect=function(str){
+	if (lib.config.authorcoin>50){
+str=str||'';
+var k=game.me.get('j');
+for (var i=0;i<k.length;i++){
+if (get.translation(k[i].name)==str) {
+game.me.lose(k[i])._triggered=null;
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin-50);			
+alert('清除成功，关闭商店立即生效');
+}
+ }
+}
+	else alert('作者币不足，购买失败');
+};
 buyCardsha=function(){
 buyCard('杀',undefined,undefined,null);
 };
@@ -970,27 +1149,50 @@ buyCard('杀','黑桃',13,'thunder');
 buyCardtao=function(){
 buyCard('桃','红桃',undefined,null);
 };
+buyCardjiu=function(){
+buyCard('酒',undefined,undefined,null);
+};
+buyCardshan=function(){
+buyCard('闪','方块',undefined,null);
+};
+buyCardwuxie=function(){
+buyCard('无懈可击','梅花',undefined,null);
+};
+clearlebu=function(){
+clearEffect('乐不思蜀');
+};
+clearbingliang=function(){
+clearEffect('兵粮寸断');
+};
+clearcaomu=function(){
+clearEffect('草木皆兵');
+};
 
-uiintro.add('对局内卡牌购买');
+uiintro.add('对局内卡牌/效果购买');
 uiintro.add('<br>*该页免密支付</br>');
-uiintro.add('<li>注：50作者币可购买一张指定牌，由于目前该功能还在测试，暂不支持自己自定义获得的牌</li>');
+uiintro.add('<li>注：50作者币可购买一张指定牌，关闭商店立即生效，无需其他操作。本页仅提供基础卡牌购买服务</li>');
+uiintro.add('<button onclick="clearlebu()" type="button">★清除自己判定区的乐不思蜀</button>'); 
+uiintro.add('<button onclick="clearbingliang()" type="button">★清除自己判定区的兵粮寸断</button>'); 
+uiintro.add('<button onclick="clearcaomu()" type="button">★清除自己判定区的草木皆兵</button>'); 
 uiintro.add('<button onclick="buyCardsha()" type="button">快速购买一张杀</button>'); 
+uiintro.add('<button onclick="buyCardshan()" type="button">快速购买一张闪</button>'); 
 uiintro.add('<button onclick="buyCardhuosha()" type="button">快速购买一张火杀</button>'); 
 uiintro.add('<button onclick="buyCardleisha()" type="button">快速购买一张雷杀</button>'); 
 uiintro.add('<button onclick="buyCardtao()" type="button">快速购买一张桃</button>'); 
-turnToPreviousPage=function(){
-uiintro.close();
-page4();
-};
+uiintro.add('<button onclick="buyCardjiu()" type="button">快速购买一张酒</button>'); 
+uiintro.add('<button onclick="buyCardwuxie()" type="button">快速购买一张无懈可击</button>'); 
+
+
 turnToNextPage=function(){
-window.alert('已是最后一页');
+page2();
 };
 closeShop=function(){
 uiintro.close();
-};
-uiintro.add('<button onclick="turnToPreviousPage()" type="button">上一页</button>');              
+game["resume"]();
+};         
 uiintro.add('<button onclick="turnToNextPage()" type="button">下一页</button>');          
 uiintro.add('<button onclick="closeShop()" type="button">关闭</button>');         
+uiintro.setBackgroundImage('extension/作者包/zzbshop.gif');  
 uiintro.open();
 };
 
@@ -1003,7 +1205,7 @@ page0();
 break;
 default:page0();
 }
-
+game["pause"]();			
 
 
 });
@@ -1023,7 +1225,7 @@ return str1;
 }
 
 extensionExtraSkin=['onclick','changeAuskin','name'];
-gift=[461935,9468,94977,57315,'www.github.net','dan_kamukura','com.shenzuo','I want authorcoin','gitbub',6451879,23333];
+gift=[461935,9468,94977,57315,'www.github.net','dan_kamukura','com.shenzuo','I want authorcoin','gitbub',6451879,23333,'Happy New Year'];
 uiFunction=['saveConfig','changeCurrency','findPlayer','boss','zzsz','die','fux2','ka','revive','ra','null','undefined','classList','mu','ku','contains','about','havegetted','You now have the right to use character 「About」'];
 otherFunction=['zuozheName','dead','element','over','gameStart','observe','game','showauthoranimation','getted','addCharacterPack'];
 	game[otherFunction[7]]=function(str,time){	
@@ -1708,7 +1910,7 @@ var list=[1,2];
 game[otherFunction[7]](game.authorGif('特效-学妹'+list.randomGet()+'.gif',null,null,true),3000);		}		}};
 lib.skill.sjzz={
 init:function(player){
-var list=['zuozhe神座','zuozhe纱雾','zuozhe孤城','zuozhe小苏','zuozhe雪碧','zuozhe学妹','zuozhefux','zuozhe极光','zuozhe叛徒','zuozhe时慕','zuozhe牙哥','zuozhe竹鱼','zuozhe何子'];
+var list=['zuozhe神座','zuozhe纱雾','zuozhe孤城','zuozhe小苏','zuozhe雪碧','zuozhe学妹','zuozhefux','zuozhe极光','zuozhe叛徒','zuozhe时慕','zuozhe牙哥','zuozhe竹鱼','zuozhe何子','zuozheMC'];
 var a=list.randomGet();
 game[otherFunction[7]](game.authorGif('特效-随机作者1.gif',null,null,true),4000);		
 game.delay(2);
@@ -1727,7 +1929,7 @@ if (a=='zuozhe冥葬天')  player.node.avatar.setBackgroundImage('extension/作�
 
 
 },help:{'作者包':'<br>奖池一览</br><li>666666作者币</li><li>粉丝包武将「轮回中的消逝者」</li><li>粉丝包武将「霜华一笙」</li><li>作者包隐藏作者「冥葬天」</li><li>作者包隐藏作者「紫妈是谁」</li><li>孤城女装特效</li><li>神宠「小灵猴」</li><li>神宠「乐羊羊」</li><li>自定义函数game.monitorPlayers使用权</li><li>20000作者币</li><li>12000作者币</li><li>10000作者币</li><li>8000作者币</li><li>6000作者币</li><li>4000作者币</li><li>2000作者币</li><br>自定义函数说明</br><li>game.monitorPlayers(func)</li><br>该函数可以实时监测场上存活游戏人数，并可以在场上存活游戏人数变化的结算完成后立即发动指定效果。成功释放后该效果在该局游戏内永久有效，无需触发时机。func为检测的属性变化时执行的效果，需要用函数格式写。</br>',
-'特效预览':'<li>极光</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-极光1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-极光2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-极光3.gif"+' width="75" height="75">'+'</br>'+'<li>冥葬天</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-冥葬天1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-冥葬天2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-冥葬天3.gif"+' width="75" height="75">'+'</br>'+'<li>何子风云</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-何子1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-何子2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-何子3.gif"+' width="75" height="75">'+'</br>'+'<li>纱雾</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-纱雾1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-纱雾2.gif"+' width="75" height="75">'+'</br>'+'<li>我是最忠诚的叛徒</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-叛徒1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-叛徒2.gif"+' width="75" height="75">'+'</br>'+'<li>竹妃鱼</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-竹鱼1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-竹鱼2.gif"+' width="75" height="75">'+'</br>'+'<li>学妹</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-学妹1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-学妹2.gif"+' width="75" height="75">'+'</br>'+'<li>时慕</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-时慕1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-时慕2.gif"+' width="75" height="75">'+'</br>'+'<li>神座出流</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-神座1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-神座2.gif"+' width="75" height="75">'+'</br>'+'<li>Sukincen</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-小苏1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-小苏2.gif"+' width="75" height="75">'+'</br>'+'<li>fux2_king</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-fux21.gif"+' width="75" height="75"></br>'+'<li>孤城葬月落飞雪</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-孤城1.gif"+' width="75" height="75"></br>'+'<li>隐藏-孤城女装特效</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-隐藏-孤城1.gif"+' width="75" height="75"></br>'+'<li>随机作者</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-随机作者1.gif"+' width="75" height="75"></br>',
+'特效预览':'<li>注：本页不显示隐藏特效和彩蛋特效</li><li>极光</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-极光1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-极光2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-极光3.gif"+' width="75" height="75">'+'</br>'+'<li>冥葬天</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-冥葬天1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-冥葬天2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-冥葬天3.gif"+' width="75" height="75">'+'</br>'+'<li>何子风云</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-何子1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-何子2.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-何子3.gif"+' width="75" height="75">'+'</br>'+'<li>纱雾</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-纱雾1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-纱雾2.gif"+' width="75" height="75">'+'</br>'+'<li>我是最忠诚的叛徒</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-叛徒1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-叛徒2.gif"+' width="75" height="75">'+'</br>'+'<li>竹妃鱼</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-竹鱼1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-竹鱼2.gif"+' width="75" height="75">'+'</br>'+'<li>学妹</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-学妹1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-学妹2.gif"+' width="75" height="75">'+'</br>'+'<li>时慕</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-时慕1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-时慕2.gif"+' width="75" height="75">'+'</br>'+'<li>神座出流</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-神座1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-神座2.gif"+' width="75" height="75">'+'</br>'+'<li>Sukincen</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-小苏1.gif"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/特效-小苏2.gif"+' width="75" height="75">'+'</br>'+'<li>fux2_king</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-fux21.gif"+' width="75" height="75"></br>'+'<li>孤城葬月落飞雪</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-孤城1.gif"+' width="75" height="75"></br>'+'<li>剑牙雷少</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-剑牙雷少1.gif"+' width="75" height="75"></br>'+'<li>随机作者</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/特效-随机作者1.gif"+' width="75" height="75"></br>',
 '皮肤预览':'<li>纱雾</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/纱雾1.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/纱雾2.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/纱雾3.jpg"+' width="75" height="75"></br>'+'<li>何子风云</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/何子1.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/何子2.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/何子3.jpg"+' width="75" height="75"></br>'+'<li>小苏</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/小苏1.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/小苏2.jpg"+' width="75" height="75"></br>'+'<li>轮回中的消逝者</li>'+'<br>'+'<img src='+lib.assetURL+"extension/作者包/轮回中的消逝者1.jpg"+' width="75" height="75"><img src='+lib.assetURL+"extension/作者包/轮回中的消逝者2.jpg"+' width="75" height="75"></br>',
 '作者包宠物':'<br>宠物战斗说明</br><li>宠物战斗遵循FATE GRAND ORDER战斗方式，以指令卡的形式进行战斗</li><li>指令卡的颜色分为红蓝两种，红色为攻击指令，蓝色为防御指令，数字0~13为指令数字，指令数字越高，该指令威力越大。</li><li>宠物攻击/被攻击/防御时均会积累怒气，积累的怒气量与指令卡数字有关，怒气上限为100点。每100点怒气可使宠物释放一次专属技能</li><li>每一局游戏胜利都会使宠物获得一定经验值，累计一定经验值后宠物将升级，所有属性得到提升。普通宠物等级上限为1级，仙宠等级上限为5级，神宠等级上限为10级。升级所需经验值为2的x-1次方，x为宠物当前等级</li><li>若要查看宠物属性，请在其他-命令中输入game.zzbpets</li>',
 },config:{
@@ -1747,6 +1949,7 @@ name:'<button id="zzbOnlineTimeButton">离领取下一个在线奖励还差</but
 clear:true,
 onclick:function(){
 if (lib.config.zzbtimer<=0){
+game.saveConfig('zzbtimer',5400);
 game[uiFunction[0]]('authorcoin',lib.config.authorcoin+2500);
 window.alert('获得在线奖励2500作者币');
 var zzbtimer1=setInterval(function(){
@@ -1803,7 +2006,7 @@ alert('重置成功，重启后生效');
 name:"查看更新说明",
 clear:true,
 onclick:function(){
-alert('①增加作者包商店系统以及支付密码系统，点击界面上的作者币即可打开商店(切记，打开商店只能点一下，否则会无法关闭)②增加新年礼包，新年当天才可以领取，在线活动③修改特效显示方式，现在特效可在几乎所有设备上显示④特效预览移动至帮助界面，且排版优化⑤奖池概率修改，部分礼品码使用次数重置');
+alert('①增加三个武将②商店优化，增加背景特效和打开商店时游戏暂停效果③修复部分手机因更改本地时间造成的无法签到和无法领取在线时长奖励的bug');
 },
 },
 "choujiang":{"name":"<span class=\"redtext\" style=\"color:           #FF0000\">作</span><span class=\"orangetext\" style=\"color:           #FF8800\">者</span><span class=\"yellowtext\" style=\"color:           #FFFF00\">币</span><span class=\"greentext\" style=\"color:           #00FF00\">抽</span><span class=\"bluetext\" style=\"color:           #00BBFF\">奖</span>","clear":true,onclick:function(){
@@ -1897,7 +2100,7 @@ name:"<span class=\"redtext\" style=\"color:           #FF0000\">礼</span><span
 clear:true,
 onclick:function(){
 var a=window.prompt('请输入礼品码');
-if (a==gift[0]||a==gift[1]||a==gift[2]||a==gift[3]||a==gift[5]||a==gift[6]||a==gift[7]||a==gift[8]||a==gift[9]||a==gift[10]){
+if (a==gift[0]||a==gift[1]||a==gift[2]||a==gift[3]||a==gift[5]||a==gift[6]||a==gift[7]||a==gift[8]||a==gift[9]||a==gift[10]||a==gift[11]){
 if (a==gift[0]) {
 if (lib.config.gift0gained==0){
 game[uiFunction[0]]('gift0gained',1);
@@ -1977,6 +2180,14 @@ if (lib.config.gift10gained==0){
 game[uiFunction[0]]('zzbpetxfz',true);
 game[uiFunction[0]]('gift10gained',1);
 window.alert('兑换成功，获得神宠-小飞猪');
+}
+else window.alert('该礼品码已使用');
+}
+if (a==gift[11]) {
+if (lib.config.gift11gained==0){
+game[uiFunction[0]]('authorcoin',lib.config.authorcoin+75000);
+game[uiFunction[0]]('gift11gained',1);
+window.alert('新年快乐，获得更新奖励75000作者币');
 }
 else window.alert('该礼品码已使用');
 }
@@ -2100,6 +2311,167 @@ init:false,
     },
     skill:{
         skill:{
+   "fsbtuteng1":{
+                group:"fsbtuteng1_1",
+                trigger:{
+                    global:"phaseBegin",
+                },
+                filter:function (event,player){
+       var count=0;
+     for (var i=0;i<game.players.length;i++){
+         if (game.players[i]==player) continue;
+         if (get.attitude(player,game.players[i])>0) count++;
+     }
+       return player.storage.fsbtuteng1==false&&count>1&&get.attitude(event.player,player)<0&&event.player.identity!='zhu';
+   },
+                content:function (){
+switch (player.identity){
+case 'zhu':
+trigger.player.identity='zhong';
+trigger.player.setIdentity('zhong');
+player.storage.fsbtuteng1=true;
+break;
+case 'zhong':
+trigger.player.identity='zhong';
+trigger.player.setIdentity('zhong');
+player.storage.fsbtuteng1=true;
+break;
+case 'fan':
+trigger.player.identity='fan';
+trigger.player.setIdentity('fan');
+player.storage.fsbtuteng1=true;
+break;
+case 'nei':
+player.storage.fsbtuteng1=true;
+break;
+default:player.storage.fsbtuteng1=true;
+};
+},
+                init:function (player){
+        player.storage.fsbtuteng1=false;
+       var s=setInterval(function(){
+            if (!player.hasSkill('fsbtuteng1')){
+                player.die();
+                clearInterval(s);
+            }
+        },1000);
+       player.disableSkill=function(){};
+    },
+                subSkill:{
+                    "1":{
+                        trigger:{
+                            player:"damageBegin",
+                        },
+                        filter:function (event,player){
+                var fux2=game.findPlayer(function(current){
+            return current.name=='zuozhefux';
+        });  
+                return fux2;
+            },
+                        content:function (){
+'step 0'
+        player.chooseTarget('选择混乱的目标',true,function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            var att=get.attitude(_status.event.player,target);
+            if(att>0) return att+1;
+            if(att==0) return Math.random();
+            return att;
+        });
+        'step 1'
+        if(result.bool){
+            var target=result.targets[0];
+            player.line(target,'green');
+            target.goMad({player:'phaseEnd'});
+        }
+            },
+                    },
+                },
+ },
+ "fsbms":{
+group:'fsbms_1',
+                usable:1,
+                enable:"phaseUse",
+                selectTarget:1,
+                filterTarget:function (event,player,target){
+return target.num('h')==player.num('h');
+},
+                content:function (){
+if (target.num('h')==0) target.damage(3).source=player;
+else {
+var t=target.get('h');
+var p=player.get('h');
+var b=true;
+for (var i=0;i<player.num('h');i++){
+if (target.countCards('h',p[i].name)!=player.countCards('h',p[i].name)){
+game.log('手牌并不一样');
+player.popup('悲剧');
+b=false;
+break;
+}
+}
+ if (b) target.damage(3).source=player;
+}
+},
+subSkill:{
+"1":{
+trigger:{
+global:'gameStart',
+},
+forced:true,
+content:function(){
+setInterval(function(){
+if (player.num('j')>0){
+player.hp=player.maxHp;
+player.update();
+}
+},1000);
+},
+},
+},
+},
+ "zuozheMC1":{
+audio:3,
+                trigger:{
+                    player:"phaseBegin",
+                },
+                priority:50,
+                content:function (){
+'step 0'
+if (lib.config.zzbpftxon) 	{
+game[otherFunction[7]](game.authorGif('特效-剑牙雷少1.gif',null,null,true),2500);		} 
+var controls=['效果一','效果二','效果三'];
+ player.chooseControl(controls,ui.create.dialog('请选择要发动的效果','hidden')).ai=function(){
+                        return Math.floor(Math.random()*controls.length);
+                    };  
+'step 1'
+if (result.control=='效果一') player.draw(2);
+else if (result.control=='效果二') player.addTempSkill(game.players[Math.floor(Math.random()*game.players.length)].skills.randomGet());
+else player.useSkill('zuozheMCLink');
+},
+            },
+            "zuozheMCLink":{
+                usable:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget('选择连环的目标',true,function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            var att=get.attitude(_status.event.player,target);
+            if(att>0) return att+1;
+            if(att==0) return Math.random();
+            return att;
+        });
+        'step 1'
+        if(result.bool){
+            var target=result.targets[0];
+            player.line(target,'green');
+            target.link();
+ target.randomDiscard(2);
+            player.skip('phaseDraw');
+        }
+    },
+},
  "zuozhe学妹1":{
 trigger:{
 null:null,
@@ -2681,6 +3053,17 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
             
         },
         translate:{
+  "zuozheMC1":"MC",
+            "zuozheMC1_info":"准备阶段，你可以选择<li>效果①：摸两张牌</li><li>效果②：随机获得场上角色的一个技能直到你回合结束，该效果有小概率失效，且场上游戏人数越少，失效概率越大，最大失效概率为50%</li><li>效果③：选择一名角色并横置之，并使其弃置两张牌，之后你跳过你的摸牌阶段</li>",
+            "fsbms":"抹杀",
+            "fsbms_info":"出牌阶段限一次，你可以选择一位手牌数与你相等的其他玩家，若你选择的玩家手牌与你相同（花色，点数不计），则你对其造成3点伤害，此外，若你的判定区内有牌，则你的体力始终等于体力上限",
+            "zuozheMCLink":"连环",
+            "zuozheMCLink_info":"",
+  "fsbtuteng2":"涂藤",
+            "fsbtuteng2_info":"锁定技，当fux2在场时才能发动，你替fux2承受所有伤害，且每当你受到伤害时，你可选择一位角色并使其混乱直至其回合结束",
+  "fsbtuteng1":"涂藤",
+            "fsbtuteng1_info":"限定技，若你已产生威胁值，或其他角色已对你产生威胁值，且你的阵营人数大于一，则当一名敌方角色即将开始回合时，你可选择将其变为己方阵营，你无法通过这个技能将主公变为己方阵营。",
+            "fssh2":"怂",
   "fssh1":"不羁",
             "fssh1_info":"锁定技，你的回合开始时，你选择一名角色，并随机指定其一项技能，你没有指定的技能的场合，你获得该技能，那之后你与所选角色的身份牌对调",
             "fssh2":"怂",
@@ -2747,5 +3130,5 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"2.1",
+    version:"2.2",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

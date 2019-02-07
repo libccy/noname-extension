@@ -501,16 +501,35 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
    				},
 						}
 						}						
-		 				if(config._BackgroundMusic){																
-							lib.skill._BackgroundMusic={
-							trigger:{global:'gameDrawBefore'},
-							direct:true,
-							priority:10,
-							content:function(){
-								ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
- 						},
+		 		/*		if(config._BackgroundMusic){							
+		 				game.playXu('wms_default'); 
+							//lib.skill._BackgroundMusic={
+				//			trigger:{global:'gameDrawBefore'},
+				//			direct:true,
+					//		priority:10,
+					//		content:function(){
+					//			ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
+ 					//	},
+			//			}
+						}	*/
+																																																																																								
+		
+		 				if(config._BackgroundMusic){																												
+						if(config._BackgroundMusic=='1'){				
+							game.playBackgroundMusic();
 						}
-						}																																																																																											
+						else{
+						if(config._BackgroundMusic=='2'){
+						game.playBackgroundMusic=function (){};
+				game.playXu('wms_default'); 
+			}
+			else{
+			game.playBackgroundMusic=function (){};
+				game.playXu('wms_backgroundmusic');  		
+			}				
+						}				
+						}
+																																																																																																																																																																																																																																																									
 																																																																																																																											
 // ---------------------------------------武将分栏------------------------------------------//		
 			
@@ -2721,7 +2740,7 @@ translate:{
 			 "xwj_xsanguo_shouye":"授业",
             "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定至多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_jiehuo":"解惑",
-            "xwj_xsanguo_jiehuo_info":"觉醒技，结束阶段，当你发动“授业”目标累计至少8个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用锦囊牌时，可以让你摸一张牌）",
+            "xwj_xsanguo_jiehuo_info":"<span class=greentext>觉醒技</span> 结束阶段，当你发动“授业”目标累计至少8个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用锦囊牌时，可以让你摸一张牌）",
             "xwj_xsanguo_shouye2":"授业",
             "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_shien":"师恩",
@@ -2736,7 +2755,7 @@ translate:{
 	  "xwj_xsanguo_yizan":"翊赞",
             "xwj_xsanguo_yizan_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
             "xwj_xsanguo_longyuan":"龙渊",
-            "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】, 你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",
+            "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】，你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",
             "xwj_xsanguo_yizan2":"翊赞",
             "xwj_xsanguo_yizan2_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
       "xwj_xsanguo_wuniang":"武娘",
@@ -2811,7 +2830,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xsanguo');
 		if(!lib.config.characters.contains('xsanguo')) lib.config.characters.remove('xsanguo');
-		lib.translate['xsanguo_character_config']='<span class=browntext>三国新将</span>';
+		lib.translate['xsanguo_character_config']='<span class=browntext>三国杀</span>';
 game.import('character',function(){
 			var xhuoying={
 				name:'xhuoying',
@@ -3005,6 +3024,7 @@ skill:{
                 trigger:{
                     global:"discardAfter",
                 },
+                priority:8,
                 direct:true,
                 audio:"ext:群英会:2",
                 filter:function (event,player){
@@ -3273,7 +3293,7 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
 	"xwj_xhuoying_lianyou":{   
  		audio:"ext:群英会:2", 
     trigger:{
-				player:"phaseDrawBegin",
+				player:"phaseEnd",
 				},
 				priority:18,
     filter:function (event,player){
@@ -3303,8 +3323,8 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
             player.say(chat);    
         "step 1"
         event.current.chooseControl('弃牌','让牌').set('ai',function(){         
-            if(ai.get.attitude(event.current,player)>0) return '让牌';
-            if(ai.get.attitude(event.current,player)<0&&event.current.countCards('e')>=2) return '弃牌';
+            if(get.attitude(event.current,player)>0) return '让牌';
+            if(get.attitude(event.current,player)<0) return '弃牌';
             return '让牌';
         }).set('prompt','镰鼬：请选择一项');    
         "step 2"
@@ -3321,7 +3341,7 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
             event.goto(1);
         }             
         "step 3"
-        trigger.cancel();       
+        player.turnOver();       
     },
     ai:{    
        threaten:1.4,
@@ -6267,7 +6287,8 @@ var skill=trigger.player.skills.randomGet()
                 audio:"ext:群英会:2",
                 trigger:{
                     player:"loseEnd",
-                },              
+                },           
+                priority:5,   
                 filter:function (event,player){
         for(var i=0;i<event.cards.length;i++){
             if(event.cards[i].original=='e')return true;
@@ -7401,8 +7422,8 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         player.storage.xwj_xhuoying_zhengbao=true;       
         'step 1'
         player.link(false);
-        'step 2'
-        player.turnOver(false);                   
+        player.turnOver(false);    
+        'step 2'                     
         player.useCard(game.createCard('zbfs','diamond',4),player);      
         player.addSkill('xwj_xhuoying_lianbao');
         player.addSkill('xwj_xhuoying_shuipao');       
@@ -7610,8 +7631,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 content:function (){       
                 'step 0'
                   player.chooseBool('是否发动【说唱】？').set('ai',function(){               
-                        if(player.isAlive()) return true;       
-                        return false;
+                        if(player.isAlive()) return true;                             
           });
        'step 1'
         if(result.bool){
@@ -7624,6 +7644,15 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         event.finish();
         }
     },
+      ai:{    
+       threaten:0.8,
+                    order:9,
+                    result:{
+                        player:function (player){
+                   return 3;  
+            },
+                    },     
+					},
                 subSkill:{
                     use:{
                         mod:{
@@ -10219,7 +10248,6 @@ player.$skill('助君成王','fire','red','avatar');
                     content:"limited",
                 },
                 filter:function (event,player){   
-        return player.countCards('h')>0;
         return game.hasPlayer(function(current){
             return current.maxHp>player.maxHp;          
         });
@@ -10232,6 +10260,7 @@ player.$skill('助君成王','fire','red','avatar');
 	derivation:['xwj_xhuoying_lunmu'],
                 content:function (){
         'step 0'
+        player.draw();
         player.storage.xwj_xhuoying_yiyuan=true;  
         //player.$skill('须佐能乎','fire','red','avatar');
         player.$fullscreenpop('完全体•须佐能乎','fire');
@@ -10480,7 +10509,7 @@ translate:{
             "xwj_xhuoying_zhenxing":"震星",
             "xwj_xhuoying_zhenxing_info":"<font color=#F0F>天碍震星</font> 出牌阶段限一次，你可以将两张【杀】当作【万箭齐发】使用",
             "xwj_xhuoying_yiyuan":"遗志",
-            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font> <span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 濒死阶段，若你有手牌，你可以将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
+            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font> <span class=yellowtext>限定技</span>  <span class=greentext>觉醒技</span> 濒死阶段，你摸一张牌，然后将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
             "xwj_xhuoying_xinxuzuo":"须佐",
             "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_dayemu":"大野木",
@@ -10774,7 +10803,7 @@ translate:{
             "xwj_xhuoying_chunshu2":"禁杀",
             "xwj_xhuoying_chunshu2_info":"<font color=#f00>锁定技</font> 你不能成为【杀】的目标",
             "xwj_xhuoying_zhengbao":"蒸爆",
-            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font><span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你可以丢弃你所有判定区的牌，并复原你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
+            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font><span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
             "xwj_xhuoying_chunshu3":"属性",
             "xwj_xhuoying_chunshu3_info":"<font color=#f00>锁定技</font> 你防止受到属性伤害",
             "xwj_xhuoying_shuipao":"水炮",
@@ -10839,7 +10868,7 @@ translate:{
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
             "xwj_xhuoying_shouju":"手鞠",
             "xwj_xhuoying_lianyou":"镰鼬",
-            "xwj_xhuoying_lianyou_info":"摸牌阶段开始时，你可放弃摸牌，改为令所有角色选择：弃置一张装备牌或令你获得其一张手牌（<font color=#F0F>配合勘九郞</font>）",
+            "xwj_xhuoying_lianyou_info":"结束阶段时，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌（<font color=#F0F>配合勘九郞</font>），然后你将武将牌背面朝上",
                  
                                                                                                                                 
 },
@@ -10853,7 +10882,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xhuoying');
 		if(!lib.config.characters.contains('xhuoying')) lib.config.characters.remove('xhuoying');
-		lib.translate['xhuoying_character_config']='<font color=#f00>火影忍者</font>';
+		lib.translate['xhuoying_character_config']='<font color=#f00>火影杀</font>';
 		game.import('character',function(){
 			var xqinshi={
 				name:'xqinshi',
@@ -11206,7 +11235,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xqinshi');
 		if(!lib.config.characters.contains('xqinshi')) lib.config.characters.remove('xqinshi');
-		lib.translate['xqinshi_character_config']='<span class=greentext>秦时明月</span>';
+		lib.translate['xqinshi_character_config']='<span class=greentext>秦时杀</span>';
 	game.import('character',function(){
 			var xwugeng={
 				name:'xwugeng',
@@ -12325,7 +12354,7 @@ content:function (){
     },
                 content:function (){    
      var chat=['想要杀死我？你还得加把劲……不好，被包围了','好小子，你成功地让我死了一次，哈哈……'].randomGet();
-            player.say(chat); 
+            player.say(chat);         
      setTimeout(function(){
     player.maxHp++;  
     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
@@ -12834,7 +12863,7 @@ else {
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
             "xwj_xu_tiandun":"天遁",
-            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影忍者包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
+            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影杀包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
             "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
@@ -13585,11 +13614,22 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
             "intro":"背景图片：开启后重启游戏生效。开场所有角色摸牌后会切换精美背景图片",
             init:false
 		},				
-			"_BackgroundMusic":{
+			/*"_BackgroundMusic":{
             name:'BackgroundMusic',
                "intro":"背景音乐：开启后重启游戏生效。开场所有角色摸牌后会切换优质动听的背景音乐",
             init:false
-		},				
+		},				*/
+		
+		"_BackgroundMusic":{
+            name:'BackgroundMusic',
+               "intro":"背景音乐：选择开启后重启游戏生会切换优质动听的背景音乐",
+            init:'1',
+			item:{
+				'1':'默认',
+				'2':'暮雪',
+				'3':'胜利',				
+			}
+		},		
 			
 },package:{
     character:{
@@ -13619,5 +13659,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.30",
+    version:"1.31",
 },files:{"character":[],"card":[],"skill":[]}}})

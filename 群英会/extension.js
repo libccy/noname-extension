@@ -501,34 +501,32 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
    				},
 						}
 						}						
-		 		/*		if(config._BackgroundMusic){							
-		 				game.playXu('wms_default'); 
-							//lib.skill._BackgroundMusic={
-				//			trigger:{global:'gameDrawBefore'},
-				//			direct:true,
-					//		priority:10,
-					//		content:function(){
-					//			ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
- 					//	},
-			//			}
-						}	*/
-																																																																																								
-		
-		 				if(config._BackgroundMusic){																												
+		 			if(config._BackgroundMusic){								 				
+							lib.skill._BackgroundMusic={
+				    trigger:{global:'gameStart'},
+							direct:true,
+							priority:10,
+					   content:function(){
+					   ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
+ 					  	},
+			   			}
+						}							
+																																																																																										
+/*		 			if(config._BackgroundMusic){																												
 						if(config._BackgroundMusic=='1'){				
 							game.playBackgroundMusic();
 						}
 						else{
-						if(config._BackgroundMusic=='2'){
+						if(config._BackgroundMusic=='2'){					 					  
 						game.playBackgroundMusic=function (){};
-				game.playXu('wms_default'); 
+  				game.playXu('wms_default'); 
 			}
-			else{
-			game.playBackgroundMusic=function (){};
-				game.playXu('wms_backgroundmusic');  		
-			}				
+			else{			  
+	 		game.playBackgroundMusic=function (){};
+			 game.playXu('wms_backgroundmusic');  		
+ 			}				
 						}				
-						}
+						}*/
 																																																																																																																																																																																																																																																									
 																																																																																																																											
 // ---------------------------------------武将分栏------------------------------------------//		
@@ -3323,8 +3321,8 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
             player.say(chat);    
         "step 1"
         event.current.chooseControl('弃牌','让牌').set('ai',function(){         
-            if(get.attitude(event.current,player)>0) return '让牌';
-            if(get.attitude(event.current,player)<0) return '弃牌';
+            if(ai.get.attitude(event.current,player)>0) return '让牌';
+            if(ai.get.attitude(event.current,player)<0) return '弃牌';
             return '让牌';
         }).set('prompt','镰鼬：请选择一项');    
         "step 2"
@@ -13614,13 +13612,13 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
             "intro":"背景图片：开启后重启游戏生效。开场所有角色摸牌后会切换精美背景图片",
             init:false
 		},				
-			/*"_BackgroundMusic":{
+			"_BackgroundMusic":{
             name:'BackgroundMusic',
-               "intro":"背景音乐：开启后重启游戏生效。开场所有角色摸牌后会切换优质动听的背景音乐",
+               "intro":"背景音乐：开启后重启游戏生效。游戏开始后会切换优质动听的背景音乐",
             init:false
-		},				*/
+		},				
 		
-		"_BackgroundMusic":{
+/*		"_BackgroundMusic":{
             name:'BackgroundMusic',
                "intro":"背景音乐：选择开启后重启游戏生会切换优质动听的背景音乐",
             init:'1',
@@ -13628,8 +13626,8 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 				'1':'默认',
 				'2':'暮雪',
 				'3':'胜利',				
-			}
-		},		
+			},			
+		},		*/
 			
 },package:{
     character:{
@@ -13659,5 +13657,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.31",
+    version:"1.32",
 },files:{"character":[],"card":[],"skill":[]}}})

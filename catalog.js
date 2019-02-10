@@ -296,10 +296,10 @@ extension["列女传"]={
 
 extension["作者包"]={
     author:"神座sagiri",
-    intro:"更新：新增两个粉丝和一个作者、商店特效与购买顺序、购买立即生效，不需要再在游戏中进行任何操作、支付系统、作者紫妈和部分特效【2月4日新年有惊喜】。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快",
+    intro:"更新：新增无名杀教程，全面优化。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快",
     size:"46.5MB",
     netdisk:"",
-    version:2.2,
+    version:2.3,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
@@ -308,7 +308,7 @@ extension["作者包"]={
 	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3","zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
 	    "zuozheMC11.mp3","zuozheMC12.mp3","zuozheMC13.mp3",
 	    "zuozhe冥葬天.jpg","何子1.jpg","何子2.jpg","何子3.jpg","二维码.gif","特效-孤城1.gif","特效-何子1.gif","特效-何子2.gif",
-	    "特效-纱雾1.gif","特效-神座1.gif", "zzbshop.gif","特效-fux22.gif","特效-剑牙雷少1.gif",   
+	    "特效-纱雾1.gif","特效-神座1.gif", "zzbshop.gif","特效-fux22.gif","特效-剑牙雷少1.gif","作者包.gif",    
 	     "特效-fux21.gif","特效-极光1.gif", "特效-极光2.gif","特效-极光3.gif", "特效-冥葬天1.gif","特效-冥葬天2.gif", "特效-冥葬天3.gif","特效-叛徒1.gif",
 	     "特效-叛徒2.gif","特效-纱雾2.gif", "特效-神座2.gif","特效-时慕1.gif", "特效-时慕2.gif","特效-随机作者1.gif", "特效-小苏1.gif","特效-小苏2.gif",
 	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif", "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",

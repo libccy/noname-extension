@@ -501,7 +501,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
    				},
 						}
 						}						
-		 			if(config._BackgroundMusic){								 				
+		 /*			if(config._BackgroundMusic){								 				
 							lib.skill._BackgroundMusic={
 				    trigger:{global:'gameStart'},
 							direct:true,
@@ -510,24 +510,26 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 					   ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
  					  	},
 			   			}
-						}							
+						}							*/
 																																																																																										
-/*		 			if(config._BackgroundMusic){																												
+ /*			if(config._BackgroundMusic){																												
 						if(config._BackgroundMusic=='1'){				
 							game.playBackgroundMusic();
 						}
 						else{
-						if(config._BackgroundMusic=='2'){					 					  
+						if(config._BackgroundMusic=='2'){					 
 						game.playBackgroundMusic=function (){};
   				game.playXu('wms_default'); 
+  				game.playBackgroundMusic();
 			}
 			else{			  
-	 		game.playBackgroundMusic=function (){};
-			 game.playXu('wms_backgroundmusic');  		
+			game.playBackgroundMusic=function (){}; 
+			 game.playXu('wms_backgroundmusic');  	
+			 game.playBackgroundMusic();
  			}				
 						}				
-						}*/
-																																																																																																																																																																																																																																																									
+						} */
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															
 																																																																																																																											
 // ---------------------------------------武将分栏------------------------------------------//		
 			
@@ -6286,7 +6288,7 @@ var skill=trigger.player.skills.randomGet()
                 trigger:{
                     player:"loseEnd",
                 },           
-                priority:5,   
+                priority:-5,   
                 filter:function (event,player){
         for(var i=0;i<event.cards.length;i++){
             if(event.cards[i].original=='e')return true;
@@ -9744,7 +9746,7 @@ if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shun
                 },
             },
             "xwj_xhuoying_zhuansheng":{
-                mode:["identity"],
+               // mode:["identity"],
                 audio:"ext:群英会:2",              
                 usable:1,
                 enable:"phaseUse",
@@ -9991,7 +9993,7 @@ player.$skill('助君成王','fire','red','avatar');
         "step 1"
         if(result.bool){            
             var chat=['依葫芦画瓢，写轮眼－－复制','你会的忍术我也会，就问你怕未？'].randomGet();
-            player.say(chat);                        
+            player.say(chat);                                    
             player.unmark(player.storage.xwj_xhuoying_fuzhi+'_charactermark');
             player.logSkill('xwj_xhuoying_fuzhi',result.targets);
             var name=result.targets[0].name;
@@ -11875,13 +11877,12 @@ skill:{
                 forced:true,
                 unique:true,
                 locked:true,
-                noLose:true,
-                noGain:true,
-                noDeprive:true,
-                noRemove:true,
-                noDisable:true,
+              //  noLose:true,
+             //   noDeprive:true,
+             //   noRemove:true,
+               // noDisable:true,
                 priority:Infinity,           
-                init:function(player){
+         /*       init:function(player){
         console.log(player);
            player.turnOver = function (all) {
            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
@@ -11904,10 +11905,7 @@ skill:{
       	player.removeSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-        player.delete = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
+       player.addTempSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
         player.goMad = function (all) {
@@ -11916,7 +11914,7 @@ skill:{
         player.clearSkills = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-},         
+},         */
 
                 content:function (){
 					"step 0" 				
@@ -11939,12 +11937,11 @@ skill:{
                 forced:true,
                 locked:true,
                 unique:true,
-                noLose:true,
-                noGain:true,
-                noDeprive:true,
-                noRemove:true,
-                noDisable:true,
-                 init:function(player){
+              //  noLose:true,             
+           //     noDeprive:true,
+           //     noRemove:true,
+         //       noDisable:true,
+             /*    init:function(player){
         console.log(player);
            player.turnOver = function (all) {
            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
@@ -11967,10 +11964,7 @@ skill:{
       	player.removeSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-        player.delete = function (all) {
-            player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
-        };
-        player.addTempSkill = function (all) {
+       player.addTempSkill = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
         player.goMad = function (all) {
@@ -11979,7 +11973,7 @@ skill:{
         player.clearSkills = function (all) {
             player.popup('<span class="bluetext" style="color:    #B3EE3A">免疫'+'</span>');
         };
-},               
+},               */
                 mod:{             	
 					selectTarget:function(card,player,range){
 						if(card.name=='sha'&&range[1]!=-1) range[1]+=Infinity;
@@ -13612,13 +13606,13 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
             "intro":"背景图片：开启后重启游戏生效。开场所有角色摸牌后会切换精美背景图片",
             init:false
 		},				
-			"_BackgroundMusic":{
+/*			"_BackgroundMusic":{
             name:'BackgroundMusic',
                "intro":"背景音乐：开启后重启游戏生效。游戏开始后会切换优质动听的背景音乐",
             init:false
-		},				
+		},				*/
 		
-/*		"_BackgroundMusic":{
+  		"_BackgroundMusic":{
             name:'BackgroundMusic',
                "intro":"背景音乐：选择开启后重启游戏生会切换优质动听的背景音乐",
             init:'1',
@@ -13627,8 +13621,24 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 				'2':'暮雪',
 				'3':'胜利',				
 			},			
-		},		*/
-			
+		 onclick:function (item){
+			switch (item){
+			case '1':
+			ui.backgroundMusic.pause();
+			game.playBackgroundMusic();
+			break;
+			case '2':
+            ui.backgroundMusic.pause();
+            game.playXu('wms_default'); 
+			break;
+			case '3':
+            ui.backgroundMusic.pause();
+		    game.playXu('wms_backgroundmusic');  
+			break;
+			}
+		}
+		},							
+			 
 },package:{
     character:{
         character:{
@@ -13657,5 +13667,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.32",
+    version:"1.33",
 },files:{"character":[],"card":[],"skill":[]}}})

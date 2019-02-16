@@ -2628,14 +2628,16 @@ event.target.draw(event.num1);
     },
                 content:function (){
        'step 0'
-       if(player.storage.xwj_xsanguo_jugong.length>2)player.loseHp();
+       if(player.storage.xwj_xsanguo_jugong.length>2) player.loseHp();
            'step 1'
        var cards=player.storage.xwj_xsanguo_jugong;
               if(cards){                    
        player.gain(cards,'gain2');                    
              }                             
        player.storage.xwj_xsanguo_jugong=[];   
-    },
+        'step 2'
+       trigger.cancel();
+    },    
             },
  
 "xwj_xsanguo_xiongqi":{
@@ -2793,7 +2795,7 @@ translate:{
             "xwj_xsanguo_huanji":"环计",
             "xwj_xsanguo_huanji_info":"出牌阶段限一次，你可以选择一名其他角色并将一张手牌置于其武将牌上。目标角色于摸牌阶段开始时，获得此牌。若其为男性角色，则获得技能【无双】，若其为女性角色，则获得技能【离间】，直到回合结束。",
             "xwj_xsanguo_chengmou":"逞谋",
-            "xwj_xsanguo_chengmou_info":"摸牌阶段开始时，若你有“功”牌，你获得之，若你所获得的“功”牌多于两张，你须失去一点体力。",
+            "xwj_xsanguo_chengmou_info":"摸牌阶段开始时，若你有“功”牌，你获得之并跳过摸牌阶段，若你所获得的“功”牌多于两张，你须失去一点体力。",
             "xwj_xsanguo_jugong":"居功",
             "xwj_xsanguo_jugong_info":"回合外每名角色的回合限一次，每当场上有角色因受到【杀】或【决斗】造成的伤害，你可以摸一张牌并且将一张手牌置于你的武将牌上，称之为“功”。在你即将受到伤害时，你可以弃置两张“功”，防止此伤害。",
             "xwj_xsanguo_zhangfei":"智张飞",
@@ -2891,9 +2893,10 @@ game.import('character',function(){
             "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
 			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_tongya","xwj_xhuoying_nishou"],[]],
             //"xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
-			"xwj_xhuoying_xianglin":["female","xxiao",3,["xwj_xhuoying_ganzhi","xwj_xhuoying_liaoshang"],[]],
+	        		"xwj_xhuoying_xianglin":["female","xxiao",3,["xwj_xhuoying_ganzhi","xwj_xhuoying_liaoshang"],[]],
             "xwj_xhuoying_zhinai":["male","xhuo",4,["xwj_xhuoying_chongyu"],[]],
-           
+            "xwj_xhuoying_jiuxinnai":["female","xhuo",3,["xwj_xhuoying_fenglian","xwj_xhuoying_hongjiao"],[]],
+  
                 },
 							
 			characterIntro:{	
@@ -2949,15 +2952,16 @@ game.import('character',function(){
             "xwj_xhuoying_asima":"阿斯玛，日本动漫《火影忍者》中的人物，是一个性格随和的正派角色。猿飞阿斯玛在火之国木叶忍者村，拥有罕见的风属性查克拉，是近战中首屈一指的上忍。 同时他也是第三代火影猿飞日斩的儿子，猿飞木叶丸的叔叔，第十班（奈良鹿丸、山中井野、秋道丁次）的老师，上忍夕日红的情侣。后来在与“晓”的战斗中被飞段杀死，临终前将意志托付给第十班。夕日红后于第四次忍界大战前夕生下阿斯玛的遗腹女猿飞未来。 第四次忍界大战中，阿斯玛被药师兜以秽土转生形式复活，后被其弟子第十班合力击败并封印，最后随秽土转生的解除而灵魂回归净土。",
             "xwj_xhuoying_leiying":"夜月艾，日本动漫《火影忍者》中雷之国云隐村的四代目雷影，夜月一族，八尾人柱力奇拉比的义兄[1]。 性格暴躁冲动，身体健壮并以速度著称，全身在“雷遁护体”的保护下，速度和防御力都堪称强劲，在第四次忍界大战中担任忍者联军的统帅，后来在第四部队战场中与其余四影大战宇智波斑，结果被斑击败，恢复伤势后前往十尾战场支援前线，与其余联军合力击败十尾。",
             "xwj_xhuoying_zhaomeimeng":"照美冥，日本漫画《火影忍者》及其衍生作品中的女性角色。水之国雾隐村的第五代水影，结束了雾隐在四代目水影执政以来“血雾之村”的恐怖时期，实行和平开放的政策，因而使雾忍者村复兴。实力强大，能够在无水之地中运用自身查克拉、使出足以压制宇智波斑“火遁·豪火灭失”的超强水遁。拥有水、火、土三种查克拉属性（其实还有雷）血继限界“溶遁”和“沸遁”，是唯一一位拥有两种血继限界的忍者。（不包括拥有六道之力的斑，鸣人，佐助等人，六道之力包含所有属性，理论上六道之力拥有者能使用所有血继限界，血继淘汰甚至血继网罗的忍术。）",
-		    "xwj_xhuoying_liudaoxianren":"原名大筒木羽衣，日本漫画《火影忍者》及其衍生作品中的角色，大筒木辉夜的长子，继承了辉夜之力中的“轮回眼”。与弟弟大筒木羽村一起封印十尾（也就是自己的母亲，） 并在临终前把十尾分离出了九个尾兽。是第一位十尾人柱力，也是第一个解开查克拉真谛的人，以维护和平为目标，维持安宁与秩序。宇智波一族与千手一族的祖先，“忍宗”的开山祖师。其死后的查克拉仍然漂流在世间，默默守护着忍者世界。在第四次忍界大战中，六道仙人在得到漩涡鸣人和宇智波佐助的答案后将六道之力（六道仙人模式、轮回眼）和阴阳之力（六道·地爆天星）馈赠给他们，希望他们能再次封印母亲。辉夜复活之后六道仙人出现在四影面前。鸣人等人打倒封印辉夜后，六道仙人与历代五影使用通灵术将鸣人等人和尾兽们带回了原来的世界。",
+		         "xwj_xhuoying_liudaoxianren":"原名大筒木羽衣，日本漫画《火影忍者》及其衍生作品中的角色，大筒木辉夜的长子，继承了辉夜之力中的“轮回眼”。与弟弟大筒木羽村一起封印十尾（也就是自己的母亲，） 并在临终前把十尾分离出了九个尾兽。是第一位十尾人柱力，也是第一个解开查克拉真谛的人，以维护和平为目标，维持安宁与秩序。宇智波一族与千手一族的祖先，“忍宗”的开山祖师。其死后的查克拉仍然漂流在世间，默默守护着忍者世界。在第四次忍界大战中，六道仙人在得到漩涡鸣人和宇智波佐助的答案后将六道之力（六道仙人模式、轮回眼）和阴阳之力（六道·地爆天星）馈赠给他们，希望他们能再次封印母亲。辉夜复活之后六道仙人出现在四影面前。鸣人等人打倒封印辉夜后，六道仙人与历代五影使用通灵术将鸣人等人和尾兽们带回了原来的世界。",
             "xwj_xhuoying_zuojin":"佐井，日本漫画《火影忍者》及其衍生作品中的男性角色，隶属于由团藏管辖的木叶暗部特殊部队“根”的忍者。没有感情，从小就被作为专门的杀人工具进行严格的培训长大，不会做除了任务以外的任何事。擅长绘画，一般画的是水墨画。加入卡卡西班后最初和春野樱及漩涡鸣人关系很差，但后来在鸣人的感染下回忆起和“哥哥”信在一起的时光，觉得这是最美好的，于是他决定违背命令，帮助鸣人把佐助带回木叶。第四次忍界大战结束数年后与山中井野结婚，婚后入赘山中一族，并育有一子山中井阵。",
             "xwj_xhuoying_tiantian":"天天，日本漫画《火影忍者》及其衍生作品中的角色，火之国木叶隐村的中忍，是由迈特·凯所领导的第三班的成员，队友是日向宁次和李洛克，擅长使用体术与操控“忍具”攻击，随身携带的卷轴也可以通灵出各种各样忍具进行攻击，绝招中隐含“龙”。",
             "xwj_xhuoying_xianglin":"香燐，日本漫画《火影忍者》系列及其衍生作品中的女性角色。漩涡一族的族人，拥有强大的查克拉和出色的感知能力，而且伤者只要咬她的皮肤就会恢复查克拉和伤势。曾经是大蛇丸的部下，后成为宇智波佐助“鹰”小队的一员。",
             "xwj_xhuoying_zhinai":"油女志乃，日本漫画《火影忍者》及其衍生作品中的男性角色，火之国木叶隐村的上忍，与鸣人他们是忍者学校同期毕业的学员，与犬冢牙、日向雏田同为夕日红的学生。性格冷静，啰嗦，但实力极强。他用身体作为虫子的巢穴，操纵虫子战斗。最终话里成为忍者学校的指导老师。",
- 
+            "xwj_xhuoying_jiuxinnai":"漩涡玖辛奈，日本漫画《火影忍者》及其衍生作品中的女性角色，主角漩涡鸣人的母亲、四代目火影波风水门的妻子，外号“血红辣椒”，具有好强、活泼可爱的性格，擅长封印术，并拥有与生俱来的能够压制尾兽的强大而又特别的查克拉，以及身为漩涡一族特有的强悍生命力。原本是涡之国涡潮隐之村漩涡一族的族人，后因体质特殊而被带到火之国木叶隐村，成为了第二位九尾人柱力。最终在九尾袭击木叶一战中与水门为保护村子而牺牲，她把自己幻想的未来、永不放弃的心以及勇往直前的精神都寄托给儿子——漩涡鸣人",
 				},	
 				
 			perfectPair:{
+			"xwj_xhuoying_shuimen":['xwj_xhuoying_jiuxinnai'],
 			"xwj_xhuoying_xiaoying":['xwj_xhuoying_zhuozhu'],
 			"xwj_xhuoying_zhujian":['xwj_xhuoyin_ban'],
 			"xwj_xhuoying_dashewan":['xwj_xhuoyin_dou'],
@@ -2982,6 +2986,98 @@ game.import('character',function(){
 					},
 				
 skill:{
+             "xwj_xhuoying_hongjiao":{
+              audio:"ext:群英会:2",
+         				trigger:{player:'damageEnd'},
+				filter:function(event,player){
+					return (event.source!=undefined);
+				},
+				check:function(event,player){
+					return (get.attitude(player,event.source)<=0);
+				},
+				logTarget:'source',
+				content:function(){					
+				   var chat=['敢惹我？让你尝尝我的厉害','我长红色的头发又关你什么事？'].randomGet();
+            player.say(chat); 
+						trigger.source.damage('fire');
+				},
+				ai:{
+					maixie_defend:true,
+					effect:{
+						target:function(card,player,target){
+							if(player.hasSkillTag('jueqing',false,target)) return [1,-1];
+							return 0.8;
+							// if(get.tag(card,'damage')&&get.damageEffect(target,player,player)>0) return [1,0,0,-1.5];
+						}
+					}
+				},
+            },
+            "xwj_xhuoying_fenglian":{
+             audio:"ext:群英会:2",
+                trigger:{
+                    player:"phaseBegin",
+                },
+                direct:true,
+                filter:function (event,player){
+        return game.hasPlayer(function(current){
+            return !current.isLinked();
+        });
+    },
+                content:function (){
+        "step 0"
+        var num=game.countPlayer(function(current){
+            return !current.isLinked();
+        });
+        player.chooseTarget(get.prompt('xwj_xhuoying_fenglian'),[1,Math.min(num,player.countCards('h'))],function(card,player,target){
+            return !target.isLinked();
+        }).set('ai',function(target){
+            return -get.attitude(_status.event.player,target);
+        });
+        "step 1"
+        if(result.bool){
+           var chat=['九尾，你就乖乖地呆着吧','漩涡一族最擅长的就是封印术','这是查克拉链，你动不了了'].randomGet();
+            player.say(chat); 
+            player.logSkill('xwj_xhuoying_fenglian',result.targets);
+            event.targets=result.targets;
+            event.num=0;
+        }
+        else{
+            event.finish();
+        }
+        "step 2"
+        if(event.num<event.targets.length){
+            event.targets[event.num].link();
+            event.targets[event.num].addTempSkill('xwj_xhuoying_fenglian2',{player:'phaseBegin'});
+            event.num++;
+            event.redo();
+        }
+    },
+                ai:{
+                    expose:0.5,
+                },
+            },
+            
+            "xwj_xhuoying_fenglian2":{
+				mark:true,
+				mod:{
+					cardEnabled:function(){
+						return false;
+					},
+					cardUsable:function(){
+						return false;
+					},
+					cardRespondable:function(){
+						return false;
+					},
+					cardSavable:function(){
+						return false;
+					}
+				},
+				intro:{
+					content:'不能使用或打出卡牌'
+				}
+			},
+			
 	"xwj_xhuoying_liaoshang":{
                 audio:"ext:群英会:1",
                 direct:true,
@@ -3020,7 +3116,7 @@ skill:{
                     order:2,
                 },
             },			
-			xwj_xhuoying_chongyu:{
+			"xwj_xhuoying_chongyu":{
                 trigger:{
                     global:"discardAfter",
                 },
@@ -3119,7 +3215,7 @@ skill:{
                     expose:0.5,
                 },
             },					
-            xwj_xhuoying_ganzhi:{
+            "xwj_xhuoying_ganzhi":{
                 audio:"ext:群英会:2",
                 trigger:{
                     player:"phaseEnd",
@@ -10821,7 +10917,7 @@ translate:{
             "xwj_xhuoying_xianhua":"仙化",
             "xwj_xhuoying_xianhua_info":"<font color=#f00>锁定技</font> 其他角色在弃牌阶段若有弃牌，你摸一张牌，否则你回复一点体力<font color=#F0F>类似咒印且配合君麻吕</font> ",
             "xwj_xhuoying_leidao":"雷刀",
-            "xwj_xhuoying_leidao_info":"<font color=#F0F>绝牛•雷犁热刀</font>当其他角色使用一张非转化的【杀】指定目标且结算后，你可对其视为再使用一张【杀】<font color=#F0F>配合四代雷影</font>",
+            "xwj_xhuoying_leidao_info":"<font color=#F0F>绝牛•雷犁热刀</font> 当其他角色使用一张非转化的【杀】指定目标且结算后，你可对其视为再使用一张【杀】<font color=#F0F>配合四代雷影</font>",
             "xwj_xhuoying_huizhan":"挥战",
             "xwj_xhuoying_huizhan_info":"每两轮的出牌阶段限一次，你可以弃置所有手牌，指定一个目标，从你开始场上所有角色依次视为对其使用一张【杀】，直到其体力值不大于1",
             "xwj_xhuoying_xfengyin":"封印",
@@ -10837,7 +10933,7 @@ translate:{
             "xwj_xhuoying_retianzhao":"天照",
             "xwj_xhuoying_retianzhao_info":"出牌阶段，你可将普通杀当火杀使用。<font color=#f00>锁定技</font> 当你造成火焰伤害时，你令该受伤害的角色获得“黑炎”标记",
             "xwj_xhuoying_baoxing":"爆星",
-            "xwj_xhuoying_baoxing_info":"<font color=#F0F>地爆天星</font>出牌阶段限一次，你可以将所有的手牌发动【地爆天星】：此为无视防具的【南蛮入侵】，所有角色必须弃置打出一张【杀】，否则受到一点伤害",
+            "xwj_xhuoying_baoxing_info":"<font color=#F0F>地爆天星</font> 出牌阶段限一次，你可以将所有的手牌发动【地爆天星】：此为无视防具的【南蛮入侵】，所有角色必须弃置打出一张【杀】，否则受到一点伤害",
             "xwj_xhuoying_tiancheng":"天秤",
             "xwj_xhuoying_tiancheng_info":"当你亮出拼点牌后，你可令此牌点数+X（超重岩之术）或点数－X（超轻岩之术）。（X为存活角色数）",
             "xwj_xhuoying_jizhu":"计诛",
@@ -10859,17 +10955,22 @@ translate:{
             "xwj_xhuoying_fengdun":"风遁",
             "xwj_xhuoying_fengdun_info":"<font color=#f00>锁定技</font> 当你的手牌数大于你的体力值，你使用的【杀】无法闪避",
             "xwj_xhuoying_jinshao":"烬烧",
-            "xwj_xhuoying_jinshao_info":"<font color=#F0F>灰烬烧</font>限定技。出牌阶段，你可令任意名其他角色依次选择一项：弃置2X张牌；或受到两点火焰伤害。(X为该角色装备区里牌的数量且至少为1)",
+            "xwj_xhuoying_jinshao_info":"<font color=#F0F>灰烬烧</font> 限定技。出牌阶段，你可令任意名其他角色依次选择一项：弃置2X张牌；或受到两点火焰伤害。(X为该角色装备区里牌的数量且至少为1)",
             "xwj_xhuoying_rongdun":"溶遁",
-            "xwj_xhuoying_rongdun_info":"<font color=#F0F>溶怪之术</font>每名角色的回合限一次，当其他角色使用装备牌时，你可取消之，然后你摸一张牌",
+            "xwj_xhuoying_rongdun_info":"<font color=#F0F>溶怪之术</font> 每名角色的回合限一次，当其他角色使用装备牌时，你可取消之，然后你摸一张牌",
             "xwj_xhuoying_feidun":"沸遁",
-            "xwj_xhuoying_feidun_info":"<font color=#F0F>沸遁•巧雾之术</font>出牌阶段限一次，你可以观看一名其他角色的牌，然后你可以用一张手牌替换其中的一张牌，若如此做，该角色受到一点火焰伤害",
+            "xwj_xhuoying_feidun_info":"<font color=#F0F>沸遁•巧雾之术</font> 出牌阶段限一次，你可以观看一名其他角色的牌，然后你可以用一张手牌替换其中的一张牌，若如此做，该角色受到一点火焰伤害",
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
             "xwj_xhuoying_shouju":"手鞠",
             "xwj_xhuoying_lianyou":"镰鼬",
             "xwj_xhuoying_lianyou_info":"结束阶段时，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌（<font color=#F0F>配合勘九郞</font>），然后你将武将牌背面朝上",
-                 
+            "xwj_xhuoying_jiuxinnai":"玖辛奈",
+            "xwj_xhuoying_fenglian":"封链",
+             "xwj_xhuoying_fenglian2":"链",
+            "xwj_xhuoying_fenglian_info":"回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌，且直到其回合开始，其不能使用或打出牌",
+            "xwj_xhuoying_hongjiao":"红椒",
+            "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害后，你可令伤害来源受到一点火焰伤害",   
                                                                                                                                 
 },
           };
@@ -12442,7 +12543,7 @@ content:function (){
           	 "xwj_xwugeng_xuemao_info":"出牌阶段限一次，你可以展示牌堆顶的一张牌，若该牌为：装备牌，你回复一点体力并使用之；锦囊牌，你弃置此展示的牌后再摸两张牌；基本牌，你获得此牌，视为对任意一名其他角色使用一张不计距离、不计入次数限制的【杀】",	 
           	 "xwj_xwugeng_xuemao2_info":"",
           	 "xwj_xwugeng_baiqian":"白墙",
-            "xwj_xwugeng_baiqian_info":"<font color=#F0F>无色界神力</font><br><li>你免疫部分负面效果<br><li> <font color=#f00>锁定技</font> 游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择攻击范围内的一名其他角色，令其所有技能失效（直到其回合结束）；且不能使用或打出牌（直到其回合开始）<br><li><font color=#f00>锁定技</font> ①你使用的【杀】可指定任意名角色; ②当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
+            "xwj_xwugeng_baiqian_info":"<font color=#F0F>无色界神力</font><br><li> <font color=#f00>锁定技</font> 游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择攻击范围内的一名其他角色，令其所有技能失效（直到其回合结束）；且不能使用或打出牌（直到其回合开始）<br><li><font color=#f00>锁定技</font> ①你使用的【杀】可指定任意名角色; ②当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
             "xwj_xwugeng_baiqian5":"墙",
             "xwj_xwugeng_baiqian5_info":"不能使用或打出牌",
             "xwj_xwugeng_baiqian1":"白墙",
@@ -13628,15 +13729,15 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 			game.playBackgroundMusic();
 			break;
 			case '2':
-            ui.backgroundMusic.pause();
-            game.playXu('wms_default'); 
+    ui.backgroundMusic.pause();
+    game.playXu('wms_default'); 
 			break;
 			case '3':
-            ui.backgroundMusic.pause();
-		    game.playXu('wms_backgroundmusic');  
+    ui.backgroundMusic.pause();
+		 game.playXu('wms_backgroundmusic');  
 			break;
 			}
-		}
+			}
 		},							
 			 
 },package:{
@@ -13667,5 +13768,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.33",
+    version:"1.34",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -638,7 +638,7 @@ skill:{
                     threaten:1.5,
                     result:{
                         target:function (player,target){
-                return -target.countCards('h');
+                return get.recoverEffect(target,player);
             },
                     },
                     order:10,
@@ -697,7 +697,7 @@ skill:{
                     threaten:1.5,
                     result:{
                         target:function (player,target){
-                return -target.countCards('h');
+                return get.recoverEffect(target,player);
             },
                     },
                     expose:0.4,
@@ -2895,7 +2895,7 @@ game.import('character',function(){
             //"xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
 	        		"xwj_xhuoying_xianglin":["female","xxiao",3,["xwj_xhuoying_ganzhi","xwj_xhuoying_liaoshang"],[]],
             "xwj_xhuoying_zhinai":["male","xhuo",4,["xwj_xhuoying_chongyu"],[]],
-            "xwj_xhuoying_jiuxinnai":["female","xhuo",3,["xwj_xhuoying_fenglian","xwj_xhuoying_hongjiao"],[]],
+            "xwj_xhuoying_jiuxinnai":["female","xhuo",4,["xwj_xhuoying_fenglian","xwj_xhuoying_hongjiao"],[]],
   
                 },
 							
@@ -2988,7 +2988,7 @@ game.import('character',function(){
 skill:{
              "xwj_xhuoying_hongjiao":{
               audio:"ext:群英会:2",
-         				trigger:{player:'damageEnd'},
+         				trigger:{player:'damage'},
 				filter:function(event,player){
 					return (event.source!=undefined);
 				},
@@ -2999,7 +2999,7 @@ skill:{
 				content:function(){					
 				   var chat=['敢惹我？让你尝尝我的厉害','我长红色的头发又关你什么事？'].randomGet();
             player.say(chat); 
-						trigger.source.damage('fire');
+						trigger.source.damage(trigger.num,'fire');
 				},
 				ai:{
 					maixie_defend:true,
@@ -6329,14 +6329,14 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
  "xwj_xhuoying_yuanyu":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    source:"dieAfter",
+                    source:"dieBegin",
                 },
                 forced:true,
                 popup:false,
                 silent:true,
                 unique:true,
                 filter:function (event,player){
-        return event.player.isDead();
+        return player.isAlive();
     },
                 content:function (){                  
           var chat=['我跟初代火影PK过，能活到现在，就靠这个术','你的这个心脏，从现在起，就是属于我的了'].randomGet();
@@ -6348,8 +6348,7 @@ var skill=trigger.player.skills.randomGet()
         if(player.maxHp<5){
         player.maxHp++;
         }
-        player.recover();
-       
+        player.recover();      
     },
             },
             "xwj_xhuoying_zhongquan":{
@@ -10817,7 +10816,7 @@ translate:{
             "xwj_xhuoying_zhuanxin_info":"<font color=#F0F>心转心之术</font> 出牌阶段限一次，你可以弃置一张红桃手牌，选择一名存活的其他角色，令其与你交换手牌",
             "xwj_xhuoying_reyiliao":"医疗",
             "xwj_xhuoying_reyiliao_info":"当有角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之。",
-            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色后，你永久获得该角色的随机一项技能，然后你依次增加一点体力上限（不得超过5）和回复一点体力",
+            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色时，你永久获得该角色的随机一项技能，然后你依次增加一点体力上限（不得超过5）和回复一点体力",
             "xwj_xhuoying_zhongquan":"硬拳",
             "xwj_xhuoying_zhongquan_info":"<font color=#f00>锁定技</font> 若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
             "xwj_xhuoying_newkuilei":"傀儡",
@@ -10970,7 +10969,7 @@ translate:{
              "xwj_xhuoying_fenglian2":"链",
             "xwj_xhuoying_fenglian_info":"回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌，且直到其回合开始，其不能使用或打出牌",
             "xwj_xhuoying_hongjiao":"红椒",
-            "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害后，你可令伤害来源受到一点火焰伤害",   
+            "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害时，你可立即令伤害来源受到等量的火焰伤害",   
                                                                                                                                 
 },
           };
@@ -13768,5 +13767,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.34",
+    version:"1.35",
 },files:{"character":[],"card":[],"skill":[]}}})

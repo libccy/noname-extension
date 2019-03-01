@@ -482,7 +482,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 						lib.translate._xxyishugaochao='医术高超';
 			
 											}
-					if(config._chooseTime){																
+	 lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};				
+	if(config._chooseTime){																
 							lib.skill._chooseTime={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,

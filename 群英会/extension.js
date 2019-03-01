@@ -13767,5 +13767,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.36",
+    version:"1.360",
 },files:{"character":[],"card":[],"skill":[]}}})

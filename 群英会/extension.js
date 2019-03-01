@@ -13656,7 +13656,7 @@ trigger:{
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里",
             "xwj_xus_mianju":"漩涡面具",
-            "xwj_xus_mianju_info":"<font color=#f00>锁定技</font> 武将牌不能被翻面",
+            "xwj_xus_mianju_info":"<font color=#f00>锁定技</font> 你的武将牌不能被翻面",
             "xwj_xus_shoulijian":"手里剑",
             "xwj_xus_shoulijian_info":"出牌阶段，对一名距离1以外的角色使用，令其弃置一张装备牌或受到一点伤害",
             "xwj_xus_kuwu":"苦无",
@@ -13767,5 +13767,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.35",
+    version:"1.36",
 },files:{"character":[],"card":[],"skill":[]}}})

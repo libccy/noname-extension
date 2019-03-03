@@ -670,13 +670,13 @@ skill:{
     },
             },
             "xwj_xsanguo_shouye2":{  
-			audio:"ext:群英会:1",
+         			audio:"ext:群英会:1",
                 enable:"phaseUse",
                 usable:1,
                 selectTarget:[1,2],
                 filterTarget:function (card,player,target){ 
                return target!=player&&player.countCards('h',{color:'red'})>0;
-    },
+                },
                 filterCard:{
                     color:"red",
                 },
@@ -735,10 +735,10 @@ skill:{
 				trigger:{player:'chooseToRespondBegin'},
 				filter:function(event,player){
 					//if(event.responded) return false;
-					if(event.filterCard({name:'wuxie'})) return false;
+					//if(event.filterCard({name:'wuxie'})) return false;
 					if(!event.filterCard({name:'shan'})) return false;
 					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
-					if(event.parent.name!='sha') return false;
+					//if(event.parent.name!='sha') return false;
 					var hs=player.getCards('h',{type:'basic'});
 					for(var i=0;i<hs.length;i++){
 						if(get.type(hs[i])=='basic'){
@@ -747,8 +747,7 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},
-								
+				},								
 				direct:true,
 				content:function(){
 					"step 0"						
@@ -785,10 +784,10 @@ skill:{
 				trigger:{player:'chooseToRespondBegin'},
 				filter:function(event,player){
 					//if(event.responded) return false;
-					if(event.filterCard({name:'wuxie'})) return false;
+					//if(event.filterCard({name:'wuxie'})) return false;
 					if(!event.filterCard({name:'shan'})) return false;
 					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
-					if(event.parent.name!='sha') return false;
+					//if(event.parent.name!='sha') return false;
 					var hs=player.getCards('h',{type:'basic'});
 					for(var i=0;i<hs.length;i++){
 						if(get.type(hs[i])=='basic'){
@@ -797,8 +796,7 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},
-								
+				},								
 				direct:true,
 				content:function(){
 					"step 0"						
@@ -890,9 +888,9 @@ skill:{
 							complexCard:true,
                             popname:true,
                             precontent:function(){
-                               player.storage.xwj_xsanguo_yizan++;
-            player.markSkill('xwj_xsanguo_yizan');
-            player.update(); 
+                            player.storage.xwj_xsanguo_yizan++;
+                            player.markSkill('xwj_xsanguo_yizan');
+                            player.update(); 
                             },
                         }
                     },
@@ -911,7 +909,7 @@ skill:{
                     },
                     save:true,
                     respondSha:true,
-					respondShan:true,
+			              		respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -933,9 +931,7 @@ skill:{
                         player:1,
                     },
                 },
-            },
-			
-			
+            },		
             "xwj_xsanguo_longyuan":{
                 audio:"ext:群英会:2",
                 unique:true,
@@ -959,8 +955,7 @@ skill:{
         //player.removeSkill('xwj_xsanguo_longyuan');        
         
         player.update();
-    
-        
+            
     },
             },
 			"xwj_xsanguo_yizan2":{
@@ -1012,7 +1007,7 @@ skill:{
     },
                             viewAs:{name:links[0][2],nature:links[0][3]},
                             position:'h',
-							//complexCard:true,
+				                   			//complexCard:true,
                             popname:true,
                             precontent:function(){
                                game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());           
@@ -1034,7 +1029,7 @@ skill:{
                     },
                     save:true,
                     respondSha:true,
-					respondShan:true,
+		             			respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -14086,5 +14081,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.37",
+    version:"1.38",
 },files:{"character":[],"card":[],"skill":[]}}})

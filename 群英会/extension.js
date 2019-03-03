@@ -840,15 +840,15 @@ skill:{
                 chooseButton:{
                     dialog:function (event,player){
                         var list=[];
-                        if(!player.storage.xwj_xsanguo_yizan.sha&&event.filterCard({name:'sha'},player,event)){
+                        if(event.filterCard({name:'sha'},player,event)){
                             list.push(['基本','','sha']);
                             list.push(['基本','','sha','fire']);
                             list.push(['基本','','sha','thunder']);
                         }
-                        if(!player.storage.xwj_xsanguo_yizan.tao&&event.filterCard({name:'tao'},player,event)){
+                        if(event.filterCard({name:'tao'},player,event)){
                             list.push(['基本','','tao']);
                         }
-                        if(!player.storage.xwj_xsanguo_yizan.jiu&&event.filterCard({name:'jiu'},player,event)){
+                        if(event.filterCard({name:'jiu'},player,event)){
                             list.push(['基本','','jiu']);
                         }
                         return ui.create.dialog('翊赞',[list,'vcard'],'hidden');

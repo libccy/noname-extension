@@ -13052,7 +13052,7 @@ skill:{
             },
 "xwj_xu_tuiyin":{
                 trigger:{
-                    player:"damageEnd",
+                    player:"damage",
                 },
                 filter:function (event){
         return player.isAlive();
@@ -13277,7 +13277,7 @@ else {
             "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影杀包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
-            "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害后，你可摸X张牌（X为游戏轮数的一半进位取整）",
+            "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害时，你可摸X张牌（X为游戏轮数的一半进位取整）",
             "xwj_xu_Sukincen":"小苏",
             "xwj_xu_xibie":"惜别",
             "xwj_xu_xibie_info":"当你失去装备区的牌时（包括替换和弃置等），你可以摸一张牌并弃置其他角色区域内的一张牌。",

@@ -81,8 +81,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 				if(num<=0) player.die(event.reason);
 				"step 2"
 				lib.skill._save.filter=event.filter;
-			};
-			
+			};		
 			game.playXu = function(fn, dir, sex) {
 			if (lib.config.background_speak) {
 				if (dir && sex)
@@ -482,8 +481,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 						lib.translate._xxyishugaochao='医术高超';
 			
 											}
-	 lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};				
-	if(config._chooseTime){																
+	//lib.extensionMenu['extension_'+'群英会'].edit={name:'编辑此扩展',clear:true,};
+    lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};
+					if(config._chooseTime){																
 							lib.skill._chooseTime={
 							trigger:{global:'gameDrawBefore'},
 							direct:true,
@@ -730,7 +730,334 @@ skill:{
        }
     },
             },
-"xwj_xsanguo_yizan":{
+			
+			"xwj_xsanguo_yizan1":{								
+				trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					//if(event.responded) return false;
+					if(event.filterCard({name:'wuxie'})) return false;
+					if(!event.filterCard({name:'shan'})) return false;
+					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
+					if(event.parent.name!='sha') return false;
+					var hs=player.getCards('h',{type:'basic'});
+					for(var i=0;i<hs.length;i++){
+						if(get.type(hs[i])=='basic'){
+							break;
+						}
+					}
+					if(i==hs.length) return false;
+					return true;
+				},
+								
+				direct:true,
+				content:function(){
+					"step 0"						
+					player.chooseCard(get.prompt('xwj_xsanguo_yizan1'),'he',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','shan')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'shan'}}	
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);
+						player.chooseToDiscard('he',true); 
+					    player.storage.xwj_xsanguo_yizan++;
+                        player.markSkill('xwj_xsanguo_yizan');
+                        player.update(); 
+						player.logSkill('xwj_xsanguo_yizan1');
+						player.addTempSkill('xwj_xsanguo_yizan4');						
+					}
+					else{
+						event.finish();
+					}									
+				},				
+			},
+			"xwj_xsanguo_yizan4":{},
+			"xwj_xsanguo_yizan3":{								
+				trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					//if(event.responded) return false;
+					if(event.filterCard({name:'wuxie'})) return false;
+					if(!event.filterCard({name:'shan'})) return false;
+					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
+					if(event.parent.name!='sha') return false;
+					var hs=player.getCards('h',{type:'basic'});
+					for(var i=0;i<hs.length;i++){
+						if(get.type(hs[i])=='basic'){
+							break;
+						}
+					}
+					if(i==hs.length) return false;
+					return true;
+				},
+								
+				direct:true,
+				content:function(){
+					"step 0"						
+					player.chooseCard(get.prompt('xwj_xsanguo_yizan3'),'he',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','shan')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'shan'}}	
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);						 					    
+						player.logSkill('xwj_xsanguo_yizan3');
+						player.addTempSkill('xwj_xsanguo_yizan4');						
+					}
+					else{
+						event.finish();
+					}									
+				},				
+			},
+			"xwj_xsanguo_yizan":{
+				audio:"ext:群英会:2",
+                enable:["chooseToRespond","chooseToUse"],
+               filter:function (event,player){
+        return player.countCards('h',{type:'basic'})>0&&player.countCards('he')>1;
+    },
+	group:"xwj_xsanguo_yizan1",
+	init:function (player){
+        player.storage.xwj_xsanguo_yizan=0;
+    },
+                intro:{
+                    content:"mark",
+                },
+                chooseButton:{
+                    dialog:function (event,player){
+                        var list=[];
+                        if(!player.storage.xwj_xsanguo_yizan.sha&&event.filterCard({name:'sha'},player,event)){
+                            list.push(['基本','','sha']);
+                            list.push(['基本','','sha','fire']);
+                            list.push(['基本','','sha','thunder']);
+                        }
+                        if(!player.storage.xwj_xsanguo_yizan.tao&&event.filterCard({name:'tao'},player,event)){
+                            list.push(['基本','','tao']);
+                        }
+                        if(!player.storage.xwj_xsanguo_yizan.jiu&&event.filterCard({name:'jiu'},player,event)){
+                            list.push(['基本','','jiu']);
+                        }
+                        return ui.create.dialog('翊赞',[list,'vcard'],'hidden');
+                    },
+                    check:function (button){
+                        var player=_status.event.player;
+                        var card={name:button.link[2],nature:button.link[3]};
+                        if(game.hasPlayer(function(current){
+                            return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
+                        })){
+                            switch(button.link[2]){
+                                case 'tao':return 5;
+                                case 'jiu':return 3.01;
+                                case 'sha':
+                                    if(button.link[3]=='fire') return 2.95;
+                                    else if(button.link[3]=='fire') return 2.92;
+                                    else return 2.9;
+                            }
+                        }
+                        return 0;
+                    },
+                    backup:function (links,player){
+                        return {
+							selectCard:function (){
+     //   if(_status.event.player.storage.xwj_xsanguo_longyuan) return 1;
+        return 2;
+    },
+                             filterCard:function (card){
+        if(ui.selected.cards.length){
+            if(get.type(ui.selected.cards[0],'trick')=='basic') return true;
+            return get.type(card)=='basic';
+        }
+        return true;
+    },
+                            viewAs:{name:links[0][2],nature:links[0][3]},
+                            position:'he',
+							complexCard:true,
+                            popname:true,
+                            precontent:function(){
+                               player.storage.xwj_xsanguo_yizan++;
+            player.markSkill('xwj_xsanguo_yizan');
+            player.update(); 
+                            },
+                        }
+                    },
+                    prompt:function (links,player){
+                        return '你可以将两张牌（其中至少一张是基本牌）当'+get.translation(links[0][3]||'')+get.translation(links[0][2])+'使用或打出';
+                    },
+                },
+                ai:{
+                    order:function (){
+                        var player=_status.event.player;
+                        var event=_status.event;
+                        if(!player.storage.xwj_xsanguo_yizan.jiu&&event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
+                            return 3.1;
+                        }
+                        return 2.9;
+                    },
+                    save:true,
+                    respondSha:true,
+					respondShan:true,
+                    skillTagFilter:function (player,tag,arg){
+                        if(player.hasCard(function(card){
+                            return get.color(card)=='black'&&get.type(card)!='basic';
+                        },'he')){
+                            if(!player.storage.xwj_xsanguo_yizan) player.storage.xwj_xsanguo_yizan={};
+                            if(tag=='respondSha'){
+                                if(arg!='use') return false;
+                                if(player.storage.xwj_xsanguo_yizan.sha) return false;
+                            }
+                            else{
+                                if(player.storage.xwj_xsanguo_yizan.tao&&player.storage.xwj_xsanguo_yizan.jiu) return false;
+                            }
+                        }
+                        else{
+                            return false;
+                        }
+                    },
+                    result:{
+                        player:1,
+                    },
+                },
+            },
+			
+			
+            "xwj_xsanguo_longyuan":{
+                audio:"ext:群英会:2",
+                unique:true,
+                trigger:{
+                    player:["respond","useCard"],
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.storage.xwj_xsanguo_yizan>=3;
+    },
+                content:function (){
+       'step 0'  
+    player.$fullscreenpop('龙跃于渊','fire'); 
+        'step 1'
+        player.addSkill('xwj_xsanguo_yizan2');
+        
+        player.removeSkill('xwj_xsanguo_yizan');
+     
+        player.awakenSkill('xwj_xsanguo_longyuan');
+        
+        //player.removeSkill('xwj_xsanguo_longyuan');        
+        
+        player.update();
+    
+        
+    },
+            },
+			"xwj_xsanguo_yizan2":{
+                enable:["chooseToRespond","chooseToUse"],
+               filter:function (event,player){
+        return player.countCards('h',{type:'basic'})>0;
+    },	
+	group:"xwj_xsanguo_yizan3",
+                chooseButton:{
+                    dialog:function (event,player){
+                        var list=[];
+                        if(event.filterCard({name:'sha'},player,event)){
+                            list.push(['基本','','sha']);
+                            list.push(['基本','','sha','fire']);
+                            list.push(['基本','','sha','thunder']);
+                        }
+                        if(event.filterCard({name:'tao'},player,event)){
+                            list.push(['基本','','tao']);
+                        }
+                        if(event.filterCard({name:'jiu'},player,event)){
+                            list.push(['基本','','jiu']);
+                        }
+                        return ui.create.dialog('翊赞',[list,'vcard'],'hidden');
+                    },
+                    check:function (button){
+                        var player=_status.event.player;
+                        var card={name:button.link[2],nature:button.link[3]};
+                        if(game.hasPlayer(function(current){
+                            return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
+                        })){
+                            switch(button.link[2]){
+                                case 'tao':return 5;
+                                case 'jiu':return 3.01;
+                                case 'sha':
+                                    if(button.link[3]=='fire') return 2.95;
+                                    else if(button.link[3]=='fire') return 2.92;
+                                    else return 2.9;
+                            }
+                        }
+                        return 0;
+                    },
+                    backup:function (links,player){
+                        return {
+							/*selectCard:function (){
+        return 1;
+    },*/
+                filterCard:function (card){          
+            return get.type(card)=='basic';
+    },
+                            viewAs:{name:links[0][2],nature:links[0][3]},
+                            position:'h',
+							//complexCard:true,
+                            popname:true,
+                            precontent:function(){
+                               game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());           
+                            },
+                        }
+                    },
+                    prompt:function (links,player){
+                        return '你可以将一张基本牌当'+get.translation(links[0][3]||'')+get.translation(links[0][2])+'使用或打出';
+                    },
+                },
+                ai:{
+                    order:function (){
+                        var player=_status.event.player;
+                        var event=_status.event;
+                        if(!player.storage.xwj_xsanguo_yizan2.jiu&&event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
+                            return 3.1;
+                        }
+                        return 2.9;
+                    },
+                    save:true,
+                    respondSha:true,
+					respondShan:true,
+                    skillTagFilter:function (player,tag,arg){
+                        if(player.hasCard(function(card){
+                            return get.color(card)=='black'&&get.type(card)!='basic';
+                        },'he')){
+                            if(!player.storage.xwj_xsanguo_yizan2) player.storage.xwj_xsanguo_yizan2={};
+                            if(tag=='respondSha'){
+                                if(arg!='use') return false;
+                                if(player.storage.xwj_xsanguo_yizan2.sha) return false;
+                            }
+                            else{
+                                if(player.storage.xwj_xsanguo_yizan2.tao&&player.storage.xwj_xsanguo_yizan2.jiu) return false;
+                            }
+                        }
+                        else{
+                            return false;
+                        }
+                    },
+                    result:{
+                        player:1,
+                    },
+                },
+            },
+/*"xwj_xsanguo_yizan":{
                 audio:"ext:群英会:2",
                 enable:["chooseToRespond","chooseToUse"],
                 position:"he",
@@ -770,9 +1097,11 @@ skill:{
                         list.push(['基本','','sha','thunder']);
                     }
                 }
-                if(player.canUse('tao',player,true,true)){
+                if(game.hasPlayer(function(current){
+                if(current.canUse('tao',current,true,true)){
                     list.push(['基本','','tao']);
                 }
+				}))
                 if(player.canUse('jiu',player,true,true)){
                     list.push(['基本','','jiu']);
                 }
@@ -818,6 +1147,16 @@ skill:{
                     return get.effect(target,_status.event.fakecard,player,player);
                 }).set('fakecard',card);
             }
+			
+			if(card.name=='tao'){ 
+game.findPlayer(function(current){	
+return current.hp<=0;
+})
+			player.useCard(card,current);
+			 event.finish();
+			}
+			//待完善
+			
             else{
                 player.useCard(card,player);
                 event.finish();
@@ -848,35 +1187,10 @@ skill:{
                     respondSha:true,
                     threaten:0.8,
                 },
-            },
-            "xwj_xsanguo_longyuan":{
-                audio:"ext:群英会:2",
-                unique:true,
-                trigger:{
-                    player:["respond","useCard"],
-                },
-                forced:true,
-                filter:function (event,player){
-        return player.storage.xwj_xsanguo_yizan>=3;
-    },
-                content:function (){
-       'step 0'  
-    player.$fullscreenpop('龙跃于渊','fire'); 
-        'step 1'
-        player.addSkill('xwj_xsanguo_yizan2');
-        
-        player.removeSkill('xwj_xsanguo_yizan');
-     
-        player.awakenSkill('xwj_xsanguo_longyuan');
-        
-        //player.removeSkill('xwj_xsanguo_longyuan');        
-        
-        player.update();
-    
-        
-    },
-            },
-            "xwj_xsanguo_yizan2":{
+            },*/
+			
+			
+            /*"xwj_xsanguo_yizan2":{
                 audio:"ext:群英会:2",
                 enable:["chooseToRespond","chooseToUse"],
                 selectCard:function (){
@@ -978,7 +1292,7 @@ skill:{
                     respondSha:true,
                     threaten:0.8,
                 },
-            },
+            },*/
 
  "xwj_xsanguo_wuniang":{
                 audio:"ext:群英会:2",
@@ -2757,11 +3071,15 @@ translate:{
 	 "xwj_xsanguo_zhaotongzhaoguang":"赵统赵广",
 	  "xwj_xsanguo_yizan":"翊赞",
             "xwj_xsanguo_yizan_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
-            "xwj_xsanguo_longyuan":"龙渊",
-            "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】，你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",
+			"xwj_xsanguo_yizan1":"翊赞",
+            "xwj_xsanguo_yizan1_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
             "xwj_xsanguo_yizan2":"翊赞",
             "xwj_xsanguo_yizan2_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
-      "xwj_xsanguo_wuniang":"武娘",
+			"xwj_xsanguo_yizan3":"翊赞",
+            "xwj_xsanguo_yizan3_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
+			"xwj_xsanguo_longyuan":"龙渊",
+            "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】，你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",           
+            "xwj_xsanguo_wuniang":"武娘",
             "xwj_xsanguo_wuniang_info":"你使用或打出【杀】时，你可以获得一名其他角色的一张牌，然后该角色摸一张牌；若“关索”在场，你可令“关索”也摸一张牌",
             "xwj_xsanguo_zhengnan":"镇南",
             "xwj_xsanguo_zhengnan_info":"当你成为【南蛮入侵】的目标时，你可令一名其他角色随机受到一至三点伤害",
@@ -13768,5 +14086,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.36",
+    version:"1.37",
 },files:{"character":[],"card":[],"skill":[]}}})

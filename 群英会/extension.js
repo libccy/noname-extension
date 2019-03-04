@@ -730,7 +730,8 @@ skill:{
        }
     },
             },
-			
+
+			//双牌打出闪：
 			"xwj_xsanguo_yizan1":{								
 				trigger:{player:'chooseToRespondBegin'},
 				filter:function(event,player){
@@ -779,7 +780,56 @@ skill:{
 					}									
 				},				
 			},
+			//双牌打出杀：
+			"xwj_xsanguo_yizan5":{								
+				trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					//if(event.responded) return false;
+					//if(event.filterCard({name:'wuxie'})) return false;
+					if(!event.filterCard({name:'sha'})) return false;
+					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
+					var hs=player.getCards('h',{type:'basic'});
+					for(var i=0;i<hs.length;i++){
+						if(get.type(hs[i])=='basic'){
+							break;
+						}
+					}
+					if(i==hs.length) return false;
+					return true;
+				},								
+				direct:true,
+				content:function(){
+					"step 0"						
+					player.chooseCard(get.prompt('xwj_xsanguo_yizan5'),'he',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','sha')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'sha'}}	
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);
+						player.chooseToDiscard('he',true); 
+					    player.storage.xwj_xsanguo_yizan++;
+                        player.markSkill('xwj_xsanguo_yizan');
+                        player.update(); 
+						player.logSkill('xwj_xsanguo_yizan5');
+						player.addTempSkill('xwj_xsanguo_yizan4');						
+					}
+					else{
+						event.finish();
+					}									
+				},				
+			},
 			"xwj_xsanguo_yizan4":{},
+			//单牌打出闪：
 			"xwj_xsanguo_yizan3":{								
 				trigger:{player:'chooseToRespondBegin'},
 				filter:function(event,player){
@@ -824,13 +874,59 @@ skill:{
 					}									
 				},				
 			},
+			//单牌打出杀：
+			"xwj_xsanguo_yizan6":{								
+				trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){
+					//if(event.responded) return false;
+					//if(event.filterCard({name:'wuxie'})) return false;
+					if(!event.filterCard({name:'sha'})) return false;
+					//if(player.hasSkill('xwj_xsanguo_yizan4')) return false;
+					//if(event.parent.name!='sha') return false;
+					var hs=player.getCards('h',{type:'basic'});
+					for(var i=0;i<hs.length;i++){
+						if(get.type(hs[i])=='basic'){
+							break;
+						}
+					}
+					if(i==hs.length) return false;
+					return true;
+				},								
+				direct:true,
+				content:function(){
+					"step 0"						
+					player.chooseCard(get.prompt('xwj_xsanguo_yizan3'),'he',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','sha')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'sha'}}	
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);						 					    
+						player.logSkill('xwj_xsanguo_yizan3');
+						player.addTempSkill('xwj_xsanguo_yizan4');						
+					}
+					else{
+						event.finish();
+					}									
+				},				
+			},
+			//双牌使用：
 			"xwj_xsanguo_yizan":{
 				audio:"ext:群英会:2",
-                enable:["chooseToRespond","chooseToUse"],
+                enable:["chooseToUse"],
                filter:function (event,player){
         return player.countCards('h',{type:'basic'})>0&&player.countCards('he')>1;
     },
-	group:"xwj_xsanguo_yizan1",
+	group:["xwj_xsanguo_yizan1","xwj_xsanguo_yizan5"],
 	init:function (player){
         player.storage.xwj_xsanguo_yizan=0;
     },
@@ -909,7 +1005,7 @@ skill:{
                     },
                     save:true,
                     respondSha:true,
-			              		respondShan:true,
+			        respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -940,11 +1036,11 @@ skill:{
                 },
                 forced:true,
                 filter:function (event,player){
-        return player.storage.xwj_xsanguo_yizan>=3;
-    },
+                    return player.storage.xwj_xsanguo_yizan>=3;
+                },
                 content:function (){
-       'step 0'  
-    player.$fullscreenpop('龙跃于渊','fire'); 
+        'step 0'  
+        player.$fullscreenpop('龙跃于渊','fire'); 
         'step 1'
         player.addSkill('xwj_xsanguo_yizan2');
         
@@ -958,12 +1054,13 @@ skill:{
             
     },
             },
+			//单牌使用：
 			"xwj_xsanguo_yizan2":{
                 enable:["chooseToRespond","chooseToUse"],
                filter:function (event,player){
         return player.countCards('h',{type:'basic'})>0;
     },	
-	group:"xwj_xsanguo_yizan3",
+	group:["xwj_xsanguo_yizan3","xwj_xsanguo_yizan6"],
                 chooseButton:{
                     dialog:function (event,player){
                         var list=[];
@@ -1003,11 +1100,11 @@ skill:{
         return 1;
     },*/
                 filterCard:function (card){          
-            return get.type(card)=='basic';
-    },
+                    return get.type(card)=='basic';
+                },
                             viewAs:{name:links[0][2],nature:links[0][3]},
                             position:'h',
-				                   			//complexCard:true,
+				            //complexCard:true,
                             popname:true,
                             precontent:function(){
                                game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());           
@@ -3065,13 +3162,17 @@ translate:{
      "xwj_xsanguo_baosanniang":"鲍三娘",
 	 "xwj_xsanguo_zhaotongzhaoguang":"赵统赵广",
 	  "xwj_xsanguo_yizan":"翊赞",
-            "xwj_xsanguo_yizan_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
+            "xwj_xsanguo_yizan_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用",
 			"xwj_xsanguo_yizan1":"翊赞",
-            "xwj_xsanguo_yizan1_info":"你可以将两张牌（其中至少一张是基本牌）当任意基本牌牌使用或打出。",
+            "xwj_xsanguo_yizan1_info":"你可以将两张牌（其中至少一张是基本牌）当【闪】打出",
             "xwj_xsanguo_yizan2":"翊赞",
-            "xwj_xsanguo_yizan2_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
+            "xwj_xsanguo_yizan2_info":"你可以将一张基本牌当任意基本牌牌使用",
 			"xwj_xsanguo_yizan3":"翊赞",
-            "xwj_xsanguo_yizan3_info":"你可以将一张基本牌当任意基本牌牌使用或打出。",
+            "xwj_xsanguo_yizan3_info":"你可以将一张基本牌当【闪】打出 ",
+			"xwj_xsanguo_yizan5":"翊赞",
+            "xwj_xsanguo_yizan5_info":"你可以将两张牌（其中至少一张是基本牌）当【杀】打出",
+			"xwj_xsanguo_yizan6":"翊赞",
+            "xwj_xsanguo_yizan6_info":"你可以将一张基本牌当【杀】打出",
 			"xwj_xsanguo_longyuan":"龙渊",
             "xwj_xsanguo_longyuan_info":"<span class=greentext>觉醒技</span> 当你使用或打出基本牌时，若你已经已累计发动过3次【翊赞】，你将【翊赞】改为“你可以将一张基本牌当任意基本牌牌使用或打出”。",           
             "xwj_xsanguo_wuniang":"武娘",
@@ -14081,5 +14182,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.38",
+    version:"1.39",
 },files:{"character":[],"card":[],"skill":[]}}})

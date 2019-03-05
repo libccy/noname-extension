@@ -776,7 +776,13 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},								
+				},
+				init:function (player){
+        player.storage.xwj_xsanguo_yizan=0;
+    },
+                intro:{
+                    content:"mark",
+                },
 				direct:true,
 				content:function(){
 					"step 0"						
@@ -824,7 +830,13 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},								
+				},	
+				init:function (player){
+        player.storage.xwj_xsanguo_yizan=0;
+    },
+                intro:{
+                    content:"mark",
+                },
 				direct:true,
 				content:function(){
 					"step 0"						
@@ -1032,8 +1044,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    //respondSha:true,
-			                //respondShan:true,
+                    respondSha:true,
+			        respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -1153,8 +1165,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    //respondSha:true,
-		             	//		respondShan:true,
+                    respondSha:true,
+		            respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -14219,5 +14231,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.40",
+    version:"1.41",
 },files:{"character":[],"card":[],"skill":[]}}})

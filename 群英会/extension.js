@@ -326,6 +326,34 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 			game.log(player,'恢复了',get.translation(skill),'栏');
 		};	
 		
+		if(config.wuxianyuedu){		
+		     lib.skill._jieshihuanhun={
+        trigger:{global:'dieEnd'},
+        filter:function(event,player){  
+    var jieshi=game.findPlayer(function(current){
+            return current.name=='xwj_xhuoying_huiye';
+        });
+            return !jieshi;
+        },
+        forced:true,
+        content:function(){
+ var huanhun=game.dead[0];
+huanhun.$fullscreenpop('借尸还魂','fire');
+game.delay(2);
+huanhun.init('xwj_xhuoying_huiye');
+huanhun.revive();
+huanhun.maxHp=3;
+huanhun.hp=3;
+huanhun.draw(3)._triggered=null;
+huanhun.update();
+//huanhun.$fullscreenpop('无限月读','thunder');
+game.delay();
+//lib.skill._wuxianyuedu={trigger:{global:'gameStart'},forced:true,content:function(){},};
+huanhun.insertPhase();
+        },  
+    }
+     }
+     
 			if(config.xwansha){		
 		     lib.skill._xwj_wansha={
         trigger:{
@@ -521,12 +549,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 						if(config._BackgroundMusic=='2'){					 
 						game.playBackgroundMusic=function (){};
   				game.playXu('wms_default'); 
-  				game.playBackgroundMusic();
+  				//game.playBackgroundMusic();
 			}
 			else{			  
 			game.playBackgroundMusic=function (){}; 
 			 game.playXu('wms_backgroundmusic');  	
-			 game.playBackgroundMusic();
+			 //game.playBackgroundMusic();
  			}				
 						}				
 						} */
@@ -981,7 +1009,7 @@ skill:{
     },
                             viewAs:{name:links[0][2],nature:links[0][3]},
                             position:'he',
-							complexCard:true,
+				                   			complexCard:true,
                             popname:true,
                             precontent:function(){
                             player.storage.xwj_xsanguo_yizan++;
@@ -1004,8 +1032,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    respondSha:true,
-			        respondShan:true,
+                    //respondSha:true,
+			                //respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -1104,7 +1132,7 @@ skill:{
                 },
                             viewAs:{name:links[0][2],nature:links[0][3]},
                             position:'h',
-				            //complexCard:true,
+				                       //complexCard:true,
                             popname:true,
                             precontent:function(){
                                game.playXu(['xwj_xsanguo_yizan1','xwj_xsanguo_yizan2'].randomGet());           
@@ -1125,8 +1153,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    respondSha:true,
-		             			respondShan:true,
+                    //respondSha:true,
+		             	//		respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -7414,7 +7442,7 @@ var skill=trigger.player.skills.randomGet()
                 filter:function (event,player){
         return game.players.length>2;
     },
-                content:function (){   
+            content:function (){   
     var chat=['改天换地，斗转星移','天之御中'].randomGet();
         player.say(chat); 
     player.$skill('天之御中','fire','red','avatar');
@@ -7439,7 +7467,11 @@ var skill=trigger.player.skills.randomGet()
                 ai:{
                     order:2,
                     result:{
-                        player:1,
+                       // player:1,
+                        player:function (player){
+                if(ai.get.attitude(player,player.next)<=0) return 10;
+                return 0;
+                    },
                     },
                 },
             },
@@ -14106,6 +14138,11 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
            "intro":"击杀特效：开启后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
             init:true
 		},							
+    		"wuxianyuedu":{
+            name:'无限月读',
+           "intro":"无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
+            init:false
+		},							
 						"xwansha":{
             name:'完杀模式',
            "intro":"完杀模式：开启后重启游戏生效。场上所有角色视为拥有技能“完杀”",
@@ -14182,5 +14219,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.39",
+    version:"1.40",
 },files:{"character":[],"card":[],"skill":[]}}})

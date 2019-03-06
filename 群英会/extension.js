@@ -776,14 +776,14 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},
-				init:function (player){
-        player.storage.xwj_xsanguo_yizan=0;
+				},								
+				direct:true,
+					init:function (player){
+        player.storage.xwj_xsanguo_yizan=[];
     },
                 intro:{
                     content:"mark",
                 },
-				direct:true,
 				content:function(){
 					"step 0"						
 					player.chooseCard(get.prompt('xwj_xsanguo_yizan1'),'he',function(card){
@@ -803,9 +803,9 @@ skill:{
 						player.lose(result.cards,ui.special);
 						player.$throw(result.cards);
 						player.chooseToDiscard('he',true); 
-					    player.storage.xwj_xsanguo_yizan++;
-                        player.markSkill('xwj_xsanguo_yizan');
-                        player.update(); 
+						player.markSkill('xwj_xsanguo_yizan');
+					 player.storage.xwj_xsanguo_yizan++;                     
+        player.update(); 
 						player.logSkill('xwj_xsanguo_yizan1');
 						player.addTempSkill('xwj_xsanguo_yizan4');						
 					}
@@ -830,14 +830,14 @@ skill:{
 					}
 					if(i==hs.length) return false;
 					return true;
-				},	
-				init:function (player){
-        player.storage.xwj_xsanguo_yizan=0;
+				},								
+				direct:true,
+					init:function (player){
+        player.storage.xwj_xsanguo_yizan=[];
     },
                 intro:{
                     content:"mark",
                 },
-				direct:true,
 				content:function(){
 					"step 0"						
 					player.chooseCard(get.prompt('xwj_xsanguo_yizan5'),'he',function(card){
@@ -857,9 +857,9 @@ skill:{
 						player.lose(result.cards,ui.special);
 						player.$throw(result.cards);
 						player.chooseToDiscard('he',true); 
-					    player.storage.xwj_xsanguo_yizan++;
-                        player.markSkill('xwj_xsanguo_yizan');
-                        player.update(); 
+					 player.markSkill('xwj_xsanguo_yizan');
+					 player.storage.xwj_xsanguo_yizan++;                      
+       player.update(); 
 						player.logSkill('xwj_xsanguo_yizan5');
 						player.addTempSkill('xwj_xsanguo_yizan4');						
 					}
@@ -962,7 +962,8 @@ skill:{
 			//双牌使用：
 			"xwj_xsanguo_yizan":{
 				audio:"ext:群英会:2",
-                enable:["chooseToUse"],
+              //  enable:["chooseToUse"],
+               enable:["chooseToRespond","chooseToUse"],
                filter:function (event,player){
         return player.countCards('h',{type:'basic'})>0&&player.countCards('he')>1;
     },
@@ -1044,8 +1045,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    respondSha:true,
-			        respondShan:true,
+                    //respondSha:true,
+			                //respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -1165,8 +1166,8 @@ skill:{
                         return 2.9;
                     },
                     save:true,
-                    respondSha:true,
-		            respondShan:true,
+                    //respondSha:true,
+		             	//		respondShan:true,
                     skillTagFilter:function (player,tag,arg){
                         if(player.hasCard(function(card){
                             return get.color(card)=='black'&&get.type(card)!='basic';
@@ -4621,11 +4622,7 @@ audio:"ext:群英会:2",
                         ui.cardPile.childNodes[1],                                       
                     ];
                     return ui.create.dialog('木遁',player.storage.xwj_xhuoying_mudun,'hidden');
-                },
-               
-				filter:function (event,player){
-        return ui.cardPile.childElementCount>=2;
-    },
+                },              		
                             filter:function (button,player){
                     var evt=_status.event.getParent();
                     if(evt&&evt.filterCard){
@@ -4641,12 +4638,18 @@ audio:"ext:群英会:2",
                 },
                             backup:function (links,player){
                     return {
+                    	filter:function (event,player){
+        return ui.cardPile.childElementCount>=2;
+    },
                         filterCard:function(){return false},
                         selectCard:-1,
                         viewAs:links[0],
+                          precontent:function(){
+                               game.playXu(['xwj_xhuoying_mudun_respond1','xwj_xhuoying_mudun_respond2'].randomGet());           
+                            },
                         onuse:function(result,player){
                             delete player.storage.xwj_xhuoying_mudun;
-                        }
+                        },                     
                     }
                 },
                             prompt:function (links,player){
@@ -8854,7 +8857,10 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                         viewAs:links[0],
                         onuse:function(result,player){
                             delete player.storage.xwj_xhuoying_xmudun;
-                        }
+                        },
+                          precontent:function(){
+                               game.playXu(['xwj_xhuoying_xmudun_respond1','xwj_xhuoying_xmudun_respond2'].randomGet());           
+                            },
                     }
                 },
                             prompt:function (links,player){
@@ -11605,14 +11611,20 @@ skill:{
             "xwj_xqinshi_jiansheng":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    player:"damageEnd",
+                    player:"damage",
                 },
+                priority:10,
                 frequent:true,
                 filter:function (event){
-        return (event.num>0)
+        return event.num>0;
     },
-                content:function (){                              
-          player.draw(player.countCards());       
+                content:function (){        
+                if(player.countCards('h')<=0){
+                   player.draw(game.countGroup());  
+                   }
+                   else{                 
+          player.draw(player.countCards('h'));       
+          }
     },
                 ai:{
                     maixie:true,
@@ -11772,7 +11784,7 @@ skill:{
             "xwj_xqinshi_jusha_info":"聚散流沙，生死无踪。其他角色可在他们各自的回合里交给你一张【杀】或【酒】",
             "xwj_xqinshi_genie":"盖聂",
             "xwj_xqinshi_jiansheng":"剑圣",
-            "xwj_xqinshi_jiansheng_info":"每当你受到一点伤害，你可以摸X张牌（X为你触发此技能时的现存手牌数）",
+            "xwj_xqinshi_jiansheng_info":"每当你受到一点伤害时，若你没有手牌，你可以摸等同于现存势力数张牌；若你有手牌，你可以摸X张牌（X为此时你的手牌数）",
             "xwj_xqinshi_zongjian":"纵剑",
             "xwj_xqinshi_zongjian_info":"<font color=#F0F>百步飞剑</font> 你使用的【杀】无距离限制；当你使用【杀】指定一个目标后，你可以根据下列条件执行相应的效果：1.其手牌数小于你的手牌数，此【杀】不可被【闪】响应 2.其体力值大于你的体力值，此【杀】伤害+1",
             "xwj_xqinshi_zongjian2":"百步飞剑",
@@ -14231,5 +14243,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.41",
+    version:"1.42",
 },files:{"character":[],"card":[],"skill":[]}}})

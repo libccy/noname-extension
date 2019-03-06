@@ -338,8 +338,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
         forced:true,
         content:function(){
  var huanhun=game.dead[0];
+game.delay(2);		
 huanhun.$fullscreenpop('借尸还魂','fire');
-game.delay(2);
 huanhun.init('xwj_xhuoying_huiye');
 huanhun.revive();
 huanhun.maxHp=3;

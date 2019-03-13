@@ -496,7 +496,16 @@ extension["鲍三娘"]={
     ]
 }; 
 
-
+extension["金庸群侠传"]={
+    author:"Sukincen",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>上线更新日期：2019-03-13",
+    size:"1.5MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+        "extension.js","sdxl_yangguo.jpg","tlbb_duanyanqing.jpg",
+    ]
+}; 
 
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",

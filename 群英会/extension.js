@@ -338,7 +338,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
         forced:true,
         content:function(){
  var huanhun=game.dead[0];
-game.delay(2);		
+ game.delay(2);
 huanhun.$fullscreenpop('借尸还魂','fire');
 huanhun.init('xwj_xhuoying_huiye');
 huanhun.revive();
@@ -777,7 +777,7 @@ skill:{
 					if(i==hs.length) return false;
 					return true;
 				},								
-				direct:true,
+				 direct:true,
 					init:function (player){
         player.storage.xwj_xsanguo_yizan=[];
     },
@@ -831,7 +831,7 @@ skill:{
 					if(i==hs.length) return false;
 					return true;
 				},								
-				direct:true,
+				 direct:true,
 					init:function (player){
         player.storage.xwj_xsanguo_yizan=[];
     },
@@ -935,7 +935,7 @@ skill:{
 				direct:true,
 				content:function(){
 					"step 0"						
-					player.chooseCard(get.prompt('xwj_xsanguo_yizan3'),'he',function(card){
+					player.chooseCard(get.prompt('xwj_xsanguo_yizan6'),'he',function(card){
 						return get.type(card)=='basic';
 					}).set('ai',function(card){
 						if(!_status.event.player.countCards('h','sha')){
@@ -2393,7 +2393,8 @@ return current.hp<=0;
          trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
          trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
          game.broadcastAll()+trigger.player.node.avatar.setBackgroundImage('extension/群英会/xwj_xsanguo_zhangjiao.jpg');        
-         player.removeSkill('xwj_xsanguo_chuanshu');            
+         //player.removeSkill('xwj_xsanguo_chuanshu');         
+         player.awakenSkill('xwj_xsanguo_chuanshu');             
     },
             },
             "xwj_xsanguo_xiandao1":{
@@ -2494,7 +2495,7 @@ return current.hp<=0;
         'step 1'
         var target=player.storage.xwj_xsanguo_chuanshu2;      
         player.line(target,'green');                     
-        target.addSkill('xwj_xsanguo_chuanshu');
+        target.restoreSkill('xwj_xsanguo_chuanshu');
         target.update();
     },
                 forced:true,
@@ -2719,12 +2720,8 @@ event.target.draw(event.num1);
         "step 0"
         if(player.isUnderControl()){
             game.modeSwapPlayer(player);
-        }
-        var num=Math.min(4,game.countPlayer());
-        if(player.hasSkill('yizhi')&&player.hasSkill('guanxing')){
-            num=4;
-        }
-        var cards=get.cards(num);
+        }        
+        var cards=get.cards(4);
         event.cards=cards;
         var switchToAuto=function(){
             _status.imchoosing=false;
@@ -2860,7 +2857,6 @@ event.target.draw(event.num1);
             game.countChoose();
         };
         event.switchToAuto=switchToAuto;
-
         if(event.isMine()){
             chooseButton();
             event.finish();
@@ -2874,7 +2870,7 @@ event.target.draw(event.num1);
             event.switchToAuto();
             event.finish();
         }             
-          player.draw();                 
+         player.draw();                 
         "step 1"
         if(event.result=='ai'||!event.result){
             event.switchToAuto();
@@ -3047,9 +3043,7 @@ event.target.draw(event.num1);
                         sub:true,
                     },
                 },
-                ai:{
-                    maixie:true,
-                    "maixie_hp":true,
+                ai:{                               
                     effect:{
                         target:function (card,player,target){
                 if(get.tag(card,'damage')){
@@ -5122,13 +5116,13 @@ audio:"ext:群英会:2",
         var chat=['尘遁•原界剥离之术','你已老了，大野木'].randomGet();
             player.say(chat);        
         'step 1'
-        if(result.bool){  
-            target.loseMaxHp();
-            target.draw();                                                   
+        if(result.bool){         
+        	 	target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());                                                                 
         }
         else{
             target.damage();      
-        }
+           // event.finish();
+        }    
     },
                 ai:{
                     threaten:2.3,
@@ -10652,7 +10646,7 @@ player.$skill('助君成王','fire','red','avatar');
                 content:function (){               
         'step 0'
         player.chooseToCompare(target);        
-        var chat=['尘遁•原界剥离之术','再见了'].randomGet();
+        var chat=['尘遁•原界剥离之术','我虽然跟你无怨无仇，但整个忍界的人都想杀你'].randomGet();
             player.say(chat);        
         'step 1'
         if(result.bool){  
@@ -11074,7 +11068,7 @@ translate:{
             "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_dayemu":"大野木",
             "xwj_xhuoying_chendun":"尘遁",
-            "xwj_xhuoying_chendun_info":"出牌阶段限一次，你可与一名有手牌的角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌。若你没赢，目标角色受到一点伤害",
+            "xwj_xhuoying_chendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_kai":"迈特凯",
             "xwj_xhuoying_bamen":"八门",
             "xwj_xhuoying_bamen_info":"<font color=#F0F>八门遁甲</font> <font color=#f00>锁定技</font> 出牌阶段开始时，若你的体力值为4或更少，你视为拥有技能“马术”（朝孔雀）；若你的体力值为3或更少，你视为拥有技能“咆哮”（昼虎）；若你的体力值为2或更少；你视为拥有技能“伏骑”（夕象）；若你的体力值为1，你视为拥有技能“暗箭”（夜凯）",
@@ -11190,7 +11184,7 @@ translate:{
             "xwj_xhuoying_changsheng":"永生",
             "xwj_xhuoying_changsheng_info":"濒死阶段，你可摸一张牌，你可以与一名有手牌的其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过5）；若你拼点没赢，你回复体力至体力上限并摸一张牌，然后你失去一点体力上限并翻面（一个像蛇一样难缠的家伙）",
             "xwj_xhuoying_rechendun":"尘遁",
-            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名有手牌的角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌。若你没赢，目标角色受到一点伤害",
+            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色随机废除一个装备栏；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_wuchen":"无尘",
             "xwj_xhuoying_wuchen_info":"<font color=#F0F>无尘迷塞</font> <font color=#f00>锁定技</font> 当你没有手牌时，你防止受到任何伤害",
             "xwj_xhuoying_rexianshu":"仙术",
@@ -14156,7 +14150,7 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决绝大部分已知的可能会卡死的BUG，暂时未发现其他卡死情况<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
-				},				
+					},				
 					"xjisha":{
             name:'击杀特效',
            "intro":"击杀特效：开启后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
@@ -14243,5 +14237,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.42",
+    version:"1.43",
 },files:{"character":[],"card":[],"skill":[]}}})

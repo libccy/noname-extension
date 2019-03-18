@@ -2591,15 +2591,9 @@ return (event.source&&event.source.countCards('he')&&event.source!=player);
     },
                 content:function (){
         trigger.cancel();
-        var ex=0;
-        if(trigger.card&&trigger.card.name=='sha'){
-            if(player.hasSkill('jiu')) ex++;
-            if(player.hasSkill('luoyi2')) ex++;
-            if(player.hasSkill('reluoyi2')) ex++;
-        }
-        trigger.player.loseMaxHp(trigger.num+ex);
-        player.loseMaxHp(true);        
-        player.recover(true); 
+        trigger.player.loseMaxHp();
+        player.loseMaxHp();        
+        player.recover(); 
     },
                 ai:{
                     jueqing:true,
@@ -6412,11 +6406,11 @@ nance:"难测",
             MYwangliang:"魍魉",
             "MYwangliang_info":"当你使用一张非转化的普通锦囊牌时，你可以选择一项：随机使用一张对全场有正面效果的牌；或随机使用一张对全场有负面效果的牌。",
             MYmiehun:"灭魂",
-            "MYmiehun_info":"出牌阶段限一次，你可以将一张杀当【南门入侵】使用，然后获得一张【过河拆桥】。",
+            "MYmiehun_info":"出牌阶段限一次，你可以将一张杀当【南门入侵】使用，然后你获得一张【过河拆桥】。",
             MYwangzhen:"网阵",
             "MYwangzhen_info":"锁定技，准备阶段，你选择转化为六剑奴中的一名角色(转化时会失去其他所有技能)。",
             MYzhuanpo:"转魄",
-            "MYzhuanpo_info":"出牌阶段限一次，你可以将两张非基本牌当【万箭齐发】使用，然后你获得一张【弃顺手牵羊】。",
+            "MYzhuanpo_info":"出牌阶段限一次，你可以将两张非基本牌当【万箭齐发】使用，然后你获得一张【顺手牵羊】。",
             MYquanheng:"权横",
             "MYquanheng_info":"锁定技，红色牌对你造成的伤害无效，你使用红色牌造成的伤害+1。",
             MYyixiong:"义兄",
@@ -6756,9 +6750,9 @@ image:'ext:秦时明月/MYjiguanbaihu.png',
         translate:{
         },
     },
-    intro:"<h2>联机完结版</h2>可在联机设置里设为联机禁用<br><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><a href=\"https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw\">点击下载本人更多扩展<a>",
+    intro:" <li>联机完结版，可在联机设置里设为联机禁用<li>本扩展会根据大家的反馈进行修改和完善。<li>特别感谢:@Sukincen @Cae <li><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><a href=\"https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw\">点击下载本人更多扩展<a>",
     author:"呲牙哥！",
     diskURL:"",
     forumURL:"",
-    version:"2.7",
+    version:"2.8",
 },files:{"character":[],"card":[],"skill":[]}}})

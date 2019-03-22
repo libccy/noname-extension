@@ -498,13 +498,17 @@ extension["鲍三娘"]={
 
 extension["金庸群侠传"]={
     author:"Sukincen",
-    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>更新：修复ai，新增武将张三丰，目前武将共4名 <li>更新日期：2019-03-22",
-    size:"2.8MB",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>友情配音：觅阳 <li>更新：修复ai，新增武将张三丰，目前武将共4名 <li>更新日期：2019-03-22",
+    size:"5.5MB",
     netdisk:"",
-    version:1.4,
+    version:1.5,
     files:[
-        "extension.js","sdxl_yangguo.jpg","tlbb_duanyanqing.jpg","sdxl_xiaolongniv.jpg","yttl_zhangsanfeng.jpg",
-	    "sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_simou1.mp3",
+        "extension.js","sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_simou1.mp3","sdxl_simou2.mp3",
+		"sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdxl_yingxia1.mp3","sdxl_yingxia2.mp3",
+		"tlbb_duanyanqing.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiancan1.mp3",
+		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","yttl_chunyan1.mp3",
+		"yttl_chunyan2.mp3","yttl_taiji1.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_tiji2.mp3",
+		"yttl_zhangsanfeng.jpg"
     ]
 }; 
 

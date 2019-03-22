@@ -501,9 +501,9 @@ extension["金庸群侠传"]={
     intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>更新：修复ai，新增武将张三丰，目前武将共4名 <li>更新日期：2019-03-22",
     size:"2.8MB",
     netdisk:"",
-    version:1.2,
+    version:1.3,
     files:[
-        "extension.js","sdxl_yangguo.jpg","tlbb_duanyanqing.jpg","sdxl_xiaolongniv.jpg",
+        "extension.js","sdxl_yangguo.jpg","tlbb_duanyanqing.jpg","sdxl_xiaolongniv.jpg","yttl_zhangsanfeng.jpg",
     ]
 }; 
 

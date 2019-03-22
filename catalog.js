@@ -504,7 +504,7 @@ extension["金庸群侠传"]={
     version:1.4,
     files:[
         "extension.js","sdxl_yangguo.jpg","tlbb_duanyanqing.jpg","sdxl_xiaolongniv.jpg","yttl_zhangsanfeng.jpg",
-	    "sdxl_anhun1.mp3","sdxl_anhun2.mp3",
+	    "sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_simou1.mp3",
     ]
 }; 
 

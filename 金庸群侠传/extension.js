@@ -699,9 +699,9 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
     },
-    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>友情配音：觅阳",
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.4",
+    version:"1.5",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

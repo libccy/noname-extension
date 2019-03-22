@@ -1,18 +1,20 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",content:function (config,pack){
     
 },precontent:function (){
     
 },help:{},config:{},package:{
     character:{
         character:{
-            "sdxl_yangguo":["male","wei",3,["sdxl_anhun","sdxl_simou","sdxl_yingxia"],["des:杨过，《'神雕侠侣》男主角"]],
+            "sdxl_yangguo":["male","wei",3,["sdxl_anhun","sdxl_simou","sdxl_yingxia"],["zhu","des:杨过，《'神雕侠侣》男主角"]],
             "tlbb_duanyanqing":["male","qun",4,["tlbb_qiangcan","tlbb_liuwang","tlbb_rangquan"],["des:《天龙八部》里的重要角色，段誉的亲生父亲"]],
-            "sdxl_xiaolongniv":["female","wei",3,["sdxl_luowang","sdxl_hebi","sdxl_muzong"],["des:《神雕侠侣》女主角"]],
+            "sdxl_xiaolongniv":["female","wei",3,["sdxl_luowang","sdxl_hebi","sdxl_muzong"],["zhu","des:《神雕侠侣》女主角"]],
+            "yttl_zhangsanfeng":["male","shu",3,["yttl_taiji","yttl_chunyan","yttl_taoli"],["zhu","des:《倚天屠龙记》中的角色"]],
         },
         translate:{
             "sdxl_yangguo":"杨过",
             "tlbb_duanyanqing":"段延庆",
             "sdxl_xiaolongniv":"小龙女",
+            "yttl_zhangsanfeng":"张三丰",
         },
     },
     card:{
@@ -24,6 +26,158 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
     },
     skill:{
         skill:{
+            "sdyx_xianglong":{
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"shaBegin",
+                },
+                priority:15,
+                filter:function (event, player,target){
+        return player.isAlive();
+    },
+                filterTarget:function (card,player,target){ 
+               return target==trigger.target;
+    },
+                content:function (){
+        "step 0" 
+        player.addTempSkill('YSSG_jizui2','shaAfter');
+        "step 1"
+        player.logSkill('YSSG_jizui');                                                          
+        trigger.target.damage();   
+    },
+                ai:{
+                    order:2,
+                    result:{
+                        player:function (player)  {     
+                return 1;
+            },
+                    },
+                },
+            },
+            "yttl_taiji":{
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"loseEnd",
+                },
+                frequent:true,
+                filter:function (event,player){        
+      return player.countCards('h')<=0;
+    },
+                content:function (){
+       player.useCard({name:'wuzhong'},player);
+    },
+      ai:{
+                    order:2,
+                    result:{
+                        player:function (player)  {     
+                return 1;
+            },
+                    },
+                },
+            },
+            "yttl_chunyan":{
+                audio:"ext:金庸群侠传:2",
+                enable:["chooseToUse","chooseToRespond"],                
+                filter:function (event,player){
+        return player.countCards('h')>1;
+    },
+                filterCard:function (card){ 
+return true; 
+},
+                position:"h",
+                complexCard:true,
+                popname:true,
+                selectCard:2,
+                viewAs:{
+                    name:"sha",
+                },
+                ai:{
+                    basic:{
+                        useful:[5,1],
+                        value:[5,1],
+                    },
+                    order:function (){
+            if(_status.event.player.hasSkillTag('presha',true,null,true)) return 10;
+            return 3;
+        },
+                    result:{
+                        target:function (player,target){
+                if(player.hasSkill('jiu')&&!target.getEquip('baiyin')){
+                    if(get.attitude(player,target)>0){
+                        return -6;
+                    }
+                    else{
+                        return -3;
+                    }
+                }
+                return -1.5;
+            },
+                    },
+                    tag:{
+                        respond:1,
+                        respondShan:1,
+                        damage:function (card){
+                if(card.nature=='poison') return;
+                return 1;
+            },
+                        natureDamage:function (card){
+                if(card.nature) return 1;
+            },
+                        fireDamage:function (card,nature){
+                if(card.nature=='fire') return 1;
+            },
+                        thunderDamage:function (card,nature){
+                if(card.nature=='thunder') return 1;
+            },
+                        poisonDamage:function (card,nature){
+                if(card.nature=='poison') return 1;
+            },
+                    },
+                },
+            },
+            "yttl_taoli":{
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    global:"loseEnd",
+                },     
+                zhuSkill:true,          
+                direct:true,
+                filter:function (event,player){
+                     if(event.player.countCards('h')>0) return false;
+                     if(event.player.group!='shu') return false;               
+                     if(event.player==player) return false;
+                     if(!player.hasZhuSkill('yttl_taoli')) return false;
+                 return true;        
+           },
+           check:function (event,player){
+           return get.attitude(player,event.player)>0;
+      },  
+                content:function (){        
+             'step 0' 
+        player.chooseCard('是否交给'+get.translation(trigger.player)+'一张手牌？',1).ai=function(card){ 
+            return 10-ai.get.value(card);            
+        } 
+        'step 1' 
+        if(result.bool){ 
+            player.logSkill('yttl_taoli',trigger.player); 
+            trigger.player.gain(result.cards); 
+            player.$give(result.cards.length,trigger.player); 
+            game.delay(); 
+            event.finish(); 
+        } 
+        else{ 
+            event.finish(); 
+        } 
+    },
+                ai:{
+                    result:{
+                        target:-0.5,
+                    },
+                    basic:{
+                        order:9,
+                    },
+                },
+            },
             "sdxl_luowang":{
                 audio:"ext:金庸群侠传:2",
                 trigger:{
@@ -142,7 +296,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                 content:function (){
                 "step 0"               
                 player.chooseBool('是否发动【伺谋】？').set('ai',function(){                                
-                    if(player.isTurnedOver()) return true;    
+                    if(player.isDamaged()) return true;    
                     });
         "step 1"
         if(result.bool){
@@ -343,8 +497,8 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                 content:function (){
         "step 0"
         player.chooseControl('失去体力','弃两张牌',function(event,player){
-            if(player.hp==player.maxHp) return '失去体力';
-            if(player.hp<player.maxHp-1||player.hp<=2) return '弃两张牌';
+            if(player.hp==player.maxHp||player.countCards('h')<3) return '失去体力';
+            if(player.hp<player.maxHp-2||player.hp<=1) return '弃两张牌';
             return '失去体力';
         });
         "step 1"
@@ -418,11 +572,13 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     },
                 content:function (){
         'step 0'
+         if(trigger.player.group=='wei'){
         trigger.player.chooseBool('是否横置或重置武将牌？').set('ai',function(){                                
                     if(get.attitude(trigger.player,player)>0&&!trigger.player.isLinked()) return true;    
                     if(get.attitude(trigger.player,player)<=0&&!trigger.player.isLinked()) return false;                    
                     return true;
                     }); 
+                    }
         'step 1'
         if(result.bool){
            if(trigger.player.isLinked()){
@@ -501,6 +657,14 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "sdxl_hebi_info":"每名角色的回合限一次，当一名角色将武将牌翻至背面朝上时，你可令另一名未翻面的其他角色将武将牌翻面",
             "sdxl_muzong":"墓宗",
             "sdxl_muzong_info":"主公技，其他魏势力角色的回合结束时，其可以选择横置或重置其武将牌",
+            "sdyx_xianglong":"降龙",
+            "sdyx_xianglong_info":"当你使用【杀】指定目标后，你可以对目标角色造成1点伤害。若如此做，若此【杀】造成伤害，你须失去一点体力",
+            "yttl_taiji":"太极",
+            "yttl_taiji_info":"每当你失去最后一张手牌时，你可以使用一张【无中生有】",
+            "yttl_chunyan":"纯阳",
+            "yttl_chunyan_info":"每回合限一次，你可以将两张手牌当【杀】使用或打出",
+            "yttl_taoli":"桃李",
+            "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
     },
     intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen",
@@ -508,4 +672,4 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     diskURL:"",
     forumURL:"",
     version:"1.1",
-},files:{"character":["sdxl_xiaolongniv.jpg"],"card":[],"skill":[]}}})
+},files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

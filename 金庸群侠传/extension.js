@@ -83,6 +83,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                          return player.countCards('h')>1;
                 },
                // usable:1,
+               group:"yttl_chunyan2",
                 filterCard:function (card){ 
                         return true; 
                 },
@@ -137,6 +138,34 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                     },
                 },
             },
+            
+            			"yttl_chunyan2":{								
+				trigger:{player:'chooseToRespondBegin'},
+				filter:function(event,player){							                
+					if(!event.filterCard({name:'sha'})) return false;
+					return true;
+				},								
+				 direct:true,		   
+				content:function(){
+					"step 0"						
+					player.chooseCard(get.prompt('yttl_chunyan'),2,'h',function(card){				
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						game.playXu(['yttl_chunyan1','yttl_chunyan2'].randomGet());
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'sha'}}	
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);
+						player.logSkill('yttl_chunyan');							
+					}
+					else{
+						event.finish();
+					}									
+				},				
+			},
             "yttl_taoli":{
                 audio:"ext:金庸群侠传:2",
                 trigger:{
@@ -145,6 +174,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                 zhuSkill:true,          
                 direct:true,
                 filter:function (event,player){
+                     if(player.countCards('h')<=0) return false;
                      if(event.player.countCards('h')>0) return false;
                      if(event.player.group!='shu') return false;               
                      if(event.player==player) return false;
@@ -673,5 +703,5 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.3",
+    version:"1.4",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

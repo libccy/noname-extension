@@ -671,5 +671,5 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

@@ -77,7 +77,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             },
             "yttl_chunyan":{
                 audio:"ext:金庸群侠传:2",
-                enable:["chooseToUse","chooseToRespond"],                
+                enable:["chooseToUse","chooseToRespond"],   
+                usable:1,
                 filter:function (event,player){
         return player.countCards('h')>1;
     },

@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",editable:false,content:function (config,pack){
     
 },precontent:function (){
     
@@ -77,14 +77,15 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             },
             "yttl_chunyan":{
                 audio:"ext:金庸群侠传:2",
-                enable:["chooseToUse","chooseToRespond"],   
-                usable:1,
-                filter:function (event,player){
-        return player.countCards('h')>1;
-    },
+                enable:["chooseToUse","chooseToRespond"],                
+                filter:function (event,player){          
+                         if(player.getStat().skill.yttl_chunyan>player.hp) return false;        
+                         return player.countCards('h')>1;
+                },
+               // usable:1,
                 filterCard:function (card){ 
-return true; 
-},
+                        return true; 
+                },
                 position:"h",
                 complexCard:true,
                 popname:true,
@@ -663,7 +664,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "yttl_taiji":"太极",
             "yttl_taiji_info":"每当你失去最后一张手牌时，你可以使用一张【无中生有】",
             "yttl_chunyan":"纯阳",
-            "yttl_chunyan_info":"每回合限一次，你可以将两张手牌当【杀】使用或打出",
+            "yttl_chunyan_info":"每回合限X次，你可以将两张手牌当【杀】使用或打出（X为你的体力值）",
             "yttl_taoli":"桃李",
             "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
@@ -672,5 +673,5 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.2",
+    version:"1.3",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

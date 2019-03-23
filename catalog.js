@@ -505,7 +505,7 @@ extension["金庸群侠传"]={
     files:[
         "extension.js","sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_simou1.mp3","sdxl_simou2.mp3",
 		"sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdxl_yingxia1.mp3","sdxl_yingxia2.mp3",
-		"tlbb_duanyanqing.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiancan1.mp3",
+		"tlbb_duanyanqing.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
 		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","yttl_chunyan1.mp3",
 		"yttl_chunyan2.mp3","yttl_taiji1.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_tiji2.mp3",
 		"yttl_zhangsanfeng.jpg"

@@ -1,5 +1,14 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",editable:false,content:function (config,pack){
-    
+    		game.playJY = function(fn, dir, sex) {
+			if (lib.config.background_speak) {
+				if (dir && sex)
+					game.playAudio(dir, sex, fn);
+				else if (dir)
+					game.playAudio(dir, fn);
+				else
+					game.playAudio('..', 'extension', '金庸群侠传', fn);
+			}
+		};
 },precontent:function (){
     
 },help:{},config:{},package:{
@@ -137,8 +146,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             },
                     },
                 },
-            },
-            
+            },            
             			"yttl_chunyan2":{								
 				trigger:{player:'chooseToRespondBegin'},
 				filter:function(event,player){							                
@@ -153,7 +161,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
 					});
 					"step 1"
 					if(result.bool){
-						game.playXu(['yttl_chunyan1','yttl_chunyan2'].randomGet());
+						game.playJY(['yttl_chunyan1','yttl_chunyan2'].randomGet());
 						trigger.untrigger();
 						trigger.responded=true;
 						trigger.result={bool:true,card:{name:'sha'}}	
@@ -440,7 +448,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                 },
             },
             "tlbb_qiangcan2":{
-                audio:"ext:金庸群侠传:2",
+             //   audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"dieBegin",
                 },
@@ -448,7 +456,8 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                return event.player.hasSkill('tlbb_chusi');
     },
                 frequent:true,
-                content:function (){                            
+                content:function (){            
+           	game.playJY(['tlbb_qiangcan1','tlbb_qiangcan2'].randomGet());					                   
             player.addSkill('tlbb_chusi');
             player.markSkill('tlbb_chusi2');
             player.update();                                                           
@@ -458,7 +467,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                 },
             },
             "tlbb_chusi":{
-                audio:"ext:金庸群侠传:2",
+             //   audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"damage",
                 },
@@ -478,6 +487,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
         "step 1"
         if(result.bool){
             //  trigger.source.chooseToDiscard('he',true); 
+               	game.playJY(['tlbb_qiangcan1','tlbb_qiangcan2'].randomGet());					                             
               player.removeSkill('tlbb_chusi');
               player.unmarkSkill('tlbb_chusi2');
               trigger.source.addSkill('tlbb_chusi');
@@ -492,7 +502,8 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                 },
             },
             "tlbb_chusi2":{
-                audio:"ext:金庸群侠传:2",
+              //  audio:"ext:金庸群侠传:2",
+              audio:["xinyongsi",2],
                 trigger:{
                     player:"phaseDrawBegin",
                 },
@@ -703,5 +714,5 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.5",
+    version:"1.6",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

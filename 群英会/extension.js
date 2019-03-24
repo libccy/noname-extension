@@ -94,8 +94,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 		};
 		
 // ---------------------------------------定义装备区------------------------------------------//
-	 	
-		
+	 	 		
 		lib.element.content.gain=function(){
 					"step 0"
 					if(cards){
@@ -639,7 +638,8 @@ huanhun.insertPhase();
   	   	lib.translate.xwj_jisha="击杀";
 	  			lib.translate._xwj_jisha="击杀";
 						lib.translate._xxmiaoshouhuichun='妙手回春';
-						lib.translate._xxyishugaochao='医术高超';			
+						lib.translate._xxyishugaochao='医术高超';
+			
 											}
 	//lib.extensionMenu['extension_'+'群英会'].edit={name:'编辑此扩展',clear:true,};
     lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};
@@ -1121,7 +1121,7 @@ this.node.name2.innerHTML=get.translation(card[0])+dianshu+' '+name;
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
  "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
 "xwj_xsanguo_simahui":["male","qun",4,["xwj_xsanguo_shouye","xwj_xsanguo_jiehuo"],[]], 
-"xwj_xsanguo_shenzhaoyun":["male","shu",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],[]],
+ "xwj_xsanguo_shenzhaoyun":["male","shu",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],[]],
               
         },
 characterIntro:{
@@ -1343,12 +1343,33 @@ skill:{
 					if(!event.filterCard({name:'shan'})) return false;
 					if(player.countCards('he',{suit:'club'})<=0) return false;
 					return true;
-				},							
-				priority:8,	
+				},											
 				 direct:true,		   
 				content:function(){
 					"step 0"						
-					 player.chooseControl('单花','双花','cancel2',function(){
+					      var controls=[];                             
+           if (player.countCards('he',{suit:'club'})>=1) controls.push('单花');        
+           if (player.countCards('he',{suit:'club'})>=2)  controls.push('双花'); 
+          controls.push('cancel2');                
+  var str='请选择一张还是两张草花牌当【闪】使用或打出';            
+  player.chooseControl(controls,ui.create.dialog(str,'hidden')).ai=function(){
+                return Math.floor(Math.random()*controls.length);
+            };                      
+              "step 1"
+              if(result.control){
+    if (result.control=='单花') {
+    event.goto(2);
+    }
+    if (result.control=='双花') {
+    event.goto(4);
+    } 
+    return 'cancel2';
+}                                                   
+else {       
+ event.finish(); 
+}                     
+				/*	旧写法：有瑕疵：
+				 player.chooseControl('单花','双花','cancel2',function(){
             var player=_status.event.player;            
             if(player.countCards('he',{suit:'club'})<=1){
                 return '单花';
@@ -1365,7 +1386,7 @@ skill:{
         else if(result.control=='双花'){
            event.goto(4);
         }
-        
+        */
           "step 2"
     		player.chooseCard(get.prompt('xwj_xsanguo_longhun5'),1,'he',function(card){				
 						return get.suit(card)=='club';
@@ -4086,7 +4107,7 @@ event.target.draw(event.num1);
 },
 
 translate:{
-	"xwj_xsanguo_shenzhaoyun":"神赵云",
+	 	"xwj_xsanguo_shenzhaoyun":"神赵云",
 		"xwj_xsanguo_longhun1":"龙魂",
             "xwj_xsanguo_longhun1_info":"",
             "xwj_xsanguo_longhun2":"龙魂•火杀",
@@ -4209,7 +4230,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xsanguo');
 		if(!lib.config.characters.contains('xsanguo')) lib.config.characters.remove('xsanguo');
-		lib.translate['xsanguo_character_config']='<span class=browntext>三国杀</span>';
+		lib.translate['xsanguo_character_config']='<span class=browntext>三国新将</span>';
 game.import('character',function(){
 			var xhuoying={
 				name:'xhuoying',
@@ -12370,7 +12391,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xhuoying');
 		if(!lib.config.characters.contains('xhuoying')) lib.config.characters.remove('xhuoying');
-		lib.translate['xhuoying_character_config']='<font color=#f00>火影杀</font>';
+		lib.translate['xhuoying_character_config']='<font color=#f00>火影忍者</font>';
 		game.import('character',function(){
 			var xqinshi={
 				name:'xqinshi',
@@ -12729,7 +12750,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xqinshi');
 		if(!lib.config.characters.contains('xqinshi')) lib.config.characters.remove('xqinshi');
-		lib.translate['xqinshi_character_config']='<span class=greentext>秦时杀</span>';
+		lib.translate['xqinshi_character_config']='<span class=greentext>秦时明月</span>';
 	game.import('character',function(){
 			var xwugeng={
 				name:'xwugeng',
@@ -14348,7 +14369,7 @@ else {
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
             "xwj_xu_tiandun":"天遁",
-            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影杀包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
+            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影忍者包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
             "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害时，你可摸X张牌（X为游戏轮数的一半进位取整）",
@@ -15210,5 +15231,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.45",
+    version:"1.46",
 },files:{"character":[],"card":[],"skill":[]}}})

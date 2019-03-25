@@ -36,7 +36,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"耀�
             "YSSG_fazheng":["male","shu",3,["YSSG_xuanhuo","YSSG_yirong"],[]],
             "YSSG_machao":["male","shu",4,["YSSG_xiaoxi","YSSG_chiqu"],[]],
             "YSSG_huangzhong":["male","shu",4,["YSSG_shengong"],[]],
-            //"YSSG_liushan":["male","shu",3,["YSSG_xiangle","YSSG_wenquan"],[]],
+            "YSSG_liushan":["male","shu",3,["YSSG_xiangle","YSSG_wenquan"],[]],
             "YSSG_zhangfei":["male","shu",4,["YSSG_duanke"],[]],
         },
         translate:{
@@ -1626,7 +1626,7 @@ if(result.bool){
                     player:"useCardToBegin",
                 },
                 direct:true,
-                alter:true,
+                
                 filter:function (event){
         return (get.type(event.card,'trick')=='trick'&&event.cards[0]&&event.cards[0]==event.card);
     },
@@ -2054,8 +2054,7 @@ if(result.bool){
                 trigger:{
                     player:["respond","useCard"],
                 },
-                direct:true,
-                alter:true,
+                direct:true,                
                 filter:function (event){
 return get.type(event.card)=='basic'&&event.card;
     },
@@ -2652,5 +2651,5 @@ if(result.bool){
     author:"<li>技能设计：丫奶",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":["YSSG_zhangfei.jpg"],"card":[],"skill":[]}}})

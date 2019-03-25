@@ -19,7 +19,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             "sdxl_xiaolongniv":["female","wei",3,["sdxl_luowang","sdxl_hebi","sdxl_muzong"],["zhu","des:《神雕侠侣》女主角"]],
             "yttl_zhangsanfeng":["male","shu",3,["yttl_taiji","yttl_chunyan","yttl_taoli"],["zhu","des:《倚天屠龙记》中的角色"]],
              "sdxl_jinlunfawang":["male","shu",4,["sdxl_mizong","sdxl_longxiang"],[]],    
-             "sdyx_huangyaoshi":["male","wei",3,["sdyx_cibei","sdyx_qushang"],[]],
+             "sdyx_huangyaoshi":["male","wei",3,["sdyx_cihuai","sdyx_qushang"],[]],
             "sdyx_guojing":["male","shu",4,["sdyx_jianchi","sdyx_yuzhong"],[]],
         },
         characterTitle:{
@@ -52,7 +52,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
     },
     skill:{
         skill:{
-                "sdyx_cibei":{
+                "sdyx_cihuai":{
                 trigger:{
                     player:"phaseBegin",
                 },
@@ -100,7 +100,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                 frequent:true,
                 direct:true,
                 filter:function (event,player){
-        return (event.num>0)&&player.countCards('h');
+        return player.countCards('he')>0;
     },
                 content:function (){
         "step 0"
@@ -683,7 +683,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                                 player.chooseTarget('请选择【黯魂】的目标',function(card,player,target){
                                     return player.canUse({name:'sha'},target,false)&&target!=player;
                                 }).set('ai',function(target){
-                            return get.damageEffect(target,player,player);
+                            return  -get.attitude(player,target);     
                                 });
                             }
                             else{
@@ -729,6 +729,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                             }
         "step 2"
     if(result.bool){
+    player.logSkill('sdxl_simou');
        player.recover();
        result.targets[0].recover();
        result.targets[0].addTempSkill('sdxl_simou2',{player:'phaseEnd'});    
@@ -1052,8 +1053,8 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             },
         },
         translate:{
-            "sdyx_cibei":"慈悲",
-            "sdyx_cibei_info":"回合开始时,若你有手牌并且只有一种花色，你可以展示你的手牌，然后亮出牌堆顶的牌，直到出现与你花色相同的牌为止，你获得这些牌。",
+            "sdyx_cihuai":"慈怀",
+            "sdyx_cihuai_info":"回合开始时,若你有手牌并且只有一种花色，你可以展示你的手牌，然后亮出牌堆顶的牌，直到出现与你花色相同的牌为止，你获得这些牌。",
             "sdyx_qushang":"曲殇",
             "sdyx_qushang_info":"每当你受到伤害后，你可以弃置任意花色不同的牌并选择一名其他角色，令其弃置与此法弃置花色和数量相同的牌并回复一体力，否则其翻面并获得你弃置的牌。",
             "sdyx_jianchi":"箭驰",
@@ -1106,9 +1107,9 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
     },
-    intro:"<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen <br>落影丶逝尘（太上大牛） <li>友情配音：觅阳 <br>草莓味少女cv",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen <br>落影丶逝尘（太上大牛） <li>友情配音：<br>觅阳 <br>草莓味少女cv",
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.7",
+    version:"1.8",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

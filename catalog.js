@@ -498,18 +498,22 @@ extension["鲍三娘"]={
 
 extension["金庸群侠传"]={
     author:"Sukincen",
-    intro:"<li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：Sukincen <br>落影丶逝尘 <br>冷雨<li>友情配音：觅阳&&草莓味少女cv <li>更新：修复BUG，新增黄药师、郭靖、金轮法王，目前武将共7名 <li>更新日期：2019-03-25",
-    size:"7.5MB",
+    intro:"<li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：Sukincen <br>落影丶逝尘 <br>冷雨<li>友情配音：觅阳&&草莓味少女cv <li>更新：修复BUG，新增阿朱，目前武将共7名 <li>更新日期：2019-03-25",
+    size:"8.5MB",
     netdisk:"",
-    version:1.7,
+    version:1.8,
     files:[
-        "extension.js","sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_hebi1.mp3","sdxl_hebi2.mp3",
-		"sdxl_luowang1.mp3","sdxl_luowang2.mp3","sdxl_muzong1.mp3","sdxl_muzong2.mp3","sdxl_simou1.mp3",
-		"sdxl_simou2.mp3","sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdxl_yingxia1.mp3",
-		"sdxl_yingxia2.mp3","tlbb_duanyanqing.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
-		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","yttl_chunyan1.mp3",
-		"yttl_chunyan2.mp3","yttl_taiji1.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_tiji2.mp3",
-		"yttl_zhangsanfeng.jpg","sdxl_jinlunfawang.jpg","sdyx_huangyaoshi.jpg","sdyx_guojing.jpg",
+       "sdyx_guojing.jpg","sdxl_jinlunfawang.jpg","tlbb_duanyanqing.jpg","extension.js",
+		"sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_hebi1.mp3","sdxl_hebi2.mp3","sdxl_longxiang1.mp3",
+		"sdxl_longxiang2.mp3","sdxl_luowang1.mp3","sdxl_luowang2.mp3","sdxl_mizong1.mp3",
+		"sdxl_mizong2.mp3","sdxl_muzong1.mp3","sdxl_muzong2.mp3","sdxl_simou1.mp3","sdxl_simou2.mp3",
+		"sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdxl_yingxia1.mp3","sdxl_yingxia2.mp3",
+		"sdyx_cihuai1.mp3","sdyx_cihuai2.mp3","sdyx_huangyaoshi.jpg","sdyx_jianchi1.mp3",
+		"sdyx_jianchi2.mp3","sdyx_qushang1.mp3","sdyx_qushang2.mp3","sdyx_yuzhong1.mp3",
+		"sdyx_yuzhong2.mp3","tlbb_azhu.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
+		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","tlbb_xiaoti1.mp3",
+		"tlbb_xiaoti2.mp3","tlbb_yirong11.mp3","tlbb_yirong12.mp3","yttl_chunyan1.mp3","yttl_chunyan2.mp3",
+		"yttl_taiji1.mp3","yttl_taiji2.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_zhangsanfeng.jpg"
     ]
 }; 
 

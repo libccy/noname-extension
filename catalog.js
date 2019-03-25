@@ -515,10 +515,10 @@ extension["金庸群侠传"]={
 
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",
-    intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。年底忙碌，天气寒冷，故目前只写了魏国和部分蜀国共32个将，持续缓更中。。。",
+    intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。修复技能不显示的BUG。另外，作者已脱坑，期待有大佬来接手",
     size:"9.5MB",
     netdisk:"",
-    version:1.1,
+    version:1.2,
     files:[
        "YSSG_xiahoudun.jpg","YSSG_caoren.jpg","YSSG_guojia.jpg","YSSG_xiahouyuan.jpg","YSSG_zhangfei.jpg",
 		"YSSG_zhanghe.jpg","YSSG_xuhuang.jpg","YSSG_yuejin.jpg","YSSG_yujin.jpg","YSSG_jiaxu.jpg",

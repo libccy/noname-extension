@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",content:function (config,pack){
     		game.playJY = function(fn, dir, sex) {
 			if (lib.config.background_speak) {
 				if (dir && sex)
@@ -18,8 +18,25 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             "tlbb_duanyanqing":["male","qun",4,["tlbb_qiangcan","tlbb_liuwang","tlbb_rangquan"],["des:《天龙八部》里的重要角色，段誉的亲生父亲"]],
             "sdxl_xiaolongniv":["female","wei",3,["sdxl_luowang","sdxl_hebi","sdxl_muzong"],["zhu","des:《神雕侠侣》女主角"]],
             "yttl_zhangsanfeng":["male","shu",3,["yttl_taiji","yttl_chunyan","yttl_taoli"],["zhu","des:《倚天屠龙记》中的角色"]],
+             "sdxl_jinlunfawang":["male","shu",4,["sdxl_mizong","sdxl_longxiang"],[]],    
+             "sdyx_huangyaoshi":["male","wei",3,["sdyx_cibei","sdyx_qushang"],[]],
+            "sdyx_guojing":["male","shu",4,["sdyx_jianchi","sdyx_yuzhong"],[]],
         },
+        characterTitle:{
+					"sdxl_jinlunfawang":"落影丶逝尘",
+						"sdyx_huangyaoshi":"落影丶逝尘",
+							"sdyx_guojing":"落影丶逝尘",
+		"sdxl_yangguo":"Sukincen",
+		"tlbb_duanyanqing":"Sukincen",
+		"sdxl_xiaolongniv":"Sukincen",
+		"yttl_zhangsanfeng":"Sukincen",
+		
+		
+									},
         translate:{
+           "sdyx_huangyaoshi":"黄药师",
+            "sdyx_guojing":"郭靖",
+          "sdxl_jinlunfawang":"金轮法王",
             "sdxl_yangguo":"杨过",
             "tlbb_duanyanqing":"段延庆",
             "sdxl_xiaolongniv":"小龙女",
@@ -35,6 +52,365 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
     },
     skill:{
         skill:{
+                "sdyx_cibei":{
+                trigger:{
+                    player:"phaseBegin",
+                },
+                frequent:true,
+                filter:function (event,player){
+        if(!player.countCards('h')) return false;
+        var cards=player.getCards('h');
+        for(var i=1;i<cards.length;i++){
+            if(get.suit(cards[i])!=get.suit(cards[0])) return false;
+        }
+        return true;
+    },
+                content:function (){
+        "step 0"
+        event.gain=[];
+       player.showHandcards();
+        var hs=player.getCards('h');
+       event.suit=get.suit(hs[0]);
+        "step 1"
+        event.gained=[];
+        "step 2"
+        event.cards=get.cards()[0];
+        player.showCards(event.cards);
+        event.gained.push(event.cards);
+        "step 3"
+       if(event.suit!=get.suit(event.cards)){
+           event.goto(2);
+           }
+        else{
+            player.gain(event.gained,'gain2');
+        }
+    },
+                ai:{
+                    order:9,
+                    result:{
+                        player:2,
+                    },
+                    threaten:1.2,
+                },
+            },
+            "sdyx_qushang":{
+                trigger:{
+                    player:"damageEnd",
+                },
+                frequent:true,
+                direct:true,
+                filter:function (event,player){
+        return (event.num>0)&&player.countCards('h');
+    },
+                content:function (){
+        "step 0"
+        player.chooseCardTarget({
+            filterCard:function (card){
+            var suit=get.suit(card);
+                for(var i=0;i<ui.selected.cards.length;i++){
+                    if(get.suit(ui.selected.cards[i])==suit) return false;
+                }
+                return true;
+            },
+            selectCard:[1,4],
+            filterTarget:function(card,player,target){
+                return player!=target;
+            },
+            ai1:function(card){
+                return 10-get.value(card);
+            },
+            ai2:function(target){
+                var att=get.attitude(_status.event.player,target);
+                if(att>2){
+                    if(target.isTurnedOver()) return 1;
+                    return target.hp<target.maxHp&&ui.selected.cards.length==1&&target.countCards('h')>=3;
+                }
+                if(att<0){
+                    if(target.isTurnedOver()) return -1;
+                    return (1-att)&&ui.selected.cards.length==2&&target.countCards('h')<3&&target.hp==target.maxHp;
+                }
+                return -1;
+            },
+            prompt:'请选择一名其他角色'
+        });
+        "step 1"
+        if(result.bool){
+            player.logSkill('sdyx_qushang',result.targets[0]);
+            player.discard(result.cards);
+            event.cardsss=result.cards;
+            var ssuit=[];
+            for(var i=0;i<result.cards.length;i++){
+                var ssuits=get.suit(result.cards[i]);
+                if(!ssuit.contains(ssuits)){
+                    ssuit.push(ssuits);
+                }
+            }
+            event.target=result.targets[0];
+            var next=event.target.chooseToDiscard('he',result.cards.length,'是否弃置'+result.cards.length+'张牌回复一体力？,否则翻面并获得弃置的牌',function(card,player){
+                var suit=get.suit(card);
+                if(!ssuit.contains(suit)) return false;
+                for(var i=0;i<ui.selected.cards.length;i++){
+                    if(get.suit(ui.selected.cards[i])==suit||!ssuit.contains(suit)) return false;
+                }
+                return true;
+            });
+            next.ai=function(card){
+                if(event.target.isTurnedOver()) return -1;
+                if(result.cards.length<=2&&event.target.hp<event.target.maxHp) return 1;
+                if(result.cards.length>2) return -1;
+                return 9-get.value(card);
+            };
+        }
+        "step 2"
+        if(result.bool){
+            event.target.recover();
+        }
+        else{
+            event.target.turnOver();
+            event.target.$gain2(event.cardsss);
+            event.target.gain(event.cardsss);
+        }
+        
+    },
+                ai:{
+                    threaten:0.6,
+                },
+            },
+            "sdyx_jianchi":{
+                mod:{
+                    targetInRange:function (card,player,target,now){
+            if(card.name=='sha'&&_status.currentPhase==player) return true;
+        },
+                    selectTarget:function (card,player,range){
+            if(player.maxHp-player.hp>0&&_status.currentPhase==player){
+                if(card.name=='sha'&&range[1]!=-1) range[1]+=player.maxHp-player.hp;
+            }
+        },
+                },
+            },
+            "sdyx_yuzhong":{
+                group:["sdyx_yuzhong_use","sdyx_yuzhong_sha"],
+                subSkill:{
+                    use:{
+                        trigger:{
+                            player:["useCard","respond"],
+                        },
+                        forced:true,
+                        popup:false,
+                        filter:function (event,player){
+                if(event.skill!='sdyx_yuzhong_sha') return false;
+                return true;
+            },
+                        content:function (){
+                player.loseHp(1);
+                if(_status.currentPhase==player&&trigger.name=='useCard'){
+                    player.getStat().card.sha--;
+                    player.addTempSkill('sdyx_yuzhong_off','phaseEnd');
+                }
+            },
+                        sub:true,
+                    },
+                    sha:{
+                        enable:["chooseToRespond","chooseToUse"],
+                        viewAs:{
+                            name:"sha",
+                        },
+                        filterCard:function (){return false},
+                        viewAsFilter:function (player){
+                 if(player.hasSkill('sdyx_yuzhong_off')) return false;
+            },
+                        selectCard:-1,
+                        mark:false,
+                        prompt:"视为使用或打出一张杀",
+                        ai:{
+                            order:function (){
+                    var player=_status.event.player;
+                    if(_status.currentPhase==player&&player.hasSha()&&player.hp>=2){
+                        return get.order({name:'sha'})+0.1;
+                    }
+                    return get.order({name:'sha'})-0.5;
+                },
+                            skillTagFilter:function (player,tag,arg){
+                    if(player.hasSkill('sdyx_yuzhong_off')) return false;
+                },
+                            respondSha:true,
+                            basic:{
+                                useful:[5,1],
+                                value:[5,1],
+                            },
+                            result:{
+                                target:function (player,target){
+                        if(player.hasSkill('jiu')&&!target.getEquip('baiyin')){
+                            if(get.attitude(player,target)>0){
+                                return -6;
+                            }
+                            else{
+                                return -3;
+                            }
+                        }
+                        return -1.5;
+                    },
+                            },
+                            tag:{
+                                respond:1,
+                                respondShan:1,
+                                damage:function (card){
+                        if(card.nature=='poison') return;
+                        return 1;
+                    },
+                                natureDamage:function (card){
+                        if(card.nature) return 1;
+                    },
+                                fireDamage:function (card,nature){
+                        if(card.nature=='fire') return 1;
+                    },
+                                thunderDamage:function (card,nature){
+                        if(card.nature=='thunder') return 1;
+                    },
+                                poisonDamage:function (card,nature){
+                        if(card.nature=='poison') return 1;
+                    },
+                            },
+                        },
+                        sub:true,
+                    },
+                    off:{
+                        sub:true,
+                    },
+                },
+            },
+            "sdxl_mizong":{
+                mod:{
+                    selectTarget:function (card,player,range){
+            if(ui.selected.cards.length&&_status.event.skill=='sdxl_mizong'){
+                if(card.name=='juedou'&&range[1]!=-1) range[1]+=ui.selected.cards.length-1;
+            }
+        },
+                },
+                enable:"phaseUse",
+                usable:1,
+                filterCard:function (card){
+        var num=0;
+        for(var i=0;i<ui.selected.cards.length;i++){
+            num+=get.number(ui.selected.cards[i]);
+        }
+        return get.number(card)+num<=13;
+    },
+                complexCard:true,
+                selectCard:function (){
+        var num=0;
+        for(var i=0;i<ui.selected.cards.length;i++){
+            num+=get.number(ui.selected.cards[i]);
+        }
+        if(num==13) return ui.selected.cards.length;
+        return ui.selected.cards.length+2;
+    },
+                filter:function (event,player){
+        if(!player.countCards('h')) return false;
+        return true;
+    },
+                viewAs:{
+                    name:"juedou",
+                },
+                ai:{
+                    basic:{
+                        order:5,
+                        useful:1,
+                        value:5.5,
+                    },
+                    result:{
+                        target:-1.5,
+                        player:function (player,target){
+                if(get.damageEffect(target,player,target)>0&&get.attitude(player,target)>0&&get.attitude(target,player)>0){
+                    return 0;
+                }
+                var hs1=target.getCards('h','sha');
+                var hs2=player.getCards('h','sha');
+                if(hs1.length>hs2.length+1){
+                    return -2;
+                }
+                var hsx=target.getCards('h');
+                if(hsx.length>2&&hs2.length==0&&hsx[0].number<6){
+                    return -2;
+                }
+                if(hsx.length>3&&hs2.length==0){
+                    return -2;
+                }
+                if(hs1.length>hs2.length&&(!hs2.length||hs1[0].number>hs2[0].number)){
+                    return -2;
+                }
+                return -0.5;
+            },
+                    },
+                    tag:{
+                        respond:2,
+                        respondSha:2,
+                        damage:1,
+                    },
+                },
+            },
+            "sdxl_longxiang1":{
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"shaBegin",
+                },
+                forced:true,
+                filter:function (event,player){
+        return !event.directHit;
+    },
+                priority:-1,
+                content:function (){
+        if(typeof trigger.shanRequired=='number'){
+            trigger.shanRequired++;
+        }
+        else{
+            trigger.shanRequired=2;
+        }
+    },
+            },
+            "sdxl_longxiang2":{
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"juedou",
+                    target:"juedou",
+                },
+                forced:true,
+                filter:function (event,player){
+        return event.turn!=player;
+    },
+                priority:-1,
+                content:function (){
+        "step 0"
+        var next=trigger.turn.chooseToRespond({name:'sha'},'请打出一张杀响应决斗');
+        next.set('prompt2','（共需打出2张杀）');
+        next.autochoose=lib.filter.autoRespondSha;
+        next.set('ai',function(card){
+            var player=_status.event.player;
+            var trigger=_status.event.getTrigger();
+            if(get.attitude(trigger.turn,player)<0&&trigger.turn.countCards('h','sha')>1){
+                return get.unuseful2(card);
+            }
+            return -1;
+        });
+        "step 1"
+        if(result.bool==false){
+            trigger.directHit=true;
+        }
+    },
+                ai:{
+                    result:{
+                        target:function (card,player,target){
+                if(card.name=='juedou'&&target.countCards('h')>0) return [1,0,0,-1];
+            },
+                    },
+                },
+            },
+            "sdxl_longxiang":{
+                forced:true,
+                locked:true,
+                group:["sdxl_longxiang1","sdxl_longxiang2"],
+            },
+            
             "sdyx_xianglong":{
                 audio:"ext:金庸群侠传:2",
                 trigger:{
@@ -332,6 +708,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                 trigger:{
                     player:"phaseEnd",
                 },
+                priority:16,
                 direct:true,
                 content:function (){
                 "step 0"               
@@ -624,11 +1001,13 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
                     }
         'step 1'
         if(result.bool){
+        player.logSkill('sdxl_muzong',trigger.player);
            if(trigger.player.isLinked()){
             trigger.player.link(false);     
-            trigger.player.turnOver(false);   
+        //    trigger.player.turnOver(false);   
         }
         else{
+        player.logSkill('sdxl_muzong',trigger.player);
             trigger.player.link();                 
         }
        }
@@ -651,10 +1030,11 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
      player.chooseTarget('选择【合壁】的目标',lib.translate.sdxl_hebi_info,true,function(card,player,target){
              return target!=player&&!target.isTurnedOver();
      }).set('ai',function(target){     
-             return -attitude(_status.event.player,target);            
+             return -get.attitude(player,target);            
      });        
      "step 1"
      if(result.bool){
+             player.line(result.targets[0]);
              result.targets[0].turnOver();
      }
     else {       
@@ -672,6 +1052,22 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             },
         },
         translate:{
+            "sdyx_cibei":"慈悲",
+            "sdyx_cibei_info":"回合开始时,若你有手牌并且只有一种花色，你可以展示你的手牌，然后亮出牌堆顶的牌，直到出现与你花色相同的牌为止，你获得这些牌。",
+            "sdyx_qushang":"曲殇",
+            "sdyx_qushang_info":"每当你受到伤害后，你可以弃置任意花色不同的牌并选择一名其他角色，令其弃置与此法弃置花色和数量相同的牌并回复一体力，否则其翻面并获得你弃置的牌。",
+            "sdyx_jianchi":"箭驰",
+            "sdyx_jianchi_info":"出牌阶段，你使用的杀无距离限制并且可以额外指定X个目标(X为你已损失的体力值)",
+            "sdyx_yuzhong":"愚忠",
+            "sdyx_yuzhong_info":"当你需要使用打出杀时，你可以流失一体力，视为你使用或打出了此牌，你的回合内只能依此发使用一次杀，且不计入回合内的使用次数",        
+            "sdxl_mizong":"密宗",
+            "sdxl_mizong_info":"你可以将至多X张点数之和为13的牌当【决斗】对至多X名角色使用(X为你以此发选择的牌数)。",
+            "sdxl_longxiang1":"龙象",
+            "sdxl_longxiang1_info":"",
+            "sdxl_longxiang2":"龙象",
+            "sdxl_longxiang2_info":"",
+            "sdxl_longxiang":"龙象",
+            "sdxl_longxiang_info":"锁定技，你使用的【杀】或【决斗】需要两张【闪】或【杀】响应",     
             "sdxl_luowang":"罗网",
             "sdxl_luowang2":"罗网",
             "sdxl_anhun":"黯魂",
@@ -710,9 +1106,9 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
     },
-    intro:"<li>技能设计：大熊小猫 <li>编写代码：Sukincen <li>友情配音：觅阳",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen <br>落影丶逝尘（太上大牛） <li>友情配音：觅阳 <br>草莓味少女cv",
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.6",
+    version:"1.7",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

@@ -93,369 +93,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 			}
 		};
 		
-// ---------------------------------------定义装备区------------------------------------------//
-	 	 		
-		lib.element.content.gain=function(){
-					"step 0"
-					if(cards){
-						var owner=event.source||get.owner(cards[0]);
-						if(owner){
-							var lose=owner.lose(cards,ui.special);
-							lose.set('type','gain');
-							lose.type='gain';
-						}
-					}
-					else{
-						event.finish();
-					}
-					"step 1"
-					for(var i=0;i<cards.length;i++){
-						if(cards[i].destroyed){
-							if(player.hasSkill(cards[i].destroyed)){
-								delete cards[i].destroyed;
-							}
-							else{
-								cards.splice(i--,1);
-							}
-						}
-					}
-					if(cards.length==0){
-						event.finish();
-						return;
-					}
-					if(event.source&&event.delay!==false) game.delayx();
-					"step 2"
-					if(player.getStat().gain==undefined){
-						player.getStat().gain=cards.length;
-					}
-					else{
-						player.getStat().gain+=cards.length;
-					}
-					"step 3"
-					var sort;
-					var frag1=document.createDocumentFragment();
-					var frag2=document.createDocumentFragment();
-					var hs=player.getCards('h');
-					for(var i=0;i<cards.length;i++){
-						if(hs.contains(cards[i])){
-							cards.splice(i--,1);
-						}
-					}
-					for(var num=0;num<cards.length;num++){
-						sort=lib.config.sort_card(cards[num]);
-						if(lib.config.reverse_sort) sort=-sort;
-						cards[num].fix();
-						cards[num].style.transform='';
-						if(_status.discarded){
-							_status.discarded.remove(cards[num]);
-						}
-						// cards[num].vanishtag.length=0;
-						for(var num2=0;num2<cards[num].vanishtag.length;num2++){
-							if(cards[num].vanishtag[num2][0]!='_'){
-								cards[num].vanishtag.splice(num2--,1);
-							}
-						}
-						if(player==game.me){
-							cards[num].classList.add('drawinghidden');
-						}
-						if(get.is.singleHandcard()||sort>1) frag1.appendChild(cards[num]);
-						else frag2.appendChild(cards[num]);
-					}
-					var addv=function(){
-						if(player==game.me){
-							game.addVideo('gain12',player,[get.cardsInfo(frag1.childNodes),get.cardsInfo(frag2.childNodes)]);
-						}
-					};
-					var broadcast=function(){
-						game.broadcast(function(player,cards,num){
-							player.directgain(cards);
-							_status.cardPileNum=num;
-						},player,cards,ui.cardPile.childNodes.length);
-					};
-					if(event.animate=='draw'){
-						player.$draw(cards.length);
-						game.pause();
-						setTimeout(function(){
-							addv();
-							player.node.handcards1.insertBefore(frag1,player.node.handcards1.firstChild);
-							player.node.handcards2.insertBefore(frag2,player.node.handcards2.firstChild);
-							player.update();
-							if(player==game.me) ui.updatehl();
-							broadcast();
-							game.resume();
-						},get.delayx(500,500));
-					}
-					else if(event.animate=='gain'){
-						player.$gain(cards);
-						game.pause();
-						setTimeout(function(){
-							addv();
-							player.node.handcards1.insertBefore(frag1,player.node.handcards1.firstChild);
-							player.node.handcards2.insertBefore(frag2,player.node.handcards2.firstChild);
-							player.update();
-							if(player==game.me) ui.updatehl();
-							broadcast();
-							game.resume();
-						},get.delayx(700,700));
-					}
-					else if(event.animate=='gain2'||event.animate=='draw2'){
-						var gain2t=300;
-						if(player.$gain2(cards)&&player==game.me){
-							gain2t=500;
-						}
-						game.pause();
-						setTimeout(function(){
-							addv();
-							player.node.handcards1.insertBefore(frag1,player.node.handcards1.firstChild);
-							player.node.handcards2.insertBefore(frag2,player.node.handcards2.firstChild);
-							player.update();
-							if(player==game.me) ui.updatehl();
-							broadcast();
-							game.resume();
-						},get.delayx(gain2t,gain2t));
-					}
-					else if(event.source&&(event.animate=='give'||event.animate=='giveAuto')){
-						event.source['$'+event.animate](cards,player);
-						game.pause();
-						setTimeout(function(){
-							addv();
-							player.node.handcards1.insertBefore(frag1,player.node.handcards1.firstChild);
-							player.node.handcards2.insertBefore(frag2,player.node.handcards2.firstChild);
-							player.update();
-							if(player==game.me) ui.updatehl();
-							broadcast();
-							game.resume();
-						},get.delayx(500,500));
-					}
-					else{
-						addv();
-						player.node.handcards1.insertBefore(frag1,player.node.handcards1.firstChild);
-						player.node.handcards2.insertBefore(frag2,player.node.handcards2.firstChild);
-						player.update();
-						if(player==game.me) ui.updatehl();
-						broadcast();
-						event.finish();
-					}
-					if(event.log){
-						game.log(player,'获得了',cards);
-					}
-					"step 4"
-					game.delayx();
-				};
-		lib.element.player.$equip=function(card){
-			if(this.storage.lose_pos_equip!=undefined&&this.storage.lose_pos_equip.contains(get.subtype(card))){
-				this.gain(card,'gain2');
-				game.log(this,'装备失败');
-			}else{
-				game.broadcast(function(player,card){
-					player.$equip(card);
-				},this,card);
-				card.fix();
-				card.style.transform='';
-				card.classList.remove('drawinghidden');
-				delete card._transform;
-				var player=this;
-				var equipNum=get.equipNum(card);
-				var equipped=false;
-				for(var i=0;i<player.node.equips.childNodes.length;i++){
-					if(get.equipNum(player.node.equips.childNodes[i])>=equipNum){
-						player.node.equips.insertBefore(card,player.node.equips.childNodes[i]);
-						equipped=true;
-						break;
-					}
-				}
-				if(!equipped){
-					player.node.equips.appendChild(card);
-					if(_status.discarded){
-						_status.discarded.remove(card);
-					}
-				}
-				var info=get.info(card);
-				if(info.skills){
-					for(var i=0;i<info.skills.length;i++){
-						player.addSkillTrigger(info.skills[i]);
-					}
-				}
-				return player;
-			};
-		};
-		lib.element.player.lose_pos_equip=function(){
-			var next=game.createEvent('lose_pos_equip');
-			next.player=this;
-			for(var i=0;i<arguments.length;i++){
-				if(typeof arguments[i]=='string'){
-					next.skill=arguments[i];
-				};
-			};
-			var event=_status.event;
-			next.source=event.player;
-			next.setContent(lib.element.event.lose_pos_equip);
-			return next;
-		};
-		lib.element.event.lose_pos_equip=function(){
-			event.trigger('lose_pos_equip');
-			if(!player.storage.lose_pos_equip.contains(skill)){
-				player.storage.lose_pos_equip.push(skill);
-				player.markSkill('_support');
-				player.syncStorage('_support');
-				var str=skill.slice(skill.length-1,skill.length);
-				if(player.get('e',str)!=undefined) player.discard(player.get('e',str));
-			};
-			game.log(player,'废除了',get.translation(skill),'栏');
-			player.$lose_pos_equip(skill);
-		};
-		
-		lib.element.player.$lose_pos_equip=function(skill){
-				game.broadcast(function(player,skill){
-					player.$lose_pos_equip(skill);
-				},this,skill);
-				var card=game.createCard('feichu_'+skill,'','');
-				card.fix();
-				card.style.transform='';
-				card.classList.remove('drawinghidden');
-				card.classList.add('feichu');
-				delete card._transform;
-				var player=this;
-				var equipNum=get.equipNum(card);
-				var equipped=false;
-				for(var i=0;i<player.node.equips.childNodes.length;i++){
-					if(get.equipNum(player.node.equips.childNodes[i])>=equipNum){
-						player.node.equips.insertBefore(card,player.node.equips.childNodes[i]);
-						equipped=true;
-						break;
-					}
-				}
-				if(!equipped){
-					player.node.equips.appendChild(card);
-					if(_status.discarded){
-						_status.discarded.remove(card);
-					}
-				}
-				return player;
-		};
-						
-		lib.element.player.recover_pos_equip=function(){
-			var next=game.createEvent('recover_pos_equip');
-			next.player=this;
-			for(var i=0;i<arguments.length;i++){
-				if(typeof arguments[i]=='string'){
-					next.skill=arguments[i];
-				};
-			};
-			var event=_status.event;
-			next.source=event.player;
-			next.setContent(lib.element.event.recover_pos_equip);
-			return next;
-		};
-		lib.element.event.recover_pos_equip=function(){
-			event.trigger('recover_pos_equip');
-			if(player.storage.lose_pos_equip.contains(skill)){
-				player.storage.lose_pos_equip.remove(skill);
-				player.syncStorage('_support');
-				if(player.storage.lose_pos_equip.length==0) player.unmarkSkill('_support');
-			};
-			game.log(player,'恢复了',get.translation(skill),'栏');
-			player.$recover_pos_equip(skill);
-		};
-    
-    lib.element.player.$recover_pos_equip=function(skill){
-				game.broadcast(function(player,skill){
-					player.$recover_pos_equip(skill);
-				},this,skill);
-				var player=this;
-				for(var i=0;i<player.node.equips.childNodes.length;i++){
-					if(player.node.equips.childNodes[i].name=='feichu_'+skill){
-						player.node.equips.removeChild(player.node.equips.childNodes[i]);
-						equipped=true;
-						break;
-					}
-				}
-				return player;
-		};
-	 lib.element.player.getCards=function(arg1,arg2){
-					if(typeof arg1!='string'){
-						arg1='h';
-					}
-					var cards=[],cards1=[];
-					var i,j;
-					for(i=0;i<arg1.length;i++){
-						if(arg1[i]=='h'){
-							for(j=0;j<this.node.handcards1.childElementCount;j++){
-								if(!this.node.handcards1.childNodes[j].classList.contains('removing')){
-									cards.push(this.node.handcards1.childNodes[j]);
-								}
-							}
-							for(j=0;j<this.node.handcards2.childElementCount;j++){
-								if(!this.node.handcards2.childNodes[j].classList.contains('removing')){
-									cards.push(this.node.handcards2.childNodes[j]);
-								}
-							}
-						}
-						else if(arg1[i]=='e'){
-							for(j=0;j<this.node.equips.childElementCount;j++){
-								if(!this.node.equips.childNodes[j].classList.contains('removing')&&!this.node.equips.childNodes[j].classList.contains('feichu')){
-									cards.push(this.node.equips.childNodes[j]);
-								}
-							}
-						}
-						else if(arg1[i]=='j'){
-							for(j=0;j<this.node.judges.childElementCount;j++){
-								if(!this.node.judges.childNodes[j].classList.contains('removing')){
-									cards.push(this.node.judges.childNodes[j]);
-									if(this.node.judges.childNodes[j].viewAs&&arguments.length>1){
-										this.node.judges.childNodes[j].tempJudge=this.node.judges.childNodes[j].name;
-										this.node.judges.childNodes[j].name=this.node.judges.childNodes[j].viewAs;
-										cards1.push(this.node.judges.childNodes[j]);
-									}
-								}
-							}
-						}
-					}
-					if(arguments.length==1){
-						return cards;
-					}
-					if(arg2){
-						if(typeof arg2=='string'){
-							for(i=0;i<cards.length;i++){
-								if(cards[i].name!=arg2){
-									cards.splice(i,1);i--;
-								}
-							}
-						}
-						else if(typeof arg2=='object'){
-							for(i=0;i<cards.length;i++){
-								for(j in arg2){
-									var value;
-									if(j=='type'||j=='subtype'||j=='color'||j=='suit'||j=='number'){
-										value=get[j](cards[i]);
-									}
-									else{
-										value=cards[i][j];
-									}
-									if((typeof arg2[j]=='string'&&value!=arg2[j])||
-										(Array.isArray(arg2[j])&&!arg2[j].contains(value))){
-										cards.splice(i--,1);break;
-									}
-								}
-							}
-						}
-						else if(typeof arg2=='function'){
-							for(i=0;i<cards.length;i++){
-								if(!arg2(cards[i])){
-									cards.splice(i--,1);
-								}
-							}
-						}
-					}
-					for(i=0;i<cards1.length;i++){
-						if(cards1[i].tempJudge){
-							cards1[i].name=cards1[i].tempJudge;
-							delete cards1[i].tempJudge;
-						}
-					}
-					return cards;
-				};
-	
 
 		
 		if(config.wuxianyuedu){		
@@ -1121,7 +758,7 @@ this.node.name2.innerHTML=get.translation(card[0])+dianshu+' '+name;
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
  "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
 "xwj_xsanguo_simahui":["male","qun",4,["xwj_xsanguo_shouye","xwj_xsanguo_jiehuo"],[]], 
- "xwj_xsanguo_shenzhaoyun":["male","shu",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],[]],
+ "xwj_xsanguo_shenzhaoyun":["male","shen",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],[]],
               
         },
 characterIntro:{
@@ -1557,6 +1194,7 @@ else {
                 audio:"ext:群英会:1",
                 enable:"phaseUse",
                 selectTarget:[1,2],
+                prepare:"give",
                 init:function (player){
         player.storage.xwj_xsanguo_shouye=0;
     },
@@ -1569,30 +1207,37 @@ else {
                 filterCard:{
                     color:"red",
                 },
-                check:function (event,player){
+            /*    check:function (event,player){
         return ai.get.attitude(player,target)>0;
-    },
+    },*/
                 content:function (){ 
-        'step 0'
+       'step 0'
         num==2;   
-        'step 1'
+        'step 1' 
+         /* "step 0" 
+            event.targets=targets.slice(0);  
+        event.targets.sort(lib.sort.seat);     
+        "step 1" 
+        if(event.targets.length){           
+        var target=event.targets.shift();
+        */
             player.storage.xwj_xsanguo_shouye++;
         player.markSkill("xwj_xsanguo_shouye");
-        player.update();
-       num--;
+        player.update();       
        target.draw(); 
+       num--;
             if(num>0){
                 event.redo();           
         }                                   
     },
                 ai:{
-                    threaten:1.5,
+                    threaten:1,
                     result:{
                         target:function (player,target){
                 return get.recoverEffect(target,player);
             },
                     },
-                    order:10,
+                    order:4,
                     expose:0.4,
                 },
             },
@@ -6050,7 +5695,7 @@ audio:"ext:群英会:2",
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
-        return player!=target&&target.countCards('h')>0;
+        return player!=target&&target.countCards('h')>0 ;
     },
 	check:function (event,player){
         return get.attitude(player,event.player)<0;
@@ -6065,9 +5710,9 @@ audio:"ext:群英会:2",
             player.say(chat);        
         'step 1'
         if(result.bool){   
-         //   target.loseMaxHp();
-           // target.draw();            
-        	 	target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());                                                                 
+          target.loseMaxHp();
+            target.draw();            
+         	//target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());                                                                 
         }
         else{
             target.damage();      
@@ -14755,31 +14400,7 @@ image:"ext:群英会/xwj_xus_shoulijian.png",
                 allowMultiple:false,               
                 toself:true,
             },	
-            			  "feichu_equip1":{
-                type:"equip",
-                subtype:"equip1",
-                fullskin:true,
-            },
-            "feichu_equip2":{
-                type:"equip",
-                subtype:"equip2",
-                fullskin:true,
-            },
-            "feichu_equip3":{
-                type:"equip",
-                subtype:"equip3",
-                fullskin:true,
-            },
-            "feichu_equip4":{
-                type:"equip",
-                subtype:"equip4",
-                fullskin:true,
-            },
-            "feichu_equip5":{
-                type:"equip",
-                subtype:"equip5",
-                fullskin:true,
-            },
+            			  
             
                 },
 				
@@ -15104,21 +14725,7 @@ trigger:{
             "xwj_xus_xuelunyang_info":"回合开始阶段，你可以选择一名角色，然后获得其一项技能，直到回合结束",
             "xwj_xus_jiuwei":"九尾",
             "xwj_xus_jiuwei_info":"当场上有其他角色使用【酒】时，你可以弃掉【九尾】，阻止【酒】的结算并将其收为手牌",
-            "feichu_equip1":"已废除武器栏",
-            "feichu_equip1_info":"武器栏已废除",
-            "feichu_equip2":"已废除防具栏",
-            "feichu_equip2_info":"防具栏已废除",
-            "feichu_equip3":"已废除+1马栏",
-            "feichu_equip3_info":"防御坐骑栏已废除",
-            "feichu_equip4":"已废除-1马栏",
-            "feichu_equip4_info":"攻击坐骑栏已废除",
-            "feichu_equip5":"已废除宝物栏",
-            "feichu_equip5_info":"宝物栏已废除",
-            "feichu_equip1_bg":"废",
-            "feichu_equip2_bg":"废",
-            "feichu_equip3_bg":"废",
-            "feichu_equip4_bg":"废",
-            "feichu_equip5_bg":"废",
+            
 				},
 				list:[
 					["diamond","5","xwj_xus_houzi"],
@@ -15231,5 +14838,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.46",
+    version:"1.47",
 },files:{"character":[],"card":[],"skill":[]}}})

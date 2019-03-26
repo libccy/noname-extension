@@ -498,10 +498,10 @@ extension["鲍三娘"]={
 
 extension["金庸群侠传"]={
     author:"Sukincen",
-    intro:"<li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：Sukincen <br>落影丶逝尘 <br>冷雨<li>友情配音：觅阳&&草莓味少女cv <li>更新：修复BUG，新增阿朱，目前武将共7名 <li>更新日期：2019-03-25",
+    intro:"<li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen <br>★落影丶逝尘（太上大牛） <br>★冷雨 <br>★晒晒（朱阳光）<li>友情配音：<br>★觅阳 <br>★草莓味少女cv <li>更新：修复阿朱的BUG，新增郭靖，目前武将共10名 <li>更新日期：2019-03-26",
     size:"8.5MB",
     netdisk:"",
-    version:1.8,
+    version:1.9,
     files:[
        "sdyx_guojing.jpg","sdxl_jinlunfawang.jpg","tlbb_duanyanqing.jpg","extension.js",
 		"sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_hebi1.mp3","sdxl_hebi2.mp3","sdxl_longxiang1.mp3",
@@ -513,7 +513,7 @@ extension["金庸群侠传"]={
 		"sdyx_yuzhong2.mp3","tlbb_azhu.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
 		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","tlbb_xiaoti1.mp3",
 		"tlbb_xiaoti2.mp3","tlbb_yirong11.mp3","tlbb_yirong12.mp3","yttl_chunyan1.mp3","yttl_chunyan2.mp3",
-		"yttl_taiji1.mp3","yttl_taiji2.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_zhangsanfeng.jpg"
+		"yttl_taiji1.mp3","yttl_taiji2.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_zhangsanfeng.jpg","sdyx_xguojing.jpg",
     ]
 }; 
 

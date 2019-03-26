@@ -22,8 +22,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
              "sdyx_huangyaoshi":["male","wei",3,["sdyx_cihuai","sdyx_qushang"],[]],
             "sdyx_guojing":["male","shu",4,["sdyx_jianchi","sdyx_yuzhong"],[]],
 			"tlbb_azhu":["female","qun",3,["tlbb_yirong1","tlbb_xiaoti"],[]],
+			     "sdyx_xguojing":["male","shu",4,["sdyx_danxin","sdyx_polu","sdyx_longyin"],["des:郭靖"]],
+      
         },
         characterTitle:{
+        	"sdyx_xguojing":"朱阳光",
 					"tlbb_azhu":"落影丶逝尘",
 					"sdxl_jinlunfawang":"落影丶逝尘",
 						"sdyx_huangyaoshi":"落影丶逝尘",
@@ -36,6 +39,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
 		
 									},
         translate:{
+         "sdyx_xguojing":"郭靖",
 			"tlbb_azhu":"阿朱",
            "sdyx_huangyaoshi":"黄药师",
             "sdyx_guojing":"郭靖",
@@ -55,12 +59,80 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
     },
     skill:{
         skill:{
-			"tlbb_yirong1":{
+              sdyx_danxin:{
                 trigger:{
-                    global:["phaseBefore"],
+                    global:"shaBegin",
+                },
+                check:function(event,player){
+        return get.effect(player,event.card,event.player,player)<0;
+    },
+                filter:function(event,player){
+        return player.countCards('h')>0&&event.player.countCards('h')>0&&event.player!=player;
+    },
+                logTarget:"player",
+                content:function(){
+        'step 0'
+        player.chooseToCompare(trigger.player);
+        'step 1'
+        if(result.bool){
+            trigger.skipShan=true;
+            player.gain(trigger.card);
+        }
+        'step 2'
+        if(!result.bool&&trigger.target!=player){
+
+                           trigger.target=player;        
+                           trigger.untrigger();
+                           trigger.trigger('useCardToBefore');
+                           trigger.trigger(trigger.card.name+'Before');
+                           trigger.player.line(player);
+        }
+    },
+                ai:{
+                    effect:{
+                        target:function(card,player,target,current){
+                if(card.name=='sha'&&current<0) return 0.7;
+            },
+                    },
+                },
+            },
+            "sdyx_polu":{
+                unique:true,
+                mod:{
+                    attackFrom:function(from,to,distance){ 
+           return distance-from.maxHp+from.hp;
+           },
+                    cardUsable:function(card,player,num){
+            if(card.name=='sha') return num+player.maxHp-player.hp;
+        },
+                },
+            },
+            "sdyx_longyin":{
+                unique:true,
+                global:"sdyx_longyin2",
+                zhuSkill:true,
+            },
+            "sdyx_longyin2":{
+                mod:{
+                    attackTo:function(from,to,distance){
+            if(from.group!='shu') return;
+            var players=game.filterPlayer();
+           
+            for(var i=0;i<players.length;i++){
+                if(from!=players[i]&&to!=players[i]&&
+                    players[i].hasZhuSkill('sdyx_longyin',from)){
+                    if(get.distance(players[i],to)<=players[i].getAttackRange()) return distance-100;
+                }
+            }
+        },
+                },
+            },
+    "tlbb_yirong1":{
+                trigger:{
+                    global:["phaseBegin"],
                 },
                 filter:function (event,player){
-        if(player.storage.tlbb_yirong_武将池.length<1) return false;
+        if(player.storage.tlbb_yirong.length<1) return false;
         return true;
     },
                 check:function (event,player){
@@ -68,9 +140,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
     },
                 content:function (){
         "step 0"
-        if(player.storage.tlbb_yirong_武将池){
+        if(player.storage.tlbb_yirong){
             var dialog=ui.create.dialog('选择一张武将牌令其易容','hidden');
-            dialog.add([player.storage.tlbb_yirong_武将池,'character']);
+            dialog.add([player.storage.tlbb_yirong,'character']);
             player.chooseButton(dialog,true).ai=function(button){
                 return get.rank(button.link,true);
             };
@@ -78,30 +150,36 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
         "step 1"
          if(result.links[0]){
              player.popup(result.links[0]);
-             player.storage.tlbb_yirong_武将池.remove(result.links[0]);
-             player.markSkill('tlbb_yirong');
              //var skills=trigger.player.getSkills();
             // trigger.player.storage.tlbb_yirong_技能=skills;
              var name1=trigger.player.name;
-             trigger.player.setAvatar(name1,result.links[0]);//换皮
-             event.name2=result.links[0];        
+             trigger.player.setAvatar(name1,result.links[0]);//换皮    
              //trigger.player.reinit(name1,name2,false); //替换武将牌
-            trigger.player.addTempSkill('tlbb_yirong2');//加强版封印
-             trigger.player.update();          
+            trigger.player.addTempSkill('tlbb_yirong2',{player:'phaseAfter'});
+             game.delay();
+             trigger.player.update(); 
+             event.name=result.links[0];
          }
-        var list=[];
-        var skills=lib.character[result.links[0]][3];
+          "step 2" 
+          var list=[];
+          var skills=lib.character[event.name][3];
             for(var j=0;j<skills.length;j++){
                 if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                    !lib.skill[skills[j]].unique&&!lib.skill[skills[j]].zhuSkill){
+                    !lib.skill[skills[j]].unique){
                     list.push(skills[j]);
                 }
             }
-          //  trigger.player.addTempSkill(list,'phaseEnd');//只获得非限定非觉醒非主公技
-        trigger.player.addTempSkill(skills,'phaseEnd');//获得所有技能
-        trigger.player.addTempSkill('tlbb_yirong1_rong','phaseAfter');
-        player.storage.tlbb_yirong_武将池.remove(result.links[0]);
+        trigger.player.addAdditionalSkill('tlbb_yirong2',skills);
+        //trigger.player.addAdditionalSkill('tlbb_yirong2',list);
+       // trigger.player.addTempSkill(skills,{player:'phaseEnd'});
+        game.delay();
+       
+        player.storage.tlbb_yirong.remove(event.name);
+        player.markSkill('tlbb_yirong');
         trigger.player.update();
+         "step 3" 
+         game.delay();
+         trigger.player.addTempSkill('tlbb_yirong1_rong',{player:'phaseEnd'});
     },
                 group:["tlbb_yirong1_damage","tlbb_yirong"],
                 subSkill:{
@@ -139,7 +217,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
                 },
                 direct:true,
                 init:function (player){
-        player.storage.tlbb_yirong_武将池=[];
+        player.storage.tlbb_yirong=[];
     },
                 intro:{
                     content:"characters",
@@ -164,7 +242,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             if(lib.character[i][3].length==0) continue;
             if(lib.character[i][4].contains('minskin')) continue;
             if(lib.filter.characterDisabled2(i)) continue;
-            if(player.storage.tlbb_yirong_武将池.contains(i)) continue;
+            if(player.storage.tlbb_yirong.contains(i)) continue;
             if(list2.contains(i)) continue;
             var add=false;
             for(var j=0;j<lib.character[i][3].length;j++){
@@ -181,7 +259,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             }
         }
         var name=list.randomGet();
-        player.storage.tlbb_yirong_武将池.push(name);
+        player.storage.tlbb_yirong.push(name);
         player.markSkill('tlbb_yirong');
      //   var skills=lib.character[name][3];
      //   for(var i=0;i<skills.length;i++){
@@ -206,12 +284,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
             "tlbb_yirong2":{
                 init:function (player,skill){
         var skills=player.getSkills(true,false);
-        if(skills.contains('tlbb_yirong2')){
-            skills.remove('tlbb_yirong2');
-        }
-        if(skills.contains('fengyin')){
-            skills.remove('fengyin');
-        }
         for(var i=0;i<skills.length;i++){
      
         }
@@ -270,7 +342,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
         trigger.player.recover();
     }
     },
-            },
+            },      
                 "sdyx_cihuai":{
                 trigger:{
                     player:"phaseBegin",
@@ -1272,6 +1344,13 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             },
         },
         translate:{
+             "sdyx_danxin":"丹心",
+            "sdyx_danxin_info":"其他角色使用【出招】指定目标后，你可以与其拼点，若你赢，此【出招】无效且你获得之;若你未赢且你不是目标，此【出招】的目标改为你。",
+            "sdyx_polu":"破虏",
+            "sdyx_polu_info":"锁定技，你的攻击范围+X，你使用【出招】的次数上限+X。(X为你已损失的内力值)",
+            "sdyx_longyin":"龙吟",
+            "sdyx_longyin_info":"盟主技，锁定技，你攻击范围的角色视为在其他宋朝角色的攻击范围内",
+            "sdyx_longyin2":"",
 			 "tlbb_yirong1":"易容",
             "tlbb_yirong1_info":"所有人展示武将牌后，你展示8张为加入游戏的武将牌，称为'易容'牌，一名角色回合开始时你可以选择一张'易容'牌，令其获得易容牌上的技能直到回合结束(其本身的技能会在此回合失效)。拥有'易容'牌的角色回合内对你出杀造成的伤害加一。",
             "tlbb_yirong":"易容",
@@ -1334,9 +1413,9 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
             "yttl_taoli_info":"主公技，当其他属国角色失去最后一张手牌时，你可以交给其一张手牌",
         },
     },
-    intro:"<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen <br>落影丶逝尘（太上大牛） <li>友情配音：<br>觅阳 <br>草莓味少女cv",
+    intro:"<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen <br>★落影丶逝尘（太上大牛） <br>★冷雨 <br>★晒晒（朱阳光）<li>友情配音：<br>★觅阳 <br>★草莓味少女cv",
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.8",
+    version:"1.9",
 },files:{"character":["yttl_zhangsanfeng.jpg"],"card":[],"skill":[]}}})

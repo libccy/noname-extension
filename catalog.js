@@ -498,22 +498,27 @@ extension["鲍三娘"]={
 
 extension["金庸群侠传"]={
     author:"Sukincen",
-    intro:"<li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen <br>★落影丶逝尘（太上大牛） <br>★冷雨 <br>★晒晒（朱阳光）<li>友情配音：<br>★觅阳 <br>★草莓味少女cv <li>更新：修复阿朱的BUG，新增郭靖，目前武将共10名 <li>更新日期：2019-03-26",
-    size:"8.5MB",
+    intro:"注意：本次为接入联机框架的大更新，替换了一些旧素材，建议删除旧版再重新下载 <li>本扩展人物为金庸小说里的角色，技能强度接近官方三国杀，契合度高，技能环环相扣的配合，娱乐性高。代码由多位扩展作者共同合作开发，在此感谢大家的辛勤付出<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen <br>★落影丶逝尘（太上大牛） <br>★冷雨 <br>★晒晒（朱阳光）<li>友情配音：<br>★觅阳 <br>★清酒摇舟 <br>★稳得高处 <br>★草莓味少女 <br>★青灯折扇不语  <li>更新：联机化，修复BUG，新增多名武侠，目前武将共16名 <li>更新日期：2019-03-27",
+    size:"15MB",
     netdisk:"",
-    version:1.9,
+    version:1.11,
     files:[
-       "sdyx_guojing.jpg","sdxl_jinlunfawang.jpg","tlbb_duanyanqing.jpg","extension.js",
-		"sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_hebi1.mp3","sdxl_hebi2.mp3","sdxl_longxiang1.mp3",
-		"sdxl_longxiang2.mp3","sdxl_luowang1.mp3","sdxl_luowang2.mp3","sdxl_mizong1.mp3",
-		"sdxl_mizong2.mp3","sdxl_muzong1.mp3","sdxl_muzong2.mp3","sdxl_simou1.mp3","sdxl_simou2.mp3",
-		"sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdxl_yingxia1.mp3","sdxl_yingxia2.mp3",
-		"sdyx_cihuai1.mp3","sdyx_cihuai2.mp3","sdyx_huangyaoshi.jpg","sdyx_jianchi1.mp3",
-		"sdyx_jianchi2.mp3","sdyx_qushang1.mp3","sdyx_qushang2.mp3","sdyx_yuzhong1.mp3",
-		"sdyx_yuzhong2.mp3","tlbb_azhu.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
+       "extension.js","sdxl_anhun1.mp3","sdxl_anhun2.mp3","sdxl_anhun3.mp3","sdxl_anhun4.mp3",
+		"sdxl_biefu1.mp3","sdxl_biefu2.mp3","sdxl_hebi1.mp3","sdxl_hebi2.mp3","sdxl_jinlunfawang.jpg",
+		"sdxl_longxiang1.mp3","sdxl_longxiang2.mp3","sdxl_luowang1.mp3","sdxl_luowang2.mp3",
+		"sdxl_mizong1.mp3","sdxl_mizong2.mp3","sdxl_muzong1.mp3","sdxl_muzong2.mp3","sdxl_shangli1.mp3",
+		"sdxl_shangli2.mp3","sdxl_xiaolongniv.jpg","sdxl_yangguo.jpg","sdyx_cihuai1.mp3",
+		"sdyx_cihuai2.mp3","sdyx_danxin1.mp3","sdyx_danxin2.mp3","sdyx_guifu1.mp3","sdyx_guifu2.mp3",
+		"sdyx_guojing.jpg","sdyx_huangyaoshi.jpg","sdyx_jianchi1.mp3","sdyx_jianchi2.mp3",
+		"sdyx_ouyangfeng.jpg","sdyx_qushang1.mp3","sdyx_qushang2.mp3","sdyx_sheqi1.mp3",
+		"sdyx_sheqi2.mp3","sdyx_xguojing.jpg","sdyx_yuzhong1.mp3","sdyx_yuzhong2.mp3","sdyx_zhebie.jpg",
+		"tlbb_azhu.jpg","tlbb_duanyanqing.jpg","tlbb_liuwang1.mp3","tlbb_liuwang2.mp3","tlbb_qiangcan1.mp3",
 		"tlbb_qiangcan2.mp3","tlbb_rangquan1.mp3","tlbb_rangquan2.mp3","tlbb_xiaoti1.mp3",
-		"tlbb_xiaoti2.mp3","tlbb_yirong11.mp3","tlbb_yirong12.mp3","yttl_chunyan1.mp3","yttl_chunyan2.mp3",
-		"yttl_taiji1.mp3","yttl_taiji2.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3","yttl_zhangsanfeng.jpg","sdyx_xguojing.jpg",
+		"tlbb_xiaoti2.mp3","tlbb_xinxuzhu.jpg","tlbb_xuzhu.jpg","tlbb_yirong11.mp3","tlbb_yirong12.mp3",
+		"xajh_daoxi1.mp3","xajh_daoxi2.mp3","xajh_dongfangbubai.jpg","xajh_ludayou.jpg",
+		"xajh_weizhong1.mp3","xajh_weizhong2.mp3","yttl_changbaisanqin.jpg","yttl_chunyan1.mp3",
+		"yttl_chunyan2.mp3","yttl_taiji1.mp3","yttl_taiji2.mp3","yttl_taoli1.mp3","yttl_taoli2.mp3",
+		"yttl_yangxiao.jpg","yttl_zhangsanfeng.jpg"
     ]
 }; 
 

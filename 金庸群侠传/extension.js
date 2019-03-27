@@ -431,7 +431,7 @@ game.playJY = function(fn, dir, sex) {
  
   "tlbb_duanyanqing":["male","qun",4,["tlbb_qiangcan","tlbb_liuwang","tlbb_rangquan"],[]],
   "tlbb_azhu":["female","qun",3,["tlbb_yirong1","tlbb_xiaoti"],[]],
-   "tlbb_xuzhu":["male","wu",4,["tlbb_pojie","tlbb_su"],[]],
+   "tlbb_xuzhu":["male","wu",4,["tlbb_pojie","tlbb_huansu"],[]],
               
         },
 characterIntro:{
@@ -446,6 +446,7 @@ characterTitle:{
 
 skill:{	
 "tlbb_beiming":{
+	 audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"useCardAfter",
                 },
@@ -492,6 +493,7 @@ skill:{
                 },
             },
             "tlbb_pojie_respond":{
+				 //audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"chooseToRespondBegin",
                 },
@@ -526,6 +528,7 @@ skill:{
         });
         "step 1"
         if(result.bool){
+			game.playJY(['tlbb_pojie1','tlbb_pojie2'].randomGet());
             result.links[0].discard();
             trigger.untrigger();
             trigger.responded=true;
@@ -548,6 +551,7 @@ skill:{
                 },
             },
             "tlbb_pojie_use":{
+				 audio:"ext:金庸群侠传:2",
                 enable:"chooseToUse",
                 filter:function (event,player){
         if(player.hasSkill('tlbb_beiming')) return false;
@@ -591,7 +595,8 @@ skill:{
                 filterCard:function(){return false},
                 selectCard:-1,
                 viewAs:links[0],
-                onuse:function(result,player){                 
+                onuse:function(result,player){  
+				game.playJY(['tlbb_pojie1','tlbb_pojie2'].randomGet());
                     player.storage.tlbb_pojie.remove(result.card);
                     player.syncStorage('tlbb_pojie');      
                     player.updateMarks();
@@ -619,7 +624,7 @@ skill:{
         player.storage.tlbb_pojie=[];
     },
                 group:["tlbb_pojie_use","tlbb_pojie_respond"],
-                audio:"ext:tlbb_xuzhu:2",
+                 audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"useCard",
                     source:"damageEnd",
@@ -644,7 +649,7 @@ skill:{
         if(player.storage.tlbb_pojie==undefined) player.storage.tlbb_pojie=[];
         player.storage.tlbb_pojie.push(event.card);
         player.syncStorage('tlbb_pojie');
-        player.showCards(player.storage.tlbb_pojie,'tlbb_pojie')
+        player.showCards(player.storage.tlbb_pojie,'破戒');
         player.markSkill('tlbb_pojie');
     },
                 intro:{
@@ -660,9 +665,9 @@ skill:{
         },
                 },
             },
-            "tlbb_su":{
+            "tlbb_huansu":{
                 skillAnimation:true,
-                audio:"ext:tlbb_xuzhu:3",
+                 audio:"ext:金庸群侠传:2",
                 derivation:["tlbb_beiming"],
                 unique:true,
                 trigger:{
@@ -682,7 +687,7 @@ skill:{
 		game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/金庸群侠传/tlbb_xinxuzhu.jpg');
 		player.update();
         player.addSkill('tlbb_beiming');
-        player.awakenSkill('tlbb_su');
+        player.awakenSkill('tlbb_huansu');
     },
             },
 "tlbb_qiangcan":{
@@ -935,7 +940,7 @@ skill:{
                         sub:true,
                     },
                     damage:{
-                        audio:"ext:金庸群侠传:2",
+                        //audio:"ext:金庸群侠传:2",
                         trigger:{
                             player:"damageBegin",
                         },
@@ -945,6 +950,7 @@ skill:{
             },
                         forced:true,
                         content:function (){
+							game.playJY(['tlbb_yirong11','tlbb_yirong12'].randomGet());
                 trigger.num++;
             },
                         sub:true,
@@ -967,6 +973,7 @@ skill:{
                 },
                 content:function (){
         'step 0'
+		game.playJY(['tlbb_yirong11','tlbb_yirong12'].randomGet());
         player.logSkill('tlbb_yirong');//魔改版雄才
         event.numat=8;
         'step 1'
@@ -1103,8 +1110,8 @@ translate:{
             "tlbb_pojie_use_info":"",
             "tlbb_pojie":"破戒",
             "tlbb_pojie_info":"你使用【酒】后，造成伤害后，或使用普通锦囊牌指定女性角色为唯一目标后，你可以将将牌堆顶的一张牌置于武将牌上，称为“戒”，你可以使用或打出戒",
-            "tlbb_su":"还俗",
-            "tlbb_su_info":"觉醒技，当你获得第三张“戒”后你需减一体力上限并回复一体力，且你不能再使用或打出“戒”，然后获得【北冥】。",
+            "tlbb_huansu":"还俗",
+            "tlbb_huansu_info":"觉醒技，当你获得第三张“戒”后你需减一体力上限并回复一体力，且你不能再使用或打出“戒”，然后获得【北冥】。",
 	 	"tlbb_duanyanqing":"段延庆",
 			"tlbb_azhu":"阿朱",
 	"tlbb_qiangcan":"戕残",
@@ -1299,6 +1306,7 @@ skill:{
             "sdxl_longxiang":{
                 forced:true,
                 locked:true,
+				audio:"ext:金庸群侠传:2",
                 group:["sdxl_longxiang1","sdxl_longxiang2"],
             },
   "sdxl_anhun":{
@@ -1574,6 +1582,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
         return event.player.isLinked();
     },
                 content:function (){
+					game.playJY(['sdxl_luowang1','sdxl_luowang2'].randomGet());
                 player.draw();
     },
             },
@@ -1652,6 +1661,9 @@ skill:{
                 filter:function(event,player){
         return event.player!=player&&event.player.maxHp>player.maxHp;
     },
+	check:function (event,player){
+            return get.attitude(player,event.player)>0;
+    },
                 content:function(){
 
   trigger.player.addTempSkill('xajh_digong2')
@@ -1680,9 +1692,8 @@ skill:{
                 filter:function(event,player){
         return event.player.maxHp>event.player.hp;
     },
-                checkx:function(event,player){
-        var att=get.attitude(player,event.player);
-        return att>0;
+                check:function (event,player){
+            return get.attitude(player,event.player)>0;
     },
                 content:function(){
 
@@ -1702,6 +1713,7 @@ skill:{
                 },
             },
 "xajh_weizhong":{
+	 audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"gainEnd",
                 },
@@ -1726,6 +1738,7 @@ skill:{
                 },
             },
             "xajh_daoxi":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"useCard",
                 },
@@ -1855,11 +1868,12 @@ characterIntro:{
 								
 skill:{	
 	"sdyx_shezhang":{
-                inherit:"zhuque_skill",
+                inherit:"zhuque_skill",				
                 filter:function (event,player){
         if(player.getEquip(1)) return false;
         if(!lib.skill.zhuque_skill.filter(event,player)) return false;
-        if(event.card.name=='sha'&&!event.card.nature) return true;
+		return true;
+        //if(event.card.name=='sha'&&!event.card.nature) return true;
     },
                 mod:{
                     attackFrom:function (from,to,distance){
@@ -1878,8 +1892,8 @@ skill:{
             },
                     },
                 },
-                trigger:{
-                    player:"useCardToBefore",
+                /*trigger:{
+                    player:"shaBegin",
                 },
                 priority:7,
                 audio:"ext:金庸群侠传:2",
@@ -1891,10 +1905,10 @@ skill:{
         return att<=0;
     },
                 content:function (){
-        trigger.card.nature='fire';
+        trigger.card.nature=='fire';
         player.addSkill('zhuque_skill2');
         player.storage.zhuque_skill=trigger.card;
-    },
+    },*/
             },
             "sdyx_duxi":{
                 trigger:{
@@ -1903,12 +1917,13 @@ skill:{
 				audio:"ext:金庸群侠传:2",
                 direct:true,
                 filter:function (event){
-        if(!player.countCards('h',{suit:'spade'})) return false;
+        if(player.countCards('h',{suit:'spade'})<=0) return false;
         return event.nature=='fire';
     },
                 content:function (){
         "step 0"
-        if(trigger.nature!='fire') event.finish();
+        if(trigger.nature!='fire'){ event.finish();}
+		else{event.goto(1);}
         "step 1"
     var next=player.chooseToDiscard(1,'he','是否弃置一张黑桃牌令'+get.translation(trigger.player)+'受到的火焰伤害加一？',function(card,player){
         return get.suit(card)=='spade';
@@ -1933,6 +1948,9 @@ skill:{
                 filterCard:function (card){
         return card.name=='sha'&&card.nature=='thunder';
     },
+	filter:function(event,player){
+					return player.countCards('h',{nature:'thunder'})>0;
+				},
                 viewAs:{
                     name:"jiu",
                 },
@@ -2164,6 +2182,7 @@ skill:{
                 return true;
             },
                         content:function (){
+							game.playJY(['sdyx_yuzhong1','sdyx_yuzhong2'].randomGet());
                 player.loseHp(1);
                 if(_status.currentPhase==player&&trigger.name=='useCard'){
                     player.getStat().card.sha--;
@@ -2310,6 +2329,7 @@ skill:{
                 },
             },
 			"sdyx_sheqi":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"phaseDiscardBegin",
                 },
@@ -2368,6 +2388,7 @@ skill:{
                 trigger:{
                     global:"phaseEnd",
                 },
+				 audio:"ext:金庸群侠传:2",
                 forced:true,
                 filter:function (event,player){
         return player.storage.sdyx_guifu.length>0;
@@ -2424,6 +2445,7 @@ skill:{
                  "step 0"
                 // player.storage.sdyx_guifu.push(trigger.cards);
                   if(_status.currentPhase==player){
+					  game.playJY(['sdyx_guifu1','sdyx_guifu2'].randomGet());
                       if(player.storage.sdyx_guifu==undefined) player.storage.sdyx_guifu=[];
                       game.log(player,'标记了'+get.translation(trigger.card)+'');
                       player.storage.sdyx_guifu=player.storage.sdyx_guifu.concat(trigger.card);
@@ -2494,7 +2516,7 @@ game.import('character',function(){
 				connect:true,
 				character:{
 					 "yttl_zhangsanfeng":["male","wu",3,["yttl_taiji","yttl_chunyan","yttl_taoli"],[]],                       
-            "yttl_changbaisanqin":["male","wu",3,["yttl_fendao","yttl_kuiyu"],[]],			
+            "yttl_changbaisanqin":["male","wu",4,["yttl_fendao","yttl_kuiyu"],[]],			
 			"yttl_yangxiao":["male","wu",3,["yttl_xingshi","yttl_jieao"],[]],
        
 },
@@ -2514,6 +2536,7 @@ skill:{
 
  
                "yttl_xingshi":{
+				    audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"useCard",
                 },
@@ -2595,8 +2618,8 @@ skill:{
             },
                         direct:true,
                         silent:true,
-                        content:function (){
-                "step 0"
+                        content:function (){               
+				game.playJY(['yttl_jieao1','yttl_jieao2'].randomGet());
                 if(player.storage.yttl_jieao==undefined) player.storage.yttl_jieao=[];
                     for(var i=0;i<trigger.targets.length;i++){
                         if(trigger.targets[i]!=player){ 
@@ -2622,10 +2645,11 @@ skill:{
                         silent:true,
                         content:function (){
                 "step 0"
+				game.playJY(['yttl_jieao1','yttl_jieao2'].randomGet());
                 event.num1=player.storage.yttl_jieao.length;
                 player.draw(event.num1);
                 "step 1"
-                if(event.num1>3) player.turnOver();
+                if(event.num1>3){player.turnOver();}
                 player.storage.yttl_jieao=[];
                 "step 2"
                 player.logSkill('yttl_jieao')
@@ -2817,7 +2841,7 @@ skill:{
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
-        return target!=player&&target.countCards('e');
+        return target.countCards('e');
     },
                 content:function (){
         'step 0'      
@@ -2957,5 +2981,5 @@ if(lib.device||lib.node){
     author:"大熊小猫",
     diskURL:"",
     forumURL:"",
-    version:"1.11",
+    version:"1.12",
 },files:{"character":[],"card":[],"skill":[]}}})

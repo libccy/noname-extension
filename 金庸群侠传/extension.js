@@ -447,7 +447,7 @@ characterTitle:{
 
 skill:{	
 "tlbb_lingbo":{
-                audio:"ext:金庸群侠传:2",
+                audio:"ext:金庸群侠传:5",
                 init:function (player){player.storage.lingbo=0;player.syncStorage('tlbb_lingbo');},
                 group:"tlbb_lingbo2",
                 trigger:{

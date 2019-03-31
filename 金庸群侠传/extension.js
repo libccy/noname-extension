@@ -645,7 +645,7 @@ skill:{
                 },
             },
 "tlbb_nayuan":{
- audio:"ext:金庸群侠传:5",
+ audio:"ext:金庸群侠传:8",
                 trigger:{
                     global:"useCardBegin",
                 },

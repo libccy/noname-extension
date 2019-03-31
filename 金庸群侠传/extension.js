@@ -475,14 +475,16 @@ skill:{
                 trigger:{
                     global:"useCard",
                 },
-                priority:99999,
+                priority:Infinity,
                 usable:1,
                 filter:function (event,player){
         if(event.player==player) return false;
-        if(get.type(event.card)!='trick'&&get.type(event.card)!='delay') return false;
+        if(get.type(event.card)=='basic') return false;
+        if(get.type(event.card)!='trick') return false;
+        if(get.type(event.card)=='delay') return false;
         if(event.card.name=='wuxie') return false;
         if(!event.targets||event.targets.length!=1||event.targets[0]==event.player) return false;
-        var list2=['bingliang','shandian','lebu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wanjian','nanman'];
+        var list2=['juedou','huogong','jiedao','tiesuo','guohe','shunshou','wanjian','nanman'];
         if(list2.contains(event.card.name)){
             list2.remove(event.card.name);
         }
@@ -502,7 +504,7 @@ skill:{
         trigger.cancel();
         'step 1'
         var list=[];
-        var list2=['bingliang','shandian','lebu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wanjian','nanman'];
+        var list2=['juedou','huogong','jiedao','tiesuo','guohe','shunshou','wanjian','nanman'];
         if(list2.contains(trigger.card.name)){
             list2.remove(trigger.card.name);
         }
@@ -536,13 +538,14 @@ skill:{
                     },
                 },
                 enable:"phaseUse",
+                usable:1,
                 filter:function (event,player){
         if(player.hasSkill('tlbb_wendian1_off')) return false;
-        return player.countCards('h')&&game.hasPlayer(function(current){
+        return player.countCards('h')>0&&game.hasPlayer(function(current){
             return current.hasSkill('tlbb_wendian')&&current!=player;
         });
     },
-                direct:true,
+               // direct:true,
                 delay:0,
                 filterCard:true,
                 discard:false,
@@ -582,7 +585,7 @@ skill:{
         }
         "step 1"
         if(result.bool&&result.targets.length){
-            event.target=result.targets[0];
+            event.target=result.targets[0];          
         }
         else{
             event.finish();
@@ -593,6 +596,7 @@ skill:{
             player.logSkill('tlbb_wendian',event.target);
             player.addTempSkill('tlbb_wendian1_off');
             event.cardss=cards[0];
+            player.$give(event.cardss,event.target);
             event.target.gain(event.cardss,player);
         }
         else{
@@ -610,21 +614,20 @@ skill:{
           "step 4"
         if(result.control=='是'){
             event.cards=get.cards(2);
-            event.target.showCards(event.cards,'tlbb_wendian');
+            event.target.showCards(event.cards,'问典');
         }
         if(result.control=='否'){
             game.log(event.target,'拒绝了展示牌堆顶的牌');
             event.finish();
         }
-          "step 5"
-        for(var i=0;i<cards.length;i++){
-            if(get.type(cards[i])!='trick'&&get.type(cards[i])!='delay'){
-                cards[i].discard();
-                cards.splice(i--,1);
+          "step 5"       
+        for(var i=0;i<event.cards.length;i++){
+            if(get.type(event.cards[i])!='trick'&&get.type(event.cards[i])!='delay'){
+                event.cards[i].discard();
+                event.cards.splice(i--,1);
             }
         }
-        player.gain(cards,'gain2');
-
+        player.gain(cards,'gain2');    
     },
                 ai:{
                     order:2,
@@ -646,7 +649,7 @@ skill:{
                 trigger:{
                     global:"useCardBegin",
                 },
-                priority:99999,
+                priority:Infinity,
                 direct:true,
                 filter:function (event,player){
         if(event.player==player) return true;
@@ -1600,9 +1603,9 @@ skill:{
 translate:{
 	"tlbb_wangyuyan":"王语嫣",
             "tlbb_dianhua":"点化",
-            "tlbb_dianhua_info":"回合限一次，其他角色使用普通锦囊牌指定唯一目标时，你可以申明另一种合理的锦囊牌牌名，其按声明的牌对目标使用之。",
+            "tlbb_dianhua_info":"每回合限一次，其他角色使用普通锦囊牌指定唯一目标时，你可以申明另一种合理的锦囊牌牌名，其按声明的牌对目标使用之。",
             "tlbb_wendian":"问典",
-            "tlbb_wendian_info":"其他出牌阶段限一次，其可以交给你一张牌，若如此做，你可以亮出牌堆顶两张牌，然后其获得其中的锦囊牌。",
+            "tlbb_wendian_info":"其他角色出牌阶段限一次，其可以交给你一张牌，若如此做，你可以亮出牌堆顶两张牌，然后其获得其中的锦囊牌。",
             "tlbb_wendian1":"问典",
             "tlbb_wendian1_info":"",
 	"tlbb_spduanyu":"SP段誉",
@@ -3004,7 +3007,161 @@ characterIntro:{
 					},
 								
 skill:{	
-"sdyx_mingwan":{
+ "sdyx_mingwan2":{
+                mark:true,
+                marktext:"判",
+                intro:{
+                    content:"下个回合判定阶段移出牌阶段后",
+                },
+                trigger:{
+                    player:"phaseBefore",
+                },
+                forced:true,
+                priority:Infinity,
+                content:function (){
+        'step 0'
+        trigger.cancel();
+        player.phaseSkipped=false;
+        'step 1'
+        player.removeSkill('sdyx_mingwan2');
+        if(player.skipList.contains('phase')){
+            player.skipList.remove('phase');
+            event.trigger('phaseSkipped');
+            event.finish();
+        }
+       'step 2'
+       event.trigger('phaseBefore');
+       game.delay();
+        'step 3'
+        if((player==_status.roundStart||_status.roundSkipped)&&!trigger.skill){
+            delete _status.roundSkipped;
+            game.roundNumber++;
+            if(ui.cardPileNumber) ui.cardPileNumber.innerHTML=game.roundNumber+'轮 剩余牌: '+ui.cardPile.childNodes.length;
+            for(var i=0;i<game.players.length;i++){
+                if(game.players[i].isOut()&&game.players[i].outCount>0){
+                    game.players[i].outCount--;
+                    if(game.players[i].outCount==0&&!game.players[i].outSkills){
+                        game.players[i].in();
+                    }
+                }
+            }
+            event.trigger('roundStart');
+        }
+        'step 4'
+        player.getStat().card={};
+        player.getStat().skill={};
+        player.update();
+        event.trigger('phaseBegin');
+        'step 5'
+        player.phaseDraw();
+        if(!player.noPhaseDelay){
+            if(player==game.me){
+                game.delay();
+            }
+            else{
+                game.delayx();
+            }
+        }
+        'step 6'
+        player.phaseUse();
+        'step 7'
+        player.phaseJudge();
+         'step 8'
+        game.broadcastAll(function(){
+            if(ui.tempnowuxie){
+                ui.tempnowuxie.close();
+                delete ui.tempnowuxie;
+            }
+        });
+        player.phaseDiscard()
+        if(!player.noPhaseDelay) game.delayx();
+        delete player.using;
+        delete player._noSkill;
+         'step 9'
+        event.trigger('phaseEnd');
+        event.trigger('phaseAfter');
+        game.delay();
+    },
+            },
+            "sdyx_mingwan3":{
+                mark:true,
+                marktext:"弃",
+                intro:{
+                    content:"下个回合弃牌阶段移摸牌阶段后",
+                },
+                trigger:{
+                    player:"phaseBefore",
+                },
+                forced:true,
+                priority:99999,
+                content:function (){
+            'step 0'
+        trigger.cancel();
+        player.phaseSkipped=false;
+        'step 1'
+        player.removeSkill('sdyx_mingwan3');
+        if(player.skipList.contains('phase')){
+            player.skipList.remove('phase');
+            event.trigger('phaseSkipped');
+            event.finish();
+        }
+       'step 2'
+       event.trigger('phaseBefore');
+       game.delay();
+        'step 3'
+        if((player==_status.roundStart||_status.roundSkipped)&&!trigger.skill){
+            delete _status.roundSkipped;
+            game.roundNumber++;
+            if(ui.cardPileNumber) ui.cardPileNumber.innerHTML=game.roundNumber+'轮 剩余牌: '+ui.cardPile.childNodes.length;
+            for(var i=0;i<game.players.length;i++){
+                if(game.players[i].isOut()&&game.players[i].outCount>0){
+                    game.players[i].outCount--;
+                    if(game.players[i].outCount==0&&!game.players[i].outSkills){
+                        game.players[i].in();
+                    }
+                }
+            }
+            event.trigger('roundStart');
+        }
+        'step 4'
+        player.getStat().card={};
+        player.getStat().skill={};
+        player.update();
+        event.trigger('phaseBegin');
+        'step 5'
+        player.phaseJudge();
+      'step 6'
+        player.phaseDraw();
+        if(!player.noPhaseDelay){
+            if(player==game.me){
+                game.delay();
+            }
+            else{
+                game.delayx();
+            }
+        }
+        'step 7'
+        player.phaseDiscard()
+         'step 8'
+        player.phaseUse();
+      'step 9'
+        game.broadcastAll(function(){
+            if(ui.tempnowuxie){
+                ui.tempnowuxie.close();
+                delete ui.tempnowuxie;
+            }
+        });
+       'step 10'
+        if(!player.noPhaseDelay) game.delayx();
+        delete player.using;
+        delete player._noSkill;
+        'step 11'
+        event.trigger('phaseEnd');
+        event.trigger('phaseAfter');
+        game.delay();
+    },
+            },
+            "sdyx_mingwan":{
                 trigger:{
                     player:"damageEnd",
                 },
@@ -3015,7 +3172,7 @@ skill:{
                 content:function (){
         'step 0'
         player.chooseTarget(get.prompt('hongde'),function(card,player,target){
-            return !target.hasSkill('弃牌移摸牌阶段后')||!target.hasSkill('判定移出牌阶段后');
+            return !target.hasSkill('sdyx_mingwan3')||!target.hasSkill('sdyx_mingwan2');
         }).set('ai',function(target){
             var att=get.attitude(player,target);
             if(att>2) {
@@ -3038,7 +3195,7 @@ skill:{
             }
           'step 2'
         if(event.target){
-            player.chooseControl('选项一','选项二').set('prompt','sdyx_mingwan<br><br><div class="text">选项一:将其下个回合的判定阶段移至出牌阶段后</div><br><div class="text">选项二:将其下个回合的弃牌阶段移至摸牌阶段后</div></br>').ai=function(){
+            player.chooseControl('选项一','选项二').set('prompt','冥顽<br><br><div class="text">选项一:将其下个回合的判定阶段移至出牌阶段后</div><br><div class="text">选项二:将其下个回合的弃牌阶段移至摸牌阶段后</div></br>').ai=function(){
                var att=get.attitude(player,event.target);
                 if(att>2) return '选项一';
                 if(att<0) return '选项二';
@@ -3047,10 +3204,10 @@ skill:{
         }
             'step 3'
         if(result.control=='选项一'){
-            event.target.addSkill('判定移出牌阶段后');
+            event.target.addSkill('sdyx_mingwan2');
         }
         if(result.control=='选项二'){
-            event.target.addSkill('弃牌移摸牌阶段后');
+            event.target.addSkill('sdyx_mingwan3');
         }
     },
             },
@@ -3859,6 +4016,7 @@ createDialog:function (player,target,onlylist){
         if(result.bool){
             trigger.skipShan=true;
             player.gain(trigger.card);
+			trigger.cancel();
         }
         'step 2'
         if(!result.bool&&trigger.target!=player){
@@ -4049,6 +4207,10 @@ createDialog:function (player,target,onlylist){
             "sdyx_mingwan_info":"每当你受到一点伤害后，你可以选择一名角色，将其下个回合判定阶段移出牌阶段后，或将其下个回合弃牌阶段移出牌阶段后(已有'判'或'弃'标记的角色不能被选择)。",
             "sdyx_shouxun":"守训",
             "sdyx_shouxun_info":"锁定技，你不能失去装备区里的武器牌和锦囊牌",
+			"sdyx_mingwan2":"判定移出牌阶段后",
+            "sdyx_mingwan2_info":"",
+            "sdyx_mingwan3":"弃牌移摸牌阶段后",
+            "sdyx_mingwan3_info":"",
 	 "sdyx_huangrong":"黄蓉",
             "sdyx_qiaoyan":"巧言",
             "sdyx_qiaoyan_info":"每回合限一次，当一名其他角色拼点时，你可令另一名未参与此次拼点的角色代替其打出拼点牌",
@@ -4219,7 +4381,7 @@ skill:{
                         direct:true,
                         silent:true,
                         content:function (){               
-				game.playJY(['yttl_jieao1','yttl_jieao2'].randomGet());
+//				game.playJY(['yttl_jieao1','yttl_jieao2'].randomGet());
                 if(player.storage.yttl_jieao==undefined) player.storage.yttl_jieao=[];
                     for(var i=0;i<trigger.targets.length;i++){
                         if(trigger.targets[i]!=player){ 
@@ -4547,7 +4709,7 @@ if(lib.device||lib.node){
 };
 },help:{},config:{
 					"jyqxzhelp":{
-				"name":"金庸群侠传","init":"1","item":{"1":"查看介绍","2":"<li>技能设计：大熊小猫","3":"<li>编写代码：<br>★Sukincen  <br>★落影丶逝尘（太上大牛）  <br>★冷雨  <br>★冰波水微 <br>★晒晒（朱阳光）","4":"<li>友情配音：<br>★觅阳  ★主人  ★仙女桥<br> ★清酒摇舟  ★稳得高处<br>★神齐大叔  ★草莓味少女<br>★青灯折扇不语","5":"<li>游戏时最好打开兼容模式"}
+				"name":"金庸群侠传","init":"1","item":{"1":"查看介绍","2":"<li>技能设计：大熊小猫","3":"<li>编写代码：<br>★Sukincen ★冰波水微 <br>★落影丶逝尘（太上大牛）  <br>★冷雨 ★晒晒（朱阳光）","4":"<li>友情配音：<br>★觅阳  ★主人  ★仙女桥<br> ★清酒摇舟  ★稳得高处<br>★神齐大叔  ★草莓味少女<br>★青灯折扇不语","5":"<li>游戏时最好打开兼容模式"}
 					},	
 					"xmeihuakapai":{
             name:'美化卡牌',
@@ -4583,5 +4745,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.15",
+    version:"1.16",
 },files:{"character":[],"card":[],"skill":[]}}})

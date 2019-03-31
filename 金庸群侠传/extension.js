@@ -3171,7 +3171,7 @@ skill:{
     },
                 content:function (){
         'step 0'
-        player.chooseTarget(get.prompt('hongde'),function(card,player,target){
+        player.chooseTarget(get.prompt('sdyx_mingwan'),function(card,player,target){
             return !target.hasSkill('sdyx_mingwan3')||!target.hasSkill('sdyx_mingwan2');
         }).set('ai',function(target){
             var att=get.attitude(player,target);
@@ -4745,5 +4745,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.16",
+    version:"1.17",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -498,10 +498,10 @@ extension["鲍三娘"]={
 
 extension["金庸群侠传"]={
     author:"详看简介",
-    intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，欢迎更多的作者来参与开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen ★落影丶逝尘 <br>★冷雨  ★朱阳光 <li>友情配音：觅阳&主人&仙女桥&清酒摇舟 <br>稳得高处&草莓味少女 <br>青灯折扇不语&神齐大叔  <li>更新：修复BUG，新增多名武侠 <li>更新日期：2019-03-30",
+    intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，欢迎更多的作者来参与开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>★Sukincen ★落影丶逝尘 <br>★冷雨  ★朱阳光 <li>友情配音：觅阳&主人&仙女桥&清酒摇舟 <br>稳得高处&草莓味少女 <br>青灯折扇不语&神齐大叔  <li>更新：修复BUG <li>更新日期：2019-03-31",
     size:"15MB",
     netdisk:"",
-    version:1.15,
+    version:1.16,
     files:[
      "extension.js","qtpz_aqing.jpg","qtpz_fenji1.mp3","qtpz_fenji2.mp3","qtpz_haidafu.jpg",
 		"qtpz_huashi1.mp3","qtpz_huashi2.mp3","qtpz_shidu1.mp3","qtpz_shidu2.mp3","sdxl_anhun1.mp3",

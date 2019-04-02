@@ -106,6 +106,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
         },
         forced:true,
         content:function(){
+        ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
  var huanhun=game.dead[0];
  game.delay(2);
 huanhun.$fullscreenpop('借尸还魂','fire');
@@ -177,6 +178,9 @@ huanhun.insertPhase();
      if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀★诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
      if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀★癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
      if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双★万军取首','fire'); game.playXu('xwj_jisha7'); }
+	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀★赶尽杀绝','fire'); game.playXu('xwj_jisha8'); }
+	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀★神哭鬼嚎','fire'); game.playXu('xwj_jisha9'); }
+	 if(current.storage.xwj_jisha==10) { current.$fullscreenpop('十杀★震古烁今','fire'); game.playXu('xwj_jisha10'); }
          }
          }
          });
@@ -1192,51 +1196,44 @@ else {
             },
 "xwj_xsanguo_shouye":{
                 audio:"ext:群英会:1",
-                enable:"phaseUse",
-                selectTarget:[1,2],
-                prepare:"give",
+                enable:"phaseUse",              
                 init:function (player){
         player.storage.xwj_xsanguo_shouye=0;
     },
                 intro:{
                     content:"mark",
                 },
-                filterTarget:function (card,player,target){ 
-               return target!=player&&player.countCards('h',{color:'red'})>0;
+                enable:"phaseUse",
+    
+    //filterCard:true,
+	filterCard:function (card){
+        return get.color(card)=='red';
     },
-                filterCard:{
-                    color:"red",
-                },
-            /*    check:function (event,player){
-        return ai.get.attitude(player,target)>0;
-    },*/
-                content:function (){ 
-       'step 0'
-        num==2;   
-        'step 1' 
-         /* "step 0" 
-            event.targets=targets.slice(0);  
-        event.targets.sort(lib.sort.seat);     
-        "step 1" 
-        if(event.targets.length){           
-        var target=event.targets.shift();
-        */
-            player.storage.xwj_xsanguo_shouye++;
-        player.markSkill("xwj_xsanguo_shouye");
-        player.update();       
-       target.draw(); 
-       num--;
-            if(num>0){
-                event.redo();           
-        }                                   
+    filter:function (event,player){
+        return player.countCards('h',{color:'red'})>0;
+    },
+    filterTarget:function (card,player,target){
+        return player!=target;
+    },
+    check:function (card){
+        return 8-get.value(card);
+    },
+	position:"h",
+    selectTarget:[1,2],
+    content:function (){
+        target.draw();
+		player.storage.xwj_xsanguo_shouye++;
+		player.markSkill('xwj_xsanguo_shouye');
+		player.update();
     },
                 ai:{
                     threaten:1,
-                    result:{
-                        target:function (player,target){
-                return get.recoverEffect(target,player);
+                     result:{
+            target:function (player,target){
+                if(target.countCards('h')<=1) return 3.5;
+                return 2;
             },
-                    },
+					 },
                     order:4,
                     expose:0.4,
                 },
@@ -4723,7 +4720,7 @@ audio:"ext:群英会:2",
           		player.maxHp=6;
          		 player.hp=6;		 
          		 game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_yuyi.jpg'); 
-		      		 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+		      		 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
          		 player.awakenSkill('xwj_xhuoying_renzong');           
          		 player.update();    
          		 	 },                  		 	                		 	 
@@ -5709,9 +5706,9 @@ audio:"ext:群英会:2",
         var chat=['尘遁•原界剥离之术','你已老了，大野木'].randomGet();
             player.say(chat);        
         'step 1'
-        if(result.bool){   
+        if(result.bool){        	
           target.loseMaxHp();
-            target.draw();            
+          target.draw();            
          	//target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());                                                                 
         }
         else{
@@ -11779,7 +11776,7 @@ translate:{
             "xwj_xhuoying_changsheng":"永生",
             "xwj_xhuoying_changsheng_info":"濒死阶段，你可摸一张牌，你可以与一名有手牌的其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过5）；若你拼点没赢，你回复体力至体力上限并摸一张牌，然后你失去一点体力上限并翻面（一个像蛇一样难缠的家伙）",
             "xwj_xhuoying_rechendun":"尘遁",
-            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色随机废除一个装备栏；若你没赢，目标角色受到一点伤害",
+            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_wuchen":"无尘",
             "xwj_xhuoying_wuchen_info":"<font color=#F0F>无尘迷塞</font> <font color=#f00>锁定技</font> 当你没有手牌时，你防止受到任何伤害",
             "xwj_xhuoying_rexianshu":"仙术",
@@ -13088,7 +13085,7 @@ skill:{
 	   	game.delay();
       game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_tian_background.jpg");
       game.log(player,'将场地切换为无色之境');
-	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
 	     player.node.name.innerHTML='黑<br>龙';
 	     player.update();
     },
@@ -14838,5 +14835,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.47",
+    version:"1.48",
 },files:{"character":[],"card":[],"skill":[]}}})

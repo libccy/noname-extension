@@ -324,12 +324,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"更新：修复BUG。欢迎加入无名杀扩展交流Q群：852740627。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包，关闭后会隐藏图片且禁用），强度略高但彼此平衡，有七杀特效及配音，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-03-24",
+	intro:"更新：修复BUG扩展击杀特效。欢迎加入无名杀扩展交流Q群：852740627。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包，关闭后会隐藏图片且禁用），强度略高但彼此平衡，有七杀特效及配音，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-03-24",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"77MB",
-    version:1.47,
+    version:1.48,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_default.mp3",
@@ -453,7 +453,7 @@ extension["群英会"]={
 		"xwj_xqinshi_xiaoyaozi.jpg","xwj_xqinshi_zongjian1.mp3","xwj_xqinshi_zongjian2.mp3",
 		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_baosanniang.jpg","xwj_xsanguo_jiangwei.jpg",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_wangyun.jpg",
-		"xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xiangfu1.mp3",
+		"xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xiangfu1.mp3","xwj_jisha8.mp3","xwj_jisha9.mp3","xwj_jisha10.mp3",
 		"xwj_xsanguo_xinyuji.jpg","xwj_xsanguo_xushen1.mp3","xwj_xsanguo_xushen2.mp3","xwj_xsanguo_yujin.jpg",
  "xwj_xsanguo_simahui.jpg","xwj_xsanguo_jiehuo1.mp3","xwj_xsanguo_shien1.mp3","xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3",
  "xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3","xwj_xsanguo_shenzhaoyun.jpg",

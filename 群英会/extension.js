@@ -175,12 +175,12 @@ huanhun.insertPhase();
      if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀★一战成名','fire'); game.playXu('xwj_jisha2'); }
      if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀★举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
      if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
-     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀★诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
-     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀★癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
-     if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双★万军取首','fire'); game.playXu('xwj_jisha7'); }
-	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀★赶尽杀绝','fire'); game.playXu('xwj_jisha8'); }
-	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀★神哭鬼嚎','fire'); game.playXu('xwj_jisha9'); }
-	 if(current.storage.xwj_jisha==10) { current.$fullscreenpop('十杀★震古烁今','fire'); game.playXu('xwj_jisha10'); }
+     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀☯诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀☯癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双☯万军取首','fire'); game.playXu('xwj_jisha7'); }
+	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀☯赶尽杀绝','fire'); game.playXu('xwj_jisha8'); }
+	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀☯神哭鬼嚎','fire'); game.playXu('xwj_jisha9'); }
+	 if(current.storage.xwj_jisha==10) { current.$fullscreenpop('十杀☯震古烁今','fire'); game.playXu('xwj_jisha10'); }
          }
          }
          });
@@ -1202,10 +1202,7 @@ else {
     },
                 intro:{
                     content:"mark",
-                },
-                enable:"phaseUse",
-    
-    //filterCard:true,
+                },    
 	filterCard:function (card){
         return get.color(card)=='red';
     },
@@ -1266,33 +1263,32 @@ else {
                 enable:"phaseUse",
                 usable:1,
                 selectTarget:[1,2],
-                filterTarget:function (card,player,target){ 
-               return target!=player&&player.countCards('h',{color:'red'})>0;
-                },
-                filterCard:{
-                    color:"red",
-                },
-                check:function (event,player){
-        return ai.get.attitude(player,target)>0;
+          	filterCard:function (card){
+        return get.color(card)=='red';
     },
-                content:function (){ 
-        'step 0'
-        num==2;          
-        'step 1'
-        target.draw(); 
-        num--;
-            if(num>0){
-                event.redo();           
-        }                                   
+    filter:function (event,player){
+        return player.countCards('h',{color:'red'})>0;
+    },
+    filterTarget:function (card,player,target){
+        return player!=target;
+    },
+    check:function (card){
+        return 8-get.value(card);
+    },
+	position:"h",
+    selectTarget:[1,2],
+    content:function (){
+        target.draw();
     },
                 ai:{
-                    order:8,
-                    threaten:1.5,
-                    result:{
-                        target:function (player,target){
-                return get.recoverEffect(target,player);
+                    threaten:1,
+                     result:{
+            target:function (player,target){
+                if(target.countCards('h')<=1) return 3.5;
+                return 2;
             },
-                    },
+					 },
+                    order:4,
                     expose:0.4,
                 },
             },
@@ -7301,7 +7297,7 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
        
     },
                 ai:{
-                    order:5,                                     
+                    order:0.5,                                     
                     result:{
                     target:function (player,target){
                        var att=get.attitude(player,target);          
@@ -14852,5 +14848,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.50",
+    version:"1.51",
 },files:{"character":[],"card":[],"skill":[]}}})

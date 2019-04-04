@@ -1811,7 +1811,7 @@ skill:{
                 },
             },
             "tlbb_chusi2":{
-                audio:["xinyongsi",2],
+                audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"phaseDrawBegin",
                 },

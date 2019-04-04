@@ -324,12 +324,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"更新：修复BUG扩展击杀特效。欢迎加入无名杀扩展交流Q群：852740627。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物（可在武将项开关自由选用扩展小包，关闭后会隐藏图片且禁用），强度略高但彼此平衡，有七杀特效及配音，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-03-24",
+	intro:"更新：修复BUG。欢迎加入无名杀扩展交流Q群：852740627。本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（官方平衡党闭嘴），有七杀特效及配音，可联机！因采用高清图片、高质配音，故体积略大，可自行删减素材。更新日期：2019-04-04",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"77MB",
-    version:1.48,
+    version:1.50,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_default.mp3",

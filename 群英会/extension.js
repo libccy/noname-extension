@@ -1350,7 +1350,15 @@ group:["xwj_xsanguo_yizan0","xwj_xsanguo_yizan1","xwj_xsanguo_yizan5"],
 					if(i==hs.length) return false;
 					return true;
 				},								
-				 direct:true,			       
+				 direct:true,			      
+				    	init:function (player){
+    	player.unmarkSkill('xwj_xsanguo_yizan');
+        player.storage.xwj_xsanguo_yizan=[];
+        player.syncStorage('xwj_xsanguo_yizan');
+    },
+                intro:{
+                    content:"mark",
+                },       
 				content:function(){
 					"step 0"						
 					player.chooseCard(get.prompt('xwj_xsanguo_yizan1'),'he',function(card){
@@ -1402,6 +1410,14 @@ group:["xwj_xsanguo_yizan0","xwj_xsanguo_yizan1","xwj_xsanguo_yizan5"],
 					return true;
 				},								
 				 direct:true,
+				   	init:function (player){
+    	player.unmarkSkill('xwj_xsanguo_yizan');
+        player.storage.xwj_xsanguo_yizan=[];
+        player.syncStorage('xwj_xsanguo_yizan');
+    },
+                intro:{
+                    content:"mark",
+                },       
 				content:function(){
 					"step 0"						
 					player.chooseCard(get.prompt('xwj_xsanguo_yizan5'),'he',function(card){
@@ -1536,7 +1552,8 @@ group:["xwj_xsanguo_yizan0","xwj_xsanguo_yizan1","xwj_xsanguo_yizan5"],
     },
     	init:function (player){
     	player.unmarkSkill('xwj_xsanguo_yizan');
-        player.storage.xwj_xsanguo_yizan=0;
+        player.storage.xwj_xsanguo_yizan=[];
+        player.syncStorage('xwj_xsanguo_yizan');
     },
                 intro:{
                     content:"mark",
@@ -14835,5 +14852,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.48",
+    version:"1.49",
 },files:{"character":[],"card":[],"skill":[]}}})

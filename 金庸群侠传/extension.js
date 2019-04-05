@@ -455,7 +455,7 @@ game.playJY = function(fn, dir, sex) {
    "tlbb_xuzhu":["male","wei",4,["tlbb_pojie","tlbb_huansu"],[]],
    "tlbb_wangyuyan":["female","qun",3,["tlbb_dianhua","tlbb_wendian"],[]],
    "tlbb_kangmin":["female","wei",3,["tlbb_shifu","tlbb_buyao","tlbb_siqian"],[]],
-    "tlbb_suxinghe":["male","wei",3,["tlbb_pojie","tlbb_yaotie","tlbb_yayin"],[]],
+    "tlbb_suxinghe":["male","wei",3,["tlbb_xpojie","tlbb_yaotie","tlbb_yayin"],[]],
               
         },
 characterIntro:{
@@ -475,7 +475,8 @@ characterTitle:{
 									},
 
 skill:{	
-"tlbb_pojie":{
+"tlbb_xpojie":{
+	 audio:"ext:金庸群侠传:2",
                 unique:true,
                 trigger:{
                     global:"judge",
@@ -530,7 +531,7 @@ skill:{
         "step 6"
         var list=event.cardss;
         player.chooseButton([get.translation(trigger.player)+'的'+(trigger.judgestr||'')+'判定为'+get.translation(trigger.player.judging[0])+
-            '，'+get.prompt('tlbb_pojie'),list,'hidden'],function(button){
+            '，'+get.prompt('tlbb_xpojie'),list,'hidden'],function(button){
             var card=button.link;
             var trigger=_status.event.getTrigger();
             var player=_status.event.player;
@@ -600,6 +601,7 @@ skill:{
                 },
             },
             "tlbb_yaotiehc":{
+				 audio:"ext:金庸群侠传:2",
                 enable:"phaseUse", 
     usable:1, 
     filterTarget:function (card,player,target){ 
@@ -680,6 +682,7 @@ skill:{
 
             },
             "tlbb_yaotiehp":{
+				 audio:"ext:金庸群侠传:2",
                 enable:"phaseUse", 
     usable:1, 
     complexSelect:true, 
@@ -761,6 +764,7 @@ skill:{
 
             },
             "tlbb_yaotie":{
+				usable:1,
                 subSkill:{
                     off:{
                         sub:true,
@@ -2135,11 +2139,11 @@ skill:{
 
 translate:{
 	 "tlbb_suxinghe":"苏星河",
-            "tlbb_pojie":"破劫",
-            "tlbb_pojie_info":"当一张判定牌生效前，若你有手牌，你可以令你与至多两角色各展示一张手牌，然后你选择一张作为判定牌，否则弃置这些牌。",
-            "tlbb_yaotiehc":"邀帖",
+            "tlbb_xpojie":"破劫",
+            "tlbb_xpojie_info":"当一张判定牌生效前，若你有手牌，你可以令你与至多两角色各展示一张手牌，然后你选择一张作为判定牌，否则弃置这些牌。",
+            "tlbb_yaotiehc":"邀帖♦手牌",
             "tlbb_yaotiehc_info":"",
-            "tlbb_yaotiehp":"邀帖",
+            "tlbb_yaotiehp":"邀帖♦体力",
             "tlbb_yaotiehp_info":"",
             "tlbb_yaotie":"邀帖",
             "tlbb_yaotie_info":"出牌阶段限一次，你可以令至少三名手牌数或体力值成等差数列的角色摸一张牌(需先从体力值或手牌数最小的选起)。",
@@ -2720,6 +2724,7 @@ if(lib.device||lib.node){
  "xajh_renwoxing":["male","qun",5,["xajh_biguan","xajh_xixing","xajh_chushan","xajh_quanbing"],['zhu']],
  "xajh_yanglianting":["male","wei",3,["xajh_yuhe","xajh_shichong"],[]],
   "xajh_yuelingsan":["female","wei",3,["xajh_jianwu","xajh_huizhi","xajh_fanghun"],[]],
+  "xajh_yuebuqun":["male","shu",3,["xajh_xiejian","xajh_qiaowei","xajh_yuli"],[]],
 },        
 
 characterIntro:{
@@ -2728,6 +2733,7 @@ characterIntro:{
 				
 				characterTitle:{
 					"xajh_yuelingsan":"落影丶逝尘",	
+					"xajh_yuebuqun":"落影丶逝尘",	
 					"xajh_dongfangbubai":"落影丶逝尘",	
 					"xajh_ludayou":"朱阳光",
 					"xajh_renwoxing":"朱阳光",
@@ -2739,6 +2745,129 @@ characterIntro:{
 					},
                                
 skill:{
+	 "xajh_qiaowei":{
+		 audio:"ext:金庸群侠传:2",
+                trigger:{
+                    global:"damageEnd",
+                },
+                filter:function (event,player){
+        if(!event.source) return false;
+        if(!event.card||event.card.name!='sha') return false;
+        if(!event.player.isAlive()||!event.source.isAlive()) return false;
+        if(!event.player.countCards('hej')) return false;
+        var card=game.createCard('juedou');
+        if(event.player.canUse(card,event.source)){
+            return true;
+        }
+        return false;
+    },
+                check:function (event,player){
+        var att1=get.attitude(player,event.player);
+        var att2=get.attitude(player,event.source);
+        var hs=event.player.countCards('h')-event.source.countCards('h');
+        if(att1>0&&att2>0) return false;
+        if(att1<0&&att2<0) return true;
+        if(att1>0&&att2<0&&hs>0) return true;
+        return false;
+    },
+                content:function (){
+         "step 0"
+        player.discardPlayerCard('hej',trigger.player,true);
+         "step 1"
+        trigger.player.useCard({name:'juedou'},trigger.source);
+    },
+            },
+            "xajh_yuli":{
+                group:["xajh_yuli_remove"],
+                subSkill:{
+                    remove:{
+                        trigger:{
+                            global:"gameStart",
+                            player:"enterGame",
+                        },
+                        popup:false,
+                        forced:true,
+                        filter:function (event,player){
+                return player.identity!='zhu';
+            },
+                        content:function (){
+                player.removeSkill('xajh_yuli');
+            },
+                        sub:true,
+                    },
+                },
+                audio:"ext:金庸群侠传:2",
+                trigger:{
+                    global:["respond","damageEnd"],
+                },
+                filter:function (event,player){
+        if(event.name=='respond'){
+            if(event.getParent(2).name!='juedou') return false;
+            if(event.card.name!='sha') return false;
+            if(event.player==player) return false;
+            if(event.player.group!='shu') return false;
+            return true;
+        }
+        if(event.name=='damage'){
+            if(event.card.name!='juedou') return false;
+            if(event.player.group=='shu'&&event.player!=player) return true;
+            if(event.source.group=='shu'&&event.source!=player) return true;
+            return false;
+        }
+        return false;
+    },
+                frequent:true,
+                zhuSkill:true,
+                content:function (){
+        player.draw();
+    },
+            },
+            "xajh_xiejian":{
+				audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"phaseUseBegin",
+                },
+                direct:true,
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt('xajh_xiejian'),function(card,player,target){
+            return target!=player;
+        }).set('ai',function(target){
+            return get.attitude(player,target);
+        });
+        'step 1'
+        if(result.bool){
+            player.logSkill('xajh_xiejian',result.targets);
+            result.targets[0].addTempSkill('xajh_xiejian_nouse');
+        }
+    },
+                subSkill:{
+                    nouse:{
+                        mark:true,
+                        intro:{
+                            content:"不能使用或打出牌",
+                        },
+                        mod:{
+                            cardEnabled:function (card,player){
+                    return false;
+                },
+                            cardUsable:function (card,player){
+                    return false;
+                },
+                            cardRespondable:function (card,player){
+                    return false;
+                },
+                            cardSavable:function (card,player){
+                    return false;
+                },
+                            targetInRange:function (card){
+                    return false;
+                },
+                        },
+                        sub:true,
+                    },
+                },
+            },
 	 "xajh_chongling":{
 		 audio:"ext:金庸群侠传:2",
                 trigger:{
@@ -2970,6 +3099,7 @@ skill:{
                 trigger:{
                     player:"gainAfter",
                 },
+				frequent:true,
                 filter:function(event,card,player){                
                      return event.source&&event.source!=player;
 
@@ -3287,6 +3417,13 @@ skill:{
 },
 
  translate:{
+	  "xajh_yuebuqun":"岳不群",
+            "xajh_qiaowei":"巧伪",
+            "xajh_qiaowei_info":"一名角色受到杀的伤害后，若其区域有牌;你可以弃置其区域的一张牌，若如此做，其视为对伤害来源使用了一张决斗。",
+            "xajh_yuli":"渔利",
+            "xajh_yuli_info":"主公技;每当其他蜀势力角色因决斗打出杀或因决斗造成或受到伤害后，你可以摸一张牌。",
+            "xajh_xiejian":"邪剑",
+            "xajh_xiejian_info":"出牌阶段开始时，你可以令一名其他角色摸一张牌，若如此做，其本回合不能使用或打出牌。",
 	  "xajh_yuelingsan":"岳灵珊",
             "xajh_chongling":"冲灵",
             "xajh_chongling_info":"",
@@ -3445,12 +3582,12 @@ skill:{
             "qtpz_yingshi":{
 				audio:"ext:金庸群侠传:2",
                 trigger:{
-                    player:["useCardAfter","respondAfter"],
+                    player:["useCard","respond"],
                 },
                 forced:true,
                 filter:function (event,player){
-        if(_status.currentPhase==player) return false;
-        return event.card.name='sha';
+        if(player==_status.currentPhase) return false; 
+        return event.card&&event.card.name=='sha';
     },
                 content:function (){
         player.draw();
@@ -3459,7 +3596,7 @@ skill:{
 	 "qtpz_zhucheng":{
                 group:["qtpz_zhucheng1"],
                 marktext:"城",
-                audio:"ext:金庸群侠传:2",
+                audio:"ext:金庸群侠传:4",
                 trigger:{
                     global:"gameDrawAfter",
                 },
@@ -3496,7 +3633,7 @@ skill:{
                 },
                 content:function (){
         "step 0"
-		game.playJY(['qtpz_zhucheng1','qtpz_zhucheng2'].randomGet());
+		game.playJY(['qtpz_zhucheng1','qtpz_zhucheng2','qtpz_zhucheng3','qtpz_zhucheng4'].randomGet());
         event.cards=get.cards(2);
         var cards=event.cards;
             var content=['牌堆顶的两张牌',cards];
@@ -3656,7 +3793,7 @@ skill:{
                 },
 				direct:true,
                 check:function (event,player){
-        return get.attitude(player,event.target)<=0;
+        return get.attitude(player,event.player)<=0;
     },
                 filter:function (event,player){
         if(event.player==player) return false;
@@ -3665,7 +3802,7 @@ skill:{
                 content:function (){
 				"step 0"	
 					player.chooseControl('愤激','cancel2').set('ai',function(){         
-            if(player.hp>=2) return '愤激';
+            if(player.hp>=3) return '愤激';
             return 'cancel2';
         }).set('prompt','愤激：请选择是否发动愤激');    
 		"step 1"
@@ -3702,9 +3839,8 @@ skill:{
                     global:"phaseUseBegin",
                 },
                 priority:15,
-                check:function (event,player){
-        if(player.maxHp-player.hp<3) return false;
-        return -get.attitude(player,event.player);
+                 check:function (event,player){
+        return get.attitude(player,event.player)<=0;
     },
                 filter:function (event,player){
        if(event.player==player) return false;
@@ -4081,7 +4217,7 @@ characterIntro:{
 skill:{	
 
  "sdyx_mingwan2":{
-	  audio:"ext:金庸群侠传:2",
+	  audio:"ext:金庸群侠传:3",
                 mark:true,
                 marktext:"判",
                 intro:{
@@ -4158,7 +4294,7 @@ skill:{
     },
             },
             "sdyx_mingwan3":{
-				 audio:"ext:金庸群侠传:2",
+				audio:"ext:金庸群侠传:2",
                 mark:true,
                 marktext:"弃",
                 intro:{
@@ -4168,7 +4304,7 @@ skill:{
                     player:"phaseBefore",
                 },
                 forced:true,
-                priority:99999,
+                priority:2019,
                 content:function (){
             'step 0'
         trigger.cancel();
@@ -4237,7 +4373,7 @@ skill:{
     },
             },
             "sdyx_mingwan":{
-				 audio:"ext:金庸群侠传:2",
+				 audio:"ext:金庸群侠传:3",
                 trigger:{
                     player:"damageEnd",
                 },
@@ -5000,7 +5136,7 @@ createDialog:function (player,target,onlylist){
             },
                         content:function (){
 							game.playJY(['sdyx_yuzhong1','sdyx_yuzhong2','sdyx_yuzhong3','sdyx_yuzhong4'].randomGet());
-                player.loseHp(1);
+                player.loseHp();
                 if(_status.currentPhase==player&&trigger.name=='useCard'){
                     player.getStat().card.sha--;
                     player.addTempSkill('sdyx_yuzhong_off','phaseEnd');
@@ -5135,7 +5271,7 @@ createDialog:function (player,target,onlylist){
             "sdyx_longyin2":{
                 mod:{
                     attackTo:function (from,to,distance){
-            if(from.group!='shu') return;
+            if(from.group!='wei') return;
             var players=game.filterPlayer();
            
             for(var i=0;i<players.length;i++){
@@ -5823,7 +5959,8 @@ yttl_guchan:{
                 },
                 direct:true,
 				filter:function(event,player){				
-					return !player.isTurnedOver();
+					//return !player.isTurnedOver();
+					return player.isAlive();
 				},
                 content:function (){        
         'step 0'
@@ -6408,7 +6545,7 @@ yttl_guchan:{
             "yttl_fumo":"伏魔",
             "yttl_fumo_info":"每当你的武将牌翻至背面朝上时，你可以横置所有角色的武将牌",
             "yttl_guchan":"枯禅",
-            "yttl_guchan_info":"每当你的武将牌翻至正面朝上后，你可选择一名角色并声明一种未以此法声明的锦囊牌的牌名，其于本局游戏中不能再成为此牌的目标",
+            "yttl_guchan_info":"每当你的武将牌翻面后，你可选择一名角色并声明一种未以此法声明的锦囊牌的牌名，其于本局游戏中不能再成为此牌的目标",
  "yttl_zhuyuanzhang":"朱元璋",
             "yttl_qingce":"清侧",
             "yttl_qingce_info":"每当你使用普通锦囊牌时，你可以令你距离一以内的任意名角色成为目标，或取消你距离一以内的任意名角色的目标",
@@ -6490,5 +6627,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.19",
+    version:"1.20",
 },files:{"character":[],"card":[],"skill":[]}}})

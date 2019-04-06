@@ -171,12 +171,12 @@ huanhun.insertPhase();
      current.addSkill('xwj_jisha');
      if(current==player){
      if(trigger.name=='die'){
-     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血★卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
-     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀★一战成名','fire'); game.playXu('xwj_jisha2'); }
-     if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀★举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
+     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血▪卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
+     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀♦一战成名','fire'); game.playXu('xwj_jisha2'); }
+     if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀☆举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
      if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
-     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀☯诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
-     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀☯癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀☼诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀✪癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
      if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双☯万军取首','fire'); game.playXu('xwj_jisha7'); }
 	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀☯赶尽杀绝','fire'); game.playXu('xwj_jisha8'); }
 	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀☯神哭鬼嚎','fire'); game.playXu('xwj_jisha9'); }
@@ -5219,11 +5219,25 @@ audio:"ext:群英会:2",
                         ui.cardPile.childNodes[1],                                       
                     ];
                     return ui.create.dialog('木遁',player.storage.xwj_xhuoying_mudun,'hidden');
-                },              		
+                },             
+
+
+				/* var cards=[];
+            if(ui.cardPile.childNodes.length<5){
+                var discardcards=get.cards(5);
+                for(var i=0;i<discardcards.length;i++){
+                    discardcards[i].discard();
+                }
+            }
+            for(var i=0;i<5;i++){
+                cards.push(ui.cardPile.childNodes[i]);
+			}*/
+				
+				
                             filter:function (button,player){
                     var evt=_status.event.getParent();
                     if(evt&&evt.filterCard){
-                        return evt.filterCard(button.link,player,evt)&&ui.cardPile.childElementCount>=2;
+                        return evt.filterCard(button.link,player,evt)&&ui.cardPile.childNodes.length>=2;
                     }
                     return true;
                 },
@@ -5236,7 +5250,7 @@ audio:"ext:群英会:2",
                             backup:function (links,player){
                     return {
                     	filter:function (event,player){
-        return ui.cardPile.childElementCount>=2;
+        return ui.cardPile.childNodes.length>=2;
     },
                         filterCard:function(){return false},
                         selectCard:-1,
@@ -5288,7 +5302,7 @@ audio:"ext:群英会:2",
                         },										
                         filter:function (event,player){
                 if(event.responded) return false;
-                return (ui.cardPile.childElementCount+ui.discardPile.childElementCount)>=2;//新增条件，待测试，原为return true;
+                return ui.cardPile.childNodes.length>=2;//新增条件，待测试，原为return true;
             },
                         content:function (){
                 "step 0"
@@ -10494,7 +10508,7 @@ var chat=['木叶的高层，拿命来！','这就是……万花筒写轮眼的
                 trigger:{
                     player:"shaBegin",
                 },
-                priority:15,
+                priority:2017,
                 filter:function (event,player){
         return player.hp==1||player.countCards('h')==1;
     },
@@ -10512,8 +10526,8 @@ var chat=['木叶的高层，拿命来！','这就是……万花筒写轮眼的
         },
                     selectTarget:function (card,player,range){ 
             if(player.hp==1||player.countCards('h')==1){
-if(range[1]==-1) return;
-if(card.name=='sha'||card.name=='juedou'||card.name=='huogong'||card.name=='shunshou'||card.name=='guohe') range[1]+=Infinity;}
+//if(range[1]==-1) return;
+if(range[1]!=-1) range[1]+=Infinity;}
 },
                 },
                 ai:{
@@ -11715,7 +11729,7 @@ translate:{
             "xwj_xhuoying_qianniao_info":"出牌阶段，你使用的普通杀可附带雷属性",
             "xwj_xhuoying_woailuo":"我爱罗",
             "xwj_xhuoying_shazang":"沙葬",
-            "xwj_xhuoying_shazang_info":"<font color=#F0F>沙瀑大葬</font> 当你起码满足以下两个条件之一时：1、使用的牌为最后一张手牌；2、你的体力值为1。（一尾守鹤）你使用的牌可无视距离，此时你使用的【杀】【决斗】【火攻】【过河拆桥】【顺手牵羊】可指定任意名目标角色。你使用杀时若手牌数或体力值小于2，此杀可无视对方防具且不可闪避",
+            "xwj_xhuoying_shazang_info":"<font color=#F0F>沙瀑大葬</font> （一尾守鹤）当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且可指定任意名目标",
             "xwj_xhuoying_juefang":"绝防",
             "xwj_xhuoying_juefang_info":"<font color=#f00>锁定技</font> 当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
             "xwj_xhuoying_mingren":"漩涡鸣人",
@@ -14848,5 +14862,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.52",
+    version:"1.53",
 },files:{"character":[],"card":[],"skill":[]}}})

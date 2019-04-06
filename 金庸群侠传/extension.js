@@ -4463,40 +4463,90 @@ skill:{
                     global:"chooseToCompareBegin",
                 },
 				usable:1,
+				direct:true,
                 filter:function (event,player){
         return player.isAlive();
     },
                 check:function (){return 1},
                 content:function (){
         'step 0'
- player.chooseTarget(get.prompt('sdyx_qiaoyan'),function(card,player,target){
+        //get.prompt('sdyx_qiaoyan')
+ player.chooseTarget('是否选择一名角色代替'+get.translation(trigger.player)+'打出拼点牌？',function(card,player,target){
             return trigger.player!=target&&trigger.target!=target&&target.countCards('h')>0;
         }).ai=function(target){
             return -get.attitude(player,target);
         }
         'step 1'
         if(result.bool){
+        player.logSkill('sdyx_qiaoyan');
 			trigger.player = result.targets[0];          
         }
        else{
 		   event.finish();
 	   }
                 },
+                ai:{
+                expose:0.8,
+                },
             },
             "sdyx_qingshi":{
 				audio:"ext:金庸群侠传:2",
+  audio:"ext:金庸群侠传:2",
                 trigger:{
-        player:"phaseBegin",
-    },
-    priority:2018,
-    direct:true,
+                    player:"phaseBegin",
+                },
+                priority:2018,
+                direct:true,
                 check:function (event,player){
-    return get.attitude(player,event.player)<0;
+        return get.attitude(player,event.player)<0;
     },
                 filter:function (event,player){
-        return player.countCards('h')>=0;
+        return player.countCards('h')>0;
     },
-createDialog:function (player,target,onlylist){
+                content:function (){
+        'step 0'
+        player.chooseTarget(get.prompt2('sdyx_qingshi'),function(card,player,target){
+            if(target==player||target.countCards('h')<=0||target.hasSkill('sdyx_qingshi2')) return false;
+            var names=[];
+            if(target.name&&!target.isUnseen(0)) names.add(target.name);
+            if(target.name1&&!target.isUnseen(0)) names.add(target.name1);
+            if(target.name2&&!target.isUnseen(1)) names.add(target.name2);
+            var pss=player.getSkills();
+            for(var i=0;i<names.length;i++){
+                var info=lib.character[names[i]];
+                if(info){
+                    var skills=info[3];
+                    for(var j=0;j<skills.length;j++){
+                        if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&!lib.skill[skills[j]].unique&&!pss.contains(skills[j])){
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        }).set('ai',function(target){
+            if(get.attitude(_status.event.player,target)>0) return Math.random();
+            return 0;
+        }); 
+        'step 1'
+        if(result.targets){
+            var target=result.targets[0];
+            event.target=target;
+            player.chooseToCompare(target); 
+            player.logSkill('sdyx_qingshi',target);
+        }
+        else{
+            event.finish();
+        }
+        'step 2'
+        if(!result.bool){  
+            var target=event.target;
+            target.addSkill('sdyx_qingshi2');
+            player.damage(target);
+            event.finish();
+        }
+        'step 3'
+        var target=event.target;
         var names=[];
         var list=[];
         if(target.name&&!target.isUnseen(0)) names.add(target.name);
@@ -4508,114 +4558,42 @@ createDialog:function (player,target,onlylist){
             if(info){
                 var skills=info[3];
                 for(var j=0;j<skills.length;j++){
-                    if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                        !lib.skill[skills[j]].unique&&
-                        !pss.contains(skills[j])){
+                    if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&!lib.skill[skills[j]].unique&&!pss.contains(skills[j])){
                         list.push(skills[j]);
                     }
-                }
+                }            
             }
-        }
-        if(onlylist) return list;
+        }    
         var dialog=ui.create.dialog('forcebutton');
-        dialog.add('选择获得一项技能');
-        _status.event.list=list;
+        dialog.add('请师</br></br><div class="center text">选择并获得一项技能直到回合结束</div>');
         var clickItem=function(){
             _status.event._result=this.link;
+            dialog.close();
             game.resume();
         };
-        for(i=0;i<list.length;i++){
+        for(var i=0;i<list.length;i++){
             if(lib.translate[list[i]+'_info']){
                 var translation=get.translation(list[i]);
-                if(translation[0]=='新'&&translation.length==3){
-                    translation=translation.slice(1,3);
-                }
-                else{
-                    translation=translation.slice(0,2);
-                }
-                var item=dialog.add('<div class="popup pointerdiv" style="width:80%;display:inline-block"><div class="skill">【'+
-                translation+'】</div><div>'+lib.translate[list[i]+'_info']+'</div></div>');
+                var item=dialog.add('<div class="popup pointerdiv" style="width:80%;display:inline-block"><div class="skill">【'+translation+'】</div><div>'+lib.translate[list[i]+'_info']+'</div></div>');
                 item.firstChild.addEventListener('click',clickItem);
                 item.firstChild.link=list[i];
             }
         }
         dialog.add(ui.create.div('.placeholder'));
-        return dialog;
-    },
-    content:function (){
-        'step 0'
-        player.chooseTarget(get.prompt2('sdyx_qingshi'),function(card,player,target){
-			if(target.hasSkill('sdyx_qingshi2')) return false;
-            var names=[];
-            if(target.name&&!target.isUnseen(0)) names.add(target.name);
-            if(target.name1&&!target.isUnseen(0)) names.add(target.name1);
-            if(target.name2&&!target.isUnseen(1)) names.add(target.name2);
-            var pss=player.getSkills();
-            for(var i=0;i<names.length;i++){
-                var info=lib.character[names[i]];
-                if(info){
-                    var skills=info[3];
-                    for(var j=0;j<skills.length;j++){
-                        if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                            !lib.skill[skills[j]].unique&&!pss.contains(skills[j])){
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        }).set('ai',function(target){
-            if(get.attitude(_status.event.player,target)>0) return Math.random();
-            return 0;
-        });				
-        'step 1'
-        if(result.bool){
-            event.target=result.targets[0];
-			player.chooseToCompare(event.target); 
-            player.logSkill('sdyx_qingshi',event.target);
-        }
-        else{
-            event.finish();
-        }
-        'step 2'
-		if(result.bool){  
-		    event.goto(3);
-		}
-		else{          		   
-			target=result.target[0];
-			target.addSkill('sdyx_qingshi2');
-			target.markSkill('sdyx_qingshi2');
-	  item.firstChild.removeEventListener('click',clickItem);
-			dialog.remove(ui.create.div('.placeholder'));
-			dialog.remove();
-			player.damage();
-			event.finish();
-        }
-		 'step 3'
-        event.skillai=function(list){
-            return get.max(list,get.skillRank,'item');
+        event.switchToAuto=function(){
+            event._result=event.skillai();
+            dialog.close();
+            game.resume();
         };
-        if(event.isMine()){
-            event.dialog=lib.skill.sdyx_qingshi.createDialog(player,target);//tianshu
-            event.switchToAuto=function(){
-                event._result=event.skillai(event.list);
-                game.resume();
-            };
-            _status.imchoosing=true;
-            game.pause();
-        }
-        else{
-            event._result=event.skillai(lib.skill.sdyx_qingshi.createDialog(player,target,true));
-        }
+        _status.imchoosing=true;
+        game.pause(); 
         'step 4'
         _status.imchoosing=false;
-        if(event.dialog){
-            event.dialog.close();
-        }
-        player.addTempSkill(result);
         player.popup(result);
+        player.addTempSkill(result,'phaseEnd');
         game.log(player,'获得了','【'+get.translation(result)+'】');
-    },				
+        game.delay();
+    },
                 ai:{
                     threaten:2.3,
                     result:{
@@ -5662,7 +5640,7 @@ skill:{
                 filterCard:function (){return false},
                 init:function (player){player.storage.yttl_jingang=[];player.syncStorage('yttl_jingang');},             
                 selectCard:-1,
-                viewAsFilter:function (player){return player.storage.yttl_jingang<=7;},
+                viewAsFilter:function (player){return player.storage.yttl_jingang<=12;},
                 viewAs:{
                     name:"wuxie",
                 },
@@ -5695,7 +5673,7 @@ skill:{
                 trigger:{
                     player:"turnOverEnd",
                 },
-                direct:true,
+               frequent:true,
                filter:function (event,player){
              return player.isTurnedOver();
     },
@@ -6469,7 +6447,7 @@ yttl_guchan:{
                 content:function (){
         'step 0'      
             player.chooseCardButton('焚刀',target.getCards('e')).ai=function(button){
-                return get.value(button.link)-5;
+                return get.value(button.link)-1;
             }     
         'step 1'
         if(result.bool){
@@ -6541,11 +6519,11 @@ yttl_guchan:{
             "yttl_maodu_info":"每当你受到或造成一点属性伤害后，你增加一体力上限。出牌阶段限一次，你可以失去两点体力上限，然后选择一项:1.选择一名体力上限大于你的角色令其流失一体力。2.摸四张牌。",
  "yttl_due":"渡厄",
             "yttl_jingang":"金刚",
-            "yttl_jingang_info":"每局限八次，当你需要使用【无懈可击】时，你可以选择翻面，然后视为你使用了一张【无懈可击】",
+            "yttl_jingang_info":"每局限13次，当你需要使用【无懈可击】时，你可以选择翻面，然后视为你使用了一张【无懈可击】",
             "yttl_fumo":"伏魔",
             "yttl_fumo_info":"每当你的武将牌翻至背面朝上时，你可以横置所有角色的武将牌",
             "yttl_guchan":"枯禅",
-            "yttl_guchan_info":"每当你的武将牌翻面后，你可选择一名角色并声明一种未以此法声明的锦囊牌的牌名，其于本局游戏中不能再成为此牌的目标",
+            "yttl_guchan_info":"每当你的武将牌翻面后，你可选择一名角色并声明一种该角色未以此法声明的锦囊牌的牌名，其于本局游戏中不能再成为此牌的目标",
  "yttl_zhuyuanzhang":"朱元璋",
             "yttl_qingce":"清侧",
             "yttl_qingce_info":"每当你使用普通锦囊牌时，你可以令你距离一以内的任意名角色成为目标，或取消你距离一以内的任意名角色的目标",
@@ -6627,5 +6605,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.20",
+    version:"1.21",
 },files:{"character":[],"card":[],"skill":[]}}})

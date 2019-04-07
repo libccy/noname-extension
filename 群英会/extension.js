@@ -11614,12 +11614,12 @@ if(card.name=='sha'&&range[1]!=-1) range[1]++;
     },
                 ai:{
                     noh:true,                 
-                    effect:{
-                        target:function (card,player,target,current){
-                if(get.type(card)=='equip') return 0;
-                return [1,3];
-            },
-                    },
+                    //effect:{
+                        //target:function (card,player,target,current){
+                ///if(get.type(card)=='equip') return 0;
+                //return [1,3];
+            //},
+                    //},
                 },
             },
             "xwj_xhuoying_huitian":{
@@ -14900,5 +14900,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.54",
+    version:"1.55",
 },files:{"character":[],"card":[],"skill":[]}}})

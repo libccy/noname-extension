@@ -329,7 +329,7 @@ extension["群英会"]={
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"77MB",
-    version:1.53,
+    version:1.54,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_default.mp3",
@@ -376,7 +376,7 @@ extension["群英会"]={
 		"xwj_xhuoying_landun61.mp3","xwj_xhuoying_landun62.mp3","xwj_xhuoying_leidao1.mp3",
 		"xwj_xhuoying_leidao2.mp3","xwj_xhuoying_leidun1.mp3","xwj_xhuoying_leique1.mp3",
 		"xwj_xhuoying_leique2.mp3","xwj_xhuoying_leiying.jpg","xwj_xhuoying_lianbao1.mp3",
-		"xwj_xhuoying_liluoke.jpg","xwj_xhuoying_linghua1.mp3","xwj_xhuoying_linghua2.mp3",
+		"xwj_xhuoying_liluoke.jpg","xwj_xhuoying_linghua1.mp3","xwj_xhuoying_linghua2.mp3","xwj_xhuoying_fengwang1.mp3","xwj_xhuoying_fengwang2.mp3",
 		"xwj_xhuoying_liudaoban.jpg","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_lunhui1.mp3",
 		"xwj_xhuoying_lunhui2.mp3","xwj_xhuoying_lunmu1.mp3","xwj_xhuoying_lunmu2.mp3","xwj_xhuoying_luoxuan1.mp3",
 		"xwj_xhuoying_luoxuan2.mp3","xwj_xhuoying_luwan.jpg","xwj_xhuoying_mingren.jpg",

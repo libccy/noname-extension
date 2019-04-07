@@ -171,7 +171,7 @@ huanhun.insertPhase();
      current.addSkill('xwj_jisha');
      if(current==player){
      if(trigger.name=='die'){
-     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血▪卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
+     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血•卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
      if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀♦一战成名','fire'); game.playXu('xwj_jisha2'); }
      if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀☆举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
      if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
@@ -3943,7 +3943,7 @@ game.import('character',function(){
             "xwj_xhuoying_liudaoxianren":["male",["xhuo","xren","xxiao"].randomGet(),Infinity,["xwj_xhuoying_renzong","xwj_xhuoying_liudao"],[]],
             "xwj_xhuoying_zuojin":["male","xhuo",3,["xwj_xhuoying_weishou","xwj_xhuoying_wodi"],[]],
             "xwj_xhuoying_tiantian":["female","xhuo",3,["xwj_xhuoying_jiju","xwj_xhuoying_anqi"],[]],
-            "xwj_xhuoying_shouju":["female","xren",4,["xwj_xhuoying_lianyou"],[]],
+            "xwj_xhuoying_shouju":["female","xren",3,["xwj_xhuoying_lianyou","xwj_xhuoying_fengwang"],[]],
 			"xwj_xhuoying_quanzhongya":["male","xhuo",3,["xwj_xhuoying_tongya","xwj_xhuoying_nishou"],[]],
             //"xwj_xhuoying_chiwan":["male","xhuo",4,["xwj_xhuoying_renquan"],[]],
 	        		"xwj_xhuoying_xianglin":["female","xxiao",3,["xwj_xhuoying_ganzhi","xwj_xhuoying_liaoshang"],[]],
@@ -4438,7 +4438,43 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
                     },
                 },
             },
-			
+			"xwj_xhuoying_fengwang":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    player:"turnOverEnd",
+                },
+                direct:true,
+				priority:2019,
+				filter:function(event,player){				
+					//return !player.isTurnedOver();
+					return player.isAlive();
+				},
+                content:function (){
+    "step 0"
+     player.chooseTarget('选择【风网】的目标',lib.translate.xwj_xhuoying_fengwang_info,true,function(card,player,target){
+             return target!=player;
+     }).set('ai',function(target){     
+             return -get.attitude(player,target);            
+     });        
+     "step 1"
+     if(result.bool){
+		 player.logSkill('xwj_xhuoying_fengwang');
+             player.line(result.targets[0]);
+             player.discardPlayerCard(result.targets[0],'he',1,true);
+     }
+    else {       
+            event.finish(); 
+    }                     
+    },
+                ai:{
+                    basic:{
+                        result:{
+                            player:1,
+                        },
+                        expose:0.8,
+                    },
+                },
+            },
 	"xwj_xhuoying_lianyou":{   
  		audio:"ext:群英会:2", 
     trigger:{
@@ -12040,6 +12076,8 @@ translate:{
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
             "xwj_xhuoying_shouju":"手鞠",
+			"xwj_xhuoying_fengwang":"风网",
+			"xwj_xhuoying_fengwang_info":"每当你翻面时，你可以弃置一名其他角色的一张牌",
             "xwj_xhuoying_lianyou":"镰鼬",
             "xwj_xhuoying_lianyou_info":"结束阶段时，你可令所有角色选择：弃置一张装备牌或令你获得其一张手牌（<font color=#F0F>配合勘九郞</font>），然后你将武将牌背面朝上",
             "xwj_xhuoying_jiuxinnai":"玖辛奈",
@@ -14862,5 +14900,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.53",
+    version:"1.54",
 },files:{"character":[],"card":[],"skill":[]}}})

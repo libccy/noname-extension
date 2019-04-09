@@ -1802,10 +1802,10 @@ skill:{
                 forced:true,
                 filter:function (event,player){
         if(player.storage.lingbo<=0) return false;
-        return player.storage.lingbo;
+        return player.storage.lingbo>=0;
      },
                 content:function (){
-      player.storage.lingbo=0;
+      player.storage.lingbo=false;
     },
             },
             "tlbb_qingguan_loseHp":{                
@@ -2531,7 +2531,7 @@ skill:{
 
 translate:{
 	 "tlbb_zhongling":"钟灵",
-            "tlbb_xundiao":"训貂",
+            "tlbb_xundiao":"驯貂",
             "tlbb_xundiao_info":"其他角色使用杀对目标造成伤害后，若你有普通杀，你可以将其中一张普通杀当火杀对其使用，若此杀造成了伤害，则该目标回复一体力。",
             "tlbb_qiyuan":"乞援",
             "tlbb_qiyuan_info":"每当你成为其他角色杀的目标时，其他角色可以交给你一张杀",
@@ -2542,7 +2542,7 @@ translate:{
             "tlbb_qianjun2_info":"当你的杀被闪避后(改闪需为实体牌并且数量为一)，你可以弃置与打出闪花色相同的牌，若如此做，此杀命中。",
             "tlbb_yuguan":"鱼贯",
             "tlbb_yuguan_info":"每当你的杀造成伤害后，若目标计算下家的距离为一并且下家不为你，你可以令此杀继续对其下家结算",
-            "tlbb_qianjun":"原版千钧",
+            "tlbb_qianjun":"千钧",
             "tlbb_qianjun_info":"你可以将两张[杀]一张无花色的[杀]使用，若如此做此杀需要两张闪才能闪避，并且伤害加一。",
 	 "tlbb_suxinghe":"苏星河",
             "tlbb_xpojie":"破劫",
@@ -3954,7 +3954,7 @@ skill:{
         player.markSkill('罪己');
         "step 1"
         if(player.storage.罪己.length>=4&&!player.hasSkill('罪己_off')){
-            player.draw(2);
+            player.draw(3);
             player.addTempSkill('罪己_off','phaseEnd');
         }
     },
@@ -4058,7 +4058,7 @@ skill:{
                 content:function (){
         "step 0"
         var next=player.chooseToDiscard(1,'h','是否弃置一张非装备手牌观看'+get.translation(trigger.player)+'至多X张手牌并使用其中一张非装备牌(X为其的体力值)？',function(card,player){
-            if(get.type(card)=='equip') return false;
+            //if(get.type(card)=='equip') return false;
             return true;
         });
         var att=get.attitude(_status.event.player,trigger.player);
@@ -4086,8 +4086,8 @@ skill:{
         event.hs1=event.hs.randomGets(num);
      //   player.showCards(event.hs1)
          "step 3"
-         player.chooseCardButton(event.hs1,[1,1],'选择一非张装备牌使用之').set('filterButton',function(button){
-             if(get.type(button.link)=='equip') return false;
+         player.chooseCardButton(event.hs1,[1,1],'选择一张牌并使用之').set('filterButton',function(button){
+             //if(get.type(button.link)=='equip') return false;
              return game.hasPlayer(function(current){
                  return player.canUse(button.link,current);
              });
@@ -4934,7 +4934,7 @@ return get.subtype(event.card)=='equip1';
 	  "qtpz_zhuyoujian":"朱由检",
             "qtpz_zuiji":"罪己",
             "qtpz_zuiji_info":"锁定技，每当你与你的回合内累计使用或打出了4种不同花色的牌后，你摸两张牌。回合结束时，若你未于本回合摸牌阶段外获得牌，你选择以下一项:1.流失一体力，2.翻面，3.横置你的武将牌。",
-            "qtpz_youqin":"优勤",
+            "qtpz_youqin":"忧勤",
             "qtpz_youqin_info":"其他角色出牌阶段开始时，你可以弃置一张非装备手牌，观看其至多X张手牌并可以使用其中一张非装备牌(X为其的体力值)。",
             "qtpz_gangbi":"刚愎",
             "qtpz_gangbi_info":"主公技;锁定技，当你成为其他吴国角色锦囊牌的目标时，则取消之并摸一张牌。",
@@ -5300,7 +5300,7 @@ skill:{
                 trigger:{
                     player:"phaseBegin",
                 },
-                priority:2018,
+                priority:2019,
                 direct:true,
                 check:function (event,player){
         return get.attitude(player,event.player)<0;
@@ -5412,9 +5412,9 @@ skill:{
 			sdyx_qingshi2:{
 			mark:true,
 				forced:true,
-				/*init:function (player){
+				init:function (player){
 					player.markSkill('sdyx_qingshi2');
-				},*/
+				},
 				marktext:"师",
 				intro:{
                     content:"请师",
@@ -6215,6 +6215,7 @@ skill:{
             "sdyx_qiaoyan":"巧言",
             "sdyx_qiaoyan_info":"每回合限一次，当一名其他角色拼点时，你可令另一名未参与此次拼点的角色代替其打出拼点牌",
             "sdyx_qingshi":"请师",
+			"sdyx_qingshi2":"师",
             "sdyx_qingshi_info":"回合开始时，你可与一名角色进行拼点，若你赢，你获得其一项除觉醒技、主公技和限定技的技能，直到回合结束；若你没赢，本局游戏你不能对该角色发动【请师】且你受到一点伤害",
             "sdyx_qimen":"奇门",
 		    "sdyx_qimen2":"奇门",
@@ -6892,6 +6893,7 @@ yttl_guchan:{
         }
         'step 2'
         if(result.bool){
+			player.logSkill('yttl_guchan');
             event.target.storage.yttl_guchan.add(result.links[0][2]);
         }
     },
@@ -7446,9 +7448,9 @@ yttl_guchan:{
             "yttl_qingce_info":"每当你使用普通锦囊牌时，你可以令你距离一以内的任意名角色成为目标，或取消你距离一以内的任意名角色的目标",
             "yttl_yinyuan":"夤缘",
             "yttl_yinyuan_info":"主公技;锁定技，你计算其他魏势力角色距离为1。",
-            "yttl_yaohui1":"邀贿",
+            "yttl_yaohui1":"邀赂",
             "yttl_yaohui1_info":"",
-            "yttl_yaohui":"邀贿",
+            "yttl_yaohui":"邀赂",
             "yttl_yaohui_info":"其他角色出牌阶段，其可以将一张装备牌置于你的装备区里（不得替换原装备），然后其摸张牌。",
       "yttl_yangxiao":"杨逍",
 		"yttl_xingshi":"兴师",
@@ -7522,5 +7524,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.23",
+    version:"1.24",
 },files:{"character":[],"card":[],"skill":[]}}})

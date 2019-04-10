@@ -1019,6 +1019,7 @@ skill:{
                     },
                 },
             },
+			"tlbb_yaotie3":{},
             "tlbb_yaotiehc":{
 				 audio:"ext:金庸群侠传:2",
                 enable:"phaseUse", 
@@ -1085,11 +1086,12 @@ skill:{
                 } 
             } 
         } 
-        return true; 
+        return !player.hasSkill('tlbb_yaotie3'); 
     }, 
     selectTarget:[3,Infinity], 
     content:function (){ 
         target.draw(); 
+		player.addTempSkill('tlbb_yaotie3','phaseEnd');
     }, 
     ai:{ 
         threaten:1.5, 
@@ -1167,11 +1169,12 @@ skill:{
                 } 
             } 
         } 
-        return true; 
+        return !player.hasSkill('tlbb_yaotie3'); 
     }, 
     selectTarget:[3,Infinity], 
     content:function (){ 
         target.draw(); 
+		player.addTempSkill('tlbb_yaotie3','phaseEnd');
     }, 
     ai:{ 
         threaten:1.5, 
@@ -2579,7 +2582,7 @@ translate:{
             "tlbb_yaotiehp":"邀帖♦体力",
             "tlbb_yaotiehp_info":"",
             "tlbb_yaotie":"邀帖",
-            "tlbb_yaotie_info":"出牌阶段限一次，你可以令至少三名手牌数或体力值成等差数列的角色摸一张牌(需先从体力值或手牌数最小的选起)。",
+            "tlbb_yaotie_info":"出牌阶段限一次，你可以令至少三名手牌数或体力值成等差数列的角色摸一张牌",
             "tlbb_yayin":"哑隐",
             "tlbb_yayin_info":"锁定技;防止你受到的无牌源或无来源的伤害。",
 	"tlbb_kangmin":"康敏",

@@ -504,6 +504,7 @@ characterTitle:{
 
 skill:{
 	"tlbb_xundiao":{
+		 audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"damageEnd",
                 },
@@ -568,6 +569,7 @@ skill:{
                 },
             },
             "tlbb_qiyuan":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     target:"shaBefore",
                 },
@@ -615,6 +617,7 @@ skill:{
     },
             },
             "tlbb_xinwu":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"gainEnd",
                 },
@@ -4084,6 +4087,7 @@ skill:{
                 },
             },
             "qtpz_youqin":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"phaseUseBegin",
                 },
@@ -4192,6 +4196,7 @@ skill:{
                 },
             },
             "qtpz_zuiji":{
+				 audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:["useCard","respond"],
                 },
@@ -7574,5 +7579,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.25",
+    version:"1.26",
 },files:{"character":[],"card":[],"skill":[]}}})

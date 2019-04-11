@@ -1796,7 +1796,7 @@ skill:{
             },
             "tlbb_xiumai":{
                 audio:"ext:金庸群侠传:2",
-                trigger:{
+                /*trigger:{
                     player:["loseHpEnd","recoverEnd","damageEnd","phaseBegin"],
                 },
                 forced:true,
@@ -1822,6 +1822,27 @@ skill:{
             }
         });
    }
+    },*/
+	 mark:true,
+    intro:{
+        content:function (player){
+            if(player==_status.currentPhase&&player.hp%2==1) return '其他角色不能使用或打出黑色牌';
+            if(player==_status.currentPhase&&player.hp%2==0) return '其他角色不能使用或打出方片牌';
+            return '修啥脉？我要泡妹子！';
+        },
+    },
+    locked:true,
+    global:"tlbb_xiumai2",
+    audio:"ext:金庸群侠传:2",
+    trigger:{
+        player:"changeHp",
+    },
+    forced:true,
+    filter:function (event,player){
+        return player==_status.currentPhase;
+     },
+    content:function (){
+		game.playJY(['tlbb_xiumai1','tlbb_xiumai2'].randomGet());
     },
             },
             "tlbb_lingbo2":{
@@ -1885,7 +1906,7 @@ skill:{
                 },
             },
             "tlbb_xiumai2":{
-                mark:true,
+                /*mark:true,
                 intro:{
                     content:"不能使用或打出黑色卡牌",
                 },
@@ -1902,7 +1923,33 @@ skill:{
                     cardSavable:function (card){
            if(get.color(card)=='black') return false;
         },
-                },
+                },*/
+				mod:{
+        cardEnabled:function (card,player){
+            if(!_status.currentPhase) return;
+            if(_status.currentPhase.hasSkill('tlbb_xiumai')&&_status.currentPhase!=player){
+                if((get.suit(card)=='diamond'&&_status.currentPhase.hp%2==0)||(get.color(card)=='black'&&_status.currentPhase.hp%2==1)) return false;
+            }
+        },
+        cardUsable:function (card,player){
+           if(!_status.currentPhase) return;
+            if(_status.currentPhase.hasSkill('tlbb_xiumai')&&_status.currentPhase!=player){
+                if((get.suit(card)=='diamond'&&_status.currentPhase.hp%2==0)||(get.color(card)=='black'&&_status.currentPhase.hp%2==1)) return false;
+            }
+        },
+        cardRespondable:function (card,player){
+           if(!_status.currentPhase) return;
+            if(_status.currentPhase.hasSkill('tlbb_xiumai')&&_status.currentPhase!=player){
+                if((get.suit(card)=='diamond'&&_status.currentPhase.hp%2==0)||(get.color(card)=='black'&&_status.currentPhase.hp%2==1)) return false;
+            }                  
+        },
+        cardSavable:function (card,player){
+           if(!_status.currentPhase) return;
+            if(_status.currentPhase.hasSkill('tlbb_xiumai')&&_status.currentPhase!=player){
+                if((get.suit(card)=='diamond'&&_status.currentPhase.hp%2==0)||(get.color(card)=='black'&&_status.currentPhase.hp%2==1)) return false;
+            }
+        },
+    },
             },
 "tlbb_beiming":{
 	 audio:"ext:金庸群侠传:2",
@@ -4164,6 +4211,7 @@ skill:{
                 return player.identity!='zhu';
             },
                         content:function (){
+					game.playJY(['qtpz_gangbi1','qtpz_gangbi2'].randomGet());		
                 player.removeSkill('qtpz_gangbi');
             },
                         sub:true,
@@ -4184,6 +4232,7 @@ skill:{
     },
                 content:function (){
         "step 0"
+		game.playJY(['qtpz_gangbi1','qtpz_gangbi2'].randomGet());	
         player.draw();
         "step 1"
         trigger.cancel();
@@ -7582,5 +7631,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.26",
+    version:"1.27",
 },files:{"character":[],"card":[],"skill":[]}}})

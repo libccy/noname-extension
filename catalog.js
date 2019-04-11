@@ -501,7 +501,7 @@ extension["金庸群侠传"]={
     intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，欢迎更多的作者来参与开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen 落影丶逝尘 <br>冷雨  诗笺 朱阳光 <li>友情配音：觅阳&主人&仙女桥&清酒摇舟 <br>冷陶&稳得高处&草莓味少女 <br>青灯折扇不语&神齐大叔&幽  <li>更新：修复BUG&补充阵亡配音 <li>更新日期：2019-04-10",
     size:"22MB",
     netdisk:"",
-    version:1.26,
+    version:1.27,
     files:[
 "extension.js","qtpz_aobai.jpg","qtpz_aqing.jpg","qtpz_aqing.mp3","qtpz_fenji1.mp3",
 		"qtpz_fenji2.mp3","qtpz_gangbi1.mp3","qtpz_gangbi2.mp3","qtpz_haidafu.jpg","qtpz_haidafu.mp3",

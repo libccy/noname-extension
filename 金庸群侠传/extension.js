@@ -8137,5 +8137,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.27",
+    version:"1.28",
 },files:{"character":[],"card":[],"skill":[]}}})

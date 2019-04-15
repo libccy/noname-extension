@@ -1,7 +1,25 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-
+// ---------------------------------------阵亡配音------------------------------------------//
+		lib.skill._zhengwangpeiyin={
+				    trigger:{global:'dieBegin',},
+							//direct:true,
+							priority:2,
+							forced:true,
+         unique:true,
+         frequent:true,
+         /*filter:function (event,player){
+                  return !event.player.isAlive();
+          },*/
+					   content:function(){					
+					   	    game.playAudio('..','extension','群英会',trigger.player.name);
+							  /*  if(trigger.player.name=='xwj_xhuoying_itachi'){
+								   game.playXu('itachi');					            
+						        }*/						 
+						          					        
+ 					  	},
+			   			}			
 // ---------------------------------------定义势力------------------------------------------//
-	 	 
+		if(config.shenxuanshili){		
 	lib.group.push('shen');
 			lib.translate.shen='神';
 			lib.translate.shenColor="#1874CD",
@@ -82,6 +100,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 				"step 2"
 				lib.skill._save.filter=event.filter;
 			};		
+			}
 			game.playXu = function(fn, dir, sex) {
 			if (lib.config.background_speak) {
 				if (dir && sex)
@@ -92,9 +111,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
 					game.playAudio('..', 'extension', '群英会', fn);
 			}
 		};
-		
-
-		
+				
 		if(config.wuxianyuedu){		
 		     lib.skill._jieshihuanhun={
         trigger:{global:'dieEnd'},
@@ -221,7 +238,7 @@ huanhun.insertPhase();
 							forced:true,
 							content:function(){
 							trigger.player.$fullscreenpop('妙手回春','fire');
-							game.playXu('_xxmiaoshouhuichun');
+							game.playXu('xxmiaoshouhuichun');
 							},
 						}
 						
@@ -234,7 +251,7 @@ huanhun.insertPhase();
 							forced:true,
 							content:function(){
 							trigger.player.$fullscreenpop('医术高超','fire');
-							game.playXu('_xxyishugaochao');
+							game.playXu('xxyishugaochao');
 							},
 						}
 						
@@ -309,7 +326,7 @@ huanhun.insertPhase();
 							direct:true,
 							priority:10,
 					   content:function(){
-					   ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
+					   ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
  					  	},
 			   			}
 						}							*/
@@ -321,7 +338,7 @@ huanhun.insertPhase();
 						else{
 						if(config._BackgroundMusic=='2'){					 
 						game.playBackgroundMusic=function (){};
-  				game.playXu('wms_default'); 
+  				game.playXu('wms_backgroundmusic'); 
   				//game.playBackgroundMusic();
 			}
 			else{			  
@@ -4769,7 +4786,7 @@ audio:"ext:群英会:2",
           		player.maxHp=6;
          		 player.hp=6;		 
          		 game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_yuyi.jpg'); 
-		      		 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
+		      		 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
          		 player.awakenSkill('xwj_xhuoying_renzong');           
          		 player.update();    
          		 	 },                  		 	                		 	 
@@ -13150,7 +13167,7 @@ skill:{
 	   	game.delay();
       game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_tian_background.jpg");
       game.log(player,'将场地切换为无色之境');
-	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_default.mp3'; 
+	     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
 	     player.node.name.innerHTML='黑<br>龙';
 	     player.update();
     },
@@ -14819,6 +14836,11 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
            "intro":"美化卡牌：开启后重启游戏生效。将卡牌的点数1、11、12、13分别调整为A、J、Q、K，颜色微调",
             init:false
 		},							
+					"shenxuanshili":{
+            name:'神选势力',
+           "intro":"神选势力：开启后重启游戏生效。开局时神势力的武将可重选势力",
+            init:false
+		},							
     		"wuxianyuedu":{
             name:'无限月读',
            "intro":"无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
@@ -14850,9 +14872,8 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
                "intro":"背景音乐：选择开启后重启游戏生会切换优质动听的背景音乐",
             init:'1',
 			item:{
-				'1':'默认',
-				'2':'暮雪',
-				'3':'胜利',				
+				'1':'默认',				
+				'2':'胜利',				
 			},			
 		 onclick:function (item){
 			switch (item){
@@ -14862,12 +14883,8 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 			break;
 			case '2':
     ui.backgroundMusic.pause();
-    game.playXu('wms_default'); 
-			break;
-			case '3':
-    ui.backgroundMusic.pause();
-		 game.playXu('wms_backgroundmusic');  
-			break;
+    game.playXu('wms_backgroundmusic'); 
+			break;	
 			}
 			}
 		},							
@@ -14900,5 +14917,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.55",
+    version:"1.56",
 },files:{"character":[],"card":[],"skill":[]}}})

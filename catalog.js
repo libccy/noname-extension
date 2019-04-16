@@ -299,7 +299,7 @@ extension["作者包"]={
     intro:"更新：新增无名杀教程，全面优化。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快",
     size:"46.5MB",
     netdisk:"",
-    version:2.3,
+    version:2.4,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",

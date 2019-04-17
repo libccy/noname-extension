@@ -478,7 +478,7 @@ extension["群英会"]={
 		"xwj_xwugeng_zhengshan.jpg","zbfs.mp3","zbfs.png","xxmiaoshouhuichun.mp3","xxyishugaochao.mp3",
 		"xwj_jisha1.mp3","xwj_jisha2.mp3","xwj_jisha3.mp3","xwj_jisha4.mp3","xwj_jisha5.mp3","xwj_jisha6.mp3","xwj_jisha7.mp3",
                 "xwj_jisha8.mp3","xwj_jisha9.mp3","xwj_jisha10.mp3",
- "xwj_xhuoying_itachi.mp3","xwj_xhuoying_zhuozhu.mp3",
+ "xwj_xhuoying_itachi.mp3","xwj_xhuoying_zhuozhu.mp3","xwj_xhuoying_kakasi.mp3",
  
 ]
 

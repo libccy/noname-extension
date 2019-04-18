@@ -5726,7 +5726,7 @@ audio:"ext:群英会:2",
         'step 2'
         if(!result.bool){
             player.recover(player.maxHp-player.hp);
-            player.draw();
+            //player.draw();
             player.loseMaxHp();            
             player.turnOver();            
             event.finish();
@@ -5739,9 +5739,9 @@ audio:"ext:群英会:2",
         if(player.maxHp<5){
         player.maxHp++;
         }           
-        if(get.is.altered('xwj_xhuoying_changsheng')){
-            event.finish();
-        }
+     //   if(get.is.altered('xwj_xhuoying_changsheng')){
+          //  event.finish();
+       // }
         'step 4'
         event.target.changeHp(-event.num);
         'step 5'
@@ -7354,21 +7354,29 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
                     suit:"heart",
                 },
                 check:function (card){
-        return 6-get.value(card);
+        return 8-get.value(card);
     },
                 content:function (){          
         var chat=['心转心之术','剩下的就让我来替你完成吧'].randomGet();
-            player.say(chat);          
-     
+            player.say(chat);               
         player.swapHandcards(target);        
        
     },
                 ai:{
-                    order:0.5,                                     
+                   result:{
+                        target:function (player,target){
+                        if(player.countCards('h')>target.countCards('h')) return 0;   
+                return -target.countCards('h');
+            },
+                    },
+                    order:8,
+                    threaten:0.5,
+                   /* order:5,                                     
                     result:{
                     target:function (player,target){
                        var att=get.attitude(player,target);          
-                if(player.countCards('h')>target.countCards('h')) return 0;                               
+                if(player.countCards('h')>target.countCards('h')) return 0;        
+                if(get.damageEffect(target,player)) return 8;                     
                 return get.damageEffect(target,player);
             },
                         player:function (player,target){
@@ -7376,7 +7384,7 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
                 if(player.countCards('h')>target.countCards('h')) return 0;                 
                 return get.damageEffect(target,player);
             },
-                    },
+                    },*/
                 },
             },
             "xwj_xhuoying_reyiliao":{
@@ -10076,22 +10084,9 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         }
     },
                 ai:{
-                    result:{
+                     result:{
                         target:function (player,target){
-                var hs=player.getCards('h');
-                if(hs.length<3) return 0;
-                var bool=false;
-                for(var i=0;i<hs.length;i++){
-                    if(hs[i].number>=9&&get.value(hs[i])<7){
-                        bool=true;
-                        break;
-                    }
-                }
-                if(!bool) return 0;              
-                if(player.canUse('sha',target)&&(player.countCards('h','sha')||player.countCards('he',{color:'red'}))){
-                    return -2;
-                }
-                return -0.5;
+                return -target.countCards('h');
             },
                     },
                     order:9,
@@ -10404,11 +10399,12 @@ var chat=['木叶的高层，拿命来！','这就是……万花筒写轮眼的
         }
     },
                 ai:{
-            result:{
-            target:function (player,target){
-                return get.damageEffect(target,player,target);
+           result:{
+                        target:function (player,target){
+                return -target.countCards('h');
             },
-        },
+                    },
+                    order:8,
                     threaten:0.5,
                 },
             },
@@ -11854,7 +11850,7 @@ translate:{
             "xwj_xhuoying_citan":"刺探",
             "xwj_xhuoying_citan_info":"（偷窥美女、潜入雨忍村）出牌阶段开始时，你可以潜入偷窥其他角色的手牌",
             "xwj_xhuoying_changsheng":"永生",
-            "xwj_xhuoying_changsheng_info":"濒死阶段，你可摸一张牌，你可以与一名有手牌的其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过5）；若你拼点没赢，你回复体力至体力上限并摸一张牌，然后你失去一点体力上限并翻面（一个像蛇一样难缠的家伙）",
+            "xwj_xhuoying_changsheng_info":"濒死阶段，你可摸一张牌，你可以与一名有手牌的其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过5）；若你拼点没赢，你回复体力至体力上限，然后你失去一点体力上限并翻面（一个像蛇一样难缠的家伙）",
             "xwj_xhuoying_rechendun":"尘遁",
             "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_wuchen":"无尘",
@@ -14917,5 +14913,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.56",
+    version:"1.57",
 },files:{"character":[],"card":[],"skill":[]}}})

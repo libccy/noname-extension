@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"秦时明月",content:function (config,pack){
 	if(config.qinshimingyue){
 		for(var i in lib.characterPack['qinshimingyue']) {
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
@@ -745,7 +745,7 @@ return !player.storage.MYliujiannu;
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
-        return target.canUse({name:'sha'},player)&&target.countCards('he');
+        return target.canUse({name:'sha'},player)&&target.countCards('hej');
     },
                 content:function (){
         "step 0"
@@ -1615,12 +1615,10 @@ return !player.storage.MYliujiannu;
                 check:function (card){
         return 7-get.value(card);
     },
-                contentBefore:function (){
+                
+                content:function (){
         player.loseHp();
         player.draw(1);
-    },
-                alter:true,
-                content:function (){
         if(targets.length==1){
             target.damage('fire',1);
             if(get.is.altered('huodan')) target.draw();
@@ -1696,7 +1694,8 @@ return !player.storage.MYliujiannu;
     },
                 content:function (){
         "step 0"
-        player.chooseTarget('选择【寄托】的目标',function(card,player,target){
+        player.chooseTarget('选择【寄托】的目标',true,
+function(card,player,target){
              return player!=target&&player.countCards('he')>0;
         }).set('ai',function(target){
             var att=get.attitude(_status.event.player,target);
@@ -2144,10 +2143,14 @@ return (event.source&&event.source.countCards('he')&&event.source!=player);
     },
                 logTarget:"source",
                 content:function (){
-         if(trigger.source.countCards('he')){
+   
+   if(trigger.source.hp>=player.hp){
+            trigger.source.damage();         
+        }
+       else{
                 player.discardPlayerCard(trigger.source,'he',true);
-            }
-    },
+            }  
+  },
             },
             MYzongjian:{
                 audio:"ext:秦时明月:2",
@@ -4998,19 +5001,19 @@ else{
     },
                 filterCard:function (card){
         if(get.is.altered('yunchou')){
-            return get.type(card)!='basic';
+            return get.type(card);
         }
         return true;
     },
                 filter:function (event,player){
         if(get.is.altered('yunchou')){
             return player.hasCard(function(card){
-                return get.type(card)!='basic';
+                return get.type(card);
             });
         }
         return true;
     },
-                alter:true,
+               
                 content:function (){
         "step 0"
         var card=target.getCards('h').randomGet();
@@ -6150,9 +6153,9 @@ nance:"难测",
             MYhuomeishu:"火魅术",
             "MYhuomeishu_info":"回合结束后，你可以令一名角色摸一张牌，然后你控制此角色对其攻击范围内你选择的另一名角色使用一张【杀】，否则你获得其一张牌。",
             MYziya:"呲牙",
-            "MYziya_info":"出牌阶段，对周围一名能杀到你的角色呲牙，如果该角色不杀你，你拿其任意一张牌，每回合限一次。",
+            "MYziya_info":"出牌阶段，对周围一名能杀到你的角色呲牙，如果该角色不杀你，你拿其任意区域一张牌，每回合限一次。",
             MYhunao:"胡闹",
-            "MYhunao_info":"出牌阶段限一次，随你心情，对距离内的一名角色造成一点伤害。",
+            "MYhunao_info":"出牌阶段限一次，随你心情，对距离内的一名其他角色造成一点伤害。",
             MYleishenchui:"雷神锤",
             "MYleishenchui_info":"锁定技，当你使用【杀】对目标角色造成伤害时，你进行一次判定， 若你的体力值不大于2，你可以打出一张黑色牌替换之，判定结果为黑色牌，其受到3点伤害。",
             MYjuque:"巨阙",
@@ -6230,7 +6233,7 @@ nance:"难测",
             MYyinlu:"音律",
             "MYyinlu_info":"<font color=#F0F>幻音宝盒</font> ：每当你受到伤害后，随机进行一项：①弃置伤害来源两张手牌;②弃置伤害来源所有手牌; ③弃置伤害来源装备区的两张牌; ④弃置伤害来源装备区的所有牌; ⑤你恢复一点体力;⑥对伤害来源造成一点伤害;⑦获得伤害来源的一张手牌;⑧获得伤害来源的两张手牌; ⑨你摸一张牌 ;⑩你摸两张牌。",
             MYjiansheng:"剑圣",
-            "MYjiansheng_info":"每当其他角色触发你使用或打出一张闪后，你可以弃置此角色一张牌。",
+            "MYjiansheng_info":"每当其他角色触发你使用或打出一张闪后，若其体力值不小于你，你可以对其造成一点伤害，否则你可以弃置其一张牌。",
             MYzongjian:"纵剑",
             "MYzongjian_info":"锁定技，你使用【杀】可以选择你距离不大于此【杀】点数的角色为目标；当你使用【杀】指定一个目标后，你可以根据下列条件执行相应的效果：1.其手牌数小于等于你的手牌数，此【杀】不可被【闪】响应 2.其体力值大于等于你的体力值，此【杀】伤害+1。",
             MYbadao:"霸道",
@@ -6288,7 +6291,7 @@ nance:"难测",
             MYliangji:"良计",
             "MYliangji_info":"出牌阶段，展示一名角色的一张手牌，然后你可以弃置一张大于此牌的手牌并回复一点体力，或者弃置一张不大于此牌的手牌令其回复一点体力。",
             MYruya:"儒雅",
-            "MYruya_info":"回合结束时，可令任意一名角色将手牌补至其体力值的张数(不能超过五张)。",
+            "MYruya_info":"回合结束时，可令任意一名角色将手牌补至X张(X为其体力值，不能超过五张)。",
             MYdadao:"大道",
             "MYdadao_info":"若你的手牌数小于体力上限，每当有角色使用一张非延时锦囊牌时，你摸一张牌。",
             MYwuji:"无极",
@@ -6750,9 +6753,9 @@ image:'ext:秦时明月/MYjiguanbaihu.png',
         translate:{
         },
     },
-    intro:" <li>联机完结版，可在联机设置里设为联机禁用<li>本扩展会根据大家的反馈进行修改和完善。<li>特别感谢:@Sukincen @Cae <li><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><a href=\"https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw\">点击下载本人更多扩展<a>",
+    intro:" <li>联机完结版，可在联机设置里设为联机禁用<li>本扩展会根据大家的反馈进行修改和完善<li>特别感谢:@Sukincen @Cae <li><font color=#F0F>扩展分享群:149662491</font><br>—————————————————<br><br><br><br><h3>还没结束，后续更新：</h2>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><a href=\"https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw\">点击下载本人更多扩展<a>",
     author:"呲牙哥！",
     diskURL:"",
     forumURL:"",
-    version:"2.8",
+    version:"2.9",
 },files:{"character":[],"card":[],"skill":[]}}})

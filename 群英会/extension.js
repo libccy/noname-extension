@@ -3911,11 +3911,11 @@ game.import('character',function(){
 				character:{
 				 "xwj_xhuoying_shuiyue":["male","xxiao",3,["xwj_xhuoying_xundao","xwj_xhuoying_daoji","xwj_xhuoying_yehua"],[]],
 	        "xwj_xhuoying_itachi":["male","xxiao",3,["xwj_xhuoying_yuedu","xwj_xhuoying_retianzhao","xwj_xhuoying_xuzuo"],[]],
-	        "xwj_xhuoying_zhujian":["male","xhuo",3,["xwj_xhuoying_mudun","xwj_xhuoying_qianshou","xwj_xhuoying_xianti"],["forbidai"]],
+	        "xwj_xhuoying_zhujian":["male","xhuo",3,["xwj_xhuoying_mudun","xwj_xhuoying_qianshou","xwj_xhuoying_xianti"],[]],
             "xwj_xhuoying_gangshou":["female","xhuo",4,["xwj_xhuoying_reguaili","xwj_xhuoying_baihao"],[]],
             "xwj_xhuoying_dashewan":["male","xren",3,["xwj_xhuoying_changsheng","xwj_xhuoying_wanshe"],[]],
             "xwj_xhuoying_zhilaiye":["male","xhuo",4,["xwj_xhuoying_citan","xwj_xhuoying_renfa","xwj_xhuoying_xianren"],[]],
-            "xwj_xhuoying_zhishui":["male","xhuo",4,["xwj_xhuoying_shunsheng","xwj_xhuoying_reshouhu"],["forbidai"]],
+            "xwj_xhuoying_zhishui":["male","xhuo",4,["xwj_xhuoying_shunsheng","xwj_xhuoying_reshouhu"],[]],
             "xwj_xhuoying_ningchi":["male","xhuo",3,["xwj_xhuoying_xinbaiyan","xwj_xhuoying_guazhang","xwj_xhuoying_huitian"],[]],
             "xwj_xhuoying_feiduan":["male","xxiao",3,["xwj_xhuoying_rebusi","xwj_xhuoying_zhoushu"],[]],
             "xwj_xhuoying_ban":["male","xxiao",2,["xwj_xhuoying_zhenxing","xwj_xhuoying_xinxuzuo","xwj_xhuoying_yiyuan"],[]],
@@ -5506,6 +5506,65 @@ audio:"ext:群英会:2",
         },
                 },
             },
+            
+        /*    		enable:'chooseToUse',
+				filter:function(event,player){
+					return event.type!='wuxie'&&event.type!='trickuse';
+				},
+				onChooseToUse:function(event){
+					if(!game.online){
+						var cards=[];
+						if(ui.cardPile.childNodes.length<2){
+							var discardcards=get.cards(2);
+							for(var i=0;i<discardcards.length;i++){
+								discardcards[i].discard();
+							}
+						}
+						for(var i=0;i<2;i++){
+							cards.push(ui.cardPile.childNodes[i]);
+						}
+						event.set('Revision_aocaicards',cards);
+					}
+				},
+				chooseButton:{
+					dialog:function(event,player){
+					 player.logSkill('Revision_aocai');
+						return ui.create.dialog('傲才：选择一张卡牌使用',event.Revision_aocaicards);
+					},
+					filter:function(button,player){
+						var evt=_status.event.getParent();
+						if(evt&&evt.filterCard){
+							return (get.type(button.link)=='basic'||get.type(button.link)=='trick'||get.type(button.link)=='delay')&&evt.filterCard(button.link,player,evt);
+						}
+						return false;
+					},
+					check:function(button){
+						return 1;
+					},
+					backup:function(links,player){
+						return {
+							filterCard:function(){return false},
+							selectCard:-1,
+							viewAs:links[0],
+						}
+					},					
+					prompt:function(links,player){
+						return '选择'+get.translation(links)+'的目标';
+					}
+				},
+				ai:{
+					order:11,
+					save:true,
+					result:{
+						player:function(player){
+							if(player.tempSkills.Revision_aocai4) return 0;
+							if(_status.event.dying) return get.attitude(player,_status.event.dying);
+							return 1;
+						}
+					}
+				}
+			},
+     */       
             "xwj_xhuoying_mudun":{
                 group:["xwj_xhuoying_mudun_use","xwj_xhuoying_mudun_respond"],
                 filter:function (event,player){
@@ -5530,6 +5589,21 @@ audio:"ext:群英会:2",
                 subSkill:{
                     use:{
                         enable:"chooseToUse",
+                        			onChooseToUse:function(event){
+					if(!game.online){
+						var cards=[];
+						if(ui.cardPile.childNodes.length<2){
+							var discardcards=get.cards(2);
+							for(var i=0;i<discardcards.length;i++){
+								discardcards[i].discard();
+							}
+						}
+						for(var i=0;i<2;i++){
+							cards.push(ui.cardPile.childNodes[i]);
+						}
+						event.set('xwj_xhuoying_muduncards',cards);
+					}
+				},
                         chooseButton:{
                             dialog:function (event,player){
                     player.storage.xwj_xhuoying_mudun = [
@@ -5624,16 +5698,16 @@ audio:"ext:群英会:2",
             },
                         content:function (){
                 "step 0"
-                var cards=[];
-                if(ui.cardPile.childNodes.length<2){
-                    var discardcards=get.cards(2);
-                    for(var i=0;i<discardcards.length;i++){
-                        ui.discardPile.appendChild(discardcards[i]);
-                    }
-                }
-                for(var i=0;i<2;i++){
-                    cards.push(ui.cardPile.childNodes[i]);
-                }
+            var cards=[];
+        if(ui.cardPile.childNodes.length<2){
+            var discardcards=get.cards(2);
+            for(var i=0;i<discardcards.length;i++){
+                discardcards[i].discard();
+            }
+        }
+        for(var i=0;i<2;i++){
+            cards.push(ui.cardPile.childNodes[i]);
+        }
                 player.chooseCardButton('木遁：选择一张卡牌打出',cards).set('filterButton',function(button){
                     return _status.event.getTrigger().filterCard(button.link);
                 });
@@ -12418,7 +12492,7 @@ characterIntro:{
 skill:{
  
         		"xwj_xqinshi_jianai":{
-     audio:["jijiu",2],    		
+     audio:"ext:群英会:2",  		
 				trigger:{global:'dying'},				
 				skillAnimation:true,
 				animationColor:'water',
@@ -12445,6 +12519,7 @@ skill:{
         }
         player.storage.xwj_xqinshi_jingxie=player.getCards('e');
         player.lose(player.getCards('e'),ui.special)._triggered=null;   
+        game.playXu('xwj_xqinshi_jingxie');
         if(list&&list.length){
             player.directequip(list);
         }    
@@ -12455,7 +12530,7 @@ skill:{
 				},
 			},
                  "xwj_xqinshi_feigong":{
-                audio:["jianzheng",2],
+                audio:"ext:群英会:2",
                 trigger:{
                     player:"damageBegin",
                 },
@@ -12503,8 +12578,7 @@ else{
                 },
             },
                               
-            "xwj_xqinshi_jingxie":{
-            audio:["shefu",2],
+            "xwj_xqinshi_jingxie":{           
                 trigger:{
                     target:"useCardToBefore",
                 },
@@ -12530,13 +12604,13 @@ else{
         }
         player.storage.xwj_xqinshi_jingxie=player.getCards('e');
         player.lose(player.getCards('e'),ui.special)._triggered=null;   
+        game.playXu('xwj_xqinshi_jingxie');
         if(list&&list.length){
             player.directequip(list);
         }
     },
             },
-            "xwj_xqinshi_jingxie2":{
-            audio:["shefu",2],
+            "xwj_xqinshi_jingxie2":{          
                 enable:"phaseUse",
                 usable:1,
                 intro:{
@@ -12554,6 +12628,7 @@ else{
         }
         player.storage.xwj_xqinshi_jingxie=player.getCards('e');
         player.lose(player.getCards('e'),ui.special)._triggered=null;   
+        game.playXu('xwj_xqinshi_jingxie');
         if(list&&list.length){
             player.directequip(list);
         }
@@ -12903,7 +12978,7 @@ if(lib.device||lib.node){
 				name:'xwugeng',
 				connect:true,
 				character:{
-					"xwj_xwugeng_tian":["male","shen",4,["xwj_xwugeng_xuemao","xwj_xwugeng_baiqian"],["forbidai"]],
+					"xwj_xwugeng_tian":["male","shen",4,["xwj_xwugeng_xuemao","xwj_xwugeng_baiqian"],[]],
 					"xwj_xwugeng_zhengshan":["male","shen",3,["xwj_xwugeng_zhuanlun","xwj_xwugeng_chenjie","xwj_xwugeng_kongjing","xwj_xwugeng_zhuzhan"],[]],           
       "xwj_xwugeng_shixing":["male","shen",3,["xwj_xwugeng_fuhuo","xwj_xwugeng_fuchou"],[]],
 					"xwj_xwugeng_xuanfeng":["male","shen",4,["xwj_xwugeng_shensu","xwj_xwugeng_baofeng","xwj_xwugeng_zhengkong"],[]],
@@ -15251,7 +15326,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，除了“千手柱间”的“木遁”在牌堆剩余一张牌时发动会卡死游戏外，已解决绝大部分已知的可能会卡死的BUG，暂时未发现其他卡死情况<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
 					},				
@@ -15346,5 +15421,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.58",
+    version:"1.59",
 },files:{"character":[],"card":[],"skill":[]}}})

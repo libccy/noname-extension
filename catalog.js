@@ -584,6 +584,57 @@ extension["金庸群侠传"]={
     ]
 }; 
 
+extension["新•界限突破"]={
+    author:"苏婆玛丽奥",
+    intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
+    size:"737KB",
+    netdisk:"",
+    version:1.0,
+    files:[
+        "re_huaxiong.jpg","extension.js","re_diaochan.jpg","re_huangyueyingx.jpg","re_sunquan.jpg",
+		"re_sunshangxiang.jpg","re_zhenji.jpg","re_zhugeliang.jpg","new_drlt_jueyan1.mp3",
+		"new_drlt_jueyan2.mp3"
+    ]
+}; 
+
+extension["新国战"]={
+    author:"苏婆玛丽奥",
+    intro:"◇2019版新国战规则与武将改动扩展",
+    size:"5.12MB",
+    netdisk:"",
+    version:2.0,
+    files:[
+       "extension.js","chaoming.mp3","default.mp3","changelog.txt"
+    ]
+}; 
+
+extension["新服杂碎"]={
+    author:"苏婆玛丽奥",
+    intro:"关于但不限于新服的各种玩意儿。更新日期：2019-05-05",
+    size:"6.25MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+      "extension.js","caoying.jpg","liuyan.jpg","wangcan.jpg","sp_taishici.jpg",
+		"re_jsp_pangtong.jpg","lvdai.jpg","duji.jpg","re_zhangliang.jpg","lvqian.jpg","fanchou.jpg",
+		"guosi.jpg","lijue.jpg","xurong.jpg","majun.jpg","simahui.jpg","shuijing_card.jpg",
+		"liuyao.jpg","zhangji.jpg","panjun.jpg","yanjun.jpg","zhoufang.jpg","wolong_card.jpg",
+		"baosanniang.jpg","fengchu_card.jpg","zhaotongzhaoguang.jpg","xuanjian_card.jpg",
+		"pangdegong.jpg","re_yuji.jpg"
+    ]
+}; 
+
+extension["暴躁AI"]={
+    author:"皮皮",
+    intro:"优化人机ai，改善玩家游戏体验，增强游戏可玩度，避免人机坑队友现象。完全接近原版强度，在不破坏游戏平衡的基础上让游戏可玩性变得更多，带给玩家不一样的感受。",
+    size:"12KB",
+    netdisk:"",
+    version:1.0,
+    files:[
+        "extension.js"
+    ]
+}; 
+
 /*
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",

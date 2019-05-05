@@ -1,0 +1,14 @@
+extension["新服杂碎"]={
+	intro:"关于但不限于新服的各种玩意儿",
+	author:"苏婆玛丽奥",
+	netdisk:"",
+	forum:"",
+	version:"1.0",
+	files:["package.js","extension.js","caoying.jpg","liuyan.jpg","wangcan.jpg","sp_taishici.jpg",
+		"re_jsp_pangtong.jpg","lvdai.jpg","duji.jpg","re_zhangliang.jpg","lvqian.jpg","fanchou.jpg",
+		"guosi.jpg","lijue.jpg","xurong.jpg","majun.jpg","simahui.jpg","shuijing_card.jpg",
+		"liuyao.jpg","zhangji.jpg","panjun.jpg","yanjun.jpg","zhoufang.jpg","wolong_card.jpg",
+		"baosanniang.jpg","fengchu_card.jpg","zhaotongzhaoguang.jpg","xuanjian_card.jpg",
+		"pangdegong.jpg","re_yuji.jpg"],
+	size:"222KB"
+};

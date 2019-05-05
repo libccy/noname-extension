@@ -591,9 +591,9 @@ extension["新•界限突破"]={
     netdisk:"",
     version:1.0,
     files:[
-        "re_huaxiong.jpg","extension.js","re_diaochan.jpg","re_huangyueyingx.jpg","re_sunquan.jpg",
-		"re_sunshangxiang.jpg","re_zhenji.jpg","re_zhugeliang.jpg","new_drlt_jueyan1.mp3",
-		"new_drlt_jueyan2.mp3"
+      "re_sunquan.jpg","re_zhugeliang.jpg","re_zhenji.jpg","re_huangyueyingx.jpg","re_sunshangxiang.jpg",
+		"re_diaochan.jpg","re_huaxiong.jpg","re_jikang.jpg","extension.js","extension.js.bak",
+		"package.js"
     ]
 }; 
 
@@ -604,7 +604,7 @@ extension["新国战"]={
     netdisk:"",
     version:2.0,
     files:[
-       "extension.js","chaoming.mp3","default.mp3","changelog.txt"
+      "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
     ]
 }; 
 
@@ -615,12 +615,13 @@ extension["新服杂碎"]={
     netdisk:"",
     version:1.0,
     files:[
-      "extension.js","caoying.jpg","liuyan.jpg","wangcan.jpg","sp_taishici.jpg",
-		"re_jsp_pangtong.jpg","lvdai.jpg","duji.jpg","re_zhangliang.jpg","lvqian.jpg","fanchou.jpg",
-		"guosi.jpg","lijue.jpg","xurong.jpg","majun.jpg","simahui.jpg","shuijing_card.jpg",
-		"liuyao.jpg","zhangji.jpg","panjun.jpg","yanjun.jpg","zhoufang.jpg","wolong_card.jpg",
-		"baosanniang.jpg","fengchu_card.jpg","zhaotongzhaoguang.jpg","xuanjian_card.jpg",
-		"pangdegong.jpg","re_yuji.jpg"
+     "baosanniang.jpg","caoying.jpg","duji.jpg","extension.js","fanchou.jpg","fengchu_card.jpg",
+		"guosi.jpg","lijue.jpg","liuyan.jpg","liuyao.jpg","lvdai.jpg","lvkai.jpg","lvqian.jpg",
+		"majun.jpg","package.js","pangdegong.jpg","panjun.jpg","re_jsp_pangtong.jpg","re_yuji.jpg",
+		"re_zhangliang.jpg","shuijing_card.jpg","simahui.jpg","sp_taishici.jpg","wangcan.jpg",
+		"weiwenzhugezhi.jpg","wolong_card.jpg","xf_yiji.jpg","xuanjian_card.jpg","xurong.jpg",
+		"yanjun.jpg","zhanggong.jpg","zhangji.jpg","zhangqiying.jpg","zhaotongzhaoguang.jpg",
+		"zhoufang.jpg"
     ]
 }; 
 

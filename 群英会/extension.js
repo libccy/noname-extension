@@ -4163,6 +4163,7 @@ skill:{
          event.finish();
     }   
     "step 2"
+	game.playXu(['xwj_xhuoying_xundao1','xwj_xhuoying_xundao2'].randomGet());
     var chat=['没收你们的作案工具','这把斩首大刀，从今天起，就是属于我的了','我就是为了搜集七把忍刀才决定加入鹰小队的'].randomGet();
 
             player.say(chat); 

@@ -10268,12 +10268,21 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     expose:0.2,
                 },
             },
-
  "xwj_xhuoying_lunhui":{
                 audio:"ext:群英会:2",
                 unique:true,
                 enable:"phaseUse",
                 mark:true,
+                    // direct:true,
+                notarget:true,
+                selectCard:2,
+                filterCard:function (card) {
+        if (card.name == 'tao' ) return true;
+        return false;
+    },
+                position:"h",
+                discard:false,
+                prompt:"请选择两张桃令全场已阵亡角色复活",
                 init:function (player){
         player.storage.xwj_xhuoying_lunhui=false;
     },
@@ -10287,8 +10296,26 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         "step 0"         
         var chat=['外道•轮回天生之术','逝去的亡灵啊……归来吧！'].randomGet();
         player.say(chat);
+        player.turnOver(); 
         player.storage.xwj_xhuoying_lunhui=true; 
-        event.current=player.next;                
+        player.$skill('轮回天生','fire','red','avatar');
+        player.unmarkSkill('xwj_xhuoying_lunhui');
+        player.awakenSkill('xwj_xhuoying_lunhui');
+        "step 1"
+    			game.broadcastAll(function(player) {
+									var list = [];
+									for (var i = 0; i < game.dead.length; i++) {
+										list.push(game.dead[i]);
+										player.line(game.dead[i], 'green');
+									}																
+									for (var i = 0; i < list.length; i++) {
+										list[i].revive();				
+								 	list[i].draw(2);		
+									}
+								}, player);
+        /*
+          "step 0"  
+        //    event.current=player.next;                
                  var list=[];
                  for(var i=0;i<game.dead.length;i++){
                      list.push(game.dead[i].name);
@@ -10296,9 +10323,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                  for(var i=0;i<game.dead.length&&game.dead[i].name!=button.link;i++);
                      return ai.get.attitude(_status.event.player,game.dead[i]);
                  }); 
-                "step 1"
-                 player.$skill('轮回天生','fire','red','avatar');
-                 player.unmarkSkill('xwj_xhuoying_lunhui')               
+                "step 1"                            
                  if(result.bool){
                      for(var i=0;i<game.dead.length&&game.dead[i].name!=result.buttons[0].link;i++);
                      var dead=game.dead[i];
@@ -10307,20 +10332,14 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                      dead.draw(dead.maxHp);
                      player.turnOver();                     
                      player.awakenSkill('xwj_xhuoying_lunhui');
-     }
-     },
-                direct:true,
-                notarget:true,
-                selectCard:2,
-                filterCard:function (card) {
-        if (card.name == 'tao' ) return true;
-        return false;
-    },
-                position:"h",
-                discard:false,
-                prompt:"请选择两张桃",
+                  }
+     */
+     },           
                 ai:{
                     expose:0.5,
+                    result:{
+                           player:1,                    
+                    },
                 },
             },
             "xwj_xhuoying_tianyin":{
@@ -10359,16 +10378,16 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
      var chat=['万象天引','对面的帅哥美女，看过来'].randomGet();
             player.say(chat);    
     if(num<event.targets.length){
-        var hej=event.targets[num].get('hej')
-        if(hej.length){
-            var card=hej.randomGet();
+        var h=event.targets[num].get('h');
+        if(h.length){
+            var card=h.randomGet();
             player.gain(card,event.targets[num]);
             if(get.position(card)=='h'){
                 event.targets[num].$give(1,player);
             }
-            else{
+         /*   else{
                 event.targets[num].$give(card,player);
-            }
+            }*/
         }
         event.num++;
         event.redo();
@@ -12143,9 +12162,9 @@ translate:{
             "xwj_xhuoying_refengyin_info":"<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 出牌阶段开始时，你可令任意一名角色永久失去当前的所有技能，然后你进入濒死状态。",
             "xwj_xhuoying_changmen":"漩涡长门",
             "xwj_xhuoying_lunhui":"轮回",
-            "xwj_xhuoying_lunhui_info":"<font color=#F0F>轮回天生</font> <span class=yellowtext>限定技</span> 出牌阶段你可弃置两张[桃]并选择一名已阵亡角色，令其复活，其体力回复至X，并摸X张的牌（X为该角色的体力上限），然后你将你的武将牌翻面",
+            "xwj_xhuoying_lunhui_info":"<font color=#F0F>轮回天生</font> <span class=yellowtext>限定技</span> 出牌阶段，你可弃置两张【桃】并将你的武将牌翻面，令场上所有已阵亡的角色复活，其体力回复至1，并摸2张的牌",
             "xwj_xhuoying_tianyin":"天引",
-            "xwj_xhuoying_tianyin_info":"<font color=#F0F>万象天引</font> 回合结束阶段限一次，你可以随机获得每名角色区域内的一张牌，然后你将你的武将牌翻面",
+            "xwj_xhuoying_tianyin_info":"<font color=#F0F>万象天引</font> 回合结束阶段限一次，你可以随机获得每名其他角色的一张手牌，然后你将你的武将牌翻面",
             "xwj_xhuoying_tianzheng":"天征",
             "xwj_xhuoying_tianzheng_info":"<font color=#F0F>神罗天征</font> 当你即将受到伤害，若伤害来源体力比你高，你可弃置一张黑色手牌令伤害-1，当你即将造成伤害，若对方体力值比你高，你可弃置一张红色手牌令此伤害+1",
             "xwj_xhuoying_wuren":"无",
@@ -15421,5 +15440,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.59",
+    version:"1.60",
 },files:{"character":[],"card":[],"skill":[]}}})

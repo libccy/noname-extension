@@ -328,8 +328,8 @@ extension["群英会"]={
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	size:"76MB",
-    version:1.59,
+	size:"77MB",
+    version:1.60,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg",
@@ -446,6 +446,8 @@ extension["群英会"]={
                 "xwj_xhuoying_chiwan.jpg","xwj_xhuoying_quanzhongya.jpg","xwj_xhuoying_shouju.jpg",
  "xwj_xhuoying_hongjiao1.mp3","xwj_xhuoying_hongjiao2.mp3","xwj_xhuoying_jiuxinnai.jpg",
  "xwj_xhuoying_fenglian1.mp3","xwj_xhuoying_fenglian2.mp3","xwj_xhuoying_shuiyue.jpg",
+ "xwj_xhuoying_daoji1.mp3","xwj_xhuoying_daoji2.mp3","xwj_xhuoying_xundao1.mp3","xwj_xhuoying_xundao2.mp3",
+ "xwj_xhuoying_yehua1.mp3","xwj_xhuoying_yehua2.mp3","xwj_xhuoying_yehua.mp3","xwj_xhuoying_yehua21.mp3",
 		"xwj_xhuoying_zibao1.mp3","xwj_xhuoying_zibao2.mp3","xwj_xhuoying_zuojin.jpg","xwj_xqinshi_genie.jpg",
 		"xwj_xqinshi_hengjian1.mp3","xwj_xqinshi_hengjian2.mp3","xwj_xqinshi_jiansheng1.mp3",
 		"xwj_xqinshi_jiansheng2.mp3","xwj_xqinshi_jusha21.mp3","xwj_xqinshi_jusha22.mp3",

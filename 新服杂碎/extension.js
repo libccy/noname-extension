@@ -1,13 +1,14 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新服杂碎",content:function (config,pack){
-get.number=function(card){
-		var owner=get.owner(card);
-		if(owner){
-			if(owner.hasSkill('zhenyi_spade_red')||owner.hasSkill('zhenyi_spade_black')) return 5;
-	    }
+    get.number=function(card){
+        if(_status.event.name=='judge'){
+		    var owner=get.owner(card);
+		    if(owner){
+		    	if(owner.hasSkill('zhenyi_spade_red')||owner.hasSkill('zhenyi_spade_black')) return 5;
+	        }
+        }
 		return card.number;
 	},
     _status.pcdelay=config.pcdelay;
-    _status.zgmode=config.zgmode;
     if(config.caoying){
 		lib.arenaReady.push(function(){
             if(lib.character.caoying){
@@ -41,6 +42,7 @@ get.number=function(card){
             zhaotongzhaoguang:"效捷致果",
             zhoufang:"下发载义",
             majun:"没渊瑰璞",
+            xf_yiji:"礼仁同渡",
         };
         for(var i in CT){
             lib.characterTitle[i]=CT[i];
@@ -52,6 +54,7 @@ get.number=function(card){
     if(!_status.angelbeats) _status.angelbeats={};
     var encode_version = 'sojson.v5', rqsuu = '__0x3a6c0',  __0x3a6c0=['5aSZ5rWv54q25LiG55a55o6I','5a645a2m5Z2D57uw572Y5oq+','UcK5Lj9xTA==','wp3Ds1PDkSk=','XMKQDktjU05t','wpLCscOxYMKE','wpbCvsO3D8OQ','wrfClcOdasKkDMKKw5XCug==','QsKjJDN1XcKxwpDCmMKgwo8=','FzjCvcKqw4/Du2gKOA==','RsK6aMKaWw==','w73Dg8OZwqYhWEbChA==','w6TCkwjDvkIi','56Sx56eU5Lu956KC','w4NKwrTCtMKCw4pS','w6nCoMOfw73DtMOZw4NBwrN4','5peU56av5pak5L6f5paw5aS35LyW','wqIewrNwYRQ=','wqDChMKVwpXDuw==','KxfCncKsw4bDosO4dw==','G8KqR8Olwp1JKTFhw7E=','5Lm/6ICi5Ym26ZifN3nDtBNGwrEASsO+','DGAzagPCqcKlE8OF','w7daZEZpw71awooC','w69IwqJ1w7gWBCfDn8KQ5pWV5p6r5pyj56Gv'];(function(_0x9ec701,_0x115e37){var _0x4f3899=function(_0x9a95b9){while(--_0x9a95b9){_0x9ec701['push'](_0x9ec701['shift']());}};_0x4f3899(++_0x115e37);}(__0x3a6c0,0x93));var _0x5a05=function(_0x1f6d14,_0x2b0eea){_0x1f6d14=_0x1f6d14-0x0;var _0x19e984=__0x3a6c0[_0x1f6d14];if(_0x5a05['initialized']===undefined){(function(){var _0x2dcf24=typeof window!=='undefined'?window:typeof process==='object'&&typeof require==='function'&&typeof global==='object'?global:this;var _0x234f2d='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x2dcf24['atob']||(_0x2dcf24['atob']=function(_0x12a38f){var _0x3d0c49=String(_0x12a38f)['replace'](/=+$/,'');for(var _0x2a2abf=0x0,_0x3f4904,_0x5ebea5,_0x4fd9d0=0x0,_0x2239d3='';_0x5ebea5=_0x3d0c49['charAt'](_0x4fd9d0++);~_0x5ebea5&&(_0x3f4904=_0x2a2abf%0x4?_0x3f4904*0x40+_0x5ebea5:_0x5ebea5,_0x2a2abf++%0x4)?_0x2239d3+=String['fromCharCode'](0xff&_0x3f4904>>(-0x2*_0x2a2abf&0x6)):0x0){_0x5ebea5=_0x234f2d['indexOf'](_0x5ebea5);}return _0x2239d3;});}());var _0x20a150=function(_0x2f0b78,_0x1d02fc){var _0x38b58b=[],_0x5096bf=0x0,_0x39c1ef,_0x4f6717='',_0x46c788='';_0x2f0b78=atob(_0x2f0b78);for(var _0x597c7c=0x0,_0x101e10=_0x2f0b78['length'];_0x597c7c<_0x101e10;_0x597c7c++){_0x46c788+='%'+('00'+_0x2f0b78['charCodeAt'](_0x597c7c)['toString'](0x10))['slice'](-0x2);}_0x2f0b78=decodeURIComponent(_0x46c788);for(var _0x53ca76=0x0;_0x53ca76<0x100;_0x53ca76++){_0x38b58b[_0x53ca76]=_0x53ca76;}for(_0x53ca76=0x0;_0x53ca76<0x100;_0x53ca76++){_0x5096bf=(_0x5096bf+_0x38b58b[_0x53ca76]+_0x1d02fc['charCodeAt'](_0x53ca76%_0x1d02fc['length']))%0x100;_0x39c1ef=_0x38b58b[_0x53ca76];_0x38b58b[_0x53ca76]=_0x38b58b[_0x5096bf];_0x38b58b[_0x5096bf]=_0x39c1ef;}_0x53ca76=0x0;_0x5096bf=0x0;for(var _0x52d802=0x0;_0x52d802<_0x2f0b78['length'];_0x52d802++){_0x53ca76=(_0x53ca76+0x1)%0x100;_0x5096bf=(_0x5096bf+_0x38b58b[_0x53ca76])%0x100;_0x39c1ef=_0x38b58b[_0x53ca76];_0x38b58b[_0x53ca76]=_0x38b58b[_0x5096bf];_0x38b58b[_0x5096bf]=_0x39c1ef;_0x4f6717+=String['fromCharCode'](_0x2f0b78['charCodeAt'](_0x52d802)^_0x38b58b[(_0x38b58b[_0x53ca76]+_0x38b58b[_0x5096bf])%0x100]);}return _0x4f6717;};_0x5a05['rc4']=_0x20a150;_0x5a05['data']={};_0x5a05['initialized']=!![];}var _0x55e6dc=_0x5a05['data'][_0x1f6d14];if(_0x55e6dc===undefined){if(_0x5a05['once']===undefined){_0x5a05['once']=!![];}_0x19e984=_0x5a05['rc4'](_0x19e984,_0x2b0eea);_0x5a05['data'][_0x1f6d14]=_0x19e984;}else{_0x19e984=_0x55e6dc;}return _0x19e984;};if(typeof encode_version!==_0x5a05('0x0','!9[t')&&encode_version===_0x5a05('0x1','l#LU')){lib['extensionMenu'][_0x5a05('0x2',')gUt')]['cheatcode']['onclick']=function(){var _0x577412={'FLMxL':'神秘代码','fTXWy':_0x5a05('0x3','C]%W'),'KAjQo':function _0x3e7020(_0x51b95d,_0x37917b){return _0x51b95d(_0x37917b);},'rixHo':_0x5a05('0x4','Z@TK'),'fOEeE':'既无神佛\x20亦无天使','pzCJZ':function _0x52d76d(_0x36d057,_0x5e67fe){return _0x36d057(_0x5e67fe);}};var _0x5d2428=window[_0x5a05('0x5','!ah4')](_0x577412['FLMxL']);if([_0x577412[_0x5a05('0x6','pjI0')]][_0x5a05('0x7','Z@TK')](_0x5d2428)){var _0x1e3dbf=window['prompt'](_0x577412[_0x5a05('0x8','w^m3')]);_0x1e3dbf=_0x577412[_0x5a05('0x9','B9SK')](parseInt,_0x1e3dbf);if([0x1,0x2,0x3,0x4,0x5,0x6]['contains'](_0x1e3dbf))_status[_0x5a05('0xa','w^m3')][_0x5a05('0xb','!ah4')]=_0x1e3dbf;else _status[_0x5a05('0xc','nSsx')]['cheaterDice']=0x6;}if([_0x577412[_0x5a05('0xd','UxO@')]][_0x5a05('0xe','APim')](_0x5d2428)){var _0x1e3dbf=window[_0x5a05('0xf','h8zp')](_0x5a05('0x10','nJu#'));_0x1e3dbf=_0x577412['KAjQo'](parseInt,_0x1e3dbf);_status[_0x5a05('0x11','w29!')][_0x5a05('0x12','SPXD')]=_0x1e3dbf;}if([_0x577412['fOEeE'],_0x5a05('0x13','idfD')]['contains'](_0x5d2428)){var _0x1e3dbf=window[_0x5a05('0x14','7T@6')](_0x577412['FLMxL']);_0x1e3dbf=_0x577412[_0x5a05('0x15','^fup')](parseInt,_0x1e3dbf);if([0x1,0x2,0x3][_0x5a05('0x16','dlon')](_0x1e3dbf))_status['angelbeats']['againstGod']=_0x1e3dbf;else _status[_0x5a05('0x17','^#4P')]['againstGod']=0x3;}};}else{alert(_0x5a05('0x18','RFBH'));};encode_version = 'sojson.v5';
     var list1=["baosanniang","caoying","duji","fanchou","guosi","lijue","liuyan","lvdai","lvqian","pangdegong","panjun","re_jsp_pangtong","re_zhangliang","simahui","sp_taishici","wangcan","xurong","yanjun","zhangji","zhoufang","re_yuji"];
+    //阵亡配音
     var list2=[];
     for(var i=0;i<list1.length;i++){
         if(lib.config['noname_xfzs_updateFiles'+list1[i]]!=true) list2.push(list1[i]);
@@ -103,9 +106,64 @@ get.number=function(card){
                 lib.config['noname_xfzs_updateFiles'+list[i]]=false;
 		    	game.saveConfig('noname_xfzs_updateFiles'+list[i],lib.config['noname_xfzs_updateFiles'+list[i]]);
             }
-            alert('【新服杂碎】下载记录已经清除。将于下一次重启时自动重新下载全部配音文件素材。');
+            alert('【新服杂碎】下载记录已经清除。将于下一次重启时重新下载全部配音文件素材。');
         }
     }
+    //皮肤
+    var sklist1=["baosanniang/1","baosanniang/2","caoying/1","duji/1","duji/2","fanchou/1","guosi/1","lijue/1","liuyan/1","liuyao/1","lvdai/1","lvqian/1","panjun/1","re_yuji/1","re_yuji/2","re_yuji/3","re_zhangliang/1","simahui/1","wangcan/1","xurong/1","yanjun/1","zhangji/1","zhoufang/1"];
+    if(lib.config['noname_xfzs_updateSkin']==undefined) lib.config['noname_xfzs_updateSkin']=[];
+    var sklist2=[];
+    for(var i=0;i<sklist1.length;i++){
+        if(!lib.config['noname_xfzs_updateSkin'].contains(sklist1[i])) sklist2.push(sklist1[i]);
+    }
+    if(sklist2.length){
+        lib.extensionMenu.extension_新服杂碎.downloadskin.name="<span style='text-decoration: underline'>下载皮肤</span>";
+        lib.extensionMenu.extension_新服杂碎.downloadskin.onclick=function(){
+            if(!_status.xfzs_skin_downloading){
+                _status.xfzs_skin_downloading=true;
+                var Downloading=this;
+                var sklist1=["baosanniang/1","baosanniang/2","caoying/1","duji/1","duji/2","fanchou/1","guosi/1","lijue/1","liuyan/1","liuyao/1","lvdai/1","lvqian/1","panjun/1","re_yuji/1","re_yuji/2","re_yuji/3","re_zhangliang/1","simahui/1","wangcan/1","xurong/1","yanjun/1","zhangji/1","zhoufang/1"];
+                var sklist2=[];
+                for(var i=0;i<sklist1.length;i++){
+                    if(!lib.config['noname_xfzs_updateSkin'].contains(sklist1[i])) sklist2.push(sklist1[i]);
+                }
+                var total=sklist2.length;
+                var num=total-sklist2.length+1;
+                var download=function(){
+                    num=total-sklist2.length+1;
+                    Downloading.innerHTML="<span style='text-decoration: underline'>正在下载皮肤："+num+"／"+total+"</span>";
+	                game.download('https://raw.githubusercontent.com/Spmario233/MyNonameExtension/master/xfzs/skin/'+sklist2[0]+'.jpg','image/skin/'+sklist2[0]+'.jpg',function(){
+                        lib.config['noname_xfzs_updateSkin'].push(sklist2[0]);
+	        	    	game.saveConfig('noname_xfzs_updateSkin',lib.config['noname_xfzs_updateSkin']);
+                        sklist2.remove(sklist2[0]);
+	              	    if(sklist2.length>0){
+	    	                download();
+	        	        }
+                        else{
+                            Downloading.innerHTML="<span style='text-decoration: underline'>皮肤已下载完成</span>";
+                            alert('【新服杂碎】皮肤已经下载完成。');
+                        }
+                    },function(){
+						alert('【新服杂碎】皮肤下载失败。请在确认网络环境后重试。');
+						Downloading.innerHTML="<span style='text-decoration: underline'>皮肤下载失败，点击重试</span>";
+						_status.xfzs_skin_downloading=false;
+					});
+                };
+                download();
+            }else{
+                alert("【新服杂碎】皮肤的下载任务已经在进行了。");
+            }
+        }
+    }
+    else{
+        lib.extensionMenu.extension_新服杂碎.downloadskin.name="<span style='text-decoration: underline'>重新下载皮肤</span>";
+        lib.extensionMenu.extension_新服杂碎.downloadskin.onclick=function(){
+                lib.config['noname_xfzs_updateSkin']=[];
+		    	game.saveConfig('noname_xfzs_updateSkin',lib.config['noname_xfzs_updateSkin']);
+            alert('【新服杂碎】下载记录已经清除。将于下一次重启时重新下载全部皮肤。');
+        }
+    }
+    //技能配音
      var slist1=["lingren_jianxiong1","lingren_xingshang1","pcaudio_fengchu_card","pcaudio_shuijing_card","pcaudio_wolong_card","pcaudio_xuanjian_card","qinguo_lose1","qinguo_lose2","qinguo_use1","qinguo_use2","xinfu_andong1","xinfu_andong2","xinfu_chenghao1","xinfu_chenghao2","xinfu_denglou1","xinfu_denglou2","xinfu_duanfa1","xinfu_duanfa2","xinfu_fangtong1","xinfu_fangtong2","xinfu_fujian1","xinfu_fujian2","xinfu_gongqing","xinfu_guanchao1","xinfu_guanchao2","xinfu_guanwei1","xinfu_guanwei2","xinfu_guolun1","xinfu_guolun2","xinfu_jianjie1","xinfu_jianjie11","xinfu_jianjie12","xinfu_jianjie13","xinfu_jianjie2","xinfu_jianjie3","xinfu_jijun1","xinfu_jijun2","xinfu_jixu1","xinfu_jixu2","xinfu_kannan","xinfu_langxi1","xinfu_langxi2","xinfu_limu1","xinfu_limu2","xinfu_lingren1","xinfu_lingren2","xinfu_longyuan1","xinfu_longyuan2","xinfu_lveming1","xinfu_lveming2","xinfu_pingcai","xinfu_qiai1","xinfu_qiai2","xinfu_sanwen1","xinfu_sanwen2","xinfu_shajue1","xinfu_shajue2","xinfu_sidao1","xinfu_sidao2","xinfu_songsang1","xinfu_songsang2","xinfu_tanbei1","xinfu_tanbei2","xinfu_tunjun1","xinfu_tunjun2","xinfu_tushe1","xinfu_tushe2","xinfu_weilu1","xinfu_weilu2","xinfu_wuniang1","xinfu_wuniang2","xinfu_xingluan1","xinfu_xingluan2","xinfu_xionghuo1","xinfu_xionghuo2","xinfu_xunxian1","xinfu_xunxian2","xinfu_xushen1","xinfu_xushen2","xinfu_yingshi1","xinfu_yingshi2","xinfu_yinshi1","xinfu_yinshi2","xinfu_yisuan1","xinfu_yisuan2","xinfu_youdi1","xinfu_youdi2","xinfu_zengdao1","xinfu_zengdao2","xinfu_zhanji1","xinfu_zhanji2","xinfu_zhennan1","xinfu_zhennan2","yizan_respond_sha1","yizan_respond_sha2","yizan_respond_shan1","yizan_respond_shan2","guhuo_guess1","guhuo_guess2","xinfu_bijing1","xinfu_bijing2","xinfu_dianhua1","xinfu_dianhua2","xinfu_falu1","xinfu_falu2","xinfu_fuhai1","xinfu_fuhai2","xinfu_qianxin1","xinfu_qianxin2","xinfu_tunan1","xinfu_tunan2","xinfu_zhenxing1","xinfu_zhenxing2","xinfu_zhenyi1","xinfu_zhenyi2"];
     var slist2=[];
     for(var i=0;i<slist1.length;i++){
@@ -158,7 +216,7 @@ get.number=function(card){
                 lib.config['noname_xfzs_updateFiles'+slist[i]]=false;
 		    	game.saveConfig('noname_xfzs_updateFiles'+slist[i],lib.config['noname_xfzs_updateFiles'+slist[i]]);
             }
-            alert('【新服杂碎】下载记录已经清除。将于下一次重启时自动重新下载全部配音文件素材。');
+            alert('【新服杂碎】下载记录已经清除。将于下一次重启时重新下载全部配音文件素材。');
         }
     }
     game.import('character',function(){
@@ -6027,7 +6085,7 @@ return mobilesupport;
     
     
     
-},help:{},config:{"downloadskill":{"name":"<span style='text-decoration: underline'>重新下载技能配音</span>","clear":true},"downloaddie":{"name":"<span style='text-decoration: underline'>重新下载阵亡配音</span>","clear":true},"caoying":{"name":"曹婴四血化","init":false},"pcdelay":{"name":"评才擦拭停顿","intro":"在发动〖评才〗时使游戏停顿9秒左右，确保配音能够完整播放。","init":true},"characterIntro":{"name":"显示武将称号","init":true},"cheatcode":{"name":"<span style='text-decoration: underline'>神秘代码</span>","clear":true}},package:{
+},help:{},config:{"downloadskill":{"name":"<span style='text-decoration: underline'>重新下载技能配音</span>","clear":true},"downloaddie":{"name":"<span style='text-decoration: underline'>重新下载阵亡配音</span>","clear":true},"downloadskin":{"name":"<span style='text-decoration: underline'>下载皮肤</span>","clear":true},"caoying":{"name":"曹婴四血化","init":false},"pcdelay":{"name":"评才擦拭停顿","intro":"在发动〖评才〗时使游戏停顿9秒左右，确保配音能够完整播放。","init":true},"characterIntro":{"name":"显示武将称号","init":true},"cheatcode":{"name":"<span style='text-decoration: underline'>神秘代码</span>","clear":true}},package:{
     character:{
         character:{
         },
@@ -6045,9 +6103,9 @@ return mobilesupport;
         translate:{
         },
     },
-    intro:"关于但不限于新服的各种玩意儿",
+    intro:"关于但不限于新服的各种玩意儿<br>更新日期：2019.05.06",
     author:"苏婆玛丽奥",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"2.0",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -4163,7 +4163,7 @@ skill:{
          event.finish();
     }   
     "step 2"
-    var chat=['这把斩首大刀，从今天起，就是属于我的了','我就是为了搜集七把忍刀才决定加入鹰小队的'].randomGet();
+    var chat=['没收你们的作案工具','这把斩首大刀，从今天起，就是属于我的了','我就是为了搜集七把忍刀才决定加入鹰小队的'].randomGet();
 
             player.say(chat); 
 
@@ -4208,7 +4208,7 @@ skill:{
 
             player.say(chat); 
      
-             	game.playXu(['xwj_xhuoying_yehua1','xwj_xhuoying_yehua2'].randomGet());			                      
+           	game.playXu('xwj_xhuoying_yehua21');			                      
             trigger.num--;            
     },
                 ai:{
@@ -4216,8 +4216,7 @@ skill:{
                     order:3,
                 },
  },
-                    "xwj_xhuoying_yehua":{
-                    audio:"ext:群英会:2",
+                    "xwj_xhuoying_yehua":{            
                         trigger:{
                             target:"shaBegin",
                         },                        
@@ -4231,7 +4230,7 @@ skill:{
                         var chat=['我……身体麻痹，动不了了','既生水月，何生雷遁？'].randomGet();
 
             player.say(chat); 
-       		               
+       	game.playXu('xwj_xhuoying_yehua');	               
         trigger.directHit=true;        
     },
                         ai:{
@@ -5506,65 +5505,7 @@ audio:"ext:群英会:2",
         },
                 },
             },
-            
-        /*    		enable:'chooseToUse',
-				filter:function(event,player){
-					return event.type!='wuxie'&&event.type!='trickuse';
-				},
-				onChooseToUse:function(event){
-					if(!game.online){
-						var cards=[];
-						if(ui.cardPile.childNodes.length<2){
-							var discardcards=get.cards(2);
-							for(var i=0;i<discardcards.length;i++){
-								discardcards[i].discard();
-							}
-						}
-						for(var i=0;i<2;i++){
-							cards.push(ui.cardPile.childNodes[i]);
-						}
-						event.set('Revision_aocaicards',cards);
-					}
-				},
-				chooseButton:{
-					dialog:function(event,player){
-					 player.logSkill('Revision_aocai');
-						return ui.create.dialog('傲才：选择一张卡牌使用',event.Revision_aocaicards);
-					},
-					filter:function(button,player){
-						var evt=_status.event.getParent();
-						if(evt&&evt.filterCard){
-							return (get.type(button.link)=='basic'||get.type(button.link)=='trick'||get.type(button.link)=='delay')&&evt.filterCard(button.link,player,evt);
-						}
-						return false;
-					},
-					check:function(button){
-						return 1;
-					},
-					backup:function(links,player){
-						return {
-							filterCard:function(){return false},
-							selectCard:-1,
-							viewAs:links[0],
-						}
-					},					
-					prompt:function(links,player){
-						return '选择'+get.translation(links)+'的目标';
-					}
-				},
-				ai:{
-					order:11,
-					save:true,
-					result:{
-						player:function(player){
-							if(player.tempSkills.Revision_aocai4) return 0;
-							if(_status.event.dying) return get.attitude(player,_status.event.dying);
-							return 1;
-						}
-					}
-				}
-			},
-     */       
+                          
             "xwj_xhuoying_mudun":{
                 group:["xwj_xhuoying_mudun_use","xwj_xhuoying_mudun_respond"],
                 filter:function (event,player){

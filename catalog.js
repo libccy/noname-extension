@@ -296,10 +296,10 @@ extension["列女传"]={
 
 extension["作者包"]={
     author:"神座sagiri",
-    intro:"更新：新增无名杀教程，全面优化。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。本次更新合并了作者包和粉丝包，粉丝包角色获取途径依旧，增加了武将「学妹」、「随机武将」和一个模式，希望大家玩的愉快",
-    size:"46.5MB",
+    intro:"更新：新增无名杀教程，全面优化。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。希望大家玩的愉快",
+    size:"95MB",
     netdisk:"",
-    version:2.4,
+    version:2.5,
     files:[
         "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
 	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
@@ -318,6 +318,16 @@ extension["作者包"]={
 	     "rscale_0.png","rscale_1.png","rscale_2.png","rscale_3.png","rscale_4.png","rscale_5.png","rscale_6.png","rscale_7.png","rscale_8.png",
 	    "rscale_9.png","rscale_10.png","rscale_11.png","rscale_12.png","rscale_13.png",
 	    "zzbabout.jpg","皮肤音效-纱雾1.mp3","皮肤音效-纱雾2.mp3","皮肤音效-纱雾3.mp3","皮肤音效-神座1.mp3","皮肤音效-何子1.mp3",
+	    "zuozheHonest.jpg","zuozhe如果.jpg","zuozhe老墨.jpg","zzb_Honest.png",
+		"扩展添加皮肤教程_纱雾.txt","扩展联机教程_极光.txt","技能编写教程_极光.txt","技能编写教程_纱雾.txt","特效-fux23.gif",
+		"特效-介绍区特效1.gif","特效-介绍区特效2.gif","特效-介绍区特效3.gif","特效-作者币抽奖.gif","特效-修改密码.gif","特效-功能区特效1.gif",
+		"特效-如果1.gif","特效-如果2.gif","特效-平衡强度区特效1.gif","特效-抽奖1.gif","特效-抽奖2.gif","特效-抽奖3.gif",
+		"特效-抽牌1.gif","特效-抽牌2.gif","特效-抽牌3.gif","特效-抽牌4.gif","特效-抽牌5.gif","特效-更新.gif","特效-模式区特效1.gif",
+		"特效-欧尼斯特1.gif","特效-欧尼斯特2.gif","特效-欧尼斯特3.gif","特效-欧尼斯特4.gif","特效-渣城1.gif","特效-渣城2.gif",
+		"特效-牙哥1.gif","特效-牙哥2.gif","特效-礼品兑换.gif","特效-礼品兑换1.gif","特效-神座3.gif","特效-签到.gif",
+		"特效-签到1.gif","特效-签到2.gif","特效-签到3.gif","特效-签到4.gif","特效-签到5.gif","特效-紫妈1.gif","特效-紫妈2.gif",
+		"特效-紫妈3.gif","特效-老墨1.gif","特效-老墨2.gif","特效-老墨3.gif","特效-老墨4.gif","特效-老墨5.gif","特效-重置作者币.gif",
+		"特效包.jpg","进阶教程1.txt","进阶教程2.txt","进阶教程3.txt"
 	    
     ]
 }; 

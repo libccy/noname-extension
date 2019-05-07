@@ -3899,5 +3899,5 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"2.4",
+    version:"2.5",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

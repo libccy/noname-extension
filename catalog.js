@@ -1103,24 +1103,30 @@ extension["铜雀台"]={
 
 extension["异界四国"]={
     author:"Niugnep",
-    intro:"本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。无特殊情况不再更新",
+    intro:"本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。更新：已联机化，素材也全换了名称，故更新前请先卸载旧版再重新下载",
     size:"35MB",
     netdisk:"",
-    version:1.3,
+    version:2.0,
     files:[
-       "extension.js","严香.jpg","乐仁.jpg","伏彩.jpg","何雉.jpg","兀突坚.jpg","关华.jpg","关彩.jpg",
-		"关松.jpg","典盖.jpg","凌宁逊.jpg","凌权.jpg","刘丰.jpg","刘亮.jpg","刘尚姬.jpg","刘恪.jpg","刘攸.jpg",
-		"刘葛禅.jpg","华异.jpg","吕丰践.jpg","吕瑜.jpg","吕羽.jpg","吕虎.jpg","吴义.jpg","吴姬操.jpg","夏侯嘉.jpg",
-		"夏侯昂.jpg","夏恒奉.jpg","太史宓.jpg","孔白权.jpg","孙仁.jpg","孙佗.jpg","孙华.jpg","孙姒.jpg","孙瑜慈.jpg",
-		"孟姒延.jpg","孟康.jpg","嵇授获.jpg","异界四国(代码).zip","异界四国(图片).zip","张坚.jpg","张宓昂.jpg","张维.jpg",
-		"张芝.jpg","张超.jpg","张顿.jpg","徐浩纪协.jpg","徐羽策.jpg","文亮.jpg","曹侯淳.jpg","曹儒.jpg","曹嘉.jpg",
-		"曹智仁.jpg","曹盖.jpg","曹虎渊.jpg","朱盖.jpg","李延.jpg","桥昭纮.jpg","植丕.jpg","步雍.jpg","沮康.jpg",
-		"满攸.jpg","王华.jpg","王盖.jpg","甄懿.jpg","甄白.jpg","甘逊.jpg","田逊.jpg","祝宓.jpg","简乾灵.jpg",
-		"荀睿.jpg","荀逊.jpg","董获.jpg","蔡文彧.jpg","蔡星.jpg","袁华.jpg","袁延奉.jpg","许蝉.jpg","诸攸节.jpg",
-		"诸昏.jpg","诸昏育.jpg","诸葛冲.jpg","诸葛姬.jpg","诸葛获.jpg","诸超嘉.jpg","诸马逊.jpg","貂仁.jpg","贺操.jpg",
-		"贾禁华.jpg","赵飞.jpg","邓协.jpg","郭佗.jpg","郭图刘协.jpg","钟邕.jpg","阚宫.jpg","陈坚统.jpg","陈岑董昏.jpg",
-		"颜貂文蝉.jpg","马嘉.jpg","马岱超.jpg","马平.jpg","马松.jpg","马茹.jpg","高宓.jpg","魏羽.jpg","鲁然.jpg",
-		"黄休.jpg","黄奉.jpg","黄志.jpg","黄恩月.jpg","黄朗.jpg"
+      "huangzhi.jpg","sunren.jpg","maru.jpg","luyu.jpg","maping.jpg","zhangwei.jpg","kangong.jpg",
+		"zhangjian.jpg","sunhua.jpg","guancai.jpg","caixing.jpg","xunrui.jpg","zhenyi.jpg",
+		"wutujian.jpg","tianxun.jpg","yanxiang.jpg","caiwenyu.jpg","guotuo.jpg","donghuo.jpg",
+		"sunyuci.jpg","wanghua.jpg","gaomi.jpg","lingquan1.jpg","xunxun1.jpg","jukang.jpg",
+		"zhaofei.jpg","sunsi.jpg","zhangzhi.jpg","jishouhuo.jpg","xuchan.jpg","suntuo.jpg",
+		"chenjiantong.jpg","caojia.jpg","zhangchao.jpg","zhipi.jpg","zhenbai.jpg","zhuyoujie.jpg",
+		"wujicao.jpg","hezhi.jpg","xuyuce.jpg","xuhaojixie.jpg","dengxie.jpg","zhangmiang.jpg",
+		"hecao.jpg","wuyi.jpg","kongbaiquan.jpg","jianganling.jpg","zhuhunyu.jpg","liushangji.jpg",
+		"yandiaowenchan.jpg","madaichao.jpg","huanglang.jpg","wanggai.jpg","zhugeji.jpg",
+		"lvfengjian.jpg","zhugehuo.jpg","yuanyanfeng.jpg","lingningxun.jpg","zhugai.jpg",
+		"liuke.jpg","liuliang.jpg","weiyu.jpg","lvyu.jpg","zhongyong1.jpg","huayi.jpg","mengkang.jpg",
+		"zhumi.jpg","xiahoujia.jpg","liuyou.jpg","buyong.jpg","caogai.jpg","caohouchun.jpg",
+		"caohuyuan.jpg","caoru.jpg","caozhiren.jpg","chencendonghun.jpg","diangai.jpg","diaoren.jpg",
+		"extension.js","fucai.jpg","ganxun.jpg","guanhua.jpg","guansong.jpg","guotuliuxie.jpg",
+		"huangenyue.jpg","huangfeng.jpg","huangxiu.jpg","jiajinhua.jpg","leren.jpg","liufeng.jpg",
+		"liugechan.jpg","liyan.jpg","luran.jpg","lvhu.jpg","majia.jpg","manyou.jpg","masong.jpg",
+		"mengsiyan.jpg","qiaozhaohong.jpg","taishimi.jpg","wenliang.jpg","xiahengfeng.jpg",
+		"xiahouang.jpg","yuanhua.jpg","zhangdun.jpg","zhuchaojia.jpg","zhugechong.jpg","zhuhun.jpg",
+		"zhumaxun.jpg"
     ]
 };
 

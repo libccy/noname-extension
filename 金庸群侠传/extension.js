@@ -5392,7 +5392,7 @@ skill:{
 		audio:"ext:金庸群侠传:2",
                 enable:"phaseUse",
                 usable:1,
-                audio:"ext:qtpz_weixiaobao伟虎头:2",
+                
                 check:function (card){
         return 8-get.value(card);
     },

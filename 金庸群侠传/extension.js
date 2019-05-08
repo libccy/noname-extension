@@ -1578,6 +1578,7 @@ skill:{
     selectTarget:[3,Infinity], 
     content:function (){ 
         target.draw(); 
+		game.playJY(['tlbb_yaotie1','tlbb_yaotie2'].randomGet());
 		player.addTempSkill('tlbb_yaotie3','phaseEnd');
     }, 
     ai:{ 
@@ -1661,6 +1662,7 @@ skill:{
     selectTarget:[3,Infinity], 
     content:function (){ 
         target.draw(); 
+		game.playJY(['tlbb_yaotie1','tlbb_yaotie2'].randomGet());
 		player.addTempSkill('tlbb_yaotie3','phaseEnd');
     }, 
     ai:{ 
@@ -1679,6 +1681,7 @@ skill:{
                         sub:true,
                     },
                 },
+				 audio:"ext:金庸群侠传:2",
                 group:["tlbb_yaotiehp","tlbb_yaotiehc"],
             },
             "tlbb_yayin":{
@@ -12803,7 +12806,7 @@ yttl_guchan:{
                 content:function (){        
              'step 0' 
         player.chooseCard('是否交给'+get.translation(trigger.player)+'一张手牌？',1).ai=function(card){ 
-            return 6-ai.get.value(card);            
+            return 7-ai.get.value(card);            
         } 
         'step 1' 
         if(result.bool){ 

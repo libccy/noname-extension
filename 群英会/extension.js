@@ -1,5 +1,51 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
 
+lib.element.player[extensionExtraSkin[0]]=function(){
+if (lib.character[this.name][4].contains('auskin')){
+this.changeAuskin();
+}
+};
+lib.element.player[extensionExtraSkin[1]]=function(){
+if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[0]){
+//修改前：var list=[0,1,2,3];
+var list=[0,1,2];
+var skinnum=list.randomGet();
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[0]+'.jpg');  
+ }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[1]+'.jpg');   
+}
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[2]+'.jpg');  
+}
+}
+if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[3]){
+var list=[0,1];
+var skinnum=list.randomGet();
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[3]+'.jpg'); 
+  }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[4]+'.jpg');  
+ }
+}
+/*
+if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[7]){
+var list=[0,1,2];
+var skinnum=list.randomGet();
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[7]+'.jpg');   }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[8]+'.jpg');   }
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[9]+'.jpg');   }
+}
+if (this[extensionExtraSkin[2]]==extensionExtraCharacterSkin[10]){
+var list=[0,1,2,3];
+var skinnum=list.randomGet();
+if (skinnum==0) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[10]+'.jpg');   if (!this.storage.skined||this.storage.skined==true) this.storage.skined=false; }
+if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[11]+'.jpg');   
+if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;
+}
+if (skinnum==2) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[12]+'.jpg');  if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;}
+if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/群英会/'+extensionExtraCharacterSkin[13]+'.jpg');  if (!this.storage.skined||this.storage.skined==false) this.storage.skined=true;}
+}
+*/
+};
+
 // ---------------------------------------阵亡配音------------------------------------------//
 		lib.skill._zhengwangpeiyin={
 				    trigger:{global:'dieBegin',},
@@ -762,8 +808,27 @@ this.node.name2.innerHTML=get.translation(card[0])+dianshu+' '+name;
 		};
 	};
 },precontent:function (xwj){
+
+//动画：
+game.authorGif=function(str,width,height,isAnimation){
+var str1='';
+if (isAnimation) {
+str1=lib.assetURL+'extension/群英会/'+str;
+return str1;
+}
+else {
+str1='<img src='+lib.assetURL+'extension/群英会/'+str+' width='+width+'   height='+height+'>';
+return str1;
+}
+}
+
      if(xwj.enable){
 		game.import('character',function(){
+		
+		//皮肤包：
+					extensionExtraSkin=['onclick','changeAuskin','name'];
+			extensionExtraCharacterSkin=['xwj_xhuoying_mingren','xwj_xhuoying_mingren1','xwj_xhuoying_mingren2','xwj_xhuoying_shuimen','xwj_xhuoying_shuimen1'];
+			
 			var xsanguo={
 				name:'xsanguo',
 				connect:true,
@@ -780,7 +845,7 @@ this.node.name2.innerHTML=get.translation(card[0])+dianshu+' '+name;
  "xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
  "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
 "xwj_xsanguo_simahui":["male","qun",4,["xwj_xsanguo_shouye","xwj_xsanguo_jiehuo"],[]], 
- "xwj_xsanguo_shenzhaoyun":["male","shen",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],[]],
+ "xwj_xsanguo_shenzhaoyun":["male","shen",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],["des:神赵云"]],
               
         },
 characterIntro:{
@@ -3927,8 +3992,8 @@ game.import('character',function(){
             "xwj_xhuoying_daitu":["male","xxiao",3,["xwj_xhuoying_xishou","xwj_xhuoying_reshenwei","xwj_xhuoying_xianyan"],[]],
             "xwj_xhuoying_zhuozhu":["male","xxiao",3,["xwj_xhuoying_yandun","xwj_xhuoying_qianniao","xwj_xhuoying_rexuzuo"],[]],
             "xwj_xhuoying_woailuo":["male","xren",3,["xwj_xhuoying_shazang","xwj_xhuoying_juefang"],[]],
-            "xwj_xhuoying_mingren":["male","xhuo",3,["xwj_xhuoying_fenshen","xwj_xhuoying_xianshu"],[]],
-            "xwj_xhuoying_shuimen":["male","xhuo",3,["xwj_xhuoying_luoxuan","xwj_xhuoying_shanguang","xwj_xhuoying_refengyin"],[]],
+            "xwj_xhuoying_mingren":["male","xhuo",3,["xwj_xhuoying_fenshen","xwj_xhuoying_xianshu"],["auskin"]],
+            "xwj_xhuoying_shuimen":["male","xhuo",3,["xwj_xhuoying_luoxuan","xwj_xhuoying_shanguang","xwj_xhuoying_refengyin"],["auskin"]],
             "xwj_xhuoying_changmen":["male","xxiao",3,["xwj_xhuoying_tianzheng","xwj_xhuoying_tianyin","xwj_xhuoying_baoxing","xwj_xhuoying_lunhui"],[]],
             "xwj_xhuoying_wuren":["male","xren",3,["xwj_xhuoying_rechendun","xwj_xhuoying_xfenlie","xwj_xhuoying_wuchen"],[]],
             "xwj_xhuoying_duan":["male","xhuo",3,["xwj_xhuoying_linghua","xwj_xhuoying_aiyuan"],[]],
@@ -4163,7 +4228,7 @@ skill:{
          event.finish();
     }   
     "step 2"
-	game.playXu(['xwj_xhuoying_xundao1','xwj_xhuoying_xundao2'].randomGet());
+    	game.playXu(['xwj_xhuoying_xundao1','xwj_xhuoying_xundao2'].randomGet());	
     var chat=['没收你们的作案工具','这把斩首大刀，从今天起，就是属于我的了','我就是为了搜集七把忍刀才决定加入鹰小队的'].randomGet();
 
             player.say(chat); 
@@ -15382,5 +15447,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.60",
+    version:"1.61",
 },files:{"character":[],"card":[],"skill":[]}}})

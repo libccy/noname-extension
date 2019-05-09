@@ -9,8 +9,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金�
          unique:true,
          frequent:true,       
 					   content:function(){					
-					   	    game.playAudio('..','extension','金庸群侠传',trigger.player.name);													 
-						          					        
+					   	    game.playAudio('..','extension','金庸群侠传',trigger.player.name);													 						          					        
  					  	},
 			   			}		
 							
@@ -3731,36 +3730,36 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
 translate:{
 	"sdxl_mengge":"蒙哥",
             "sdxl_fasong":"伐宋",
-            "sdxl_fasong_info":"锁定技，你的进攻距离+X(X为存活的群雄角色数)",
+            "sdxl_fasong_info":"锁定技。你的攻击范围+X（X为存活的群雄角色数）。",
             "sdxl_xiazhi":"挟制",
-            "sdxl_xiazhi_info":"出牌阶段，你可以选择一名距离为一已以内的一名其他角色，称为\"人质\"，并令攻击范围有你的其他角色(\"人质\"除外)是否弃一张牌，然后未弃牌的角色数大于等于弃牌的角色数，你对\"人质\"造成一点伤害。",
+            "sdxl_xiazhi_info":"出牌阶段限一次，你可以选择一名距离1以内的其他角色，称为“人质”，并令攻击范围有你的所有其他角色（“人质”除外）选择是否弃置一张牌，然后若选择弃牌的角色数不大于未弃牌的角色数，你对“人质”造成一点伤害。",
 	        "sdxl_jinlunfawang":"金轮法王",
 	  "sdxl_mizong":"密宗",
-            "sdxl_mizong_info":"你可以将至多X张点数之和为13的牌当【决斗】对至多X名角色使用(X为你以此发选择的牌数)",
+            "sdxl_mizong_info":"你可以将任意张点数和为13的牌当“决斗”对至多X名角色使用（X为你以此法使用的牌数）。",
             "sdxl_longxiang1":"龙象",
             "sdxl_longxiang1_info":"",
             "sdxl_longxiang2":"龙象",
             "sdxl_longxiang2_info":"",
             "sdxl_longxiang":"龙象",
-            "sdxl_longxiang_info":"锁定技，你使用的【杀】或【决斗】需要两张【闪】或【杀】响应",
+            "sdxl_longxiang_info":"锁定技。你使用的杀或决斗需要使用两张闪或杀来响应；其他角色使用决斗指定你为目标后，其每次响应此牌需连续使用两张杀。",
 	"sdxl_yangguo":"杨过",
            "sdxl_luowang":"罗网",
             "sdxl_luowang2":"罗网",
             "sdxl_anhun":"黯魂",
-            "sdxl_anhun_info":"当你受到伤害时，你可以亮出牌堆顶的五张牌，你可以无视距离地依次对其他角色使用其中的【杀】",
+            "sdxl_anhun_info":"每当你受到伤害时，你可以亮出牌堆顶5张牌，然后你可以无距离限制地使用其中任意张杀。",
             "sdxl_biefu":"别赋",
-            "sdxl_biefu_info":"回合结束阶段，你可以翻面，然后令一名其他角色与你各回复一点体力（<font color=#F0F>一见杨过误终生</font> 若为女性角色，则额外地再摸一张牌）且直到其下回合结束，该角色使用仅指定一名目标的黑色的普通锦囊牌或黑色基本牌时可额外指定多一名目标角色。",
+            "sdxl_biefu_info":"回合结束时，你可以翻面，然后令一名其他角色与你各回复一点体力（若为女性角色，则其再摸1张牌），且直到其下回合结束，其使用黑色普通锦囊牌或黑色基本牌时可额外指定一名目标。",
             "sdxl_shangli":"伤离",
-            "sdxl_shangli_info":"<font color=#F0F>神雕大侠</font> 主公技，当你的武将牌翻面时，你与其他魏势力角色可依次摸一张牌",
+            "sdxl_shangli_info":"主公技。当你的武将牌翻面时，你可以与其他魏势力角色各摸1张牌。",
             "sdxl_biefu2":"别赋",
             "sdxl_biefu2_info":"",
              "sdxl_xiaolongniv":"小龙女",
-            "sdxl_luowang_info":"当你受到伤害后，你可以选择至多两名角色，横置其武将牌。每当一名角色横置武将牌后，你便摸一张牌",
-            "sdxl_luowang2_info":"每当一名角色横置武将牌后，你便摸一张牌",
+            "sdxl_luowang_info":"当你受到伤害后，你可以选择至多两名角色，横置其武将牌。每当一名角色横置武将牌后，你可以摸1张牌。",
+            "sdxl_luowang2_info":"每当一名角色横置武将牌后，你可以摸1张牌。",
             "sdxl_hebi":"合璧",
-            "sdxl_hebi_info":"每名角色的回合限一次，当一名角色将武将牌翻至背面朝上时，你可令另一名未翻面的其他角色将武将牌翻面",
+            "sdxl_hebi_info":"每回合限一次，当一名角色将武将牌翻至背面向上时，你可令另一名未翻面的其他角色将武将牌翻面。",
             "sdxl_muzong":"墓宗",
-            "sdxl_muzong_info":"主公技，其他魏势力角色的回合结束时，其可以选择横置或重置其武将牌",   
+            "sdxl_muzong_info":"主公技。其他魏势力角色的回合结束时，其可以横置或重置其武将牌。",   
                                                                                                                                 
 },
           };
@@ -5254,28 +5253,28 @@ skill:{
  translate:{
 	 "xajh_zuolengchan":"左冷禅",
             "xajh_weijian":"围歼",
-            "xajh_weijian_info":"限定技;一名其他角色的回合开始时，你可以令攻击范围含有该角色其他角色选择一项:1，视为对该角色使用【决斗】。2:受到你的一点伤害。",
+            "xajh_weijian_info":"限定技。其他角色的回合开始时，你可以令攻击范围含有其的所有角色选择一项：视为对其使用“决斗”；或受到你1点伤害。",
             "xajh_linhan":"凛寒",
             "xajh_linhan_info":"每当一名角色杀死角色时，你可以弃置一张手牌并选择一名其他角色，视为其杀死该角色。",
             "xajh_bingpai":"并派",
-            "xajh_bingpai_info":"主公技，每名角色的回合限一次，每当你使用牌后，其他魏国角色可以使用一张与此牌类型相同的的牌，然后你摸一张牌。",
+            "xajh_bingpai_info":"主公技。每回合限一次，每当你使用牌后，其他魏势力角色可以使用一张与此牌类型相同的的牌，然后你摸1张牌。",
 	 "xajh_moda":"莫大",
             "xajh_chongsu":"衷诉",
-            "xajh_chongsu_info":"锁定技:当你使用基本牌或成为基本牌的目标后，若你未记录该牌的点数，你记录该牌的点数。锁定技:当你成为其他角色锦囊牌的目标后，若你有此牌点数的标记，取消之。",
+            "xajh_chongsu_info":"当你使用基本牌指定目标后，或你成为基本牌的目标后，若你未记录此牌的点数，你可以记录此牌的点数。锁定技，当你成为其他角色使用的普通锦囊牌的目标后，若你有此牌点数的标记，取消之。",
             "xajh_qinjian":"琴剑",
-            "xajh_qinjian_info":"出牌阶段限1次，你可以弃置三张点数呈等差数列的手牌。若这些牌:同为奇数，你对至多三名角色造成一点伤害。同为偶数，你令至多三名角色回复一体力。包含奇数和偶数，你令所有角色失去一体力。",
+            "xajh_qinjian_info":"出牌阶段限一次，你可以弃置3张点数呈等差数列的手牌。若这些牌：同为奇数，你对至多三名角色造1点伤害；同为偶数，你令至多三名角色回复1点体力；包含奇数和偶数，你令所有角色失去1点体力。",
 	  "xajh_linghuchong":"令狐冲",
             "xajh_jianhao":"剑豪",
-            "xajh_jianhao_info":"你使用杀时，若你没有装备武器牌，你可以声明一张你未以此法声明的武器牌，直到此杀结算完毕，你视为拥有该武器牌的技能。",
+            "xajh_jianhao_info":"你使用杀时，若你没有装备武器牌，你可以声明一张你未以此法声明过的武器牌，直到此杀结算完毕，你视为拥有该武器牌的技能。",
             "xajh_zuixia":"醉侠",
-            "xajh_zuixia_info":"你可将你的任意一张梅花手牌当【酒】使用。你于回合内使用酒后，你造成的伤害加一。",
+            "xajh_zuixia_info":"你可以将梅花手牌当酒使用。锁定技，你于回合内使用酒后，你造成的伤害+1。",
             "xajh_wangyou":"忘忧",
-            "xajh_wangyou_info":"主公技;其他群雄角色摸牌阶段摸牌时，其可放弃摸牌，改为展示牌堆的三张牌，令你获得其中的梅花牌，其获得其余的牌。",
+            "xajh_wangyou_info":"主公技。其他蜀国角色摸牌阶段开始时，其可以放弃摸牌，然后展示牌堆3张牌，令你获得其中的梅花牌，其获得其余牌。",
 	  "xajh_yuebuqun":"岳不群",
             "xajh_qiaowei":"巧伪",
-            "xajh_qiaowei_info":"一名角色受到杀的伤害后，若其区域有牌;你可以弃置其区域的一张牌，若如此做，其视为对伤害来源使用了一张决斗。",
+            "xajh_qiaowei_info":"一名角色受到杀造成的伤害后，若其区域内有牌，你可以弃置其区域内一张牌，若如此做，其视为对来源使用一张“决斗”。",
             "xajh_yuli":"渔利",
-            "xajh_yuli_info":"主公技;每当其他蜀势力角色因决斗打出杀或因决斗造成或受到伤害后，你可以摸一张牌。",
+            "xajh_yuli_info":"主公技。每当其他蜀势力角色因“决斗”打出杀或因决斗造成或受到伤害后，你可以摸1张牌。",
             "xajh_xiejian":"邪剑",
             "xajh_xiejian_info":"出牌阶段开始时，你可以令一名其他角色摸一张牌，若如此做，其本回合不能使用或打出牌。",
 	  "xajh_yuelingsan":"岳灵珊",
@@ -5284,35 +5283,35 @@ skill:{
             "xajh_chonglingzhuanbei":"冲灵装备",
             "xajh_chonglingzhuanbei_info":"",
             "xajh_jianwu":"剑舞",
-            "xajh_jianwu_info":"限定技，准备阶段开始时，你可以与场上一名男性角色形成【冲灵】状态，你与该男性角色视为拥有对方的武器效果（不含距离）。",
+            "xajh_jianwu_info":"限定技。出牌阶段，你可以与一名男性角色形成“冲灵”状态，你与该角色视为拥有对方的武器效果（不含距离）。",
             "xajh_huizhi":"惠质",
-            "xajh_huizhi_info":"每当一名角色使用酒后，你可以令其摸两张牌",
+            "xajh_huizhi_info":"每当一名角色使用酒后，你可以令其摸2张牌。",
             "xajh_fanghun":"芳魂",
-            "xajh_fanghun_info":"每当你受到伤害后，若其回合内没有使用酒，你可以弃置其一张牌，然后其视为使用了一张酒",
+            "xajh_fanghun_info":"每当你受到伤害后，若其此回合未使用过酒，你可以弃置其一张牌，然后其视为使用了一张酒。",
 	 "xajh_yanglianting":"杨莲亭",
             "xajh_shichong":"恃宠",
-            "xajh_shichong_info":"当你受到伤害后，你可以令攻击范围含有伤害来源的角色选择一项:对伤害来源使用出招，交给你一张牌",
+            "xajh_shichong_info":"当你受到伤害后，你可以令攻击范围含有来源的角色选择一项：对来源使用一张杀，或交给你一张牌。",
             "xajh_yuhe":"欲壑",
-            "xajh_yuhe_info":"当你获得其他角色的牌时，你可以摸一张牌。",
+            "xajh_yuhe_info":"当你获得其他角色的牌时，你可以摸1张牌。",
 	 "xajh_renwoxing":"任我行",
             "xajh_biguan":"闭关",
-            "xajh_biguan_info":"结束阶段，若你已受伤，你可弃置一张牌，直到下个回合开始，其他角色计算与你的距离+1。",
+            "xajh_biguan_info":"结束阶段开始时，若你已受伤，你可以弃置一张牌，直到你的下个回合开始，其他角色计算与你的距离+1。",
             "xajh_xixing":"吸星",
-            "xajh_xixing_info":"锁定技，你每杀死一名角色，你加一点内力上限并回复一点内力。",
+            "xajh_xixing_info":"锁定技。你每杀死一名角色，你加一点内力上限并回复一点内力。",
             "xajh_chushan":"出山",
-            "xajh_chushan_info":"限定技，你减一点内力上限，失去『闭关』,然后获得一名已死亡角色除盟主技、限定技、觉醒技外的技能。",
+            "xajh_chushan_info":"限定技。出牌阶段，你减一点内力上限，失去“闭关”，然后获得一名已死亡的角色一项除盟主技、限定技、觉醒技外的技能。",
             "xajh_quanbing":"权柄",
-            "xajh_quanbing_info":"盟主技，其他明朝角色杀死一名角色时，其可以弃置所有手牌，然后视为由你杀死该角色。",
+            "xajh_quanbing_info":"盟主技。其他蜀势力角色杀死一名角色时，其可以弃置所有手牌，然后视为由你杀死该角色。",
 	 "xajh_ludayou":"陆大有",
 	  "xajh_digong":"弟恭",
-            "xajh_digong_info":"其他角色的出牌阶段，若其内力上限大于你，你可以令其该阶段内使用【杀】的额定次数+1",
+            "xajh_digong_info":"其他角色的出牌阶段开始时，若其体力上限大于你，你可以令其此阶段内使用杀的额定次数+1。",
             "xajh_nianjue":"念诀",
-            "xajh_nianjue_info":"一名已受伤角色准备阶段开始，你可以令其进行一次判定，判定结果为：♥该角色回复1点体力；♣该角色获得判定牌",
+            "xajh_nianjue_info":"一名已受伤的角色准备阶段开始，你可以令其进行判定，判定结果为：红桃，该角色回复1点体力；梅花，该角色获得此牌。",
            "xajh_dongfangbubai":"东方不败",
 	  "xajh_weizhong":"伪忠",
-            "xajh_weizhong_info":"其他角色获得你的牌后，若其手牌数大于其体力值，则你可以令其失去一体力",
+            "xajh_weizhong_info":"其他角色获得你的牌后，若其手牌数大于其体力值，则你可以令其失去一点体力。",
             "xajh_daoxi":"蹈隙",
-            "xajh_daoxi_info":"每回合限一次，其他角色使用基本牌或普通锦囊牌时，若其手牌数比你多，你可交给其一张手牌，然后视为你使用该牌。",
+            "xajh_daoxi_info":"每回合限一次，其他角色使用基本牌或普通锦囊牌时，若其手牌数比你多，你可以交给其一张手牌，然后你代替其使用此牌。",
             },
 };
 
@@ -5350,6 +5349,7 @@ if(lib.device||lib.node){
 				   "qtpz_xieyanke":["male","wei",3,["qtpz_tieling","qtpz_sunuo","qtpz_jieyou"],[]],
 				   "qtpz_yuanchengzhi":["male","wu",4,["qtpz_dangkou","qtpz_jiangmen","qtpz_pozhen"],['zhu']],
 				   "qtpz_weixiaobao":["male","shu",4,["qtpz_yabao","qtpz_qiaoshe"],['zhu']],
+				   "qtpz_weihutou":["male","wei",3,["qtpz_mengtong","qtpz_fuyin"],[]],
 },        
 
 characterIntro:{
@@ -5375,6 +5375,7 @@ characterIntro:{
 				
 				characterTitle:{
 					"qtpz_xieyanke":"落影丶逝尘",
+					"qtpz_weihutou":"落影丶逝尘",
 					"qtpz_weixiaobao":"落影丶逝尘",
 					"qtpz_yuanchengzhi":"落影丶逝尘",
 					"qtpz_tianguinong":"落影丶逝尘",
@@ -5399,6 +5400,419 @@ characterIntro:{
 					},
                                
 skill:{
+	 "qtpz_fuyin":{
+				audio:"ext:金庸群侠传:2",
+                trigger:{
+                    player:"phaseDrawBefore",
+                },
+                check:function (event,player){
+       if(event.num>3) return false;
+        return true;
+    },
+                content:function (){
+        "step 0"
+        trigger.cancel();
+        "step 1"
+        var str='请声明大或小';
+        var controls=['大','小'];
+        player.chooseControl(controls,ui.create.dialog(str,'hidden')).ai=function(){
+            return Math.floor(Math.random()*controls.length);
+        };
+        "step 2"
+        if(result.control!='大'){
+            event.controlxiao=true;
+            game.log(player,'声明了小');
+            player.popup(result.control);
+        }
+        else{
+            event.controlda=true;
+            game.log(player,'声明了大');
+            player.popup(result.control);
+        }
+        "step 3"
+        event.cardss=get.cards(7);
+        event.cards=event.cardss.slice(0);
+        event.cardsss=event.cardss.slice(0);
+        "step 4"
+        player.showCards(event.cards);
+        "step 5"
+         event.num7=false;
+         event.dayu7=[];
+         event.xiaoyu7=[];
+         event.show=event.cardss.slice(0);
+         for(var e=0;e<event.cards.length;e++){
+             if(event.cards[e].number==7){
+                 if(event.num7==false) event.num7=true;
+             }
+             else if(event.cards[e].number>7){
+                 event.dayu7.push(event.cards[e]);
+             }
+             else if(event.cards[e].number<7){
+                 event.xiaoyu7.push(event.cards[e]);
+             }
+        }
+        "step 6"
+        event.dialog=ui.create.dialog('hidden');
+        event.dialog.add('父荫:展示的牌');
+        event.dialog.add(event.show);
+        if(event.num7==true){
+            event.dialog.add('因"父荫"展示的牌有点数为7能获得的牌');
+            event.dialog.add(event.cardsss);
+        }
+        else if(event.controlda==true&&event.dayu7.length>0){
+            event.dialog.add('父荫:因声明大能获得的牌');
+            event.dialog.add(event.dayu7);
+            if(event.xiaoyu7.length>0){
+                event.dialog.add('父荫:置回牌堆顶的牌');      
+                event.dialog.add(event.xiaoyu7);                 
+            }     
+        }
+        else if(event.controlxiao==true&&event.xiaoyu7.length>0){
+            event.dialog.add('父荫:因声明小能获得的牌');
+            event.dialog.add(event.xiaoyu7);     
+            if(event.dayu7.length>0){
+                event.dialog.add('父荫:置回牌堆顶的牌');        
+                event.dialog.add(event.dayu7);       
+            }
+        }
+        else {
+            var skr;
+            if(event.controlxiao==true) skr='父荫:因声明小没有符合的牌而置回牌堆顶的牌';
+            if(event.controlda==true) skr='父荫:因声明大没有符合的牌而置回牌堆顶的牌';
+            event.dialog.add(skr);
+            event.dialog.add(event.cardsss);
+        }
+        var dialogs=event.dialog;
+        player.chooseControl('ok').set('dialog',dialogs);
+        "step 7"
+        if(event.num7==true){
+            player.gain(event.cards,'gain2');
+        }
+        else if(event.controlda==true&&event.dayu7.length>0){
+            player.gain(event.dayu7,'gain2');
+            if(event.xiaoyu7.length>0){
+                for(var i=event.cards.length-1;i>=0;i--){
+                    if(event.xiaoyu7.contains(event.cards[i])){
+                        ui.cardPile.insertBefore(event.cards[i],ui.cardPile.firstChild);
+                    }
+                }
+                game.log(player,'将',event.xiaoyu7,'置回了牌堆顶');
+            }     
+        }
+        else if(event.controlxiao==true&&event.xiaoyu7.length>0){
+            player.gain(event.xiaoyu7,'gain2');
+            if(event.dayu7.length>0){
+                for(var i=event.cards.length-1;i>=0;i--){
+                    if(event.dayu7.contains(event.cards[i])){
+                        ui.cardPile.insertBefore(event.cards[i],ui.cardPile.firstChild);
+                    }
+                } 
+                game.log(player,'将',event.dayu7,'置回了牌堆顶');
+            }     
+        }
+        else{
+            for(var i=event.cards.length-1;i>=0;i--){
+                ui.cardPile.insertBefore(event.cards[i],ui.cardPile.firstChild);
+            }
+            game.log(player,'将',event.cards,'置回了牌堆顶');
+        }
+    },
+            },
+            "qtpz_mengtong":{
+                group:"qtpz_mengtong_after",
+                subSkill:{
+                    off:{
+                        mark:true,
+                        intro:{
+                            content:"本轮已发动",
+                        },
+                        sub:true,
+                    },
+                    after:{
+                        trigger:{
+                            global:"judgeAfter",
+                        },
+                        forced:true,
+                        silent:true,
+                        popup:false,
+                        filter:function (event,player){
+                return player.storage.qtpz_mengtong;
+            },
+                        content:function (){
+               //game.log(player,'还原了',player.storage.qtpz_mengtong); 
+               delete player.storage.qtpz_mengtong.蒙童;
+               delete player.storage.qtpz_mengtong;      
+            },
+                        sub:true,
+                    },
+                    "heart2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.qtpz_mengtong==true&&suit!='heart') return 'heart';
+                },
+                        },
+                        sub:true,
+                    },
+                    "diamond2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.qtpz_mengtong==true&&suit!='diamond') return 'diamond';
+                },
+                        },
+                        sub:true,
+                    },
+                    "club2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.qtpz_mengtong==true&&suit!='club') return 'club';
+                },
+                        },
+                        sub:true,
+                    },
+                    "spade2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.qtpz_mengtong==true&&suit!='spade') return 'spade';
+                },
+                        },
+                        sub:true,
+                    },
+                },
+                trigger:{
+                    global:"judge",
+                },
+				audio:"ext:金庸群侠传:2",
+                filter:function (event,player){
+        if(player.hasSkill('qtpz_mengtong_off')) return false; 
+        return true;
+    },
+                direct:true,
+                content:function (){
+        "step 0"
+        var str=get.translation(trigger.player)+'的'+(trigger.judgestr||'')+'判定为'+
+        get.translation(trigger.player.judging[0])+'，'+get.prompt('qtpz_mengtong');
+        player.chooseControl('heart2','diamond2','club2','spade2','取消').set('prompt',str).set('ai',function(){
+            //return '取消';
+            var judging=_status.event.judging;
+            var cardh={name:judging.name,suit:"heart",number:judging.number};
+            var cardd={name:judging.name,suit:"diamond",number:judging.number};
+            var cardc={name:judging.name,suit:"club",number:judging.number};
+            var cards={name:judging.name,suit:"spade",number:judging.number};
+            var resulth=trigger.judge(cardh)-trigger.judge(judging);
+            var resultd=trigger.judge(cardd)-trigger.judge(judging);
+            var resultc=trigger.judge(cardc)-trigger.judge(judging);
+            var results=trigger.judge(cards)-trigger.judge(judging);
+            var attitude=get.attitude(player,trigger.player);
+            if(attitude==0||(resulth==0&&resultd==0&&resultc==0&&results==0)) return '取消';
+            if(attitude>0){
+                 if(resulth>0){
+                     if(resulth>=resultd&&resulth>=resultc&&resulth>=results) return 'heart2';
+                 }
+                 else if(resultd>0){
+                     if(resultd>=resulth&&resultd>=resultc&&resultd>=results) return 'diamond2';    
+                 }
+                 else if(resultc>0){
+                     if(resultc>=resulth&&resultc>=resultd&&resultc>=results) return 'club2';    
+                 }
+                 else if(results>0){
+                     if(results>=resulth&&results>=resultd&&results>=resultc) return 'spade2';    
+                 }
+                 else return '取消';
+            }
+            if(attitude<0){
+                 if(resulth<0){
+                     if(resulth<=resultd&&resulth<=resultc&&resulth<=results) return 'heart2';
+                 }
+                 else if(resultd<0){
+                     if(resultd<=resulth&&resultd<=resultc&&resultd<=results) return 'diamond2';    
+                 }
+                 else if(resultc<0){
+                     if(resultc<=resulth&&resultc<=resultd&&resultc<=results) return 'club2';    
+                 }
+                 else if(results<0){
+                     if(results<=resulth&&results<=resultd&&results<=resultc) return 'spade2';    
+                 }
+                 else return '取消';
+            }
+        }).set('judging',trigger.player.judging[0]);
+        "step 1"
+        if(result.control&&result.control!='取消'){
+            if(player.storage.qtpz_mengtong){
+                delete player.storage.qtpz_mengtong.蒙童;
+                delete player.storage.qtpz_mengtong;         
+            }
+            if(trigger.player.hasSkill('qtpz_mengtong_heart2')) trigger.player.removeSkill('qtpz_mengtong_heart2');
+            if(trigger.player.hasSkill('qtpz_mengtong_diamond2')) trigger.player.removeSkill('qtpz_mengtong_diamond2');
+            if(trigger.player.hasSkill('qtpz_mengtong_club2')) trigger.player.removeSkill('qtpz_mengtong_club2');
+            if(trigger.player.hasSkill('qtpz_mengtong_spade2')) trigger.player.removeSkill('qtpz_mengtong_spade2');
+            trigger.player.judging[0].qtpz_mengtong=true;
+            player.logSkill('qtpz_mengtong',trigger.player);
+            player.line(trigger.player);
+            player.popup(result.control);
+            game.log(player,'将判定结果改为了','#y'+result.control);
+            if(!trigger.player.hasSkill('qtpz_mengtong_'+result.control)) trigger.player.addTempSkill('qtpz_mengtong_'+result.control,'judgeAfter');
+            player.storage.qtpz_mengtong=trigger.player.judging[0];
+            if(!player.hasSkill('qtpz_mengtong_off')){
+                player.addTempSkill('qtpz_mengtong_off','roundStart');
+            }
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    tag:{
+                        rejudge:1,
+                    },
+                },
+            },
+            /*"测试蒙童":{
+                group:"蒙童_after",
+                subSkill:{
+                    off:{
+                        mark:true,
+                        intro:{
+                            content:"本轮已发动",
+                        },
+                        sub:true,
+                    },
+                    after:{
+                        trigger:{
+                            global:"judgeAfter",
+                        },
+                        forced:true,
+                        silent:true,
+                        popup:false,
+                        filter:function (event,player){
+                return player.storage.蒙童;
+            },
+                        content:function (){
+              // game.log(player,'还原了',player.storage.蒙童); 
+               delete player.storage.蒙童.蒙童;
+               delete player.storage.蒙童;      
+            },
+                        sub:true,
+                    },
+                    "heart2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.蒙童==true&&suit!='heart') return 'heart';
+                },
+                        },
+                        sub:true,
+                    },
+                    "diamond2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.蒙童==true&&suit!='diamond') return 'diamond';
+                },
+                        },
+                        sub:true,
+                    },
+                    "club2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.蒙童==true&&suit!='club') return 'club';
+                },
+                        },
+                        sub:true,
+                    },
+                    "spade2":{
+                        mod:{
+                            suit:function (card,suit){
+                    if(card.蒙童==true&&suit!='spade') return 'spade';
+                },
+                        },
+                        sub:true,
+                    },
+                },
+                trigger:{
+                    global:"judge",
+                },
+                filter:function (event,player){
+      //  if(player.hasSkill('蒙童_off')) return false; 
+        return true;
+    },
+                direct:true,
+                content:function (){
+        "step 0"
+        var str=get.translation(trigger.player)+'的'+(trigger.judgestr||'')+'判定为'+
+        get.translation(trigger.player.judging[0])+'，'+get.prompt('蒙童');
+        player.chooseControl('heart2','diamond2','club2','spade2','取消').set('prompt',str).set('ai',function(){
+            //return '取消';
+            var judging=_status.event.judging;
+            var cardh={name:judging.name,suit:"heart",number:judging.number};
+            var cardd={name:judging.name,suit:"diamond",number:judging.number};
+            var cardc={name:judging.name,suit:"club",number:judging.number};
+            var cards={name:judging.name,suit:"spade",number:judging.number};
+            var resulth=trigger.judge(cardh)-trigger.judge(judging);
+            var resultd=trigger.judge(cardd)-trigger.judge(judging);
+            var resultc=trigger.judge(cardc)-trigger.judge(judging);
+            var results=trigger.judge(cards)-trigger.judge(judging);
+            var attitude=get.attitude(player,trigger.player);
+            if(attitude==0||(resulth==0&&resultd==0&&resultc==0&&results==0)) return '取消';
+            if(attitude>0){
+                 if(resulth>0){
+                     if(resulth>=resultd&&resulth>=resultc&&resulth>=results) return 'heart2';
+                 }
+                 else if(resultd>0){
+                     if(resultd>=resulth&&resultd>=resultc&&resultd>=results) return 'diamond2';    
+                 }
+                 else if(resultc>0){
+                     if(resultc>=resulth&&resultc>=resultd&&resultc>=results) return 'club2';    
+                 }
+                 else if(results>0){
+                     if(results>=resulth&&results>=resultd&&results>=resultc) return 'spade2';    
+                 }
+                 else return '取消';
+            }
+            if(attitude<0){
+                 if(resulth<0){
+                     if(resulth<=resultd&&resulth<=resultc&&resulth<=results) return 'heart2';
+                 }
+                 else if(resultd<0){
+                     if(resultd<=resulth&&resultd<=resultc&&resultd<=results) return 'diamond2';    
+                 }
+                 else if(resultc<0){
+                     if(resultc<=resulth&&resultc<=resultd&&resultc<=results) return 'club2';    
+                 }
+                 else if(results<0){
+                     if(results<=resulth&&results<=resultd&&results<=resultc) return 'spade2';    
+                 }
+                 else return '取消';
+            }
+        }).set('judging',trigger.player.judging[0]);
+        "step 1"
+        if(result.control&&result.control!='取消'){
+            if(player.storage.蒙童){
+                delete player.storage.蒙童.蒙童;
+                delete player.storage.蒙童;         
+            }
+            if(trigger.player.hasSkill('蒙童_heart2')) trigger.player.removeSkill('蒙童_heart2');
+            if(trigger.player.hasSkill('蒙童_diamond2')) trigger.player.removeSkill('蒙童_diamond2');
+            if(trigger.player.hasSkill('蒙童_club2')) trigger.player.removeSkill('蒙童_club2');
+            if(trigger.player.hasSkill('蒙童_spade2')) trigger.player.removeSkill('蒙童_spade2');
+            trigger.player.judging[0].蒙童=true;
+            player.logSkill('蒙童',trigger.player);
+            player.line(trigger.player);
+            player.popup(result.control);
+            game.log(player,'将判定结果改为了','#y'+result.control);
+            if(!trigger.player.hasSkill('蒙童_'+result.control)) trigger.player.addTempSkill('蒙童_'+result.control,'judgeAfter');
+            player.storage.蒙童=trigger.player.judging[0];
+            if(!player.hasSkill('蒙童_off')){
+                player.addTempSkill('蒙童_off','roundStart');
+            }
+        }
+        else{
+            event.finish();
+        }
+    },
+                ai:{
+                    tag:{
+                        rejudge:1,
+                    },
+                },
+            },*/
 	"qtpz_yabao":{
 		audio:"ext:金庸群侠传:2",
                 enable:"phaseUse",
@@ -6328,15 +6742,45 @@ skill:{
         event.cardsss=cardss;
         player.showCards(cardss,'徇财');
          "step 1"
+         var str='请选择一种花色，你获得展示的牌该花色的牌';
+         var dialog=ui.create.dialog(str,'hidden');
          var controls=[];
+         var hearts=[],diamonds=[],clubs=[],spades=[];
          for(var i=0;i<event.cardsss.length;i++){
             var suits=get.suit(event.cardsss[i]);
             if(!controls.contains(suits)){
                 controls.push(suits);
             }
+            if(suits=='heart'){
+                hearts.push(event.cardsss[i])    
+            }
+            else if(suits=='diamond'){
+                diamonds.push(event.cardsss[i])    
+            }
+            else if(suits=='club'){
+                clubs.push(event.cardsss[i])    
+            }
+            else if(suits=='spade'){
+                spades.push(event.cardsss[i])    
+            }
         }
-         var str='请选择一种花色，你获得展示的牌该花色的牌';
-        player.chooseControl(controls,ui.create.dialog(str,'hidden')).ai=function(){
+        if(hearts.length>0){
+            dialog.add('红桃牌');
+            dialog.add(hearts);     
+        }
+        if(diamonds.length>0){
+            dialog.add('方片牌');
+            dialog.add(diamonds);     
+        }
+        if(clubs.length>0){
+            dialog.add('梅花牌');
+            dialog.add(clubs);     
+        }
+        if(spades.length>0){
+            dialog.add('黑桃牌');
+            dialog.add(spades);     
+        }
+        player.chooseControl(controls,dialog).ai=function(){
             return Math.floor(Math.random()*controls.length);
         };
         "step 2"
@@ -7259,6 +7703,11 @@ skill:{
             }
         }
     },
+     ai:{
+    		skillTagFilter:function(player){
+						return !player.hasSkill('qtpz_quanzhen2');
+						}
+						},    
             },
             "qtpz_honglve":{
                 audio:"ext:金庸群侠传:2",
@@ -8569,126 +9018,133 @@ return get.subtype(event.card)=='equip1';
 },
 
  translate:{
+	 "qtpz_weihutou":"韦虎头",
+            "qtpz_fuyin":"父荫",
+            "qtpz_fuyin_info":"锁定技,摸牌阶段开始时，你可以放弃摸牌。然后声明大或小，并亮出牌堆顶七张牌，若你声明大，你获得其中点数大于七的牌，若你声明小，你获得其中点数小于七的牌，若其中至少有一张点数为七的牌，你获得亮出的所有牌。",
+            "qtpz_mengtong":"蒙童",
+            "qtpz_mengtong_info":"每轮限一次，一名角色的判定牌生效前，你可以任意改变此牌的花色。",
+            "测试蒙童":"测试蒙童",
+            "测试蒙童_info":"一名角色的判定牌生效前，你可以任意改变此牌的花色。",
 	 "qtpz_weixiaobao":"韦小宝",
             "qtpz_yabao":"押宝",
-            "qtpz_yabao_info":"出牌阶段限一次，你可以扣置一张点数为5~9的手牌，称为\"宝\"，然后你令至多四名其他角色扣置一张手牌，然后你声明大或小，最后你与其他角色展示扣置的牌。若你:声明大，你获得其中点数大于\"宝\"的牌。声明小，你获得点数小于\"宝\"的牌。若其中至少有一张与\"宝\"点数相同你获得所有其他角色展示的牌。",
+            "qtpz_yabao_info":"出牌阶段限一次，你可以扣置一张点数为5~9的手牌，称为“宝”，然后你令至多四名其他角色各扣置一张手牌，然后你声明大或小，最后你与其他角色展示扣置的牌。若你：声明大，你获得其中点数大于“宝”的牌；声明小，你获得点数小于“宝”的牌。若其中至少有一张与“宝”点数相同，你获得所有其他角色展示的牌。",
             "qtpz_qiaoshe1":"巧舌",
             "qtpz_qiaoshe1_info":"",
             "qtpz_qiaoshe":"巧舌",
-            "qtpz_qiaoshe_info":"主公技,当你进入濒死状态时，其他魏国角色可以展示牌堆顶的七张牌，并令你使用其中的一张【酒】或【桃】。",
+            "qtpz_qiaoshe_info":"主公技。当你进入濒死状态时，其他蜀势力角色可以展示牌堆顶7张牌，并令你使用其中的一张酒或桃。",
 	 "qtpz_yuanchengzhi":"袁承志",
             "破阵":"破阵",
-            "破阵_info":"你使用[杀]无视目标防具，且造成伤害后你可以弃置目标装备区里的防具牌。",
+            "破阵_info":"你使用杀无视目标防具，且造成伤害后你可以弃置目标装备区里的防具牌。",
             "qtpz_dangkou":"荡寇",
-            "qtpz_dangkou_info":"每名角色的回合限一次，当你使用一张非延时锦囊牌后，若此牌没有造成伤害，你可以弃置此牌的目标至多两名角色各一张牌。",
+            "qtpz_dangkou_info":"每回合限一次，当你使用的普通锦囊牌结算完后，若此牌没有造成伤害，你可以弃置此牌至多两名目标各一张牌。",
             "qtpz_jiangmen":"将门",
-            "qtpz_jiangmen_info":"主公技;其他吴国角色出牌阶段开始时，其可以交给你一张锦囊牌，然后其摸一张牌。",
+            "qtpz_jiangmen_info":"主公技。其他吴势力角色出牌阶段开始时，其可以交给你一张锦囊牌，然后其摸1张牌。",
             "qtpz_pozhen":"破阵",
-            "qtpz_pozhen_info":"你使用杀对此杀的唯一目标造成伤害后，目标可以选择一名没有成为此杀的其他角色，然后你对目标选择的角色使用了该杀。",
+            "qtpz_pozhen_info":"你使用杀对目标造成伤害后，该目标可以选择你攻击范围内另一名不是此杀目标的角色，然后你对其选择的角色使用此杀。",
 	  "qtpz_xieyanke":"谢烟客",
             "qtpz_tieling":"铁令",
-            "qtpz_tieling_info":"每名其他角色限一次，其出牌阶段开始时，可令你回复一体力或摸两张牌，然后其获得一枚'玄铁令'标记，每局限三次。",
+            "qtpz_tieling_info":"每名其他角色限一次，其出牌阶段，可令你回复1点体力或摸2张牌，然后其获得一枚“玄铁令”标记。每局限三次。",
             "qtpz_jieyou":"解忧",
-            "qtpz_jieyou_info":"锁定技，当你成为获得'玄铁令'标记的角色黑色牌的目标时，则取消之",
+            "qtpz_jieyou_info":"锁定技。当你成为获得过“玄铁令”标记的角色使用的黑色牌的目标时，取消之。",
             "qtpz_sunuo1":"夙诺",
             "qtpz_sunuo1_info":"",
             "qtpz_sunuo":"夙诺",
-            "qtpz_sunuo_info":"其他角色出牌阶段，其可移除其'玄铁令'标记并选择未被选择过的一项:获得你装备区里的一张牌;令你将一张手牌当其声明的一张普通锦囊牌使用;令你对其选择的另一名其他角色造成一点伤害。",
+            "qtpz_sunuo_info":"其他角色出牌阶段，其可移除其“玄铁令”标记并选择未被选择过的一项：获得你装备区里的一张牌；令你将一张手牌当其声明的普通锦囊牌使用；令你对其选择的另一名其他角色造成一点伤害。",
 	 "qtpz_tianguinong":"田归农",
             "qtpz_tudu":"涂毒",
-            "qtpz_tudu_info":"其他角色使用普通杀时，你可以令此牌视为火杀，然后此杀造成了伤害，你摸一张牌并将一张手手置于武将牌上，称为\"残图\"。",
+            "qtpz_tudu_info":"其他角色使用普通杀时，你可以令此牌视为火杀，然后若此杀造成了伤害，你摸一张牌并将一张手牌置于武将牌上，称为“残图”。",
             "qtpz_xingxun":"刑讯",
-            "qtpz_xingxun_info":"限定技，出牌阶段，若你的武将牌上有\"残图\",你可以令其他角色将一张手牌当\"残图\"置于你的武将牌上，不能选择\"残图已有的花色。否则其受到你的两点伤害。",
+            "qtpz_xingxun_info":"限定技。出牌阶段，若你的武将牌上有“残图”，你可以令所有其他角色依次将一张手牌当“残图”置于你的武将牌上（须与“残图”已包含的花色均不相同）。否则其受到你的2点伤害。",
             "qtpz_xuncai":"徇财",
-            "qtpz_xuncai_info":"出牌阶段，若你的\"残图\"有四种花色，你可以展示牌堆顶的七张牌，然后选择一种花色，获得展示牌这种与你选择花色相同的牌，并将其余牌和\"残图\"置入弃牌堆。",
+            "qtpz_xuncai_info":"出牌阶段，若你的“残图”有四种花色，你可以展示牌堆顶7张牌，然后你选择获得其中某个花色的所有牌，并将其余牌和“残图”置入弃牌堆。",
 	  "qtpz_kasili":"喀丝丽",
             "qtpz_daogao":"祷告",
-            "qtpz_daogao_info":"游戏开始时，你将牌堆顶的七张牌当'贺兰石'正面朝上置于武将牌上。一名角色出牌阶段限一次，其可用一张手牌替换'贺兰石'牌，若其用于替换的牌与其它'贺兰石'牌点数均不同，其摸一张牌，否则其弃置一张牌。",
+            "qtpz_daogao_info":"游戏开始时，你将牌堆顶7张牌当“贺兰石”正面向上置于你的武将牌上。一名角色出牌阶段限一次，其可以用一张手牌替换一张“贺兰石”牌，然后若其用于替换的牌与其余“贺兰石”牌点数均不同，其摸一张牌，否则其弃置一张牌。",
             "qtpz_daogao1":"祷告1",
             "qtpz_daogao1_info":"",
             "qtpz_shenyu":"神谕",
-            "qtpz_shenyu_info":"出牌阶段开始时，若'贺兰石'牌点数均不同，你可以获得其中的红桃牌并从牌堆将'贺兰石'牌补至七张，弃置至多三名男性角色装备区里的的一张牌。",
+            "qtpz_shenyu_info":"出牌阶段开始时，若“贺兰石”牌点数均不同，你可以获得其中的红桃牌并从牌堆将“贺兰石”牌补至7张，然后你可以弃置至多三名男性角色装备区里的一张牌。",
 	 "qtpz_huatiegan":"花铁干",
             "qtpz_jiaoxie":"缴械",
-            "qtpz_jiaoxie_info":"限定技，当你进入濒死状态时，你可以弃置你装备区里的所有牌(至少一张)，然后回复2体力。",
+            "qtpz_jiaoxie_info":"限定技。当你进入濒死状态时，你可以弃置你装备区里的所有牌（至少一张），然后回复2点体力。",
             "qtpz_ruxue":"茹血",
-            "qtpz_ruxue_info":"一名角色死亡后，你获得一枚'啖尸'标记,每当你需要使用桃时，你可以移除一枚'啖尸'标记，视为你使用了一张桃。",
+            "qtpz_ruxue_info":"锁定技，一名角色死亡后，你获得一枚“啖尸”标记。每当你需要使用桃时，你可以移除一枚“啖尸”标记，视为你使用了此牌。",
             "qtpz_guming":"沽名",
-            "qtpz_guming_info":"觉醒技，锁定技,准备阶段开始时，若场上有死亡角色并且你发动过【茹血】且'啖尸'标记为零。你减一体力上限并失去【茹血】，获得【盟举】。",
+            "qtpz_guming_info":"觉醒技。准备阶段开始时，若场上有已死亡的角色，且你没有“啖尸”标记，你减一点体力上限并失去“茹血”，获得“盟举”。",
             "qtpz_minjiu":"盟举",
             "qtpz_minjiu_info":"摸牌阶段开始时，你可以改为摸x张牌，若如此做，你此回合的手牌上限为x（x为已死亡的角色数）。",
 	 "qtpz_chengbenzhi":"程本直",
             "qtpz_yuanbian":"辩冤",
-            "qtpz_yuanbian_info":"每回合限一次，其他角色使用基本牌或普通锦囊牌指定唯一目标后(目标不能为你)。你可以判定，若为黑色则取消之，若为红色，你也成为此牌的目标。",
+            "qtpz_yuanbian_info":"每回合限一次，其他角色使用基本牌或普通锦囊牌指定其他角色为唯一目标后。你可以判定，若为黑色，则取消之；若为红色，你也成为此牌的目标。",
             "qtpz_tongzui":"同罪",
-            "qtpz_tongzui_info":"当一名角色使用牌指定包含你在内的至少两名角色，你可以令此牌的所有目标失去一点体力。",
+            "qtpz_tongzui_info":"当一名角色使用牌指定包含你在内的至少两名目标后，你可以令此牌的所有目标失去一点体力。",
 	  "qtpz_ajiu":"阿九",
             "qtpz_guoshang":"国殇",
-            "qtpz_guoshang_info":"当你成为梅花牌的目标时，你摸一张牌。",
+            "qtpz_guoshang_info":"锁定技。当你成为梅花牌的目标时，你摸1张牌。",
             "qtpz_fuchao":"覆巢",
-            "qtpz_fuchao_info":"一名角色使用牌结算结束后，若有目标受到此牌的伤害，则你可以令未受到此牌伤害的目标各弃一张牌。<br>一名横置的角色受到伤害/回复体力后，你可以令其他横置的角色弃置/摸一张牌。",
+            "qtpz_fuchao_info":"一名角色使用牌的结算结束后，若有目标受到此牌的伤害，则你可以令未受到此牌伤害的目标各弃一张牌。一名横置的角色受到伤害/回复体力后，你可以令其他横置的角色弃置/摸一张牌。",
 	 "qtpz_yuyutong":"余鱼同",
             "qtpz_gaifu":"慨赴",
-            "qtpz_gaifu_info":"出牌阶段限一次，你可以流失一体力或横置你的武将牌，选择至多两名其他角色横置或重置其武将牌。",
+            "qtpz_gaifu_info":"出牌阶段限一次，你可以失去一点体力或横置你的武将牌，选择至多两名其他角色，横置或重置其武将牌。",
             "qtpz_wuxian":"陷误",
-            "qtpz_wuxian_info":"回合结束时，你可以弃置所有手牌(至少一张)，然后你摸X张牌(X为你已损失的体力值)。",
+            "qtpz_wuxian_info":"回合结束时，你可以弃置所有手牌（至少一张），然后你摸X张牌（X为你已损失的体力值）。",
 	  "qtpz_liyan":"李岩",
             "qtpz_quanzhen":"劝赈",
-            "qtpz_quanzhen_info":"每轮限一次，一名角色获得牌后若其手牌数为全场最多，你可以令其将一张牌当五谷丰登使用，且其不能成为此的目标。",
+            "qtpz_quanzhen_info":"每轮限一次，一名角色获得牌后，若其手牌数为唯一最多，你可以令其将一张手牌当“五谷丰登”使用，且其不能成为此牌的目标。",
             "qtpz_honglve":"鸿略",
-            "qtpz_honglve_info":"出牌阶段开始时，你可以弃置一张锦囊牌，若此牌为红色，你使用桃回复数值加一。若为黑色，你使用黑色牌造成的伤害加一，直到回合结束。",
+            "qtpz_honglve_info":"出牌阶段开始时，你可以弃置一张锦囊牌。若此牌为红色，本阶段内你使用桃时可额外回复一点体内；若为黑色，你本回合内使用黑色牌造成的伤害+1。",
 	 "qtpz_miaorenfeng":"苗人凤",
             "qtpz_fengpo":"凤魄",
-            "qtpz_fengpo_info":"你使用杀指定目标后，你可以弃置一张手牌，若如此做，目标需展示手牌并弃置手牌中花色与你弃置牌花色相同的牌。",
+            "qtpz_fengpo_info":"你使用杀指定目标后，你可以弃置一张手牌，若如此做，目标须展示手牌并弃置与你弃置的牌花色相同的所有手牌。",
             "qtpz_yujie":"郁结",
-            "qtpz_yujie_info":"你使用牌造成伤害后，你可以将此牌交给此牌其中的一个目标，然后若其手牌大于其体力值，你摸一张牌。",
+            "qtpz_yujie_info":"你使用牌造成伤害后，你可以将此牌交给此牌的一名目标，然后若其手牌大于其体力值，你摸1张牌。",
 	  "qtpz_chenglingsu":"程灵素",
             "qtpz_zhidu":"植毒",
-            "qtpz_zhidu_info":"出牌阶段限一次，你可以将一张黑色手牌正面超上置于牌堆前七张任意位置，称为'七心海棠'，于摸牌阶段获得'七心海棠'牌的角色受到一点无来源的的火焰伤害。",
+            "qtpz_zhidu_info":"出牌阶段限一次，你可以将一张黑色手牌正面向上置于牌堆前7张任意位置，称为“七心海棠”。锁定技，于摸牌阶段获得“七心海棠”牌的角色受到一点无来源的的火焰伤害。",
             "qtpz_zhidu1":"植毒",
             "qtpz_zhidu1_info":"",
             "qtpz_xianghun":"香魂",
-            "qtpz_xianghun_info":"一名角色受到属性伤害后，你可以令其摸一张牌。",
+            "qtpz_xianghun_info":"一名角色受到属性伤害后，你可以令其摸1张牌。",
 	  "qtpz_zhuyoujian":"朱由检",
             "qtpz_zuiji":"罪己",
-            "qtpz_zuiji_info":"锁定技，每当你与你的回合内累计使用或打出了4种不同花色的牌后，你摸两张牌。回合结束时，若你未于本回合摸牌阶段外获得牌，你选择以下一项:1.流失一体力，2.翻面，3.横置你的武将牌。",
+            "qtpz_zuiji_info":"锁定技。每当你使用或打出第四种花色的牌后，你摸2张牌。回合结束时，若你未于本回合摸牌阶段外获得过牌，你须选择一项：失去1点体力；你翻面。",
             "qtpz_youqin":"忧勤",
-            "qtpz_youqin_info":"其他角色出牌阶段开始时，你可以弃置一张非装备手牌，观看其至多X张手牌并可以使用其中一张非装备牌(X为其的体力值)。",
+            "qtpz_youqin_info":"其他角色出牌阶段开始时，你可以弃置一张手牌，观看其至多X张手牌并使用其中一张牌（X为其体力值）。",
             "qtpz_gangbi":"刚愎",
-            "qtpz_gangbi_info":"主公技;锁定技，当你成为其他吴国角色锦囊牌的目标时，则取消之并摸一张牌。",
+            "qtpz_gangbi_info":"主公技。锁定技。当你成为其他吴势力角色使用的普通锦囊牌的目标时，取消之并摸1张牌。",
 	 "qtpz_aobai":"鳌拜",
             "qtpz_shezheng":"摄政",
-            "qtpz_shezheng_info":"每轮限一次，其他角色的杀因弃置而进入弃牌堆后，你可以对其攻击范围内的一名其他角色使用此杀",
+            "qtpz_shezheng_info":"每轮限一次，其他角色的杀因弃置而进入弃牌堆后，你可以对其攻击范围内的一名其他角色使用此杀。",
             "qtpz_yingshi":"营私",
-            "qtpz_yingshi_info":"锁定技，每当你与回合外使用或打出杀后，你摸一张牌。",
+            "qtpz_yingshi_info":"锁定技。每当你于回合外使用或打出杀后，你摸1张牌。",
 	  "qtpz_wuzixu":"伍子胥",
             "qtpz_zhucheng":"筑城",
-            "qtpz_zhucheng_info":"游戏开始前，共发你8张牌，选4张作为手牌，其余的置于武将牌上，称之为“城”。每当一名角色摸牌阶段开始时，你可以观看牌堆顶的两张牌，然后用至多两张'城'，交换之",
+            "qtpz_zhucheng_info":"游戏开始前，共发你8张牌，选4张作为手牌，其余的牌置于武将牌上，称为“城”。每当一名角色摸牌阶段开始时，你可以观看牌堆顶2张牌，然后用至多两张“城”，替换其中等量的牌。",
             "qtpz_zhucheng1":"筑城",
             "qtpz_zhucheng1_info":"",
             "qtpz_xuezhuang":"血状",
-            "qtpz_xuezhuang_info":"一名角色进入濒死状态时，你可以摸一张牌",
+            "qtpz_xuezhuang_info":"一名角色进入濒死状态时，你可以摸一张牌。",
 	  "qtpz_xuedaolaozhu":"血刀老祖",
             "qtpz_handao":"悍刀",
-            "qtpz_handao_info":"锁定技;你使用杀造成伤害时，目标每满足以下任意一项，此杀伤害加一。1.体力值为一，2.没有手牌，3，没有装备防具牌。",
+            "qtpz_handao_info":"锁定技。你使用杀造成伤害时，目标每满足以下任意一项，此杀伤害+1：体力值为1；没有手牌；没有装备防具牌。",
             "qtpz_hanzhan":"酣战",
-            "qtpz_hanzhan_info":"出牌阶段，你可以流失一点体力或失去一体力上限。每当你流失一体力或失去一体力上限后你可以令其他角色弃置一张牌。",
+            "qtpz_hanzhan_info":"出牌阶段，你可以失去一点体力或减少一点体力上限。每当你失去一点体力或减少一点体力上限后，你可以令所有其他角色弃置一张牌。",
             "qtpz_shuixiang":"说降",
-            "qtpz_shuixiang_info":"每当你使用锦囊牌指定目标后，若其区域有牌，你可以令其弃置其中一张，然后该牌对其无效。",
+            "qtpz_shuixiang_info":"每当你使用锦囊牌指定目标后，若其区域内有牌，你可以令其弃置其中一张牌，然后此牌对其无效。",
 	 "qtpz_haidafu":"海大富",
 	 "qtpz_fenji":"愤激",
-            "qtpz_fenji_info":"其他角色摸牌阶段结束时，你可以展示其两张牌;若花色不同，视为其对你使用一张火攻，否则你失去一体力上限。",
+            "qtpz_fenji_info":"其他角色摸牌阶段结束时，你可以展示其两张手牌。若花色不同，视为其对你使用一张火攻，否则你减一点体力上限。",
             "qtpz_huashi":"化尸",
-            "qtpz_huashi_info":"其他角色出牌阶段开始时，你可以失去一体力上限，然后声明一种花色，其此回合不能使用或打出该花色的牌。",
+            "qtpz_huashi_info":"其他角色出牌阶段开始时，你可以失去一点体力上限，然后声明一种花色，其此回合不能使用或打出该花色的牌。",
             "qtpz_shidu":"嗜毒",
-            "qtpz_shidu_info":"锁定技，当你使用火杀或火攻指定目标或成为目标时，你增加一体力上限。你可以将火杀或火攻当桃使用。",
+            "qtpz_shidu_info":"锁定技，当你使用火杀或火攻指定目标或成为此牌的目标时，你加一点体力上限。你可以将火杀或火攻当桃使用。",
             "qtpz_shidu_tao":"嗜毒_桃",
             "qtpz_shidu_tao_info":"",
 	 "qtpz_aqing":"阿青",
 	  "qtpz_libing":"厉兵",
-            "qtpz_libing_info":"一名角色的装备区里置入一张兵器牌时，你可以令其视为对其攻击范围内由你选择的另一名角色使用一张【杀】;其以此法使用的【杀】不记入回合内使用【杀】的额定次数",
+            "qtpz_libing_info":"一名角色的装备区里置入一张兵器牌时，你可以令其视为对其攻击范围内由你选择的另一名角色使用一张杀。其以此法使用的杀不计入回合内次数。",
             "qtpz_shujia":"束甲",
-            "qtpz_shujia_info":"每当你使用【杀】造成伤害后，若其装备区里有护甲牌，你可以获得之",
+            "qtpz_shujia_info":"每当你使用杀造成伤害后，若其装备区里有防具牌，你可以获得之。",
 			},
 };
 
@@ -10382,76 +10838,76 @@ skill:{
  translate:{
 	 "sdyx_qiuqianren":"裘千仞",
             "sdyx_tiezhang":"铁掌",
-            "sdyx_tiezhang_info":"你使用杀造成伤害后，你可以弃置场上一张与该杀花色相同装备牌或延时锦囊牌。",
+            "sdyx_tiezhang_info":"你使用杀造成伤害后，你可以弃置场上一张与此杀花色相同装备牌或延时锦囊牌。",
             "sdyx_huolian":"祸连",
-            "sdyx_huolian_info":"出牌阶段，你可以选择一名其他角色是否交给其攻击范围你选择的另一名角色一张红桃牌。若其选择否，视为你对其使用了一张杀。",
+            "sdyx_huolian_info":"出牌阶段，你可以令一名其他角色选择是否交给其攻击范围由你选择的另一名其他角色一张红桃牌。若其选择否，视为你对其使用了一张杀。",
 	  "sdyx_hongqigong":"洪七公",
             "sdyx_xiangyan":"飨宴",
-            "sdyx_xiangyan_info":"你受到伤害后，你可以亮出牌堆顶五张牌，你获得不同类型(注:延时锦囊和非延时锦囊不是同一种类型)的牌各一张，然后弃置其余的牌。",
+            "sdyx_xiangyan_info":"你受到伤害后，你可以亮出牌堆顶5张牌，你获得不同类型（注：延时锦囊牌和普通锦囊牌类型不同）的牌各一张，将其余牌置入弃牌堆。",
             "sdyx_shouming":"授命",
-            "sdyx_shouming_info":"每轮限一次，若你已受伤，一名其他角色出牌阶段开始时，你可以交给其一张装备牌，若如此做，其获得降龙直到其回合结束。",
+            "sdyx_shouming_info":"每轮限一次，其他角色出牌阶段开始时，若你已受伤，你可以交给其一张装备牌，若如此做，其本回合内获得“降龙”。",
 	  "sdyx_ouyanke":"欧阳克",
             "sdyx_mushe":"牧蛇",
-            "sdyx_mushe_info":"出牌阶段限一次，你可以将一张黑桃手牌交给一名其他角色，其回合结束时若未与此回合造成雷电伤害，其需交给你两张黑桃牌或受到你的一点雷电伤害。",
+            "sdyx_mushe_info":"出牌阶段限一次，你可以将一张黑桃手牌交给一名其他角色，其回合结束时，若其未于此回合同造成过雷电伤害，其需交给你两张黑桃牌或受到你的一点雷电伤害。",
             "sdyx_zhijie":"积黠",
-            "sdyx_zhijie_info":"其他角色出牌阶段开始时，你可以令其交给你一张黑桃牌或者其回合内不能使用黑桃牌，若你依此法获得了牌，此技能失效直到下一轮开始。",
+            "sdyx_zhijie_info":"其他角色出牌阶段开始时，你可以令其选择：交给你一张黑桃牌；或其不能于此回合内使用黑桃牌。若你以此法获得了牌，此技能失效直到下一轮开始。",
 	 "sdyx_zhoubotong":"周伯通",
             "sdyx_mingwan":"冥顽",
-            "sdyx_mingwan_info":"每当你受到一点伤害后，你可以选择一名角色，将其下个回合判定阶段移出牌阶段后，或将其下个回合弃牌阶段移出牌阶段后(已有'判'或'弃'标记的角色不能被选择)。",
+            "sdyx_mingwan_info":"每当你受到一点伤害后，你可以选择一名角色，将其下个回合判定阶段移至出牌阶段后，或将其下个回合弃牌阶段移至摸牌阶段后（已有“判”或“弃”标记的角色不能被选择）。",
             "sdyx_shouxun":"守训",
-            "sdyx_shouxun_info":"锁定技，你不能失去装备区里的武器牌和锦囊牌",
+            "sdyx_shouxun_info":"锁定技。你不能失去装备区里的武器牌。",
 			"sdyx_mingwan2":"判定移出牌阶段后",
             "sdyx_mingwan2_info":"",
             "sdyx_mingwan3":"弃牌移摸牌阶段后",
             "sdyx_mingwan3_info":"",
 	 "sdyx_huangrong":"黄蓉",
             "sdyx_qiaoyan":"巧言",
-            "sdyx_qiaoyan_info":"每回合限一次，当一名其他角色拼点时，你可令另一名未参与此次拼点的角色代替其打出拼点牌",
+            "sdyx_qiaoyan_info":"每回合限一次，当一名角色拼点时，你可令另一名未参与此次拼点的角色代替其打出拼点牌。",
             "sdyx_qingshi":"请师",
 			"sdyx_qingshi2":"师",
-            "sdyx_qingshi_info":"回合开始时，你可与一名角色进行拼点，若你赢，你获得其一项除觉醒技、主公技和限定技的技能，直到回合结束；若你没赢，本局游戏你不能对该角色发动【请师】且你受到一点伤害",
+            "sdyx_qingshi_info":"回合开始时，你可与一名其他角色拼点，若你赢，你于此回合内获得其一项除觉醒技、主公技和限定技以外的技能；若你没赢，本局游戏你不能再对该角色发动“请师”且你受到其一点伤害。",
             "sdyx_qimen":"奇门",
 		    "sdyx_qimen2":"奇门",
-            "sdyx_qimen_info":"当你受到一次伤害，你可令一名未以此法获得“奇门”的角色于下个回合额外执行一个摸牌阶段或跳过判定阶段",
+            "sdyx_qimen_info":"当你受到1点伤害后，你可以令一名角色于下个回合额外执行一个摸牌阶段或跳过判定阶段。",
 	 "sdyx_fengheng":"冯蘅",
 	  "sdyx_moshu1":"默书",
             "sdyx_moshu1_info":"",
             "sdyx_moshu":"默书",
-            "sdyx_moshu_info":"每回合限一次，其他角色使用非转化的实体锦囊牌后，你可以获得一枚【拓印】标记，并将此牌拓印此标记上，你可以移除一枚【拓印】标记，然后将一张手牌当此拓印标记的普通锦囊牌使用。",
+            "sdyx_moshu_info":"每回合限一次，其他角色使用普通锦囊牌后，你可以获得一枚“拓印”标记，并将此牌拓印于此标记上。出牌阶段限一次，你可以移除一枚“拓印”标记，然后将一张手牌当此拓印于标记上的普通锦囊牌使用。",
             "sdyx_cuixin":"瘁心",
-            "sdyx_cuixin_info":"锁定技，你每移除一枚【拓印】标记，你选择一项:1失去一体力上限，2流失一体力。",
+            "sdyx_cuixin_info":"锁定技。你每移除一枚“拓印”标记，你须选择一项：失去一点体力；或减一点体力一限。",
 	 "sdyx_ouyangfeng":"欧阳锋",
             "sdyx_shezhang":"蛇杖",
-            "sdyx_shezhang_info":"若你没有装备区里没有武器牌你视为装备了朱雀羽扇",
+            "sdyx_shezhang_info":"锁定技。若你的装备区里没有装备武器牌，你视为装备了朱雀羽扇。",
             "sdyx_duxi":"毒袭",
-            "sdyx_duxi_info":"当你造成火焰伤害时，你可以弃一张黑桃牌，令此伤害加一。",
+            "sdyx_duxi_info":"每当你造成火焰伤害时，你可以弃置一张黑桃手牌，令此伤害+1。",
             "sdyx_nijing":"逆筋",
-            "sdyx_nijing_info":"你可将你的任意一张雷杀当【酒】使用。",
+            "sdyx_nijing_info":"你可以将雷杀当酒使用。",
    "sdyx_xguojing":"SP郭靖",
             "sdyx_zhebie":"哲别",
             "sdyx_huangyaoshi":"黄药师",
             "sdyx_guojing":"郭靖",
 			"sdyx_sheqi":"射骑",
-            "sdyx_sheqi_info":"你使用的杀无距离限制，并且无视目标防具;出牌阶段结束时，若你此阶段未使用过杀，你可以令一名其他角色使用其手牌中的一张杀(无距离限制并且无视防具)",
+            "sdyx_sheqi_info":"锁定技，你使用的杀无距离限制，且无视目标的防具。出牌阶段结束时，若你此阶段未使用过杀，你可以令一名其他角色选择是否使用一张无视距离和目标防具的杀。",
             "sdyx_guifu":"归附",
-            "sdyx_guifu_info":"回合结束时，你可以将一张因使用而置入弃牌堆的牌，交给一名其他角色。",
+            "sdyx_guifu_info":"回合结束时，你可以将你本回合一张因使用而进入弃牌堆的牌交给一名其他角色。",
 			 "sdyx_danxin":"丹心",
-            "sdyx_danxin_info":"其他角色使用【杀】指定目标后，你可以与其拼点，若你赢，此【杀】无效且你获得之;若你未赢且你不是目标，此【杀】的目标改为你。",
+            "sdyx_danxin_info":"其他角色使用杀指定目标后，你可以与其拼点，若你赢，此杀无效且你获得之；若你未赢且你不是目标，此杀的目标改为你。",
             "sdyx_polu":"破虏",
-            "sdyx_polu_info":"锁定技，你的攻击范围+X，你使用【杀】的次数上限+X。(X为你已损失的内力值)",
+            "sdyx_polu_info":"锁定技，你的攻击范围+X，你使用杀的次数+X（X为你已损失的体力值）。",
             "sdyx_longyin":"龙吟",
-            "sdyx_longyin_info":"盟主技，锁定技，你攻击范围的角色视为在其他宋朝角色的攻击范围内",
+            "sdyx_longyin_info":"盟主技。锁定技。你攻击范围的角色视为在其他魏势力角色的攻击范围内。",
             "sdyx_longyin2":"",
 			 "sdyx_cihuai":"悲怀",
-            "sdyx_cihuai_info":"回合开始时,若你有手牌并且只有一种花色，你可以展示你的手牌，然后亮出牌堆顶的牌，直到出现与你花色相同的牌为止，你获得这些牌。",
+            "sdyx_cihuai_info":"回合开始时，若你的手牌只含一种花色，你可以展示所有手牌，然后依次亮出牌堆顶的牌，直到出现与你手牌花色相同的牌为止，你获得这些牌。",
             "sdyx_qushang":"曲殇",
-            "sdyx_qushang_info":"每当你受到伤害后，你可以弃置任意花色不同的牌并选择一名其他角色，令其弃置与此法弃置花色和数量相同的牌并回复一体力，否则其翻面并获得你弃置的牌。",
+            "sdyx_qushang_info":"每当你受到伤害后，你可以弃置任意张花色各不同的牌并选择一名其他角色，令其选择一项：弃置与此法弃置花色和数量相同的牌并回复1点体力；或获得你弃置的牌并翻面。",
             "sdyx_jianchi":"箭驰",
-            "sdyx_jianchi_info":"出牌阶段，你使用的杀无距离限制并且可以额外指定X个目标(X为你已损失的体力值)",
+            "sdyx_jianchi_info":"锁定技。你使用的杀无距离限制并且可以额外指定X名目标（X为你已损失的体力值）。",
             "sdyx_yuzhong":"愚忠",
-            "sdyx_yuzhong_info":"当你需要使用打出杀时，你可以流失一体力，视为你使用或打出了此牌，你的回合内只能依此发使用一次杀，且不计入回合内的使用次数",
+            "sdyx_yuzhong_info":"当你需要使用打出杀时，你可以失去一点体力，视为你使用或打出了此牌。你的回合内只能以此发使用一次杀，且不计入回合内次数。",
 			 "sdyx_xianglong":"降龙",
-            "sdyx_xianglong_info":"当你使用【杀】指定目标后，你可以对目标角色造成1点伤害。若如此做，若此【杀】造成伤害，你须失去一点体力",
+            "sdyx_xianglong_info":"当你使用杀指定目标后，你可以对目标角色造成1点伤害。若如此做，若此杀造成伤害，你须失去1点体力。",
                                
         },
 };
@@ -10485,7 +10941,8 @@ game.import('character',function(){
 			  "yttl_miejue":["female","wu",3,["yttl_zhangjian","yttl_huiqiao","yttl_jie"],[]],
 			  "yttl_songqingshu":["male","wu",3,["yttl_jixian","yttl_nishi"],[]],
 			  "yttl_zhangcuishan":["male","wu",3,["yttl_cstaiji","yttl_yinjiu"],[]],
-			  "yttl_zhangwuji":["male","wu",4,["yttl_nijue","yttl_jiuyang","yttl_xiaochu"],['zhu']],
+			  "yttl_zhangwuji":["male","wu",4,["yttl_nijue","yttl_jiuyang","yttl_chuqiao"],['zhu']],
+			  "yttl_daiqisi":["female","wu",3,["yttl_miling","yttl_jinhua"],[]],
        
 },
 characterIntro:{
@@ -10507,6 +10964,7 @@ characterIntro:{
 				},
 characterTitle:{
 					"yttl_yangxiao":"落影丶逝尘",
+					"yttl_daiqisi":"落影丶逝尘",
 					"yttl_zhangwuji":"落影丶逝尘",
 					"yttl_zhangcuishan":"落影丶逝尘",
 					"yttl_songqingshu":"落影丶逝尘",
@@ -10524,6 +10982,275 @@ characterTitle:{
 								},
 								
 skill:{
+	"yttl_miling":{
+                subSkill:{
+                    useskill:{
+                        mark:true,
+                        marktext:"密",
+                        intro:{
+                            content:"已发动密令",
+                        },
+                        sub:true,
+                    },
+                    ondis:{
+                        mark:true,
+                        marktext:"♣️",
+                        intro:{
+                            content:"已使用♣️牌",
+                        },
+                        sub:true,
+                    },
+                    cl:{
+                        mark:true,
+                        marktext:"令",
+                        intro:{
+                            content:"yttl_miling",
+                        },
+						audio:"ext:金庸群侠传:2",
+                        trigger:{
+                            player:"dieBefore",
+                        },
+                        group:["yttl_miling_use","yttl_miling_dis"],
+                        content:function (){
+                "step 0"      
+                player.storage.yttl_miling.removeSkill('yttl_miling_useskill');
+                player.storage.yttl_miling.unmark(player.storage.yttl_miling.storage.yttl_milingname+'_charactermark');
+                player.storage.yttl_miling.restoreSkill('yttl_miling');
+                player.storage.yttl_miling.checkMarks();
+                game.log(player.storage.yttl_miling,'重置了密令')
+                "step 1"
+                delete player.storage.yttl_miling;
+                player.removeSkill('yttl_miling_cl');
+            },
+                        sub:true,
+                        forced:true,
+                        popup:false,
+                    },
+                    dis:{
+                        trigger:{
+                            player:"phaseEnd",
+                        },
+                        filter:function (event,player){
+                if(player.hasSkill('yttl_miling_ondis')) return false;
+                return player.countCards('he')>0;
+            },
+                        content:function (){
+                "step 0"
+                player.storage.yttl_miling.chooseBool('是否弃置'+get.translation(player)+'一张牌？').set('ai',function(){                                
+                    if(get.attitude(player.storage.yttl_miling,player)<0) return true;                     
+                    return false;
+                }); 
+                "step 1"
+                if(result.bool){
+                    player.storage.yttl_miling.logSkill('yttl_miling',player);
+                    player.storage.yttl_miling.discardPlayerCard('he',player,true);
+                }
+                else{
+                    event.finish();
+                }     
+                
+            },
+                        sub:true,
+                        forced:true,
+                        popup:false,
+                    },
+                    use:{
+                        trigger:{
+                            player:["useCard","respond"],
+                        },
+                        filter:function (event,player){
+                if(get.suit(event.card)!='club') return false;
+                return true;
+            },
+                        content:function (){
+                "step 0"
+                player.storage.yttl_miling.draw();
+                if(_status.currentPhase==player&&!player.hasSkill('yttl_miling_ondis')){
+                    player.addTempSkill('yttl_miling_ondis','phaseAfter');
+                }
+            },
+                        sub:true,
+                        forced:true,
+                        popup:false,
+                    },
+                },
+                skillAnimation:"epic",
+                unique:true,
+                animationStr:"密令",
+                animationColor:"fire",
+                enable:"phaseUse",
+                position:"h",
+                audio:"ext:金庸群侠传:2",
+                filter:function (event,player){
+        if(player.hasSkill('yttl_miling_useskill')) return false;
+        return player.countCards('h',{suit:'club'})>0;
+    },
+                check:function (card){return 9-get.value(card)},
+                filterCard:function (card){
+        return get.suit(card)=='club';
+    },
+                filterTarget:function (card,player,target){
+        if(target.hasSkill('yttl_miling_cl')) return false;
+        if(target==player) return false;
+        return true;
+    },
+                content:function (){
+        "step 0"
+        player.unmark(player.storage.yttl_milingname+'_charactermark');
+        "step 1"
+        target.gain(cards,player);
+        target.storage.yttl_miling=player;
+        player.addSkill('yttl_miling_useskill');
+        target.addSkill('yttl_miling_cl');
+        "step 2"
+        var name=target.name;
+        if(name.indexOf('unknown')==0){
+            name=target.name2;
+        }
+        player.markCharacter(name,null,true,true);
+        game.addVideo('markCharacter',player,{
+            name:'密',
+            content:'',
+            id:'yttl_miling',
+            target:name
+        });
+        player.storage.yttl_milingname=name;
+        player.awakenSkill('yttl_miling');
+    },
+                discard:false,
+                prepare:function (cards,player,targets){
+        player.$give(cards,targets[0],false);
+    },
+                ai:{
+                    basic:{
+                        order:10.5,
+                    },
+                    result:{
+                        target:function (player,target){
+                return -0.5;
+            },
+                    },
+                    threaten:1,
+                },
+            },
+            "yttl_jinhua":{
+                audio:"ext:金庸群侠传:2",
+                enable:"phaseUse",
+                usable:1,
+                filter:function (event,player){
+        return player.canMoveCard()&&player.countCards('he',{suit:'club'})>0;
+    },
+                check:function (card){return 6-get.value(card)},
+                filterCard:function (card){
+        return get.suit(card)=='club';
+    },
+                position:"he",
+                filterTarget:function (card,player,target){
+        if(ui.selected.targets.length){
+            var from=ui.selected.targets[0];
+            var js=from.getCards('j');
+            for(var i=0;i<js.length;i++){
+                if(!target.hasJudge(js[i])) return true;
+            }
+            if(target.isMin()) return false;
+            var es=from.getCards('e');
+            for(var i=0;i<es.length;i++){
+                if(!target.getEquip(get.subtype(es[i]))) return true;
+            }
+            return false;
+        }
+        else{
+            return target.countCards('ej')>0;
+        }
+    },
+                targetprompt:["被移走","移动目标"],
+                selectTarget:2,
+                multitarget:true,
+                content:function (){
+        "step 0"
+        if(targets.length==2){
+            player.choosePlayerCard('ej',true,function(button){
+                var player=_status.event.player;
+                var targets0=_status.event.targets0
+                var targets1=_status.event.targets1;
+                if(get.attitude(player,targets0)>get.attitude(player,targets1)){
+                    return get.position(button.link)=='j'?10:0;
+                }
+                else{
+                    if(get.position(button.link)=='j') return -10;
+                    return get.equipValue(button.link);
+                }
+            },targets[0]).set('targets0',targets[0]).set('targets1',targets[1]).set('filterButton',function(button){
+                var targets1=_status.event.targets1;
+                if(get.position(button.link)=='j'){
+                    return !targets1.hasJudge(button.link);
+                }
+                else{
+                    return !targets1.countCards('e',{subtype:get.subtype(button.link)});
+                }
+            });
+        }
+        else{
+            event.finish();
+        }
+        "step 1"
+        if(result.bool&&result.links.length){
+            var link=result.links[0];
+            if(get.position(link)=='e'){
+                targets[1].equip(link);
+            }
+            else if(link.viewAs){
+                targets[1].addJudge({name:link.viewAs},[link]);
+            }
+            else{
+                targets[1].addJudge(link);
+            }
+            targets[0].$give(link,targets[1])
+            game.delay();
+        }
+    },
+                ai:{
+                    order:8,
+                    result:{
+                        target:function (player,target){
+                var att=get.attitude(player,target);
+                if(ui.selected.targets.length==0){
+                    if(att>0){
+                        if(target.countCards('j')) return 10;
+                    }
+                    else if(att<0){
+                        if(game.hasPlayer(function(current){
+                            if(get.attitude(player,current)>0){
+                                var es=target.getCards('e');
+                                for(var i=0;i<es.length;i++){
+                                    if(!current.getEquip(get.subtype(es[i]))) return true;
+                                }
+                            }
+                        })){
+                            return -att;
+                        }
+                    }
+                    return 0;
+                }
+                if(att>0){
+                    var es=ui.selected.targets[0].getCards('e');
+                    var i;
+                    for(i=0;i<es.length;i++){
+                        if(!target.getEquip(get.subtype(es[i]))){
+                            break;
+                        }
+                    }
+                    if(i==es.length){
+                        return 0;
+                    }
+                }
+                return -att*get.attitude(player,ui.selected.targets[0]);
+            },
+                    },
+                    expose:0.4,
+                    threaten:1.3,
+                },
+            },
 	"yttl_nijue":{
 				audio:"ext:金庸群侠传:2",
                 enable:"phaseUse",
@@ -10704,9 +11431,9 @@ skill:{
                     threaten:0.8,
                 },
             },
-            "yttl_xiaochu":{
+            "yttl_chuqiao":{
 				audio:"ext:金庸群侠传:2",
-                group:["yttl_xiaochu_remove"],
+                group:["yttl_chuqiao_remove"],
                 subSkill:{
                     remove:{
                         trigger:{
@@ -10719,7 +11446,7 @@ skill:{
                 return player.identity!='zhu';
             },
                         content:function (){
-                player.removeSkill('yttl_xiaochu');
+                player.removeSkill('yttl_chuqiao');
             },
                         sub:true,
                     },
@@ -10732,7 +11459,7 @@ skill:{
                 zhuSkill:true,
                 direct:true,
                 filter:function (event,player){
-        if(!player.hasZhuSkill('yttl_xiaochu')) return false;
+        if(!player.hasZhuSkill('yttl_chuqiao')) return false;
         if(event.player.group!='wu') return false;
         if(event.player==player) return false;
         if(event.cards){
@@ -10757,7 +11484,7 @@ skill:{
         }); 
         "step 2"
         if(result.bool){
-            trigger.player.logSkill('yttl_xiaochu',player);
+            trigger.player.logSkill('yttl_chuqiao',player);
             player.gain(event.cards,'gain2');
         }
         else{
@@ -10994,9 +11721,9 @@ skill:{
         if(ca.length==0){
             var player=_status.currentPhase;
             if(player.countCards('he',{subtype:get.subtype(card)})>1){
-                return 11-get.equipValue(card);
+                return 7-get.equipValue(card);
             }
-            return 7-get.value(card);
+            return 6-get.value(card);
         }
         if(ca.length>0){
             var player=_status.currentPhase;
@@ -12918,95 +13645,99 @@ yttl_guchan:{
  translate:{ 
  "yttl_zhangwuji":"张无忌",
             "yttl_nijue":"逆绝",
-            "yttl_nijue_info":"出牌阶段限一次，你可以弃置一张黑桃桃手牌并选择两名角色，交换他们装备区/判定区里的所有牌。",
+            "yttl_nijue_info":"出牌阶段限一次，你可以弃置一张黑桃手牌并选择两名角色，交换其装备区或判定区里的所有的牌。",
             "yttl_jiuyang":"九阳",
-            "yttl_jiuyang_info":"其他角色装备区置于武器牌后，若其攻击范围因此增加,则你可以对其使用X张【杀】(X为其增加的攻击范围)。",
-            "yttl_xiaochu":"翘楚",
-            "yttl_xiaochu_info":"主公技;其他吴国角色使用的【杀】被【闪】抵消后，其可以将此【杀】交给你。",
+            "yttl_jiuyang_info":"其他角色的装备区置入武器牌后，若其攻击范围因此增加，则你可以对其使用至多X张杀（X为其增加的攻击范围数）。",
+            "yttl_chuqiao":"楚翘",
+            "yttl_chuqiao_info":"主公技。其他吴势力角色使用的杀被抵消后，其可以将此杀交给你。",
  "yttl_zhangcuishan":"张翠山",
             "yttl_cstaiji":"太极",
-            "yttl_cstaiji_info":"每当你失去最后一张手牌，若你能对你使用【无中生有】;则视为你对你使用了一张【无中生有】。",
+            "yttl_cstaiji_info":"每当你失去最后的手牌后，你可以视为使用一张“无中生有”。",
             "yttl_yinjiu":"引咎",
-            "yttl_yinjiu_info":"你的回合开始时，你可以将所有手牌交给一名你未依此法选择过的角色，然后其可以交给你任意张牌。锁定技，当你受到普通锦囊牌的伤害时，若你对伤害来源发动过【引咎】，则取消之。",
+            "yttl_yinjiu_info":"回合开始时，你可以将所有手牌交给一名你未以此法选择过的角色，然后其可以交给你任意张牌。锁定技，当你受到普通锦囊牌的伤害时，若你对来源发动过“引咎”，则防止此伤害。",
  "yttl_songqingshu":"宋青书",
             "yttl_jixian":"嫉贤",
             "yttl_jixian_info":"转换技。①一名其他角色获得至少两张牌后，你可以摸等量的牌。②一名其他角色失去至少两张牌后，你可以弃置等量的牌。",
             "yttl_nishi":"逆施",
             "yttl_nishi_info":"出牌阶段，你可以选择一名其他角色，然后选择一项：交给其两张手牌，获得其装备区里的一张牌；或将一张装备牌置于其装备区并获得其两张手牌（不足则全获得）。",
-			
+			"yttl_daiqisi":"黛绮丝",
+            "yttl_miling":"密令",
+            "yttl_miling_info":"限定技，出牌阶段，你可以交给一名其他角色一张梅花手牌，每当其使用或打出梅花牌时，你摸一张牌。若其未于回合内使用或打出牌，其回合结束时你可以弃置其一张牌。该角色死亡后，你重置此技能。",
+            "yttl_jinhua":"金花",
+            "yttl_jinhua_info":"出牌阶段限一次，你可以弃置一张梅花牌，然后移动场上一张牌。",
  "yttl_miejue":"灭绝师太",
             "yttl_huiqiao":"回鞘",
             "yttl_huiqiao_info":"其他角色的武器牌进入弃牌堆时，你可以将此牌置入一名角色的装备区里（不能替换原武器牌）。",           
             "yttl_jie":"嫉恶",
-            "yttl_jie_info":"当有角色进入濒死状态时，若有伤害来源，你可以弃置伤害来源所有区域各一张牌，若依此法弃置的牌包含两种颜色，则濒死角色回复一体力。",
+            "yttl_jie_info":"当有角色进入濒死状态时，若有伤害来源，你可以弃置伤害来源所有区域各一张牌，若依此法弃置的牌包含两种颜色，则濒死角色回复1点体力。",
             "yttl_zhangjian":"仗剑",
-            "yttl_zhangjian_info":"当你使用杀指定目标后，若你装备区里有武器牌，你可以摸一张牌。",
+            "yttl_zhangjian_info":"当你使用杀指定目标后，若你装备区里有武器牌，你可以摸1张牌。",
  "yttl_luhe":"玄冥二老",
             "yttl_xuanming":"玄冥",
             "yttl_xuanming_info":"锁定技。你使用杀时，若此杀有点数，则目标只能用点数为奇/偶数闪响应你点数为奇/偶数杀。",
             "yttl_hanyin":"酣淫",
-            "yttl_hanyin_info":"出牌阶段开始时，你可以亮出牌堆顶两张牌，将其中一张黑色牌当酒使用或获得其中一张无中生有，若你依此法使用了牌或获得了牌，你本回合不能使用与该牌颜色不同的牌。然后你弃置未被你选择的牌。",
+            "yttl_hanyin_info":"出牌阶段开始时，你可以亮出牌堆顶2张牌，将其中一张黑色牌当酒使用或获得其中一张无中生有（其余牌置入弃牌堆），若你以此法使用了牌或获得了牌，你本回合不能使用与此牌颜色不同的牌。",
   "yttl_yinliting":"殷梨亭",
             "yttl_lttaiji":"太极",
-            "yttl_lttaiji_info":"每当你失去最后的手牌时，你可以视为使用一张”无中生有“。",
+            "yttl_lttaiji_info":"每当你失去最后的手牌时，你可以视为使用一张“无中生有”。",
             "yttl_chanru":"孱懦",
             "yttl_chanru_info":"每当你受到黑色杀造成的伤害时，你可以交给伤害来源一张手牌，然后此伤害-1。",
             "yttl_tongshou":"同寿",
-            "yttl_tongshou_info":"觉醒技，准备阶段开始时，若你没有手牌，你须减1点体力上限，并永久获得技能“太极”",
+            "yttl_tongshou_info":"觉醒技。准备阶段开始时，若你没有手牌，你须减1点体力上限，并获得“太极”",
 "yttl_changyuchun":"常遇春",
             "yttl_xiaoyong":"骁勇",
-            "yttl_xiaoyong_info":"回合内限一次，你可以将一张锦囊牌当[杀]使用，且此杀不计入出杀次数。",
+            "yttl_xiaoyong_info":"出牌阶段限一次，你可以将一张锦囊牌当杀使用，且此杀不计入回合内次数。",
             "yttl_xianfeng":"先锋",
-            "yttl_xianfeng_info":"锁定技，准备阶段，你执行一个额外的出牌阶段", 
+            "yttl_xianfeng_info":"锁定技。准备阶段，你执行一个额外的出牌阶段。", 
  "yttl_changbaoshu":"常胜宝树王",
 			"yttl_lingjianwuqi":"令箭武器",
             "yttl_qizhao":"奇招",
-            "yttl_qizhao_info":"你可以将一与你你武器牌颜色相同牌当杀使用",
+            "yttl_qizhao_info":"你可以将一张与你装备区里的武器牌颜色相同牌当杀使用。",
             "yttl_lingjian":"令箭",
-            "yttl_lingjian_info":"限定技，一名角色的出牌阶段开始时，若其没有装备武器牌，你可以令其摸两张牌，然后你弃一张牌，然后你声明一张武器牌，令其装备之，其回合结束或死亡时，销毁该武器牌。",
+            "yttl_lingjian_info":"限定技。一名角色出牌阶段开始时，若其没有装备武器牌，你可以令其摸2张牌，你弃一张牌，然后你声明一张武器牌，令其装备之，其回合结束或死亡时，销毁该武器牌。",
   "yttl_jinhuapopo":"金花婆婆",
             "yttl_hanji":"寒疾",
-            "yttl_hanji_info":"锁定技，你不能成为其他角色点数小于7的牌的目标，锁定技，你不能使用点数大于10的牌指定其他角色为目标",
+            "yttl_hanji_info":"锁定技。你不能成为其他角色点数小于7的牌的目标；你不能使用点数大于10的牌指定其他角色为目标",
             "yttl_jiedao2":"借刀",
             "yttl_jiedao2_info":"你可将你的任意一张梅花手牌当”借刀杀人“使用。",
             "yttl_jiedao":"借刀",
-            "yttl_jiedao_info":"出牌阶段开始时，你可以与一名角色拼点，若你赢，你于此回合可以将一张梅花牌当”借刀杀人“使用；若你没赢，你需弃置你装备区里的武器牌。",
+            "yttl_jiedao_info":"出牌阶段开始时，你可以与一名其他角色拼点。若你赢，你可以于此回合内将梅花牌当“借刀杀人”使用；若你未赢，你须弃置你装备区里的武器牌。",
   "yttl_yinli":"殷离",
             "yttl_chuxin":"初心",
-            "yttl_chuxin_info":"锁定技;你于本局游戏使用或打出第一张牌花色相同的手牌，不占用你的手牌上限。",
+            "yttl_chuxin_info":"锁定技。与你于本局游戏使用或打出第一张牌花色相同的手牌，不占用你的手牌上限。",
             "yttl_maodu":"蝥毒",
-            "yttl_maodu_info":"每当你受到或造成一点属性伤害后，你增加一体力上限。出牌阶段限一次，你可以失去两点体力上限，然后选择一项:1.选择一名体力上限大于你的角色令其流失一体力。2.摸四张牌。",
+            "yttl_maodu_info":"每当你受到或造成1点属性伤害后，你加1点体力上限。出牌阶段限一次，你可以减2点体力上限，然后选择一项：令一名体力上限大于你的角色失去一点体力；或摸4张牌。",
  "yttl_due":"渡厄",
             "yttl_jingang":"金刚",
-            "yttl_jingang_info":"每局限13次，当你需要使用”无懈可击“时，你可以选择翻面，然后视为你使用了一张”无懈可击“。",
+            "yttl_jingang_info":"每局限13次，当你需要使用“无懈可击”时，你可以翻面，然后视为你使用了此牌。",
             "yttl_fumo":"伏魔",
-            "yttl_fumo_info":"每当你的武将牌翻至背面朝上时，你可以横置所有角色的武将牌",
+            "yttl_fumo_info":"每当你的武将牌翻至背面向上时，你可以横置所有角色的武将牌。",
             "yttl_guchan":"枯禅",
-            "yttl_guchan_info":"每当你的武将牌翻面后，你可选择一名角色并声明一种该角色未以此法声明的锦囊牌的牌名，其于本局游戏中不能再成为此牌的目标",
+            "yttl_guchan_info":"每当你的武将牌翻面后，你可选择一名角色并声明一种未对该角色声明过的锦囊牌的牌名，其于本局游戏不能成为此牌的目标。",
  "yttl_zhuyuanzhang":"朱元璋",
             "yttl_qingce":"清侧",
-            "yttl_qingce_info":"每当你使用普通锦囊牌时，你可以令你距离一以内的任意名角色成为目标，或取消你距离一以内的任意名角色的目标",
+            "yttl_qingce_info":"每当你使用普通锦囊牌时，你可以令你距离1以内的任意名角色也成为目标，或取消你距离1以内的任意名角色为目标。",
             "yttl_yinyuan":"夤缘",
-            "yttl_yinyuan_info":"主公技;锁定技，你计算其他魏势力角色距离为1。",
+            "yttl_yinyuan_info":"主公技。锁定技。你计算其他吴势力角色距离为1。",
             "yttl_yaohui1":"邀赂",
             "yttl_yaohui1_info":"",
             "yttl_yaohui":"邀赂",
             "yttl_yaohui_info":"其他角色出牌阶段，其可以将一张装备牌置于你的装备区里（不得替换原装备），然后其摸2张牌。",
       "yttl_yangxiao":"杨逍",
 		"yttl_xingshi":"兴师",
-            "yttl_xingshi_info":"当你使用基本牌或普通锦囊牌时，你可以弃置一张牌，若如此做，你可以为此牌额外指定一个目标。",
+            "yttl_xingshi_info":"当你使用基本牌或普通锦囊牌时，你可以弃置一张牌，若如此做，你可以为此牌额外指定一名目标。",
             "yttl_jieao":"桀骜",
             "yttl_jieao_info":"锁定技。结束阶段开始时，你摸X张牌（X为你本回合你使用的普通锦囊牌指定除你外的目标数），若你以此法摸牌数大于3，你翻面。",	
             "yttl_zhangsanfeng":"张三丰",
             "yttl_changbaisanqin":"长白三禽",
 			 "yttl_taiji":"太极",
-            "yttl_taiji_info":"每当你失去最后的手牌时，你可以视为使用一张”无中生有“。",
+            "yttl_taiji_info":"每当你失去最后的手牌时，你可以视为使用一张“无中生有”。",
             "yttl_chunyan":"纯阳",
             "yttl_chunyan_info":"每回合限X次，你可以将两张手牌当杀使用或打出（X为你的体力值）",
             "yttl_taoli":"桃李",
             "yttl_taoli_info":"主公技。当其他吴国角色失去最后一张手牌时，你可以交给其一张手牌。",
             "yttl_fendao":"焚刀",
-            "yttl_fendao_info":" 出牌阶段限一次，你可以重铸一名其他角色的装备牌，然后展示所重铸的牌，若为红色，该角色回复一点体力，若为黑色，你获得此次重铸的装备牌",
+            "yttl_fendao_info":" 出牌阶段限一次，你可以重铸一名其他角色的装备牌，然后展示所重铸的牌，若为红色，其回复1点体力；若为黑色，你获得此次重铸的装备牌。",
             "yttl_kuiyu":"窥觎",
             "yttl_kuiyu_info":"每当你使用一张装备牌时，你可以摸1张牌。",
             
@@ -13064,5 +13795,5 @@ if(lib.device||lib.node){
     author:"",
     diskURL:"",
     forumURL:"",
-    version:"1.32",
+    version:"1.33",
 },files:{"character":[],"card":[],"skill":[]}}})

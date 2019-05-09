@@ -334,12 +334,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：新增两个新角色并修复部分BUG，目前已不存在任何卡死游戏的BUG<li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-05-06",
+	intro:"<li>更新：新增扩展皮肤功能，单击可换肤的有皮肤的武将有鸣人、水门，有阵亡配音的武将有卡卡西、佐助、鼬。目前已不存在任何卡死游戏的BUG<li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-05-09",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"77MB",
-    version:1.60,
+    version:1.61,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg",
@@ -389,7 +389,7 @@ extension["群英会"]={
 		"xwj_xhuoying_liluoke.jpg","xwj_xhuoying_linghua1.mp3","xwj_xhuoying_linghua2.mp3","xwj_xhuoying_fengwang1.mp3","xwj_xhuoying_fengwang2.mp3",
 		"xwj_xhuoying_liudaoban.jpg","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_lunhui1.mp3",
 		"xwj_xhuoying_lunhui2.mp3","xwj_xhuoying_lunmu1.mp3","xwj_xhuoying_lunmu2.mp3","xwj_xhuoying_luoxuan1.mp3",
-		"xwj_xhuoying_luoxuan2.mp3","xwj_xhuoying_luwan.jpg","xwj_xhuoying_mingren.jpg",
+		"xwj_xhuoying_luoxuan2.mp3","xwj_xhuoying_luwan.jpg","xwj_xhuoying_mingren.jpg","xwj_xhuoying_mingren1.jpg","xwj_xhuoying_mingren2.jpg",
 		"xwj_xhuoying_mudun_respond1.mp3","xwj_xhuoying_mudun_respond2.mp3","xwj_xhuoying_newkuilei1.mp3",
 		"xwj_xhuoying_newkuilei2.mp3","xwj_xhuoying_ningchi.jpg","xwj_xhuoying_qianniao1.mp3",
 		"xwj_xhuoying_qianniao2.mp3","xwj_xhuoying_qianshou1.mp3","xwj_xhuoying_qianshou2.mp3",
@@ -409,7 +409,7 @@ extension["群英会"]={
 		"xwj_xhuoying_sanlei.jpg","xwj_xhuoying_shayu1.mp3","xwj_xhuoying_shayu2.mp3","xwj_xhuoying_shazang1.mp3",
 		"xwj_xhuoying_shazang2.mp3","xwj_xhuoying_shouyu_effect11.mp3","xwj_xhuoying_shouyu_effect12.mp3",
 		"xwj_xhuoying_shouyu_effect21.mp3","xwj_xhuoying_shuidun1.mp3","xwj_xhuoying_shuidun2.mp3",
-		"xwj_xhuoying_shuilao1.mp3","xwj_xhuoying_shuilao2.mp3","xwj_xhuoying_shuimen.jpg",
+		"xwj_xhuoying_shuilao1.mp3","xwj_xhuoying_shuilao2.mp3","xwj_xhuoying_shuimen.jpg","xwj_xhuoying_shuimen1.jpg",
 		"xwj_xhuoying_shuipao1.mp3","xwj_xhuoying_shuipao2.mp3","xwj_xhuoying_shunsheng1.mp3",
 		"xwj_xhuoying_shunsheng2.mp3","xwj_xhuoying_shuochang1.mp3","xwj_xhuoying_shuochang2.mp3",
 		"xwj_xhuoying_sixiang1.mp3","xwj_xhuoying_sixiang2.mp3","xwj_xhuoying_tiancheng1.mp3",

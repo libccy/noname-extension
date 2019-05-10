@@ -169,18 +169,20 @@ if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
             return !jieshi;
         },
         forced:true,
-        content:function(){
-        ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
+        content:function(){        
  var huanhun=game.dead[0];
- game.delay(2);
-huanhun.$fullscreenpop('借尸还魂','fire');
+ game.delay();
+//huanhun.$fullscreenpop('借尸还魂','fire');
 huanhun.init('xwj_xhuoying_huiye');
 huanhun.revive();
 huanhun.maxHp=3;
 huanhun.hp=3;
 huanhun.draw(3)._triggered=null;
 huanhun.update();
-//huanhun.$fullscreenpop('无限月读','thunder');
+huanhun.$fullscreenpop('无限月读','thunder');
+game.delay(20);
+game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_wxyd_background.jpg");
+ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
 game.delay();
 //lib.skill._wuxianyuedu={trigger:{global:'gameStart'},forced:true,content:function(){},};
 huanhun.insertPhase();
@@ -11874,7 +11876,8 @@ player.$skill('助君成王','fire','red','avatar');
             player.recover(target.maxHp-player.hp);
 	        		game.delay(0.5);
 	        	 ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';       
-	        		game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_liudaoban.jpg');             
+	        		game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_liudaoban.jpg');       
+	        	 game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_wxyd_background.jpg");     
             player.addSkill('xwj_xhuoying_lunmu');
             player.update();
             player.awakenSkill('xwj_xhuoying_yiyuan');
@@ -15352,7 +15355,7 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的部分人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或扩展交流②群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀设计群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
 					},				
@@ -15447,5 +15450,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.61",
+    version:"1.62",
 },files:{"character":[],"card":[],"skill":[]}}})

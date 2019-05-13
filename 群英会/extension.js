@@ -7835,6 +7835,7 @@ var skill=trigger.player.skills.randomGet()
         player.maxHp++;
         }
         player.recover();  
+		player.update();
 		'step 1'
 		if(trigger.player.group=='wei'){
 			player.addSkill('xwj_xhuoying_yuanyuwind');
@@ -7851,6 +7852,7 @@ var skill=trigger.player.skills.randomGet()
 		if(trigger.player.group!='wei'&&trigger.player.group!='shu'&&trigger.player.group!='wu'&&trigger.player.group!='qun'){
 			player.addSkill('xwj_xhuoying_yuanyuthunder');
 		}
+		player.update();
     },
             },
 			
@@ -7900,7 +7902,7 @@ var skill=trigger.player.skills.randomGet()
             event.redo();
         }
         "step 2"  
-	game.playXu(['xwj_xhuoying_yuanyu1','xwj_xhuoying_yuanyu2'].randomGet());			
+	game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());			
     player.unmarkSkill('xwj_xhuoying_yuanyuwind');   
     player.awakenSkill('xwj_xhuoying_yuanyuwind');     
     },
@@ -7971,7 +7973,7 @@ var skill=trigger.player.skills.randomGet()
         player.$fullscreenpop('雷遁•伪暗','fire');
 		game.delay(10);
         target.damage("thunder",2);
-		game.playXu(['xwj_xhuoying_yuanyu1','xwj_xhuoying_yuanyu2'].randomGet());
+		game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
         player.unmarkSkill('xwj_xhuoying_yuanyuthunder');
         player.awakenSkill('xwj_xhuoying_yuanyuthunder');
     },
@@ -8006,7 +8008,7 @@ var skill=trigger.player.skills.randomGet()
 		    game.delay(10);		
             player.line(target);
             target.damage('fire');  
-			game.playXu(['xwj_xhuoying_yuanyu1','xwj_xhuoying_yuanyu2'].randomGet());
+			game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
             player.unmarkSkill('xwj_xhuoying_yuanyufire');
             player.awakenSkill('xwj_xhuoying_yuanyufire');
     },
@@ -12505,7 +12507,7 @@ translate:{
             "xwj_xhuoying_zhuanxin_info":"<font color=#F0F>心转心之术</font> 出牌阶段限一次，你可以弃置一张红桃手牌，选择一名存活的其他角色，令其与你交换手牌",
             "xwj_xhuoying_reyiliao":"医疗",
             "xwj_xhuoying_reyiliao_info":"当有角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之。",
-            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色时，你永久获得该角色的随机一项技能，并且增加一点体力上限（不得超过5）和回复一点体力。然后你根据阵亡角色的势力获得相应的限定技（详细描述在武将简介处查看）：<br>魏国：风遁；蜀国：火遁；吴国：水遁；群雄：土遁；其它：雷遁",            
+            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色时，可随机获得其一项技能，并增加一点体力上限（不得超过5）和回复一点体力。然后你根据该角色的势力获得相应的限定技：<li>魏国：风遁-出牌阶段，你可弃置所有其他角色区域内的一张牌<li>蜀国：火遁-出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害<li>吴国：水遁-当你回复体力时，你可将体力回复至体力上限，并摸一张牌<li>群雄：土遁-当你即将受到任何伤害时，你可防止之，并回复一点体力<li>其它:雷遁-出牌阶段，你可选择一名其他角色，对其造成两点雷属性伤害",            
 			"xwj_xhuoying_yuanyuwind":"风遁",
             "xwj_xhuoying_yuanyuwind_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可弃置所有其他角色区域内的一张牌",
             "xwj_xhuoying_yuanyusoil":"土遁",
@@ -12515,7 +12517,7 @@ translate:{
             "xwj_xhuoying_yuanyufire":"火遁",
             "xwj_xhuoying_yuanyufire_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害",
 			"xwj_xhuoying_yuanyuthunder":"雷遁",
-            "xwj_xhuoying_yuanyuthunder_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择一名其他角色，对其各造成两点雷属性伤害",			
+            "xwj_xhuoying_yuanyuthunder_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择一名其他角色，对其造成两点雷属性伤害",			
 			"xwj_xhuoying_zhongquan":"硬拳",
             "xwj_xhuoying_zhongquan_info":"<font color=#f00>锁定技</font> 若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
             "xwj_xhuoying_newkuilei":"傀儡",

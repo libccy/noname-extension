@@ -3981,7 +3981,7 @@ game.import('character',function(){
             "xwj_xhuoying_gangshou":["female","xhuo",4,["xwj_xhuoying_reguaili","xwj_xhuoying_baihao"],[]],
             "xwj_xhuoying_dashewan":["male","xren",3,["xwj_xhuoying_changsheng","xwj_xhuoying_wanshe"],[]],
             "xwj_xhuoying_zhilaiye":["male","xhuo",4,["xwj_xhuoying_citan","xwj_xhuoying_renfa","xwj_xhuoying_xianren"],[]],
-            "xwj_xhuoying_zhishui":["male","xhuo",4,["xwj_xhuoying_shunsheng","xwj_xhuoying_reshouhu"],[]],
+            "xwj_xhuoying_zhishui":["male","xhuo",4,["xwj_xhuoying_shunsheng","xwj_xhuoying_reshouhu"],["forbidai"]],
             "xwj_xhuoying_ningchi":["male","xhuo",3,["xwj_xhuoying_xinbaiyan","xwj_xhuoying_guazhang","xwj_xhuoying_huitian"],[]],
             "xwj_xhuoying_feiduan":["male","xxiao",3,["xwj_xhuoying_rebusi","xwj_xhuoying_zhoushu"],[]],
             "xwj_xhuoying_ban":["male","xxiao",2,["xwj_xhuoying_zhenxing","xwj_xhuoying_xinxuzuo","xwj_xhuoying_yiyuan"],[]],
@@ -6313,7 +6313,8 @@ audio:"ext:群英会:2",
 			player.logSkill('xwj_xhuoying_reshouhu',target);
         game.delay(0.5);	
         'step 1'		
-        game.swapControl(target);          
+        game.swapControl(target);       
+       // game.swapControl(player,target);          
         var myid=player.identity;
             if(player.identity=='zhu'){
                 myid='zhong'
@@ -7971,7 +7972,6 @@ var skill=trigger.player.skills.randomGet()
     },
                 content:function (){
         player.$fullscreenpop('雷遁•伪暗','fire');
-		game.delay(10);
         target.damage("thunder",2);
 		game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
         player.unmarkSkill('xwj_xhuoying_yuanyuthunder');
@@ -8004,8 +8004,7 @@ var skill=trigger.player.skills.randomGet()
         return get.attitude(player,event.target)<=0;
     },                
                 content:function (){
-			player.$fullscreenpop('火遁•头刻苦','fire');
-		    game.delay(10);		
+			player.$fullscreenpop('火遁•头刻苦','fire');	    
             player.line(target);
             target.damage('fire');  
 			game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
@@ -15563,7 +15562,7 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 };
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的部分人物，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或扩展交流②群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
-				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流②群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
+				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
 					},				
 					"xjisha":{
             name:'击杀特效',

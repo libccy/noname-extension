@@ -334,12 +334,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：优化我爱罗的沙葬、角都的怨虞 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-05-13",
+	intro:"<li>更新：新增一名武将，最后的全面完善，如无意外永久停更了 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-05-22",
 	author:"Sukincen",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.63,
+    version:1.64,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -464,7 +464,7 @@ extension["群英会"]={
 		"xwj_xqinshi_renzhong1.mp3","xwj_xqinshi_renzhong2.mp3","xwj_xqinshi_weizhuang.jpg",
 		"xwj_xqinshi_xiaoyaozi.jpg","xwj_xqinshi_zongjian1.mp3","xwj_xqinshi_zongjian2.mp3",
  "xwj_xqinshi_mozi.jpg","xwj_xqinshi_feigong1.mp3","xwj_xqinshi_feigong2.mp3","xwj_xqinshi_jianai1.mp3","xwj_xqinshi_jianai2.mp3",
- "xwj_xqinshi_jingxie.mp3",
+ "xwj_xqinshi_jingxie.mp3","xwj_xu_xiaohuan.jpg","xwj_xu_SPxiaosu.jpg",
 		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_baosanniang.jpg","xwj_xsanguo_jiangwei.jpg",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_wangyun.jpg",
 		"xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xiangfu1.mp3",

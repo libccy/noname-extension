@@ -14563,7 +14563,7 @@ skill:{
                 },
                 frequent:true,
                 filter:function (event,player){        
-        return event.player!=player;
+        return player.isAlive();
     },                           
                 content:function (){    
                   game.playXu(['xwj_xsanguo_zhengnan1','xwj_xsanguo_zhengnan2'].randomGet());          
@@ -14591,7 +14591,7 @@ skill:{
                    return get.attitude(player,event.player)>0;
                 },
                 filter:function (event,player){
-        return event.player.sex=='female';
+        return event.player.sex=='female'&&event.source!=player;
       },              
                 content:function (){            
   'step 0'                    
@@ -15061,7 +15061,7 @@ else {
  translate:{  
             "xwj_xu_SPxiaosu":"SP小苏",
             "xwj_xu_huhua":"护花",
-            "xwj_xu_huhua_info":"<li>当一名女性角色受到伤害后，你与其组成双将。然后其与伤害来源的原武牌先后随机替换一张女性角色的武将牌<li>当你受到伤害后，伤害来源的随机替换一张女性角色的武将牌",
+            "xwj_xu_huhua_info":"<li>当一名女性角色受到伤害后，你可与其组成双将。然后其与伤害来源的原武牌先后随机替换一张女性角色的武将牌<li>当你受到伤害后，你可令伤害来源的随机替换一张女性角色的武将牌",
             "xwj_xu_huhua2":"护花",
             "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的随机替换一张女性角色的武将牌",           
             "xwj_xu_shuangsu":"双宿",
@@ -15072,7 +15072,7 @@ else {
             "xwj_xu_lixing":"厉行",
             "xwj_xu_lixing_info":"当你使用【杀】指定目标时，你可获得目标角色的一张手牌",
             "xwj_xu_choumou":"绸缪",
-            "xwj_xu_choumou_info":"当一名其他角色使用【杀】被响应后，你可随机使用一张装备牌",            
+            "xwj_xu_choumou_info":"当一名其他角色使用的【杀】被响应后，你可随机使用一张装备牌",            
             "xwj_xu_dingju":"定局",
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
@@ -15902,5 +15902,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.64",
+    version:"1.65",
 },files:{"character":[],"card":[],"skill":[]}}})

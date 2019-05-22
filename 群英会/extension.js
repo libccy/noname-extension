@@ -1,8 +1,8 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
 // ---------------------------------------武将皮肤------------------------------------------//
 lib.element.player[extensionExtraSkin[0]]=function(){
-if (lib.character[this.name][4].contains('auskin')){
-this.changeAuskin();
+if (lib.character[this.name][4].contains('xwjskin')){
+this.changeXwjskin();
 }
 };
 lib.element.player[extensionExtraSkin[1]]=function(){
@@ -158,6 +158,28 @@ if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 				lib.skill._save.filter=event.filter;
 			};		
 			}
+		// ---------------------------------------全新函数------------------------------------------//				
+						lib.element.player.replaceFujiang=function(name2){
+				var hp=this.hp;
+				var maxhp=this.maxHp;
+				this.clearSkills();
+				this.init(this.name1,name2);
+				this.classList.remove('unseen2');
+				this.hp=hp;
+				this.maxHp=maxhp;
+				this.update();
+			}
+			lib.element.player.addFujiang=function(name2){
+				var hp=this.hp;
+				var maxhp=this.maxHp;
+				var name=this.name;
+				this.uninit();
+				this.init(name,name2);
+				this.classList.remove('unseen2');
+				this.hp=hp;
+				this.maxHp=maxhp;
+				this.update();
+			}
 
 	// ---------------------------------------无限月读------------------------------------------//			
 		if(config.wuxianyuedu){		
@@ -238,12 +260,12 @@ huanhun.insertPhase();
      current.addSkill('xwj_jisha');
      if(current==player){
      if(trigger.name=='die'){
-     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血•卧龙出山','thunder'); game.playXu('xwj_jisha1'); }
-     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀♦一战成名','fire'); game.playXu('xwj_jisha2'); }
+     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血•卧龙出山','fire'); game.playXu('xwj_jisha1'); }
+     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀♦一战成名','water'); game.playXu('xwj_jisha2'); }
      if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀☆举世皆惊','thunder'); game.playXu('xwj_jisha3'); }
      if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playXu('xwj_jisha4'); }
      if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀☼诛天灭地','thunder'); game.playXu('xwj_jisha5'); }
-     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀✪癫狂杀戮','fire'); game.playXu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀✪癫狂杀戮','water'); game.playXu('xwj_jisha6'); }
      if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双☯万军取首','fire'); game.playXu('xwj_jisha7'); }
 	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀☯赶尽杀绝','fire'); game.playXu('xwj_jisha8'); }
 	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀☯神哭鬼嚎','fire'); game.playXu('xwj_jisha9'); }
@@ -287,7 +309,7 @@ huanhun.insertPhase();
 							priority:100,
 							forced:true,
 							content:function(){
-							trigger.player.$fullscreenpop('妙手回春','fire');
+							trigger.player.$fullscreenpop('妙手回春','water');
 							game.playXu('xxmiaoshouhuichun');
 							},
 						}
@@ -300,7 +322,7 @@ huanhun.insertPhase();
 							priority:100,
 							forced:true,
 							content:function(){
-							trigger.player.$fullscreenpop('医术高超','fire');
+							trigger.player.$fullscreenpop('医术高超','water');
 							game.playXu('xxyishugaochao');
 							},
 						}
@@ -827,7 +849,7 @@ return str1;
 		game.import('character',function(){
 		
 		//皮肤包：
-					extensionExtraSkin=['onclick','changeAuskin','name'];
+					extensionExtraSkin=['onclick','changeXwjskin','name'];
 			extensionExtraCharacterSkin=['xwj_xhuoying_mingren','xwj_xhuoying_mingren1','xwj_xhuoying_mingren2','xwj_xhuoying_shuimen','xwj_xhuoying_shuimen1'];
 			
 			var xsanguo={
@@ -1323,7 +1345,7 @@ else {
                 audio:"ext:群英会:1",
                 unique:true,
                 trigger:{
-                    player:"phaseEnd",
+                    player:"xwj_xsanguo_shouyeAfter",
                 },
                 forced:true,
                 	derivation:['xwj_xsanguo_shouye2','xwj_xsanguo_shien'],
@@ -1332,7 +1354,7 @@ else {
     },
                 content:function (){
        'step 0'  
-    player.$fullscreenpop('授业解惑','fire'); 
+    player.$fullscreenpop('授业解惑','water'); 
         'step 1'        
         player.loseMaxHp();        
         player.removeSkill('xwj_xsanguo_shouye'); 
@@ -3076,7 +3098,7 @@ return current.hp<=0;
                     player:["phaseEnd","enterGame"],
                 },
                 filter:function (event,player){                
-        return player.hp>0;
+        return player.isAlive();
     },
                 content:function (){       
         var n=[1,2].randomGet();
@@ -3830,7 +3852,7 @@ event.target.draw(event.num1);
                 },
                 init:function (player){
         if(lib.config.mode=='identity'&&player.isZhu){
-            player.maxHp--;
+            player.loseMaxHp();
             player.update();
         }
     },
@@ -3869,7 +3891,7 @@ translate:{
 			 "xwj_xsanguo_shouye":"授业",
             "xwj_xsanguo_shouye_info":"出牌阶段，你可以弃置一张红色手牌，指定至多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_jiehuo":"解惑",
-            "xwj_xsanguo_jiehuo_info":"<span class=greentext>觉醒技</span> 结束阶段，当你发动“授业”目标累计至少8个，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用非延时性锦囊牌时，可以让你摸一张牌）",
+            "xwj_xsanguo_jiehuo_info":"<span class=greentext>觉醒技</span> 当你发动“授业”目标累计至少8个时，你须减去一点体力上限，将技能“授业”改为每阶段限一次，并获得技能“师恩”（其他角色使用非延时性锦囊牌时，可以让你摸一张牌）",
             "xwj_xsanguo_shouye2":"授业",
             "xwj_xsanguo_shouye2_info":"出牌阶段限一次，你可以弃置一张红色手牌，指定最多两名其他角色令各摸一张牌。",
             "xwj_xsanguo_shien":"师恩",
@@ -3993,8 +4015,8 @@ game.import('character',function(){
             "xwj_xhuoying_daitu":["male","xxiao",3,["xwj_xhuoying_xishou","xwj_xhuoying_reshenwei","xwj_xhuoying_xianyan"],[]],
             "xwj_xhuoying_zhuozhu":["male","xxiao",3,["xwj_xhuoying_yandun","xwj_xhuoying_qianniao","xwj_xhuoying_rexuzuo"],[]],
             "xwj_xhuoying_woailuo":["male","xren",3,["xwj_xhuoying_shazang","xwj_xhuoying_juefang"],[]],
-            "xwj_xhuoying_mingren":["male","xhuo",3,["xwj_xhuoying_fenshen","xwj_xhuoying_xianshu"],["auskin"]],
-            "xwj_xhuoying_shuimen":["male","xhuo",3,["xwj_xhuoying_luoxuan","xwj_xhuoying_shanguang","xwj_xhuoying_refengyin"],["auskin"]],
+            "xwj_xhuoying_mingren":["male","xhuo",3,["xwj_xhuoying_fenshen","xwj_xhuoying_xianshu"],["xwjskin"]],
+            "xwj_xhuoying_shuimen":["male","xhuo",3,["xwj_xhuoying_luoxuan","xwj_xhuoying_shanguang","xwj_xhuoying_refengyin"],["xwjskin"]],
             "xwj_xhuoying_changmen":["male","xxiao",3,["xwj_xhuoying_tianzheng","xwj_xhuoying_tianyin","xwj_xhuoying_baoxing","xwj_xhuoying_lunhui"],[]],
             "xwj_xhuoying_wuren":["male","xren",3,["xwj_xhuoying_rechendun","xwj_xhuoying_xfenlie","xwj_xhuoying_wuchen"],[]],
             "xwj_xhuoying_duan":["male","xhuo",3,["xwj_xhuoying_linghua","xwj_xhuoying_aiyuan"],[]],
@@ -4980,7 +5002,7 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
                     player:"damageEnd",
                 },
                 filter:function (event,player){
-        return player.hp>=0;
+        return player.isAlive();
     },
                 content:function (){
          'step 0'
@@ -6084,7 +6106,7 @@ audio:"ext:群英会:2",
         'step 3'      
         player.changeHp(event.num);
         if(player.maxHp<5){
-        player.maxHp++;
+        player.gainMaxHp();
         }           
      //   if(get.is.altered('xwj_xhuoying_changsheng')){
           //  event.finish();
@@ -6375,7 +6397,7 @@ audio:"ext:群英会:2",
         'step 0'
         var chat=['灵化之术！！！','借你的身体用一阵子'].randomGet();
             player.say(chat);    
-        player.$fullscreenpop('灵化之术','fire');         
+        player.$fullscreenpop('灵化之术','water');         
         player.storage.xwj_xhuoying_linghua=target;        
         game.swapPlayer(player,target);        
         player.addSkill('xwj_xhuoying_huihun');        
@@ -6659,7 +6681,7 @@ audio:"ext:群英会:2",
                 },
                 forced:true,
                 popup:false,
-                audio:"ext:群英会:false",
+                audio:"ext:群英会:2",
                 content:function (){
         player.removeSkill('xwj_xhuoying_jiaodan2');
     },
@@ -7625,7 +7647,7 @@ audio:"ext:群英会:2",
                 enable:"phaseUse",
                 usable:3,
                 filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 check:function (event,player){
         if(player.hp>0){            
@@ -7830,27 +7852,35 @@ var chat=['猥琐发育一发','这叫强壮不是胖！再说胖子就揍死你
             player.say(chat);                   
         trigger.player.storage.xwj_xhuoying_yuanyu=true;
         player.logSkill('xwj_xhuoying_yuanyu');
-var skill=trigger.player.skills.randomGet()
+var skill=trigger.player.skills.randomGet();
+if(skill!='xwj_jisha'){
         player.addSkill(skill);
+            player.mark(skill,{
+            name:get.translation(skill),
+            content:lib.translate[skill+'_info']
+        });
+       game.log(player,'获得技能','【'+get.translation(skill)+'】');            
+        }
+        	'step 1'
         if(player.maxHp<5){
-        player.maxHp++;
+        player.gainMaxHp();
         }
         player.recover();  
 		player.update();
-		'step 1'
-		if(trigger.player.group=='wei'){
+		'step 2'
+		if(trigger.player.group=='wei'&&!player.hasSkill('xwj_xhuoying_yuanyuwind')){
 			player.addSkill('xwj_xhuoying_yuanyuwind');
 		}
-		if(trigger.player.group=='shu'){
+		if(trigger.player.group=='shu'&&!player.hasSkill('xwj_xhuoying_yuanyufire')){
 			player.addSkill('xwj_xhuoying_yuanyufire');
 		}
-		if(trigger.player.group=='wu'){
+		if(trigger.player.group=='wu'&&!player.hasSkill('xwj_xhuoying_yuanyuwater')){
 			player.addSkill('xwj_xhuoying_yuanyuwater');
 		}
-		if(trigger.player.group=='qun'){
+		if(trigger.player.group=='qun'&&!player.hasSkill('xwj_xhuoying_yuanyusoil')){
 			player.addSkill('xwj_xhuoying_yuanyusoil');
 		}
-		if(trigger.player.group!='wei'&&trigger.player.group!='shu'&&trigger.player.group!='wu'&&trigger.player.group!='qun'){
+		if(trigger.player.group!='wei'&&trigger.player.group!='shu'&&trigger.player.group!='wu'&&trigger.player.group!='qun'&&!player.hasSkill('xwj_xhuoying_yuanyuthunder')){
 			player.addSkill('xwj_xhuoying_yuanyuthunder');
 		}
 		player.update();
@@ -7871,7 +7901,7 @@ var skill=trigger.player.skills.randomGet()
                 multiline:true,
                 selectTarget:-1,
                 filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 check:function (event,player){
         var num=game.countPlayer(function(current){
@@ -7886,7 +7916,8 @@ var skill=trigger.player.skills.randomGet()
     },
                 content:function (){
         "step 0"
-		player.$fullscreenpop('风遁•压害','fire');
+		player.$fullscreenpop('风遁•压害','thunder');
+		game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());			
         var targets=game.filterPlayer();
         targets.remove(player);
         targets.sort(lib.sort.seat);
@@ -7902,10 +7933,9 @@ var skill=trigger.player.skills.randomGet()
             event.num++;
             event.redo();
         }
-        "step 2"  
-	game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());			
+        "step 2"  	
     player.unmarkSkill('xwj_xhuoying_yuanyuwind');   
-    player.awakenSkill('xwj_xhuoying_yuanyuwind');     
+    player.removeSkill('xwj_xhuoying_yuanyuwind');     
     },
                 ai:{
                     order:2,
@@ -7932,7 +7962,7 @@ var skill=trigger.player.skills.randomGet()
     trigger.cancel();
     player.recover();  
     player.unmarkSkill('xwj_xhuoying_yuanyusoil');
-    player.awakenSkill('xwj_xhuoying_yuanyusoil');
+    player.removeSkill('xwj_xhuoying_yuanyusoil');
     event.finish();
 },
                 ai:{
@@ -7951,10 +7981,10 @@ var skill=trigger.player.skills.randomGet()
                 content:function (){
         trigger.num+=(player.maxHp-player.hp);
         player.draw();
-		player.$fullscreenpop('水遁•水幕帐','fire');
+		player.$fullscreenpop('水遁•水幕帐','water');
 		game.playXu(['xwj_xhuoying_yuanyu1','xwj_xhuoying_yuanyu2'].randomGet());
         player.unmarkSkill('xwj_xhuoying_yuanyuwater');
-        player.awakenSkill('xwj_xhuoying_yuanyuwater');
+        player.removeSkill('xwj_xhuoying_yuanyuwater');
     },
                 ai:{
                     threaten:1.3,
@@ -7971,11 +8001,12 @@ var skill=trigger.player.skills.randomGet()
         return player!=target;
     },
                 content:function (){
-        player.$fullscreenpop('雷遁•伪暗','fire');
-        target.damage("thunder",2);
+        player.$fullscreenpop('雷遁•伪暗','thunder');
+        target.damage("thunder");
+        target.turnOver(true);
 		game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
         player.unmarkSkill('xwj_xhuoying_yuanyuthunder');
-        player.awakenSkill('xwj_xhuoying_yuanyuthunder');
+        player.removeSkill('xwj_xhuoying_yuanyuthunder');
     },
                 ai:{
                     order:4,
@@ -8004,12 +8035,12 @@ var skill=trigger.player.skills.randomGet()
         return get.attitude(player,event.target)<=0;
     },                
                 content:function (){
-			player.$fullscreenpop('火遁•头刻苦','fire');	    
             player.line(target);
-            target.damage('fire');  
-			game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());
+            	player.$fullscreenpop('火遁•头刻苦','fire');
+            target.damage('fire');  		         		    
+	        		game.playXu(['xwj_xhuoying_zhongquan1','xwj_xhuoying_zhongquan2'].randomGet());    
             player.unmarkSkill('xwj_xhuoying_yuanyufire');
-            player.awakenSkill('xwj_xhuoying_yuanyufire');
+            player.removeSkill('xwj_xhuoying_yuanyufire');
     },
                 ai:{
                      order:4,
@@ -8962,7 +8993,7 @@ var chat=['只有瞬间的绚丽，才是艺术','这个艺术，终会得到世
                 content:function (){                  
           var chat=['早就提醒过你，不要惹老娘','今日之祸，皆是你咎由自取'].randomGet();
             player.say(chat);                                 
-        player.maxHp++;           
+        player.gainMaxHp();           
     },
             },
             "xwj_xhuoying_bizhu":{
@@ -11747,7 +11778,7 @@ player.$skill('助君成王','fire','red','avatar');
                     global:"gameDrawAfter",
                 },
                 filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 direct:true,                              
                 content:function (){
@@ -11898,7 +11929,7 @@ player.$skill('助君成王','fire','red','avatar');
                 },
                 direct:true,
                 check:function (event,player){
-        return get.attitude(player,event.target)<=0;
+        return get.attitude(player,event.player)<=0;
     },
                 filter:function (event,player){
         return (event.source&&event.target.countCards('he')&&event.num>0);
@@ -12441,7 +12472,7 @@ translate:{
             "xwj_xhuoying_rexuanfeng":"旋风",
             "xwj_xhuoying_rexuanfeng_info":"<font color=#F0F>木叶旋风</font> <font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你使用的【杀】造成的伤害+1",
             "xwj_xhuoying_jiaodan":"鲛弹",
-            "xwj_xhuoying_jiaodan_info":"<font color=#F0F>水遁•水鲛弹之术</font> 出牌阶段限一次，你可以弃置X张牌对一名其他角色造成1点伤害(X为该角色的体力值)。若你以此法令该角色进入濒死状态，则濒死状态结算后你摸一张牌",
+            "xwj_xhuoying_jiaodan_info":"<font color=#F0F>水遁•水鲛弹之术</font> 出牌阶段限一次，你可以弃置X张牌对一名其他角色造成1点伤害(X为该角色的体力值)。若你以此法令该角色进入濒死状态，则濒死状态结算后你摸一张牌且本回合不能再发动鲛弹",
             "xwj_xhuoying_jiaodan2":"鲛弹",
             "xwj_xhuoying_jiaodan2_info":"",
             "xwj_xhuoying_jiaodan3":"鲛弹",
@@ -12506,7 +12537,7 @@ translate:{
             "xwj_xhuoying_zhuanxin_info":"<font color=#F0F>心转心之术</font> 出牌阶段限一次，你可以弃置一张红桃手牌，选择一名存活的其他角色，令其与你交换手牌",
             "xwj_xhuoying_reyiliao":"医疗",
             "xwj_xhuoying_reyiliao_info":"当有角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之。",
-            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色时，可随机获得其一项技能，并增加一点体力上限（不得超过5）和回复一点体力。然后你根据该角色的势力获得相应的限定技：<li>魏国：风遁-出牌阶段，你可弃置所有其他角色区域内的一张牌<li>蜀国：火遁-出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害<li>吴国：水遁-当你回复体力时，你可将体力回复至体力上限，并摸一张牌<li>群雄：土遁-当你即将受到任何伤害时，你可防止之，并回复一点体力<li>其它:雷遁-出牌阶段，你可选择一名其他角色，对其造成两点雷属性伤害",            
+            "xwj_xhuoying_yuanyu_info":"<font color=#F0F>地怨虞</font> 你每杀死一名角色时，可随机获得其一项技能，并增加一点体力上限（不得超过5）和回复一点体力。然后你根据该角色的势力获得相应的限定技：<li>魏国：风遁-出牌阶段，你可弃置所有其他角色区域内的一张牌<li>蜀国：火遁-出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害<li>吴国：水遁-当你回复体力时，你可将体力回复至体力上限，并摸一张牌<li>群雄：土遁-当你即将受到任何伤害时，你可防止之，并回复一点体力<li>其它:雷遁-出牌阶段，你可选择一名其他角色，对其造成一点雷属性伤害并令其武将牌背面朝上",            
 			"xwj_xhuoying_yuanyuwind":"风遁",
             "xwj_xhuoying_yuanyuwind_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可弃置所有其他角色区域内的一张牌",
             "xwj_xhuoying_yuanyusoil":"土遁",
@@ -12516,7 +12547,7 @@ translate:{
             "xwj_xhuoying_yuanyufire":"火遁",
             "xwj_xhuoying_yuanyufire_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害",
 			"xwj_xhuoying_yuanyuthunder":"雷遁",
-            "xwj_xhuoying_yuanyuthunder_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择一名其他角色，对其造成两点雷属性伤害",			
+            "xwj_xhuoying_yuanyuthunder_info":"<span class=yellowtext>限定技</span> 出牌阶段，你可选择一名其他角色，对其造成一点雷属性伤害并令其武将牌背面朝上",			
 			"xwj_xhuoying_zhongquan":"硬拳",
             "xwj_xhuoying_zhongquan_info":"<font color=#f00>锁定技</font> 若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
             "xwj_xhuoying_newkuilei":"傀儡",
@@ -12867,6 +12898,16 @@ else{
             player.directequip(list);
         }
     },
+      ai:{
+                    order:2,
+                    result:{
+                       // player:1,
+                        player:function (player){
+                if(player.countCards('e')<=0) return 10;
+                return 0;
+                    },
+                    },
+                },
             },    
         
   "xwj_xqinshi_hengjian":{
@@ -13099,7 +13140,7 @@ else{
                 multiline:true,
                 selectTarget:-1,
                 filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 check:function (event,player){
         var num=game.countPlayer(function(current){
@@ -13740,7 +13781,7 @@ skill:{
         });
         "step 1"
         if(result.bool){
-            player.$fullscreenpop('神技•真空','fire');
+            player.$fullscreenpop('神技•真空','thunder');
             player.logSkill('xwj_xwugeng_zhengkong',result.targets);
             result.targets[0].addSkill('xwj_xwugeng_zhengkong2');          
         }
@@ -14322,7 +14363,7 @@ content:function (){
      var chat=['想要杀死我？你还得加把劲……不好，被包围了','好小子，你成功地让我死了一次，哈哈……'].randomGet();
             player.say(chat);         
      setTimeout(function(){
-    player.maxHp++;  
+    player.gainMaxHp();  
     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
    	game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_shixing_background.jpg");
     game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_xinshixing.jpg'); 	     
@@ -14472,7 +14513,9 @@ game.import('character',function(){
 					 "xwj_xu_Sukincen":["male","shen",3,["xwj_xu_qingshang","xwj_xu_xibie"],[]],
         "xwj_xu_xiaoxu":["male","shen",3,["xwj_xu_yunchou","xwj_xu_dingju","xwj_xu_tuiyin"],[]],
         "xwj_xu_cheng":["male","shen",3,["xwj_xu_tiandun"],[]],
-       
+        "xwj_xu_SPxiaosu":["male","shen",3,["xwj_xu_huhua","xwj_xu_shuangsu"],[]],
+        "xwj_xu_xiaohuan":["female","shen",3,["xwj_xu_lixing","xwj_xu_choumou"],["unseen"]],        
+      
 },
 characterIntro:{
 					"xwj_xu_Sukincen":"原武将和技能设计均源于橙续缘的作品《吧友列传》扩展中的人物，为本扩展的作者Sukincen所设计的形象。原技能名分别为“探索”和“拷贝”，这里略作修改。小苏与Sukincen皆为化名。",					
@@ -14485,7 +14528,198 @@ characterTitle:{
 								},
 								
 skill:{
-
+    
+            "xwj_xu_lixing":{                
+                trigger:{
+                    player:"shaBegin",
+                },
+                direct:true,
+                filter:function (event,player){
+        return player.isAlive();
+    },
+                content:function (){
+        if(trigger.target.countCards('h')){
+                player.logSkill('xwj_xu_lixing');
+                game.playXu(['xwj_xsanguo_wuniang1','xwj_xsanguo_wuniang2'].randomGet());  
+                player.gainPlayerCard(trigger.target,'h',true);
+        }
+        else{
+        event.finish();
+        }
+    },
+                ai:{
+                    effect:{
+                        player:function (card,player,target){
+                if(card.name=='sha') return [1,1];
+            },
+                    },
+                },
+            },
+        
+            "xwj_xu_choumou":{
+                audio:["yuhua",2],            
+                  trigger:{
+                    global:"shaMiss",
+                },
+                frequent:true,
+                filter:function (event,player){        
+        return event.player!=player;
+    },                           
+                content:function (){    
+                  game.playXu(['xwj_xsanguo_zhengnan1','xwj_xsanguo_zhengnan2'].randomGet());          
+                  event.card=get.cardPile(function(card){
+                            return get.type(card)=='equip';
+                        });
+                        if(event.card){
+                            player.equip(event.card,true).set('delay',true);                    
+                        }        
+    },
+                ai:{                 
+                        order:1,                   
+                    expose:0.2,
+                },
+            },
+            
+   "xwj_xu_huhua":{
+               audio:["roulin",2],
+                trigger:{
+                    global:"damageEnd",
+                },
+                priority:2019,
+                group:"xwj_xu_huhua2",
+                check:function (event,player){
+                   return get.attitude(player,event.player)>0;
+                },
+                filter:function (event,player){
+        return event.player.sex=='female';
+      },              
+                content:function (){            
+  'step 0'                    
+            if(lib.config.mode=='guozhan'){
+                    player.replaceFujiang(trigger.player.name);                  
+            }
+            else{
+                  player.addFujiang(trigger.player.name);                         
+            }    
+            'step 1'
+var list;
+if(_status.connectMode){
+   list=get.charactersOL(function(i){
+   return lib.character[i][1]!='shen'&&lib.character[i][0]!='male';
+   });
+}
+else{        
+list=get.gainableCharacters(function(info){
+if(info[0]=='male') return false;
+return info[1]==['shen','shu','wei','wu','qun','xhuo','xren','xxiao'].randomGet();
+});
+}
+var name=list.randomGet();        
+var a=trigger.player.hp;
+var b=trigger.player.maxHp;
+trigger.player.reinit(trigger.player.name,name,false);
+trigger.player.hp=a; 
+trigger.player.maxHp=b;
+trigger.player.update();
+  'step 2'                                    
+         var list;
+if(_status.connectMode){
+   list=get.charactersOL(function(i){
+   return lib.character[i][1]!='shen'&&lib.character[i][0]!='male';
+   });
+}
+else{        
+list=get.gainableCharacters(function(info){
+if(info[0]=='male') return false;
+return info[1]==['shen','shu','wei','wu','qun','xhuo','xren','xxiao'].randomGet();
+});
+}
+var name=list.randomGet();        
+var a=trigger.source.hp;
+var b=trigger.source.maxHp;
+trigger.source.reinit(trigger.source.name,name,false);
+trigger.source.hp=a; 
+trigger.source.maxHp=b;
+trigger.source.update();
+    },
+            },
+                             
+         "xwj_xu_huhua2":{
+               audio:["benyu",2],
+                trigger:{
+                    player:"damageEnd",
+                },
+                priority:2019,
+                frequent:true,
+                filter:function (event,player){
+        return player.isAlive();
+      },              
+                content:function (){                                          
+         var list;
+if(_status.connectMode){
+   list=get.charactersOL(function(i){
+   return lib.character[i][1]!='shen'&&lib.character[i][0]!='male';
+   });
+}
+else{        
+list=get.gainableCharacters(function(info){
+if(info[0]=='male') return false;
+return info[1]==['shen','shu','wei','wu','qun','xhuo','xren','xxiao'].randomGet();
+});
+}
+var name=list.randomGet();        
+var a=trigger.source.hp;
+var b=trigger.source.maxHp;
+trigger.source.reinit(trigger.source.name,name,false);
+trigger.source.hp=a; 
+trigger.source.maxHp=b;
+trigger.source.update();
+    },
+            },
+                       
+        "xwj_xu_shuangsu":{       
+                trigger:{
+                    player:"dying",
+                },
+                forced:true,
+                priority:100,
+                filter:function (event,player){                   
+          return player.hp<=0;
+      },
+                content:function (){                                              
+            if(lib.config.mode=='guozhan'){
+                    player.replaceFujiang('xwj_xu_xiaohuan');                
+            }
+            else{
+                  player.addFujiang('xwj_xu_xiaohuan');                 
+            }  
+            player.$fullscreenpop('双栖双宿','fire');
+            player.recover(3-player.hp);  
+            game.playXu(['xwj_xsanguo_xushen1','xwj_xsanguo_xushen2'].randomGet());  
+            player.removeSkill('xwj_xu_huhua'); 
+            player.addSkill('xwj_xu_dongliang'); 
+            player.awakenSkill('xwj_xu_shuangsu');
+            },
+            },
+                
+            "xwj_xu_dongliang":{
+            audio:["songci",2],
+                trigger:{
+                    player:"damage",
+                },
+                priority:100,
+                frequent:true,
+                filter:function (event,player){                   
+          return player.isAlive();
+      },
+                content:function (){                
+var num=game.countPlayer(function(current){
+            return current.sex=='female';
+            });                                            
+    player.draw(num);
+    },
+            },
+                           
   "xwj_xu_dingju":{
                 audio:["benyu",2],
                 enable:"phaseUse",
@@ -14825,7 +15059,20 @@ else {
 },
 
  translate:{  
-     
+            "xwj_xu_SPxiaosu":"SP小苏",
+            "xwj_xu_huhua":"护花",
+            "xwj_xu_huhua_info":"<li>当一名女性角色受到伤害后，你与其组成双将。然后其与伤害来源的原武牌先后随机替换一张女性角色的武将牌<li>当你受到伤害后，伤害来源的随机替换一张女性角色的武将牌",
+            "xwj_xu_huhua2":"护花",
+            "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的随机替换一张女性角色的武将牌",           
+            "xwj_xu_shuangsu":"双宿",
+            "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与小焕组成双将，然后回复体力至3",
+            "xwj_xu_dongliang":"栋梁",
+            "xwj_xu_dongliang_info":"当你受到伤害时，你可以摸X张牌（X为场上女性角色数）",
+            "xwj_xu_xiaohuan":"小焕",
+            "xwj_xu_lixing":"厉行",
+            "xwj_xu_lixing_info":"当你使用【杀】指定目标时，你可获得目标角色的一张手牌",
+            "xwj_xu_choumou":"绸缪",
+            "xwj_xu_choumou_info":"当一名其他角色使用【杀】被响应后，你可随机使用一张装备牌",            
             "xwj_xu_dingju":"定局",
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
@@ -15655,5 +15902,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.63",
+    version:"1.64",
 },files:{"character":[],"card":[],"skill":[]}}})

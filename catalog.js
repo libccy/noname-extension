@@ -339,7 +339,7 @@ extension["群英会"]={
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.65,
+    version:1.66,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",

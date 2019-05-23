@@ -15066,7 +15066,7 @@ else {
             "xwj_xu_huhua2":"护花",
             "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的武将牌随机替换为一张女性角色的武将牌",           
             "xwj_xu_shuangsu":"双宿",
-            "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与小焕组成双将，然后回复体力至3",
+            "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与【小焕】组成双将，然后回复体力至3",
             "xwj_xu_dongliang":"栋梁",
             "xwj_xu_dongliang_info":"当你受到伤害时，你可以摸X张牌（X为场上女性角色数）",
             "xwj_xu_xiaohuan":"小焕",

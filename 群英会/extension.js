@@ -14588,7 +14588,7 @@ skill:{
                 priority:2019,
                 group:"xwj_xu_huhua2",
                 check:function (event,player){
-                   return get.attitude(player,event.player)>0;
+                   return get.attitude(player,event.player)<=0;
                 },
                 filter:function (event,player){
         return event.player.sex=='female'&&event.source!=player;
@@ -14650,7 +14650,7 @@ trigger.source.update();
                     player:"damageEnd",
                 },
                 priority:2019,
-                frequent:true,
+               // frequent:true,
                 filter:function (event,player){
         return player.isAlive();
       },              
@@ -14686,15 +14686,16 @@ trigger.source.update();
                 filter:function (event,player){                   
           return player.hp<=0;
       },
-                content:function (){                                              
-            if(lib.config.mode=='guozhan'){
+                content:function (){                                                   
+            if(lib.config.mode=='guozhan'){            
                     player.replaceFujiang('xwj_xu_xiaohuan');                
             }
             else{
                   player.addFujiang('xwj_xu_xiaohuan');                 
-            }  
-            player.$fullscreenpop('双栖双宿','fire');
+            }                          
+            player.$fullscreenpop('双栖双宿','fire');   
             player.recover(3-player.hp);  
+            game.delay(2);                       
             game.playXu(['xwj_xsanguo_xushen1','xwj_xsanguo_xushen2'].randomGet());  
             player.removeSkill('xwj_xu_huhua'); 
             player.addSkill('xwj_xu_dongliang'); 
@@ -15061,9 +15062,9 @@ else {
  translate:{  
             "xwj_xu_SPxiaosu":"SP小苏",
             "xwj_xu_huhua":"护花",
-            "xwj_xu_huhua_info":"<li>当一名女性角色受到伤害后，你可与其组成双将。然后其与伤害来源的原武将牌先后随机替换为一张女性角色的武将牌<li>当你受到伤害后，你可令伤害来源的武将牌随机替换为一张女性角色的武将牌",
+            "xwj_xu_huhua_info":"<li>当一名女性角色受到来源不为你的伤害后，你可与其组成双将。然后其与伤害来源的原武牌先后随机替换为一张女性角色的武将牌<li>当你受到伤害后，你可令伤害来源的武将牌随机替换为一张女性角色的武将牌",
             "xwj_xu_huhua2":"护花",
-            "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的随机替换一张女性角色的武将牌",           
+            "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的武将牌随机替换为一张女性角色的武将牌",           
             "xwj_xu_shuangsu":"双宿",
             "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与小焕组成双将，然后回复体力至3",
             "xwj_xu_dongliang":"栋梁",

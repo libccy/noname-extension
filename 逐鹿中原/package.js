@@ -1,0 +1,12 @@
+extension["逐鹿中原"]={
+	intro:"逐鹿中原活动场的卡牌包",
+	author:"苏婆玛丽奥",
+	netdisk:"",
+	forum:"",
+	version:"1.0",
+	files:["xinfu_jinhe.png","xinfu_yinfengjia.png","extension.js","package.js","xinfu_nvzhuang.png",
+		"xinfu_zheji.png","xinfu_wufengjian.png","xinfu_numa.png","extension.js.bak","xinfu_yexingyi.png",
+		"xinfu_yajiaoqiang.png","xinfu_caochuanjiejian.png","xinfu_xiejiaguitian.png","xinfu_shushangkaihua.png",
+		"xinfu_zhuluzhongyuan.png"],
+	size:"108KB"
+};

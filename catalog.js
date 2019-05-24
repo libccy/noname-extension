@@ -644,30 +644,6 @@ extension["金庸群侠传"]={
     ]
 }; 
 
-extension["新•界限突破"]={
-    author:"苏婆玛丽奥",
-    intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
-    size:"737KB",
-    netdisk:"",
-    version:1.0,
-    files:[
-      "re_sunquan.jpg","re_zhugeliang.jpg","re_zhenji.jpg","re_huangyueyingx.jpg","re_sunshangxiang.jpg",
-		"re_diaochan.jpg","re_huaxiong.jpg","re_jikang.jpg","extension.js","extension.js.bak",
-		"package.js"
-    ]
-}; 
-
-extension["新国战"]={
-    author:"苏婆玛丽奥",
-    intro:"◇2019版新国战规则与武将改动扩展",
-    size:"5.12MB",
-    netdisk:"",
-    version:2.4,
-    files:[
-      "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
-    ]
-}; 
-
 extension["新服杂碎"]={
     author:"苏婆玛丽奥",
     intro:"包含阴雷之外绝大多数新武将（星火燎原、文和乱武、逐鹿中原、祈福武将、手杀新将、新于吉）的扩展。更新日期：2019-05-24",
@@ -684,6 +660,46 @@ extension["新服杂碎"]={
 		"zhoufang.jpg"
     ]
 }; 
+
+extension["新国战"]={
+    author:"苏婆玛丽奥",
+    intro:"◇2019版新国战规则与武将改动扩展",
+    size:"5.12MB",
+    netdisk:"",
+    version:2.4,
+    files:[
+      "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
+    ]
+}; 
+
+extension["新•界限突破"]={
+    author:"苏婆玛丽奥",
+    intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
+    size:"737KB",
+    netdisk:"",
+    version:1.0,
+    files:[
+      "re_sunquan.jpg","re_zhugeliang.jpg","re_zhenji.jpg","re_huangyueyingx.jpg","re_sunshangxiang.jpg",
+		"re_diaochan.jpg","re_huaxiong.jpg","re_jikang.jpg","extension.js","extension.js.bak",
+		"package.js"
+    ]
+}; 
+
+extension["逐鹿中原"]={
+    author:"苏婆玛丽奥",
+    intro:"逐鹿中原活动场的卡牌包",
+    size:"1.2MB",
+    netdisk:"",
+    version:1.1,
+    files:[
+     "xinfu_jinhe.png","xinfu_yinfengjia.png","extension.js","package.js","xinfu_nvzhuang.png",
+		"xinfu_zheji.png","xinfu_wufengjian.png","xinfu_numa.png","extension.js.bak","xinfu_yexingyi.png",
+		"xinfu_yajiaoqiang.png","xinfu_caochuanjiejian.png","xinfu_xiejiaguitian.png","xinfu_shushangkaihua.png",
+		"xinfu_zhuluzhongyuan.png"
+    ]
+}; 
+
+
 
 extension["暴躁AI"]={
     author:"皮皮",

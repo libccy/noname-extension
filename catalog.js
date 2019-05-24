@@ -475,7 +475,7 @@ extension["群英会"]={
 		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_zhaotongzhaoguang.jpg",
 		"xwj_xsanguo_zhengnan1.mp3","xwj_xsanguo_zhengnan2.mp3","xwj_xsanguo_yizan1.mp3","xwj_xsanguo_yizan2.mp3",
                 "xwj_xsanguo_longyuan1.mp3","xwj_xsanguo_longyuan2.mp3","xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
-		"xwj_xus_jiuwei.png","xwj_xus_jiuwei1.mp3","xwj_xus_jiuwei2.mp3","xwj_xus_kuwu.png",
+		"xwj_xus_jiuwei.png","xwj_xus_jiuwei1.mp3","xwj_xus_kuwu.png",
 		"xwj_xus_kuwu1.mp3","xwj_xus_mianju.png","xwj_xus_shoulijian.mp3","xwj_xus_shoulijian.png",
 		"xwj_xus_xuelunyang.png","xwj_xus_xuelunyang1.mp3","xwj_xu_cheng.jpg","xwj_xu_qingshang1.mp3",
 		"xwj_xu_qingshang2.mp3","xwj_xu_Sukincen.jpg","xwj_xu_tuiyin1.mp3","xwj_xu_tuiyin2.mp3",

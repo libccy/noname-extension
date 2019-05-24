@@ -179,8 +179,8 @@ if (skinnum==3) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 				this.hp=hp;
 				this.maxHp=maxhp;
 				this.update();
-			}
-
+			} 
+				
 	// ---------------------------------------无限月读------------------------------------------//			
 		if(config.wuxianyuedu){		
 		     lib.skill._jieshihuanhun={
@@ -4592,6 +4592,9 @@ skill:{
                     global:"recoverBegin",
                 },
                 priority:6,
+                check:function (event,player){
+                    return get.attitude(player,event.player)<=0;
+                },
                 filter:function (event,player){
         return event.player!=player&&player.storage.xwj_xhuoying_chongyu.length>0;
     },
@@ -14566,7 +14569,7 @@ skill:{
         return player.isAlive();
     },                           
                 content:function (){    
-                  game.playXu(['xwj_xsanguo_zhengnan1','xwj_xsanguo_zhengnan2'].randomGet());          
+                  //game.playXu(['xwj_xsanguo_zhengnan1','xwj_xsanguo_zhengnan2'].randomGet());          
                   event.card=get.cardPile(function(card){
                             return get.type(card)=='equip';
                         });
@@ -14587,9 +14590,9 @@ skill:{
                 },
                 priority:2019,
                 group:"xwj_xu_huhua2",
-                check:function (event,player){
-                   return get.attitude(player,event.player)<=0;
-                },
+               // check:function (event,player){
+                  // return get.attitude(player,event.player)>0;
+             //   },
                 filter:function (event,player){
         return event.player.sex=='female'&&event.source!=player;
       },              
@@ -14642,6 +14645,10 @@ trigger.source.hp=a;
 trigger.source.maxHp=b;
 trigger.source.update();
     },
+      ai:{                 
+                        order:1,                   
+                    expose:0.5,
+                },
             },
                              
          "xwj_xu_huhua2":{
@@ -14675,6 +14682,10 @@ trigger.source.hp=a;
 trigger.source.maxHp=b;
 trigger.source.update();
     },
+      ai:{                 
+                        order:1,                   
+                    expose:0.5,
+                },
             },
                        
         "xwj_xu_shuangsu":{       
@@ -15066,7 +15077,7 @@ else {
             "xwj_xu_huhua2":"护花",
             "xwj_xu_huhua2_info":"当你受到伤害后，伤害来源的武将牌随机替换为一张女性角色的武将牌",           
             "xwj_xu_shuangsu":"双宿",
-            "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与【小焕】组成双将，然后回复体力至3",
+            "xwj_xu_shuangsu_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与小焕组成双将，然后回复体力至3",
             "xwj_xu_dongliang":"栋梁",
             "xwj_xu_dongliang_info":"当你受到伤害时，你可以摸X张牌（X为场上女性角色数）",
             "xwj_xu_xiaohuan":"小焕",
@@ -15746,35 +15757,27 @@ audio:"ext:群英会:1",
 
 "xwj_xus_jiuwei":{
 trigger:{
-        global:"useCardToBegin",
+        player:"phaseEnd",
     },
-    audio:"ext:群英会:2",
-    filter:function (event,player){
-        var card=player.get('e','5');
-        if(card){
-            var name=card.name;              
-            if(event.name=='jiu'&&get.itemtype(event.cards)=='cards'&&get.position(event.cards[0])=='d'&&event.player!=player&&name&&name.indexOf('xwj_xus_jiuwei')!=-1) return true;
-        }
-        return false;
+    audio:"ext:群英会:1",
+    filter:function (event,player){        
+        return player.isAlive();
     },
-    check:function (event,player){
-        return ai.get.attitude(player,event.player)<=0;
-    },
+   frequent:true,
     content:function (){
-    "step 0"
-       trigger.untrigger();
-    trigger.finish();
-   "step 1"
-   player.discard(player.get('e','5'));
-   "step 2"
-     player.gain(trigger.cards);
-    player.$gain2(trigger.cards);
+       if(player.isDamaged()){
+       player.recover();
+       }
+       else{
+       player.draw();
+       }
        },
 },					
+
+
+
 				},
-				
-				
-				
+												
                 translate:{
 			      		"xwj_xus_houzi":"猴子",
             "xwj_xus_houzi_info":"猴子偷桃：当场上有其他角色使用【桃】时，你可以弃掉【猴子】，阻止【桃】的结算并将其收为手牌",
@@ -15789,7 +15792,7 @@ trigger:{
             "xwj_xus_xuelunyang":"写轮眼",
             "xwj_xus_xuelunyang_info":"回合开始阶段，你可以选择一名角色，然后获得其一项技能，直到回合结束",
             "xwj_xus_jiuwei":"九尾",
-            "xwj_xus_jiuwei_info":"当场上有其他角色使用【酒】时，你可以弃掉【九尾】，阻止【酒】的结算并将其收为手牌",
+            "xwj_xus_jiuwei_info":"（收集查克拉）回合结束时，若你已受伤，你可回复一点体力，否则摸一张牌",
             
 				},
 				list:[
@@ -15903,5 +15906,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.66",
+    version:"1.67",
 },files:{"character":[],"card":[],"skill":[]}}})

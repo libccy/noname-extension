@@ -1,5 +1,24 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新国战",content:function (config,pack){
     if(lib.characterPack.mode_guozhan){
+        game.showAozhanInfo=function(){
+			var func=function(){
+				var dialog=ui.create.dialog('hidden');
+				dialog.style.height='calc(100%)';
+				dialog.style.width='calc(100%)';
+				dialog.style.left='0px';
+				dialog.style.top='0px';
+				dialog.classList.add('popped');
+				dialog.classList.add('static');
+				var div=ui.create.div('.menubutton.round','×',function(){
+					dialog.delete();
+		    	});
+				div.style.left='calc(50% - 35px)';
+				dialog.add(div);
+					dialog.addText("「鏖战模式」的规则：<br>当游戏中仅剩四名或更少角色时（七人以下游戏时改为三名或更少），若此时全场没有超过一名势力相同的角色，则从一个新的回合开始，游戏进入鏖战模式直至游戏结束。<br>在鏖战模式下，【桃】只能当做【杀】或【闪】使用或打出，不能用来回复体力。（使用技能转化出的【桃】和珠联璧合标记的【桃】不受影响）<br>注：进入鏖战模式后，即使之后有两名或者更多势力相同的角色出现，仍然不会取消鏖战模式。",false);
+					ui.window.appendChild(dialog);
+				};
+			ui.noname_xinguozhan_aozhan=ui.create.system('鏖战模式',func,true);
+		}
         //避免君主变野的多重保障
         lib.element.player.wontYe=function(){
             if(get.is.jun(this.name1)) return true;
@@ -84,6 +103,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新�
                     return true;
                 },
                 content:function (){
+                    ui.aozhan=ui.create.div('.touchinfo.left',ui.window);
+                    ui.aozhan.innerHTML='鏖战模式';
+                    if(ui.time3) ui.time3.style.display='none';
+                    game.showAozhanInfo();
                     var color=get.groupnature(player.group,"raw");
                     if(player.isUnseen()) color='fire';
                     player.$fullscreenpop('鏖战模式',color); 
@@ -590,16 +613,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新�
             aozhan:{
                 mod:{
                     cardEnabled:function (card,player){
-            if(_status.event.skill==undefined&&card.name=='tao') return false;
+            if(_status.event.skill==undefined&&get.owner(card)!=undefined&&card.name=='tao') return false;
         },
                     cardUsable:function (card,player){
-            if(_status.event.skill==undefined&&card.name=='tao') return false;
+            if(_status.event.skill==undefined&&get.owner(card)!=undefined&&card.name=='tao') return false;
         },
                     cardRespondable:function (card,player){
-            if(_status.event.skill==undefined&&card.name=='tao') return false;
+            if(_status.event.skill==undefined&&get.owner(card)!=undefined&&card.name=='tao') return false;
         },
                     cardSavable:function (card,player){
-            if(_status.event.skill==undefined&&card.name=='tao') return false;
+            if(_status.event.skill==undefined&&get.owner(card)!=undefined&&card.name=='tao') return false;
         },
                 },
                 group:["aozhan_sha","aozhan_shan"],
@@ -846,7 +869,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新�
                     global:"phaseAfter",
                 },
                 filter:function (event,player){
-        if(event.player.countCards('h')==0) return true;
+        if(event.player.countCards('h')==0&&event.player.isAlive()) return true;
         return false;
     },
                 check:function (event,player){
@@ -2548,9 +2571,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新�
             "new_jieming_info":"当你受到伤害后，你可以令一名角色将手牌摸至X张（X为其体力上限且最多为5）。",
             "new_fangzhu":"放逐",
             "new_fangzhu_info":"当你受到伤害后，你可以令一名其他角色选择一项：摸X张牌并将武将牌叠置（X为你已损失的体力值）；弃置一张牌并失去1点体力。",
-            "fengyin_main":"铁骑[主]",
+            "fengyin_main":"铁骑[主将]",
             "fengyin_main_info":"",
-            "fengyin_vice":"铁骑[副]",
+            "fengyin_vice":"铁骑[副将]",
             "fengyin_vice_info":"",
             "new_tieji":"铁骑",
             "new_tieji_info":"当你使用【杀】指定一个目标后，你可以令其本回合一张明置的武将牌的非锁定技失效，然后你进行判定，除非该角色弃置与结果花色相同的一张牌，否则不能使用【闪】。",
@@ -2570,5 +2593,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"新�
     author:"苏婆玛丽奥",
     diskURL:"",
     forumURL:"",
-    version:"2.0",
+    version:"3.2",
 },files:{"character":[],"card":[],"skill":[]}}})

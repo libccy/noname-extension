@@ -662,7 +662,7 @@ extension["新国战"]={
     intro:"◇2019版新国战规则与武将改动扩展",
     size:"5.12MB",
     netdisk:"",
-    version:2.0,
+    version:2.4,
     files:[
       "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
     ]
@@ -670,10 +670,10 @@ extension["新国战"]={
 
 extension["新服杂碎"]={
     author:"苏婆玛丽奥",
-    intro:"包含阴雷之外绝大多数新武将（星火燎原、文和乱武、逐鹿中原、祈福武将、手杀新将、新于吉）的扩展。更新日期：2019-05-05",
+    intro:"包含阴雷之外绝大多数新武将（星火燎原、文和乱武、逐鹿中原、祈福武将、手杀新将、新于吉）的扩展。更新日期：2019-05-24",
     size:"6.25MB",
     netdisk:"",
-    version:1.0,
+    version:3.2,
     files:[
      "baosanniang.jpg","caoying.jpg","duji.jpg","extension.js","fanchou.jpg","fengchu_card.jpg",
 		"guosi.jpg","lijue.jpg","liuyan.jpg","liuyao.jpg","lvdai.jpg","lvkai.jpg","lvqian.jpg",

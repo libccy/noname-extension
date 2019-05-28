@@ -1,6 +1,5 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-    
-// ---------------------------------------武将皮肤------------------------------------------//
+    // ---------------------------------------武将皮肤------------------------------------------//
 lib.element.player[extensionExtraSkin[0]]=function(){
 if (lib.character[this.name][4].contains('xwjskin')){
 this.changeXwjskin();

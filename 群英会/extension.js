@@ -1,5 +1,6 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-    // ---------------------------------------武将皮肤------------------------------------------//
+    
+// ---------------------------------------武将皮肤------------------------------------------//
 lib.element.player[extensionExtraSkin[0]]=function(){
 if (lib.character[this.name][4].contains('xwjskin')){
 this.changeXwjskin();
@@ -6834,6 +6835,7 @@ audio:"ext:群英会:2",
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
+                  if(target.storage.lose_pos_equip.length>=5) return false;        
         return player!=target&&target.countCards('h')>0 ;
     },
 	check:function (event,player){
@@ -6848,23 +6850,57 @@ audio:"ext:群英会:2",
         var chat=['尘遁•原界剥离之术','你已老了，大野木'].randomGet();
             player.say(chat);        
         'step 1'
-        if(result.bool){        	
-    //      target.loseMaxHp();
-       //   target.draw();       
-       
-          //  		for(var i=0;i<target.equip.length;i++){
-					//				if(!target.storage.lose_pos_equip[i]){								
-         	target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());      
-      //   	}           
-       //  	}                                                
+        if(result.bool){        	 
+         //	target.lose_pos_equip(['equip1','equip2','equip3','equip4','equip5'].randomGet());                        
+           event.goto(2);                                      
         }
         else{
             target.damage();      
             event.finish();
         }    
+        'step 2'
+    			var list=['武器栏','防具栏','防御马','攻击马','宝物栏'];
+    		/*	var list=[];
+    	   if(!target.storage.rechendun1) list.push('武器栏');
+    			if(!target.storage.rechendun2) list.push('防具栏');
+    			if(!target.storage.rechendun3) list.push('防御马');
+    			if(!target.storage.rechendun4) list.push('攻击马');
+    			if(!target.storage.rechendun5) list.push('宝物栏');*/
+    	 	var list1=['equip1','equip2','equip3','equip4','equip5'];
+							for(var i=0;i<target.storage.lose_pos_equip.length;i++){
+								list1.remove(target.storage.lose_pos_equip[i]);
+							};
+							player.chooseControl(list).set('ai',function(event){
+								if(list1.contains('equip1')) return '武器栏';
+								if(list1.contains('equip2')&&target.get('e','2')!=undefined) return '防具栏';
+								if(list1.contains('equip3')) return '防御马';
+								if(list1.contains('equip4')) return '攻击马';
+								if(list1.contains('equip5')) return '宝物栏';
+							}).set('prompt','请选择需要废除的栏位');
+							'step 3'
+							if(result.control=='武器栏'){							
+								target.lose_pos_equip('equip1');
+							// target.storage.rechendun1=true;
+							};
+							if(result.control=='防具栏'){
+								target.lose_pos_equip('equip2');					
+								//target.storage.rechendun2=true;								
+							};
+							if(result.control=='防御马'){								
+								target.lose_pos_equip('equip3');					
+						 	//target.storage.rechendun3=true;	
+							};
+							if(result.control=='攻击马'){															
+								target.lose_pos_equip('equip4');
+								//target.storage.rechendun4=true;
+							};
+							if(result.control=='宝物栏'){							
+								target.lose_pos_equip('equip5');
+								//target.storage.rechendun5=true;
+							};
     },
                 ai:{
-                    threaten:2.3,
+                    threaten:1.3,
              result:{
             target:function (player,target){
                 return get.damageEffect(target,player,target);
@@ -9658,11 +9694,11 @@ var chat=['只有瞬间的绚丽，才是艺术','这个艺术，终会得到世
                 selectCard:-1,
                 position:"h",
                 filterCard:true,
-                prompt:"弃置所有手牌并摸两张牌",
+                prompt:"弃置所有手牌（没手牌则不须弃）并摸两张牌",
                 filter:function (event,player){
-        return player.countCards('h')>0;
+        return player.countCards('h')>=0;
     },
-                check:function (card){return 4-get.useful(card)},
+                check:function (card){return 7-get.value(card)},
                 content:function (){   
         
           var chat=['你们可要小心了','我能将身体一分为二，这不是分身术，而是分裂'].randomGet();
@@ -11971,14 +12007,13 @@ if(range[1]!=-1) range[1]+=Infinity;
                 prompt:"将一张装备牌当无懈可击使用（神威右眼转移自身虚化）",
                 check:function (card){return 8-get.equipValue(card)},
                 threaten:1.2,
-                group:"xwj_xhuoying_reshenwei_move",
+                group:["xwj_xhuoying_reshenwei_move","xwj_xhuoying_reshenwei_damage"],
                 subSkill:{
                     move:{
                         trigger:{
                             player:"turnOverEnd",
                         },
-                        direct:true,
-                        audio:2,
+                        direct:true,                        
                         filter:function (event,player){
                 return !player.isTurnedOver()&&player.canMoveCard();
             },
@@ -11990,11 +12025,26 @@ if(range[1]!=-1) range[1]+=Infinity;
                 }).set('check',player.canMoveCard(true)).set('logSkill','xwj_xhuoying_reshenwei');
                 "step 1"
                 if(result.bool){
+                game.playXu(['xwj_xhuoying_reshenwei1','xwj_xhuoying_reshenwei2'].randomGet());  
                     player.moveCard(true);
                 }
                 else{
                     event.finish();
                 }
+            },
+                        sub:true,
+                    },
+                       damage:{
+                        trigger:{
+                            player:"damageBegin",
+                        },                                               
+                        filter:function (event,player){
+                return !player.isTurnedOver();
+            },
+                        content:function (){     
+            game.playXu(['xwj_xhuoying_reshenwei1','xwj_xhuoying_reshenwei2'].randomGet());                    
+             player.turnOver();
+             trigger.cancel();           
             },
                         sub:true,
                     },
@@ -12017,14 +12067,14 @@ if(range[1]!=-1) range[1]+=Infinity;
                 },
                 direct:true,
                 filter:function (event,player){
-        return player.countCards('he')>0;
+        return player.countCards('h')>0;
     },
     check:function(card){
 							return 5-get.value(card);
 						},
                 content:function (){
  'step 0' 
-    player.chooseTarget('请选择一名目标并弃置一张牌，然后获得其所有牌',get.prompt('xwj_xhuoying_xishou'),function(card,player,target){
+    player.chooseTarget('请选择一名目标并弃置你所有的手牌，然后获得其所有牌',get.prompt('xwj_xhuoying_xishou'),function(card,player,target){
         return target!=player&&target.countCards('he')>0;
     }).set("ai",function(target){
             return get.damageEffect(target,player,player);
@@ -12032,7 +12082,7 @@ if(range[1]!=-1) range[1]+=Infinity;
     });
     'step 1'
       if(result.bool){    
-        player.chooseToDiscard(1,'he',true);  
+        player.discard(player.getCards('h'));  
         for(var i=0;i<result.targets.length;i++){
            player.logSkill('xwj_xhuoying_xishou',result.targets);            
            player.gainPlayerCard(Infinity,result.targets[i],'he',true);
@@ -12343,6 +12393,9 @@ else{
     player.storage.xwj_xhuoying_fenshen++;
     player.markSkill('xwj_xhuoying_fenshen');
     player.update();
+    if(player.storage.xwj_xhuoying_fenshen>=6){
+        player.addSkill('xwj_xhuoying_luoxuan');
+    }            
     if(player.storage.xwj_xhuoying_fenshen>=9){
         player.die();
     }                 
@@ -13055,9 +13108,9 @@ translate:{
             "xwj_xhuoying_rouquan_info":"回合外每当你因使用、打出或被弃置等方式失去一张手牌时，你立即摸一张牌（类似鸣人的仙术）",
             "xwj_xhuoying_daitu":"带土",
             "xwj_xhuoying_reshenwei":"神威",
-            "xwj_xhuoying_reshenwei_info":"你可以将任意一张装备牌当【无懈可击】使用（右眼虚化）；当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",
+            "xwj_xhuoying_reshenwei_info":"<li>你可以将任意一张装备牌当【无懈可击】使用（右眼虚化）<li>当你即将受到伤害时，若你的武将牌正面朝上，你可翻面并取消此伤害（虚化）<li>当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",
             "xwj_xhuoying_xishou":"吸收",
-            "xwj_xhuoying_xishou_info":"回合结束阶段限一次，你可指定一名其他角色，然后弃置一张牌并将你的武将牌翻面，若如此做，你获得其所有的牌。",
+            "xwj_xhuoying_xishou_info":"回合结束阶段，你可指定一名其他角色，然后弃置你所有的手牌并将你的武将牌翻面，若如此做，你获得其所有的牌。",
             "xwj_xhuoying_xianyan":"献眼",
             "xwj_xhuoying_xianyan_info":"当你死亡时，你可将所有手牌交给一名其他角色，然后该角色随机获得你的除此技能外的另一项其他技能，并回复一点体力。",
             "xwj_xhuoying_xieshen":"飞段",
@@ -13077,7 +13130,7 @@ translate:{
             "xwj_xhuoying_xianshu":"仙术",
             "xwj_xhuoying_xianshu_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸牌补至你当前体力的张数，然后回复一点体力。",
             "xwj_xhuoying_fenshen":"分身",
-            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与一至X名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。你的进攻距离+X（X为你的“分身”标记数，若你有9个或以上的分身标记时，你因耗尽九尾的查克拉而立即死亡）",
+            "xwj_xhuoying_fenshen_info":"<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与一至X名角色同时拼点，然后依次结算拼点结果，若你赢，没赢的角色随机弃置一张牌；若你拼点没赢，你摸一张牌，并获得一个“分身”标记。你的进攻距离+X（X为你的“分身”标记数，若你有：①至少6个分身标记，你获得技能【螺旋】；②至少9个分身标记，你立即死亡）",
             "xwj_xhuoying_shuimen":"波风水门",
             "xwj_xhuoying_shanguang":"闪光",
             "xwj_xhuoying_shanguang_info":"<font color=#F0F>飞雷神</font> <font color=#f00>锁定技</font> 你的防御距离始终+1，你的进攻距离无限",
@@ -13144,7 +13197,7 @@ translate:{
             "xwj_xhuoying_changsheng":"永生",
             "xwj_xhuoying_changsheng_info":"濒死阶段，你可摸一张牌，你可以与一名有手牌的其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过5）；若你拼点没赢，你回复体力至体力上限，然后你失去一点体力上限并翻面（一个像蛇一样难缠的家伙）",
             "xwj_xhuoying_rechendun":"尘遁",
-            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色随机废除一个装备栏；若你没赢，目标角色受到一点伤害",
+            "xwj_xhuoying_rechendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，你选择废除目标角色的一个装备栏；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_wuchen":"无尘",
             "xwj_xhuoying_wuchen_info":"<font color=#F0F>无尘迷塞</font> <font color=#f00>锁定技</font> 当你没有手牌时，你防止受到任何伤害",
             "xwj_xhuoying_rexianshu":"仙术",
@@ -13301,7 +13354,7 @@ translate:{
             "xwj_xhuoying_feixian":"飞翔",
             "xwj_xhuoying_feixian_info":"<font color=#f00>锁定技</font> 你的防御距离+1",
             "xwj_xhuoying_xfenlie":"分裂",
-            "xwj_xhuoying_xfenlie_info":"（分裂、通灵）出牌阶段限一次，你可以弃置所有手牌并摸两张牌",
+            "xwj_xhuoying_xfenlie_info":"（分裂、通灵）出牌阶段限一次，你可以弃置所有手牌（没手牌则不须弃）并摸两张牌",
             "xwj_xhuoying_reguaili3":"爆发",
             "xwj_xhuoying_reguaili3_info":"你每杀死一名角色后，你增加一点体力上限",
             "xwj_xhuoying_bizhu":"臂助",
@@ -14090,14 +14143,14 @@ skill:{
                 if(ai.get.attitude(player,game.players[i])>0){
                     active++;
                 }
-                else if(ai.get.attitude(player,game.players[i])<0){
-                    active--;
+                else if(ai.get.attitude(player,game.players[i])<=0){
+                    active++;
                 }
             }
         }
         if(active>0) return 1;
         if(Math.random()<0.4) return 1;
-        return 0;
+        return 0.8;
     },
     content:function (){
         "step 0"
@@ -16601,5 +16654,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.68",
+    version:"1.69",
 },files:{"character":[],"card":[],"skill":[]}}})

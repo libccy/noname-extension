@@ -6834,7 +6834,7 @@ audio:"ext:群英会:2",
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
                 usable:1,
-                alter:true,
+                //alter:true,
                 filterTarget:function (card,player,target){
                   if(target.storage.lose_pos_equip.length>=5) return false;        
         return player!=target&&target.countCards('h')>0 ;

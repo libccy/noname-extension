@@ -57,12 +57,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修改带土的吸收和神威、无的尘遁、鸣人的分身，改善天武圣王震怒AI <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-05-31",
+	intro:"<li>更新：修改卡卡西的雷切、无的尘遁、卡牌九尾，删除鲍三娘、二赵 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-09",
 	author:"小苏",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.69,
+    version:1.70,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -111,7 +111,7 @@ extension["群英会"]={
 		"xwj_xhuoying_leique2.mp3","xwj_xhuoying_leiying.jpg","xwj_xhuoying_lianbao1.mp3",
 		"xwj_xhuoying_liluoke.jpg","xwj_xhuoying_linghua1.mp3","xwj_xhuoying_linghua2.mp3","xwj_xhuoying_fengwang1.mp3","xwj_xhuoying_fengwang2.mp3",
 		"xwj_xhuoying_liudaoban.jpg","xwj_xhuoying_liudaoxianren.jpg","xwj_xhuoying_lunhui1.mp3",
-		"xwj_xhuoying_lunhui2.mp3","xwj_xhuoying_lunmu1.mp3","xwj_xhuoying_lunmu2.mp3","xwj_xhuoying_luoxuan1.mp3",
+		"xwj_xhuoying_lunhui2.mp3","xwj_xhuoying_lunmu1.mp3","xwj_xhuoying_lunmu2.mp3","xwj_xhuoying_luoxuan1.mp3","xwj_xhuoying_mrluoxuan1.mp3",
 		"xwj_xhuoying_luoxuan2.mp3","xwj_xhuoying_luwan.jpg","xwj_xhuoying_mingren.jpg","xwj_xhuoying_mingren1.jpg","xwj_xhuoying_mingren2.jpg",
 		"xwj_xhuoying_mudun_respond1.mp3","xwj_xhuoying_mudun_respond2.mp3","xwj_xhuoying_newkuilei1.mp3",
 		"xwj_xhuoying_newkuilei2.mp3","xwj_xhuoying_ningchi.jpg","xwj_xhuoying_qianniao1.mp3",
@@ -188,16 +188,16 @@ extension["群英会"]={
 		"xwj_xqinshi_xiaoyaozi.jpg","xwj_xqinshi_zongjian1.mp3","xwj_xqinshi_zongjian2.mp3",
  "xwj_xqinshi_mozi.jpg","xwj_xqinshi_feigong1.mp3","xwj_xqinshi_feigong2.mp3","xwj_xqinshi_jianai1.mp3","xwj_xqinshi_jianai2.mp3",
  "xwj_xqinshi_jingxie.mp3","xwj_xu_xiaohuan.jpg","xwj_xu_SPxiaosu.jpg",
-		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_baosanniang.jpg","xwj_xsanguo_jiangwei.jpg",
+		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_jiangwei.jpg",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_wangyun.jpg",
-		"xwj_xsanguo_wuniang1.mp3","xwj_xsanguo_wuniang2.mp3","xwj_xsanguo_xiangfu1.mp3",
-		"xwj_xsanguo_xinyuji.jpg","xwj_xsanguo_xushen1.mp3","xwj_xsanguo_xushen2.mp3","xwj_xsanguo_yujin.jpg",
+		"xwj_xsanguo_xiangfu1.mp3",
+		"xwj_xsanguo_xinyuji.jpg","xwj_xsanguo_yujin.jpg",
  "xwj_xsanguo_simahui.jpg","xwj_xsanguo_jiehuo1.mp3","xwj_xsanguo_shien1.mp3","xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3",
  "xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3","xwj_xsanguo_shenzhaoyun.jpg",
                 "xwj_xsanguo_zhihuaxiong.jpg","xwj_xsanguo_badao1.mp3","xwj_xsanguo_wenjiu1.mp3",
-		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_zhaotongzhaoguang.jpg",
-		"xwj_xsanguo_zhengnan1.mp3","xwj_xsanguo_zhengnan2.mp3","xwj_xsanguo_yizan1.mp3","xwj_xsanguo_yizan2.mp3",
-                "xwj_xsanguo_longyuan1.mp3","xwj_xsanguo_longyuan2.mp3","xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
+		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg",
+		
+                "xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
 		"xwj_xus_jiuwei.png","xwj_xus_jiuwei1.mp3","xwj_xus_kuwu.png",
 		"xwj_xus_kuwu1.mp3","xwj_xus_mianju.png","xwj_xus_shoulijian.mp3","xwj_xus_shoulijian.png",
 		"xwj_xus_xuelunyang.png","xwj_xus_xuelunyang1.mp3","xwj_xu_cheng.jpg","xwj_xu_qingshang1.mp3",

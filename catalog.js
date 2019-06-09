@@ -375,7 +375,7 @@ extension["金庸群侠传"]={
     ]
 }; 
 
-extension["新服杂碎"]={
+/*extension["新服杂碎"]={
     author:"苏婆玛丽奥",
     intro:"包含阴雷之外绝大多数新武将（星火燎原、文和乱武、逐鹿中原、祈福武将、手杀新将、新于吉）的扩展。更新日期：2019-05-24",
     size:"6.25MB",
@@ -390,7 +390,7 @@ extension["新服杂碎"]={
 		"yanjun.jpg","zhanggong.jpg","zhangji.jpg","zhangqiying.jpg","zhaotongzhaoguang.jpg",
 		"zhoufang.jpg"
     ]
-}; 
+}; */
 
 extension["新国战"]={
     author:"苏婆玛丽奥",
@@ -430,17 +430,7 @@ extension["逐鹿中原"]={
     ]
 }; 
 
-extension["鲍三娘"]={
-    author:"Sukincen",
-    intro:"三国杀OL的鲍三娘，增加联机功能和技能指示线",
-    size:"1MB",
-    netdisk:"",
-    version:3.7,
-    files:[
-        "extension.js","bsn_baosanniang.jpg","bsn_wuniang1.mp3","bsn_wuniang2.mp3",
-	    "bsn_xushen1.mp3","bsn_xushen2.mp3","bsn_zhengnan1.mp3","bsn_zhengnan2.mp3",
-    ]
-}; 
+
 
 extension["圣神包"]={
     author:"淡雾云曦",

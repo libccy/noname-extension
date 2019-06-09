@@ -403,7 +403,7 @@ extension["新国战"]={
     ]
 }; 
 
-extension["新•界限突破"]={
+/*extension["新•界限突破"]={
     author:"苏婆玛丽奥",
     intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
     size:"737KB",
@@ -414,7 +414,7 @@ extension["新•界限突破"]={
 		"re_diaochan.jpg","re_huaxiong.jpg","re_jikang.jpg","extension.js","extension.js.bak",
 		"package.js"
     ]
-}; 
+}; */
 
 extension["逐鹿中原"]={
     author:"苏婆玛丽奥",

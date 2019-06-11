@@ -75,6 +75,7 @@ extension["群英会"]={
 		"xwj_xhuoying_baoli1.mp3","xwj_xhuoying_baoli2.mp3","xwj_xhuoying_baoli21.mp3","xwj_xhuoying_baoli31.mp3",
 		"xwj_xhuoying_baoxing1.mp3","xwj_xhuoying_baoxing2.mp3","xwj_xhuoying_baozi1.mp3",
 		"xwj_xhuoying_baozi2.mp3","xwj_xhuoying_beihua1.mp3","xwj_xhuoying_beihua2.mp3",
+  "xwj_xhuoying_mrluoxuan2.mp3","xwj_xhuoying_kkxshenwei1.mp3","xwj_xhuoying_kkxshenwei2.mp3",
 		"xwj_xhuoying_bizhu1.mp3","xwj_xhuoying_bizhu2.mp3","xwj_xhuoying_changmen.jpg",
 		"xwj_xhuoying_changsheng1.mp3","xwj_xhuoying_changsheng2.mp3","xwj_xhuoying_chendun1.mp3",
 		"xwj_xhuoying_chendun2.mp3","xwj_xhuoying_chengyi1.mp3","xwj_xhuoying_chengyi2.mp3",

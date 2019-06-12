@@ -57,12 +57,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修改卡卡西的雷切、无的尘遁、卡牌九尾，删除鲍三娘、二赵 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-09",
+	intro:"<li>更新：神威 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-12",
 	author:"小苏",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.70,
+    version:1.71,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",

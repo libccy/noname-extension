@@ -11688,7 +11688,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
 				}
 			},
 			
-			   	xwj_xhuoying_mrluoxuan:{
+			   	"xwj_xhuoying_mrluoxuan":{
 			    enable:"phaseUse",
                 usable:1,
                 audio:"ext:群英会:2",
@@ -12087,28 +12087,37 @@ if(range[1]!=-1) range[1]+=Infinity;
                     },
                 },
             },
+            
+            "yttl_jingang":{
+                 audio:"ext:金庸群侠传:2",
+             
+            },
+            
             "xwj_xhuoying_reshenwei":{
                 audio:"ext:群英会:2",
-                enable:"chooseToUse",
-                filterCard:{
-                    type:"equip",
-                },
-                position:"he",
+                 enable:["chooseToUse","chooseToRespond"],              
+                filterCard:function (){return false},                          
+                selectCard:-1,
+                viewAsFilter:function (player){return player.isTurnedOver();},
                 viewAs:{
                     name:"wuxie",
-                    suit:"diamond",
-                    number:1,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":1,"name":"zhuque","nature":"fire","cardid":"2290808414","clone":{"name":"zhuque","suit":"diamond","number":1,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":7404},"original":"e","timeout":7383}],
+                },             
+                onuse:function (result,player){
+                player.turnOver();             
                 },
-                filter:function (event,player){
-        return player.countCards('he',{type:'equip'})>0;
-    },
-                viewAsFilter:function (player){
-        return player.countCards('he',{type:'equip'})>0;
-    },
-                prompt:"将一张装备牌当无懈可击使用（神威右眼转移自身虚化）",
-                check:function (card){return 8-get.equipValue(card)},
-                threaten:1.2,
+                prompt:"若你的武将牌背面朝上，你可以选择翻面，然后视为你使用一张【无懈可击】",
+                check:function (){return 1},
+                ai:{
+                    threaten:0.8,
+                    basic:{
+                        useful:[6,4],
+                        value:[6,4],
+                    },
+                    result:{
+                        player:1,
+                    },
+                    expose:0.2,
+                },
                 group:["xwj_xhuoying_reshenwei_move","xwj_xhuoying_reshenwei_damage"],
                 subSkill:{
                     move:{
@@ -12224,26 +12233,29 @@ if(range[1]!=-1) range[1]+=Infinity;
             
                  "xwj_xhuoying_kkxshenwei":{
                 audio:"ext:群英会:2",
-                enable:"chooseToUse",
-                filterCard:{
-                    type:"equip",
-                },
-                position:"he",
+                 enable:["chooseToUse","chooseToRespond"],              
+                filterCard:function (){return false},                          
+                selectCard:-1,
+                viewAsFilter:function (player){return player.isTurnedOver();},
                 viewAs:{
                     name:"wuxie",
-                    suit:"diamond",
-                    number:1,
-                    cards:[{"node":{"image":{},"info":{},"name":{},"name2":{},"background":{},"intro":{},"range":{}},"storage":{},"vanishtag":[],"_uncheck":[],"suit":"diamond","number":1,"name":"zhuque","nature":"fire","cardid":"2290808414","clone":{"name":"zhuque","suit":"diamond","number":1,"node":{"name":{},"info":{},"intro":{},"background":{},"image":{}},"_transitionEnded":true,"timeout":7404},"original":"e","timeout":7383}],
+                },             
+                onuse:function (result,player){
+                player.turnOver();             
                 },
-                filter:function (event,player){
-        return player.countCards('he',{type:'equip'})>0;
-    },
-                viewAsFilter:function (player){
-        return player.countCards('he',{type:'equip'})>0;
-    },
-                prompt:"将一张装备牌当无懈可击使用（神威右眼转移自身虚化）",
-                check:function (card){return 8-get.equipValue(card)},
-                threaten:1.2,
+                prompt:"若你的武将牌背面朝上，你可以选择翻面，然后视为你使用一张【无懈可击】",
+                check:function (){return 1},
+                ai:{
+                    threaten:0.8,
+                    basic:{
+                        useful:[6,4],
+                        value:[6,4],
+                    },
+                    result:{
+                        player:1,
+                    },
+                    expose:0.2,
+                },
                 group:["xwj_xhuoying_kkxshenwei_move","xwj_xhuoying_kkxshenwei_damage"],
                 subSkill:{
                     move:{
@@ -13312,10 +13324,10 @@ translate:{
             "xwj_xhuoying_rouquan":"柔拳",
             "xwj_xhuoying_rouquan_info":"回合外每当你因使用、打出或被弃置等方式失去一张手牌时，你立即摸一张牌（类似鸣人的仙术）",
             "xwj_xhuoying_kkxshenwei":"神威",
-            "xwj_xhuoying_kkxshenwei_info":"<li>你可以将任意一张装备牌当【无懈可击】使用（右眼虚化）<li>当你即将受到伤害时，若你的武将牌正面朝上，你可翻面并取消此伤害（虚化）<li>当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",           
+            "xwj_xhuoying_kkxshenwei_info":"<li>当你即将受到伤害时，若你的武将牌正面朝上，你可翻面并取消此伤害（右眼虚化）<li>若你的武将牌背面朝上，你可以选择翻面，视为使用了一张【无懈可击】（右眼虚化）<li>当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",           
             "xwj_xhuoying_daitu":"带土",
             "xwj_xhuoying_reshenwei":"神威",
-            "xwj_xhuoying_reshenwei_info":"<li>你可以将任意一张装备牌当【无懈可击】使用（右眼虚化）<li>当你即将受到伤害时，若你的武将牌正面朝上，你可翻面并取消此伤害（虚化）<li>当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",
+            "xwj_xhuoying_reshenwei_info":"<li>当你即将受到伤害时，若你的武将牌正面朝上，你可翻面并取消此伤害（右眼虚化）<li>若你的武将牌背面朝上，你可以选择翻面，视为使用了一张【无懈可击】（右眼虚化）<li>当你从背面翻至正面时，你可以弃置一张牌，然后移动场上的一张牌（左眼远距离扭曲空间转移物体）",
             "xwj_xhuoying_xishou":"吸收",
             "xwj_xhuoying_xishou_info":"回合结束阶段，你可指定一名其他角色，然后弃置你所有的手牌并将你的武将牌翻面，若如此做，你获得其所有的牌。",
             "xwj_xhuoying_xianyan":"献眼",
@@ -16864,5 +16876,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.70",
+    version:"1.71",
 },files:{"character":[],"card":[],"skill":[]}}})

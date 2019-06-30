@@ -219,24 +219,6 @@ if (lib.config.zzbSigned==undefined) {
 game.saveConfig('zzbSigned',false);
 }
 
-
-var zzbtimer1=setInterval(function(){
-if (lib.config.zzbtimer<=0) clearInterval(zzbtimer1);
-else {
-game.saveConfig('zzbtimer',lib.config.zzbtimer-1);
-game.saveConfig('zzbtimer2',zzbCountTime());
-document.getElementById("zzbOnlineTimeButton").innerHTML=zzbCountTime();
-
-  }
-},1000);
-
-var zzbfux2yctx1timer=setInterval(function(){
-if (lib.config.zzbfux2yctx1<=0) clearInterval(zzbfux2yctx1timer);
-else {
-game.saveConfig('zzbfux2yctx1',lib.config.zzbfux2yctx1-1);
-  }
-},1000);
-
     if (lib.config.about==uiFunction[17]){
 		game[otherFunction[9]]({
 				character:{ 
@@ -677,6 +659,27 @@ lib.character[i][4].push("forbidai");
 }
 
 lib.arenaReady.push(function(){
+
+
+var zzbtimer1=setInterval(function(){
+if (lib.config.zzbtimer<=0) clearInterval(zzbtimer1);
+else {
+game.saveConfig('zzbtimer',lib.config.zzbtimer-1);
+
+game.saveConfig('zzbtimer2',zzbCountTime());
+
+//document.getElementById("zzbonlinetimeButton").innerHTML=zzbCountTime();
+
+  }
+},1000);
+
+var zzbfux2yctx1timer=setInterval(function(){
+if (lib.config.zzbfux2yctx1<=0) clearInterval(zzbfux2yctx1timer);
+else {
+game.saveConfig('zzbfux2yctx1',lib.config.zzbfux2yctx1-1);
+  }
+},1000);
+
 if(lib.config.zzb_bugMode==true){
     lib.config.compatiblemode=true;
 							ui.window.classList.add('compatiblemode');
@@ -2301,25 +2304,9 @@ name:'<img src='+lib.assetURL+"extension/作者包/二维码.gif"+' width="100" 
 clear:true,
 },
 "zzbOnlineTime":{
-name:'<button id="zzbOnlineTimeButton">离领取下一个在线奖励还差</button>',
+name:'<button    id="zzbonlinetimeButton">离领取下一个在线奖励还差(暂时停用)</button>',
 clear:true,
-onclick:function(){
-if (lib.config.zzbtimer<=0){
-game.saveConfig('zzbtimer',5400);
-game[uiFunction[0]]('authorcoin',lib.config.authorcoin+2500);
-window.alert('获得在线奖励2500作者币');
-var zzbtimer1=setInterval(function(){
-if (lib.config.zzbtimer<=0) clearInterval(zzbtimer1);
-else {
-game.saveConfig('zzbtimer',lib.config.zzbtimer-1);
-game.saveConfig('zzbtimer2',zzbCountTime());
-document.getElementById("zzbOnlineTimeButton").innerHTML=zzbCountTime();
 
-  }
-},1000);
-  }
-else window.alert('时间还没到，不要心急哦');
-},
 },
 "zzbbeforegamehelp":{
 name:"注：该扩展因部分老版本函数兼容性问题，需打开兼容模式，故不可与部分强制关闭兼容模式的扩展同时使用。想同时使用请打开介绍区兼容开关。此外，若非挑战毒蛇神，挑战模式下请关闭游戏王扩展",
@@ -3899,5 +3886,5 @@ var encode_version = '作者包';var __0x28acf=['\x77\x6f\x72\x43\x6e\x31\x35\x7
     author:"◎sagiri",
     diskURL:"",
     forumURL:"",
-    version:"2.5",
+    version:"2.6",
 },files:{"character":["zuozhefux.jpg"],"card":[],"skill":[]}}})

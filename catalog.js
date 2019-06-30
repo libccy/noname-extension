@@ -57,12 +57,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：删掉与官方重复的武将 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-18",
+	intro:"<li>更新：新增封神纪之武庚、子羽 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-30",
 	author:"小苏",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.72,
+    version:1.73,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -192,9 +192,9 @@ extension["群英会"]={
 		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_jiangwei.jpg",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_wangyun.jpg",
 		"xwj_xsanguo_xiangfu1.mp3",
-		"xwj_xsanguo_xinyuji.jpg","xwj_xsanguo_yujin.jpg",
+		
  "xwj_xsanguo_simahui.jpg","xwj_xsanguo_jiehuo1.mp3","xwj_xsanguo_shien1.mp3","xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3",
- "xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3","xwj_xsanguo_shenzhaoyun.jpg",
+ "xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3",
                 "xwj_xsanguo_zhihuaxiong.jpg","xwj_xsanguo_badao1.mp3","xwj_xsanguo_wenjiu1.mp3",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg",
 		
@@ -210,6 +210,7 @@ extension["群英会"]={
 		"xwj_xwugeng_fuchou3.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3","xwj_xwugeng_pili1.mp3",
 		"xwj_xwugeng_pili2.mp3","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_shixing.jpg",
 		"xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3","xwj_xwugeng_tian.jpg","xwj_xwugeng_tiankui.jpg",
+   "xwj_xwugeng_wugeng.jpg","xwj_xwugeng_ziyu.jpg",
 		"xwj_xwugeng_tianwu.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_xuanfeng.jpg",
 		"xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3","xwj_xwugeng_zhengkong1.mp3",
 		"xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",

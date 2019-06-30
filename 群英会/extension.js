@@ -14324,7 +14324,8 @@ skill:{
     },
             },
             "xwj_xwugeng_anyu":{
-                audio:"ext:群英会:2",
+                audio:"ext:群英会:2",               
+                direct:true,
                 trigger:{
                     player:"phaseBegin",
                 },
@@ -14340,8 +14341,11 @@ skill:{
      });        
      "step 1"
      if(result.bool){
+             player.logSkill('xwj_xwugeng_anyu');
              player.line(result.targets[0]);
-             result.targets[0].turnOver();
+             result.targets[0].turnOver();          
+             result.targets[0].addTempSkill('xwj_xwugeng_anyu3',{player:'damageAfter'});           
+             result.targets[0].addTempSkill('xwj_xwugeng_anyu2',{player:'damageAfter'});                                                  
      }
     else {       
             event.finish(); 
@@ -14476,7 +14480,8 @@ skill:{
       },
                 content:function (){                                                   
 
-                "step 0"             
+                "step 0"                                 
+                     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
                      player.$fullscreenpop('天启-无色界神力','fire'); 
                      game.delay();
         game.countPlayer(function(current){
@@ -14632,6 +14637,7 @@ skill:{
                 ai:{
                    result:{
             target:function (player,target){
+                if(!target.isEmpty(2)) return -0.2;
                 if(target.hp<=2) return -3.5;
                 return -2;
             },
@@ -15799,7 +15805,7 @@ content:function (){
             "xwj_xwugeng_fanji2":"繁技",
             "xwj_xwugeng_fanji2_info":"</font><font color=#f00>锁定技</font> 回合外，你随机获得技能【无色】或【虚无】",
             "xwj_xwugeng_anyu":"暗狱",
-            "xwj_xwugeng_anyu_info":"回合开始阶段，你可令一名武将牌正面朝上的其他角色将其武将牌翻面",
+            "xwj_xwugeng_anyu_info":"回合开始阶段，你可令一名武将牌正面朝上的其他角色将其武将牌翻面，然后直到其受到伤害后，其所有技能失效且不能使用或打出牌",
             "xwj_xwugeng_anyu2":"暗",
             "xwj_xwugeng_anyu2_info":"</font><font color=#f00>锁定技</font> 你不能使用或打出卡牌",
             "xwj_xwugeng_anyu3":"狱",
@@ -17300,5 +17306,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.73",
+    version:"1.74",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -14636,7 +14636,7 @@ skill:{
                 return -2;
             },
 					 },
-                    order:4,
+                    order:-4,
                     expose:0.4,
                 },
             },

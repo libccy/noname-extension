@@ -14482,7 +14482,7 @@ skill:{
 
                 "step 0"                                 
                      ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
-                     player.$fullscreenpop('天启-无色界神力','fire'); 
+                     player.$fullscreenpop('无色界神力','fire'); 
                      game.delay();
         game.countPlayer(function(current){
             if(current!=player){           
@@ -14642,7 +14642,7 @@ skill:{
                 return -2;
             },
 					 },
-                    order:4,
+                    //order:4,
                     expose:0.4,
                 },
             },

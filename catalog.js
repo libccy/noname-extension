@@ -57,12 +57,13 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：新增武庚、子羽 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-06-30",
+	intro:"<li>更新：新增【白菜】 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-07-10",
+	//intro:""name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《封神纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高，但各扩展小包内相对平衡。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"",
 	author:"小苏",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"27MB",
-    version:1.74,
+    version:1.75,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -210,7 +211,7 @@ extension["群英会"]={
 		"xwj_xwugeng_fuchou3.mp3","xwj_xwugeng_fuhuo1.mp3","xwj_xwugeng_fuhuo2.mp3","xwj_xwugeng_pili1.mp3",
 		"xwj_xwugeng_pili2.mp3","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_shixing.jpg",
 		"xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3","xwj_xwugeng_tian.jpg","xwj_xwugeng_tiankui.jpg",
-   "xwj_xwugeng_wugeng.jpg","xwj_xwugeng_ziyu.jpg",
+   "xwj_xwugeng_wugeng.jpg","xwj_xwugeng_ziyu.jpg","xwj_xwugeng_baicai.jpg",
 		"xwj_xwugeng_tianwu.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_xuanfeng.jpg",
 		"xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3","xwj_xwugeng_zhengkong1.mp3",
 		"xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",

@@ -4047,7 +4047,7 @@ event.target.draw(event.num1);
     },
                 content:function (){
         player.awakenSkill('xwj_xsanguo_tishen');
-        player.recover(player.maxHp-player.hp);
+        player.recover(Infinity);
         player.draw(player.maxHp-player.hp);                
         player.storage.xwj_xsanguo_tishen=true;
     },
@@ -6477,7 +6477,7 @@ audio:"ext:群英会:2",
         "step 1"
         if(result.control=='百豪'){
         player.logSkill('xwj_xhuoying_baihao');
-            player.recover(player.maxHp-player.hp);
+            player.recover(Infinity);
              player.loseMaxHp();    
         }
         else{
@@ -6788,7 +6788,7 @@ audio:"ext:群英会:2",
             player.say(chat);          
         'step 2'
         if(!result.bool){
-            player.recover(player.maxHp-player.hp);
+            player.recover(Infinity);
             //player.draw();
             player.loseMaxHp();            
             player.turnOver();            
@@ -14637,7 +14637,7 @@ skill:{
        "step 1"             
     player.gainMaxHp();
     player.update();
-    player.recover(player.maxHp-player.hp+1);  
+    player.recover(Infinity);  
                      
 
     //game.playXu(['xwj_xsanguo_xushen1','xwj_xsanguo_xushen2'].randomGet());  
@@ -15876,10 +15876,13 @@ content:function (){
             player.say(chat);         
      setTimeout(function(){
     player.gainMaxHp();  
+    player.update();
     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3'; 
    	game.broadcastAll()+ui.background.setBackgroundImage("extension/群英会/wms_shixing_background.jpg");
     game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/xwj_xwugeng_xinshixing.jpg'); 	     
-    player.revive(player.maxHp);
+    player.revive(player.maxHp-player.hp);
+    player.recover(Infinity);
+    player.update();
 },49000)  
      player.logSkill('xwj_xwugeng_fuhuo');    
      },

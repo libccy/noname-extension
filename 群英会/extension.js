@@ -14234,7 +14234,8 @@ if(lib.device||lib.node){
 					"xwj_xwugeng_tiankui":["male","shen",4,["xwj_xwugeng_suiyue","xwj_xwugeng_shenqu"],[]],
 		    "xwj_xwugeng_ziyu":["male","qun",4,["xwj_xwugeng_zhutian","xwj_xwugeng_qijian","xwj_xwugeng_qiyi"],[]],
        "xwj_xwugeng_wugeng":["male","qun",2,["xwj_xwugeng_zhouwen","xwj_xwugeng_tianqi"],[]],
-     
+       "xwj_xwugeng_baicai":["female","qun",3,["xwj_xwugeng_qinhe","xwj_xwugeng_dunkong"],[]],
+
 },
 
 characterIntro:{
@@ -14252,6 +14253,147 @@ characterIntro:{
 					},
 								
 skill:{		
+ 
+            "xwj_xwugeng_anxie":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    player:"phaseEnd",
+                },
+                direct:true,
+                filter:function (event,player){                
+        return player.isAlive();
+    },
+                content:function (){     
+                'step 0'     
+            player.addSkill('xwj_xwugeng_anxie2'); 
+            if(!player.storage.xwj_xwugeng_anxie){
+                player.storage.xwj_xwugeng_anxie=[];
+            }
+            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman','lebu','bingliang','shandian'];
+            for(var i=0;i<list.length;i++){
+                list[i]=['锦囊','',list[i]];
+            }
+            player.chooseButton(true,[[list,'vcard']]).set('filterButton',function(button){
+                if(player.storage.xwj_xwugeng_anxie&&player.storage.xwj_xwugeng_anxie.contains(button.link[2])) return false;
+                return true;
+            }).set('ai',function(button){
+                var rand=_status.event.rand*2;
+                switch(button.link[2]){
+                    case 'lebu':return 3+rand[3];
+                    case 'shunshou':return 3+rand[6];
+                    case 'nanman':return 2+rand[7];
+                    case 'wanjian':return 2+rand[8];
+                    default:return rand[9];
+                }
+            }).set('rand',[Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],Math.random());        
+        'step 1'
+        if(result.bool){
+            player.logSkill('xwj_xwugeng_anxie');
+            player.storage.xwj_xwugeng_anxie.add(result.links[0][2]);
+        }
+    },
+            },
+            "xwj_xwugeng_anxie2":{
+                mod:{
+                    targetEnabled:function (card,player,target){
+            if(target.storage.xwj_xwugeng_anxie.contains(card.name)) return false;
+        },
+                },
+            },
+            "xwj_xwugeng_dunkong":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    player:"damageBegin",
+                },
+                filter:function (event,player){
+        return player.countCards("h");
+    },
+                content:function (){
+         "step 0"
+        event.list = [];
+        for(var i=0;i<player.num("h");i++){
+            if(event.list.contains(get.suit(player.getCards('h')[i])))continue;
+            event.list.push(get.suit(player.getCards('h')[i]));
+            game.print(event.list);
+        }
+     //   player.showHandcards();
+        "step 1"
+        player.chooseControl(event.list,function(event,player){
+            return event.list.randomGet();
+        }).prompt="遁空：请选择一种花色并弃置该花色的所有手牌";
+        "step 2"        
+      //  player.storage.xwj_xwugeng_dunkong = result.control;
+          player.discard(player.getCards("h",function(card){
+                    return get.suit(card) == result.control;
+                }));
+            "step 3"
+            trigger.num--;     
+    },
+            },
+            "xwj_xwugeng_qinhe":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    global:"phaseUseBegin",
+                },
+                filter:function (event,player){                
+        return event.player!=player&&player.countCards('h')>0;
+    },
+                check:function (event,player){
+        return get.attitude(player,event.player)>0;
+    },
+                content:function (){     
+            player.logSkill('xwj_xwugeng_qinhe',trigger.player);
+            var card=player.getCards('h').randomGet();
+            player.showCards(card);
+            player.storage.xwj_xwugeng_qinhe=get.suit(card);
+            game.addVideo('storage',player,['xwj_xwugeng_qinhe',player.storage.xwj_xwugeng_qinhe]);
+            player.markSkill('xwj_xwugeng_qinhe');        
+    },
+                intro:{
+                    content:function (suit){
+            return get.translation(suit);
+        },
+                },               
+                group:["xwj_xwugeng_qinhe2","xwj_xwugeng_qinhe3"],
+                ai:{
+                expose:0.8,
+                    order:11,
+                    result:{
+                        player:1,
+                    },
+                },
+            },
+            "xwj_xwugeng_qinhe2":{
+                trigger:{
+                    global:"useCard",
+                },
+                frequent:true,
+                filter:function (event,player){
+                if(event.player!=_status.currentPhase) return false;
+        // return (get.type(event.card,'trick')==player.storage.xwj_xwugeng_qinhe&&event.cards[0]&&event.cards[0]==event.card);
+        return get.suit(event.card)==player.storage.xwj_xwugeng_qinhe;
+    },
+                content:function (){
+        trigger.player.draw();
+        player.draw();
+    },
+                ai:{
+                    threaten:0.4,
+                },
+            },
+            "xwj_xwugeng_qinhe3":{
+                trigger:{
+                    global:"phaseUseEnd",
+                },
+                silent:true,
+                forced:true,
+                popup:false,
+                content:function (){
+        delete player.storage.xwj_xwugeng_qinhe;
+        trigger.player.unmarkSkill('xwj_xwugeng_qinhe');
+    },             
+            },
+         
         "xwj_xwugeng_zhouwen":{    
                 audio:"ext:群英会:2",   
                 group:["xwj_xwugeng_zhouwen1","xwj_xwugeng_zhouwen2"],
@@ -14505,6 +14647,8 @@ skill:{
     player.addSkill('xwj_xwugeng_fanji'); 
 
     player.addSkill('xwj_xwugeng_anyu'); 
+    player.addTempSkill('xwj_xwugeng_wuse',{player:'phaseBegin'});
+    player.popup('xwj_xwugeng_wuse');
     player.awakenSkill('xwj_xwugeng_tianqi');
 
     player.update();
@@ -14531,12 +14675,11 @@ skill:{
             },
                "xwj_xwugeng_zhutian2":{
                 audio:"ext:群英会:2",
-                	trigger:{source:'damageBefore'},
+                	trigger:{source:'damageBegin'},
 				check:function(event,player){
 					var att=get.attitude(player,event.player);
 					if(event.player.hp==event.player.maxHp) return att<0;
-					if(event.player.hp==event.player.maxHp-1&&
-						(event.player.maxHp<=3||event.player.hasSkillTag('maixie'))) return att<0;
+					if(event.player.hp==event.player.maxHp-1||(event.player.maxHp<=3||event.player.hasSkillTag('maixie'))) return att<0;
 					return att>0;
 				},
 				logTarget:'player',
@@ -14642,7 +14785,7 @@ skill:{
                 return -2;
             },
 					 },
-                    order:4,
+                    order:1,
                     expose:0.4,
                 },
             },
@@ -15793,13 +15936,26 @@ content:function (){
            },
 
  translate:{
+        "xwj_xwugeng_anxie":"暗蝎",
+            "xwj_xwugeng_anxie_info":"结束阶段，你可声明一种锦囊牌的牌名，本局游戏你不能成为此牌的目标。",
+            "xwj_xwugeng_baicai":"白菜",
+            "xwj_xwugeng_qinhe":"亲和",
+            "xwj_xwugeng_qinhe_info":"其他角色出牌阶段开始时，你可以随机展示你的一张手牌。若如此做，每当该角色于此阶段内使用与此牌花色相同的牌时，其与你可各摸一张牌。",
+            "xwj_xwugeng_anxie2":"暗蝎",
+            "xwj_xwugeng_anxie2_info":"你不能成为这锦囊牌的目标",
+            "xwj_xwugeng_qinhe2":"亲和",
+            "xwj_xwugeng_qinhe2_info":"亲和",
+            "xwj_xwugeng_qinhe3":"亲和",
+            "xwj_xwugeng_qinhe3_info":"亲和",
+            "xwj_xwugeng_dunkong":"遁空",
+            "xwj_xwugeng_dunkong_info":"当你受到伤害时，若你有手牌，你可选择一种花色并弃置该花色的所有手牌，然后伤害值减一",     
            "xwj_xwugeng_wugeng":"武庚",
            "xwj_xwugeng_zhouwen":"咒文",
            "xwj_xwugeng_zhouwen_info":"<li></font><font color=#f00>锁定技</font> 当你受到伤害时，若你的装备区没有防具牌，此伤害减一<li></font><font color=#f00>锁定技</font> 当你造成伤害时，若目标角色体力值比你的高，此伤害值+1",
             "xwj_xwugeng_fanji":"繁技",
             "xwj_xwugeng_fanji_info":"</font><font color=#f00>锁定技</font> 回合内，你随机获得技能【冥炮】或【炼气】；回合外，你随机获得技能【无色】或【虚无】",
             "xwj_xwugeng_tianqi":"天启",
-            "xwj_xwugeng_tianqi_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你令所有其他角色失去所有技能直到其受到伤害且不能使用或打出牌直到其回合开始，然后你须失去技能【咒文】，获得技能【暗狱】、【繁技】，增加一点体力上限并回复体力至体力上限",
+            "xwj_xwugeng_tianqi_info":"<span class=greentext>觉醒技</span> 当你进入濒死状态时，你令所有其他角色失去所有技能直到其受到伤害且不能使用或打出牌直到其回合开始，然后你须失去技能【咒文】，获得技能【暗狱】、【繁技】，增加一点体力上限并回复体力至体力上限，且直到你的下个回合开始，你不能成为【杀】的目标",
             "xwj_xwugeng_fanji1":"繁技",
             "xwj_xwugeng_fanji1_info":"</font><font color=#f00>锁定技</font> 回合内，你随机获得技能【冥炮】或【炼气】",
             "xwj_xwugeng_fanji2":"繁技",
@@ -17306,5 +17462,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★",
     diskURL:"",
     forumURL:"",
-    version:"1.74",
+    version:"1.75",
 },files:{"character":[],"card":[],"skill":[]}}})

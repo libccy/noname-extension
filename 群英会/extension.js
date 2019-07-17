@@ -14235,8 +14235,8 @@ if(lib.device||lib.node){
 		    "xwj_xwugeng_ziyu":["male","qun",4,["xwj_xwugeng_qijian","xwj_xwugeng_qiyi","xwj_xwugeng_zhutian"],[]],
        "xwj_xwugeng_wugeng":["male","qun",2,["xwj_xwugeng_zhouwen","xwj_xwugeng_tianqi"],[]],
        "xwj_xwugeng_baicai":["female","qun",3,["xwj_xwugeng_qinhe","xwj_xwugeng_dunkong"],[]],
-	   "xwj_xwugeng_fuxi":["male","qun",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
-			"xwj_xwugeng_bailian":["male","shen",4,["xwj_xwugeng_xuelian"],[]],
+	    "xwj_xwugeng_bailian":["male","shen",4,["xwj_xwugeng_xuelian"],[]],
+			"xwj_xwugeng_fuxi":["male","qun",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
 
 },
 
@@ -14255,94 +14255,14 @@ characterIntro:{
 					},
 								
 skill:{		
- "xwj_xwugeng_cizhou":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    global:"dyingAfter",
-                },
-                check:function (event,player){
-        return get.attitude(player,event.source)>0;
-    },
-                filter:function (event,player){
-             return event.player.isAlive();
-    },
-                content:function (){
-        player.$fullscreenpop('混沌之火','fire');
-        trigger.player.addSkill('xwj_xwugeng_zhouwen');
-        player.awakenSkill('xwj_xwugeng_cizhou');
-    },
-            },
-            "xwj_xwugeng_dongshi":{
-                forced:true,
-                locked:true,
-                group:["xwj_xwugeng_dongshi1","xwj_xwugeng_dongshi2"],
-            },
-            "xwj_xwugeng_dongshi1":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    player:"shaBegin",
-                },
-                priority:100,
-                filter:function (event,player){
-             return event.target.countCards('h');
-    },
-                content:function (){
-        "step 0"        
-         player.chooseCardButton(trigger.target,trigger.target.getCards('h')).set('filterButton',function(button){
-            return get.number(button.link)%2==1;
-        });                                                                   
-        "step 1"         
-        var chat=['空识界神力！','你的动作全都被我识破了'].randomGet();
-            player.say(chat);        
-        if(result.bool){                           
-        event.card=result.links[0];                       
-        player.gain(event.card,trigger.target);
-        trigger.target.$give(event.card,player);               
-        }                                                
-                                 
-    },
-                ai:{
-                    order:10,
-                    expose:0.4,
-                },
-            },
-            "xwj_xwugeng_dongshi2":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    target:"shaBegin",
-                },
-                priority:100,
-                filter:function (event,player){
-             return event.player.countCards('h');
-    },
-                content:function (){
-        "step 0"        
-         player.chooseCardButton(trigger.player,trigger.player.getCards('h')).set('filterButton',function(button){
-            return get.number(button.link)%2==0;
-        });                                                                   
-        "step 1"         
-        var chat=['我运用空识界神力让我看到了神权的没落','你的动作都被我看穿了'].randomGet();
-            player.say(chat);        
-        if(result.bool){                           
-        event.card=result.links[0];                       
-        player.gain(event.card,trigger.player);
-        trigger.player.$give(event.card,player);               
-        }                                                
-                                 
-    },
-                ai:{
-                    order:10,
-                    expose:0.4,
-                },
-            },
-			"xwj_xwugeng_xuelian1":{
+ "xwj_xwugeng_xuelian1":{
                 audio:"ext:群英会:1",
                 trigger:{
                     player:"phaseEnd",
                 },      
                 forced:true,
                 popup:false,
-                priority:99,
+                priority:2,
                    filter:function (event,player){
                  //  return event.player.hasSkill('xwj_xwugeng_xuelian4');
         return player.storage.xwj_xwugeng_xuelian3&&player.storage.xwj_xwugeng_xuelian3.isIn();
@@ -14445,6 +14365,87 @@ skill:{
                         },
                         expose:0.8,
                     },
+                },
+            },
+			 "xwj_xwugeng_cizhou":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    global:"dyingAfter",
+                },
+                	derivation:['xwj_xwugeng_zhouwen'],
+                check:function (event,player){
+        return get.attitude(player,event.player)>0;
+    },
+                filter:function (event,player){
+             return event.player.isAlive();
+    },
+                content:function (){
+        player.$fullscreenpop('混沌之火','fire');
+        trigger.player.addSkill('xwj_xwugeng_zhouwen');
+        player.awakenSkill('xwj_xwugeng_cizhou');
+    },
+            },
+            "xwj_xwugeng_dongshi":{
+                forced:true,
+                locked:true,
+                group:["xwj_xwugeng_dongshi1","xwj_xwugeng_dongshi2"],
+            },
+            "xwj_xwugeng_dongshi1":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    player:"shaBegin",
+                },
+                priority:100,
+                filter:function (event,player){
+             return event.target.countCards('h');
+    },
+                content:function (){
+        "step 0"        
+         player.chooseCardButton(trigger.target,trigger.target.getCards('h')).set('filterButton',function(button){
+            return get.number(button.link)%2==1;
+        });                                                                   
+        "step 1"         
+        var chat=['空识界神力！','你的动作全都被我识破了'].randomGet();
+            player.say(chat);        
+        if(result.bool){                           
+        event.card=result.links[0];                       
+        player.gain(event.card,trigger.target);
+        trigger.target.$give(event.card,player);               
+        }                                                
+                                 
+    },
+                ai:{
+                    order:10,
+                    expose:0.4,
+                },
+            },
+            "xwj_xwugeng_dongshi2":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    target:"shaBegin",
+                },
+                priority:100,
+                filter:function (event,player){
+             return event.player.countCards('h');
+    },
+                content:function (){
+        "step 0"        
+         player.chooseCardButton(trigger.player,trigger.player.getCards('h')).set('filterButton',function(button){
+            return get.number(button.link)%2==0;
+        });                                                                   
+        "step 1"         
+        var chat=['我运用空识界神力让我看到了神权的没落','你的动作都被我看穿了'].randomGet();
+            player.say(chat);        
+        if(result.bool){                           
+        event.card=result.links[0];                       
+        player.gain(event.card,trigger.player);
+        trigger.player.$give(event.card,player);               
+        }                                                
+                                 
+    },
+                ai:{
+                    order:10,
+                    expose:0.4,
                 },
             },
             "xwj_xwugeng_anxie":{
@@ -16138,7 +16139,7 @@ content:function (){
             "xwj_xwugeng_xuelian_info":"限定技，当你受到伤害后，若伤害来源未获得“血莲”标记，你令其获得九个“血莲”标记，其回合结束时，你摸等同其“血莲”标记个数张牌，然后其须弃置一个“血莲”标记并随机执行一项：①受到一点伤害；②随机弃置两张牌。若其已阵亡，你重置本技能",
 	 "xwj_xwugeng_fuxi":"伏羲",
             "xwj_xwugeng_cizhou":"赐咒",
-            "xwj_xwugeng_cizhou_info":"限定技，当一名其他角色脱离濒死状态时，你可令其获得技能【咒文】",
+            "xwj_xwugeng_cizhou_info":"限定技，当一名角色脱离濒死状态时，你可令其获得技能【咒文】",
             "xwj_xwugeng_dongshi":"洞识",
             "xwj_xwugeng_dongshi_info":"当你使用【杀】／成为【杀】的目标时，你可以观看目标角色／来源的手牌，然后你可以获得其中一张奇数点数／偶数点数的手牌",
             "xwj_xwugeng_dongshi1":"洞识",

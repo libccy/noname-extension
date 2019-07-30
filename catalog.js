@@ -57,12 +57,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：新增新系列、武将白起 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-07-19",
+	intro:"<li>更新：修复已知的所有弹窗BUG，新增武将 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-07-30",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	size:"27MB",
-    version:1.78,
+	size:"80MB",
+    version:1.80,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -197,7 +197,7 @@ extension["群英会"]={
  "xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3",
                 "xwj_xsanguo_zhihuaxiong.jpg","xwj_xsanguo_badao1.mp3","xwj_xsanguo_wenjiu1.mp3",
 		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg",
-"xwj_xqunying_baiqi.jpg",		
+"xwj_xqunying_qinshiwang.jpg","xwj_xqunying_baiqi.jpg","xwj_xqunying_frieza.jpg","xwj_xqunying_frieza1.jpg","xwj_xqunying_frieza2.jpg","xwj_xqunying_frieza3.jpg",		
                 "xwj_xus_houzi.png","xwj_xus_houzi1.mp3",
 		"xwj_xus_jiuwei.png","xwj_xus_jiuwei1.mp3","xwj_xus_kuwu.png",
 		"xwj_xus_kuwu1.mp3","xwj_xus_mianju.png","xwj_xus_shoulijian.mp3","xwj_xus_shoulijian.png",

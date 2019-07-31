@@ -381,22 +381,19 @@ extension["金庸群侠传"]={
     ]
 }; 
 
-/*extension["新服杂碎"]={
-    author:"苏婆玛丽奥",
-    intro:"包含阴雷之外绝大多数新武将（星火燎原、文和乱武、逐鹿中原、祈福武将、手杀新将、新于吉）的扩展。更新日期：2019-05-24",
-    size:"6.25MB",
+extension["虚实"]={
+    author:"无名杀五周年策划群</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
+    intro:"<b>扩展说明</b>:</br>①本扩展包含武将14名，其中基础武将13名+SP武将1名</br>②为保证游戏正常运行，使用前请打开兼容模式</br>③部分技能与牌堆剩余牌数有关，如此类技能未正常发动，可以打开“牌堆补充”扩展来减少此类情况。",
+    size:"1.6MB",
     netdisk:"",
-    version:3.2,
+    version:1.0,
     files:[
-     "baosanniang.jpg","caoying.jpg","duji.jpg","extension.js","fanchou.jpg","fengchu_card.jpg",
-		"guosi.jpg","lijue.jpg","liuyan.jpg","liuyao.jpg","lvdai.jpg","lvkai.jpg","lvqian.jpg",
-		"majun.jpg","package.js","pangdegong.jpg","panjun.jpg","re_jsp_pangtong.jpg","re_yuji.jpg",
-		"re_zhangliang.jpg","shuijing_card.jpg","simahui.jpg","sp_taishici.jpg","wangcan.jpg",
-		"weiwenzhugezhi.jpg","wolong_card.jpg","xf_yiji.jpg","xuanjian_card.jpg","xurong.jpg",
-		"yanjun.jpg","zhanggong.jpg","zhangji.jpg","zhangqiying.jpg","zhaotongzhaoguang.jpg",
-		"zhoufang.jpg"
+     "xsanguo_nanhua.jpg","xsbaosanliang.jpg","xsdengzhi.jpg","extension.js","xsdingyuan.jpg","xsgaolan.jpg",
+		"xshuaxin.jpg","xshuojun.jpg","xsjianggan.jpg","xsliuzhang.jpg","xssp_yanwan.jpg","xssunhuan.jpg","xssunyi.jpg",
+		"xstianyu.jpg","xsweizhu.jpg",
+	   "xsjieyuan.mp3","xsshuizhen.mp3","xsshuizhen2_11.mp3","xsshuizhen2_12.mp3","xsshuizhen2_21.mp3","xsshuizhen2_22.mp3","xsshuizhen2_31.mp3","xsshuizhen2_32.mp3",
     ]
-}; */
+}; 
 
 extension["新国战"]={
     author:"苏婆玛丽奥",

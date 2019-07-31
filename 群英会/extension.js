@@ -1654,8 +1654,9 @@ skill:{
            "xwj_xqunying_weijian":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    player:"damageEnd",
+                    player:"damageBegin",
                 },
+				priority:30,
                 filter:function (event, player) {
         return player.isAlive();
     },
@@ -1798,6 +1799,7 @@ skill:{
                 },
                 direct:true,
                 forced:true,
+				priority:2,
                 filter:function (event,player){
         return player.isAlive();
     },

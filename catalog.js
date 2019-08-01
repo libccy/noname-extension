@@ -57,12 +57,12 @@ extension["作者包"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有弹窗BUG，新增武将 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-07-31",
+	intro:"<li>更新：修复已知的所有BUG <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-01",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.81,
+    version:1.82,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -382,8 +382,8 @@ extension["金庸群侠传"]={
 }; 
 
 extension["虚实"]={
-    author:"无名杀五周年策划群</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
-    intro:"<b>扩展说明</b>:</br>①本扩展包含武将14名，其中基础武将13名+SP武将1名</br>②为保证游戏正常运行，使用前请打开兼容模式</br>③部分技能与牌堆剩余牌数有关，如此类技能未正常发动，可以打开“牌堆补充”扩展来减少此类情况。",
+    author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
+    intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",
     size:"1.6MB",
     netdisk:"",
     version:1.0,

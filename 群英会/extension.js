@@ -1654,11 +1654,11 @@ skill:{
            "xwj_xqunying_weijian":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    player:"damageBegin",
+                    player:"damage",
                 },
-				priority:30,
+                priority:10,
                 filter:function (event, player) {
-        return player.isAlive();
+        return event.source&&event.source.isAlive()&&player.isAlive();
     },
                 check:function (event,player){
         return get.attitude(player,event.source)<=0;
@@ -1719,6 +1719,7 @@ skill:{
                 trigger:{
                     player:"phaseEnd",
                 },
+                direct:true,
                 filter:function (event,player){
         return player.countCards('e')>0;
     },
@@ -1727,7 +1728,7 @@ skill:{
                	player.chooseTarget(get.prompt('xwj_xqunying_kunxi'),[1,player.countCards('e')],function(card,player,target){
 						return target!=player;
 					},function(target){
-						return -get.attitude(_status.event.player,target);
+						return -get.attitude(player,target);
 					});                 
         'step 1'
         if(result.bool){
@@ -1744,14 +1745,11 @@ skill:{
 						player.line(target,'green');
 					//	event.current=target;						
 						player.useCard({name:'sha'},target,false);  
+						event.redo();
 					}
 					else{
 						event.finish();
-					}   
-					   'step 3'
-  			if(result.bool){				
-						event.goto(2);
-					}
+					}   		
     },
                 ai:{
                     order:7,
@@ -1799,7 +1797,7 @@ skill:{
                 },
                 direct:true,
                 forced:true,
-				priority:2,
+                priority:2,
                 filter:function (event,player){
         return player.isAlive();
     },
@@ -1941,11 +1939,11 @@ else{
  translate:{  
             "xwj_xqunying_frieza":"弗利萨",
             "xwj_xqunying_weijian":"围歼",
-            "xwj_xqunying_weijian_info":"当你受到伤害后，你可令从你开始场上所有角色依次视为对伤害来源使用一张【杀】",
+            "xwj_xqunying_weijian_info":"当你受到伤害后，你可令从你下家开始除你外的场上所有角色依次视为对伤害来源使用一张【杀】",
             "xwj_xqunying_xiaohan":"骁悍",
             "xwj_xqunying_xiaohan_info":"当你使用【杀】指定目标后，你可以展示目标角色一张手牌。若该牌与此【杀】颜色不相同，此【杀】不可被响应，否则其弃置之",
             "xwj_xqunying_jusha":"殂杀",
-            "xwj_xqunying_jusha_info":"锁定技，当你使用【杀】指定目标后，目标角色须展示其手牌，若其中有与此【杀】相同花色的手牌，此【杀】不可被响应",
+            "xwj_xqunying_jusha_info":"<font color=#f00>锁定技</font> 当你使用【杀】指定目标后，目标角色须展示其手牌，若其中有与此【杀】相同花色的手牌，此【杀】不可被响应",
             "xwj_xqunying_jiaohua":"狡猾",
             "xwj_xqunying_jiaohua_info":"当你每回合首次成为【杀】的目标后，你可以令此【杀】不计入使用次数，然后你可对该【杀】使用者使用一张【杀】",
             "xwj_xqunying_kunxi":"困袭",
@@ -1961,11 +1959,11 @@ else{
             "xqin":"秦",
             "xwj_xqunying_qinshiwang":"嬴政",
             "xwj_xqunying_shaohe":"扫合",
-            "xwj_xqunying_shaohe_info":"锁定技，当你对目标角色造成伤害时，若其势力与你不一致，则此伤害值+1",
+            "xwj_xqunying_shaohe_info":"<font color=#f00>锁定技</font> 当你对目标角色造成伤害时，若其势力与你不一致，则此伤害值+1",
             "xwj_xqunying_tongji":"统集",
-            "xwj_xqunying_tongji_info":"锁定技，结束阶段，你摸X张牌（X为【秦】势力的角色数）",
+            "xwj_xqunying_tongji_info":"<font color=#f00>锁定技</font> 结束阶段，你摸X张牌（X为【秦】势力的角色数）",
             "xwj_xqunying_wangxiao":"往崤",
-            "xwj_xqunying_wangxiao_info":"锁定技，当一名角色受到伤害时，若此伤害值大于1，则其势力改为【秦】",
+            "xwj_xqunying_wangxiao_info":"<font color=#f00>锁定技</font> 当一名角色受到伤害时，若此伤害值大于1，则其势力改为【秦】",
             "xwj_xqunying_baiqi":"白起",
         			"xwj_xqunying_shashen":"杀神",
             "xwj_xqunying_shashen_info":"当你使用【杀】或【决斗】造成伤害后，若你体力值高/等/低于受伤的角色，你可令其失去1点体力/翻面/弃置所有手牌",
@@ -2700,7 +2698,7 @@ skill:{
     },
                 filter:function (event,player){        
 
-        return event.player.isAlive()&&!event.player.countCards('e',{subtype:'equip1'});
+        return event.player.isAlive()&&!event.player.countCards('e',{subtype:'equip1'})&&!event.player.isDisabled(1);
     },
                 content:function (){    
                   
@@ -3939,12 +3937,12 @@ content:function (){
 	 "xwj_xwugeng_bailian":"白莲圣王",
             "xwj_xwugeng_xuelian":"血莲",
             "xwj_xwugeng_xuelian2":"莲",
-            "xwj_xwugeng_xuelian_info":"限定技，当你受到伤害后，若伤害来源未获得“血莲”标记，你令其获得九个“血莲”标记，其回合结束时，你摸等同其“血莲”标记个数的一半（向下取整）张牌，然后其须弃置一个“血莲”标记并随机执行一项：①受到一点伤害；②随机弃置两张牌。若其“血莲”标记不大于0或已阵亡，你重置本技能",
+            "xwj_xwugeng_xuelian_info":"<span class=yellowtext>限定技</span> 当你受到伤害后，若伤害来源未获得“血莲”标记，你令其获得九个“血莲”标记，其回合结束时，你摸等同其“血莲”标记个数的一半（向下取整）张牌，然后其须弃置一个“血莲”标记并随机执行一项：①受到一点伤害；②随机弃置两张牌。若其“血莲”标记不大于0或已阵亡，你重置本技能",
              "xwj_xwugeng_siling":"死灵",
              "xwj_xwugeng_siling_info":"当你受到伤害时，若场上有角色有“血莲”标记，你可取消此伤害，然后该角色的“血莲”标记数量减一",
 	         	 "xwj_xwugeng_fuxi":"伏羲",
             "xwj_xwugeng_cizhou":"赐咒",
-            "xwj_xwugeng_cizhou_info":"限定技，当一名角色脱离濒死状态时，你可令其获得技能【咒文】",
+            "xwj_xwugeng_cizhou_info":"<span class=yellowtext>限定技</span> 当一名角色脱离濒死状态时，你可令其获得技能【咒文】",
             "xwj_xwugeng_dongshi":"洞识",
             "xwj_xwugeng_dongshi_info":"当你使用【杀】／成为【杀】的目标时，你可以观看目标角色／来源的手牌，然后你可以获得其中一张奇数点数／偶数点数的手牌",
             "xwj_xwugeng_dongshi1":"洞识",
@@ -4492,10 +4490,10 @@ skill:{
               audio:"ext:群英会:2",
          				trigger:{player:'damage'},
 				filter:function(event,player){
-					return (event.source!=undefined);
+					return event.num>0&&event.source&&event.source.isAlive()&&player.hp>=0;
 				},
 				check:function(event,player){
-					return (get.attitude(player,event.source)<=0);
+					return get.attitude(player,event.source)<=0;
 				},
 				logTarget:'source',
 				content:function(){					
@@ -12660,7 +12658,7 @@ translate:{
         			"xwj_xhuoying_quanzhongya":"犬冢牙",
             "xwj_xhuoying_chiwan":"赤丸",
             "xwj_xhuoying_nishou":"拟兽",
-            "xwj_xhuoying_nishou_info":"限定技，当你受到伤害后，若你的体力值不大于2，你可以选择“召唤”随从忍兽“赤丸”（起始5体力上限3体力，起始手牌为4）替你作战，直到其死亡，才会切换你回到战场",
+            "xwj_xhuoying_nishou_info":"<span class=yellowtext>限定技</span> 当你受到伤害后，若你的体力值不大于2，你可以选择“召唤”随从忍兽“赤丸”（起始5体力上限3体力，起始手牌为4）替你作战，直到其死亡，才会切换你回到战场",
             "xwj_xhuoying_renquan":"忍犬",
             "xwj_xhuoying_renquan_info":"</font><font color=#f00>锁定技</font> 你的锦囊牌均视为【决斗】",
             "xwj_xhuoying_tongya":"通牙",
@@ -18224,5 +18222,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.81",
+    version:"1.82",
 },files:{"character":[],"card":[],"skill":[]}}})

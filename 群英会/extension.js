@@ -1798,6 +1798,7 @@ skill:{
                 direct:true,
                 forced:true,
                 priority:2,
+                derivation:['xwj_xqunying_xiaohan','xwj_xqunying_jiaohua','xwj_xqunying_weijian','xwj_xqunying_yiqu','xwj_xqunying_kunxi','xwj_xqunying_wanti'],
                 filter:function (event,player){
         return player.isAlive();
     },
@@ -12076,7 +12077,7 @@ else{
             },
             "xwj_xhuoying_xianyan":{
                 audio:"ext:群英会:2",
-                srlose:true,
+               // srlose:true,
                 trigger:{
                     player:"dieBegin",
                 },
@@ -12087,18 +12088,13 @@ else{
 player.$skill('助君成王','fire','red','avatar');
         player.chooseTarget(get.prompt('xwj_xhuoying_xianyan'),function(card,player,target){
             return player!=target;
-        }).ai=function(target){
-            var num=get.attitude(player,target);
-            if(num>0){
-                if(target.isDamaged()) return 2;
-                return 1;
-            }
-            return 0;
-        }
-        "step 1"               
-        var chat=['这只眼睛会帮你看清未来'].randomGet();
-            player.say(chat);
+        }).ai=function(target){          
+            return get.attitude(player,target);
+        };
+        "step 1"                      
         if(result.bool){
+         var chat=['琳就交给你照顾了','这只眼睛会帮你看清未来'].randomGet();
+            player.say(chat);
 			var cards=player.getCards('h',function(card){
                 return player.countCards('h');       
             });               
@@ -12107,13 +12103,16 @@ player.$skill('助君成王','fire','red','avatar');
             target.gain(cards,player);
 			player.logSkill('xwj_xhuoying_xianyan',target);
             var n=[1,2].randomGet();
-            if(n==1){target.addSkill("xwj_xhuoying_reshenwei");
+            if(n==1){
+            target.addSkill("xwj_xhuoying_reshenwei");
             target.recover();
                     };
-            if(n==2){target.addSkill("xwj_xhuoying_xishou");            
+            if(n==2){
+            target.addSkill("xwj_xhuoying_xishou");            
             target.recover();
                     };
         }
+        else event.finish();
     },
                 ai:{
                     expose:0.5,
@@ -18222,5 +18221,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.82",
+    version:"1.83",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -3570,7 +3570,7 @@ skill:{
                     source:"damageEnd",
                 },
                // mark:true,
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
                 init:function (player){
@@ -3919,7 +3919,7 @@ content:function (){
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
@@ -4398,7 +4398,7 @@ skill:{
                         priority:12,
                         forced:true,
                         group:["xwj_xhuoying_yehua1","xwj_xhuoying_yehua2"],
-                        filter:function (event){        
+                        filter:function (event,player){        
               return event.card&&event.card.nature=='thunder';          
            },
                         content:function (){  
@@ -4586,7 +4586,7 @@ skill:{
                 trigger:{
                     global:"damageAfter",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.nature=='fire'||event.nature=='thunder';
     },
                 content:function (){   
@@ -5662,7 +5662,7 @@ audio:"ext:群英会:2",
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
@@ -7272,7 +7272,7 @@ audio:"ext:群英会:2",
             return val<0||(val<=4&&card.number>=11);
         });
     },
-                filter:function (event){
+                filter:function (event,player){
         return event.type=='compare'&&!event.directresult;
     ;
     },
@@ -7369,7 +7369,7 @@ audio:"ext:群英会:2",
                 trigger:{
                     global:"damageBefore",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.nature=='fire';
     },
                 check:function (event,player){
@@ -7534,7 +7534,7 @@ audio:"ext:群英会:2",
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();
     },
                 forced:true,
@@ -8654,7 +8654,7 @@ if(skill!='xwj_jisha'){
                     source:"damageBegin",
                 },
                 priority:15,
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&(event.card.name=='juedou')&&event.notLink();
     },
                 forced:true,
@@ -9476,7 +9476,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
@@ -9980,7 +9980,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     player:"compare",
                     target:"compare",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return !event.iwhile;
     },
                 direct:true,
@@ -10132,7 +10132,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 trigger:{
                     global:"damageAfter",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.nature=='fire'||event.nature=='thunder';
     },
                // check:function (event,player){
@@ -10406,7 +10406,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     global:["compare","linkAfter"],
                 },
                 forced:true,
-                filter:function (event){
+                filter:function (event,player){
         return !event.iwhile;
     },
                 content:function (){   
@@ -13446,7 +13446,7 @@ else{
                 },
                 priority:10,
                 frequent:true,
-                filter:function (event){
+                filter:function (event,player){
         return event.num>0;
     },
                 content:function (){        
@@ -13504,7 +13504,7 @@ else{
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
@@ -16061,7 +16061,7 @@ return current.hp<=0;
                 trigger:{
                     source:"damageBegin",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return event.card&&event.card.name=='sha'&&get.color(event.card)=='black'&&event.notLink();
     },
                 forced:true,
@@ -16075,7 +16075,7 @@ return current.hp<=0;
                         },
                         direct:true,
                         priority:11,
-                        filter:function (event){
+                        filter:function (event,player){
         if(event.player.hp<0) return false;
         return (event.card.name=='sha'&&get.color(event.card)=='red')
     },
@@ -16099,7 +16099,7 @@ return current.hp<=0;
                 },
                 direct:true,
                 priority:11,
-                filter:function (event){      
+                filter:function (event,player){      
         return event.card.name=='sha'&&get.color(event.card)=='black';
     },
                 content:function (){        
@@ -17169,7 +17169,7 @@ var num=game.countPlayer(function(current){
                 trigger:{
                     player:"damage",
                 },
-                filter:function (event){
+                filter:function (event,player){
         return player.isAlive();
     },
                 forced:true,
@@ -17946,7 +17946,7 @@ audio:"ext:群英会:1",
     },
     forced:true,
     priority:55,
-    filter:function (event){
+    filter:function (event,player){
         if(event._notrigger.contains(event.player)) return false;
         return event.card&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('he')>0;
     },
@@ -18221,5 +18221,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.83",
+    version:"1.84",
 },files:{"character":[],"card":[],"skill":[]}}})

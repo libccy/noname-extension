@@ -855,7 +855,39 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 				this.maxHp=maxhp;
 				this.update();
 			} 
-				
+	// ---------------------------------------吉连冥想------------------------------------------//			
+	lib.skill._jilian_out={
+      trigger:{global:'dieBegin'},
+      forced:true,
+      priority:Infinity,
+      filter:function(event,player){
+      for(var x=0;x<game.players.length;x++){
+      var playerx=game.players[x];
+      if(playerx.classList.contains('out')) return true;
+      return false;
+      }   
+      },
+      content:function (){    
+      for(var x=0;x<game.players.length;x++){
+      var playerx=game.players[x];
+      if(playerx.classList.contains('out')&&playerx.hasSkill('xwj_xqunying_mingxiang')){
+          //playerx.in();
+         playerx.classList.remove('out');  
+         playerx.gainMaxHp();
+         playerx.update();                                               
+         ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';                      
+         game.delay();    
+       		game.countPlayer(function(current){
+						if(current!=playerx){
+							playerx.line(current,'green');
+							current.loseHp();
+						}
+					});                                             
+         playerx.insertPhase();     
+      }
+      }   
+    },
+  }			
 	// ---------------------------------------无限月读------------------------------------------//			
 		if(config.wuxianyuedu){		
 		     lib.skill._jieshihuanhun={
@@ -1542,6 +1574,7 @@ return str1;
 					 "xwj_xqunying_baiqi":["male","xqin",4,["xwj_xqunying_shashen"],[]],
        "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
        "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
+	    "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],[]],
                 
 },
 characterIntro:{
@@ -1553,7 +1586,23 @@ characterTitle:{
 								},
 								
 skill:{
-     
+     "xwj_xqunying_mingxiang":{
+                audio:"ext:群英会:1",
+                trigger:{
+                    global:"gameDrawAfter",
+                    player:"enterGame",
+                },
+                forced:true,
+                unique:true,           
+                content:function (){        
+    var chat=['有威胁的对手都被我清除了，剩下的要靠你们了！','我要进入冥想了，不要来打扰我！'].randomGet();
+            player.say(chat);  
+          player.classList.add('out');                          
+    },
+                ai:{
+                    threaten:0.8,
+                },
+            },
           "xwj_xqunying_jusha":{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -1938,6 +1987,9 @@ else{
 },
 
  translate:{  
+            "xwj_xqunying_jilian":"吉连",
+            "xwj_xqunying_mingxiang":"冥想",
+            "xwj_xqunying_mingxiang_info":"<font color=#f00>锁定技</font> 游戏开始或你进入游戏时，你进入冥想状态：你没有任何阶段，不能成为卡牌、技能的目标且不占据位置。当场上有角色阵亡时，你增加一点体力上限返回战场参战：令场上所有其他角色失去一点体力且当前角色回合结束后，你额外执行一个回合",
             "xwj_xqunying_frieza":"弗利萨",
             "xwj_xqunying_weijian":"围歼",
             "xwj_xqunying_weijian_info":"当你受到伤害后，你可令从你下家开始除你外的场上所有角色依次视为对伤害来源使用一张【杀】",

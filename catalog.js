@@ -17,52 +17,16 @@ extension["官渡之战"]={
 };
 
 
-extension["作者包"]={
-    author:"神座sagiri",
-    intro:"更新：修复新版的BUG。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。希望大家玩的愉快",
-    size:"95MB",
-    netdisk:"",
-    version:2.6,
-    files:[
-        "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
-	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
-	    "zuozhe竹鱼.jpg","轮回中的消逝者.jpg","轮回中的消逝者1.jpg","轮回中的消逝者2.jpg","纱雾1.jpg","纱雾2.jpg","纱雾3.jpg","时慕的矿山.jpg","随机作者.jpg",
-	    "zuozhe紫妈.jpg","zuozheMC.jpg", "哎别管我是谁.jpg","涂藤.jpg",
-	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3","zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
-	    "zuozheMC11.mp3","zuozheMC12.mp3","zuozheMC13.mp3",
-	    "zuozhe冥葬天.jpg","何子1.jpg","何子2.jpg","何子3.jpg","二维码.gif","特效-孤城1.gif","特效-何子1.gif","特效-何子2.gif",
-	    "特效-纱雾1.gif","特效-神座1.gif", "zzbshop.gif","特效-fux22.gif","特效-剑牙雷少1.gif","作者包.gif",    
-	     "特效-fux21.gif","特效-极光1.gif", "特效-极光2.gif","特效-极光3.gif", "特效-冥葬天1.gif","特效-冥葬天2.gif", "特效-冥葬天3.gif","特效-叛徒1.gif",
-	     "特效-叛徒2.gif","特效-纱雾2.gif", "特效-神座2.gif","特效-时慕1.gif", "特效-时慕2.gif","特效-随机作者1.gif", "特效-小苏1.gif","特效-小苏2.gif",
-	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif", "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",
-	    "神宠-乐羊羊.gif","神宠-雷吉斯.gif", "神宠-小飞猪.gif","神宠-小福牛.gif","神宠-小灵猴.gif","作者币支付服务协议.txt",
-	    "lscale_0.png","lscale_1.png","lscale_2.png","lscale_3.png","lscale_4.png","lscale_5.png","lscale_6.png","lscale_7.png","lscale_8.png",
-	    "lscale_9.png","lscale_10.png","lscale_11.png","lscale_12.png","lscale_13.png",
-	     "rscale_0.png","rscale_1.png","rscale_2.png","rscale_3.png","rscale_4.png","rscale_5.png","rscale_6.png","rscale_7.png","rscale_8.png",
-	    "rscale_9.png","rscale_10.png","rscale_11.png","rscale_12.png","rscale_13.png",
-	    "zzbabout.jpg","皮肤音效-纱雾1.mp3","皮肤音效-纱雾2.mp3","皮肤音效-纱雾3.mp3","皮肤音效-神座1.mp3","皮肤音效-何子1.mp3",
-	    "zuozheHonest.jpg","zuozhe如果.jpg","zuozhe老墨.jpg","zzb_Honest.png",
-		"扩展添加皮肤教程_纱雾.txt","扩展联机教程_极光.txt","技能编写教程_极光.txt","技能编写教程_纱雾.txt","特效-fux23.gif",
-		"特效-介绍区特效1.gif","特效-介绍区特效2.gif","特效-介绍区特效3.gif","特效-作者币抽奖.gif","特效-修改密码.gif","特效-功能区特效1.gif",
-		"特效-如果1.gif","特效-如果2.gif","特效-平衡强度区特效1.gif","特效-抽奖1.gif","特效-抽奖2.gif","特效-抽奖3.gif",
-		"特效-抽牌1.gif","特效-抽牌2.gif","特效-抽牌3.gif","特效-抽牌4.gif","特效-抽牌5.gif","特效-更新.gif","特效-模式区特效1.gif",
-		"特效-欧尼斯特1.gif","特效-欧尼斯特2.gif","特效-欧尼斯特3.gif","特效-欧尼斯特4.gif","特效-渣城1.gif","特效-渣城2.gif",
-		"特效-牙哥1.gif","特效-牙哥2.gif","特效-礼品兑换.gif","特效-礼品兑换1.gif","特效-神座3.gif","特效-签到.gif",
-		"特效-签到1.gif","特效-签到2.gif","特效-签到3.gif","特效-签到4.gif","特效-签到5.gif","特效-紫妈1.gif","特效-紫妈2.gif",
-		"特效-紫妈3.gif","特效-老墨1.gif","特效-老墨2.gif","特效-老墨3.gif","特效-老墨4.gif","特效-老墨5.gif","特效-重置作者币.gif",
-		"特效包.jpg","进阶教程1.txt","进阶教程2.txt","进阶教程3.txt"
-	    
-    ]
-}; 
+
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>新增武将【吉连】（待完善） <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-03",
+	intro:"<li>更新：修复已知的所有BUG<br>新增武将【吉连】（待完善） <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-08",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.84,
+    version:1.85,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -380,6 +344,44 @@ extension["金庸群侠传"]={
 		"yttl_zhangquan2.mp3","yttl_zhangsanfeng.jpg","yttl_zhangsanfeng.mp3","yttl_zhangwuji.jpg",
 		"yttl_zhangwuji.mp3","yttl_zhouzhiruo.jpg","yttl_zhouzhiruo.mp3","yttl_zhuyuanzhang.jpg",
 		"yttl_zhuyuanzhang.mp3"
+    ]
+}; 
+
+extension["作者包"]={
+    author:"神座sagiri",
+    intro:"更新：修复新版的BUG。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。希望大家玩的愉快",
+    size:"95MB",
+    netdisk:"",
+    version:2.6,
+    files:[
+        "extension.js","author.jpg","zuozhefux.jpg","zuozhe孤城.jpg","zuozhe何子.jpg","zuozhe极光.jpg","zuozhe叛徒.jpg","zuozhe纱雾.jpg","霜华一笙.jpg",
+	    "zuozhe神座.jpg","zuozhe时慕.jpg","zuozhe小苏.jpg","小苏1.jpg","小苏2.jpg","zuozhe学妹.jpg","zuozhe雪碧.jpg","zuozhe牙哥.jpg","随机武将.jpg","隐匿模式.jpg",
+	    "zuozhe竹鱼.jpg","轮回中的消逝者.jpg","轮回中的消逝者1.jpg","轮回中的消逝者2.jpg","纱雾1.jpg","纱雾2.jpg","纱雾3.jpg","时慕的矿山.jpg","随机作者.jpg",
+	    "zuozhe紫妈.jpg","zuozheMC.jpg", "哎别管我是谁.jpg","涂藤.jpg",
+	    "zuozhe纱雾1.mp3","zuozhe纱雾2.mp3","zuozhe小苏1.mp3","zuozhe小苏2.mp3","zuozhe小苏21.mp3","zuozhe小苏22.mp3","zuozhe牙哥11.mp3","zuozhe牙哥12.mp3",
+	    "zuozheMC11.mp3","zuozheMC12.mp3","zuozheMC13.mp3",
+	    "zuozhe冥葬天.jpg","何子1.jpg","何子2.jpg","何子3.jpg","二维码.gif","特效-孤城1.gif","特效-何子1.gif","特效-何子2.gif",
+	    "特效-纱雾1.gif","特效-神座1.gif", "zzbshop.gif","特效-fux22.gif","特效-剑牙雷少1.gif","作者包.gif",    
+	     "特效-fux21.gif","特效-极光1.gif", "特效-极光2.gif","特效-极光3.gif", "特效-冥葬天1.gif","特效-冥葬天2.gif", "特效-冥葬天3.gif","特效-叛徒1.gif",
+	     "特效-叛徒2.gif","特效-纱雾2.gif", "特效-神座2.gif","特效-时慕1.gif", "特效-时慕2.gif","特效-随机作者1.gif", "特效-小苏1.gif","特效-小苏2.gif",
+	     "特效-学妹1.gif","特效-学妹2.gif", "特效-竹鱼1.gif","特效-竹鱼2.gif", "特效-何子3.gif","特效-通用1.gif", "特效-通用2.gif","特效-隐藏-孤城1.gif",
+	    "神宠-乐羊羊.gif","神宠-雷吉斯.gif", "神宠-小飞猪.gif","神宠-小福牛.gif","神宠-小灵猴.gif","作者币支付服务协议.txt",
+	    "lscale_0.png","lscale_1.png","lscale_2.png","lscale_3.png","lscale_4.png","lscale_5.png","lscale_6.png","lscale_7.png","lscale_8.png",
+	    "lscale_9.png","lscale_10.png","lscale_11.png","lscale_12.png","lscale_13.png",
+	     "rscale_0.png","rscale_1.png","rscale_2.png","rscale_3.png","rscale_4.png","rscale_5.png","rscale_6.png","rscale_7.png","rscale_8.png",
+	    "rscale_9.png","rscale_10.png","rscale_11.png","rscale_12.png","rscale_13.png",
+	    "zzbabout.jpg","皮肤音效-纱雾1.mp3","皮肤音效-纱雾2.mp3","皮肤音效-纱雾3.mp3","皮肤音效-神座1.mp3","皮肤音效-何子1.mp3",
+	    "zuozheHonest.jpg","zuozhe如果.jpg","zuozhe老墨.jpg","zzb_Honest.png",
+		"扩展添加皮肤教程_纱雾.txt","扩展联机教程_极光.txt","技能编写教程_极光.txt","技能编写教程_纱雾.txt","特效-fux23.gif",
+		"特效-介绍区特效1.gif","特效-介绍区特效2.gif","特效-介绍区特效3.gif","特效-作者币抽奖.gif","特效-修改密码.gif","特效-功能区特效1.gif",
+		"特效-如果1.gif","特效-如果2.gif","特效-平衡强度区特效1.gif","特效-抽奖1.gif","特效-抽奖2.gif","特效-抽奖3.gif",
+		"特效-抽牌1.gif","特效-抽牌2.gif","特效-抽牌3.gif","特效-抽牌4.gif","特效-抽牌5.gif","特效-更新.gif","特效-模式区特效1.gif",
+		"特效-欧尼斯特1.gif","特效-欧尼斯特2.gif","特效-欧尼斯特3.gif","特效-欧尼斯特4.gif","特效-渣城1.gif","特效-渣城2.gif",
+		"特效-牙哥1.gif","特效-牙哥2.gif","特效-礼品兑换.gif","特效-礼品兑换1.gif","特效-神座3.gif","特效-签到.gif",
+		"特效-签到1.gif","特效-签到2.gif","特效-签到3.gif","特效-签到4.gif","特效-签到5.gif","特效-紫妈1.gif","特效-紫妈2.gif",
+		"特效-紫妈3.gif","特效-老墨1.gif","特效-老墨2.gif","特效-老墨3.gif","特效-老墨4.gif","特效-老墨5.gif","特效-重置作者币.gif",
+		"特效包.jpg","进阶教程1.txt","进阶教程2.txt","进阶教程3.txt"
+	    
     ]
 }; 
 

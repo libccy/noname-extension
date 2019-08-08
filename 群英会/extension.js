@@ -8332,6 +8332,7 @@ if(skill!='xwj_jisha'){
                               trigger:{
                     player:"phaseEnd",
                 },
+                direct:true,
                 audio:"ext:群英会:2",
                 filter:function (event,player){
         return player.countCards('e')>0;
@@ -8350,18 +8351,19 @@ if(skill!='xwj_jisha'){
     },*/
                 content:function (){   
                 'step 0'
-           player.chooseToDiscard(1,true,'e','请弃置一张装备区的牌').ai=function(card){
+         /*  player.chooseToDiscard(1,true,'e','请弃置一张装备区的牌').ai=function(card){
                 return 7.6-get.equipValue(card);
-            };   
-            //以下写法，ai用会弹窗：
-  /*   player.chooseToDiscard(player,1,true,'e').set('filterButton',function(button){              
-                return player.getEquip(button.link);
-            }).set('ai',function(button){
-                return 7-get.equipValue(card);
-            });                    
-     */
+            };   */
+          //另一种写法：
+      player.chooseCardButton('惑梦',player.getCards('e')).ai=function(button){
+                return 7.5-get.value(button.link);
+            }
+     
 							'step 1'					
 							if(result.bool){
+							player.logSkill('xwj_xhuoying_huomeng');
+							event.card=result.links[[0]];
+							player.discard(event.card);
         player.addTempSkill('xwj_xhuoying_huomeng2',{player:'phaseBegin'});
         player.markSkill('xwj_xhuoying_huomeng2',{player:'phaseBegin'});
         var chat=['你们慢慢玩，我先去睡一会儿','接下来，就用眼睛来场真正的较量吧'].randomGet();
@@ -9606,15 +9608,15 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 trigger:{
                     player:"phaseUseBegin",
                 },
-                frequent:true,
+             //   frequent:true,
                 direct:true,
                 filter:function (event,player){
-        return !_status.auto&&event.player==game.me&&!event.player.isMad()&&!_status.connectMode;
+        return player.isAlive();
     },
                 content:function (){       
                 'step 0'
                   player.chooseBool('是否发动【说唱】？').set('ai',function(){               
-                        if(player.isAlive()) return true;                             
+                        if(player.countCards('h')) return true;                             
           });
        'step 1'
         if(result.bool){
@@ -9629,10 +9631,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
     },
       ai:{    
        threaten:0.8,
-                    order:9,
-                    result:{
-                        player:1,            
-                    },     
+                    order:9,                
 					},
                 subSkill:{
                     use:{
@@ -18273,5 +18272,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.84",
+    version:"1.85",
 },files:{"character":[],"card":[],"skill":[]}}})

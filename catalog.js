@@ -21,7 +21,7 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>改进【惑梦】弃装备操作<br>改善AI奇拉比不发动【说唱】 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-08",
+	intro:"<li>更新：修复已知的所有BUG<br>补充部分配音 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-08",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
@@ -177,7 +177,8 @@ extension["群英会"]={
 		"xwj_xwugeng_pili2.mp3","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_shixing.jpg",
 		"xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3","xwj_xwugeng_tian.jpg","xwj_xwugeng_tiankui.jpg",
    "xwj_xwugeng_wugeng.jpg","xwj_xwugeng_ziyu.jpg","xwj_xwugeng_baicai.jpg","xwj_xwugeng_bailian.jpg","xwj_xwugeng_fuxi.jpg",
- 
+ "xwj_xwugeng_xuelian1.mp3","xwj_xwugeng_xuelian11.mp3","xwj_xwugeng_xuelian12.mp3","xwj_xwugeng_qinhe2.mp3","xwj_xwugeng_anyu1.mp3","xwj_xwugeng_siling1.mp3",
+"xwj_xwugeng_siling2.mp3",
  "xwj_xwugeng_qijian1.mp3","xwj_xwugeng_qijian2.mp3","xwj_xwugeng_qinhe1.mp3","xwj_xwugeng_qiyi1.mp3","xwj_xwugeng_qiyi2.mp3","xwj_xwugeng_tianqi2.mp3",
  "xwj_xwugeng_tianqi1.mp3","xwj_xwugeng_zhutian1.mp3","xwj_xwugeng_zhutian2.mp3",
  

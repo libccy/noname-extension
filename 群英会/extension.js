@@ -2069,7 +2069,7 @@ characterIntro:{
 								
 skill:{		
 "xwj_xwugeng_siling":{
-                audio:"ext:群英会:1",
+                audio:"ext:群英会:2",
                 trigger:{
                     player:"damageBegin",
                 },                                  
@@ -2089,8 +2089,9 @@ skill:{
                   target.storage.xwj_xwugeng_xuelian2--;
                   target.update();
                   if(target.storage.xwj_xwugeng_xuelian2<=0){
-                  player.line(target,'green');                     
-                  player.addSkill('xwj_xwugeng_xuelian');
+                  player.line(target,'green');    
+                  player.restoreSkill('xwj_xwugeng_xuelian');                               
+                  //player.addSkill('xwj_xwugeng_xuelian');
                   target.unmarkSkill('xwj_xwugeng_xuelian2');
                   target.update();
                   }
@@ -2101,7 +2102,7 @@ skill:{
                 },
             },
  "xwj_xwugeng_xuelian1":{
-                audio:"ext:群英会:1",
+                audio:"ext:群英会:2",
                 trigger:{
                     player:"phaseEnd",
                 },      
@@ -2118,8 +2119,9 @@ skill:{
                   target.draw(Math.floor(player.storage.xwj_xwugeng_xuelian2/2));
                   player.storage.xwj_xwugeng_xuelian2--;
                   if(player.storage.xwj_xwugeng_xuelian2<=0){
-                  player.line(target,'green');                     
-                  target.addSkill('xwj_xwugeng_xuelian');
+                  player.line(target,'green');     
+                  target.restoreSkill('xwj_xwugeng_xuelian');               
+                  //target.addSkill('xwj_xwugeng_xuelian');
                   player.unmarkSkill('xwj_xwugeng_xuelian2');
                   player.update();
                   }            
@@ -2141,8 +2143,9 @@ skill:{
         game.delayx();
         'step 1'
         var target=player.storage.xwj_xwugeng_xuelian3;      
-        player.line(target,'green');                     
-        target.addSkill('xwj_xwugeng_xuelian');
+        player.line(target,'green');      
+        target.restoreSkill('xwj_xwugeng_xuelian');                  
+      //  target.addSkill('xwj_xwugeng_xuelian');
         target.update();
     },
                 forced:true,
@@ -2183,7 +2186,7 @@ skill:{
             },
 									
             "xwj_xwugeng_xuelian":{
-                audio:"ext:群英会:2",
+                audio:"ext:群英会:1",
                 trigger:{
                     player:"damageEnd",
                 },  
@@ -2204,7 +2207,8 @@ skill:{
              trigger.source.storage.xwj_xwugeng_xuelian2+=9;
              trigger.source.update();
              //player.addSkill('xwj_xwugeng_xuelian4'); 
-             player.removeSkill('xwj_xwugeng_xuelian');
+             player.awakenSkill('xwj_xwugeng_xuelian');
+             //player.removeSkill('xwj_xwugeng_xuelian');
     },
                 ai:{
                     basic:{
@@ -2271,7 +2275,7 @@ skill:{
                 },
             },
             "xwj_xwugeng_dongshi2":{
-                audio:"ext:群英会:2",
+                audio:"ext:群英会:1",
                 trigger:{
                     target:"shaBegin",
                 },
@@ -2378,7 +2382,7 @@ skill:{
     },
             },
             "xwj_xwugeng_qinhe":{
-                audio:"ext:群英会:1",
+                audio:"ext:群英会:2",
                 trigger:{
                     global:"phaseUseBegin",
                 },
@@ -2513,7 +2517,7 @@ skill:{
     },
             },
             "xwj_xwugeng_anyu":{
-                audio:"ext:群英会:2",               
+                audio:"ext:群英会:1",               
                 direct:true,                
                 trigger:{
                     player:"damageBegin",
@@ -15954,8 +15958,8 @@ return current.hp<=0;
          trigger.player.storage.xwj_xsanguo_chuanshu2=player; 
          trigger.player.addSkill('xwj_xsanguo_chuanshu2');              
          game.broadcastAll()+trigger.player.node.avatar.setBackgroundImage('extension/群英会/xwj_xsanguo_zhangjiao.jpg');        
-         player.removeSkill('xwj_xsanguo_chuanshu');         
-         //player.awakenSkill('xwj_xsanguo_chuanshu');             
+        // player.removeSkill('xwj_xsanguo_chuanshu');         
+         player.awakenSkill('xwj_xsanguo_chuanshu');             
     },
             },
             "xwj_xsanguo_xiandao1":{
@@ -16055,8 +16059,9 @@ return current.hp<=0;
         game.delayx();
         'step 1'
         var target=player.storage.xwj_xsanguo_chuanshu2;      
-        player.line(target,'green');                     
-        target.addSkill('xwj_xsanguo_chuanshu');
+        player.line(target,'green');   
+        target.restoreSkill('xwj_xsanguo_chuanshu');                  
+      //  target.addSkill('xwj_xsanguo_chuanshu');
         target.update();
     },
                 forced:true,

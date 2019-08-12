@@ -16098,7 +16098,7 @@ return current.hp<=0;
             game.delay();
         }
         "step 3"
-       player.chooseToDiscard(2,'he','请弃置两张牌').ai=function(card){
+       player.chooseToDiscard(2,'he','请弃置两张牌',true).ai=function(card){
                 return 7-get.value(card);
             };
     },

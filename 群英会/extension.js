@@ -2076,7 +2076,7 @@ skill:{
                 priority:8,
                  filter:function (event,player){
                 return game.findPlayer(function(current){
-        return current.storage.xwj_xwugeng_xuelian2>0;
+        return current.hasSkill('xwj_xwugeng_xuelian2')&&current.storage.xwj_xwugeng_xuelian2>0;
         });
      },                             
                 content:function (){   
@@ -2092,6 +2092,7 @@ skill:{
                   player.line(target,'green');    
                   player.restoreSkill('xwj_xwugeng_xuelian');                               
                   //player.addSkill('xwj_xwugeng_xuelian');
+                  target.removeSkill('xwj_xwugeng_xuelian2');        
                   target.unmarkSkill('xwj_xwugeng_xuelian2');
                   target.update();
                   }
@@ -2122,6 +2123,7 @@ skill:{
                   player.line(target,'green');     
                   target.restoreSkill('xwj_xwugeng_xuelian');               
                   //target.addSkill('xwj_xwugeng_xuelian');
+                  player.removeSkill('xwj_xwugeng_xuelian2');
                   player.unmarkSkill('xwj_xwugeng_xuelian2');
                   player.update();
                   }            
@@ -2143,7 +2145,8 @@ skill:{
         game.delayx();
         'step 1'
         var target=player.storage.xwj_xwugeng_xuelian3;      
-        player.line(target,'green');      
+        player.line(target,'green');   
+        player.removeSkill('xwj_xwugeng_xuelian2');   
         target.restoreSkill('xwj_xwugeng_xuelian');                  
       //  target.addSkill('xwj_xwugeng_xuelian');
         target.update();
@@ -2167,7 +2170,7 @@ skill:{
                     content:"剩下#个血莲标记",
                 },    
                    filter:function (event,player){
-             return player.storage.xwj_xwugeng_xuelian2>0;
+             return player.hasSkill('xwj_xwugeng_xuelian2')&&player.storage.xwj_xwugeng_xuelian2>0;
     },   
                 content:function (){         
 			player.logSkill('xwj_xwugeng_xuelian2');

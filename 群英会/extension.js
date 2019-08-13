@@ -13717,7 +13717,7 @@ if(lib.device||lib.node){
  "xwj_xsanguo_wangyun":["male","qun",4,["xwj_xsanguo_huanji","xwj_xsanguo_jugong","xwj_xsanguo_chengmou"],[]],
  "xwj_xsanguo_menghuo":["male","qun",1,["xwj_xsanguo_xiongqi","xwj_xsanguo_xiangfu","xwj_xsanguo_manwang"],[]],
  "xwj_xsanguo_nanhua":["male","qun",3,["xwj_xsanguo_xiandao","xwj_xsanguo_xiuzheng","xwj_xsanguo_chuanshu"],[]],
- "xwj_xsanguo_oldyuji":['male','qun',3,['xwj_xsanguo_oldguhuo'],[]],
+ //"xwj_xsanguo_oldyuji":['male','qun',3,['xwj_xsanguo_oldguhuo'],[]],
 // "xwj_xsanguo_xinyuji":['male','qun',3,['xwj_xsanguo_guhuo'],[]], 
  //"xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
 // "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
@@ -13727,8 +13727,8 @@ if(lib.device||lib.node){
               
         },
 characterIntro:{
-	     "xwj_xsanguo_xinyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
-	     "xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
+	     //"xwj_xsanguo_xinyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
+	     //"xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
 					"xwj_xsanguo_yujin":"代码来源于贴吧和QQ群的大佬之手，此扩展代为收集。",
 					"xwj_xsanguo_menghuo":"七擒七纵之孟获。",
        "xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",

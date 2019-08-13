@@ -21,12 +21,12 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>补充部分配音 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-12",
+	intro:"<li>更新：修复已知的所有BUG<br>删除旧于吉，官方已更新 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-13",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.86,
+    version:1.87,
     files:
 
 ["extension.js","wms_tian_background.jpg","wms_backgroundmusic.mp3","wms_background.jpg","wms_wxyd_background.jpg",
@@ -156,7 +156,7 @@ extension["群英会"]={
  "xwj_xqinshi_mozi.jpg","xwj_xqinshi_feigong1.mp3","xwj_xqinshi_feigong2.mp3","xwj_xqinshi_jianai1.mp3","xwj_xqinshi_jianai2.mp3",
  "xwj_xqinshi_jingxie.mp3","xwj_xu_xiaohuan.jpg","xwj_xu_SPxiaosu.jpg",
 		"xwj_xqinshi_zongjian3.mp3","xwj_xsanguo_jiangwei.jpg",
-		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_wangyun.jpg",
+		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_wangyun.jpg",
 		"xwj_xsanguo_xiangfu1.mp3",
 		
  "xwj_xsanguo_simahui.jpg","xwj_xsanguo_jiehuo1.mp3","xwj_xsanguo_shien1.mp3","xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3",

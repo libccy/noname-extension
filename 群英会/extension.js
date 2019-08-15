@@ -2197,7 +2197,7 @@ skill:{
         return get.attitude(player,event.source)<=0;
     },        
                 filter:function (event,player){
-             return !event.source.hasSkill('xwj_xwugeng_xuelian2');
+             return event.source&&!event.source.hasSkill('xwj_xwugeng_xuelian2');
     },
                 content:function (){ 
              player.$fullscreenpop('九空血莲池','water');
@@ -2428,6 +2428,7 @@ skill:{
         return get.suit(event.card)==player.storage.xwj_xwugeng_qinhe;
     },
                 content:function (){
+        game.playXu(['xwj_xwugeng_qinhe1','xwj_xwugeng_qinhe2'].randomGet());                      
         trigger.player.draw();
         player.draw();
     },
@@ -2444,6 +2445,7 @@ skill:{
                 popup:false,
                 content:function (){
         delete player.storage.xwj_xwugeng_qinhe;
+        player.storage.xwj_xwugeng_qinhe=false;
         trigger.player.unmarkSkill('xwj_xwugeng_qinhe');
     },             
             },
@@ -9660,6 +9662,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                         content:function (){
                 var chat=['今天写出很棒的韵诗~那就陪你玩玩吧！','八嘎亚路，阔摩呀路～oh~yeah~come on~'].randomGet();
             player.say(chat); 
+            game.playXu(['xwj_xhuoying_shuochang1','xwj_xhuoying_shuochang2'].randomGet());  
                 player.draw();     
             },
                         sub:true,
@@ -13717,7 +13720,7 @@ if(lib.device||lib.node){
  "xwj_xsanguo_wangyun":["male","qun",4,["xwj_xsanguo_huanji","xwj_xsanguo_jugong","xwj_xsanguo_chengmou"],[]],
  "xwj_xsanguo_menghuo":["male","qun",1,["xwj_xsanguo_xiongqi","xwj_xsanguo_xiangfu","xwj_xsanguo_manwang"],[]],
  "xwj_xsanguo_nanhua":["male","qun",3,["xwj_xsanguo_xiandao","xwj_xsanguo_xiuzheng","xwj_xsanguo_chuanshu"],[]],
- //"xwj_xsanguo_oldyuji":['male','qun',3,['xwj_xsanguo_oldguhuo'],[]],
+// "xwj_xsanguo_oldyuji":['male','qun',3,['xwj_xsanguo_oldguhuo'],[]],
 // "xwj_xsanguo_xinyuji":['male','qun',3,['xwj_xsanguo_guhuo'],[]], 
  //"xwj_xsanguo_baosanniang":["female","shu",3,["xwj_xsanguo_wuniang","xwj_xsanguo_xushen"],[]],     
 // "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
@@ -13727,8 +13730,8 @@ if(lib.device||lib.node){
               
         },
 characterIntro:{
-	     //"xwj_xsanguo_xinyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
-	     //"xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
+	     "xwj_xsanguo_xinyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
+	     "xwj_xsanguo_oldyuji":"自号太平道人，琅琊人，在吴郡、会稽一带为百姓治病，甚得人心。孙策怒之，以惑人心为由斩之，后策常受吉咒而亡。",
 					"xwj_xsanguo_yujin":"代码来源于贴吧和QQ群的大佬之手，此扩展代为收集。",
 					"xwj_xsanguo_menghuo":"七擒七纵之孟获。",
        "xwj_xsanguo_zhangfei":"糅合太阳神三国杀智包的张飞。",
@@ -16705,7 +16708,7 @@ event.target.draw(event.num1);
                 audio:"ext:群英会:1",
                 unique:true,
                 trigger:{
-                    player:"phaseBegin",
+                    player:"xwj_xsanguo_xiongqiEnd",
                 },
                 filter:function (event,player){
         return player.maxHp>=7;
@@ -16831,7 +16834,7 @@ translate:{
             "xwj_xsanguo_manwang":"蛮王",
             "xwj_xsanguo_manwang_info":"<font color=#f00>锁定技</font> 你的手牌上限为3，你当主公时不增加体力上限。",
             "xwj_xsanguo_xiangfu":"降服",
-            "xwj_xsanguo_xiangfu_info":"<span class=greentext>觉醒技</span> 回合开始阶段，若你的体力上限不少于7，你立即死亡。",
+            "xwj_xsanguo_xiangfu_info":"<span class=greentext>觉醒技</span> 当你的体力上限不少于7，你立即死亡。",
             "xwj_xsanguo_xiongqi":"雄起",
             "xwj_xsanguo_xiongqi_info":"<span class=yellowtext>非限定技</span>当你处于濒死状态时，你可以丢弃你判定区里的牌，并重置你的武将牌，然后摸1张牌且体力回至体力上限，然后加一体力上限。",    
             "xwj_xsanguo_wangyun":"王允",
@@ -18183,9 +18186,9 @@ trigger:{
 lib.config.all.cards.push('xwj_xus_equip');
 if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus_equip');
 };
-},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的部分角色，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或扩展交流②群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
+},help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的部分角色，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或扩展交流②群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死、弹窗警告的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
-				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高。有技能特效，Ai智商较高，还可联机！","4":"<li>游戏时最好打开兼容模式","5":"<li>更多介绍详看：其它→帮助"}
+				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高。有技能特效，Ai智商较高，还可联机！","4":"<li>本扩展能在关闭兼容模式情况下流畅运行","5":"<li>更多介绍详看：其它→帮助"}
 					},				
 					"xjisha":{
             name:'击杀特效',
@@ -18245,8 +18248,9 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 			game.playBackgroundMusic();
 			break;
 			case '2':
-    ui.backgroundMusic.pause();
-    game.playXu('wms_backgroundmusic'); 
+    ui.backgroundMusic.pause();    
+    ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';                      
+    // game.playXu('wms_backgroundmusic'); 
 			break;	
 			}
 			}
@@ -18280,5 +18284,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.87",
+    version:"1.88",
 },files:{"character":[],"card":[],"skill":[]}}})

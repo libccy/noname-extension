@@ -4552,12 +4552,12 @@ skill:{
               audio:"ext:群英会:2",
          				trigger:{player:'damage'},
 				filter:function(event,player){
-					return event.num>0&&event.source&&event.source.isAlive()&&player.hp>=0;
+					return event.num>0&&event.source&&event.source.isAlive();
 				},
 				check:function(event,player){
 					return get.attitude(player,event.source)<=0;
 				},
-				logTarget:'source',
+			//	logTarget:'source',
 				content:function(){					
 				   var chat=['敢惹我？让你尝尝我的厉害','我长红色的头发又关你什么事？'].randomGet();
             player.say(chat); 
@@ -4581,7 +4581,7 @@ skill:{
                 },
                 direct:true,
                 filter:function (event,player){
-        return game.hasPlayer(function(current){
+        return game.findPlayer(function(current){
             return !current.isLinked();
         });
     },
@@ -18502,5 +18502,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.89",
+    version:"1.90",
 },files:{"character":[],"card":[],"skill":[]}}})

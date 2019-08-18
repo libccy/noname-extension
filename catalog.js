@@ -203,7 +203,7 @@ extension["金庸群侠传"]={
     intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，欢迎更多的作者来参与开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>Sukincen 落影丶逝尘 <br>冷雨  诗笺 朱阳光 看破一切<li>友情配音：觅阳&主人&仙女桥&清酒摇舟 <br>冷陶&稳得高处&草莓味少女 <br>青灯折扇不语&神齐大叔&幽  <li>更新：新增一大批武将、修复BUG&补充配音 <li>更新日期：2019-05-28",
     size:"50MB",
     netdisk:"",
-    version:1.36,
+    version:1.40,
     files:[
 "desktop.ini","extension.js","qtpz_ajiu.jpg","qtpz_ajiu.mp3","qtpz_aobai.jpg","qtpz_aobai.mp3",
 		"qtpz_aqing.jpg","qtpz_aqing.mp3","qtpz_chengbenzhi.jpg","qtpz_chengbenzhi.mp3",
@@ -386,7 +386,7 @@ extension["作者包"]={
     ]
 }; 
 
-extension["虚实"]={
+/*extension["虚实"]={
     author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
     intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",
     size:"1.6MB",
@@ -398,7 +398,7 @@ extension["虚实"]={
 		"xstianyu.jpg","xsweizhu.jpg",
 	   "xsjieyuan.mp3","xsshuizhen.mp3","xsshuizhen2_11.mp3","xsshuizhen2_12.mp3","xsshuizhen2_21.mp3","xsshuizhen2_22.mp3","xsshuizhen2_31.mp3","xsshuizhen2_32.mp3",
     ]
-}; 
+}; */
 
 extension["新国战"]={
     author:"苏婆玛丽奥",

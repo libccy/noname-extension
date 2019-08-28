@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------更新内容------------------------------------------//   
     Xu_update=[
-//'<li><span style=\"color: red\">新增武将</span></li>',
-'<li><span style=\"color: red\">修复bug</span></li>',
-//'players://["ly_junshenbao_caozhi","ly_junshenbao_dongyun","ly_junshenbao_fngji"]',
-];
-Xu_version='2019.8.23';//更新日期
+       '<li><span style=\"color: red\">修复bug</span></li>',
+       '<li><span style=\"color: red\">新增扩展小包的再细分武将的功能</span></li>',
+    //'players://["ly_junshenbao_caozhi","ly_junshenbao_dongyun","ly_junshenbao_fngji"]',
+    ];
+    Xu_version='2019.8.28';//更新日期
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -35,7 +35,7 @@ li.innerHTML=Xu_update[i];
 ul.appendChild(li);
 };
 };
-var dialog=ui.create.dialog('更新内容(群英会)<br>'+Xu_version,'hidden');
+var dialog=ui.create.dialog('更新内容【群英会】<br>'+Xu_version,'hidden');
 dialog.content.appendChild(ul);
 if(players){
 dialog.addSmall([players,'character']);
@@ -105,7 +105,7 @@ game.saveConfig('Xu_version',Xu_version);
 						          					        
  					  	},
 			   			}			
-
+// ---------------------------------------全新函数------------------------------------------//	
 				lib.element.player.replaceFujiang=function(name2){
 				var hp=this.hp;
 				var maxhp=this.maxHp;
@@ -380,7 +380,7 @@ huanhun.insertPhase();
 							priority:10,
 					   content:function(){
 					   ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';},}}			*/
-			           lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};																																																																																							
+			lib.extensionMenu['extension_'+'群英会'].delete={name:'删除此扩展',clear:true,};																																																																																							
  /*			if(config._BackgroundMusic){ if(config._BackgroundMusic=='1'){	game.playBackgroundMusic();	} //此注释内的没任何作用
 						else{
 						if(config._BackgroundMusic=='2'){					 
@@ -396,7 +396,7 @@ huanhun.insertPhase();
 						}				
 						} */
 			
-																																																																																																														
+																																																																																																																	
 // ---------------------------------------武将分栏------------------------------------------//		
 	
 	if(config.xqunying){
@@ -448,19 +448,22 @@ return str1;
      if(xwj.enable){
 		game.import('character',function(){
 		
-		//皮肤包：
-				/*	extensionExtraSkin=['onclick','changeXwjskin','name'];
-			extensionExtraCharacterSkin=['xwj_xhuoying_mingren','xwj_xhuoying_mingren1','xwj_xhuoying_mingren2','xwj_xhuoying_shuimen','xwj_xhuoying_shuimen1'];
-			*/
+		
 		game.import('character',function(){
 			var xqunying={
 				name:'xqunying',
 				connect:true,
+				characterSort:{
+	 		xqunying:{
+				"xqunying_zhanguo":["xwj_xqunying_baiqi","xwj_xqunying_qinshiwang"],
+				"xqunying_longzhu":["xwj_xqunying_frieza","xwj_xqunying_jilian"],
+			},
+		},
 				character:{
 					 "xwj_xqunying_baiqi":["male","xqin",4,["xwj_xqunying_shashen"],[]],
        "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
        "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
-	    "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],[]],
+	      "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],[]],
                 
 },
 characterIntro:{
@@ -906,7 +909,8 @@ else{
             "xwj_xqunying_baiqi":"白起",
         			"xwj_xqunying_shashen":"杀神",
             "xwj_xqunying_shashen_info":"当你使用【杀】或【决斗】造成伤害后，若你体力值高/等/低于受伤的角色，你可令其失去1点体力/翻面/弃置所有手牌",
-            
+            "xqunying_zhanguo":"战国",
+			        "xqunying_longzhu":"龙珠",			
          },
 };
 if(lib.device||lib.node){
@@ -924,6 +928,12 @@ if(lib.device||lib.node){
 			var xwugeng={
 				name:'xwugeng',
 				connect:true,
+				characterSort:{
+	 		xwugeng:{
+				"xwugeng_shenzu":["xwj_xwugeng_tian","xwj_xwugeng_zhengshan","xwj_xwugeng_shixing","xwj_xwugeng_xuanfeng","xwj_xwugeng_tianwu","xwj_xwugeng_tiankui","xwj_xwugeng_bailian"],
+				"xwugeng_renlei":["xwj_xwugeng_ziyu","xwj_xwugeng_wugeng","xwj_xwugeng_baicai","xwj_xwugeng_fuxi"],
+			},
+		},
 				character:{
 					"xwj_xwugeng_tian":["male","shen",4,["xwj_xwugeng_xuemao","xwj_xwugeng_baiqian"],[]],
 					"xwj_xwugeng_zhengshan":["male","shen",3,["xwj_xwugeng_zhuanlun","xwj_xwugeng_chenjie","xwj_xwugeng_kongjing","xwj_xwugeng_zhuzhan"],[]],           
@@ -934,8 +944,8 @@ if(lib.device||lib.node){
 		    "xwj_xwugeng_ziyu":["male","qun",4,["xwj_xwugeng_qijian","xwj_xwugeng_qiyi","xwj_xwugeng_zhutian"],[]],
        "xwj_xwugeng_wugeng":["male","qun",2,["xwj_xwugeng_zhouwen","xwj_xwugeng_tianqi"],[]],
        "xwj_xwugeng_baicai":["female","qun",3,["xwj_xwugeng_qinhe","xwj_xwugeng_dunkong"],[]],
-	    "xwj_xwugeng_bailian":["male","shen",3,["xwj_xwugeng_xuelian","xwj_xwugeng_siling"],[]],
-			"xwj_xwugeng_fuxi":["male","qun",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
+  	    "xwj_xwugeng_bailian":["male","shen",3,["xwj_xwugeng_xuelian","xwj_xwugeng_siling"],[]],
+   	 		"xwj_xwugeng_fuxi":["male","qun",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
 
 },
 
@@ -3012,8 +3022,9 @@ content:function (){
             "xwj_xwugeng_fuchou":"复仇",
             "xwj_xwugeng_fuchou_info":"<li><font color=#F0F>修罗界神力</font><font color=#f00>锁定技</font> 你的进攻距离+X，摸牌阶段摸牌时，你额外摸X张牌（X为你损失的体力值）；<br><li><font color=#F0F>元始界神力</font>你使用的【杀】额外造成Y点的伤害（Y为你的损失的体力值的一半向下取整）",
             "xwj_xwugeng_fuchou2":"复仇",
-            "xwj_xwugeng_fuchou2_info":"<font color=#f00>锁定技</font> 你使用的【杀】额外造成Y点伤害（Y为你的损失的体力值的一半向下取整）",
-                               
+            "xwj_xwugeng_fuchou2_info":"<font color=#f00>锁定技</font> 你使用的【杀】额外造成Y点伤害（Y为你的损失的体力值的一半向下取整）",             	
+        			"xwugeng_shenzu":"神族",
+			        "xwugeng_renlei":"人类",			               
         },
 };
 			if(lib.device||lib.node){
@@ -3031,6 +3042,14 @@ game.import('character',function(){
 			var xhuoying={
 				name:'xhuoying',
 				connect:true,
+				characterSort:{
+	 		xhuoying:{
+				"xhuoying_muye":["xwj_xhuoying_zhujian","xwj_xhuoying_gangshou","xwj_xhuoying_zhilaiye","xwj_xhuoying_zhishui","xwj_xhuoying_ningchi","xwj_xhuoying_kai","xwj_xhuoying_kakasi","xwj_xhuoying_chutian","xwj_xhuoying_mingren","xwj_xhuoying_shuimen","xwj_xhuoying_duan","xwj_xhuoying_liluoke","xwj_xhuoying_luwan","xwj_xhuoying_xiaoying","xwj_xhuoying_dingchi","xwj_xhuoying_jinye","xwj_xhuoying_tuanzang","xwj_xhuoying_yuanfeirizhan","xwj_xhuoying_dahe","xwj_xhuoying_asima","xwj_xhuoying_feijian","xwj_xhuoying_zuojin","xwj_xhuoying_tiantian","xwj_xhuoying_quanzhongya","xwj_xhuoying_zhinai","xwj_xhuoying_jiuxinnai"],
+				"xhuoying_xiao":["xwj_xhuoying_shuiyue","xwj_xhuoying_itachi","xwj_xhuoying_feiduan","xwj_xhuoying_ban","xwj_xhuoying_daitu","xwj_xhuoying_zhuozhu","xwj_xhuoying_changmen","xwj_xhuoying_guijiao","xwj_xhuoying_xiezi","xwj_xhuoying_jiaodu","xwj_xhuoying_jue","xwj_xhuoying_huiye","xwj_xhuoying_didala","xwj_xhuoying_xiaonan","xwj_xhuoying_zhongwu","xwj_xhuoying_xianglin"],
+				"xhuoying_zhongren":["xwj_xhuoying_dashewan","xwj_xhuoying_dayemu","xwj_xhuoying_dou","xwj_xhuoying_woailuo","xwj_xhuoying_wuren","xwj_xhuoying_sanlei","xwj_xhuoying_zaibuzhan","xwj_xhuoying_daluyi","xwj_xhuoying_huanyue","xwj_xhuoying_junmalv","xwj_xhuoying_qilabi","xwj_xhuoying_leiying","xwj_xhuoying_zhaomeimeng","xwj_xhuoying_shouju"],
+				"xhuoying_xianren":["xwj_xhuoying_liudaoxianren"],								
+			},
+		},
 				character:{
 			      	 "xwj_xhuoying_shuiyue":["male","xxiao",3,["xwj_xhuoying_xundao","xwj_xhuoying_daoji","xwj_xhuoying_yehua"],[]],
 	           "xwj_xhuoying_itachi":["male","xxiao",3,["xwj_xhuoying_yuedu","xwj_xhuoying_retianzhao","xwj_xhuoying_xuzuo"],[]],
@@ -3805,9 +3824,9 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
                 filterTarget:function (card,player,target){ 
                return target!=player&&target.countCards('he')>0&&player.countCards('he')>0;
     },
-                check:function (event,player){
-        return ai.get.attitude(player,target)<=0;
-    },
+                //check:function (event,player){
+       // return ai.get.attitude(player,target)<=0;
+ //   },
                 content:function (){
         "step 0"
          player.chooseToDiscard([1,player.countCards('he')],true,'he','请弃置任意张牌').ai=function(card){
@@ -10826,7 +10845,7 @@ if(range[1]!=-1) range[1]+=Infinity;
                 forced:true,                 
                 unique:true,               
                 filter:function (event,player){
-        return player.isAlive();
+        return !player.hasSkill('xwj_xhuoying_kkxshenwei');
     },	
                 content:function (){    
           player.$fullscreenpop('卡卡西-开眼','thunder');              
@@ -12052,7 +12071,11 @@ translate:{
              "xwj_xhuoying_fenglian2":"链",
             "xwj_xhuoying_fenglian_info":"回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌，且直到其回合开始，其不能使用或打出牌",
             "xwj_xhuoying_hongjiao":"红椒",
-            "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害时，你可立即令伤害来源受到等量的火焰伤害",   
+            "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害时，你可立即令伤害来源受到等量的火焰伤害", 
+			"xhuoying_muye":"木叶村",
+			"xhuoying_xiao":"晓组织",
+		    "xhuoying_zhongren":"众忍村",
+			"xhuoying_xianren":"六道仙人",
                                                                                                                                 
 },
           };
@@ -12616,7 +12639,7 @@ if(lib.device||lib.node){
 // "xwj_xsanguo_zhaotongzhaoguang":["male","shu",4,["xwj_xsanguo_yizan","xwj_xsanguo_longyuan"],[]],        
 "xwj_xsanguo_simahui":["male","qun",4,["xwj_xsanguo_shouye","xwj_xsanguo_jiehuo"],[]], 
 // "xwj_xsanguo_shenzhaoyun":["male","shen",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],["des:神赵云"]],
-    "xwj_xsanguo_xunyou":["male","wei",3,["qice","zhiyu","xwj_xsanguo_houlve"],[]],
+ //   "xwj_xsanguo_xunyou":["male","wei",3,["qice","zhiyu","xwj_xsanguo_houlve"],[]],
      "xwj_xsanguo_caomao":["male","wei",3,["xwj_xsanguo_qianzhi","xwj_xsanguo_yanghui","xwj_xsanguo_juli"],[]],
          
         },
@@ -16038,7 +16061,7 @@ skill:{
                   // return get.attitude(player,event.player)>0;
              //   },
                 filter:function (event,player){
-        return event.player.sex=='female'&&event.source!=player;
+        return event.source&&event.player.sex=='female'&&event.source!=player;
       },              
                 content:function (){            
   'step 0'                    
@@ -16103,7 +16126,7 @@ trigger.source.update();
                 priority:2019,
                // frequent:true,
                 filter:function (event,player){
-        return player.isAlive();
+        return event.source&&event.source!=player&&player.isAlive();
       },              
                 content:function (){                                          
          var list;
@@ -17390,5 +17413,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.91",
+    version:"1.92",
 },files:{"character":[],"card":[],"skill":[]}}})

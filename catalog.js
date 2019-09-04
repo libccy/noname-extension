@@ -21,7 +21,7 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>新增扩展小包再分类 <li>本扩展原名为：新武将。包含部分三国新将、火影忍者、秦时明月、封神纪等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-28",
+	intro:"<li>更新：修复已知的所有BUG<br>新增扩展小包再分类，须更新游戏版本至最新版 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span style="color:#00FFFF">武庚纪</span>等作品的人物，强度略高但彼此平衡（平衡党止步）。有击杀特效，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-08-28",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",

@@ -3,7 +3,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   // ---------------------------------------更新内容------------------------------------------//   
     Xu_update=[
        '<li>修复bug',
-       '<li>新增动画特效',
+       //'<li>新增动画特效',
     //'players://["ly_junshenbao_caozhi","ly_junshenbao_dongyun","ly_junshenbao_fngji"]',
     ];
     Xu_version='更新日期：2019.09.04';
@@ -664,19 +664,13 @@ skill:{
                     player:"damageBegin",
                 },
                 forced:true,
-                content:function (){        
- 
-        if(game.players.length>=game.dead.length){        
-
-        player.draw(game.players.length);
-
-        }
-
-        else{
-
+                content:function (){         
+        if(game.players.length>=game.dead.length){        
+        player.draw(game.players.length);
+        }
+        else{
         player.draw(game.dead.length);
-        }
-
+        }
     },
                 ai:{
                     threaten:0.5,
@@ -2173,7 +2167,10 @@ skill:{
      "xwj_xwugeng_baofeng":{               
     audio:"ext:群英会:2",
     trigger:{
-        player:"damageEnd",
+        player:"damage",
+    },
+    filter:function (event,player){
+           return player.isAlive();                                          
     },
     direct:true,
     content:function (){
@@ -2209,7 +2206,7 @@ skill:{
         });
         "step 3"
         if(result.bool){
-           var chat=['你们若能退回到地狱界，我们仍然相安无事','不用感谢我'].randomGet();
+           var chat=['若你们退回地狱界，我们仍然可以相安无事','不用感谢我'].randomGet();
             player.say(chat);    
             player.logSkill('xwj_xwugeng_baofeng',result.targets);             
             result.targets[0].addSkill('xwj_xwugeng_baofeng3');         
@@ -2240,7 +2237,7 @@ skill:{
                 marktext:"空",
                 mark:true,               
                 filter:function (event,player){
-           return player.hp>=0;                                          
+           return player.isAlive();                                          
     },
                 content:function (){    
      setTimeout(function(){
@@ -2267,8 +2264,8 @@ skill:{
     }, 
                 direct:true,
                 unique:true,
-                skillAnimation:true,
-                animationColor:"thunder",             
+               // skillAnimation:true,
+              //  animationColor:"thunder",             
                 content:function (){
         "step 0"
        player.chooseTarget('选择发动神技【真空】的目标',lib.translate.xwj_xwugeng_zhengkong_info,true,function(card,player,target){
@@ -2280,7 +2277,12 @@ skill:{
         if(result.bool){
             player.$fullscreenpop('神技•真空','thunder');
             player.logSkill('xwj_xwugeng_zhengkong',result.targets);
-            result.targets[0].addSkill('xwj_xwugeng_zhengkong2');          
+           // result.targets[0].addSkill('xwj_xwugeng_zhengkong2');          
+             setTimeout(function(){
+     var chat=['吊颈都要竭口气吧？','连呼吸都觉得痛……'].randomGet();
+            result.targets[0].say(chat);    
+     result.targets[0].die();    
+     },60000)     
         }
     },
                 ai:{
@@ -3014,7 +3016,7 @@ content:function (){
             "xwj_xwugeng_baofeng":"暴风",
             "xwj_xwugeng_baofeng_info":"当你受到伤害后，你可选择一项：<br><li><font color=#F0F>远逐</font> <font color=#F0F>银翼破空</font>令伤害来源的进攻距离－X（X为其体力值），<font color=#F0F>无形剑</font>并视为你对其使用一张【杀】<br><li><font color=#F0F>救护</font> 你选择一名其他角色，令其摸一张牌，且防御距离＋Y（Y为其损失的体力值）",
             "xwj_xwugeng_zhengkong":"真空",
-            "xwj_xwugeng_zhengkong_info":"<font color=#F0F>神技•真空</font> 当你流失体力或一次受到大于一点的伤害后，你可选择令一名其他非主公角色，在其回合结束起计时，九九八十一秒后，其因窒息而死亡。<font color=#F0F>与十刑互相克制</font> ",
+            "xwj_xwugeng_zhengkong_info":"<font color=#F0F>神技•真空</font> 当你流失体力或一次受到大于一点的伤害后，你可选择令一名其他非主公角色进入倒计时，一分钟后，其因窒息而死亡。<font color=#F0F>与十刑互相克制</font> ",
 	           "xwj_xwugeng_tian":"天",
           	 "xwj_xwugeng_xuemao":"血矛",
           	 "xwj_xwugeng_xuemao2":"",
@@ -3905,7 +3907,7 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
                 content:function (){
     "step 0"
      player.chooseTarget('选择【风网】的目标',lib.translate.xwj_xhuoying_fengwang_info,true,function(card,player,target){
-             return target!=player;
+             return target!=player&&target.countCards('he')>0;
      }).set('ai',function(target){     
              return -get.attitude(player,target);            
      });        
@@ -3919,13 +3921,12 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
             event.finish(); 
     }                     
     },
-                ai:{
-                    basic:{
+                ai:{                 
                         result:{
                             player:1,
                         },
                         expose:0.8,
-                    },
+                        order:4,
                 },
             },
 	"xwj_xhuoying_lianyou":{   
@@ -7836,17 +7837,17 @@ if(skill!='xwj_jisha'){
     player.$skill('天之御中','fire','red','avatar');
         var list=[];
         for(var i=0;i<game.players.length;i++){
-            if(player.hp>0) list.push(game.players[i]);
+            if(player.isAlive()) list.push(game.players[i]);
         };
         var players=[];
         for(var i=0;i<game.players.length;i++){
-            if(player.hp>0){
+            if(player.isAlive()){
                 game.players[i].storage.xwj_xhuoying_tianyu=list.randomGet();
                 players.push(game.players[i]);
             };
         };
         for(var i=0;i<players.length;i++){
-            if(player.hp>0){
+            if(player.isAlive()){
                 game.swapSeat(players[i],players[i].storage.xwj_xhuoying_tianyu);
                 delete players[i].storage.xwj_xhuoying_tianyu;
             };
@@ -8049,7 +8050,7 @@ var chat=['只有瞬间的绚丽，才是艺术','这个艺术，终会得到世
             event.finish();
         }         
         "step 2"
-          if(player.hp>0){
+          if(player.isAlive()){
             player.chooseTarget('是否弃置一名角色的一张牌？',function(card,player,target){
                 return player!=target&&target.countCards('he')>0;
             }).set('ai',function(target){
@@ -8744,7 +8745,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     player:"phaseEnd",
                 },
                 filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 init:function (player){
         player.storage.xwj_xhuoying_xfengyin=false;
@@ -8828,7 +8829,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     player:"phaseBegin",
                 },
                 filter:function (event,player){
-        return player.hp>0;        
+        return player.isAlive();        
     },
                 marktext:"炎",
                 forced:true,
@@ -10744,7 +10745,7 @@ if(range[1]!=-1) range[1]+=Infinity;
                     player:"phaseUseBegin",
                 },								
 				filter:function (event,player){
-        return player.hp>0;
+        return player.isAlive();
     },
                 init:function (player){
         player.storage.xwj_xhuoying_refengyin=false;
@@ -12797,17 +12798,12 @@ skill:{
                 },
                 frequent:true,
                 priority:2,
-                filter:function (event,player){
-
-        return player.isAlive();
-
+                filter:function (event,player){
+        return player.isAlive();
     },
-                content:function (){
-
-    player.gainMaxHp();
-
-    player.update();
-
+                content:function (){
+    player.gainMaxHp();
+    player.update();
     },
                 ai:{
                     order:6,

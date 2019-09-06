@@ -3,10 +3,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   // ---------------------------------------更新内容------------------------------------------//   
     Xu_update=[
        '<li>修复bug',
-       //'<li>新增动画特效',
-    //'players://["ly_junshenbao_caozhi","ly_junshenbao_dongyun","ly_junshenbao_fngji"]',
+       '<li>修改小诚的【天遁】',
+    'players://["xwj_xu_cheng"]',
     ];
-    Xu_version='更新日期：2019.09.04';
+    Xu_version='更新日期：2019.09.06';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -664,13 +664,19 @@ skill:{
                     player:"damageBegin",
                 },
                 forced:true,
-                content:function (){         
-        if(game.players.length>=game.dead.length){        
-        player.draw(game.players.length);
-        }
-        else{
+                content:function (){        
+ 
+        if(game.players.length>=game.dead.length){        
+
+        player.draw(game.players.length);
+
+        }
+
+        else{
+
         player.draw(game.dead.length);
-        }
+        }
+
     },
                 ai:{
                     threaten:0.5,
@@ -9806,8 +9812,8 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         player.say(chat);        
         "step 1"
         if(result.bool){  
-            alive('extension/群英会/xwj_yuedu.gif',4.8,true);          
-            game.delay(2);  
+            //alive('extension/群英会/xwj_yuedu.gif',4.8,true);          
+            //game.delay(2);  
             target.turnOver();
             player.storage.xwj_xhuoying_yuedu3=target;
             player.addTempSkill('xwj_xhuoying_yuedu3','phaseAfter');         
@@ -12798,12 +12804,17 @@ skill:{
                 },
                 frequent:true,
                 priority:2,
-                filter:function (event,player){
-        return player.isAlive();
+                filter:function (event,player){
+
+        return player.isAlive();
+
     },
-                content:function (){
-    player.gainMaxHp();
-    player.update();
+                content:function (){
+
+    player.gainMaxHp();
+
+    player.update();
+
     },
                 ai:{
                     order:6,
@@ -16298,6 +16309,9 @@ var num=game.countPlayer(function(current){
                 silent:true,
                 unique:true,
                 priority:2019,
+				init:function(player){
+						player.storage.tian=true;
+					},
                 filter:function (event,player){
         return event.card&&player!=event.source;
     },
@@ -16313,8 +16327,63 @@ var num=game.countPlayer(function(current){
         });
        game.log(player,'获得技能','【'+get.translation(skill)+'】');     
        }   
-        'step 1'                   
-        var list;
+        'step 1'    
+		var list=[];
+						for(var i in lib.character){
+							if(lib.character[i].mode&&lib.character[i].mode.contains(lib.config.mode)==false) continue;							
+							if(i!='list') list.push(i);
+						}
+						var names=[];
+						for(var i=0;i<game.players.length;i++){
+							names.push(game.players[i].name);
+							names.push(game.players[i].name2);
+						}
+						for(var i=0;i<game.dead.length;i++){
+							names.push(game.dead[i].name);
+							names.push(game.dead[i].name2);
+						}
+						if(list.length){
+							var dialog=ui.create.dialog([list,'character']);
+							var next=player.chooseButton(dialog);
+							next.ai=function(button){
+								var di=['luoshen','jizhi','reguose','jieyin','lijian','shangshi','ganlu','miji'];
+								var tian=['qingguo','xiaoji','beige','buyi','qiuyuan','qieting','qiaoshi','shenxian','liangzhu','zhendu'];
+								if(!player.storage.tian){
+									for(var i=0;i<tian.length;i++){
+										if(lib.character[button.link][3].contains(tian[i])){
+											return Math.random();
+										}
+									}
+								}
+								else{
+									for(var i=0;i<di.length;i++){
+										if(lib.character[button.link][3].contains(di[i])){
+											return Math.random();
+										}
+									}
+								}
+								return 0;
+							}
+							next.filterButton=function(button){
+								return !names.contains(button.link);
+							}
+							if(player.storage.tian==true){
+								player.storage.tian=false;
+							}
+							else player.storage.tian=true;
+						}
+						'step 2'
+						if(result.bool){
+							var a=trigger.source.hp;
+                            var b=trigger.source.maxHp;
+                            trigger.source.init(result.links[0]);
+                            trigger.source.hp=a; 
+                            trigger.source.maxHp=b;
+                            trigger.source.update();
+							player.draw(Math.ceil(trigger.card.number/3));
+						}
+						else event.finish();
+       /* var list;
         if(_status.connectMode){
            list=get.charactersOL(function(i){
                return lib.character[i][1]!='shen';
@@ -16331,12 +16400,12 @@ var num=game.countPlayer(function(current){
         trigger.source.reinit(trigger.source.name,name,false);
         trigger.source.hp=a; 
         trigger.source.maxHp=b;
-        trigger.source.update();
-        'step 2'   
-        alive('extension/群英会/xwj_tiandun.gif',2.5);          
-        game.delay(2);
+        trigger.source.update();*/
+       // 'step 2'   
+        //alive('extension/群英会/xwj_tiandun.gif',2.5);          
+        //game.delay(2);
       // game[otherFunction[7]](game.qyhGif('xwj_tiandun.gif',null,null,true),3600);		
-       player.draw(Math.ceil(trigger.card.number/3));
+       //player.draw(Math.ceil(trigger.card.number/3));
     },
           ai:{
                     maixie:true,
@@ -16591,7 +16660,7 @@ else {
             "xwj_xu_dingju_info":"<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
 	           "xwj_xu_cheng":"小诚",
             "xwj_xu_tiandun":"天遁",
-            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色使用卡牌所造成的伤害时，你随机获得伤害来源的一项技能，令伤害来源随机替换一张武将牌（须打开本扩展的火影忍者包，因为我写了包括它的势力的武将），然后你摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
+            "xwj_xu_tiandun_info":"<font color=#f00>锁定技</font> 当你受到其他角色使用卡牌所造成的伤害时，你随机获得伤害来源的一项技能，然后检索所有的武将牌牌堆，选择一张令伤害来源替换之，然后你再摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",                  
             "xwj_xu_xiaoxu":"小徐",
             "xwj_xu_tuiyin":"退隐",
             "xwj_xu_tuiyin_info":"<font color=#f00>锁定技</font> 当你受到伤害时，你可摸X张牌（X为游戏轮数的一半进位取整）",
@@ -17447,5 +17516,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.93",
+    version:"1.94",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -3,7 +3,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   // ---------------------------------------更新内容------------------------------------------//   
     Xu_update=[
        '<li>修复bug',
-       '<li>修改小诚的【天遁】',
+      // '<li>修改小诚的【天遁】',
     'players://["xwj_xu_cheng"]',
     ];
     Xu_version='更新日期：2019.09.06';
@@ -154,7 +154,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 				this.maxHp=maxhp;
 				this.update();
 			} 
-				
+		
 			eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('p=5(c,6,4){e(4){0.4.o()};7.q(\'s\');7.r(5(){0.4.9.n(\'g\');d(5(){0.4.9.m(\'g\')},6*l)});7.z(6);0.2.3.f=\'\';0.2.3.8=\'\';0.2.3.k=\'\';0.2.j(c);d(5(){e(i.h.x){0.2.3.f=\'b(a)\';0.2.3.8=\'b(a)\';0.2.3.k=\'w(1.v)\'};0.4.u();0.2.j(\'A/2/\'+i.h.y+\'.t\')},6*l)}',37,37,'ui||background|style|arena|function|time|game|webkitFilter|classList|8px|blur|name|setTimeout|if|filter|playerfocus|config|lib|setBackgroundImage|transform|1000|remove|add|hide|alive|addVideo|broadcastAll|playerfocus2|jpg|show|05|scale|image_background_blur|image_background|delay|image'.split('|'),0,{}))
 
 	// ---------------------------------------吉连冥想------------------------------------------//			
@@ -1824,7 +1824,7 @@ skill:{
                  return !player.isMaxHp();
     },
     filterTarget:function (card,player,target){ 
-               return player.canUse({name:'sha'},target,false)&&target!=player&&!target.hasSkill('xwj_xwugeng_zhouwen')&&!target.hasSkill('xwj_xhuoying_renzong')&&!target.hasSkill('xwj_xhuoying_yehua')&&!target.hasSkill('xiangle')&&!target.hasSkill('sgk_kuangyan')&&!target.hasSkill('dawu2')&&!target.hasSkill('fenyong')&&!target.hasSkill('new_xiangle')&&!target.hasSkill('zhichi')&&!target.hasSkill('sgk_weiwo')&&!target.hasSkill('new_tengjia')&&!target.hasSkill('xwj_xhuoying_chunshu')&&!target.hasSkill('xwj_xhuoying_huomeng2')&&!target.hasSkill('xwj_xhuoying_wuyin')&&!target.hasSkill('xwj_xhuoying_wuchen')&&!target.hasSkill('xwj_xhuoying_juefang')&&!target.hasSkill('xwj_xhuoying_rexuzuo')&&!target.hasSkill('xwj_xhuoying_xinxuzuo')&&!target.hasSkill('xwj_xhuoying_xuzuo')&&!target.hasSkill('xwj_xwugeng_jingang')&&!target.hasSkill('bingjia')&&!target.hasSkill('bingjia2')&&target.hp>=player.hp;
+               return player.canUse({name:'sha'},target,false)&&target!=player&&!target.hasSkill('xwj_xwugeng_zhouwen')&&!target.hasSkill('xwj_xhuoying_renzong')&&!target.hasSkill('xwj_xhuoying_yehua')&&!target.hasSkill('xiangle')&&!target.hasSkill('sgk_kuangyan')&&!target.hasSkill('dawu2')&&!target.hasSkill('fenyong')&&!target.hasSkill('new_xiangle')&&!target.hasSkill('zhichi')&&!target.hasSkill('Revision_zhichi')&&!target.hasSkill('sgk_weiwo')&&!target.hasSkill('new_tengjia')&&!target.hasSkill('xwj_xhuoying_chunshu')&&!target.hasSkill('xwj_xhuoying_huomeng2')&&!target.hasSkill('xwj_xhuoying_wuyin')&&!target.hasSkill('xwj_xhuoying_wuchen')&&!target.hasSkill('xwj_xhuoying_juefang')&&!target.hasSkill('xwj_xhuoying_rexuzuo')&&!target.hasSkill('xwj_xhuoying_xinxuzuo')&&!target.hasSkill('xwj_xhuoying_xuzuo')&&!target.hasSkill('xwj_xwugeng_jingang')&&!target.hasSkill('bingjia')&&!target.hasSkill('bingjia2')&&target.hp>=player.hp;
     },
     check:function (event,player){
     if(player.hp<=1) return 0;
@@ -2441,7 +2441,7 @@ skill:{
 	   		"step 1"
         game.countPlayer(function(current){
             if(current!=player){           
-                player.line(current,'green');
+                player.line(current,'green');                
                 current.addTempSkill('xwj_xwugeng_baiqian4',{player:'damageAfter'});                                       
             }
         });
@@ -16642,7 +16642,7 @@ else {
 },
 
  translate:{  
-            "xwj_xu_SPxiaosu":"SP小苏",
+            "xwj_xu_SPxiaosu":"sp小苏",
             "xwj_xu_huhua":"护花",
             "xwj_xu_huhua_info":"<li>当一名女性角色受到来源不为你的伤害后，你可与其组成双将。然后其与伤害来源的原武牌先后随机替换为一张女性角色的武将牌<li>当你受到伤害后，你可令伤害来源的武将牌随机替换为一张女性角色的武将牌",
             "xwj_xu_huhua2":"护花",
@@ -17516,5 +17516,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.94",
+    version:"1.95",
 },files:{"character":[],"card":[],"skill":[]}}})

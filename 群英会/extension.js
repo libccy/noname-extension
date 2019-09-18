@@ -1,12 +1,12 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
   
-  // ---------------------------------------更新内容------------------------------------------//   
+  // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
        '<li>修复bug',
-       '<li>新增《火影忍者》武将【白】',
-    'players://["xwj_xhuoying_bai"]',
+       '<li>修改《火影忍者》武将【药师兜】、【大和】',
+    'players://["xwj_xhuoying_dou","xwj_xhuoying_dahe"]',
     ];
-    Xu_version='更新日期：2019.09.15';
+    Xu_version='更新日期：2019.09.17';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -73,7 +73,7 @@ game.saveConfig('Xu_version',Xu_version);
 };
 },
 };
-// ---------------------------------------武将皮肤------------------------------------------//
+// ---------------------------------------Skin------------------------------------------//
 /*
 lib.element.player[extensionExtraSkin[0]]=function(){
 if (lib.character[this.name][4].contains('xwjskin')){
@@ -102,7 +102,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 
 };
 */
-			// ---------------------------------------定义配音------------------------------------------//
+			// ---------------------------------------Audio------------------------------------------//
 			game.playSu = function(fn, dir, sex) {
 			if (lib.config.background_speak) {
 				if (dir && sex)
@@ -114,7 +114,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 			}
 		};
 		
-// ---------------------------------------阵亡配音------------------------------------------//
+// ---------------------------------------Die Audio------------------------------------------//
 		lib.skill._zhengwangpeiyin={
 				    trigger:{global:'dieBegin',},
 							//direct:true,
@@ -132,7 +132,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 						        }*/						 						          					        
  					  	},
 			   			}			
-// ---------------------------------------全新函数------------------------------------------//	
+// ---------------------------------------New function------------------------------------------//	
 				lib.element.player.replaceFujiang=function(name2){
 				var hp=this.hp;
 				var maxhp=this.maxHp;
@@ -157,7 +157,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 		
 			eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('p=5(c,6,4){e(4){0.4.o()};7.q(\'s\');7.r(5(){0.4.9.n(\'g\');d(5(){0.4.9.m(\'g\')},6*l)});7.z(6);0.2.3.f=\'\';0.2.3.8=\'\';0.2.3.k=\'\';0.2.j(c);d(5(){e(i.h.x){0.2.3.f=\'b(a)\';0.2.3.8=\'b(a)\';0.2.3.k=\'w(1.v)\'};0.4.u();0.2.j(\'A/2/\'+i.h.y+\'.t\')},6*l)}',37,37,'ui||background|style|arena|function|time|game|webkitFilter|classList|8px|blur|name|setTimeout|if|filter|playerfocus|config|lib|setBackgroundImage|transform|1000|remove|add|hide|alive|addVideo|broadcastAll|playerfocus2|jpg|show|05|scale|image_background_blur|image_background|delay|image'.split('|'),0,{}))
 
-	// ---------------------------------------吉连冥想------------------------------------------//			
+	// ---------------------------------------jilian mingxiang------------------------------------------//			
 	lib.skill._jilian_out={
       trigger:{global:'dieBegin'},
       forced:true,
@@ -190,7 +190,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
       }   
     },
   }			
-	// ---------------------------------------无限月读------------------------------------------//			
+	// ---------------------------------------wuxianyuedu------------------------------------------//			
 		if(config.wuxianyuedu){		
 		     lib.skill._jieshihuanhun={
         trigger:{global:'dieEnd'},
@@ -221,7 +221,7 @@ huanhun.insertPhase();
         },  
     }
      }
-  // ---------------------------------------完杀模式------------------------------------------//   
+  // ---------------------------------------xwansha------------------------------------------//   
 			if(config.xwansha){		
 		     lib.skill._xwj_wansha={
         trigger:{
@@ -237,7 +237,7 @@ huanhun.insertPhase();
      }
      }     
   
-		// ---------------------------------------击杀特效------------------------------------------//
+		// ---------------------------------------xjisha------------------------------------------//
 			if(config.xjisha){		
 /*		//old:
     lib.skill._jwj_jisha={
@@ -380,7 +380,7 @@ huanhun.insertPhase();
 						lib.translate._xxmiaoshouhuichun='妙手回春';
 						lib.translate._xxyishugaochao='医术高超';		
 						}  
- 	// ---------------------------------------出牌计时器------------------------------------------//									
+ 	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
 							lib.skill._chooseTime={
 							trigger:{global:'gameDrawBefore'},
@@ -390,7 +390,7 @@ huanhun.insertPhase();
 							},
 						}
 						}		
-		// ---------------------------------------定义背景------------------------------------------//									
+		// ---------------------------------------background------------------------------------------//									
 		 			/*	if(config._Background){																
 							lib.skill._Background={
 							trigger:{global:'gameDrawBefore'},
@@ -3113,7 +3113,7 @@ game.import('character',function(){
             "xwj_xhuoying_ban":["male","xxiao",2,["xwj_xhuoying_zhenxing","xwj_xhuoying_xinxuzuo","xwj_xhuoying_yiyuan"],[]],
             "xwj_xhuoying_dayemu":["male","xren",3,["xwj_xhuoying_chendun","xwj_xhuoying_tiancheng","xwj_xhuoying_feixian"],[]],
             "xwj_xhuoying_kai":["male","xhuo",5,["xwj_xhuoying_bamen","xwj_xhuoying_resizhan"],[]],
-            "xwj_xhuoying_dou":["male","xren",3,["xwj_xhuoying_yizhi","xwj_xhuoying_xianfa","xwj_xhuoying_zhuansheng"],[]],
+            "xwj_xhuoying_dou":["male","xren",3,["xwj_xhuoying_yizhi"],[]],
             "xwj_xhuoying_kakasi":["male","xhuo",3,["xwj_xhuoying_leique","xwj_xhuoying_fuzhi"],[]],
             "xwj_xhuoying_chutian":["female","xhuo",3,["xwj_xhuoying_baiyan","xwj_xhuoying_rouquan"],[]],
             "xwj_xhuoying_daitu":["male","xxiao",3,["xwj_xhuoying_xishou","xwj_xhuoying_reshenwei","xwj_xhuoying_xianyan"],[]],
@@ -3308,7 +3308,7 @@ skill:{
          if(get.type(event.card)=='delay') return false;
          if(get.type(event.card)=='equip') return false;
          if(event.targets.contains(player)) return false;        
-      //   if(!event.target) return false;                  
+      //   if(!event.targets) return false;                  
          if(event.targets.length>1) return false;                                      
                              return game.hasPlayer(function(current){
                                 return current.isTurnedOver()&&!event.targets.contains(current);
@@ -4674,26 +4674,27 @@ audio:"ext:群英会:2",
                 },
             },
 
- "xwj_xhuoying_guazhang":{
-                audio:"ext:群英会:2",
-                trigger:{
-                    player:"useCard",
-                },
-                frequent:true,
-                filter:function (event,player){
-        if(!event.cards||event.cards.length!=1) return false;
-        if(_status.currentPhase!=player) return false;       
-        if(!player.storage.xwj_xhuoying_guazhang) return false;
-        return get.suit(player.storage.xwj_xhuoying_guazhang)==get.suit(event.cards[0]);
-    },
-                content:function (){        
-        var chat=['八卦•六十四掌'].randomGet();
-            player.say(chat);                                                                
-        player.draw();
-    },                      
-            		group:['xwj_xhuoying_guazhang2','xwj_xhuoying_guazhang3']
+xwj_xhuoying_guazhang:{
+				audio:"ext:群英会:2",
+				trigger:{player:'useCard'},
+				frequent:true,
+				filter:function(event,player){
+					if(event.xwj_xhuoying_guazhanged) return false;
+					if(!event.cards||event.cards.length!=1) return false;
+					if(!player.isPhaseUsing()) return false;
+					if(!player.storage.xwj_xhuoying_guazhang) return false;
+					return get.suit(player.storage.xwj_xhuoying_guazhang)==get.suit(event.cards[0]);
+				},
+				content:function(){
+				player.say('八卦•六十四掌');  
+					player.draw();
+				},
+				intro:{
+					content:'card'
+				},
+				group:['xwj_xhuoying_guazhang2','xwj_xhuoying_guazhang3']
 			},
-			"xwj_xhuoying_guazhang3":{
+			xwj_xhuoying_guazhang3:{
 				trigger:{player:'useCard'},
 				priority:-1,
 				silent:true,
@@ -4704,15 +4705,64 @@ audio:"ext:群英会:2",
 				},
 				content:function(){
 					player.storage.xwj_xhuoying_guazhang=trigger.cards[0];
-				},
+					trigger.xwj_xhuoying_guazhanged=true;
+				}
+			},
+			xwj_xhuoying_guazhang2:{
+				trigger:{player:'phaseAfter'},
+				silent:true,
+				content:function(){
+					player.storage.xwj_xhuoying_guazhang=null;
+				}
+			},
+
+/* 
+//与第一张花色相同：
+"xwj_xhuoying_guazhang":{
+                audio:"ext:群英会:2",
+                trigger:{
+                    player:"useCard",
+                },
+                frequent:true,
+                filter:function (event,player){
+        if(!event.cards||event.cards.length!=1) return false;
+        if(_status.currentPhase!=player) return false;       
+        if(!player.storage.xwj_xhuoying_guazhang) return false;
+        return get.suit(event.card)==player.storage.xwj_xhuoying_guazhang;
+      //  return player.storage.xwj_xhuoying_guazhang==get.suit(event.cards[0]);
+    },
+                content:function (){                
+            player.say('八卦•六十四掌');                                                                
+        player.draw();
+    },                      
+            		group:['xwj_xhuoying_guazhang2','xwj_xhuoying_guazhang3']
 			},
 			"xwj_xhuoying_guazhang2":{
-				trigger:{player:'phaseAfter'},
+				trigger:{player:'useCard'},
+				priority:2017,
+				silent:true,
+				usable:1,
+				filter:function(event,player){
+					if(!event.cards||event.cards.length!=1) return false;
+					if(_status.currentPhase!=player) return false;
+					return true;
+				},
+				content:function(){
+					var card=trigger.cards[0];						
+						player.storage.xwj_xhuoying_guazhang=get.suit(card);
+						game.addVideo('storage',player,['player.storage.xwj_xhuoying_guazhang',player.storage.xwj_xhuoying_guazhang]);
+						
+				//	player.storage.xwj_xhuoying_guazhang=trigger.cards[0];
+				},
+			},
+			"xwj_xhuoying_guazhang3":{
+				trigger:{player:'phaseEnd'},
 				silent:true,
 				content:function(){
 					player.storage.xwj_xhuoying_guazhang=null;
 				},
 			},
+			*/
             "xwj_xhuoying_reguaili":{
                 audio:"ext:群英会:1",
                 unique:true,
@@ -6796,7 +6846,7 @@ audio:"ext:群英会:2",
                 srlose:true,
                 enable:"phaseUse",
                 filterTarget:function (card,player,target){
-        return player!=target&&target.countCards('he')>0&&!target.hasSkill('fengyin');
+        return player!=target&&target.countCards('he')>0;
     },
                 content:function (){
         'step 0'    
@@ -6832,9 +6882,11 @@ audio:"ext:群英会:2",
         }
     },
                 ai:{
-                    order:9,
+                    order:9,     
+                    threaten:1.5,  
+                    expose:0.8,                                             
                     result:{
-                        player:function (player){
+                     /*   player:function (player){
                 if(ui.selected.cards.length>0){
                     if(player.isTurnedOver()) return 3;
                     if(!player.isTurnedOver()) return -4
@@ -6843,16 +6895,11 @@ audio:"ext:群英会:2",
                     if(player.isTurnedOver()) return 4;
                     if(!player.isTurnedOver()) return -3;
                 }
-            },
-                        target:function (target,player){
-                if(ui.selected.cards.length>0){
-                    if(target.isTurnedOver()) return 3;
-                    if(!target.isTurnedOver()) return -4
-                }
-                if(ui.selected.cards.length==0){
-                    if(target.isTurnedOver()) return 4;
-                    if(!target.isTurnedOver()) return -3;
-                }
+            },*/
+                       target:function (player,target){
+                if(!target.isTurnedOver()) return -3.5;
+                if(target.isTurnedOver()&&get.attitude(player,target)>0) return 4.5;
+                return -0.1;
             },
                     },
                 },
@@ -9538,7 +9585,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
             "xwj_xhuoying_duizhang":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    global:["compare","linkAfter"],
+                    global:"compare",
                 },
                 forced:true,
                 filter:function (event,player){
@@ -11029,12 +11076,21 @@ if(range[1]!=-1) range[1]+=Infinity;
             "xwj_xhuoying_yizhi":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    player:["damageBegin"],
+                    player:"damageBegin",
                 },
                 forced:true,
                 priority:20,
                 unique:true,
-                content:function (){                         
+                init:function (player){
+        player.storage.xwj_xhuoying_yizhi=0;
+    },
+                intro:{
+                    name:"移植",
+                    content:"已移植了#种能力",
+                },
+                derivation:['xwj_xhuoying_xianfa','xwj_xhuoying_zhuansheng'],
+                content:function (){      
+                'step 0'                   
                            var skills=[]; 
                                   for(var i in lib.character){ 
                                            for(var j=0;j<lib.character[i][3].length;j++){
@@ -11050,10 +11106,23 @@ if(range[1]!=-1) range[1]+=Infinity;
             name:get.translation(link),
             content:lib.translate[link+'_info']
         });
-        game.log(player,'获得技能','【'+get.translation(link)+'】');        
+        game.log(player,'获得技能','【'+get.translation(link)+'】');       
+        'step 1'
+        if(!player.hasSkill('xwj_xhuoying_xianfa')||!player.hasSkill('xwj_xhuoying_zhuansheng')){
+        player.storage.xwj_xhuoying_yizhi++;
+        player.markSkill('xwj_xhuoying_yizhi');
+        player.update();
+        if(player.storage.xwj_xhuoying_yizhi>=3){
+            player.$fullscreenpop('蜕皮成仙','thunder');
+            player.unmarkSkill('xwj_xhuoying_yizhi');
+            player.addSkill('xwj_xhuoying_xianfa');
+            player.addSkill('xwj_xhuoying_zhuansheng');
+        }
+        }
+        else event.finish();
     },
                 ai:{
-                    threaten:1.8,
+                    threaten:0.8,
                 },
             },
             "xwj_xhuoying_xianfa":{
@@ -11079,7 +11148,7 @@ if(range[1]!=-1) range[1]+=Infinity;
                     effect:{
                         target:function (card,player,target){
                 if(target.countCards('h')==1&&card.name=='guohe') return 0.5;
-                if(target.isTurnedOver()&&target.countCards('h')==1&&(card.name=='guohe'||card.name=='shunshou')) return -5;
+                if(target.countCards('h')==1&&(card.name=='guohe'||card.name=='shunshou')) return -5;
             },
                     },
                     noh:true,
@@ -11105,8 +11174,9 @@ if(range[1]!=-1) range[1]+=Infinity;
                  for(var i=0;i<game.dead.length&&game.dead[i].name!=button.link;i++);
                      return ai.get.attitude(_status.event.player,game.dead[i]);
                  }); 
-                "step 1"                                
-                 player.$skill('秽土转生','fire','red','avatar');
+                "step 1"    
+                    player.$fullscreenpop('秽土转生','fire');                        
+                 //player.$skill('秽土转生','fire','red','avatar');
                  if(result.bool){
                      for(var i=0;i<game.dead.length&&game.dead[i].name!=result.buttons[0].link;i++);
                      var dead=game.dead[i];          
@@ -11882,7 +11952,7 @@ translate:{
             "xwj_xhuoying_resizhan_info":"<font color=#F0F>八门遁甲</font> <span class=yellowtext>限定技</span> 出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
             "xwj_xhuoying_dou":"药师兜",
             "xwj_xhuoying_yizhi":"移植",
-            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技除外）。",
+            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技、限定技除外）。若你发动【移植】至少三次，你获得技能【仙法】、【转生】",
             "xwj_xhuoying_xianfa":"仙法",
             "xwj_xhuoying_xianfa_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸一张牌，然后回复一点体力。",
             "xwj_xhuoying_zhuansheng":"转生",
@@ -12228,7 +12298,7 @@ translate:{
             "xwj_xhuoying_daiban_1":"代班",
             "xwj_xhuoying_daiban_1_info":"当前的主公的主公技失效",
             "xwj_xhuoying_duizhang":"领队",
-            "xwj_xhuoying_duizhang_info":"<font color=#f00>锁定技</font> 当场上有角色拼点或武将牌被横置／重置后，你摸一张牌",
+            "xwj_xhuoying_duizhang_info":"<font color=#f00>锁定技</font> 当场上有角色拼点后，你摸一张牌",
             "xwj_xhuoying_shouyu":"守玉",
             "xwj_xhuoying_shouyu_info":"当其他角色因成为【杀】的目标而受到伤害时，你可以弃置一张基本牌，将此伤害转移给你；<font color=#f00>锁定技</font> 当你受到一次伤害后，你可以摸x张牌(x为你已损失的体力值)",
             "xwj_xhuoying_fengdun":"风遁",

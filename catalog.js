@@ -21,18 +21,18 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>新增火影忍者角色【白】 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-09-16",
+	intro:"<li>更新：修复已知的所有BUG<br>新增火影忍者角色音忍四人众 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-09-23",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.96,
+    version:1.97,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
 		"wms_tian_background.jpg","wms_wxyd_background.jpg","xwj_jisha1.mp3","xwj_jisha2.mp3",
 		"xwj_jisha3.mp3","xwj_jisha4.mp3","xwj_jisha5.mp3","xwj_jisha6.mp3","xwj_jisha7.mp3",
-                "xwj_refengyin.gif",
+                "xwj_refengyin.gif","xwj_xhuoying_chilangfang.jpg","xwj_xhuoying_guitongwan.jpg","xwj_xhuoying_tayuya.jpg","xwj_xhuoying_zuojinyoujin.jpg",
  "xwj_xhuoying_bingdun1.mp3","xwj_xhuoying_bingdun2.mp3","xwj_xhuoying_chengshang1.mp3","xwj_xhuoying_chengshang2.mp3","xwj_xhuoying_bai.jpg",
 		"xwj_xhuoying_aiyuan1.mp3","xwj_xhuoying_aiyuan2.mp3","xwj_xhuoying_anqi1.mp3","xwj_xhuoying_anqi2.mp3",
 		"xwj_xhuoying_ansha1.mp3","xwj_xhuoying_ansha2.mp3","xwj_xhuoying_asima.jpg","xwj_xhuoying_baihao1.mp3",

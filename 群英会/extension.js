@@ -3,10 +3,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
        '<li>新增音忍四人众、乱斗剧情',
-       '<li>听取玩家的建议，小改《火影忍者》部分武将【君麻吕】、【药师兜】、【大和】、【玖辛奈】、【秋道丁次】等部分技能',
+       '<li>听取玩家的建议，小改《火影忍者》部分武将【君麻吕】、【药师兜】、【大和】、【玖辛奈】、【秋道丁次】的部分技能',
     'players://["xwj_xhuoying_tayuya","xwj_xhuoying_guitongwan","xwj_xhuoying_chilangfang","xwj_xhuoying_zuojinyoujin","xwj_xhuoying_junmalv","xwj_xhuoying_dou","xwj_xhuoying_dahe","xwj_xhuoying_jiuxinnai","xwj_xhuoying_dingchi"]',
     ];
-    Xu_version='更新日期：2019.09.25  ';
+    Xu_version='更新日期：2019.09.21  16:42';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -8263,18 +8263,13 @@ if(skill!='xwj_jisha'){
        player.update();
     },
                 ai:{
-                    order:2,
+                   threaten:1.3,
                     result:{
-                        player:function (player,target){
-                var att=get.attitude(player,target);          
-                if(player.countCards('h')>target.countCards('h')) return 0;                 
-                if(target==player.previous&&att>0) return att;
-                if(target==player.next&&att<0) return -att;
-                var att2=get.attitude(player,player.next);
-                if(target==player.next.next&&att<0&&att2<0) return -att-att2;
-                return 0;
+                        target:function (player,target){
+                return get.damageEffect(target,player,target);
             },
                     },
+                    order:9,
                 },
             },
             "xwj_xhuoying_juneng":{
@@ -8333,18 +8328,13 @@ if(skill!='xwj_jisha'){
         player.awakenSkill('xwj_xhuoying_yinmou');
     },
                 ai:{
-                    order:5,
+                   threaten:1.3,
                     result:{
-                        player:function (player,target){
-                var att=get.attitude(player,target);          
-                if(player.hp<=1) return 0.9;               
-                if(target==player.previous&&att>0) return att;
-                if(target==player.next&&att<0) return att;
-                var att2=get.attitude(player,player.next);
-                if(target==player.next.next&&att<0&&att2<0) return att-att2;
-                return 0;
+                        target:function (player,target){
+                return get.recoverEffect(target,player,target);
             },
                     },
+                    order:9,
                 },
             },
             "xwj_xhuoying_zhongbao":{

@@ -1386,7 +1386,7 @@ extension["异界四国"]={
     netdisk:"",
     version:2.1,
     files:[
-      "huangzhi.jpg","sunren.jpg","maru.jpg","luyu.jpg","maping.jpg","zhangwei.jpg","kangong.jpg",
+      "huangzhi.jpg","sunren.jpg","maru.jpg","luyu.jpg","maping.jpg","zhangwei.jpg","kangong.jpg","l_liufeng.jpg","liyanwojuqnidayede.jpg",
 		"zhangjian.jpg","sunhua.jpg","guancai.jpg","caixing.jpg","xunrui.jpg","zhenyi.jpg",
 		"wutujian.jpg","tianxun.jpg","yanxiang.jpg","caiwenyu.jpg","guotuo.jpg","donghuo.jpg",
 		"sunyuci.jpg","wanghua.jpg","gaomi.jpg","lingquan1.jpg","xunxun1.jpg","jukang.jpg",
@@ -1400,8 +1400,8 @@ extension["异界四国"]={
 		"zhumi.jpg","xiahoujia.jpg","liuyou.jpg","buyong.jpg","caogai.jpg","caohouchun.jpg",
 		"caohuyuan.jpg","caoru.jpg","caozhiren.jpg","chencendonghun.jpg","diangai.jpg","diaoren.jpg",
 		"extension.js","fucai.jpg","ganxun.jpg","guanhua.jpg","guansong.jpg","guotuliuxie.jpg",
-		"huangenyue.jpg","huangfeng.jpg","huangxiu.jpg","jiajinhua.jpg","leren.jpg","liufeng.jpg",
-		"liugechan.jpg","liyan.jpg","luran.jpg","lvhu.jpg","majia.jpg","manyou.jpg","masong.jpg",
+		"huangenyue.jpg","huangfeng.jpg","huangxiu.jpg","jiajinhua.jpg","leren.jpg",
+		"liugechan.jpg","luran.jpg","lvhu.jpg","majia.jpg","manyou.jpg","masong.jpg",
 		"mengsiyan.jpg","qiaozhaohong.jpg","taishimi.jpg","wenliang.jpg","xiahengfeng.jpg",
 		"xiahouang.jpg","yuanhua.jpg","zhangdun.jpg","zhuchaojia.jpg","zhugechong.jpg","zhuhun.jpg",
 		"zhumaxun.jpg"

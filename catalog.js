@@ -1384,7 +1384,7 @@ extension["异界四国"]={
     intro:"本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。更新：已联机化，素材也全换了名称，故更新前请先卸载旧版再重新下载",
     size:"35MB",
     netdisk:"",
-    version:2.0,
+    version:2.1,
     files:[
       "huangzhi.jpg","sunren.jpg","maru.jpg","luyu.jpg","maping.jpg","zhangwei.jpg","kangong.jpg",
 		"zhangjian.jpg","sunhua.jpg","guancai.jpg","caixing.jpg","xunrui.jpg","zhenyi.jpg",

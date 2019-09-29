@@ -490,6 +490,18 @@ extension["作者包"]={
     ]
 }; 
 
+extension["辅助卡牌"]={
+    author:"Niugnep",
+    intro:"内含斩与仙桃，毒剂与药，秘籍的纯卡牌拓展，适合任意强度的拓展一并使用。斩与仙桃有增加和减少体力上限的卡牌，毒剂与药有能持续恢复和持续扣血的卡牌，秘籍使用之后能永久获得一个技能",
+    size:"1MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+     "extension.js","duji888881.png","huixue88888881.png","W_miji.png","xr_xiantao.png","xr_zhan.png",		
+	   "xr_gainMaxHp.mp3","xr_loseMaxHp.mp3","yr_loseMaxHp.mp3","yr_recover.mp3",
+    ]
+};
+
 /*extension["虚实"]={
     author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
     intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",

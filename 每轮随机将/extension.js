@@ -69,8 +69,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"每�
         },
     },
     intro:"",
-    author:"凉茶",
+    author:"凉茶<li>需要代写技能代码的可在扩展交流1、2群找我，平均每个技能5元，简单的技能、下单定做数量多者可优惠，难度偏大的，价格略微上浮。非诚勿扰！",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.2",
 },files:{"character":[],"card":[],"skill":[]}}})

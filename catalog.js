@@ -516,6 +516,16 @@ extension["辅助卡牌"]={
     ]
 }; */
 
+extension["每轮随机将"]={
+    author:"凉茶",
+    intro:"此为模式类小扩展。开启后重启游戏生效。每轮开始时所有角色随机替换武将牌",
+    size:"3kB",
+    netdisk:"",
+    version:1.2,
+    files:[
+     "extension.js"
+    ]
+}; 
 extension["新国战"]={
     author:"苏婆玛丽奥",
     intro:"◇2019版新国战规则与武将改动扩展",

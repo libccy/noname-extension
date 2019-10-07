@@ -21,12 +21,12 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复已知的所有BUG<br>新增音忍四人众、乱斗剧情 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-09-25",
+	intro:"<li>更新：修改部分旧武将，当前版本为1.99<br>新增武将【逆天而行】 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-07",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.98,
+    version:1.99,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
@@ -184,7 +184,7 @@ extension["群英会"]={
 		"xwj_xwugeng_qiyi2.mp3","xwj_xwugeng_shenqu1.mp3","xwj_xwugeng_shenqu2.mp3","xwj_xwugeng_shixing.jpg",
 		"xwj_xwugeng_siling1.mp3","xwj_xwugeng_siling2.mp3","xwj_xwugeng_suiyue1.mp3","xwj_xwugeng_suiyue2.mp3",
 		"xwj_xwugeng_tian.jpg","xwj_xwugeng_tiankui.jpg","xwj_xwugeng_tianqi1.mp3","xwj_xwugeng_tianqi2.mp3",
-		"xwj_xwugeng_tianwu.jpg","xwj_xwugeng_wugeng.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_xuanfeng.jpg",
+		"xwj_xwugeng_tianwu.jpg","xwj_xwugeng_wugeng.jpg","xwj_xwugeng_xinshixing.jpg","xwj_xwugeng_xuanfeng.jpg","xwj_xwugeng_nitianerxing.jpg",
 		"xwj_xwugeng_xuelian1.mp3","xwj_xwugeng_xuelian11.mp3","xwj_xwugeng_xuelian12.mp3",
 		"xwj_xwugeng_xuemao1.mp3","xwj_xwugeng_xuemao2.mp3","xwj_xwugeng_zhengkong1.mp3",
 		"xwj_xwugeng_zhengkong2.mp3","xwj_xwugeng_zhengnu1.mp3","xwj_xwugeng_zhengnu2.mp3",
@@ -201,10 +201,10 @@ extension["群英会"]={
 
 extension["金庸群侠传"]={
     author:"详看简介",
-    intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>落影丶逝尘 Sukincen  <br>冷雨  诗笺 朱阳光 看破一切<li>友情配音：详看扩展内介绍  <li>更新日期：2019-09-06",
+    intro:" <li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，在此感谢大家的辛勤付出，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码：<br>落影丶逝尘 Sukincen  <br>冷雨  诗笺 朱阳光 看破一切<li>友情配音：详看扩展内介绍  <li>更新日期：2019-10-07",
     size:"86MB",
     netdisk:"",
-    version:1.5,
+    version:1.37,
     files:[
 "tlbb_quanguanqin.mp3","extension.js","qtpz_ajiu.mp3","qtpz_aobai.jpg","qtpz_aobai.mp3",
 		"qtpz_aobing1.mp3","qtpz_aobing2.mp3","qtpz_aozun1.mp3","qtpz_aozun2.mp3","qtpz_aqing.jpg",

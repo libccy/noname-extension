@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>新增音忍四人众、乱斗剧情',
-       '<li>听取玩家的建议，小改《火影忍者》部分武将【君麻吕】、【药师兜】、【大和】、【玖辛奈】、【秋道丁次】的部分技能',
-    'players://["xwj_xhuoying_tayuya","xwj_xhuoying_guitongwan","xwj_xhuoying_chilangfang","xwj_xhuoying_zuojinyoujin","xwj_xhuoying_junmalv","xwj_xhuoying_dou","xwj_xhuoying_dahe","xwj_xhuoying_jiuxinnai","xwj_xhuoying_dingchi"]',
+       '<li>替换部分素材，新增武将【逆天而行】、音忍四人众、乱斗剧情',
+       '<li>小改《火影忍者》部分武将【君麻吕】、【药师兜】、【大和】、【玖辛奈】、【秋道丁次】的部分技能',
+    'players://["xwj_xwugeng_nitianerxing","xwj_xhuoying_tayuya","xwj_xhuoying_guitongwan","xwj_xhuoying_chilangfang","xwj_xhuoying_zuojinyoujin","xwj_xhuoying_junmalv","xwj_xhuoying_dou","xwj_xhuoying_dahe","xwj_xhuoying_jiuxinnai","xwj_xhuoying_dingchi"]',
     ];
-    Xu_version='更新日期：2019.09.21  16:42';
+    Xu_version='更新日期：2019.10.03';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -121,10 +121,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 							priority:2,
 							forced:true,
          unique:true,
-         frequent:true,
-         /*filter:function (event,player){
-                  return !event.player.isAlive();
-          },*/
+         frequent:true, 
 					   content:function(){					
 					   	    game.playAudio('..','extension','群英会',trigger.player.name);
 							  /*  if(trigger.player.name=='xwj_xhuoying_itachi'){
@@ -205,6 +202,7 @@ return str1;
           //playerx.in();
          playerx.classList.remove('out');  
          playerx.gainMaxHp();
+         playerx.addSkill('xwj_xqunying_zhengyi');
          playerx.update();                                               
          ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';                      
          game.delay();    
@@ -404,10 +402,10 @@ huanhun.insertPhase();
 							}
 						}
 												
-  	   	lib.translate.xwj_jisha="击杀";
-	  			lib.translate._xwj_jisha="击杀";
-						lib.translate._xxmiaoshouhuichun='妙手回春';
-						lib.translate._xxyishugaochao='医术高超';		
+  	//   	lib.translate.xwj_jisha="击杀";
+	  	//		lib.translate._xwj_jisha="击杀";
+				//		lib.translate._xxmiaoshouhuichun='妙手回春';
+		//				lib.translate._xxyishugaochao='医术高超';		
 						}  
  	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
@@ -461,7 +459,7 @@ if(!lib.storage.stage["火影剧情"]){
 lib.storage.stage["火影剧情"]={
     name:"火影剧情",
     intro:"再现《火影忍者》经典战役，本乱斗模式的玩家以原战斗剧情的胜利者为主",
-    scenes:[{"name":"求生演习","intro":"卡卡西vs鸣人&&佐助&&小樱","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"],["xwj_xus_mianju","random","random"]],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鸣人大桥保卫战","intro":"卡卡西班vs再不斩&&白","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_bai","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zaibuzhan","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试①","intro":"春野樱vs山中井野","players":[{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jinye","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试②","intro":"手鞠vs天天","players":[{"name":"xwj_xhuoying_shouju","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tiantian","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试③","intro":"鸣人vs犬冢牙","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试④","intro":"宁次vs雏田","players":[{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chutian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试⑤","intro":"我爱罗vs李洛克","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场①","intro":"鸣人vs宁次","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场② ","intro":"佐助vs我爱罗","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场③","intro":"油女志乃vs勘九郞","players":[{"name":"xwj_xhuoying_zhinai","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场④","intro":"鹿丸vs手鞠","players":[{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shouju","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"木叶遇袭","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_yuanfeirizhan","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鼬神返乡","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kai","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鼬相遇","intro":"","players":[{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhilaiye","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"夺回佐助","intro":"","players":[{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chilangfang","name2":"none","identity":"fan","position":2,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhong","position":3,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guitongwan","name2":"none","identity":"fan","position":4,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"zhong","position":5,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojinyoujin","name2":"none","identity":"fan","position":6,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhong","position":7,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tayuya","name2":"none","identity":"fan","position":8,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"君麻吕之死","intro":"","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_junmalv","name2":"none","identity":"fan","position":1,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鸣一战","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"强虏我爱罗","intro":"","players":[{"name":"xwj_xhuoying_didala","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"赤砂之蝎","intro":"","players":[{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiezi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"卡卡西开眼","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":1,"hp":8,"maxHp":8,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"阿斯玛之死","intro":"","players":[{"name":"xwj_xhuoying_feiduan","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"潜入基地","intro":"大和班潜入大蛇丸的基地","players":[{"name":"xwj_xhuoying_dahe","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojin","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鸣人暴走","intro":"","players":[{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鹿丸报师仇","intro":"","players":[{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_feiduan","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐助vs大蛇丸","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐助vs迪达拉","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"潜入雨忍村","intro":"","players":[{"name":"xwj_xhuoying_zhilaiye","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鼬决战","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"强虏八尾","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuiyue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"fan","position":0,"hp":8,"maxHp":8,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佩恩入侵","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大闹五影会议①","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuiyue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xianglin","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_leiying","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大闹五影会议②","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhaomeimeng","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"伊邪那歧","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"xwj_xhuoying_xianglin","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tuanzang","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"四代死战","intro":"","players":[{"name":"xwj_xhuoying_shuimen","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiuxinnai","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_jiuwei","random","random"]],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"奇拉比vs鬼鲛","intro":"","players":[{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"珍兽vs怪兽","intro":"","players":[{"name":"xwj_xhuoying_kai","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"抢夺轮回眼","intro":"","players":[{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大和失踪","intro":"","players":[{"name":"xwj_xhuoying_dou","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dahe","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"别天神","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"蒸危爆威","intro":"","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_huanyue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"三代雷影","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_sanlei","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战①","intro":"","players":[{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiezi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_duan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jinye","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战②","intro":"","players":[{"name":"xwj_xhuoying_zuojin","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tiantian","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_bai","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zaibuzhan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战③","intro":"","players":[{"name":"xwj_xhuoying_chutian","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhinai","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"五影联合","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_wuren","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_leiying","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhaomeimeng","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"伊邪那美","intro":"","players":[{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chilangfang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guitongwan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tayuya","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojinyoujin","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"前代火影","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_feijian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuimen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xianglin","name2":"xwj_xhuoying_shuiyue","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhujian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_yuanfeirizhan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"柱间vs斑","intro":"","players":[{"name":"xwj_xhuoying_zhujian","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ban","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"卡卡西vs带土","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍者联军","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shouju","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"八门遁甲","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kai","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大筒木辉夜","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_huiye","name2":"none","identity":"fan","position":0,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"终结谷终战","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true}],
+    scenes:[{"name":"求生演习","intro":"卡卡西vs鸣人&&佐助&&小樱","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"],["xwj_xus_mianju","random","random"]],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鸣人大桥保卫战","intro":"卡卡西班vs再不斩&&白","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_bai","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zaibuzhan","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试①","intro":"春野樱vs山中井野","players":[{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jinye","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试②","intro":"手鞠vs天天","players":[{"name":"xwj_xhuoying_shouju","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tiantian","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试③","intro":"鸣人vs犬冢牙","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试④","intro":"宁次vs雏田","players":[{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chutian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试⑤","intro":"我爱罗vs李洛克","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场①","intro":"鸣人vs宁次","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场② ","intro":"佐助vs我爱罗","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场③","intro":"油女志乃vs勘九郞","players":[{"name":"xwj_xhuoying_zhinai","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"中忍考试第三场④","intro":"鹿丸vs手鞠","players":[{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shouju","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"木叶遇袭","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_yuanfeirizhan","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鼬神返乡","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kai","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鼬相遇","intro":"","players":[{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhilaiye","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"夺回佐助","intro":"","players":[{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chilangfang","name2":"none","identity":"fan","position":2,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhong","position":3,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guitongwan","name2":"none","identity":"fan","position":4,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"zhong","position":5,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojinyoujin","name2":"none","identity":"fan","position":6,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhong","position":7,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tayuya","name2":"none","identity":"fan","position":8,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"君麻吕之死","intro":"","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_junmalv","name2":"none","identity":"fan","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鸣一战","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"强虏我爱罗","intro":"","players":[{"name":"xwj_xhuoying_didala","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"赤砂之蝎","intro":"","players":[{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiezi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"卡卡西开眼","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":1,"hp":8,"maxHp":8,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"阿斯玛之死","intro":"","players":[{"name":"xwj_xhuoying_feiduan","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"潜入基地","intro":"大和班潜入大蛇丸的基地","players":[{"name":"xwj_xhuoying_dahe","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojin","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鸣人暴走","intro":"","players":[{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"鹿丸报师仇","intro":"","players":[{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_feiduan","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐助vs大蛇丸","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐助vs迪达拉","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"潜入雨忍村","intro":"","players":[{"name":"xwj_xhuoying_zhilaiye","name2":"none","identity":"zhu","position":1,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佐鼬决战","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"强虏八尾","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuiyue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"fan","position":0,"hp":8,"maxHp":8,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"佩恩入侵","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大闹五影会议①","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuiyue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xianglin","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_leiying","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大闹五影会议②","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhaomeimeng","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"伊邪那歧","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"xwj_xhuoying_xianglin","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tuanzang","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"四代死战","intro":"","players":[{"name":"xwj_xhuoying_shuimen","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiuxinnai","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_jiuwei","random","random"]],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"奇拉比vs鬼鲛","intro":"","players":[{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"珍兽vs怪兽","intro":"","players":[{"name":"xwj_xhuoying_kai","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guijiao","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"抢夺轮回眼","intro":"","players":[{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaonan","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大和失踪","intro":"","players":[{"name":"xwj_xhuoying_dou","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dahe","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"别天神","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_qilabi","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_itachi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_changmen","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"蒸危爆威","intro":"","players":[{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_huanyue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"三代雷影","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_sanlei","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战①","intro":"","players":[{"name":"xwj_xhuoying_dingchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_luwan","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_asima","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiezi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_duan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jiaodu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jinye","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战②","intro":"","players":[{"name":"xwj_xhuoying_zuojin","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tiantian","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ningchi","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_bai","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zaibuzhan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_didala","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍界大战③","intro":"","players":[{"name":"xwj_xhuoying_chutian","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_quanzhongya","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhinai","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"五影联合","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_wuren","name2":"none","identity":"zhong","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dayemu","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_leiying","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_woailuo","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhaomeimeng","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"伊邪那美","intro":"","players":[{"name":"xwj_xhuoying_itachi","name2":"none","identity":"zhu","position":1,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_dou","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_chilangfang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_guitongwan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_tayuya","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zuojinyoujin","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"前代火影","intro":"","players":[{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhu","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_dashewan","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhongwu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_feijian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shuimen","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xianglin","name2":"xwj_xhuoying_shuiyue","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhujian","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_yuanfeirizhan","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"柱间vs斑","intro":"","players":[{"name":"xwj_xhuoying_zhujian","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_ban","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"卡卡西vs带土","intro":"","players":[{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"忍者联军","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daluyi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_shouju","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kanjiulang","name2":"none","identity":"fan","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"八门遁甲","intro":"","players":[{"name":"xwj_xhuoying_ban","name2":"none","identity":"zhu","position":1,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_daitu","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"zhong","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_liluoke","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kai","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"fan","position":0,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"大筒木辉夜","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_xiaoying","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"zhong","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_huiye","name2":"none","identity":"fan","position":0,"hp":7,"maxHp":7,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[["xwj_xus_xuelunyang","random","random"]],"judges":[]},{"name":"xwj_xhuoying_jue","name2":"none","identity":"fan","position":0,"hp":6,"maxHp":6,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_kakasi","name2":"none","identity":"zhu","position":1,"hp":4,"maxHp":4,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true},{"name":"终结谷终战","intro":"","players":[{"name":"xwj_xhuoying_mingren","name2":"none","identity":"zhu","position":0,"hp":3,"maxHp":3,"linked":false,"turnedover":false,"playercontrol":true,"handcards":[],"equips":[],"judges":[]},{"name":"xwj_xhuoying_zhuozhu","name2":"none","identity":"fan","position":0,"hp":5,"maxHp":5,"linked":false,"turnedover":false,"playercontrol":false,"handcards":[],"equips":[],"judges":[]}],"cardPileTop":[],"cardPileBottom":[],"discardPile":[],"gameDraw":true}],
     mode:"normal",
     level:0,
 };
@@ -554,6 +552,241 @@ characterTitle:{
 								},
 								
 skill:{
+
+   "xwj_xqunying_zhengyi":{
+              locked:true,
+              //源自贾祸
+              group:["xwj_xqunying_zhengyi_shan","xwj_xqunying_zhengyiwuxie","xwj_xqunying_zhengyijinnang","xwj_xqunying_zhengyi_use","xwj_xqunying_zhengyi_sha"],
+              },
+            "xwj_xqunying_zhengyiwuxie":{
+                enable:"chooseToUse",   
+                usable:1,         
+                filterCard:function (){return false},
+                selectCard:-1,
+                viewAsFilter:function (player){return player.isAlive();},
+                viewAs:{
+                    name:"wuxie",
+                },
+                onuse:function (result,player){},
+                prompt:"你可视为使用一张【无懈可击】",
+                check:function (){return 1},
+                ai:{
+                    threaten:0.8,
+                    basic:{
+                        useful:[6,4],
+                        value:[6,4],
+                    },
+                    result:{
+                        player:1,
+                    },
+                    expose:0.2,
+                },
+            },
+            "xwj_xqunying_zhengyi_shan":{
+                trigger:{
+                    player:"chooseToRespondBegin",
+                },      
+                usable:1,             
+                filter:function (event,player){     
+    if(event.parent.name!='sha') return false;
+    if(!lib.filter.cardRespondable({name:'shan'},player,event)) return false;
+    if(!event.filterCard({name:'shan'})) return false;
+         return true;                                  
+    },
+                content:function (){
+        'step 0'
+            trigger.untrigger();
+            trigger.responded=true;
+            trigger.result={bool:true,card:{name:'shan'}}                                 
+            player.logSkill('xwj_xqunying_zhengyi'); 
+    },                
+            },
+            "xwj_xqunying_zhengyi_sha":{
+                trigger:{
+                    player:"chooseToRespondBegin",
+                },    
+                usable:1,           
+                filter:function (event,player){         
+        if(!event.filterCard({name:'sha'})) return false;
+        if(!lib.filter.cardRespondable({name:'sha'},player,event)) return false;                 
+     //  if(event.parent.name!='sha') return false;
+        return true;
+    },
+                content:function (){      
+            trigger.untrigger();
+            trigger.responded=true;
+            trigger.result={bool:true,card:{name:'sha'}}       
+            player.logSkill('xwj_xqunying_zhengyi');
+    },
+            },
+            "xwj_xqunying_zhengyi_use":{
+                enable:"chooseToUse",     
+                usable:1,              
+                filter:function (event,player){                                                
+        if((event.filterCard({name:'sha'},player,event))||
+            (event.filterCard({name:'jiu'},player,event))||
+            (event.filterCard({name:'tao'},player,event))){
+   return player.isAlive();    
+        }
+        return false;
+    },
+                chooseButton:{
+                    dialog:function (event,player){
+            var list=[];
+            if(event.filterCard({name:'sha'},player,event)){
+                list.push(['基本','','sha']);
+                list.push(['基本','','sha','fire']);
+                list.push(['基本','','sha','thunder']);
+            }
+            if(event.filterCard({name:'tao'},player,event)){
+                list.push(['基本','','tao']);
+            }
+            if(event.filterCard({name:'jiu'},player,event)){
+                list.push(['基本','','jiu']);
+            }
+            return ui.create.dialog('正义',[list,'vcard'],'hidden');
+        },
+                    check:function (button){
+            var player=_status.event.player;
+            var card={name:button.link[2],nature:button.link[3]};
+            if(game.hasPlayer(function(current){
+                return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
+            })){
+                switch(button.link[2]){
+                    case 'tao':return 5;
+                    case 'jiu':return 3.01;
+                    case 'sha':
+                        if(button.link[3]=='fire') return 2.95;
+                        else if(button.link[3]=='fire') return 2.92;
+                        else return 2.9;
+                }
+            }
+            return 0;
+        },
+                    backup:function (links,player){
+            return {
+                filterCard:function (){return false},
+                selectCard:-1,
+          viewAsFilter:function (player){return player.isAlive()},
+                viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null},                                    
+                popname:true,
+                ignoreMod:true,
+                precontent:function(){                            
+                    player.logSkill('xwj_xqunying_zhengyi');                        
+                },
+            }
+        },
+                    prompt:function (links,player){
+            return '视为使用一张'+get.translation(links[0][3]||'')+get.translation(links[0][2]);
+        },
+                },
+                ai:{
+                    order:function (){
+            var player=_status.event.player;
+            var event=_status.event;
+            if(!player.storage.xwj_xqunying_zhengyi.jiu&&event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
+                return 3.1;
+            }
+            return 2.9;
+        },
+                    save:true,
+                    respondSha:true,
+                    result:{
+                        player:1,
+                    },
+                },
+            },
+            "xwj_xqunying_zhengyijinnang":{
+                enable:"phaseUse",  
+                usable:1,            
+                filter:function (card,player){
+                return player.isAlive();             
+    },
+                chooseButton:{
+                    dialog:function (){
+            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
+            for(var i=0;i<list.length;i++){
+                list[i]=['锦囊','',list[i]];
+            }
+            return ui.create.dialog(get.translation('xwj_xqunying_zhengyijinnang'),[list,'vcard']);
+        },
+                    filter:function (button,player){
+            return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+        },
+                    check:function (button){
+            var player=_status.event.player;
+            var recover=0,lose=1,players=game.filterPlayer();
+            for(var i=0;i<players.length;i++){
+                if(players[i].hp==1&&get.damageEffect(players[i],player,player)>0&&!players[i].hasSha()){
+                    return (button.link[2]=='juedou')?2:-1;
+                }
+                if(!players[i].isOut()){
+                    if(players[i].hp<players[i].maxHp){
+                        if(get.attitude(player,players[i])>0){
+                            if(players[i].hp<2){
+                                lose--;
+                                recover+=0.5;
+                            }
+                            lose--;
+                            recover++;
+                        }
+                        else if(get.attitude(player,players[i])<0){
+                            if(players[i].hp<2){
+                                lose++;
+                                recover-=0.5;
+                            }
+                            lose++;
+                            recover--;
+                        }
+                    }
+                    else{
+                        if(get.attitude(player,players[i])>0){
+                            lose--;
+                        }
+                        else if(get.attitude(player,players[i])<0){
+                            lose++;
+                        }
+                    }
+                }
+            }
+            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
+            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
+            return (button.link[2]=='wuzhong')?1:-1;
+        },
+                    backup:function (links,player){
+            return {
+                filterCard:function (){return false},     
+                selectCard:-1,    
+                popname:true,
+                viewAs:{name:links[0][2]},
+                 precontent:function(){
+                 player.logSkill('xwj_xqunying_zhengyi');      
+                 }
+            }
+        },
+                    prompt:function (links,player){
+            return '视为使用一张'+get.translation(links[0][2]);
+        },
+                },
+                ai:{
+                    order:1,
+                    result:{
+                        player:function (player){
+                var num=0;
+                var cards=player.getCards('h');
+                
+                for(var i=0;i<cards.length;i++){
+                    num+=Math.max(0,get.value(cards[i],player,'raw'));
+                }
+                num/=cards.length;
+                num*=Math.min(cards.length,player.hp);
+                return 12-num;
+            },
+                    },
+                    threaten:1.6,
+                },
+            },
+ 
      "xwj_xqunying_mingxiang":{
                 audio:"ext:群英会:1",
                 trigger:{
@@ -561,7 +794,8 @@ skill:{
                     player:"enterGame",
                 },
                 forced:true,
-                unique:true,           
+                unique:true,    
+                derivation:"xwj_xqunying_zhengyi",       
                 content:function (){        
     var chat=['有威胁的对手都被我清除了，剩下的要靠你们了！','我要进入冥想了，不要来打扰我！'].randomGet();
             player.say(chat);  
@@ -899,7 +1133,7 @@ skill:{
          trigger.player.group="xqin";
 game.log(trigger.player,'的势力变为秦');
 if(get.mode()=='guozhan'){
-    trigger.player.identity="xqin";
+    //trigger.player.identity="xqin";
     trigger.player._group="xqin";
     trigger.player.node.identity.firstChild.innerHTML=get.translation("xqin");
     trigger.player.node.identity.dataset.color=trigger.player.identity;        
@@ -949,15 +1183,25 @@ else{
                         expose:0.8,
                     },
                 },
-            },
-        
-                     
+            },                             
 },
 
  translate:{  
+            "xwj_xqunying_zhengyi":"正义",
+            "xwj_xqunying_zhengyi_info":"你可在每名角色的回合内各限一次：<li>视为使用一张基本牌；<li>视为使用一张锦囊牌；<li>视为打出一张不重复牌名的基本牌",
+            "xwj_xqunying_zhengyiwuxie":"无懈可击",
+            "xwj_xqunying_zhengyiwuxie_info":"你可以视为使用一张【无懈可击】",
+            "xwj_xqunying_zhengyi_sha":"出杀",
+            "xwj_xqunying_zhengyi_sha_info":"你可以视为打出一张【杀】",
+            "xwj_xqunying_zhengyi_shan":"出闪",
+            "xwj_xqunying_zhengyi_shan_info":"你可以视为打出一张【闪】",
+            "xwj_xqunying_zhengyi_use":"正义基本牌",
+            "xwj_xqunying_zhengyi_use_info":"你可以视为使用一张基本牌",
+            "xwj_xqunying_zhengyijinnang":"正义锦囊牌",
+            "xwj_xqunying_zhengyijinnang_info":"你可以视为使用一张锦囊牌。",
             "xwj_xqunying_jilian":"吉连",
             "xwj_xqunying_mingxiang":"冥想",
-            "xwj_xqunying_mingxiang_info":"<font color=#f00>锁定技</font> （限身份模式）游戏开始或你进入游戏时，你进入冥想状态：你没有任何阶段，不能成为卡牌、技能的目标且不占据位置。当场上有角色阵亡时，你增加一点体力上限返回战场参战：令场上所有其他角色失去一点体力且当前角色回合结束后，你额外执行一个回合",
+            "xwj_xqunying_mingxiang_info":"<font color=#f00>锁定技</font> （限身份模式）游戏开始或你进入游戏时，你进入冥想状态：你没有任何阶段，不能成为卡牌、技能的目标也不能使用或打出牌且不占据位置。当场上有角色阵亡时，你增加一点体力上限，获得技能【正义】返回战场参战：立即令场上所有其他角色失去一点体力且当前角色回合结束后，你额外执行一个回合",
             "xwj_xqunying_frieza":"弗利萨",
             "xwj_xqunying_weijian":"围歼",
             "xwj_xqunying_weijian_info":"当你受到伤害后，你可令从你下家开始除你外的场上所有角色依次视为对伤害来源使用一张【杀】",
@@ -1009,9 +1253,10 @@ if(lib.device||lib.node){
 				connect:true,
 				characterSort:{
 	 		xwugeng:{
-				"xwugeng_shenzu":["xwj_xwugeng_tian","xwj_xwugeng_zhengshan","xwj_xwugeng_shixing","xwj_xwugeng_xuanfeng","xwj_xwugeng_tianwu","xwj_xwugeng_tiankui","xwj_xwugeng_bailian"],
-				"xwugeng_renlei":["xwj_xwugeng_ziyu","xwj_xwugeng_wugeng","xwj_xwugeng_baicai","xwj_xwugeng_fuxi"],
-			},
+				"xwugeng_shenzu":["xwj_xwugeng_tian","xwj_xwugeng_zhengshan","xwj_xwugeng_shixing","xwj_xwugeng_xuanfeng","xwj_xwugeng_tianwu","xwj_xwugeng_tiankui","xwj_xwugeng_fuxi","xwj_xwugeng_bailian"],
+				"xwugeng_renlei":["xwj_xwugeng_ziyu","xwj_xwugeng_wugeng","xwj_xwugeng_baicai"],
+	    "xwugeng_mingzu":["xwj_xwugeng_nitianerxing"],
+					},
 		},
 				character:{
 					"xwj_xwugeng_tian":["male","shen",4,["xwj_xwugeng_xuemao","xwj_xwugeng_baiqian"],[]],
@@ -1020,12 +1265,13 @@ if(lib.device||lib.node){
 					"xwj_xwugeng_xuanfeng":["male","shen",4,["xwj_xwugeng_shensu","xwj_xwugeng_baofeng","xwj_xwugeng_zhengkong"],[]],
 					"xwj_xwugeng_tianwu":["male","shen",3,["xwj_xwugeng_pili","xwj_xwugeng_zhengnu"],[]],
 					"xwj_xwugeng_tiankui":["male","shen",4,["xwj_xwugeng_suiyue","xwj_xwugeng_shenqu"],[]],
-		    "xwj_xwugeng_ziyu":["male","qun",4,["xwj_xwugeng_qijian","xwj_xwugeng_qiyi","xwj_xwugeng_zhutian"],[]],
-       "xwj_xwugeng_wugeng":["male","qun",2,["xwj_xwugeng_zhouwen","xwj_xwugeng_tianqi"],[]],
-       "xwj_xwugeng_baicai":["female","qun",3,["xwj_xwugeng_qinhe","xwj_xwugeng_dunkong"],[]],
+		    "xwj_xwugeng_ziyu":["male","xrenlei",4,["xwj_xwugeng_qijian","xwj_xwugeng_qiyi","xwj_xwugeng_zhutian"],[]],
+       "xwj_xwugeng_wugeng":["male","xrenlei",2,["xwj_xwugeng_zhouwen","xwj_xwugeng_tianqi"],[]],
+       "xwj_xwugeng_baicai":["female","xrenlei",3,["xwj_xwugeng_qinhe","xwj_xwugeng_dunkong"],[]],
   	    "xwj_xwugeng_bailian":["male","shen",3,["xwj_xwugeng_xuelian","xwj_xwugeng_siling"],[]],
-   	 		"xwj_xwugeng_fuxi":["male","qun",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
-
+   	 		"xwj_xwugeng_fuxi":["male","shen",4,["xwj_xwugeng_dongshi","xwj_xwugeng_cizhou"],[]],
+        "xwj_xwugeng_nitianerxing":["male","xming",4,["xwj_xwugeng_tongming","xwj_xwugeng_poji"],[]],
+     
 },
 
 characterIntro:{
@@ -1043,6 +1289,114 @@ characterIntro:{
 					},
 								
 skill:{		
+             
+            "xwj_xwugeng_tongming":{
+                trigger:{
+                    global:"dieBegin",
+                },
+                forced:true,
+                filter:function (event,player){
+        return player.storage.disableEquip!=undefined&&player.storage.disableEquip.length>0;
+    },
+                content:function (){           
+                player.recover();    
+   player.chooseToEnable();          
+    },
+            },
+            "xwj_xwugeng_poji":{
+                enable:"phaseUse",
+                filterTarget:function (card,player,target){
+        return target!=player;
+    },
+                selectTarget:[1,Infinity],
+                derivation:['xwj_xwugeng_juyi','xwj_xwugeng_anyue'],
+                filter:function (event,player){
+                if(player.countDisabled()>=5) return false;
+        return player.isAlive();
+    },
+                content:function (){      
+            target.disableEquip(2);        
+            player.disableEquip(1);   
+            player.disableEquip(2);   
+            player.disableEquip(3);   
+            player.disableEquip(4);   
+            player.disableEquip(5);        
+            player.disableJudge();  
+            player.loseHp(player.hp-1);                  
+            player.addTempSkill('xwj_xwugeng_juyi');
+            player.addTempSkill('xwj_xwugeng_anyue');
+            player.update();        
+            player.awakenSkill('xwj_xwugeng_poji');
+    },
+                ai:{
+                    threaten:0.3,
+                    result:{
+                    player:function (player){
+                if(player.countCards('h',{name:'sha'})<2) return 0;
+                if(player.countCards('h')<5) return 0;
+                return 1.8;
+            },
+                        target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
+                    },
+                    order:5,
+                },
+            },
+            "xwj_xwugeng_juyi":{
+                trigger:{
+                    player:"useCard",
+                },
+                forced:true,
+                priority:2019,
+                filter:function (event,player){
+            return player.isAlive();
+    },
+                content:function (){                          
+     player.draw();     
+     },
+            },
+            "xwj_xwugeng_anyue":{
+                mod:{
+                    cardUsable:function (card){
+            if(get.info(card)&&get.info(card).forceUsable) return;
+            return Infinity;
+        },
+                    targetInRange:function (){
+            return true;
+        },
+                },
+                trigger:{
+                    player:"useCard",
+                },
+                forced:true,
+                priority:10,
+                filter:function (event,player){                                       
+ if(get.type(event.card)=='delay') return false;
+ if(get.type(event.card)=='equip') return false;   
+ if(event.card.name=='jiedao') return false;                  
+ if(event.targets.length>1) return false;     
+ if(event.targets.contains(player)) return false; 
+ //if(!event.targets.isDisabled(2)) return false;                            
+      return game.hasPlayer(function(current){
+      return current.isDisabled(2)&&!event.targets.contains(current);
+  });
+    },
+                content:function (){            
+        'step 0'                      
+event.targets=game.filterPlayer(function(current){
+    return current.isDisabled(2)&&current!=player;
+});
+event.targets.sort(lib.sort.seat);
+'step 1'
+   trigger.targets.addArray(event.targets);   
+   player.line(trigger.targets,'green');      
+    },
+                ai:{
+                    order:9,
+                },
+            },
+   
 "xwj_xwugeng_siling":{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -2978,7 +3332,17 @@ content:function (){
            },
 
  translate:{
-	 "xwj_xwugeng_bailian":"白莲圣王",
+           
+            "xwj_xwugeng_nitianerxing":"逆天而行",
+            "xwj_xwugeng_tongming":"统冥",
+            "xwj_xwugeng_tongming_info":"统一冥族。锁定技，场上每有一名角色阵亡，你回复一点体力并选择恢复一个已被废除的装备栏",
+            "xwj_xwugeng_poji":"破极",
+            "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
+            "xwj_xwugeng_juyi":"聚义",
+            "xwj_xwugeng_juyi_info":"锁定技，你每使用一张牌后摸一张牌",
+            "xwj_xwugeng_anyue":"暗月",
+            "xwj_xwugeng_anyue_info":"暗月凶光。锁定技，你对一名其他角色使用牌（借刀杀人除外）时，额外指定所有已废除防具栏的其他角色",
+          	 "xwj_xwugeng_bailian":"白莲圣王",
             "xwj_xwugeng_xuelian":"血莲",
             "xwj_xwugeng_xuelian2":"血莲",
             "xwj_xwugeng_xuelian_info":"<span class=yellowtext>限定技</span> 当你受到伤害后，若伤害来源未获得“血莲”标记，你令其获得九个“血莲”标记，其回合结束时，你摸等同其“血莲”标记个数的一半（向下取整）张牌，然后其须弃置一个“血莲”标记，并随机弃置一张装备区的牌，否则受到一点伤害。若其“血莲”标记不大于0或已阵亡，你重置本技能",
@@ -2993,7 +3357,7 @@ content:function (){
             "xwj_xwugeng_dongshi1_info":"undefined",
             "xwj_xwugeng_dongshi2":"洞识",
             "xwj_xwugeng_dongshi2_info":"undefined",
-        "xwj_xwugeng_anxie":"暗蝎",
+          "xwj_xwugeng_anxie":"暗蝎",
             "xwj_xwugeng_anxie_info":"结束阶段，你可声明一种锦囊牌的牌名，本局游戏你不能成为此牌的目标。",
             "xwj_xwugeng_baicai":"白菜",
             "xwj_xwugeng_qinhe":"亲和",
@@ -3031,7 +3395,7 @@ content:function (){
             "xwj_xwugeng_wuse_info":"</font><font color=#f00>锁定技</font> 你不能成为【杀】的目标",
             "xwj_xwugeng_xuwu":"虚无",
             "xwj_xwugeng_xuwu_info":"</font><font color=#f00>锁定技</font> 你不能成为锦囊牌的目标",      
-   "xwj_xwugeng_ziyu":"子羽",
+            "xwj_xwugeng_ziyu":"子羽",
           		"xwj_xwugeng_zhutian":"诛天",         
             "xwj_xwugeng_zhutian_info":"当你受到伤害后，你可以使用一张【杀】。若此【杀】造成伤害，你可防止之，改为令目标角色先失去一点体力上限，再受到一点火焰伤害【克制十刑】",        
             "xwj_xwugeng_zhutian2":"诛天",
@@ -3108,7 +3472,10 @@ content:function (){
             "xwj_xwugeng_fuchou2":"复仇",
             "xwj_xwugeng_fuchou2_info":"<font color=#f00>锁定技</font> 你使用的【杀】额外造成Y点伤害（Y为你的损失的体力值的一半向下取整）",             	
         			"xwugeng_shenzu":"神族",
-			        "xwugeng_renlei":"人类",			               
+			        "xwugeng_renlei":"人类",			
+			        "xwugeng_mingzu":"冥族",
+            "xming":"冥",
+            "xrenlei":"人",             
         },
 };
 			if(lib.device||lib.node){
@@ -3147,7 +3514,7 @@ game.import('character',function(){
             "xwj_xhuoying_ban":["male","xxiao",2,["xwj_xhuoying_zhenxing","xwj_xhuoying_xinxuzuo","xwj_xhuoying_yiyuan"],[]],
             "xwj_xhuoying_dayemu":["male","xren",3,["xwj_xhuoying_chendun","xwj_xhuoying_tiancheng","xwj_xhuoying_feixian"],[]],
             "xwj_xhuoying_kai":["male","xhuo",5,["xwj_xhuoying_bamen","xwj_xhuoying_resizhan"],[]],
-            "xwj_xhuoying_dou":["male","xren",3,["xwj_xhuoying_yizhi"],[]],
+            "xwj_xhuoying_dou":["male","xren",3,["xwj_xhuoying_yizhi","xwj_xhuoying_xinyiliao"],[]],
             "xwj_xhuoying_kakasi":["male","xhuo",3,["xwj_xhuoying_leique","xwj_xhuoying_fuzhi"],[]],
             "xwj_xhuoying_chutian":["female","xhuo",3,["xwj_xhuoying_baiyan","xwj_xhuoying_rouquan"],[]],
             "xwj_xhuoying_daitu":["male","xxiao",3,["xwj_xhuoying_xishou","xwj_xhuoying_reshenwei","xwj_xhuoying_xianyan"],[]],
@@ -3292,7 +3659,27 @@ game.import('character',function(){
 					},
 				
 skill:{
-   
+         "xwj_xhuoying_xinyiliao":{
+               audio:"ext:群英会:2",
+                trigger:{
+                    global:"dying",
+                },
+                check:function (event,player){
+                if(player.hp==1) return 0;
+                if(player.countCards('h',{name:'tao'})||(player.countCards('h',{name:'jiu'})&&event.player==player)) return 0;
+                return get.attitude(player,event.player)>0;
+                },
+                filter:function (event,player){     
+                return event.player.hp<=0&&player.countCards('h',{type:'basic'});
+                },               
+                content:function (){
+                player.discard(player.getCards('h',{type:'basic'}));
+                trigger.player.recover(1-player.hp);
+                },
+                ai:{
+                order:6,
+                },
+                },
             "xwj_xhuoying_tulao":{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -3328,8 +3715,7 @@ skill:{
                 'step 0'          
           var num=game.countPlayer(function(current){
             return current.isMad();
-        });
- 
+        }); 
         if(num<=1){
             player.draw();
         }
@@ -3426,13 +3812,12 @@ skill:{
                // if(!player.isLinked()) return false;
          return game.hasPlayer(function(current){
             return current.isLinked();
-        });
- 
+        }); 
     },
                 content:function (){    
                'step 0'  
      player.chooseTarget('选择弃置一名已横置的角色令其重置武将牌',lib.translate.xwj_xhuoying_jinkui_info,function(card,player,target){
-             return target.isLinked();
+             return target!=player&&target.isLinked();
      }).set('ai',function(target){     
      if(get.attitude(player,target)>0) return 1.8;   
              return 0.9;            
@@ -3474,21 +3859,51 @@ skill:{
             "xwj_xhuoying_zhuzheng":{
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
-                filter:function (event,player){
-              
+               // usable:1,
+                filter:function (event,player){              
                 if(player.getStat().skill.xwj_xhuoying_zhuzheng>=player.hp) return false;
-        return game.hasPlayer(function(current){
-
-            return !current.isLinked();
-
-        });
-
+        return game.hasPlayer(function(current){
+            return !current.isLinked();
+        });
     },
                 filterTarget:function (card,player,target){
         return target!=player&&!target.isLinked();
     },
+ /*   //未写完善的同时猜拳：
+  selectTarget:function (){
+        return [1,_status.event.player.hp];
+    },
+                multitarget:true,
+                multiline:true,                          
                 content:function (){
-
+        "step 0"         
+       event.num=0;       
+        "step 1"                
+            if(event.num<targets.length){                    
+           player.line(targets[event.num],'green');
+           player.chooseToPSS(targets[event.num]);            
+            }
+          "step 2"        
+              if(result.tie){
+                        event.goto(1);
+                    }
+                 if(result.bool){
+                        target.link();
+                        event.num++;
+                        target.addTempSkill('xwj_xhuoying_zhuzheng2',{player:'phaseBegin'});       
+                    }       
+                 if(!result.bool){
+                     event.num++;
+                     player.link(true);
+                            }       
+              "step 3"    
+        if(event.num==targets.length){       
+        event.finish();        
+        }
+        else event.goto(1);                     
+    },*/
+                //原技能：
+               content:function (){
                    'step 0'
                    player.line(target,'green');
                     player.chooseToPSS(target);
@@ -3558,8 +3973,7 @@ skill:{
                 filter:function (event){        
                 return game.hasPlayer(function(current){
             return current.countCards('e');
-        });
-      
+        });      
     },
                 content:function (){
         "step 0"
@@ -3681,6 +4095,7 @@ skill:{
                // popup:false,
                 priority:201909,
                 filter:function (event,player){
+                if(event.card.name=='jiedao') return false;     
          if(get.type(event.card)=='delay') return false;
          if(get.type(event.card)=='equip') return false;
          if(event.targets.contains(player)) return false;        
@@ -4033,7 +4448,7 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
                 },
                 direct:true,
                 filter:function (event,player){
-        return game.findPlayer(function(current){
+        return game.hasPlayer(function(current){
             return !current.isLinked();
         });
     },
@@ -4062,6 +4477,7 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
         if(event.num<event.targets.length){
             event.targets[event.num].link();
             event.targets[event.num].addSkill('xwj_xhuoying_fenglian2');
+            
             event.num++;
             event.redo();
         }
@@ -4076,6 +4492,10 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
                     player:"phaseBegin",
                 },
                 forced:true,
+                mark:true,
+                intro:{
+					content:'你的下个回合内，不能使用或打出卡牌',
+				},
                 content:function (){        
            player.addTempSkill('xwj_xhuoying_fenglian3');
            player.removeSkill('xwj_xhuoying_fenglian2');
@@ -4099,8 +4519,8 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
 					}
 				},
 				intro:{
-					content:'不能使用或打出卡牌'
-				}
+					content:'不能使用或打出卡牌',
+				},
 			},
 			
 	"xwj_xhuoying_liaoshang":{
@@ -4149,6 +4569,7 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
                 direct:true,
                 audio:"ext:群英会:2",
                 filter:function (event,player){
+                if(player.storage.xwj_xhuoying_chongyu.length>=player.hp) return false;
         if(event.player==player) return false;
         for(var i=0;i<event.cards.length;i++){
             if(get.suit(event.cards[i])=='spade'&&get.position(event.cards[i])=='d'){
@@ -4425,8 +4846,7 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
 				filter:function(event,player){				
 					return game.hasPlayer(function(current){
             return current.countCards('he');
-        });
- 
+        }); 
 				},
                 content:function (){
     "step 0"
@@ -5229,7 +5649,7 @@ xwj_xhuoying_guazhang:{
             },
                     },
                 },
-                group:["xwj_xhuoying_reguaili_roundcount"],
+               // group:["xwj_xhuoying_reguaili_roundcount"],
             },
             "xwj_xhuoying_reguaili2":{
                 audio:"ext:群英会:1",
@@ -5802,6 +6222,42 @@ xwj_xhuoying_guazhang:{
                     threaten:0.2,
                 },
             },
+            
+                  "xwj_xhuoying_chendun":{
+                audio:"ext:群英会:2",
+                enable:"phaseUse",
+                usable:1,
+                filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('h')>0&&target.maxHp>=2;
+    },	
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                content:function (){               
+        'step 0'
+        player.chooseToCompare(target);        
+        var chat=['尘遁•原界剥离之术','我虽然跟你无怨无仇，但整个忍界的人都想杀你'].randomGet();
+            player.say(chat);        
+        'step 1'
+        if(result.bool){  
+            target.loseMaxHp();
+            target.draw();                                                   
+        }
+        else{
+            target.damage();      
+        }
+    },
+                ai:{
+                    threaten:2.3,
+                   result:{
+            target:function (player,target){
+                return get.damageEffect(target,player,target);
+            },
+        },
+                    order:9,
+                },
+            },
+            
             "xwj_xhuoying_rechendun":{
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
@@ -9076,8 +9532,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         next.autochoose=lib.filter.autoRespondShan;
         "step 1"       
         if(result.bool==false){
-            target.damage('thunder');  
-            
+            target.damage('thunder');              
         }                                  
     },
                 ai:{
@@ -9094,7 +9549,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 },
                 logTarget:"player",
                 filter:function (event,player){
-        return player.countCards('h')<=event.player.countCards('h')||player.hp<=event.player.hp;
+        return event.player!=player&&player.countCards('h')<=event.player.countCards('h')||player.hp<=event.player.hp;
     },
                 content:function (){
         var chat=['了不起的压力','看来得爆发咒印的第二形态了'].randomGet();
@@ -9104,7 +9559,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
         }
         else{
         player.recover();
-        player.draw(2);
+        player.draw();
         }
     },
             },
@@ -11452,7 +11907,7 @@ if(range[1]!=-1) range[1]+=Infinity;
             "xwj_xhuoying_yizhi":{
                 audio:"ext:群英会:2",
                 trigger:{
-                    player:"damageBegin",
+                    player:"damageEnd",
                 },
                 forced:true,
                 priority:20,
@@ -11489,8 +11944,9 @@ if(range[1]!=-1) range[1]+=Infinity;
         player.markSkill('xwj_xhuoying_yizhi');
         player.update();
         if(player.storage.xwj_xhuoying_yizhi>=3){
-            player.$fullscreenpop('蜕皮成仙','thunder');
+            player.$fullscreenpop('蜕皮化龙','water');
             player.unmarkSkill('xwj_xhuoying_yizhi');
+            player.removeSkill('xwj_xhuoying_xinyiliao');
             player.addSkill('xwj_xhuoying_xianfa');
             player.addSkill('xwj_xhuoying_zhuansheng');
         }
@@ -11866,40 +12322,7 @@ player.$skill('助君成王','fire','red','avatar');
                     expose:0.8,
                 },
             },
-            "xwj_xhuoying_chendun":{
-                audio:"ext:群英会:2",
-                enable:"phaseUse",
-                usable:1,
-                filterTarget:function (card,player,target){
-        return player!=target&&target.countCards('h')>0;
-    },	
-                filter:function (event,player){
-        return player.countCards('h')>0;
-    },
-                content:function (){               
-        'step 0'
-        player.chooseToCompare(target);        
-        var chat=['尘遁•原界剥离之术','我虽然跟你无怨无仇，但整个忍界的人都想杀你'].randomGet();
-            player.say(chat);        
-        'step 1'
-        if(result.bool){  
-            target.loseMaxHp();
-            target.draw();                                                   
-        }
-        else{
-            target.damage();      
-        }
-    },
-                ai:{
-                    threaten:2.3,
-                   result:{
-            target:function (player,target){
-                return get.damageEffect(target,player,target);
-            },
-        },
-                    order:9,
-                },
-            },
+      
             "xwj_xhuoying_lunmu":{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -12220,7 +12643,9 @@ if(card.name=='sha'&&range[1]!=-1) range[1]++;
             },
 },
          
-translate:{                     
+translate:{      
+            "xwj_xhuoying_xinyiliao":"医疗",
+            "xwj_xhuoying_xinyiliao_info":"当一名角色进入濒死状态时，若你手牌中有基本牌，你可以弃置之，然后其回复体力至1",                        
             "xwj_xhuoying_guitongwan":"鬼童丸",
             "xwj_xhuoying_chilangfang":"次郞访",
             "xwj_xhuoying_zuojinyoujin":"左近右近",
@@ -12230,7 +12655,7 @@ translate:{
             "xwj_xhuoying_jinkui":"金铠",
             "xwj_xhuoying_jinkui_info":"<font color=#F0F>粘金之铠</font> 每名角色的回合限一次，当你受到伤害时，你可选择一名武将牌已横置的角色，令其重置武将牌，然后此伤害减一",
             "xwj_xhuoying_zhuzheng":"蛛阵",
-            "xwj_xhuoying_zhuzheng_info":"出牌阶段限X次（X为你的体力值），你可选择一名未横置的其他角色，与其猜拳，若你赢，该角色横置武将牌且不能使用或打出牌，若你输，你横置你的武将牌，平局则继续猜拳直至分出胜负",
+            "xwj_xhuoying_zhuzheng_info":"出牌阶段限X次（X为你的体力值且平局不计入次数），你可选择一名未横置的其他角色，与其猜拳，若你赢，该角色横置武将牌且不能使用或打出牌，若你输，你横置你的武将牌，平局则继续猜拳直至分出胜负",
             "xwj_xhuoying_zhuzheng2":"蛛阵",
             "xwj_xhuoying_zhuzheng2_info":"不能使用或打出卡牌",
             "xwj_xhuoying_zhouli":"咒力",
@@ -12249,9 +12674,9 @@ translate:{
             "xwj_xhuoying_haosheng_info":"</font><font color=#f00>锁定技</font> 当你受到伤害后，你摸1至X张牌（X为场上已进入疯癫混乱状态的角色数），若伤害来源武将牌背面朝上，其翻面（受手鞠克制）",                
             "xwj_xhuoying_bai":"白",
             "xwj_xhuoying_bingdun":"冰遁",
-            "xwj_xhuoying_bingdun_info":"<font color=#F0F>魔镜冰晶</font> <li>出牌阶段限一次，若你的武将牌正面朝上，你可以令至多两名其他角色翻面，然后你翻面（<font color=#F0F>配合再不斩</font>）<li>你与已翻面的角色的距离为1，若你的武将牌背面朝上，你的防御距离为无限<li>你对其他角色使用唯一目标的牌时，可令此牌额外指定所有其他已翻面的角色",         
+            "xwj_xhuoying_bingdun_info":"<font color=#F0F>魔镜冰晶</font> <li>出牌阶段限一次，若你的武将牌正面朝上，你可以令至多两名其他角色翻面，然后你翻面（<font color=#F0F>配合再不斩</font>）<li>你与已翻面的角色的距离为1，若你的武将牌背面朝上，你的防御距离为无限<li>你对其他角色使用唯一目标的牌（借刀杀人除外）时，可令此牌额外指定所有其他已翻面的角色",         
             "xwj_xhuoying_bingdun2":"冰遁",
-            "xwj_xhuoying_bingdun2_info":"你对其他角色使用唯一目标的牌时，可令此牌额外指定所有其他已翻面的角色",
+            "xwj_xhuoying_bingdun2_info":"你对其他角色使用唯一目标的牌（借刀杀人除外）时，可令此牌额外指定所有其他已翻面的角色",
             "xwj_xhuoying_chengshang":"承伤",
             "xwj_xhuoying_chengshang_info":"当一名其他角色成为【杀】的目标后，若来源不为你且你的武将牌背面朝上，你可令目标改为你。若此【杀】造成伤害，你翻面",   
             "xwj_xhuoying_chengshang2":"承伤",
@@ -12268,7 +12693,7 @@ translate:{
             "xwj_xhuoying_liaoshang":"疗伤",
             "xwj_xhuoying_liaoshang_info":"当一名角色受到火属性或雷属性伤害后，你可令伤害来源回复等量的体力，若伤害来源未受伤，改为摸等量的牌<font color=#F0F>配合佐助与重吾</font> ",
             "xwj_xhuoying_chongyu":"虫玉",
-            "xwj_xhuoying_chongyu_info":"当其他角色的黑桃牌因弃牌进入弃牌堆时，若你武将牌上的“虫”数量不大于你的体力值，改为置于你的武将牌上，称为“虫”（<font color=#F0F>唤虫</font>）。当一名其他角色回复体力时，你可以移去一张“虫”，改为你回复一点体力，若你未受伤，则改为你摸一张牌（<font color=#F0F>吸食查克拉</font>）",
+            "xwj_xhuoying_chongyu_info":"当其他角色的黑桃牌因弃牌进入弃牌堆时，若你武将牌上的“虫”数量不大于你的体力值，你可将其改为置于你的武将牌上，称为“虫”（<font color=#F0F>唤虫</font>）。当一名其他角色回复体力时，你可以移去一张“虫”，改为你回复一点体力，若你未受伤，则改为你摸一张牌（<font color=#F0F>吸食查克拉</font>）",
             "xwj_xhuoying_chongyu2":"虫玉",
             "xwj_xhuoying_chongyu2_info":"",
             "xwj_xhuoying_ganzhi":"感知",
@@ -12343,7 +12768,7 @@ translate:{
             "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_dayemu":"大野木",
             "xwj_xhuoying_chendun":"尘遁",
-            "xwj_xhuoying_chendun_info":"出牌阶段限一次，你可与一名角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
+            "xwj_xhuoying_chendun_info":"出牌阶段限一次，你可与一名体力上限大于1的其他角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
             "xwj_xhuoying_kai":"迈特凯",
             "xwj_xhuoying_bamen":"八门",
             "xwj_xhuoying_bamen_info":"<font color=#F0F>八门遁甲</font> <font color=#f00>锁定技</font> 出牌阶段开始时，若你的体力值为4或更少，你视为拥有技能“马术”（朝孔雀）；若你的体力值为3或更少，你视为拥有技能“咆哮”（昼虎）；若你的体力值为2或更少；你视为拥有技能“伏骑”（夕象）；若你的体力值为1，你视为拥有技能“暗箭”（夜凯）",
@@ -12351,7 +12776,7 @@ translate:{
             "xwj_xhuoying_resizhan_info":"<font color=#F0F>八门遁甲</font> <span class=yellowtext>限定技</span> 出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
             "xwj_xhuoying_dou":"药师兜",
             "xwj_xhuoying_yizhi":"移植",
-            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害时，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技、限定技除外）。若你发动【移植】至少三次，你获得技能【仙法】、【转生】",
+            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害后，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技、限定技除外）。若你发动【移植】至少三次，你失去技能【医疗】，获得技能【仙法】、【转生】",
             "xwj_xhuoying_xianfa":"仙法",
             "xwj_xhuoying_xianfa_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸一张牌，然后回复一点体力。",
             "xwj_xhuoying_zhuansheng":"转生",
@@ -12659,7 +13084,7 @@ translate:{
             "xwj_xhuoying_gu":"骨舞",
             "xwj_xhuoying_gu_info":"<font color=#F0F>尸骨脉</font> 出牌阶段限一次，你可将所有手牌发动以下效果：所有其他角色须打出两张【闪】响应，否则其受到一点雷属性伤害",
             "xwj_xhuoying_zhouyin":"咒印",
-            "xwj_xhuoying_zhouyin_info":"<font color=#F0F>地之咒印</font> 当其他角色出牌阶段开始时，若其手牌数不少于你的手牌数或其体力值不小于你的体力值，若你的体力值：①大于2，你可以摸一张牌②小于3，你回复一点体力并摸两张牌",
+            "xwj_xhuoying_zhouyin_info":"<font color=#F0F>地之咒印</font> 当其他角色出牌阶段开始时，若其手牌数不少于你的手牌数或其体力值不小于你的体力值，且你的体力值：①大于2，你可以摸一张牌②小于3，你回复一点体力并摸一张牌",
             "xwj_xhuoying_shuochang":"说唱",
             "xwj_xhuoying_shuochang_info":"出牌阶段开始时，你可以令你此阶段内每种牌名的牌限使用一次。若如此做，你使用的牌没距离限制，且每当你于此阶段内使用牌时，你摸一张牌",
             "xwj_xhuoying_xianhua":"仙化",
@@ -12717,7 +13142,7 @@ translate:{
             "xwj_xhuoying_lianyou_info":"结束阶段时，你可令所有有牌的角色选择：弃置一张牌或令你获得其一张牌（<font color=#F0F>配合勘九郞</font>），然后你将武将牌背面朝上",
             "xwj_xhuoying_jiuxinnai":"玖辛奈",
             "xwj_xhuoying_fenglian":"封链",
-            "xwj_xhuoying_fenglian2":"封链",
+            "xwj_xhuoying_fenglian2":"链",
             "xwj_xhuoying_fenglian3":"链",
             "xwj_xhuoying_fenglian_info":"回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌。然后若其下回合没跳过回合开始阶段，其下个回合的出牌阶段不能使用或打出牌",
             "xwj_xhuoying_hongjiao":"红椒",
@@ -18124,5 +18549,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.98",
+    version:"1.99",
 },files:{"character":[],"card":[],"skill":[]}}})

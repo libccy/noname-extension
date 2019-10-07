@@ -1,7 +1,7 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",content:function (config,pack){	
+﻿game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"金庸群侠传",content:function (config,pack){	
     /*修改*/
     lib.element.player.phaseUse=function(skill){
-        //配合多尔滚技能
+        //配合多尔衮技能
         var next=game.createEvent('phaseUse');
         next.player=this;
         if(skill){
@@ -1389,7 +1389,7 @@ game.playJY = function(fn, dir, sex) {
 	  "tlbb_xiaoyuanshan":["male","qun",4,["tlbb_huoyan","tlbb_zheju"],[]],
 	  "tlbb_xuanciyeerniang":["male","wei",3,["tlbb_youseng","tlbb_duhui"],[]],
 	  "tlbb_yeerniang":["female","wei",3,["tlbb_daoying","tlbb_gouhe"],[]],
-	  "tlbb_madayuan":["male","wei",4,["tlbb_suohou","tlbb_zhenmi"],[]],
+	  "tlbb_madayuan":["male","wei",3,["tlbb_suohou","tlbb_zhenmi"],[]],
 	  "tlbb_huangmeiseng":["male","qun",3,["tlbb_duanzhi","tlbb_xianji"],[]],
 	  "tlbb_xuzhuliqinglu":["male","wei",3,["tlbb_sekong","tlbb_juechen"],[]],
 	  "tlbb_baishijing":["male","wei",3,["tlbb_cansi","tlbb_xijie","tlbb_gouxian"],[]],
@@ -1411,8 +1411,8 @@ game.playJY = function(fn, dir, sex) {
       "tibb_xiaofeng":["male","qun",4,["tlbb_yanbing","tlbb_xunzhi"],[]],
       "tlbb_muwanqing":["female","qun",3,["tlbb_muli","qtpz_jueshi","tlbb_shiyin"],[]],
       "tlbb_murongfu":["male","qun",3,["tlbb_yixing","tlbb_zhongzuo","tlbb_qingfu","tlbb_zifu"],[]],
-      "tlbb_ruanxingzhu":["female","wei",3,["tlbb_dianqing","tlbb_chunhui","tlbb_yuanmeng"],[]],
-      "tlbb_quanguanqin":["male","qun",4,["tlbb_zhengbian","tlbb_yongli"],[]],
+      "tlbb_ruanxingzhu":["female","wei",3,["tlbb_dianqing","tlbb_chunhui","tlbb_yuanmeng"],['zhu']],
+      "tlbb_quanguanqin":["male","wei",4,["tlbb_zhengbian","tlbb_yongli"],[]],
       "tlbb_murongbo":["male","qun",4,["tlbb_yaodie","tlbb_fuyan"],[]],
       "tlbb_wuyazi":["male","wei",3,["tlbb_zhenlong","tlbb_zaojie","tlbb_qingshou"],[]],
               
@@ -1443,12 +1443,26 @@ characterIntro:{
 		"tlbb_azhi":"阿朱的妹妹，自小在星宿派丁春秋门下长大，学得毒辣性格，毒辣之中亦不乏天真与执着。因盗走师父神木王鼎而亡命天涯，在小镜湖得知身世，其姐阿朱临终前将其托付给乔峰。曾为了练习邪功而令游坦之以鲜血饲喂毒虫，与其建立起一种主子与奴隶的关系。【CV：草莓味少女】",
 		"tlbb_liqiushui":"李秋水是逍遥派无崖子和天山童姥的师妹，多年来与童姥为获得无崖子芳心斗争不断，其更在师姐练八荒六合惟我独尊功时进行偷袭其身材永如女童。后在西夏冰窖趁童姥失去功力与其对决，被虚竹无意间吸走内力。临终前得知无崖子所爱并非自己和童姥，遂化解恩怨。【CV：仙女桥】",
 		"tlbb_daobaifeng":"刀白凤是段正淳的妻子，又是段誉的母亲。她出身为云南摆夷族酋长的女儿，贵为镇南王妃，却因痛恨段正淳风流不羁、政务繁忙屡遭冷落，愤慨之下出家做了带发修行的道姑。刀白凤人到中年却风韵犹存，曾因和段誉动作亲昵，被木婉清误会而横生醋意。后被慕容复捉拿，平生虽痛恨段正淳，危急之中却果断殉情。【CV：仙女桥】",
-	    "tlbb_zhaixingzi":"丁春秋的大徒弟，阿紫师兄，善长使用毒磷迫害同门。【CV：】",
 	    "tlbb_xuanci":"早年玄慈误信慕容博的情报，为了阻止契丹武士到少林盗取武学秘籍，为祸大宋，他率领多名中原武士在雁门关截杀萧远山夫妇，酿下大错。中原武士为包庇玄慈绝口不提他带头大哥的身份。多年后事情败露，愧疚一生的玄慈当众承认了自己当年的罪行，并重罚自己，气绝身亡。【CV：蚩宇】",
 		"tlbb_baobutong":"包不同是姑苏慕容氏麾下四大家将之一，排行第三，又称包三先生，生平决不认错，决不道歉，明知自己错了，一张嘴也要死撑到底，乐于与人抬杠。但为人豪爽，直言不讳，最后因点破慕容复丑恶行径，直言劝谏他不该投靠大理段氏而惨被慕容复杀害。【CV：】",
 		"tlbb_liqinglu":"李清露本是西夏无忧无虑的银川公主，因天山童姥在西夏皇宫冰窖避难期间与虚竹斗气，将她点穴后迫使虚竹与她夜夜欢娱，天一亮童姥则将她抱回寝宫。李清露每日醒来后都以为自己做了一场春梦，却对梦中的“梦郎”情愫暗生。后利用和亲的机会找到虚竹，并喜结连理，成就美事一桩。【CV：卿九】",
          "tlbb_yunzhonghe":"云中鹤在四大恶人中排行第四，其轻功水平在小说中数一数二，为人以好色著称，出场时险些对木婉清施以毒手，后被段誉机智救下。曾被镇南王府四卫围攻，仗着轻功高绝逃离追捕。【CV：清酒摇舟】",
+       "tibb_xiaofeng":"萧峰的身世被公布于众之后，一生致力于寻找带头大哥为双亲报仇，却因马夫人散布虚假消息，误杀了爱妻阿朱。心灰意冷的萧峰在辽国与耶律洪基义结金兰，官封南院大王。后耶律洪基意欲挥兵南下，侵犯南朝江山。生于大宋的萧峰不忍两国交战，挟持义兄休兵，并以死殉志。【CV：觅阳】",
+         "tlbb_sptianshantonglao":"灵鹫宫尊主，练功时被李秋水暗害导致身材永如女童。善于使用暗器生死符控制部下，绝学天山六阳掌掌力至阳，是化解生死符的唯一方法。【CV：一根废肠】",
+       "tlbb_murongfu":"慕容复出身于武林世家姑苏慕容。其真实身份是于五胡十六国时期入侵中原，并建立多个燕国的鲜卑族贵族遗脉。其面如冠玉，因以彼之道，还施彼身的功夫闻名江湖。其肩负慕容氏复国之大任，却如死灰槁木而不得志，最后不惜拜投段延庆并杀死忠臣包不同以明志。【CV：青灯折扇不语】",
+ "tlbb_dingchunqiu":"丁春秋师从逍遥派，后背叛师父无崖子与师叔李秋水勾搭在一起。将师父无崖子打下悬崖，跌入深谷致其全身瘫痪，成为活死人。后来在西域创立星宿派，武功极高，心狠手辣，善于用毒。门下弟子称之为“星宿老仙”。曾经使剧用毒“三笑逍遥散”害死师兄苏星河。【CV：待配音】",
+"tlbb_muronglongcheng":"慕容龙城生于五代之末的龙城乡，故而名为龙城。他也不忘遗训，纠合好汉意图复国，可惜冥冥之中自有定数，被赵匡胤领先一步建立大宋王朝。人世间总是有太多的悲哀与无奈，终无所建树，以失败告终了，其后半生终大彻大悟总结毕生武学流传后世。【CV：待配音】",
+"tlbb_saodizeng":" 负责打扫藏经阁的老僧，具有大智慧。见证了少林派发生的事迹。与众人解说偷学少林武功之弊端，又以一人之力对战萧远山、萧峰、慕容博、鸠摩智等武林高手，轻松收服萧远山、慕容博两人，之后以佛法化解两人之间的恩怨，冰释前嫌，并拜己为师，皈依佛门。【CV：待配音】",
+"tlbb_qinhongmian":"秦红棉外号修罗刀，使用一对喂毒的双刀，暗器是毒药袖箭，其师妹是甘宝宝。她与段正淳由打生情，最后被一句“修罗刀下死，作鬼也风流”所折服，拜倒在段郎的山河履之下，生下木婉清。因为段正淳风流多情，在绝望之后，带着女儿隐居幽谷，自称幽谷客，怨毒和仇恨变成了可怕的毒药。【CV：仙女桥】",
+"tlbb_ganbaobao":"甘宝宝在少年时与段正淳相遇而陷入情网，并与之珠胎暗结，后来无奈之下被迫嫁给钟万仇，不久产下钟灵。钟万仇因自惭形秽而对她百般宠爱，但她对段正淳念念不忘，日日想着他们过往的旖旎风情。后来难忍相思，以寻找女儿为借口，重入江湖，最后被慕容复杀死在段正淳身边。【CV：仙女桥】",
+ "tlbb_wuyazi":"无崖子是逍遥派祖师逍遥子的二弟子，继任掌门之后，面如冠玉、风度闲雅，因对对琴棋书画医土花戏倾心研究，导致遭到徒弟丁春秋暗算，被推下山崖。侥幸不死的他摆下珍珑棋局等待有缘人为其复仇，后棋局被虚竹因缘巧合下破解，无崖子在将平生功力以及逍遥派掌门传于虚竹后逝世。【CV：待配音】",
+"tlbb_duanzhengchun":"段正淳是大理国镇南王，深受保定帝器重，擅长段家剑和一阳指。妻子刀白凤因其生性风流、情债累累而隐为道姑。段正淳一生命运与六个女人纠缠不清，包括丐帮大嫂马夫人、曼陀山庄李青萝、修罗刀秦红棉等。其人虽多情，却又痴情，最终为情而死，是金庸笔下当之无愧的情种。【CV：青灯折扇不语】",
+   "tlbb_murongbo":"慕容博是已亡国的鲜卑王族后裔，一心想着复国，运用毒辣手段及发动阴谋，为了挑起辽国与中原武士的纷争，发布虚假情报，谎称将有契丹武士到少林夺取武学秘籍，害得大批中原武士为了截杀契丹武士，血战雁门关，令契丹珊军教头萧远山与中原武林结下不解之仇。最后复国无望，随扫地僧皈依佛门。【CV：蚩宇】",
+"tlbb_muwanqing":"大理镇南王段正淳与情妇修罗刀秦红棉之女，容貌可谓绝色，犹如新月清晖，花树堆雪。被师父严加管教，自小以幕篱帷帽示人，立誓第一个见到她的男人，要么嫁他，要么杀他。最初与段誉立下白首之约，奈何二人实为兄妹。后扮为男装替段誉到西夏国相亲。【CV：古梁舟】",
+     "tlbb_quanguanqin":"全冠清是丐帮长老，投机主义者，善于玩弄权术，城府颇深。得知帮主乔峰是契丹人身份后，同马夫人一起处心积虑揭穿他的身世，最终令其辞去帮主之位并退出丐帮。在丐帮群龙无首时，遇到处于情感漩涡中的游坦之，在全冠清的挑唆和拥立之下，游坦之为了得到心仪的阿紫的欢心，化名为庄聚贤，出任丐帮帮主。【CV：待配音】",
+ "tlbb_zhaixingzi":"摘星子是丁春秋的大弟子，阿紫的大师兄，面目颇为英俊，内力、轻功均不错，出手狠辣，善使用毒磷烧杀敌人。奉师父丁春秋之命，率众师弟前往中原捉拿盗走神木王鼎的阿紫，其师弟失手手，大兴问罪，用毒磷将其烧死，其状惨不忍睹。后萧峰借用阿紫的掌力将其击伤，被折磨的半死不活。【CV：待配音】",
 },
+
 characterTitle:{
      "tlbb_baobutong":"落影丶逝尘",
 	 "tlbb_xuanci":"冷雨",
@@ -1911,7 +1925,7 @@ game.log(player,'重置了','【谣谍】')
 },
     },
     "tlbb_zhengbian":{
-        subSkill:{
+		subSkill:{
             draw:{
                 mark:true,
                 marktext:"变",
@@ -1937,7 +1951,7 @@ game.log(player,'重置了','【谣谍】')
                 sub:true,
             },
             draws:{
-                audio:"ext:金庸群侠传:2",
+                audio:"ext:金庸群侠传:4",
                 trigger:{
                     global:"useCard",
                 },
@@ -1968,7 +1982,7 @@ game.log(player,'重置了','【谣谍】')
                 sub:true,
             },
         },
-        audio:"ext:金庸群侠传:2",
+        audio:"ext:金庸群侠传:4",
         skillAnimation:"epic",
         unique:true,
         trigger:{
@@ -8866,7 +8880,7 @@ translate:{
             "tlbb_misan_info":"每当你受到伤害后，你可以令一名未拥有\"三笑逍遥散\"的角色永久获得一枚此标记。一名角色获得\"三笑逍遥散\"后，每当其使用第三种花色的牌后，其受到一点无来源的伤害。",
             "tlbb_fugong":"腐功",
             "tlbb_fugong_info":"其他角色受到伤害时，你可以与其拼点，若你赢，则该伤害加一并改为火焰伤害，否则你受到其一点火焰伤害。",
-    "tlbb_sptianshantonglao":"sp天山童姥",
+    "tlbb_sptianshantonglao":"天山童姥",
             "tlbb_tongyan":"童颜",
             "tlbb_tongyan_info":"锁定技，你的判定牌均视为红桃",
             "tlbb_liuyang":"六阳",
@@ -9144,6 +9158,8 @@ game.import('character',function(){
             "sdxl_limochou":"古墓派弟子，小龙女之师姐。曾因倾心陆展元被师父逐出师门，又遭陆展元背叛而因爱生恨，变成蛇蝎美人，纵横江湖，凭借冰魄银针、三无三不手杀人如麻，令人闻风丧胆。但其良心未泯，曾抚养襁褓中的郭襄。在绝情谷中身中情花剧毒，仍不忘陆展元，最后葬身于焚烧情花的大火中。【CV：仙女桥】",
 			"sdxl_qiuqianchi":"裘千尺是裘千仞的妹妹，嫁给绝情谷谷主孙公止后，组成了一个男弱女强的家庭，因咄咄逼人并害死公孙止情人，被其残忍迫害掉进鳄鱼潭，顽强求生。在潭底的几十年，练就深厚内力并靠击落枣子为生，更擅长用枣核钉进行攻击。最后引诱公孙止，与其一起掉进鳄鱼潭同归于尽。【CV：白】",
 			"sdxl_gongsunzhi":"公孙止是绝情谷的谷主，面目英俊举止潇洒，上唇与颏下留有微髭。家传武功为闭穴功、阴阳倒乱刃法和渔网阵，后又从妻子处学来铁掌功。因恼恨裘千尺害死情人柔儿，施计将其手脚筋挑断後抛进炼丹房下的鳄鱼潭。为人虚伪绝情，谷中开满能令人身中剧毒的情花，二者可谓交相辉映。【CV：】",
+			"sdxl_zhaozhijin":" 赵志敬是全真教第三代“志”字辈弟子里武功最强的一个，甄志丙的师兄。其为人心胸狭窄，卑鄙阴险，利用甄志丙侮辱小龙女的把柄多番对进进行要挟，后为夺全真教掌教之位，与蒙古人勾结，最终咎由自取，死于玉蜂毒下。【CV：待配音】",
+			
 			},	
 				characterTitle:{
 					"sdxl_guoxiang":"Sukincen",	
@@ -10400,7 +10416,7 @@ if(get.type(card)!='delay'&&get.color(card)=='black'&&range[1]==1) range[1]++;
     },
                 content:function (){
     "step 0"
-     player.chooseTarget('选择【合璧】的目标',lib.translate.sdxl_hebi_info,true,function(card,player,target){
+     player.chooseTarget('选择【合璧】的目标',lib.translate.sdxl_hebi_info,function(card,player,target){
              return target!=player&&!target.isTurnedOver();
      }).set('ai',function(target){     
              return -get.attitude(player,target);            
@@ -10588,11 +10604,11 @@ if(lib.device||lib.node){
    "xajh_tianboguang":["male","wei",4,["xajh_xunfang","xajh_aotu"],[]],
    "xajh_renyingying":["female","shu",3,["xajh_qugang","xajh_heming"],[]],
    "xajh_pingyizhi":["male","wei",3,["xajh_tiandao","xajh_qihuang"],[]],
-   "xajh_xindongfang":["male","wei",3,["xajh_feizheng","xajh_shanbian"],[]],
+   "xajh_xindongfang":["male","wei",4,["xajh_feizheng","xajh_shanbian"],[]],
     "xajh_yilin":["female","shu",3,["xajh_jiecheng","xajh_fanxin","xajh_qiyuan"],[]],
     "xajh_yucanghai":["male","wei",3,["xajh_bianlian","xajh_miemen"],[]],
     //笑傲江湖标记
-    "xajh_dongfangbubaiyanglianting":["male","wei",4,["xajh_zongqing","xajh_suoyu"],[]],
+    "xajh_dongfangbubaiyanglianting":["male","wei",3,["xajh_zongqing","xajh_suoyu"],[]],
     "xajh_lanfenghuang":["female","wei",3,["xajh_liangu","xajh_zhuanxue"],[]],
 },        
 
@@ -10616,6 +10632,8 @@ characterIntro:{
 				"xajh_zuolengchan":"嵩山派掌门人，其人颇有城府，机关算尽设计五岳并派，却为岳不群做嫁妆。左冷禅自称武林正道，但其门派弟子所作所为与禽兽无异，实为武林同道所不齿。曾在嵩山大会上使用寒冰真气挫伤任我行致其闭关修炼。在并派道路上恩威并施，雇用各路高手围剿反对并派的恒山派及华山派等。【CV：青灯折扇不语】",
 				"xajh_yilin":"恒山派定逸师太的弟子，不戒和尚和敲钟哑婆婆之女。单纯似水，天真无邪。令狐冲将她从田伯光手中救出之后，心生感激，凡心渐生，奈何身在佛门，无奈之下只好向哑婆婆倾诉心事。曾为报恩偷西瓜给令狐冲吃，害怕佛祖怪罪又不忍令狐冲受苦，内心十分挣扎。她坚信观音菩萨会帮助她，这种善良的愿望让人心酸。【CV：草莓味少女】",
 				"xajh_yucanghai":"青城派掌门，松风观观主，擅用铁索白袍袖缠住敌方身体或武器。为谋取林家《辟邪剑谱》而用摧心掌将其灭门。央视版中的余沧海将武功融合于川剧变脸术，变幻莫测。【CV：白】",
+				"xajh_dongfangbubaiyanglianting":"权欲薰心的东方不败篡夺教主之位后，权利达到了巅峰，反而因自宫习武后阴阳倒乱，做起了绣花功夫，连武器都是绣花针。他宠幸男宠杨莲亭，权利都下放给他，导致杨莲亭在教中为所欲为，无人不忌惮他三分。后来任我行归来，与令狐冲等合力攻击东方不败，东方不败本可轻松应付，任盈盈以杨莲亭作要挟，致使东方不败大败。【CV：青灯折扇不语】",
+				
 				},   
 				
 				characterTitle:{
@@ -13821,12 +13839,12 @@ if(event.targets){
             "xajh_liangu_info":"游戏开始/回合开始时，你可以令一名没有\"蝥毒\"标记的角色获得一枚此标记，拥有此标记的角色使用第X张或点数为X的牌后(X为5的倍数)，受到一点无来源的火焰伤害。",
             "xajh_zhuanxue":"转血",
             "xajh_zhuanxue_info":"限定技,一名角色进入濒死状态时，你可以移除至多两名角色的\"蝥毒\"标记并且其不能再获得\"蝥毒\"标记，然后濒死状态的的角色回复X点体力(X为此次移除\"蝥毒\"标记的角色数)。",
-    "xajh_dongfangbubaiyanglianting":"东方不败&杨莲庭",
+    "xajh_dongfangbubaiyanglianting":"东方不败杨莲庭",
     "xajh_suoyu":"索欲",
     "xajh_suoyu_info":"其他角色使用的普通锦囊牌置入弃牌堆后，你可以交给其一张手牌，然后你获得此牌(同名的牌每局限一次)。",
     "xajh_zongqing":"纵情",
     "xajh_zongqing_info":"出牌阶段限一次，你使用基本牌或普通锦囊牌指定目标时，你可以额外指定一名其他角色。若如此做，该角色下回合使用相同类别的牌时，你不是目标且能成为目标，其可以令你成为目标。",
-	 "xajh_xindongfang":"SP东方不败",
+	 "xajh_xindongfang":"sp东方不败",
             "xajh_zongquan":"纵权",
             "xajh_zongquan_info":"出牌阶段，你可以弃置一张牌，令一名角色使用一张与弃置牌花色相同的武器牌。",
             "xajh_nvhong":"女红",
@@ -13994,7 +14012,7 @@ if(lib.device||lib.node){
 				   "qtpz_weihutou":["male","shu",3,["qtpz_mengtong","qtpz_fuyin"],[]],
 				  "qtpz_xuanye":["male","shu",4,["qtpz_zhengfan","qtpz_fujiang","qtpz_shengshi"],[]],
 				   "qtpz_chenjinnan":["male","shu",4,["qtpz_ningxue","qtpz_zhongsu"],[]],
-				   "qtpz_hufei":["male","shu",4,["qtpz_anming","qtpz_zangbao","qtpz_shouxian"],[]],
+				   "qtpz_hufei":["male","shu",4,["qtpz_anming","qtpz_zangbao","qtpz_shouxian"],['zhu']],
 				    "qtpz_jianninggongzhu":["female","shu",3,["qtpz_yunie","qtpz_weizhao"],[]],
 					"qtpz_songxiance":["male","qun",3,["qtpz_yaochen","qtpz_fuji"],[]],
 					"qtpz_pingasi":["male","shu",3,["qtpz_duanbi","qtpz_yusi","qtpz_duwu"],[]],
@@ -14013,14 +14031,14 @@ if(lib.device||lib.node){
                       "qtpz_huoqingtong":["female","qun",3,["qtpz_nagong","qtpz_chouxiang","qtpz_zhengchi"],[]],
                       "qtpz_dindian":["male","qun",4,["qtpz_zhengu","qtpz_shenzhao"],[]],
                       "qtpz_huoayi":["male","qun",4,["qtpz_chifa","qtpz_aobing"],[]],
-                      "qtpz_chenjialuo":["male","shu",4,["qtpz_yongzhu","qtpz_mangxin","qtpz_yiqi"],[]],
+                      "qtpz_chenjialuo":["male","shu",4,["qtpz_yongzhu","qtpz_mangxin","qtpz_yiqi"],['zhu']],
                       "qtpz_muzhuolun":["male","qun",5,["qtpz_chengren","qtpz_fuyu","qtpz_shayu"],[]],
                       "qtpz_wangchengen":["male","wu",3,["qtpz_kumeng","qtpz_xunzhu"],[]],
-                     "qtpz_lizicheng":["male","qun",4,["qtpz_mubing","qtpz_juyi","qtpz_juntian"],[]],
+                     "qtpz_lizicheng":["male","qun",4,["qtpz_mubing","qtpz_juyi","qtpz_juntian"],['zhu']],
                       "qtpz_niujinxing":["male","qun",3,["qtpz_quanjing","qtpz_channi"],[]],
                       "qtpz_wusangui":["male","shu",4,["qtpz_xianguan","qtpz_fanluan"],[]],
                        "qtpz_zhangzhaozhong":["male","shu",4,["qtpz_pantou","qtpz_zhuiqin"],[]],
-                       "qtpz_duoergun":["male","wei",3,["qtpz_fuzheng","qtpz_poguan"],[]],
+                       "qtpz_duoergun":["male","shu",3,["qtpz_fuzheng","qtpz_poguan"],[]],
                        "qtpz_hongantong":["male","wei",3,["qtpz_baotai","qtpz_aozun"],[]],
                        "qtpz_lintuisi":["male","qun",4,["qtpz_duxin","qtpz_cuidu"],[]],                			 
 },        
@@ -14060,11 +14078,20 @@ characterIntro:{
                 "qtpz_dindian":"丁典是荆门武林世家的一名子弟，意外之中救下被三个徒弟追杀的铁骨墨萼梅念笙，梅念笙见丁典为人质朴，便将绝世武功神照功和连城诀传授给他。后来被意中人凌霜华之父凌嫁思觊觎其宝书，设计毒害他，将他关在深牢里严刑逼供。丁典并未屈服，最后因凌霜华的死悲痛欲绝，中毒而死。【CV：】",
                  "qtpz_huoayi":"新疆回部族人的少年领袖，是霍青桐和香香公主的兄长，忠正耿直。因回部圣物《可兰经》被清军抢走，霍阿伊与父亲木卓伦、霍青桐率领族人前往中原追寻圣物，得陈家洛相助，使得《可兰经》失而复得。最后因清军攻破回部，为了保护回部子民，与父亲木卓伦一同战死沙场。【CV：临自灵】",
                  "qtpz_chenjialuo":"陈家洛身负于万亭厚望出任红花会总舵主。得知当今天子乾隆皇帝为自己的胞兄之后，致力于说服乾隆跟红花会里应外合赶走满清鞑子，光复汉人江山。曾挟持乾隆答应自己反清复汉的计划。因盲目信任乾隆，最终掉进乾隆的陷阱里，害得红花会前功尽弃，不得不携众兄弟远走新疆。【CV：稳得高处】",
-                 "qtpz_muzhuolun":"回部首领，霍青桐之父。【CV：】",
+                 "qtpz_muzhuolun":"木卓伦是新疆回部族人的领袖，霍阿伊、霍青桐和香香公主之父，为人忠正耿直。因回部圣物《可兰经》被清军抢走，木卓伦领族人前往中原追寻圣物，得陈家洛相助，因此对陈家洛深怀感恩。后来陈家洛被兆惠大军围困于大漠，其也曾相救。最后因清军攻破回部，与儿子霍阿伊一同战死沙场。【CV：待配音】",
 				"qtpz_wenqingqing":"雪宜与温仪所生的女儿，因为出身并不光彩所以不招温家五老待见。出生在匪盗世家，温青青的看家本领极其高超，出场便从安小慧和崔希敏手中抢走送给闯王的军饷。木桑道长曾教她上乘轻功神行百变，可于危难之中保住性命。【CV：仙女桥】",
 				"qtpz_xiaxueyi":"夏雪宜本是普通人家的孩子，只因温家五老之一温方禄贪图其姐姐的美貌，强奸未遂，故而残忍杀害他一家五口，从此心里播下仇恨的种子。他辗转习得云南五毒教《金蛇秘笈》里高超武功并在何红药的帮助下获得镇教之宝金蛇剑，行走于江湖时人称金蛇郎君。誓要杀温家堡五十口人、污温家女子十人方休。【CV：弈声传媒有声工作室】",
 				"qtpz_yuanzhiyi":"袁紫衣是银姑被恶霸凤天南强暴生下的女儿，自幼出家，法名圆性。受师父嘱咐，出走江湖刺杀凤天南为母报仇，但因顾及人伦，需得先救他三次方可下手，于是与追杀凤天南的胡斐因误解而结下缘分。无奈袁紫衣已是佛门中人，两人真心相爱却不能相守，实在是可怜、可叹。【CV：水烟箩卜】",
 				"qtpz_wuchendashi":"无嗔大师是药王谷的掌门，医术和使毒技术举世无双，人称毒手药王。著有《药王神篇》，记录了丰富的使毒知识。其同门师弟石万嗔为了获取此书，使用奸计害死了无嗔 大师，他死前将此书交给关门弟子程灵素保管，并嘱咐她要谨记救人之道，同时替药王谷清理门户。【CV：觅阳】",
+				 "qtpz_zhangzhaozhong":"武当派的三弟子，陆菲青的师弟，绰号火手判官，善使一柄凝碧剑，武功绝顶，为人热衷功名，投身朝廷，为朝廷鹰犬，专门和红花会群雄为仇作对。曾经多次擒拿奔雷手文泰来，和红花会众兄弟进行周旋。在漠北被红花会李沅芷推入狼穴，陆菲青念在同门之情舍命相救反而被其所害。【CV：青灯折扇不语】",
+				 "qtpz_duoergun":"多尔衮是清太祖努尔哈赤之孙，清初杰出的政治家和军事家。皇太极死后，多尔衮和济尔哈朗以辅政王身份辅佐皇太极第九子福临即帝位，称摄政王；顺治元年在吴三桂的接应之下指挥清军入关，清朝正式入主中原，先后封叔父摄政王、皇叔父摄政王、皇父摄政王。【CV：待配音】",
+                 "qtpz_hongantong":"洪安通是神龙教的教主，苏荃之夫，是江湖中数一数二的高手。洪安通野心勃勃，意图夺取《四十二章经》称雄天下，还曾与盘踞雅克萨的沙俄军官勾结。喜欢听教徒的奉承，要教徒参见他祝他仙福永享，寿与天齐。喜欢用“豹胎易筋丸”来控制教众，初服者觉得体力变得强健，但慢慢会经脉逆转，生不如死。【CV：林三】",
+                 "qtpz_lintuisi":"凌退思原为两湖龙沙帮帮主，龙沙帮被血刀老祖所灭后，几经辗转，成为荆州知府，为人残忍无情，为了得到梁武帝的宝藏，他利用金波旬花之毒将女儿的意中人丁典关入深牢大狱之中，日日对其施以酷刑以期他交出连城诀。最后索要无果，竟然不惜害死自己的亲生女儿凌霜华。【CV：】",
+				"qtpz_niujinxing":"牛金星是河南宝丰县人，二十岁中秀才，天启七年中举人。性喜读书，通晓兵法。早年过着锦衣足食的生活。后随闯王李自成一起推翻大明王朝，曾为李自成制定战略、策略，历任大顺政权左辅和天佑阁大学士。 在《碧血剑》小说中，此人屡屡向李自成进谗诬害功臣李岩将军，还曾进劝闯王登基为帝。【CV：觅阳】",
+				"qtpz_wangchengen":"王承恩深得崇祯皇帝宠幸，官至司礼监秉笔太监。大明江山风雨飘扬，社会动荡，崇祯曾梦一神人写一“有”字于手心，向王承恩解梦。王承恩直言此梦乃凶兆，神人借意警告崇祯，有字上为大，下为明，均缺失一半。甲申之变闯军攻入京城，王承恩陪崇祯自缢于煤山。【CV：青灯折扇不语】",
+				"qtpz_zengrou":"曾柔是前明遗留反清力量王屋派的弟子。脸蛋微圆，柔美可人。曾柔心思细密，她与同门行刺韦小宝失手被擒，韦小宝起初看在她美貌分上，掷骰子作弊饶了她们，她心怀感激，一直把这副灌铅骰子带在身上，作为留念，与韦小宝属于一见钟情。最后成为韦小宝的七位夫人之一。【CV：卿九】",
+				"qtpz_wusangui":"明崇祯时吴三桂为辽东总兵，封平西伯，镇守山海关。崇祯十七年吴三桂降清，在山海关大战中大败李自成，封平西王。顺治十六年，吴三桂镇守云南，引兵入缅甸，迫缅甸王交出南明永历帝。康熙元年晋封为平西亲王，与耿精忠、尚可喜并称三藩。康熙十二年，下令撤藩，三藩之乱结束。【CV：待配音】",
+				
 				},   
 				
 				characterTitle:{
@@ -14544,10 +14571,12 @@ trigger.player.phaseUse("qtpz_fuzheng");
         },
     },
     "qtpz_pantou":{
-        group:["qtpz_pantou_lose","qtpz_pantou_logskill"],
+       
+		group:["qtpz_pantou_lose","qtpz_pantou_logskill"],
         subSkill:{
             lose:{
-                trigger:{
+                 audio:"ext:金庸群侠传:2",
+				trigger:{
                     global:"loseEnd",
                 },
                 filter:function (event,player){
@@ -14572,7 +14601,8 @@ trigger.player.phaseUse("qtpz_fuzheng");
                 sub:true,
             },
             logskill:{
-                trigger:{
+                audio:"ext:金庸群侠传:2",
+				trigger:{
                     global:"$logSkill",
                 },
                 filter:function (event,player){
@@ -19395,7 +19425,8 @@ for(var i=0;i<targets.length;i++){
                 intro:{
                     content:"cards",
                 },
-                trigger:{
+                audio:"ext:金庸群侠传:2",
+				trigger:{
                     player:"phaseBefore",
                 },
                 filter:function (event,player){
@@ -19512,6 +19543,7 @@ for(var i=0;i<targets.length;i++){
     },
             },
             "qtpz_zangbao1":{
+				audio:"ext:金庸群侠传:2",
                 trigger:{
                     global:"phaseDrawEnd",
                 },
@@ -23962,13 +23994,13 @@ if(lib.device||lib.node){
 	      "sdyx_meichaofeng":["female","wei",3,["sdyx_lizhuao","sdyx_shien","sdyx_guidao"],[]],
 		  "sdyx_kezhenge":["male","wei",3,["sdyx_xiadan","sdyx_xiangmo"],[]],
 			"sdyx_duantiande":["male","wei",3,["sdyx_ninglu","sdyx_huoyan"],[]],
-			"sdyx_tiemuzheng":["male","qun",4,["sdyx_rongma","sdyx_tuojiang","sdyx_tianjiao"],[]],
+			"sdyx_tiemuzheng":["male","qun",4,["sdyx_rongma","sdyx_tuojiang","sdyx_tianjiao"],['zhu']],
              "sdyx_tuolei":["male","qun",4,["sdyx_yingong","sdyx_gepao"],[]],
              //射雕英雄标记
              "sdyx_munianci":["female","wei",3,["sdyx_zhaoqing","sdyx_qianquan"],[]],
              "sdyx_wanyanhonglie":["male","qun",3,["sdyx_lixian","sdyx_zhulu","sdyx_baye"],[]],
              "sdyx_duanzhixin":["male","qun",3,["sdyx_longwei","sdyx_chanxin","sdyx_duhua"],[]],	
-             "sdyx_qiuchuji":["male","wei",4,["sdyx_shijian","sdyx_miyue"],[]],
+             "sdyx_qiuchuji":["male","wei",3,["sdyx_shijian","sdyx_miyue"],[]],
 
 },
 characterIntro:{
@@ -23992,7 +24024,12 @@ characterIntro:{
 					"sdyx_tuolei":"拖雷是铁木真四子，自小与郭靖共同习武，同为哲别的徒弟，骑射本领高强。因与郭靖感情深厚而结拜为安答（兄弟）。后郭靖回归大宋，铁木真大力南征，背负各自家国情怀的拖雷与郭靖被迫成为了战场上的敌人，加上郭靖有负于华筝，拖雷与郭靖自此反目，成为了恩断义绝的仇敌。【CV：】",
 					"sdyx_tiemuzheng":"大蒙古国可汗，尊号成吉思汗。曾赏识郭靖的义薄云天和哲别的骁勇善射而将他们收于麾下。郭靖长大后，帮助他东征西讨，攻下花拉子模等国。铁木真多次发动对外征服战争，征服地域西达中亚和东欧的黑海海滨，极具野心。郭靖曾经反对他的雄心，称是用白骨换来。【CV：】",
 					"sdyx_wanyanhonglie":"完颜洪烈是大金六王爷，一生壮志雄心，欲图南宋疆土却一直被铁木真掣肘。六王爷礼贤下士，广纳能人，一生钟情于包惜弱，最后败于铁木真。【CV：弈声传媒有声工作室】",
-					},
+				    "sdyx_duanzhixin":"段誉后人，为大理国皇帝，以大理段氏“一阳指”自成一派，武学修为登峰造极。爱妃瑛姑与周伯通的私生子被裘千仞所伤，因未出手相救而遭瑛姑忌恨，难渡心劫落发为僧。曾耗费大量内力救了伤势严重的黄蓉性命。后渡化裘千仞，将其收为门下弟子。【CV：白】",
+				     "sdyx_qiuchuji":"丘处机早年在牛家村目睹梁山忠烈之后郭杨两兄弟被金兵迫害，追杀元凶段天德的过程中与江南七怪因误会结怨。后虽解除误会，但柯震恶斥责丘处机重伤其兄弟，与其约定分别寻找郭杨两家的后代并授之武艺，十八年后再到醉仙楼比武。丘处机曾出使西域，向成吉思汗谏言止杀爱民。【CV：觅阳】",
+				
+				
+    },				
+				
 				characterTitle:{
 					"sdyx_huangrong":"Sukincen",
 					"sdyx_meichaofeng":"Sukincen",
@@ -26900,109 +26937,57 @@ game.delay(0.5);
                 expose:0.8,
                 },
             },
+ 	    				
             "sdyx_qingshi":{
-  audio:"ext:金庸群侠传:2",
+            audio:"ext:金庸群侠传:2",
                 trigger:{
                     player:"phaseBegin",
                 },
                 priority:2019,
-                direct:true,
-                check:function (event,player){
-        return get.attitude(player,event.player)<0;
-    },
+                direct:true,         
                 filter:function (event,player){
         return player.countCards('h')>0;
     },
                 content:function (){
-        'step 0'
-        player.chooseTarget(get.prompt2('sdyx_qingshi'),function(card,player,target){
-            if(target==player||target.countCards('h')<=0||target.hasSkill('sdyx_qingshi2')) return false;
-            var names=[];
-            if(target.name&&!target.isUnseen(0)) names.add(target.name);
-            if(target.name1&&!target.isUnseen(0)) names.add(target.name1);
-            if(target.name2&&!target.isUnseen(1)) names.add(target.name2);
-            var pss=player.getSkills();
-            for(var i=0;i<names.length;i++){
-                var info=lib.character[names[i]];
-                if(info){
-                    var skills=info[3];
-                    for(var j=0;j<skills.length;j++){
-                        if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&!lib.skill[skills[j]].unique&&!pss.contains(skills[j])){
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        }).set('ai',function(target){
-            if(get.attitude(_status.event.player,target)>0) return Math.random();
-            return 0;
-        }); 
-        'step 1'
-        if(result.targets){
-            var target=result.targets[0];
+               "step 0"
+     player.chooseTarget('选择【请师】的目标',lib.translate.sdyx_qingshi_info,function(card,player,target){
+             if(target.countCards('h')<=0||target.hasSkill('sdyx_qingshi2')) return false;
+             return target!=player;
+     }).set('ai',function(target){     
+             return -get.attitude(player,target);            
+     });        
+     "step 1"
+     if(result.bool){
+             player.line(result.targets[0]);
+             var target=result.targets[0];
             event.target=target;
-            player.chooseToCompare(target); 
-            player.logSkill('sdyx_qingshi',target);
+            player.logSkill('sdyx_qingshi',event.target);
+            player.chooseToCompare(event.target); 
+     }
+    else {       
+            event.finish(); 
+    }                     
+     "step 2"
+     if(!result.bool){
+          //  var target=event.target;
+            event.target.addSkill('sdyx_qingshi2');
+            player.damage(event.target);
+            event.finish();
         }
         else{
-            event.finish();
+         player.chooseSkill(event.target,function(info,skill){
+		    				return event.target.isAlive();
+					});     
         }
-        'step 2'
-        if(!result.bool){  
-            var target=event.target;
-            target.addSkill('sdyx_qingshi2');
-            player.damage(target);
-            event.finish();
-        }
-        'step 3'
-        var target=event.target;
-        var names=[];
-        var list=[];
-        if(target.name&&!target.isUnseen(0)) names.add(target.name);
-        if(target.name1&&!target.isUnseen(0)) names.add(target.name1);
-        if(target.name2&&!target.isUnseen(1)) names.add(target.name2);
-        var pss=player.getSkills();
-        for(var i=0;i<names.length;i++){
-            var info=lib.character[names[i]];
-            if(info){
-                var skills=info[3];
-                for(var j=0;j<skills.length;j++){
-                    if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&!lib.skill[skills[j]].unique&&!pss.contains(skills[j])){
-                        list.push(skills[j]);
-                    }
-                }            
-            }
-        }    
-        var dialog=ui.create.dialog('forcebutton');
-        dialog.add('请师</br></br><div class="center text">选择并获得一项技能直到回合结束</div>');
-        var clickItem=function(){
-            _status.event._result=this.link;
-            dialog.close();
-            game.resume();
-        };
-        for(var i=0;i<list.length;i++){
-            if(lib.translate[list[i]+'_info']){
-                var translation=get.translation(list[i]);
-                var item=dialog.add('<div class="popup pointerdiv" style="width:80%;display:inline-block"><div class="skill">【'+translation+'】</div><div>'+lib.translate[list[i]+'_info']+'</div></div>');
-                item.firstChild.addEventListener('click',clickItem);
-                item.firstChild.link=list[i];
-            }
-        }
-        dialog.add(ui.create.div('.placeholder'));
-        event.switchToAuto=function(){
-            event._result=event.skillai();
-            dialog.close();
-            game.resume();
-        };
-        _status.imchoosing=true;
-        game.pause(); 
-        'step 4'
-        _status.imchoosing=false;
-        player.popup(result);
-        player.addTempSkill(result,'phaseEnd');
-        game.log(player,'获得了','【'+get.translation(result)+'】');
-        game.delay();
+         "step 3"
+     if(result.bool){
+           var skill=result.skill;		    		
+		     			player.addTempSkill(skill);
+		    				player.popup(skill);
+		    				game.log(player,'获得了','【'+get.translation(skill)+'】');
+           game.delay();
+         }
+         else event.finish();                                                               
     },
                 ai:{
                     threaten:2.3,
@@ -27462,11 +27447,13 @@ game.delay(0.5);
         return get.effect(event.target,event.card,player,player)<0;
         },
                 filter:function (event,player){
+                if(event.sdyx_danxin) return false;
         return player.canCompare(event.player);
     },
                 logTarget:"player",
                 content:function (){
         'step 0'
+        trigger.sdyx_danxin=true;
         player.chooseToCompare(trigger.player);
         'step 1'
         if(result.bool){
@@ -27840,10 +27827,10 @@ player.syncStorage('sdyx_guifu');
             "sdyx_duxi_info":"每当你造成火焰伤害时，你可以弃置一张黑桃手牌，令此伤害+1。",
             "sdyx_nijing":"逆筋",
             "sdyx_nijing_info":"你可以将雷杀当酒使用。",
-   "sdyx_xguojing":"SP郭靖",
+   "sdyx_xguojing":"郭靖",
             "sdyx_zhebie":"哲别",
             "sdyx_huangyaoshi":"黄药师",
-            "sdyx_guojing":"郭靖",
+            "sdyx_guojing":"sp郭靖",
 			"sdyx_sheqi":"射骑",
             "sdyx_sheqi_info":"锁定技，你使用的杀无距离限制，且无视目标的防具。出牌阶段结束时，若你此阶段未使用过杀，你可以令一名其他角色选择是否使用一张无视距离和目标防具的杀。",
             "sdyx_guifu":"归附",
@@ -27953,6 +27940,12 @@ characterIntro:{
 				"yttl_weiyixiao":"韦一笑是金庸笔下轻功第一高手，可谓无人能比。韦一笑是明教四大护法之一，人称青翼蝠王。他在修练至阴至寒的“寒冰绵掌”时走火入魔，经脉中郁积了寒毒，要吸人血才能免去全身血脉凝结成冰。后来得到张无忌九阳神功的治疗，除去了寒毒，摆脱吸血的命运。【CV：】",
 				"yttl_SPguoxiang":"郭襄是郭靖和黄蓉之女，秀美豪迈。十五岁时遇到杨过，杨过为她在丐帮大会中大办生日宴，使她终生难忘，十八岁离家出门游历，一生追寻神雕侠未果。少林觉远大师圆寂之际，呓语九阳真经，郭襄默记了一部分。襄阳城破，她持倚天剑逃生。四十岁顿悟出家为尼并创立峨眉派，继承父志。【CV：浅笑安然】",
 				"yttl_jueyuandashi":"【身为少林寺管理经书的和尚，觉远无意间学会了《楞伽经》夹缝中的《九阳真经》。后来经书遗失，加上何足道上少林挑战，觉远因使用九阳神功击败何足道而犯下寺规。为维护徒弟，身挑张君宝、郭襄出逃，为此大耗真力，在圆寂之时呓语部分《九阳真经》经文，张君宝、郭襄、少林无色禅师各听得一部分，最终三人将各自记下的内容悟出武当九阳功、峨眉九阳功、少林九阳功，张君宝和郭襄也因此功开创武当派和峨眉派。CV：觅阳】",
+				"yttl_yudaiyan":"俞岱岩是武当张三丰的弟子，排行第三。作为小说《倚天屠龙记》的开篇人物，引出了全书的故事。早年奉师父之命前往福建铲除当地一帮强盗巨匪，无意间得到屠龙刀，后被殷素素和殷野王设计陷害，取走屠龙刀，俞岱岩在被龙门镖局送回武当的途中被成昆用大力金刚指重伤，终身残疾。【CV：佚名】",
+				"yttl_zhaomin":"汝阳王之女，时而明艳不可方物，时而端严之至，令人不敢逼视。直率豪爽，具有雄才大略。曾经奉命剿灭反贼，对六大派下毒手，屡立奇功，受到蒙元朝廷的封赏。影视版本中的赵敏因不堪受平南王多番骚扰，与其斗智斗勇，在陶然山庄设下空城计，将其与部下一网打尽，全部消灭。后与张无忌归隐江湖。【CV：兔猪】",
+				"yttl_chengkun":"绰号混元霹雳手，早年是江湖上有名的高手。因其和明教前教主阳顶天及其夫人的感情纠葛，他深深不忿，利用徒弟明教法王谢逊展开报仇计划，令谢逊家破人亡，激其杀人如麻，通过谢逊满手血污令明教成为武林公敌，从而引发六大派。事发败露后曾在光明顶假死，骗过少林寺，死里逃生，投靠蒙元朝廷。【CV：待配音】",
+                "yttl_jixiaofu":"纪晓芙原是峨嵋派灭绝师太器重的弟子，本有望继承衣钵，无奈情关难闯，爱上明教左使杨逍。正邪不两立，面对师父强硬的反对态度，她亦不屈不折，从不后悔自己的选择，更为诞下的杨逍骨肉取名不悔，表明自己从来不后悔这段爱情。后来因拒绝灭绝师太杀死杨逍的要求，被其一掌劈死。【CV：辣鸭】",
+				"yttl_huqingniu":"居于蝴蝶谷，因医术超群人称蝶谷医仙。著有《子午针灸经》、《无名医书》、《带脉论》等。胡青牛向来不救非明教中人，所以对身受寒疾的韩千叶见死不救，因此黛绮丝对于愤恨有加，以致后来将其杀死。胡青牛曾教给少年张无忌医理，虽未治好他玄冥神掌之毒，却为他积累不少医学知识。【CV：待配音】",
+				
 				},
 characterTitle:{
 					"yttl_SPguoxiang":"落影丶逝尘",
@@ -33744,7 +33737,7 @@ yttl_guchan:{
             "yttl_qiyuan_info":"你获得一张梅花牌后，你可以展示之，然后你摸一张牌。",
             "yttl_yinshi":"隐世",
             "yttl_yinshi_info":"锁定技，你不能成为或被指定拼点的目标，每当一名角色于回合内亮出拼点牌后，其本回合不能使用牌指定你为目标。",
- "yttl_spzhouzhiruo":"SP周芷若",
+ "yttl_spzhouzhiruo":"sp周芷若",
             "yttl_juejue":"决绝",
             "yttl_juejue_info":"出牌阶段限一次，你可以和一名其他角色交换装备区一张同类型的装备牌。锁定技，其他角色/你获得你/其他角色的牌时，弃置该牌。",
             "yttl_duanren":"断刃",
@@ -33939,5 +33932,5 @@ character:{
     //<br>"扫码申请加入qq群【无名杀扩展交流②】<br><li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击这里</span></div><span style=\"font-style: oblique\">申请加入qq群【无名杀扩展交流②】</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.5",
+    version:"1.37",
 },files:{"character":[],"card":[],"skill":[]}}})

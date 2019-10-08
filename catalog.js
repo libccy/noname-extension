@@ -21,12 +21,12 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修改部分旧武将，当前版本为1.99 <li>新增武将【逆天而行】 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-07",
+	intro:"<li>更新：修改部分旧武将，当前版本为1.100 <li>新增武将【逆天而行】【韦小宝】 <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-08",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.99,
+    version:1.100,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
@@ -162,6 +162,7 @@ extension["群英会"]={
 		"xwj_xqinshi_zongjian1.mp3","xwj_xqinshi_zongjian2.mp3","xwj_xqinshi_zongjian3.mp3",
 		"xwj_xqunying_baiqi.jpg","xwj_xqunying_frieza.jpg","xwj_xqunying_frieza1.jpg","xwj_xqunying_frieza2.jpg",
 		"xwj_xqunying_frieza3.jpg","xwj_xqunying_jilian.jpg","xwj_xqunying_qinshiwang.jpg",
+ "xwj_xqunying_weixiaobao.jpg","xwj_xqunying_fengyuan1.mp3","xwj_xqunying_fengyuan2.mp3","xwj_xqunying_haodu1.mp3","xwj_xqunying_haodu2.mp3",
 		"xwj_xsanguo_badao1.mp3","xwj_xsanguo_caomao.jpg","xwj_xsanguo_jiangwei.jpg","xwj_xsanguo_jiehuo1.mp3",
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_shien1.mp3",
 		"xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3","xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3",

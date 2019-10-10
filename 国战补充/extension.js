@@ -1140,5 +1140,5 @@ return player.countCards('e',function(card){
     author:"123&我叫竹小二",
     diskURL:"",
     forumURL:"",
-    version:"2019.10.10",
+    version:"1.0",
 },files:{"character":[],"card":[],"skill":[]}}})

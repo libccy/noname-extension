@@ -502,6 +502,17 @@ extension["辅助卡牌"]={
 	   "xr_gainMaxHp.mp3","xr_loseMaxHp.mp3","yr_loseMaxHp.mp3","yr_recover.mp3",
     ]
 };
+extension["国战补充"]={
+    author:"我叫竹小二",
+    intro:"本扩展强度介于官方权包与变包之间，旨在将部分身份局武将迁移加入国战将池，增加国战可玩性。请在国战模式下使用，并将扩展文件夹里的yangyi、sunheng、wuanguang、wangshuang的图片放至image/character文件夹下",
+    size:"1MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+     "extension.js","sunhuan.jpg","wangshuang.jpg","wuanguo.jpg","yangyi.jpg",	
+	  
+    ]
+};
 
 /*extension["虚实"]={
     author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",

@@ -452,7 +452,7 @@ huanhun.insertPhase();
  			}				
 						}				
 						} */
-	// ---------------------------------------Narato Story------------------------------------------//			
+	// ---------------------------------------Naruto Story------------------------------------------//			
 						if(lib.config.mode=="brawl"){
 if(!lib.storage.stage) lib.storage.stage={};
 if(!lib.storage.stage["火影剧情"]){
@@ -668,46 +668,46 @@ skill:{
                     },
                 },
             },
-            "xwj_xqunying_fengyuan3":{
-            },
-            "xwj_xqunying_haodu":{
+            "xwj_xqunying_fengyuan3":{},
+     
+      "xwj_xqunying_haodu":{
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
                 usable:1,
                 filter:function (event,player){
-        return true;
+        return player.countCards('he');
     },
                 filterTarget:function (card,player,target){              
-        return true;
+        return target.countCards('he');
     },
                 selectTarget:-1,
                 multitarget:true,
                 multiline:true,
                 content:function (){
         "step 0"
-        targets.sort(lib.sort.seat);
-        "step 1"
-   if(!event.num) event.num=0;
+        targets.sort(lib.sort.seat);        
+        "step 1"      
+        if(!event.num) event.num=0;
         if(!event.littlelist) event.littlelist=[];
         if(!event.biglist) event.biglist=[];
         if(!event.littlecardlist) event.littlecardlist=[];
-        if(!event.bigcardlist) event.bigcardlist=[];
-   if(!event.wronglist) event.wronglist=[];
-        if(!event.rightlist) event.rightlist=[];        
+        if(!event.bigcardlist) event.bigcardlist=[];        
         targets[event.num].chooseControl('押小','押大',function(event,player){
-                        if(targets[event.num].hp<targets[event.num].countCards('h')||targets[event.num].hp<=2) return '押小';
-                        if(targets[event.num].countCards('h')<=targets[event.num].hp||targets[event.num].hp>2) return '押大';
+                        if(targets[event.num].hp>=targets[event.num].countCards('h')||targets[event.num].hp<=2) return '押小';
+                        if(targets[event.num].countCards('h')>targets[event.num].hp||targets[event.num].hp>2) return '押大';
                         return Math.random()<0.5;
                     });                           
         "step 2"
         if(result.control=='押小'){
             targets[event.num].chat('押小');
             game.log(targets[event.num],'#g押小');
+            //event.number = [1,2,3,4,5,6];
             event.littlelist.add(targets[event.num]);
-                    }
-                    else{
+         }
+            else{
             targets[event.num].chat('押大');
-    game.log(targets[event.num],'#y押大');            
+            game.log(targets[event.num],'#y押大');        
+            //event.number = [8,9,10,11,12,13];
             event.biglist.add(targets[event.num]);
                     }               
         event.num++;
@@ -715,7 +715,7 @@ skill:{
         if(event.num<targets.length) event.goto(1);
         "step 3"
         event.num=0;//第6步角色结算再循环
-        event.num1=0;//卡牌循环
+        //event.num1=0;//卡牌循环
         event.num2=0;//点数小于7
         event.num3=0;//点数大于7
         event.num4=0;//点数等于7                
@@ -723,59 +723,80 @@ skill:{
         player.showCards(event.cards);
         game.delay();
         "step 4"
-        if(event.num1<7){
+        for(i=0;i<event.cards.length;i++){
+        if(event.cards[i].number!=7){
+            if(event.cards[i].number<7){
+            event.littlecardlist.push(event.cards[num]);
+               event.num2++;
+           }
+           else{
+           event.bigcardlist.push(event.cards[num]);
+               event.num3++;
+           }
+        }       
+        else{
+           event.num4++;
+        }
+        }
+   /*     if(event.num<8){
         //var cards=event.cards;
-        if(event.cards[event.num1]!=7){
-        if(event.cards[event.num1]<7){
-        event.littlecardlist.add(event.cards[event.num1]);
+        if(event.cards[num].number!=7){
+     //    if(!event.number.contains(get.number(event.cards[num]))){
+        if(event.cards[num].number<7){
+        event.littlecardlist.push(event.cards[num]);
             event.num2++;
         }
         else{
-        event.bigcardlist.add(event.cards[event.num1]);
+        event.bigcardlist.push(event.cards[num]);
             event.num3++;
         }    
         }
         else{
         event.num4++;
         }
-        event.cards[event.num1].discard();
-        event.num1++;
+        
+        event.num++;
         event.redo();
-        }
+        }    */
         "step 5"
         if(event.num2!=event.num3){
         if(event.num2<event.num3){//押大的获胜
+        event.num=0;
             event.goto(6);
         }
         else{//押小的获胜
+        event.num=0;
             event.goto(7);
         }    
         }
         else{//相等
-           player.gain(event.cards);
+           player.gain(event.cards,'gain2');
+           event.finish();
           //event.goto(8);
         }
         "step 6"
-        if(event.num<event.biglist.length){                  
+        if(event.num<=targets.length){                  
             event.biglist[event.num].draw();
-            event.littlelist[event.num].chooseToDiscard('he',true);         
+            event.littlelist[event.num].chooseToDiscard('he',true);                   
+            player.gain(event.littlecardlist[event.num],'gain2');                                                      
             event.num++;
             event.redo();
         }
-        else{
-        player.gain(event.littlecardlist);        
-        event.finish();
+        else{                           
+            game.cardsDiscard(event.bigcardlist);                  
+            event.finish();
         }
         "step 7"
-        if(event.num<event.littlelist.length){                           
-                    event.littlelist[event.num].draw();
-            event.biglist[event.num].chooseToDiscard('he',true);
+        if(event.num<=targets.length){                           
+            event.littlelist[event.num].draw();                     
+            event.biglist[event.num].chooseToDiscard('he',true);         
+            player.gain(event.bigcardlist[event.num],'gain2');                                 
             event.num++;
             event.redo();
         }
-        else{
-        player.gain(event.bigcardlist);
-        event.finish();
+        else{                 
+            game.cardsDiscard(event.littlecardlist);                                       
+            event.finish();
         }
        /* "step 8"        
          var targets=game.filterPlayer();
@@ -953,88 +974,154 @@ skill:{
             "xwj_xqunying_zhengyijinnang":{
                 enable:"phaseUse",  
                 usable:1,            
-                filter:function (card,player){
+                filter:function (card,player){
+
                 return player.isAlive();             
     },
                 chooseButton:{
-                    dialog:function (){
-            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
-            for(var i=0;i<list.length;i++){
-                list[i]=['锦囊','',list[i]];
-            }
-            return ui.create.dialog(get.translation('xwj_xqunying_zhengyijinnang'),[list,'vcard']);
+                    dialog:function (){
+
+            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
+
+            for(var i=0;i<list.length;i++){
+
+                list[i]=['锦囊','',list[i]];
+
+            }
+
+            return ui.create.dialog(get.translation('xwj_xqunying_zhengyijinnang'),[list,'vcard']);
+
         },
-                    filter:function (button,player){
-            return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+                    filter:function (button,player){
+
+            return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+
         },
-                    check:function (button){
-            var player=_status.event.player;
-            var recover=0,lose=1,players=game.filterPlayer();
-            for(var i=0;i<players.length;i++){
-                if(players[i].hp==1&&get.damageEffect(players[i],player,player)>0&&!players[i].hasSha()){
-                    return (button.link[2]=='juedou')?2:-1;
-                }
-                if(!players[i].isOut()){
-                    if(players[i].hp<players[i].maxHp){
-                        if(get.attitude(player,players[i])>0){
-                            if(players[i].hp<2){
-                                lose--;
-                                recover+=0.5;
-                            }
-                            lose--;
-                            recover++;
-                        }
-                        else if(get.attitude(player,players[i])<0){
-                            if(players[i].hp<2){
-                                lose++;
-                                recover-=0.5;
-                            }
-                            lose++;
-                            recover--;
-                        }
-                    }
-                    else{
-                        if(get.attitude(player,players[i])>0){
-                            lose--;
-                        }
-                        else if(get.attitude(player,players[i])<0){
-                            lose++;
-                        }
-                    }
-                }
-            }
-            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
-            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
-            return (button.link[2]=='wuzhong')?1:-1;
+                    check:function (button){
+
+            var player=_status.event.player;
+
+            var recover=0,lose=1,players=game.filterPlayer();
+
+            for(var i=0;i<players.length;i++){
+
+                if(players[i].hp==1&&get.damageEffect(players[i],player,player)>0&&!players[i].hasSha()){
+
+                    return (button.link[2]=='juedou')?2:-1;
+
+                }
+
+                if(!players[i].isOut()){
+
+                    if(players[i].hp<players[i].maxHp){
+
+                        if(get.attitude(player,players[i])>0){
+
+                            if(players[i].hp<2){
+
+                                lose--;
+
+                                recover+=0.5;
+
+                            }
+
+                            lose--;
+
+                            recover++;
+
+                        }
+
+                        else if(get.attitude(player,players[i])<0){
+
+                            if(players[i].hp<2){
+
+                                lose++;
+
+                                recover-=0.5;
+
+                            }
+
+                            lose++;
+
+                            recover--;
+
+                        }
+
+                    }
+
+                    else{
+
+                        if(get.attitude(player,players[i])>0){
+
+                            lose--;
+
+                        }
+
+                        else if(get.attitude(player,players[i])<0){
+
+                            lose++;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
+
+            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
+
+            return (button.link[2]=='wuzhong')?1:-1;
+
         },
-                    backup:function (links,player){
-            return {
+                    backup:function (links,player){
+
+            return {
+
                 filterCard:function (){return false},     
                 selectCard:-1,    
-                popname:true,
-                viewAs:{name:links[0][2]},
+                popname:true,
+
+                viewAs:{name:links[0][2]},
+
                  precontent:function(){
                  player.logSkill('xwj_xqunying_zhengyi');      
-                 }
-            }
+                 }
+
+            }
+
         },
-                    prompt:function (links,player){
-            return '视为使用一张'+get.translation(links[0][2]);
+                    prompt:function (links,player){
+
+            return '视为使用一张'+get.translation(links[0][2]);
+
         },
                 },
                 ai:{
                     order:1,
                     result:{
-                        player:function (player){
-                var num=0;
-                var cards=player.getCards('h');
-                
-                for(var i=0;i<cards.length;i++){
-                    num+=Math.max(0,get.value(cards[i],player,'raw'));
-                }
-                num/=cards.length;
-                num*=Math.min(cards.length,player.hp);
-                return 12-num;
+                        player:function (player){
+
+                var num=0;
+
+                var cards=player.getCards('h');
+
+                
+
+                for(var i=0;i<cards.length;i++){
+
+                    num+=Math.max(0,get.value(cards[i],player,'raw'));
+
+                }
+
+                num/=cards.length;
+
+                num*=Math.min(cards.length,player.hp);
+
+                return 12-num;
+
             },
                     },
                     threaten:1.6,
@@ -3607,7 +3694,7 @@ content:function (){
             "xwj_xwugeng_tongming":"统冥",
             "xwj_xwugeng_tongming_info":"统一冥族。锁定技，场上每有一名角色阵亡，你回复一点体力并选择恢复一个已被废除的装备栏",
             "xwj_xwugeng_poji":"破极",
-            "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
+            "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
             "xwj_xwugeng_juyi":"聚义",
             "xwj_xwugeng_juyi_info":"锁定技，你每使用一张牌后摸一张牌",
             "xwj_xwugeng_anyue":"暗月",
@@ -3944,7 +4031,7 @@ skill:{
                 },               
                 content:function (){
                 player.discard(player.getCards('h',{type:'basic'}));
-                trigger.player.recover(1-player.hp);
+                trigger.player.recover(1-trigger.player.hp);
                 },
                 ai:{
                 order:6,
@@ -3985,7 +4072,8 @@ skill:{
                 'step 0'          
           var num=game.countPlayer(function(current){
             return current.isMad();
-        }); 
+        });
+ 
         if(num<=1){
             player.draw();
         }
@@ -4082,7 +4170,8 @@ skill:{
                // if(!player.isLinked()) return false;
          return game.hasPlayer(function(current){
             return current.isLinked();
-        }); 
+        });
+ 
     },
                 content:function (){    
                'step 0'  
@@ -4130,11 +4219,15 @@ skill:{
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
                // usable:1,
-                filter:function (event,player){              
+                filter:function (event,player){
+              
                 if(player.getStat().skill.xwj_xhuoying_zhuzheng>=player.hp) return false;
-        return game.hasPlayer(function(current){
-            return !current.isLinked();
-        });
+        return game.hasPlayer(function(current){
+
+            return !current.isLinked();
+
+        });
+
     },
                 filterTarget:function (card,player,target){
         return target!=player&&!target.isLinked();
@@ -4173,7 +4266,8 @@ skill:{
         else event.goto(1);                     
     },*/
                 //原技能：
-               content:function (){
+               content:function (){
+
                    'step 0'
                    player.line(target,'green');
                     player.chooseToPSS(target);
@@ -4243,7 +4337,8 @@ skill:{
                 filter:function (event){        
                 return game.hasPlayer(function(current){
             return current.countCards('e');
-        });      
+        });
+      
     },
                 content:function (){
         "step 0"
@@ -5116,7 +5211,8 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
 				filter:function(event,player){				
 					return game.hasPlayer(function(current){
             return current.countCards('he');
-        }); 
+        });
+ 
 				},
                 content:function (){
     "step 0"
@@ -9817,9 +9913,9 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 trigger:{
                     global:"phaseUseBegin",
                 },
-                logTarget:"player",
+               // logTarget:"player",
                 filter:function (event,player){
-        return event.player!=player&&player.countCards('h')<=event.player.countCards('h')||player.hp<=event.player.hp;
+        return event.player!=player&&(player.countCards('h')<=event.player.countCards('h')||player.hp<=event.player.hp);
     },
                 content:function (){
         var chat=['了不起的压力','看来得爆发咒印的第二形态了'].randomGet();
@@ -12568,7 +12664,7 @@ player.$skill('助君成王','fire','red','avatar');
         player.unmark();    
         player.logSkill('xwj_xhuoying_resizhan');       
        // event.cards=get.cards(8);                                                              
-     //   player.gain(event.cards);
+     //   player.gain(event.cards,'gain2');
         player.draw(8);
         player.loseMaxHp(player.maxHp-1);
         player.update();
@@ -18473,8 +18569,8 @@ trigger:{
        trigger.untrigger();
     trigger.finish();
    "step 1"
-   //错误：player.discard(player.getCards('e','5'));
-   player.discard(player.get('e','5'));
+  // player.discard(player.getCards('e',{subtype:'equip:5'}));
+      player.discard(player.get('e','5'));
    "step 2"
      player.gain(trigger.cards);
     player.$gain2(trigger.cards);
@@ -18819,5 +18915,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.100",
+    version:"1.101",
 },files:{"character":[],"card":[],"skill":[]}}})

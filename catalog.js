@@ -21,7 +21,7 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复兜的医疗，当前版本为1.100  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>等作品的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font>，可联机！素材为高清图片、高质配音。目前修复了所有已知BUG，不开兼容模式也不会卡死、弹窗警告<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-08",
+	intro:"<li>更新：修复兜的医疗，当前版本为1.101  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-14",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",

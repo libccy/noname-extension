@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>替换部分素材，新增武将【韦小宝】、【逆天而行】、音忍四人众、乱斗剧情',
-       '<li>小改《火影忍者》部分武将【君麻吕】、【药师兜】、【大和】、【玖辛奈】、【秋道丁次】的部分技能',
-    'players://["xwj_xqunying_weixiaobao","xwj_xwugeng_nitianerxing","xwj_xhuoying_tayuya","xwj_xhuoying_guitongwan","xwj_xhuoying_chilangfang","xwj_xhuoying_zuojinyoujin","xwj_xhuoying_junmalv","xwj_xhuoying_dou","xwj_xhuoying_dahe","xwj_xhuoying_jiuxinnai","xwj_xhuoying_dingchi"]',
+       '<li>新增武将【韦小宝】、【祢衡】',
+       '<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
+    'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2019.10.08';
+    Xu_version='更新日期：2019.10.21';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -726,11 +726,11 @@ skill:{
         for(i=0;i<event.cards.length;i++){
         if(event.cards[i].number!=7){
             if(event.cards[i].number<7){
-            event.littlecardlist.push(event.cards[num]);
+            event.littlecardlist.add(event.cards[num]);
                event.num2++;
            }
            else{
-           event.bigcardlist.push(event.cards[num]);
+           event.bigcardlist.add(event.cards[num]);
                event.num3++;
            }
         }       
@@ -743,11 +743,11 @@ skill:{
         if(event.cards[num].number!=7){
      //    if(!event.number.contains(get.number(event.cards[num]))){
         if(event.cards[num].number<7){
-        event.littlecardlist.push(event.cards[num]);
+        event.littlecardlist.add(event.cards[num]);
             event.num2++;
         }
         else{
-        event.bigcardlist.push(event.cards[num]);
+        event.bigcardlist.add(event.cards[num]);
             event.num3++;
         }    
         }
@@ -7274,9 +7274,156 @@ xwj_xhuoying_guazhang:{
         player.addTempSkill(skill,{player:'phaseUseBegin'});
     },
             },
+			"xwj_xhuoying_zhimou_shan":{
+                trigger:{
+                    player:"chooseToRespondBegin",
+                },
+                direct:true,
+                filter:function (event,player){     
+    if(event.parent.name!='sha') return false;
+    if(!lib.filter.cardRespondable({name:'shan'},player,event)) return false;
+    if(!event.filterCard({name:'shan'})) return false;
+         return true;                                  
+    },
+                content:function (){
+      		"step 0"
+        player.chooseCard(get.prompt2('xwj_xhuoying_zhimou'),'h',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','shan')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'shan'}};
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);						
+						player.logSkill('xwj_xhuoying_zhimou');					
+					}					
+        else event.finish();   
+    },                
+            },
+            "xwj_xhuoying_zhimou_sha":{
+                trigger:{
+                    player:"chooseToRespondBegin",
+                },
+                filter:function (event,player){         
+        if(!event.filterCard({name:'sha'})) return false;
+        if(!lib.filter.cardRespondable({name:'sha'},player,event)) return false;                 
+     //  if(event.parent.name!='sha') return false;
+        return true;
+    },
+                content:function (){     
+                	"step 0"
+        player.chooseCard(get.prompt2('xwj_xhuoying_zhimou'),'h',function(card){
+						return get.type(card)=='basic';
+					}).set('ai',function(card){
+						if(!_status.event.player.countCards('h','shan')){
+							return 8-get.value(card);
+						}
+						return 6-get.value(card);
+					});
+					"step 1"
+					if(result.bool){
+						trigger.untrigger();
+						trigger.responded=true;
+						trigger.result={bool:true,card:{name:'sha'}};
+						player.lose(result.cards,ui.special);
+						player.$throw(result.cards);
+						player.logSkill('xwj_xhuoying_zhimou');					
+					}					
+        else event.finish();                
+    },
+            },
             "xwj_xhuoying_zhimou":{
+            nobracket:true,
+                enable:"chooseToUse",
+                group:["xwj_xhuoying_zhimou_sha","xwj_xhuoying_zhimou_shan"],
+                filter:function (event,player){    
+                if(!player.countCards('h',{type:'basic'})) return false;                                            
+        if((event.filterCard({name:'sha'},player,event))||
+            (event.filterCard({name:'jiu'},player,event))||
+            (event.filterCard({name:'tao'},player,event))){
+   return player.isAlive();    
+        }
+        return false;
+    },
+                chooseButton:{
+                    dialog:function (event,player){
+            var list=[];
+            if(event.filterCard({name:'sha'},player,event)){
+                list.push(['基本','','sha']);
+                list.push(['基本','','sha','fire']);
+                list.push(['基本','','sha','thunder']);
+            }
+            if(event.filterCard({name:'tao'},player,event)){
+                list.push(['基本','','tao']);
+            }
+            if(event.filterCard({name:'jiu'},player,event)){
+                list.push(['基本','','jiu']);
+            }
+            return ui.create.dialog('智谋',[list,'vcard'],'hidden');
+        },
+                    check:function (button){
+            var player=_status.event.player;
+            var card={name:button.link[2],nature:button.link[3]};
+            if(game.hasPlayer(function(current){
+                return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
+            })){
+                switch(button.link[2]){
+                    case 'tao':return 5;
+                    case 'jiu':return 3.01;
+                    case 'sha':
+                        if(button.link[3]=='fire') return 2.95;
+                        else if(button.link[3]=='fire') return 2.92;
+                        else return 2.9;
+                }
+            }
+            return 0;
+        },
+                    backup:function (links,player){
+            return {
+                  filterCard:function (card,player){                    
+                      return get.type(card)=='basic';
+                },
+                selectCard:1,
+                viewAsFilter:function (player){return player.isAlive()},
+                viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null},                                    
+                popname:true,
+                ignoreMod:true,
+                precontent:function(){                            
+                    player.logSkill('xwj_xhuoying_zhimou');                        
+                },
+            }
+        },
+                    prompt:function (links,player){
+            return '视为使用一张'+get.translation(links[0][3]||'')+get.translation(links[0][2]);
+        },
+                },
+                ai:{
+                    order:function (){
+            var player=_status.event.player;
+            var event=_status.event;
+            if(event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
+                return 3.1;
+            }
+            return 2.9;
+        },
+                    save:true,
+                    respondSha:true,
+                    result:{
+                        player:1,
+                    },
+                },
+            },
+            /*"xwj_xhuoying_zhimou":{
                 group:["xwj_xhuoying_zhimou1","xwj_xhuoying_zhimou2","xwj_xhuoying_zhimou3","xwj_xhuoying_zhimou4","xwj_xhuoying_zhimou5","xwj_xhuoying_zhimou6","xwj_xhuoying_zhimou7"],
             },
+			
             "xwj_xhuoying_zhimou1":{
                 audio:"ext:群英会:1",
                 enable:"chooseToUse",
@@ -7654,7 +7801,7 @@ xwj_xhuoying_guazhang:{
                     },
                 },
             },
-           
+           */
 
             "xwj_xhuoying_wanshe":{
                 audio:"ext:群英会:2",
@@ -13291,7 +13438,8 @@ translate:{
             "xwj_xhuoying_yingmo":"影模",
             "xwj_xhuoying_yingmo_info":"<font color=#F0F>影子模仿术</font> 当你造成一次伤害，可随机获得此受伤害角色的一项技能，直到你下个出牌阶段开始才解除",
             "xwj_xhuoying_zhimou":"智谋",
-            "xwj_xhuoying_zhimou_info":"你可将一张牌按以下规则使用或打出：破解：黑桃当【无懈可击】；仁慈：红桃当【无中生有】；冷静：梅花当【过河拆桥】；勇敢：方片当【决斗】；影缚：你可将你的任意一张锦囊牌当【顺手牵羊】使用；闪避：你可将你的任意一张装备牌当【闪】打出；报仇：你可将你的任意一张基本牌当【杀】使用或打出。除“破解”、“闪避”外，其他项每回合各限一次。",
+            "xwj_xhuoying_zhimou_info":"你可将一张基本牌当任意一种基本牌使用或打出",			
+            //"xwj_xhuoying_zhimou_info":"你可将一张牌按以下规则使用或打出：破解：黑桃当【无懈可击】；仁慈：红桃当【无中生有】；冷静：梅花当【过河拆桥】；勇敢：方片当【决斗】；影缚：你可将你的任意一张锦囊牌当【顺手牵羊】使用；闪避：你可将你的任意一张装备牌当【闪】打出；报仇：你可将你的任意一张基本牌当【杀】使用或打出。除“破解”、“闪避”外，其他项每回合各限一次。",
             "xwj_xhuoying_zhimou1":"仁慈",
             "xwj_xhuoying_zhimou1_info":"",
             "xwj_xhuoying_zhimou2":"勇敢",
@@ -14082,6 +14230,7 @@ if(lib.device||lib.node){
 // "xwj_xsanguo_shenzhaoyun":["male","shen",2,["xwj_xsanguo_juejing","xwj_xsanguo_longhun"],["des:神赵云"]],
  //   "xwj_xsanguo_xunyou":["male","wei",3,["qice","zhiyu","xwj_xsanguo_houlve"],[]],
      "xwj_xsanguo_caomao":["male","wei",3,["xwj_xsanguo_qianzhi","xwj_xsanguo_yanghui","xwj_xsanguo_juli"],[]],
+	 "xwj_xsanguo_miheng":["male","qun",3,["xwj_xsanguo_kuangcai","shejian"],[]],
          
         },
 characterIntro:{
@@ -14107,7 +14256,89 @@ characterTitle:{
 									},
 
 skill:{	
-  
+   "xwj_xsanguo_kuangcaiclear":{
+                trigger:{
+                    player:"phaseEnd",
+                },            
+                audio:["kuangcai",2], 
+                forced:true,
+                filter:function (event,player){
+        return player.isAlive();
+    },                
+				content:function(){
+				player.storage.xwj_xsanguo_kuangcaidraw=0;
+				player.storage.xwj_xsanguo_kuangcai=[];
+				},
+			},
+        "xwj_xsanguo_kuangcaidraw":{
+                trigger:{
+                    player:"useCardEnd",
+                },
+                audio:["kuangcai",2],
+                init:function (player){
+                   player.storage.xwj_xsanguo_kuangcaidraw=0;
+                },
+                frequent:true,           
+                filter:function (event,player){
+        return get.color(event.card)==player.storage.xwj_xsanguo_kuangcai;
+    },                
+				content:function(){
+				'step 0'
+				player.draw();
+				player.storage.xwj_xsanguo_kuangcaidraw++;
+				'step 1'
+				if(player.storage.xwj_xsanguo_kuangcaidraw>=5){
+				player.storage.xwj_xsanguo_kuangcaidraw=0;
+				var evt=_status.event.getParent('phase');
+        if(evt){
+            game.resetSkills();
+            _status.event=evt;
+            _status.event.finish();
+            _status.event.untrigger(true);
+        }
+				}
+				},
+				},
+            "xwj_xsanguo_kuangcai":{
+                trigger:{
+                    player:"phaseUseBegin",
+                },
+                init:function (player){
+                   player.storage.xwj_xsanguo_kuangcai=[];
+                },
+                audio:["kuangcai",2],
+                frequent:true,
+                group:["xwj_xsanguo_kuangcaidraw","xwj_xsanguo_kuangcaiclear"],
+                filter:function (event,player){
+        return player.isAlive();
+    },                
+				content:function(){
+					'step 0'
+				player.judge(ui.special); 
+					'step 1'				
+						player.storage.xwj_xsanguo_kuangcai=get.color(result.card);
+						player.addTempSkill('xwj_xsanguo_kuangcai1',{player:'phaseAfter'});
+				},
+				ai:{
+					order:2.7,
+					result:{
+						player:function(player){
+							if((player.storage.xwj_xsanguo_kuangcai==undefined||player.storage.xwj_xsanguo_kuangcai==false)&&player.countCards('h')<1) return 0;
+							return 1;
+						},
+					},
+				},
+			},
+			"xwj_xsanguo_kuangcai1":{
+				mod:{
+					cardUsable:function(card,player){			
+							if(player.storage.xwj_xsanguo_kuangcai==get.color(card)) return Infinity;						
+					},
+					targetInRange:function(card,player){					
+							if(player.storage.xwj_xsanguo_kuangcai==get.color(card)) return true;						
+					},
+				},
+			}, 
             "xwj_xsanguo_qianzhi":{
             audio:["mingjian",2],
                 trigger:{
@@ -17278,6 +17509,9 @@ event.target.draw(event.num1);
 },
 
 translate:{
+	"xwj_xsanguo_miheng":"祢衡",
+            "xwj_xsanguo_kuangcai":"狂才",
+            "xwj_xsanguo_kuangcai_info":"出牌阶段开始时，你可以进行判定，本回合中，你使用与判定牌颜色相同的牌没有距离和次数限制且摸一张牌。当你以此法获得第五张牌后，结束你的出牌阶段",        
    "xwj_xsanguo_caomao":"曹髦",
             "xwj_xsanguo_qianzhi":"潜志",
             "xwj_xsanguo_qianzhi_info":"准备阶段，若你已受伤，你可以观看牌堆的X张牌(X为你已损失的体力值)并且任意移动之",

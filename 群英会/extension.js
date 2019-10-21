@@ -7277,7 +7277,7 @@ xwj_xhuoying_guazhang:{
 			"xwj_xhuoying_zhimou_shan":{
                 trigger:{
                     player:"chooseToRespondBegin",
-                },
+                },				
                 direct:true,
                 filter:function (event,player){     
     if(event.parent.name!='sha') return false;
@@ -7297,6 +7297,7 @@ xwj_xhuoying_guazhang:{
 					});
 					"step 1"
 					if(result.bool){
+						game.playSu(['xwj_xhuoying_zhimou1','xwj_xhuoying_zhimou2'].randomGet()); 
 						trigger.untrigger();
 						trigger.responded=true;
 						trigger.result={bool:true,card:{name:'shan'}};
@@ -7310,7 +7311,7 @@ xwj_xhuoying_guazhang:{
             "xwj_xhuoying_zhimou_sha":{
                 trigger:{
                     player:"chooseToRespondBegin",
-                },
+                },				
                 filter:function (event,player){         
         if(!event.filterCard({name:'sha'})) return false;
         if(!lib.filter.cardRespondable({name:'sha'},player,event)) return false;                 
@@ -7334,6 +7335,7 @@ xwj_xhuoying_guazhang:{
 						trigger.result={bool:true,card:{name:'sha'}};
 						player.lose(result.cards,ui.special);
 						player.$throw(result.cards);
+						game.playSu(['xwj_xhuoying_zhimou1','xwj_xhuoying_zhimou2'].randomGet()); 
 						player.logSkill('xwj_xhuoying_zhimou');					
 					}					
         else event.finish();                
@@ -7341,6 +7343,7 @@ xwj_xhuoying_guazhang:{
             },
             "xwj_xhuoying_zhimou":{
             nobracket:true,
+			audio:"ext:群英会:2",
                 enable:"chooseToUse",
                 group:["xwj_xhuoying_zhimou_sha","xwj_xhuoying_zhimou_shan"],
                 filter:function (event,player){    
@@ -7396,7 +7399,8 @@ xwj_xhuoying_guazhang:{
                 popname:true,
                 ignoreMod:true,
                 precontent:function(){                            
-                    player.logSkill('xwj_xhuoying_zhimou');                        
+                    player.logSkill('xwj_xhuoying_zhimou'); 
+					game.playSu(['xwj_xhuoying_zhimou1','xwj_xhuoying_zhimou2'].randomGet()); 
                 },
             }
         },

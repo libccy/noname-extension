@@ -21,12 +21,12 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复兜的医疗，当前版本为1.101  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-14",
+	intro:"<li>更新：新增祢衡，当前版本为1.102  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-21",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.101,
+    version:1.102,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
@@ -167,7 +167,7 @@ extension["群英会"]={
 		"xwj_xsanguo_menghuo.jpg","xwj_xsanguo_nanhua.jpg","xwj_xsanguo_oldyuji.jpg","xwj_xsanguo_shien1.mp3",
 		"xwj_xsanguo_shien2.mp3","xwj_xsanguo_shien3.mp3","xwj_xsanguo_shouye1.mp3","xwj_xsanguo_shouye21.mp3",
 		"xwj_xsanguo_simahui.jpg","xwj_xsanguo_wangyun.jpg","xwj_xsanguo_wenjiu1.mp3","xwj_xsanguo_xiangfu1.mp3",
-		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg",
+		"xwj_xsanguo_zhangfei.jpg","xwj_xsanguo_zhangjiao.jpg","xwj_xsanguo_miheng.jpg",
 		"xwj_xsanguo_zhihuaxiong.jpg","xwj_xus_houzi.png","xwj_xus_houzi1.mp3","xwj_xus_jiuwei.png",
 		"xwj_xus_jiuwei1.mp3","xwj_xus_kuwu.png","xwj_xus_kuwu1.mp3","xwj_xus_mianju.png",
 		"xwj_xus_shoulijian.mp3","xwj_xus_shoulijian.png","xwj_xus_xuelunyang.png","xwj_xus_xuelunyang1.mp3",

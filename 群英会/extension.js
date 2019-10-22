@@ -7279,7 +7279,8 @@ xwj_xhuoying_guazhang:{
                     player:"chooseToRespondBegin",
                 },				
                 direct:true,
-                filter:function (event,player){     
+                filter:function (event,player){ 
+                if(!player.countCards('h',{type:'basic'})) return false;    
     if(event.parent.name!='sha') return false;
     if(!lib.filter.cardRespondable({name:'shan'},player,event)) return false;
     if(!event.filterCard({name:'shan'})) return false;
@@ -7312,11 +7313,11 @@ xwj_xhuoying_guazhang:{
                 trigger:{
                     player:"chooseToRespondBegin",
                 },				
-                filter:function (event,player){         
+                filter:function (event,player){    
+               if(!player.countCards('h',{type:'basic'})) return false;   
         if(!event.filterCard({name:'sha'})) return false;
         if(!lib.filter.cardRespondable({name:'sha'},player,event)) return false;                 
-     //  if(event.parent.name!='sha') return false;
-        return true;
+         return true;
     },
                 content:function (){     
                 	"step 0"
@@ -13443,6 +13444,10 @@ translate:{
             "xwj_xhuoying_yingmo_info":"<font color=#F0F>影子模仿术</font> 当你造成一次伤害，可随机获得此受伤害角色的一项技能，直到你下个出牌阶段开始才解除",
             "xwj_xhuoying_zhimou":"智谋",
             "xwj_xhuoying_zhimou_info":"你可将一张基本牌当任意一种基本牌使用或打出",			
+            "xwj_xhuoying_zhimou_sha":"智谋",
+            "xwj_xhuoying_zhimou_sha_info":"你可将一张基本牌当任意一种基本牌使用或打出",			
+            "xwj_xhuoying_zhimou_shan":"智谋",
+            "xwj_xhuoying_zhimou_shan_info":"你可将一张基本牌当任意一种基本牌使用或打出",			
             //"xwj_xhuoying_zhimou_info":"你可将一张牌按以下规则使用或打出：破解：黑桃当【无懈可击】；仁慈：红桃当【无中生有】；冷静：梅花当【过河拆桥】；勇敢：方片当【决斗】；影缚：你可将你的任意一张锦囊牌当【顺手牵羊】使用；闪避：你可将你的任意一张装备牌当【闪】打出；报仇：你可将你的任意一张基本牌当【杀】使用或打出。除“破解”、“闪避”外，其他项每回合各限一次。",
             "xwj_xhuoying_zhimou1":"仁慈",
             "xwj_xhuoying_zhimou1_info":"",

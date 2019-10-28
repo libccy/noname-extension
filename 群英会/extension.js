@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>新增武将【韦小宝】、【祢衡】',
-       '<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
-    'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
+       '<li>修复BUG',
+      // '<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
+    //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2019.10.21';
+    Xu_version='更新日期：2019.10.28';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -151,8 +151,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 				this.maxHp=maxhp;
 				this.update();
 			} 
-		
-		
+				
 otherFunction=['zuozheName','dead','element','over','gameStart','observe','game','showauthoranimation','getted','addCharacterPack'];
      		game[otherFunction[7]]=function(str,time){	
              //ui.arena.hide();
@@ -274,13 +273,13 @@ huanhun.insertPhase();
         forced:true,
         priority:2019,
      content:function (){
-     if(game.dead.length==1) trigger.source.$fullscreenpop('一血★卧龙出山','fire');
-     if(game.dead.length==2) trigger.source.$fullscreenpop('双杀☆一战成名','fire');
-     if(game.dead.length==3) trigger.source.$fullscreenpop('三杀★举世皆惊','fire');
-     if(game.dead.length==4) trigger.source.$fullscreenpop('四杀☆天下无敌','fire');
-     if(game.dead.length==5) trigger.source.$fullscreenpop('五杀★诛天灭地','fire');
-     if(game.dead.length==6) trigger.source.$fullscreenpop('六杀☆癫狂杀戮','fire');
-     if(game.dead.length==7) trigger.source.$fullscreenpop('七杀★万军取首','fire');
+     if(game.dead.length==1) trigger.source.$fullscreenpop('一血  卧龙出山','fire');
+     if(game.dead.length==2) trigger.source.$fullscreenpop('双杀  一战成名','fire');
+     if(game.dead.length==3) trigger.source.$fullscreenpop('三杀  举世皆惊','fire');
+     if(game.dead.length==4) trigger.source.$fullscreenpop('四杀  天下无敌','fire');
+     if(game.dead.length==5) trigger.source.$fullscreenpop('五杀  诛天灭地','fire');
+     if(game.dead.length==6) trigger.source.$fullscreenpop('六杀  癫狂杀戮','fire');
+     if(game.dead.length==7) trigger.source.$fullscreenpop('七杀  万军取首','fire');
          },
          }
          */        
@@ -297,16 +296,16 @@ huanhun.insertPhase();
      current.addSkill('xwj_jisha');
      if(current==player){
      if(trigger.name=='die'){
-     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血•卧龙出山','fire'); game.playSu('xwj_jisha1'); }
-     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀♦一战成名','water'); game.playSu('xwj_jisha2'); }
-     if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀☆举世皆惊','thunder'); game.playSu('xwj_jisha3'); }
-     if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀★天下无敌','fire'); game.playSu('xwj_jisha4'); }
-     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀☼诛天灭地','thunder'); game.playSu('xwj_jisha5'); }
-     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀✪癫狂杀戮','water'); game.playSu('xwj_jisha6'); }
-     if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双☯万军取首','fire'); game.playSu('xwj_jisha7'); }
-//	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀☯赶尽杀绝','fire'); game.playSu('xwj_jisha8'); }
-//	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀☯神哭鬼嚎','fire'); game.playSu('xwj_jisha9'); }
-//	 if(current.storage.xwj_jisha==10) { current.$fullscreenpop('十杀☯震古烁今','fire'); game.playSu('xwj_jisha10'); }
+     if(current.storage.xwj_jisha==1) { current.$fullscreenpop('一血  卧龙出山','fire'); game.playSu('xwj_jisha1'); }
+     if(current.storage.xwj_jisha==2) { current.$fullscreenpop('双杀  一战成名','water'); game.playSu('xwj_jisha2'); }
+     if(current.storage.xwj_jisha==3) { current.$fullscreenpop('三杀  举世皆惊','thunder'); game.playSu('xwj_jisha3'); }
+     if(current.storage.xwj_jisha==4) { current.$fullscreenpop('四杀  天下无敌','fire'); game.playSu('xwj_jisha4'); }
+     if(current.storage.xwj_jisha==5) { current.$fullscreenpop('五杀  诛天灭地','thunder'); game.playSu('xwj_jisha5'); }
+     if(current.storage.xwj_jisha==6) { current.$fullscreenpop('六杀  癫狂杀戮','water'); game.playSu('xwj_jisha6'); }
+     if(current.storage.xwj_jisha==7) { current.$fullscreenpop('无双  万军取首','fire'); game.playSu('xwj_jisha7'); }
+//	 if(current.storage.xwj_jisha==8) { current.$fullscreenpop('八杀  赶尽杀绝','fire'); game.playSu('xwj_jisha8'); }
+//	 if(current.storage.xwj_jisha==9) { current.$fullscreenpop('九杀  神哭鬼嚎','fire'); game.playSu('xwj_jisha9'); }
+//	 if(current.storage.xwj_jisha==10) { current.$fullscreenpop('十杀  震古烁今','fire'); game.playSu('xwj_jisha10'); }   
          }
          }
          });
@@ -407,6 +406,121 @@ huanhun.insertPhase();
 				//		lib.translate._xxmiaoshouhuichun='妙手回春';
 		//				lib.translate._xxyishugaochao='医术高超';		
 						}  
+						//xin:
+							if(config.xinjishatexiao){				
+						  lib.skill._xin_jisha={
+        trigger:{
+        global:"gameStart",      
+        source:"dieBegin",
+        },
+        forced:true,
+        priority:2019,
+     content:function (){
+     game.countPlayer(function(current){
+     current.addSkill('xin_jisha');
+     if(current==player){
+     if(trigger.name=='die'){
+     if(current.storage.xin_jisha==1) { current.$skill('卧龙出山','fire','red','avatar'); game.playSu('xwj_jisha1'); }
+     if(current.storage.xin_jisha==2) { current.$skill('一战成名','fire','red','avatar'); game.playSu('xwj_jisha2'); }
+     if(current.storage.xin_jisha==3) { current.$skill('举世皆惊','thunder','red','avatar'); game.playSu('xwj_jisha3'); }
+     if(current.storage.xin_jisha==4) { current.$skill('天下无敌','fire','red','avatar'); game.playSu('xwj_jisha4'); }
+     if(current.storage.xin_jisha==5) { current.$skill('诛天灭地','fire','red','avatar'); game.playSu('xwj_jisha5'); }
+     if(current.storage.xin_jisha==6) { current.$skill('癫狂杀戮','thunder','red','avatar'); game.playSu('xwj_jisha6'); }
+     if(current.storage.xin_jisha==7) { current.$skill('万军取首','fire','red','avatar'); game.playSu('xwj_jisha7'); }
+         }
+         }
+         });
+         },
+         }
+         lib.skill.xin_jisha={
+                		trigger:{source:"dieBegin"},
+                		forced:true,                        
+                  locked:true,     
+                  unique:true,            
+                  priority:Infinity,
+                  init:function (player){
+                  player.storage.xin_jisha=0;
+                  player.unmarkSkill('xin_jisha');
+                  player.syncStorage('xin_jisha');
+                  },
+                 content:function (){
+                  player.storage.xin_jisha++;
+                  player.markSkill('xin_jisha');
+                  player.syncStorage('xin_jisha');
+                  player.update();
+                  },
+            					marktext:"杀",
+                 	intro:{
+          		 					content:function (storage){
+         				 				return '你已击杀'+storage+'名角色';
+          	 						},
+            						},
+                  }	        
+                  lib.skill._xxmiaoshouhuichun={
+						 trigger:{global:'xmiaoshou'},
+							filter:function(event,player){
+								return event.player==player;
+							},
+							priority:100,
+							forced:true,
+							content:function(){
+							trigger.player.$fullscreenpop('妙手回春','water');
+							game.playSu('xxmiaoshouhuichun');
+							},
+						}
+						
+						lib.skill._xxyishugaochao={
+			 			trigger:{global:'xyishu'},
+							filter:function(event,player){
+								return event.player==player;
+							},
+							priority:100,
+							forced:true,
+							content:function(){
+							trigger.player.$fullscreenpop('医术高超','water');
+							game.playSu('xxyishugaochao');
+							},
+						}
+						
+						lib.skill._recovertrigger={
+							trigger:{global:'recoverEnd'},
+							filter:function(event,player){
+								if(_status.currentPhase!=player){
+									return event.player!=event.source&&event.source==player;
+								}
+								return true;
+							},
+							direct:true,
+							content:function(){
+								if(_status.currentPhase!=player){
+									_status.event.trigger('xmiaoshou');
+								}
+								else {
+									if(player.storage.xxyishugaochao==undefined){
+										player.storage.xxyishugaochao = trigger.num;
+									}
+									else {
+										player.storage.xxyishugaochao+=trigger.num;
+									}
+									if(player.storage.xxyishugaochao>=3){
+										player.storage.xxyishugaochao-=3;
+										_status.event.trigger('xyishu');
+									}
+								}
+							},
+							group:'_recovertrigger_Delete',
+							subSkill:{
+								Delete:{
+									trigger:{player:'phaseEnd'},
+									direct:true,
+									content:function(){
+										delete player.storage.xxyishugaochao;
+									},
+								}
+							}
+						}
+         }
+         
  	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
 							lib.skill._chooseTime={
@@ -1677,7 +1791,8 @@ skill:{
             player.disableEquip(4);   
             player.disableEquip(5);        
             player.disableJudge();  
-            player.loseHp(player.hp-1);                  
+            player.loseHp(player.hp-1);         
+            player.draw(player.hp-1);              
             player.addTempSkill('xwj_xwugeng_juyi');
             player.addTempSkill('xwj_xwugeng_anyue');
             player.update();        
@@ -3694,7 +3809,7 @@ content:function (){
             "xwj_xwugeng_tongming":"统冥",
             "xwj_xwugeng_tongming_info":"统一冥族。锁定技，场上每有一名角色阵亡，你回复一点体力并选择恢复一个已被废除的装备栏",
             "xwj_xwugeng_poji":"破极",
-            "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
+            "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1并摸等同失去的体力值张牌，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
             "xwj_xwugeng_juyi":"聚义",
             "xwj_xwugeng_juyi_info":"锁定技，你每使用一张牌后摸一张牌",
             "xwj_xwugeng_anyue":"暗月",
@@ -4896,7 +5011,7 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
                     global:"damageAfter",
                 },
                 filter:function (event,player){
-        return event.nature=='fire'||event.nature=='thunder';
+        return event.source&&(event.nature=='fire'||event.nature=='thunder');
     },
                 content:function (){   
                 'step 0'
@@ -12439,7 +12554,10 @@ if(range[1]!=-1) range[1]+=Infinity;
                 },
                 derivation:['xwj_xhuoying_xianfa','xwj_xhuoying_zhuansheng'],
                 content:function (){      
-                'step 0'                   
+                'step 0'              
+                event.num=0;
+                   'step 1'
+                  event.num++;        
                            var skills=[]; 
                                   for(var i in lib.character){ 
                                            for(var j=0;j<lib.character[i][3].length;j++){
@@ -12448,15 +12566,15 @@ if(range[1]!=-1) range[1]+=Infinity;
                                                                          skills.add(lib.character[i][3][j]); 
                                                                                      }
                                                                                } 
-                                                                                }
-                                                       var link=skills.randomGet();                    
+                                                                         }
+        var link=skills.randomGet();                    
         player.addSkill(link);                    
         player.mark(link,{
             name:get.translation(link),
             content:lib.translate[link+'_info']
         });
-        game.log(player,'获得技能','【'+get.translation(link)+'】');       
-        'step 1'
+        game.log(player,'获得技能','【'+get.translation(link)+'】');                          
+        'step 2'
         if(!player.hasSkill('xwj_xhuoying_xianfa')||!player.hasSkill('xwj_xhuoying_zhuansheng')){
         player.storage.xwj_xhuoying_yizhi++;
         player.markSkill('xwj_xhuoying_yizhi');
@@ -12469,7 +12587,11 @@ if(range[1]!=-1) range[1]+=Infinity;
             player.addSkill('xwj_xhuoying_zhuansheng');
         }
         }
-        else event.finish();
+          'step 3'
+         if(event.num<trigger.num){  
+          event.goto(1);
+         }
+         else event.finish();
     },
                 ai:{
                     threaten:0.8,
@@ -13294,7 +13416,7 @@ translate:{
             "xwj_xhuoying_resizhan_info":"<font color=#F0F>八门遁甲</font> <span class=yellowtext>限定技</span> 出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
             "xwj_xhuoying_dou":"药师兜",
             "xwj_xhuoying_yizhi":"移植",
-            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 每当受到伤害后，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技、限定技除外）。若你发动【移植】至少三次，你失去技能【医疗】，获得技能【仙法】、【转生】",
+            "xwj_xhuoying_yizhi_info":"<font color=#f00>锁定技</font> 当你每受到一点伤害后，你随机获得未加入本局游戏的武将的一个技能（主公技、觉醒技、限定技除外）。若你发动【移植】至少三次，你失去技能【医疗】，获得技能【仙法】、【转生】",
             "xwj_xhuoying_xianfa":"仙法",
             "xwj_xhuoying_xianfa_info":"<font color=#f00>锁定技</font> 当你失去最后的手牌时，你可以摸一张牌，然后回复一点体力。",
             "xwj_xhuoying_zhuansheng":"转生",
@@ -18175,33 +18297,21 @@ else {
     },
                 direct:true,
                 content:function (){
-        "step 0"
-        var skillprompt = "是否发动<cS>惜别</cS>？";
-        skillprompt += "<p>"+get.translation("xwj_xu_xibie_info")+"</p>";
-        player.chooseBool(skillprompt).ai=function(){
-            return game.hasPlayer(function(current){
-                return current!=player&&get.attitude(player,current)<2;
-            });
-        };
-        "step 1"
-        if(result.bool){
+        "step 0"      
             player.draw();
+        "step 1"       
             player.chooseTarget("惜别：选择发动对象",function(card,player,target){
                 return target!=player&&target.countCards('hej');
             }).ai=function(target){
-                return 2 - get.attitude(player,target);
-            };
-        }
-        else {
-            event.finish();
-        }
+                return -get.attitude(player,target);
+            };        
         "step 2"
         if(result.bool){
             player.logSkill("xwj_xu_xibie",result.targets[0]);
             player.discardPlayerCard("hej",result.targets[0],"hej",true);
         }
         else {
-            event.goto(0);
+            event.finish();
         }
     },
                 ai:{
@@ -18248,11 +18358,12 @@ else {
         if(result.bool){
             player.logSkill("xwj_xu_qingshang");
             player.chooseControl("基本牌","锦囊牌","装备牌",function(event,player){
+            if(player.hp<=1) return "基本牌";
                 return ["基本牌","锦囊牌","装备牌"].randomGet();
             }).prompt = "情殇：声明一种牌的类型";
         }
         else {
-            event.goto(0);
+            event.finish();
         }
         "step 3"
         if(result.control=="基本牌"){
@@ -18930,8 +19041,8 @@ audio:"ext:群英会:1",
                 return false;
             }
         }).set('ai',function(target){
-            if(get.attitude(_status.event.player,target)>0) return Math.random();
-            return 0;
+            if(get.attitude(_status.event.player,target)>0) return Math.randomGet();
+            return get.attitude(_status.event.player,target)<=0;
         });
         'step 1'
         if(result.bool){
@@ -19027,24 +19138,17 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
 },help:{"群英会":"<li>此扩展原名为：新武将，始创于2017年8月，汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的部分角色，技能强度略高，可联机。若想关闭某个扩展小包，可在相应武将栏内关闭并重启，开启同理。<li>若发现BUG可到贴吧或扩展交流②群：852740627 反馈，有技能设计（尤其是玄机动画《武庚纪》的角色）的建议也可联系作者<li>新增卡牌：【手里剑】2张，【写轮眼】、【九尾】、【漩涡面具】、【苦无】、【猴子】各1张。<li>须关闭“配音扩展”的“连杀开关”或者直接删了audio-skill目录下的liansha1至liansha7和jiuren1、jiuren2的九个配音文件，否则可能会与“配音扩展”一起播放击杀与回复体力的音效。<li>游戏时或游戏过程中若遇见卡死情况，打开兼容模式提高扩展的兼容性即可解决。目前为止，已解决绝大部分已知的可能会导致游戏卡死的BUG，暂时未发现任何导致游戏卡死、弹窗警告的技能<li>【编码】Sukincen<li>【配图】Sukincen<li>【录制配音】Sukincen"},config:{
 "xwjhelp":{
 				"name":"群英会","init":"1","item":{"1":"查看介绍","2":"<li>此扩展原名为：新武将。若发现BUG可到贴吧或无名杀扩展交流群：852740627 反馈，有技能设计的建议也可联系作者","3":"<li>本扩展汇集了部分三国新将和《火影忍者》、《秦时明月》、《武庚纪》等作品的人物（可在菜单→武将界面处关闭任意一个扩展小包，关闭重启后会隐藏武将图片且玩家禁选、ai禁用），技能强度略高。有技能特效，Ai智商较高，还可联机！","4":"<li>本扩展能在关闭兼容模式情况下流畅运行","5":"<li>更多介绍详看：其它→帮助"}
-					},				
+					},									
 					"xjisha":{
             name:'击杀特效',
-           "intro":"击杀特效：开启后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
+           "intro":"击杀特效：开启此项（建议关闭新杀特效项）后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的文字动画和配音",
             init:true
 		},							
-     	/*		
-  			"xmeihuakapai":{
-            name:'美化卡牌',
-           "intro":"美化卡牌：开启后重启游戏生效。将卡牌的点数1、11、12、13分别调整为A、J、Q、K，颜色微调",
+			"xinjishatexiao":{
+            name:'新杀特效',
+           "intro":"新杀特效：开启此项（建议关闭击杀特效项）后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的武将动画和配音",
             init:false
-		},							
-					"shenxuanshili":{
-            name:'神选势力',
-           "intro":"神选势力：开启后重启游戏生效。开局时神势力的武将可重选势力",
-            init:false
-		},				
-				*/	
+		},							   
     		"wuxianyuedu":{
             name:'无限月读',
            "intro":"无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
@@ -19158,5 +19262,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.102",
+    version:"1.103",
 },files:{"character":[],"card":[],"skill":[]}}})

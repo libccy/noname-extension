@@ -19041,7 +19041,7 @@ audio:"ext:群英会:1",
                 return false;
             }
         }).set('ai',function(target){
-            if(get.attitude(_status.event.player,target)>0) return Math.randomGet();
+            if(get.attitude(_status.event.player,target)>0) return Math.random();
             return get.attitude(_status.event.player,target)<=0;
         });
         'step 1'
@@ -19262,5 +19262,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.103",
+    version:"1.104",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -2,8 +2,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"ÂáªÊù
     			if(config.jstxjisha){		
         lib.skill._jstx_jisha={
         trigger:{
-        global:"gameStart",      
-        source:"dieBegin",
+        global:"gameStart",     
+        player:"enterGame", 
+	source:"dieBegin",
         },
         forced:true,
         priority:2019,
@@ -126,7 +127,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"ÂáªÊù
 							if(config.xjstxjishatexiao){				
 						  lib.skill._xjstx_jisha={
         trigger:{
-        global:"gameStart",      
+        global:"gameStart",    
+	player:"enterGame", 	
         source:"dieBegin",
         },
         forced:true,
@@ -284,5 +286,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"ÂáªÊù
     author:"Sukincen",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.1",
 },files:{"character":[],"card":[],"skill":[]}}})

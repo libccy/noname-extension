@@ -1313,10 +1313,10 @@ extension["新英魂之刃"]={
 };
 extension["击杀特效"]={
     author:"Sukincen",
-    intro:"<li>本扩展的特效是从群英会扩展里分离出来的，内有选项按钮，须关闭其中一处。有两种特效方式，建议只选择开启其中一种。<li>当场上任意一名角色杀死另一名角色时，会记录该角色共击杀的人数，并播放相应的特效和配音",
+    intro:"<li>更新：新增在对决-自由模式下新替换上场的将击杀时也有特效<li>本扩展的特效是从群英会扩展里分离出来的，已安装群英会扩展就无须再安装此扩展。有两种特效方式，建议只选择开启其中一种。<li>当场上任意一名角色杀死另一名角色时，会记录该角色共击杀的人数，并播放相应的特效和配音",
     size:"1MB",
     netdisk:"",
-    version:1.0,
+    version:1.1,
     files:[
      "extension.js","jstx_jisha1.mp3","jstx_jisha2.mp3","jstx_jisha3.mp3","jstx_jisha4.mp3","jstx_jisha5.mp3","jstx_jisha6.mp3","jstx_jisha7.mp3","jstxmiaoshouhuichun.mp3","jstxyishugaochao.mp3",			   
     ]

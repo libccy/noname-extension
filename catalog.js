@@ -21,12 +21,12 @@ extension["官渡之战"]={
 
 
 extension["群英会"]={
-	intro:"<li>更新：修复BUG，新增一种击杀特效模式。当前版本为1.103  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-28",
+	intro:"<li>更新：修复BUG，新增一种击杀特效模式。当前版本为1.102  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物，技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2019-10-28",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"80MB",
-    version:1.104,
+    version:1.102,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
@@ -204,7 +204,7 @@ extension["金庸群侠传"]={
     intro:"<li>更新：修复无懈可击无效的BUG，当前版本为1.36<li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码、友情配音：详看扩展内介绍  <li>更新日期：2019-11-15",
     size:"86MB",
     netdisk:"",
-    version:1.37,
+    version:1.36,
     files:[
 "tlbb_quanguanqin.mp3","extension.js","qtpz_ajiu.mp3","qtpz_aobai.jpg","qtpz_aobai.mp3",
 		"qtpz_aobing1.mp3","qtpz_aobing2.mp3","qtpz_aozun1.mp3","qtpz_aozun2.mp3","qtpz_aqing.jpg",

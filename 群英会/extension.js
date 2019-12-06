@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>新增武将【韦小宝】、【祢衡】',
-       '<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
-    'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
+       '<li>修复使用【闪】',
+       //'<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
+    //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2019.10.21';
+    Xu_version='更新日期：2019.12.06';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -656,9 +656,9 @@ return str1;
 			},
 		},
 				character:{
-					 "xwj_xqunying_baiqi":["male","xqin",4,["xwj_xqunying_shashen"],[]],
-       "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
-       "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
+		  "xwj_xqunying_baiqi":["male","xqin",4,["xwj_xqunying_shashen"],[]],
+          "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
+          "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
 	      "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],["forbidai"]],
 		  "xwj_xqunying_weixiaobao":["male","qun",4,["xwj_xqunying_haodu","xwj_xqunying_fengyuan"],[]],
                 
@@ -806,7 +806,8 @@ skill:{
                 multiline:true,
                 content:function (){
         "step 0"
-        targets.sort(lib.sort.seat);        
+		//var targets=game.filterPlayer();
+        //targets.sort(lib.sort.seat);        
         "step 1"      
         if(!event.num) event.num=0;
         if(!event.littlelist) event.littlelist=[];
@@ -833,7 +834,12 @@ skill:{
                     }               
         event.num++;
         game.delay();
-        if(event.num<targets.length) event.goto(1);
+        if(event.num<targets.length){
+			event.goto(1);
+		}
+		else{
+			event.goto(3);
+		}
         "step 3"
         event.num=0;//第6步角色结算再循环
         //event.num1=0;//卡牌循环
@@ -1021,6 +1027,7 @@ skill:{
                 filter:function (event,player){                                                
         if((event.filterCard({name:'sha'},player,event))||
             (event.filterCard({name:'jiu'},player,event))||
+			(event.filterCard({name:'shan'},player,event))||
             (event.filterCard({name:'tao'},player,event))){
    return player.isAlive();    
         }
@@ -1037,6 +1044,9 @@ skill:{
             if(event.filterCard({name:'tao'},player,event)){
                 list.push(['基本','','tao']);
             }
+			if(event.filterCard({name:'shan'},player,event)){
+							list.push(['基本','','shan']);
+			}
             if(event.filterCard({name:'jiu'},player,event)){
                 list.push(['基本','','jiu']);
             }
@@ -1051,6 +1061,7 @@ skill:{
                 switch(button.link[2]){
                     case 'tao':return 5;
                     case 'jiu':return 3.01;
+					case 'shan':return 3.01;
                     case 'sha':
                         if(button.link[3]=='fire') return 2.95;
                         else if(button.link[3]=='fire') return 2.92;
@@ -7397,6 +7408,7 @@ xwj_xhuoying_guazhang:{
                 filter:function (event,player){    
                 if(!player.countCards('h',{type:'basic'})) return false;                                            
         if((event.filterCard({name:'sha'},player,event))||
+		    (event.filterCard({name:'shan'},player,event))||
             (event.filterCard({name:'jiu'},player,event))||
             (event.filterCard({name:'tao'},player,event))){
    return player.isAlive();    
@@ -7410,6 +7422,9 @@ xwj_xhuoying_guazhang:{
                 list.push(['基本','','sha']);
                 list.push(['基本','','sha','fire']);
                 list.push(['基本','','sha','thunder']);
+            }
+			if(event.filterCard({name:'shan'},player,event)){
+                list.push(['基本','','shan']);
             }
             if(event.filterCard({name:'tao'},player,event)){
                 list.push(['基本','','tao']);
@@ -7428,6 +7443,7 @@ xwj_xhuoying_guazhang:{
                 switch(button.link[2]){
                     case 'tao':return 5;
                     case 'jiu':return 3.01;
+					case 'shan':return 3.01;
                     case 'sha':
                         if(button.link[3]=='fire') return 2.95;
                         else if(button.link[3]=='fire') return 2.92;
@@ -15950,802 +15966,6 @@ return current.hp<=0;
     },
             },
 
-	"xwj_xsanguo_oldguhuo":{
-         audio:2,
-         init:function(player){
-          player.storage.xwj_xsanguo_oldguhuo = {
-            list:[],
-            card:null,
-            sayCard:null,
-          };
-          for(var i=0;i<lib.card.list.length;i++){
-            var name = lib.card.list[i][2];
-            if(get.type({name:name})!='basic')continue;
-            if(player.storage.xwj_xsanguo_oldguhuo.list.contains(name))continue;
-            player.storage.xwj_xsanguo_oldguhuo.list.push(name);
-          }
-          for(var i=0;i<lib.card.list.length;i++){
-            var name = lib.card.list[i][2];
-            if(get.type({name:name})!='trick')continue;
-            if(player.storage.xwj_xsanguo_oldguhuo.list.contains(name))continue;
-            player.storage.xwj_xsanguo_oldguhuo.list.push(name);
-          }
-          for(var i=0;i<player.storage.xwj_xsanguo_oldguhuo.list.length;i++){
-            player.storage.xwj_xsanguo_oldguhuo.list[i] = [get.translation(get.type({name:player.storage.xwj_xsanguo_oldguhuo.list[i]})),'',player.storage.xwj_xsanguo_oldguhuo.list[i]];
-          }
-          player.storage.xwj_xsanguo_oldguhuo.list = [['基本','','sha','fire'],['基本','','sha','thunder']].concat(player.storage.xwj_xsanguo_oldguhuo.list);
-        },
-        intro:{
-          content:function(storage,player){
-            var str = '';
-            if(storage.sayCard != null){
-              str += '声明的牌：' + get.translation(storage.sayCard);
-            }
-            return str;
-          },
-          mark:function(dialog,content,player){
-            if(content.card == null)return ;
-            if(content.sayCard == null)return ;
-            if(player.isUnderControl(true)){
-              dialog.addSmall([[content.card],'vcard']);
-            } else {
-              dialog.addSmall([[content.card],'blank']);
-            }
-            var str = '声明的牌：' + get.translation(content.sayCard);
-            dialog.add(str);
-          },
-        },
-        trigger:{player:'chooseToRespondBegin'},
-        filter:function(event,player){
-          if(player.countCards('h')==0)return false;
-          for(var i=0;i<player.storage.xwj_xsanguo_oldguhuo.list.length;i++){
-            var card = {
-              name:player.storage.xwj_xsanguo_oldguhuo.list[i][2],
-              nature:player.storage.xwj_xsanguo_oldguhuo.list[i][3],
-            };
-            if(event.filterCard(card,player,event)) return true;
-          }
-          return false;
-        },
-        xwj_xsanguo_guhuo:function(player,card,sayCard,event){
-          var next = game.createEvent('xwj_xsanguo_guhuo');
-          next.card = card;
-          next.sayCard = sayCard;
-          next.event = event;
-          next.player = player;
-          next.setContent(function(){
-            "step 0"
-           player.logSkill('xwj_xsanguo_oldguhuo');
-            var player = event.player;
-            player.storage.xwj_xsanguo_oldguhuo.card = event.card;
-            player.storage.xwj_xsanguo_oldguhuo.sayCard = event.sayCard;
-            player.markSkill('xwj_xsanguo_oldguhuo');
-            player.lose(event.card,ui.special);
-            player.popup(get.translation(event.sayCard));
-            game.log(player,'声明了',event.sayCard);
-            event.targets = game.filterPlayer(function(current){
-              return current!=player&&current.hp > 0;
-            });
-            event.targets.sort(lib.sort.seat);
-            event.zhiyis = [];
-            "step 1"
-            game.delay();
-            event.target = event.targets.shift(0);
-            event.target.chooseBool('是否质疑蛊惑？').ai=function(){
-              var att = get.attitude(event.target,event.player);
-              if(att >= 0){
-                return false;
-              } else {
-                if(event.target.hp == 1)return false;
-                if(event.zhiyis.length)return false;
-                if(event.event.trigger == 'useTo'){
-                  var effect = 0;
-                  for(var i=0;i<event.event.targets.length;i++){
-                    effect += get.effect(event.event.targets[i],event.sayCard,event.player,event.target);
-                  }
-                  if(effect >= 0)return false;
-                }
-                return true;
-              }
-              return true;
-            };
-            "step 2"
-            if(result.bool){
-              event.target.popup('质疑');
-              game.log(event.target,'质疑');
-              event.zhiyis.push(event.target);
-              event.target.markSkillCharacter('xwj_xsanguo_oldguhuo',event.player,'质疑','');
-            } else {
-              event.target.popup('不质疑');
-            }
-            if(event.targets.length){
-              event.goto(1);
-            }
-            "step 3"
-            event.player.$throw(event.card);
-            event.player.unmarkSkill('xwj_xsanguo_oldguhuo');
-            event.player.storage.xwj_xsanguo_oldguhuo.card = null;
-            event.player.storage.xwj_xsanguo_oldguhuo.sayCard = null;
-            ui.discardPile.appendChild(event.card);
-            var targets = event.zhiyis.sort(lib.sort.seat);
-            if(targets.length){
-              if(event.card.name==event.sayCard.name&&(event.card.nature == event.sayCard.nature)){
-                targets.forEach(function(target){
-                  target.loseHp();
-                  game.delay();
-                });
-                if(get.suit(event.card) == 'heart'){
-                  if(event.event.trigger == 'respond'){
-                    _status.event.xwj_xsanguo_oldguhuo = true;
-                     } else {
-                    player.useCard(event.sayCard,event.event.targets);
-                           }
-                }
-              } else {
-                targets.forEach(function(target){
-                  target.draw();
-                  game.delay();
-                });
-              }
-            } else {
-              if(event.event.trigger == 'respond'){
-                _status.event.xwj_xsanguo_oldguhuo = true;
-              } else {
-                event.player.useCard(event.sayCard,event.event.targets);
-              }
-            }
-            targets.forEach(function(target){
-              target.unmarkSkill('xwj_xsanguo_oldguhuo');
-            });
-          });
-        },
-        direct:true,
-        content:function(){
-          "step 0"
-          var dialog = ui.create.dialog('是否发动蛊惑？选择一张要声明的牌');
-          dialog.add([player.storage.xwj_xsanguo_oldguhuo.list,'vcard']);
-          player.chooseButton(dialog).set('filterButton',function(button){
-            var evt=_status.event.getTrigger();
-						if(evt&&evt.filterCard){
-							return evt.filterCard({name:button.link[2],nature:button.link[3]},_status.event.player,evt);
-						}
-						return true;
-          }).set('ai',function(button){
-            var card = {
-              name: button.link[2],
-              nature: button.link[3],
-            };
-            var hs = player.getCards('h');
-            for(var i=0;i<hs.length;i++){
-              if(hs[i].name==card.name&&hs[i].nature==card.nature)return 2;
-            }
-						return -1;
-          });
-          "step 1"
-          if(result.bool){
-            event.sayCard = {
-              name: result.links[0][2],
-              nature: result.links[0][3],
-            };
-            player.chooseCard('蛊惑：请选择一张扣置的手牌','h',true).ai=function(card){
-              if(card.name==event.sayCard.name) {
-                if(get.suit(card) == 'heart')return 15;
-                return 10;
-              }
-              return 6 - get.value(card);
-            };
-          } else {
-            event.finish();
-          }
-          "step 2"
-          player.logSkill('xwj_xsanguo_oldguhuo');
-          lib.skill.xwj_xsanguo_oldguhuo.xwj_xsanguo_guhuo(player,result.cards[0],event.sayCard,{
-            trigger:'respond',
-          });
-          "step 3"
-          if(_status.event.xwj_xsanguo_oldguhuo){
-            trigger.untrigger();
-						trigger.responded=true;
-						trigger.result={bool:true,card:event.sayCard};
-            delete _status.event.xwj_xsanguo_oldguhuo;
-          }
-        },
-				ai:{
-					order:4,
-					useful:-1,
-					value:-1,
-          respondSha:true,
-          respondShan:true,
-          save:true,
-          skillTagFilter:function(player){
-            return player.countCards('h');
-          },
-				},
-        group:['xwj_xsanguo_oldguhuo_use','xwj_xsanguo_oldguhuo_wuxie'],
-        subSkill:{
-          use:{
-          audio:2,
-            enable:'chooseToUse',
-            filter:function(event,player){
-              if(player.countCards('h')==0)return false;
-              for(var i=0;i<player.storage.xwj_xsanguo_oldguhuo.list.length;i++){
-                var card = {
-                  name:player.storage.xwj_xsanguo_oldguhuo.list[i][2],
-                  nature:player.storage.xwj_xsanguo_oldguhuo.list[i][3],
-                };
-                if(card.name=='wuxie')continue;
-                if(event.filterCard(card,player,event)) return true;
-              }
-              return false;
-            },
-            selectCard:1,
-            filterCard:true,
-            prompt:'蛊惑：选择一张扣置的牌',
-            check:function(card){
-              var evt = _status.event;
-              if(get.type(card)!='basic' && get.type(card) != 'trick')return -1;
-              return (game.hasPlayer(function(current){
-                return evt.player.canUse(card,current)&&get.effect(current,card,evt.player,evt.player) > 0;
-              })?20:-10) + (get.suit(card)=='heart'?10:0) + get.order(card);
-            },
-            discard:false,
-            content:function(){
-              "step 0"
-              event.card = cards[0];
-              var dialog = ui.create.dialog('蛊惑：选择一张要声明的牌');
-              dialog.add([player.storage.xwj_xsanguo_oldguhuo.list,'vcard']);
-              player.chooseButton(dialog,true).set('filterButton',function(button){
-                var evt=_status.event.getParent(3);
-                var card = {name:button.link[2],nature:button.link[3]};
-                var info = lib.card[card.name];
-                if(info.selectTarget&&!game.hasPlayer(function(current){
-                  return player.canUse(card,current);
-                }))return false;
-                if(evt&&evt.filterCard){
-                  return evt.filterCard(card,player,evt);
-                }
-                return true;
-              }).set('ai',function(button){
-                if(button.link[2] == event.card.name && button.link[3] == event.card.nature){
-                  return 10;
-                }
-                return 2 + Math.random();
-              });
-              "step 1"
-              event.sayCard = {
-                name:result.links[0][2],
-                nature:result.links[0][3],
-              };
-              player.chooseTarget('蛊惑：选择'+get.translation(event.sayCard)+'的目标',lib.card[event.sayCard.name].selectTarget,function(card,player,target){
-                return player.canUse(event.sayCard,target);
-              },true).ai=function(target){
-                return get.effect(target,event.sayCard,player,player);
-              };
-              "step 2"
-              player.line(result.targets);
-              lib.skill.xwj_xsanguo_oldguhuo.xwj_xsanguo_guhuo(player,event.card,event.sayCard,{
-                trigger:'useTo',
-                targets:result.targets,
-              });
-            },
-            ai:{
-              order: 8,
-              result:{
-                player:function(player){
-                  if(_status.event.dying) return get.attitude(player,_status.event.dying);
-                  return 10;
-                }
-              },
-            },
-          },
-          wuxie:{
-          audio:2,
-            enable:'chooseToUse',
-            filter:function(event,player){
-              return player.countCards('h');
-            },
-            selectCard:1,
-            filterCard:true,
-            discard:false,
-            viewAs:{name:'wuxie'},
-            prompt:'是否发动蛊惑,声明[无懈可击]？',
-            check:function(card){
-              if(card.name=='wuxie'&&get.suit(card)=='suit')return 20;
-              if(player.countCards('h',{name:'wuxie'}) > 1 && card.name=='wuxie')return 10;
-              if(player.countCards('h') < 4) return -1; 
-              if(card.name=='wuxie') return -1;
-              return 6 - get.value(card);
-            },
-            onuse:function(result,player){
-              var evt = _status.event;
-              var next = game.createEvent('xwj_xsanguo_guhuo');
-              next.evt = evt;
-              next.player = player;
-              next.card = result.cards[0];
-              next.sayCard = {name:'wuxie'};
-              next.setContent(function(){
-                "step 0"
-                player.logSkill("xwj_xsanguo_oldguhuo");
-                var player = event.player;
-                player.storage.xwj_xsanguo_oldguhuo.card = event.card;
-                player.storage.xwj_xsanguo_oldguhuo.sayCard = event.sayCard;
-                player.markSkill('xwj_xsanguo_oldguhuo');
-                player.lose(event.card,ui.special);
-                player.popup(get.translation(event.sayCard));
-                game.log(player,'声明了',event.sayCard);
-                event.targets = game.filterPlayer(function(current){
-                  return current!=player&&current.hp > 0;
-                });
-                event.targets.sort(lib.sort.seat);
-                event.zhiyis = [];
-                "step 1"
-              player.logSkill("xwj_xsanguo_oldguhuo");
-                game.delay();
-                event.target = event.targets.shift(0);
-                event.target.chooseBool('是否质疑蛊惑？').ai=function(){
-                  var att = get.attitude(event.target,event.player);
-                  if(att >= 0){
-                    return false;
-                  } else {
-                    if(event.target.hp == 1)return false;
-                    if(event.zhiyis.length)return false;
-                    return true;
-                  }
-                  return true;
-                };
-                "step 2"
-                if(result.bool){
-                  event.target.popup('质疑');
-                  game.log(event.target,'质疑');
-                  event.zhiyis.push(event.target);
-                  event.target.markSkillCharacter('xwj_xsanguo_oldguhuo',event.player,'质疑','');
-                } else {
-                  event.target.popup('不质疑');
-                }
-                if(event.targets.length){
-                  event.goto(1);
-                }
-                "step 3"
-                event.player.unmarkSkill('xwj_xsanguo_oldguhuo');
-                event.player.storage.xwj_xsanguo_oldguhuo.card = null;
-                event.player.storage.xwj_xsanguo_oldguhuo.sayCard = null;
-                ui.discardPile.appendChild(event.card);
-                var targets = event.zhiyis.sort(lib.sort.seat);
-                if(targets.length){
-                  if(event.card.name==event.sayCard.name&&(event.card.nature == event.sayCard.nature)){
-                    targets.forEach(function(target){
-                      target.loseHp();
-                      game.delay();
-                    });
-                    if(get.suit(event.card) != 'heart'){
-                      event.evt.cancel();
-                    }
-                  } else {
-                    targets.forEach(function(target){
-                      target.draw();
-                      game.delay();
-                    });
-                    event.player.$throw(event.card);
-                    event.evt.cancel();
-                  }
-                } 
-                targets.forEach(function(target){
-                  target.unmarkSkill('xwj_xsanguo_oldguhuo');
-                });
-              });
-            },
-          },
-        },
-      },  
-	
-	
-	//老蛊惑代码来自可乐加冰24;
-	
-	
-	
-	
-	"xwj_xsanguo_guhuo":{
-				enable:'chooseToUse',
-				delay:0,
-				direct:true,			
-				unique:true,
-				usable:1,
-				filterCard:true,
-				discard:false,
-				lose:false,		
-				filter:function(event,player){ 
-					if(event.parent.name!='phaseUse'&&event.type!='dying') return false;	
-					var num=get.skillCount('xwj_xsanguo_guhuo')+get.skillCount('xwj_xsanguo_guhuo3')+get.skillCount('xwj_xsanguo_guhuo6');
-					if(player.storage.xwj_xsanguo_guhuo7) return false;	
-					if(num>=1) return false;				
-         	   	 	return player.countCards('h')>0;
-				},
-				content:function(){
-					"step 0"
-					event.viewcard=cards[0];	
-					var list=[];
-					var evt=_status.event.parent.parent;
-					if(evt&&evt.filterCard){
-						for(var i in lib.card){
-							if(!lib.translate[i+'_info']) continue;
-							if(lib.card[i].mode&&lib.card[i].mode.contains(lib.config.mode)==false) continue;
-							if(lib.config.hiddenCardPack.indexOf(i)==0) continue;
-							if(evt.filterCard({name:i},player)) list.push([lib.card[i].type,'',i]);
-						}				
-					}
-					if(list.length&&event.parent.parent.parent.name!='phaseUse'){
-						var dialog=ui.create.dialog('蛊惑:请选择蛊惑声明的牌',[list,'vcard']);
-						player.chooseButton(dialog,function(button){
-							if(Math.random()>0.5) return ai.get.value({name:button.link[2]},player);
-							var i=Math.floor(Math.random()*list.length);
-							return list[i];
-						});	
-					}					
-					else{		
-						var list1=[];
-						for(var i in lib.card){
-							if(!lib.translate[i+'_info']) continue;
-							if(lib.card[i].mode&&lib.card[i].mode.contains(lib.config.mode)==false) continue;
-							if(lib.config.hiddenCardPack.indexOf(i)==0) continue;
-							if(lib.card[i].type=='trick') list1.push(['trick','',i]);
-						}
-						var list2=[];
-						for(var i in lib.card){
-							if(!lib.translate[i+'_info']) continue;
-							if(lib.card[i].mode&&lib.card[i].mode.contains(lib.config.mode)==false) continue;
-							if(lib.config.hiddenCardPack.indexOf(i)==0) continue;
-							if(lib.card[i].type=='basic') list2.push(['basic','',i]);
-						}				
-						list2.push(['基本','','sha','fire']);
-						list2.push(['基本','','sha','thunder']);	
-						list2.push(['毒杀','','sha','poison']);	
-						list2.sort(lib.sort.random);				
-						var dialog=ui.create.dialog('蛊惑:请选择蛊惑声明的牌');
-						dialog.add('基本牌');
-						dialog.add([list2,'vcard']);
-						dialog.add('锦囊牌');	
-						dialog.add([list1,'vcard']);
-						var trigger=_status.event.getParent();				
-						player.chooseButton(dialog,function(button){
-							var player=_status.event.player;
-							var recover=0,lose=1;
-							for(var i=0;i<game.players.length;i++){
-								if(!game.players[i].isOut()){
-									if(game.players[i].hp<game.players[i].maxHp){
-										if(ai.get.attitude(player,game.players[i])>0){
-											if(game.players[i].hp<2){
-												lose--;
-												recover+=0.5;
-											}
-											lose--;
-											recover++;
-										}
-										else if(ai.get.attitude(player,game.players[i])<0){
-											if(game.players[i].hp<2){
-												lose++;
-												recover-=0.5;
-											}
-											lose++;
-											recover--;
-										}
-									}
-									else{
-										if(ai.get.attitude(player,game.players[i])>0){
-											lose--;
-										}
-										else if(ai.get.attitude(player,game.players[i])<0){
-											lose++;
-										}
-									}
-								}
-							}
-							if(player.isDamaged()) return (button.link[2]=='tao')?1:-1;				
-							if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
-							if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
-							if(player.countCards('h','sha')) return (button.link[2]=='jiu')?1:-1;
-							if(!player.countCards('h','sha')) return (button.link[2]=='sha')?1:-1;		
-							return (button.link[2]=='wuzhong')?1:-1;
-						}).filterButton=function(button){	
-							if(!lib.filter.cardEnabled({name:button.link[2]},player,trigger)) return false;
-							if(!lib.filter.cardUsable({name:button.link[2]},player,trigger)) return false;
-							return true;
-						};		
-					}					
-					"step 1"
-					if(result.bool){
-						event.name=result.buttons[0].link[2];	
-						if(result.buttons[0].link[3]) event.nature=result.buttons[0].link[3];
-						event.goto(2);
-					}
-					else{
-						player.getStat('skill').xwj_xsanguo_guhuo--;
-						event.finish();
-					}
-					"step 2"					
-					player.say('道法玄机变化莫测，我声明'+get.translation(event.name));	
-					player.storage.xwj_xsanguo_guhuo=cards;
-					lib.skill.xwj_xsanguo_guhuo2.viewAs={name:event.name,nature:event.nature};
-					event.parent.parent.backup('xwj_xsanguo_guhuo2');
-					event.parent.parent.step=0;
-					if(event.isMine()){
-						event.parent.parent.openskilldialog='选择'+get.translation(event.name)+'的目标';
-					}
-				},		
-				group:['xwj_xsanguo_guhuo5','xwj_xsanguo_guhuo4','xwj_xsanguo_guhuo3','xwj_xsanguo_guhuo6','xwj_xsanguo_guhuo7'],
-				ai:{
-					save:true,
-					threaten:8,
-					order:7,
-					result:{
-						player:function(player){
-							var num=player.countCards('h');
-							if(_status.dying&&ai.get.attitude(player,_status.dying)>0) return num-1;
-							if(_status.dying&&ai.get.attitude(player,_status.dying)<=0) return 0;
-							if(_status.currentPhase!=player) return 0;
-							return num-2;
-						},
-					},
-				},				
-			},
-			"xwj_xsanguo_guhuo4":{
-				trigger:{global:'phaseAfter'},
-				forced:true,
-				silent:true,
-				popup:false,
-				content:function(){
-					player.stat.push({card:{},skill:{}});
-					player.storage.xwj_xsanguo_guhuo7=false;
-				}					
-			},				
-			"xwj_xsanguo_guhuo2":{
-				audio:['xwj_xsanguo_guhuo',2],
-				filterCard:function(){return false},
-				popname:true,
-				selectCard:-1,					
-				onuse:function(result,player){
-					if(player.storage.xwj_xsanguo_guhuo) result.cards=player.storage.xwj_xsanguo_guhuo;
-					if(player.storage.xwj_xsanguo_guhuo) delete player.storage.xwj_xsanguo_guhuo;
-				}
-			},
-			"xwj_xsanguo_guhuo3":{
-				audio:['xwj_xsanguo_guhuo',2],
-				enable:['chooseToUse','chooseToRespond'],
-				filterCard:true,
-				popname:true,
-				usable:1,
-			    viewAs:{name:'sha'},
-				filter:function(event,player){
-					var num=get.skillCount('xwj_xsanguo_guhuo')+get.skillCount('xwj_xsanguo_guhuo3')+get.skillCount('xwj_xsanguo_guhuo6');
-					if(player.storage.xwj_xsanguo_guhuo7) return false;	
-					if(num>0) return false;				
-					return event.parent.name!='phaseUse'&&player.countCards('h')>0;
-				},				
-				onuse:function(result,player){
-					player.say('道法玄机变化莫测，我声明'+get.translation('sha'));
-				},				
-				onrespond:function(result,player){
-					player.say('道法玄机变化莫测，我声明'+get.translation('sha'));
-				},				
-				ai:{
-					skillTagFilter:function(player){
-						return player.countCards('h')>0;
-					},						
-					respondSha:true
-				}
-			},
-			"xwj_xsanguo_guhuo6":{
-				audio:['xwj_xsanguo_guhuo',2],
-				enable:['chooseToUse','chooseToRespond'],
-				filterCard:true,
-				popname:true,
-				usable:1,					
-			    viewAs:{name:'shan'},
-				filter:function(event,player){
-					var num=get.skillCount('xwj_xsanguo_guhuo')+get.skillCount('xwj_xsanguo_guhuo3')+get.skillCount('xwj_xsanguo_guhuo6');
-					if(player.storage.xwj_xsanguo_guhuo7) return false;	
-					if(num>0) return false;				
-					return event.parent.name!='phaseUse'&&player.countCards('h')>0;
-				},
-				onuse:function(result,player){
-					player.say('道法玄机变化莫测，我声明'+get.translation('shan'));
-				},				
-				onrespond:function(result,player){
-					player.say('道法玄机变化莫测，我声明'+get.translation('shan'));
-				},					
-				ai:{
-					skillTagFilter:function(player){
-						return player.countCards('h')>0;
-					},							
-					respondShan:true
-				}
-			},		
-			"xwj_xsanguo_guhuo7":{
-				audio:['xwj_xsanguo_guhuo',2],
-				enable:['chooseToUse','chooseToRespond'],
-				filterCard:true,
-				popname:true,
-				usable:1,					
-			    viewAs:{name:'wuxie'},
-				filter:function(event,player){
-					var num=get.skillCount('xwj_xsanguo_guhuo')+get.skillCount('xwj_xsanguo_guhuo3')+get.skillCount('xwj_xsanguo_guhuo6');
-					if(player.storage.xwj_xsanguo_guhuo7) return false;	
-					if(num>0) return false;				
-					return player.countCards('h')>0;
-				},
-				onuse:function(result,player){
-					player.storage.xwj_xsanguo_guhuo7=true;
-					player.say('道法玄机变化莫测，我声明'+get.translation('wuxie'));
-				},				
-				onrespond:function(result,player){
-					player.storage.xwj_xsanguo_guhuo7=true;
-					player.say('道法玄机变化莫测，我声明'+get.translation('wuxie'));
-				},					
-			},				
-			
-			"xwj_xsanguo_guhuo5":{		
-				trigger:{global:['useCardBegin','respondBegin']},
-				forced:true,
-				popup:false,
-				silent:true,
-				filter:function(event){
-					return event.skill=='xwj_xsanguo_guhuo2'||event.skill=='xwj_xsanguo_guhuo3'||event.skill=='xwj_xsanguo_guhuo6'||event.skill=='xwj_xsanguo_guhuo7';
-				},		
-				content:function(){
-					"step 0"
-					player.lose(trigger.cards[0]);
-					player.line(trigger.targets);
-					event.viewcard=trigger.cards[0];
-					var cardx=ui.create.card();
-					cardx.classList.add('infohidden');
-					cardx.classList.add('infoflip');
-					event.cards2=cardx;	
-					var node1=event.cards2;	
-					event.animate=node1;
-					if(lib.config.cardback_style!='default'){
-						node1.style.transitionProperty='none';
-						ui.refresh(node1);
-						node1.classList.add('infohidden');
-						ui.refresh(node1);
-						node1.style.transitionProperty='';
-					}
-					else{
-						node1.classList.add('infohidden');
-					}			
-					event.dialog=ui.create.dialog('蛊惑','hidden');
-					event.dialog.add(event.cards2);	
-					event.dialog.open();					
-					event.current=player.next;			
-					"step 1"
-					if((event.current.hp<=0||event.current.hasSkill('xwj_xsanguo_chanyuan'))&&event.current!=player){
-						if(event.current.hasSkill('xwj_xsanguo_chanyuan')) game.log(event.current,'不能质疑于吉');
-						event.current=event.current.next;	
-						event.redo();
-					}														
-					if(event.current==player) event.goto(4);
-					"step 2"
-					if(event.current!=player){
-						event.current.chooseControl('质疑于吉','不质疑于吉',function(){
-							if(ai.get.attitude(event.current,_status.event.target)>0) return 	'不质疑于吉';
-							if(_status.event.target.countCards('h')>3) return '不质疑于吉';
-							if(_status.event.target.countCards('h')<2) return '质疑于吉';
-							if(Math.random()<0.5) return '质疑于吉';
-							return '不质疑于吉';
-						}).set('target',player);	
-					}
-					else{
-						event.goto(4);
-					}
-					"step 3"
-					if(result.control=='质疑于吉'){
-						event.current.popup('质疑');
-						game.log(event.current,'质疑');	
-						event.bool=true;
-						event.goto(4);
-					}
-					else if(result.control=='不质疑于吉'){
-						event.current.popup('不质疑');
-						game.log(event.current,'不质疑');	
-						if(event.current.next!=player){
-							event.current=event.current.next;				
-							game.delay(0.5);
-							event.goto(1);
-						}							
-					}				
-					"step 4"
-					game.pause();
-					setTimeout(function(){
-						event.cards2.init([event.viewcard.suit,event.viewcard.number,event.viewcard.name]);
-						event.animate.style.transition='all ease-in 0.3s';
-						event.animate.style.transform='perspective(600px) rotateY(270deg) translateX(52px)';
-						event.animate.classList.remove('infohidden');
-						event.animate.style.transition='all 0s';
-						ui.refresh(event.animate);
-						event.animate.style.transform='perspective(600px) rotateY(-90deg) translateX(52px)';
-						ui.refresh(event.animate);
-						event.animate.style.transition='';
-						ui.refresh(event.animate);
-						event.animate.style.transform='';
-					},500);	
-					setTimeout(function(){
-            			while(ui.dialogs.length){
-              		 		ui.dialogs[0].close();
-         				}
-						ui.clear();
-						game.resume();
-					},1500);	
-					"step 5"
-					player.getStat('skill').xwj_xsanguo_guhuo++;
-					player.getStat('skill').xwj_xsanguo_guhuo3++;
-					player.getStat('skill').xwj_xsanguo_guhuo6++;
-					player.getStat('skill').xwj_xsanguo_guhuo7++;					
-					if(event.bool){
-						if(event.viewcard.name!=trigger.card.name){
-							ui.discardPile.appendChild(event.viewcard);
-							game.log(event.viewcard,'被置入了弃牌堆');		
-							if(trigger.name=='respond'){
-								if(trigger.parent.result){
-									game.log(player,'打出的',trigger.card,'作废');
-									trigger.parent.result.bool=false;
-								}
-							}
-							else{
-								game.log(player,'使用的',trigger.card,'作废');
-								trigger.untrigger();
-								trigger.finish();
-							}																
-						}
-						else{
-							event.current.addSkill('xwj_xsanguo_chanyuan');								
-						}	
-					}
-				},					
-			},
-			
-			
-			"xwj_xsanguo_chanyuan":{
-						trigger:{player:['phaseBefore','changeHp']},
-						forced:true,
-						popup:false,
-						unique:true,
-						content:function(){
-							var list=player.get('s');
-							list.remove('xwj_xsanguo_chanyuan');
-							if(player.hp==1){
-								player.disableSkill('xwj_xsanguo_chanyuan',list);
-								player.markSkill('xwj_xsanguo_chanyuan');
-							}
-							else{
-								player.enableSkill('xwj_xsanguo_chanyuan');
-								player.unmarkSkill('xwj_xsanguo_chanyuan');
-							}
-						},
-						init2:function(player){
-							if(player.hp==1){
-								var list=player.skills.remove('xwj_xsanguo_chanyuan');
-								player.disableSkill('xwj_xsanguo_chanyuan',list);
-								player.markSkill('xwj_xsanguo_chanyuan');
-							}
-						},
-						marktext:'缠',
-						mark:true,
-						intro:{
-							 content:function(storage,player,skill){
-								var storage=player.disabledSkills.xwj_xsanguo_chanyuan;
-								if(storage&&storage.length){
-									var str='失效技能：';
-									for(var i=0;i<storage.length;i++){
-										if(lib.translate[storage[i]+'_info']){
-											str+=get.translation(storage[i])+'、';
-										}
-									}
-									return str.slice(0,str.length-1);
-								}
-							}
-						}
-					},
-			
-	//新蛊惑代码来自可乐加冰24;
-	
 	
 	
 	 "xwj_xsanguo_chuanshu":{
@@ -18870,6 +18090,9 @@ trigger:{
         player:"turnOverBefore",
     },
     forced:true,
+	filter:function (event,player){        
+        return !player.isTurnedOver();
+    },
     content:function (){
         trigger.cancel();
     },
@@ -19041,7 +18264,7 @@ trigger:{
             "zbfs":"蒸危暴威",
             "zbfs_info":"延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里",
             "xwj_xus_mianju":"漩涡面具",
-            "xwj_xus_mianju_info":"<font color=#f00>锁定技</font> 你的武将牌不能被翻面",
+            "xwj_xus_mianju_info":"<font color=#f00>锁定技</font> 若你的武将牌正面朝上，你的武将牌不能被翻面",
             "xwj_xus_shoulijian":"手里剑",
             "xwj_xus_shoulijian_info":"出牌阶段，对一名距离1以外的角色使用，令其弃置一张装备牌或受到一点伤害",
             "xwj_xus_kuwu":"苦无",
@@ -19200,5 +18423,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.102",
+    version:"1.103",
 },files:{"character":[],"card":[],"skill":[]}}})

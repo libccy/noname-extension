@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",content:function (config,pack){
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
@@ -121,7 +121,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 							priority:2,
 							forced:true,
          unique:true,
-         frequent:true, 
+         
 					   content:function(){					
 					   	    game.playAudio('..','extension','群英会',trigger.player.name);
 							  /*  if(trigger.player.name=='xwj_xhuoying_itachi'){
@@ -995,13 +995,19 @@ skill:{
     if(!event.filterCard({name:'shan'})) return false;
          return true;                                  
     },
-                content:function (){
-        'step 0'
+                content:function (){        
             trigger.untrigger();
             trigger.responded=true;
             trigger.result={bool:true,card:{name:'shan'}}                                 
             player.logSkill('xwj_xqunying_zhengyi'); 
-    },                
+    },         
+	ai:{                   
+                    //respondSha:true,
+					respondShan:true,
+                    result:{
+                        player:1,
+                    },
+                },
             },
             "xwj_xqunying_zhengyi_sha":{
                 trigger:{
@@ -1020,6 +1026,13 @@ skill:{
             trigger.result={bool:true,card:{name:'sha'}}       
             player.logSkill('xwj_xqunying_zhengyi');
     },
+	ai:{                   
+                    respondSha:true,
+					//respondShan:true,
+                    result:{
+                        player:1,
+                    },
+                },
             },
             "xwj_xqunying_zhengyi_use":{
                 enable:"chooseToUse",     
@@ -1098,6 +1111,7 @@ skill:{
         },
                     save:true,
                     respondSha:true,
+					respondShan:true,
                     result:{
                         player:1,
                     },
@@ -1106,88 +1120,154 @@ skill:{
             "xwj_xqunying_zhengyijinnang":{
                 enable:"phaseUse",  
                 usable:1,            
-                filter:function (card,player){
+                filter:function (card,player){
+
                 return player.isAlive();             
     },
                 chooseButton:{
-                    dialog:function (){
-            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
-            for(var i=0;i<list.length;i++){
-                list[i]=['锦囊','',list[i]];
-            }
-            return ui.create.dialog(get.translation('xwj_xqunying_zhengyijinnang'),[list,'vcard']);
+                    dialog:function (){
+
+            var list=['taoyuan','wugu','juedou','huogong','jiedao','tiesuo','guohe','shunshou','wuzhong','wanjian','nanman'];
+
+            for(var i=0;i<list.length;i++){
+
+                list[i]=['锦囊','',list[i]];
+
+            }
+
+            return ui.create.dialog(get.translation('xwj_xqunying_zhengyijinnang'),[list,'vcard']);
+
         },
-                    filter:function (button,player){
-            return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+                    filter:function (button,player){
+
+            return lib.filter.filterCard({name:button.link[2]},player,_status.event.getParent());
+
         },
-                    check:function (button){
-            var player=_status.event.player;
-            var recover=0,lose=1,players=game.filterPlayer();
-            for(var i=0;i<players.length;i++){
-                if(players[i].hp==1&&get.damageEffect(players[i],player,player)>0&&!players[i].hasSha()){
-                    return (button.link[2]=='juedou')?2:-1;
-                }
-                if(!players[i].isOut()){
-                    if(players[i].hp<players[i].maxHp){
-                        if(get.attitude(player,players[i])>0){
-                            if(players[i].hp<2){
-                                lose--;
-                                recover+=0.5;
-                            }
-                            lose--;
-                            recover++;
-                        }
-                        else if(get.attitude(player,players[i])<0){
-                            if(players[i].hp<2){
-                                lose++;
-                                recover-=0.5;
-                            }
-                            lose++;
-                            recover--;
-                        }
-                    }
-                    else{
-                        if(get.attitude(player,players[i])>0){
-                            lose--;
-                        }
-                        else if(get.attitude(player,players[i])<0){
-                            lose++;
-                        }
-                    }
-                }
-            }
-            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
-            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
-            return (button.link[2]=='wuzhong')?1:-1;
+                    check:function (button){
+
+            var player=_status.event.player;
+
+            var recover=0,lose=1,players=game.filterPlayer();
+
+            for(var i=0;i<players.length;i++){
+
+                if(players[i].hp==1&&get.damageEffect(players[i],player,player)>0&&!players[i].hasSha()){
+
+                    return (button.link[2]=='juedou')?2:-1;
+
+                }
+
+                if(!players[i].isOut()){
+
+                    if(players[i].hp<players[i].maxHp){
+
+                        if(get.attitude(player,players[i])>0){
+
+                            if(players[i].hp<2){
+
+                                lose--;
+
+                                recover+=0.5;
+
+                            }
+
+                            lose--;
+
+                            recover++;
+
+                        }
+
+                        else if(get.attitude(player,players[i])<0){
+
+                            if(players[i].hp<2){
+
+                                lose++;
+
+                                recover-=0.5;
+
+                            }
+
+                            lose++;
+
+                            recover--;
+
+                        }
+
+                    }
+
+                    else{
+
+                        if(get.attitude(player,players[i])>0){
+
+                            lose--;
+
+                        }
+
+                        else if(get.attitude(player,players[i])<0){
+
+                            lose++;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            if(lose>recover&&lose>0) return (button.link[2]=='nanman')?1:-1;
+
+            if(lose<recover&&recover>0) return (button.link[2]=='taoyuan')?1:-1;
+
+            return (button.link[2]=='wuzhong')?1:-1;
+
         },
-                    backup:function (links,player){
-            return {
+                    backup:function (links,player){
+
+            return {
+
                 filterCard:function (){return false},     
                 selectCard:-1,    
-                popname:true,
-                viewAs:{name:links[0][2]},
+                popname:true,
+
+                viewAs:{name:links[0][2]},
+
                  precontent:function(){
                  player.logSkill('xwj_xqunying_zhengyi');      
-                 }
-            }
+                 }
+
+            }
+
         },
-                    prompt:function (links,player){
-            return '视为使用一张'+get.translation(links[0][2]);
+                    prompt:function (links,player){
+
+            return '视为使用一张'+get.translation(links[0][2]);
+
         },
                 },
                 ai:{
                     order:1,
                     result:{
-                        player:function (player){
-                var num=0;
-                var cards=player.getCards('h');
-                
-                for(var i=0;i<cards.length;i++){
-                    num+=Math.max(0,get.value(cards[i],player,'raw'));
-                }
-                num/=cards.length;
-                num*=Math.min(cards.length,player.hp);
-                return 12-num;
+                        player:function (player){
+
+                var num=0;
+
+                var cards=player.getCards('h');
+
+                
+
+                for(var i=0;i<cards.length;i++){
+
+                    num+=Math.max(0,get.value(cards[i],player,'raw'));
+
+                }
+
+                num/=cards.length;
+
+                num*=Math.min(cards.length,player.hp);
+
+                return 12-num;
+
             },
                     },
                     threaten:1.6,
@@ -4139,7 +4219,8 @@ skill:{
                 'step 0'          
           var num=game.countPlayer(function(current){
             return current.isMad();
-        }); 
+        });
+ 
         if(num<=1){
             player.draw();
         }
@@ -4236,7 +4317,8 @@ skill:{
                // if(!player.isLinked()) return false;
          return game.hasPlayer(function(current){
             return current.isLinked();
-        }); 
+        });
+ 
     },
                 content:function (){    
                'step 0'  
@@ -4284,11 +4366,15 @@ skill:{
                 audio:"ext:群英会:2",
                 enable:"phaseUse",
                // usable:1,
-                filter:function (event,player){              
+                filter:function (event,player){
+              
                 if(player.getStat().skill.xwj_xhuoying_zhuzheng>=player.hp) return false;
-        return game.hasPlayer(function(current){
-            return !current.isLinked();
-        });
+        return game.hasPlayer(function(current){
+
+            return !current.isLinked();
+
+        });
+
     },
                 filterTarget:function (card,player,target){
         return target!=player&&!target.isLinked();
@@ -4327,7 +4413,8 @@ skill:{
         else event.goto(1);                     
     },*/
                 //原技能：
-               content:function (){
+               content:function (){
+
                    'step 0'
                    player.line(target,'green');
                     player.chooseToPSS(target);
@@ -4397,7 +4484,8 @@ skill:{
                 filter:function (event){        
                 return game.hasPlayer(function(current){
             return current.countCards('e');
-        });      
+        });
+      
     },
                 content:function (){
         "step 0"
@@ -5270,7 +5358,8 @@ player.node.avatar.setBackgroundImage('extension/群英会/xwj_xhuoying_chiwan.j
 				filter:function(event,player){				
 					return game.hasPlayer(function(current){
             return current.countCards('he');
-        }); 
+        });
+ 
 				},
                 content:function (){
     "step 0"
@@ -18423,5 +18512,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.103",
+    version:"1.104",
 },files:{"character":[],"card":[],"skill":[]}}})

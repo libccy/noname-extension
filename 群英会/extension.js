@@ -1,12 +1,12 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>修复使用【闪】',
+       '<li>新增凉茶写的【兵乐特效】',
        //'<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
     //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2019.12.06';
+    Xu_version='更新日期：2019.12.28';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -121,7 +121,7 @@ if (skinnum==1) {this.node.avatar.setBackgroundImage('extension/群英会/'+exte
 							priority:2,
 							forced:true,
          unique:true,
-         
+         frequent:true, 
 					   content:function(){					
 					   	    game.playAudio('..','extension','群英会',trigger.player.name);
 							  /*  if(trigger.player.name=='xwj_xhuoying_itachi'){
@@ -528,6 +528,84 @@ huanhun.insertPhase();
 						}
          }
          
+	// ---------------------------------------bingletexiao------------------------------------------//	 
+		 	if(config.bingletexiao){		
+		 lib.skill._bingletexiaole={
+		trigger:{
+			target:'useCardToBegin',
+		},														
+		forced:true,
+		filter:function (event,player){
+            return event.card&&event.card.name=='lebu';
+        },                 
+		content:function(){			 			 		  
+		    game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 						
+ 		},
+    }	
+	lib.skill._bingletexiaobingliang={
+		trigger:{
+			target:'useCardToBegin',
+		},							
+		forced:true,
+		filter:function (event,player){
+            return event.card&&event.card.name=='bingliang';
+        },                 
+		content:function(){						    
+			game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 						
+ 		},
+	}						
+	lib.skill._bingletexiao={
+		trigger:{
+			player:'judgeAfter',
+		},							
+		priority:2,
+		forced:true,							
+		content:function(){	
+		    if(player.countCards('j',{name:'lebu'})){
+			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 	
+			}	
+			else if(player.countCards('j',{name:'bingliang'})){
+			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 	
+			}
+			else{
+			   player.node.avatar.setBackground(player.name,'character');	
+			}			
+ 		},
+	}
+	lib.skill._bingletexiao1={
+		trigger:{
+			player:'dieBegin',
+		},							
+		priority:2,
+		forced:true,							
+		content:function(){			    
+			player.node.avatar.setBackground(player.name,'character');							
+ 		},
+	}
+	lib.skill._bingletexiao2={
+		trigger:{
+			player:'loseEnd',
+		},							
+		filter:function(event,player){
+			for(var i=0;i<event.cards.length;i++){
+				if(event.cards[i].original=='j') return true;
+			}
+			return false;
+		},
+		forced:true,							
+		content:function(){						    
+			if(player.countCards('j',{name:'lebu'})){
+			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 	
+			}	
+			else if(player.countCards('j',{name:'bingliang'})){
+			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 	
+			}
+			else{
+			   player.node.avatar.setBackground(player.name,'character');	
+			}									
+ 		},
+	}
+	}
  	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
 							lib.skill._chooseTime={
@@ -652,7 +730,7 @@ return str1;
 	 		xqunying:{
 				"xqunying_zhanguo":["xwj_xqunying_baiqi","xwj_xqunying_qinshiwang"],
 				"xqunying_longzhu":["xwj_xqunying_frieza","xwj_xqunying_jilian"],
-				"xqunying_wuxia":["xwj_xqunying_weixiaobao"],
+		//		"xqunying_wuxia":["xwj_xqunying_weixiaobao"],
 			},
 		},
 				character:{
@@ -660,7 +738,7 @@ return str1;
           "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
           "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
 	      "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],["forbidai"]],
-		  "xwj_xqunying_weixiaobao":["male","qun",4,["xwj_xqunying_haodu","xwj_xqunying_fengyuan"],[]],
+		 // "xwj_xqunying_weixiaobao":["male","qun",4,["xwj_xqunying_haodu","xwj_xqunying_fengyuan"],[]],
                 
 },
 characterIntro:{
@@ -6240,21 +6318,7 @@ xwj_xhuoying_guazhang:{
                         ui.cardPile.childNodes[1],                                       
                     ];
                     return ui.create.dialog('木遁',player.storage.xwj_xhuoying_mudun,'hidden');
-                },             
-
-
-				/* var cards=[];
-            if(ui.cardPile.childNodes.length<2){
-                var discardcards=get.cards(2);
-                for(var i=0;i<discardcards.length;i++){
-                    discardcards[i].discard();
-                }
-            }
-            for(var i=0;i<2;i++){
-                cards.push(ui.cardPile.childNodes[i]);
-			}*/
-				
-				
+                },             							
                             filter:function (button,player){
                     var evt=_status.event.getParent();
                     if(evt&&evt.filterCard){
@@ -7572,6 +7636,7 @@ xwj_xhuoying_guazhang:{
         },
                     save:true,
                     respondSha:true,
+                    respondShan:true,
                     result:{
                         player:1,
                     },
@@ -18394,6 +18459,11 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
            "intro":"新杀特效：开启此项（建议关闭击杀特效项）后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的武将动画和配音",
             init:false
 		},							   
+				"bingletexiao":{
+            name:'兵乐特效',
+           "intro":"兵乐特效：开启此项后重启游戏生效。任意一名角色判定区被“兵粮寸断”、“乐不思蜀”后，会替换相应图片",
+            init:false
+		},							   
     		"wuxianyuedu":{
             name:'无限月读',
            "intro":"无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
@@ -18512,5 +18582,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.104",
+    version:"1.105",
 },files:{"character":[],"card":[],"skill":[]}}})

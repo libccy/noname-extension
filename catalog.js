@@ -539,7 +539,7 @@ extension["凉茶"]={
     intro:"<li>内含一个模式，开启该模式后重启游戏生效：每轮开始时所有角色随机替换武将牌",
     size:"0.5MB",
     netdisk:"",
-    version:1.0,
+    version:1.1,
     files:[
      "extension.js","lc_liangcha.jpg"
     ]

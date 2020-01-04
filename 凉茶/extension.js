@@ -222,5 +222,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"凉�
     author:"凉茶（QQ：764235332）",
     diskURL:"",
     forumURL:"",
-    version:"1.0",
+    version:"1.1",
 },files:{"character":["lc_liangcha.jpg"],"card":[],"skill":[]}}})

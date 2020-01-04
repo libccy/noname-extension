@@ -4,8 +4,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"å‡‰èŒ
      trigger:{
                     global:"roundStart",
                 },
-          forced:true,
-          frequent:true,
+          forced:true,          
                 content:function (){
                     "step 0"                
                     var targets=game.filterPlayer();                   

@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>新增凉茶写的【兵乐特效】',
+       '<li>改进凉茶写的【兵乐特效】',
        //'<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
     //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2019.12.28';
+    Xu_version='更新日期：2020.01.12';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -538,9 +538,21 @@ huanhun.insertPhase();
 		filter:function (event,player){
             return event.card&&event.card.name=='lebu';
         },                 
-		content:function(){			 			 		  
-		    game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 						
- 		},
+		content:function(){			 
+						//var node = document.createElement('div');
+	    //  player.node.avatar.appendChild(node);			  
+			game.broadcastAll(function(player){
+ 			img = document.createElement('div');
+				img.setBackgroundImage('extension/兵乐特效/bingletexiaole.png'); 						
+		 	img.style.backgroundSize='cover';
+				img.style.width='100%';
+				img.style.height='100%';			
+				img.style.transform='translateY(-200px)';
+				player.node.avatar.appendChild(img);
+				ui.refresh(img);
+				img.style.transform='';
+			},player);
+ 		}, 		
     }	
 	lib.skill._bingletexiaobingliang={
 		trigger:{
@@ -550,22 +562,52 @@ huanhun.insertPhase();
 		filter:function (event,player){
             return event.card&&event.card.name=='bingliang';
         },                 
-		content:function(){						    
-			game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 						
+		content:function(){		
+			game.broadcastAll(function(player){
+				img = document.createElement('div');
+				img.setBackgroundImage('extension/兵乐特效/bingletexiaobingliang.jpg'); 						
+				img.style.width='100%';
+				img.style.height='100%';
+				img.style.backgroundSize='cover';
+				img.style.transform='translateY(-200px)';
+				player.node.avatar.appendChild(img);
+				ui.refresh(img);
+				img.style.transform='';
+			},player)
  		},
 	}						
-	lib.skill._bingletexiao={
+ 	lib.skill._bingletexiao={
 		trigger:{
 			player:'judgeAfter',
 		},							
-		priority:2,
+		priority:-2019,
 		forced:true,							
 		content:function(){	
 		    if(player.countCards('j',{name:'lebu'})){
-			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 	
+				game.broadcastAll(function(player){
+					img = document.createElement('div');
+					img.setBackgroundImage('extension/兵乐特效/bingletexiaole.jpg'); 						
+					img.style.width='100%';
+					img.style.height='100%';
+					img.style.backgroundSize='cover';
+					img.style.transform='translateY(-200px)';
+					player.node.avatar.appendChild(img);
+					ui.refresh(img);
+					img.style.transform='';
+				},player)
 			}	
 			else if(player.countCards('j',{name:'bingliang'})){
-			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 	
+				game.broadcastAll(function(player){
+					img = document.createElement('div');
+					img.setBackgroundImage('extension/兵乐特效/bingletexiaobingliang.jpg'); 						
+					img.style.width='100%';
+					img.style.height='100%';
+					img.style.backgroundSize='cover';
+					img.style.transform='translateY(-200px)';
+					player.node.avatar.appendChild(img);
+					ui.refresh(img);
+					img.style.transform='';
+				},player)
 			}
 			else{
 			   player.node.avatar.setBackground(player.name,'character');	
@@ -578,8 +620,15 @@ huanhun.insertPhase();
 		},							
 		priority:2,
 		forced:true,							
-		content:function(){			    
-			player.node.avatar.setBackground(player.name,'character');							
+		content:function(){			
+			game.broadcastAll(function(player){
+				imgs=player.node.avatar.querySelectorAll("div");
+				for (var i=0;i<imgs.length;i++) {
+					var img = imgs[i];
+					img.style.transform='translateY(-200px)';
+					img.delete();
+				}
+			},player)
  		},
 	}
 	lib.skill._bingletexiao2={
@@ -595,16 +644,43 @@ huanhun.insertPhase();
 		forced:true,							
 		content:function(){						    
 			if(player.countCards('j',{name:'lebu'})){
-			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 	
+				game.broadcastAll(function(player){
+					img = document.createElement('div');
+					img.setBackgroundImage('extension/兵乐特效/bingletexiaole.jpg'); 						
+					img.style.width='100%';
+					img.style.height='100%';
+					img.style.backgroundSize='cover';
+					img.style.transform='translateY(-200px)';
+					player.node.avatar.appendChild(img);
+					ui.refresh(img);
+					img.style.transform='';
+				},player)
 			}	
 			else if(player.countCards('j',{name:'bingliang'})){
-			   game.broadcastAll()+player.node.avatar.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 	
+				game.broadcastAll(function(player){
+					img = document.createElement('div');
+					img.setBackgroundImage('extension/兵乐特效/bingletexiaobingliang.jpg'); 						
+					img.style.width='100%';
+					img.style.height='100%';
+					img.style.backgroundSize='cover';
+					img.style.transform='translateY(-200px)';
+					player.node.avatar.appendChild(img);
+					ui.refresh(img);
+					img.style.transform='';
+				},player)
 			}
 			else{
-			   player.node.avatar.setBackground(player.name,'character');	
+				game.broadcastAll(function(player){
+					imgs=player.node.avatar.querySelectorAll("div")
+					for (var i=0;i<imgs.length;i++) {
+						var img = imgs[i];
+						img.style.transform='translateY(-200px)';
+						img.delete();
+					}
+				},player)
 			}									
  		},
-	}
+	}						
 	}
  	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
@@ -9060,7 +9136,7 @@ if(skill!='xwj_jisha'){
                 return 7.6-get.equipValue(card);
             };   */
           //另一种写法：
-      player.chooseCardButton('惑梦',player.getCards('e')).ai=function(button){
+      player.chooseCardButton('请弃置一张装备区的牌',player.getCards('e')).ai=function(button){
                 return 7.5-get.value(button.link);
             }
      
@@ -14113,6 +14189,9 @@ else{
                 filterCard:{
                     name:"sha",
                 },
+                viewAsFilter:function (player){
+         return player.countCards('h','sha')>1;
+    },
                 filter:function (event,player){
         return player.countCards('h','sha')>1;
     },
@@ -14197,7 +14276,7 @@ else{
             },
                     },
                 },
-                group:"luanjian2",
+                //group:"luanjian2",
             },
             
             "xwj_xqinshi_jusha2":{
@@ -18582,5 +18661,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.105",
+    version:"1.106",
 },files:{"character":[],"card":[],"skill":[]}}})

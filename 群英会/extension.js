@@ -2,11 +2,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群�
   
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>改进凉茶写的【兵乐特效】',
+       '<li>注释掉【尸鬼封尽】的动画并为被封印角色加封印效果',
        //'<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
     //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
     ];
-    Xu_version='更新日期：2020.01.12';
+    Xu_version='更新日期：2020.01.16';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -10604,16 +10604,25 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
           player.unmarkSkill('xwj_xhuoying_xfengyin');                  
             player.$skill('尸鬼封尽','fire','red','avatar'); 
             var chat=['只要有树叶飞舞的地方，火就会燃烧，火的影子会照耀着村子','忍者最强的力量不是在学会所有忍术之后得到，而是在保护自己最珍贵的东西时才会显露出来'].randomGet();
-            player.say(chat);                 
-            for(var i=0;i<result.targets.length;i++){
-                player.logSkill('xwj_xhuoying_xfengyin',result.targets);            
-                result.targets[i].clearSkills();    
-                if(result.targets[i].maxHp>4) result.targets[i].maxHp=4;      
-                result.targets[i].update();
+            player.say(chat);    
+            player.logSkill('xwj_xhuoying_xfengyin',result.targets[0]);            
+                result.targets[0].clearSkills();    
+                if(result.targets[0].maxHp>4) result.targets[0].maxHp=4;      
+                result.targets[0].update();
                 player.hp=player.maxHp;                  
                 player.loseHp(player.hp);
-                player.awakenSkill('xwj_xhuoying_xfengyin');                                                         
-           }
+                player.awakenSkill('xwj_xhuoying_xfengyin');    
+             game.broadcastAll(function(player){
+				img = document.createElement('div');
+				img.setBackgroundImage('extension/群英会/xhuoying_fengyin.png'); 						
+				img.style.width='100%';
+				img.style.height='100%';
+				img.style.backgroundSize='cover';
+				img.style.transform='translateY(-200px)';
+				result.targets[0].node.avatar.appendChild(img);
+				ui.refresh(img);
+				img.style.transform='';
+			},player);			                                                                                                                   
           }
           else{
           event.finish();
@@ -12600,22 +12609,31 @@ if(range[1]!=-1) range[1]+=Infinity;
         'step 3'           
           if(result.bool){     
            //alive('extension/群英会/xwj_refengyin.gif',12,true);         
-           game[otherFunction[7]](game.qyhGif('xwj_refengyin.gif',null,null,true),11000);		
+           //game[otherFunction[7]](game.qyhGif('xwj_refengyin.gif',null,null,true),11000);		
            game.delay();  
           player.storage.xwj_xhuoying_refengyin=true; 
           player.unmarkSkill('xwj_xhuoying_refengyin');                             
            //  player.$skill('尸鬼封尽','fire','red','avatar'); 
                 var chat=['尸鬼封尽','守护村子，背负着影的名号，这是我该做的事'].randomGet();
            player.say(chat);                  
-            for(var i=0;i<result.targets.length;i++){
-                player.logSkill('xwj_xhuoying_refengyin',result.targets);            
-                result.targets[i].clearSkills();     
-                if(result.targets[i].maxHp>4) result.targets[i].maxHp=4;      
-                result.targets[i].update();
-                player.hp=player.maxHp;                                   
+              player.logSkill('xwj_xhuoying_xfengyin',result.targets[0]);            
+                result.targets[0].clearSkills();    
+                if(result.targets[0].maxHp>4) result.targets[0].maxHp=4;      
+                result.targets[0].update();
+                player.hp=player.maxHp;                  
                 player.loseHp(player.hp);
-                player.awakenSkill('xwj_xhuoying_refengyin');                                                         
-           }
+                player.awakenSkill('xwj_xhuoying_xfengyin');    
+             game.broadcastAll(function(player){
+				img = document.createElement('div');
+				img.setBackgroundImage('extension/群英会/xhuoying_fengyin.png'); 						
+				img.style.width='100%';
+				img.style.height='100%';
+				img.style.backgroundSize='cover';
+				img.style.transform='translateY(-200px)';
+				result.targets[0].node.avatar.appendChild(img);
+				ui.refresh(img);
+				img.style.transform='';
+			},player);			                                 
           }
           else{
           event.finish();
@@ -18661,5 +18679,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.106",
+    version:"1.107",
 },files:{"character":[],"card":[],"skill":[]}}})

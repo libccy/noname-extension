@@ -1,5 +1,5 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-  
+
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
        '<li>注释掉【尸鬼封尽】的动画并为被封印角色加封印效果',
@@ -776,9 +776,9 @@ _status.extensionmade.push("火影剧情");
 			if(lib.character[i][4].indexOf("forbidai")<0) lib.character[i][4].push("forbidai");
 		};
 	};
+	
 },precontent:function (xwj){
-
-//动画：
+	//动画：
   	/*game.qyhGif=function(str,width,height,isAnimation){
 var str1='';
 if (isAnimation) {
@@ -793,12 +793,13 @@ return str1;
 */
 
      if(xwj.enable){
+		 
+		 
 		game.import('character',function(){
-				//skin：
+			//skin：
 				/*	extensionExtraSkin=['onclick','changeXwjskin','name'];
 			extensionExtraCharacterSkin=['xwj_xhuoying_mingren','xwj_xhuoying_mingren1','xwj_xhuoying_mingren2','xwj_xhuoying_shuimen','xwj_xhuoying_shuimen1'];	
-			*/				
-		game.import('character',function(){
+			*/		
 			var xqunying={
 				name:'xqunying',
 				connect:true,
@@ -827,8 +828,7 @@ characterIntro:{
 characterTitle:{
 					//"xwj_xu_Sukincen":"Sukincen",
 								},
-								
-skill:{
+skill:{	
 "xwj_xqunying_fengyuan1":{
                 trigger:{
                     global:"recoverEnd",
@@ -1824,11 +1824,12 @@ else{
                         expose:0.8,
                     },
                 },
-            },                             
-},
+            }, 
+			
+},//技能
 
- translate:{  
-            "xwj_xqunying_weixiaobao":"韦小宝",
+translate:{
+	 "xwj_xqunying_weixiaobao":"韦小宝",
             "xwj_xqunying_haodu":"豪赌",
             "xwj_xqunying_haodu_info":"出牌阶段限一次，你可以声明且令其他角色声明点数大（8~K）的牌较多（押大）或点数小（A~6）的牌较多（押小）（点数为7的不计）。然后你亮出牌堆顶的七张牌比较两者点数范围内的数量：猜对的角色各摸一张牌，猜错的角色各须弃置一张牌；然后你获得所有相应点数数量较少的牌并弃置其余的牌；若数量一致，则仅执行你获得所有的这些牌 ",
             "xwj_xqunying_fengyuan1":"逢源",
@@ -1887,8 +1888,8 @@ else{
             "xqunying_zhanguo":"战国",
 			"xqunying_longzhu":"龙珠",	
 			"xqunying_wuxia":"武侠",		
-         },
-};
+            },//翻译
+			};
 if(lib.device||lib.node){
 				for(var i in xqunying.character){xqunying.character[i][4].push('ext:群英会/'+i+'.jpg');}
 			}else{
@@ -1899,8 +1900,11 @@ if(lib.device||lib.node){
 		lib.config.all.characters.push('xqunying');		
 		if(!lib.config.characters.contains('xqunying')) lib.config.characters.remove('xqunying');
 		lib.translate['xqunying_character_config']='<span class=browntext>群英会</span>';
-	
-	game.import('character',function(){
+		
+		
+		
+		
+		game.import('character',function(){
 			var xwugeng={
 				name:'xwugeng',
 				connect:true,
@@ -1940,9 +1944,9 @@ characterIntro:{
 				perfectPair:{
 			"xwj_xwugeng_tian":['xwj_xwugeng_shixing'],
 					},
-								
-skill:{		
-             
+
+skill:{	
+  
             "xwj_xwugeng_tongming":{
                 trigger:{
                     global:"dieBegin",
@@ -3992,10 +3996,11 @@ content:function (){
      
     },
             },
-           },
+			
+},//技能
 
- translate:{
-           
+translate:{
+	
             "xwj_xwugeng_nitianerxing":"逆天而行",
             "xwj_xwugeng_tongming":"统冥",
             "xwj_xwugeng_tongming_info":"统一冥族。锁定技，场上每有一名角色阵亡，你回复一点体力并选择恢复一个已被废除的装备栏",
@@ -4138,10 +4143,10 @@ content:function (){
 			        "xwugeng_renlei":"人类",			
 			        "xwugeng_mingzu":"冥族",
             "xming":"冥",
-            "xrenlei":"人",             
-        },
-};
-			if(lib.device||lib.node){
+            "xrenlei":"人",     
+            },//翻译
+			};
+if(lib.device||lib.node){
 				for(var i in xwugeng.character){xwugeng.character[i][4].push('ext:群英会/'+i+'.jpg');}
 			}else{
 				for(var i in xwugeng.character){xwugeng.character[i][4].push('db:extension-群英会:'+i+'.jpg');}
@@ -4151,8 +4156,10 @@ content:function (){
 		lib.config.all.characters.push('xwugeng');
 		if(!lib.config.characters.contains('xwugeng')) lib.config.characters.remove('xwugeng');
 		lib.translate['xwugeng_character_config']='<span style="color:#00FFFF">武庚纪</span>';
-
-game.import('character',function(){
+		
+		
+		
+		game.import('character',function(){
 			var xhuoying={
 				name:'xhuoying',
 				connect:true,
@@ -4320,9 +4327,10 @@ game.import('character',function(){
 			"xwj_xhuoying_zaibuzhan":['xwj_xhuoying_bai'],
 			
 					},
-				
-skill:{
-         "xwj_xhuoying_xinyiliao":{
+					
+
+skill:{	
+"xwj_xhuoying_xinyiliao":{
                audio:"ext:群英会:2",
                 trigger:{
                     global:"dying",
@@ -13483,10 +13491,10 @@ if(card.name=='sha'&&range[1]!=-1) range[1]++;
                     threaten:1.1,
                 },
             },
-},
-         
-translate:{      
-            "xwj_xhuoying_xinyiliao":"医疗",
+},//技能
+
+translate:{
+	 "xwj_xhuoying_xinyiliao":"医疗",
             "xwj_xhuoying_xinyiliao_info":"当一名角色进入濒死状态时，若你手牌中有基本牌，你可以弃置之，然后其回复体力至1",                        
             "xwj_xhuoying_guitongwan":"鬼童丸",
             "xwj_xhuoying_chilangfang":"次郞访",
@@ -13998,9 +14006,8 @@ translate:{
 			"xhuoying_xiao":"晓组织",
 		    "xhuoying_zhongren":"众忍村",
 			"xhuoying_xianren":"六道仙人",
-                                                                                                                                
-},
-          };
+            },//翻译
+			};
 if(lib.device||lib.node){
 				for(var i in xhuoying.character){xhuoying.character[i][4].push('ext:群英会/'+i+'.jpg');}
 			}else{
@@ -14011,6 +14018,7 @@ if(lib.device||lib.node){
 		lib.config.all.characters.push('xhuoying');
 		if(!lib.config.characters.contains('xhuoying')) lib.config.characters.remove('xhuoying');
 		lib.translate['xhuoying_character_config']='<font color=#f00>火影忍者</font>';
+		
 		game.import('character',function(){
 			var xqinshi={
 				name:'xqinshi',
@@ -14039,9 +14047,8 @@ characterIntro:{
 				perfectPair:{
 			"xwj_xqinshi_genie":['xwj_xqinshi_weizhuang'],
 					},
-                               
-skill:{
- 
+skill:{	
+
         		"xwj_xqinshi_jianai":{
      audio:"ext:群英会:2",  		
 				trigger:{global:'dying'},				
@@ -14500,12 +14507,10 @@ else{
                     },
                 },
             },
-    
+},//技能
 
-},
-
- translate:{
-            "xwj_xqinshi_mozi":"墨子",
+translate:{
+	  "xwj_xqinshi_mozi":"墨子",
             "xwj_xqinshi_feigong":"非攻",
             "xwj_xqinshi_feigong_info":"每当你受到【杀】造成的伤害时，你可以令伤害来源交给你一张其装备区的牌，否则此伤害-1。若其以此法交给你一张装备牌，你可立即使用之",        
          		"xwj_xqinshi_jianai":"兼爱",
@@ -14533,9 +14538,8 @@ else{
             "xwj_xqinshi_diedun_info":"<font color=#F0F>梦蝶之遁</font> 当你的体力值小于2或手牌数小于体力值时，其他角色计算与你的距离为无限远",
             "xwj_xqinshi_renzhong":"人宗",
             "xwj_xqinshi_renzhong_info":"<font color=#F0F>万物回春</font> 出牌阶段限一次，你可以获得所有其他角色区域内的一张牌，然后你须为所有存活的角色每人逐个派发一张手牌",
-            },
-};
-
+            },//翻译
+			};
 if(lib.device||lib.node){
 				for(var i in xqinshi.character){xqinshi.character[i][4].push('ext:群英会/'+i+'.jpg');}
 			}else{
@@ -14545,9 +14549,13 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('xqinshi');
 		if(!lib.config.characters.contains('xqinshi')) lib.config.characters.remove('xqinshi');
-		lib.translate['xqinshi_character_config']='<span class=greentext>秦时明月</span>';			
-
-	var xsanguo={
+		lib.translate['xqinshi_character_config']='<span class=greentext>秦时明月</span>';	
+		
+		
+		
+		
+		game.import('character',function(){
+			var xsanguo={
 				name:'xsanguo',
 				connect:true,
 				character:{
@@ -14590,9 +14598,8 @@ characterTitle:{
 					"xwj_xsanguo_oldyuji":"可乐加冰24",
 					"xwj_xsanguo_xinyuji":"可乐加冰24",
 									},
-
 skill:{	
-   "xwj_xsanguo_kuangcaiclear":{
+ "xwj_xsanguo_kuangcaiclear":{
                 trigger:{
                     player:"phaseEnd",
                 },            
@@ -17046,7 +17053,7 @@ event.target.draw(event.num1);
         },
                 },
             },
-},
+},//技能
 
 translate:{
 	"xwj_xsanguo_miheng":"祢衡",
@@ -17174,7 +17181,7 @@ translate:{
             "xwj_xsanguo_chuanshu3_info":"<font color=#f00>锁定技</font> 当你【传术】的角色阵亡后，你重置技能【传术】",
             "xwj_xsanguo_xiuzheng":"修真",
             "xwj_xsanguo_xiuzheng_info":"出牌阶段限一次，你可选择一名其他角色，然后展示牌堆顶的两张牌，若同为红色，则其受到一点火焰伤害；若同为黑色，其受到一点雷电伤害；若颜色不相同，你弃置其一张牌。然后你获得这两张展示的牌后再弃置两张牌",
-        },
+            },//翻译
 			};
 if(lib.device||lib.node){
 				for(var i in xsanguo.character){xsanguo.character[i][4].push('ext:群英会/'+i+'.jpg');}
@@ -17186,8 +17193,6 @@ if(lib.device||lib.node){
 		lib.config.all.characters.push('xsanguo');
 		if(!lib.config.characters.contains('xsanguo')) lib.config.characters.remove('xsanguo');
 		lib.translate['xsanguo_character_config']='<span class=bluetext>三国新将</span>';
-		
-	
 		
 		game.import('character',function(){
 			var xu={

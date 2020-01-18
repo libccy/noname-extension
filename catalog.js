@@ -1,3 +1,4 @@
+/*
 extension["官渡之战"]={
 	intro:"<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>"+
 	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>"+
@@ -15,10 +16,7 @@ extension["官渡之战"]={
 		"cxyYuJin.jpg","cxyZhangHe.jpg","cxyZhangLiao.jpg","extension.js","style.css"],
 	size:"2.66MB"
 };
-
-
-
-
+*/
 
 extension["群英会"]={
 	intro:"<li>更新：注释掉【尸鬼封尽】的动画并为被封印角色加封印效果。当前版本为1.107  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-01-16",
@@ -201,10 +199,6 @@ extension["群英会"]={
 ]
 
 };
-
-
-
-
 
 extension["金庸群侠传"]={
     author:"详看简介",
@@ -496,7 +490,7 @@ extension["作者包"]={
 	    
     ]
 }; 
-
+/*
 extension["辅助卡牌"]={
     author:"Niugnep",
     intro:"内含斩与仙桃，毒剂与药，秘籍的纯卡牌拓展，适合任意强度的拓展一并使用。斩与仙桃有增加和减少体力上限的卡牌，毒剂与药有能持续恢复和持续扣血的卡牌，秘籍使用之后能永久获得一个技能",
@@ -508,6 +502,8 @@ extension["辅助卡牌"]={
 	   "xr_gainMaxHp.mp3","xr_loseMaxHp.mp3","yr_loseMaxHp.mp3","yr_recover.mp3",
     ]
 };
+*/
+/*
 extension["国战补充"]={
     author:"我叫竹小二",
     intro:"本扩展强度介于官方权包与变包之间，旨在将部分身份局武将迁移加入国战将池，增加国战可玩性。请在国战模式下使用，并将扩展文件夹里的yangyi、sunheng、wuanguang、wangshuang的图片放至image/character文件夹下",
@@ -519,7 +515,7 @@ extension["国战补充"]={
 	  
     ]
 };
-
+*/
 /*extension["虚实"]={
     author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
     intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",
@@ -544,6 +540,7 @@ extension["凉茶"]={
      "extension.js","lc_liangcha.jpg"
     ]
 }; 
+/*
 extension["新国战"]={
     author:"苏婆玛丽奥",
     intro:"◇2019版新国战规则与武将改动扩展",
@@ -554,7 +551,7 @@ extension["新国战"]={
       "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
     ]
 }; 
-
+*/
 /*extension["新•界限突破"]={
     author:"苏婆玛丽奥",
     intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
@@ -567,7 +564,7 @@ extension["新国战"]={
 		"package.js"
     ]
 }; */
-
+/*
 extension["逐鹿中原"]={
     author:"苏婆玛丽奥",
     intro:"逐鹿中原活动场的卡牌包",
@@ -581,9 +578,9 @@ extension["逐鹿中原"]={
 		"xinfu_zhuluzhongyuan.png"
     ]
 }; 
+*/
 
-
-
+/*
 extension["圣神包"]={
     author:"淡雾云曦",
     intro:"◆本拓展以强化原有技能为主，自制技能为辅，励志于“造神”的初心永远不会变！</br>◆本拓展圣神将强度大致与旧八位神将持平，略强但并不变态并不失衡，请放心使用</br>◆本拓展圣神将的技能皆为锁定技，其主要效果为防止圣神将的非锁定技能无效(失去技能等debuff可以正常触发)，因此，三国杀锁定技技能框架在此拓展内无效</br>◆本拓展内含有自制装备与自行增强的民间装备，强度略高，请酌情使用",
@@ -654,7 +651,8 @@ extension["圣神包"]={
 		"圣神_zhenjix.mp3","圣神_zhugedanx.jpg","圣神_zhugedanx.mp3","圣神_zhugeguox.jpg","圣神_zhugeguox.mp3",
 		"圣神_zhugeliangx.jpg","圣神_zhugeliangx.mp3"
     ]
-}; 
+}; */
+/*
 extension["暴躁AI"]={
     author:"皮皮",
     intro:"优化人机ai，改善玩家游戏体验，增强游戏可玩度，避免人机坑队友现象。完全接近原版强度，在不破坏游戏平衡的基础上让游戏可玩性变得更多，带给玩家不一样的感受【玩家的武将不够强者，慎用】。",
@@ -665,7 +663,7 @@ extension["暴躁AI"]={
         "extension.js"
     ]
 }; 
-
+*/
 /*
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",
@@ -685,7 +683,7 @@ extension["耀世三国"]={
     ]
 }; 
 */
-
+/*
 extension["秦时明月"]={
     author:"呲牙哥",
     intro:"<li>更新：修改盖聂技能，李斯，范增等技能修复<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",
@@ -741,8 +739,8 @@ extension["秦时明月"]={
 		"nance1.mp3","xinzongheng1.mp3"
     ]
 };
-
-
+*/
+/*
 extension["烽火绘卷"]={
     author:"阿七",
     intro:"原创三国武将，以及个别虚拟武将，强度适宜官方强度，可能会有个别失衡，后续有机会再做调整。",
@@ -765,7 +763,8 @@ extension["烽火绘卷"]={
 		"fh_yuxi.png","sk_zuoci.jpg"
     ]
 }; 
-
+*/
+/*
 extension["战国七雄"]={
     author:"何子风云",
     intro:"历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",
@@ -781,7 +780,8 @@ extension["战国七雄"]={
 		"ex_xiangyan.jpg","ex_yingzheng.jpg","ex_yueyi.jpg","ex_zhangyi.jpg","ex_zhaosheng.jpg",
 		"ex_zhaoyong.jpg","ex_zouji.jpg"
     ]
-};
+};*/
+/*
 extension["星际战甲"]={
     author:"猫猫小面包",
     intro:"游戏《星际战甲》的卡牌模式，理念出自游戏，详细技能由吧友“猫猫小面包”自行设计，由吧友“程序猿”实现。希望大家喜欢，玩的开心",
@@ -803,7 +803,7 @@ extension["虚空虫翼"]={
     files:[
         "Abathur.jpg","Fenix.jpg","Nova.jpg","Stukov.jpg","Swan.jpg"
     ]
-};
+};*/
 extension["弹丸杀"]={
     author:"fux2",
     intro:"武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（2018-9-20更新：修复一些bug，神座去掉所有其他角色的技能，没啥意义（x避免冲突）2018-10-19此处更新",
@@ -823,7 +823,7 @@ extension["弹丸杀"]={
 		"zhaorinai1.mp3","zhaorinai2.mp3","zuoyouSkill1.mp3"
     ]
 };
-
+/*
 extension["王朝更替_权"]={
     author:"剑牙雷少kiva",
     intro:"本扩展共122个正常武将，31种卡牌，8种模式和5个副本<br>此扩展多为历史，小说武将<br>此扩展大多为原版武将基础修改概念而产生的武将，稍强于原版，但接近于平衡<br>此扩展状态:已完结，未来可能会出联机版<br>接档:[王朝更替_策]<br>被接档:[王朝更替_骑]、[王朝更替_剑]",
@@ -976,7 +976,8 @@ extension["王朝更替_权"]={
 		"占卜系统.jpg","悟空.mp3","梁山模式.mp3","管辂.jpg","荆轲刺秦王.gif","蔡文姬.jpg"
     ]
 };
-
+*/
+/*
 extension["王朝更替_策"]={
     author:"剑牙雷少kiva",
     intro:"此扩展分为三种类型武将:中国历史武将/外国影视武将/其他武将<br>王权包前作，主武将卡牌<br>目前状态:普通版已完结，未来可能会出联机版",
@@ -1101,7 +1102,7 @@ extension["王朝更替_策"]={
 		"神_zhaoyunkiva.jpg","織田信長kiva.jpg","豊臣秀吉kiva.jpg","郭嘉spspsp.jpg","김유의 편지. kiva.jpg"
     ]
 }; 
-
+*/
 extension["极略三国"]={
     author:"可乐加冰24",
     intro:"三国KILL武将复刻，包含SR武将、SK武将以及魂烈包，强度略微高于官方武将。所有素材均来源于网络，正逐步完善中",
@@ -1199,6 +1200,7 @@ extension["极略三国"]={
 		"zhiheng_sgksoul_sunquan2.ogg"
     ]
 };
+/*
 extension["三国标准包"]={
     author:"天气亏",
     intro:"旨在复刻《标准包》，故强度低，并进行了大量优化，同时，增加了两个模式扩展模式《群雄逐鹿》和标配模式《标准模式》，以及有什么反馈和疑问可以在模式介绍面点击传送至贴吧。目前人物数量为32名，会持续更新到100多名，模式也会持续跟进更新。",
@@ -1225,6 +1227,8 @@ extension["三国标准包"]={
 		"缺席-HITA.mp3"
     ]
 };
+*/
+/*
 extension["新英魂之刃"]={
     author:"极光",
     intro:"一个可以买皮肤的扩展。更多介绍请点击“参与讨论”",
@@ -1317,7 +1321,7 @@ extension["新英魂之刃"]={
 		"红方城池.jpg","蓝方城池.jpg","闪亮的黄钻石.gif","阴阳杀.png","黄钻石.png",
 		"黑桃皇后animationStr.png"
     ]
-};
+};*/
 extension["击杀特效"]={
     author:"Sukincen",
     intro:"<li>更新：新增在对决-自由模式下新替换上场的将击杀时也有特效<li>本扩展的特效是从群英会扩展里分离出来的，已安装群英会扩展就无须再安装此扩展。有两种特效方式，建议只选择开启其中一种。<li>当场上任意一名角色杀死另一名角色时，会记录该角色共击杀的人数，并播放相应的特效和配音",
@@ -1328,6 +1332,7 @@ extension["击杀特效"]={
      "extension.js","jstx_jisha1.mp3","jstx_jisha2.mp3","jstx_jisha3.mp3","jstx_jisha4.mp3","jstx_jisha5.mp3","jstx_jisha6.mp3","jstx_jisha7.mp3","jstxmiaoshouhuichun.mp3","jstxyishugaochao.mp3",			   
     ]
 };
+/*
 extension["统率三军"]={
     author:"神原拓也V",
     intro:"帮助界面查看新将池。统率三军2017将池更新；2011~2014历史将池补全；武将补全、武将修复、武将优化。可在贴吧反馈bug和查看更新",
@@ -1340,6 +1345,8 @@ extension["统率三军"]={
 		"vs_shenji2.mp3","vs_zhanshen1.mp3","vs_zhanshen2.mp3","vs_zhongyi1.mp3","vs_zhongyi2.mp3"
     ]
 };
+*/
+/*
 extension["武庙"]={
     author:"天气亏",
     intro:"根据唐代设立的《武成王庙》为背景设计的扩展包，其中有做了点修改，共计12名人物。由于这些角色都是军事史上影响深远的顶尖军事人才，所以强度偏高（但仍旧较为平衡，技能结构优于《诸子百家》），其中以姜子牙（因其为主祭）强度最高，特点为全场控（不是逆天的全场控），其次为配享张良和兵圣孙武。其余人物各有所长各有所短。已将所有角色分配给魏蜀吴群四大势力（供国战用）。允许玩家二次制作，但前提是不失整个大的框架和尊重其中所有人物，不要肆意。",
@@ -1390,7 +1397,8 @@ extension["列女传"]={
 		"ln_xs.jpg","ln_zwj.jpg","ln_zwy.jpg"
     ]
 };
-
+*/
+/*
 extension["火影忍者"]={
     author:"Demoon·Yu",
     intro:"目前增添火影角色10名，火影模式未完成",
@@ -1403,6 +1411,8 @@ extension["火影忍者"]={
 		"旗木卡卡西.jpg","日向雏田.jpg","春野樱.jpg","波风水门.jpg","自来也.jpg"
     ]
 };
+*/
+/*
 extension["铜雀台"]={
     author:"异",
     intro:"日杀铜雀台拓展包武将移植",
@@ -1416,7 +1426,8 @@ extension["铜雀台"]={
         "jbtqt.jpg","mixinfhh1.ogg","mixinfhh2.ogg"
     ]
 };
-
+*/
+/*
 extension["异界四国"]={
     author:"Niugnep",
     intro:"本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。更新：已联机化，素材也全换了名称，故更新前请先卸载旧版再重新下载",
@@ -1445,7 +1456,7 @@ extension["异界四国"]={
 		"zhumaxun.jpg"
     ]
 };
-
+*/
 extension["天气变化"]={
     author:"水乎",
     intro:"添加随机天气",

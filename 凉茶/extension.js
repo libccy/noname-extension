@@ -61,22 +61,6 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"凉�
      },
      }	 
 	 	 
-	 lib.skill._lc_fanmian2={
-        trigger:{player:'turnOverBegin'},
-        forced:true,
-        unique:true,
-        locked:true,
-        priority:2019,
-		filter:function (event,player){
-			if(player.name=='lc_liangcha') return false;
-			return player.isTurnedOver()&&game.hasPlayer(function(current){
-			return current.name=='lc_liangcha';
-		});     
-    },
-     content:function (){        		
-		trigger.cancel();	
-     },
-     }
 	
 	lib.skill._lc_shanghai={
         trigger:{player:'damageBegin'},
@@ -210,7 +194,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"凉�
         },
         translate:{
 	        "lcs_liangcha":"凉茶",
-            "lcs_liangcha_info":"游戏开始或你进入游戏时，所有其他角色失去所有的技能，并且翻面（无法翻回正面的那种），若有角色的体力上限大于16，则其体力上限改为2",
+            "lcs_liangcha_info":"游戏开始或你进入游戏时，所有其他角色失去所有的技能，并且翻面，若有角色的体力上限大于16，则其体力上限改为2",
 	        "lcs_fanghua":"芳华",
             "lcs_fanghua_info":"锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）",
             "lc_meiying":"魅影",
@@ -221,5 +205,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"凉�
     author:"凉茶（QQ：764235332）",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":["lc_liangcha.jpg"],"card":[],"skill":[]}}})

@@ -1,4 +1,4 @@
-/*
+
 extension["官渡之战"]={
 	intro:"<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>"+
 	"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>"+
@@ -16,7 +16,7 @@ extension["官渡之战"]={
 		"cxyYuJin.jpg","cxyZhangHe.jpg","cxyZhangLiao.jpg","extension.js","style.css"],
 	size:"2.66MB"
 };
-*/
+
 
 extension["群英会"]={
 	intro:"<li>更新：修复BUG。当前版本为1.108  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-01-18",
@@ -490,7 +490,7 @@ extension["作者包"]={
 	    
     ]
 }; 
-/*
+
 extension["辅助卡牌"]={
     author:"Niugnep",
     intro:"内含斩与仙桃，毒剂与药，秘籍的纯卡牌拓展，适合任意强度的拓展一并使用。斩与仙桃有增加和减少体力上限的卡牌，毒剂与药有能持续恢复和持续扣血的卡牌，秘籍使用之后能永久获得一个技能",
@@ -502,8 +502,8 @@ extension["辅助卡牌"]={
 	   "xr_gainMaxHp.mp3","xr_loseMaxHp.mp3","yr_loseMaxHp.mp3","yr_recover.mp3",
     ]
 };
-*/
-/*
+
+
 extension["国战补充"]={
     author:"我叫竹小二",
     intro:"本扩展强度介于官方权包与变包之间，旨在将部分身份局武将迁移加入国战将池，增加国战可玩性。请在国战模式下使用，并将扩展文件夹里的yangyi、sunheng、wuanguang、wangshuang的图片放至image/character文件夹下",
@@ -515,7 +515,7 @@ extension["国战补充"]={
 	  
     ]
 };
-*/
+
 /*extension["虚实"]={
     author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
     intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",
@@ -532,10 +532,10 @@ extension["国战补充"]={
 
 extension["凉茶"]={
     author:"凉茶",
-    intro:"<li>内含一个武将和一个模式，开启该模式后重启游戏生效：每轮开始时所有角色随机替换武将牌",
+    intro:"<li>更新：已删掉其他角色不能翻回正面的效果<li>内含一个武将和一个模式，开启该模式后重启游戏生效：每轮开始时所有角色随机替换武将牌",
     size:"0.5MB",
     netdisk:"",
-    version:1.1,
+    version:1.2,
     files:[
      "extension.js","lc_liangcha.jpg"
     ]
@@ -564,7 +564,7 @@ extension["新国战"]={
 		"package.js"
     ]
 }; */
-/*
+
 extension["逐鹿中原"]={
     author:"苏婆玛丽奥",
     intro:"逐鹿中原活动场的卡牌包",
@@ -578,7 +578,7 @@ extension["逐鹿中原"]={
 		"xinfu_zhuluzhongyuan.png"
     ]
 }; 
-*/
+
 
 /*
 extension["圣神包"]={
@@ -664,7 +664,7 @@ extension["暴躁AI"]={
     ]
 }; 
 */
-/*
+
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",
     intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。修复技能不显示的BUG。另外，作者已脱坑，期待有大佬来接手",
@@ -682,8 +682,8 @@ extension["耀世三国"]={
 		"YSSG_jizui21.mp3",
     ]
 }; 
-*/
-/*
+
+
 extension["秦时明月"]={
     author:"呲牙哥",
     intro:"<li>更新：修改盖聂技能，李斯，范增等技能修复<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",
@@ -739,8 +739,8 @@ extension["秦时明月"]={
 		"nance1.mp3","xinzongheng1.mp3"
     ]
 };
-*/
-/*
+
+
 extension["烽火绘卷"]={
     author:"阿七",
     intro:"原创三国武将，以及个别虚拟武将，强度适宜官方强度，可能会有个别失衡，后续有机会再做调整。",
@@ -763,7 +763,7 @@ extension["烽火绘卷"]={
 		"fh_yuxi.png","sk_zuoci.jpg"
     ]
 }; 
-*/
+
 /*
 extension["战国七雄"]={
     author:"何子风云",
@@ -1228,7 +1228,7 @@ extension["三国标准包"]={
     ]
 };
 */
-/*
+
 extension["新英魂之刃"]={
     author:"极光",
     intro:"一个可以买皮肤的扩展。更多介绍请点击“参与讨论”",
@@ -1321,7 +1321,8 @@ extension["新英魂之刃"]={
 		"红方城池.jpg","蓝方城池.jpg","闪亮的黄钻石.gif","阴阳杀.png","黄钻石.png",
 		"黑桃皇后animationStr.png"
     ]
-};*/
+};
+/*
 extension["击杀特效"]={
     author:"Sukincen",
     intro:"<li>更新：新增在对决-自由模式下新替换上场的将击杀时也有特效<li>本扩展的特效是从群英会扩展里分离出来的，已安装群英会扩展就无须再安装此扩展。有两种特效方式，建议只选择开启其中一种。<li>当场上任意一名角色杀死另一名角色时，会记录该角色共击杀的人数，并播放相应的特效和配音",
@@ -1331,7 +1332,7 @@ extension["击杀特效"]={
     files:[
      "extension.js","jstx_jisha1.mp3","jstx_jisha2.mp3","jstx_jisha3.mp3","jstx_jisha4.mp3","jstx_jisha5.mp3","jstx_jisha6.mp3","jstx_jisha7.mp3","jstxmiaoshouhuichun.mp3","jstxyishugaochao.mp3",			   
     ]
-};
+};*/
 /*
 extension["统率三军"]={
     author:"神原拓也V",

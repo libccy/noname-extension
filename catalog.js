@@ -491,6 +491,46 @@ extension["作者包"]={
     ]
 }; 
 
+extension["血色衣冠"]={
+    author:"Wall•E（瓦力）<li>技术支持：凉茶（QQ:764235332）、永远的萌新<li>测试：辉烬贺流年",
+    intro:"风雨华夏血春秋，今朝把酒意还休。王侯业尽碎竹简，将相功名残土丘。汉唐应悔庭中乱，宋明犹难塞外酋。千年故纸空读尽，恨把衣冠祭九州。",
+    size:"26MB",
+    netdisk:"",
+    version:1.24,
+    files:[
+    "extension.js","EXfangtian_skill1.mp3","EXguanshi_skill1.mp3","EXguding_skill1.mp3","EXhanbing_skill1.mp3",
+		"EXqilin_skill1.mp3","EXqinggang_skill1.mp3","EXqinglong_skill1.mp3","EXshuanggu_skill1.mp3",
+		"EXzhangba_skill1.mp3","EXzhuque_skill1.mp3","XSbaiqi.jpg","XSbanchao.jpg",
+		"XSbizaiyu.jpg","XSchangyuchun.jpg","XSchenping.jpg","XSchenqingzhi.jpg","XSchuliji.jpg",
+		"XSchunjun.png","XSchunqiangshejian.png","XSdacao.png","XSdukang.jpg","XSduruhui.jpg",
+		"XSfangqiao.jpg","XSfanju.jpg","XSfankuai.jpg","XSfanli.jpg","XSfanzeng.jpg","XSfujian.jpg",
+		"XSfusu.jpg","XSgengyan.jpg","XSgongbu.png","XSgongshuban.jpg","XSgoujian.jpg","XSguanyiwu.jpg",
+		"XShanfei.jpg","XShanshizhong.jpg","XShanxin.jpg","XShufu.png","XShuishi.jpg","XShunshui.png",
+		"XShuoqubing.jpg","XSjiadao.png","XSjiangshang.jpg","XSjiangxiaobai.jpg","XSjiuding.png",
+		"XSjiuxi.png","XSkongqiu.jpg","XSlanyu.jpg","XSlaodan.jpg","XSlianghongyu.jpg","XSlianpo.jpg",
+		"XSlicunxiao.jpg","XSlicunxu.jpg","XSliguang.jpg","XSliji.jpg","XSlijing.jpg","XSlimi.jpg",
+		"XSlimu.jpg","XSlinxiangru.jpg","XSlishimin.jpg","XSlishizhen.jpg","XSlisi.jpg",
+		"XSliubang.jpg","XSliuche.jpg","XSliuji.jpg","XSliurengui.jpg","XSliuxiu.jpg","XSliyiji.jpg",
+		"XSlongju.jpg","XSlongquan.png","XSlvzhi.jpg","XSmantian.png","XSmayuan.jpg","XSmenggong.jpg",
+		"XSmengjiangnv.jpg","XSmengke.jpg","XSmengtian.jpg","XSmibazi.jpg","XSmodi.jpg",
+		"XSmuhuali.jpg","XSmurongchui.jpg","XSnanzi.jpg","XSouyezi.jpg","XSpaozhuanyinyu.png",
+		"XSpingyang.jpg","XSqijiguang.jpg","XSqinliangyu.jpg","XSqinqiong.jpg","XSquping.jpg",
+		"XSranmin.jpg","XSsaluzi.png","XSsanghongyang.jpg","XSshangyang.jpg","XSshediaogong.png",
+		"XSshushang.png","XSsimaguang.jpg","XSsimaqian.jpg","XSsubutai.jpg","XSsulie.jpg",
+		"XSsunbin.jpg","XSsunwu.jpg","XSsuqin.jpg","XStaie.png","XStiandan.jpg","XStiemuzhen.jpg",
+		"XSwangjian.jpg","XSwangmeng.jpg","XSwangshouren.jpg","XSwangxu.jpg","XSwangzhaojun.jpg",
+		"XSweiliao.jpg","XSweiqing.jpg","XSweirui.jpg","XSweiwuji.jpg","XSweizhe.jpg","XSweizifu.jpg",
+		"XSwentianxiang.jpg","XSwuqi.jpg","XSwuzhui.png","XSxiangji.jpg","XSxiaohe.jpg",
+		"XSxiean.jpg","XSxiexuan.jpg","XSxishi.jpg","XSxuanyuanjian.png","XSxuda.jpg","XSxueli.jpg",
+		"XSxuewen.jpg","XSyangsu.jpg","XSyangyouji.jpg","XSyangzaixing.jpg","XSyelvchucai.jpg",
+		"XSyingbu.jpg","XSyingzheng.jpg","XSyinlihua.jpg","XSyuchigong.jpg","XSyudayou.jpg",
+		"XSyuefei.jpg","XSyueyi.jpg","XSyueyun.jpg","XSyuji.jpg","XSyuqian.jpg","XSyuxi.png",
+		"XSyuxu.jpg","XSzhanghao.jpg","XSzhangheng.jpg","XSzhangji.jpg","XSzhangjuzheng.jpg",
+		"XSzhangliang.jpg","XSzhangyi.jpg","XSzhanlu.png","XSzhaokuangyin.jpg","XSzhuanzhu.jpg",
+		"XSzhuyuanzhang.jpg"
+    ]
+};
+
 extension["辅助卡牌"]={
     author:"Niugnep",
     intro:"内含斩与仙桃，毒剂与药，秘籍的纯卡牌拓展，适合任意强度的拓展一并使用。斩与仙桃有增加和减少体力上限的卡牌，毒剂与药有能持续恢复和持续扣血的卡牌，秘籍使用之后能永久获得一个技能",

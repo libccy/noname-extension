@@ -498,9 +498,9 @@ extension["血色衣冠"]={
     netdisk:"",
     version:1.24,
     files:[
-    "extension.js","EXfangtian_skill1.mp3","EXguanshi_skill1.mp3","EXguding_skill1.mp3","EXhanbing_skill1.mp3",
+                "EXfangtian_skill1.mp3","EXguanshi_skill1.mp3","EXguding_skill1.mp3","EXhanbing_skill1.mp3",
 		"EXqilin_skill1.mp3","EXqinggang_skill1.mp3","EXqinglong_skill1.mp3","EXshuanggu_skill1.mp3",
-		"EXzhangba_skill1.mp3","EXzhuque_skill1.mp3","XSbaiqi.jpg","XSbanchao.jpg",
+		 "extension.js","EXzhangba_skill1.mp3","EXzhuque_skill1.mp3","XSbaiqi.jpg","XSbanchao.jpg",
 		"XSbizaiyu.jpg","XSchangyuchun.jpg","XSchenping.jpg","XSchenqingzhi.jpg","XSchuliji.jpg",
 		"XSchunjun.png","XSchunqiangshejian.png","XSdacao.png","XSdukang.jpg","XSduruhui.jpg",
 		"XSfangqiao.jpg","XSfanju.jpg","XSfankuai.jpg","XSfanli.jpg","XSfanzeng.jpg","XSfujian.jpg",

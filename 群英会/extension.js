@@ -1,12 +1,22 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
-
+  // ---------------------------------------group------------------------------------------//       
+    lib.group.push('xren');
+    lib.translate.xren='<span class=greentext>忍</span>';   
+    lib.group.push('xhuo');
+    lib.translate.xhuo='<font color=#f00>火</font>';   
+    lib.group.push('xxiao');
+    lib.translate.xxiao='<span class=yellowtext>晓</span>';       
+    lib.group.push('xrenlei');
+    lib.translate.xrenlei='人';       
+    lib.group.push('xming');
+    lib.translate.xming='冥';       
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>注释掉【尸鬼封尽】的动画并为被封印角色加封印效果',
-       //'<li>小改《火影忍者》部分武将【鹿丸】的部分技能',
-    //'players://["xwj_xqunying_weixiaobao","xwj_xsanguo_miheng","xwj_xhuoying_luwan"]',
+       '<li>修复波风水门【封印】BUG及其新动画样式',
+       '<li>修复击杀特效的击杀技能被另外捕获的BUG',
+      'players://["xwj_xhuoying_shuimen"]',
     ];
-    Xu_version='更新日期：2020.01.15';
+    Xu_version='更新日期：2020.02.23';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -322,6 +332,8 @@ huanhun.insertPhase();
                 		trigger:{source:"dieBegin"},
                 		forced:true,                        
                   locked:true,     
+                  charlotte:true,
+                  superCharlotte:true,
                   unique:true,            
                   priority:Infinity,
                   init:function (player){
@@ -443,7 +455,9 @@ huanhun.insertPhase();
                 		trigger:{source:"dieBegin"},
                 		forced:true,                        
                   locked:true,     
-                  unique:true,            
+                  unique:true,      
+                  charlotte:true,
+                  superCharlotte:true,   
                   priority:Infinity,
                   init:function (player){
                   player.storage.xin_jisha=0;
@@ -815,7 +829,7 @@ return str1;
           "xwj_xqunying_qinshiwang":["male","xqin",3,["xwj_xqunying_shaohe","xwj_xqunying_tongji","xwj_xqunying_wangxiao"],[]],
           "xwj_xqunying_frieza":["male","shen",2,["xwj_xqunying_jusha","xwj_xqunying_diwang","xwj_xqunying_bianshen"],[]],
 	      "xwj_xqunying_jilian":["male","shen",4,["xwj_xqunying_mingxiang"],["forbidai"]],
-		 // "xwj_xqunying_weixiaobao":["male","qun",4,["xwj_xqunying_haodu","xwj_xqunying_fengyuan"],[]],
+		//  "xwj_xqunying_weixiaobao":["male","qun",4,["xwj_xqunying_haodu","xwj_xqunying_fengyuan"],[]],
                 
 },
 characterIntro:{
@@ -961,13 +975,13 @@ skill:{
                 content:function (){
         "step 0"
 		//var targets=game.filterPlayer();
-        //targets.sort(lib.sort.seat);        
-        "step 1"      
-        if(!event.num) event.num=0;
+        //targets.sort(lib.sort.seat);       
+         if(!event.num) event.num=0;
         if(!event.littlelist) event.littlelist=[];
         if(!event.biglist) event.biglist=[];
         if(!event.littlecardlist) event.littlecardlist=[];
         if(!event.bigcardlist) event.bigcardlist=[];        
+        "step 1"              
         targets[event.num].chooseControl('押小','押大',function(event,player){
                         if(targets[event.num].hp>=targets[event.num].countCards('h')||targets[event.num].hp<=2) return '押小';
                         if(targets[event.num].countCards('h')>targets[event.num].hp||targets[event.num].hp>2) return '押大';
@@ -1004,7 +1018,7 @@ skill:{
         player.showCards(event.cards);
         game.delay();
         "step 4"
-        for(i=0;i<event.cards.length;i++){
+        for(var i=0;i<event.cards.length;i++){
         if(event.cards[i].number!=7){
             if(event.cards[i].number<7){
             event.littlecardlist.add(event.cards[num]);
@@ -5927,7 +5941,7 @@ audio:"ext:群英会:2",
             _status.event._result=this.link;
             game.resume();
         };
-        for(i=0;i<list.length;i++){
+        for(var i=0;i<list.length;i++){
             if(lib.translate[list[i]+'_info']){
                 var translation=get.translation(list[i]);
                 if(translation[0]=='新'&&translation.length==3){
@@ -12616,26 +12630,47 @@ if(range[1]!=-1) range[1]+=Infinity;
          player.chooseTarget('请选择一名目标，令其技能失效',get.prompt('xwj_xhuoying_refengyin'),function(card,player,target){
             return target!=player;
         }).set("ai",function(target){
-                return get.damageEffect(target,player,player);
-            
+                return get.damageEffect(target,player,player);            
         });
         'step 3'           
-          if(result.bool){     
+          if(result.bool){ 
+           
+             game.broadcastAll(function(player){       	
+       	var Animation = ui.create.div();
+       	//Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;
+       	Animation.setBackgroundImage('extension/群英会/xwj_refengyin.gif'); 						
+   				Animation.style.backgroundSize='cover';   			
+						Animation.style["z-index"] = 5;
+					//	Animation.style.width = document.body.clientWidth + "px";
+					//	Animation.style.height= (document.body.clientWidth*11)/33 + "px";
+						Animation.style.width = (546/715)*document.body.clientHeight + "px";
+						Animation.style.height= (310/715)*document.body.clientHeight + "px";						
+						Animation.style.left= "30%";
+						Animation.style.top = "35%";						
+						ui.window.appendChild(Animation);
+												         
+						setTimeout(function(){
+    Animation.delete();
+},11000);
+
+			},player);
+			
            //alive('extension/群英会/xwj_refengyin.gif',12,true);         
            //game[otherFunction[7]](game.qyhGif('xwj_refengyin.gif',null,null,true),11000);		
-           game.delay();  
+       
+               game.delay();  
           player.storage.xwj_xhuoying_refengyin=true; 
           player.unmarkSkill('xwj_xhuoying_refengyin');                             
-           //  player.$skill('尸鬼封尽','fire','red','avatar'); 
+            // player.$skill('尸鬼封尽','fire','red','avatar'); 
                 var chat=['尸鬼封尽','守护村子，背负着影的名号，这是我该做的事'].randomGet();
            player.say(chat);                  
-              player.logSkill('xwj_xhuoying_xfengyin',result.targets[0]);            
+              player.logSkill('xwj_xhuoying_refengyin',result.targets[0]);            
                 result.targets[0].clearSkills();    
                 if(result.targets[0].maxHp>4) result.targets[0].maxHp=4;      
                 result.targets[0].update();
                 player.hp=player.maxHp;                  
                 player.loseHp(player.hp);
-                player.awakenSkill('xwj_xhuoying_xfengyin');    
+                player.awakenSkill('xwj_xhuoying_refengyin');    
              game.broadcastAll(function(player){
 				img = document.createElement('div');
 				img.setBackgroundImage('extension/群英会/xhuoying_fengyin.png'); 						
@@ -14623,7 +14658,7 @@ skill:{
                 },
                 frequent:true,           
                 filter:function (event,player){
-        return get.color(event.card)==player.storage.xwj_xsanguo_kuangcai;
+        return _status.currentPhase==player&&get.color(event.card)==player.storage.xwj_xsanguo_kuangcai;
     },                
 				content:function(){
 				'step 0'
@@ -16628,7 +16663,7 @@ event.target.draw(event.num1);
             for(var i=0;i<top.length;i++){
                 ui.cardPile.insertBefore(top[i],ui.cardPile.firstChild);
             }
-            for(i=0;i<bottom.length;i++){
+            for(var i=0;i<bottom.length;i++){
                 ui.cardPile.appendChild(bottom[i]);
             }
             player.popup(get.cnNumber(top.length)+'上'+get.cnNumber(bottom.length)+'下');
@@ -16669,13 +16704,13 @@ event.target.draw(event.num1);
                     }
                     else{
                         var i;
-                        for(i=0;i<event.top.length;i++){
+                        for(var i=0;i<event.top.length;i++){
                             ui.cardPile.insertBefore(event.top[i].link,ui.cardPile.firstChild);
                         }
-                        for(i=0;i<event.bottom.length;i++){
+                        for(var i=0;i<event.bottom.length;i++){
                             ui.cardPile.appendChild(event.bottom[i].link);
                         }
-                        for(i=0;i<event.dialog.buttons.length;i++){
+                        for(var i=0;i<event.dialog.buttons.length;i++){
                             if(event.dialog.buttons[i].classList.contains('glow')==false&&
                                 event.dialog.buttons[i].classList.contains('target')==false)
                             ui.cardPile.appendChild(event.dialog.buttons[i].link);
@@ -16756,10 +16791,10 @@ event.target.draw(event.num1);
             for(var i=0;i<top.length;i++){
                 ui.cardPile.insertBefore(top[i],ui.cardPile.firstChild);
             }
-            for(i=0;i<bottom.length;i++){
+            for(var i=0;i<bottom.length;i++){
                 ui.cardPile.appendChild(bottom[i]);
             }
-            for(i=0;i<event.cards.length;i++){
+            for(vari=0;i<event.cards.length;i++){
                 if(!top.contains(event.cards[i])&&!bottom.contains(event.cards[i])){
                     ui.cardPile.appendChild(event.cards[i]);
                 }
@@ -18418,7 +18453,7 @@ audio:"ext:群英会:1",
             _status.event._result=this.link;
             game.resume();
         };
-        for(i=0;i<list.length;i++){
+        for(var i=0;i<list.length;i++){
             if(lib.translate[list[i]+'_info']){
                 var translation=get.translation(list[i]);
                 if(translation[0]=='新'&&translation.length==3){
@@ -18689,5 +18724,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.108",
+    version:"1.109",
 },files:{"character":[],"card":[],"skill":[]}}})

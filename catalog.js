@@ -547,11 +547,11 @@ extension["辅助卡牌"]={
 extension["国战补充"]={
     author:"我叫竹小二",
     intro:"本扩展强度介于官方权包与变包之间，旨在将部分身份局武将迁移加入国战将池，增加国战可玩性。请在国战模式下使用，并将扩展文件夹里的yangyi、sunheng、wuanguang、wangshuang的图片放至image/character文件夹下",
-    size:"1MB",
+    size:"1.5MB",
     netdisk:"",
-    version:1.0,
+    version:1.1,
     files:[
-     "extension.js","sunhuan.jpg","wangshuang.jpg","wuanguo.jpg","yangyi.jpg",	
+     "extension.js","sunhuan.jpg","wangshuang.jpg","wuanguo.jpg","yangyi.jpg","gzqianju.mp3","gzyongzhan1.mp3","gzyongzhan2.mp3","gzzhixi.mp3","sgk_dangkou.mp3","sgk_dangkou1.mp3",		
 	  
     ]
 };

@@ -17,6 +17,30 @@ extension["官渡之战"]={
 	size:"2.66MB"
 };
 
+extension["文武英杰"]={
+    author:"凉茶",
+    intro:"<li>本扩展是全新的作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者。",
+    size:"12MB",
+    netdisk:"",
+    version:1.0,
+    files:[
+     "extension.js","wwyjjishatexiao.mp3","wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
+		"wwyj_bingmou.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg",
+		"wwyj_chuangshi.gif","wwyj_chuangshi1.mp3","wwyj_ciya1.mp3","wwyj_daigeng1.mp3",
+		"wwyj_daixue1.mp3","wwyj_danwuyunxi.jpg","wwyj_daxiongxiaimao.jpg","wwyj_feicheng.jpg",
+		"wwyj_fengliu1.mp3","wwyj_guanli1.mp3","wwyj_huijin.jpg","wwyj_huikeng.gif","wwyj_huikeng1.mp3",
+		"wwyj_jiangsha1.mp3","wwyj_jiaoxiao1.mp3","wwyj_jiaoxiao2.mp3","wwyj_jiedan1.mp3",
+		"wwyj_jiedan2.mp3","wwyj_jiguang1.mp3","wwyj_jiguang2.mp3","wwyj_jiguangs.jpg","wwyj_jilve1.mp3",
+		"wwyj_jinxiu1.mp3","wwyj_jipin1.mp3","wwyj_kaiche1.mp3","wwyj_kangfu1.mp3","wwyj_kangxing1.mp3",
+		"wwyj_kanpo.mp3","wwyj_kanpoyiqie.jpg","wwyj_kelejiabing.jpg","wwyj_liangcha.jpg",
+		"wwyj_lilun1.mp3","wwyj_limu.mp3","wwyj_lunhuizhong.jpg","wwyj_maliao.jpg","wwyj_pipi.jpg",
+		"wwyj_qianfu1.mp3","wwyj_qianxu1.mp3","wwyj_qianxu2.mp3","wwyj_qingxian.mp3","wwyj_relianying.mp3",
+		"wwyj_shijian.jpg","wwyj_shuihu.jpg","wwyj_Sukincen.jpg","wwyj_taishangdaniu.jpg",
+		"wwyj_touliang1.mp3","wwyj_toushi1.mp3","wwyj_wali.jpg","wwyj_wzszhaoyun.jpg","wwyj_xingyunnvshen.jpg",
+		"wwyj_xipi1.mp3","wwyj_yanguan1.mp3","wwyj_yanyu1.mp3","wwyj_yanyumoran.jpg","wwyj_yingguai1.mp3",
+		"wwyj_yixue1.mp3","wwyj_ziyage.jpg"
+    ]
+};
 
 extension["群英会"]={
 	intro:"<li>更新：修复BUG。当前版本为1.109  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-03-01",

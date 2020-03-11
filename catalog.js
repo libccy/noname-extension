@@ -517,10 +517,10 @@ extension["作者包"]={
 
 extension["血色衣冠"]={
     author:"Wall•E（瓦力）<li>技术支持：凉茶、永远的萌新<li>测试：辉烬贺流年",
-    intro:"本扩展以上溯春秋，下迄明末两千余年间中华大地上出现过的杰出历史人物为题材，强度与官方新界接近，较为平衡。包括164名角色，1张基本牌，7张锦囊牌，6张装备牌，以及一个兵种模式，可联机。<li>版本：1.64  更新时间：2020.3.7",
-    size:"28MB",
+    intro:"本扩展以上溯春秋，下迄明末两千余年间中华大地上出现过的杰出历史人物为题材，强度与官方新界接近，较为平衡。包括168名角色，1张基本牌，7张锦囊牌，6张装备牌，以及一个兵种模式，可联机。<li>版本：1.68  更新时间：2020.3.11",
+    size:"30MB",
     netdisk:"",
-    version:1.64,
+    version:1.68,
     files:[
                "bk_library.jpg","EXfangtian_skill1.mp3","EXguanshi_skill1.mp3","EXguding_skill1.mp3",
 		"EXhanbing_skill1.mp3","EXqilin_skill1.mp3","EXqinggang_skill1.mp3","EXqinglong_skill1.mp3",
@@ -560,6 +560,7 @@ extension["血色衣冠"]={
 		"XSzhangliang.jpg","XSzhangsun.jpg","XSzhangsunsheng.jpg","XSzhangsunwuji.jpg","XSzhangtang.jpg",
 		"XSzhangyi.jpg","XSzhanlu.png","XSzhaokuangyin.jpg","XSzhaopu.jpg","XSzhenghe.jpg",
 		"XSzhoubo.jpg","XSzhuanzhu.jpg","XSzhudi.jpg","XSzhusheng.jpg","XSzhuyuanzhang.jpg",
+	        "XSlaijunchen.jpg","XSqinhui.jpg","XSyansong.jpg","XSzhaogao.jpg","XSzhoubo.jpg",
 		"XSzongze.jpg"
     ]
 };

@@ -1144,22 +1144,22 @@ var liblist = [
 ['<span class="bluetext">关联角色</span>：未完成<br><span class="bluetext">角色分析</span>：未完成'],
 ['<span class="bluetext">关联角色</span>：未完成<br><span class="bluetext">角色分析</span>：未完成']];
 var starlist = [
-['攻击：★★★★☆☆ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：★★★☆☆☆ 爆发：★★★★★★ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★☆☆☆ 辅助：★★★★☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★☆☆☆ 生存：★★★★★☆ </br>控制：★★★★★☆ 辅助：★★★★★☆</br>'],
-['攻击：★★★☆☆☆ 爆发：★★★☆☆☆ </br>防御：★★★☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★☆☆ 辅助：★★★☆☆☆</br>'],
+['攻击：★★★☆☆☆ 爆发：★★★★☆☆ </br>防御：★☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★★★★☆ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★☆☆☆ 辅助：★★★☆☆☆</br>'],
+['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★☆☆☆☆ 生存：★★★★☆☆ </br>控制：★★★★☆☆ 辅助：★★★★☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：★★☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★★☆ 辅助：★★☆☆☆☆</br>'],
 ['攻击：★★☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：★★★★★☆</br>'],
-['攻击：★★☆☆☆☆ 爆发：★☆☆☆☆☆ </br>防御：★★☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★☆☆☆☆ 辅助：★★★★★★</br>'],
-['攻击：★★☆☆☆☆ 爆发：★☆☆☆☆☆ </br>防御：★☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★☆☆☆ 辅助：★★★★☆☆</br>'],
-['攻击：★☆☆☆☆☆ 爆发：★★★★★☆ </br>防御：★★★☆☆☆ 生存：★★★★☆☆ </br>控制：☆☆☆☆☆☆ 辅助：★★★★★★</br>'],
-['攻击：★★★★☆☆ 爆发：★★★★★★ </br>防御：★★★★★☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：★★★★★★ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：★☆☆☆☆☆ 爆发：★★★☆☆☆ </br>防御：★☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★★☆☆ 辅助：★★★★☆☆</br>'],
-['攻击：★★★☆☆☆ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★★★☆☆ </br>控制：★★★★☆☆ 辅助：★☆☆☆☆☆</br>'],
-['攻击：★★★★☆☆ 爆发：★★★★★☆ </br>防御：☆☆☆☆☆☆ 生存：★☆☆☆☆☆ </br>控制：★★★☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：★★★☆☆☆ 爆发：★★★★★★ </br>防御：★★☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：★☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★☆☆☆☆ 辅助：★★★★★★</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★☆☆☆☆☆ </br>防御：★☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★☆☆☆ 辅助：★★★★☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★★☆ </br>防御：★★☆☆☆☆ 生存：★★★★☆☆ </br>控制：☆☆☆☆☆☆ 辅助：★★★★★★</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★★★ </br>防御：★★★★★☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★★★★★ 爆发：★★★★★☆ </br>防御：☆☆☆☆☆☆ 生存：★☆☆☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：★★★☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★★☆☆ 辅助：★★★☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★☆☆ </br>防御：★☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★★☆☆ 辅助：★☆☆☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★★☆ </br>防御：☆☆☆☆☆☆ 生存：★☆☆☆☆☆ </br>控制：★★★☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★★★ </br>防御：★★☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：★☆☆☆☆☆</br>'],
 ['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★★★☆ 生存：★★★★☆☆ </br>控制：★☆☆☆☆☆ 辅助：★☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★★☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★★★ 辅助：★★☆☆☆☆</br>']];
+['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★★★ 辅助：★★☆☆☆☆</br>']];
 							lib.game.createview(node,charalist,liblist,starlist);
                         }
                     },
@@ -1194,22 +1194,22 @@ var liblist = [
 ['<span class="bluetext">关联角色</span>：未完成<br><span class="bluetext">角色分析</span>：未完成'],
 ['<span class="bluetext">关联角色</span>：未完成<br><span class="bluetext">角色分析</span>：未完成']];
 var starlist = [
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>']];
+['攻击：★★☆☆☆☆ 爆发：★★★★☆☆ </br>防御：★★★☆☆☆ 生存：★★★☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：★☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★★☆ 辅助：★★☆☆☆☆</br>'],
+['攻击：★★★☆☆☆ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★★☆☆☆ </br>控制：★★☆☆☆☆ 辅助：★★☆☆☆☆</br>'],
+['攻击：★★★★☆☆ 爆发：★★★★★★ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★☆☆☆☆ 生存：★★★★☆☆ </br>控制：★★☆☆☆☆ 辅助：★★★★★☆</br>'],
+['攻击：★★★★☆☆ 爆发：★★★★★★ </br>防御：☆☆☆☆☆☆ 生存：★☆☆☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：★☆☆☆☆☆</br>'],
+['攻击：★★★☆☆☆ 爆发：★★☆☆☆☆ </br>防御：★★☆☆☆☆ 生存：★★★★★★ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★★★★☆ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★★★☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：☆☆☆☆☆☆ 爆发：★★★★★☆ </br>防御：★★★★☆☆ 生存：☆☆☆☆☆☆ </br>控制：★★☆☆☆☆ 辅助：★★★★☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★★★☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：★★★★★☆</br>'],
+['攻击：★★★★☆☆ 爆发：★★★★★☆ </br>防御：★★☆☆☆☆ 生存：★★★★☆☆ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★★★★☆ 爆发：★★★★★★ </br>防御：☆☆☆☆☆☆ 生存：★★★★☆☆ </br>控制：☆☆☆☆☆☆ 辅助：★★☆☆☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：★★★☆☆☆ </br>防御：★★★☆☆☆ 生存：★★★☆☆☆ </br>控制：★★★★☆☆ 辅助：★★☆☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：★★★★☆☆ </br>防御：★★☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★☆☆ 辅助：★★★★☆☆</br>'],
+['攻击：☆☆☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★☆☆☆ 辅助：★★★★★★</br>'],
+['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：★★★★☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★★★ 辅助：★★★☆☆☆</br>']];
 							lib.game.createview(node,charalist,liblist,starlist);
 						}
                     },
@@ -1246,8 +1246,8 @@ var liblist = [
 ['<span class="bluetext">关联角色</span>：未完成<br><span class="bluetext">角色分析</span>：未完成'],
 ['<span class="bluetext">关联角色</span>：卫子夫 卫青 霍去病等所有西汉角色<br><span class="bluetext">角色分析</span>：汉武帝—刘彻，辅助攻击能力很强的主公。技能强度较高，但受到红色手牌数量的限制，一二技能往往难以同时发动。同时因为大量失去红色手牌，不可避免地牺牲了防御能力，但作为回报，刘彻可以为自己和团队带来强大的攻击能力。对霍去病、卫青的帮助上尤为突出，对李广有着极强的克制，同时受到司马迁一定程度上的克制，而受到卫子夫、桑弘羊的辅助效果极佳，可以说角色契合度极高。主公技的存在提高了刘彻的生存能力，算是对缺点的一种补足。']];
 var starlist = [
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
-['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：☆☆☆☆☆☆ 爆发：★★☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★☆☆ 辅助：★★★★☆☆</br>'],
+['攻击：★★☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
 ['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
 ['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
 ['攻击：☆☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：☆☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
@@ -1622,6 +1622,32 @@ var starlist = [
 						}
                     },
                 },
+				mamingview: {
+                    name: '骂名千古',
+                    mode: '',
+                    intro: [],
+                    showcase: function (init) {
+						var node = this;
+                        if (init) {	
+var charalist = [];
+for (var i in lib.characterPack['XSYG']) {
+	var maming=["XSyansong","XSqinhui","XSlaijunchen","XSzhaogao"];
+	if(maming.contains(i)) charalist.push(i);
+}
+var liblist = [
+['<span class="bluetext">关联角色</span>：李斯 蒙恬 扶苏<br><span class="bluetext">角色分析</span>：秦朝著名权臣、宦官，指鹿为马的由来—赵高，强控强攻型角色，血色包四号负面人物。一技能作为转化技，三个效果都极为强力，一二技能具备强大的控制能力，当此技能累计发动多次后，第三个效果将带来极大的收益，需要弃置手牌来发动是此技能的限制。二技能用于强化一技能，既可以使转换技快速转到需要的效果，也可以直接对一技能进行强化，合理选择效果将带来意想不到的收获。转换技的三种效果对于李斯、蒙恬以及扶苏都产生了一定成都的克制，角色契合度极高。'],
+['<span class="bluetext">关联角色</span>：武曌<br><span class="bluetext">角色分析</span>：善于罗织罪名的武周朝著名酷吏—来俊臣，强攻型角色，血色包三号负面人物。一技能攻击能力极强，虽然带有负面效果，但通过将敌我横置能够对敌方带来较大威慑，最差不过同归于尽。二技能提供了多杀或无视距离的效果，与一技能搭配既可以连续造成巨大伤害，也可以远程定点爆破。三技能则无分敌我带来负面，我死后哪管洪水滔天。作为负面角色，技能充满了负面意味，杀失败被杀的效果可以有限地给武曌送牌，角色契合很高。'],
+['<span class="bluetext">关联角色</span>：岳飞 岳云 韩世忠<br><span class="bluetext">角色分析</span>：大宋著名奸臣—秦桧，拆迁控制型角色，血色包二号负面人物。一技能控制敌方装备，最多可带来2牌差的收益，同时能防止对方使用关键装备，有人濒死时重置使用次数可以进一步提高此技能收益。二技能是强力的拆迁技能，只要能保证手牌中类型较少，基本上只要有人弃牌自己就可以进行拆迁，与一技能联动直接强拆也是极佳的手段。控制装备、强力拆迁的特性对岳飞、岳云乃至韩世忠都十分克制，一技能濒死重置的特性更是极为针对岳飞的三技能，角色契合度极高。'],
+['<span class="bluetext">关联角色</span>：张居正 戚继光<br><span class="bluetext">角色分析</span>：明朝权臣—严嵩，干扰爆发型角色，血色包第一个负面角色。一技能收益并不是很高，但强命+高伤的爆发效果在大多数情况都有奇效。二技能收益极高，一旦发动至少可以带来4牌差的收益，与一技能相配合既容易打空手牌，也可以在起到完杀的效果，两技能联动优秀。作为反面角色，技能效果也有着明显的反面特点，造成2点伤害恰好可以触发张居正的扶倾，而二技能又克制了张居正的回血，两人相互克制；同时，强命效果极为克制戚继光，角色契合度很高。']];
+var starlist = [
+['攻击：☆☆☆☆☆☆ 爆发：★★★★☆☆ </br>防御：★★☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：★★★★★☆ 辅助：★★☆☆☆☆</br>'],
+['攻击：★★★★★☆ 爆发：★★★★☆☆ </br>防御：★★☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：★☆☆☆☆☆ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★☆☆☆☆☆ 爆发：☆☆☆☆☆☆ </br>防御：☆☆☆☆☆☆ 生存：☆☆☆☆☆☆ </br>控制：★★★★★★ 辅助：☆☆☆☆☆☆</br>'],
+['攻击：★★★☆☆☆ 爆发：★★★★☆☆ </br>防御：☆☆☆☆☆☆ 生存：★★☆☆☆☆ </br>控制：★★★★☆☆ 辅助：☆☆☆☆☆☆</br>']];
+							lib.game.createview(node,charalist,liblist,starlist);
+						}
+                    },
+                },
             }
         }, {
             translate: '群像',
@@ -1644,6 +1670,10 @@ var starlist = [
 				name:'XSYG',
 				connect:true,
 				character:{
+					"XSzhaogao":["male","wei",3,["XSzhilu","XSgaizhao"],[]],
+					"XSlaijunchen":["male","wei",3,["XSluozhi","XSxingyu","XSduli"],[]],
+					"XSqinhui":["male","wu",3,["XSxuyou","XSxianyi"],[]],
+					"XSyansong":["male","wu",4,["XSfujin","XSzhuanshan"],[]],
 					"XStianrangju":["male","qun",3,["XSweidi1","XSyanfa","XSyuzhong"],[]],
 					"XSzhusheng":["male","wu",3,["XSgaozhu","XSguangji","XShuanwang"],[]],
 					"XScaobin":["male","wu",4,["XSdiding","XSqingshen"],[]],
@@ -1725,7 +1755,7 @@ var starlist = [
 					"XSfanju":["male","wei",3,["XSyazi","XSyuanjiao","XSjingong"],[]],
 					"XSchenqingzhi":["male","qun",2,["XSbaipao","XSlizhan"],[]],
 					"XSmenggong":["male","wu",4,["XSgongshu","XSqingtian"],[]],
-					"XSfankuai":["male","shu",5,["XSyinzhi","XSjiuyi"],[]],
+					"XSfankuai":["male","shu",4,["XSyinzhi","XSjiuyi"],[]],
 					"XSliji":["male","wei",4,["XStuishang","XSpingliao"],[]],
 					"XSzhanghao":["male","qun",4,["XSyejian","XSpingbu"],[]],
 					"XSgengyan":["male","shu",4,["XSqiaozhan","XSshijing"],[]],
@@ -1820,11 +1850,20 @@ characterSort:{
 		XS_zzbj:["XSsunwu","XSwuqi","XSkongqiu","XSlaodan","XSmodi","XSwangxu","XSouyezi","XSgongshuban","XSquping","XShanfei","XShuishi","XSmengke","XStianrangju"],
 		XS_xqwl:["XSlinxiangru","XSlianpo","XSlimu","XSyueyi","XSzhuanzhu","XSjiangxiaobai","XSjiangshang","XSsuqin","XStiandan","XSsunbin","XSguanyiwu","XSfanli","XSxishi","XSxuewen","XSyangyouji","XSdukang","XSgoujian","XSnanzi","XSweiwuji"],
 		XS_hxrj:["XSxiean","XSxiexuan","XSweirui","XSchenqingzhi","XSranmin","XSwangxizhi","XSyangjian","XSyangsu","XSgaojiong","XSshiwansui","XSliuyu","XStandaoji","XSxiehui","XSliumuzhi","XSzhangsunsheng","XShanqinhu","XSliudaogui"],
-		XS_swjg:["XSfujian","XSmurongchui","XSwangmeng","XStiemuzhen","XSsubutai","XSyelvchucai","XSzhanghao","XSmuhuali","XStuobatao","XScuihao","XStuobagui","XScuihong","XSboershu","XSyangdayan","XSdengqiang"]
+		XS_swjg:["XSfujian","XSmurongchui","XSwangmeng","XStiemuzhen","XSsubutai","XSyelvchucai","XSzhanghao","XSmuhuali","XStuobatao","XScuihao","XStuobagui","XScuihong","XSboershu","XSyangdayan","XSdengqiang"],
+		XS_mmqg:["XSyansong","XSqinhui","XSlaijunchen","XSzhaogao"]
 	},
 },
 
 characterIntro:{
+"XSzhaogao":
+"秦朝二世皇帝时丞相，任中车府令，兼行符玺令事，“管事二十余年”。秦始皇死后，赵高发动沙丘政变，他与丞相李斯合谋伪造诏书，逼秦始皇长子扶苏自杀，另立始皇幼子胡亥为帝，是为秦二世，并自任郎中令。他在任职期间独揽大权，结党营私，征役更加繁重，行政更加苛暴。公元前208年又设计害死李斯，继之为秦朝丞相。第三年他迫秦二世自杀，另立子婴为秦王。不久被子婴设计杀掉，诛夷三族。",
+"XSlaijunchen":
+"唐朝武周时期著名酷吏。无赖出身，善于告密，得到武则天信任，先后任侍御史、御史中丞、太仆卿，组织数百名无赖专事告密，设立推事院，联合党羽朱南山等撰写《罗织经》，制造各种残酷刑具，大兴刑狱，采取刑讯逼供手段，任意捏造罪状致人死地，大臣和李唐宗室遭到枉杀灭族者达数千家。贪赃枉法，横行无忌，联合侯思止、王弘义等援朋结党。最后，企图陷害武氏诸王、太平公主、张易之等武则天最亲信的人物，诬告皇嗣李旦和庐陵王李显谋反，遭到卫遂忠告发。万岁通天二年，武氏诸王与太平公主等乘机揭露来俊臣种种罪恶。武则天下令处死来俊臣，将其酷吏党徒全部流放岭南，延续十四年之久的恐怖“酷吏政治”宣告结束。",
+"XSqinhui":
+"南宋初年宰相、奸臣，主和派的代表人物。政和五年，秦桧进士及第，中词学兼茂科，任太学学正。宋钦宗时，历任左司谏、御史中丞。靖康二年，因上书金帅反对立张邦昌，随徽、钦二帝被俘至金，为挞懒信用。宋高宗建炎四年，秦桧回到临安，力主宋金议和。绍兴元年，擢参知政事，随后拜相，次年被劾落职，绍兴八年再相，前后执政十九年，历封秦、魏二国公，深得高宗宠信。绍兴二十五年，秦桧病逝，时年66岁，追赠申王，谥忠献。开禧二年，宋宁宗追夺其王爵，改谥谬丑。嘉定元年，史弥远执政后又恢复其王爵和谥号。",
+"XSyansong":
+"明代政治家、权臣。明孝宗弘治十八年进士，累迁礼部尚书、翰林院学士。嘉靖二十一年六十三岁时入阁，加少傅兼太子太师、谨身殿大学士，后改少师、华盖殿大学士，嘉靖二十七年诬害夏言，再任内阁首辅，专擅国政近十五年之久。晚年因事激怒嘉靖帝而失势，嘉靖四十一年勒令致仕，嘉靖四十三年严世蕃案发，遭罢职抄家，寄食于墓舍，两年后病死，年八十七。严嵩书法造诣深，擅长写青词。《明史》将严嵩列为明代六大奸臣之一，称其“惟一意媚上，窃权罔利”。",
 "XStianrangju":
 "又称司马穰苴，春秋末期齐国人，是田完（陈完）的后代，齐田氏家族的支庶。田穰苴是继姜尚之后一位承上启下的著名军事家，曾率齐军击退晋、燕入侵之军，因功被封为大司马，子孙后世称司马氏。后因齐景公听信谗言，田穰苴被罢黜，未几抑郁发病而死。由于年代久远，其事迹流传不多，但其军事思想却影响巨大。唐肃宗时将田穰苴等历史上十位武功卓著的名将供奉于武成王庙内，被称为武庙十哲。宋徽宗时追尊田穰苴为横山侯，位列宋武庙七十二将之一。",
 "XSzhusheng":
@@ -2160,14 +2199,13 @@ characterIntro:{
 			"XShanxin":"暗渡陈仓",
 			"XSwuqi":"兵家亚圣",
 			"XSsunwu":"兵家至圣",
-			"XSxiangji":"破釜沉舟",
+			"XSxiangji":"拔山盖世",
 			"XSlishimin":"天可汗",
 			"XSguanyiwu":"华夏首相",
 			"XSyingzheng":"并吞八荒",
 			"XSliubang":"威加海内",
 			"XSkongqiu":"万世师表",
 			"XSlaodan":"道家之祖",
-			"XSliguang":"飞将军",
 			"XSzhangliang":"谋国谋身",
 			"XSzhangyi":"高谈阔论",
 			"XStiemuzhen":"一代天骄",
@@ -2178,27 +2216,21 @@ characterIntro:{
 			"XSsimaqian":"秉笔直书",
 			"XSxishi":"沉鱼之姿",
 			"XSyuji":"垓下悲歌",
-			"XSweizifu":"引贤兴杰",
 			"XSpingyang":"女中英杰",
 			"XSlianghongyu":"桴鼓亲操",
 			"XSyelvchucai":"救世济民",
 			"XSmurongchui":"一世之雄",
 			"XSchangyuchun":"横行天下",
 			"XSmengtian":"北击匈奴",
-			"XSweizhe":"黄石公",
 			"XSfusu":"刚毅宽仁",
 			"XSgengyan":"志者事竟",
 			"XSfanzeng":"老成谋国",
-			"XSsulie":"灭国擒王",
-			"XSliji":"平定辽东",
 			"XSfanju":"睚眦必报",
 			"XSfankuai":"卮酒何辞",
 			"XSyinlihua":"光烈皇后",
 			"XSmenggong":"孤手擎天",
-			"XSxiexuan":"北府兵帅",
 			"XSwangshouren":"知行合一",
 			"XSchenqingzhi":"白袍所向",
-			"XSzhanghao":"曳犍而行",
 			"XSzhangjuzheng":"扶厦将倾",
 			"XSsimaguang":"博古鉴今",
 			"XSyangyouji":"百步穿杨",
@@ -2216,20 +2248,17 @@ characterIntro:{
 			"XSnanzi":"祸乱朝堂",
 			"XSliurengui":"赤海焚舟",
 			"XSliyiji":"高阳酒徒",
-			"XSlongju":"疾突猛进",
 			"XShuishi":"名辩鼻祖",
 			"XSyangsu":"擒剪凶魁",
 			"XSzhangheng":"经天纬地",
 			"XSlanyu":"鸟尽弓藏",
 			"XSmengke":"儒家亚圣",
 			"XSchuliji":"堪舆先师",
-			"XSweiwuji":"四君之首",
 			"XSbizaiyu":"威震夷貊",
 			"XSmuhuali":"策马横戈",
 			"XSlvbuwei":"囤积居奇",
 			"XScaoshen":"出将入相",
-			"XSzhaopu":"经邦大略",
-			"XSwangxizhi":"书中圣手",
+			"XSwangxizhi":"倾江洒墨",
 			"XSyangjian":"圣人可汗",
 			"XSgaojiong":"经宇佐代",
 			"XSshiwansui":"威惊绝域",
@@ -2268,6 +2297,51 @@ characterIntro:{
 			"XScaobin":"清谦畏谨",
 			"XSzhusheng":"片语定邦",
 			"XStianrangju":"兵尽赏罚",
+			"XSyansong":"窃权罔利",
+			"XSqinhui":"利惑君心",
+			"XSlaijunchen":"片言折狱",
+			"XSzhaogao":"权移马鹿",
+			"XSbaiqi":"功高盖世",
+			"XSzhangji":"悬壶济世",
+			"XSlianpo":"壮血涌冠",
+			"XSlijing":"才兼文武",
+			"XSyuefei":"忠魂武魄",
+			"XSjiangshang":"乾坤万转",
+			"XSsunbin":"坐筹运能",
+			"XSqinqiong":"擎峰负勇",
+			"XShuoqubing":"绝域汉威",
+			"XSzhuanzhu":"义重生死",
+			"XSyangzaixing":"万夫辟易",
+			"XSzhuyuanzhang":"应天豪主",
+			"XSliguang":"龙城飞将",
+			"XSquping":"英石沉渊",
+			"XSliuji":"佐定天下",
+			"XSxiaohe":"功人筑宇",
+			"XSouyezi":"剑鸣吴越",
+			"XShanfei":"法家大成",
+			"XSlinxiangru":"凛节不辱",
+			"XSxuda":"功昭日月",
+			"XSweirui":"虎威麟德",
+			"XSxiean":"苍生雅望",
+			"XSwangmen":"关中良相",
+			"XSfangqiao":"帷幄经邦",
+			"XSweiqing":"安边勋鼎",
+			"XSwangzhaojun":"雪朔惊鸿",
+			"XSsubutai":"功獒爪牙",
+			"XSweizifu":"盛云饰日",
+			"XSweizhe":"圯上老人",
+			"XSsulie":"雄谋戡定",
+			"XSliji":"英机振时",
+			"XSxiexuan":"翦凶拓北",
+			"XSxuewen":"慨比虹霓",
+			"XSzhanghao":"纵锋横刃",
+			"XSduruhui":"廊庙纬国",
+			"XSyuxu":"断难正艰",
+			"XSyuqian":"危挽日月",
+			"XShanshizhong":"仗剑从戎",
+			"XSlongju":"凭风飒戾",
+			"XSweiwuji":"气凌苍云",
+			"XSzhaopu":"国卿家相",
 
 		},//称号
 
@@ -2278,6 +2352,587 @@ characterIntro:{
 
 
 skill:{
+		"XSzhilu":{
+	init:function (player){
+        player.storage.XSzhilu=[1,2,3];
+    },
+	mark:true,
+	marktext:'指',
+	intro:{
+		content:function(storage,player,skill){
+			if(player.storage.XSzhilu[0]==1) return  '当1名角色使用牌指定1名目标后，你可以弃置1张牌并用1张手牌替换此牌';
+			else if(player.storage.XSzhilu[0]==2) return  '当1名角色使用牌指定1名目标后，你可以弃置1张牌为此牌重新指定目标';
+			else if(player.storage.XSzhilu[0]==3) return '当1名角色使用牌指定1名目标后，你可以弃置1张牌视为对所有成为过【指鹿】目标的角色使用1张杀';
+		},
+	},
+	trigger:{
+		global:"useCardBefore",
+	},
+	filter:function (event,player){
+		if(event.getParent().name=='XSzhilu') return false;
+		if(player.hasSkill('XSzhilu_temp')) return false;
+		if(get.type(event.card)!='basic'&&get.type(event.card)!='trick'&&get.type(event.card)!='delay') return false;
+		if(event.targets.length!=1) return false;
+		return player.countCards('h');
+	},
+	direct:true,
+	content:function(){
+		"step 0"
+		var str='';
+		if(player.storage.XSzhilu[0]==1){
+			str='指鹿：是否弃置1张牌，用1张手牌替换'+get.translation(trigger.player)+'对'+get.translation(trigger.targets[0])+'使用的'+get.translation(trigger.card)+'？';
+		}
+		if(player.storage.XSzhilu[0]==2){
+			str='指鹿：是否弃置1张牌，为'+get.translation(trigger.player)+'对'+get.translation(trigger.targets[0])+'使用的'+get.translation(trigger.card)+'重新指定1名目标？';
+		}
+		if(player.storage.XSzhilu[0]==3){
+			event.tars=player.storage.XSzhilu_mark;
+			var temp=[];
+			if(event.tars.length) {
+				for(var i=0;i<event.tars.length;i++) {
+					if(event.tars[i].isAlive()) temp.push(event.tars[i]);
+				}
+				if(temp.length) str='指鹿：是否弃置1张牌，视为对'+get.translation(temp)+'使用1张杀？';
+			}
+		}
+		player.chooseToDiscard(str,1,'he').set('ai',function(card){
+			var tri=_status.event.getTrigger();
+			if(get.attitude(player,tri.player)>0&&player.storage.XSzhilu[0]!=3) return false;
+			var eff=get.effect(tri.targets[0],tri.card,tri.player,player);
+			if(player.storage.XSzhilu[0]==1&&eff<0){
+				var val=get.value(tri.card);
+				var hs=player.getCards('he');
+				for(var i=0;i<hs.length;i++) {
+					if(get.value(hs[i])+1<val&&hs[i]!=card&&card.name!='jiedao'&&card.name!='shengdong') return 6-get.value(card);
+				}
+				return 0;
+			}
+			if(player.storage.XSzhilu[0]==2&&eff<0){
+				return 6-get.value(card);
+			}
+			if(player.storage.XSzhilu[0]==3){
+				return 7-get.value(card);
+			}
+			return 0;
+		});
+		"step 1"
+		if(!result.bool){
+			event.finish();		
+		}
+		"step 2"
+		player.logSkill('XSzhilu');
+		if(player.storage.XSzhilu[0]==1){
+			player.chooseCard('h','选择1张手牌替换'+get.translation(trigger.player)+'使用的'+get.translation(trigger.card),function(card){
+				return card.name!='jiedao'&&card.name!='shengdong';
+			}).set('ai',function(card){
+				var tri=_status.event.getTrigger();
+				var eff=get.effect(tri.targets[0],card,tri.player,player);
+				if(eff>0) {
+					return get.value(tri.card)-get.value(card);
+				}
+				else {
+					return get.value(tri.card)-get.value(card)-1;
+				}
+			});	
+		}
+		else if(player.storage.XSzhilu[0]==2){
+			event.goto(4);
+		}
+		else if(player.storage.XSzhilu[0]==3){
+			event.goto(6);
+		}
+		"step 3"
+        if(result.bool){
+            player.gain(trigger.cards);
+			player.lose(result.cards[0],ui.special);
+			player.$throw(result.cards[0],1000,'nobroadcast');
+			trigger.card=result.cards[0];
+			trigger.cards=result.cards;
+			if(!player.storage.XSzhilu_mark.contains(trigger.player)) {
+				player.storage.XSzhilu_mark.push(trigger.player);
+			}
+			game.log(player,'用'+result.cards[0]+'替换了',trigger.player,'使用的',trigger.card);
+			event.goto(7);
+        }
+		else event.goto(7);
+		"step 4"
+        player.chooseTarget('为'+get.translation(trigger.player)+'使用的'+get.translation(trigger.card)+'重新指定1名目标',function(card,player,target){
+			var tar=_status.event.getTrigger().targets[0];
+            return player!=target&&target!=tar;
+        },function(target){
+			var tri=_status.event.getTrigger();
+            var eff=get.effect(target,tri.card,tri.player,player);
+            return eff;
+        });
+        "step 5"
+        if(result.bool){
+			trigger.targets[0]=result.targets[0];
+			if(!player.storage.XSzhilu_mark.contains(trigger.player)) {
+				player.storage.XSzhilu_mark.push(trigger.player);
+			}
+			game.log(player,'为',trigger.player,'使用的',trigger.card,'重新指定了1名目标');
+			event.goto(7);
+        }
+		else event.goto(7);
+		"step 6"
+		player.useCard({name:'sha',isCard:true},event.tars);
+		"step 7"
+		if(!player.hasSkill('XSzhilu_temp')) {
+			player.addTempSkill('XSzhilu_temp');
+		}
+		var temp=player.storage.XSzhilu.shift();
+		player.storage.XSzhilu.push(temp);
+	},
+	ai:{
+        expose:0.3,
+    },
+	group:["XSzhilu_mark"],
+	subSkill:{
+		mark:{
+			init:function (player){
+				player.storage.XSzhilu_mark=[];
+				player.markSkill('XSzhilu_mark');
+			},
+            marktext:"鹿",
+			intro:{
+				content:function (storage,player){
+					if(!storage.length) return '没有角色成为过【指鹿】的目标';
+					else {
+						return '已成为过【指鹿】的目标：'+get.translation(storage);
+					}
+				},
+            },
+			sub:true,
+        },	
+        temp:{
+			sub:true,
+        },
+    },
+		},
+		"XSgaizhao":{
+	frequent:true,
+	trigger:{
+		player:["damageAfter"],
+	},
+	filter:function (event,player){
+		if(!player.storage.XSzhilu) return false;
+		if(!player.storage.XSzhilu_mark) return false;
+		return event.num>0;
+	},
+	content:function (){
+		"step 0"
+		player.chooseControlList(['使【指鹿】变为下一个状态','移除【指鹿】中“用1张手牌替换此牌”的效果，且失去本技能',
+		'移除【指鹿】中“为此牌重新指定目标”的效果，且失去本技能',
+		'移除【指鹿】中“视为对所有成为过指鹿目标的角色使用1张杀”的效果，且失去本技能',],false).set('ai',function(event,player){
+			if(player.storage.XSzhilu_mark&&player.storage.XSzhilu_mark.length>2) return 1;
+			return 0;
+        }).set('prompt','改诏：选择1项');
+        "step 1"
+        if(result.index==0){
+			var temp=player.storage.XSzhilu.shift();
+			player.storage.XSzhilu.push(temp);
+        }
+        else if(result.index==1){
+			player.storage.XSzhilu=[2,3];
+			player.syncStorage('XSzhilu');
+			var info='转换技，每回合限1次，当1名角色使用基本牌或普通锦囊牌指定1名目标后，你可以弃置1张牌：1.为此牌重新指定目标；2.视为对所有成为过指鹿目标的角色使用1张杀。';
+			lib.translate.XSzhilu_info=info;
+			player.removeSkill('XSgaizhao');
+        }
+		else if(result.index==2){
+			player.storage.XSzhilu=[1,3];
+			player.syncStorage('XSzhilu');
+			var info='转换技，每回合限1次，当1名角色使用基本牌或普通锦囊牌指定1名目标后，你可以弃置1张牌：1.用1张手牌替换此牌；2.视为对所有成为过指鹿目标的角色使用1张杀。';
+			lib.translate.XSzhilu_info=info;
+			player.removeSkill('XSgaizhao');
+        }
+		else if(result.index==3){
+			player.storage.XSzhilu=[1,2];
+			player.syncStorage('XSzhilu');
+			var info='转换技，每回合限1次，当1名角色使用基本牌或普通锦囊牌指定1名目标后，你可以弃置1张牌：1.用1张手牌替换此牌；2.为此牌重新指定目标。';
+			lib.translate.XSzhilu_info=info;
+			player.removeSkill('XSgaizhao');
+        }
+	},
+		},
+		"XSluozhi":{
+	priority:9,
+	trigger:{
+		player:["shaBefore"],
+	},
+	check:function (event,player){
+		return get.attitude(player,event.target)<0;
+	},
+	logTarget:'target',
+	content:function (){    
+		"step 0"
+		player.addTempSkill('XSluozhi_fan',{player:'shaAfter'});
+		var func=function(card,target){
+			var list=[
+				'令'+card+'造成的伤害为火伤害',
+				'令你和'+target+'横置',
+				'令'+card+'造成的伤害+1',
+			];
+			var choiceList=ui.create.dialog('【罗织】：请选择任意项','forcebutton');
+			for(var i=0;i<list.length;i++){
+				var str='<div class="popup text" style="width:calc(100% - 10px);display:inline-block">';
+				if(i==0) str+='<div>';
+				str+=list[i];
+				if(i==0) str+='</div>';
+				str+='</div>';
+				var next=choiceList.add(str);
+				next.firstChild.addEventListener(lib.config.touchscreen?'touchend':'click',ui.click.button);
+				next.firstChild.link=i;
+				for(var j in lib.element.button){
+					next[j]=lib.element.button[i];
+				}
+				choiceList.buttons.add(next.firstChild);
+			}
+			return choiceList;
+		};
+		if(player.isOnline2()){
+			player.send(func,get.translation(trigger.card),get.translation(trigger.target));
+		}
+		event.dialog=func(get.translation(trigger.card),get.translation(trigger.target));
+		if(player!=game.me||_status.auto){
+			event.dialog.style.display='none';
+		}
+		var next=player.chooseButton();
+		next.set('forced',true);
+		next.set('selectButton',[1,3]);
+		next.set('filterButton',function(button){
+			return true;
+		});
+		next.set('ai',function(button){
+			var player=_status.event.player;
+			var event=_status.event.getTrigger();
+			switch(button.link){
+				case 0:{
+					return 1;
+				}
+				case 1:{
+					if(event.target.countCards('h','shan')) return 0;
+					return 1;
+				}
+				case 2:{
+					if(!event.target.countCards('h','shan')||player.countCards('h','shan')) return 1;
+					return 0;
+				}
+			}
+		});
+		"step 1"
+		event.dialog.close();
+		var map=[
+			function(trigger,player,event){
+				trigger.Changena=true;
+				
+			},
+			function(trigger,player,event){
+				if(!player.isLinked()) player.link();
+				if(!trigger.target.isLinked()) trigger.target.link();
+			},
+			function(trigger,player,event){
+				trigger.ADDdam=true;
+			},
+		];
+		for(var i=0;i<result.links.length;i++){
+			game.log(player,'选择了','#g【罗织】','的','#y选项'+get.cnNumber(result.links[i]+1,true));
+			map[result.links[i]](trigger,player,event);
+		}
+	},	
+	ai:{
+        expose:0.3,
+    },
+	group:["XSluozhi_dam"],
+	subSkill:{
+		dam:{
+			trigger:{
+				source:"damageBegin",
+			},
+			filter:function (event){
+                if(!event.card||event.card.name!='sha'||!event.notLink()) return false;
+				if(event.getParent(6).ADDdam==true||event.getParent(6).Changena==true) return true;
+                return event.getParent().ADDdam==true||event.getParent().Changena==true;
+            },
+			forced:true,
+			content:function (){
+				"step 0"
+				if(trigger.getParent().Changena==true||trigger.getParent(6).Changena==true) {
+					trigger.nature='fire';
+				}
+				"step 1"
+				if(trigger.getParent().ADDdam==true||trigger.getParent(6).ADDdam==true) {
+					trigger.num++;
+				}
+
+            },
+			sub:true,
+		},
+		fan:{
+            forced:true,
+            trigger:{
+                player:"shaMiss",
+            },
+			priority:-99,
+            content:function (){
+				"step 0"
+				trigger.target.useCard(trigger.card,player);
+				trigger.target.addTempSkill("XSluozhi_dam",{player:'shaAfter'});
+            },
+            sub:true,
+        },
+	},
+		},
+		"XSxingyu":{
+	trigger:{
+		player:"useCardAfter",
+	},
+	direct:true,
+	filter:function (event,player){
+		if(_status.currentPhase!=player) return false;
+		var num1=player.getHistory('useCard').length;
+		if(num1>1) return false;
+		return true;
+	},
+	content:function(){
+		"step 0"
+		player.chooseControlList(['使'+get.translation(trigger.card)+'不计入使用次数','本回合使用牌无距离限制']).set('ai',function(event,player){
+			var card=_status.event.getTrigger().card;
+			if(card.name=='sha'||card.name=='jiu') return 0;
+			return 1;
+        }).set('prompt','兴狱：选择1项');
+        "step 1"
+        if(result.index==0){
+			player.getStat().card={}
+        }
+        else if(result.index==1){
+			player.addTempSkill('XSxingyu_dis');
+        }
+	},
+	subSkill:{
+		dis:{
+			mod:{
+				targetInRange:function (card,player,target){
+					return true;
+				},
+			},
+            sub:true,
+        },
+	},
+		},
+		"XSduli":{
+	trigger:{
+		player:"dieBegin",
+	},
+	forced:true,
+	forceDie:true,
+	content:function (){
+		"step 0"
+		var suitlist=['diamond','heart','spade','club'];
+		var numlist=[1,2,3,4,5,6,7,8,9,10,11,12,13];
+		event.num1=player.countCards('hej')*2;
+		if(event.num1<=0) event.finish();
+		for(var i=0;i<event.num1;i++) {
+			var card=game.createCard('du',suitlist.randomGet(),numlist.randomGet());
+			ui.cardPile.insertBefore(card,ui.cardPile.firstChild);
+		}
+		"step 1"
+		var cards=[];
+		for(i=0;i<ui.cardPile.childNodes.length;i++){
+			var currentcard=ui.cardPile.childNodes[i];
+			cards.push(currentcard);
+		}
+		cards.randomSort();
+		for(var i=0;i<cards.length;i++){
+			ui.cardPile.appendChild(cards[i]);
+		}
+		game.log(player,'将',event.num1,'张【毒】置入了牌堆中');
+	},
+	ai:{
+		threaten:function (player,target){
+            if(target.hp==1) return 0.2;
+        },
+	},
+		},
+		"XSxuyou":{
+   trigger:{
+        global:["equipAfter"],
+    },
+	logTarget:'player',
+	check:function (event,player){
+		if(event.player.countCards('e')<2) return false;
+		return get.attitude(player,event.player)<0;
+	},
+	filter:function (event,player){
+		if(player.hasSkill('XSxuyou_temp')) return false;
+		return event.player!=player&&event.player.countCards('e');
+    },
+    content:function (){
+		"step 0"
+		trigger.player.chooseControlList(['失去1点体力','弃置装备区所有牌'],true).set('ai',function(event,player){
+			var tar=_status.event.getTrigger().player;
+			if(tar.hp<2) return 1;
+			if(player.countCards('e')<2) return 1;
+			return 0;
+        }).set('prompt','须有：选择1项');
+        "step 1"
+        if(result.index==0){
+			trigger.player.loseHp();
+        }
+        else if(result.index==1){
+			trigger.player.discard(trigger.player.getCards('e'));
+        }
+		"step 2"
+		if(!player.hasSkill('XSxuyou_temp')){
+			player.addTempSkill('XSxuyou_temp','roundStart');
+		}
+    },
+	ai:{
+        expose:0.3,
+    },
+	subSkill:{
+        temp:{
+			sub:true,
+        },
+		dying:{
+            priority:6,
+            trigger:{
+                global:"dying",
+            },
+            filter:function (event,player){
+                return player.hasSkill('XSxuyou_temp');
+            },
+			forced:true,
+            content:function (){
+				player.removeSkill('XSxuyou_temp');			
+            },
+            sub:true,
+        },
+    },
+		},
+		"XSxianyi":{
+	trigger:{
+		global:"discardAfter",
+	},
+	filter:function (event,player){
+		if(event.getParent(2).name=='XSxianyi') return false;
+		if(event.player==player) return false;
+		for(var i=0;i<event.cards.length;i++){
+			var type=get.type(event.cards[i]);
+			if(!player.countCards('h',{type:type})){
+				return true;
+			}
+		}
+		return false;
+	},
+	logTarget:'player',
+	check:function (event,player){
+		return get.attitude(player,event.player)<=0;
+	},
+	content:function (){
+		"step 0"
+		event.num1=0;
+		for(var i=0;i<trigger.cards.length;i++){
+			var type=get.type(trigger.cards[i]);
+			if(!player.countCards('h',{type:type})){
+				event.num1++;
+			}
+		}
+		if(event.num1<=0) event.finish();
+		"step 1"
+		player.line(trigger.player,'green');
+		player.discardPlayerCard(trigger.player,[1,event.num1],'he',true);
+	},
+	ai:{
+        expose:0.3,
+    },
+		},
+		"XSfujin":{
+ 	trigger:{
+		player:["phaseAfter"],
+	},
+	priority:2,
+	check:function (event,player){
+		if(player.isTurnedOver()) return true;
+		return player.countCards('h')>=player.hp;
+	},
+	content:function (){
+		"step 0"
+		player.turnOver();
+	},
+	group:["XSfujin_tu"],
+    subSkill:{
+        tu:{
+			trigger:{
+				player:"turnOverEnd",
+			},
+			direct:true,
+			filter:function (event,player){
+				if(player.isTurnedOver()) return false;
+				var num1=player.countCards('he');
+				return game.hasPlayer(function(current){
+					return current!=player&&get.distance(player,current)<=num1;
+				});
+			},
+			content:function(){
+				"step 0"
+				var num1=player.countCards('he');
+				player.chooseCardTarget({
+					filterCard:function(card){
+						return true;
+					},
+					position:'he',
+					selectCard:[0,num1],
+					selectTarget:1,
+					filterTarget:function(card,player,target){
+						var num1=Math.max(get.distance(player,target),0);
+						return player!=target&&num1==ui.selected.cards.length;
+					},
+					ai1:function(card){
+						return 7-get.value(card);
+					},
+					ai2:function(target){
+						var eff=get.damageEffect(target,_status.event.player,player);
+						return eff;
+					},
+					prompt:'复进：弃置X张牌对距离你为X的1名其他角色造成2点伤害'
+				});
+				"step 1"
+				if(result.bool){
+					player.discard(result.cards);
+					player.logSkill('XSfujin',result.targets[0]);
+					result.targets[0].damage(2,player,'nocard');
+
+				}
+			},
+			ai:{
+				expose:0.5,
+			},
+			sub:true,
+        },
+    },
+		},
+		"XSzhuanshan":{
+     trigger:{
+        global:"recoverBegin",
+    },
+    forced:true,
+	logTarget:'player',
+    filter:function (event,player){
+		return !player.countCards('h');
+    },
+    content:function (){
+		"step 0"
+		player.draw(2);
+		"step 1"
+		trigger.cancel();
+    },
+	ai:{
+        threaten:function (player,target){
+            if(!player.countCards('h')) return 1.5;			
+        },
+    },
+		},
 		"XSweidi1":{
     trigger:{
         source:"damageBegin2",
@@ -2439,7 +3094,7 @@ skill:{
 		"step 1"
 		if(result.bool) {
 			var targets=game.filterPlayer(function(current){
-				return player.canUse({name:'wugu'},current);
+				return lib.filter.targetEnabled2({name:'wugu'},player,current);
 			});
 			player.useCard({name:'wugu'},result.cards,targets);
 		}
@@ -2492,6 +3147,7 @@ skill:{
         player.logSkill('XShuanwang',event.targets);
     },
     ai:{
+		expose:0.4,
         effect:{
             target:function (card,player,target){
                 if(get.tag(card,'multineg')){
@@ -2979,12 +3635,11 @@ skill:{
 		"step 3"
 		if(result.index==0){
 			target.draw(3);
-			player.useCard({name:'sha'},target,false);
-			event.current.chooseUseTarget({name:"juedou"},true);
+			player.useCard({name:'sha',isCard:true},target,false);
 		}
 		else{
 			player.draw(3);
-			target.useCard({name:'sha'},player,false);
+			target.useCard({name:'sha',isCard:true},player,false);
 		}
     },
     ai:{
@@ -3101,8 +3756,7 @@ skill:{
 		if(event.card.name!='sha') return false;
 		if(!event.target||event.target==player) return false;
 		if(player.hasSkill('XSzongqin_temp')) return false;
-		var dis=get.distance(event.target,player,'attack');
-		if(dis>1) return false;
+		if(!event.target.inRange(player)) return false;
 		return player.countCards('h');
 	},
 	direct:true,
@@ -3988,7 +4642,7 @@ skill:{
 	priority:-1,
 	filter:function (event,player){
 		if(event.player==player) return false;
-		return get.distance(player,event.player,'attack')<=1;
+		return player.inRange(event.player);
 	},
 	check:function (event,player){
 		var att=get.attitude(player,event.player);
@@ -4170,7 +4824,7 @@ skill:{
 		'step 6'
 		if(!event.targets[0].countCards('e')) {
 			event.targets[0].damage(player);
-			player.useCard({name:'guohe'},event.targets[0]);
+			player.useCard({name:'guohe',isCard:true},event.targets[0]);
 		}
     },
 	ai:{
@@ -4369,9 +5023,8 @@ skill:{
 		"step 0"
 		//game.log(trigger.getParent());
 		var extar=game.filterPlayer(function(current){
-			var dis=get.distance(player,current,'attack');
 			if(current==player) return true;
-			return !trigger.targets.contains(current)&&dis<=1&&player.canUse(trigger.card,current);
+			return !trigger.targets.contains(current)&&player.inRange(current)&&player.canUse(trigger.card,current);
 		});
 		if(extar.length) {
 			trigger.targets.addArray(extar);
@@ -5885,7 +6538,7 @@ skill:{
 		}
 		"step 1"
 		if(result.bool) {
-			result.targets[0].useCard({name:'tao'},result.targets[0]);
+			result.targets[0].useCard({name:'tao',isCard:true},result.targets[0]);
 			player.addTempSkill('XSzhuzheng_temp');
 		}
 	},
@@ -6119,7 +6772,7 @@ skill:{
     filter:function (event,player){
 		if(!event.card||event.card.name!='sha'||!event.notLink()) return false;
 		return game.hasPlayer(function(current){
-			return current!=player&&get.distance(player,current,'attack')<=1;
+			return current!=player&&player.inRange(current);
 		});
     },
 	check:function (event,player){
@@ -6143,14 +6796,14 @@ skill:{
 	},
 	"prompt2":function (event,player){
 		var targets=game.filterPlayer(function(current){
-			return current!=player&&get.distance(player,current,'attack')<=1&&current.countCards('he');
+			return current!=player&&player.inRange(current)&&current.countCards('he');
 		});
 		return '是否弃置'+get.translation(targets)+'各1张牌，且对因此失去最后1张手牌的角色造成1点伤害。';
 	},
     content:function (){
 		"step 0"
 		event.targets=game.filterPlayer(function(current){
-			return current!=player&&get.distance(player,current,'attack')<=1&&current.countCards('he');
+			return current!=player&&player.inRange(current)&&current.countCards('he');
 		});
 		event.targets.sort(lib.sort.seat);
 		event.num1=0;
@@ -6710,8 +7363,7 @@ skill:{
     usable:1,
     audio:2,
     filterTarget:function (card,player,target){
-		var dis=get.distance(player,target,'attack');
-        return player!=target&&dis<=1&&target.countCards('h');
+		return player!=target&&player.inRange(target)&&target.countCards('h');
     },
 	filter:function (event,player){
 		return player.countCards('h');
@@ -8067,11 +8719,12 @@ skill:{
 	subSkill:{
         sha:{
 			audio:2,
-			trigger:{player:'useCard'},
+			trigger:{player:'useCard1'},
 			forced:true,
 			priority:999,
+			firstDo:true,
 			filter:function(event,player){
-				return event.card.name=='sha'&&!event.directHit.contains(event.target)&&player.hasSkill('jiu');
+				return event.card&&event.card.name=='sha'&&player.hasSkill('jiu');
 			},
 			logTarget:'targets',
 			content:function(){
@@ -8093,6 +8746,7 @@ skill:{
 			trigger:{player:'useCard'},
 			forced:true,
 			priority:999,
+			firstDo:true,
 			logTarget:'targets',
 			filter:function(event,player){
 				return event.card.name=='juedou'&&player.hasSkill('jiu');
@@ -8103,8 +8757,8 @@ skill:{
 					var map=trigger.customArgs;
 					if(!map[idt]) map[idt]={};
 					if(!map[idt].shaReq) map[idt].shaReq={};
-					if(!map[idt].shaReq[id]) map[idt].shaReq[id]=1;
-					map[idt].shaReq[id]++;
+					if(!map[idt].shaReq[idt]) map[idt].shaReq[idt]=1;
+					map[idt].shaReq[idt]++;
 				}
 			},
         },
@@ -9176,11 +9830,11 @@ skill:{
     filter:function (event,player){
 		if(player.storage.disableEquip==undefined||player.storage.disableEquip.length<1) return false;
 		return game.hasPlayer(function(current){
-			return get.distance(player,current,'attack')<=1;
+			return player.inRange(current);
 		});
     },
 	filterTarget:function (card,player,target){
-        return get.distance(player,target,'attack')<=1;
+        return player.inRange(target);
     },
     selectTarget:function (){
         var player=_status.event.player;
@@ -9388,7 +10042,7 @@ skill:{
                 "step 2"
                 player.chooseTarget('选择1名角色成为'+get.translation(trigger.card)+'的额外目标',function(card,player,target){
                     var trigger=_status.event.getTrigger();
-                    return player!=target&&target!=trigger.target;
+                    return player!=target&&target!=trigger.target&&lib.filter.targetEnabled2(trigger.card,player,target);
                 }).ai=function(target){
                     var player=_status.event.player;
                     var eff=get.effect(target,{name:'juedou'},player,player);
@@ -9397,8 +10051,8 @@ skill:{
                 "step 3"
                 if(result.bool){
                     player.line(result.targets[0],'green');
-					player.useCard(trigger.card,result.targets[0],false);
-                    //trigger.targets.push(result.targets[0]);
+					trigger.getParent().targets.add(result.targets[0]);
+					//player.useCard(trigger.card,result.targets[0],false);
                 }
             },
             sub:true,
@@ -9696,7 +10350,7 @@ skill:{
         }
         player.chooseTarget("经天：是否跳过"+pha+"视为对攻击范围内的一名其他角色使用一张不计入次数的【杀】？",function(card,player,target){
             if(player==target) return false;
-            return player.canUse({name:'sha'},target,false)&&get.distance(player,target,'attack')<=1;
+            return player.canUse({name:'sha'},target,false)&&player.inRange(target);
         }).set('ai',function(target){
             var trigger=_status.event.getTrigger();
             var player=_status.event.player;
@@ -9710,7 +10364,7 @@ skill:{
         "step 1"
         if(result.bool){
             player.logSkill('XSjingtian',result.targets);
-            player.useCard({name:'sha'},result.targets[0],false);
+            player.useCard({name:'sha',isCard:true},result.targets[0],false);
             trigger.cancel();
         }
     },
@@ -9844,7 +10498,7 @@ skill:{
     trigger:{
         player:"useCardToBefore",
     },
-    priority:16,
+    priority:199,
     check:function (event,player){
         var eff=get.effect(event.target,{name:'sha'},player,player);
         var eff1=get.effect(event.target,event.card,player,player);
@@ -9864,7 +10518,7 @@ skill:{
         var num1=player.actionHistory[player.actionHistory.length-1].useCard.length-1;
         player.actionHistory[player.actionHistory.length-1].useCard.splice(num1,1);
         "step 1"
-        player.useCard({name:'sha'},trigger.target,false);
+		player.useCard({name:'sha'},trigger.cards,trigger.target,false);
         "step 2"
         trigger.cancel();
     },
@@ -9986,9 +10640,10 @@ skill:{
 		else {
 			player.addTempSkill('XSfanlun_sha');
 		}
-		player.useCard(trigger.card,trigger.player,false);
 		"step 1"
-		trigger.cancel();
+		var pla=trigger.player;
+		trigger.player=player;
+		trigger.target=pla;
 	},
 	ai:{
 		effect:{
@@ -10115,8 +10770,8 @@ skill:{
         "step 1"   
         if(result&&result.bool&&result.links[0]){
             event.ShanNum=cards.length;
-            var card1={name:result.links[0][2],nature:result.links[0][3]};
-            player.useCard(card1,target,true);
+            //var card1={name:result.links[0][2],nature:result.links[0][3]};
+            player.useCard({name:result.links[0][2],nature:result.links[0][3],isCard:true},target,true);
         }
     },
     ai:{
@@ -10693,7 +11348,7 @@ skill:{
     },
     selectTarget:1,
     content:function (){
-        player.useCard({name:'sha'},target,false);
+        player.useCard({name:'sha',isCard:true},target,false);
         target.addSkill('XSpingluan_mark');
         target.storage.XSpingluan_mark=player;
         target.addTempSkill('XSpingluan_temp');
@@ -10908,12 +11563,12 @@ skill:{
                 event.goto(3);
             }
             else if(num2==1) {
-                player.useCard({name:'wuzhong'},player);
+                player.useCard({name:'wuzhong',isCard:true},player);
                 event.goto(3);
             }
             else if(num2==2) {
                 player.chooseTarget('对1名攻击范围内的其他角色造成1点伤害',function(card,player,target){
-                    return player!=target&&get.distance(player,target,'attack')<=1;
+                    return player!=target&&player.inRange(target);
                 }).ai=function(target){
                     var dameff=get.damageEffect(target,player,player);
                     return dameff;
@@ -11384,7 +12039,7 @@ skill:{
     },
     content:function (){
         "step 0"
-		player.useCard({name:'sha'},trigger.player,false);
+		player.useCard({name:'sha',isCard:true},trigger.player,false);
 		event.mark_player=trigger.player;
 		player.line(trigger.player,'black');
 		"step 1"
@@ -14117,7 +14772,7 @@ trigger:{
 	filter:function (event,player){
 		if(player.storage.XSpingrong>=3) return false;
 		if(event.player==player) return false;
-		return get.distance(player,event.player,'attack')<=1;
+		return player.inRange(event.player);
 	},
 	content:function (){
 		trigger.player.addTempSkill('XSpingrong');
@@ -14176,7 +14831,7 @@ trigger:{
 		"step 1"
 		var num=Math.max(2,player.storage.XSjirong.hp);
 		if(player.storage.XSjirong_count>=num) {
-			player.storage.XSjirong.useCard({name:'sha'},player,false);
+			player.storage.XSjirong.useCard({name:'sha',isCard:true},player,false);
 			player.storage.XSjirong_count=0;
 		}
 		else {
@@ -15017,7 +15672,7 @@ trigger:{
 		player.storage.XSyinzhi--;
 		player.syncStorage('XSyinzhi');
 		'step 1'
-		player.useCard({name:'jiu'},player);
+		player.useCard({name:'jiu',isCard:true},player);
     },
     ai:{
 		order:9,
@@ -15350,7 +16005,7 @@ trigger:{
 				minval=val;
 			}
 		}
-		player.chooseCardButton('交换对方1张手牌',target.getCards('h')).ai=function(button){
+		player.chooseCardButton('事竟：交换对方1张手牌，若其手牌花色数因此：增加，其摸2张牌；减少，你摸2张牌；不变，你与其各摸1张牌。',target.getCards('h')).ai=function(button){
 			return get.value(button.link,player,'raw')-minval;
 		}
 		"step 1"
@@ -15696,7 +16351,7 @@ trigger:{
 		if(player==target) return false;
 		if(ui.selected.targets.length==1){
 			if(ui.selected.targets[0].sex!=target.sex) return false;
-			return target.canUse({name:'juedou'},ui.selected.targets[0]);
+			return target.canUse({name:'juedou',isCard:true},ui.selected.targets[0]);
 		}
 		return true;
 	},
@@ -16023,7 +16678,7 @@ trigger:{
 		"step 4"
 		if(result.control){
 			player.storage.XSyonglue.push(result.control);
-			player.useCard({name:result.control},target,false);
+			player.useCard({name:result.control,isCard:true},target,false);
         }
 	},
 	ai:{
@@ -16613,7 +17268,7 @@ trigger:{
 		if(result.control){
 			player.disableEquip(result.control);
 			player.logSkill('XSjihu',target);
-			player.useCard({name:'sha'},target,false);
+			player.useCard({name:'sha',isCard:true},target,false);
 		}
 		else event.finish();
 	},
@@ -16994,7 +17649,7 @@ trigger:{
 		global:["shaBefore"],
 	},
 	filter:function (event,player){
-		if(player.isAlive()&&get.distance(event.player,player,'attack')<=1&&!player.hasSkill('XSmujun_temp')) {
+		if(player.isAlive()&&event.player.inRange(player)&&!player.hasSkill('XSmujun_temp')) {
 			return event.player!=player&&event.targets.contains(player)==false;
 		}
 		return false;
@@ -18023,7 +18678,7 @@ trigger:{
                 player.draw();
             }
             else{
-                player.useCard({name:'sha'},trigger.player,false);
+                player.useCard({name:'sha',isCard:true},trigger.player,false);
             }
         }
     },
@@ -18531,7 +19186,7 @@ trigger:{
 		if(!player.countCards('h')) return false;
 		if(!event.player.isAlive()) return false;
 		if(!event.card) return false;
-		return event.source&&event.source!=player&&event.player&&event.player!=player&&get.distance(player,event.player,'attack')<=1;
+		return event.source&&event.source!=player&&event.player&&event.player!=player&&player.inRange(event.player);
     },
     direct:true,
     content:function (){
@@ -18555,7 +19210,7 @@ trigger:{
 					trigger.player.addTempSkill('baiban');
 				}
 			}
-			player.useCard({name:'sha'},trigger.player,false);
+			player.useCard({name:'sha',isCard:true},trigger.player,false);
 			player.logSkill('XSzhulu',trigger.player);
 		}
     },
@@ -18676,7 +19331,7 @@ trigger:{
                     expose:0.5,
                     result:{
                         target:function (player,target){
-               return get.damageEffect(target,player);
+               return get.damageEffect(target,player,player);
             },
                     },
                 },
@@ -18735,7 +19390,7 @@ trigger:{
         });
         "step 2"
         if(result.bool){
-            player.useCard({name:'sha'},result.targets[0],false);
+            player.useCard({name:'sha',isCard:true},result.targets[0],false);
             game.delay();
         }
     },
@@ -18804,7 +19459,7 @@ trigger:{
 		}
 		"step 4"
 		if(player.storage.XSjianyi!=player.storage.XSjianyi2){
-			player.useCard({name:'sha'},target,false);
+			player.useCard({name:'sha',isCard:true},target,false);
 			player.storage.XSjianyi=[];
 			player.storage.XSjianyi2=[];
 		}
@@ -18964,7 +19619,7 @@ trigger:{
                 content:function (){
         "step 0"
         player.chooseTarget(get.prompt2('XSdaozu'),[1,player.getDamagedHp()],function(card,player,target){
-            return get.distance(player,target,'attack')<=1;
+            return player.inRange(target);
         },function(target){
             return -get.attitude(_status.event.player,target);
         });
@@ -20323,7 +20978,7 @@ trigger:{
                     event.current.chooseToDiscard('h',1,true);
                     game.delay();
                     event.current.line(player.storage.XSsijian,'green');
-                    event.current.useCard({name:'sha'},player.storage.XSsijian,'noai').animate=false;
+                    event.current.useCard({name:'sha',isCard:true},player.storage.XSsijian,'noai').animate=false;
                 }
                 event.goto(1);
             },
@@ -20433,7 +21088,7 @@ trigger:{
             player.draw(2);
             event.finish();
         }else{
-            event.target1.useCard({name:'juedou'},event.target2,'noai').animate=false;
+            event.target1.useCard({name:'juedou',isCard:true},event.target2,'noai').animate=false;
             game.delay(0.5);
         }
     },
@@ -22083,8 +22738,7 @@ trigger:{
 		}
 		"step 3"
 		if(result.bool) {
-            player.gain(result.cards[0]);
-            event.target1.$give(1,player);
+			player.gain(result.cards[0],event.target1,'giveAuto');
 			player.getStat().card.sha--;
 		}
 	},
@@ -22781,14 +23435,15 @@ trigger:{
 	}
             },
             "XSkedi":{
-     trigger:{
+   trigger:{
         target:"shaMiss",
+    },
+	filter:function (event,player){
+        return player.inRange(event.player);
     },
 	forced:true,
     content:function (){
-		if(player.canUse('sha',trigger.player)) {
-			player.chooseToUse({name:'sha'},trigger.player,-1,'克敌：是否对'+get.translation(trigger.player)+'使用一张杀？');
-		}
+		player.chooseToUse({name:'sha'},trigger.player,-1,'对'+get.translation(trigger.player)+'使用一张杀');
     },
 	ai:{
 		expose:0.3,
@@ -22804,7 +23459,8 @@ trigger:{
             trigger:{
                 source:"damageAfter",
             },
-            direct:true,
+            forced:true,
+            popup:false,
             filter:function (event){
                 return event.parent.parent.parent.parent.name=='XSkedi';
             },
@@ -23079,7 +23735,7 @@ trigger:{
             player.draw(2);
             event.finish();
         }else{
-            event.target1.useCard({name:'juedou'},event.target2,'noai').animate=false;
+            event.target1.useCard({name:'juedou',isCard:true},event.target2,'noai').animate=false;
             game.delay(0.5);
         }
     },
@@ -23539,7 +24195,7 @@ trigger:{
                 filter:function (event,player){
         if(player.storage.XSlunke.length>0) {
             return game.hasPlayer(function(current){
-                return get.distance(player,current,'attack')<=1;
+                return player.inRange(current);
             });
         }
         return false;
@@ -24166,7 +24822,7 @@ trigger:{
         return player.countCards('h')&&!player.hasSkill('XSyanshi_temp');
     },
                 filterTarget:function (card,player,target){
-        return player!=target&&target.countCards('h')&&get.distance(player,target,'attack')<=1;
+        return player!=target&&target.countCards('h')&&player.inRange(target);
     },
                 content:function (){
         'step 0'
@@ -24180,7 +24836,7 @@ trigger:{
             event.cards=get.cards();
             player.showCards(event.cards);
             if(get.type(event.cards[0])!='basic') {
-                player.useCard({name:'huogong'},event.target1,false);
+                player.useCard({name:'huogong',isCard:true},event.target1,false);
             }
             else player.addTempSkill('XSyanshi_temp');
             game.cardsDiscard(event.cards);
@@ -24190,7 +24846,7 @@ trigger:{
 				event.cards=get.bottomCards()[0];
 				player.showCards(event.cards);
 				if(get.type(event.cards)!='basic') {
-					player.useCard({name:'huogong'},event.target1,false);
+					player.useCard({name:'huogong',isCard:true},event.target1,false);
 				}
 				else player.addTempSkill('XSyanshi_temp');
 				game.cardsDiscard(event.cards);
@@ -24622,7 +25278,7 @@ trigger:{
                         content:function (){
                 player.storage.XSyisheng -=3;
                 player.syncStorage('XSyisheng');
-                trigger.player.useCard({name:'tao'},trigger.player);
+                trigger.player.useCard({name:'tao',isCard:true},trigger.player);
             },
                         ai:{
                             threaten:1.3,
@@ -24856,12 +25512,10 @@ trigger:{
     },
     audio:2,
 	logTarget:"player",
-    check:function (event,player){
-        return true;
-    },
+	frequent:true,
     filter:function (event,player){
 		if(player.storage.XSjiebing>=3) return false;
-		if(get.distance(player,event.player,'attack')<=1&&_status.currentPhase!=event.player&&player!=event.player) {
+		if(player.inRange(event.player)&&_status.currentPhase!=event.player&&player!=event.player) {
 			for(var i=0;i<event.cards.length;i++){
 				if(event.cards[i].original=='h'&&event.player.isAlive()&&!event.cards[i].isInPile()) return true;
 			}
@@ -26589,7 +27243,7 @@ trigger:{
             player.logSkill('XSjianzao',result.targets);
             var len=result.targets.length;
             for(var i=0;i<len;i++) {
-                player.useCard({name:'sha'},result.targets[i],false);
+                player.useCard({name:'sha',isCard:true},result.targets[i],false);
             }
             trigger.num-=len;
         }
@@ -27272,7 +27926,7 @@ trigger:{
                 filter:function (event,player){
         if(player.storage.XSchusai>=3) return false;
         if(event.parent.parent.name=='phaseDraw') return false;
-        if(get.distance(player,event.player,'attack')>1&&event.player!=player) {
+        if(!player.inRange(event.player)&&event.player!=player) {
             return event.cards&&event.cards.length>0
         }
         return false;
@@ -27826,7 +28480,7 @@ trigger:{
     },
                 check:function (event,player){
         return game.hasPlayer(function(current){
-            return current!=player&&get.distance(event.player,current,'attack')<=1&&get.attitude(player,current)<=0;
+            return current!=player&&event.player.inRange(current)&&get.attitude(player,current)<=0;
         });
     },
                 content:function (){
@@ -27944,7 +28598,7 @@ trigger:{
 	frequent:-1,
 	filter:function(event,player){
 		if(event.player==player) return false;
-		if(get.distance(player,event.player,'attack')<=1||get.distance(event.player,player,'attack')<=1) {
+		if(player.inRange(event.player)||event.player.inRange(player)) {
 			for(var i=0;i<event.cards.length;i++){
 				if(event.cards[i].original=='e'&&get.type(event.cards[i])=='equip'&&get.position(event.cards[i])=='d') return true;
 			}
@@ -28652,6 +29306,7 @@ trigger:{
 		if(!event.targets) return false;
 		if(event.player==player) return false;
 		if(event.card) {
+			if(event.card.name=='wuxie') return false;
 			var suit1=get.suit(event.card);
 			if(!suit1) return false;
 			var type=get.type(event.card);
@@ -28777,6 +29432,11 @@ translate:{
 	XS_xqwl:"先秦往烈",
 	XS_hxrj:"华夏人杰",
 	XS_swjg:"塞外金戈",
+	XS_mmqg:"骂名千古",
+	"XSzhaogao":"赵高",
+	"XSlaijunchen":"来俊臣",
+	"XSqinhui":"秦桧",
+	"XSyansong":"严嵩",
 	"XStianrangju":"田穰苴",
 	"XSzhusheng":"朱升",
 	"XScaobin":"曹彬",
@@ -28941,6 +29601,24 @@ translate:{
 	"XSyueyun":"岳云",
 	"XSliuche":"刘彻",
 	"XSlisi":"李斯",
+	"XSzhilu":"指鹿",
+	"XSzhilu_info":"转换技，每回合限1次，当1名角色使用基本牌或锦囊牌指定1名目标后，你可以弃置1张牌：1.用1张手牌替换此牌；2.为此牌重新指定目标；3.视为对所有成为过指鹿目标的角色使用1张杀。",
+	"XSgaizhao":"改诏",
+	"XSgaizhao_info":"当你受到伤害后，可以选择1项：1.使指鹿变为下一个状态；2.移除指鹿的一个效果并失去此技能。",
+	"XSluozhi":"罗织",
+	"XSluozhi_info":"当你使用杀指定目标后，可以为此杀选择任意个效果：造成的伤害为火伤害；将你和目标横置；伤害+1。若此杀被闪避，目标视为对你使用拥有这些效果的此杀。",
+	"XSxingyu":"兴狱",
+	"XSxingyu_info":"回合内你使用的第1张牌结算完成后，可以选择1项：使之不计入次数；本回合使用牌无距离限制。",
+	"XSduli":"毒吏",
+	"XSduli_info":"锁定技，你死亡时，将X张毒随机置入牌堆中，X为你所有牌数*2。",
+	"XSxuyou":"须有",
+	"XSxuyou_info":"每轮限1次，当1名其他角色使用装备牌后，你可令其选择1项：失去1点体力；弃置装备区所有牌。当1名角色濒死时，重置此技能次数。",
+	"XSxianyi":"陷异",
+	"XSxianyi_info":"其他角色不因此法弃置牌后，若你的手牌中没有此类型的牌，你可以弃置其至多X张牌，X为其弃置的此类牌数。",
+	"XSfujin":"复进",
+	"XSfujin_info":"结束阶段，你可以翻面；你从背面翻至正面后，可弃置X张牌对距离你为X的1名其他角色造成2点伤害。",	
+	"XSzhuanshan":"专擅",
+	"XSzhuanshan_info":"锁定技，当1名角色回复体力时，若你没有手牌，你取消之并摸2张牌。",	
 	"XSweidi1":"威敌",
 	"XSweidi1_info":"当你对横置状态对的角色造成伤害时，可使此伤害增加X，如此所有横置角色解除横置（X为场上横置角色数-1）。",	
 	"XSyanfa":"严法",
@@ -29220,7 +29898,7 @@ translate:{
 	"XStongyi":"同异",
 	"XStongyi_info":"出牌阶段限1次，你可以向1名未以此法指定过的其他角色展示你的手牌，并观看该角色手牌；若如此，你可以弃置其中1张基本牌并展示其中的非基本牌，若你未弃置牌，重置此技能使用次数。",
 	"XSfanlun":"反论",
-	"XSfanlun_info":"1名角色回合内，当你首次被指定为牌的目标时，若为普通锦囊牌/杀，你可以无效之并视为你对来源使用此牌；若如此，接下来你成为杀/普通锦囊牌的目标时，该牌结算2次。",
+	"XSfanlun_info":"1名角色回合内，当你首次被指定为牌的目标时，若为普通锦囊牌/杀，你可以交换此牌的使用者和目标；若如此，接下来你成为杀/普通锦囊牌的目标时，该牌结算2次。",
 	"XSmengjin":"猛进",
 	"XSmengjin_info":"出牌阶段限1次，你可以弃置任意数量的手牌视为对目标使用了任意1张杀，以此法使用的杀需等量的闪响应且无距离限制。",
 	"XSzhuiji":"追击",
@@ -30504,7 +31182,7 @@ game.import('card',function(){
         player.chooseToCompare(target).set('preserve','win').clear=false;
         "step 1"
         if(result.bool){
-            player.useCard({name:'sha'},target,false);
+            player.useCard({name:'sha',isCard:true},target,false);
             result.player.clone.moveDelete(player);
             result.target.clone.moveDelete(player);
         }
@@ -30695,7 +31373,7 @@ game.import('card',function(){
     },
                 content:function (){
         if(target.countCards('h','sha')){
-            target.useCard({name:'sha'},player);
+            target.useCard({name:'sha',isCard:true},player);
             var hs=target.getCards('h','sha');
             target.discard(hs);
         }
@@ -32071,7 +32749,7 @@ if(!lib.config.cards.contains('XS_card')) lib.config.cards.remove('XS_card');
 				"name":"血色衣冠","init":"1","item":{"1":"查看介绍","2":"<li>本扩展所涉及的角色为上溯春秋、下迄明末，跨度两千余年间中华大地上出现过的杰出历史人物。","3":"<li>本扩展技能强度与官方接近，略强于SP平均强度，除武将外还包括1张基本牌，8张锦囊牌，8张装备牌以及1个特殊模式，可联机。目前暂无配音支持。","4":"<li>本扩展附带群像（图鉴）模式，请于游戏模式中查看。"}
 		},
 		"XSupdate":{
-				"name":"版本：1.64","init":"1","item":{"1":"查看更新","2":"<li>新增角色：周勃、张汤、季布、曹彬、朱升、田穰苴","3":"<li>修复：武曌—技能名称错误、屈伸ai，狄仁杰—技能名称错误、神断ai，杨大眼—耀威ai，梁红玉—飞诏标记","4":"<li>新增《血色群像》模式，用于查看本扩展角色详细介绍，请于下方或模式选择界面打开。"}
+				"name":"版本：1.68","init":"1","item":{"1":"查看更新","2":"<li>新增角色：赵高、来俊臣、秦桧、严嵩","3":"<li>修复：樊哙—酒意不发动bug，配适新版本游戏","4":"<li>调整：樊哙血量降为4"}
 		},
 		"XSbingzhong":{
 			"name":'兵种模式',
@@ -32128,5 +32806,5 @@ if(!lib.config.cards.contains('XS_card')) lib.config.cards.remove('XS_card');
     author:"<li>作者：Wall•E    （QQ:1687113490）<li>技术支持：凉茶、永远的萌新<li>测试：辉烬贺流年、菁幽",
     diskURL:"",
     forumURL:"",
-    version:"1.64",
+    version:"1.68",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -401,7 +401,8 @@ skill:{
                 filterCard:function (){return false},
  selectCard:-1,
  viewAsFilter:function (player){return !player.isTurnedOver()},
-                viewAs:{name:links[0][2],nature:links[0][3]},                                    
+               // viewAs:{name:links[0][2],nature:links[0][3]},   
+                viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null,isCard:true},                                    
                 popname:true,
                 ignoreMod:true,
                 precontent:function(){
@@ -448,7 +449,7 @@ skill:{
             trigger.untrigger();
             trigger.responded=true;
          //   trigger.result={bool:true,card:{name:'sha'}}  
-            trigger.result={bool:true,card:{name:'sha'},isCard:true};    
+            trigger.result={bool:true,card:{name:'sha',isCard:true}};    
             player.logSkill('wwyj_qisi');
     },
             },
@@ -467,7 +468,7 @@ skill:{
             trigger.untrigger();
             trigger.responded=true;
           //  trigger.result={bool:true,card:{name:'shan'}} 
-            trigger.result={bool:true,card:{name:'shan'},isCard:true};                              
+            trigger.result={bool:true,card:{name:'shan',isCard:true}};                              
             player.logSkill('wwyj_qisi'); 
     },
                 
@@ -1236,7 +1237,7 @@ skill:{
            event.target.discard(result.links[0]);
            trigger.responded=true;
           // trigger.result={bool:true,card:{name:'shan'}};  
-           trigger.result={bool:true,card:{name:'shan'},isCard:true};                                           
+           trigger.result={bool:true,card:{name:'shan',isCard:true}};                                           
            player.logSkill('wwyj_jiguang');     
            game.playwwyj(['wwyj_jiguang1','wwyj_jiguang2'].randomGet());                                
         }       
@@ -1283,7 +1284,7 @@ skill:{
            event.target.discard(result.links[0]);
            trigger.responded=true;
            //trigger.result={bool:true,card:{name:'sha'}};   
-           trigger.result={bool:true,card:{name:'sha'},isCard:true};                                            
+           trigger.result={bool:true,card:{name:'sha',isCard:true}};                                            
            player.logSkill('wwyj_jiguang');     
            game.playwwyj(['wwyj_jiguang1','wwyj_jiguang2'].randomGet());                 
         }       
@@ -1722,7 +1723,7 @@ skill:{
                         trigger.untrigger();
                         trigger.responded=true;
                        // trigger.result={bool:true,card:{name:'shan'}};
-                        trigger.result={bool:true,card:{name:'shan'},isCard:true};
+                        trigger.result={bool:true,card:{name:'shan',isCard:true}};
                         player.lose(result.cards,ui.special);
                         player.$throw(result.cards);                        
                         player.logSkill('wwyj_jinzhu');   
@@ -1758,7 +1759,7 @@ skill:{
                         trigger.untrigger();
                         trigger.responded=true;
                       //  trigger.result={bool:true,card:{name:'sha'}};
-                        trigger.result={bool:true,card:{name:'sha'},isCard:true}; 
+                        trigger.result={bool:true,card:{name:'sha',isCard:true}}; 
                         player.lose(result.cards,ui.special);
                         player.$throw(result.cards);            
                         player.logSkill('wwyj_jinzhu');    
@@ -1826,7 +1827,7 @@ skill:{
                 selectCard:1,
                 position:'he',
                 viewAsFilter:function (player){return player.isAlive()},
-                viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null},                                    
+                viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null,isCard:true},                                    
                 popname:true,
                 ignoreMod:true,
                 precontent:function (){                            
@@ -1980,7 +1981,8 @@ skill:{
 							check:function (card){
 								return 6-get.value(card);
 							},			
-							viewAs:{name:links[0][2],nature:links[0][3]},
+						//	viewAs:{name:links[0][2],nature:links[0][3]},
+						viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null,isCard:true},    
 							onuse:function (result,player){
 		   			 game.playwwyj('wwyj_jilve1'); 
 								player.storage.wwyj_jilve.add(result.card.name);
@@ -3055,7 +3057,7 @@ translate:{
             "wwyj_qisi_info":"当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌",
 		    "wwyj_lengyus":"冷雨",
 			"wwyj_lengyu":"冷雨",
-			"wwyj_lengyu_info":"当你使用杀时，你可获得目标角色的一张手牌，若如此做，若此杀造成伤害后，你须交给该角色一张手牌",
+			"wwyj_lengyu_info":"当你使用杀时，你可获得目标角色的一张手牌，若如此做，此杀造成伤害后，你须交给该角色一张手牌",
 			"wwyj_lengyu2":"冷雨",
 			"wwyj_lengyu2_info":"你须交给该角色一张手牌",
 			"wwyj_junshen2":"军神",
@@ -3065,7 +3067,7 @@ translate:{
 			"wwyj_junshen":"军神",
             "wwyj_junshen_info":"出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具",
 		    "wwyj_jisi":"即死",
-            "wwyj_jisi_info":"你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力",
+            "wwyj_jisi_info":"你的回合开始时，你令所有体力值为1的其他角色依次失去一点体力",
 		    "wwyj_huanming":"换名",
             "wwyj_huanming_info":"锁定技，摸牌阶段开始时，若你的手牌数多于5张，你跳过摸牌阶段",
 		    "wwyj_qiaoji":"巧技",
@@ -3589,10 +3591,10 @@ var liblist = [
 			   ['<span class="bluetext">向死</span>：锁定技，每当你造成或受到一点伤害获得一个“废”标记，标记达到五个“废”获得技能【而生】并失去此技能<br><span class="bluetext">而生</span>：锁定技，每当你进入濒死状态时，弃置一枚“废”标记，回复体力至两点'],
 			   ['<span class="bluetext">偷师</span>：出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始<br><span class="bluetext">求学</span>：觉醒技，若你已发动至少3次偷师，准备阶段，你回复1点体力并获得技能【高产】<br><span class="bluetext">高产</span>：你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零'],
 			   ['<span class="bluetext">烟雨</span>：当一名其他角色失去武器牌后，你可选择其中的一张立即使用之<br><span class="bluetext">兵谋</span>：锁定技，你的防御距离与你使用的【杀】的目标上限均等于你的攻击范围'],			   			   
-			   ['<span class="bluetext">即死</span>：你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力<br><span class="bluetext">强抗</span>：锁定技，你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌'],
+			   ['<span class="bluetext">即死</span>：你的回合开始时，你令所有体力值为1的其他角色依次失去一点体力<br><span class="bluetext">强抗</span>：锁定技，你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌'],
 			   ['<span class="bluetext">巧技</span>：每名角色的回合限一次，当一名角色使用主动技技能后，你可以摸两张牌然后再弃置一张手牌<br><span class="bluetext">换名</span>：锁定技，摸牌阶段开始时，若你的手牌数多于5张，你跳过摸牌阶段'],
 			   ['<span class="bluetext">透凉</span>：结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合开始时，不能使用或打出基本牌<br><span class="bluetext">抗性</span>：当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调'],
-			   ['<span class="bluetext">冷雨</span>：当你使用杀时，你可获得目标角色的一张手牌，若如此做，若此杀造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具'],
+			   ['<span class="bluetext">冷雨</span>：当你使用杀时，你可获得目标角色的一张手牌，若如此做，此杀造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具'],
 			   ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每名角色的回合限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],
 			   
 			   
@@ -3725,5 +3727,5 @@ var liblist = [
     author:"凉茶",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":[],"card":[],"skill":[]}}})

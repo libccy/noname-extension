@@ -19,10 +19,10 @@ extension["官渡之战"]={
 
 extension["文武英杰"]={
     author:"凉茶",
-    intro:"<li>本扩展是全新的作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-03-13",
+    intro:"<li>本扩展是全新的作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-03-14",
     size:"18MB",
     netdisk:"",
-    version:1.1,
+    version:1.2,
     files:[
      "extension.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyjjishatexiao.mp3",
 		"wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3",

@@ -274,29 +274,30 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			"wwyj_shijian":["female","wei",3,["wwyj_touliang","wwyj_kangxing"],[]],
 			"wwyj_lengyus":["male","shu",3,["wwyj_lengyu","wwyj_junshen"],[]],
 			"wwyj_wenyu":["male","wei",3,["wwyj_qisi","wwyj_miaoji"],[]],
+			"wwyj_zhaonies":["male","shu",4,["wwyj_zhaonie"],[]],
 			
 },
 characterIntro:{
                 	"wwyj_shuihu":"水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品",
                  	"wwyj_chengxuyuan":"橙续缘（程序猿），一位专业的付费代写的远古代扩展大神，代表扩展有《代码搜索器》、《特效扩展》、《势力边框》、《吧友列传》（第一代作者包）、《官渡之战》、《诸侯伐董》、《欢乐斗地主》、《狗年乱斗》、《圣者为王》等等，其中前三个扩展流传甚广，尤其是《代码搜索器》，圈内皆称之为“神器”，为制作扩展者必备",
 					"wwyj_pipi":"皮皮……一位远古代扩展大神，擅长制作挑战boss类扩展，写过不少花里胡哨、强度高、搞怪、不按常理出牌的扩展，代表扩展有《神话》、《传说》、《暴躁AI》、《闯关模式》、《武林绝学》、《德玛西亚》等等",		
-					"wwyj_Sukincen":"小苏，一位远古代扩展大神，原ID叫Sukincen，圈内习惯称呼他为“小苏”，无名杀扩展交流群②的首任群主，同时负责游戏内获取扩展的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计",	
+					"wwyj_Sukincen":"小苏，一位远古代扩展大神，原ID叫Sukincen，圈内习惯称呼他为“小苏”，无名杀扩展交流群②的首任群主，同时负责游戏内获取扩展的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能，人物技能新颖独特，契合度极高，同时配音齐全，还有击杀特效、新增卡牌等。技能强度方面，个别武将怼常规BOSS都不虚。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计",	
 					"wwyj_liangcha":"凉茶，本扩展作者，曾任无名杀扩展交流②群的群主，玩过几年三国杀，接触无名杀后，在Sukincen的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过近六十个扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）",	
 					"wwyj_wzszhaoyun":"我只是赵云，简称：赵云，摘自一位老玩家的回忆：一代嚣张跋扈、自带嘲讽的传奇玩家，代更过《极略三国》（虽然只是说说而已），曾是水乎钦点的代更者并立他为小吧主，其却叫嚣要废除扩展功能……据说此人是间接导致水乎停止写新版无名杀的罪魁祸首",	
 					"wwyj_lunhuizhong":"轮回中的消逝者，呲牙哥的首席忠实粉丝，曾对呲牙哥和签到有迷之执着，平时潜水于各大群暗中观察追随呲牙哥的行踪。一直关注着无名杀的发展和各个扩展作者的动态，对大部分无名杀的扩展及其作者很了解。虽然经常在群发“( •̥́ ㉨ •̀ू )嘤嘤嘤~”，但大家都忍着不会跟他计较。会写一些代码并接替维护呲牙哥的扩展",	
 					"wwyj_ziyage":"呲牙哥，《秦时明月》、《沧海横流》、《天行九歌》等扩展的作者，无名杀扩展交流群①的群主，曾对无名杀素材收集总结、游戏推广作出过不少贡献，在圈内有不小的声望，曾被“我只是赵云”针对，几乎所有人都支持呲牙哥，终以“我只是赵云”被剥夺小吧主的地位并被踢出贴吧群告终。呲牙哥后来因进修学习而渐渐消失在玩家的视野中",	
 					"wwyj_kanpoyiqie":"看破一切，一位拥有专业编程技术的远古代扩展作者，同时对三国杀DIY有专业的见解，通常以各种专业理论刷屏唬住众人。曾任无名杀扩展交流群②的群主，对群管理甚严，其扩展特点多为巧妙清奇，代表扩展有《无心之举》、《格林笔记》、《艾克斯》等",	
-					"wwyj_daxiongxiaimao":"大熊小猫，习称之为“大熊猫”，一位三国杀DIY爱好者，设计了《金庸群侠传》扩展近两百个人物，并由太上大牛（落影逝尘）等人写代码制作完成。有专业的摄影技术，目前被派往大凉山开展精准扶贫工作",	
-					"wwyj_kelejiabing":"可乐加冰一位元老级别的扩展大神，主要的扩展作品为《极略三国》、《女孩不哭》，同时出过不少教程，后因考研而隐退了",	
+					"wwyj_daxiongxiaimao":"大熊小猫，习称之为“大熊猫”，一位三国杀DIY爱好者，设计了《金庸群侠传》扩展近两百个人物，并由太上大牛（落影逝尘）等人写代码制作完成，这个大型扩展系列虽然诞生时间不长，但凭借着精炼、系统的技能设计，迅速传播开来，获得众多玩家一致的好评。该扩展对金庸武侠的人物进行了大总结，并将其能力、事迹翻译成技能，让他们在无名杀里快意恩仇。大熊小猫有专业的摄影技术，目前在开展精准扶贫工作",	
+					"wwyj_kelejiabing":"可乐加冰一位元老级别的扩展大神，主要的扩展作品为《极略三国》、《女孩不哭》，同时出过不少教程，为后来摸索者指引了方向，为无名杀扩展代码作出了巨大的贡献。极略三国复刻了三国kill（后改名为极略三国）的武将，相当于将别人的游戏整个搬进了无名杀来！技能新颖，且与人物的历史事迹高度契合，武将总体强度相对平衡且约等于SP将水平。同时作为早期扩展，可玩性极高。可乐后因考研而隐退了",	
 					"wwyj_huijin":"辉烬贺流年，一位新生代扩展作者，喜欢制作扩展并为此付出了不少努力，技术也日益精湛。2019年底不幸遭遇车祸，手术成功后一直卧床，期间仍坚持制作扩展。代表扩展作品有《辉烬贺流年》等",		
 					"wwyj_shijian":"诗笺，一位中生代扩展作者，曾化名过雪碧、透心凉、冰波水微、独者自饮酒，常年活跃于多个无名杀群，传闻是《作者包》的作者神座的徒弟。其爱好钻研艰涩的非常规代码，尤其是创造抗性与破解抗性的代码，最近又迷上特效。代表扩展有《龙族》、《十万个冷笑话》、《军争加强版》、《曹操传》、《小试炼》、《蜀汉中兴》以及第三代作者包《群英荟萃》等",
 					"wwyj_xuebi":"雪碧，一位中生代扩展作者，后化名过诗笺、透心凉、冰波水微、独者自饮酒，常年活跃于多个无名杀群，传闻是《作者包》的作者神座的徒弟。其爱好钻研艰涩的非常规代码，尤其是创造抗性与破解抗性的代码，最近又迷上特效。代表扩展有《龙族》、《十万个冷笑话》、《军争加强版》、《曹操传》、《小试炼》、《蜀汉中兴》以及第三代作者包《群英荟萃》等",
 			        "wwyj_maliao":"苏婆玛丽奥，一位热爱键社的中生代扩展大神，曾写过《新服杂碎》、《键杀》、《文和乱武》等扩展。水乎短暂回坑时，将无名杀的代更任务交给了他，其对无名杀的后续新发展作出了巨大的贡献，圈内声望颇高",		
 			        "wwyj_remaliao":"苏婆玛丽奥，一位热爱键社的中生代扩展大神，曾写过《新服杂碎》、《键杀》、《文和乱武》等扩展。水乎短暂回坑时，将无名杀的代更任务交给了他，其对无名杀的后续新发展作出了巨大的贡献，圈内声望颇高",								
-					"wwyj_taishangdaniu":"太上大牛，一位中生代扩展大神，化名过“落影逝尘”，喜欢在群里交流代码技术，曾写过《三国时代》扩展，后来义写《金庸群侠传》扩展中的大部分角色，为人较为谦虚低调，深为大家赞颂",		
+					"wwyj_taishangdaniu":"太上大牛，一位中生代扩展大神，化名过“落影逝尘”，喜欢在群里交流代码技术，曾写过《三国时代》扩展，后来义写《金庸群侠传》扩展中的大部分角色，这个大型扩展系列虽然诞生时间不长，但凭借着精炼、系统的技能设计，迅速传播开来，获得众多玩家一致的好评。该扩展对金庸武侠的人物进行了大总结，并将其能力、事迹翻译成技能，让他们在无名杀里快意恩仇。太上大牛为人较为谦虚低调，深为大家赞颂",		
 					"wwyj_jiguangs":"极光，原ID：Aurora，一位元老级的超级大神，掌握着非常专业、精湛的编程技术，极光写过非常多的扩展，包括多种多样的模式、武将、功能，同时开发出全新联机框架等，主要作品有《无双杀》、《雷金阴洪石乐》、《阴雷》、《阴阳杀》、《奥拉星S》、《奈何花落》、《万世神兽》、《乱世佳人》等，其大部分的作品已收录在《扩展ol》一个扩展里，其中最具创意的是卡战模式，全新的玩法，完全可成为独立的游戏",
 					"wwyj_danwuyunxi":"淡雾云曦，群名：一心强化老神将，老神将也能1穿7，中生代扩展作者，长驻无名杀扩展交流群①，其作品也主要在此群发布更新，圈内习惯称呼他为“老神将”，因其代表作品《混沌界》（原名《圣神包》），以将普通将重新设计加强成神将为主，总体强度颇高，粉丝也不少。据闻其曾在群里冒死擦边“开车”，得外号“老司机”，个性有点洒脱不羁，但对制作扩展又非常认真，虽然经常因为更新得慢被人说为鸽子，每次更新都会书写一段颇具文采的更新说明",		
-					"wwyj_xingyunnvshen":"幸运女神，原ID：骑着二乔上貂蝉，资深老玩家，无名杀贴吧群管理员.本扩展中的技能为其本人设计并由本人制作",	
+					"wwyj_xingyunnvshen":"幸运女神，原ID：骑着二乔上貂蝉，资深老玩家，无名杀贴吧群管理员。本扩展中的技能为其本人设计并由本人制作",	
 					"wwyj_feicheng":"废城，无名杀资深老玩家，也是最早玩无名杀的玩家之一，贴吧群的群主，热爱无名杀，对游戏的发展历程很熟悉，最近自发收集整理皮肤素材。本扩展中的技能皆为其本人设计并由本人制作",	
 			        "wwyj_wali":"瓦力（Wall•E），是集技能设计、历史文学、优秀的编写代码技术等于一身的新生代扩展作者，短期内便学会制作扩展，并写了大量的武将。旷世巨作《血色衣冠》，设计的人物贯穿中华上下五千年，技能构思新颖、巧妙，环环相扣的联动让人玩得爱不释手。本扩展中的瓦力的技能为其亲自设计，本人稍作调整",			
 					"wwyj_yanyumoran":"烟雨墨染，一名中生代扩展作者，有很强的技能设计与编写代码的能力，曾为编写扩展废寝忘食、通宵达旦，非常努力，其代表作品为《权倾三国》、《乱世天下》和《上兵伐谋》，特别是《上兵伐谋》，将三国杀人物的技能再升华，融合了三国杀各种各样的技能类型，该作是一个优秀的大型扩展",					
@@ -316,9 +317,30 @@ characterTitle:{
 					"wwyj_shenzuo":"◎sagiri",
 			 		},
 skill:{	
+        "wwyj_zhaonie":{                     
+                trigger:{                   
+                    source:"damageBegin",
+                },
+                audio:"ext:文武英杰:1",                     
+                filter:function (event,player){
+        return event.card.isCard&&event.card.name=='sha'&&player.countCards('he',{subtype:'equip1'});
+    },
+                content:function (){        
+          'step 0'        
+           player.chooseCardButton('选择要弃置的武器牌',player.getCards('he',{subtype:'equip1'}),[1,Math.min(2,trigger.source.countCards('he',{subtype:'equip1'}))]).set('ai',function(button){                    
+                 return get.subtype(button.link)=='equip1';
+            });                        
+            'step 1'
+          if(result.bool){                
+              player.discard(result.links);
+              trigger.num+=result.links.length;            
+          }
+          else event.finish();                            
+    },
+            },
         "wwyj_miaoji":{
                 enable:"chooseToUse",
-				usable:1,
+				round:1,
 				audio:["kanpo",2],
                 filterCard:function (){return false},
                 selectCard:-1,
@@ -378,30 +400,30 @@ skill:{
             }
             return ui.create.dialog('奇思',[list,'vcard'],'hidden');
         },
-                    check:function (button){
-            var player=_status.event.player;
-            var card={name:button.link[2],nature:button.link[3]};
-            if(game.hasPlayer(function(current){
-                return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
-            })){
-                switch(button.link[2]){
-                    case 'tao':return 5;
-                    case 'jiu':return 3.01;
-                    case 'shan':return 3.01;
-                    case 'sha':
-                        if(button.link[3]=='fire') return 2.95;
-                        else if(button.link[3]=='fire') return 2.92;
-                        else return 2.9;
-                }
-            }
-            return 0;
-        },
+                    check:function(button){
+						var player=_status.event.player;
+						var card={name:button.link[2],nature:button.link[3]};
+						if(game.hasPlayer(function(current){
+							return player.canUse(card,current)&&get.effect(current,card,player,player)>0;
+						})){
+							switch(button.link[2]){
+								case 'tao':return 5;
+								case 'jiu':return 3.01;
+								case 'shan':return 3.01;
+								case 'sha':
+									if(button.link[3]=='fire') return 2.95;
+									else if(button.link[3]=='fire') return 2.92;
+									else return 2.9;
+							}
+						}
+						return 0;
+					},
                     backup:function (links,player){
             return {
                 filterCard:function (){return false},
  selectCard:-1,
  viewAsFilter:function (player){return !player.isTurnedOver()},
-               // viewAs:{name:links[0][2],nature:links[0][3]},   
+              // viewAs:{name:links[0][2],nature:links[0][3]},   
                 viewAs:{name:links[0][2],nature:links[0][3],suit:null,number:null,isCard:true},                                    
                 popname:true,
                 ignoreMod:true,
@@ -417,10 +439,11 @@ skill:{
         },
                 },
                 ai:{
+                    //order:5,
                     order:function (){
             var player=_status.event.player;
             var event=_status.event;
-            if(!player.storage.wwyj_qisi.jiu&&event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
+            if(event.filterCard({name:'jiu'},player,event)&&get.effect(player,{name:'jiu'})>0){
                 return 3.1;
             }
             return 2.9;
@@ -2099,7 +2122,7 @@ skill:{
                 },                
                 forced:true,
                 content:function (){
-                game.playwwyj('wwyj_jinxiu'); 
+                game.playwwyj('wwyj_jinxiu1'); 
                 player.draw(player.storage.wwyj_jinxiu);
                 player.storage.wwyj_jinxiu=0;
                 player.unmarkSkill('wwyj_jinxiu');
@@ -2149,7 +2172,8 @@ skill:{
             return -get.attitude(player,target);
         });        
            'step 1' 
-        if(result.bool){        
+        if(result.bool){   
+            player.logSkill('wwyj_ciya');     
             trigger.num--;           
             event.targets=result.targets;
         }
@@ -2448,10 +2472,10 @@ skill:{
             game.playwwyj('wwyj_kanpo'); 
         }             
         if(list2=='wwyj_caizhi3'){
-            game.playwwyj('wwyj_relianying'); 
+            game.playwwyj('wwyj_jilve1'); 
         }     
         if(list2=='wwyj_caizhi4'){
-            game.playwwyj('wwyj_limu'); 
+            game.playwwyj('wwyj_lilun1'); 
         }                                        
        "step 1"   
         trigger.num--;
@@ -2462,6 +2486,7 @@ skill:{
                     player:"phaseBegin",
                 },
                 group:"wwyj_caizhidamage",
+				derivation:["wwyj_kazhan","wwyj_miaoji","wwyj_jilve","wwyj_lilun"],
                 forced:true,
                 priority:2020,
                 filter:function (event,player){
@@ -2485,10 +2510,10 @@ skill:{
                     game.playwwyj('wwyj_kanpo'); 
                 }             
                 if(list2=='wwyj_caizhi3'){
-                    game.playwwyj('wwyj_relianying'); 
+                    game.playwwyj('wwyj_jilve1'); 
                 }     
                 if(list2=='wwyj_caizhi4'){
-                    game.playwwyj('wwyj_limu'); 
+                    game.playwwyj('wwyj_lilun1'); 
                 }                                                             
     },
             },           
@@ -2498,9 +2523,9 @@ skill:{
                 locked:true,
                 intro:{
                     name:"画",
-                    content:"视为拥有【立牧】",
+                    content:"视为拥有【理论】",
                 },
-                group:["xinfu_limu"],
+                group:["wwyj_lilun"],
             },
             "wwyj_caizhi3":{
                 marktext:"书",
@@ -2508,9 +2533,9 @@ skill:{
                 locked:true,
                 intro:{
                     name:"书",
-                    content:"视为拥有界【连营】",
+                    content:"视为拥有界【极略】",
                 },
-                group:["relianying"],
+                group:["wwyj_jilve","wwyj_jilve_delete"],
             },
             "wwyj_caizhi2":{
                 forced:true,
@@ -2518,9 +2543,9 @@ skill:{
                 marktext:"棋",
                 intro:{
                     name:"棋",
-                    content:"视为拥有【看破】",
+                    content:"视为拥有【妙计】",
                 },
-                group:["kanpo"],
+                group:["wwyj_miaoji"],
             },
             "wwyj_caizhi1":{
                 forced:true,
@@ -2528,9 +2553,9 @@ skill:{
                 marktext:"琴",
                 intro:{
                     name:"琴",
-                    content:"视为拥有【清弦】",
+                    content:"视为拥有【卡战】",
                 },
-                group:['qingxian_jilie','qingxian_rouhe','qingxian_dying'],
+                group:['wwyj_kazhan'],
             },       
         "wwyj_fengliu":{
             audio:"ext:文武英杰:1",
@@ -3044,9 +3069,12 @@ translate:{
                         
          	  //"wwyj_moban":"模板",
           //  "wwyj_moban_info":"模板",
+          "wwyj_zhaonies":"前世造孽",
+            "wwyj_zhaonie":"造孽",
+            "wwyj_zhaonie_info":"你使用杀对其他角色造成伤害时，你可以弃置X张坐骑牌令此伤害+X (0<X<3)",            
 		    "wwyj_wenyu":"文彧",
 		    "wwyj_miaoji":"妙计",
-            "wwyj_miaoji_info":"回合外每名角色的回合限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之",
+            "wwyj_miaoji_info":"回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之",
 		    "wwyj_qisi_shan":"奇思",
             "wwyj_qisi_shan_info":"当你需要打出一张闪时，若你的武将牌为正面朝上，你可以将武将牌翻面，视为打出之",
 		    "wwyj_qisi_sha":"奇思",
@@ -3197,7 +3225,7 @@ translate:{
             "wwyj_caizhi3":"书",
             "wwyj_caizhi4":"画",
             "wwyj_caizhi":"才智",
-            "wwyj_caizhi_info":"锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：琴：清弦；棋：看破；书：界连营；画：立牧",
+            "wwyj_caizhi_info":"锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、妙计、极略、理论",
             "wwyj_fengliu":"风流",
             "wwyj_fengliu_info":"游戏开始时、你进入游戏（对决）、你的回合开始、结束时，你可从五名随机的女性中选择一位当作／替换你的副将并获得其所有的技能，直至重新发动此技能",
             "wwyj_baozao":"暴躁",
@@ -3574,7 +3602,7 @@ var liblist = [
 			   ['<span class="bluetext">接单</span>：出牌阶段限一次，其他角色可“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌'],
 			   ['<span class="bluetext">嘻皮</span>：锁定技，当你成为其他角色的牌的唯一目标时，你获得场上随机一名其他角色的一张牌<br><span class="bluetext">暴躁</span>：限定技，当你进入濒死状态时，你可令除你外的所有角色依次对伤害来源使用一张【杀】（限杀一轮）。然后本回合内每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌'],
 			   ['<span class="bluetext">风流</span>：游戏开始时、你的回合开始、结束时，你可从五名随机的女性中选择一位当作／替换你的副将并获得其所有的技能，直至重新发动此技能'],
-			   ['<span class="bluetext">才智</span>：锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：琴：清弦；棋：看破；书：界连营；画：立牧<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
+			   ['<span class="bluetext">才智</span>：锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、妙计、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
 			   ['<span class="bluetext">叫嚣</span>：锁定技，当你受到杀造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一<br><span class="bluetext">罪魁</span>：锁定技，当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌'],
 			   ['<span class="bluetext">签到</span>：当一名其他角色判定牌生效后，你可获得其一张牌<br><span class="bluetext">嘤怪</span>：当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（闪电、乐不思蜀、兵粮寸断）<br><span class="bluetext">潜追</span>：觉醒技，当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能'],
 			   ['<span class="bluetext">呲牙</span>：摸牌阶段开始时，你可少摸一张牌，然后视为对攻击范围内包含有你的任意名其他角色各使用一张杀<br><span class="bluetext">进修</span>：锁定技，结束阶段你摸X张牌（X为你本回合造成的伤害数）'],
@@ -3595,7 +3623,7 @@ var liblist = [
 			   ['<span class="bluetext">巧技</span>：每名角色的回合限一次，当一名角色使用主动技技能后，你可以摸两张牌然后再弃置一张手牌<br><span class="bluetext">换名</span>：锁定技，摸牌阶段开始时，若你的手牌数多于5张，你跳过摸牌阶段'],
 			   ['<span class="bluetext">透凉</span>：结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合开始时，不能使用或打出基本牌<br><span class="bluetext">抗性</span>：当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调'],
 			   ['<span class="bluetext">冷雨</span>：当你使用杀时，你可获得目标角色的一张手牌，若如此做，此杀造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具'],
-			   ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每名角色的回合限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],
+			   ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],
 			   
 			   
 			   

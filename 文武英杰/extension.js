@@ -4101,5 +4101,5 @@ var liblist = [
     author:"凉茶",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.3",
 },files:{"character":[],"card":[],"skill":[]}}})

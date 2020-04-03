@@ -48,12 +48,12 @@ extension["文武英杰"]={
 };
 
 extension["群英会"]={
-	intro:"<li>更新：修复BUG。当前版本为1.109  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-03-01",
+	intro:"<li>更新：修复BUG。当前版本为1.110  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-04-03",
 	author:"小苏&&咫尺天涯",
 	netdisk:"https://pan.baidu.com/s/1hrR0p3u",
 	forum:"https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
 	size:"90MB",
-    version:1.109,
+    version:1.110,
     files:
 
 ["extension.js","wms_background.jpg","wms_backgroundmusic.mp3","wms_shixing_background.jpg",
@@ -643,7 +643,7 @@ extension["新国战"]={
 		"package.js"
     ]
 }; */
-
+/*
 extension["逐鹿中原"]={
     author:"苏婆玛丽奥",
     intro:"逐鹿中原活动场的卡牌包",
@@ -657,7 +657,7 @@ extension["逐鹿中原"]={
 		"xinfu_zhuluzhongyuan.png"
     ]
 }; 
-
+*/
 
 
 extension["圣神包"]={
@@ -743,7 +743,7 @@ extension["暴躁AI"]={
     ]
 }; 
 
-/*
+
 extension["耀世三国"]={
     author:"咫尺天涯<br>技能设计：丫奶",
     intro:"源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。修复技能不显示的BUG。另外，作者已脱坑，期待有大佬来接手",
@@ -762,7 +762,7 @@ extension["耀世三国"]={
     ]
 }; 
 
-*/
+
 extension["秦时明月"]={
     author:"呲牙哥",
     intro:"<li>更新：修改盖聂技能，李斯，范增等技能修复<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",

@@ -1817,7 +1817,7 @@ else{
         return get.attitude(player,event.source)<=0;
     },
                 filter:function (event,player){
-             return event.card&&(event.card.name=='sha'||event.card.name=='juedou');
+             return event.card&&event.card.isCard&&(event.card.name=='sha'||event.card.name=='juedou');
     },
                 content:function (){ 
           if(player.hp>trigger.player.hp){
@@ -2751,7 +2751,7 @@ event.targets.sort(lib.sort.seat);
 				},
 				logTarget:'player',
                 filter:function (event,player){      
-        return event.card&&event.card.name=='sha';
+        return event.card&&event.card.isCard&&event.card.name=='sha';
     },
                 content:function (){   
              	trigger.cancel();
@@ -3645,7 +3645,7 @@ event.targets.sort(lib.sort.seat);
                 },
                // mark:true,
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 init:function (player){
         player.storage.xwj_xwugeng_yinguo=0;
@@ -3998,7 +3998,7 @@ content:function (){
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
                 content:function (){                                 
@@ -4021,7 +4021,7 @@ translate:{
             "xwj_xwugeng_poji":"破极",
             "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1并摸等同失去的体力值张牌，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
             "xwj_xwugeng_juyi":"聚义",
-            "xwj_xwugeng_juyi_info":"锁定技，你每使用一张牌后摸一张牌",
+            "xwj_xwugeng_juyi_info":"锁定技，你使用的牌没距离和次数限制，每使用一张牌后摸一张牌",
             "xwj_xwugeng_anyue":"暗月",
             "xwj_xwugeng_anyue_info":"暗月凶光。锁定技，你对一名其他角色使用牌（借刀杀人除外）时，额外指定所有已废除防具栏的其他角色",
           	 "xwj_xwugeng_bailian":"白莲圣王",
@@ -4819,7 +4819,7 @@ skill:{
     forced:true,
    // popup:false,
     filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&player.isAlive();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&player.isAlive();
     },
     content:function (){
     game.playSu(['xwj_xhuoying_chengshang1','xwj_xhuoying_chengshang2'].randomGet());	
@@ -5020,7 +5020,7 @@ var chat=['人只有要守护的东西，才会变得更强大','必要时，我
                         forced:true,
                         group:["xwj_xhuoying_yehua1","xwj_xhuoying_yehua2"],
                         filter:function (event,player){        
-              return event.card&&event.card.nature=='thunder';          
+              return event.card&&event.card.isCard&&event.card.nature=='thunder';          
            },
                         content:function (){  
                         var chat=['我……身体麻痹，动不了了','既生水月，何生雷遁？'].randomGet();
@@ -6352,7 +6352,7 @@ xwj_xhuoying_guazhang:{
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
                 content:function (){       
@@ -7459,7 +7459,7 @@ xwj_xhuoying_guazhang:{
                 },
                 forced:true,
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },    
                 content:function (){        
     var chat=['凯老师，请你认同我吧！','在木叶村的下忍中，目前我是最强的'].randomGet();
@@ -8401,7 +8401,7 @@ xwj_xhuoying_guazhang:{
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();
+        return event.card&&event.card.isCard&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink();
     },
                 forced:true,
                 content:function (){       
@@ -9170,7 +9170,7 @@ if(skill!='xwj_jisha'){
 							'step 1'					
 							if(result.bool){
 							player.logSkill('xwj_xhuoying_huomeng');
-							event.card=result.links[[0]];
+							event.card=result.links[0];
 							player.discard(event.card);
         player.addTempSkill('xwj_xhuoying_huomeng2',{player:'phaseBegin'});
         player.markSkill('xwj_xhuoying_huomeng2',{player:'phaseBegin'});
@@ -9517,7 +9517,7 @@ if(skill!='xwj_jisha'){
                 },
                 priority:15,
                 filter:function (event,player){
-        return event.card&&(event.card.name=='juedou')&&event.notLink();
+        return event.card&&event.card.isCard&&(event.card.name=='juedou')&&event.notLink();
     },
                 forced:true,
                 content:function (){       
@@ -10062,7 +10062,7 @@ var chat=['我有那么谦虚？看来也不错','岚遁……'].randomGet();
                 },
                 forced:true,
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 content:function (){        
     var chat=['不管你镀金还是镀银，都得剥落','告诫你：不要以貌取人'].randomGet();
@@ -10324,7 +10324,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
                 audio:"ext:群英会:2",
@@ -10504,7 +10504,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
      //   return get.attitude(player,event.player)>0;
   //  },
                 filter:function (event,player){
-        return event.target.isAlive()&&player!=event.player&&event.card&&event.card.name=='sha'&&event.notLink()&&event.cards[0]&&event.cards[0]==event.card;
+        return event.target.isAlive()&&player!=event.player&&event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink()&&event.cards[0]&&event.cards[0]==event.card;
     },
                 content:function (){         
               'step 0'
@@ -11283,7 +11283,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                         },
                         priority:15,
                         filter:function (event,player){
-                return event.card&&event.card.name=='sha'&&event.notLink()&&event.player!=player&&player.countCards('h',{type:"basic"});
+                return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink()&&event.player!=player&&player.countCards('h',{type:"basic"});
             },
                         direct:true,
                         content:function (){
@@ -14130,7 +14130,7 @@ skill:{
                 direct:true,
                 priority:6,		
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha';
+        return event.card&&event.card.isCard&&event.card.name=='sha';
     },
                 content:function (){
         "step 0"
@@ -14446,7 +14446,7 @@ else{
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 forced:true,
                 audio:"ext:群英会:3",
@@ -16136,7 +16136,7 @@ return current.hp<=0;
                 direct:true,
 			           	priority:2018,
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
     },
                 content:function (){
         "step 0"
@@ -16195,7 +16195,7 @@ return current.hp<=0;
                     global:"useCard",
                 },
                 filter:function (event,player){
-        return event.player!=player&&event.card&&event.card.name=='nanman'&&event.notLink();
+        return event.player!=player&&event.card&&event.card.isCard&&event.card.name=='nanman'&&event.notLink();
     },
                 direct:true,
                 content:function (){
@@ -16458,7 +16458,7 @@ return current.hp<=0;
                     source:"damageBegin",
                 },
                 filter:function (event,player){
-        return event.card&&event.card.name=='sha'&&get.color(event.card)=='black'&&event.notLink();
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&get.color(event.card)=='black'&&event.notLink();
     },
                 forced:true,
                 content:function (){
@@ -16891,7 +16891,7 @@ event.target.draw(event.num1);
         player.storage.xwj_xsanguo_jugong=[];
     },
                 filter:function (event,player){
-        return event.card&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink()                
+        return event.card&&event.card.isCard&&(event.card.name=='sha'||event.card.name=='juedou')&&event.notLink()                
  &&_status.currentPhase!=player;
    
     },
@@ -17525,7 +17525,7 @@ var num=game.countPlayer(function(current){
 						player.storage.tian=true;
 					},
                 filter:function (event,player){
-        return event.card&&player!=event.source;
+        return event.card&&event.card.isCard&&player!=event.source;
     },
                 content:function (){  
         'step 0'
@@ -18411,7 +18411,7 @@ audio:"ext:群英会:1",
     priority:55,
     filter:function (event,player){
         if(event._notrigger.contains(event.player)) return false;
-        return event.card&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('he')>0;
+        return event.card&&event.card.isCard&&event.card.name=='sha'&&event.notLink()&&event.player.countCards('he')>0;
     },
     content:function (){
         trigger.player.chooseToDiscard(true,'he');
@@ -18656,8 +18656,11 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     ui.backgroundMusic.src=lib.assetURL+'extension/群英会/wms_backgroundmusic.mp3';    
     setInterval(function(){
 			ui.backgroundMusic.src= lib.assetURL+"extension/群英会/wms_backgroundmusic.mp3";
-				},320500)
-		               
+				},320500);
+		   ui.backgroundMusic.addEventListener('ended',function(){
+				ui.backgroundMusic.src= lib.assetURL+"extension/群英会/"+lib.config.wms_backgroundmusic+".mp3";
+				ui.backgroundMusic.play();
+			});            
     // game.playSu('wms_backgroundmusic'); 
 			break;	
 			}
@@ -18724,5 +18727,5 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
     author:"★Sukincen★<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.109",
+    version:"1.110",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -608,7 +608,7 @@ extension["国战补充"]={
 	   "xsjieyuan.mp3","xsshuizhen.mp3","xsshuizhen2_11.mp3","xsshuizhen2_12.mp3","xsshuizhen2_21.mp3","xsshuizhen2_22.mp3","xsshuizhen2_31.mp3","xsshuizhen2_32.mp3",
     ]
 }; */
-
+/*
 extension["凉茶"]={
     author:"凉茶",
     intro:"<li>更新：已删掉其他角色不能翻回正面的效果<li>内含一个武将和一个模式，开启该模式后重启游戏生效：每轮开始时所有角色随机替换武将牌",
@@ -618,7 +618,7 @@ extension["凉茶"]={
     files:[
      "extension.js","lc_liangcha.jpg"
     ]
-}; 
+}; */
 /*
 extension["新国战"]={
     author:"苏婆玛丽奥",

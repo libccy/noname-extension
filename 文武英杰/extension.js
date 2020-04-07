@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",content:function (config,pack){
  // ---------------------------------------group------------------------------------------//
     lib.group.push('wwyjsha');
     lib.translate.wwyjsha='<font color=#f00>杀</font>';   
@@ -214,9 +214,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
  	  	},	
 	}
 	lib.skill._diechat={
-		trigger:{player:'die'},
-        forced:true,    
-        forceDie:true,    
+		trigger:{player:'dieBegin'},
+        forced:true,     
+       filter:function (event,player){
+            return event.source;
+        },                
         content:function (){					
 			trigger.source.say(['明年的今日就是你的忌日','跟我斗？你还嫩了点'].randomGet());
 			player.say(['没有耕坏的田，只有累死的牛','戎马一生，竟败于……你手','我在修罗地狱等着你，哈哈……'].randomGet());
@@ -224,14 +226,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	}
 	lib.skill._damagechat={
 		trigger:{player:'damageAfter'},		
-        forced:true,        
+        forced:true,  
+        filter:function (event,player){
+            return event.source;
+        },      
         content:function (){					
 			player.say(['忍一时越忍越气，退一步退无可退','这仇，我记下了','君子报仇，十年未晚，咱们走着瞧'].randomGet());
 			trigger.source.say(['被打了吧？早就叫你不要装逼了','出来混，记住不要太嚣张','看我怎么收拾你'].randomGet());
  	  	},	
 	}
 	}
-// ---------------------------------------击杀特效------------------------------------------//				   
+// ---------------------------------------wwyj_jishatexiao------------------------------------------//				   
 		  if(config.wwyj_jishatexiao){		
 		    lib.skill._wwyj_jishatexiao={
                 trigger:{
@@ -285,9 +290,224 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
        },4000);		  				                         		                     	                         		                     
                 },
                 }
-      }          
-      
-  /*  if(config.wwyj_xinname=='hide'){
+      }        
+  // ---------------------------------------BOSS------------------------------------------//				       
+     lib.skill._lc_shiji={
+        trigger:{global:'gameStart',player:['enterGame','phaseBegin','phaseEnd']},
+        forced:true,
+        unique:true,
+        locked:true,
+        charlotte:true,
+        priority:Infinity,
+        filter:function (event,player){
+   return game.hasPlayer(function(current){
+			return current.name=='wwyj_liangchax';
+		});
+    },
+    content:function (){   
+				if(player.name!='wwyj_liangchax'){
+			if(player.maxHp>16) player.maxHp=2;      
+        player.update();
+			player.addSkill('baiban');
+			player.clearSkills();
+			player.turnOver(true);
+		}
+     },
+     }	 
+	 	 	
+	lib.skill._lc_shanghai={
+        trigger:{player:'damageBegin'},
+        forced:true,
+        unique:true,     
+        charlotte:true,
+        priority:2019,
+		filter:function (event,player){
+		   return event.source&&event.source.name=='wwyj_liangchax';
+    },
+     content:function (){        		
+		player.loseMaxHp(trigger.num);	
+		trigger.num+=2*trigger.num;
+     },
+     }
+	 
+	 lib.skill._lc_mopai={
+        trigger:{player:'phaseDrawBegin'},
+        forced:true,
+        unique:true,
+        charlotte:true,
+        locked:true,
+        priority:2019,       
+		filter:function (event,player){
+		   return player.name=='wwyj_liangchax';
+    },
+     content:function (){     
+		var num=game.countPlayer(function(current){
+			return current.isDamaged();
+		});
+		trigger.num+=num;		
+     },
+     }
+	 
+	 lib.skill._lc_siwang={
+        trigger:{player:['damageEnd','dieBegin','phaseDiscardEnd']},
+        forced:true,
+        unique:true,
+        charlotte:true,
+        locked:true,
+        priority:Infinity,     
+		filter:function (event,player){
+		   return player.name=='wwyj_liangchax';
+    },
+     content:function (){  
+     'step 0' 	  
+		trigger.cancel();
+		'step 1'
+		if(player.maxHp<16){
+		player.maxHp=Infinity;
+		player.hp=Infinity;
+		player.update();
+		}
+     },
+     }
+     
+	 lib.skill._lc_juli={
+	    trigger:{player:'useCard'},
+				forced:true,
+				charlotte:true,
+				unique:true,
+				filter:function (event,player){
+					return player.name=='wwyj_liangchax'&&get.type(event.card)=='trick';
+				},
+				content:function(){
+					trigger.nowuxie=true;
+				},
+        mod:{
+        globalTo:function (from,to,distance){
+            if(to.name=='wwyj_liangchax') return distance+Infinity;
+        },
+		globalFrom:function(from,to,distance){
+			if(from.name=='wwyj_liangchax') return distance-Infinity;
+		},
+		cardUsable:function(card,player,num){
+			if(player.name=='wwyj_liangchax') return Infinity;
+		},
+		targetEnabled:function(card,player,target,now){						
+				if(target.name=='wwyj_liangchax'&&player!=target) return false;						
+					},
+		selectTarget:function(card,player,range){
+			var type=get.type(card);
+                if(type!='delay'){
+			if(card.name!='jiedao'&&card.name!='wuzhong'&&card.name!='wuxie'&&player.name=='wwyj_liangchax'&&range[1]!=-1) range[1]+=Infinity;
+				}
+		},			
+        },
+     }  
+   // ---------------------------------------open boss------------------------------------------//				 
+      if (config.wwyj_normalize) {
+			lib.arenaReady.push(function() {
+				var wwyj_boss = lib.characterPack['wenwuyingjie'];
+				for (i in wwyj_boss) {
+					var wwyj_xu = wwyj_boss[i][4];
+					if (wwyj_xu.indexOf("boss") >= 0) {
+						wwyj_xu[wwyj_xu.indexOf("boss")] = '';
+						wwyj_xu[wwyj_xu.indexOf("bossallowed")] = '';
+					}				
+				}
+			});
+		}
+	 // ---------------------------------------wwyj_yinglingfuhun------------------------------------------//		
+		   if(config.wwyj_yinglingfuhun){		
+          lib.skill._wwyj_yinglingfuhun={              
+                trigger:{
+                    global:"gameStart",
+                    player:"enterGame",
+                },
+                forced:true,
+                priority:100,
+                fixed:true,
+                filter:function (event,player){
+        return player.isAlive();
+    },
+                content:function (){
+       "step 0"                  
+        var list;
+        if(_status.connectMode){
+           list=get.charactersOL(function(i){
+               return lib.character[i][1]!='shen';
+           });
+        }
+        else{        
+        list=get.gainableCharacters(function(info){
+                return info[1]==['shen','shu','wei','wu','qun','wwyjsha'].randomGet();
+            });
+        }
+					player.chooseButton(true).set('ai',function(button){
+						return get.rank(button.link,true)-lib.character[button.link][2];
+					}).set('createDialog',['请选择一名武将当你的附灵武将',[list.randomGets(5),'character']]);			
+                "step 1"                    
+                 if(result.bool){
+                 var name=result.links[0];
+        var list=[];
+        var skills=lib.character[result.links[0]][3];
+            for(var j=0;j<skills.length;j++){
+                if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
+                    !player.hasSkill(skills[j]
+                      &&!lib.skill[skills[j]].zhuSkill)){
+                    list.push(skills[j]);
+                }
+            }     
+        player.addAdditionalSkill('_wwyj_yinglingfuhun',list);
+        player.markCharacter(name,null,true,true);
+                  }      
+    },
+                ai:{
+                    order:8,
+                },
+            }
+            }
+    // ---------------------------------------wwyj_sjwjp------------------------------------------//				               
+      if(config.wwyj_sjwjp){		
+    lib.skill._wwyj_sjwjp={
+     trigger:{
+                    global:"roundStart",
+                },
+          forced:true,          
+                content:function (){
+                    "step 0"                
+                    var targets=game.filterPlayer();                   
+                    targets.sort(lib.sort.seat);
+                    event.targets=targets;                
+                    "step 1"
+                    event.num=0;          
+                    "step 2"
+                    if(num<event.targets.length){
+                          var list;
+        if(_status.connectMode){
+           list=get.charactersOL(function(i){
+               return lib.character[i][1]!='shen';
+           });
+        }
+        else{        
+        list=get.gainableCharacters(function(info){
+                return info[1]==['shen','shu','wei','wu','qun'].randomGet();
+            });
+        }
+        var name=list.randomGet();        
+        var a=event.targets[num].hp;
+        var b=event.targets[num].maxHp;
+        event.targets[num].init(name);
+        event.targets[num].hp=a; 
+        event.targets[num].maxHp=b;
+        event.targets[num].update();        
+        event.num++;
+        event.redo();
+        }
+        else event.finish();     
+                },
+    }
+    }
+     // ---------------------------------------★------------------------------------------//				 
+    if(config.wwyj_xinname=='hide'){
 			get.slimName=function(str){
 				var str2=lib.translate[str];
 				if(!str2) return '';
@@ -296,7 +516,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				}
 				return get.verticalStr(str2,true);
 			}
-		}*/
+		}
 																																																																																																																				
 // ---------------------------------------wujianglang------------------------------------------//		
 	
@@ -315,9 +535,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				connect:true,
 				characterSort:{
 	 		wenwuyingjie:{
-	 		    "wwyj_zhizun":["wwyj_shuihu","wwyj_remaliao"],
-				"wwyj_zuozhe":["wwyj_shennais","wwyj_yitiaoxianyu","wwyj_qianshangs","wwyj_zhaonies","wwyj_lengyus","wwyj_shenzuo","wwyj_xuebi","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_taishangdaniu","wwyj_maliao","wwyj_shijian","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangcha","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing"],
-				"wwyj_fensi":["wwyj_wenyu","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
+	 		    "wwyj_zhizun":["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax"],
+				"wwyj_zuozhe":["wwyj_yiwangs","wwyj_shennais","wwyj_yitiaoxianyu","wwyj_qianshangs","wwyj_zhaonies","wwyj_lengyus","wwyj_shenzuo","wwyj_xuebi","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_taishangdaniu","wwyj_maliao","wwyj_shijian","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing"],
+				"wwyj_fensi":["wwyj_liushas","wwyj_wenyu","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
 			},
 		},
 				character:{
@@ -325,7 +545,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             "wwyj_chengxuyuan":["male","wwyjsha",3,["wwyj_jiedan"],[]],
             "wwyj_pipi":["female","wwyjsha",3,["wwyj_xipi","wwyj_baozao"],[]],
             "wwyj_Sukincen":["male","wwyjsha",4,["wwyj_fengliu"],[]],
-            "wwyj_liangcha":["female","wwyjsha",3,["wwyj_caizhi","wwyj_daixue"],[]],
+            "wwyj_liangchas":["female","wwyjsha",3,["wwyj_caizhi","wwyj_daixue"],[]],
             "wwyj_wzszhaoyun":["male","wwyjsha",5,["wwyj_jiaoxiao","wwyj_zuikui"],[]],
             "wwyj_lunhuizhong":["male","wwyjsha",3,["wwyj_qiandao","wwyj_yingguai","wwyj_qianzhui"],[]],
             "wwyj_ziyage":["male","wwyjsha",3,["wwyj_ciya","wwyj_jinxiu"],[]],
@@ -351,14 +571,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_qianshangs":["male","wwyjsha",3,["wwyj_qianshang","wwyj_tuikeng"],[]],
 				"wwyj_yitiaoxianyu":["male","wwyjsha",3,["wwyj_xianyu","wwyj_weixin"],[]],
 				"wwyj_shennais":["female","wwyjsha",3,["wwyj_shennai","wwyj_keai"],[]],
-			
+				"wwyj_yiwangs":["female","wwyjsha",4,["wwyj_fenghua","wwyj_yiwang"],[]],
+				"wwyj_liushas":["male","wwyjsha",4,["wwyj_liusha"],[]],
+			  "wwyj_liangchax":["female","shen",Infinity,["wwyj_liangcha","wwyj_fanghua","wwyj_meiying"],["boss"]],
 },
 characterIntro:{
                 	"wwyj_shuihu":"水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品",
                  	"wwyj_chengxuyuan":"橙续缘（程序猿），一位专业的付费代写的远古代扩展大神，代表扩展有《代码搜索器》、《特效扩展》、《势力边框》、《吧友列传》（第一代作者包）、《官渡之战》、《诸侯伐董》、《欢乐斗地主》、《狗年乱斗》、《圣者为王》等等，其中前三个扩展流传甚广，尤其是《代码搜索器》，圈内皆称之为“神器”，为制作扩展者必备",
 					"wwyj_pipi":"皮皮……一位远古代扩展大神，擅长制作挑战boss类扩展，写过不少花里胡哨、强度高、搞怪、不按常理出牌的扩展，代表扩展有《神话》、《传说》、《暴躁AI》、《闯关模式》、《武林绝学》、《德玛西亚》等等",		
 					"wwyj_Sukincen":"小苏，一位远古代扩展大神，原ID叫Sukincen，圈内习惯称呼他为“小苏”，无名杀扩展交流群②的首任群主，同时负责游戏内获取扩展的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能，人物技能新颖独特，契合度极高，同时配音齐全，还有击杀特效、新增卡牌等。技能强度方面，个别武将怼常规BOSS都不虚。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计",	
-					"wwyj_liangcha":"凉茶，本扩展作者，曾任无名杀扩展交流②群的群主，玩过几年三国杀，接触无名杀后，在Sukincen的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过近六十个扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）",	
+					"wwyj_liangchas":"凉茶，本扩展作者，曾任无名杀扩展交流②群的群主，玩过几年三国杀，接触无名杀后，在Sukincen的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过近六十个扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）",	
 					"wwyj_wzszhaoyun":"我只是赵云，简称：赵云，摘自一位老玩家的回忆：一代嚣张跋扈、自带嘲讽的传奇玩家，代更过《极略三国》（虽然只是说说而已），曾是水乎钦点的代更者并立他为小吧主，其却叫嚣要废除扩展功能……据说此人是间接导致水乎停止写新版无名杀的罪魁祸首",	
 					"wwyj_lunhuizhong":"轮回中的消逝者，呲牙哥的首席忠实粉丝，曾对呲牙哥和签到有迷之执着，平时潜水于各大群暗中观察追随呲牙哥的行踪。一直关注着无名杀的发展和各个扩展作者的动态，对大部分无名杀的扩展及其作者很了解。虽然经常在群发“( •̥́ ㉨ •̀ू )嘤嘤嘤~”，但大家都忍着不会跟他计较。会写一些代码并接替维护呲牙哥的扩展",	
 					"wwyj_ziyage":"呲牙哥，《秦时明月》、《沧海横流》、《天行九歌》等扩展的作者，无名杀扩展交流群①的群主，曾对无名杀素材收集总结、游戏推广作出过不少贡献，在圈内有不小的声望，曾被“我只是赵云”针对，几乎所有人都支持呲牙哥，终以“我只是赵云”被剥夺小吧主的地位并被踢出贴吧群告终。呲牙哥后来因进修学习而渐渐消失在玩家的视野中",	
@@ -382,9 +604,12 @@ characterIntro:{
 				    "wwyj_wenyu":"文彧，也叫“吾名影觞伤”、“诸葛均”，一位三国杀DIY爱好者，无名杀扩展交流群③的群主，无名杀资深玩家，也玩极略三国，曾与冷雨合作制作军神包的部分系列武将。本作中文彧的技能均来自其本人设计投稿，原设计由于过强，本人稍作平衡后制作而成",
  				"wwyj_zhaonies":"造孽，全名叫：前世造多了孽，一位远古代的扩展作者，喜欢玩《崩坏3》，性情直爽，敢怒敢言，对不喜欢的东西会直接开启吐槽模式。代表作品有《配音扩展》、《民间卡牌》。2016-2018年间的无名杀，很多武将是缺配音的，配音扩展弥补了配音上的不足，在那个时代几乎人人都安装此扩展，风靡一时。另外，民间卡牌扩展是那时候专属禁传的扩展，很少人真正玩过，该扩展收集了不少DIY卡牌，有兴趣的可以搜索体验一下",					
 	 			"wwyj_qianshangs":"浅觞，习惯称其为“浅”，贴吧ID后来先后名为：tanyuanjkl、夜风，一位传说中的元老级别的扩展作者，与可乐加冰并列，曾发表过AI教程、game.js里的黑科技等多篇教程，扩展作品有《聊天拓展》、《武将AI》，尤其是《武将AI》，其大幅度提升了AI的智能，曾在圈内轰动一时，追者甚众，但其也开了付费扩展的先河，引发了大争议，甚至为此，浅受到了“我只是赵云”的疯狂诋毁与攻击，“我只是赵云”恬不知耻地扬言叫嚣“你（浅）出一个扩展，我就抄一个”……另外，水乎老大为了避免无名杀扩展付费获利的法律风险，对无名杀进行大刀阔斧的修改，该扩展被迫下架……浅因此事再加上毕业工作而离坑隐退",			
-					"wwyj_yitiaoxianyu":"一条咸鱼，也曾名为“永远的萌新”、“→_→”，一位新生代扩展作者，拥有比较扎实、全面的代码技术。其真实身份比较可疑，应为某位大神（可能是冷雨）的小号，因为其突然空降来到无名杀这个圈子，自称是名“萌新”，但出道即巅峰，写了一堆教程，众所周知，能出教程的都是大佬，尔后其又接写《耀世三国》等扩展，种种事实证明其是一名伪萌新。代表作品还有《西沉的胡思乱想》、《灵枢包》",
+					"wwyj_yitiaoxianyu":"一条咸鱼，也曾名为“永远的萌新”、“→_→”，一位新生代扩展作者，拥有比较扎实、全面的代码技术。其真实身份比较可疑，应为某位大神的小号，因为其突然空降来到无名杀这个圈子，自称是名“萌新”，但出道即巅峰，写了一堆教程，众所周知，能出教程的都是大佬，尔后其又接写《耀世三国》等扩展，种种事实证明其是一名伪萌新。代表作品还有《西沉的胡思乱想》、《灵枢包》",
 					"wwyj_shennais":"神奈，又名“东平车幻玲”，圈内习惯称呼她为“学妹”，是一位远古代的扩展作者，对扩展有独特的写法，其代表作为《朔包》，以高体力上限与高伤害著称。另外，神奈给人印象较深刻的是其随和、可爱的一面，这也是技能“可爱”的创作思路来源，而技能“神奈”略显得无厘头（本来是想设计一个骚操作类的技能的），实则是在本人在创作完“可爱”后灵感枯竭时无意中测试了一局发现，当触发“可爱”时，友方给了几张杀，正好挂连弩，然后又杀一波，紧接着杀完来触发来了几张杀……始料未及的契合令本人感到非常意外与兴奋，故设计了一个可提升杀的使用次数的技能，这正是技能“神奈”的来由",
-					//	"wwyj_liangcha":"简介模板",										
+					"wwyj_yiwangs":"一瞬间遗忘，一位远古代的扩展作者，拥有非常精湛的扩展代码技术，开发了第一个大型扩展——《风华绝代》，尽管它曾饱受过争议，但仍无法掩盖它身上那耀眼的光芒！该扩展武将众多，在改版武将方面，它将官方三国杀大部分的武将重新设计成全新的星武将，涅槃重生后的武将令人眼前一亮，啧啧称奇。另外风华绝代还有英雄联盟系列和挑战BOSS，尤其是BOSS远近闻名，简直成了BOSS的标杆，它的强大引来众多玩家挑战。”一瞬间遗忘“曾与”我只是赵云“之间有私人恩怨，在“我只是赵云”的再三挑衅下，在2018年夏时集中爆发，引爆了整个无名杀圈子的舆论，双方阵营闹得不可交加，甚至连水乎老大都被牵扯进来，最终导致无名杀的停更，该事件可谓是无名杀史上产生影响最大的事件之一",
+					"wwyj_liushas":"流沙，一位元老级的资深老玩家，为早期无名杀的素材收集作出了不少贡献，热爱无名杀这个游戏，并且经常出面维护无名杀的声誉",					
+					"wwyj_liangchax":"这个是boss凉茶，可进挑战模式中挑战她！（注：本武将及本扩展不含任何赋空等抗性代码）",	
+					//	"wwyj_moban":"简介模板",										
 						     		
 												},
 characterTitle:{
@@ -395,10 +620,128 @@ characterTitle:{
 					"wwyj_danwuyunxi":"老神将",
 					"wwyj_wali":"Wall•E",
 					"wwyj_shenzuo":"◎sagiri",
+					"wwyj_shennais":"学妹",
 			 		},
 skill:{	
+
+        "wwyj_liusha":{                     
+                trigger:{                   
+                    player:"loseAfter",
+                },					               
+                audio:["qixi",2], 
+				direct:true,
+                filter:function (event,player){
+         return player!=_status.currentPhase;		
+    },
+                content:function (){        
+            'step 0'			
+       player.chooseTarget('流沙',1,lib.translate.wwyj_liusha_info,function(card,player,target){
+            return target.countCards('hej');
+        }).set('ai',function(target){
+			if(target.countCards('j')) return get.attitude(_status.event.player,target);
+            return -get.attitude(_status.event.player,target);            
+        });
+        'step 1'
+        if(result.bool){ 
+		    player.logSkill('wwyj_liusha');
+		    player.line(result.targets[0],'green');
+            player.discardPlayerCard(result.targets[0],'hej',true); 
+			if(!player.countCards('h')){
+				player.draw();
+			}
+            }   
+            else{
+               event.finish();
+            }									
+    },
+            },
+         "wwyj_yiwang":{                     
+                trigger:{                   
+                    player:"shaMiss",
+                },			               				
+                check:function (event,player){
+				if(event.target.isTurnedOver()) return get.attitude(player,event.target)>0;	
+        return get.attitude(player,event.target)<0;
+    },
+                audio:["miji",2], 
+				prompt:function (event,player){					
+					return '是否令'+get.translation(event.target)+'翻面？';
+				},
+                filter:function (event,player){
+        return event.card&&event.card.isCard&&event.card.name=='sha';
+    },
+                content:function (){                  
+            trigger.target.turnOver();                        
+    },
+            },
+			"wwyj_fenghua3":{},
+			"wwyj_fenghua2":{
+                mark:'character',
+				onremove:true,
+				intro:{
+					content:'到$的距离视为1'
+				},
+                mod:{
+                    globalFrom:function (from,to){
+            if(to==from.storage.wwyj_fenghua2){
+                return -Infinity;
+            }
+        },
+                },
+            },
+        "wwyj_fenghua1":{                     
+                trigger:{                   
+                    player:"shaBegin",
+                },				
+                check:function (event,player){
+                if(get.attitude(player,event.target)<0&&event.target.isTurnedOver()) return 1;
+        return get.attitude(player,event.target)<0;
+    },
+                audio:["jueqing",2], 				
+                filter:function (event,player){
+           return true;
+        //return event.target.hasSkill('wwyj_fenghua3');
+        // return event.target==player.storage.wwyj_fenghua2;		
+    },
+                content:function (){        
+            trigger.directHit=true;                        
+    },
+            },
+			"wwyj_fenghua":{
+                audio:["lieren",2],
+                usable:1,
+                enable:"phaseUse",					
+                filterTarget:function (card,player,target){
+        return player!=target&&target.countCards('h')>0;
+    },
+                filter:function (event,player){
+        return player.countCards('h')>0;
+    },
+                content:function (){
+        "step 0"
+        player.chooseToCompare(target);                       
+        "step 1"
+        if(result.bool){                
+            //target.addTempSkill('wwyj_fenghua3');            
+            player.addTempSkill('wwyj_fenghua1'); 
+		        	player.storage.wwyj_fenghua2=target;
+            player.addTempSkill('wwyj_fenghua2');  			
+        }
+		else{
+			player.recover();
+		}
+    },
+                ai:{
+                     result:{
+                        target:function (player,target){                       
+                return -target.countCards('h');
+            },
+                    },
+                    order:9,
+                },
+            },
         "wwyj_shennai":{
-			audio:["xiaoji",2],
+			//audio:["xiaoji",2],
 			trigger:{
 			    	global:"gameDrawAfter",
          player:["drawAfter","loseAfter"],
@@ -406,6 +749,7 @@ skill:{
 			mark:true,
 			marktext:"次",
 			forced:true,
+			popup:false,
 			init:function (player){
         player.storage.wwyj_shennai=0;
     },			
@@ -471,9 +815,10 @@ skill:{
         if(event.num<event.targets.length){               
             event.targets[event.num].chooseCard('h','是否交给'+get.translation(trigger.player)+'一张手牌？').ai=function(card){
            if(get.attitude(player,event.targets[event.num])>0){
-			   if(card.name=='sha'&&_status.currentPhase==trigger.player) return 1;
-               if(event.targets[event.num].countCards('h')>2) return 10-get.value(card);
-                   return 8-get.value(card);
+           if(event.targets[event.num].isDamaged()||event.targets[event.num].countCards('h')==1) return 1;
+	    		   if(card.name=='sha'&&_status.currentPhase==trigger.player) return 1;
+               if(event.targets[event.num].countCards('h')>1) return 8-get.value(card);
+                   return 10-get.value(card);
                     }
            return 0;         
        };                                 
@@ -483,11 +828,12 @@ skill:{
 		 }
 		 'step 2'      
 		if(result.bool){
-         //  player.logSkill("wwyj_keai");
+           //player.logSkill("wwyj_keai");
            event.targets[event.num].line(player,'green'); 
 		        event.targets[event.num].lose(result.cards);       
            event.targets[event.num].$give(result.cards,player);
-           player.gain(result.cards,event.targets[event.num]);		               
+           player.gain(result.cards,event.targets[event.num]);		     
+          game.log(player,'获得了'+get.translation(event.targets[event.num])+'的一张',result.cards);          
 		}
 		else{
 		   event.num++;
@@ -641,12 +987,13 @@ skill:{
                 },
                 audio:"ext:文武英杰:1",                     
                 forced:true,     
-                group:"wwyj_zhaonie2",                   
+                //group:"wwyj_zhaonie2",                   
                 init:function (player){
                     player.storage.wwyj_nie=0;
                     player.unmarkSkill("wwyj_nie");
                 },            
-                content:function (){                        
+                content:function (){  
+                    player.addTempSkill('wwyj_zhaonie2',{player:'phaseBegin'});                    
                     player.storage.wwyj_nie++;
                     player.markSkill("wwyj_nie");
                     player.update();
@@ -1021,7 +1368,8 @@ event.targets.sort(lib.sort.seat);
                     order:9,
                 },
             },	
-        "wwyj_qiaoji2":{
+            "wwyj_qiaoji2":{},
+      /*  "wwyj_qiaoji2":{
         audio:"ext:文武英杰:1",
          trigger:{
           player:"damageEnd",
@@ -1035,7 +1383,7 @@ event.targets.sort(lib.sort.seat);
 		 trigger.source.say('吃了我的给我吐出来');
 		 player.chooseToDiscard('h',true);		
      },				
-			},			
+			},			*/
           "wwyj_qiaoji":{
           audio:["yingzi",2],
          trigger:{
@@ -1045,6 +1393,7 @@ event.targets.sort(lib.sort.seat);
                return player!=event.player;
       },
       check:function (event,player){   
+             if(!player.countCards('h','shan')&&event.player.countCards('h')>3) return false;
 	    	       if(player.countCards('h')<2&&player.hp<2) return 0;     
 	    	       if(!player.isEmpty(2)) return 1;       
 	    	       if(player.countCards('h','shan')) return 1;     
@@ -1125,10 +1474,10 @@ event.targets.sort(lib.sort.seat);
             "wwyj_qiuxue":{              
 			            audio:["zili",2],
                 trigger:{
-                    player:"phaseZhunbeiBegin",
+                    player:"wwyj_toushiAfter",
                 },
                 forced:true,
-				juexingji:true,	
+		           		juexingji:true,	
                 derivation:"wwyj_gaochang",
                 init:function (player){
                     player.storage.wwyj_qiuxue=false;               
@@ -1137,6 +1486,9 @@ event.targets.sort(lib.sort.seat);
           return player.storage.wwyj_toushi>=3;
       },
                 content:function (){
+                'step 0'
+                ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');               
+			'step 1'
                 player.recover();
                 player.addSkill('wwyj_gaochang');
                 player.storage.wwyj_qiuxue=true;
@@ -1650,7 +2002,7 @@ event.targets.sort(lib.sort.seat);
 				},                      
                 content:function (){               
        "step 0"                     
-      var list=["key_masato","key_yusa","key_misa","key_lucia","key_kyousuke","key_yuri","key_haruko","key_kagari","key_umi","key_rei","key_komari","key_yukine"];
+      var list=["key_iwasawa","key_kengo","key_masato","key_yusa","key_misa","key_lucia","key_kyousuke","key_yuri","key_haruko","key_kagari","key_umi","key_umi2","key_rei","key_komari","key_yukine"];
 			//if(lib.characterSort&&lib.characterSort.diy&&lib.character.characterSort.diy_key){}																					
 					for(var i=0;i<list.length;i++){
 					    if(player.storage.wwyj_jianghun.contains(list[i])){
@@ -2529,6 +2881,7 @@ event.targets.sort(lib.sort.seat);
                 'step 0'   
                  player.line(trigger.player,'green');   
                 player.$fullscreenpop('( •̥́ ㉨ •̀ू )','fire');   
+                ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');                
                 player.storage.wwyj_qianzhui=true;
                 //player.removeSkill('wwyj_qianzhui'); 
                 player.awakenSkill('wwyj_qianzhui'); 
@@ -2958,7 +3311,7 @@ event.targets.sort(lib.sort.seat);
                 return event.source&&event.source.isAlive();
     },                
                 content:function (){   
-         "step 0"
+         "step 0"         
          event.current = player.next;
          player.addTempSkill('wwyj_baozaorecover');
          player.storage.wwyj_baozao=true;
@@ -3380,13 +3733,49 @@ event.targets.sort(lib.sort.seat);
                     order:9,
                 },
             },
-			
+			"wwyj_liangcha":{
+		    	trigger:{global:'gameStart'},
+        forced:true,
+        unique:true,
+        priority:2019,		
+     content:function (){     
+      //此技能的代码已被隐藏    				
+     },               
+            },
+			"wwyj_fanghua":{
+        trigger:{player:'phaseBegin'},
+        forced:true,
+        unique:true,
+        priority:2019,		
+     content:function (){    
+      //此技能的代码已被隐藏     				
+     },               
+            },
+            "wwyj_meiying":{
+        trigger:{player:'phaseUseBegin'},
+        forced:true,
+        unique:true,
+        priority:2019,		
+     content:function (){       
+      //此技能的代码已被隐藏   		
+     },                            
+            },			
+            
 },
 
 translate:{
                         
          	  //"wwyj_moban":"模板",
           //  "wwyj_moban_info":"模板",
+		  "wwyj_liusha":"流沙",
+          "wwyj_liusha_info":"回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此时你没有手牌，你摸一张牌",
+		  "wwyj_yiwang":"遗忘",
+          "wwyj_yiwang_info":"当你使用的杀被闪避时，你可令目标角色翻面",
+		  "wwyj_fenghua3":"风华",
+		  "wwyj_fenghua2":"风华",
+		  "wwyj_fenghua1":"风华",
+		  "wwyj_fenghua":"风华",
+          "wwyj_fenghua_info":"出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力",
 		  "wwyj_shennai":"神奈",
           "wwyj_shennai_info":"锁定技，你使用杀的次数上限额外加X（你手牌中没“伤害性”的牌的实时数量）",
           "wwyj_keai":"可爱",
@@ -3404,8 +3793,9 @@ translate:{
           "wwyj_zhaonies":"造孽",
            "wwyj_nie":"孽",
             "wwyj_zhaonie2":"造孽",
+              "wwyj_zhaonie2_info":"锁定技，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            		  
              "wwyj_zhaonie":"造孽",
-            "wwyj_zhaonie_info":"锁定技，准备阶段，你须弃置X张牌（X为你击杀的角色数）",            
+            "wwyj_zhaonie_info":"锁定技，若你本回合击杀过角色，则下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            
 		    "wwyj_wenyu":"文彧",
 		    "wwyj_miaoji":"妙计",
             "wwyj_miaoji_info":"回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之",
@@ -3435,7 +3825,7 @@ translate:{
 		    "_wwyj_qiaoji":"巧技",
 			"wwyj_qiaoji2":"巧技",
 			"wwyj_qiaoji":"巧技",
-            "wwyj_qiaoji_info":"当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，本回合内，该角色使用杀时，你须成为额外的目标，且当你受到此杀造成的伤害后，你须弃置一张手牌",
+            "wwyj_qiaoji_info":"当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，该角色本回合内使用杀时，你成为额外的目标",
             "wwyj_jianghun":"键魂",
             "wwyj_jianghun_info":"锁定技，每轮游戏开始时，你随机获得一名未获得过的论外包角色的一个随机的技能",
             "wwyj_chengzhi":"承志",
@@ -3449,7 +3839,7 @@ translate:{
             "wwyj_gaochang":"高产",
             "wwyj_gaochang_info":"你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零",
             "wwyj_qiuxue":"求学",
-            "wwyj_qiuxue_info":"觉醒技，若你已发动至少3次偷师，准备阶段，你回复1点体力并获得技能【高产】",
+            "wwyj_qiuxue_info":"觉醒技，若你已发动至少3次【偷师】，你回复1点体力并获得技能【高产】",
             "wwyj_toushi":"偷师",
             "wwyj_toushi_info":"出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始",
             "wwyj_feicheng":"废城",
@@ -3503,13 +3893,15 @@ translate:{
             "wwyj_shuihu":"水乎",
             "wwyj_chengxuyuan":"橙续缘",
             "wwyj_pipi":"皮皮",
+			"wwyj_yiwangs":"一瞬间遗忘",
+            "wwyj_liushas":"流沙",
 			"wwyj_shenzuo":"神座",
 			"wwyj_shennais":"神奈",
             "wwyj_Sukincen":"小苏",
-            "wwyj_liangcha":"凉茶",
+            "wwyj_liangchas":"凉茶",
             "wwyj_shijian":"诗笺",     
 			"wwyj_xuebi":"雪碧",
-			"wwyj_yitiaoxianyu":"一条咸鱼",
+			"wwyj_yitiaoxianyu":"咸鱼",
             "wwyj_maliao":"苏婆玛丽奥",
             "wwyj_remaliao":"苏婆玛丽奥",   
             "wwyj_jiguangs":"极光",    
@@ -3527,11 +3919,11 @@ translate:{
             "wwyj_kangfu":"康复",
             "wwyj_kangfu_info":"锁定技，你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏",       
             "wwyj_jinzhu_shan":"烬铸",
-            "wwyj_jinzhu_shan_info":"你可以把你的装备牌当做任意基本牌打出或使用",
+            "wwyj_jinzhu_shan_info":"你可以把你的装备牌当做任意基本牌使用或打出",
             "wwyj_jinzhu_sha":"烬铸",
-            "wwyj_jinzhu_sha_info":"你可以把你的装备牌当做任意基本牌打出或使用",
+            "wwyj_jinzhu_sha_info":"你可以把你的装备牌当做任意基本牌使用或打出",
             "wwyj_jinzhu":"烬铸",
-            "wwyj_jinzhu_info":"你可以把你的装备牌当做任意基本牌打出或使用",            
+            "wwyj_jinzhu_info":"你可以把你的装备牌当做任意基本牌使用或打出",            
             //"wwyj_jilve_wuxie":"极略-无懈可击",
             "wwyj_jilve":"极略",
             "wwyj_jilve_info":"​出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用。",
@@ -3578,6 +3970,13 @@ translate:{
             "wwyj_ancha_info":"<li>当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合。<li>当你的体力值小于2时，你获得技能【回坑】，直到你发动之",
             "wwyj_huikeng":"回坑",
             "wwyj_huikeng_info":"出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌",
+             "wwyj_liangchax":"★凉茶",
+	           "wwyj_liangcha":"凉茶",
+            "wwyj_liangcha_info":"游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面，若有角色的体力上限大于16，则其体力上限改为2",
+	           "wwyj_fanghua":"芳华",
+            "wwyj_fanghua_info":"锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）",
+            "wwyj_meiying":"魅影",
+            "wwyj_meiying_info":"锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应",           
             "wwyj_chuangshi":"创世",
             "wwyj_chuangshi_info":"觉醒技，游戏开始所有角色摸牌后或你进入游戏时（对决模式），你令其他角色从十名备选角色（关羽、张飞、赵云、马超、马忠、公孙瓒、黄盖、吕蒙、仁王禁、许禇）中挑选一名并变身成为之",
             "wwyj_xiadan":"下单",
@@ -3935,7 +4334,7 @@ if(lib.device||lib.node){
                         if (init) {	
 var charalist = [];
 for (var i in lib.characterPack['wenwuyingjie']) {
-	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_wenyu","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangcha","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
+	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax","wwyj_shennais","wwyj_yiwangs","wwyj_liushas","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_wenyu","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
 	if(wenwu.contains(i)) charalist.push(i);
 }
 var liblist = [
@@ -3950,7 +4349,7 @@ var liblist = [
 			   ['<span class="bluetext">理论</span>：每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶<br><span class="bluetext">严管</span>：每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌'],
 			   ['<span class="bluetext">诚剽</span>：出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张<br><span class="bluetext">济贫</span>：当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌'],
 			   ['<span class="bluetext">极略</span>：出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用<br><span class="bluetext">退坑</span>：锁定技，你的防御距离加X（X为你已损失的体力值）'],
-			   ['<span class="bluetext">车祸</span>：锁定技，游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：锁定技，你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌打出或使用'],			   
+			   ['<span class="bluetext">车祸</span>：锁定技，游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：锁定技，你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],			   
 			   ['<span class="bluetext">代更</span>：每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合<br><span class="bluetext">键杀</span>：锁定技，当你成为杀的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此杀造成伤害，该角色摸一张牌然后翻面'],
 			   ['<span class="bluetext">键魂</span>：锁定技，每轮游戏开始时，你随机获得一名未获得过的论外包角色的一个随机的技能<br><span class="bluetext">承志</span>：非论外包的角色死亡时，你可以复制其所有技能和卡牌并获得之'],
 			   ['<span class="bluetext">义写</span>：当一名其他角色的回合结束时，若其已受伤，你可交给其一张手牌，若此时其手牌数比你的多，你可以摸一张牌<br><span class="bluetext">谦虚</span>：锁定技，你不能成为与你距离为1的角色使用的杀的目标，你使用的杀只能指定与你距离大于1的角色为目标，且你使用杀时至多额外指定一名目标'],
@@ -3958,18 +4357,21 @@ var liblist = [
 			   ['<span class="bluetext">开车</span>：锁定技，摸牌阶段摸牌时，你额外摸X张牌，你的手牌上限加X（X为场上女性角色数且至少为1）<br><span class="bluetext">圣神</span>：每轮限一次，当一名角色进入濒死状态时，你可以观看牌堆顶的两张牌，然后弃置其中一张红色牌视为对其使用一张[桃]。若其中没有红色牌且你有红色的手牌，你可以弃置你的所有红色手牌，视为对其使用一张[桃]'],
 			   ['<span class="bluetext">管理</span>：出牌阶段限一次，你可令一名其他角色随机弃置一张手牌，若这张手牌为：基本牌，你视为对其使用一张不计次数限制的杀；锦囊牌，你视为对其使用一张不能被无懈可击的决斗；装备牌，你使用之'],
 			   ['<span class="bluetext">向死</span>：锁定技，每当你造成或受到一点伤害获得一个“废”标记，标记达到五个“废”获得技能【而生】并失去此技能<br><span class="bluetext">而生</span>：锁定技，每当你进入濒死状态时，弃置一枚“废”标记，回复体力至两点'],
-			   ['<span class="bluetext">偷师</span>：出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始<br><span class="bluetext">求学</span>：觉醒技，若你已发动至少3次偷师，准备阶段，你回复1点体力并获得技能【高产】<br><span class="bluetext">高产</span>：你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零'],
+			   ['<span class="bluetext">偷师</span>：出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始<br><span class="bluetext">求学</span>：觉醒技，若你已发动至少3次【偷师】，你回复1点体力并获得技能【高产】<br><span class="bluetext">高产</span>：你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零'],
 			   ['<span class="bluetext">烟雨</span>：当一名其他角色失去武器牌后，你可选择其中的一张立即使用之<br><span class="bluetext">兵谋</span>：锁定技，你的防御距离与你使用的【杀】的目标上限均等于你的攻击范围'],			   			   
 			   ['<span class="bluetext">即死</span>：你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力<br><span class="bluetext">强抗</span>：锁定技，你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌'],
-			   ['<span class="bluetext">巧技</span>：当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，本回合内，该角色使用杀时，你须成为额外的目标，且当你受到此杀造成的伤害后，你须弃置一张手牌'],
+			   ['<span class="bluetext">巧技</span>：当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，该角色本回合内使用杀时，你成为额外的目标'],
 			   ['<span class="bluetext">透凉</span>：结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合结束时，不能使用或打出基本牌<br><span class="bluetext">抗性</span>：当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调'],
 			   ['<span class="bluetext">冷雨</span>：当你使用杀时，你可获得目标角色的一张手牌，若如此做，此杀造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具'],
 			   ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],
-		       ['<span class="bluetext">造孽</span>：锁定技，准备阶段，你须弃置X张牌（X为你击杀的角色数）<br><span class="bluetext">配音</span>：锁定技，当你失去装备区的牌后，你回复一点体力且摸一张牌<br><span class="bluetext">民卡</span>：你使用杀对其他角色造成伤害时，你可以弃置至多两张装备牌令增加等量点的伤害'],
+		    ['<span class="bluetext">造孽</span>：锁定技，若你本回合击杀过角色，下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）<br><span class="bluetext">配音</span>：锁定技，当你失去装备区的牌后，你回复一点体力且摸一张牌<br><span class="bluetext">民卡</span>：你使用杀对其他角色造成伤害时，你可以弃置至多两张装备牌令增加等量点的伤害'],
 			   ['<span class="bluetext">浅觞</span>：当一名其他角色弃牌阶段弃牌结束时，你可选择其所弃置的牌中合理的一张并立即使用之<br><span class="bluetext">退坑</span>：锁定技，你的防御距离加X（X为你已损失的体力值）'],
 			   ['<span class="bluetext">咸鱼</span>：每回合限一次，当你使用非转化的杀造成伤害时，你可以翻面，令该角色横置且此伤害+1<br><span class="bluetext">伪新</span>：每回合限一次，当一名角色进入濒死状态时，你可以摸一张牌并翻面，令其回复一点体力'],
 			   ['<span class="bluetext">神奈</span>：锁定技，你使用杀的次数上限额外加X（你手牌中没“伤害性”的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
-			   
+			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面。若你没赢，你回复一点体力'],
+			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此时你没有手牌，你摸一张牌'],
+			   ['<span class="bluetext">凉茶</span>：游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
+			 
 			  
 		    
 			
@@ -4008,15 +4410,42 @@ var liblist = [
     "nopointer":true,
 		"name":"文武英杰","init":"1","item":{"1":"查看介绍","2":"<li>本扩展是第四代作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多作者与玩家，强度相对平衡，可联机。若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏","3":"<li>本扩展能在关闭兼容模式情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者","4":"<li>特别鸣谢：苏婆玛丽奥、瓦力、诗笺、雾雨家的黑白葱"}
 	},				
-		/*	"wwyj_xinname":{
+			
+		"wwyj_chat":{
+    "name":"武将聊天",
+    "intro":"开启后重启游戏生效。武将偶然会说话",
+     init:false
+    },	
+		"wwyj_jishatexiao":{
+    "name":"击杀特效",
+    "intro":"开启后重启游戏生效。场上有人击杀另一名角色后会播放动画",
+     init:false
+    },	    
+    	"wwyj_sjwjp":{
+     name:'随机武将',
+    "intro":"开启后重启游戏生效。每轮开始时，所有角色随机替换武将牌",
+    init:false
+	},		
+		"wwyj_yinglingfuhun":{
+     name:'英灵附魂',
+    "intro":"开启后重启游戏生效。所有的角色在游戏开始或进入游戏时，各从五名随机武将中选一名当作“附灵武将”并获得其所有的技能",
+    init:false
+	},
+	"wwyj_normalize": {
+			"name": "天神下凡",
+			"intro":"开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
+			 init: false
+		},
+	"wwyj_xinname":{
            name:'武将前缀',
            intro:'选择是否显示★武将前缀',
-           init:'hide',
-           item:{
-                 hide:'隐藏','show':'显示'
+           init:'show',
+           item:{               
+                 show:'显示',
+                 hide:'隐藏',
            }
-      },     	*/	   
-	  "wwyj_music":{
+      },     	   	  		
+	"wwyj_music":{
       name:'专属音乐',
       "intro":"专属背景音乐：可随意点播、切换优质动听的背景音乐",
        init:'1',
@@ -4031,8 +4460,7 @@ var liblist = [
 			game.playBackgroundMusic();
 			break;
 			case '2':
-    ui.backgroundMusic.pause();    
-    ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
+    ui.backgroundMusic.pause();        
     ui.backgroundMusic.src=lib.assetURL+'extension/文武英杰/wwyj_music.mp3';    
     setInterval(function(){
 	 	ui.backgroundMusic.src= lib.assetURL+"extension/文武英杰/wwyj_music.mp3";
@@ -4046,16 +4474,26 @@ var liblist = [
 			}
 		},	
 		
-		"wwyj_chat":{
-    "name":"武将聊天",
-    "intro":"开启后重启游戏生效。武将偶然会说话",
-    "init":false
-    },	
-		"wwyj_jishatexiao":{
-    "name":"全新击杀特效",
-    "intro":"开启后重启游戏生效。场上有人击杀另一名角色后会播放动画",
-    "init":false
-    },	
+			"wwyj_picture":{
+           name:'专属图片',
+          "intro":"专属背景图片：可随意切换精美的背景图片",
+            init:'1',
+			item:{
+				'1':'默认背景',				
+				'2':'文武英杰',						
+			},			
+		 onclick:function (item){
+			switch (item){
+			case '1':		
+			game.broadcastAll()+ui.background.setBackgroundImage('image/background/'+lib.config.image_background+'.jpg');
+			break;
+			case '2':
+    ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
+			break;				
+			}
+			}
+		},									
+			
 /*	"wwyjpicture":{
 			"name":"<b><p align=center><span style=\"font-size:18px\">-----图鉴-----</span>",
 			"clear":true,
@@ -4064,7 +4502,7 @@ var liblist = [
 	"wwyjhelp":{
 			"name":"图鉴模式",
 			"init":"1",
-			frequent:true,
+			//frequent:true,
 			item:{"1":"模式介绍","2":"<li>点击下方的“打开图鉴”，会重启游戏并进入图鉴模式。本模式仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容"},
 	},
 	"openwwyj":{
@@ -4101,5 +4539,5 @@ var liblist = [
     author:"凉茶",
     diskURL:"",
     forumURL:"",
-    version:"1.3",
+    version:"1.1",
 },files:{"character":[],"card":[],"skill":[]}}})

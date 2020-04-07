@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){
  // ---------------------------------------group------------------------------------------//
     lib.group.push('wwyjsha');
     lib.translate.wwyjsha='<font color=#f00>杀</font>';   
@@ -4432,7 +4432,7 @@ var liblist = [
     init:false
 	},
 	"wwyj_normalize": {
-			"name": "天神下凡",
+			"name": "天神降临",
 			"intro":"开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
 			 init: false
 		},

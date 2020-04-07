@@ -22,7 +22,7 @@ extension["文武英杰"]={
     intro:"<li>本扩展是全新的作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-04-03",
     size:"20MB",
     netdisk:"",
-    version:1.3,
+    version:1.1,
     files:[
      "extension.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyjjishatexiao.mp3",
 		"wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3",
@@ -34,16 +34,16 @@ extension["文武英杰"]={
 		"wwyj_jiguang1.mp3","wwyj_jiguang2.mp3","wwyj_jiguangs.jpg","wwyj_jilve1.mp3","wwyj_jinxiu1.mp3",
 		"wwyj_jipin1.mp3","wwyj_junshen1.mp3","wwyj_kaiche1.mp3","wwyj_kangfu1.mp3","wwyj_kangxing1.mp3",
 		"wwyj_kanpo.mp3","wwyj_kanpoyiqie.jpg","wwyj_kelejiabing.jpg","wwyj_lebusishu.png",
-		"wwyj_lengyu1.mp3","wwyj_lengyus.jpg","wwyj_liangcha.jpg","wwyj_lilun1.mp3","wwyj_limu.mp3",
-		"wwyj_lunhuizhong.jpg","wwyj_maliao.jpg","wwyj_music.mp3","wwyj_peiyin1.mp3","wwyj_picture.jpg",
-		"wwyj_pipi.jpg","wwyj_qianfu1.mp3","wwyj_qianshang1.mp3","wwyj_qianshangs.jpg","wwyj_qianxu1.mp3",
-		"wwyj_qianxu2.mp3","wwyj_qingxian.mp3","wwyj_relianying.mp3","wwyj_remaliao.jpg",
-		"wwyj_shennais.jpg","wwyj_shenzuo.jpg","wwyj_shijian.jpg","wwyj_shuihu.jpg","wwyj_Sukincen.jpg",
-		"wwyj_taishangdaniu.jpg","wwyj_touliang1.mp3","wwyj_toushi1.mp3","wwyj_wali.jpg",
-		"wwyj_wenyu.jpg","wwyj_wzszhaoyun.jpg","wwyj_xingyunnvshen.jpg","wwyj_xipi1.mp3",
-		"wwyj_xuebi.jpg","wwyj_yanguan1.mp3","wwyj_yanyu1.mp3","wwyj_yanyumoran.jpg","wwyj_yingguai1.mp3",
-		"wwyj_yitiaoxianyu.jpg","wwyj_yixue1.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg",
-		"wwyj_ziyage.jpg"
+		"wwyj_lengyu1.mp3","wwyj_lengyus.jpg","wwyj_liangcha.jpg","wwyj_liangchas.jpg","wwyj_liangchax.jpg",
+		"wwyj_lilun1.mp3","wwyj_limu.mp3","wwyj_liushas.jpg","wwyj_lunhuizhong.jpg","wwyj_maliao.jpg",
+		"wwyj_music.mp3","wwyj_peiyin1.mp3","wwyj_picture.jpg","wwyj_pipi.jpg","wwyj_qianfu1.mp3",
+		"wwyj_qianshang1.mp3","wwyj_qianshangs.jpg","wwyj_qianxu1.mp3","wwyj_qianxu2.mp3",
+		"wwyj_qingxian.mp3","wwyj_relianying.mp3","wwyj_remaliao.jpg","wwyj_shennais.jpg",
+		"wwyj_shenzuo.jpg","wwyj_shijian.jpg","wwyj_shuihu.jpg","wwyj_Sukincen.jpg","wwyj_taishangdaniu.jpg",
+		"wwyj_touliang1.mp3","wwyj_toushi1.mp3","wwyj_wali.jpg","wwyj_wenyu.jpg","wwyj_wzszhaoyun.jpg",
+		"wwyj_xingyunnvshen.jpg","wwyj_xipi1.mp3","wwyj_xuebi.jpg","wwyj_yanguan1.mp3","wwyj_yanyu1.mp3",
+		"wwyj_yanyumoran.jpg","wwyj_yingguai1.mp3","wwyj_yitiaoxianyu.jpg","wwyj_yiwangs.jpg",
+		"wwyj_yixue1.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg","wwyj_ziyage.jpg"
     ]
 };
 

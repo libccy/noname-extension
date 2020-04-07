@@ -4021,7 +4021,7 @@ translate:{
             "xwj_xwugeng_poji":"破极",
             "xwj_xwugeng_poji_info":"限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1并摸等同失去的体力值张牌，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
             "xwj_xwugeng_juyi":"聚义",
-            "xwj_xwugeng_juyi_info":"锁定技，你使用的牌没距离和次数限制，每使用一张牌后摸一张牌",
+            "xwj_xwugeng_juyi_info":"锁定技，你每使用一张牌后摸一张牌",
             "xwj_xwugeng_anyue":"暗月",
             "xwj_xwugeng_anyue_info":"暗月凶光。锁定技，你对一名其他角色使用牌（借刀杀人除外）时，额外指定所有已废除防具栏的其他角色",
           	 "xwj_xwugeng_bailian":"白莲圣王",
@@ -6164,7 +6164,7 @@ audio:"ext:群英会:2",
                 trigger:{
                     player:"phaseEnd",
                 },
-                frequent:true,          
+                forced:true,          
                 filter:function (event,player){
      return player.countCards('h')<player.maxHp;        
     },
@@ -10175,6 +10175,7 @@ var chat=['我都说了，要打倒我，就要先找到蜃的实体','海市蜃
                 unique:true,
                 enable:"chooseToUse",
                 mark:true,
+                forced:true,
                 skillAnimation:true,
                 animationStr:"蒸危暴威",
                 animationColor:"fire",
@@ -13335,7 +13336,7 @@ player.$skill('助君成王','fire','red','avatar');
                     player:"dying",
                 },
                 unique:true,
-                direct:true,
+                forced:true,
                 init:function (player){
         player.storage.xwj_xhuoying_yiyuan=false;
     },
@@ -13648,7 +13649,7 @@ translate:{
             "xwj_xhuoying_zhenxing":"震星",
             "xwj_xhuoying_zhenxing_info":"<font color=#F0F>天碍震星</font> 出牌阶段限一次，你可以将两张【杀】当作【万箭齐发】使用",
             "xwj_xhuoying_yiyuan":"遗志",
-            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font> <span class=yellowtext>限定技</span>  <span class=greentext>觉醒技</span> 濒死阶段，你摸一张牌，然后将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
+            "xwj_xhuoying_yiyuan_info":"<font color=#F0F>完全体须佐能乎</font>  <span class=greentext>觉醒技</span> 濒死阶段，你摸一张牌，然后将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，然后回复体力至体力上限，并获得技能“轮墓”",
             "xwj_xhuoying_xinxuzuo":"须佐",
             "xwj_xhuoying_xinxuzuo_info":"<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1（双头须佐能乎）。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害。",
             "xwj_xhuoying_dayemu":"大野木",
@@ -13962,7 +13963,7 @@ translate:{
             "xwj_xhuoying_chunshu2":"禁杀",
             "xwj_xhuoying_chunshu2_info":"<font color=#f00>锁定技</font> 你不能成为【杀】的目标",
             "xwj_xhuoying_zhengbao":"蒸爆",
-            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font><span class=yellowtext>限定技</span> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
+            "xwj_xhuoying_zhengbao_info":"<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
             "xwj_xhuoying_chunshu3":"属性",
             "xwj_xhuoying_chunshu3_info":"<font color=#f00>锁定技</font> 你防止受到属性伤害",
             "xwj_xhuoying_shuipao":"水炮",

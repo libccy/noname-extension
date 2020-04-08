@@ -4,6 +4,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     lib.translate.wwyjsha='<font color=#f00>杀</font>';   
     
  // ---------------------------------------lebusishu------------------------------------------//        		
+		 if(config.wwyj_lebusishu){
 		 lib.skill._lebusishu={
 		trigger:{
 			target:'useCardToBegin',
@@ -12,9 +13,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		filter:function (event,player){
             return event.card&&event.card.name=='lebu';
         },                 
-		content:function(){			 
-						//var node = document.createElement('div');
-	    //  player.node.avatar.appendChild(node);			  
+		content:function(){			 						  
 			game.broadcastAll(function(player){
  			img = document.createElement('div');
 				img.setBackgroundImage('extension/文武英杰/wwyj_lebusishu.png'); 						
@@ -109,7 +108,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			}									
  		},
 	}						
-	
+	}
  // ---------------------------------------Audio------------------------------------------//
 			game.playwwyj = function (fn, dir, sex) {
 			if (lib.config.background_speak) {
@@ -154,7 +153,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				this.maxHp=maxhp;
 				this.update();
 			} 
-// ---------------------------------------聊天------------------------------------------//				
+// ---------------------------------------chat------------------------------------------//				
 	if(config.wwyj_chat){
 	lib.skill._recoverchat={
 		trigger:{player:'recoverEnd'},							
@@ -326,7 +325,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     },
      content:function (){        		
 		player.loseMaxHp(trigger.num);	
-		trigger.num+=2*trigger.num;
+		trigger.num=2*trigger.num;
      },
      }
 	 
@@ -606,9 +605,9 @@ characterIntro:{
 	 			"wwyj_qianshangs":"浅觞，习惯称其为“浅”，贴吧ID后来先后名为：tanyuanjkl、夜风，一位传说中的元老级别的扩展作者，与可乐加冰并列，曾发表过AI教程、game.js里的黑科技等多篇教程，扩展作品有《聊天拓展》、《武将AI》，尤其是《武将AI》，其大幅度提升了AI的智能，曾在圈内轰动一时，追者甚众，但其也开了付费扩展的先河，引发了大争议，甚至为此，浅受到了“我只是赵云”的疯狂诋毁与攻击，“我只是赵云”恬不知耻地扬言叫嚣“你（浅）出一个扩展，我就抄一个”……另外，水乎老大为了避免无名杀扩展付费获利的法律风险，对无名杀进行大刀阔斧的修改，该扩展被迫下架……浅因此事再加上毕业工作而离坑隐退",			
 					"wwyj_yitiaoxianyu":"一条咸鱼，也曾名为“永远的萌新”、“→_→”，一位新生代扩展作者，拥有比较扎实、全面的代码技术。其真实身份比较可疑，应为某位大神的小号，因为其突然空降来到无名杀这个圈子，自称是名“萌新”，但出道即巅峰，写了一堆教程，众所周知，能出教程的都是大佬，尔后其又接写《耀世三国》等扩展，种种事实证明其是一名伪萌新。代表作品还有《西沉的胡思乱想》、《灵枢包》",
 					"wwyj_shennais":"神奈，又名“东平车幻玲”，圈内习惯称呼她为“学妹”，是一位远古代的扩展作者，对扩展有独特的写法，其代表作为《朔包》，以高体力上限与高伤害著称。另外，神奈给人印象较深刻的是其随和、可爱的一面，这也是技能“可爱”的创作思路来源，而技能“神奈”略显得无厘头（本来是想设计一个骚操作类的技能的），实则是在本人在创作完“可爱”后灵感枯竭时无意中测试了一局发现，当触发“可爱”时，友方给了几张杀，正好挂连弩，然后又杀一波，紧接着杀完来触发来了几张杀……始料未及的契合令本人感到非常意外与兴奋，故设计了一个可提升杀的使用次数的技能，这正是技能“神奈”的来由",
-					"wwyj_yiwangs":"一瞬间遗忘，一位远古代的扩展作者，拥有非常精湛的扩展代码技术，开发了第一个大型扩展——《风华绝代》，尽管它曾饱受过争议，但仍无法掩盖它身上那耀眼的光芒！该扩展武将众多，在改版武将方面，它将官方三国杀大部分的武将重新设计成全新的星武将，涅槃重生后的武将令人眼前一亮，啧啧称奇。另外风华绝代还有英雄联盟系列和挑战BOSS，尤其是BOSS远近闻名，简直成了BOSS的标杆，它的强大引来众多玩家挑战。”一瞬间遗忘“曾与”我只是赵云“之间有私人恩怨，在“我只是赵云”的再三挑衅下，在2018年夏时集中爆发，引爆了整个无名杀圈子的舆论，双方阵营闹得不可交加，甚至连水乎老大都被牵扯进来，最终导致无名杀的停更，该事件可谓是无名杀史上产生影响最大的事件之一",
+					"wwyj_yiwangs":"一瞬间遗忘，一位远古代的扩展作者，拥有非常精湛的扩展代码技术，开发了第一个大型扩展——《风华绝代》，尽管它曾饱受过争议，但仍无法掩盖它身上那耀眼的光芒！该扩展武将众多，在改版武将方面，它将官方三国杀大部分的武将重新设计成全新的星武将，涅槃重生后的武将令人眼前一亮，啧啧称奇。另外风华绝代还有英雄联盟系列和挑战BOSS，尤其是BOSS远近闻名，简直成了BOSS的标杆，它的强大引来众多玩家挑战。”一瞬间遗忘“曾与”我只是赵云“之间有私人恩怨，在“我只是赵云”的再三挑衅下，在2018年夏时集中爆发，引爆了整个无名杀圈子的舆论，双方阵营闹得不可交加，甚至连水乎老大都被牵扯进来，最终导致无名杀的停更，该事件可谓是无名杀史上产生影响最大的事件之一。本作者中对该作者的技能设计也是跟“我只是赵云”相互克制、纠缠的",
 					"wwyj_liushas":"流沙，一位元老级的资深老玩家，为早期无名杀的素材收集作出了不少贡献，热爱无名杀这个游戏，并且经常出面维护无名杀的声誉",					
-					"wwyj_liangchax":"这个是boss凉茶，可进挑战模式中挑战她！（注：本武将及本扩展不含任何赋空等抗性代码）",	
+					"wwyj_liangchax":"这个是boss凉茶，可进挑战模式中挑战她！也可在扩展界面开启“天神降临”再重启游戏，然后就可在非挑战模式中选用或被ai选用（注：本武将及本扩展不含任何赋空等抗性代码）",	
 					//	"wwyj_moban":"简介模板",										
 						     		
 												},
@@ -1123,8 +1122,7 @@ skill:{
             return '视为使用一张'+get.translation(links[0][3]||'')+get.translation(links[0][2]);
         },
                 },
-                ai:{
-                    //order:5,
+                ai:{                
                     order:function (){
             var player=_status.event.player;
             var event=_status.event;
@@ -1155,8 +1153,7 @@ skill:{
            //player.draw(player.maxHp-player.countCards('h'));	
             player.turnOver();		   
             trigger.untrigger();
-            trigger.responded=true;
-         //   trigger.result={bool:true,card:{name:'sha'}}  
+            trigger.responded=true;         
             trigger.result={bool:true,card:{name:'sha',isCard:true}};    
             player.logSkill('wwyj_qisi');
     },
@@ -1170,12 +1167,10 @@ skill:{
     if(!event.filterCard({name:'shan'})) return false;
          return !player.isTurnedOver();                                  
     },
-                content:function (){
-            //player.draw(player.maxHp-player.countCards('h'));
-			player.turnOver();
+                content:function (){           
+	        		player.turnOver();
             trigger.untrigger();
-            trigger.responded=true;
-          //  trigger.result={bool:true,card:{name:'shan'}} 
+            trigger.responded=true;        
             trigger.result={bool:true,card:{name:'shan',isCard:true}};                              
             player.logSkill('wwyj_qisi'); 
     },
@@ -1196,12 +1191,10 @@ skill:{
          return 6-get.value(card);              
        };                					
 					"step 1"
-					if(result.bool){
-			     		//player.logSkill("wwyj_lengyu",trigger.player);
+					if(result.bool){		
 				    		player.lose(result.cards);       
             player.$give(result.cards,trigger.player);
-            trigger.player.gain(result.cards,player);
-			        //trigger.player.draw();
+            trigger.player.gain(result.cards,player);			     
 					}
 					else{
 				    		event.finish();
@@ -1218,8 +1211,7 @@ skill:{
       },
       frequent:true,	  
      content:function (){  
-            player.gainPlayerCard(trigger.target,'h'); 		
-            //player.logSkill('wwyj_lengyu');
+            player.gainPlayerCard(trigger.target,'h'); 		            
             player.addTempSkill('wwyj_lengyu2','shaAfter');	
      },
 		},
@@ -3923,8 +3915,7 @@ translate:{
             "wwyj_jinzhu_sha":"烬铸",
             "wwyj_jinzhu_sha_info":"你可以把你的装备牌当做任意基本牌使用或打出",
             "wwyj_jinzhu":"烬铸",
-            "wwyj_jinzhu_info":"你可以把你的装备牌当做任意基本牌使用或打出",            
-            //"wwyj_jilve_wuxie":"极略-无懈可击",
+            "wwyj_jinzhu_info":"你可以把你的装备牌当做任意基本牌使用或打出",                       
             "wwyj_jilve":"极略",
             "wwyj_jilve_info":"​出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用。",
             "wwyj_jipin":"济贫",
@@ -3972,7 +3963,7 @@ translate:{
             "wwyj_huikeng_info":"出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌",
              "wwyj_liangchax":"★凉茶",
 	           "wwyj_liangcha":"凉茶",
-            "wwyj_liangcha_info":"游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面，若有角色的体力上限大于16，则其体力上限改为2",
+            "wwyj_liangcha_info":"锁定技，游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2",
 	           "wwyj_fanghua":"芳华",
             "wwyj_fanghua_info":"锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）",
             "wwyj_meiying":"魅影",
@@ -4368,9 +4359,9 @@ var liblist = [
 			   ['<span class="bluetext">浅觞</span>：当一名其他角色弃牌阶段弃牌结束时，你可选择其所弃置的牌中合理的一张并立即使用之<br><span class="bluetext">退坑</span>：锁定技，你的防御距离加X（X为你已损失的体力值）'],
 			   ['<span class="bluetext">咸鱼</span>：每回合限一次，当你使用非转化的杀造成伤害时，你可以翻面，令该角色横置且此伤害+1<br><span class="bluetext">伪新</span>：每回合限一次，当一名角色进入濒死状态时，你可以摸一张牌并翻面，令其回复一点体力'],
 			   ['<span class="bluetext">神奈</span>：锁定技，你使用杀的次数上限额外加X（你手牌中没“伤害性”的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
-			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面。若你没赢，你回复一点体力'],
+			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此时你没有手牌，你摸一张牌'],
-			   ['<span class="bluetext">凉茶</span>：游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
+			   ['<span class="bluetext">凉茶</span>：锁定技，游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
 			 
 			  
 		    
@@ -4408,9 +4399,15 @@ var liblist = [
 },help:{},config:{
     "wwyj_help":{
     "nopointer":true,
-		"name":"文武英杰","init":"1","item":{"1":"查看介绍","2":"<li>本扩展是第四代作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多作者与玩家，强度相对平衡，可联机。若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏","3":"<li>本扩展能在关闭兼容模式情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者","4":"<li>特别鸣谢：苏婆玛丽奥、瓦力、诗笺、雾雨家的黑白葱"}
-	},				
-			
+	  	"name":"文武英杰",
+	  	"init":"1",
+	  	"item":{"1":"查看介绍","2":"<li>本扩展是第四代作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多作者与玩家，强度相对平衡，可联机。若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏","3":"<li>本扩展能在关闭兼容模式情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者","4":"<li>特别鸣谢：苏婆玛丽奥、瓦力、诗笺、雾雨家的黑白葱"}
+   	},				
+			"wwyj_lebusishu":{
+    "name":"乐不思蜀",
+    "intro":"开启后重启游戏生效。武将被“乐”时会有个贴有“乐”字的门关着",
+     init:false
+    },	
 		"wwyj_chat":{
     "name":"武将聊天",
     "intro":"开启后重启游戏生效。武将偶然会说话",
@@ -4472,8 +4469,7 @@ var liblist = [
 			break;	
 			}
 			}
-		},	
-		
+		},			
 			"wwyj_picture":{
            name:'专属图片',
           "intro":"专属背景图片：可随意切换精美的背景图片",
@@ -4492,20 +4488,18 @@ var liblist = [
 			break;				
 			}
 			}
-		},									
-			
-/*	"wwyjpicture":{
-			"name":"<b><p align=center><span style=\"font-size:18px\">-----图鉴-----</span>",
+		},												
+	"wwyjtujian":{
+			"name":"<b><p align=center><span style=\"font-size:18px\">-------图鉴模式-------</span>",
 			"clear":true,
 			"nopointer":true,
-	},*/
-	"wwyjhelp":{
+ 	},
+	"wwyj_tujian":{
 			"name":"图鉴模式",
-			"init":"1",
-			//frequent:true,
+			"init":"1",	
 			item:{"1":"模式介绍","2":"<li>点击下方的“打开图鉴”，会重启游戏并进入图鉴模式。本模式仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容"},
 	},
-	"openwwyj":{
+	"openwwyj_tujian":{
 			"name":"打开图鉴<div>&gt;</div>",
 			"clear":true,
 			onclick:function(){

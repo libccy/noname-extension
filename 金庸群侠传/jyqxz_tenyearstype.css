@@ -1,0 +1,71 @@
+
+.player .identity[data-color="金庸群侠传"],
+.player .identity[data-color="金庸群侠传"],
+
+/*势力*/
+div[data-nature='jy_yuan'],
+span[data-nature='jy_yuan'] {
+	text-shadow: rgba(255, 0, 204,1) 0 0 2px,rgba(255,0,204,1) 0 0 5px,rgba(255,0,204,1) 0 0 10px,
+		rgba(255,0,204,1) 0 0 10px,rgba(255,0,204,1) 0 0 20px,rgba(255,0,204,1) 0 0 20px,black 0 0 1px;
+}
+/*中*/
+div[data-nature='jy_yuanm'],
+span[data-nature='jy_yuanm'] {
+	text-shadow: rgba(255,128,0,1) 0 0 2px,rgba(255,128,0,1) 0 0 5px,rgba(255,128,0,1) 0 0 5px,
+		rgba(255,128,0,1) 0 0 5px,black 0 0 1px;
+}
+/*武将名*/
+div[data-nature='jy_yuanmm'],
+span[data-nature='jy_yuanmm'] {
+	text-shadow: rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,
+		rgba(255,128,204,1) 0 0 2px,black 0 0 1px;
+}
+
+.player.unseen>.camp-zone>.camp-back {
+	background: linear-gradient(to bottom, rgb(255,0,0), rgb(255,0,0));
+}
+
+
+/*十周年UI武将名背景*/
+
+.player>.camp-zone[data-camp='jy_yuan']>.camp-back {
+	background: linear-gradient(to bottom, rgb(7,166,25), rgb(8,102,15));
+}
+
+.player>.camp-zone[data-camp='jy_song']>.camp-back {
+	background: linear-gradient(to bottom, rgb(200,7,7), rgb(119,4,4));
+}
+
+.player>.camp-zone[data-camp='jy_ming']>.camp-back {
+	background: linear-gradient(to bottom, rgb(13,122,168), rgb(5,85,118));
+}
+
+.player>.camp-zone[data-camp='jy_qing']>.camp-back {
+	background: linear-gradient(to bottom, rgb(131,3,185), rgb(71,2,99));
+}
+
+.player>.camp-zone[data-camp='jy_lie']>.camp-back {
+	background: linear-gradient(to bottom, rgb(154,135,7), rgb(94,80,4));
+}
+
+
+/*十周年UI势力*/
+.player>.camp-zone[data-camp='jy_yuan']>.camp-name {
+	text-shadow: 0 0 5px rgb(11, 133, 26), 0 0 10px rgb(11, 133, 26), 0 0 15px rgb(11, 133, 26);
+}
+
+.player>.camp-zone[data-camp='jy_song']>.camp-name {
+	text-shadow: 0 0 5px rgb(164, 14, 14), 0 0 10px rgb(164, 14, 14), 0 0 15px rgb(164, 14, 14);
+}
+
+.player>.camp-zone[data-camp='jy_ming']>.camp-name {
+	text-shadow: 0 0 5px rgb(22, 107, 179), 0 0 10px rgb(22, 107, 179), 0 0 15px rgb(22, 107, 179);
+}
+	
+.player>.camp-zone[data-camp='jy_qing']>.camp-name {
+	text-shadow: 0 0 5px rgb(133, 9, 169), 0 0 10px rgb(133, 9, 169), 0 0 15px rgb(133, 9, 169);
+}
+
+.player>.camp-zone[data-camp='jy_lie']>.camp-name {
+	text-shadow: 0 0 5px rgb(228, 220, 11), 0 0 10px rgb(228, 220, 11), 0 0 15px rgb(228, 220, 11);
+}

@@ -231,12 +231,12 @@ extension["群英会"]={
 
 extension["金庸群侠传"]={
     author:"详看简介",
-    intro:"<li>更新：修复无懈可击无效的BUG，当前版本为1.36<li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码、友情配音：详看扩展内介绍  <li>更新日期：2019-11-15",
+    intro:"<li>更新：随意切换势力，当前版本为1.36，若有素材缺失请到群里下载素材，因为我代上传的也不知道缺少哪些素材了<li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码、友情配音：详看扩展内介绍  <li>更新日期：2020-04-12",
     size:"86MB",
     netdisk:"",
     version:1.36,
     files:[
-"tlbb_quanguanqin.mp3","extension.js","qtpz_ajiu.mp3","qtpz_aobai.jpg","qtpz_aobai.mp3",
+"tlbb_quanguanqin.mp3","extension.js","qtpz_ajiu.mp3","qtpz_aobai.jpg","qtpz_aobai.mp3","jyqxz_tenyearstype.css",
 		"qtpz_aobing1.mp3","qtpz_aobing2.mp3","qtpz_aozun1.mp3","qtpz_aozun2.mp3","qtpz_aqing.jpg",
 		"qtpz_aqing.mp3","qtpz_baotai1.mp3","qtpz_baotai2.mp3","qtpz_benlei1.mp3","qtpz_benlei2.mp3",
 		"qtpz_channi1.mp3","qtpz_channi2.mp3","qtpz_chengbenzhi.jpg","qtpz_chengbenzhi.mp3",

@@ -16,7 +16,7 @@ extension["官渡之战"]={
 		"cxyYuJin.jpg","cxyZhangHe.jpg","cxyZhangLiao.jpg","extension.js","style.css"],
 	size:"2.66MB"
 };
-
+/*
 extension["文武英杰"]={
     author:"凉茶",
     intro:"<li>本扩展是全新的作者包，旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-04-08",
@@ -46,7 +46,7 @@ extension["文武英杰"]={
 		"wwyj_yixue1.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg","wwyj_ziyage.jpg"
     ]
 };
-
+*/
 extension["群英会"]={
 	intro:"<li>更新：修复BUG。当前版本为1.110  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-04-03",
 	author:"小苏&&咫尺天涯",

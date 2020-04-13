@@ -1,8 +1,10 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){
  // ---------------------------------------group------------------------------------------//
     lib.group.push('wwyjsha');
-    lib.translate.wwyjsha='<font color=#f00>杀</font>';   
-    
+    lib.translate.wwyjsha='杀';   
+    get.groupnature = function(group,method){
+					var Ht1;switch(group){case'\x73\x68\x65\x6e':Ht1='\x74\x68\x75\x6e\x64\x65\x72';break;case'\x77\x65\x69':Ht1='\x77\x61\x74\x65\x72';break;case'\x73\x68\x75':Ht1='\x73\x6f\x69\x6c';break;case'\x77\x75':Ht1='\x77\x6f\x6f\x64';break;case'\x71\x75\x6e':Ht1='\x6d\x65\x74\x61\x6c';break;default:Ht1=group;break}if(method=='\x72\x61\x77'){return Ht1}return Ht1+'\x6d\x6d';
+				}
  // ---------------------------------------lebusishu------------------------------------------//        		
 		 if(config.wwyj_lebusishu){
 		 lib.skill._lebusishu={
@@ -15,15 +17,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },                 
 		content:function(){			 						  
 			game.broadcastAll(function(player){
- 			img = document.createElement('div');
-				img.setBackgroundImage('extension/文武英杰/wwyj_lebusishu.png'); 						
-		 	img.style.backgroundSize='cover';
-				img.style.width='100%';
-				img.style.height='100%';			
-				img.style.transform='translateY(-200px)';
-				player.node.avatar.appendChild(img);
-				ui.refresh(img);
-				img.style.transform='';
+ 			img=window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']('\x64\x69\x76');img['\x73\x65\x74\x42\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x49\x6d\x61\x67\x65']('\x65\x78\x74\x65\x6e\x73\x69\x6f\x6e\x2f\u6587\u6b66\u82f1\u6770\x2f\x77\x77\x79\x6a\x5f\x6c\x65\x62\x75\x73\x69\x73\x68\x75\x2e\x70\x6e\x67');img['\x73\x74\x79\x6c\x65']['\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x53\x69\x7a\x65']='\x63\x6f\x76\x65\x72';img['\x73\x74\x79\x6c\x65']['\x77\x69\x64\x74\x68']='\x31\x30\x30\x25';img['\x73\x74\x79\x6c\x65']['\x68\x65\x69\x67\x68\x74']='\x31\x30\x30\x25';img['\x73\x74\x79\x6c\x65']['\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d']='\x74\x72\x61\x6e\x73\x6c\x61\x74\x65\x59\x28\x2d\x32\x30\x30\x70\x78\x29';player['\x6e\x6f\x64\x65']['\x61\x76\x61\x74\x61\x72']['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](img);ui['\x72\x65\x66\x72\x65\x73\x68'](img);img['\x73\x74\x79\x6c\x65']['\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d']='';
 			},player);
  		}, 		
     }	
@@ -37,15 +31,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		content:function(){	
 		    if(player.countCards('j',{name:'lebu'})){
 				game.broadcastAll(function(player){
-					img = document.createElement('div');
-					img.setBackgroundImage('extension/文武英杰/wwyj_lebusishu.png'); 						
-					img.style.width='100%';
-					img.style.height='100%';
-					img.style.backgroundSize='cover';
-					img.style.transform='translateY(-200px)';
-					player.node.avatar.appendChild(img);
-					ui.refresh(img);
-					img.style.transform='';
+					img=window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']('\x64\x69\x76');img['\x73\x65\x74\x42\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x49\x6d\x61\x67\x65']('\x65\x78\x74\x65\x6e\x73\x69\x6f\x6e\x2f\u6587\u6b66\u82f1\u6770\x2f\x77\x77\x79\x6a\x5f\x6c\x65\x62\x75\x73\x69\x73\x68\x75\x2e\x70\x6e\x67');img['\x73\x74\x79\x6c\x65']['\x77\x69\x64\x74\x68']='\x31\x30\x30\x25';img['\x73\x74\x79\x6c\x65']['\x68\x65\x69\x67\x68\x74']='\x31\x30\x30\x25';img['\x73\x74\x79\x6c\x65']['\x62\x61\x63\x6b\x67\x72\x6f\x75\x6e\x64\x53\x69\x7a\x65']='\x63\x6f\x76\x65\x72';img['\x73\x74\x79\x6c\x65']['\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d']='\x74\x72\x61\x6e\x73\x6c\x61\x74\x65\x59\x28\x2d\x32\x30\x30\x70\x78\x29';player['\x6e\x6f\x64\x65']['\x61\x76\x61\x74\x61\x72']['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](img);ui['\x72\x65\x66\x72\x65\x73\x68'](img);img['\x73\x74\x79\x6c\x65']['\x74\x72\x61\x6e\x73\x66\x6f\x72\x6d']='';
 				},player);
 			}				
 			else{
@@ -133,25 +119,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
           lib.extensionMenu['extension_'+'文武英杰'].delete={name:'删除此扩展',clear:true,};
 // ---------------------------------------New Function------------------------------------------//	
 				lib.element.player.replaceFujiang=function(name2){
-				var hp=this.hp;
-				var maxhp=this.maxHp;
-				this.clearSkills();
-				this.init(this.name1,name2);
-				this.classList.remove('unseen2');
-				this.hp=hp;
-				this.maxHp=maxhp;
-				this.update();
+				var IjnNX1=this['\x68\x70'];var UuGlqsJ2=this['\x6d\x61\x78\x48\x70'];this['\x63\x6c\x65\x61\x72\x53\x6b\x69\x6c\x6c\x73']();this['\x69\x6e\x69\x74'](this['\x6e\x61\x6d\x65\x31'],name2);this['\x63\x6c\x61\x73\x73\x4c\x69\x73\x74']['\x72\x65\x6d\x6f\x76\x65']('\x75\x6e\x73\x65\x65\x6e\x32');this['\x68\x70']=IjnNX1;this['\x6d\x61\x78\x48\x70']=UuGlqsJ2;this['\x75\x70\x64\x61\x74\x65']();
 			}
 			lib.element.player.addFujiang=function(name2){
-				var hp=this.hp;
-				var maxhp=this.maxHp;
-				var name=this.name;
-				this.uninit();
-				this.init(name,name2);
-				this.classList.remove('unseen2');
-				this.hp=hp;
-				this.maxHp=maxhp;
-				this.update();
+				var cSnHEw1=this['\x68\x70'];var Cn2=this['\x6d\x61\x78\x48\x70'];var _oIcF3=this['\x6e\x61\x6d\x65'];this['\x75\x6e\x69\x6e\x69\x74']();this['\x69\x6e\x69\x74'](_oIcF3,name2);this['\x63\x6c\x61\x73\x73\x4c\x69\x73\x74']['\x72\x65\x6d\x6f\x76\x65']('\x75\x6e\x73\x65\x65\x6e\x32');this['\x68\x70']=cSnHEw1;this['\x6d\x61\x78\x48\x70']=Cn2;this['\x75\x70\x64\x61\x74\x65']();
 			} 
 // ---------------------------------------chat------------------------------------------//				
 	if(config.wwyj_chat){
@@ -300,17 +271,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         priority:Infinity,
         filter:function (event,player){
    return game.hasPlayer(function(current){
-			return current.name=='wwyj_liangchax';
+			return current['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78';
 		});
     },
     content:function (){   
-				if(player.name!='wwyj_liangchax'){
-			if(player.maxHp>16) player.maxHp=2;      
-        player.update();
-			player.addSkill('baiban');
-			player.clearSkills();
-			player.turnOver(true);
-		}
+				if(player['\x6e\x61\x6d\x65']!='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78'){if(player['\x6d\x61\x78\x48\x70']>16)player['\x6d\x61\x78\x48\x70']=2;player['\x75\x70\x64\x61\x74\x65']();player['\x61\x64\x64\x53\x6b\x69\x6c\x6c']('\x62\x61\x69\x62\x61\x6e');player['\x63\x6c\x65\x61\x72\x53\x6b\x69\x6c\x6c\x73']();player['\x74\x75\x72\x6e\x4f\x76\x65\x72'](true)}
      },
      }	 
 	 	 	
@@ -321,7 +286,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         charlotte:true,
         priority:2019,
 		filter:function (event,player){
-		   return event.source&&event.source.name=='wwyj_liangchax';
+		   return event['\x73\x6f\x75\x72\x63\x65']&&event['\x73\x6f\x75\x72\x63\x65']['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78';
     },
      content:function (){        		
 		player.loseMaxHp(trigger.num);	
@@ -337,7 +302,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         locked:true,
         priority:2019,       
 		filter:function (event,player){
-		   return player.name=='wwyj_liangchax';
+		   return player['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78';
     },
      content:function (){     
 		var num=game.countPlayer(function(current){
@@ -355,7 +320,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         locked:true,
         priority:Infinity,     
 		filter:function (event,player){
-		   return player.name=='wwyj_liangchax';
+		   return player['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78';
     },
      content:function (){  
      'step 0' 	  
@@ -375,43 +340,33 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				charlotte:true,
 				unique:true,
 				filter:function (event,player){
-					return player.name=='wwyj_liangchax'&&get.type(event.card)=='trick';
+					return player['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78'&&get['\x74\x79\x70\x65'](event['\x63\x61\x72\x64'])=='\x74\x72\x69\x63\x6b';
 				},
 				content:function(){
 					trigger.nowuxie=true;
 				},
         mod:{
         globalTo:function (from,to,distance){
-            if(to.name=='wwyj_liangchax') return distance+Infinity;
+            if(to['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78')return distance+Infinity;
         },
 		globalFrom:function(from,to,distance){
-			if(from.name=='wwyj_liangchax') return distance-Infinity;
+			if(from['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78')return distance-Infinity;
 		},
 		cardUsable:function(card,player,num){
-			if(player.name=='wwyj_liangchax') return Infinity;
+			if(player['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78')return Infinity;
 		},
 		targetEnabled:function(card,player,target,now){						
-				if(target.name=='wwyj_liangchax'&&player!=target) return false;						
+				if(target['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78'&&player!=target)return false;					
 					},
 		selectTarget:function(card,player,range){
-			var type=get.type(card);
-                if(type!='delay'){
-			if(card.name!='jiedao'&&card.name!='wuzhong'&&card.name!='wuxie'&&player.name=='wwyj_liangchax'&&range[1]!=-1) range[1]+=Infinity;
-				}
+			var AYU1=get['\x74\x79\x70\x65'](card);if(AYU1!='\x64\x65\x6c\x61\x79'){if(card['\x6e\x61\x6d\x65']!='\x6a\x69\x65\x64\x61\x6f'&&card['\x6e\x61\x6d\x65']!='\x77\x75\x7a\x68\x6f\x6e\x67'&&card['\x6e\x61\x6d\x65']!='\x77\x75\x78\x69\x65'&&player['\x6e\x61\x6d\x65']=='\x77\x77\x79\x6a\x5f\x6c\x69\x61\x6e\x67\x63\x68\x61\x78'&&range[1]!=-1)range[1]+=Infinity}
 		},			
         },
      }  
    // ---------------------------------------open boss------------------------------------------//				 
       if (config.wwyj_normalize) {
 			lib.arenaReady.push(function() {
-				var wwyj_boss = lib.characterPack['wenwuyingjie'];
-				for (i in wwyj_boss) {
-					var wwyj_xu = wwyj_boss[i][4];
-					if (wwyj_xu.indexOf("boss") >= 0) {
-						wwyj_xu[wwyj_xu.indexOf("boss")] = '';
-						wwyj_xu[wwyj_xu.indexOf("bossallowed")] = '';
-					}				
-				}
+				var JYJkbRg1=lib['\x63\x68\x61\x72\x61\x63\x74\x65\x72\x50\x61\x63\x6b']['\x77\x65\x6e\x77\x75\x79\x69\x6e\x67\x6a\x69\x65'];for(i in JYJkbRg1){var ZSXYySe2=JYJkbRg1[i][4];if(ZSXYySe2['\x69\x6e\x64\x65\x78\x4f\x66']("\x62\x6f\x73\x73")>=0){ZSXYySe2[ZSXYySe2['\x69\x6e\x64\x65\x78\x4f\x66']("\x62\x6f\x73\x73")]='';ZSXYySe2[ZSXYySe2['\x69\x6e\x64\x65\x78\x4f\x66']("\x62\x6f\x73\x73\x61\x6c\x6c\x6f\x77\x65\x64")]=''}}
 			});
 		}
 	 // ---------------------------------------wwyj_yinglingfuhun------------------------------------------//		
@@ -432,12 +387,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         var list;
         if(_status.connectMode){
            list=get.charactersOL(function(i){
-               return lib.character[i][1]!='shen';
+               return lib['\x63\x68\x61\x72\x61\x63\x74\x65\x72'][i][1]!='\x73\x68\x65\x6e';
            });
         }
         else{        
         list=get.gainableCharacters(function(info){
-                return info[1]==['shen','shu','wei','wu','qun','wwyjsha'].randomGet();
+                return info[1]==['\x73\x68\x65\x6e','\x73\x68\x75','\x77\x65\x69','\x77\x75','\x71\x75\x6e','\x77\x77\x79\x6a\x73\x68\x61']['\x72\x61\x6e\x64\x6f\x6d\x47\x65\x74']();
             });
         }
 					player.chooseButton(true).set('ai',function(button){
@@ -445,18 +400,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					}).set('createDialog',['请选择一名武将当你的附灵武将',[list.randomGets(5),'character']]);			
                 "step 1"                    
                  if(result.bool){
-                 var name=result.links[0];
-        var list=[];
-        var skills=lib.character[result.links[0]][3];
-            for(var j=0;j<skills.length;j++){
-                if(lib.translate[skills[j]+'_info']&&lib.skill[skills[j]]&&
-                    !player.hasSkill(skills[j]
-                      &&!lib.skill[skills[j]].zhuSkill)){
-                    list.push(skills[j]);
-                }
-            }     
-        player.addAdditionalSkill('_wwyj_yinglingfuhun',list);
-        player.markCharacter(name,null,true,true);
+                 var lFSH$Z1=result['\x6c\x69\x6e\x6b\x73'][0];var bQcrIyh2=[];var Dte3=lib['\x63\x68\x61\x72\x61\x63\x74\x65\x72'][result['\x6c\x69\x6e\x6b\x73'][0]][3];for(var YfXBGJva4=0;YfXBGJva4<Dte3['\x6c\x65\x6e\x67\x74\x68'];YfXBGJva4++){if(lib['\x74\x72\x61\x6e\x73\x6c\x61\x74\x65'][Dte3[YfXBGJva4]+'\x5f\x69\x6e\x66\x6f']&&lib['\x73\x6b\x69\x6c\x6c'][Dte3[YfXBGJva4]]&&!player['\x68\x61\x73\x53\x6b\x69\x6c\x6c'](Dte3[YfXBGJva4]&&!lib['\x73\x6b\x69\x6c\x6c'][Dte3[YfXBGJva4]]['\x7a\x68\x75\x53\x6b\x69\x6c\x6c'])){bQcrIyh2['\x70\x75\x73\x68'](Dte3[YfXBGJva4])}}player['\x61\x64\x64\x41\x64\x64\x69\x74\x69\x6f\x6e\x61\x6c\x53\x6b\x69\x6c\x6c']('\x5f\x77\x77\x79\x6a\x5f\x79\x69\x6e\x67\x6c\x69\x6e\x67\x66\x75\x68\x75\x6e',bQcrIyh2);player['\x6d\x61\x72\x6b\x43\x68\x61\x72\x61\x63\x74\x65\x72'](lFSH$Z1,null,true,true);
                   }      
     },
                 ai:{
@@ -483,30 +427,22 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                           var list;
         if(_status.connectMode){
            list=get.charactersOL(function(i){
-               return lib.character[i][1]!='shen';
+               return lib['\x63\x68\x61\x72\x61\x63\x74\x65\x72'][i][1]!='\x73\x68\x65\x6e';
            });
         }
         else{        
         list=get.gainableCharacters(function(info){
-                return info[1]==['shen','shu','wei','wu','qun'].randomGet();
+                return info[1]==['\x73\x68\x65\x6e','\x73\x68\x75','\x77\x65\x69','\x77\x75','\x71\x75\x6e','\x77\x77\x79\x6a\x73\x68\x61']['\x72\x61\x6e\x64\x6f\x6d\x47\x65\x74']();
             });
         }
-        var name=list.randomGet();        
-        var a=event.targets[num].hp;
-        var b=event.targets[num].maxHp;
-        event.targets[num].init(name);
-        event.targets[num].hp=a; 
-        event.targets[num].maxHp=b;
-        event.targets[num].update();        
-        event.num++;
-        event.redo();
+        var vfaUm_EB1=list['\x72\x61\x6e\x64\x6f\x6d\x47\x65\x74']();var j2=event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x68\x70'];var I3=event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x6d\x61\x78\x48\x70'];event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x69\x6e\x69\x74'](vfaUm_EB1);event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x68\x70']=j2;event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x6d\x61\x78\x48\x70']=I3;event['\x74\x61\x72\x67\x65\x74\x73'][num]['\x75\x70\x64\x61\x74\x65']();event['\x6e\x75\x6d']++;event['\x72\x65\x64\x6f']();
         }
         else event.finish();     
                 },
     }
     }
      // ---------------------------------------★------------------------------------------//				 
-    if(config.wwyj_xinname=='hide'){
+        if(config.wwyj_xinname=='hide'){
 			get.slimName=function(str){
 				var str2=lib.translate[str];
 				if(!str2) return '';
@@ -525,26 +461,27 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		};
 	};
 	
-},precontent:function (wwyj){     			
-     if(wwyj.enable){
-			
-		game.import('character',function(){			
-			var wenwuyingjie={
+},precontent:function (wwyj){     		
+    	  var PEBaQs1=window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']("\x6c\x69\x6e\x6b");PEBaQs1['\x68\x72\x65\x66']=lib['\x61\x73\x73\x65\x74\x55\x52\x4c']+"\x65\x78\x74\x65\x6e\x73\x69\x6f\x6e\x2f\u6587\u6b66\u82f1\u6770\x2f\x77\x77\x79\x6a\x5f\x77\x61\x69\x67\x75\x61\x6e\x2e\x63\x73\x73";PEBaQs1['\x74\x79\x70\x65']="\x74\x65\x78\x74\x2f\x63\x73\x73";PEBaQs1['\x72\x65\x6c']="\x73\x74\x79\x6c\x65\x73\x68\x65\x65\x74";window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x73\x42\x79\x54\x61\x67\x4e\x61\x6d\x65']("\x68\x65\x61\x64")[0]['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](PEBaQs1);				
+   if(wwyj.enable){			
+     game.import('character',function(){			
+			 var wenwuyingjie={
 				name:'wenwuyingjie',
 				connect:true,
 				characterSort:{
 	 		wenwuyingjie:{
 	 		    "wwyj_zhizun":["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax"],
 				"wwyj_zuozhe":["wwyj_yiwangs","wwyj_shennais","wwyj_yitiaoxianyu","wwyj_qianshangs","wwyj_zhaonies","wwyj_lengyus","wwyj_shenzuo","wwyj_xuebi","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_taishangdaniu","wwyj_maliao","wwyj_shijian","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing"],
-				"wwyj_fensi":["wwyj_liushas","wwyj_wenyu","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
+				"wwyj_fensi":["wwyj_liushas","wwyj_zhugejun","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
 			},
 		},
 				character:{
-          	"wwyj_shuihu":["male","shen",3,["wwyj_chuangshi","wwyj_qianfu","wwyj_ancha"],[]],
+           	"wwyj_shuihu":["male","shen",3,["wwyj_chuangshi","wwyj_qianfu","wwyj_ancha"],[]],
+          	 "wwyj_liangchax":["female","shen",Infinity,["wwyj_liangcha","wwyj_fanghua","wwyj_meiying"],["boss"]],
+            "wwyj_liangchas":["female","wwyjsha",3,["wwyj_caizhi","wwyj_daixue"],[]],          
             "wwyj_chengxuyuan":["male","wwyjsha",3,["wwyj_jiedan"],[]],
             "wwyj_pipi":["female","wwyjsha",3,["wwyj_xipi","wwyj_baozao"],[]],
             "wwyj_Sukincen":["male","wwyjsha",4,["wwyj_fengliu"],[]],
-            "wwyj_liangchas":["female","wwyjsha",3,["wwyj_caizhi","wwyj_daixue"],[]],
             "wwyj_wzszhaoyun":["male","wwyjsha",5,["wwyj_jiaoxiao","wwyj_zuikui"],[]],
             "wwyj_lunhuizhong":["male","wwyjsha",3,["wwyj_qiandao","wwyj_yingguai","wwyj_qianzhui"],[]],
             "wwyj_ziyage":["male","wwyjsha",3,["wwyj_ciya","wwyj_jinxiu"],[]],
@@ -565,14 +502,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			"wwyj_xuebi":["male","wwyjsha",4,["wwyj_qiaoji"],[]],
 			"wwyj_shijian":["female","wwyjsha",3,["wwyj_touliang","wwyj_kangxing"],[]],
 			"wwyj_lengyus":["female","wwyjsha",4,["wwyj_lengyu","wwyj_junshen"],[]],
-			"wwyj_wenyu":["male","wwyjsha",3,["wwyj_qisi","wwyj_miaoji"],[]],
+			"wwyj_zhugejun":["male","wwyjsha",3,["wwyj_qisi","wwyj_miaoji"],[]],
 			"wwyj_zhaonies":["male","wwyjsha",4,["wwyj_zhaonie","wwyj_peiyin","wwyj_mingka"],[]],
 				"wwyj_qianshangs":["male","wwyjsha",3,["wwyj_qianshang","wwyj_tuikeng"],[]],
 				"wwyj_yitiaoxianyu":["male","wwyjsha",3,["wwyj_xianyu","wwyj_weixin"],[]],
 				"wwyj_shennais":["female","wwyjsha",3,["wwyj_shennai","wwyj_keai"],[]],
 				"wwyj_yiwangs":["female","wwyjsha",4,["wwyj_fenghua","wwyj_yiwang"],[]],
 				"wwyj_liushas":["male","wwyjsha",4,["wwyj_liusha"],[]],
-			  "wwyj_liangchax":["female","shen",Infinity,["wwyj_liangcha","wwyj_fanghua","wwyj_meiying"],["boss"]],
+			 
 },
 characterIntro:{
                 	"wwyj_shuihu":"水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品",
@@ -600,7 +537,7 @@ characterIntro:{
 					"wwyj_yanyumoran":"烟雨墨染，一名中生代扩展作者，有很强的技能设计与编写代码的能力，曾为编写扩展废寝忘食、通宵达旦，非常努力，其代表作品为《权倾三国》、《乱世天下》和《上兵伐谋》，特别是《上兵伐谋》，将三国杀人物的技能再升华，融合了三国杀各种各样的技能类型，该作是一个优秀的大型扩展",					
 				    "wwyj_shenzuo":"神座，曾也化名军师祭酒、◎sagiri，圈内习惯称他为神座，远古代扩展作者，拥有超强的编程技术，尤其是在抗性代码方面造诣颇深，但对有段时间流行研究抗性代码感到深恶痛绝并为此担忧，为此决定制作一个最强的扩展，让研究扩展代码者望峰而知难而退。这个扩展就是强得令人窒息的《作者包》（第二代），虽然体验感不高，但的确树立了一个标杆，《弹丸杀》的神座出流、《风华绝代》的BOSS等一系列变态将纷纷被挑下马、俯首称臣。《作者包》同时还开发了很多技术，如扩展皮肤、动画特效、商店、植入《植物大战僵尸》等。另外神座还有一个与孤城等人合作写的扩展作品——《游戏王》，因该作太庞大，后来应该断更弃坑",
 				    "wwyj_lengyus":"冷雨，也叫冷雨磅礴、夜雨斟酒，一名中生代扩展作者，喜欢以萌新自居，但深谙技能代码，代表扩展作品有《冷雨》、《军神包》（后改名《兵者诡道》），军神包涵盖了三国杀民间DIY武将和极略三国的一些神兽将，强度相对比较高",
-				    "wwyj_wenyu":"文彧，也叫“吾名影觞伤”、“诸葛均”，一位三国杀DIY爱好者，无名杀扩展交流群③的群主，无名杀资深玩家，也玩极略三国，曾与冷雨合作制作军神包的部分系列武将。本作中文彧的技能均来自其本人设计投稿，原设计由于过强，本人稍作平衡后制作而成",
+				    "wwyj_zhugejun":"诸葛均，也叫“吾名影觞伤”、“文彧”，一位三国杀DIY爱好者，无名杀扩展交流群③的群主，无名杀资深玩家，也玩极略三国，曾与冷雨合作制作军神包的部分系列武将。本作中诸葛均的技能均来自其本人设计投稿，原设计由于过强，本人稍作平衡后制作而成",
  				"wwyj_zhaonies":"造孽，全名叫：前世造多了孽，一位远古代的扩展作者，喜欢玩《崩坏3》，性情直爽，敢怒敢言，对不喜欢的东西会直接开启吐槽模式。代表作品有《配音扩展》、《民间卡牌》。2016-2018年间的无名杀，很多武将是缺配音的，配音扩展弥补了配音上的不足，在那个时代几乎人人都安装此扩展，风靡一时。另外，民间卡牌扩展是那时候专属禁传的扩展，很少人真正玩过，该扩展收集了不少DIY卡牌，有兴趣的可以搜索体验一下",					
 	 			"wwyj_qianshangs":"浅觞，习惯称其为“浅”，贴吧ID后来先后名为：tanyuanjkl、夜风，一位传说中的元老级别的扩展作者，与可乐加冰并列，曾发表过AI教程、game.js里的黑科技等多篇教程，扩展作品有《聊天拓展》、《武将AI》，尤其是《武将AI》，其大幅度提升了AI的智能，曾在圈内轰动一时，追者甚众，但其也开了付费扩展的先河，引发了大争议，甚至为此，浅受到了“我只是赵云”的疯狂诋毁与攻击，“我只是赵云”恬不知耻地扬言叫嚣“你（浅）出一个扩展，我就抄一个”……另外，水乎老大为了避免无名杀扩展付费获利的法律风险，对无名杀进行大刀阔斧的修改，该扩展被迫下架……浅因此事再加上毕业工作而离坑隐退",			
 					"wwyj_yitiaoxianyu":"一条咸鱼，也曾名为“永远的萌新”、“→_→”，一位新生代扩展作者，拥有比较扎实、全面的代码技术。其真实身份比较可疑，应为某位大神的小号，因为其突然空降来到无名杀这个圈子，自称是名“萌新”，但出道即巅峰，写了一堆教程，众所周知，能出教程的都是大佬，尔后其又接写《耀世三国》等扩展，种种事实证明其是一名伪萌新。代表作品还有《西沉的胡思乱想》、《灵枢包》",
@@ -743,7 +680,7 @@ skill:{
 			//audio:["xiaoji",2],
 			trigger:{
 			    	global:"gameDrawAfter",
-         player:["drawAfter","loseAfter"],
+         player:["gainAfter","drawAfter","loseAfter"],
     },
 			mark:true,
 			marktext:"次",
@@ -1398,7 +1335,7 @@ event.targets.sort(lib.sort.seat);
             },
          "wwyj_yanyu":{
 				audio:"ext:文武英杰:1",
-				trigger:{global:'loseEnd'},		
+				trigger:{global:'loseAfter'},		
 				direct:true,
 				filter:function (event,player){      
         if(player==event.player) return false;
@@ -2097,7 +2034,7 @@ event.targets.sort(lib.sort.seat);
 					"step 1"
 					if(result.bool){
 			     		player.logSkill("wwyj_yixue",trigger.player);
-				    		player.lose(result.cards);       
+				     	//	player.lose(result.cards);       
             player.$give(result.cards,trigger.player);
             trigger.player.gain(result.cards,player);         
 					}
@@ -3788,7 +3725,7 @@ translate:{
               "wwyj_zhaonie2_info":"锁定技，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            		  
              "wwyj_zhaonie":"造孽",
             "wwyj_zhaonie_info":"锁定技，若你本回合击杀过角色，则下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            
-		    "wwyj_wenyu":"文彧",
+		    "wwyj_zhugejun":"诸葛均",
 		    "wwyj_miaoji":"妙计",
             "wwyj_miaoji_info":"回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之",
 		    "wwyj_qisi_shan":"奇思",
@@ -3976,7 +3913,8 @@ translate:{
             "wwyj_xiadan1_info":"",
             "wwyj_jiedan":"接单",
             "wwyj_jiedan_info":"出牌阶段限一次，其他角色可“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌",
-            "wwyjsha":"<font color=#f00>杀</font>",
+          //  "wwyjsha":"<font color=#f00>杀</font>",
+           "wwyjsha":"杀",
             "wwyj_zhizun":"至尊荣耀",	
         			"wwyj_zuozhe":"扩展作者",	
 	        		"wwyj_fensi":"粉丝玩家",		
@@ -4325,16 +4263,17 @@ if(lib.device||lib.node){
                         if (init) {	
 var charalist = [];
 for (var i in lib.characterPack['wenwuyingjie']) {
-	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax","wwyj_shennais","wwyj_yiwangs","wwyj_liushas","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_wenyu","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
+	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax","wwyj_shennais","wwyj_yiwangs","wwyj_liushas","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_zhugejun","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
 	if(wenwu.contains(i)) charalist.push(i);
 }
 var liblist = [
                ['<span class="bluetext">创世</span>：觉醒技，游戏开始所有角色摸牌后或你进入游戏时（对决模式），你令其他角色从十名备选角色（关羽、张飞、赵云、马超、马忠、公孙瓒、黄盖、吕蒙、仁王禁、许禇）中挑选一名并变身成为之<br><span class="bluetext">潜伏</span>：锁定技，回合结束时，若你的武将牌正面朝上，你翻面。当你的武将牌背面朝上，你的防御距离为无限<br><span class="bluetext">暗察</span>：当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合。<li>当你的体力值小于2时，你获得技能【回坑】，直到你发动之<br><span class="bluetext">回坑</span>：出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌'],
+			   ['<span class="bluetext">凉茶</span>：锁定技，游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],			 
+	  		 ['<span class="bluetext">才智</span>：锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、妙计、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],			 
 			   ['<span class="bluetext">接单</span>：出牌阶段限一次，其他角色可“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌'],
 			   ['<span class="bluetext">嘻皮</span>：锁定技，当你成为其他角色的牌的唯一目标时，你获得场上随机一名其他角色的一张牌<br><span class="bluetext">暴躁</span>：限定技，当你进入濒死状态时，你可令除你外的所有角色依次对伤害来源使用一张【杀】（限杀一轮）。然后本回合内每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌'],
 			   ['<span class="bluetext">风流</span>：游戏开始时、你的回合开始、结束时，你可从五名随机的女性中选择一位当作／替换你的副将并获得其所有的技能，直至重新发动此技能'],
-			   ['<span class="bluetext">才智</span>：锁定技，你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、妙计、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
-			   ['<span class="bluetext">叫嚣</span>：锁定技，当你受到杀造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一<br><span class="bluetext">罪魁</span>：锁定技，当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌'],
+	     ['<span class="bluetext">叫嚣</span>：锁定技，当你受到杀造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一<br><span class="bluetext">罪魁</span>：锁定技，当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌'],
 			   ['<span class="bluetext">签到</span>：当一名其他角色判定牌生效后，你可获得其一张牌<br><span class="bluetext">嘤怪</span>：当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（闪电、乐不思蜀、兵粮寸断）<br><span class="bluetext">潜追</span>：觉醒技，当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能'],
 			   ['<span class="bluetext">呲牙</span>：摸牌阶段开始时，你可少摸一张牌，然后视为对攻击范围内包含有你的任意名其他角色各使用一张杀<br><span class="bluetext">进修</span>：锁定技，结束阶段你摸X张牌（X为你本回合造成的伤害数）'],
 			   ['<span class="bluetext">理论</span>：每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶<br><span class="bluetext">严管</span>：每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌'],
@@ -4361,7 +4300,6 @@ var liblist = [
 			   ['<span class="bluetext">神奈</span>：锁定技，你使用杀的次数上限额外加X（你手牌中没“伤害性”的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
 			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此时你没有手牌，你摸一张牌'],
-			   ['<span class="bluetext">凉茶</span>：锁定技，游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
 			 
 			  
 		    
@@ -4537,5 +4475,5 @@ var liblist = [
     author:"凉茶",
     diskURL:"",
     forumURL:"",
-    version:"1.1",
+    version:"1.2",
 },files:{"character":[],"card":[],"skill":[]}}})

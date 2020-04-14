@@ -1,4 +1,4 @@
-game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){
+game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",content:function (config,pack){
  // ---------------------------------------group------------------------------------------//
     lib.group.push('wwyjsha');
     lib.translate.wwyjsha='杀';   
@@ -462,7 +462,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	};
 	
 },precontent:function (wwyj){     		
-    	  var PEBaQs1=window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']("\x6c\x69\x6e\x6b");PEBaQs1['\x68\x72\x65\x66']=lib['\x61\x73\x73\x65\x74\x55\x52\x4c']+"\x65\x78\x74\x65\x6e\x73\x69\x6f\x6e\x2f\u6587\u6b66\u82f1\u6770\x2f\x77\x77\x79\x6a\x5f\x77\x61\x69\x67\x75\x61\x6e\x2e\x63\x73\x73";PEBaQs1['\x74\x79\x70\x65']="\x74\x65\x78\x74\x2f\x63\x73\x73";PEBaQs1['\x72\x65\x6c']="\x73\x74\x79\x6c\x65\x73\x68\x65\x65\x74";window["\x64\x6f\x63\x75\x6d\x65\x6e\x74"]['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x73\x42\x79\x54\x61\x67\x4e\x61\x6d\x65']("\x68\x65\x61\x64")[0]['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](PEBaQs1);				
+    	  var link = document.createElement("link");
+			  	link.href = lib.assetURL + "extension/文武英杰/wwyj_waiguan.css";
+		   	link.type = "text/css";
+				  link.rel = "stylesheet";
+				  document.getElementsByTagName("head")[0].appendChild(link);				
    if(wwyj.enable){			
      game.import('character',function(){			
 			 var wenwuyingjie={
@@ -499,7 +503,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             "wwyj_wali":["male","wwyjsha",3,["wwyj_toushi","wwyj_qiuxue"],[]],
             "wwyj_yanyumoran":["female","wwyjsha",4,["wwyj_yanyu","wwyj_bingmou"],[]],
             "wwyj_shenzuo":["male","wwyjsha",3,["wwyj_jisi","wwyj_qiangkang"],[]],
-			"wwyj_xuebi":["male","wwyjsha",4,["wwyj_qiaoji"],[]],
+			"wwyj_xuebi":["male","wwyjsha",3,["wwyj_qiaoji","wwyj_fansha"],[]],
 			"wwyj_shijian":["female","wwyjsha",3,["wwyj_touliang","wwyj_kangxing"],[]],
 			"wwyj_lengyus":["female","wwyjsha",4,["wwyj_lengyu","wwyj_junshen"],[]],
 			"wwyj_zhugejun":["male","wwyjsha",3,["wwyj_qisi","wwyj_miaoji"],[]],
@@ -604,7 +608,7 @@ skill:{
 					return '是否令'+get.translation(event.target)+'翻面？';
 				},
                 filter:function (event,player){
-        return event.card&&event.card.isCard&&event.card.name=='sha';
+        return event.card.name=='sha';
     },
                 content:function (){                  
             trigger.target.turnOver();                        
@@ -766,7 +770,7 @@ skill:{
 		if(result.bool){
            //player.logSkill("wwyj_keai");
            event.targets[event.num].line(player,'green'); 
-		        event.targets[event.num].lose(result.cards);       
+		        //event.targets[event.num].lose(result.cards);       
            event.targets[event.num].$give(result.cards,player);
            player.gain(result.cards,event.targets[event.num]);		     
           game.log(player,'获得了'+get.translation(event.targets[event.num])+'的一张',result.cards);          
@@ -829,7 +833,7 @@ skill:{
     },
                 audio:["xianzhen",2],                                        
                 filter:function (event,player){
-        return event.card&&event.card.isCard&&event.card.name=='sha';
+        return event.card.name=='sha';
     },
                 content:function (){        
           'step 0'   
@@ -944,7 +948,7 @@ skill:{
     },
                 audio:["qiangxi",2],                                        
                 filter:function (event,player){
-        return event.card&&event.card.isCard&&event.card.name=='sha'&&player.countCards('he',{type:'equip'});
+        return event.card.name=='sha'&&player.countCards('he',{type:'equip'});
     },
                 content:function (){        
           'step 0'        
@@ -1120,7 +1124,7 @@ skill:{
      },  
 	 forced:true,
 	 filter:function (event,player){
-          return event.card&&event.player.isAlive()&&event.card.isCard&&event.card.name=='sha'&&event.notLink();
+          return event.player.isAlive()&&event.card.name=='sha'&&event.notLink();
       },
      content:function (){  
 	 "step 0"
@@ -1129,7 +1133,7 @@ skill:{
        };                					
 					"step 1"
 					if(result.bool){		
-				    		player.lose(result.cards);       
+				    		//player.lose(result.cards);       
             player.$give(result.cards,trigger.player);
             trigger.player.gain(result.cards,player);			     
 					}
@@ -1144,7 +1148,7 @@ skill:{
              player:"shaBegin",
      },       
    	 filter:function (event,player){
-          return event.card&&event.target.countCards('h')&&event.card.isCard&&event.card.name=='sha';
+          return event.target.countCards('h')&&event.card.name=='sha';
       },
       frequent:true,	  
      content:function (){  
@@ -1270,6 +1274,22 @@ skill:{
                     trigger.cancel();
                 },
             },
+			"wwyj_fansha":{
+        audio:["fanjian",2],
+         trigger:{
+          target:"shaBegin",
+     },          
+	         filter:function (event,player){
+               return player.countCards('h','sha')&&event.card.name=='sha';
+      },
+	  check:function (event,player){ 	          
+            return get.attitude(player,event.player)<=0;
+         },
+     content:function (){
+		 player.discard(player.getCards('h',{name:'sha'}));
+		 player.useCard({name:'sha'},trigger.player,false);
+     },				
+			},	
 		"_wwyj_qiaoji":{                
                 trigger:{
                     player:"useCard",
@@ -1279,7 +1299,7 @@ skill:{
                 forced:true,
                 priority:10,
                 filter:function (event,player){                                                            
-      return event.card&&event.card.isCard&&event.card.name=='sha'&&game.hasPlayer(function(current){
+      return event.card.name=='sha'&&game.hasPlayer(function(current){
       return current.hasSkill('wwyj_qiaoji2')&&player!=current;
   });
     },
@@ -1306,7 +1326,7 @@ event.targets.sort(lib.sort.seat);
           forced:true,
 		  popup:false,
 	         filter:function (event,player){
-               return player.countCards('h')&&event.card&&event.card.isCard&&event.card.name=='sha';
+               return player.countCards('h')&&event.card.name=='sha';
       },
      content:function (){
 		 trigger.source.say('吃了我的给我吐出来');
@@ -1319,18 +1339,33 @@ event.targets.sort(lib.sort.seat);
           global:"phaseDrawEnd",
      },      
 	 filter:function (event,player){
-               return player!=event.player;
+               return event.num>0&&player!=event.player;
       },
-      check:function (event,player){   
-             if(!player.countCards('h','shan')&&event.player.countCards('h')>3) return false;
+      check:function (event,player){ 
+	         if(get.attitude(player,event.player)>0) return 0;
+             if(!player.countCards('h','shan')&&event.player.countCards('h')>4) return 0;
 	    	       if(player.countCards('h')<2&&player.hp<2) return 0;     
 	    	       if(!player.isEmpty(2)) return 1;       
 	    	       if(player.countCards('h','shan')) return 1;     
               return 0;
-         },           
+         },             
      content:function (){
-		 player.draw();   
-		 player.addTempSkill('wwyj_qiaoji2');		     
+		 'step 0' 
+		 player.chooseCardButton('选择获得其中一张杀',trigger.cards,1).set('filterButton',function(button){           
+             return button.link.name=='sha';
+         }).set('ai',function(button){
+             return get.value(button.link);
+         });                                     
+            'step 1'
+          if(result.bool){                             
+             trigger.player.$give(result.links,player);
+             player.gain(result.links,trigger.player); 
+			 player.addTempSkill('wwyj_qiaoji2');
+          }
+          else{
+			player.draw(); 
+			player.addTempSkill('wwyj_qiaoji2');
+		  }		     
      },				           
             },
          "wwyj_yanyu":{
@@ -2061,7 +2096,7 @@ event.targets.sort(lib.sort.seat);
                 },
                 forced:true,
                 filter:function (event,player){
-          return event.card&&event.card.isCard&&event.card.name=='sha';
+          return event.card.name=='sha';
       },
                 content:function (){
         //game.playwwyj('wwyj_jiangsha');
@@ -2167,7 +2202,7 @@ event.targets.sort(lib.sort.seat);
          });
        "step 2"
         if(result.bool){
-            target.lose(result.links[0]);       
+           // target.lose(result.links[0]);       
             target.$give(result.links[0],player);
             player.chooseUseTarget(result.links[0],true);            
         }       
@@ -2987,7 +3022,7 @@ event.targets.sort(lib.sort.seat);
                 },     
                 forced:true,
                 filter:function (event,player){
-        return event.card&&event.card.isCard&&event.card.name=='sha';
+        return event.card.name=='sha';
     },
                 content:function (){ 
                      if(trigger.source.countCards('he')){
@@ -3749,12 +3784,12 @@ translate:{
             "wwyj_junshen_info":"出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具",
 		    "wwyj_jisi":"即死",
             "wwyj_jisi_info":"你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力",
-		    "wwyj_huanming":"换名",
-            "wwyj_huanming_info":"锁定技，摸牌阶段开始时，若你的手牌数多于4张，你须弃置手牌至4张",
+		    "wwyj_fansha":"反杀",
+            "wwyj_fansha_info":"当你成为杀的目标时，你可弃置所有手牌中的杀，视为对来源使用一张杀",
 		    "_wwyj_qiaoji":"巧技",
 			"wwyj_qiaoji2":"巧技",
 			"wwyj_qiaoji":"巧技",
-            "wwyj_qiaoji_info":"当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，该角色本回合内使用杀时，你成为额外的目标",
+            "wwyj_qiaoji_info":"当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张杀，否则摸一张牌，若如此做，本回合内有角色使用杀时，你成为额外的目标",
             "wwyj_jianghun":"键魂",
             "wwyj_jianghun_info":"锁定技，每轮游戏开始时，你随机获得一名未获得过的论外包角色的一个随机的技能",
             "wwyj_chengzhi":"承志",
@@ -4290,7 +4325,7 @@ var liblist = [
 			   ['<span class="bluetext">偷师</span>：出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始<br><span class="bluetext">求学</span>：觉醒技，若你已发动至少3次【偷师】，你回复1点体力并获得技能【高产】<br><span class="bluetext">高产</span>：你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零'],
 			   ['<span class="bluetext">烟雨</span>：当一名其他角色失去武器牌后，你可选择其中的一张立即使用之<br><span class="bluetext">兵谋</span>：锁定技，你的防御距离与你使用的【杀】的目标上限均等于你的攻击范围'],			   			   
 			   ['<span class="bluetext">即死</span>：你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力<br><span class="bluetext">强抗</span>：锁定技，你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌'],
-			   ['<span class="bluetext">巧技</span>：当一名其他角色摸牌阶段结束时，你可以摸一张牌，若如此做，该角色本回合内使用杀时，你成为额外的目标'],
+			   ['<span class="bluetext">巧技</span>：当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张杀，否则摸一张牌，若如此做，本回合内有角色使用杀时，你成为额外的目标<br><span class="bluetext">反杀</span>：当你成为杀的目标时，你可弃置所有手牌中的杀，视为对来源使用一张杀'],
 			   ['<span class="bluetext">透凉</span>：结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合结束时，不能使用或打出基本牌<br><span class="bluetext">抗性</span>：当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调'],
 			   ['<span class="bluetext">冷雨</span>：当你使用杀时，你可获得目标角色的一张手牌，若如此做，此杀造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色杀无次数限制，你使用的黑色杀无距离限制；2.你使用的杀可指定任意名目标且无视目标的防具'],
 			   ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若且你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],

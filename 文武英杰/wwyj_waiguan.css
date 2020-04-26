@@ -1,0 +1,33 @@
+
+.player .identity[data-color="文武英杰"],
+
+/*势力*/
+div[data-nature='wwyjsha'],
+span[data-nature='wwyjsha'] {
+	text-shadow: rgba(255, 0, 204,1) 0 0 2px,rgba(255,0,204,1) 0 0 5px,rgba(255,0,204,1) 0 0 10px,
+		rgba(255,0,204,1) 0 0 10px,rgba(255,0,204,1) 0 0 20px,rgba(255,0,204,1) 0 0 20px,black 0 0 1px;
+}
+/*中*/
+div[data-nature='wwyjsham'],
+span[data-nature='wwyjsham'] {
+	text-shadow: rgba(255,128,0,1) 0 0 2px,rgba(255,128,0,1) 0 0 5px,rgba(255,128,0,1) 0 0 5px,
+		rgba(255,128,0,1) 0 0 5px,black 0 0 1px;
+}
+/*武将名*/
+div[data-nature='wwyjshamm'],
+span[data-nature='wwyjshamm'] {
+	text-shadow: rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,
+		rgba(255,128,204,1) 0 0 2px,black 0 0 1px;
+}
+
+.player.unseen>.camp-zone>.camp-back {
+	background: linear-gradient(to bottom, rgb(255,0,0), rgb(255,0,0));
+}
+/*十周年UI武将名背景*/
+.player>.camp-zone[data-camp='wwyjsha']>.camp-back {
+	background: linear-gradient(to bottom, rgb(204,0,204), rgb(136,0,204), rgb(102,0,204));
+}
+/*十周年UI势力*/
+.player>.camp-zone[data-camp='wwyjsha']>.camp-name {
+	text-shadow: 0 0 5px rgb(255, 0, 204), 0 0 10px rgb(255, 0, 204), 0 0 15px rgb(255, 0, 204);
+}

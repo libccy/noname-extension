@@ -21,10 +21,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
        '<li>新增全新的图鉴，方便快速阅读学习技能，新增出牌提示的开关',
-       '<li>修改武将【流沙】、【浅觞】。当前扩展版本已升版至为1.5',
-       'players://["wwyj_liushas","wwyj_qianshangs"]',
+       '<li>新增武将【提笼架鸟】，修改武将【流沙】、【浅觞】。当前扩展版本已升版至为1.5',
+       'players://["wwyj_tilongjianiao","wwyj_liushas","wwyj_qianshangs"]',
     ];
-    wwyj_version='更新日期：2020年05月06日';
+    wwyj_version='更新日期：2020年05月08日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -336,7 +336,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		trigger:{player:'recoverEnd'},							
         forced:true, 
 		filter:function (event,player){							
-            return player.hp>1;                          
+            return player.hp>2;                          
 		},
         content:function (){					
 			player.say(['早睡早起，方能养生，2333～','这感觉……就像一下子年轻了十岁'].randomGet());		   	    							         					        
@@ -361,7 +361,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		trigger:{player:'drawEnd'},							
         forced:true,      
         filter:function (event,player){							
-            return event.num>1;                          
+            return event.num>2;                          
 		},  
         content:function (){					
 			player.say(['卧槽～好牌啊！','猜猜我摸了什么牌？','唉……又摸了几张烂牌'].randomGet());		   	    							         					        
@@ -781,7 +781,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	 		wenwuyingjie:{
 	 		    "wwyj_zhizun":["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax"],
 				"wwyj_zuozhe":["wwyj_guihua","wwyj_yiwangs","wwyj_shennais","wwyj_yitiaoxianyu","wwyj_qianshangs","wwyj_zhaonies","wwyj_lengyus","wwyj_shenzuo","wwyj_xuebi","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_taishangdaniu","wwyj_maliao","wwyj_shijian","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing"],
-				"wwyj_fensi":["wwyj_liushas","wwyj_zhugejun","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
+				"wwyj_fensi":["wwyj_tilongjianiao","wwyj_liushas","wwyj_zhugejun","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"],
 			},
 		},
 				character:{
@@ -819,6 +819,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_yiwangs":["female","wwyjsha",4,["wwyj_fenghua","wwyj_yiwang"],[]],
 				"wwyj_liushas":["male","wwyjsha",4,["wwyj_liusha"],[]],
 				"wwyj_guihua":["female","wwyjsha",3,["wwyj_gainian","wwyj_heimao"],[]],
+				"wwyj_tilongjianiao":["male","wwyjsha",3,["wwyj_gonggao","wwyj_jinyan"],[]],
+				
 			 
 },
 characterIntro:{
@@ -856,6 +858,7 @@ characterIntro:{
 					"wwyj_liushas":"流沙，一位元老级的资深老玩家，为早期无名杀的素材收集作出了不少贡献，热爱无名杀这个游戏，并且经常出面维护无名杀的声誉",					
 					"wwyj_liangchax":"这个是boss凉茶，可进挑战模式中挑战她！也可在扩展界面开启“天神降临”再重启游戏，然后就可在非挑战模式中选用或被ai选用（注：本武将及本扩展不含任何赋空等抗性代码）",	
 					"wwyj_guihua":"松岛枫桂花，一位元老级的扩展大神，贴吧ID也叫”大小姐-夜子“，另外，“琉璃殿下de骑士“据情报透露是其贴吧小号，圈内习惯称她为“黑猫”、“猫猫”、“桂花大神”，桂花曾与可乐、浅觞、极光、遗忘并称“五大天王”（个人总结），其代码技术在早期便独领风骚，制作过多个匪夷所思的扩展。主要的扩展代表作分别有：小扩展《玲》；《红尘乱尘》，其前身是三国KILL武将，貌似后来成了《极略三国》的前身；多年站在精品扩展巅峰的《概念武将》也是主要出自其手，该扩展从设计到代码，都达到了令人望尘莫及的地步。还有早已失传的传说中的《动漫包》的也是她写的，该扩展当时引起过巨大的轰动，求之者众，但能真正接触过的人却寥寥无几，以至该扩展失传后，仍有多个扩展作者尝试复盘这个扩展，比如最忠诚的叛徒的《动漫包（伪）》，此外还有其他人写的《动漫杂包》、《动漫包（真）》、《动漫》等，但都没有原作的神韵。目前该大神已退坑许久",
+					"wwyj_tilongjianiao":"提笼架鸟，新生代玩家，多个群的管理员，热爱无名杀，为帮助新人解决游戏的各种问题，专程总结了一个PDF的FAQ问题集，有关无名杀的大小问题几乎都可找到相应的解决方法，非常有行动力，为无名杀的BUG收集、解决方法付出了不少努力。只是为人雷厉风行，说话粗暴直接，会以踢人禁言为手段，再加上其使用一张似乎在注视群员一举一动一言一行的动漫头像，给萌新留下了恐惧的心理阴影",
 					//"wwyj_moban":"简介模板",										
 						     		
 												},
@@ -869,8 +872,210 @@ characterTitle:{
 					"wwyj_shenzuo":"◎sagiri",
 					"wwyj_shennais":"学妹",
 					"wwyj_guihua":"黑猫",
+					"wwyj_tilongjianiao":"萌新杀手",
 			 		},
-skill:{	
+skill:{
+	
+    "wwyj_jinyan1":{                
+        trigger:{
+            player:["useCard","respond"],
+        },					
+		popup:false,
+        forced:true,
+        priority:10,
+        filter:function (event,player){                                                            
+            return player.hasSkill('wwyj_jinyan2')&&event.card&&event.card.isCard&&event.card.name==player.storage.wwyj_jinyan;
+        },
+        content:function (){ 
+		    player.storage.wwyj_jinyan=[];
+		    player.removeSkill('wwyj_jinyan1');		
+            player.removeSkill('wwyj_jinyan2');     
+        },
+        ai:{
+            order:9,
+        },
+    },
+    "wwyj_jinyan2":{
+		mark:true,
+        mod:{
+                    cardEnabled:function(card,player,event){
+            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+        },
+                    cardUsable:function(card,player,event){
+            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+        },
+                    cardRespondable:function(card,player,event){
+            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+        },
+                    cardSavable:function (card){
+            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+        },
+                },  
+			intro:{	
+                content:function (storage,player,skill){
+         			return '你不能使用或打出不是'+get.translation(player.storage.wwyj_jinyan)+'的牌';
+          	 	}, 
+			},				
+    },
+    "wwyj_jinyan":{                              
+        enable:"phaseUse",
+		usable:1,
+		audio:["wuyan",2],		
+		filter:function (event,player){
+            var num=game.countPlayer(function(current){
+                return current!=player&&current.hasSkill('wwyj_jinyan2');
+			});
+			if(num>0) return false;
+			return true;
+        },
+		filterTarget:function (card,player,target){
+            return player!=target&&!target.hasSkill('wwyj_jinyan2');
+        },
+        content:function (){        
+            'step 0'  
+            target.addSkill('wwyj_jinyan1');
+            target.addSkill('wwyj_jinyan2'); 
+            if(!target.storage.wwyj_jinyan){
+                target.storage.wwyj_jinyan=[];
+            }
+            var list=['sha','shan','jiu','tao'];
+            for(var i=0;i<list.length;i++){
+                list[i]=['基本牌','',list[i]];
+            }
+        player.chooseButton(true,[[list,'vcard']]).set('filterButton',function(button){
+            if(target.storage.wwyj_jinyan&&target.storage.wwyj_jinyan.contains(button.link[2])) return false;
+                return true;
+        }).set('ai',function(button){
+            var rand=_status.event.rand*2;
+            switch(button.link[2]){
+                case 'tao':return 4+rand[3];
+                case 'sha':return 3+rand[6];
+                case 'shan':return 2+rand[7];
+                case 'jiu':return 5+rand[8];
+                default:return rand[9];
+            }
+        }).set('rand',[Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],Math.random());                                
+            'step 1'
+            if(result.bool){
+				player.say('不看公告和教程就问问题的，祖安问候');
+                player.logSkill('wwyj_jinyan');
+                target.storage.wwyj_jinyan.add(result.links[0][2]);
+            }
+			else event.finish();
+        },
+             ai:{
+                    order:2,
+                    result:{
+                        target:function (player,target){
+                if(target.countCards('h')>=3) return -3.5;
+                return -2;
+            },
+                    },
+                },        
+    },
+    "wwyj_gonggao2":{
+		trigger:{
+			player:'damageEnd',
+		},
+		audio:['quanji',2],
+		popup:false,
+		forced:true,
+		filter:function (event,player){
+			return event.source.isAlive()&&player!=_status.currentPhase;
+		},
+		content:function (){			
+			trigger.source.addSkill('wwyj_gonggao1');
+		},
+	},
+	"wwyj_gonggao1":{
+		intro:{
+            name:"警告",
+            content:"你已被警告",
+        },
+		mark:true,
+        marktext:"警",
+	},
+    "wwyj_gonggao":{
+		audio:"ext:文武英杰:1",
+        trigger:{
+			player:'phaseEnd',
+		},
+		direct:true,
+		group:'wwyj_gonggao2',
+		filter:function (event,player){
+            return game.hasPlayer(function(current){
+                return current!=player&&current.hasSkill('wwyj_gonggao1');
+			});
+        },
+        init:function (player){
+			player.storage.wwyj_gonggao=[];		
+		},                        
+        content:function (){
+			'step 0'
+			var list=['basic','trick','equip'];
+			for(var i=0;i<player.storage.wwyj_gonggao.length;i++){
+				list.remove(player.storage.wwyj_gonggao[i]);
+			}
+			if(list.length>0){
+				player.chooseControl(list).set('ai',function(){
+					return list[0];
+			    }
+			).set('prompt',get.prompt('wwyj_gonggao')).set('prompt2',get.translation('wwyj_gonggao_info'));
+			}
+			else event.finish();
+			'step 1'
+			if(result.control){
+				player.storage.wwyj_gonggao=result.control;
+			}
+			else{
+				event.finish();
+			}
+			'step 2'
+			event.num=0;
+			event.targets=game.filterPlayer(function(current){
+            return current!=player&&current.hasSkill('wwyj_gonggao1');
+        }); 
+		event.targets.remove(player);
+        event.targets.sort(lib.sort.seat);
+		    'step 3'
+			if(event.num<event.targets.length){
+			player.line(event.targets[event.num],'green');
+            event.targets[event.num].chooseCard('交给'+get.translation(player)+'一张与'+get.translation(player.storage.wwyj_gonggao)+'牌类型相同的牌，否则'+get.translation(player)+'视为对你使用一张杀','he',function(card){
+               return true;
+            }).ai=function(card){			   
+               return 10-get.value(card);
+            };                                 
+        }
+         else{		 
+			 event.finish();
+		 }
+		'step 4'    
+		if(result.bool){ 
+		   event.targets[event.num].removeSkill("wwyj_gonggao1");
+           event.targets[event.num].$give(result.cards,player); 
+		   player.gain(result.cards,event.targets[event.num]);
+		   var card=result.cards[0];
+		   player.logSkill('wwyj_gonggao');
+           game.log(player,'获得了'+get.translation(event.targets[event.num])+'一张',result.cards); 
+		   if(get.type(card)==player.storage.wwyj_gonggao){
+			  event.targets[event.num].draw();			
+		   }
+		   event.num++;
+		   event.goto(3);		  
+		}
+		else{
+		   player.logSkill('wwyj_gonggao');
+		   event.targets[event.num].removeSkill("wwyj_gonggao1");
+		   player.useCard({name:'sha'},event.targets[event.num],false);	
+		   player.say('叫你不看教程？也不看看我是何人？');
+		   event.num++;
+		   event.goto(3);
+		}		
+		},
+		ai:{
+           order:5,               
+        },
+	},
     "wwyj_gainian":{
 		audio:"ext:文武英杰:2",
         enable:"phaseUse",
@@ -933,7 +1138,7 @@ skill:{
             event.targets[event.num].chooseCard('弃置一张牌名与'+get.translation(player.storage.wwyj_gainian)+'相同的手牌，否则'+get.translation(player)+'摸一张牌','h',function(card){
                return card.name==player.storage.wwyj_gainian;
             }).ai=function(card){
-			   if(get.attitude(player,event.targets[event.num])) return false;
+			   if(get.attitude(player,event.targets[event.num])>0) return false;
                return 10-get.value(card);
             };                                 
         }
@@ -4213,6 +4418,14 @@ translate:{
                         
          	  //"wwyj_moban":"模板",
           //  "wwyj_moban_info":"模板",
+		  "wwyj_gonggao2":"公告",
+		  "wwyj_gonggao1":"公告",
+		  "wwyj_gonggao":"公告",
+          "wwyj_gonggao_info":"回合结束阶段，你可声明一种牌的类型，然后令上轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则视为你对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌",
+		  "wwyj_jinyan2":"禁言",
+		  "wwyj_jinyan1":"禁言",
+		  "wwyj_jinyan":"禁言",
+          "wwyj_jinyan_info":"出牌阶段，若场上没角色被禁言，你可以选择一名其他角色并声明一种基本牌（限杀闪桃酒）的名称，其因被禁言而不能使用或打出与非声明牌，直到其使用或打出名字与声明牌一样的牌方可解除禁言",
 		  "wwyj_gainian":"概念",
           "wwyj_gainian_info":"出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌",
 		  "wwyj_heimao":"黑猫",
@@ -4425,16 +4638,17 @@ translate:{
 			"wwyj_yitiaoxianyu":"咸鱼",
             "wwyj_maliao":"苏婆玛丽奥",
             "wwyj_remaliao":"苏婆玛丽奥",   
-            "wwyj_jiguangs":"极光",    
-            "wwyj_wzszhaoyun":"我只是赵云",
+            "wwyj_jiguangs":"极光",                
             "wwyj_lunhuizhong":"轮回消逝者",
             "wwyj_ziyage":"呲牙哥",
             "wwyj_kanpoyiqie":"看破一切",
             "wwyj_daxiongxiaimao":"大熊小猫",
             "wwyj_kelejiabing":"可乐加冰",
             "wwyj_qianshangs":"浅觞",
+			"wwyj_tilongjianiao":"提笼架鸟",
             "wwyj_huijin":"辉烬贺流年",       
             "wwyj_danwuyunxi":"淡雾云曦",
+			"wwyj_wzszhaoyun":"我只是赵云",
 		  //"wwyjsha":"<font color=#f00>杀</font>",
            "wwyjsha":"杀",
             "wwyj_zhizun":"至尊荣耀",	
@@ -4452,7 +4666,7 @@ if(lib.device||lib.node){
 		});
 		lib.config.all.characters.push('wenwuyingjie');		
 		if(!lib.config.characters.contains('wenwuyingjie')) lib.config.characters.remove('wenwuyingjie');
-		lib.translate['wenwuyingjie_character_config']='<font color=#f00>文武英杰</font>';		     
+		lib.translate['wenwuyingjie_character_config']='<span style=\"color:#ff00cc\">文武英杰</span>';		     
       
 	 game.addMode('wenwuyingjiepicture', {
             game: {
@@ -4785,7 +4999,7 @@ if(lib.device||lib.node){
                         if (init) {	
 var charalist = [];
 for (var i in lib.characterPack['wenwuyingjie']) {
-	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax","wwyj_shennais","wwyj_guihua","wwyj_yiwangs","wwyj_liushas","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_zhugejun","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
+	var wenwu=["wwyj_shuihu","wwyj_remaliao","wwyj_liangchax","wwyj_shennais","wwyj_guihua","wwyj_yiwangs","wwyj_liushas","wwyj_tilongjianiao","wwyj_qianshangs","wwyj_zhaonies","wwyj_yitiaoxianyu","wwyj_lengyus","wwyj_yanyumoran","wwyj_wali","wwyj_danwuyunxi","wwyj_jiguangs","wwyj_zhugejun","wwyj_taishangdaniu","wwyj_maliao",'wwyj_shenzuo',"wwyj_shijian","wwyj_xuebi","wwyj_huijin","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_liangchas","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_kelejiabing","wwyj_feicheng","wwyj_xingyunnvshen","wwyj_lunhuizhong","wwyj_daxiongxiaimao","wwyj_wzszhaoyun"];
 	if(wenwu.contains(i)) charalist.push(i);
 }
 var liblist = [
@@ -4823,6 +5037,7 @@ var liblist = [
 			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌'],
 			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌<br><span class="bluetext">黑猫</span>：觉醒技，当你进入濒死状态时，你可令全场所有存活的角色弃置其区域内的所有牌并重置武将牌，回复体力至体力上限并摸4张牌，然后已阵亡的角色全部复活，体力回复至体力上限并摸4张牌，此时每有一名角色复活，你便摸一张牌'],
+			   ['<span class="bluetext">公告</span>：回合结束阶段，你可声明一种牌的类型，然后令上轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则视为你对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>：出牌阶段，若场上没角色被禁言，你可以选择一名其他角色并声明一种基本牌（限杀闪桃酒）的名称，其因被禁言而不能使用或打出与非声明牌，直到其使用或打出名字与声明牌一样的牌方可解除禁言'],
 			 
 			  
 		    
@@ -5006,7 +5221,7 @@ var liblist = [
         },
     },
     intro:"",
-    author:"凉茶",
+    author:"凉茶<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
     diskURL:"",
     forumURL:"",
     version:"1.5",

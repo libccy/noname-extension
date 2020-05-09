@@ -52,7 +52,7 @@ extension["文武英杰"]={
 		"wwyj_yanyu1.mp3","wwyj_yanyumoran.jpg","wwyj_yanyumoran.mp3","wwyj_yingguai1.mp3",
 		"wwyj_yitiaoxianyu.jpg","wwyj_yitiaoxianyu.mp3","wwyj_yiwangs.jpg","wwyj_yiwangs.mp3",
 		"wwyj_yixue1.mp3","wwyj_yourturn.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg","wwyj_zhaonies.mp3",
-		"wwyj_zhugejun.jpg","wwyj_zhugejun.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3"
+		"wwyj_zhugejun.jpg","wwyj_zhugejun.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_tilongjianiao.mp3","wwyj_tilongjianiao.jpg"
     ]
 };
 

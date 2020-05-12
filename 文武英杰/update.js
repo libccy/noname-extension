@@ -1,9 +1,9 @@
 window.version='1.5';
 window.changelog={	
-  '2020年05月8日':{
+  '2020年05月10日':{
     'version':'1.5',
-    'info':'新增全新的图鉴，方便快速阅读学习技能，新增出牌提示的开关<li>新增武将【提笼架鸟】，修改武将【流沙】、【浅觞】。当前扩展版本已升版至为1.5',
-    'players':["wwyj_tilongjianiao","wwyj_liushas","wwyj_qianshangs"],
+    'info':'新增全新的图鉴，方便快速阅读学习技能，新增出牌提示的开关<li>新增武将【提笼架鸟】，修改武将【松岛枫桂花】、【流沙】、【浅觞】。当前扩展版本已升版至为1.5',
+    'players':["wwyj_tilongjianiao","wwyj_guihua","wwyj_liushas","wwyj_qianshangs"],
     'cards':[],
   },
   '2020年05月':{

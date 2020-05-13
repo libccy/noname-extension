@@ -45,10 +45,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
        '<li>新增全新的图鉴，方便快速阅读学习技能，新增出牌提示的开关',
-       '<li>修改武将【提笼架鸟】、【松岛枫桂花】、【流沙】、【浅觞】',
+       '<li>修改武将【提笼架鸟】、【松岛枫桂花】',
        'players://["wwyj_tilongjianiao","wwyj_guihua","wwyj_liushas","wwyj_qianshangs"]',
     ];
-    wwyj_version='更新日期：2020年05月11日';
+    wwyj_version='更新日期：2020年05月12日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -925,16 +925,17 @@ skill:{
 		mark:true,
         mod:{
                     cardEnabled:function(card,player,event){
-            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+            if(get.suit(card)!=player.storage.wwyj_jinyan) return false;
         },
                     cardUsable:function(card,player,event){
-            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+            //if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+			if(get.suit(card)!=player.storage.wwyj_jinyan) return false;
         },
                     cardRespondable:function(card,player,event){
-            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+            if(get.suit(card)!=player.storage.wwyj_jinyan) return false;
         },
                     cardSavable:function (card,player,event){
-            if(!player.storage.wwyj_jinyan.contains(card.name)) return false;
+            if(get.suit(card)!=player.storage.wwyj_jinyan) return false;
         },
                 },  
 			intro:{	
@@ -998,7 +999,7 @@ skill:{
             },
                     },
                 },        
-    },
+    },	
     "wwyj_gonggao2":{
 		trigger:{
 			player:'damageEnd',
@@ -1020,13 +1021,13 @@ skill:{
         },
 		mark:true,
         marktext:"警",
-	},
-    "wwyj_gonggao":{
+	},   
+	"wwyj_gonggao":{
 		audio:"ext:文武英杰:1",
         trigger:{
-			player:'phaseEnd',
+			player:'damageAfter',
 		},
-		direct:true,
+		frequent:true,
 		group:'wwyj_gonggao2',
 		filter:function (event,player){
             return game.hasPlayer(function(current){
@@ -1038,7 +1039,7 @@ skill:{
 		},                        
         content:function (){
 			'step 0'
-			var list=['basic','trick','equip'];
+			var list=['basic','trick','equip','cancel2'];
 			for(var i=0;i<player.storage.wwyj_gonggao.length;i++){
 				list.remove(player.storage.wwyj_gonggao[i]);
 			}
@@ -1077,7 +1078,7 @@ skill:{
 		 }
 		'step 4'    
 		if(result.bool){ 
-		   event.targets[event.num].removeSkill("wwyj_gonggao1");
+		   //event.targets[event.num].removeSkill("wwyj_gonggao1");
            event.targets[event.num].$give(result.cards,player); 
 		   player.gain(result.cards,event.targets[event.num]);
 		   var card=result.cards[0];
@@ -1091,7 +1092,8 @@ skill:{
 		}
 		else{
 		   player.logSkill('wwyj_gonggao');
-		   event.targets[event.num].removeSkill("wwyj_gonggao1");
+		   //event.targets[event.num].removeSkill("wwyj_gonggao1");
+		   player.discardPlayerCard('h',event.targets[event.num]);
 		   player.useCard({name:'sha'},event.targets[event.num],false);	
 		   player.say('叫你不看教程？也不看看我是何人？');
 		   event.num++;
@@ -1101,6 +1103,19 @@ skill:{
 		ai:{
            order:5,               
         },
+	},
+	"_wwyj_gonggao":{		
+        trigger:{
+			global:"roundStart",
+		},
+		forced:true,
+		popup:true,
+		filter:function (event,player){           
+            return player.hasSkill('wwyj_gonggao1');			
+        },                               
+        content:function (){
+			player.removeSkill("wwyj_gonggao1");
+		},
 	},
     "wwyj_gainian":{
 		audio:"ext:文武英杰:2",
@@ -4493,7 +4508,7 @@ translate:{
 		  "wwyj_gonggao2":"公告",
 		  "wwyj_gonggao1":"公告",
 		  "wwyj_gonggao":"公告",
-          "wwyj_gonggao_info":"回合结束阶段，你可声明一种牌的类型，然后令上轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则视为你对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌",
+          "wwyj_gonggao_info":"当你受到伤害后，你可声明一种牌的类型，然后令本轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌",
 		  "wwyj_jinyan2":"禁言",
 		  "wwyj_jinyan1":"禁言",
 		  "wwyj_jinyan":"禁言",
@@ -4528,8 +4543,8 @@ translate:{
           "wwyj_zhaonies":"造孽",
            "wwyj_nie":"孽",
             "wwyj_zhaonie2":"造孽",
-              "wwyj_zhaonie2_info":"锁定技，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            		  
-             "wwyj_zhaonie":"造孽",
+            "wwyj_zhaonie2_info":"锁定技，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            		  
+            "wwyj_zhaonie":"造孽",
             "wwyj_zhaonie_info":"锁定技，若你本回合击杀过角色，则下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",            		    
 		    "wwyj_miaoji":"妙计",
             "wwyj_miaoji_info":"回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之",
@@ -4673,9 +4688,9 @@ translate:{
             "wwyj_ancha_info":"<li>当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合。<li>当你的体力值小于2时，你获得技能【回坑】，直到你发动之",
             "wwyj_huikeng":"回坑",
             "wwyj_huikeng_info":"出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌",            
-	           "wwyj_liangcha":"凉茶",
+	        "wwyj_liangcha":"凉茶",
             "wwyj_liangcha_info":"锁定技，游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2",
-	           "wwyj_fanghua":"芳华",
+	        "wwyj_fanghua":"芳华",
             "wwyj_fanghua_info":"锁定技，你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）",
             "wwyj_meiying":"魅影",
             "wwyj_meiying_info":"锁定技，你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应",           
@@ -4722,10 +4737,10 @@ translate:{
             "wwyj_danwuyunxi":"淡雾云曦",
 			"wwyj_wzszhaoyun":"我只是赵云",
 		  //"wwyjsha":"<font color=#f00>杀</font>",
-           "wwyjsha":"杀",
-            "wwyj_zhizun":"至尊荣耀",	
-        	"wwyj_zuozhe":"扩展作者",	
-	        "wwyj_fensi":"粉丝玩家",		
+            "wwyjsha":"杀",
+            "wwyj_zhizun":"<font color=#f00>至尊荣耀</font>",	
+        	"wwyj_zuozhe":"<span class=yellowtext>扩展作者</span>",	
+	        "wwyj_fensi":"<span class=bluetext>粉丝玩家</span>",		
 	        		
             },
 			};
@@ -5109,7 +5124,7 @@ var liblist = [
 			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌'],
 			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌<br><span class="bluetext">黑猫</span>：觉醒技，当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌被至上限，然后随机令一名已阵亡的角色复活，体力回复至体力上限并补手牌至上限。若为身份局，你与该复活的角色交换身份牌'],
-			   ['<span class="bluetext">公告</span>：回合结束阶段，你可声明一种牌的类型，然后令上轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则视为你对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
+			   ['<span class="bluetext">公告</span>：当你受到伤害后，你可声明一种牌的类型，然后令本轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
 			 
 			  
 		    

@@ -1180,7 +1180,7 @@ skill:{
                return card.name==player.storage.wwyj_gainian;
             }).ai=function(card){
 			   if(get.attitude(player,event.targets[event.num])>0) return false;
-               return 10-get.value(card);
+               return 8-get.value(card);
             };                                 
         }
          else{
@@ -1241,8 +1241,10 @@ skill:{
 		    player.link(false);
 		    player.turnOver(false);
 			player.recover(player.maxHp-player.hp);
-		    player.draw(player.maxHp);		    
+		    player.draw(player.maxHp);		 
+		    ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
 			'step 2'
+			if(game.dead.length>0){
 			var list=[];
 			var list2;
 			for(var i=0;i<game.dead.length;i++){
@@ -1266,7 +1268,8 @@ skill:{
 				target.setIdentity();
 				target.update();
 			},player,list2,list2.identityShown);					
-			}         
+			} 
+			}
             			
 			/*
             event.num=0;      
@@ -1493,7 +1496,7 @@ skill:{
                 trigger:{
                     player:["damageEnd","loseAfter"],
                 },	
-				audio:["jiaozhao",2],
+				audio:"ext:文武英杰:1",
 				frequent:true,               
                 priority:10,
                 filter:function (event,player,name){   
@@ -4049,7 +4052,8 @@ skill:{
                 return event.source&&event.source.isAlive();
     },                
                 content:function (){   
-         "step 0"         
+         "step 0" 
+         ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');                 
          event.current = player.next;
          player.addTempSkill('wwyj_baozaorecover');
          player.storage.wwyj_baozao=true;

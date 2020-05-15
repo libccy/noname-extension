@@ -27,7 +27,7 @@ extension["文武英杰"]={
      "extension.js","newtujian.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyjjishatexiao.mp3","wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
 		"wwyj_bingmou.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg",
-		"wwyj_chengxuyuan.mp3","wwyj_chuangshi.gif","wwyj_chuangshi1.mp3","wwyj_ciya1.mp3",
+		"wwyj_chengxuyuan.mp3","wwyj_chuangshi.gif","wwyj_chuangshi1.mp3","wwyj_ciya1.mp3","wwyj_keai1.mp3",
 		"wwyj_daigeng1.mp3","wwyj_daixue1.mp3","wwyj_danwuyunxi.jpg","wwyj_danwuyunxi.mp3",
 		"wwyj_daxiongxiaimao.jpg","wwyj_daxiongxiaimao.mp3","wwyj_feicheng.jpg","wwyj_feicheng.mp3",
 		"wwyj_fengliu1.mp3","wwyj_gainian1.mp3","wwyj_gainian2.mp3","wwyj_guanli1.mp3","wwyj_guihua.jpg",

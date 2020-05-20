@@ -1245,7 +1245,16 @@ skill:{
 		    ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
 			'step 2'
 			if(game.dead.length>0){
-			var list=[];
+			    var list=[];
+                 for(var i=0;i<game.dead.length;i++){
+                     list.push(game.dead[i].name);
+                 }      
+                 player.chooseButton(ui.create.dialog('选择一名已阵亡的角色令其复活并交换身份牌',[list,'character']),function(button){
+                 for(var i=0;i<game.dead.length&&game.dead[i].name!=button.link;i++);
+                     return ai.get.attitude(_status.event.player,game.dead[i]);
+                 });
+				 /*随机复活：
+				 var list=[];
 			var list2;
 			for(var i=0;i<game.dead.length;i++){
 			list.push(game.dead[i]);			
@@ -1253,7 +1262,16 @@ skill:{
 		    list2=list.randomGet();			
  		    player.line(list2,'green');
 			list2.revive(list2.maxHp);				
-			list2.draw(list2.maxHp);			
+			list2.draw(list2.maxHp);
+			*/
+			}	
+			'step 3'
+			if(result.bool){
+				for(var i=0;i<game.dead.length&&game.dead[i].name!=result.buttons[0].link;i++);
+                    var dead=game.dead[i];				
+				player.line(dead,'green');
+				dead.revive(dead.maxHp);		
+			    dead.draw(dead.maxHp);				
 			if(get.mode()=='identity'){     
             game.broadcastAll(function(player,target,shown){
 				var identity=player.identity;
@@ -1267,11 +1285,11 @@ skill:{
 				game.log(target,'的身份改为'+get.translation(target.identity));
 				target.setIdentity();
 				target.update();
-			},player,list2,list2.identityShown);					
+			},player,dead,dead.identityShown);					
 			} 
 			}
             			
-			/*
+			/*全场大涅涅槃：
             event.num=0;      
             event.targets=game.filterPlayer(function(current){
                 return current.isAlive();
@@ -4520,7 +4538,7 @@ translate:{
 		  "wwyj_gainian":"概念",
           "wwyj_gainian_info":"出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌",
 		  "wwyj_heimao":"黑猫",
-          "wwyj_heimao_info":"觉醒技，当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌被至上限，然后随机令一名已阵亡的角色复活，体力回复至体力上限并补手牌至上限。若为身份局，你与该复活的角色交换身份牌",
+          "wwyj_heimao_info":"觉醒技，当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌",
 		  "wwyj_liusha":"流沙",
           "wwyj_liusha_info":"回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌",
 		  "wwyj_yiwang":"遗忘",
@@ -5127,7 +5145,7 @@ var liblist = [
 			   ['<span class="bluetext">神奈</span>：锁定技，你使用杀的次数上限额外加X（你手牌中没带“伤害性”标签的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
 			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，本回合内，你与该角色的距离为1且你使用杀时，可令此杀不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的杀被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌'],
-			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌<br><span class="bluetext">黑猫</span>：觉醒技，当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌被至上限，然后随机令一名已阵亡的角色复活，体力回复至体力上限并补手牌至上限。若为身份局，你与该复活的角色交换身份牌'],
+			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌<br><span class="bluetext">黑猫</span>：觉醒技，当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌'],
 			   ['<span class="bluetext">公告</span>：当你受到伤害后，你可声明一种牌的类型，然后令本轮回合外对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张杀。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
 			 
 			  

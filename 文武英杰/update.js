@@ -1,9 +1,15 @@
-window.version='1.5';
+window.version='1.6';
 window.changelog={	
-  '2020年05月12日':{
+    '2020年06月12日':{
+    'version':'1.6',
+    'info':'新增欢乐音效、新增并修改武将【寰宇星城】<li>修改武将【水乎】【橙续缘】、【雪碧】。当前扩展版本已升版至为1.6',
+    'players':["wwyj_huanyuxingcheng","wwyj_shuihu","wwyj_chengxuyuan","wwyj_xuebi"],
+    'cards':[],
+  },
+  '2020年05月26日':{
     'version':'1.5',
-    'info':'新增全新的图鉴，方便快速阅读学习技能，新增出牌提示的开关<li>新增武将【提笼架鸟】，修改武将【松岛枫桂花】、【流沙】、【浅觞】。当前扩展版本已升版至为1.5',
-    'players':["wwyj_tilongjianiao","wwyj_guihua","wwyj_liushas","wwyj_qianshangs"],
+    'info':'调整个别素材，删除部分没用到的配音文件<li>修改武将【凉茶】、【提笼架鸟】、【烟雨墨染】。当前扩展版本已升版至为1.5',
+    'players':["wwyj_liangchas","wwyj_tilongjianiao","wwyj_yanyumoran"],
     'cards':[],
   },
   '2020年05月':{

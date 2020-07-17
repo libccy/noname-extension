@@ -2927,7 +2927,7 @@ skill:{
                     if(!lib.characterSort.diy||!lib.characterSort.diy.diy_key) return false;
                     return player.storage.wwyj_jianghun.length<(lib.characterSort.diy.diy_key.length-1);
                 },
-                init:function(player,skill){
+                init:function (player,skill){
                     if(!player.storage[skill]) player.storage[skill]=[];
                     if(!player.storage['zhuSkill_'+skill]) player.storage['zhuSkill_'+skill]=[];
                 },
@@ -3778,7 +3778,7 @@ skill:{
          });                  
 				},			
                 content:function (){
-                'step 0'                     
+               'step 0'                     
              event.num=0;
              player.chooseTarget(get.prompt2('wwyj_ciya'),[1,Infinity],function(card,player,target){
             return target!=player&&get.distance(target,player,'attack')<=1;
@@ -3800,7 +3800,7 @@ skill:{
             event.num++;
             event.redo();
          }
-         else event.finish();
+         else event.finish();     
                 },
                  ai:{			
               					order:5,
@@ -3840,6 +3840,7 @@ skill:{
                 if(event.skills.contains('wwyj_qianzhui')){
                     event.skills.remove('wwyj_qianzhui');
                 }
+                    //event.skills.removeArray(['jstx_jisha','xjstx_jisha','xwj_jisha','xin_jisha']);
                     if(event.skills.contains('jstx_jisha')) event.skills.remove('jstx_jisha');
                     if(event.skills.contains('xjstx_jisha')) event.skills.remove('xjstx_jisha');
                     if(event.skills.contains('xwj_jisha')) event.skills.remove('xwj_jisha');
@@ -3885,6 +3886,7 @@ skill:{
             name:get.translation(result.control),
             content:lib.translate[result.control+'_info']
         });
+        player.flashAvatar('wwyj_qianzhui',trigger.player);   
         game.log(player,'获得了技能','#g【'+get.translation(result.control)+'】');
                                   
               /* 
@@ -4225,6 +4227,7 @@ skill:{
                     player.replaceFujiang(result.links[0]);                  
             }
             else{
+                  player.node.name.innerHTML='Sukincen';
                   player.addFujiang(result.links[0]);                         
             }    								
     },

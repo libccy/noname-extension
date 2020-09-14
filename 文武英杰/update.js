@@ -1,6 +1,24 @@
-window.version='1.6';
-window.changelog={	
-    '2020年06月12日':{
+window.version='1.9';
+window.wwyjchangelog={	
+  '2020年09月':{
+    'version':'1.9',
+    'info':'增强fux2',
+    'players':["wwyj_fux2"],
+    'cards':[],
+  },
+  '2020年08月':{
+    'version':'1.8',
+    'info':'移植“何子诈尸”模式，新增“武将浏览”功能，新增武将：神王权笺、无情鸽子、短歌、孤城、何子风云、青冢；修改小苏、李木子',
+    'players':["wwyj_shenwangquanjian","wwyj_wuqinggezi","wwyj_duanges","wwyj_guchengs","wwyj_hezifengyun","wwyj_qingzhongs","wwyj_Sukincen","wwyj_limuzi"],
+    'cards':[],
+  },
+  '2020年07月':{
+    'version':'1.7',
+    'info':'新增武将：李木子、fux2、血刀少主，新增更名换姓功能',
+    'players':["wwyj_limuzi","wwyj_fux2","wwyj_xuedaoshaozhu"],
+    'cards':[],
+  },
+  '2020年06月':{
     'version':'1.6',
     'info':'新增欢乐音效、新增并修改武将【寰宇星城】<li>修改武将【水乎】【橙续缘】、【雪碧】。当前扩展版本已升版至为1.6',
     'players':["wwyj_huanyuxingcheng","wwyj_shuihu","wwyj_chengxuyuan","wwyj_xuebi"],

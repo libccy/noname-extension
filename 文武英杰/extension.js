@@ -42,6 +42,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         /*十周年UI势力*/       
         tenUi.innerHTML+=".player>.camp-zone[data-camp='wwyjsha']>.camp-name {text-shadow: 0 0 5px rgb(255, 0, 204), 0 0 10px rgb(255, 0, 204), 0 0 15px rgb(255, 0, 204);}";        
         document.head.appendChild(tenUi);
+
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
        '<li>增强【fux2】',
@@ -917,8 +918,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		},750);
 		background.appendChild(div);
 	};
-	
-    // ---------------------------------------lebusishu------------------------------------------//        		
+   
+// ---------------------------------------lebusishu------------------------------------------//        		
 		 if(config.wwyj_lebusishu){
 		 lib.skill._lebusishu={
 		trigger:{
@@ -1567,23 +1568,40 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		},
 	};	
 	
-	lib.extensionMenu.extension_文武英杰.wwyj_more={	
+	lib.extensionMenu.extension_文武英杰.wwyj_yugao={	
         name:'<div class="wwyj_menu">更新预告<font size="3px">⇨</font></div>',
         clear:true,
         onclick:function(){
-			if(this.wwyj_more==undefined){
-				var more=ui.create.div('.wwyj_more','<li>扩展作者：升麻、薄荷糖、天气亏<li>粉丝玩家：待定');
+			if(this.wwyj_yugao==undefined){
+				var more=ui.create.div('.wwyj_yugao','<li>扩展作者：升麻、薄荷糖、天气亏<li>粉丝玩家：待定');
 				this.parentNode.insertBefore(more,this.nextSibling);
-				this.wwyj_more=more;
+				this.wwyj_yugao=more;
 				this.innerHTML='<div class="wwyj_menu">更新预告<font size="3px">⇩</font></div>';
 			}else{
-				this.parentNode.removeChild(this.wwyj_more);
-				delete this.wwyj_more;
+				this.parentNode.removeChild(this.wwyj_yugao);
+				delete this.wwyj_yugao;
 				this.innerHTML='<div class="wwyj_menu">更新预告<font size="3px">⇨</font></div>';
 			}
 		},
     };
-	
+    
+    lib.extensionMenu.extension_文武英杰.wwyj_最佳拍档={	
+        name:'<div class="wwyj_menu">最佳拍档<font size="3px">⇨</font></div>',
+        clear:true,
+        onclick:function(){
+			if(this.wwyj_zuijiapaidang==undefined){
+				var more=ui.create.div('.wwyj_zuijiapaidang','<li>装备流：极光+烟雨墨染+血刀少主+造孽<li>翻面系：苏婆玛丽奥+诸葛均+咸鱼+孤城<li>其他组：太上大牛+大熊小猫');
+				this.parentNode.insertBefore(more,this.nextSibling);
+				this.wwyj_zuijiapaidang=more;
+				this.innerHTML='<div class="wwyj_menu">最佳拍档<font size="3px">⇩</font></div>';
+			}else{
+				this.parentNode.removeChild(this.wwyj_zuijiapaidang);
+				delete this.wwyj_zuijiapaidang;
+				this.innerHTML='<div class="wwyj_menu">最佳拍档<font size="3px">⇨</font></div>';
+			}
+		},
+    };
+    
 	lib.extensionMenu.extension_文武英杰.BUG={
 		//"name":"<span style='text-decoration: underline'>反馈BUG及投稿、提建议</span>",
 		"name":"反馈BUG<div>&gt;</div>",
@@ -1774,7 +1792,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_xuedaoshaozhu":["male","wwyjsha",3,["wwyj_xuedao","wwyj_shaozhu"],[]],				
 				"wwyj_shenwangquanjian":["male","wwyjsha",3,["wwyj_jieguan","wwyj_sepi"],[]],
 				"wwyj_wuqinggezi":["male","wwyjsha",3,["wwyj_wuqing","wwyj_gezi"],[]],
-				"wwyj_duanges":["male","wwyjsha",3,["wwyj_duange","wwyj_meihua"],[]],
+				"wwyj_duanges":["male","wwyjsha",4,["wwyj_duange","wwyj_meihua"],[]],
 				"wwyj_guchengs":["male","wwyjsha",3,["wwyj_gucheng","wwyj_zangyue","wwyj_feixue"],[]],
 				"wwyj_hezifengyun":["male","wwyjsha",3,["wwyj_fengyun"],[]], 
 				"wwyj_qingzhongs":["male","wwyjsha",3,["wwyj_qingzhong","wwyj_jiegeng"],[]],
@@ -7689,57 +7707,58 @@ var liblist = [
 	  	"name":"文武英杰",
 	  	"init":"1",
 	  	"item":{"1":"查看介绍",
-	  	             "2":"<li>嗨～"+lib.config.connect_nickname+"！欢迎您前来体验《文武英杰》扩展哦！",
-	  	             "3":"<li>本扩展的武将均为无名杀的众多作者与玩家，强度相对平衡，可联机，包含多种特效与模式",
-	  	             "4":"<li>若武将界面没显示图片或点将找不到本扩展的角色，请先开启武将菜单界面的右上角的总开关，然后重启游戏，即可显示武将插画",
-	  	             "5":"<li>本扩展几乎零BUG、零弹窗，能在关闭兼容模式情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 @玉蝴蝶 进行反馈，有技能设计的建议也可联系作者",	  	            
-	  	            },
+	  	      "2":"<li>嗨～"+lib.config.connect_nickname+"！欢迎您前来体验《文武英杰》扩展哦！",
+	  	      "3":"<li>本扩展的武将均为无名杀的众多作者与玩家，强度相对平衡，可联机，包含多种特效与模式",
+	          "4":"<li>若武将界面没显示图片或点将找不到本扩展的角色，请先开启武将菜单界面的右上角的总开关，然后重启游戏，即可显示武将插画",
+	          "5":"<li>本扩展几乎零BUG、零弹窗，能在关闭兼容模式情况下流畅运行，若发现BUG可到无名杀扩展交流群②：852740627 @玉蝴蝶 进行反馈，有技能设计的建议也可联系作者",	  	            
+	  	 },
    	},				
 	"wwyj_lebusishu":{
-    "name":"乐不思蜀",
-    "intro":"开启后重启游戏生效。武将被“乐”时会有个贴有“乐”字的门关着",
-     init:false
+        "name":"乐不思蜀",
+        "intro":"开启后重启游戏生效。武将被“乐”时会有个贴有“乐”字的门关着",
+         init:false
     },	
-	"wwyj_huanleyinxiao":{
-    "name":"欢乐音效",
-    "intro":"开启后重启游戏生效。玩家角色的出牌阶段开始时，会有敲门音伴“该你了”的提示音；角色阵亡时，后台会唱两句《凉凉》送给死者（原为黑人抬棺的BGM，因太长而改了）",
-     init:false
-    },
+	
     "wwyj_gengminghuanxing":{
-	"name":'更名换姓',
-    "intro":"开启后重启游戏生效，更改部分角色的姓名。<li>凉茶：玉蝴蝶<li>太上大牛：落影逝尘<li>松岛枫桂花：黑猫",
-    init:false
+	    "name":'更名换姓',
+        "intro":"开启后重启游戏生效，更改部分角色的姓名。<li>凉茶：玉蝴蝶<li>太上大牛：落影逝尘<li>松岛枫桂花：黑猫",
+         init:false
 	},	
-		"wwyj_chat":{
-    "name":"武将聊天",
-    "intro":"开启后重启游戏生效。武将偶然会说话",
-     init:false
+	"wwyj_huanleyinxiao":{
+        "name":"欢乐音效",
+        "intro":"开启后重启游戏生效。玩家角色的出牌阶段开始时，会有敲门音伴“该你了”的提示音；角色阵亡时，后台会唱两句《凉凉》送给死者（原为黑人抬棺的BGM，因太长而改了）",
+         init:false
+    },
+	"wwyj_chat":{
+        "name":"武将聊天",
+        "intro":"开启后重启游戏生效。武将偶然会说话",
+         init:false
     },	
-		"wwyj_jishatexiao":{
-    "name":"击杀特效",
-    "intro":"开启后重启游戏生效。场上有人击杀另一名角色后会播放动画",
-     init:false
+	"wwyj_jishatexiao":{
+        "name":"击杀特效",
+        "intro":"开启后重启游戏生效。场上有人击杀另一名角色后会播放动画",
+         init:false
     },	    
-        "wwyj_hezizhashi":{
-     name:"何子诈尸",
-    "intro":"稍改作者包的经典模式，开启后重启游戏生效。<li>效果：锁定技，当一名角色阵亡后，若场上没有“何子风云”，“何子风云”在该阵亡角色身上复活，并令所有其他角色受到一点伤害，然后当前回合结束后，“何子风云”执行一个额外的回合",
-    init:false
+    "wwyj_hezizhashi":{
+        "name":"何子诈尸",
+        "intro":"稍改作者包的经典模式，开启后重启游戏生效。<li>效果：锁定技，当一名角色阵亡后，若场上没有“何子风云”，“何子风云”在该阵亡角色身上复活，并令所有其他角色受到一点伤害，然后当前回合结束后，“何子风云”执行一个额外的回合",
+         init:false
 	},		
-    	"wwyj_sjwjp":{
-     name:"随机武将",
-    "intro":"开启后重启游戏生效。每轮开始时，所有角色随机替换武将牌",
-    init:false
+    "wwyj_sjwjp":{
+        "name":"随机武将",
+        "intro":"开启后重启游戏生效。每轮开始时，所有角色随机替换武将牌",
+         init:false
 	},		
-		"wwyj_yinglingfuhun":{
-     name:"英灵附魂",
-    "intro":"开启后重启游戏生效。所有的角色在游戏开始或进入游戏时，各从五名随机武将中选一名当作“附灵武将”并获得其所有的技能",
-    init:false
+	"wwyj_yinglingfuhun":{
+        "name":"英灵附魂",
+        "intro":"开启后重启游戏生效。所有的角色在游戏开始或进入游戏时，各从五名随机武将中选一名当作“附灵武将”并获得其所有的技能",
+         init:false
 	},
 	"wwyj_normalize": {
-			"name": "天神降临",
-			"intro":"开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
-			 init: false
-		},	
+		"name": "天神降临",
+		"intro":"开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
+	     init: false
+	},	
 	"wwyj_xinname":{
            name:'武将前缀',
            intro:'选择是否显示★武将前缀',
@@ -7785,7 +7804,7 @@ var liblist = [
 			}
 			}
 		},			
-			"wwyj_picture":{
+	"wwyj_picture":{
            name:"专属图片",
           "intro":"专属背景图片：可随意切换精美的背景图片",
             init:'1',

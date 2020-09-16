@@ -4638,17 +4638,17 @@ skill:{
        ai:{
          result:{
             target:function (player,target){
-              if(target.countCards('h')<3) return 0;   
+              if(target.countCards('h')>2) return 1;   
                   return target.countCards('h');
               },
-            },
+            },            
             order:8,
             threaten:0.5,
         },  
             },
            	
            "wwyj_qiusheng":{              
-			            audio:["zaiqi",2],
+			    audio:["zaiqi",2],
                 trigger:{                   
                     player:"dying",
                 },                

@@ -1,22 +1,22 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"群英会",editable:false,content:function (config,pack){
   // ---------------------------------------group------------------------------------------//       
     lib.group.push('xren');
-    lib.translate.xren='<span class=greentext>忍</span>';   
+    lib.translate.xren='忍';   
     lib.group.push('xhuo');
-    lib.translate.xhuo='<font color=#f00>火</font>';   
+    lib.translate.xhuo='火';   
     lib.group.push('xxiao');
-    lib.translate.xxiao='<span class=yellowtext>晓</span>';       
+    lib.translate.xxiao='晓';       
     lib.group.push('xrenlei');
     lib.translate.xrenlei='人';       
     lib.group.push('xming');
     lib.translate.xming='冥';       
   // ---------------------------------------Update------------------------------------------//   
     Xu_update=[
-       '<li>修复波风水门【封印】BUG及其新动画样式',
-       '<li>修复击杀特效的击杀技能被另外捕获的BUG',
-      'players://["xwj_xhuoying_shuimen"]',
+       //'<li>删除兵乐特效',
+       '<li>修复十周年UI下的势力问题',
+      //'players://["xwj_xhuoying_shuimen"]',
     ];
-    Xu_version='更新日期：2020.02.23';
+    Xu_version='更新日期：2020.05.08';
 
 game.Xu_update=function(){
 var ul=document.createElement('ul');
@@ -542,160 +542,7 @@ huanhun.insertPhase();
 						}
          }
          
-	// ---------------------------------------bingletexiao------------------------------------------//	 
-		 	if(config.bingletexiao){		
-		 lib.skill._bingletexiaole={
-		trigger:{
-			target:'useCardToBegin',
-		},														
-		forced:true,
-		filter:function (event,player){
-            return event.card&&event.card.name=='lebu';
-        },                 
-		content:function(){			 
-						//var node = document.createElement('div');
-	    //  player.node.avatar.appendChild(node);			  
-			game.broadcastAll(function(player){
- 			img = document.createElement('div');
-				img.setBackgroundImage('extension/群英会/bingletexiaole.png'); 						
-		 	img.style.backgroundSize='cover';
-				img.style.width='100%';
-				img.style.height='100%';			
-				img.style.transform='translateY(-200px)';
-				player.node.avatar.appendChild(img);
-				ui.refresh(img);
-				img.style.transform='';
-			},player);
- 		}, 		
-    }	
-	lib.skill._bingletexiaobingliang={
-		trigger:{
-			target:'useCardToBegin',
-		},							
-		forced:true,
-		filter:function (event,player){
-            return event.card&&event.card.name=='bingliang';
-        },                 
-		content:function(){		
-			game.broadcastAll(function(player){
-				img = document.createElement('div');
-				img.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 						
-				img.style.width='100%';
-				img.style.height='100%';
-				img.style.backgroundSize='cover';
-				img.style.transform='translateY(-200px)';
-				player.node.avatar.appendChild(img);
-				ui.refresh(img);
-				img.style.transform='';
-			},player)
- 		},
-	}						
- 	lib.skill._bingletexiao={
-		trigger:{
-			player:'judgeAfter',
-		},							
-		priority:-2019,
-		forced:true,							
-		content:function(){	
-		    if(player.countCards('j',{name:'lebu'})){
-				game.broadcastAll(function(player){
-					img = document.createElement('div');
-					img.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 						
-					img.style.width='100%';
-					img.style.height='100%';
-					img.style.backgroundSize='cover';
-					img.style.transform='translateY(-200px)';
-					player.node.avatar.appendChild(img);
-					ui.refresh(img);
-					img.style.transform='';
-				},player)
-			}	
-			else if(player.countCards('j',{name:'bingliang'})){
-				game.broadcastAll(function(player){
-					img = document.createElement('div');
-					img.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 						
-					img.style.width='100%';
-					img.style.height='100%';
-					img.style.backgroundSize='cover';
-					img.style.transform='translateY(-200px)';
-					player.node.avatar.appendChild(img);
-					ui.refresh(img);
-					img.style.transform='';
-				},player)
-			}
-			else{
-			   player.node.avatar.setBackground(player.name,'character');	
-			}			
- 		},
-	}
-	lib.skill._bingletexiao1={
-		trigger:{
-			player:'dieBegin',
-		},							
-		priority:2,
-		forced:true,							
-		content:function(){			
-			game.broadcastAll(function(player){
-				imgs=player.node.avatar.querySelectorAll("div");
-				for (var i=0;i<imgs.length;i++) {
-					var img = imgs[i];
-					img.style.transform='translateY(-200px)';
-					img.delete();
-				}
-			},player)
- 		},
-	}
-	lib.skill._bingletexiao2={
-		trigger:{
-			player:'loseEnd',
-		},							
-		filter:function(event,player){
-			for(var i=0;i<event.cards.length;i++){
-				if(event.cards[i].original=='j') return true;
-			}
-			return false;
-		},
-		forced:true,							
-		content:function(){						    
-			if(player.countCards('j',{name:'lebu'})){
-				game.broadcastAll(function(player){
-					img = document.createElement('div');
-					img.setBackgroundImage('extension/群英会/bingletexiaole.jpg'); 						
-					img.style.width='100%';
-					img.style.height='100%';
-					img.style.backgroundSize='cover';
-					img.style.transform='translateY(-200px)';
-					player.node.avatar.appendChild(img);
-					ui.refresh(img);
-					img.style.transform='';
-				},player)
-			}	
-			else if(player.countCards('j',{name:'bingliang'})){
-				game.broadcastAll(function(player){
-					img = document.createElement('div');
-					img.setBackgroundImage('extension/群英会/bingletexiaobingliang.jpg'); 						
-					img.style.width='100%';
-					img.style.height='100%';
-					img.style.backgroundSize='cover';
-					img.style.transform='translateY(-200px)';
-					player.node.avatar.appendChild(img);
-					ui.refresh(img);
-					img.style.transform='';
-				},player)
-			}
-			else{
-				game.broadcastAll(function(player){
-					imgs=player.node.avatar.querySelectorAll("div")
-					for (var i=0;i<imgs.length;i++) {
-						var img = imgs[i];
-						img.style.transform='translateY(-200px)';
-						img.delete();
-					}
-				},player)
-			}									
- 		},
-	}						
-	}
+
  	// ---------------------------------------chooseTime------------------------------------------//									
 					if(config._chooseTime){																
 							lib.skill._chooseTime={
@@ -3927,8 +3774,7 @@ content:function (){
                 save:true,
                     threaten:0.5,
                 },
-            },
-           
+            },           
             "xwj_xwugeng_fuhuo":{
                 audio:"ext:群英会:2",
                 trigger:{
@@ -4095,7 +3941,7 @@ translate:{
 	 "xwj_xwugeng_pili":"霹雳",
 	 "xwj_xwugeng_zhengnu":"震怒",
 	 "xwj_xwugeng_zhengnu_info":"<font color=#F0F>万象界神力•天地震怒</font> 当你受到伤害后，你可令所有其他角色选择一项：①随机弃牌：该角色随机地弃置一张牌；②令其摸牌：你摸一张牌",
-	 "xwj_xwugeng_pili_info":"<font color=#F0F>神技•真武大霹雳</font> 每两轮限一次，若你的体力值不大于当前存活的角色数，你可弃置X张相同颜色的手牌，并对X名攻击范围内的其他角色各造成X点伤害（X为你以此法弃置的手牌数）", 
+	 "xwj_xwugeng_pili_info":"<font color=#F0F>神技•真武大霹雳</font> 每两轮限一次，若你的体力值不大于当前存活的角色数，你可弃置X张相同花色的手牌，并对X名攻击范围内的其他角色各造成X点伤害（X为你以此法弃置的手牌数）", 
          	 "xwj_xwugeng_xuanfeng":"玄风圣王",
 		         "xwj_xwugeng_shensu":"神速",
            "xwj_xwugeng_shensu_info":"<font color=#f00>锁定技</font> 你的进攻距离＋X（X为你的体力值），你的防御距离+Y（Y为你损失的体力值）",           
@@ -13741,10 +13587,7 @@ translate:{
             "xwj_xhuoying_jue":"绝",
             "xwj_xhuoying_huiye":"大筒木辉夜",
             "xwj_xhuoying_didala":"迪达拉",
-            "xwj_xhuoying_daluyi":"达鲁伊",
-            "xren":"<span class=greentext>忍</span>",
-            "xhuo":"<font color=#f00>火</font>",
-            "xxiao":"<span class=yellowtext>晓</span>",   
+            "xwj_xhuoying_daluyi":"达鲁伊",            
             "xwj_xhuoying_huanyue":"鬼灯幻月",
             "xwj_xhuoying_junmalv":"君麻吕",
             "xwj_xhuoying_qilabi":"奇拉比",
@@ -14038,6 +13881,9 @@ translate:{
             "xwj_xhuoying_fenglian_info":"回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌。然后若其下回合没跳过回合开始阶段，其下个回合的出牌阶段不能使用或打出牌",
             "xwj_xhuoying_hongjiao":"红椒",
             "xwj_xhuoying_hongjiao_info":"<font color=#F0F>血红辣椒</font> 当你受到伤害时，你可立即令伤害来源受到等量的火焰伤害", 
+			"xren":"忍",
+            "xhuo":"火",
+            "xxiao":"晓",   
 			"xhuoying_muye":"木叶村",
 			"xhuoying_xiao":"晓组织",
 		    "xhuoying_zhongren":"众忍村",
@@ -18601,12 +18447,7 @@ if(!lib.config.cards.contains('xwj_xus_equip')) lib.config.cards.remove('xwj_xus
             name:'新杀特效',
            "intro":"新杀特效：开启此项（建议关闭击杀特效项）后重启游戏生效。任意一名角色杀死一名其他角色后，会记录此为其在本局共杀死过几名角色，并播放相应击杀人次的武将动画和配音",
             init:false
-		},							   
-				"bingletexiao":{
-            name:'兵乐特效',
-           "intro":"兵乐特效：开启此项后重启游戏生效。任意一名角色判定区被“兵粮寸断”、“乐不思蜀”后，会替换相应图片",
-            init:false
-		},							   
+		},							   					   
     		"wuxianyuedu":{
             name:'无限月读',
            "intro":"无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",

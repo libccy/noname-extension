@@ -19,10 +19,10 @@ extension["官渡之战"]={
 
 extension["文武英杰"]={
     author:"凉茶||玉蝴蝶",
-    intro:"<li>更新：新增浏览武将功能及多个武将、优化个别技能等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度相对平衡，可联机。<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-09-15",
-    size:"33.5MB",
+    intro:"<li>更新：新增浏览武将功能及多个武将、优化个别技能、AI等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-10-06",
+    size:"33.8MB",
     netdisk:"",
-    version:1.9,
+    version:1.10,
     files:[
      "extension.js","newtujian.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyjjishatexiao.mp3","wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
@@ -63,7 +63,7 @@ extension["文武英杰"]={
 		"wwyj_yanyumoran.jpg","wwyj_yanyumoran.mp3","wwyj_yingguai1.mp3","wwyj_yitiaoxianyu.jpg",
 		"wwyj_yitiaoxianyu.mp3","wwyj_yiwangs.jpg","wwyj_yiwangs.mp3","wwyj_yixue1.mp3",
 		"wwyj_yourturn.mp3","wwyj_yuhudie.jpg","wwyj_yuhudie.mp3","wwyj_yuhudiebz.jpg","wwyj_zangyue1.mp3",
-		"wwyj_zangyue21.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg","wwyj_zhaonies.mp3",
+		"wwyj_zangyue21.mp3","wwyj_zhaonie21.mp3","wwyj_zhaonies.jpg","wwyj_zhaonies.mp3","wwyj_miaoji1.mp3","wwyj_miaoji2.mp3","wwyj_qisi1.mp3","wwyj_qisi2.mp3",
 		"wwyj_zhenwang.mp3","wwyj_zhugejun.jpg","wwyj_zhugejun.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3"
     ]
 };

@@ -1,5 +1,11 @@
-window.version='1.9';
+window.version='1.10';
 window.wwyjchangelog={	
+  '2020年10月':{
+    'version':'1.10',
+    'info':'大幅度优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
+    'players':["wwyj_limuzi","wwyj_zhugejun","wwyj_shenzuo","wwyj_yanyumoran"],
+    'cards':[],
+  },
   '2020年09月':{
     'version':'1.9',
     'info':'增强fux2',

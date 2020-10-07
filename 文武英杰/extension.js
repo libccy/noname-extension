@@ -45,7 +45,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
-       '<li>大幅度优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
+       '<li>优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
        '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
        'players://["wwyj_limuzi","wwyj_zhugejun","wwyj_shenzuo","wwyj_yanyumoran"]',
     ];
@@ -1905,7 +1905,8 @@ skill:{
          });          
                     return [1,num];
                 },              
-                position:'h',      
+                position:'h',      
+
 				filterTarget:function (card,player,target){
 					return player!=target&&get.distance(player,target,'attack')<=1;
 				},	
@@ -1941,7 +1942,8 @@ skill:{
             },
             order:8,
             threaten:0.5,
-        },  
+        },  
+
 			}, 
        "wwyj_fengyun":{
         trigger:{          

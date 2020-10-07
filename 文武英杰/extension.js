@@ -42,14 +42,25 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         /*十周年UI势力*/       
         tenUi.innerHTML+=".player>.camp-zone[data-camp='wwyjsha']>.camp-name {text-shadow: 0 0 5px rgb(255, 0, 204), 0 0 10px rgb(255, 0, 204), 0 0 15px rgb(255, 0, 204);}";        
         document.head.appendChild(tenUi);
+		
+		if(config.wwyj_changeGroup){
+			lib.arenaReady.push(function(){				
+				for(i in lib.characterPack['wenwuyingjie']){
+					if(lib.characterPack['wenwuyingjie'][i][1]=="wwyjsha"){
+					    lib.characterPack['wenwuyingjie'][i][1]=["wei","shu","wu","qun"].randomGet();
+					}
+				}
+			});
+		}
 
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
-       '<li>优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
-       '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
+       '<li>大幅度优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
+       '<li>替换势力：开启扩展“替换势力”小开关后重启游戏生效，将本扩展中的“杀”势力随机替换为官方“魏蜀吴群”中的一种势力',
+	   '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
        'players://["wwyj_limuzi","wwyj_zhugejun","wwyj_shenzuo","wwyj_yanyumoran"]',
     ];
-    wwyj_version='更新日期：2020年10月06日';
+    wwyj_version='更新日期：2020年10月07日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -1540,7 +1551,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	};
 	
 },precontent:function (wwyj){     		    
-     /*//css：
+    	
+	/*//css：
 	var link = document.createElement("link");
 	link.href = lib.assetURL + "extension/文武英杰/wwyj_waiguan.css";
 	link.type = "text/css";
@@ -7783,11 +7795,15 @@ var liblist = [
         "name":"乐不思蜀",
         "intro":"开启后重启游戏生效。武将被“乐”时会有个贴有“乐”字的门关着",
          init:false
-    },	
-	
+    },		
     "wwyj_gengminghuanxing":{
 	    "name":'更名换姓',
         "intro":"开启后重启游戏生效，更改部分角色的姓名。<li>凉茶：玉蝴蝶<li>太上大牛：落影逝尘<li>松岛枫桂花：黑猫",
+         init:false
+	},
+    "wwyj_changeGroup":{
+	    "name":'替换势力',
+        "intro":"开启后重启游戏生效，将本扩展中的“杀”势力随机替换为官方“魏蜀吴群”中的一种势力",
          init:false
 	},	
 	"wwyj_huanleyinxiao":{

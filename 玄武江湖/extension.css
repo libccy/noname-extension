@@ -1,0 +1,41 @@
+.xwjh-Mp { 
+	display: block;
+    position: absolute;
+    left: 50px;
+    top: 0px;    
+    width: 15px;
+    height: 15px;
+    background-image: url('xwjh_blue_mp.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.xwjh-Mp>.name {
+	left: 20px;
+	top: 0px;
+	font-size: 15px;
+	font-family: 'xinwei';
+}
+.xwjh-button { 
+    display: inline-block; 
+    padding: .3em .5em; 
+    background-image: linear-gradient(#ddd, #bbb); 
+    border: 1px solid rgba(0,0,0,.2); 
+    border-radius: .3em; 
+    box-shadow: 0 1px white inset; 
+    text-align: center; 
+    text-shadow: 0 1px 1px black; 
+    color:white; 
+    font-weight: bold; 
+}
+
+.xwjh-tujian {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+	z-index: 4;
+}
+

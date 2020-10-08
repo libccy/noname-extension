@@ -60,7 +60,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	   '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
        'players://["wwyj_limuzi","wwyj_zhugejun","wwyj_shenzuo","wwyj_yanyumoran"]',
     ];
-    wwyj_version='更新日期：2020年10月07日';
+    wwyj_version='更新日期：2020年10月08日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -7892,7 +7892,8 @@ var liblist = [
             init:'1',
 			item:{
 				'1':'默认背景',				
-				'2':'文武英杰',						
+				'2':'文武英杰',
+				'3':'明眸皓齿',
 			},			
 		 onclick:function (item){
 			switch (item){
@@ -7900,8 +7901,11 @@ var liblist = [
 			game.broadcastAll()+ui.background.setBackgroundImage('image/background/'+lib.config.image_background+'.jpg');
 			break;
 			case '2':
-    ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
-			break;				
+            ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
+			break;	
+			case '3':
+            ui.background.setBackgroundImage('extension/文武英杰/wwyj_yuhudiebz.jpg');
+			break;
 			}
 			}
 		},				

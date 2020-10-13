@@ -2758,7 +2758,7 @@ skill:{
         return get.attitude(player,event.player)<=0;
     },                      
         filter:function (event,player){    
-
+          if(event.player.isDead()) return false;
             return event.card&&event.card.isCard&&event.card.name=='sha'&&game.hasPlayer(function(current){
               return player!=current&&event.player!=current&&get.distance(current,event.player,'attack')<=1;
          });                                 
@@ -3085,7 +3085,7 @@ skill:{
         }                          
     },
                 ai:{
-                    order:2,
+                    order:5,
                     result:{
                         player:function (player){
                     if(player.countCards('h')<3) return 2;
@@ -6493,7 +6493,26 @@ skill:{
             event.finish();
         }    
 				},
-			},	
+			},
+		 /*"_wwyj_Sukincen":{       
+        trigger:{
+           player:"enterGame",
+           global:"gameStart",
+        },
+        forced:true,
+        priority:Infinity,
+        filter:function (event,player){           
+            return game.hasPlayer(function(current){
+               return current.name=='wwyj_Sukincen';
+         });                             
+    },                
+                content:function (){                
+               if(player.name=='wwyj_Sukincen'){
+                 game.playAudio('..','extension','文武英杰','wwyj_dansha');
+                 player.node.name.innerHTML='Sukincen';
+               }  
+               },
+        },  */              		
         "wwyj_fengliu":{
             audio:"ext:文武英杰:1",
                  trigger:{
@@ -7796,7 +7815,17 @@ var liblist = [
         "name":"乐不思蜀",
         "intro":"开启后重启游戏生效。武将被“乐”时会有个贴有“乐”字的门关着",
          init:false
-    },		
+    },	
+    "wwyj_chat":{
+        "name":"武将聊天",
+        "intro":"开启后重启游戏生效。武将偶然会说话",
+         init:false
+    },	    
+	"wwyj_huanleyinxiao":{
+        "name":"欢乐音效",
+        "intro":"开启后重启游戏生效。玩家角色的出牌阶段开始时，会有敲门音伴“该你了”的提示音；角色阵亡时，后台会唱两句《凉凉》送给死者（原为黑人抬棺的BGM，因太长而改了）",
+         init:false
+    },	
     "wwyj_gengminghuanxing":{
 	    "name":'更名换姓',
         "intro":"开启后重启游戏生效，更改部分角色的姓名。<li>凉茶：玉蝴蝶<li>太上大牛：落影逝尘<li>松岛枫桂花：黑猫",
@@ -7806,17 +7835,7 @@ var liblist = [
 	    "name":'替换势力',
         "intro":"开启后重启游戏生效，将本扩展中的“杀”势力随机替换为官方“魏蜀吴群”中的一种势力",
          init:false
-	},	
-	"wwyj_huanleyinxiao":{
-        "name":"欢乐音效",
-        "intro":"开启后重启游戏生效。玩家角色的出牌阶段开始时，会有敲门音伴“该你了”的提示音；角色阵亡时，后台会唱两句《凉凉》送给死者（原为黑人抬棺的BGM，因太长而改了）",
-         init:false
-    },
-	"wwyj_chat":{
-        "name":"武将聊天",
-        "intro":"开启后重启游戏生效。武将偶然会说话",
-         init:false
-    },	
+	},		
 	"wwyj_jishatexiao":{
         "name":"击杀特效",
         "intro":"开启后重启游戏生效。场上有人击杀另一名角色后会播放动画",

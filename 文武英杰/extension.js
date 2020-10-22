@@ -55,12 +55,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[
-       '<li>大幅度优化AI：<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
+       '<li>优化“击杀特效”，大幅度优化AI：<li>极光回合内也会考虑用队友的装备杀敌<li>AI李木子发动释援不会再弹窗<li>诸葛均的奇思不再无脑转化桃救敌人<li>AI不会再对神座使用带属性伤害的牌<li>烟雨墨染不再无脑选择藤甲',
        '<li>替换势力：开启扩展“替换势力”小开关后重启游戏生效，将本扩展中的“杀”势力随机替换为官方“魏蜀吴群”中的一种势力',
 	   '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
        'players://["wwyj_limuzi","wwyj_zhugejun","wwyj_shenzuo","wwyj_yanyumoran"]',
     ];
-    wwyj_version='更新日期：2020年10月08日';
+    wwyj_version='更新日期：2020年10月22日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -1214,7 +1214,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.width = '0px';
          Animation.style.height = '0px';
          Animation.style.left = '50%';  
-         Animation.style.transform = 'rorate(20deg)';
+         //Animation.style.transform = 'rotate(20deg)';
          Animation.style.transition = 'all 1s';
          Animation.style.backgroundSize = 'cover';
          ui.window.appendChild(Animation);
@@ -1243,54 +1243,80 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		  if(config.wwyj_jishatexiao){		
 		    lib.skill._wwyj_jishatexiao={
                 trigger:{
-                    source:"die",
+                    source:"dieBegin",
                 },   
-                forceDie:true,  
+                //forceDie:true,  
                 forced:true,
+                priority:2020,
                 content:function (){ 
                 'step 0'
                 game.broadcastAll(function(player){       	
        	var Animation = ui.create.div();
        	Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;     					
-     	Animation.style.left = '-120px';
-         Animation.style.top = 'calc(50% - 90px)';        
-         Animation.style.width = '120px';
-         Animation.style.height = '150px';
-         Animation.style.transform = 'rorate(20deg)';
-         Animation.style.transition = 'all 2s';
-         Animation.style.backgroundSize = 'cover';
+     	Animation.style.left = '-280px'; //-120
+         Animation.style.top = 'calc(35% - 90px)';    //50%    
+         Animation.style.width = '280px';//120
+         Animation.style.height = '350px';//150
+         //Animation.style.transform = 'rotate(20deg)';
+         Animation.style.transition = 'all 1s';
+         Animation.style.backgroundSize = 'cover';       
+         Animation.style['z-index']='2020';//顶层
          ui.window.appendChild(Animation);
          ui.refresh(Animation);
-         Animation.style.left = '35%';					     
+         Animation.style.left = '24%';	//35%				     
          setTimeout(function(){
 	  	   	ui.window.removeChild(Animation);
             Animation.delete();			
-       },5000);	  							         						
+       },2000);	  							         						
 	     	},player);			
 			  'step 1'
 		game.broadcastAll(function(player){       	
        	var Animation2 = ui.create.div();
        	Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						
-     	Animation2.style.right = '-120px';
-         Animation2.style.top = 'calc(50% - 90px)';        
-         Animation2.style.width = '120px';
-         Animation2.style.height = '150px';
-         Animation2.style.transform = 'rorate(20deg)';
-         Animation2.style.transition = 'all 2s';
+     	Animation2.style.right = '-240px';
+         Animation2.style.top = 'calc(43.5% - 90px)';        
+         Animation2.style.width = '240px';
+         Animation2.style.height = '300px';
+         //Animation2.style.transform = 'rotate(20deg)';//旋转
+         Animation2.style.transition = 'all 1s';
          Animation2.style.backgroundSize = 'cover';
+         Animation2.style['z-index']='2020';//顶层
+         Animation2.style.webkitFilter="grayscale(100%)";//去色
+         Animation2.style.filter="grayscale(100%)";	//去色
          ui.window.appendChild(Animation2);
          ui.refresh(Animation2);    
-         Animation2.style.right = '35%';   
+         Animation2.style.right = '20%';   
          setTimeout(function(){	  	  
 			ui.window.removeChild(Animation2);
             Animation2.delete();
-       },3000);	
+       },2000);	
        		},player);				               										         						
-        'step 2'	  	  
+        'step 2'	  	       
        setTimeout(function(){
-	  	   	player.$fullscreenpop('击杀','fire');	
-	  	   	game.playwwyj('wwyjjishatexiao'); 
-       },1800);		  				                         		                     	                         		                     
+	  	   	//player.$fullscreenpop('击杀','fire');	
+	  	   	game.playwwyj('wwyj_jishatexiao'); 
+	  	   	 text = document.createElement('div');
+ 			     text.innerHTML='击杀强敌';						 		
+		 	     text.style.backgroundSize='cover';		 	    
+			  	 text.style.width='100%';
+				 text.style.height='100%';
+				 //text.style.left = '-150px'; //-120
+                 text.style.top = 'calc(45% - 90px)';    //50% 
+				 //text.style.left='25%';			
+				 text.style.transform='translateZ(-2000px)';//z轴变化
+				 text.style['font-size']='150px';
+			     text.style['text-align']='center';
+		     	 text.style['font-family']='shousha';
+		     	 text.style['z-index']='202010';//顶层
+		     	 text.style['text-shadow']='rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,black 0 0 1px';						 				 
+				 ui.window.appendChild(text);
+				 ui.refresh(text);
+				 text.style.transform='';
+				 setTimeout(function(){	  	  
+			ui.window.removeChild(text);
+            text.delete();
+            },1000);	
+       },1000);		      				                         		                     	                         		                     
                 },
                 }
       }        
@@ -1801,7 +1827,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_liushas":["male","wwyjsha",4,["wwyj_liusha"],[]],
 				"wwyj_guihua":["female","wwyjsha",3,["wwyj_gainian","wwyj_heimao"],[]],
 				"wwyj_tilongjianiao":["male","wwyjsha",3,["wwyj_gonggao","wwyj_jinyan"],[]],
-				"wwyj_huanyuxingcheng":["male","wwyjsha",3,["wwyj_xingcheng","wwyj_huanyu","wwyj_xuanxia"],[]],
+				"wwyj_huanyuxingcheng":["male","wwyjsha",3,["wwyj_huanyu","wwyj_xingcheng","wwyj_xuanxia"],[]],
 				"wwyj_limuzi":["male","wwyjsha",3,["wwyj_xiyuan","wwyj_qinyan"],[]],
 				"wwyj_fux2":["male","wwyjsha",4,["wwyj_dansha","wwyj_lunpo"],[]],
 				"wwyj_xuedaoshaozhu":["male","wwyjsha",3,["wwyj_xuedao","wwyj_shaozhu"],[]],				
@@ -2713,6 +2739,7 @@ skill:{
 				//equipSkill:true,
 				filter:function (event,player){
 					return event.card&&event.card.isCard&&get.type(event.card)=='equip'&&get.subtype(event.card)=='equip1'&&game.hasPlayer(function(current){
+              //return event.player.canUse('sha',current)&&get.distance(event.player,current,'attack')<=1;
               return get.distance(event.player,current,'attack')<=1;
          });
 				},				
@@ -3550,7 +3577,7 @@ skill:{
 		    		player.loseHp();
 			    	player.turnOver();
 				}
-				player.logSkill('wwyj_gainian');			
+				//player.logSkill('wwyj_gainian');			
 			}else{
 				event.finish();
 			}	
@@ -5078,11 +5105,11 @@ skill:{
        ai:{
          result:{
             target:function (player,target){
-             // if(target.countCards('h')<3) return 1;   
+              if(target.countCards('h')>2) return Math.random();   
                 return -target.countCards('h');
             },
                     },
-                    order:8,
+                    order:3,
                     threaten:0.5,
         },  
             },
@@ -5148,14 +5175,14 @@ skill:{
          });            
     },
                 content:function (){     
-                    "step 0"
+          "step 0"
         player.chooseTarget('极光',1,lib.translate.wwyj_jiguang_rsha_info,function(card,player,target){
             return target.countCards('e',{subtype:['equip1','equip4']});
         }).set('ai',function(target){
             if(player.hp<=1) return true;
             return -get.attitude(_status.event.player,target);            
         });
-                    "step 1"
+         "step 1"
          if(result.bool){         
            event.target=result.targets[0];       
            player.line(event.target,'green');               

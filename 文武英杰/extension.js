@@ -1253,17 +1253,17 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 game.broadcastAll(function(player){       	
        	var Animation = ui.create.div();
        	Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;     					
-     	Animation.style.left = '-280px'; //-120
-         Animation.style.top = 'calc(35% - 90px)';    //50%    
-         Animation.style.width = '280px';//120
-         Animation.style.height = '350px';//150
+     	Animation.style.left = '50px'; //-120
+         Animation.style.top = 'calc(33.5% - 90px)';    //50%    
+         Animation.style.width = '270px';//120
+         Animation.style.height = '360px';//150
          //Animation.style.transform = 'rotate(20deg)';
          Animation.style.transition = 'all 1s';
          Animation.style.backgroundSize = 'cover';       
          Animation.style['z-index']='2020';//顶层
          ui.window.appendChild(Animation);
          ui.refresh(Animation);
-         Animation.style.left = '24%';	//35%				     
+         Animation.style.left = '15%';	//35%				     
          setTimeout(function(){
 	  	   	ui.window.removeChild(Animation);
             Animation.delete();			
@@ -1273,10 +1273,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		game.broadcastAll(function(player){       	
        	var Animation2 = ui.create.div();
        	Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						
-     	Animation2.style.right = '-240px';
-         Animation2.style.top = 'calc(43.5% - 90px)';        
+     	Animation2.style.right = '40px';
+         Animation2.style.top = 'calc(40% - 90px)';        
          Animation2.style.width = '240px';
-         Animation2.style.height = '300px';
+         Animation2.style.height = '320px';
          //Animation2.style.transform = 'rotate(20deg)';//旋转
          Animation2.style.transition = 'all 1s';
          Animation2.style.backgroundSize = 'cover';
@@ -7069,7 +7069,7 @@ skill:{
 						setTimeout(function(){
 						ui.window.removeChild(Animation);
        //Animation.delete();
-},7500);
+},5000);
 
 			},player);
 					 player.storage.wwyj_chuangshi=true;			

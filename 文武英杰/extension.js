@@ -1271,8 +1271,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          
          var Animation2 = ui.create.div();
        	 Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
-     	 Animation2.style.right = '15%';       	      	
-         Animation2.style.top = 'calc(30% - 90px)'; //40%       
+     	 Animation2.style.right = '17%';       	      	
+         Animation2.style.top = 'calc(32% - 90px)'; //40%       
          Animation2.style.width = '240px';
          Animation2.style.height = '320px';
          //Animation2.style.transform = 'rotate(20deg)';//旋转
@@ -1292,7 +1292,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          
          var Animation3 = ui.create.div();
        	 Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
-     	 Animation3.style.right = '18%';       	      	
+     	 Animation3.style.right = '20%';       	      	
          Animation3.style.top = 'calc(40% - 90px)'; //40%       
          Animation3.style.width = '240px';
          Animation3.style.height = '320px';
@@ -1311,9 +1311,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          ui.refresh(Animation3);        
          
          setTimeout(function(){
-	  	   	Animation2.style.transform='translate(3px,-3px,0px)';	 
+	  	   	Animation2.style.transform='translate(3px)';	 
 	  	   	Animation2.style.transition = 'all 1s';
-	  	   	Animation3.style.transform='translate(-3px,3px,0px)';	 
+	  	   	Animation3.style.transform='translate(-3px)';	 
 	  	   	Animation3.style.transition = 'all 1s';	  	   	
        },200);	  			
        				     				     				     				     				     				     				     				     
@@ -1336,8 +1336,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 //text1.style.left = '-150px';
                  text1.style.top = 'calc(60% - 90px)';
 				 text1.style.left='62%';				 					
-				 //text1.style.transform='scale(-100)';//缩放变化				 
-				 text1.style.transform='scale3d(100,100,100)';	
+				 text1.style.transform='scale(-100)';//缩放变化				 	
 				 text1.style['font-size']='75px';
 			     // text1.style['text1-align']='center';
 		     	 text1.style['font-family']='xingkai';
@@ -1355,8 +1354,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 //text2.style.left = '-150px';
                  text2.style.top = 'calc(68% - 90px)'; 
 				 text2.style.left='68%';						 		
-				 //text2.style.transform='scale(100)';//缩放变化
-				 text2.style.transform='scale3d(100,100,100)';				 
+				 text2.style.transform='scale(100)';//缩放变化				 				 
 				 text2.style['font-size']='75px';
 			     //text2.style['text2-align']='center';
 		     	 text2.style['font-family']='xingkai';

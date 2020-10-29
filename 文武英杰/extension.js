@@ -1252,81 +1252,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 content:function (){ 
                 'step 0'
                 game.playwwyj('wwyj_jisha'); 
-                'step 1'
-                game.broadcastAll(function(player){       	
-       	 var Animation = ui.create.div();
-         Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;     					     	    
-     	 Animation.style.left = '10%';   	    	 
-         Animation.style.top = 'calc(33.5% - 90px)';    //50%    
-         Animation.style.width = '270px';//120
-         Animation.style.height = '360px';//150   
-         Animation.style.transition = 'all 2s';
-         Animation.style.transform='translateX(50px)';
-         Animation.style.transform='translateX(30px)';
-         Animation.style.transform='translateX(20px)';//减速
-         Animation.style.backgroundSize = 'cover';       
-         Animation.style['z-index']='2020';//顶层
-         ui.window.appendChild(Animation);
-         ui.refresh(Animation);      
-         
-         var Animation2 = ui.create.div();
-       	 Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
-     	 Animation2.style.right = '17%';       	      	
-         Animation2.style.top = 'calc(32% - 90px)'; //40%       
-         Animation2.style.width = '240px';
-         Animation2.style.height = '320px';
-         //Animation2.style.transform = 'rotate(20deg)';//旋转
-         Animation2.style.transition = 'all 2s';
-         Animation2.style.transform='translateX(-50px)';
-         Animation2.style.transform='translateX(-30px)';
-         Animation2.style.transform='translateX(-20px)';//减速
-         Animation2.style.backgroundSize = 'cover';
-         Animation2.style['z-index']='2020';//顶层
-         //Animation2.style.position='relative';
-         Animation2.style.webkitFilter="grayscale(100%)";//去色
-         Animation2.style.filter="grayscale(100%)";	//去色
-         Animation2.style.clip='rect(0px,202010px,170px,0px)';//裁剪（上右下左）
-        
-         ui.window.appendChild(Animation2);
-         ui.refresh(Animation2);               
-         
-         var Animation3 = ui.create.div();
-       	 Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
-     	 Animation3.style.right = '20%';       	      	
-         Animation3.style.top = 'calc(40% - 90px)'; //40%       
-         Animation3.style.width = '240px';
-         Animation3.style.height = '320px';
-         //Animation3.style.transform = 'rotate(20deg)';//旋转
-         Animation3.style.transition = 'all 2s';
-         Animation3.style.transform='translateX(-50px)';
-         Animation3.style.transform='translateX(-30px)';
-         Animation3.style.transform='translateX(-20px)';//减速
-         Animation3.style.backgroundSize = 'cover';
-         Animation3.style['z-index']='2020';//顶层
-         Animation3.style.webkitFilter="grayscale(100%)";//去色
-         Animation3.style.filter="grayscale(100%)";	//去色
-         Animation3.style.clip='rect(170px,202010px,202010px,0px)';
-        
-         ui.window.appendChild(Animation3);
-         ui.refresh(Animation3);        
-         
-         setTimeout(function(){
-	  	   	Animation2.style.transform='translate(3px)';	 
-	  	   	Animation2.style.transition = 'all 1s';
-	  	   	Animation3.style.transform='translate(-3px)';	 
-	  	   	Animation3.style.transition = 'all 1s';	  	   	
-       },200);	  			
-       				     				     				     				     				     				     				     				     
-         setTimeout(function(){
-	  	   	ui.window.removeChild(Animation);
-            Animation.delete();	
-            ui.window.removeChild(Animation2);
-            Animation2.delete();		
-            ui.window.removeChild(Animation3);
-            Animation3.delete();	
-       },2500);	  							         						
-	     	},player);					               										         						
-        'step 2'	  	       
+                'step 1'	  	       
         setTimeout(function(){	  	   		  	   	
 	  	   	     text1 = document.createElement('div');
  			     text1.innerHTML='击';						 		
@@ -1334,7 +1260,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			  	 text1.style.width='100%';
 				 text1.style.height='100%';
 				 //text1.style.left = '-150px';
-                 text1.style.top = 'calc(60% - 90px)';
+                 text1.style.top = 'calc(52% - 90px)';
 				 text1.style.left='62%';				 					
 				 text1.style.transform='scale(-100)';//缩放变化				 	
 				 text1.style['font-size']='75px';
@@ -1352,7 +1278,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			  	 text2.style.width='100%';
 				 text2.style.height='100%';
 				 //text2.style.left = '-150px';
-                 text2.style.top = 'calc(68% - 90px)'; 
+                 text2.style.top = 'calc(60% - 90px)'; 
 				 text2.style.left='68%';						 		
 				 text2.style.transform='scale(100)';//缩放变化				 				 
 				 text2.style['font-size']='75px';
@@ -1369,8 +1295,130 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			ui.window.removeChild(text2);
             text1.delete();
             text2.delete();
-            },1500);	
-       },500);		      				                         		                     	                         		                     
+            },2000);	
+       },800);		    
+                'step 2'
+                game.broadcastAll(function(player){       	
+       	 var Animation = ui.create.div();
+         Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;     					     	    
+     	 Animation.style.left = '10%';   	    	 
+         Animation.style.top = 'calc(33.5% - 90px)';    //50%    
+         Animation.style.width = '270px';//120
+         Animation.style.height = '360px';//150   
+         Animation.style.transition = 'all 2s';
+         Animation.style.transform='translateX(50px)';
+         Animation.style.transform='translateX(30px)';
+         Animation.style.transform='translateX(20px)';//减速
+         Animation.style.backgroundSize = 'cover';       
+         Animation.style['z-index']='2020';//顶层
+         ui.window.appendChild(Animation);
+         ui.refresh(Animation);      
+         
+         var Animation1 = ui.create.div();
+       	 Animation1.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
+     	 Animation1.style.right = '18.5%';       	      	
+         Animation1.style.top = 'calc(36% - 90px)'; //40%       
+         Animation1.style.width = '240px';
+         Animation1.style.height = '320px';
+         //Animation1.style.transform = 'rotate(20deg)';//旋转 
+         Animation1.style.transition = 'all 2s';
+         Animation1.style.transform='translateX(-50px)';
+         Animation1.style.transform='translateX(-30px)';
+         Animation1.style.transform='translateX(-20px)';        
+         Animation1.style.backgroundSize = 'cover';
+         Animation1.style['z-index']='2020';//顶层
+         //Animation1.style.webkitFilter="grayscale(100%)";//去色
+         //Animation1.style.filter="grayscale(100%)";	//去色
+         
+         ui.window.appendChild(Animation1);
+         ui.refresh(Animation1); 
+         
+         var Animation2 = ui.create.div();
+       	 Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
+     	 Animation2.style.right = '17%';       	      	
+         Animation2.style.top = 'calc(32% - 90px)'; //40%       
+         Animation2.style.width = '240px';
+         Animation2.style.height = '320px';         
+         //Animation2.style.position='relative';
+         /*Animation2.style.transition = 'all 2s';
+         Animation2.style.transform='translateX(-50px)';
+         Animation2.style.transform='translateX(-30px)';
+         Animation2.style.transform='translateX(-20px)';//减速*/
+        // Animation2.style.transform='translate(3px)';	 
+	  	// Animation2.style.transition = 'all 0.5s';
+         Animation2.style.backgroundSize = 'cover';
+         Animation2.style['z-index']='2020';//顶层         
+         Animation2.style.webkitFilter="grayscale(100%)";//去色
+         Animation2.style.filter="grayscale(100%)";	//去色
+         //Animation2.style.clip='rect(0px,202010px,170px,0px)';//平衡裁剪（上右下左）
+         Animation2.style.clipPath='polygon(0 0, 100% 0, 100% 70%, 0 30%)';//斜面裁切from十周年UI
+		 Animation2.style.WebkitClipPath= 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';
+	
+         //ui.window.appendChild(Animation2);
+         //ui.refresh(Animation2);               
+         
+         var Animation3 = ui.create.div();
+       	 Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
+     	 Animation3.style.right = '20%';       	      	
+         Animation3.style.top = 'calc(40% - 90px)'; //40%       
+         Animation3.style.width = '240px';
+         Animation3.style.height = '320px';        
+         //Animation3.style.position='relative';
+         /*Animation3.style.transition = 'all 2s';
+         Animation3.style.transform='translateX(-50px)';
+         Animation3.style.transform='translateX(-30px)';
+         Animation3.style.transform='translateX(-20px)';//减速*/
+         //Animation3.style.transform='translate(-3px)';	 
+	  	 //Animation3.style.transition = 'all 0.5s'
+         Animation3.style.backgroundSize = 'cover';
+         Animation3.style['z-index']='2020';//顶层
+         Animation3.style.webkitFilter="grayscale(100%)";//去色
+         Animation3.style.filter="grayscale(100%)";	//去色
+         //Animation3.style.clip='rect(170px,202010px,202010px,0px)';//平行分割		 
+		 Animation3.style.clipPath= 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';//斜面裁切from十周年UI
+	     Animation3.style.WebkitClipPath= 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';
+        
+         //ui.window.appendChild(Animation3);
+         //ui.refresh(Animation3);        
+         
+         setTimeout(function(){
+	  	   	ui.window.removeChild(Animation1);
+            Animation1.delete();	
+	  	   	//Animation2.style.clipPath='polygon(0 0, 100% 0, 100% 70%, 0 30%)';//斜面裁切from十周年UI
+		    //Animation2.style.WebkitClipPath= 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';
+	        //Animation3.style.clipPath= 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';//斜面裁切from十周年UI
+	        //Animation3.style.WebkitClipPath= 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';
+	        ui.window.appendChild(Animation2);
+            ui.refresh(Animation2); 
+            ui.window.appendChild(Animation3);
+            ui.refresh(Animation3);  
+       },1000);	
+         			
+         setTimeout(function(){
+	  	   	/*Animation2.style.transform='translate(3px)';	 
+	  	   	Animation2.style.transition = 'all 0.5s';
+	  	   	Animation3.style.transform='translate(-3px)';	 
+	  	   	Animation3.style.transition = 'all 0.5s';*/
+	  	   	setInterval(
+                function () {                                              
+                    Animation2.style.left = Animation2.offsetLeft + 25 + "px";
+					Animation2.style.top = Animation2.offsetTop - 10 + "px";
+					Animation3.style.left = Animation3.offsetLeft - 25 + "px";
+					Animation3.style.top = Animation3.offsetTop + 10 + "px";
+                },
+                50);
+       },500);	  			
+       				     				     				     				     				     				     				     				     
+         setTimeout(function(){
+	  	   	ui.window.removeChild(Animation);
+            Animation.delete();	
+            ui.window.removeChild(Animation2);
+            Animation2.delete();		
+            ui.window.removeChild(Animation3);
+            Animation3.delete();	
+       },2500);	  							         						
+	     	},player);					               										         						
+          				                         		                     	                         		                     
                 },
                 }
       }  

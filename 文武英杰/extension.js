@@ -54,14 +54,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		}
 
 // ---------------------------------------Update------------------------------------------//   
-    wwyj_update=[
-       '<li>优化“击杀特效”，新增“开场特效”，修复造孽不用弃牌的BUG，增强一瞬间遗忘的风华。大幅度优化AI：<li>瓦力AI不会再选择偷师烟雨<li>烟雨墨染AI不再无脑选择藤甲，且不会随便顶替已有的装备',
-       '<li>新增界限突破功能：开启扩展“界限突破”小开关后重启游戏生效，本扩展的部分角色的技能会改变或增强(具体详看帮助)',
-       '<li>新增替换势力功能：开启扩展“替换势力”小开关后重启游戏生效，将本扩展中的“杀”势力随机替换为官方“魏蜀吴群”中的一种势力',
-	   '<li>计划更新：【升麻】、【薄荷糖】、【天气亏】、【荣耀套鸽】',
-       'players://["wwyj_wali","wwyj_yanyumoran"]',
+    wwyj_update=[      
+	   '<li>新增武将：薄荷糖',
+	   '<li>计划更新：【升麻】、【天气亏】、【荣耀套鸽】',
+       'players://["wwyj_bohetang","wwyj_yanyumoran"]',
     ];
-    wwyj_version='更新日期：2020年10月31日';
+    wwyj_version='更新日期：2020年11月02日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -910,8 +908,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             global:["useCard"],
         },							      
         priority:10,
-        forced:true, 
+        direct:true, 
         usable:1,
+        popup:false,
+        //audio:"ext:文武英杰:1", 
         filter:function (event,player){            			
 			return event.card&&event.card.isCard&&get.type(event.card)==player.storage.wwyj_bohe;			    			  
         },       
@@ -924,6 +924,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             'step 1'
         if(result.bool){
             trigger.player.line(player,'green'); 
+            game.playwwyj('wwyj_bohe21');
             player.draw();            
         }else{ 
             event.finish();
@@ -933,7 +934,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             order:9,
         },			
     }
-    lib.translate.wwyj_bohe2_info='出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），其可令你摸一张牌';
+    lib.translate.wwyj_bohe_info='出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），其可令你摸一张牌';
         });     
         
 		lib.arenaReady.push(function(){
@@ -2412,23 +2413,23 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_guchengs":["male","wwyjsha",3,["wwyj_gucheng","wwyj_zangyue","wwyj_feixue"],[]],
 				"wwyj_hezifengyun":["male","wwyjsha",3,["wwyj_fengyun"],[]], 
 				"wwyj_qingzhongs":["male","wwyjsha",3,["wwyj_qingzhong","wwyj_jiegeng"],[]],
-				"wwyj_bohetang":["female","wwyjsha",3,["wwyj_bohe","wwyj_"],[]],
+				"wwyj_bohetang":["female","wwyjsha",3,["wwyj_bohe","wwyj_zhushan"],[]],
 				
 				"wwyj_yuhudie":["female","wwyjsha",3,["wwyj_caizhi","wwyj_daixue"],["unseen"]], 
 				
 			 
                },
-    characterIntro:{
+      characterIntro:{
                 	"wwyj_shuihu":"水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品",
                  	"wwyj_chengxuyuan":"橙续缘（程序猿），一位专业的付费代写的远古代扩展大神，代表扩展有《代码搜索器》、《特效扩展》、《势力边框》、《吧友列传》（第一代作者包）、《官渡之战》、《诸侯伐董》、《欢乐斗地主》、《狗年乱斗》、《圣者为王》以及仿手杀UI的《界面美化》等等，其中前三个扩展曾流传甚广，尤其是《代码搜索器》，圈内皆称之为“神器”，为制作扩展者必备。橙续缘为人非常低调，本人曾邀请他加群却遭到拒绝，另外开创了“无名杀DIY定制”微信公众号，公开收费代写扩展",
 					"wwyj_pipi":"皮皮……一位远古代扩展大神，擅长制作挑战boss类扩展，写过不少花里胡哨、强度高、搞怪、不按常理出牌的扩展，代表扩展有《神话》、《传说》、《暴躁AI》、《闯关模式》、《武林绝学》、《德玛西亚》等等。曾因制作了一个boss，玩家若挑战输了就会被惩罚——随机删除游戏中的扩展，虽然其本人也再三强调不要尝试挑战，但仍有人去玩，结果引起了不少争议，自此，皮皮隐退了",		
 					"wwyj_Sukincen":"小苏，一位远古代扩展大神，原ID叫Sukincen，圈内习惯称呼他为“小苏”，无名杀扩展交流群②(现名：无名杀官方扩展群)的首任群主，同时负责游戏内获取扩展(github端)的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能，人物技能新颖独特，契合度极高，同时配音齐全，还有击杀特效、新增卡牌等。技能强度方面，个别武将怼常规BOSS都不虚。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计",	
 					"wwyj_liangchas":"凉茶，本扩展作者，现名：玉蝴蝶，小号：咫尺天涯。曾任无名杀扩展交流②群(现名：无名杀官方扩展群)的群主，玩过几年三国杀，接触无名杀后，在Sukincen的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过大小近百个扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）。另外扩展作品还有《耀世三国》，后来因为懒直接“咕”了",	
 					"wwyj_yuhudie":"玉蝴蝶，本扩展作者，小号：咫尺天涯。曾任无名杀扩展交流②群(现名：无名杀官方扩展群)的群主，玩过几年三国杀，接触无名杀后，在Sukincen的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过大小近百个扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）。另外扩展作品还有《耀世三国》，后来因为懒直接“咕”了",	
-					"wwyj_wzszhaoyun":"我只是赵云，简称：赵云，摘自一位老玩家的回忆：一代嚣张跋扈、自带嘲讽的传奇玩家，代更过《极略三国》（虽然只是说说而已），曾是水乎钦点的代更者并立他为小吧主，而其却叫嚣要废除扩展功能，贴吧上到处禁言删帖……引起大家的不满。同时其恶语攻击一瞬间遗忘，却遭对方反击，双方阵营引爆无名杀舆论，互相对骂，甚至将水乎老大也牵扯进来……可以说此人是间接导致水乎放弃写新版无名杀的罪魁祸首。后来又因针对呲牙哥，引起众怒，最终被撤销小吧主之职，并被逼出贴吧群，自此，一代混世魔王才终于销声匿迹了。最近（2020年7月）又活跃了，一改以前的嚣张，变得随和了许多，有自我洗白的趋势",	
+					"wwyj_wzszhaoyun":"我只是赵云，简称：赵云。以下摘自本人的调查和一位老玩家的回忆：其为一代嚣张跋扈、自带嘲讽的传奇玩家，代更过《极略三国》（虽然只是说说而已），曾是水乎钦点的代更者，并被立为小吧主，而其却叫嚣要废除扩展功能，贴吧上到处胡乱禁言删帖……引起大家的不满与怨言。同时其恶语攻击一瞬间遗忘，却遭对方反击，双方阵营激烈互撕，引爆无名杀舆论，终日互相对骂，甚至将水乎老大也牵扯进来，最终导致水乎老大被气走，新版无名杀被放弃开发……可以说此人是间接导致水乎放弃写新版无名杀的罪魁祸首。后来又因针对呲牙哥，引起众怒，最终被撤销小吧主之职，并被逼退出贴吧群，自此，一代混世魔王才终于销声匿迹了。最近（2020年7月）又活跃了，一改以前的嚣张，变得随和了许多，有自我洗白的趋势",	
 					"wwyj_lunhuizhong":"轮回中的消逝者，呲牙哥的首席忠实粉丝，曾对呲牙哥和签到有迷之执着，平时潜水于各大群暗中观察追随呲牙哥的行踪。一直关注着无名杀的发展和各个扩展作者的动态，对大部分无名杀的扩展及其作者很了解。虽然经常在群发“( •̥́ ㉨ •̀ू )嘤嘤嘤~”，但大家都忍着不会跟他计较。会写一些代码并接替维护呲牙哥的扩展",	
 					"wwyj_ziyage":"呲牙哥，《秦时明月》、《沧海横流》、《天行九歌》等扩展的作者，无名杀扩展交流群①的群主，曾对无名杀素材收集总结、游戏推广作出过不少贡献，在圈内有不小的声望，曾被“我只是赵云”针对，几乎所有人都支持呲牙哥，终以“我只是赵云”被剥夺小吧主的地位并被踢出贴吧群告终。呲牙哥后来因进修学习而渐渐消失在玩家的视野中",	
-					"wwyj_kanpoyiqie":"看破一切，一位拥有专业编程技术的远古代扩展作者，同时对三国杀DIY有专业的见解，通常以各种专业理论刷屏唬住众人。曾任无名杀扩展交流群②(现名：无名杀官方扩展群)的群主，对群管理甚严，其扩展特点多为巧妙清奇，代表扩展有《无心之举》、《格林笔记》、《艾克斯》等",	
+					"wwyj_kanpoyiqie":"看破一切，一位拥有专业编程技术的远古代扩展作者，同时对三国杀DIY有专业的见解，通常以各种专业理论刷屏唬住众人。曾任无名杀扩展交流群②(现名：无名杀官方扩展群)的群主，对群管理甚严，其扩展特点多为巧妙清奇，代表扩展有《无心之举》、《格林笔记》、《艾克斯》等。转让群主后因常在无名杀扩展交流群②(现名：无名杀官方扩展群)里发色 图，被管理禁言，因而转向活跃于无名杀扩展交流群①群，并重制仙剑奇侠传扩展，最后因各种原因渐渐销声匿迹了",	
 					"wwyj_daxiongxiaimao":"大熊小猫，习称之为“大熊猫”，一位三国杀DIY爱好者，设计了《金庸群侠传》扩展近两百个人物，并由太上大牛（落影逝尘）等人写代码制作完成，这个大型扩展系列虽然诞生时间不长，但凭借着精炼、系统的技能设计，迅速传播开来，获得众多玩家一致的好评。该扩展对金庸武侠的人物进行了大总结，并将其能力、事迹翻译成技能，让他们在无名杀里快意恩仇。大熊小猫有专业的摄影技术，目前在开展精准扶贫工作",	
 					"wwyj_kelejiabing":"可乐加冰，一位元老级别的扩展大神，主要的扩展作品为《极略三国》、《女孩不哭》，同时出过不少教程，为后来摸索者指引了方向，为无名杀扩展代码作出了巨大的贡献。极略三国复刻了三国kill（后改名为极略三国）的武将，相当于将别人的游戏整个搬进了无名杀来！技能新颖，且与人物的历史事迹高度契合，武将总体强度相对平衡且约等于SP将水平。同时作为早期扩展，可玩性极高。可乐后因考研而隐退了",	
 					"wwyj_huijin":"辉烬贺流年，一位新生代扩展作者，喜欢制作扩展并为此付出了不少努力，技术也日益精湛。2019年底不幸遭遇车祸，手术成功后一直卧床，期间仍坚持制作扩展。代表扩展作品有《辉烬贺流年》等",		
@@ -2465,11 +2466,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					"wwyj_guchengs":"孤城，元老级扩展作者，又名“孤城葬月落飞雪”，代表作品有《千秋万载》、《一统江山》，这两个扩展将大部分三国杀武将翻新加强，几乎达到BOSS级别，这两扩展曾流行一时。此外作品还有Fate系列，具体是哪些扩展，有待调查。目前，孤城已退坑",	
 					"wwyj_hezifengyun":"何子风云，一位远古代扩展作者，主要的扩展作品有《战国七雄》，一个在早期曾让人眼前一亮的优秀扩展作品。何子风云已退坑多时，不过会时不时地在群里冒泡，以至于被人调侃为“诈尸”，故有作者包的“何子诈尸”的经典模式，另外本扩展也收录了这个模式",
 					"wwyj_qingzhongs":"青冢，中生代扩展作者，主要扩展作品有《千载风云》和《极略全扩》，前者主要角色为晋势力角色，对三国后期及晋朝早期的人物进行补充，技能精炼，是个不可多得的优秀扩展；后者是青冢补写了可乐加冰的《极略三国》中仍欠缺的角色，将之归为“极略补全”系列，并对旧《极略三国》的bug进行了大幅度的修复，一起接入全新的联机框架内，由此诞生了《极略全扩》这一精品，深受玩家的喜爱",
-					"wwyj_bohetang":"xxx",
+					"wwyj_bohetang":"薄荷糖，元老级扩展作者，曾任无名杀吧小吧主，原名为“薄荷糖的0味道”，后改名为“矮子剑薄荷糖氵”，为人比较豪爽直接，敢怒敢言。其代表作为《唐》，虽为微型扩展，但在扩展匮乏的早期，能独立制作扩展的人屈指可数，也算难能可贵了。同时其也出过一些简单的教程帖。原已隐退多时，在呲牙哥曾被“我只是赵云”无端针对时，薄荷糖发现后重出江湖，义愤填膺，联合流沙、青冢等多人对“我只是赵云”进行反制，为呲牙哥抱打不平，最终以“我只是赵云”被撤去小吧主职务而告终",
 					//"wwyj_moban":"简介模板",										
 						     		
 					},
-characterTitle:{
+      characterTitle:{
 					"wwyj_Sukincen":"Sukincen",
 					"wwyj_shijian":"雪碧",
 					"wwyj_taishangdaniu":"落影逝尘",
@@ -2481,9 +2482,32 @@ characterTitle:{
 					"wwyj_guihua":"黑猫",
 					"wwyj_tilongjianiao":"萌新杀手",
 			 		},
-skill:{       
+            skill:{       
+    
+    "wwyj_zhushan":{                     
+                shaRelated:true,
+				trigger:{
+				    global:'useCardToPlayered'
+				},				
+				filter:function(event,player){
+					return event.card.name=='sha'&&event.player.countCards('h')<=event.target.countCards('h');
+				},
+				prompt:function (event,player){					
+				    return '是否令此杀对'+get.translation(event.target)+'直接造成伤害？';
+		        },
+				logTarget:'target',
+                check:function (event,player){                
+        return get.attitude(player,event.target)<=0;
+    },
+                audio:"ext:文武英杰:1", 				                
+                content:function (){        
+           // trigger.directHit=true;     
+              trigger.getParent().directHit.add(trigger.target);
+              },
+          },
     "wwyj_bohe2":{
 		mark:true,	
+		//audio:"ext:文武英杰:1", 
 		marktext:'糖',	       
 		intro:{	
             content:function (storage,player,skill){
@@ -2495,15 +2519,20 @@ skill:{
         },							      
         priority:10,        
         usable:1,
+        popup:false,
         check:function (event,player){                    
             return get.attitude(player,event.player)>0;
         },         
         filter:function (event,player){            			
 			return event.card&&event.card.isCard&&get.type(event.card)==player.storage.wwyj_bohe;			    			  
-        },       
+        },
+        prompt:function (event,player){					
+				return '是否令'+get.translation(event.player)+'摸一张牌';
+	    },       
         content:function (){ 		   
             player.line(trigger.player,'green'); 
             player.say('我来派糖啦');
+            game.playwwyj('wwyj_bohe21');
             trigger.player.draw();                			        			
         },
         ai:{
@@ -2527,7 +2556,7 @@ skill:{
     "wwyj_bohe":{                              
         enable:"phaseUse",
 		usable:1,
-		audio:["wuyan",2],		
+		audio:"ext:文武英杰:1", 	
 		filter:function (event,player){            
 			return !player.hasSkill('wwyj_bohe2');
         },
@@ -2549,14 +2578,13 @@ skill:{
             var rand=_status.event.rand*2;
             switch(button.link[2]){
                 case 'basic':return 4+rand[3];
-                case 'trick':return 3+rand[6];
-                case 'equip':return 2+rand[7];                
-                default:return rand[9];
+                case 'trick':return 3+rand[3];
+                case 'equip':return 2+rand[3];                
+                default:return rand[3];
             }
         }).set('rand',[Math.random(),Math.random()],Math.random());                                
             'step 1'
-            if(result.bool){			
-                player.logSkill('wwyj_bohe');  
+            if(result.bool){			                 
                 player.addTempSkill('wwyj_bohe2',{player:'phaseBegin'});               
                 player.storage.wwyj_bohe.add(result.links[0][2]);
             }
@@ -4495,7 +4523,7 @@ skill:{
         },
                 },
             },
-        "wwyj_fenghua1":{                     
+        /*"wwyj_fenghua1":{                     
                 shaRelated:true,
 				trigger:{player:'useCardToPlayered'},				
 				filter:function(event,player){
@@ -4511,7 +4539,7 @@ skill:{
            // trigger.directHit=true;     
               trigger.getParent().directHit.add(trigger.target);
     },
-            },
+            },*/
 			"wwyj_fenghua":{
                 audio:["lieren",2],
                 usable:1,
@@ -4529,7 +4557,7 @@ skill:{
         if(result.bool){                
             //target.addTempSkill('wwyj_fenghua3'); 
             target.turnOver();           
-            player.addTempSkill('wwyj_fenghua1'); 
+            //player.addTempSkill('wwyj_fenghua1'); 
 		    player.storage.wwyj_fenghua2=target;
             player.addTempSkill('wwyj_fenghua2');  			
         }
@@ -7806,7 +7834,8 @@ translate:{
             
     //"wwyj_moban":"模板",
     //  "wwyj_moban_info":"模板",
-    
+    "wwyj_zhushan":"助善",
+    "wwyj_zhushan_info":"当一名角色使用杀时，若其手牌数不大于目标角色的手牌数，你可令此杀不可闪避",
     "wwyj_bohe2":"薄荷",
     "wwyj_1":"薄荷",
     "wwyj_bohe":"薄荷",
@@ -7878,7 +7907,7 @@ translate:{
 		  "wwyj_fenghua2":"风华",
 		  "wwyj_fenghua1":"风华",
 		  "wwyj_fenghua":"风华",
-          "wwyj_fenghua_info":"出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1且你使用【杀】时，可令此【杀】不可闪避。若你没赢，你回复一点体力",
+          "wwyj_fenghua_info":"出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1。若你没赢，你回复一点体力",
 		  "wwyj_shennai":"神奈",
           "wwyj_shennai_info":"</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限额外加X（你手牌中没带“伤害性”标签的牌的实时数量）",
           "wwyj_keai":"可爱",
@@ -8489,7 +8518,7 @@ var liblist = [
 			   ['<span class="bluetext">浅觞</span>：当一名其他角色弃牌阶段弃牌结束时，你可选择其所弃置的非装备牌中合理的一张并立即使用之<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
 			   ['<span class="bluetext">咸鱼</span>：每回合限一次，当你使用非转化的【杀】造成伤害时，你可以翻面，令该角色横置且此伤害+1<br><span class="bluetext">伪新</span>：每回合限一次，当一名角色进入濒死状态时，你可以摸一张牌并翻面，令其回复一点体力'],
 			   ['<span class="bluetext">神奈</span>：</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限额外加X（你手牌中没带“伤害性”标签的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
-			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1且你使用【杀】时，可令此【杀】不可闪避。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的【杀】被闪避时，你可令目标角色翻面'],
+			   ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的【杀】被闪避时，你可令目标角色翻面'],
 			   ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌'],
 			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌<br><span class="bluetext">黑猫</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌'],
 			   ['<span class="bluetext">公告</span>：当你受到伤害后，你可声明一种牌的类型，然后令回合外曾对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张【杀】。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
@@ -8503,6 +8532,7 @@ var liblist = [
                ['<span class="bluetext">孤城</span>：</font><font color=#f00>锁定技</font> 游戏轮数为奇数/偶数的回合，你不能成为点数为奇数/偶数的【杀】的目标<br><span class="bluetext">葬月</span>：</font><font color=#f00>锁定技</font> 回合结束阶段，你可选择一种花色，然后令所有其他角色在其下个结束阶段前，其回合内使用该花色的牌后将武将牌翻面<br><span class="bluetext">飞雪</span>：当你使用【杀】时，你可令此【杀】额外指定所有武将牌背面朝上的角色，然后令这些角色翻面'],
                ['<span class="bluetext">风云</span>：</font><font color=#f00>锁定技</font> 当你受到伤害后，你从随机展示的三个【文武英杰】扩展的技能中选择一个获得(本技能除外)'],
                ['<span class="bluetext">青冢</span>：出牌阶段限一次，你可以弃置任意张基本牌，并指定你攻击范围内等量名其他角色，分别视为对这些角色使用了一张无次数限制的【杀】<br><span class="bluetext">接更</span>：每名角色的回合限一次，当一名其他角色使用一张单目标的基本牌或非延时性锦囊牌时（借刀杀人、无懈可击除外），你可视为你对目标角色也使用此牌'],
+	           ['<span class="bluetext">薄荷</span>：出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），你可令其摸一张牌 <font color=#F0F>可突破</font><br><span class="bluetext">助善</span>：当一名角色使用杀时，若其手牌数不大于目标角色的手牌数，你可令此杀不可闪避'],
 	
               
     
@@ -8725,8 +8755,8 @@ var liblist = [
     //intro:"",
     intro:(function(){
 		var log = [			
-			'当前版本：1.10',
-			'更新日期：2020-10-31',
+			'当前版本：1.11',
+			'更新日期：2020-11-02',
 			'长按以下按钮开关可弹出功能介绍',			
 		];		
 		return '<p style="color:rgb(255,128,204); font-size:13px; line-height:13px; font-family:xingkai; text-shadow: 0 0 2px black;">' + log.join('<br>') + '</p>';
@@ -8734,5 +8764,5 @@ var liblist = [
     author:"凉茶||玉蝴蝶<li>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.10",
+    version:"1.11",
 },files:{"character":[],"card":[],"skill":[]}}})

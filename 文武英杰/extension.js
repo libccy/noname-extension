@@ -57,7 +57,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     wwyj_update=[      
 	   '<li>新增武将：薄荷糖',
 	   '<li>计划更新：【升麻】、【天气亏】、【荣耀套鸽】',
-       'players://["wwyj_bohetang","wwyj_yanyumoran"]',
+       'players://["wwyj_bohetang"]',
     ];
     wwyj_version='更新日期：2020年11月02日';
 
@@ -677,7 +677,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			//ui.window.removeChild(text2);
             text1.delete();
             text2.delete();
-            },2000);	
+            },1800);	
        },500);		    
                 'step 2'
                 game.broadcastAll(function(player){       	
@@ -2205,7 +2205,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         clear:true,
         onclick:function(){
 			if(this.wwyj_zuijiapaidang==undefined){
-				var more=ui.create.div('.wwyj_zuijiapaidang','<li>装备流：极光+烟雨墨染+血刀少主+造孽<li>翻面系：苏婆玛丽奥+诸葛均+咸鱼+孤城<li>其他组：太上大牛+大熊小猫+神奈');
+				var more=ui.create.div('.wwyj_zuijiapaidang','<li>装备流：极光+烟雨墨染+血刀少主+造孽/薄荷糖<li>翻面系：苏婆玛丽奥+诸葛均+咸鱼+孤城<li>辅助组：太上大牛+大熊小猫+神奈');
 				this.parentNode.insertBefore(more,this.nextSibling);
 				this.wwyj_zuijiapaidang=more;
 				this.innerHTML='<div class="wwyj_menu">最佳拍档<font size="3px">⇩</font></div>';
@@ -2591,7 +2591,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			else event.finish();
         },
              ai:{
-                    order:5,
+                    order:8,
                     result:{
                        player:function (player){          
                 return 1;
@@ -2679,7 +2679,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 return 1;
             },                   
         },
-            order:8,
+            order:2,
             threaten:0.5,
         },  
 

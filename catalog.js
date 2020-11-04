@@ -19,12 +19,13 @@ extension["官渡之战"]={
 
 extension["文武英杰"]={
     author:"凉茶||玉蝴蝶",
-    intro:"<li>更新：新增浏览武将功能及多个武将、优化个别技能、AI等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-10-29",
-    size:"33.8MB",
+    intro:"<li>更新：新增浏览武将功能及多个武将、优化个别技能、AI等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2020-11-04",
+    size:"35MB",
     netdisk:"",
-    version:1.10,
+    version:1.11,
     files:[
      "extension.js","newtujian.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
+	        "wwyj_bohe1.mp3","wwyj_bohe21.mp3","wwyj_bohetang.mp3","wwyj_bohetang.jpg","wwyj_zhushan1.mp3","wwyj_gamestart.mp3",
 		"wwyj_jisha.mp3","wwyj_jishatexiao.mp3","wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
 		"wwyj_bingmou.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg",
 		"wwyj_chengxuyuan.mp3","wwyj_chuangshi.gif","wwyj_chuangshi1.mp3","wwyj_ciya1.mp3",

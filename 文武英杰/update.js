@@ -2,8 +2,8 @@ window.version='1.11';
 window.wwyjchangelog={	
   '2020年11月':{
     'version':'1.11',
-    'info':'新增薄荷糖',
-    'players':["wwyj_bohetang"],
+    'info':'新增薄荷糖、niya、竹林七贤、忠诚的叛徒。新增武将评级、铁索连环特效、全新图鉴按钮打开方式以及部分音效',
+    'players':["wwyj_bohetang","wwyj_niya","wwyj_zhulinqixian","wwyj_zhongchengpantu"],
     'cards':[],
   },
   '2020年10月':{

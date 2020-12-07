@@ -55,12 +55,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
        
 // ---------------------------------------Update------------------------------------------//   
     wwyj_update=[      
-	   '<li>新增武将：薄荷糖、夜洛樱琉璃、竹林七贤、忠诚的叛徒，削弱夜洛樱琉璃、竹林七贤',
-	   '<li>新增武将评级、铁索连环特效、全新图鉴按钮打开方式以及部分音效',
+	   '<li>全面优化：小削界限突破的玄侠，增强界限突破的退坑；增加日志按钮；击杀特效加一闪而过的马特效',
+	  // '<li>新增武将评级、铁索连环特效、全新图鉴按钮打开方式以及部分音效',
 	  // '<li>计划更新：【升麻】、【天气亏】、【荣耀套鸽】',
-       'players://["wwyj_bohetang","wwyj_niya","wwyj_zhulinqixian","wwyj_zhongchengpantu"]',
+     //  'players://["wwyj_bohetang","wwyj_niya","wwyj_zhulinqixian","wwyj_zhongchengpantu"]',
     ];
-    wwyj_version='更新日期：2020年11月29日';
+    wwyj_version='更新日期：2020年12月6日';
 
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
@@ -177,12 +177,45 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				clearInterval(interval);
 				dialog.delete();
 				ui.window.removeChild(this);
+				game.playwwyj('wwyj_show');
 			});
 			div.style.top='5px';
 			div.style.left='calc(100% - 55px)';
 			div.style['zIndex']=1000;
 			ui.window.appendChild(div);
 		};
+		
+		if(config.wwyj_updateicon){
+        lib.skill._wwyj_updateicon={
+        trigger:{global:'gameStart'},
+        forced:true,
+        unique:true,
+        locked:true,
+        charlotte:true,
+        priority:2020,        
+    content:function (){   		
+			if(event.isMine()){
+		game.broadcastAll(function(player){       	
+       	 var Animation = ui.create.div();
+         Animation.setBackgroundImage('extension/文武英杰/wwyj_updateicon.png'); 	   									     	    
+     	 Animation.style.left = '70%';   	    	 
+         Animation.style.top = 'calc(80% - 90px)';       
+         Animation.style.width = '80px';//120
+         Animation.style.height = '80px';//150            
+         Animation.style.backgroundSize = 'cover';       
+         Animation.style['z-index']='1';
+         ui.window.appendChild(Animation);
+         ui.refresh(Animation);                  
+         Animation.onclick=function(){
+              game.playwwyj('wwyj_dansha');
+			  //ui.click.configMenu();
+		  	  game.wwyj_showChangeLog();		  			     		     
+         }
+         });     
+			}		
+         },     
+     }	
+     } 
 // ---------------------------------------Newtujian------------------------------------------// 		
 	game.wwyj_showNewtujian=function(){
 			var dialog=ui.create.dialog('hidden');
@@ -234,6 +267,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				clearInterval(interval);
 				dialog.delete();
 				ui.window.removeChild(this);
+				game.playwwyj('wwyj_show');
 			});
 			div.style.top='60px';
 			div.style.left='calc(100% - 155px)';
@@ -254,7 +288,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		game.broadcastAll(function(player){       	
        	 var Animation = ui.create.div();
          Animation.setBackgroundImage('extension/文武英杰/wwyj_newtujianicon.png'); 	   									     	    
-     	 Animation.style.left = '70%';   	    	 
+     	 Animation.style.left = '62%';   	    	 
          Animation.style.top = 'calc(80% - 90px)';       
          Animation.style.width = '80px';//120
          Animation.style.height = '80px';//150            
@@ -263,9 +297,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          ui.window.appendChild(Animation);
          ui.refresh(Animation);                  
          Animation.onclick=function(){
-              game.playwwyj('wwyj_show');
+              game.playwwyj('wwyj_dansha');
 			  //ui.click.configMenu();
-		  	  game.wwyj_showNewtujian();			     		     
+		  	  game.wwyj_showNewtujian();
+		  	  //game.wwyj_openCharacterPack();			     		     
          }
          });     
 			}		
@@ -289,7 +324,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					img.setBackgroundImage('extension/文武英杰/wwyj_tiesuolianhuan.png'); 						
 					img.style.width='100%';
 					img.style.height='100%';
-					img.style['z-index']='2020';
+					img.style['z-index']='30';
 					img.style.backgroundSize='cover';
 					//img.style.transform='translateY(-200px)';
 					player.node.avatar.appendChild(img);
@@ -327,7 +362,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				img.setBackgroundImage('extension/文武英杰/wwyj_lebusishu.png'); 						
 		 	img.style.backgroundSize='cover';
 				img.style.width='100%';
-				img.style.height='100%';			
+				img.style.height='100%';
+				img.style['z-index']='20';			
 				//img.style.transform='translateY(-200px)';
 				player.node.avatar.appendChild(img);
 				ui.refresh(img);
@@ -350,6 +386,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					img.style.width='100%';
 					img.style.height='100%';
 					img.style.backgroundSize='cover';
+					img.style['z-index']='20';
 					//img.style.transform='translateY(-200px)';
 					player.node.avatar.appendChild(img);
 					ui.refresh(img);
@@ -398,6 +435,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					img.style.width='100%';
 					img.style.height='100%';
 					img.style.backgroundSize='cover';
+					img.style['z-index']='20';
 					//img.style.transform='translateY(-200px)';
 					player.node.avatar.appendChild(img);
 					ui.refresh(img);
@@ -615,7 +653,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.top = 'calc(45% - 50px)';     
          Animation.style.width = '180px';
          Animation.style.height = '240px';
-         Animation.style['z-index']='2020';
+         Animation.style['z-index']='40';
          Animation.style.opacity ='0';
          Animation.style.transform = 'scale(10)';
          Animation.style.transition = 'all 0.5s';              
@@ -630,7 +668,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             Animation.style.height = '240px';
             Animation.style.left = '42%';  
             Animation.style.top = 'calc(45% - 50px)'; 
-            //Animation.style['z-index']='2';
+            //Animation.style['z-index']='40';
             game.playwwyj('wwyj_dansha');        	
        },50);	  		                                				     
          setTimeout(function(){
@@ -668,7 +706,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
    			Animation.style.backgroundSize='cover';
    			Animation.style.top = "36%";
    			Animation.style.left = "40%";   			
-			Animation.style["z-index"] = 2020;
+			Animation.style["z-index"] = '80';
 			Animation.style.opacity ='0.2';
 			Animation.style.width = '240px';
             Animation.style.height = '240px';
@@ -678,7 +716,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             ui.refresh(Animation);
             setTimeout(function(){
 	  	   	Animation.style.opacity ='1';
-	  	   	//Animation.style["z-index"] = 1;	  	   	
+	  	   	//Animation.style["z-index"] = '80';	  	   	
 	  	   	Animation.style.transform = 'scale(1)';
 	  	   	Animation.style.transition = 'all 0.5s';
 	  	   	Animation.style.width = '240px';
@@ -707,7 +745,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 },   
                 //forceDie:true,  
                 forced:true,
-                priority:2020,                
+                priority:20,                
                 content:function (){ 
                 'step 0'
                  game.playwwyj('wwyj_jisha');                   
@@ -725,7 +763,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 text1.style['font-size']='75px';
 			     // text1.style['text-align']='center';
 		     	 text1.style['font-family']='xingkai';
-		     	 text1.style['z-index']='202010';//顶层		     	 
+		     	 text1.style['z-index']='30';//顶层		     	 
 		     	 text1.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';						 				 
 				 ui.window.appendChild(text1);				
 				 ui.refresh(text1);
@@ -743,7 +781,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 text2.style['font-size']='75px';
 			     //text2.style['text-align']='center';
 		     	 text2.style['font-family']='xingkai';
-		     	 text2.style['z-index']='202010';//顶层
+		     	 text2.style['z-index']='30';//顶层
 		     	 text2.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';						 				 
 				 ui.window.appendChild(text2);
 				 ui.refresh(text2);
@@ -753,7 +791,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			//ui.window.removeChild(text1);
 			//ui.window.removeChild(text2);
             text1.delete();
-            text2.delete();
+            text2.delete();            
             },1800);	
        },500);		    
                 'step 2'
@@ -770,7 +808,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.transform='translateX(30px)';
          Animation.style.transform='translateX(20px)';//减速
          Animation.style.backgroundSize = 'cover';       
-         Animation.style['z-index']='2020';//顶层
+         Animation.style['z-index']='50';//顶层
          ui.window.appendChild(Animation);
          ui.refresh(Animation);      
          
@@ -784,15 +822,41 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 name0.style['font-size']='36px';			   
 		     	 name0.style['font-family']='xingkai';
 		     	 //name0.style['text-align']='center';
-		     	 name0.style['z-index']='20201030';//顶层		     	 
+		     	 name0.style['z-index']='55';//顶层		     	 
 		     	 name0.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';						 				 
 				 ui.window.appendChild(name0);				
 				 ui.refresh(name0);
 				 setTimeout(function(){
 	  	   	//ui.window.removeChild(name0);
-            name0.delete();	            
+            name0.delete();	                      
        },2400);	  		
        
+         var jisha = ui.create.div();        
+		jisha.setBackgroundImage('extension/文武英杰/wwyj_jisha.png');             					     	    
+		jisha.style.left = '5%';   	    	 
+		jisha.style.top = 'calc(48% - 90px)';       
+		jisha.style.width = '208px';
+		jisha.style.height = '112px';            		
+		jisha.style.position ='absolute';
+		jisha.style.transition = 'all 0.5s';
+		jisha.style.transform ='translateX(10px)';
+		 jisha.style.transform ='translateX(55px)';
+		// jisha.style.transform ='translateX(50px)';
+		jisha.style.backgroundSize = 'cover';      
+		jisha.style["z-index"]='65';//顶层
+		ui.window.appendChild(jisha);
+		ui.refresh(jisha); 		
+		    jisha.style.left = '70%';   	    	 
+		    jisha.style.top = 'calc(48% - 90px)';       		    
+		    jisha.style["z-index"]='65';
+		    jisha.style.transform ='translateX(100px)'; 
+	    	jisha.style.transition = 'all 0.5s';		       	           	  
+		setTimeout(function(){
+			ui.window.removeChild(jisha);            
+			jisha.delete();			            
+		},1000);
+		
+		
          var Animation1 = ui.create.div();
        	 Animation1.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;      						     	
      	 Animation1.style.right = '18%';       	      	
@@ -805,7 +869,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation1.style.transform='translateX(-30px)';
          Animation1.style.transform='translateX(-20px)';        
          Animation1.style.backgroundSize = 'cover';
-         Animation1.style['z-index']='2019';//顶层
+         Animation1.style['z-index']='50';//顶层
          //Animation1.style.webkitFilter="grayscale(100%)";//去色
          //Animation1.style.filter="grayscale(100%)";
          
@@ -827,7 +891,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 name1.style['font-size']='36px';			   
 		     	 name1.style['font-family']='xingkai';
 		     	 //name1.style['text-align']='center';
-		     	 name1.style['z-index']='20201030';//顶层		     	 
+		     	 name1.style['z-index']='55';//顶层		     	 
 		     	 name1.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';						 				 
 				 ui.window.appendChild(name1);				
 				 ui.refresh(name1);
@@ -835,7 +899,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          setTimeout(function(){	  	   	
 	  	    name1.delete();	
 	  	   	ui.window.removeChild(Animation1);            
-            Animation1.delete();		  	   
+            Animation1.delete();              	   
          },800);	
          
          var Animation2 = ui.create.div();
@@ -848,7 +912,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         // Animation2.style.transform='translate(3px)';	 
 	  	// Animation2.style.transition = 'all 0.5s';
          Animation2.style.backgroundSize = 'cover';
-         Animation2.style['z-index']='2020';//顶层         
+         Animation2.style['z-index']='50';//顶层         
          Animation2.style.webkitFilter="grayscale(100%)";//去色
          Animation2.style.filter="grayscale(100%)";	//去色
          //Animation2.style.clip='rect(0px,202010px,170px,0px)';//平衡裁剪（上右下左）
@@ -869,7 +933,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 name2.style['font-size']='36px';			   
 		     	 name2.style['font-family']='xingkai';
 		     	 //name2.style['text-align']='center';
-		     	 name2.style['z-index']='20201030';//顶层		     	 
+		     	 name2.style['z-index']='55';//顶层		     	 
 		     	// name2.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';	
 		     	 //name2.style.webkitFilter="grayscale(100%)";//去色
                  //name2.style.filter="grayscale(100%)";	
@@ -891,7 +955,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          //Animation3.style.transform='translate(-3px)';	 
 	  	 //Animation3.style.transition = 'all 0.5s'
          Animation3.style.backgroundSize = 'cover';
-         Animation3.style['z-index']='2020';//顶层
+         Animation3.style['z-index']='50';//顶层
          Animation3.style.webkitFilter="grayscale(100%)";//去色
          Animation3.style.filter="grayscale(100%)";	//去色
          //Animation3.style.clip='rect(170px,202010px,202010px,0px)';//平行分割		 
@@ -912,7 +976,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				 name3.style['font-size']='36px';			   
 		     	 name3.style['font-family']='xingkai';
 		     	 //name3.style['text-align']='center';
-		     	 name3.style['z-index']='20201030';//顶层		     	 		     	
+		     	 name3.style['z-index']='55';//顶层		     	 		     	
 		     	 //name3.style.webkitFilter="grayscale(100%)";//去色
                  //name3.style.filter="grayscale(100%)";
                  name3.style.clipPath= 'polygon(0 26%, 100% 61%, 0 100%, 0 100%)';//斜面裁切from十周年UI
@@ -954,7 +1018,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 50);*/
        },1200);	  			
        				     				     				     				     				     				     				     				     
-         setTimeout(function(){
+         setTimeout(function(){	  	   	
 	  	   	ui.window.removeChild(Animation);
             Animation.delete();	
             ui.window.removeChild(Animation2);
@@ -1202,7 +1266,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },				
         audio:"ext:文武英杰:1",		       
         priority:10,
-        round:1,        
+        round:2,       
         filter:function (event,player){
 			return game.hasPlayer(function(current){
                 return current!=player&&current.hasSkill('wwyj_xingcheng1')&&current.storage.wwyj_xingcheng1&&current.storage.wwyj_xingcheng1.length;
@@ -1229,6 +1293,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             player.recover();                                               
             event.current.storage.wwyj_xingcheng1.remove(cards);
             event.current.removeSkill('wwyj_xingcheng1');
+            event.current.unmarkSkill('wwyj_xingcheng1');
             event.current.update();
 			event.redo();
           }
@@ -1240,7 +1305,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             order:9,
         },
        } 
-       lib.translate.wwyj_xuanxia_info='每轮限一次，当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】';
+       lib.translate.wwyj_xuanxia_info='每两轮限一次，当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】';
         }); 
 		
 		lib.arenaReady.push(function(){
@@ -1250,7 +1315,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
      },
      forced:true,
      content:function (){  
-        player.draw();
+        player.draw(player.getDamagedHp());
         game.playwwyj('wwyj_qianfu1'); 
      },
      mod:{
@@ -1259,7 +1324,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },                    
      },            
        }		        
-       lib.translate.wwyj_tuikeng_info='</font><font color=#f00>锁定技</font> 你的体力值发生变化时，你摸一张牌；你的防御距离加X（X为你已损失的体力值）';
+       lib.translate.wwyj_tuikeng_info='</font><font color=#f00>锁定技</font> 你的体力值发生变化时，你摸X张牌；你的防御距离加X（X为你已损失的体力值）';
         }); 
             
 		lib.arenaReady.push(function(){          
@@ -1383,7 +1448,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.width = '80px';//120
          Animation.style.height = '80px';//150            
          Animation.style.backgroundSize = 'cover';       
-         Animation.style['z-index']='1';
+         Animation.style['z-index']='10';
          ui.window.appendChild(Animation);
          ui.refresh(Animation);                  
          Animation.onclick=function(){
@@ -1490,7 +1555,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		game.broadcastAll(function(player){       	
        	var Animation = ui.create.div();
        	Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;     					     	             
-         Animation.style['z-index']='2020';
+         Animation.style['z-index']='80';
          Animation.style.opacity ='0';
          Animation.style.transform = 'scale(10)';
          Animation.style.transition = 'all 0.5s';
@@ -1772,6 +1837,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		lib.translate['wwyj_taishangdaniu']='落影逝尘';
 		lib.translate['wwyj_guihua']='黑猫';
 		lib.translate['wwyj_duanges']='短鸽';
+		lib.translate['wwyj_zhaonies']='冰雪雨柔';
 		
 	}
 	else {
@@ -1779,6 +1845,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		lib.translate['wwyj_taishangdaniu']='太上大牛';
 		lib.translate['wwyj_guihua']='松岛枫桂花';
 		lib.translate['wwyj_duanges']='短歌';
+		lib.translate['wwyj_zhaonies']='造孽';
+		
 		
 	}	
 	// ---------------------------------------wujiangpingji------------------------------------------//
@@ -2500,8 +2568,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	lib.extensionMenu.extension_文武英杰.newtujian={
 		"name":"全新图鉴<div>&gt;</div>",
 		"clear":true,
-		"onclick":function(){
-			game.playwwyj('wwyj_show');
+		"onclick":function(){			
+			game.playwwyj('wwyj_dansha');
 			//ui.click.configMenu();
 			game.wwyj_showNewtujian();				
 		},
@@ -2514,7 +2582,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		"name":"更新日志<div>&gt;</div>",
 		"clear":true,
 		"onclick":function(){
-			game.playwwyj('wwyj_show');
+			//game.playwwyj('wwyj_show');
+			game.playwwyj('wwyj_dansha');
 			//ui.click.configMenu();
 			game.wwyj_showChangeLog();
 			//alert('网络链接失败');
@@ -2526,11 +2595,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         clear:true,
         onclick:function(){
 			if(this.wwyj_yugao==undefined){
+				game.playwwyj('wwyj_dansha'); 
 				var more=ui.create.div('.wwyj_yugao','<li>扩展作者：升麻、薄荷糖、天气亏<li>粉丝玩家：待定');
 				this.parentNode.insertBefore(more,this.nextSibling);
 				this.wwyj_yugao=more;
 				this.innerHTML='<div class="wwyj_menu">更新预告<font size="3px">⇩</font></div>';
 			}else{
+				game.playwwyj('wwyj_show');
 				this.parentNode.removeChild(this.wwyj_yugao);
 				delete this.wwyj_yugao;
 				this.innerHTML='<div class="wwyj_menu">更新预告<font size="3px">⇨</font></div>';
@@ -2543,11 +2614,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         clear:true,
         onclick:function(){
 			if(this.wwyj_zuijiapaidang==undefined){
+				game.playwwyj('wwyj_dansha'); 
 				var more=ui.create.div('.wwyj_zuijiapaidang','<li>装备流：极光+烟雨墨染+血刀少主+造孽/薄荷糖<li>翻面系：苏婆玛丽奥+诸葛均+咸鱼+孤城<li>辅助组：太上大牛+大熊小猫+神奈');
 				this.parentNode.insertBefore(more,this.nextSibling);
 				this.wwyj_zuijiapaidang=more;
 				this.innerHTML='<div class="wwyj_menu">最佳拍档<font size="3px">⇩</font></div>';
 			}else{
+				game.playwwyj('wwyj_show');
 				this.parentNode.removeChild(this.wwyj_zuijiapaidang);
 				delete this.wwyj_zuijiapaidang;
 				this.innerHTML='<div class="wwyj_menu">最佳拍档<font size="3px">⇨</font></div>';
@@ -2560,7 +2633,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		"name":"反馈BUG<div>&gt;</div>",
 		"clear":true,
 		"onclick":function(){
-			game.playwwyj('wwyj_show');
+			//game.playwwyj('wwyj_show');
+			game.playwwyj('wwyj_dansha');
 			game.open('https://tieba.baidu.com/p/6657464280');
 		},
 	};			
@@ -2579,7 +2653,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		"name":"浏览武将<div>&gt;</div>",
 		"clear":true,
 		"onclick":function(){
-			game.playwwyj('wwyj_show');
+			//game.playwwyj('wwyj_show');
+			game.playwwyj('wwyj_dansha');
 			//ui.click.configMenu();
 			game.wwyj_openCharacterPack();				
 		},
@@ -2813,7 +2888,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					"wwyj_bohetang":"薄荷糖，元老级扩展作者，曾任无名杀吧小吧主，原名为“薄荷糖的0味道”，后改名为“矮子剑薄荷糖氵”，为人比较豪爽直接，敢怒敢言。其代表作为《唐》，虽为微型扩展，但在扩展匮乏的早期，能独立制作扩展的人屈指可数，也算难能可贵了。同时其也出过一些简单的教程帖。原已隐退多时，在呲牙哥曾被“我只是赵云”无端针对时，薄荷糖发现后重出江湖，义愤填膺，联合流沙、青冢等多人对“我只是赵云”进行反制，为呲牙哥抱打不平，最终以“我只是赵云”被撤去小吧主职务而告终",
 					"wwyj_niya":"夜洛樱琉璃，原名为：Niya。中生代扩展作者甚至可能更古老，为人谦和，拥有与“诗笺”类似的风格与代码技术，主要的成就是续更了著名的扩展《概念武将》，不但对该扩展进行了修复、维护，还大幅度开拓了新功能，对无名杀的界面进行了部分美化，最显著的成就是开发了“换肤换音”功能，成千上万的扩展中，有此功能的，仅此一个！",	
 					"wwyj_zhulinqixian":"竹林七贤(×)，竹林七闲(√)，新生代玩家，无名杀官方群Ⅶ（萌新群）群的群主，数个群的管理员，喜欢玩《时空枢纽》、《玄武江湖》扩展。本设计由寰宇星城提供，本人略作修改再编写代码制作而成",	
-					"wwyj_zhongchengpantu":"忠诚的叛徒，中生代扩展作者，原叫最忠诚的叛徒，因有个群的管理员冒充他胡乱踢人，而改名为“路过的指挥使”。曾在《动漫包》的基础上写了一个名为《伪动漫》的扩展，该扩展以古灵精怪著称，技能大部分花里胡哨不走常规路，而且技能的描述也为一些莫名其妙的口号。其比较得意的为“莫比波斯环”，无穷的无中生有必摸无中生有。后因该扩展的技能、人物不注意写id，积弊已久，导致与同样如此做的《冷雨》包互相冲突、吞并，然后其将各群的《伪动漫》全删除了并停更了",		
+					"wwyj_zhongchengpantu":"忠诚的叛徒，中生代扩展作者，原叫“最忠诚的叛徒”，因有个群的管理员冒充他胡乱踢人，而改名为“路过的指挥使”。曾在《动漫包》的基础上写了一个名为《伪动漫》的扩展，该扩展以古灵精怪著称，技能大部分花里胡哨不走常规路，而且技能的描述也为一些莫名其妙的口号。其比较得意的为“莫比波斯环”，无穷的无中生有必摸无中生有。后因该扩展的技能、人物不注意写id，积弊已久，导致与同样如此做的《冷雨》包互相冲突、吞并，然后其将各群的《伪动漫》全删除了并停更了",		
 					//"wwyj_moban":"简介模板",										
 						     		
 					},
@@ -2827,7 +2902,21 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					"wwyj_shenzuo":"◎sagiri",
 					"wwyj_shennais":"学妹",
 					"wwyj_guihua":"黑猫",
-					"wwyj_tilongjianiao":"萌新杀手",
+					"wwyj_tilongjianiao":"萌新杀手",					
+					"wwyj_shuihu":"村长",
+					"wwyj_chengxuyuan":"程序猿",
+					"wwyj_zhaonies":"前世造多了孽",
+					"wwyj_lunhuizhong":"呲牙弟",
+					"wwyj_kanpoyiqie":"看破",
+					"wwyj_daxiongxiaimao":"大熊猫",
+					"wwyj_zhugejun":"文彧",
+					"wwyj_yitiaoxianyu":"永远的萌新",
+					"wwyj_guchengs":"孤城葬月落飞雪",
+					"wwyj_bohetang":"矮子剑薄荷糖",					
+					"wwyj_duanges":"大兔子",
+					"wwyj_niya":"Niya",
+					"wwyj_zhongchengpantu":"路过的指挥使",
+					
 			 		},
             skill:{       
           
@@ -4570,6 +4659,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             player.recover();                                              
             event.current.storage.wwyj_xingcheng1.remove(cards);
             event.current.removeSkill('wwyj_xingcheng1');
+            event.current.unmarkSkill('wwyj_xingcheng1');
             event.current.update();
 			event.redo();
           }
@@ -7212,9 +7302,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			"wwyj_jilve":{
 			audio:"ext:文武英杰:1",
 				enable:'phaseUse',
-				filter:function (event,player){
-				if(player.getStat().skill.wwyj_jilve>=player.hp) return false; 
-					return  player==_status.currentPhase&&event.type!='wuxie';
+				filter:function (event,player){				  
+				  if(player.getStat().skill.wwyj_jilve>=player.hp) return false; 
+					return  player.countCards('h')&&player==_status.currentPhase&&event.type!='wuxie';
 				},
 				group:["wwyj_jilve_delete"],
 				init:function (player){
@@ -8544,7 +8634,7 @@ translate:{
     "wwyj_jieyuan2":"结缘",
     "wwyj_jieyuan1":"结缘",
     "wwyj_jieyuan":"结缘",
-    "wwyj_jieyuan_info":"出牌阶段限一次，你可以将任意张黑色牌交给等量的没有『结缘』状态的角色各一张，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态",
+    "wwyj_jieyuan_info":"出牌阶段限一次，你可以将任意张黑色牌交给等量的没有『结缘』状态的角色各一张，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态 <font color=#F0F>可突破</font>",
     "wwyj_liuli":"琉璃",
     "wwyj_liuli_info":"当一名其他角色失去最后一张手牌后，你可将不同花色的手牌各一张交给其，若你交出的手牌中包含4种花色，你回复一点体力",
     "wwyj_xugeng2":"续更",
@@ -9260,7 +9350,7 @@ var liblist = [
                ['<span class="bluetext">青冢</span>：出牌阶段限一次，你可以弃置任意张基本牌，并指定你攻击范围内等量名其他角色，分别视为对这些角色使用了一张无次数限制的【杀】<br><span class="bluetext">接更</span>：每名角色的回合限一次，当一名其他角色使用一张单目标的基本牌或非延时性锦囊牌时（借刀杀人、无懈可击除外），你可视为你对目标角色也使用此牌'],
 	           ['<span class="bluetext">薄荷</span>：出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），你可令其摸一张牌 <font color=#F0F>可突破</font><br><span class="bluetext">助善</span>：当一名角色使用杀时，若其手牌数不大于目标角色的手牌数，你可令此杀不可闪避'],
 	           ['<span class="bluetext">续更</span>：当你的手牌数少于3张时，你可及时点击屏幕上牌桌区的小头像以摸一张牌 <br><span class="bluetext">琉璃</span>：当一名其他角色失去最后一张手牌后，你可将不同花色的手牌各一张交给其，若你交出的手牌中包含4种花色，你回复一点体力'],
-	           ['<span class="bluetext">结缘</span>：出牌阶段限一次，你可以将任意张黑色牌交给没有『结缘』状态的角色，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态 <br><span class="bluetext">扬善</span>：当你受到伤害后，若你有红色牌，你可摸两张牌，然后将一张红色牌当不以你和伤害来源为目标的【桃园结义】使用'],
+	           ['<span class="bluetext">结缘</span>：出牌阶段限一次，你可以将任意张黑色牌交给没有『结缘』状态的角色，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态 <font color=#F0F>可突破</font> <br><span class="bluetext">扬善</span>：当你受到伤害后，若你有红色牌，你可摸两张牌，然后将一张红色牌当不以你和伤害来源为目标的【桃园结义】使用'],
 	           ['<span class="bluetext">叛徒</span>：其他角色的出牌阶段限一次，若其有牌，其可发动“忠诚”令你回复一点体力或令你摸一张牌，若如此做，你须弃置其一张牌 <br><span class="bluetext">伪漫</span>：当你的体力值发生变化时，你可移动场上的一张牌'],
 	
               
@@ -9296,7 +9386,7 @@ var liblist = [
 				
 };
 },help:{
-    "文武英杰":"<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、无情鸽子<li>界限突破：<br>小苏的群英去掉体力差与手牌差的条件限制<br>短歌的美化改为展示牌堆顶四张牌，开局或进场时体力上限减一<br>可乐加冰、浅觞的退坑在体力值变化时摸一张牌<br>极光的卡战由随机使用装备改为选择使用牌堆或弃牌堆中的一个装备<br>fux2的论破改为锁定技且合并选项效果<br>薄荷糖的薄荷由“你令其摸一张牌”改为“其令你摸一张牌”<br>竹林七贤的结缘由交给对方黑色牌改为弃置黑色牌来发动",
+    "文武英杰":"<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、无情鸽子<li>界限突破：<br>小苏的群英去掉体力差与手牌差的条件限制<br>寰宇星城的玄侠改为每两轮限一次<br>短歌的美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<br>可乐加冰、浅觞的退坑在体力值变化时摸X张牌（X为你已损失的体力值）<br>极光的卡战由随机使用装备改为选择使用牌堆或弃牌堆中的一个装备<br>fux2的论破改为锁定技且合并选项效果<br>薄荷糖的薄荷由“你令其摸一张牌”改为“其令你摸一张牌”<br>竹林七贤的结缘由交给对方黑色牌改为弃置黑色牌来发动",
 },config:{
     "wwyj_help":{
     "nopointer":true,
@@ -9351,7 +9441,7 @@ var liblist = [
     },    
     "wwyj_jiexiantupo":{
         "name":"界限突破",
-        "intro":"开启后重启游戏生效。本扩展的部分角色的技能会改变或增强。具体改动的角色技能可详看：其它→帮助",
+        "intro":"开启后重启游戏生效。本扩展的部分角色的技能会发生突破性增强或改变，建议根据游戏强度环境而选择是否开启。具体改动的角色技能可详看：其它→帮助",
          init:false,
 	},	        
     "wwyj_sjwjp":{
@@ -9376,9 +9466,14 @@ var liblist = [
 	},
 	"wwyj_newtujianicon":{
         "name":"图鉴按钮",
-        "intro":"开启后重启游戏生效。游戏开始后屏幕右下方会有个图鉴按钮，点击后会打开全新图鉴",
+        "intro":"开启后重启游戏生效。游戏开始后屏幕右下方会有个全新图鉴的按钮，点击后会打开全新图鉴",
          init:false,
-    },	    						
+    },
+    "wwyj_updateicon":{
+        "name":"日志按钮",
+        "intro":"开启后重启游戏生效。游戏开始后屏幕右下方会有个更新日志的按钮，点击后会打开更新日志",
+         init:false,
+    },	    			    						
 	"wwyj_xinname":{
            name:'武将前缀',
            intro:'选择是否显示★武将前缀',
@@ -9436,15 +9531,15 @@ var liblist = [
 		 onclick:function (item){
 			switch (item){
 			case '1':		
-			game.playwwyj('wwyj_show');
+			game.playwwyj('wwyj_dansha');
 			game.broadcastAll()+ui.background.setBackgroundImage('image/background/'+lib.config.image_background+'.jpg');
 			break;
 			case '2':
-            game.playwwyj('wwyj_show');
+            game.playwwyj('wwyj_dansha');
             ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
 			break;	
 			case '3':
-            game.playwwyj('wwyj_show');
+            game.playwwyj('wwyj_dansha');
             ui.background.setBackgroundImage('extension/文武英杰/wwyj_yuhudiebz.jpg');
 			break;
 			}
@@ -9498,8 +9593,8 @@ var liblist = [
     intro:"",
    /* intro:(function(){
 		var log = [			
-			'当前版本：1.11',
-			'更新日期：2020-11-20',
+			'当前版本：1.12',
+			'更新日期：2020-12-06',
 			'长按以下按钮开关可弹出功能介绍',			
 		];		
 		return '<p style="color:rgb(255,128,204); font-size:13px; line-height:13px; font-family:xingkai; text-shadow: 0 0 2px black;">' + log.join('<br>') + '</p>';
@@ -9507,5 +9602,5 @@ var liblist = [
     author:"凉茶||玉蝴蝶<li>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"1.11",
+    version:"1.12",
 },files:{"character":[],"card":[],"skill":[]}}})

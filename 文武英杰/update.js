@@ -1,8 +1,14 @@
-window.version='1.11';
+window.version='1.12';
 window.wwyjchangelog={	
+  '2020年12月':{
+    'version':'1.12',
+    'info':'补充部分角色的称号；小削界限突破的玄侠，增强界限突破的退坑；修复血刀的错误描述，优化接管、烟雨的AI；增加日志图像按钮；击杀特效加一闪而过的马的特效（目前已删这个小特效）；将诛天灭地功能从天神降临中独立出来。<li>新增武将：【天气亏】、【咫尺天涯】',
+    'players':["wwyj_tianqikui","wwyj_zhichitianya"],
+    'cards':[],
+  },
   '2020年11月':{
     'version':'1.11',
-    'info':'新增薄荷糖、niya、竹林七贤、忠诚的叛徒。新增武将评级、铁索连环特效、全新图鉴按钮打开方式以及部分音效',
+    'info':'新增薄荷糖、niya、竹林七贤、忠诚的叛徒。新增武将评级功能、铁索连环特效、全新图鉴图像按钮打开方式以及部分音效',
     'players':["wwyj_bohetang","wwyj_niya","wwyj_zhulinqixian","wwyj_zhongchengpantu"],
     'cards':[],
   },

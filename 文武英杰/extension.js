@@ -203,7 +203,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.width = '80px';//120
          Animation.style.height = '80px';//150            
          Animation.style.backgroundSize = 'cover';       
-         Animation.style['z-index']='1';
+         Animation.style['z-index']='2';
          ui.window.appendChild(Animation);
          ui.refresh(Animation);                          
          Animation.onclick=function(){
@@ -293,7 +293,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          Animation.style.width = '80px';//120
          Animation.style.height = '80px';//150            
          Animation.style.backgroundSize = 'cover';       
-         Animation.style['z-index']='1';
+         Animation.style['z-index']='2';
          ui.window.appendChild(Animation);
          ui.refresh(Animation);                  
          Animation.onclick=function(){
@@ -306,7 +306,20 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			}		
          },     
      }	
-     } 
+     } 	
+	// ---------------------------------------background------------------------------------------//	 
+	game.wwyj_background=function(){
+        var Animation = ui.create.div();
+            Animation.setBackgroundImage('extension/文武英杰/wwyj_diaochan.png'); 	   									     	    
+     	    Animation.style.left = '54%';   	    	 
+            Animation.style.top = 'calc(45% - 90px)';       
+            Animation.style.width = '401px';
+            Animation.style.height = '450px';           
+            Animation.style.backgroundSize = 'cover';       
+            Animation.style['z-index']='1';
+            ui.window.appendChild(Animation);
+            ui.refresh(Animation);
+	} 
 // ---------------------------------------tiesuolianhuan------------------------------------------//        
         if(config.wwyj_tiesuolianhuan){
 		 lib.skill._tiesuoafter={
@@ -8377,8 +8390,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 group:['wwyj_kazhan'],
             }, 
             
-        "wwyj_redaixue":{
-                audio:"ext:文武英杰:1",
+        "wwyj_redaixue":{                
                 enable:"phaseUse",
                 usable:1,
                 filterTarget:function (card,player,target){
@@ -8405,6 +8417,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 player.popup(get.translation(result.control));        
                 player.removeSkill(result.control);       
                 player.unmarkSkill(result.control);
+                game.playwwyj('wwyj_daixue1');
                 target.addSkill(result.control);       
                 target.markSkill(result.control);
                 player.update();
@@ -10017,7 +10030,12 @@ var liblist = [
         "name":"界限突破",
         "intro":"开启后重启游戏生效。本扩展的部分角色的技能会发生突破性增强或改变，建议根据游戏强度环境而选择是否开启。具体改动的角色技能可详看：其它→帮助",
          init:false,
-	},	        
+	},
+	"wwyj_hezizhashi":{
+        "name":"何子诈尸",
+        "intro":"稍改作者包的经典模式，开启后重启游戏生效。<li>效果：</font><font color=#f00>锁定技</font> 当一名角色阵亡后，若场上没有“何子风云”，“何子风云”在该阵亡角色身上复活，并令所有其他角色受到一点伤害，然后当前回合结束后，“何子风云”执行一个额外的回合",
+         init:false,
+	},
     "wwyj_sjwjp":{
         "name":"随机武将",
         "intro":"开启后重启游戏生效。每轮开始时，所有角色随机替换武将牌",
@@ -10027,12 +10045,7 @@ var liblist = [
         "name":"英灵附魂",
         "intro":"开启后重启游戏生效。所有的角色在游戏开始或进入游戏时，各从五名随机武将中选一名当作“附灵武将”并获得其所有的技能",
          init:false,
-	},
-	"wwyj_hezizhashi":{
-        "name":"何子诈尸",
-        "intro":"稍改作者包的经典模式，开启后重启游戏生效。<li>效果：</font><font color=#f00>锁定技</font> 当一名角色阵亡后，若场上没有“何子风云”，“何子风云”在该阵亡角色身上复活，并令所有其他角色受到一点伤害，然后当前回合结束后，“何子风云”执行一个额外的回合",
-         init:false,
-	},
+	},	
 	"wwyj_normalize": {
 		"name":"天神降临",
 		"intro":"开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
@@ -10124,6 +10137,8 @@ var liblist = [
 			break;
 			case '4':
 			game.playwwyj('wwyj_dansha');
+			game.wwyj_background();
+			/*以下写法也可行：
 			var Animation = ui.create.div();
             Animation.setBackgroundImage('extension/文武英杰/wwyj_diaochan.png'); 	   									     	    
      	    Animation.style.left = '54%';   	    	 
@@ -10133,7 +10148,8 @@ var liblist = [
             Animation.style.backgroundSize = 'cover';       
             Animation.style['z-index']='1';
             ui.window.appendChild(Animation);
-            ui.refresh(Animation); 
+            ui.refresh(Animation);*/ 
+			break;
 			}
 			}
 		},				

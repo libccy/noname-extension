@@ -10119,7 +10119,7 @@ var liblist = [
 				'1':'默认背景',				
 				'2':'文武英杰',
 				'3':'明眸皓齿',
-				'4':'貂婵闭月',
+				'4':'花容月貌',
 			},			
 		 onclick:function (item){
 			switch (item){

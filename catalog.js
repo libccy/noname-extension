@@ -24,7 +24,7 @@ extension["文武英杰"]={
     netdisk:"",
     version:2.1,
     files:[
-     "extension.js","newtujian.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_diaochan.png",
+     "extension.js","newtujian.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_diaochan.png","wwyj_jianyaleishao.mp3","wwyj_jianyaleishao.jpg",
 		"wwyj_ancha1.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3",
 		"wwyj_bohe1.mp3","wwyj_bohe21.mp3","wwyj_bohetang.jpg","wwyj_bohetang.mp3","wwyj_chehuo1.mp3",
 		"wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg","wwyj_chengxuyuan.mp3","wwyj_chuangshi.gif",

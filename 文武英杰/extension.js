@@ -2976,7 +2976,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 },  
                 audio:["jinjiu",2],     
                 forceDie:true, 
-                direct:true,                                   
+                frequent:true,                                   
                 filter:function (event,player){    
         return player.isAlive();
     },
@@ -2985,14 +2985,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             event.cards=[];
 			event.cardpile=[];
 			var list=['basic','trick','equip','cancel2'];						
-			player.chooseControl(list).set('ai',true,function(){
-					return list[0];
+			player.chooseControl(list).set('ai',function(){
+					return list.randomGet();
 			    }
 			).set('prompt',get.prompt('wwyj_jianya')).set('prompt2',get.translation('wwyj_jianya_info'));								
 			'step 1'
 			if(result.control){			  			    			    
 			    event.type=result.control;
-			    player.logSkill('wwyj_jianya');
+			    //player.logSkill('wwyj_jianya');
+			    player.popup(result.control);
+			    game.log(player,'选择了'+get.translation(result.control));			    
 			}
 			else{
 				event.finish();
@@ -3018,8 +3020,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         else event.finish();        	
      },
                 ai:{                   
-                    order:6,
-                    threaten:0.5,
+                    order:6,                   
                 },
             },
           "wwyj_leishao":{
@@ -5390,7 +5391,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			}
 			if(list.length>0){
 				player.chooseControl(list).set('ai',function(){
-					return list[0];
+					return list.randomGet();
 			    }
 			).set('prompt',get.prompt('wwyj_gonggao')).set('prompt2',get.translation('wwyj_gonggao_info'));
 			}
@@ -5398,6 +5399,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 			'step 1'
 			if(result.control){			  
 			    player.storage.wwyj_gonggao=result.control;
+			    //player.logSkill('wwyj_gonggao');
+			    game.log(player,'选择了'+get.translation(result.control));
+			    player.popup(result.control);
 			}
 			else{
 				event.finish();
@@ -5426,9 +5430,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 		   //event.targets[event.num].removeSkill("wwyj_gonggao1");
            event.targets[event.num].$give(result.cards,player); 
 		   player.gain(result.cards,event.targets[event.num]);
-		   var card=result.cards[0];
-		   player.logSkill('wwyj_gonggao');
-           game.log(player,'获得了'+get.translation(event.targets[event.num])+'一张',result.cards); 
+		   var card=result.cards[0];		   
+           //game.log(player,'获得了'+get.translation(event.targets[event.num])+'一张',result.cards); 
 		   if(get.type(card,'trick')==player.storage.wwyj_gonggao){
 			  event.targets[event.num].draw();			
 		   }
@@ -7042,7 +7045,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
               var num2=game.countPlayer(function(current){
                     return player.canUse({name:'sha'},current)&&get.attitude(player,current)<=0;
               });         
-              if(num<1&&num2>0&&target.countCards('h')>2) return Math.random();   
+              if(num<1&&num2>0&&!player.countCards('h','sha')&&target.countCards('h')>2) return Math.random();   
                 return -target.countCards('h')-3;
             },
                     },

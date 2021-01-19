@@ -1555,7 +1555,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
 						Animation.style.width = '80px';//120
 						Animation.style.height = '80px';//150            
 						Animation.style.backgroundSize = 'cover';       
-						Animation.style['z-index']='1';
+						Animation.style['z-index']='5';
 						ui.window.appendChild(Animation);
 						ui.refresh(Animation);
 						Animation.onclick=AnimationClick;
@@ -2984,7 +2984,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
              'step 0'
             event.cards=[];
 			event.cardpile=[];
-			var list=['basic','trick','equip','cancel2'];						
+			var list=['basic','trick','equip'];						
 			player.chooseControl(list).set('ai',function(){
 					return list.randomGet();
 			    }
@@ -3117,6 +3117,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                         },
                     },
                 },
+                 ai:{                   
+                    nothunder:function (player){
+            return player.isAlive();
+        },
+         effect:{
+                target:function (card,player,target,current){
+                    if(get.tag(card,'thunderDamage')) return 0;                                  
+                },
+         },
+                },          
             },
           "wwyj_zhichi":{                     
                 trigger:{                   
@@ -5337,7 +5347,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
 			else event.finish();
         },
              ai:{
-                    order:2,
+                    order:7,
                     result:{
                         target:function (player,target){
                 if(target.countCards('h')>=3) return -3.5;
@@ -5385,7 +5395,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
 		},                        
         content:function (){
 			'step 0'
-			var list=['basic','trick','equip','cancel2'];
+			var list=['basic','trick','equip'];
 			for(var i=0;i<player.storage.wwyj_gonggao.length;i++){
 				list.remove(player.storage.wwyj_gonggao[i]);
 			}
@@ -6945,7 +6955,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
         player.chooseTarget('æžå…‰',1,lib.translate.wwyj_jiguang_shan2_info,true,function(card,player,target){
             return target.countCards('e',{subtype:['equip2','equip3','equip5']});
         }).set('ai',function(target){
-            if(player.hp<=1) return true;
+            if(player.hp<=2&&!player.countCards('h','shan')) return Math.random();
             return -get.attitude(_status.event.player,target);            
         });
          "step 1"
@@ -6992,7 +7002,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
      },	
 				viewAs:{name:'shan'},				
 				ai:{
-				 order:5,
+				    order:5,
 					threaten:1.5,
 					respondShan:true,
 				}

@@ -1419,6 +1419,16 @@ extension["王朝更替_策"]={
     ]
 }; 
 
+extension["极略DL"]={
+	intro:"下载完整体极略自用",
+	author:"xiaoas",
+	netdisk:"",
+	forum:"",
+	size:"1K",
+	version:"1.0",
+	files:["extension.js"],
+};
+
 extension["极略三国"]={
     author:"可乐加冰24",
     intro:"三国KILL武将复刻，包含SR武将、SK武将以及魂烈包，强度略微高于官方武将。所有素材均来源于网络，正逐步完善中",

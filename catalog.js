@@ -1,5 +1,12 @@
+if (!localStorage.getItem('old-extension-tip')) {
+	alert('扩展仓库升级中，' +
+		'您在游戏内的扩展栏目获取扩展时可能会下载到四五年前的扩展导致游戏崩溃' +
+		'，升级完成前请谨慎下载');
+	localStorage.setItem('old-extension-tip', 'true');
+}
 
 extension["官渡之战"] = {
+	date:"2022/01/11",
 	intro: "<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>" +
 		"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>" +
 		"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</div>" +
@@ -16,8 +23,8 @@ extension["官渡之战"] = {
 		"cxyYuJin.jpg", "cxyZhangHe.jpg", "cxyZhangLiao.jpg", "extension.js", "style.css"],
 	size: "2.66MB"
 };
-
 extension["文武英杰"] = {
+	date: "2022/01/11",
 	author: "凉茶||玉蝴蝶",
 	intro: "<li>更新：多名武将、多个功能、修复BUG等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2021-01-15",
 	size: "36MB",
@@ -77,8 +84,8 @@ extension["文武英杰"] = {
 		"wwyj_ziyage.mp3"
 	]
 };
-
 extension["群英会"] = {
+	date: "2022/01/11",
 	intro: "<li>更新：修复BUG。当前版本为1.110  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-04-03",
 	author: "小苏&&咫尺天涯",
 	netdisk: "https://pan.baidu.com/s/1hrR0p3u",
@@ -259,8 +266,8 @@ extension["群英会"] = {
 		]
 
 };
-
 extension["金庸群侠传"] = {
+	date: "2022/01/11",
 	author: "详看简介",
 	intro: "<li>更新：随意切换势力，当前版本为1.36，若有素材缺失请到群里下载素材，因为我代上传的也不知道缺少哪些素材了<li>本扩展人物取自金庸小说，强度接近官方，契合度高，娱乐性强。目前拥有武将181名，有专业配音，代码由多名扩展作者共同合作开发，加QQ群讨论：852740627<li>技能设计：大熊小猫 <li>编写代码、友情配音：详看扩展内介绍  <li>更新日期：2020-04-12",
 	size: "86MB",
@@ -512,8 +519,8 @@ extension["金庸群侠传"] = {
 		"yttl_zhuyuanzhang.jpg", "yttl_zhuyuanzhang.mp3"
 	]
 };
-
 extension["玄武江湖"] = {
+	date: "2022/01/11",
 	author: "寰宇星城",
 	intro: "本大型扩展的人物来源于创作团队——玄武江湖工作室所虚构的武侠小说和部分无名杀粉丝的客串，正邪朝野四大势力跌宕角逐，加上原法原味的内力系统，吸引着不少玩家。",
 	size: "68MB",
@@ -719,46 +726,8 @@ extension["玄武江湖"] = {
 		"xwjh_zongheng2.mp3", "xwjh_zuijianjue1.mp3", "xwjh_zxqwuxie1.mp3", "xwjh_zxqwuxie2.mp3"
 	]
 };
-
-extension["作者包"] = {
-	author: "神座sagiri",
-	intro: "更新：修复新版的BUG。本扩展为纪念广大无名杀扩展作者、玩家而制作、发布。包内所有武将及相应技能均得到本人授权及认可。内嵌多个模式，少量作者强度高。部分作者点击作者图片可换肤，不同皮肤可触发不同技能配音。希望大家玩的愉快",
-	size: "95MB",
-	netdisk: "",
-	version: 2.6,
-	files: [
-		"extension.js", "author.jpg", "zuozhefux.jpg", "zuozhe孤城.jpg", "zuozhe何子.jpg", "zuozhe极光.jpg", "zuozhe叛徒.jpg", "zuozhe纱雾.jpg", "霜华一笙.jpg",
-		"zuozhe神座.jpg", "zuozhe时慕.jpg", "zuozhe小苏.jpg", "小苏1.jpg", "小苏2.jpg", "zuozhe学妹.jpg", "zuozhe雪碧.jpg", "zuozhe牙哥.jpg", "随机武将.jpg", "隐匿模式.jpg",
-		"zuozhe竹鱼.jpg", "轮回中的消逝者.jpg", "轮回中的消逝者1.jpg", "轮回中的消逝者2.jpg", "纱雾1.jpg", "纱雾2.jpg", "纱雾3.jpg", "时慕的矿山.jpg", "随机作者.jpg",
-		"zuozhe紫妈.jpg", "zuozheMC.jpg", "哎别管我是谁.jpg", "涂藤.jpg",
-		"zuozhe纱雾1.mp3", "zuozhe纱雾2.mp3", "zuozhe小苏1.mp3", "zuozhe小苏2.mp3", "zuozhe小苏21.mp3", "zuozhe小苏22.mp3", "zuozhe牙哥11.mp3", "zuozhe牙哥12.mp3",
-		"zuozheMC11.mp3", "zuozheMC12.mp3", "zuozheMC13.mp3",
-		"zuozhe冥葬天.jpg", "何子1.jpg", "何子2.jpg", "何子3.jpg", "二维码.gif", "特效-孤城1.gif", "特效-何子1.gif", "特效-何子2.gif",
-		"特效-纱雾1.gif", "特效-神座1.gif", "zzbshop.gif", "特效-fux22.gif", "特效-剑牙雷少1.gif", "作者包.gif",
-		"特效-fux21.gif", "特效-极光1.gif", "特效-极光2.gif", "特效-极光3.gif", "特效-冥葬天1.gif", "特效-冥葬天2.gif", "特效-冥葬天3.gif", "特效-叛徒1.gif",
-		"特效-叛徒2.gif", "特效-纱雾2.gif", "特效-神座2.gif", "特效-时慕1.gif", "特效-时慕2.gif", "特效-随机作者1.gif", "特效-小苏1.gif", "特效-小苏2.gif",
-		"特效-学妹1.gif", "特效-学妹2.gif", "特效-竹鱼1.gif", "特效-竹鱼2.gif", "特效-何子3.gif", "特效-通用1.gif", "特效-通用2.gif", "特效-隐藏-孤城1.gif",
-		"神宠-乐羊羊.gif", "神宠-雷吉斯.gif", "神宠-小飞猪.gif", "神宠-小福牛.gif", "神宠-小灵猴.gif", "作者币支付服务协议.txt",
-		"lscale_0.png", "lscale_1.png", "lscale_2.png", "lscale_3.png", "lscale_4.png", "lscale_5.png", "lscale_6.png", "lscale_7.png", "lscale_8.png",
-		"lscale_9.png", "lscale_10.png", "lscale_11.png", "lscale_12.png", "lscale_13.png",
-		"rscale_0.png", "rscale_1.png", "rscale_2.png", "rscale_3.png", "rscale_4.png", "rscale_5.png", "rscale_6.png", "rscale_7.png", "rscale_8.png",
-		"rscale_9.png", "rscale_10.png", "rscale_11.png", "rscale_12.png", "rscale_13.png",
-		"zzbabout.jpg", "皮肤音效-纱雾1.mp3", "皮肤音效-纱雾2.mp3", "皮肤音效-纱雾3.mp3", "皮肤音效-神座1.mp3", "皮肤音效-何子1.mp3",
-		"zuozheHonest.jpg", "zuozhe如果.jpg", "zuozhe老墨.jpg", "zzb_Honest.png",
-		"扩展添加皮肤教程_纱雾.txt", "扩展联机教程_极光.txt", "技能编写教程_极光.txt", "技能编写教程_纱雾.txt", "特效-fux23.gif",
-		"特效-介绍区特效1.gif", "特效-介绍区特效2.gif", "特效-介绍区特效3.gif", "特效-作者币抽奖.gif", "特效-修改密码.gif", "特效-功能区特效1.gif",
-		"特效-如果1.gif", "特效-如果2.gif", "特效-平衡强度区特效1.gif", "特效-抽奖1.gif", "特效-抽奖2.gif", "特效-抽奖3.gif",
-		"特效-抽牌1.gif", "特效-抽牌2.gif", "特效-抽牌3.gif", "特效-抽牌4.gif", "特效-抽牌5.gif", "特效-更新.gif", "特效-模式区特效1.gif",
-		"特效-欧尼斯特1.gif", "特效-欧尼斯特2.gif", "特效-欧尼斯特3.gif", "特效-欧尼斯特4.gif", "特效-渣城1.gif", "特效-渣城2.gif",
-		"特效-牙哥1.gif", "特效-牙哥2.gif", "特效-礼品兑换.gif", "特效-礼品兑换1.gif", "特效-神座3.gif", "特效-签到.gif",
-		"特效-签到1.gif", "特效-签到2.gif", "特效-签到3.gif", "特效-签到4.gif", "特效-签到5.gif", "特效-紫妈1.gif", "特效-紫妈2.gif",
-		"特效-紫妈3.gif", "特效-老墨1.gif", "特效-老墨2.gif", "特效-老墨3.gif", "特效-老墨4.gif", "特效-老墨5.gif", "特效-重置作者币.gif",
-		"特效包.jpg", "进阶教程1.txt", "进阶教程2.txt", "进阶教程3.txt"
-
-	]
-};
-
 extension["血色衣冠"] = {
+	date: "2022/01/11",
 	author: "Wall•E（瓦力）<li>技术支持：凉茶、永远的萌新<li>测试：辉烬贺流年",
 	intro: "本扩展以上溯春秋，下迄明末两千余年间中华大地上出现过的杰出历史人物为题材，强度与官方新界接近，较为平衡。包括168名角色，1张基本牌，7张锦囊牌，6张装备牌，以及一个兵种模式，可联机。<li>版本：1.68  更新时间：2020.3.11",
 	size: "30MB",
@@ -807,8 +776,8 @@ extension["血色衣冠"] = {
 		"XSzongze.jpg"
 	]
 };
-
 extension["辅助卡牌"] = {
+	date: "2022/01/11",
 	author: "Niugnep",
 	intro: "内含斩与仙桃，毒剂与药，秘籍的纯卡牌拓展，适合任意强度的拓展一并使用。斩与仙桃有增加和减少体力上限的卡牌，毒剂与药有能持续恢复和持续扣血的卡牌，秘籍使用之后能永久获得一个技能",
 	size: "1MB",
@@ -819,9 +788,8 @@ extension["辅助卡牌"] = {
 		"xr_gainMaxHp.mp3", "xr_loseMaxHp.mp3", "yr_loseMaxHp.mp3", "yr_recover.mp3",
 	]
 };
-
-
 extension["国战补充"] = {
+	date: "2022/01/11",
 	author: "我叫竹小二",
 	intro: "本扩展强度介于官方权包与变包之间，旨在将部分身份局武将迁移加入国战将池，增加国战可玩性。请在国战模式下使用，并将扩展文件夹里的yangyi、sunheng、wuanguang、wangshuang的图片放至image/character文件夹下",
 	size: "1.5MB",
@@ -832,73 +800,8 @@ extension["国战补充"] = {
 
 	]
 };
-
-/*extension["虚实"]={
-	author:"无名杀玩家</br><b>代码设计</b>：小苏  Esperanto</br><b>测试调整</b>：郭子岚  一剑问夜</br><b>技能提供</b>：苍山暮色  一剑问夜  叫我景候大人  小苏  Esperanto",
-	intro:"①本扩展包含武将14名，其中基础武将13名+SP武将1名<br>②为保证游戏正常运行，使用前请打开兼容模式",
-	size:"1.6MB",
-	netdisk:"",
-	version:1.0,
-	files:[
-	 "xsanguo_nanhua.jpg","xsbaosanliang.jpg","xsdengzhi.jpg","extension.js","xsdingyuan.jpg","xsgaolan.jpg",
-		"xshuaxin.jpg","xshuojun.jpg","xsjianggan.jpg","xsliuzhang.jpg","xssp_yanwan.jpg","xssunhuan.jpg","xssunyi.jpg",
-		"xstianyu.jpg","xsweizhu.jpg",
-	   "xsjieyuan.mp3","xsshuizhen.mp3","xsshuizhen2_11.mp3","xsshuizhen2_12.mp3","xsshuizhen2_21.mp3","xsshuizhen2_22.mp3","xsshuizhen2_31.mp3","xsshuizhen2_32.mp3",
-	]
-}; */
-/*
-extension["凉茶"]={
-	author:"凉茶",
-	intro:"<li>更新：已删掉其他角色不能翻回正面的效果<li>内含一个武将和一个模式，开启该模式后重启游戏生效：每轮开始时所有角色随机替换武将牌",
-	size:"0.5MB",
-	netdisk:"",
-	version:1.2,
-	files:[
-	 "extension.js","lc_liangcha.jpg"
-	]
-}; */
-/*
-extension["新国战"]={
-	author:"苏婆玛丽奥",
-	intro:"◇2019版新国战规则与武将改动扩展",
-	size:"5.12MB",
-	netdisk:"",
-	version:2.4,
-	files:[
-	  "changelog.txt","chaoming.mp3","default.mp3","extension.js","package.js"
-	]
-}; 
-*/
-/*extension["新•界限突破"]={
-	author:"苏婆玛丽奥",
-	intro:"◇《三国杀十周年》新服界限突破扩展。<br>◇原界限突破包中已拥有的武将会直接替换原技能，新的界限突破武将会以扩展武将形式出现。所有包含「新版替换」的标准包武将都会还原为原版",
-	size:"737KB",
-	netdisk:"",
-	version:1.0,
-	files:[
-	  "re_sunquan.jpg","re_zhugeliang.jpg","re_zhenji.jpg","re_huangyueyingx.jpg","re_sunshangxiang.jpg",
-		"re_diaochan.jpg","re_huaxiong.jpg","re_jikang.jpg","extension.js","extension.js.bak",
-		"package.js"
-	]
-}; */
-/*
-extension["逐鹿中原"]={
-	author:"苏婆玛丽奥",
-	intro:"逐鹿中原活动场的卡牌包",
-	size:"1.2MB",
-	netdisk:"",
-	version:1.1,
-	files:[
-	 "xinfu_jinhe.png","xinfu_yinfengjia.png","extension.js","package.js","xinfu_nvzhuang.png",
-		"xinfu_zheji.png","xinfu_wufengjian.png","xinfu_numa.png","extension.js.bak","xinfu_yexingyi.png",
-		"xinfu_yajiaoqiang.png","xinfu_caochuanjiejian.png","xinfu_xiejiaguitian.png","xinfu_shushangkaihua.png",
-		"xinfu_zhuluzhongyuan.png"
-	]
-}; 
-*/
-
-
 extension["圣神包"] = {
+	date: "2022/01/11",
 	author: "淡雾云曦",
 	intro: "◆本拓展以强化原有技能为主，自制技能为辅，励志于“造神”的初心永远不会变！</br>◆本拓展圣神将强度大致与旧八位神将持平，略强但并不变态并不失衡，请放心使用</br>◆本拓展圣神将的技能皆为锁定技，其主要效果为防止圣神将的非锁定技能无效(失去技能等debuff可以正常触发)，因此，三国杀锁定技技能框架在此拓展内无效</br>◆本拓展内含有自制装备与自行增强的民间装备，强度略高，请酌情使用",
 	size: "29MB",
@@ -969,20 +872,8 @@ extension["圣神包"] = {
 		"圣神_zhugeliangx.jpg", "圣神_zhugeliangx.mp3"
 	]
 };
-
-extension["暴躁AI"] = {
-	author: "皮皮",
-	intro: "优化人机ai，改善玩家游戏体验，增强游戏可玩度，避免人机坑队友现象。完全接近原版强度，在不破坏游戏平衡的基础上让游戏可玩性变得更多，带给玩家不一样的感受【玩家的武将不够强者，慎用】。",
-	size: "12KB",
-	netdisk: "",
-	version: 1.0,
-	files: [
-		"extension.js"
-	]
-};
-
-
 extension["耀世三国"] = {
+	date: "2022/01/11",
 	author: "咫尺天涯<br>技能设计：丫奶",
 	intro: "源于无名杀吧精品帖《三国杀·耀世·魏蜀吴群》，吧友丫奶的设计。修复技能不显示的BUG。另外，作者已脱坑，期待有大佬来接手",
 	size: "9.5MB",
@@ -999,9 +890,8 @@ extension["耀世三国"] = {
 		"YSSG_jizui21.mp3",
 	]
 };
-
-
 extension["秦时明月"] = {
+	date: "2022/01/11",
 	author: "呲牙哥",
 	intro: "<li>更新：修改盖聂技能，李斯，范增等技能修复<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",
 	size: "11.5MB",
@@ -1056,33 +946,8 @@ extension["秦时明月"] = {
 		"nance1.mp3", "xinzongheng1.mp3"
 	]
 };
-
-
-extension["烽火绘卷"] = {
-	author: "阿七",
-	intro: "原创三国武将，以及个别虚拟武将，强度适宜官方强度，可能会有个别失衡，后续有机会再做调整。",
-	size: "6.75MB",
-	netdisk: "",
-	version: 1.0,
-	files: [
-		"extension.js", "ex_dongzhao.jpg", "ex_guanxing11.mp3", "ex_guanxing12.mp3", "ex_guanxing21.mp3",
-		"ex_guanxing22.mp3", "ex_guojia.jpg", "ex_hezong1.mp3", "ex_hezong2.mp3", "ex_jiangwei.jpg",
-		"ex_jinjiu1.mp3", "ex_jinjiu2.mp3", "ex_jiuyi1.mp3", "ex_jiuyi2.mp3", "ex_julie1.mp3",
-		"ex_julie2.mp3", "ex_liangqin1.mp3", "ex_liangqin2.mp3", "ex_liepo1.mp3", "ex_liepo2.mp3",
-		"ex_lietu11.mp3", "ex_lietu12.mp3", "ex_lietu21.mp3", "ex_lietu22.mp3", "ex_liuhuan1.mp3",
-		"ex_liuhuan2.mp3", "ex_lvbu.jpg", "ex_majunjian.jpg", "ex_niwu1.mp3", "ex_niwu2.mp3",
-		"ex_panhuanghou.jpg", "ex_qianhuan1.mp3", "ex_qianhuan2.mp3", "ex_qianhuan21.mp3", "ex_qianhuan22.mp3",
-		"ex_qijin.jpg", "ex_qinyin1.mp3", "ex_qinyin2.mp3", "ex_renxian1.mp3", "ex_renxian2.mp3",
-		"ex_rongshou1.mp3", "ex_rongshou2.mp3", "ex_shanmou1.mp3", "ex_shanmou2.mp3", "ex_shanmou21.mp3",
-		"ex_shanmou22.mp3", "ex_sheji1.mp3", "ex_sunhuan.jpg", "ex_tiandu11.mp3", "ex_tiandu12.mp3",
-		"ex_xiahouen.jpg", "ex_xiongzi11.mp3", "ex_xiongzi12.mp3", "ex_yanzuo1.mp3", "ex_yanzuo2.mp3",
-		"ex_yiji1.mp3", "ex_yiji2.mp3", "ex_zhangyue.jpg", "ex_zhouyu.jpg", "ex_zhujun.jpg",
-		"fh_yuxi.png", "sk_zuoci.jpg"
-	]
-};
-
-
 extension["战国七雄"] = {
+	date: "2022/01/11",
 	author: "何子风云",
 	intro: "历史上的战国时期人物拓展，强度低，不建议与强拓展一起使用",
 	size: "11.9MB",
@@ -1098,50 +963,8 @@ extension["战国七雄"] = {
 		"ex_zhaoyong.jpg", "ex_zouji.jpg"
 	]
 };
-/*
-extension["星际战甲"]={
-	author:"猫猫小面包",
-	intro:"游戏《星际战甲》的卡牌模式，理念出自游戏，详细技能由吧友“猫猫小面包”自行设计，由吧友“程序猿”实现。希望大家喜欢，玩的开心",
-	size:"1.1MB",
-	netdisk:"http://pan.baidu.com/share/link?shareid=3201340564&uk=1882141705",
-	forum:"https://tieba.baidu.com/p/5129409471",
-	version:1,
-	files:[
-		"冰雪霜寒.jpg","圣剑.jpg","圣装伏特.jpg","圣装磁力.jpg","洛基.jpg",
-		"狂野犀牛.jpg"
-	]
-};
-extension["虚空虫翼"]={
-	author:"Geonuxer",
-	intro:"一个星际争霸的扩展，更新合作模式的人物会多一些，偶尔也会更新一下暴雪的情怀人物",
-	size:"1.7MB",
-	netdisk:"https://github.com/LISPIER/nonameExtension",
-	version:1,
-	files:[
-		"Abathur.jpg","Fenix.jpg","Nova.jpg","Stukov.jpg","Swan.jpg"
-	]
-};*/
-extension["弹丸杀"] = {
-	author: "fux2",
-	intro: "武将包内包含游戏《超级弹丸论破》系列作品的登场人物，这是用爱制作的武将包，所以不要在意什么平衡性啦，持续更新中（2018-9-20更新：修复一些bug，神座去掉所有其他角色的技能，没啥意义（x避免冲突）2018-10-19此处更新",
-	size: "2.5MB",
-	netdisk: "https://pan.baidu.com/s/1mhXRd9m",
-	forum: "https://tieba.baidu.com/p/4802167753",
-	version: 10,
-	files: [
-		"bozhi21.mp3", "bozhi22.mp3", "bozhi23.mp3", "dan_biangu.jpg", "dan_bozhi.jpg", "dan_zhanren.jpg", "dan_liangzi.jpg",
-		"dan_dunzi.jpg", "dan_erdaa.jpg", "dan_erdab.jpg", "dan_huacun.jpg", "dan_jiutoulong.jpg", "dan_ego.png",
-		"dan_kamukura.jpg", "dan_lingtian.jpg", "dan_monokuma.jpg", "dan_nuller.jpg", "dan_qihai.jpg",
-		"dan_rixianga.jpg", "dan_rixiangb.jpg", "dan_sonia.jpg", "dan_tianzhong.jpg", "dan_tumei.jpg",
-		"dan_wuqie.jpg", "dan_xiaoquan.jpg", "dan_xiyuansi.jpg", "dan_zhaorinai.jpg", "dan_zhongyin.jpg",
-		"dan_zuimu.jpg", "dan_zuoyou.jpg", "dunzi11.mp3", "dunzi12.mp3", "dunzi13.mp3", "dan_ego.jpg",
-		"huacunSkill1.mp3", "lingtianSkill1.mp3", "monokuma11.mp3", "monokuma12.mp3", "monokuma2.mp3",
-		"tianzhongSkill1.mp3", "wuqie1.mp3", "wuqie2.mp3", "xiaoquanSkill1.mp3", "xiyuansiSkill1.mp3",
-		"zhaorinai1.mp3", "zhaorinai2.mp3", "zuoyouSkill1.mp3"
-	]
-};
-
 extension["王朝更替_权"] = {
+	date: "2022/01/11",
 	author: "剑牙雷少kiva",
 	intro: "本扩展共122个正常武将，31种卡牌，8种模式和5个副本<br>此扩展多为历史，小说武将<br>此扩展大多为原版武将基础修改概念而产生的武将，稍强于原版，但接近于平衡<br>此扩展状态:已完结，未来可能会出联机版<br>接档:[王朝更替_策]<br>被接档:[王朝更替_骑]、[王朝更替_剑]",
 	size: "58MB",
@@ -1293,9 +1116,8 @@ extension["王朝更替_权"] = {
 		"占卜系统.jpg", "悟空.mp3", "梁山模式.mp3", "管辂.jpg", "荆轲刺秦王.gif", "蔡文姬.jpg"
 	]
 };
-
-
 extension["王朝更替_策"] = {
+	date: "2022/01/11",
 	author: "剑牙雷少kiva",
 	intro: "此扩展分为三种类型武将:中国历史武将/外国影视武将/其他武将<br>王权包前作，主武将卡牌<br>目前状态:普通版已完结，未来可能会出联机版",
 	size: "51.4MB",
@@ -1419,8 +1241,8 @@ extension["王朝更替_策"] = {
 		"神_zhaoyunkiva.jpg", "織田信長kiva.jpg", "豊臣秀吉kiva.jpg", "郭嘉spspsp.jpg", "김유의 편지. kiva.jpg"
 	]
 };
-
 extension["极略三国"] = {
+	date: "2022/01/11",
 	author: "可乐加冰24",
 	intro: "三国KILL武将复刻，包含SR武将、SK武将以及魂烈包，强度略微高于官方武将。所有素材均来源于网络，正逐步完善中",
 	size: "27.6MB",
@@ -1517,36 +1339,8 @@ extension["极略三国"] = {
 		"zhiheng_sgksoul_sunquan2.ogg"
 	]
 };
-/*
-extension["三国标准包"]={
-	author:"天气亏",
-	intro:"旨在复刻《标准包》，故强度低，并进行了大量优化，同时，增加了两个模式扩展模式《群雄逐鹿》和标配模式《标准模式》，以及有什么反馈和疑问可以在模式介绍面点击传送至贴吧。目前人物数量为32名，会持续更新到100多名，模式也会持续跟进更新。",
-	size:"23.7MB",
-	netdisk:"https://pan.baidu.com/s/1o8hwQ62",
-	forum:"https://tieba.baidu.com/p/5286202985",
-	version:3,
-	files:[
-		"FMBL.mp3","JDFH.mp3","KZSM.mp3","SH_GUIYIN1.mp3","SH_GUIYIN2.mp3",
-		"SH_LONGDAN1.mp3","SH_LONGDAN2.mp3","SH_QICAI1.mp3","SH_QICAI2.mp3","SYMS_BN1.mp3",
-		"YZCM.mp3","cw_bz_caiyan.jpg","cw_bz_caocao.jpg","cw_bz_caoren.jpg","cw_bz_chengyu.jpg",
-		"cw_bz_guojia.jpg","cw_bz_jiaxu.jpg","cw_bz_simayi.jpg","cw_bz_xiahoudun.jpg","cw_bz_xunyu.jpg",
-		"cw_bz_zhangchunhua.jpg","cw_bz_zhangliao.jpg","cw_bz_zhenfu.jpg","dw_bz_daqiao.jpg","dw_bz_dinfeng.jpg",
-		"dw_bz_ganning.jpg","dw_bz_lusu.jpg","dw_bz_luxun.jpg","dw_bz_sunce.jpg","dw_bz_sunjian.jpg",
-		"dw_bz_sunquan.jpg","dw_bz_xiaoqiao.jpg","dw_bz_xusheng.jpg","dw_bz_zhangzhao.jpg","dw_bz_zhouyu.jpg",
-		"qx_bz_diaochan.jpg","qx_bz_dongzhuo.jpg","qx_bz_gongsunzan.jpg","qx_bz_guanning.jpg","qx_bz_huangshuo.jpg",
-		"qx_bz_liubiao.jpg","qx_bz_lvbu.jpg","qx_bz_wenchou.jpg","qx_bz_yanliang.jpg","qx_bz_yuanshao.jpg",
-		"qx_bz_zhangjiao.jpg","qx_bz_zhaoyun.jpg","sh_bz_fazheng.jpg","sh_bz_guanyu.jpg","sh_bz_huangyueying.jpg",
-		"sh_bz_huangzhong.jpg","sh_bz_liubei.jpg","sh_bz_machao.jpg","sh_bz_pangtong.jpg","sh_bz_weiyan.jpg",
-		"sh_bz_xushu.jpg","sh_bz_zhangfei.jpg","sh_bz_zhaoyun.jpg","sh_bz_zhugeliang.jpg","ssfmbl.jpg",
-		"ssjdfh.jpg","sskzsm.jpg","sy_lvbu1.jpg","sy_lvbu2.jpg","sy_shenji1.mp3",
-		"sy_shenji2.mp3","sy_shenwei1.mp3","sy_shenwei2.mp3","sy_xiuluo1.mp3","sy_xiuluo2.mp3",
-		"symsct.jpg","symszt.jpg","ysyzcm.jpg","暴怒.png","眉间雪-HITA.mp3",
-		"缺席-HITA.mp3"
-	]
-};
-*/
-
 extension["新英魂之刃"] = {
+	date: "2022/01/11",
 	author: "极光",
 	intro: "一个可以买皮肤的扩展。更多介绍请点击“参与讨论”",
 	size: "27MB",
@@ -1639,8 +1433,8 @@ extension["新英魂之刃"] = {
 		"黑桃皇后animationStr.png"
 	]
 };
-
 extension["击杀特效"] = {
+	date: "2022/01/11",
 	author: "Sukincen",
 	intro: "<li>更新：新增在对决-自由模式下新替换上场的将击杀时也有特效<li>本扩展的特效是从群英会扩展里分离出来的，已安装群英会扩展就无须再安装此扩展。有两种特效方式，建议只选择开启其中一种。<li>当场上任意一名角色杀死另一名角色时，会记录该角色共击杀的人数，并播放相应的特效和配音",
 	size: "1MB",
@@ -1650,8 +1444,8 @@ extension["击杀特效"] = {
 		"extension.js", "jstx_jisha1.mp3", "jstx_jisha2.mp3", "jstx_jisha3.mp3", "jstx_jisha4.mp3", "jstx_jisha5.mp3", "jstx_jisha6.mp3", "jstx_jisha7.mp3", "jstxmiaoshouhuichun.mp3", "jstxyishugaochao.mp3",
 	]
 };
-
 extension["统率三军"] = {
+	date: "2022/01/11",
 	author: "神原拓也V",
 	intro: "帮助界面查看新将池。统率三军2017将池更新；2011~2014历史将池补全；武将补全、武将修复、武将优化。可在贴吧反馈bug和查看更新",
 	size: "388KB",
@@ -1663,9 +1457,8 @@ extension["统率三军"] = {
 		"vs_shenji2.mp3", "vs_zhanshen1.mp3", "vs_zhanshen2.mp3", "vs_zhongyi1.mp3", "vs_zhongyi2.mp3"
 	]
 };
-
-
 extension["武庙"] = {
+	date: "2022/01/11",
 	author: "天气亏",
 	intro: "根据唐代设立的《武成王庙》为背景设计的扩展包，其中有做了点修改，共计12名人物。由于这些角色都是军事史上影响深远的顶尖军事人才，所以强度偏高（但仍旧较为平衡，技能结构优于《诸子百家》），其中以姜子牙（因其为主祭）强度最高，特点为全场控（不是逆天的全场控），其次为配享张良和兵圣孙武。其余人物各有所长各有所短。已将所有角色分配给魏蜀吴群四大势力（供国战用）。允许玩家二次制作，但前提是不失整个大的框架和尊重其中所有人物，不要肆意。",
 	size: "1.5MB",
@@ -1679,6 +1472,7 @@ extension["武庙"] = {
 	]
 };
 extension["诸子百家"] = {
+	date: "2022/01/11",
 	author: "天气亏",
 	intro: "《诸子百家》可联机最新2.8版本，总人物43名（不再增加，但会持续优化），另外，可以添加皮肤，需要的到贴吧里《诸子百家皮肤贴》那里下载，个人觉得有皮肤比较好。比起《武庙》，强度低了些，但基本略强于官方，也比较平衡。",
 	size: "4.1MB",
@@ -1698,6 +1492,7 @@ extension["诸子百家"] = {
 	]
 };
 extension["列女传"] = {
+	date: "2022/01/11",
 	author: "天气亏",
 	intro: "《列女传》最新版，加入了称号等，人物增加至25（不再增加，详见贴吧）名，平衡性较高，有些人物有配音，贴吧那有皮肤文件，添加到skin那里即可（皮肤精美）。设计背景：刘向《列女传》（有所扩展）。",
 	size: "4.8MB",
@@ -1715,23 +1510,8 @@ extension["列女传"] = {
 		"ln_xs.jpg", "ln_zwj.jpg", "ln_zwy.jpg"
 	]
 };
-
-/*
-extension["火影忍者"]={
-	author:"Demoon·Yu",
-	intro:"目前增添火影角色10名，火影模式未完成",
-	size:"2.2MB",
-	netdisk:"https://pan.baidu.com/s/1pLBFflx",
-	forum:"https://tieba.baidu.com/p/5078471870",
-	version:1,
-	files:[
-		"六道鸣人.jpg","千手纲手.jpg","宇智波佐助.jpg","宇智波鼬.jpg","我爱罗.jpg",
-		"旗木卡卡西.jpg","日向雏田.jpg","春野樱.jpg","波风水门.jpg","自来也.jpg"
-	]
-};
-*/
-
 extension["铜雀台"] = {
+	date: "2022/01/11",
 	author: "异",
 	intro: "日杀铜雀台拓展包武将移植",
 	size: "891KB",
@@ -1744,9 +1524,8 @@ extension["铜雀台"] = {
 		"jbtqt.jpg", "mixinfhh1.ogg", "mixinfhh2.ogg"
 	]
 };
-
-
 extension["异界四国"] = {
+	date: "2022/01/11",
 	author: "Niugnep",
 	intro: "本包基于原版制作，总共一百零八将，强度比原版高，可玩性强。更新：已联机化，素材也全换了名称，故更新前请先卸载旧版再重新下载",
 	size: "35MB",
@@ -1774,8 +1553,8 @@ extension["异界四国"] = {
 		"zhumaxun.jpg"
 	]
 };
-
 extension["天气变化"] = {
+	date: "2022/01/11",
 	author: "水乎",
 	intro: "添加随机天气",
 	size: "11kB",
@@ -1783,6 +1562,7 @@ extension["天气变化"] = {
 	version: 1,
 };
 extension["士兵模式"] = {
+	date: "2022/01/11",
 	author: "水乎",
 	intro: "每名角色在游戏开始时获得3个士兵，士兵可提供技能或为你承担伤害",
 	size: "24KB",
@@ -1790,6 +1570,7 @@ extension["士兵模式"] = {
 	version: 1
 };
 extension["技能卡牌"] = {
+	date: "2022/01/11",
 	author: "水乎",
 	intro: "牌堆中随机加入一定比例的技能牌；使用技能牌可获得额外技能",
 	size: "7KB",

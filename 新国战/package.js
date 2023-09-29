@@ -1,9 +1,0 @@
-extension["新国战"]={
-	intro:"◇2019版新国战规则与武将改动扩展",
-	author:"苏婆玛丽奥",
-	netdisk:"",
-	forum:"",
-	version:"2.0",
-	files:["extension.js","chaoming.mp3","default.mp3","package.js","changelog.txt"],
-	size:"109KB"
-};

@@ -895,7 +895,7 @@ extension["秦时明月"] = {
 	author: "呲牙哥",
 	intro: "<li>更新：修改盖聂技能，李斯，范增等技能修复<br><li>该版本为联机完结版<br><li>可在联机设置里设为联机禁用<br><li><font color=#F0F>扩展分享群:149662491</font><br><li>还没结束，后续更新：<br>沧海横流(续写秦时明月)<br>盖世英雄(民间与DIY武将)<br>天行九歌(乱世苍生，聚散流沙)<br><li>点击下方的“网盘链接”可下载本人的更多扩展",
 	size: "11.5MB",
-	netdisk: "https://pan.baidu.com/s/1pDm_zsvBLhyIRmsYVoVBfw",
+	netdisk: "https://pan.baidu.com/s/1CyPA_lEVwSnPQlOYW2MfSA",
 	version: 2.9,
 	files: [
 		"extension.js", "MYagang.jpg", "MYbadao1.mp3", "MYbaifeng.jpg", "MYbaihe1.mp3", "MYbaihe2.mp3",

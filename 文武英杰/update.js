@@ -1,4 +1,4 @@
-window.version='2.8';
+window.version='2.9';
 window.wwyjchangelog={
    '2023年12月':{
     'version':'2.9',

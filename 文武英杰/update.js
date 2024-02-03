@@ -1,15 +1,21 @@
-window.version='2.9';
+window.version='4.0';
 window.wwyjchangelog={
+	'2024年01月':{
+    'version':'4.0',
+    'info':'<li>新增武将【花落】、【大司马】、【藏海】',
+    'players':["wwyj_hualuos","wwyj_dasima","wwyj_rcanghai"],
+    'cards':[],
+  },
    '2023年12月':{
-    'version':'2.9',
+    'version':'3.1',
     'info':'<li>修复【寰宇星城】、【残碎的生命】、【繁星】、【荣耀套鸽】等有放牌到武将牌上的技能bug，微调个别技能，【辉烬贺流年】增加一点体力上限',
-    'players':[],
+    'players':["wwyj_huanyuxingcheng","wwyj_chansuideshengming","wwyj_fanxings","wwyj_rongyaotaoge","wwyj_huijin"],
     'cards':[],
   },
   '2023年10月':{
-    'version':'2.8',
+    'version':'3.0',
     'info':'<li>增强【萌新转型】的技能【转型】：额外摸一张牌。',
-    'players':[],
+    'players':["wwyj_mengxinzhuanxing"],
     'cards':[],
   },
    '2022年12月':{
@@ -24,13 +30,13 @@ window.wwyjchangelog={
     'players':["wwyj_rongyaotaoge"],
     'cards':[],
   },
-   '2021年12月-2022年1月':{
+   '2021年12月-2022年01月':{
     'version':'2.5',
     'info':'<li>新增武将：【阳光微凉】。部分重复武将开局可互相切换',
     'players':["wwyj_yangguangweiliang"],
     'cards':[],
   },		
-   '2021年07月-9月':{
+   '2021年07月-09月':{
     'version':'2.4',
     'info':'<li>新增武将：【残碎的生命】、【繁星】',
     'players':["wwyj_chansuideshengming","wwyj_fanxings"],

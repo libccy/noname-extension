@@ -26,10 +26,10 @@ extension["官渡之战"] = {
 extension["文武英杰"] = {
 	date: "2023/12/20",
 	author: "凉茶（玉蝴蝶）",
-	intro: "<li>时隔两年的更新：多名武将、多个功能、修复不少BUG等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2023-12-20",
+	intro: "<li>更新：多名武将、优化AI、修复BUG等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2024-02-03",
 	size: "45MB",
 	netdisk: "",
-	version: 2.9,
+	version: 4.0,
 	files: [
 		 "extension.js","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyj_ancha1.mp3","wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
@@ -90,7 +90,8 @@ extension["文武英杰"] = {
 		"wwyj_zhichitianya.mp3","wwyj_zhiguo1.mp3","wwyj_zhiguo2.mp3","wwyj_zhongcheng1.mp3",
 		"wwyj_zhongcheng2.mp3","wwyj_zhongchengpantu.jpg","wwyj_zhongchengpantu.mp3","wwyj_zhugejun.jpg",
 		"wwyj_zhugejun.mp3","wwyj_zhulinqixian.jpg","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3",
-		"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3"
+		"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_rcanghai.jpg","wwyj_rcanghai.mp3",
+		"wwyj_rshun.jpg","wwyj_rshun.mp3"
 	]
 };
 extension["群英会"] = {

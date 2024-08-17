@@ -24,12 +24,12 @@ extension["官渡之战"] = {
 	size: "2.66MB"
 };
 extension["文武英杰"] = {
-	date: "2024/02/03",
+	date: "2024/08/17",
 	author: "凉茶（玉蝴蝶）",
-	intro: "<li>更新：新增多名武将、优化AI、修复BUG等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2024-02-03",
+	intro: "<li>更新：修复BUG等<li>本扩展旨在设计一个可玩性强的作者包，纪念无名杀的众多扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>本扩展能在关闭兼容模式的情况下流畅运行，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。<li>更新时间：2024-02-03",
 	size: "48MB",
 	netdisk: "",
-	version: 4.0,
+	version: 4.1,
 	files: [
 		 "extension.js","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyj_ancha1.mp3","wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
@@ -66,7 +66,7 @@ extension["文武英杰"] = {
 		"wwyj_picture.jpg","wwyj_pingfang1.mp3","wwyj_pingfang2.mp3","wwyj_pipi.jpg","wwyj_pipi.mp3",
 		"wwyj_qianfu1.mp3","wwyj_qianshang1.mp3","wwyj_qianshangs.jpg","wwyj_qianshangs.mp3",
 		"wwyj_qianxu1.mp3","wwyj_qianxu2.mp3","wwyj_qingxian1.mp3","wwyj_qingzhong1.mp3",
-		"wwyj_qingzhongs.jpg","wwyj_qingzhongs.mp3","wwyj_qinyan1.ogg","wwyj_qinyan2.ogg",
+		"wwyj_qingzhongs.jpg","wwyj_qingzhongs.mp3","wwyj_qinyan1.mp3","wwyj_qinyan2.mp3",
 		"wwyj_qisi1.mp3","wwyj_qisi2.mp3","wwyj_qunying1.mp3","wwyj_ranqis.jpg","wwyj_ranqis.mp3",
 		"wwyj_remaliao.jpg","wwyj_remaliao.mp3","wwyj_rongyaotaoge.jpg","wwyj_rongyaotaoge.mp3",
 		"wwyj_sepi1.mp3","wwyj_sepi2.mp3","wwyj_sepi21.mp3","wwyj_shaozhu1.mp3","wwyj_shengbei1.mp3",
@@ -79,7 +79,7 @@ extension["文武英杰"] = {
 		"wwyj_touliang1.mp3","wwyj_toushi1.mp3","wwyj_updateicon.png","wwyj_waiguan.css",
 		"wwyj_wali.jpg","wwyj_wali.mp3","wwyj_wuqing1.mp3","wwyj_wuqinggezi.jpg","wwyj_wuqinggezi.mp3",
 		"wwyj_wzszhaoyun.jpg","wwyj_wzszhaoyun.mp3","wwyj_xingcheng1.mp3","wwyj_xingyunnvshen.jpg",
-		"wwyj_xingyunnvshen.mp3","wwyj_xipi1.mp3","wwyj_xiyuan1.ogg","wwyj_xiyuan2.ogg",
+		"wwyj_xingyunnvshen.mp3","wwyj_xipi1.mp3","wwyj_shiyuan1.mp3","wwyj_shiyuan2.mp3",
 		"wwyj_xuanxia1.mp3","wwyj_xuebi.jpg","wwyj_xuebi.mp3","wwyj_xuedao1.mp3","wwyj_xuedaoshaozhu.jpg",
 		"wwyj_xuedaoshaozhu.mp3","wwyj_xugeng1.mp3","wwyj_yangguangweiliang.jpg","wwyj_yangguangweiliang.mp3",
 		"wwyj_yanguan1.mp3","wwyj_yanyu1.mp3","wwyj_yanyumoran.jpg","wwyj_yanyumoran.mp3",

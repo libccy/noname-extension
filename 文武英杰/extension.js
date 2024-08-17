@@ -1,6 +1,7 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){ 
 
 // ---------------------------------------Update------------------------------------------//   
+    /*
     wwyj_update=[      	   
 	   //'武将资料卡可点播武将阵亡配音的功能',
 	   '新增武将【花落】、【大司马】、【藏海】、【瞬】',
@@ -9,7 +10,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
        'players://["wwyj_hualuos","wwyj_dasima","wwyj_rcanghai","wwyj_rshun"]',
     ];
     wwyj_version='更新日期：2024年01月19日';
-
+    
     game.wwyj_update=function(){
        var wwyj=document.createElement('wwyj');
        wwyj.style.textAlign='left';
@@ -76,7 +77,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
        }
        },
        }      
-        
+       */
        game.wwyj_showChangeLog=function(){
 			var dialog=ui.create.dialog('hidden');
 			dialog.style.height='calc(100%)';
@@ -1187,6 +1188,28 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
  // ---------------------------------------wwyj_jiexiantupo------------------------------------------//	     
    if(config.wwyj_jiexiantupo){
 		
+		lib.arenaReady.push(function(){
+		lib.skill.wwyj_yongji={ 		                    
+            trigger:{                   
+                global:"dying",
+            },	                   				
+            usable:1,
+            check:function (event,player){                    
+                return get.attitude(player,event.player)>0;
+            },      
+            audio:["songwei",2],
+            filter:function (event,player){
+        return player.countCards('e');
+    },
+                content:function (){                                      
+            player.discardPlayerCard(player,'e',true);            
+            player.chat('拿去拿去，莫跟哥哥客气');
+            trigger.player.recover();  				                     
+    },
+            } 
+            lib.translate.wwyj_yongji_info='每回合限一次，当一名角色进入频死状态时，你可以选择弃置你的一张装备区的牌，令回复一点体力 <font color=#F0F>已突破</font>';
+        });    
+        
 		lib.arenaReady.push(function(){
 		    lib.skill.wwyj_qianzhan={ 				
 				enable:['chooseToUse','chooseToRespond'],
@@ -3576,7 +3599,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				"wwyj_guihua":["female","wwyjsha",3,["wwyj_gainian","wwyj_heimao"],[]],
 				"wwyj_tilongjianiao":["male","wwyjsha",3,["wwyj_gonggao","wwyj_jinyan"],[]],
 				"wwyj_huanyuxingcheng":["male","wwyjsha",3,["wwyj_huanyu","wwyj_xingcheng","wwyj_xuanxia"],[]],
-				"wwyj_limuzi":["male","wwyjsha",3,["wwyj_xiyuan","wwyj_qinyan"],[]],
+				"wwyj_limuzi":["male","wwyjsha",3,["wwyj_shiyuan","wwyj_qinyan"],[]],
 				"wwyj_fux2":["male","wwyjsha",4,["wwyj_dansha","wwyj_lunpo"],[]],
 				"wwyj_xuedaoshaozhu":["male","wwyjsha",3,["wwyj_xuedao","wwyj_shaozhu"],[]],				
 				"wwyj_shenwangquanjian":["male","wwyjsha",3,["wwyj_jieguan","wwyj_sepi"],[]],
@@ -7767,29 +7790,31 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				if(typeof num=='number') return num+100;
 			},
 			targetInRange:function(card,player,target){
-				if(player.storage.wwyj_xiyuan.contains(target)) return true;
+				if(player.storage.wwyj_shiyuan.contains(target)) return true;
 			},
 			playerEnabled:function(card,player,target){
 				var bool=false;
-				if(player.storage.wwyj_xiyuan&&ui.selected.targets.length){
-					for(var i=0;i<player.storage.wwyj_xiyuan.length;i++){
-						if(ui.selected.targets.contains(player.storage.wwyj_xiyuan[i])){bool=true;break}
+				if(player.storage.wwyj_shiyuan&&ui.selected.targets.length){
+					for(var i=0;i<player.storage.wwyj_shiyuan.length;i++){
+						if(ui.selected.targets.contains(player.storage.wwyj_shiyuan[i])){bool=true;break}
 					}
 				}
-				if(!bool&&(!player.storage.wwyj_xiyuan||!player.storage.wwyj_xiyuan.contains(target))){
+				if(!bool&&(!player.storage.wwyj_shiyuan||!player.storage.wwyj_shiyuan.contains(target))){
 					var num=player.getCardUsable(card)-100;
 						if(num<=0) return false;
 					}
 				},
 			},
-		/*mod:{
+		/*
+		mod:{
 			cardUsable:function(card){								
 				return Infinity;
 			},
 			targetInRange:function(){
 				return true;
 			},
-		},*/
+		},
+		*/
      },
      
     "wwyj_qinyan":{
@@ -7799,12 +7824,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	    if(player.countCards('h')) return false;					
 		return _status.currentPhase==player&&event.hs&&event.hs.length>0;
 	},
-	//group:"wwyj_qinyan1",
+	group:"wwyj_qinyan2",
     forced:true,  
     popup:false,       
 	content:function(){						
 		player.$fullscreenpop('龙王戏水','thunder');
-		player.addTempSkill("wwyj_qinyan2");	
+		//player.addTempSkill("wwyj_qinyan2");	
 	    player.draw(player.hp);		
 	},
 	ai:{
@@ -7818,7 +7843,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	},
         },  
         
-   "wwyj_xiyuan3":{
+   "wwyj_shiyuan3":{
 			//audio:["xiaoji",2],
 			trigger:{			   
          global:["useCardEnd","changeHp","gameDrawAfter","gainAfter","drawAfter","loseAfter","dieBegin"],
@@ -7836,7 +7861,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				});
         },
 			init:function (player){
-        player.storage.wwyj_xiyuan3=0;
+        player.storage.wwyj_shiyuan3=0;
     },			
 			intro:{
           		content:function (storage){
@@ -7844,33 +7869,33 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
           	 	},
             },
 			content:function (){ 
-            player.storage.wwyj_xiyuan3=0;
+            player.storage.wwyj_shiyuan3=0;
             var num=game.countPlayer(function(current){
 				return current.countCards('h')<current.maxHp;
 			 });	
-			 player.markSkill("wwyj_xiyuan3");
-			 player.storage.wwyj_xiyuan3+=num;
+			 player.markSkill("wwyj_shiyuan3");
+			 player.storage.wwyj_shiyuan3+=num;
 			 player.update();
 				},
 			},         
-    "wwyj_xiyuan2":{                                         
+    "wwyj_shiyuan2":{                                         
           trigger:{player:'phaseAfter'},
 			priority:-7,
 			silent:true,
 			forced:true,
-			popup:"wwyj_xiyuan",			
+			popup:"wwyj_shiyuan",			
 			content:function(){	
 			    'step 0'			
-				player.storage.wwyj_xiyuan=[];
+				player.storage.wwyj_shiyuan=[];
 				'step 1'
 				for(var i=0;i<game.players.length;i++){
-				    if(game.players[i].hasSkill('wwyj_xiyuan1')){
-				        game.players[i].removeSkill('wwyj_xiyuan1');
+				    if(game.players[i].hasSkill('wwyj_shiyuan1')){
+				        game.players[i].removeSkill('wwyj_shiyuan1');
 				    } 
 				}    
 			},
      },                          		 
-    "wwyj_xiyuan1":{ 
+    "wwyj_shiyuan1":{ 
         intro:{
             name:"释援",
             content:"你为“释援”的角色",
@@ -7878,16 +7903,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         marktext:"释",
 		mark:true,                                      
         init:function (player){
-            player.storage.wwyj_xiyuan1=[];
+            player.storage.wwyj_shiyuan1=[];
         }, 
         },           
-        "wwyj_xiyuan":{                
+        "wwyj_shiyuan":{                
         audio:"ext:文武英杰:2",
         enable:"phaseUse",
         usable:1,    
-        group:["wwyj_xiyuan2","wwyj_xiyuan3"],
+        group:["wwyj_shiyuan2","wwyj_shiyuan3"],
         init:function (player){
-		    player.storage.wwyj_xiyuan=[];
+		    player.storage.wwyj_shiyuan=[];
       	},                                   
         filter:function (event,player){    
             var num1=game.countPlayer(function(current){
@@ -7915,7 +7940,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         });        
            'step 1' 
         if(result.bool){   
-            player.logSkill('wwyj_xiyuan');                          
+            player.logSkill('wwyj_shiyuan');                          
             event.targets=result.targets;                                                
         }
         else{
@@ -7933,9 +7958,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
           'step 3'      
 		if(result.bool){         
            player.line(event.targets[event.num],'green');
-           player.storage.wwyj_xiyuan.add(event.targets[event.num]);	
-           event.targets[event.num].addSkill('wwyj_xiyuan1'); 
-           event.targets[event.num].storage.wwyj_xiyuan1.add(result.cards[0]);		              
+           player.storage.wwyj_shiyuan.add(event.targets[event.num]);	
+           event.targets[event.num].addSkill('wwyj_shiyuan1'); 
+           event.targets[event.num].storage.wwyj_shiyuan1.add(result.cards[0]);		              
            player.$give(result.cards[0],event.targets[event.num]);
            event.targets[event.num].gain(result.cards[0],player);		     
            game.log(event.targets[event.num],'获得了'+get.translation(player)+'的一张',result.cards[0]);          
@@ -7945,13 +7970,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         'step 4'         
         event.num=0;
         event.targets=game.filterPlayer(function(current){
-             return current!=player&&current.hasSkill('wwyj_xiyuan1');
+             return current!=player&&current.hasSkill('wwyj_shiyuan1');
          });                                     
         event.targets.sort(lib.sort.seat);
          'step 5'          
          if(event.num<event.targets.length){		        	
             event.targets[event.num].chooseCard('交给'+get.translation(player)+'一张手牌','h',true,function(card){
-               return !event.targets[event.num].storage.wwyj_xiyuan1.contains(card);
+               return !event.targets[event.num].storage.wwyj_shiyuan1.contains(card);
             }).ai=function(card){
             if(card.name=='sha'&&get.attitude(player,event.targets[event.num])>0) return 1;			   
                return 6-get.value(card);
@@ -7966,8 +7991,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
            event.targets[event.num].$give(result.cards[0],player);
            player.gain(result.cards[0],event.targets[event.num]);		     
            game.log(player,'获得了'+get.translation(event.targets[event.num])+'的一张',result.cards[0]); 
-           event.targets[event.num].storage.wwyj_xiyuan1=[];
-           //event.targets[event.num].removeSkill('wwyj_xiyuan1'); 
+           event.targets[event.num].storage.wwyj_shiyuan1=[];
+           //event.targets[event.num].removeSkill('wwyj_shiyuan1'); 
            event.num++;
            event.goto(5);         
         }                          
@@ -11886,7 +11911,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 audio:"ext:文武英杰:2",
                 global:"wwyj_xiadan",
                	ai:{			
-              					threaten:2.5,
+              					threaten:1,
              			},
             },
             "wwyj_xiadan":{
@@ -11946,13 +11971,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         }
         "step 2"
         if(event.target){
-            player.logSkill('wwyj_jiedan',event.target);
+            player.logSkill('wwyj_xiadan',event.target);
             player.addTempSkill('wwyj_xiadan1','phaseUseEnd');
             //event.card=cards[0];
            // if(event.target!=player){
                 player.give(cards,event.target);
                 event.target.recover();
-                event.target.chooseToUse({name:'sha'},'是否使用一张【杀】？').logSkill='wwyj_xiadan';
+                event.target.chooseToUse({name:'sha'},'是否使用一张【杀】？').logSkill='wwyj_jiedan';
               //  event.target.chooseUseTarget('选择视为使用【杀】的目标',{name:'sha'},false,false);
                 event.target.say(['君子爱财，取之有道','受人钱财，替人消灾'].randomGet());
             //}
@@ -12391,8 +12416,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 	"wwyj_yongji2":"涌技",
     "wwyj_yongji2_info":"你此时可以选择弃置【花落】的一张装备区的牌，然后回复一点体力",    
 	"wwyj_yongji":"涌技",
-    "wwyj_yongji_info":"每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力",
-    "wwyj_hualuo":"花落",
+    "wwyj_yongji_info":"每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力 <font color=#F0F>可突破</font>",
+    "wwyj_hualuo":"落花",
     "wwyj_hualuo_info":"</font><font color=#f00>锁定技</font> 准备阶段，你随机将场上其他角色的装备区的牌逐一装备到你的装备区（可替换，每个装备栏只触发一次）",
 	"wwyj_qianzhan_backup":"前瞻",
 	"wwyj_qianzhan":"前瞻",
@@ -12532,9 +12557,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     "wwyj_dansha":"弹杀",
     "wwyj_dansha_info":"当你受到伤害时，你可先选择是否令一名没“丸”标记的其他角色获得“丸”标记，然后你再对场上随机一名有“丸”标记的角色造成等量点伤害并令其随机弃置一张牌",
     "wwyj_qinyan":"勤言",
-    "wwyj_qinyan_info":"</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值且你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制",
-    "wwyj_xiyuan":"释援",
-    "wwyj_xiyuan_info":"出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)",
+    "wwyj_qinyan_info":"</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值。你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制",
+    "wwyj_shiyuan3":"释援",
+    "wwyj_shiyuan2":"释援",
+    "wwyj_shiyuan":"释援",
+    "wwyj_shiyuan_info":"出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)",
     "wwyj_xuanxia":"玄侠",
     "wwyj_xuanxia_info":"<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】 <font color=#F0F>可突破</font>",  
     "wwyj_huanyu":"寰宇",
@@ -13158,7 +13185,7 @@ var liblist = [
 			   ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌 <font color=#F0F>可突破</font><br><span class="bluetext">黑猫</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌'],
 			   ['<span class="bluetext">公告</span>：当你受到伤害后，你可声明一种牌的类型，然后令回合外曾对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张【杀】。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
 			   ['<span class="bluetext">星城</span>：当你受到伤害后，你可将牌堆顶的一张牌置于一名没有“星”的其他角色的武将牌上，称为“星”；当一名角色阵亡或受到你造成的伤害时，若其有“星”，你可以获得该角色的“星”<br><span class="bluetext">寰宇</span>：出牌阶段限一次，你可将场上所有有“星”的角色的“星”收为手牌，然后再逐一将一张手牌当“星”放置于这些角色的武将牌上<br><span class="bluetext">玄侠</span>：<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】 <font color=#F0F>可突破</font>'],
-			   ['<span class="bluetext">释援</span>：出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)<br><span class="bluetext">勤言</span>：</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值且你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制'],
+			   ['<span class="bluetext">释援</span>：出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)<br><span class="bluetext">勤言</span>：</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值。你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制'],
 			   ['<span class="bluetext">弹杀</span>：当你受到伤害时，你可先选择是否令一名没“丸”标记的其他角色获得“丸”标记，然后你再对场上随机一名有“丸”标记的角色造成等量点伤害并令其随机弃置一张牌<br><span class="bluetext">论破</span>：任意有“丸”标记的角色弃牌阶段弃牌时，若其弃置的牌均为不同花色的牌时，你可选择一项：①回复一点体力并摸一张牌；②令该角色受到你造成的一点伤害，然后其弃置“丸”标记 <font color=#F0F>可突破</font>'],
 			   ['<span class="bluetext">血刀</span>：当一名角色使用一张武器牌后，你可弃置其攻击范围内的一名其他角色的一张手牌，若这张手牌的颜色为红色，则使用武器牌的角色视为对被弃置手牌的角色使用一张不计入次数限制的【杀】<br><span class="bluetext">少主</span>：当你成为【杀】的目标时，你可令攻击范围包含该角色的除了你与其的所有其他角色依次对该角色选择使用一张【杀】，否则你获得该应使用【杀】的角色一张牌'],
 			   ['<span class="bluetext">接管</span>：一名其他角色出牌阶段开始时，若其有手牌且手牌数不小于你的，你可以获得其一张手牌。若如此做，此阶段结束时，若其造成过伤害，则视为其对你使用一张【杀】，否则你视为对其使用一张【杀】<br><span class="bluetext">色批</span>：每名女性角色的出牌阶段限一次，其可弃置一张手牌，然后其弃置你的一张手牌，若这两张手牌颜色相同，其与你各选择摸一张牌或回复一点体力(若任一方没受伤则改为摸一张牌)，否则各摸一张牌'],
@@ -13183,7 +13210,7 @@ var liblist = [
                ['<span class="bluetext">圣杯</span>：每回合每种情况限一次，当你需要使用或打出一张【杀】/【闪】时，你可以展示你手牌中的一张，然后若其他角色展示一张同名的手牌，视为你使用或打出之。若为使用【杀】则不计入次数 <br><span class="bluetext">辰午</span>：其他角色的弃牌阶段开始时，若其手牌数大于你的手牌数，你可选择展示其一张手牌，若此牌为基本牌或普通锦囊牌，你获得之，然后若为黑色牌，你可立即使用之'],
 			   ['<span class="bluetext">统驭</span>：一名角色的回合开始时，你随机获得其一个技能，若为你的回合，你随机获得场上一名其他角色的一个技能，均直到回合结束 <br><span class="bluetext">雷佬</span>：</font><font color=#f00>锁定技</font> 雷属性伤害对你无效。场上其他角色受到雷属性伤害后，你选择一项：回复一点体力；摸一张牌；获得该角色一张牌'],
 			   ['<span class="bluetext">前瞻</span>：牌堆顶的牌对你可见。每回合限X次（X为你的体力值），你可以使用或打出牌堆顶的牌（无懈可击除外），你以此法使用的牌无距离限制，若为【杀】则可额外指定一名目标 <font color=#F0F>可突破</font><br><span class="bluetext">转型</span>：当一名角色即将受到【杀】造成的非属性伤害时，你可令该伤害改为雷属性伤害，然后你摸一张牌'],
-			   ['<span class="bluetext">花落</span>：</font><font color=#f00>锁定技</font> 准备阶段，你随机将场上其他角色的装备区的牌逐一装备到你的装备区（可替换，每个装备栏只触发一次） <br><span class="bluetext">涌技</span>：每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力'],
+			   ['<span class="bluetext">落花</span>：</font><font color=#f00>锁定技</font> 准备阶段，你随机将场上其他角色的装备区的牌逐一装备到你的装备区（可替换，每个装备栏只触发一次） <br><span class="bluetext">涌技</span>：每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力'],
 	     	   ['<span class="bluetext">奇兵</span>：当你使用【杀】即将造成伤害时，你可选择一项：<li>平西：令一名其他角色也受到一点伤害<li>镇北：令此伤害+1<li>征南：获得该角色的一张牌<li>破东：令该角色摸等同其当前已损失的体力值张牌（至少1张），然后翻面<li>定中：你回复一点体力或摸一张牌'],
 	     	   ['<span class="bluetext">藏海</span>：</font><font color=#f00>锁定技</font> 当游戏开始时、你进入游戏时、一名角色进入濒死状态时，若你武将牌上的“海”不足五张，你摸一张牌并将牌堆顶的牌当“海”置于你的武将牌上，直至五张 <br><span class="bluetext">义更</span>：每回合限一次，当一名其他角色使用牌时，你可弃置一张你藏在武将牌上的其中一张与此牌花色相同的“海”，令此角色受到一点雷属性伤害'],
 	     	   ['<span class="bluetext">浮慧</span>：每当你使用或打出一张点数的奇偶性与X的奇偶性相同的牌后，你摸一张牌，否则你弃置一张牌，当你因此失去最后一张手牌时，你可选择一项：①对一名其他角色造成1点伤害；②恢复一点体力，将武将牌翻面并令X重置。（X为你发动此技能的次数）<br><span class="bluetext">斗破</span>：</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用杀的次数'],
@@ -13222,7 +13249,7 @@ var liblist = [
 				
 };
 },help:{
-    "文武英杰":"<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备改为选择使用牌堆或弃牌堆中的一个装备<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色",
+    "文武英杰":"<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备牌改为选择使用牌堆或弃牌堆中的一个装备牌<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色<li>花落的【涌技】改为由自己选择发动",
 },config:{
     "wwyj_help":{
     "nopointer":true,
@@ -13464,5 +13491,5 @@ var liblist = [
     author:"凉茶<br>关注微信公众号“无名杀扩展交流”，获取最新版本<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"4.0",
+    version:"4.1",
 },files:{"character":[],"card":[],"skill":[]}}})

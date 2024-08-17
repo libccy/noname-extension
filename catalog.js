@@ -91,7 +91,7 @@ extension["文武英杰"] = {
 		"wwyj_zhongcheng2.mp3","wwyj_zhongchengpantu.jpg","wwyj_zhongchengpantu.mp3","wwyj_zhugejun.jpg",
 		"wwyj_zhugejun.mp3","wwyj_zhulinqixian.jpg","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3",
 		"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_rcanghai.jpg","wwyj_rcanghai.mp3",
-		"wwyj_rshun.jpg","wwyj_rshun.mp3"
+		"wwyj_rshun.jpg","wwyj_rshun.mp3","wwyj_dasima.jpg","wwyj_dasima.mp3","wwyj_hualuos.jpg","wwyj_hualuos.mp3"
 	]
 };
 extension["群英会"] = {

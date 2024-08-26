@@ -24,12 +24,12 @@ extension["官渡之战"] = {
 	size: "2.66MB"
 };
 extension["文武英杰"] = {
-	date: "2024/08/17",
-	author: "凉茶（玉蝴蝶）",
-	intro: "<li>更新：修复BUG等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。",
-	size: "48MB",
+	date: "2024/08/26",
+	author: "凉茶",
+	intro: "<li>更新：修复BUG、新增一名武将等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。",
+	size: "50MB",
 	netdisk: "",
-	version: 4.1,
+	version: 4.2,
 	files: [
 		 "extension.js","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyj_ancha1.mp3","wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",
@@ -91,7 +91,7 @@ extension["文武英杰"] = {
 		"wwyj_zhongcheng2.mp3","wwyj_zhongchengpantu.jpg","wwyj_zhongchengpantu.mp3","wwyj_zhugejun.jpg",
 		"wwyj_zhugejun.mp3","wwyj_zhulinqixian.jpg","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3",
 		"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_rcanghai.jpg","wwyj_rcanghai.mp3",
-		"wwyj_rshun.jpg","wwyj_rshun.mp3","wwyj_dasima.jpg","wwyj_dasima.mp3","wwyj_hualuos.jpg","wwyj_hualuos.mp3"
+		"wwyj_rshun.jpg","wwyj_rshun.mp3","wwyj_dasima.jpg","wwyj_dasima.mp3","wwyj_hualuos.jpg","wwyj_hualuos.mp3","wwyj_qingyao.jpg","wwyj_qingyao.mp3"
 	]
 };
 extension["群英会"] = {

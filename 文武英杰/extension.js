@@ -5674,7 +5674,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                 if(player.getExpansions('wwyj_shengming').length<=0){
                     player.unmarkSkill('wwyj_shengming');
 					game.playwwyj('wwyj_chansuideshengming');
-                    player.loseHp(player.hp);
+					var num=player.getHp();
+                    if(num>0) player.loseHp(num);
+                    //player.loseHp(player.hp);
                 }		          					          			
             }       
             else event.finish();                                    	                          	          	          	                         
@@ -5736,7 +5738,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                 if(player.getExpansions('wwyj_shengming').length<=0){
                     player.unmarkSkill('wwyj_shengming');
 					game.playwwyj('wwyj_chansuideshengming');
-                    player.loseHp(player.hp);
+                    //player.loseHp(player.hp);
+					var num=player.getHp();
+                    if(num>0) player.loseHp(num);
                 }		               					          			
             }       
             else event.finish();                                    	                          	          	          	                         

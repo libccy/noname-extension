@@ -1701,7 +1701,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 content:function (){                   			   
 							"step 0" 					
 			        var list1=[],list2=[];
-					for(var i=0;i<ui.cardPile.childElementCount;i++){
+					for(var i=0;i<ui.cardPile.childNodes.length;i++){
 						var type=get.type(ui.cardPile.childNodes[i]);
 						if(type=='equip'){
 							//list1.push(['装备','',ui.cardPile.childNodes[i]]);//能用但只显示文字
@@ -1709,7 +1709,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 							list1.push(ui.cardPile.childNodes[i]);
 						}
 					}	
-					for(var i=0;i<ui.discardPile.childElementCount;i++){
+					for(var i=0;i<ui.discardPile.childNodes.length;i++){
 						var type=get.type(ui.discardPile.childNodes[i]);
 						if(type=='equip'){
 							//list2.push(['装备','',ui.discardPile.childNodes[i]]);//能用但只显示文字
@@ -3867,16 +3867,84 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					        usedu:true,
 				        },
 					},
-      "wwyj_cuangai":{ 
-          //global:"wwyj_cuangai2",
+					"wwyj_cuangai3":{
+					    init:function (player){
+                            player.storage.wwyj_cuangai3=[];
+                        },  
+                        trigger:{
+                            player:["useCardEnd","respondEnd"],
+                            global:"phaseEnd",
+                        },
+                        forced:true,                        
+						content:function(){														
+							for(var i=0;i<ui.discardPile.childNodes.length;i++){
+						var name=ui.discardPile.childNodes[i].name;
+						if(name=='du'){
+						    for(var j=0;j<player.storage.wwyj_cuangai2.length;j++){										
+								if(get.suit(ui.discardPile.childNodes[i])==get.suit(player.storage.wwyj_cuangai2[j])&&ui.discardPile.childNodes[i].number==player.storage.wwyj_cuangai2[j].number){
+									ui.discardPile.childNodes[i].init([ui.discardPile.childNodes[i].suit,ui.discardPile.childNodes[i].number,player.storage.wwyj_cuangai[j],player.storage.wwyj_cuangai3[j]]);
+									player.storage.wwyj_cuangai.remove(player.storage.wwyj_cuangai[j]);
+									player.storage.wwyj_cuangai2.remove(player.storage.wwyj_cuangai2[j]);
+									player.storage.wwyj_cuangai3.remove(player.storage.wwyj_cuangai3[j]);
+									player.update();
+								}																			
+								}													
+						}
+					}													
+						},											
+					},   
+					"wwyj_cuangai2":{						
+						trigger:{global:'loseAfter'},
+						filter:function(event,player){
+							if(event.type!='discard'||event.getlx===false) return false;
+							var cards=event.cards.slice(0);
+							for(var i=0;i<cards.length;i++){
+								if(cards[i].original!='j'&&cards[i].name=='du'&&get.position(cards[i],true)=='d'){
+									return true;
+								}
+							}
+							return false;
+						},
+						init:function (player){
+                            player.storage.wwyj_cuangai2=[];
+                        },  
+						forced:true,						
+						content:function(){
+							"step 0"
+							if(trigger.delay==false) game.delay();
+							"step 1"
+							var cards=[],cards2=trigger.cards.slice(0);							
+							for(var i=0;i<cards2.length;i++){
+								if(cards2[i].original!='j'&&cards2[i].name=='du'&&get.position(cards2[i],true)=='d'){
+									cards.push(cards2[i]);
+								}
+							}
+							if(cards.length){
+								for(var i=0;i<cards.length;i++){
+									for(var j=0;j<player.storage.wwyj_cuangai2.length;j++){										
+								if(get.suit(cards[i])==get.suit(player.storage.wwyj_cuangai2[j])&&cards[i].number==player.storage.wwyj_cuangai2[j].number){
+									cards[i].init([cards[i].suit,cards[i].number,player.storage.wwyj_cuangai[j],player.storage.wwyj_cuangai3[j]]);
+									player.storage.wwyj_cuangai.remove(player.storage.wwyj_cuangai[j]);
+									player.storage.wwyj_cuangai2.remove(player.storage.wwyj_cuangai2[j]);
+									player.storage.wwyj_cuangai3.remove(player.storage.wwyj_cuangai3[j]);
+								}										
+									}
+								}
+							}							
+						},						
+					},
+      "wwyj_cuangai":{   
           audio:["reguhuo",2],  
           trigger:{
 				    global:'damageEnd',						
 				},
-				usable:1,								
-				filter:function (event,player){					
-                    if(event.source.isDead()) return false;
-                    return event.source&&event.source.countCards('h')>0;	 		
+				usable:1,
+				group:["wwyj_cuangai2","wwyj_cuangai3"],				
+                init:function (player){
+                    player.storage.wwyj_cuangai=[];
+                },               
+				filter:function (event,player){					     
+                    return event.source&&event.source.isAlive()&&event.source.countCards('h')>0;	 		
 				},	
 				check:function (event,player){                    
                     if(player==event.source) return 1;
@@ -3891,12 +3959,23 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             if (player==trigger.source){
            /* var card=player.getCards('h',function(card){
                 return card.name!='du';
-            }).randomGet();*/
-            var card=player.getCards('h').randomGet();                        
-            player.showCards(card);             
-            game.delay();            
+            }).randomGet();*/ 
+            event.cards=[];
+            var cards=player.getCards('h');  
+            for(var i=0;i<cards.length;i++){
+                if(cards[i].name!='du'){
+                    event.cards.push(cards[i]);
+                }
+            }         
+            var card=event.cards.randomGet();             
+            player.showCards(card);                                     
             if(card){
-                card.init([card.suit,card.number,'du']);
+                player.storage.wwyj_cuangai.push(card.name);//卡名
+				player.storage.wwyj_cuangai2.push(card);//卡牌
+				player.storage.wwyj_cuangai3.push(get.nature(card));//属性
+                //game.addVideo('storage',player,['player.storage.wwyj_cuangai',player.storage.wwyj_cuangai]);
+				game.delay();
+				card.init([card.suit,card.number,'du']);
             }  
             game.log(player,'的一张手牌被转化为',{name:'du'});  
             event.finish();                        
@@ -3908,8 +3987,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             }); 
             }     				            
            'step 1'
-          if(result.bool){ 
+          if(result.bool){               
               trigger.source.showCards(result.links[0]); 
+			  player.storage.wwyj_cuangai.push(result.links[0].name);
+			  player.storage.wwyj_cuangai2.push(result.links[0]);
+			  player.storage.wwyj_cuangai3.push(get.nature(result.links[0]));
+			  //game.addVideo('storage',player,['player.storage.wwyj_cuangai',player.storage.wwyj_cuangai]);
+			  game.delay();
               trigger.source.addTempSkill('wwyj_cuangai1','phaseUseEnd');             
               result.links[0].init([result.links[0].suit,result.links[0].number,'du']);             
               game.log(trigger.source,'的一张手牌被转化为',{name:'du'});                                                                           
@@ -3920,17 +4004,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                expose:0.2,          
             },	
       },
-      "wwyj_cuangai1":{},
-      "wwyj_cuangai2":{ 
-      init:function (player){
-          player.storage.wwyj_cuangai2=[];
-      },           
-      mod: {
-		  cardname(card, player, name) {
-				if (card == player.storage.wwyj_cuangai2) return "du";
-		  },						
-		},
-		},
+      "wwyj_cuangai1":{},      
    "wwyj_doupo":{                     
    trigger:{                   
         global:"damageEnd",
@@ -4076,7 +4150,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					player.draw();
 					"step 1"
 					var list=[];
-					for(var i=0;i<ui.cardPile.childElementCount;i++){						
+					for(var i=0;i<ui.cardPile.childNodes.length;i++){						
 						if(list.length+player.getExpansions('wwyj_canghai').length<5){
 							list.push(ui.cardPile.childNodes[i]);
 						}
@@ -5698,14 +5772,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				},             
                 content:function (){                  								        			        
 			        var list=[];			        
-				    for(var i=0;i<ui.cardPile.childElementCount;i++){
+				    //for(var i=0;i<ui.cardPile.childElementCount;i++){
+				    for(var i=0;i<ui.cardPile.childNodes.length;i++){
 						var type=get.subtype(ui.cardPile.childNodes[i]);
 						if(type=='equip1'){
 							game.cardsDiscard(ui.cardPile.childNodes[i]);			
 							list.push(ui.cardPile.childNodes[i]);							
 						}
 					}
-					for(var i=0;i<ui.discardPile.childElementCount;i++){
+					//for(var i=0;i<ui.discardPile.childElementCount;i++){
+					for(var i=0;i<ui.discardPile.childNodes.length;i++){										
 						var type=get.subtype(ui.discardPile.childNodes[i]);
 						if(type=='equip1'){
 							game.cardsDiscard(ui.discardPile.childNodes[i]);			
@@ -6060,7 +6136,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				event.finish();
 			}
 			'step 2'
-			for(var i=0;i<ui.cardPile.childElementCount;i++){
+			for(var i=0;i<ui.cardPile.childNodes.length;i++){
 				var type=get.type(ui.cardPile.childNodes[i]);
 				if(type==event.type){
 					event.cardpile.push(ui.cardPile.childNodes[i]);
@@ -12594,7 +12670,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     "wwyj_dujiao_info":"<span class=yellowtext>主公技</span> 每回合限一次，其他【杀】势力的角色可以在其回合内将一张【毒】交给你",
     "wwyj_chaoxi":"抄袭",
     "wwyj_chaoxi_info":"</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】",
-    "wwyj_cuangai":"篡改",
+    "wwyj_cuangai2":"篡改",
+	"wwyj_cuangai":"篡改",
     "wwyj_cuangai_info":"每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张手牌转变为【毒】",
     "wwyj_doupo2":"斗破",   
     "wwyj_doupo":"斗破",
@@ -13692,5 +13769,5 @@ var liblist = [
     author:"凉茶<br>本扩展一些扩展功能在无名杀v1.10.5版前有效，但不影响到武将<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
     diskURL:"",
     forumURL:"",
-    version:"4.2",
+    version:"4.3",
 },files:{"character":[],"card":[],"skill":[]}}})

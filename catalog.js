@@ -24,12 +24,12 @@ extension["官渡之战"] = {
 	size: "2.66MB"
 };
 extension["文武英杰"] = {
-	date: "2024/08/26",
+	date: "2024/09/03",
 	author: "凉茶",
-	intro: "<li>更新：修复BUG、新增一名武将等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。",
+	intro: "<li>更新：修复BUG，完善个别技能效果等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者。",
 	size: "50MB",
 	netdisk: "",
-	version: 4.2,
+	version: 4.3,
 	files: [
 		 "extension.js","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg",
 		"wwyj_ancha1.mp3","wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3",

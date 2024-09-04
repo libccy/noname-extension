@@ -5653,31 +5653,28 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             });      										
 			'step 1'    
 			if(result.bool){
-                /*
-                player.$throw(result.links);						
-                //player.storage.wwyj_shengming.remove(result.links[0]);
-                game.cardsDiscard(result.links[0]);
-                player.syncStorage('wwyj_shengming');
-                trigger.source.gain(result.links[0],'fromStorage'); 
-                */
+                //player.loseToDiscardpile(result.links[0]);
                 player.give(result.links[0],trigger.source,'give');					
                 //player.getExpansions('wwyj_shengming').remove(result.links[0]);
                 //game.cardsDiscard(result.links[0]);
-               // player.loseToDiscardpile(result.links[0]);
-                player.syncStorage('wwyj_shengming');   
+                
+                player.syncStorage('wwyj_shengming');  
+                player.update(); 
+                /*                          						
+                if(player.getExpansions('wwyj_shengming').length<1){
+                    //player.unmarkSkill('wwyj_shengming');
+					game.playwwyj('wwyj_chansuideshengming');
+                    //player.loseHp(player.hp);
+                    var num=player.getHp();
+                    if(num>0) player.loseHp(num);
+                }	
+                */	          		 
                 var num=1;
                 var info=get.info(result.links[0]);
                 if(info&&info.distance&&info.distance.attackFrom){
                     num-=info.distance.attackFrom;
                 }
-                player.draw(num);                            						
-                if(player.getExpansions('wwyj_shengming').length<=0){
-                    player.unmarkSkill('wwyj_shengming');
-					game.playwwyj('wwyj_chansuideshengming');
-					var num=player.getHp();
-                    if(num>0) player.loseHp(num);
-                    //player.loseHp(player.hp);
-                }		          					          			
+                player.draw(num);                 			          			
             }       
             else event.finish();                                    	                          	          	          	                         
     },
@@ -5713,35 +5710,27 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             event.finish();
         }				
 			'step 2'    
-			if(result.bool){
-			    /*
-                player.$throw(result.links);						
-                player.storage.wwyj_shengming.remove(result.links[0]);
-                game.cardsDiscard(result.links[0]);
-                player.syncStorage('wwyj_shengming');
-                event.target.equip(result.links[0]);
-                */
-                //player.give(result.links[0],trigger.source,'give');					
-               // player.loseToDiscardpile(result.links[0]);
-               // player.getExpansions('wwyj_shengming').remove(result.links[0]);
+			if(result.bool){			               
+                //player.getExpansions('wwyj_shengming').remove(result.links[0]);
                // game.cardsDiscard(result.links[0]);
                 event.target.equip(result.links[0]);
-                player.syncStorage('wwyj_shengming');   
-                
+                player.syncStorage('wwyj_shengming'); 
+                player.update();  
+                /*
+                if(player.getExpansions('wwyj_shengming').length<1){
+                   // player.unmarkSkill('wwyj_shengming');
+					game.playwwyj('wwyj_chansuideshengming');
+                    //player.loseHp(player.hp);
+                    var num=player.getHp();
+                    if(num>0) player.loseHp(num);
+                }
+                */		    
                 var num=1;
                 var info=get.info(result.links[0]);
                 if(info&&info.distance&&info.distance.attackFrom){
                     num-=info.distance.attackFrom;
                 }
-                player.draw(num);
-						
-                if(player.getExpansions('wwyj_shengming').length<=0){
-                    player.unmarkSkill('wwyj_shengming');
-					game.playwwyj('wwyj_chansuideshengming');
-                    //player.loseHp(player.hp);
-					var num=player.getHp();
-                    if(num>0) player.loseHp(num);
-                }		               					          			
+                player.draw(num);						                           					          			
             }       
             else event.finish();                                    	                          	          	          	                         
     },
@@ -5755,11 +5744,11 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				forced:true,
 				//frequent:true,
 				priority:Infinity,
-				/*
+				
 				init:function (player){
 				    player.storage.wwyj_shengming=[];
 				},
-				*/
+				
 				onremove:function(player,skill){
 					var cards=player.getExpansions(skill);
 					if(cards.length) player.loseToDiscardpile(cards);
@@ -12676,7 +12665,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     "wwyj_chaoxi_info":"</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】",
     "wwyj_cuangai2":"篡改",
 	"wwyj_cuangai":"篡改",
-    "wwyj_cuangai_info":"每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张手牌转变为【毒】",
+    "wwyj_cuangai_info":"每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】",
     "wwyj_doupo2":"斗破",   
     "wwyj_doupo":"斗破",
     "wwyj_doupo_info":" </font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用杀的次数",
@@ -12736,9 +12725,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     "wwyj_huayue":"花月",
     "wwyj_huayue_info":"</font><font color=#f00>锁定技</font> 当你使用一张基本牌后，你将其置于武将牌上，称为“星”，然后摸一张牌；当你受到伤害后，若你有“星”，伤害来源获得你武将牌上的一张“星”牌，若该牌为红色，你回复1点体力，若为黑色，你对伤害来源造成1点伤害",           
     "wwyj_chansui":"残碎",
-    "wwyj_chansui_info":"</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌，当你的武将牌上没有“命”牌时，你进入濒死状态",
+    "wwyj_chansui_info":"</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌",
     "wwyj_chansui2":"残碎",
-    "wwyj_chansui2_info":"</font><font color=#f00>锁定技</font> 准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备），并摸等同与这张武器攻击范围数量的牌。当你武将牌上没有“命”牌时，你进入濒死状态",
+    "wwyj_chansui2_info":"</font><font color=#f00>锁定技</font> 准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备），并摸等同与这张武器攻击范围数量的牌",//当你武将牌上没有“命”牌时，你进入濒死状态
     "wwyj_shengming":"生命",
     "wwyj_shengming_info":"</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏时，将牌堆和弃牌堆的所有武器牌置于你的武将牌上，称为“命”，你的手牌上限+X（X为“命”数）",            
     "wwyj_ranqi":"染柒",
@@ -13479,7 +13468,7 @@ var liblist = [
 	           ['<span class="bluetext">俺杀</span>： </font><font color=#f00>锁定技</font> 你的进攻距离-X，回合内使用【杀】的次数上限+X（X为游戏轮数） <br><span class="bluetext">超越</span>：</font><font color=#f00>锁定技</font> 你使用杀造成伤害时，若该角色未受伤或已翻面或已横置，则此伤害+1 <font color=#F0F>可突破</font>'],
 	           ['<span class="bluetext">伏击</span>：<font color=#F0F>隐匿技</font> 当你于其他角色的回合登场后，你可与该角色交换装备牌，然后其翻面 <br><span class="bluetext">国战</span>：回合结束时或一名角色阵亡后，你可以从场上除你之外的势力中选择其中一个，直到下次发动【国战】前，该势力的角色受到伤害或回复体力时你摸一张牌，且当你需要打出杀或闪时，你可观看此势力的一名其他角色的手牌，选择打出一张符合情况的手牌'],
 	           ['<span class="bluetext">染柒</span>：</font><font color=#f00>锁定技</font> 当你受到伤害后，伤害来源须猜你手牌中的花色数，若其猜对，你回复一点体力，若其猜错，其翻面 <br><span class="bluetext">狼杀</span>：</font><font color=#f00>锁定技</font> 你与已翻面的角色的距离为1，你使用【杀】的次数上限+X（X为场上已翻面的角色数）'],
-	           ['<span class="bluetext">生命</span>：</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏时，将牌堆和弃牌堆的所有武器牌置于你的武将牌上，称为“命”，你的手牌上限+X（“命”数）<br><span class="bluetext">残碎</span>：</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌。当你的武将牌上没有“命”牌时，你进入濒死状态'],
+	           ['<span class="bluetext">生命</span>：</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏时，将牌堆和弃牌堆的所有武器牌置于你的武将牌上，称为“命”，你的手牌上限+X（“命”数）<br><span class="bluetext">残碎</span>：</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌'],
 	           ['<span class="bluetext">花月</span>：</font><font color=#f00>锁定技</font> 当你使用一张基本牌后，你将其置于武将牌上，称为“星”，然后摸一张牌；当你受到伤害后，若你有“星”，伤害来源获得你武将牌上的一张“星”牌，若该牌为红色，你回复1点体力，若为黑色，你对伤害来源造成1点伤害<br><span class="bluetext">繁星</span>：出牌阶段，若你有“星”，你可以弃置所有的“星”，视为你使用了X张【万箭齐发】（X为你弃置的“星”的数量且至多为7）'],
                ['<span class="bluetext">掷果</span>：</font><font color=#f00>锁定技</font> 场上女性角色摸牌阶段多摸一张牌并交给你一张牌，然后其回复1点体力 <br><span class="bluetext">评芳</span>：准备阶段开始时，你可观看随机六张未登场的女性武将牌并选择一张，然后你可用这张牌替换一名其他角色的武将牌'],
                ['<span class="bluetext">荣耀</span>：当你受到伤害后，你可将牌堆顶X（你已损失的体力值）张牌置于武将牌上，称为“耀”。若你有“耀”，你不能成为黑色牌的目标 <br><span class="bluetext">套鸽</span>：回合结束时，你可选择一项：1、弃置任意张“耀”并令等量的其他角色各摸一张牌，然后你回复一点体力；2、将任意张“耀”交给等量的其他角色，然后该角色须弃置一张与之不同类别的手牌，否则其失去一点体力'],
@@ -13490,7 +13479,7 @@ var liblist = [
 	     	   ['<span class="bluetext">奇兵</span>：当你使用【杀】即将造成伤害时，你可选择一项：<li>平西：令一名其他角色也受到一点伤害<li>镇北：令此伤害+1<li>征南：获得该角色的一张牌<li>破东：令该角色摸等同其当前已损失的体力值张牌（至少1张），然后翻面<li>定中：你回复一点体力或摸一张牌'],
 	     	   ['<span class="bluetext">藏海</span>：</font><font color=#f00>锁定技</font> 当游戏开始时、你进入游戏时、一名角色进入濒死状态时，若你武将牌上的“海”不足五张，你摸一张牌并将牌堆顶的牌当“海”置于你的武将牌上，直至五张 <br><span class="bluetext">义更</span>：每回合限一次，当一名其他角色使用牌时，你可弃置一张你藏在武将牌上的其中一张与此牌花色相同的“海”，令此角色受到一点雷属性伤害'],
 	     	   ['<span class="bluetext">浮慧</span>：每当你使用或打出一张点数的奇偶性与X的奇偶性相同的牌后，你摸一张牌，否则你弃置一张牌，当你因此失去最后一张手牌时，你可选择一项：①对一名其他角色造成1点伤害；②恢复一点体力，将武将牌翻面并令X重置。（X为你发动此技能的次数）<br><span class="bluetext">斗破</span>：</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用杀的次数'],
-	     	   ['<span class="bluetext">篡改</span>：每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张手牌转变为【毒】 <br><span class="bluetext">抄袭</span>：</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】 <br><span class="bluetext">毒教</span>：<span class=yellowtext>主公技</span> 每回合限一次，其他【杀】势力的角色可以在其回合内将一张【毒】交给你'],
+	     	   ['<span class="bluetext">篡改</span>：每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】 <br><span class="bluetext">抄袭</span>：</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】 <br><span class="bluetext">毒教</span>：<span class=yellowtext>主公技</span> 每回合限一次，其他【杀】势力的角色可以在其回合内将一张【毒】交给你'],
 	     	   //['<span class="bluetext">技能名</span>：技能描述 <br><span class="bluetext">技能名</span>：技能描述'],
 	     		
     	

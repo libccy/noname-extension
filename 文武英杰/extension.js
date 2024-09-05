@@ -3983,6 +3983,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             player.chooseCardButton(trigger.source.getCards('h'),1,'选择'+get.translation(trigger.source)+'的一张手牌变为【毒】').set('filterButton',function(button){                                                                           						
 				return true;
             }).set('ai',function(button){
+                if(button.link.name=='tao'||get.color(button.link)=='red') return 10;
                 return get.value(button.link);
             }); 
             }     				            
@@ -9462,19 +9463,25 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },
                     save:true,
                     respondSha:true,
+                    fireAttack:true,
                     respondShan:true,
-                    result:{
-                        //player:1,
-                        player:function(player,target){
-							var target=game.findPlayer(function(current){
-								return current.hp<=0;
-							});
-							if(target&&get.attitude(player,target)>0) return 1;							
-							    return 0;
-						},
-                    },
+                    skillTagFilter:function(player,tag,arg){
+						if(tag=='fireAttack') return true;						
+					},
+					result:{
+						//player:1,
+						player:function(player,target){
+                            var target=game.findPlayer(function(current){
+                                return current.hp<=0;
+                            });
+                            if((target&&get.attitude(player,target)<=0)||(!target&&player.hasSkill("wwyj_miaoji2"))) return 0;   
+                            if(target&&get.attitude(player,target)>0&&player.hasSkill("wwyj_miaoji2")) return 1;                                                                        
+                                return 1;
+                        },
+					},
                 },
             },
+                                    
             "wwyj_qisi_sha":{
                 trigger:{
                     player:"chooseToRespondBegin",

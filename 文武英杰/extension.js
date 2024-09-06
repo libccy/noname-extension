@@ -1204,6 +1204,41 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
    if(config.wwyj_jiexiantupo){
 		
 		lib.arenaReady.push(function(){
+		lib.skill.wwyj_chansui={ 		                    
+            trigger:{
+                    player:"damageBegin",
+                },   
+                audio:"ext:文武英杰:1",             
+                forced:true,                    							
+                filter:function (event,player){
+          return player.getExpansions('wwyj_shengming').length>0;
+      },
+                content:function (){
+           'step 0'        
+			player.chooseCardButton(player.getExpansions('wwyj_shengming'),1,'选择获得其中的一张武器牌',true).set('filterButton',function(button){                                                                           						
+				return true;
+            }).set('ai',function(button){
+                return get.value(button.link);
+            });      										
+			'step 1'    
+			if(result.bool){
+                player.loseToDiscardpile(result.links[0]);
+                var num=1;
+                var info=get.info(result.links[0]);
+                if(info&&info.distance&&info.distance.attackFrom){
+                    num-=info.distance.attackFrom;
+                }
+                player.draw(num); 
+                player.say("命运又替我挡了一刀");
+                trigger.cancel();                			          			
+            }       
+            else event.finish();                                    	                          	          	          	                         
+    },
+            } 
+            lib.translate.wwyj_chansui_info='当你受到伤害时，若你的武将牌上有“命”武器牌，你选择弃置一张“命”，并摸等同与这张武器攻击范围数量的牌，然后取消此伤害 <font color=#F0F>已突破</font>';
+        });    
+        
+		lib.arenaReady.push(function(){
 		lib.skill.wwyj_yongji={ 		                    
             trigger:{                   
                 global:"dying",
@@ -3591,7 +3626,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             "wwyj_kanpoyiqie":["male","wwyjsha",3,["wwyj_lilun","wwyj_yanguan"],[]],
             "wwyj_daxiongxiaimao":["male","wwyjsha",4,["wwyj_chengpiao","wwyj_jipin"],[]],
             "wwyj_kelejiabing":["male","wwyjsha",3,["wwyj_jilve","wwyj_tuikeng"],[]],
-            "wwyj_huijin":["male","wwyjsha",4,["wwyj_chehuo","wwyj_jinzhu","wwyj_kangfu"],[]],            
+            "wwyj_huijin":["male","wwyjsha",3,["wwyj_chehuo","wwyj_jinzhu","wwyj_kangfu"],[]],            
             "wwyj_Show-K":["male","wwyjsha",3,["wwyj_daigeng","wwyj_liuxi"],[]],
 			"wwyj_remaliao":["male","wwyjsha",3,["wwyj_jianghun","wwyj_chengzhi"],[]],
             "wwyj_taishangdaniu":["male","wwyjsha",4,["wwyj_yixue","wwyj_qianxu"],[]],
@@ -3873,7 +3908,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         },  
                         trigger:{
                             player:["useCardEnd","respondEnd"],
-                            global:"phaseEnd",
+                            global:["phaseEnd","dieEnd"],
                         },
                         forced:true,                        
 						content:function(){														
@@ -3983,6 +4018,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             player.chooseCardButton(trigger.source.getCards('h'),1,'选择'+get.translation(trigger.source)+'的一张手牌变为【毒】').set('filterButton',function(button){                                                                           						
 				return true;
             }).set('ai',function(button){
+                if(button.link.name=='du') return 0;
                 if(button.link.name=='tao'||get.color(button.link)=='red') return 10;
                 return get.value(button.link);
             }); 
@@ -5792,6 +5828,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					player.syncStorage('wwyj_shengming');
 				    player.markSkill('wwyj_shengming');
 				    */
+				    player.say("我天赋异禀，奈何饱受风霜，身心已残碎");
 				    player.update();	
 				    game.log(player,'将',list,'置于武将牌上作为“命”');														
                 },
@@ -9474,6 +9511,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             var target=game.findPlayer(function(current){
                                 return current.hp<=0;
                             });
+                            if(player.getStat().card.sha>0) return 0;
                             if((target&&get.attitude(player,target)<=0)||(!target&&player.hasSkill("wwyj_miaoji2"))) return 0;   
                             if(target&&get.attitude(player,target)>0&&player.hasSkill("wwyj_miaoji2")) return 1;                                                                        
                                 return 1;
@@ -10849,8 +10887,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
          "wwyj_kangfu":{
                 audio:"ext:文武英杰:1",
                 trigger:{
-                    player:"dyingAfter",
-                    source:"dieBegin",
+                    source:"damageEnd",                    
                 },
                 forced:true,
                  mod:{
@@ -10864,12 +10901,14 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },
                 },               
                 filter:function (event,player){
-        return player.storage.disableEquip!=undefined&&player.storage.disableEquip.length>0;
-    },
+        return player.isDamaged()||(player.storage.disableEquip!=undefined&&player.storage.disableEquip.length>0);
+    },  
                 content:function (){ 
 				player.removeSkill('wwyj_likedead');
-                player.recover();                            
-                player.chooseToEnable();          
+                player.recover(); 
+                if(player.storage.disableEquip!=undefined&&player.storage.disableEquip.length>0){                         
+                    player.chooseToEnable();  
+                }        
     },
             },
         "wwyj_chehuo":{
@@ -12974,7 +13013,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             "wwyj_chehuo":"车祸",
             "wwyj_chehuo_info":"</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏",
             "wwyj_kangfu":"康复",
-            "wwyj_kangfu_info":"</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏",       
+            "wwyj_kangfu_info":"</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏",       
             "wwyj_jinzhu_shan":"烬铸",
             "wwyj_jinzhu_shan_info":"你可以把你的装备牌当做任意基本牌使用或打出",
             "wwyj_jinzhu_sha":"烬铸",
@@ -13433,7 +13472,7 @@ var liblist = [
 			   ['<span class="bluetext">理论</span>：每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶<br><span class="bluetext">严管</span>：每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌'],
 			   ['<span class="bluetext">诚剽</span>：出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张<br><span class="bluetext">济贫</span>：当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌'],
 			   ['<span class="bluetext">极略</span>：出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
-			   ['<span class="bluetext">车祸</span>：</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],			   
+			   ['<span class="bluetext">车祸</span>：</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],			   
 			   ['<span class="bluetext">代更</span>：每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合<br><span class="bluetext">流溪</span>：</font><font color=#f00>锁定技</font> 当你成为【杀】的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此【杀】造成伤害，该角色摸一张牌然后翻面'],
 			   ['<span class="bluetext">键魂</span>：</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的论外包角色的一个随机的技能（本技能须开启DIY的论外包，否则游戏会弹窗警告）<br><span class="bluetext">承志</span>：非论外包的角色死亡时，你可以复制其所有技能和卡牌并获得之'],
 			   ['<span class="bluetext">义写</span>：当一名其他角色的回合结束时，若其已受伤，你可交给其一张手牌，若此时其手牌数比你的多，你摸一张牌<br><span class="bluetext">谦虚</span>：</font><font color=#f00>锁定技</font> 你不能成为与你距离为1的角色使用的【杀】的目标，你使用的【杀】只能指定与你距离大于1的角色为目标，且你使用【杀】时至多额外指定一名目标'],

@@ -2,7 +2,7 @@ window.version='4.3';
 window.wwyjchangelog={
     '2024年08月-09月':{
     'version':'4.3',
-    'info':'<li>新增武将【清瑶】，修改【残碎的生命】的技能，修复奇思的ai',
+    'info':'<li>新增武将【清瑶】，修改【残碎的生命】的原技能并界限突破，修复【诸葛均】的奇思的ai，修改【辉烬贺流年】的康复时机',
     'players':["wwyj_qingyao"],
     'cards':[],
   },

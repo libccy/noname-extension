@@ -213,7 +213,7 @@ window.newtujian={
   '辉烬贺流年':{  
     'version':'辉烬贺流年，一位新生代扩展作者，喜欢制作扩展并为此付出了不少努力，技术也日益精湛。2019年底不幸遭遇车祸，手术成功后一直卧床，期间仍坚持制作扩展。代表扩展作品有《辉烬贺流年》等',
 	'players':["wwyj_huijin"],
-    'info':'<span class="bluetext">车祸</span>：<font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<li><span class="bluetext">康复</span>：<font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你脱离濒死状态或你击杀一名角色后，你回复一点体力并选择恢复一个装备栏<li><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出',
+    'info':'<span class="bluetext">车祸</span>：<font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<li><span class="bluetext">康复</span>：<font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏<li><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出',
     'cards':[],
   },
   '寰宇星城':{  

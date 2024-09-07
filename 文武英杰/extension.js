@@ -3902,6 +3902,45 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					        usedu:true,
 				        },
 					},
+					"wwyj_cuangai4":{					      
+                        trigger:{
+                            player:["dieBegin"],                            
+                        },
+                        forced:true, 
+						popup:false,
+						unique:true,
+						//临死前将场上及木牛流马里的毒复原
+						content:function(){														
+							event.cards=[];
+							for(var i=0;i<game.players.length;i++){
+								var cards=game.players[i].getCards('hej');
+								for(var h=0;h<cards.length;h++){
+								    if(cards[h].name=='du'){
+									    event.cards.push(cards[h]);
+								    }
+								}
+								var muniu=game.players[i].getEquip('muniu');
+					            if(muniu&&muniu.cards){
+						            for(var m=0;m<muniu.cards.length;m++){
+										if(muniu.cards[m].name=='du'){
+									        event.cards.push(cards[h]);
+								        }
+									}
+					            }								
+							}																
+						    for(var j=0;j<player.storage.wwyj_cuangai2.length;j++){
+								for(var k=0;k<event.cards.length;k++){
+								if(get.suit(event.cards[k])==get.suit(player.storage.wwyj_cuangai2[j])&&event.cards[k].number==player.storage.wwyj_cuangai2[j].number){
+									event.cards[k].init([event.cards[k].suit,event.cards[k].number,player.storage.wwyj_cuangai[j],player.storage.wwyj_cuangai3[j]]);
+									player.storage.wwyj_cuangai.remove(player.storage.wwyj_cuangai[j]);
+									player.storage.wwyj_cuangai2.remove(player.storage.wwyj_cuangai2[j]);
+									player.storage.wwyj_cuangai3.remove(player.storage.wwyj_cuangai3[j]);
+									player.update();
+								}																			
+								}																			
+							}										
+						},											
+					},
 					"wwyj_cuangai3":{
 					    init:function (player){
                             player.storage.wwyj_cuangai3=[];
@@ -3910,7 +3949,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             player:["useCardEnd","respondEnd"],
                             global:["phaseEnd","dieEnd"],
                         },
-                        forced:true,                        
+                        forced:true,
+                        popup:false,
+						unique:true,
+						//日常清毒
 						content:function(){														
 							for(var i=0;i<ui.discardPile.childNodes.length;i++){
 						var name=ui.discardPile.childNodes[i].name;
@@ -3943,7 +3985,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 						init:function (player){
                             player.storage.wwyj_cuangai2=[];
                         },  
-						forced:true,						
+						forced:true,
+						popup:false,
+						unique:true,
 						content:function(){
 							"step 0"
 							if(trigger.delay==false) game.delay();
@@ -3974,7 +4018,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				    global:'damageEnd',						
 				},
 				usable:1,
-				group:["wwyj_cuangai2","wwyj_cuangai3"],				
+				group:["wwyj_cuangai2","wwyj_cuangai3","wwyj_cuangai4"],				
                 init:function (player){
                     player.storage.wwyj_cuangai=[];
                 },               
@@ -4019,7 +4063,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				return true;
             }).set('ai',function(button){
                 if(button.link.name=='du') return 0;
-                if(button.link.name=='tao'||get.color(button.link)=='red') return 10;
+                if(button.link.name=='tao'||get.suit(button.link)=='heart') return 10;
                 return get.value(button.link);
             }); 
             }     				            
@@ -12709,7 +12753,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     "wwyj_dujiao_info":"<span class=yellowtext>主公技</span> 每回合限一次，其他【杀】势力的角色可以在其回合内将一张【毒】交给你",
     "wwyj_chaoxi":"抄袭",
     "wwyj_chaoxi_info":"</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】",
-    "wwyj_cuangai2":"篡改",
+    "wwyj_cuangai4":"篡改",
+	"wwyj_cuangai3":"篡改",
+	"wwyj_cuangai2":"篡改",
 	"wwyj_cuangai":"篡改",
     "wwyj_cuangai_info":"每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】",
     "wwyj_doupo2":"斗破",   
@@ -13024,7 +13070,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
             "wwyj_jilve_info":"​出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用。",
             "wwyj_jipin":"济贫",
             "wwyj_jipin_info":"当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌",
-            "wwyj_chengpiao":"诚剽",
+            "wwyj_chengpiao":"诚嫖",
             "wwyj_chengpiao_info":"出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张",
             "wwyj_lilun":"理论",
             "wwyj_lilun_info":"每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶",
@@ -13470,7 +13516,7 @@ var liblist = [
 			   ['<span class="bluetext">签到</span>：当一名其他角色判定牌生效后，你可获得其一张牌<br><span class="bluetext">嘤怪</span>：当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（闪电、乐不思蜀、兵粮寸断）<br><span class="bluetext">潜追</span>：<span class=yellowtext>限定技</span> 当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能'],
 			   ['<span class="bluetext">呲牙</span>：摸牌阶段开始时，你可少摸一张牌，然后视为对攻击范围内包含有你的任意名其他角色各使用一张【杀】<br><span class="bluetext">进修</span>：</font><font color=#f00>锁定技</font> 结束阶段你摸X张牌（X为你本回合造成的伤害次数）'],
 			   ['<span class="bluetext">理论</span>：每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶<br><span class="bluetext">严管</span>：每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌'],
-			   ['<span class="bluetext">诚剽</span>：出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张<br><span class="bluetext">济贫</span>：当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌'],
+			   ['<span class="bluetext">诚嫖</span>：出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张<br><span class="bluetext">济贫</span>：当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌'],
 			   ['<span class="bluetext">极略</span>：出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除无懈可击外）使用<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
 			   ['<span class="bluetext">车祸</span>：</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],			   
 			   ['<span class="bluetext">代更</span>：每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合<br><span class="bluetext">流溪</span>：</font><font color=#f00>锁定技</font> 当你成为【杀】的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此【杀】造成伤害，该角色摸一张牌然后翻面'],

@@ -1,7 +1,7 @@
 if (!localStorage.getItem('old-extension-tip')) {
 	alert('扩展仓库升级中，' +
 		'您在游戏内的扩展栏目获取扩展时可能会下载到四五年前的扩展导致游戏崩溃' +
-		'，升级完成前请谨慎下载');
+		'，升级完成前请谨慎下载（《文武英杰》扩展仍在此持续更新）');
 	localStorage.setItem('old-extension-tip', 'true');
 }
 
@@ -91,7 +91,8 @@ extension["文武英杰"] = {
 		"wwyj_zhongcheng2.mp3","wwyj_zhongchengpantu.jpg","wwyj_zhongchengpantu.mp3","wwyj_zhugejun.jpg",
 		"wwyj_zhugejun.mp3","wwyj_zhulinqixian.jpg","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3",
 		"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_rcanghai.jpg","wwyj_rcanghai.mp3",
-		"wwyj_rshun.jpg","wwyj_rshun.mp3","wwyj_dasima.jpg","wwyj_dasima.mp3","wwyj_hualuos.jpg","wwyj_hualuos.mp3","wwyj_qingyao.jpg","wwyj_qingyao.mp3"
+		"wwyj_rshun.jpg","wwyj_rshun.mp3","wwyj_dasima.jpg","wwyj_dasima.mp3","wwyj_hualuos.jpg","wwyj_hualuos.mp3","wwyj_qingyao.jpg","wwyj_qingyao.mp3",
+		"wwyj_wangshiruyan.jpg","wwyj_wangshiruyan.mp3"
 	]
 };
 extension["群英会"] = {

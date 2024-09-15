@@ -20,7 +20,7 @@ extension["官渡之战"] = {
 		"cxyHanShi.jpg", "cxyJuShou.jpg", "cxyLiuBei.jpg", "cxyLiuYe.jpg", "cxyShenPei.jpg",
 		"cxyTianFeng.jpg", "cxyTunLiang.png", "cxyXuHuang.jpg", "cxyXunChen.jpg", "cxyXunYou.jpg",
 		"cxyXunYu.jpg", "cxyXuYou.jpg", "cxyYanWen.jpg", "cxyYuanJun.png", "cxyYuanShao.jpg",
-		"cxyYuJin.jpg", "cxyZhangHe.jpg", "cxyZhangLiao.jpg", "extension.js", "style.css"],
+		"cxyYuJin.jpg", "cxyZhangHe.jpg", "cxyZhangLiao.jpg", "extension.js", "style.css"]
 	size: "2.66MB"
 };
 extension["文武英杰"] = {

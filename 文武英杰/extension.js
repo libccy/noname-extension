@@ -14013,5 +14013,5 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     author: "凉茶<br>本扩展一些扩展功能在无名杀v1.10.5版前有效，但不影响到武将<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
     diskURL: "",
     forumURL: "",
-    version: "4.3",
+    version: "4.4",
 },files:{"character":[],"card":[],"skill":[]}}})

@@ -1,15 +1,15 @@
-window.version='4.3';
+window.version='4.5';
 window.wwyjchangelog={
     '2024年08月-09月':{
-    'version':'4.3',
-    'info':'<li>新增武将【清瑶】、【往事如烟】，修改【残碎的生命】的原技能并界限突破，修复【诸葛均】的奇思的ai，修改【辉烬贺流年】的康复时机，【神座】界限突破并加一点体力上限，【大司马】增加一个技能【司马】并减一点体力上限',
-    'players':["wwyj_qingyao","wwyj_wangshiruyan"],
+    'version':'4.5',
+    'info':'<li>新增武将【清瑶】、【往事如烟】、【棘手念摧毁】、【遗计两个桃】，修改【残碎的生命】的原技能并界限突破，修复【诸葛均】的奇思的ai，修改【辉烬贺流年】的康复时机，【神座】界限突破并加一点体力上限，【大司马】增加一个技能【司马】并减一点体力上限，将击杀特效改为每回合限一次，以解决短时间内多个击杀造成卡死的问题',
+    'players':["wwyj_qingyao","wwyj_wangshiruyan","wwyj_jishouniancuihui","wwyj_yijilianggetao"],
     'cards':[],
   },
 	'2024年01月':{
     'version':'4.0',
     'info':'<li>新增武将【花落】、【大司马】、【藏海】',
-    'players':["wwyj_hualuos","wwyj_dasima","wwyj_rcanghai"],
+    'players':["wwyj_hualuo","wwyj_dasima","wwyj_rcanghai"],
     'cards':[],
   },
    '2023年12月':{

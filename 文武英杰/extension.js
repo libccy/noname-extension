@@ -641,6 +641,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                 player.say(['戎马一生，竟败于……你手', '我在修罗地狱等着你，哈哈……'].randomGet());
             },
         }
+		//借鉴《群英会》：
         lib.skill._wwyj_jishapeiyin={
         trigger:{
         global:"gameStart",    

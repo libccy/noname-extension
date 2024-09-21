@@ -3824,7 +3824,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                     "wwyj_rshun": ["male", "wwyjsha", 3, ["wwyj_fuhui", "wwyj_doupo"], []],
                     "wwyj_qingyao": ["male", "wwyjsha", 3, ["wwyj_cuangai", "wwyj_chaoxi", "wwyj_dujiao"], []],
                     "wwyj_wangshiruyan": ["male", "wwyjsha", 3, ["wwyj_wangfu", "wwyj_daoqian","wwyj_ruyan"], []],
-					"wwyj_jishouniancuihui": ["male", "wwyjsha", 3, ["wwyj_jishou", "wwyj_cuihui", "wwyj_zhilan"], []],
+					"wwyj_jishouniancuihui": ["male", "wwyjsha", 3, ["wwyj_jishou", "wwyj_huainian", "wwyj_cuihui"], []],
                     "wwyj_yijilianggetao": ["male", "wwyjsha", 3, ["wwyj_yitao", "wwyj_jieda"], []],
 				   // "wwyj_rshengma": ["male", "wwyjsha", 3, ["wwyj_shengma"], []],
 
@@ -4100,7 +4100,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             expose: 0.1,
                         },
                     },
-                    "wwyj_zhilan": {
+                    "wwyj_huainian": {
                         audio: ["dcwanglu", 2],
                         trigger: {
                             player: "phaseEnd",
@@ -13318,8 +13318,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					"wwyj_yitao1":"遗桃",
 					"wwyj_yitao":"遗桃",
                     "wwyj_yitao_info":"当你受到伤害后，若场上以此法放置的“桃”少于两张，你可以将牌堆或弃牌堆中随机的桃先后置于任一名角色的武将牌上，其回合开始时，你可以获得其武将牌上的一张“桃”并令其回复一点体力",
-                    "wwyj_zhilan":"制懒",
-                    "wwyj_zhilan_info":"</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数）",
+                    "wwyj_huainian":"怀念",
+                    "wwyj_huainian_info":"</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数）",
 					"wwyj_cuihui":"摧毁",
                     "wwyj_cuihui_info":"出牌阶段限X次（X为你的手牌数），你可与一名其他角色进行拼点，若你赢，你选择废除其一个装备栏，若你输，你摸一张牌",
 					"wwyj_jishou":"棘手",
@@ -14160,7 +14160,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                                 ['<span class="bluetext">浮慧</span>：每当你使用或打出一张点数的奇偶性与X的奇偶性相同的牌后，你摸一张牌，否则你弃置一张牌，当你因此失去最后一张手牌时，你可选择一项：①对一名其他角色造成1点伤害；②恢复一点体力，将武将牌翻面并令X重置。（X为你发动此技能的次数）<br><span class="bluetext">斗破</span>：</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用杀的次数'],
                                 ['<span class="bluetext">篡改</span>：每回合限一次，当一名角色受到伤害后，你可选择令伤害来源的一张手牌转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】 <br><span class="bluetext">抄袭</span>：</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】 <br><span class="bluetext">毒教</span>：<span class=yellowtext>主公技</span> 每回合限一次，其他【杀】势力的角色可以在其回合内将一张【毒】交给你'],
                                 ['<span class="bluetext">往复</span>：</font><font color=#f00>锁定技</font> 当你对一名其他角色造成伤害时，若其没有“烟”标记，其获得一枚“烟”标记，然后你摸一张牌并翻面 <br><span class="bluetext">道歉</span>：当有“烟”标记的角色受到伤害后，若你有手牌，你可交给其一张手牌并翻面，然后其移除“烟”标记 <br><span class="bluetext">如烟</span>：</font><font color=#f00>锁定技</font> 当你受到有来源的伤害时，若伤害来源没“烟”标记，你摸一张牌且此伤害-1，若其有“烟”标记，此伤害值+1'],
-                                ['<span class="bluetext">棘手</span>：当你受到伤害时，若来源有已被废除的装备栏，你可选择恢复其中一个装备栏，然后取消此伤害 <br><span class="bluetext">摧毁</span>：出牌阶段限X次（X为你的手牌数），你可与一名其他角色进行拼点，若你赢，你选择废除其一个装备栏，若你输，你摸一张牌 <br><span class="bluetext">制懒</span>：</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数）'],
+                                ['<span class="bluetext">棘手</span>：当你受到伤害时，若来源有已被废除的装备栏，你可选择恢复其中一个装备栏，然后取消此伤害 <br><span class="bluetext">怀念</span>：</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数） <br><span class="bluetext">摧毁</span>：出牌阶段限X次（X为你的手牌数），你可与一名其他角色进行拼点，若你赢，你选择废除其一个装备栏，若你输，你摸一张牌'],
 								['<span class="bluetext">遗桃</span>：当你受到伤害后，若场上以此法放置的“桃”少于两张，你可以将牌堆或弃牌堆中随机的桃先后置于任一名角色的武将牌上，其回合开始时，你可以获得其武将牌上的一张“桃”并令其回复一点体力 <br><span class="bluetext">解答</span>：</font><font color=#f00>锁定技</font> 武将牌上有因【遗桃】放置的桃的角色受到伤害时，所有此类角色各摸一张牌'],
 								//['<span class="bluetext">技能名</span>：技能描述 <br><span class="bluetext">技能名</span>：技能描述'],
 

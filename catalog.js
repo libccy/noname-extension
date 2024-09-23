@@ -24,7 +24,7 @@ extension["官渡之战"] = {
 	size: "2.66MB"
 };
 extension["文武英杰"] = {
-	date: "2024/09/21,
+	date: "2024/09/23,
 	author: "",
 	intro: "<li>更新：修复BUG，新增武将，完善个别技能效果等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
 	size: "51MB",
@@ -82,7 +82,7 @@ extension["文武英杰"] = {
 	"wwyj_zhenwang.mp3","wwyj_zhichi1.mp3","wwyj_zhichitianya.jpg","wwyj_zhichitianya.mp3","wwyj_zhiguo1.mp3",
 	"wwyj_zhiguo2.mp3","wwyj_zhongcheng1.mp3","wwyj_zhongcheng2.mp3","wwyj_zhongchengpantu.jpg","wwyj_zhongchengpantu.mp3",
 	"wwyj_zhugejun.jpg","wwyj_zhugejun.mp3","wwyj_zhulinqixian.jpg","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3",
-	"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3"
+	"wwyj_zhuxiaoer.jpg","wwyj_zhuxiaoer.mp3","wwyj_ziyage.jpg","wwyj_ziyage.mp3","wwyj_rlvbao.jpg","wwyj_rlvbao.mp3","wwyj_lvbao1.mp3","wwyj_lvbao2.mp3"
 	]
 };
 extension["群英会"] = {

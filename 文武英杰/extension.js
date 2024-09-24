@@ -3834,7 +3834,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                     "wwyj_wangshiruyan": ["male", "wwyjsha", 3, ["wwyj_wangfu", "wwyj_daoqian","wwyj_ruyan"], []],
 					"wwyj_jishouniancuihui": ["male", "wwyjsha", 3, ["wwyj_jishou", "wwyj_huainian", "wwyj_cuihui"], []],
                     "wwyj_yijilianggetao": ["male", "wwyjsha", 3, ["wwyj_yitao", "wwyj_jieyi"], []],
-					"wwyj_rlvbao": ["male", "wwyjsha", 3, ["wwyj_tianlao", "wwyj_lvbao"], []],
+					"wwyj_rlvbao": ["female", "wwyjsha", 3, ["wwyj_tianlao", "wwyj_lvbao"], []],
 					//"wwyj_guishenyi": ["male", "wwyjsha", 3, ["wwyj_kejin", "wwyj_shenyi"], []],
 					//"wwyj_fenghuitaichu": ["male", "wwyjsha", 3, ["wwyj_fenghui", "wwyj_taichu"], []],
 				   // "wwyj_rshengma": ["male", "wwyjsha", 3, ["wwyj_shengma"], []],
@@ -3967,8 +3967,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
 
                 skill: {
 
-                    "wwyj_lvbao2": {
-                        //audio: ["rejiuyuan", 2],
+                    "wwyj_lvbao2": {                        
                         enable: 'phaseUse',
                         filter: function (event, player) {
                             return !player.hasSkill('wwyj_tianlao1') && game.hasPlayer(function (current) {
@@ -3991,7 +3990,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                             result: {
                                 target: function (player, target) {
                                     if (get.attitude(player, target) > 0) return 1;
-                                    if (get.attitude(player, target) <= 0 && player.countCards('h') > 3) return 1;
+                                    if (get.attitude(player, target) <= 0 && player.countCards('h') > 5) return -1;
                                     return 0;
                                 },
                             },
@@ -4065,7 +4064,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                         trigger: {
                             player: "phaseUseBegin",
                         },
-                        audio: ["rezhiheng", 2],
+                        audio: ["hongyi", 2],
                         unique: true,
                         forceunique: true,
                         direct: true,
@@ -4086,21 +4085,21 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                             }).set('ai', function (button) {
                                 switch (button.link[2]) {
                                     case 'du': return 0 + 17 * Math.random();
-                                    case 'sha': return 5 + 17 * Math.random();
-                                    case 'tao': return 6 + 17 * Math.random();
+                                    case 'sha': return 7 + 17 * Math.random();
+                                    case 'tao': return 5 + 17 * Math.random();
                                     case 'jiu': return 4 + 17 * Math.random();
                                     case 'shan': return 5 + 17 * Math.random();
                                     case 'wuzhong': return 3 + 17 * Math.random();
                                     case 'shunshou': return 3.5 + 17 * Math.random();
                                     case 'guohe': return 2 + 17 * Math.random();
-                                    case 'jiedao': return 2 + 17 * Math.random();
-                                    case 'juedou': return 2 + 17 * Math.random();
-                                    case 'taoyuan': return 2 + 17 * Math.random();
+                                    case 'jiedao': return 1 + 17 * Math.random();
+                                    case 'juedou': return 1 + 17 * Math.random();
+                                    case 'taoyuan': return 1 + 17 * Math.random();
                                     case 'wugu': return 1 + 17 * Math.random();
-                                    case 'huogong': return 2 + 17 * Math.random();
+                                    case 'huogong': return 1 + 17 * Math.random();
                                     case 'tiesuo': return 1 + 17 * Math.random();
-                                    case 'nanman': return 2.5 + 17 * Math.random();
-                                    case 'wanjian': return 1.5 + 17 * Math.random();
+                                    case 'nanman': return 2 + 17 * Math.random();
+                                    case 'wanjian': return 1 + 17 * Math.random();
                                     case 'wuxie': return 3.5 + 17 * Math.random();
                                     default: return 17 * Math.random();
                                 }
@@ -4143,6 +4142,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                             return event.player.getExpansions('wwyj_yitao1').length > 0;
                         },
                         check: function (event, player) {
+                            if(player.hp<2) return 1;
                             if ((player.countCards('h', 'tao') && event.player == player && player.isHealthy()) || event.player.isHealthy()) return 0;
                             return 1;
                         },
@@ -4214,6 +4214,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                                 player.chooseTarget(get.prompt('wwyj_yitao'), 1,true, function (card, player, target) {
                                         return true;
                                     }).set('ai', function (target) {
+                                        if (player==target && player.hasFriend() && target.getExpansions('wwyj_yitao1').length > 0) return 0;
                                         return get.attitude(_status.event.player, target);
                                     });
                             }
@@ -4239,7 +4240,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"æ–‡æ­
                                 player.chooseTarget(get.prompt('wwyj_yitao'), 1, true, function (card, player, target) {
                                     return true;
                                 }).set('ai', function (target) {
-                                    if (player!=target && target.getExpansions('wwyj_yitao1').length > 0) return 0;
+                                    if (player==target && player.hasFriend() && target.getExpansions('wwyj_yitao1').length > 0) return 0;
                                     return get.attitude(_status.event.player, target);
                                 });
                             }

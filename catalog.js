@@ -1,11 +1,11 @@
-/*
+
 if (!localStorage.getItem('old-extension-tip')) {
 	alert('扩展仓库升级中，' +
 		'您在游戏内的扩展栏目获取扩展时可能会下载到四五年前的扩展导致游戏崩溃' +
 		'，升级完成前请谨慎下载');
 	localStorage.setItem('old-extension-tip', 'true');
 };
-*/
+
 extension["官渡之战"] = {
 	date:"2022/01/11",
 	intro: "<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>" +
@@ -25,9 +25,9 @@ extension["官渡之战"] = {
 	size: "2.66MB"
 };
 extension["文武英杰"] = {
-	date: "2024/09/29,
-	author: "",
+	date: "2024/09/29",
 	intro: "<li>更新：新增武将，完善个别技能效果等<li>本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
+	author: "凉茶",
 	size: "54MB",
 	netdisk: "",
 	version: 4.6,

@@ -1,83 +1,7 @@
 game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文武英杰",editable:false,content:function (config,pack){ 
 
     // ---------------------------------------Update------------------------------------------//   
-    /*
-    wwyj_update=[      	   
-       //'武将资料卡可点播武将阵亡配音的功能',
-       '新增武将【花落】、【大司马】、【藏海】、【瞬】',
-       //'',
-       //'计划更新：极彩色、灰太狠',
-       'players://["wwyj_hualuo","wwyj_dasima","wwyj_rcanghai","wwyj_rshun"]',
-    ];
-    wwyj_version='更新日期：2024年01月19日';
-    
-    game.wwyj_update=function(){
-       var wwyj=document.createElement('wwyj');
-       wwyj.style.textAlign='left';
-       var players=null,cards=null;
-       for(var i=0;i<wwyj_update.length;i++){
-       if(wwyj_update[i].indexOf('players://')==0){
-       try{
-         players=JSON.parse(wwyj_update[i].slice(10));
-       }
-       catch(e){
-       players=null;
-       }
-       }
-       else if(wwyj_update[i].indexOf('cards://')==0){
-       try{
-       cards=JSON.parse(wwyj_update[i].slice(8));
-       }
-       catch(e){
-       cards=null;
-       }
-       }
-       else{
-       var li=document.createElement('li');
-       li.innerHTML=wwyj_update[i];
-       wwyj.appendChild(li);
-       };
-       };
-       var dialog=ui.create.dialog('【文武英杰】的更新内容<br>'+wwyj_version,'hidden');
-       dialog.content.appendChild(wwyj);
-       if(players){
-       dialog.addSmall([players,'character']);
-       };
-       if(cards){
-       for(var i=0;i<cards.length;i++){
-       cards[i]=[get.translation(get.type(cards[i])),'',cards[i]]
-       };
-       dialog.addSmall([cards,'vcard']);
-       };
-       dialog.open();
-       var hidden=false;
-       if(!ui.auto.classList.contains('hidden')){
-       ui.auto.hide();
-       hidden=true;
-       };
-       game.pause();
-       var control=ui.create.control('确定',function(){
-       dialog.close();
-       control.close();
-       if(hidden) ui.auto.show();
-       game.resume();
-       });
-       };
-       lib.skill._wwyj_update={
-       trigger:{
-          global:"gameStart"
-       },
-       priority:Infinity,
-       forced:true,
-       content:function(){              
-              if(lib.config.wwyj_version!=wwyj_version){
-              game.wwyj_update();  
-              alert('温馨提示：首次安装使用【文武英杰】时若发现本扩展的武将没图片或无法对本扩展的武将进行自由点将，请先开启【文武英杰】武将菜单右上角的总开关，再重启游戏');            
-              game.saveConfig('wwyj_version',wwyj_version); 			  			  
-       }
-       },
-       }      
-       */
+
     game.wwyj_showChangeLog = function () {
         var dialog = ui.create.dialog('hidden');
         dialog.style.height = 'calc(100%)';
@@ -1257,6 +1181,111 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     if (config.wwyj_jiexiantupo) {
 
 
+        lib.arenaReady.push(function () {
+            lib.skill.wwyj_tianlao = {  
+                        trigger: {
+                            player: "phaseUseBegin",
+                        },
+                        audio: ["hongyi", 2],
+                        unique: true,
+                        forceunique: true,
+                        direct: true,
+                        global: 'wwyj_tianlao3',
+                        content: function () {
+                            'step 0'
+                            var list = [];
+                            for (var i = 0; i < lib.inpile.length; i++) {
+                                var name = lib.inpile[i];
+                                if (get.type(name) == 'trick') list.push(['锦囊', '', name]);
+                                else if (get.type(name) == 'basic') list.push(['基本', '', name]);
+                            }
+                            /*player.chooseButton(['请选择一个牌名',[list,'vcard'],true]).set('ai',function(button){
+                                return button.link[2]=='sha'?1:0;
+                            });  */
+                            player.chooseButton([get.prompt('wwyj_tianlao'), [list, 'vcard']]).set('filterButton', function (button) {
+                                return true;
+                            }).set('ai', function (button) {
+                                switch (button.link[2]) {
+                                    case 'du': return 9 + 17 * Math.random();
+                                    case 'sha': return 1 + 17 * Math.random();
+                                    case 'tao': return 1 + 17 * Math.random();
+                                    case 'jiu': return 1 + 17 * Math.random();
+                                    case 'shan': return 1 + 17 * Math.random();
+                                    case 'wuzhong': return 3 + 17 * Math.random();
+                                    case 'shunshou': return 5 + 17 * Math.random();
+                                    case 'guohe': return 5 + 17 * Math.random();
+                                    case 'jiedao': return 7 + 17 * Math.random();
+                                    case 'juedou': return 3 + 17 * Math.random();
+                                    case 'taoyuan': return 8 + 17 * Math.random();
+                                    case 'wugu': return 9 + 17 * Math.random();
+                                    case 'huogong': return 6 + 17 * Math.random();
+                                    case 'tiesuo': return 4 + 17 * Math.random();
+                                    case 'nanman': return 6 + 17 * Math.random();
+                                    case 'wanjian': return 9 + 17 * Math.random();
+                                    case 'wuxie': return 2 + 17 * Math.random();
+                                    default: return 17 * Math.random();
+                                }
+                            }).set('rand', [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()], Math.random());
+                            'step 1'
+                            if (result.bool) {
+                                player.storage.wwyj_tianlao2 = result.links[0][2];
+                                player.addTempSkill('wwyj_tianlao2', { player: 'phaseBegin' });
+                                player.popup(result.links[0][2], 'soil');
+                                player.logSkill('wwyj_tianlao');
+                                game.log(player, '选择了', '' + get.translation(result.links[0][2]));
+                            }
+                        },
+                        ai: {
+                            order: 8,
+                        },
+                    },
+            lib.skill.wwyj_tianlao3 = {      
+                        mod: {
+                            cardEnabled: function (card, player) {
+                                if (player.hasSkill('wwyj_tianlao1') || player.hasSkill('wwyj_tianlao2')) return;
+                                var name, players = game.filterPlayer();
+                                for (var i = 0; i < players.length; i++) {
+                                    if (players[i].hasSkill('wwyj_tianlao2')) {
+                                        name = players[i].storage.wwyj_tianlao2;
+                                    }
+                                }
+                                if (name && card.name != name) return false;
+                            },
+                            cardUsable: function (card, player) {
+                                if (player.hasSkill('wwyj_tianlao1') || player.hasSkill('wwyj_tianlao2')) return;
+                                var name, players = game.filterPlayer();
+                                for (var i = 0; i < players.length; i++) {
+                                    if (players[i].hasSkill('wwyj_tianlao2')) {
+                                        name = players[i].storage.wwyj_tianlao2;
+                                    }
+                                }
+                                if (name && card.name != name) return false;
+                            },
+                            cardRespondable: function (card, player) {
+                                if (player.hasSkill('wwyj_tianlao1') || player.hasSkill('wwyj_tianlao2')) return;
+                                var name, players = game.filterPlayer();
+                                for (var i = 0; i < players.length; i++) {
+                                    if (players[i].hasSkill('wwyj_tianlao2')) {
+                                        name = players[i].storage.wwyj_tianlao2;
+                                    }
+                                }
+                                if (name && card.name != name) return false;
+                            },
+                            cardSavable: function (card, player) {
+                                if (player.hasSkill('wwyj_tianlao1') || player.hasSkill('wwyj_tianlao2')) return;
+                                var name, players = game.filterPlayer();
+                                for (var i = 0; i < players.length; i++) {
+                                    if (players[i].hasSkill('wwyj_tianlao2')) {
+                                        name = players[i].storage.wwyj_tianlao2;
+                                    }
+                                }
+                                if (name && card.name != name) return false;
+                            }
+                        },
+                    }
+            lib.translate.wwyj_tianlao_info = '出牌阶段开始时，你可选择一个基本牌或普通锦囊牌的牌名，令所有其他角色不能使用或打出除这牌名外的牌，直到你的下个回合开始 <font color=#F0F>已突破</font>';
+        });        
+                    
         lib.arenaReady.push(function () {
             lib.skill.wwyj_jishou = {
                 trigger: {
@@ -2587,24 +2616,12 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },
     }
     // ---------------------------------------open boss------------------------------------------//				 
-    /*
-    if (config.wwyj_normalize) {
-        lib.arenaReady.push(function () {
-            var wwyj_boss = lib.characterPack['wenwuyingjie'];
-            for (var i in wwyj_boss) {
-                var wwyj_xu = wwyj_boss[i][4];
-                if (wwyj_xu.indexOf("boss") >= 0) {
-                    wwyj_xu[wwyj_xu.indexOf("boss")] = '';
-                    wwyj_xu[wwyj_xu.indexOf("bossallowed")] = '';
-                }
-            }
-        });
-    }
-    */
+
     if (config.wwyj_normalize) {
         lib.arenaReady.push(function () {
             for (var i in lib.characterPack['wenwuyingjie']) {
                 if (lib.character[i][4].indexOf("boss") >= 0) lib.character[i][4].splice(0, 1);
+                //if (lib.character[i].name=="wwyj_youzi"&&lib.character[i][4].indexOf("boss") <= 0) lib.character[i][4].push("boss");
             }
         });
     }
@@ -3654,6 +3671,24 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },
     };
 
+    lib.extensionMenu.extension_文武英杰.wwyj_paiduikoujue = {
+        name: '<div class="wwyj_menu">牌堆口诀<font size="3px">⇨</font></div>',
+        clear: true,
+        onclick: function () {
+            if (this.wwyj_paiduikoujue == undefined) {
+                game.playwwyj('wwyj_dansha');
+                var more = ui.create.div('.wwyj_paiduikoujue', '<li> 二一普黑九雷杀<li>九张普红五火杀<li>五酒不欢三国杀<li>二十四闪十二桃<li>两兵三乐四无中<li>五顺六拆七无懈<li>三南一箭一桃园<li>三斗两刀两谷电<li>三道火攻六连环<li>算尽牌堆定乾坤');
+                this.parentNode.insertBefore(more, this.nextSibling);
+                this.wwyj_paiduikoujue = more;
+                this.innerHTML = '<div class="wwyj_menu">牌堆口诀<font size="3px">⇩</font></div>';
+            } else {
+                game.playwwyj('wwyj_show');
+                this.parentNode.removeChild(this.wwyj_paiduikoujue);
+                delete this.wwyj_paiduikoujue;
+                this.innerHTML = '<div class="wwyj_menu">牌堆口诀<font size="3px">⇨</font></div>';
+            }
+        },
+    };
     lib.extensionMenu.extension_文武英杰.wwyj_yugao = {
         name: '<div class="wwyj_menu">更新预告<font size="3px">⇨</font></div>',
         clear: true,
@@ -3673,7 +3708,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
         },
     };
 
-    lib.extensionMenu.extension_文武英杰.wwyj_最佳拍档 = {
+    lib.extensionMenu.extension_文武英杰.wwyj_zuijiapaidang = {
         name: '<div class="wwyj_menu">最佳拍档<font size="3px">⇨</font></div>',
         clear: true,
         onclick: function () {
@@ -4273,7 +4308,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             event.target.gainPlayerCard(player, 'h', true, '倒卖');                            
                             player.logSkill('wwyj_shiqie');
                             lib.skill.wwyj_yunjiang.get(player,1);
-						    player.update();
+                            lib.skill.wwyj_yunjiang.update(player);						    
 						    'step 1'
 						    if(event.target.countCards('h')>player.countCards('h')){
                                 player.draw();
@@ -4296,7 +4331,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 								list.push(i);
 							}
 							if(list.length){								
-								dialog.addAuto([list,'character']);
+								dialog.add([list,'character']);
+								//dialog.addAuto([list,'character']);
 								//dialog.addSmall([list,'character']);																			
 							}
 						}
@@ -4322,14 +4358,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 						for(var i in slist){
 							list.push(i);
 						}	
-						for(var i=0;i<list.length;i++){							
+						for(var i=0;i<list.length;i++){														
 							var group=lib.character[name][1].slice(0);
+							var skills=lib.character[name][3].slice(0);	
+							//var group=lib.character[list[i]][1].slice(0);
+							//var skills=lib.character[list[i]][3].slice(0);						
 								if(group=='shu') player.storage.wwyj_yunjiangsha=true;
 								if(group=='wei') player.storage.wwyj_yunjiangshan=true;
 								if(group=='wu') player.storage.wwyj_yunjiangtao=true;
 								if(group=='qun') player.storage.wwyj_yunjiangjiu=true;
-								if(group!='wei'&&group!='shu'&&group!='wu'&&group!='qun') player.storage.wwyj_yunjiangwuxie=true;						
-							var skills=lib.character[name][3].slice(0);
+								if(group!='wei'&&group!='shu'&&group!='wu'&&group!='qun') player.storage.wwyj_yunjiangwuxie=true;													
 							for(var j=0;j<skills.length;j++){								
 								if(player.skills.contains(skills[j])) skills.splice(j--,1);											
 							}								
@@ -4339,7 +4377,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 							player.popup(name);	
 							player.flashAvatar('wwyj_yunjian', name);
 							player.markSkill('wwyj_yunjian');
-							player.update();						
+							lib.skill.wwyj_yunjiang.update(player);													
 							game.log(player,'获得了一张【云将】牌——【'+get.translation(name)+'】');
 						}						
 						/*
@@ -4349,7 +4387,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 						}
 						*/							
 						//mark.setBackground(player.name,'character');	//十周年UI下的人物标记会变形						                                                	
-						//player.addAdditionalSkill('wwyj_yunjiang',skills2,true);//获得角色的技能太超模了，暂时封禁
+						if (lib.config.extension_文武英杰_wwyj_normalize == true) {
+						    player.addAdditionalSkill('wwyj_yunjiang',skills2,true);//获得角色的技能太超模了，暂时封禁
+						}
 					},
 					update:function(player){
 						player.storage.wwyj_yunjiangsha=false;
@@ -4365,18 +4405,20 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 						}	
 						for(var i=0;i<list.length;i++){
 							var group=lib.character[list[i]][1].slice(0);
+							var skills=lib.character[list[i]][3].slice(0);
 								if(group=='shu') player.storage.wwyj_yunjiangsha=true;
 								if(group=='wei') player.storage.wwyj_yunjiangshan=true;
 								if(group=='wu') player.storage.wwyj_yunjiangtao=true;
 								if(group=='qun') player.storage.wwyj_yunjiangjiu=true;
-								if(group!='wei'&&group!='shu'&&group!='wu'&&group!='qun') player.storage.wwyj_yunjiangwuxie=true;									
-							var skills=lib.character[list[i]][3].slice(0);
+								if(group!='wei'&&group!='shu'&&group!='wu'&&group!='qun') player.storage.wwyj_yunjiangwuxie=true;																
 							for(var j=0;j<skills.length;j++){
 								if(player.skills.contains(skills[j])) skills.splice(j--,1);																							
 							}
 							skills2=skills2.concat(skills);			
-						}
-						//player.addAdditionalSkill('wwyj_yunjiang',skills2);						
+						}						
+						if (lib.config.extension_文武英杰_wwyj_normalize == true) {
+						    player.addAdditionalSkill('wwyj_yunjiang',skills2,true);
+						}						
 					},					
 					presha:function(){
 						'step 0'
@@ -4542,13 +4584,13 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 					direct:true,
 					//limited: true,
 					priority:10,
-					init: function (player) {
-                        player.storage.wwyj_yunjianginited=false;
-                        player.storage.wwyj_yunjiang.list = [];
-                    },
-					filter:function(event,player){
-						return !player.storage.wwyj_yunjianginited;
-					},
+					//init: function (player) {
+                        //player.storage.wwyj_yunjianginited=false;
+                        //player.storage.wwyj_yunjiang.list = [];
+                    //},
+					//filter:function(event,player){
+						//return !player.storage.wwyj_yunjianginited;
+					//},
 					content:function(){
                 		for(var i in lib.character){                    		
                     		player.storage.wwyj_yunjiang.list.push(i);
@@ -4559,8 +4601,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 							player.storage.wwyj_yunjiang.list.remove([game.players[i].name2]);
 						}
 						lib.skill.wwyj_yunjiang.get(player,2);
-						player.storage.wwyj_yunjianginited=true;
-						player.update();
+						//player.storage.wwyj_yunjianginited=true;						
 						player.logSkill("wwyj_yunjiang1");
 					}							
 				},		
@@ -4573,8 +4614,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 						return player.storage.wwyj_yunjiang&&player.storage.wwyj_yunjiang.list&&player.storage.wwyj_yunjiang.list.length>0;
 					},
 					content:function(){
-						lib.skill.wwyj_yunjiang.get(player,trigger.num);
-						player.update();
+						lib.skill.wwyj_yunjiang.get(player,trigger.num);						
 						player.logSkill("wwyj_yunjiang2");
 					},
 					ai:{
@@ -4704,7 +4744,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 				},	
 					//云将技能代码参考《概论武将》的“幻千”
 					"wwyj_taichu": {
-                        //audio: 'wwyj_chuangshi',
+                        audio: 'wwyj_chuangshi',
                         trigger: {
                             player: "dying",
                         },
@@ -4749,7 +4789,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             }, player);
                             player.storage.wwyj_taichu = true;
                             player.awakenSkill("wwyj_taichu");
-                            game.playAudio('wwyj_chuangshi');
+                            game.playwwyj('wwyj_chuangshi');
                             player.gainMaxHp();
                             game.delay(2);
                             event.current = player.next;
@@ -4790,7 +4830,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         trigger: {
                             global: ["phaseDrawBegin"],
                         },
-                        //audio: "wwyj_huikeng",
+                        audio: "wwyj_huikeng",
                         filter: function (event, player) {
                             return event.num > 0 && ui.cardPile.childNodes.length >= event.num;
                         },
@@ -4811,7 +4851,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             'step 1'
                             if (result.bool) {
                                 trigger.cancel();
-                                game.playAudio('wwyj_huikeng');
+                                game.playwwyj('wwyj_huikeng');
                                 player.line(trigger.player, 'fire');
                                 trigger.player.gain(result.links, 'draw');
                                 player.logSkill("wwyj_raoshi");
@@ -4824,6 +4864,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         trigger: {
                             global: ["dying"],
                         },
+                        priority: 2,
                         filter: function (event, player) {
                             return event.player.hp <= 0 && player.hasMark("wwyj_kejin");
                         },
@@ -4836,6 +4877,10 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             player.say('已交赎金，破财挡灾');
                             trigger.player.recover(1 - trigger.player.hp);
                         },
+                        ai: {                            
+                            order: 8,
+                            expose: 0.4,
+                        },                   
                     },
                     //以下氪金技能代码来自“鬼神易”的《天马行空》扩展的氪金商店：
                     "wwyj_kejin": {
@@ -5191,7 +5236,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             result: {
                                 target: function (player, target) {
                                     if (get.attitude(player, target) > 0) return 1;
-                                    if (get.attitude(player, target) <= 0 && player.countCards('h') > 5) return -1;
+                                    if (get.attitude(player, target) <= 0 && (player.countCards('h') > 5||player.countCards('h',{name:['sha','tao','wuzhong','lebu','guohe','shunshou']}))) return -1;
                                     return 0;
                                 },
                             },
@@ -5343,8 +5388,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             return event.player.getExpansions('wwyj_yitao1').length > 0;
                         },
                         check: function (event, player) {
-                            if (player.hp < 2) return 1;
-                            if ((player.countCards('h', 'tao') && event.player == player && player.isHealthy()) || event.player.isHealthy()) return 0;
+                            if (player.hp < 2) return 1;                          
+                            if (((player.countCards('h', 'tao')|| player.countCards('j', {name:'lebu'}))&& event.player == player && player.hp>1) || event.player.isHealthy()||get.attitude(player, event.player) <= 0) return 0;
                             return 1;
                         },
                         prompt: function (event, player) {
@@ -5440,9 +5485,8 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                                 event.cards = list.randomGet();
                                 player.chooseTarget(get.prompt('wwyj_yitao'), 1, true, function (card, player, target) {
                                     return true;
-                                }).set('ai', function (target) {
-                                    if(get.attitude(_status.event.player, target)>0&&target.getExpansions('wwyj_yitao1').length<=0) return 1;
-                                    if (player == target && player.hasFriend() && player.getExpansions('wwyj_yitao1').length > 0) return 0;
+                                }).set('ai', function (target) {                                   
+                                    if (get.attitude(player, target)<=0||target.getExpansions('wwyj_yitao1').length > 0) return 0;
                                     return get.attitude(_status.event.player, target);
                                 });
                             }
@@ -5619,7 +5663,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 							if(player.countCards('h','sha')>0) return 0;
 							var num=player.countCards('h');
 							if(num>player.hp) return 1;
-							if(num==1) return -2;
+							if(num==1) return 0;
 							if(num==2) return -1;
 							return -0.7;
 						},
@@ -5630,7 +5674,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 							return -0.5
 						},
                             },
-                            order: 9,
+                            order: 5,
                         },
                     },
                     "wwyj_ruyan2": {
@@ -6212,6 +6256,9 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             player: "phaseDrawBegin",
                         },
                         forced: true,
+                        filter: function (event, player) {
+                            return player.countCards('e', { subtype: ['equip3', 'equip4'] })>0;
+                        },
                         audio: ["old_pojun", 2],
                         content: function () {
                             player.say('假如程昱拿十万匹马充当军粮结局如何？老铁们不妨分析一手');
@@ -9069,7 +9116,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         },
                         forced: true,
                         audio: "ext:文武英杰:2",
-                        charlotte: true,
+                        //charlotte: true,
                         priority: 2020,
                         content: function () {
                             'step 0'
@@ -9133,6 +9180,16 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         },
                         audio: "ext:文武英杰:1",
                         priority: 2020,
+                        check: function (event, player) {
+                            var num1 = game.countPlayer(function (current) {
+                                return current.isTurnedOver()&&get.attitude(player, current) <= 0;
+                            });
+                            var num2 = game.countPlayer(function (current) {
+                                return current.isTurnedOver()&&get.attitude(player, current) > 0;
+                            });
+                            if (num1 > num2) return 1;                                                            
+                            return 0;
+                        },
                         filter: function (event, player) {
                             if (event.card.name != 'sha') return false;
                             if (event.targets.length > 1) return false;
@@ -9143,18 +9200,15 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         content: function () {
                             'step 0'
                             event.targets = game.filterPlayer(function (current) {
-                                return current.isTurnedOver() && current != player;
+                                return current.isTurnedOver() && !trigger.targets.contains(current);
                             });
-                            event.targets.sort(lib.sort.seat);
-                            'step 1'
                             trigger.targets.addArray(event.targets);
-                            player.line(trigger.targets, 'green');
-                            'step 2'
+                            event.targets.sort(lib.sort.seat);
+                            'step 1'                            
                             if (event.targets.length) {
-                                event.current = event.targets.shift();
-                                trigger.targets.addArray(event.current);
-                                player.line(event.current, 'green');
-                                event.current.turnOver();
+                                var target = event.targets.shift();                                
+                                player.line(target, 'fire');
+                                target.turnOver();
                                 event.redo();
                             }
                             else {
@@ -9167,7 +9221,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                     },
                     "wwyj_zangyue2": {
                         trigger: {
-                            player: "useCardAfter",
+                            player: "useCardEnd",
                         },
                         forced: true,
                         popup: "wwyj_zangyue",
@@ -9243,7 +9297,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                                     player.line(game.players[i], 'green');
                                     game.players[i].addTempSkill('wwyj_zangyue2', { player: 'phaseEnd' });
                                     game.players[i].storage.wwyj_zangyue2 = [];
-                                    game.players[i].storage.wwyj_zangyue2.add(event.choice);
+                                    game.players[i].storage.wwyj_zangyue2.push(event.choice);
                                 }
                             }
                         },
@@ -10137,7 +10191,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             global: ["useCardEnd", "changeHp", "gameDrawAfter", "gainAfter", "drawAfter", "loseAfter", "dieBegin"],
                         },
                         mark: true,
-                        marktext: "个",
+                        marktext: "释",
                         forced: true,
                         popup: false,
                         filter: function (event, player) {
@@ -11213,6 +11267,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                             global: "dying",
                         },
                         usable: 1,
+                        priority: 3,
                         check: function (event, player) {
                             return get.attitude(player, event.player) > 0;
                         },
@@ -11237,6 +11292,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                         },
                         usable: 1,
                         check: function (event, player) {
+                            if(event.player.countCards('e',{name:'baiyin'})>0&&!player.countCards('e',{name:'qinggang'})) return 0;                            
                             return get.attitude(player, event.player) < 0;
                         },
                         audio: ["qingnang", 2],
@@ -14946,6 +15002,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
                     "wwyj_fengyun_info": "</font><font color=#f00>锁定技</font> 当你受到伤害后，你从随机展示的三个【文武英杰】扩展的技能中选择一个获得(本技能除外)",
                     "wwyj_feixue": "飞雪",
                     "wwyj_feixue_info": "当你使用【杀】时，你可令此【杀】额外指定所有武将牌背面朝上的角色，然后令这些角色翻面",
+                    "wwyj_zangyue2": "葬月",
                     "wwyj_zangyue": "葬月",
                     "wwyj_zangyue_info": "</font><font color=#f00>锁定技</font> 回合结束阶段，你可选择一种花色，然后令所有其他角色在其下个结束阶段前，其回合内使用该花色的牌后将武将牌翻面",
                     "wwyj_gucheng": "孤城",
@@ -15682,7 +15739,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
 
     };
 }, help: {
-    "文武英杰": "<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>棘手念摧毁的【棘手】改为可自由选择场上任一名有废除装备栏的角色<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备牌改为选择使用牌堆或弃牌堆中的一个装备牌<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色<li>花落的【涌技】改为由自己选择发动<li>残碎的生命的【残碎】改为受伤时弃刀减伤<li>神座的【即死】改为自行选择任意名体力值为1的角色失去一点体力",
+    "文武英杰": "<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>★铝宝的【天牢】改为不能使用或打出与“天牢牌”不同牌名的牌<li>棘手念摧毁的【棘手】改为可自由选择场上任一名有废除装备栏的角色<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备牌改为选择使用牌堆或弃牌堆中的一个装备牌<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色<li>花落的【涌技】改为由自己选择发动<li>残碎的生命的【残碎】改为受伤时弃刀减伤<li>神座的【即死】改为自行选择任意名体力值为1的角色失去一点体力",
 }, config: {
     "wwyj_help": {
         "nopointer": true,
@@ -15768,7 +15825,7 @@ game.import("extension",function(lib,game,ui,get,ai,_status){return {name:"文�
     },
     "wwyj_normalize": {
         "name": "天神降临",
-        "intro": "开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用",
+        "intro": "开启后重启游戏生效。本扩展中的BOSS挑战武将能在非“挑战”模式下被选用。另外柚子获得【云将】牌时会同时永久获得“云将”的技能",
         init: false,
     },    
     "wwyj_renormalize": {

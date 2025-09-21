@@ -1,9 +1,15 @@
-window.version='4.7';
+window.version='5.0';
 window.wwyjchangelog={
+    '2025年9月':{
+    'version':'5.0',
+    'info':'<li>新增乱斗浏览武将功能，优化〖极光〗、〖奇思〗、〖烬铸〗等技能代码',
+    'players':[""],
+    'cards':[],
+  },
     '2024年10月':{
     'version':'4.7',
-    'info':'<li>新增武将【风回太初】、【柚子】',
-    'players':["wwyj_fenghuitaichu","wwyj_youzi"],
+    'info':'<li>新增武将【风回太初】、【柚子】、【唯幕】',
+    'players':["wwyj_fenghuitaichu","wwyj_youzi","wwyj_rweimu"],
     'cards':[],
   },
 	'2024年08月-09月':{

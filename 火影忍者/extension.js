@@ -12028,7 +12028,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.0",
+            version: "2.0",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

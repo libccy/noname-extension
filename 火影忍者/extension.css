@@ -1,0 +1,265 @@
+.player > .camp-wrap[data-camp="hyrz_huo"] > .camp-back {
+	background: #cccc66
+}
+.player > .camp-wrap[data-camp="hyrz_xiao"] > .camp-back {
+	background: #550000;
+}
+.player > .camp-wrap[data-camp="hyrz_ren"] > .camp-back {
+	background: #707070;
+}
+
+#HYRZAlert {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;top:0;
+  background-color: rgba(20,20,20,0.8);
+  z-index: 202509;
+}
+#HYRZAlert_body {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left: calc(50% - 150px);
+  top: calc(50% - 100px);
+  background-color: rgb(254,254,254);
+  border-radius: 8px;
+  border: 1px solid rgb(243,243,243);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  -webkit-transition: all 0.2s;
+}
+#HYRZAlert_body_title {
+  position: absolute;
+  width: calc(100% - 40px);
+  height: 20px;
+  top: 30px;
+  left: 20px;
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: 1px;
+  font-family: lishu;
+  font-weight: bolder;
+  font-size: 16px;
+  color: #222;
+}
+#HYRZAlert_body_text {
+  position: absolute;
+  width: calc(100% - 40px);
+  max-height: 150px;
+  left: 20px;
+  top: 65px;
+  text-align: left;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 14px;
+  color: #aaa;
+  overflow: auto;
+}
+#HYRZAlert_body_okButton {
+  position: absolute;
+  height: 30px;
+  right: 20px;
+  bottom: 10px;
+  text-align: right;
+  line-height: 30px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 16px;
+  font-weight: bolder;
+  color: rgb(20,200,20);
+  cursor: pointer;
+}
+
+#HYRZPrompt {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;top:0;
+  background-color: rgba(20,20,20,0.8);
+  z-index: 202509;
+}
+#HYRZPrompt_body {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left: calc(50% - 150px);
+  top: calc(50% - 100px);
+  background-color: rgb(254,254,254);
+  border-radius: 8px;
+  border: 1px solid rgb(243,243,243);
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+  -webkit-transition: all 0.2s;
+}
+#HYRZPrompt_body_title {
+  position: absolute;
+  width: calc(100% - 40px);
+  height: 20px;
+  top: 30px;
+  left: 20px;
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: 1px;
+  font-family: lishu;
+  font-weight: bolder;
+  font-size: 16px;
+  color: #222;
+}
+#HYRZPrompt_body_input {
+  position: absolute;
+  width: calc(100% - 40px);
+  height: 40px;
+  left: 20px;
+  top: 65px;
+  border: none;
+  border-bottom: 1px solid rgb(180,180,180);
+  outline: none;
+  background-color: rgb(254,254,254);
+  -webkit-transition: all 0.2s;
+  text-align: center;
+  font-family: lishu;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+#HYRZPrompt_body_input:focus {
+  border-bottom: 1px solid rgb(20,200,20);
+}
+#HYRZPrompt_body_cancelButton {
+  position: absolute;
+  height: 30px;
+  right: 20px;
+  bottom: 10px;
+  text-align: right;
+  line-height: 30px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 16px;
+  font-weight: bolder;
+  color: rgb(20,200,20);
+  cursor: pointer;
+}
+#HYRZPrompt_body_okButton {
+  position: absolute;
+  height: 30px;
+  left: 20px;
+  bottom: 10px;
+  text-align: left;
+  line-height: 30px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 16px;
+  font-weight: bolder;
+  color: rgb(20,200,20);
+  cursor: pointer;
+}
+
+#HYRZ_gameHYRZIntro {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  right: calc(50% + 5px);
+  top: 80px;
+  border-radius: 4px;
+  background-color: rgba(80,80,80,0.8);
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.6),-1px 2px 5px rgba(0,0,0,0.6);
+  font-size: 26px;
+  font-family: xinwei;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  -webkit-transition: all 0.1s;
+}
+
+#HYRZ_gameHYRZIntro:active {
+  -webkit-transform: scale(0.9);
+}
+
+#HYRZ_router_huoyingrenzhePage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;
+  border-radius: 8px;
+  background-color: rgba(20,20,20,0.95);
+  text-align: left;
+  overflow: auto;
+  z-index: 2025;
+}
+#HYRZ_router_huoyingrenzhePage_title {
+  position: relative;
+  width: calc(50% - 20px);
+  height: 36px;
+  left: 15px;
+  top: 20px;
+  border-radius: 2px;
+  background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0));
+  font-family: lishu;
+  font-size: 16px;
+  line-height: 36px;
+  text-indent: 2em;
+  color: #fff;
+  display: block;
+}
+#HYRZ_router_huoyingrenzhePage_closeButton {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0;
+  right: 5px;
+  border-left: 0.5px solid rgba(30,30,30,0.8);
+  border-right: 0.5px solid rgba(30,30,30,0.8);
+  text-align: center;
+  line-height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+}
+#HYRZ_router_huoyingrenzhePage_closeButton:hover {
+  background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0));
+}
+.HYRZ_router_huoyingrenzhePage_intro_left {
+  position: relative;
+  width: calc(50% - 20px);
+  height: 170px;
+  left: 15px;
+  top: 20px;
+}
+.HYRZ_router_huoyingrenzhePage_intro_right {
+  position: relative;
+  width: calc(50% - 20px);
+  height: 170px;
+  right: 15px;
+  top: 20px;
+}
+.HYRZ_router_huoyingrenzhePage_intro_header {
+  position: absolute;
+  width: 100px;
+  height: 140px;
+  left: 20px;
+  top: 15px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size:100%;
+}
+.HYRZ_router_huoyingrenzhePage_intro_infos {
+  position: absolute;
+  height: 20px;
+  left: 130px;
+  top: 15px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 14px;
+}
+.HYRZ_router_huoyingrenzhePage_intro_skills {
+  position: absolute;
+  width: calc(100% - 150px);
+  height: calc(100% - 60px);
+  right: 20px;
+  bottom: 5px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 12px;
+  overflow: auto;
+}

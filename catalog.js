@@ -173,7 +173,7 @@ extension["文武英杰"] = {
 };
 extension["群英会"] = {
 	date: "2025/09/21",
-	intro: "<li>更新：  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2025-09-21",
+	intro: "<li>更新：将《火影忍者》独立了出去，并将代码进行全面翻新优化，更新前请先删除旧版，因为素材已改变  <li>本扩展包含部分<span class=bluetext>三国</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2025-09-21",
 	author: "小苏",
 	netdisk: "",
 	forum: "",

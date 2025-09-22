@@ -171,21 +171,46 @@ extension["文武英杰"] = {
 		"wwyj_relvbao.jpg","wwyj_rweimu.mp3","wwyj_bingliangcunduan.png","wwyj_yishugaochao.mp3"
 	]
 };
-/*extension["群英会"] = {
-	date: "2022/01/11",
-	intro: "<li>更新：修复BUG。当前版本为1.110  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span> <font color=#f00>火影忍者</font> <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），技能新颖独特，强度略高但彼此平衡（平衡党止步）。有<font color=#f00>击杀特效</font> 可联机！素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2020-04-03",
-	author: "小苏&&咫尺天涯",
-	netdisk: "https://pan.baidu.com/s/1hrR0p3u",
-	forum: "https://tieba.baidu.com/p/5288180800?share=9105&fr=share&see_lz=0&sfc=qqfriend&client_type=2&client_version=8.9.0.0&st=1510983198&unique=F72066C71DBA30E5FEAC1F522434D98E",
-	size: "90MB",
-	version: 1.110,
+extension["群英会"] = {
+	date: "2025/09/21",
+	intro: "<li>更新：  <li>本扩展原名为：新武将。包含部分<span class=bluetext>三国新将</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2025-09-21",
+	author: "小苏",
+	netdisk: "",
+	forum: "",
+	size: "43MB",
+	version: 2.0,
 	files:
 
-		["extension.js",
+		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
+		 "qinshi_hengjian2.mp3","qinshi_jianai1.mp3","qinshi_jianai2.mp3","qinshi_jiansheng1.mp3","qinshi_jiansheng2.mp3","qinshi_jingxie.mp3",
+		 "qinshi_jusha21.mp3","qinshi_jusha22.mp3","qinshi_mozi.jpg","qinshi_renzhong1.mp3","qinshi_renzhong2.mp3","qinshi_weizhuang.jpg","qinshi_xiaoyaozi.jpg",
+		 "qinshi_zongjian1.mp3","qinshi_zongjian2.mp3","qinshi_zongjian3.mp3","qunying_baiqi.jpg","qunying_fengyuan1.mp3","qunying_fengyuan2.mp3","qunying_frieza.jpg",
+		 "qunying_frieza1.jpg","qunying_frieza2.jpg","qunying_frieza3.jpg","qunying_haodu1.mp3","qunying_haodu2.mp3","qunying_jilian.jpg","qunying_qinshiwang.jpg",
+		 "qunying_weixiaobao.jpg","sanguo_badao1.mp3","sanguo_caomao.jpg","sanguo_jiangwei.jpg","sanguo_shien24.mp3","sanguo_menghuo.jpg","sanguo_miheng.jpg",
+		 "sanguo_nanhua.jpg","wugeng_zhuzhan2.mp3","sanguo_qiaoguolao.jpg","sanguo_shien22.mp3","sanguo_shien23.mp3","sanguo_shien21.mp3","sanguo_shien25.mp3",
+		 "wugeng_echan.jpg","extension.css","sanguo_simahui.jpg","wugeng_zhengchan.jpg","sanguo_wenjiu1.mp3","sanguo_xiangfu1.mp3","sanguo_zhangfei.jpg",
+		 "sanguo_zhangjiao.jpg","sanguo_zhihuaxiong.jpg","wugeng_zhuilun2.mp3","wms_backgroundmusic.mp3","wms_shixing_background.jpg","wms_tian_background.jpg",
+		 "wms_zhulin_background.jpg","wugeng_anyu1.mp3","wugeng_baicai.jpg","wugeng_bailian.jpg","wugeng_baiqian21.mp3","wugeng_baiqian22.mp3","wugeng_baofeng1.mp3",
+		 "wugeng_baofeng2.mp3","wugeng_cizhou1.mp3","wugeng_cizhou2.mp3","wugeng_dongshi11.mp3","wugeng_dongshi12.mp3","wugeng_dongshi21.mp3","wugeng_fuchou1.mp3",
+		 "wugeng_fuchou2.mp3","wugeng_fuchou21.mp3","wugeng_fuchou22.mp3","wugeng_fuchou23.mp3","wugeng_fuchou3.mp3","wugeng_fuhuo1.mp3","wugeng_fuhuo2.mp3",
+		 "wugeng_fuxi.jpg","wugeng_nitianerxing.jpg","wugeng_pili1.mp3","wugeng_pili2.mp3","wugeng_qijian1.mp3","wugeng_qijian2.mp3","wugeng_qinhe1.mp3",
+		 "wugeng_qinhe2.mp3","wugeng_qiyi1.mp3","wugeng_qiyi2.mp3","wugeng_shenqu1.mp3","wugeng_shenqu2.mp3","wugeng_shixing.jpg","wugeng_siling1.mp3",
+		 "wugeng_siling2.mp3","wugeng_suiyue1.mp3","wugeng_suiyue2.mp3","wugeng_tian.jpg","wugeng_tiankui.jpg","wugeng_tianqi1.mp3","wugeng_tianqi2.mp3",
+		 "wugeng_tianwu.jpg","wugeng_wugeng.jpg","wugeng_xinshixing.jpg","wugeng_xuanfeng.jpg","wugeng_xuelian1.mp3","wugeng_xuelian11.mp3","wugeng_xuelian12.mp3",
+		 "wugeng_xuemao1.mp3","wugeng_xuemao2.mp3","wugeng_ziyu.jpg","wugeng_zhengnu2.mp3","wugeng_zhutian1.mp3","wugeng_zhutian2.mp3","xu_jisha4.mp3","xu_jisha5.mp3",
+		 "xu_jisha6.mp3","xu_qingshang1.mp3","xu_qingshang2.mp3","xu_tuiyin2.mp3","xu_xiaohuan.jpg","xu_xiaoxu.jpg","xu_xibie1.mp3","xu_xibie2.mp3","xu_yunchou1.mp3",
+		 "xu_yunchou2.mp3","wugeng_kongjing1.mp3","wugeng_lunzhuan1.mp3","wugeng_tongming1.mp3","wugeng_yinguo2.mp3","wugeng_yinguo3.mp3","wugeng_zhengkong3.mp3",
+		 "qunying_beihua1.mp3","qunying_bianshen1.mp3","qunying_bianshen3.mp3","qunying_guanjue1.mp3","qunying_guanjue2.mp3","qunying_kunxi1.mp3","qunying_kunxi2.mp3",
+		 "qunying_xiaohan1.mp3","qunying_yiqu2.mp3","qunying_weishe1.mp3","wugeng_zhengkong1.mp3","wugeng_zhengkong2.mp3","wugeng_zhengnu1.mp3","wugeng_jingang1.mp3",
+		 "xu_cheng.jpg","xu_jisha1.mp3","xu_jisha2.mp3","xu_jisha3.mp3","xu_jisha7.mp3","xu_SPxiaosu.jpg","xu_tuiyin1.mp3","xu_xiaosu.jpg","wugeng_jingang2.mp3",
+		 "wugeng_kongjing2.mp3","wugeng_kongjing3.mp3","wugeng_poji3.mp3","wugeng_zhuzhan3.mp3","qunying_beihua2.mp3","wugeng_lunzhuan2.mp3","wugeng_xuemao3.mp3",
+		 "wugeng_yinguo1.mp3","wugeng_zhuzhan1.mp3","qunying_bianshen2.mp3","qunying_diwang1.mp3","qunying_diwang2.mp3","qunying_wanti1.mp3","qunying_wanti2.mp3",
+		 "qunying_xiaohan2.mp3","qunying_yiqu1.mp3","qunying_jilian.mp3","qunying_mingxiang1.mp3","qunying_mingxiang2.mp3","qunying_zhengyi1.mp3","qunying_zhengyi2.mp3",
+		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3"
 
 		]
 
-};*/
+};
 extension["金庸群侠传"] = {
 	date: "2022/01/11",
 	author: "详看简介",

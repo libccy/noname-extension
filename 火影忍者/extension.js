@@ -11956,7 +11956,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             },
 
-            decadeUI_imageLoad: {
+            /*
+			decadeUI_imageLoad: {
                 name: '点击载入十周年UI素材',
                 clear: true,
                 onclick() {
@@ -11987,6 +11988,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     else alert('读取功能出现问题，无法载入文件');
                 },
             },
+			*/
             "hyrz_huaijiubanben": {
                 "name": "怀旧版本",
                 "intro": "开启后重启游戏生效。本扩展的部分角色的技能会回调旧版，建议根据游戏强度环境而选择是否开启。具体改动的角色可详看：其它→帮助",

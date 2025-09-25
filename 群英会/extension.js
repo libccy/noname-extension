@@ -63,7 +63,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "xu_qingshang": "情殇",
                     "xu_qingshang_info": "当你受到伤害后，你可以弃置一张牌并声明一种牌的类型，然后从牌堆顶亮出五张牌，获得其中与你所声明类型相同的牌，将其余的牌置入弃牌堆。",
                     "xu_yunchou": "运筹",
-                    "xu_yunchou_info": "<span class=yellowtext>限定技</span> 你可回收除主公外的其他角色的身份牌，然后重新分配身份牌（限身份局）",
+                    "xu_yunchou_info": "<span class=yellowtext>限定技</span> 你可回收除主公外的所有角色的身份牌，然后重新分配身份牌（限身份局）",
                     "sanguo_qiaoguolao": "乔国老",
                     "sanguo_naxian": "纳贤",
                     "sanguo_naxian_info": "回合开始时，你可将任意张手牌置于武将牌上，称为“贤”。若你有“贤”，你不能成为基本牌的目标",
@@ -406,6 +406,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         closeButton: (function () {
                                             var button = ui.create.div('#QYH_router_qunyinghuiPage_closeButton', '×');
                                             button.addEventListener('click', function () {
+                                                game.playSu('qyh_close');
                                                 router.qunyinghuiPage.hide();
                                             });
                                             return button;
@@ -432,8 +433,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             };
 
                             gameQYHIntro.addEventListener('click', function () {
+                                game.playSu('qyh_open');
                                 router.qunyinghuiPage.show();
-                            }); 
+                            });
                             this.appendChild(gameQYHIntro);
                         },
                     };
@@ -541,7 +543,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
         }, precontent: function (qunyinghui) {
             lib.init.css(lib.assetURL + 'extension/群英会', 'extension');
-            
+
             //动画：
             /*game.qyhGif=function(str,width,height,isAnimation){
     var str1='';
@@ -1023,15 +1025,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 limited: true,
                                 mark: true,
                                 marktext: "运",
+                                $createButton(item, type, position, noclick, node) {
+                                    node = ui.create.identityCard(item, position, noclick);
+                                    node.link = item;
+                                    return node;
+                                },
                                 content: function () {
                                     'step 0'
                                     player.$fullscreenpop('运筹帷幄', 'fire');
                                     player.awakenSkill("xu_yunchou");
+                                    /*
                                     event.num = 0;
                                     event.identitys = [];
                                     for (var i = 0; i < game.players.length; i++) {
+                                        if (game.players[i].identity == "mingzhong") game.players[i].identity = "zhong";
                                         if (game.players[i].identity != 'zhu') {
-                                            event.identitys.push(game.players[i].identity);
+                                            //event.identitys.push(game.players[i].identity);          
+                                            event.identitys.push('identity_'+game.players[i].identity);                                                                                       
                                         }
                                     }
                                     event.targets = game.filterPlayer(function (current) {
@@ -1040,26 +1050,96 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     event.targets.sort(lib.sort.seat);
                                     'step 1'
                                     if (event.num < event.targets.length) {
-                                        player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, 'vcard'], true), function (button) {
+                                        if(event.identitys.length>1){
+                                        player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, 'vcard'], true), function (button) {                                            
                                             return Math.random();
                                             // return get.rank(button.link,true);
                                         });
+                                        }else{
+                                            game.delay();
+                                            var word = event.identitys[0];
+                                            var prefix = "identity_";
+                                            var newidentity = word.slice(prefix.length);                                            
+                                            player.line(event.targets[event.num], 'green');                                       
+                                            event.targets[event.num].identity = newidentity;
+                                            event.targets[event.num].setIdentity(newidentity);                                        
+                                            event.targets[event.num].update();
+                                            event.finish();
+                                        }
                                     } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false
                                         event.finish();
                                     }
                                     'step 2'
                                     if (result.bool) {
+                                        var word = result.links[0];
+                                        var prefix = "identity_";                                        
+                                        var newidentity = word.replace(prefix, "");                                        
                                         player.line(event.targets[event.num], 'green');
-                                        event.targets[event.num].identity = result.links[0][2];
-                                        event.targets[event.num].setIdentity(result.links[0][2]);
-                                        event.identitys.remove(result.links[0][2]);
+                                        //event.targets[event.num].identity = result.links[0];
+                                        //event.targets[event.num].setIdentity(result.links[0]);
+                                        event.targets[event.num].identity = newidentity;
+                                        event.targets[event.num].setIdentity(newidentity);
+                                        event.identitys.remove(result.links[0]);
                                         event.targets[event.num].update();
                                         event.num++;
                                         event.goto(1);
                                     } else {
                                         //game.showIdentity(false);								
                                         //_status.identityShown=false;
+                                        event.num++;
+                                        event.goto(1);                                        
+                                    }
+                                    */
+                                    event.num = 0;
+                                    event.identitys = [];
+                                    for (var i = 0; i < game.players.length; i++) {
+                                        if (game.players[i].identity == "mingzhong") game.players[i].identity = "zhong";
+                                        if (game.players[i].identity != 'zhu') {
+                                            event.identitys.push(game.players[i].identity);
+                                        }
+                                    }
+                                    event.targets = game.filterPlayer(function (current) {
+                                        return current.identity != 'zhu';
+                                    });
+                                    //event.targets.sort(lib.sort.seat);
+                                    'step 1'
+                                    if (event.num < event.targets.length) {
+                                        if (event.identitys.length > 1) {
+                                            player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, function (item, type, position, noclick, node) {
+                                                return lib.skill.xu_yunchou.$createButton(item, type, position, noclick, node);
+                                            },], true), function (button) {
+                                                return Math.random();
+                                                // return get.rank(button.link,true);
+                                            });
+                                        } else {
+                                            game.delay();
+                                            player.line(event.targets[event.num], 'green');
+                                            event.targets[event.num].identity = event.identitys[0];
+                                            event.targets[event.num].setIdentity(event.identitys[0]);
+                                            event.targets[event.num].update();
+                                            event.finish();
+                                        }
+                                    } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false
                                         event.finish();
+                                    }
+                                    'step 2'
+                                    if (result.bool) {
+                                        player.line(event.targets[event.num], 'green');
+                                        event.targets[event.num].identity = result.links[0];
+                                        event.targets[event.num].setIdentity(result.links[0]);
+                                        event.identitys.remove(result.links[0]);
+                                        event.targets[event.num].update();
+                                        event.num++;
+                                        event.goto(1);
+                                    } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false;
+                                        event.num++;
+                                        event.goto(1);
                                     }
                                 },
                                 ai: {
@@ -3718,7 +3798,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "xu_qingshang": "情殇",
                             "xu_qingshang_info": "当你受到伤害后，你可以弃置一张牌并声明一种牌的类型，然后从牌堆顶亮出五张牌，获得其中与你所声明类型相同的牌，将其余的牌置入弃牌堆。",
                             "xu_yunchou": "运筹",
-                            "xu_yunchou_info": "<span class=yellowtext>限定技</span> 你可回收除主公外的其他角色的身份牌，然后重新分配身份牌（限身份局）",
+                            "xu_yunchou_info": "<span class=yellowtext>限定技</span> 你可回收除主公外的所有角色的身份牌，然后重新分配身份牌（限身份局）",
 
                             "sanguo_qiaoguolao": "乔国老",
                             "sanguo_naxian": "纳贤",
@@ -3878,6 +3958,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "qunying_sanguo": "三国演义",
                             "qunying_xu": "作者团队",
 
+                            "identity_zhu": "主公",
+                            "identity_fan": "反贼",
+                            "identity_nei": "内奸",
+                            "identity_zhong": "忠臣",
+                            "caoying_basic": "基本牌",
+                            "caoying_trick": "锦囊牌",
+                            "caoying_equip": "装备牌",
+                            "lukai_spade": "黑桃",
+                            "lukai_heart": "红桃",
+                            "lukai_club": "草花",
+                            "lukai_diamond": "方片",
 
                         },//翻译
                     };
@@ -5966,7 +6057,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wugeng_mingzu": "冥族",
                             "xming": "冥",
                             "xrenlei": "人",
-                        },//翻译
+                            "identity_zhu": "主公",
+                            "identity_fan": "反贼",
+                            "identity_nei": "内奸",
+                            "identity_zhong": "忠臣",
+                            "caoying_basic": "基本牌",
+                            "caoying_trick": "锦囊牌",
+                            "caoying_equip": "装备牌",
+                            "lukai_spade": "黑桃",
+                            "lukai_heart": "红桃",
+                            "lukai_club": "草花",
+                            "lukai_diamond": "方片",
+                        },
                     };
                     if (lib.device || lib.node) {
                         for (var i in wugeng.character) { wugeng.character[i][4].push('ext:群英会/' + i + '.jpg'); }
@@ -6083,7 +6185,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.0",
+            version: "2.1",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

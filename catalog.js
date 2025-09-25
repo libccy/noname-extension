@@ -7,14 +7,14 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2025/09/21",
+	date: "2025/09/25",
 	author: "小苏",
 	intro: "<li>从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式和乱斗图鉴功能",
 	size: "60MB",
 	netdisk: "",
-	version: 2.0,
+	version: 2.1,
 	files: [
-		"LICENSE","LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3",
+		"LICENSE","LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
 		"huoying_baihao1.mp3","huoying_baihao2.mp3","huoying_baiji1.mp3","huoying_baiji2.mp3","huoying_baiyan1.mp3","huoying_baiyan2.mp3",
 		"huoying_ban.jpg","huoying_baodun1.mp3","huoying_baodun2.mp3","huoying_baofu11.mp3","huoying_baofu12.mp3","huoying_baofu21.mp3",
@@ -88,26 +88,9 @@ extension["火影忍者"] = {
 	]
 };
 
-extension["官渡之战"] = {
-	date:"2022/01/11",
-	intro: "<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>" +
-		"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>" +
-		"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</div>" +
-		"<p align=center><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=80 height=80></img></p>",
-	author: "橙续缘",
-	netdisk: "https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
-	forum: "https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",
-	version: "1.0",
-	files: ["cxyCaoCao.jpg", "cxyCaoHong.jpg", "cxyCaoRen.jpg", "cxyChengYu.jpg", "cxyChenLin.jpg",
-		"cxyChunYuQiong.jpg", "cxyGaoLan.jpg", "cxyGuanYu.jpg", "cxyGuoFeng.jpg", "cxyGuoJia.jpg",
-		"cxyHanShi.jpg", "cxyJuShou.jpg", "cxyLiuBei.jpg", "cxyLiuYe.jpg", "cxyShenPei.jpg",
-		"cxyTianFeng.jpg", "cxyTunLiang.png", "cxyXuHuang.jpg", "cxyXunChen.jpg", "cxyXunYou.jpg",
-		"cxyXunYu.jpg", "cxyXuYou.jpg", "cxyYanWen.jpg", "cxyYuanJun.png", "cxyYuanShao.jpg",
-		"cxyYuJin.jpg", "cxyZhangHe.jpg", "cxyZhangLiao.jpg", "extension.js", "style.css"],
-	size: "2.66MB"
-};
+
 extension["文武英杰"] = {
-	date: "2025/09/20",
+	date: "2025/09/25",
 	intro: "<li>优化几个技能的代码等<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -115,9 +98,9 @@ extension["文武英杰"] = {
 	author: "凉茶",
 	size: "54MB",
 	netdisk: "",
-	version: 5.0,
+	version: 5.1,
 	files: [
-	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3",
+	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
 		"wwyj_bohe21.mp3","wwyj_bohetang.jpg","wwyj_bohetang.mp3","wwyj_chansui1.mp3","wwyj_chansuideshengming.jpg",
 		"wwyj_chansuideshengming.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg","wwyj_chengxuyuan.mp3",
@@ -172,13 +155,13 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2025/09/21",
+	date: "2025/09/25",
 	intro: "<li>更新：将《火影忍者》独立了出去，并将代码进行全面翻新优化，更新前请先删除旧版，因为素材已改变  <li>本扩展包含部分<span class=bluetext>三国</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2025-09-21",
 	author: "小苏",
 	netdisk: "",
 	forum: "",
 	size: "43MB",
-	version: 2.0,
+	version: 2.1,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
@@ -206,7 +189,7 @@ extension["群英会"] = {
 		 "wugeng_kongjing2.mp3","wugeng_kongjing3.mp3","wugeng_poji3.mp3","wugeng_zhuzhan3.mp3","qunying_beihua2.mp3","wugeng_lunzhuan2.mp3","wugeng_xuemao3.mp3",
 		 "wugeng_yinguo1.mp3","wugeng_zhuzhan1.mp3","qunying_bianshen2.mp3","qunying_diwang1.mp3","qunying_diwang2.mp3","qunying_wanti1.mp3","qunying_wanti2.mp3",
 		 "qunying_xiaohan2.mp3","qunying_yiqu1.mp3","qunying_jilian.mp3","qunying_mingxiang1.mp3","qunying_mingxiang2.mp3","qunying_zhengyi1.mp3","qunying_zhengyi2.mp3",
-		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3"
+		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3"
 
 		]
 
@@ -744,6 +727,24 @@ extension["国战补充"] = {
 		"extension.js", "sunhuan.jpg", "wangshuang.jpg", "wuanguo.jpg", "yangyi.jpg", "gzqianju.mp3", "gzyongzhan1.mp3", "gzyongzhan2.mp3", "gzzhixi.mp3", "sgk_dangkou.mp3", "sgk_dangkou1.mp3",
 
 	]
+};
+extension["官渡之战"] = {
+	date:"2022/01/11",
+	intro: "<div style='font-size:12px;'>导入后可在乱斗模式中找到此模式<br>" +
+		"点击下方<span class='bluetext'>“参与讨论”</span>可获取【官渡之战升级版】<br>" +
+		"关注微信公众号<span style='color:rgb(200,100,0)'>“无名杀DIY定制”</span>可获取更多最新扩展咨询</div>" +
+		"<p align=center><img src='https://cxy1287338537.github.io/MyPages/images/wx-code.jpg' width=80 height=80></img></p>",
+	author: "橙续缘",
+	netdisk: "https://pan.baidu.com/s/1T75jFtfbOP1QasNP-sSs7w",
+	forum: "https://mp.weixin.qq.com/s/6vgVrSQFQsqHcyGJ1xIDow",
+	version: "1.0",
+	files: ["cxyCaoCao.jpg", "cxyCaoHong.jpg", "cxyCaoRen.jpg", "cxyChengYu.jpg", "cxyChenLin.jpg",
+		"cxyChunYuQiong.jpg", "cxyGaoLan.jpg", "cxyGuanYu.jpg", "cxyGuoFeng.jpg", "cxyGuoJia.jpg",
+		"cxyHanShi.jpg", "cxyJuShou.jpg", "cxyLiuBei.jpg", "cxyLiuYe.jpg", "cxyShenPei.jpg",
+		"cxyTianFeng.jpg", "cxyTunLiang.png", "cxyXuHuang.jpg", "cxyXunChen.jpg", "cxyXunYou.jpg",
+		"cxyXunYu.jpg", "cxyXuYou.jpg", "cxyYanWen.jpg", "cxyYuanJun.png", "cxyYuanShao.jpg",
+		"cxyYuJin.jpg", "cxyZhangHe.jpg", "cxyZhangLiao.jpg", "extension.js", "style.css"],
+	size: "2.66MB"
 };
 extension["圣神包"] = {
 	date: "2022/01/11",

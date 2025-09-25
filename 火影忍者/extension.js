@@ -3,12 +3,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
         name: "火影忍者", editable: false, content: function (config, pack) {
 
             // ---------------------------------------group------------------------------------------//
-            lib.group.push('hyrz_ren');
-            lib.translate.hyrz_ren = '忍';
-            lib.group.push('hyrz_huo');
-            lib.translate.hyrz_huo = '火';
-            lib.group.push('hyrz_xiao');
-            lib.translate.hyrz_xiao = '晓';
 
             if (config.hyrz_changeGroup) {
                 lib.arenaReady.push(function () {
@@ -933,7 +927,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_anqi": "暗器",
                     "huoying_anqi_info": "当你失去一张装备区的牌时，你可视为对任意一名其他角色使用一张无距离【杀】，然后你摸一张牌",
                     "huoying_wodi": "卧底",
-                    "huoying_wodi_info": "结束阶段，若你的装备区有牌（有情报），你可令一名其他角色与你各摸一张牌，然后你回复一点体力，若如此做，你须将装备区的牌收进手牌区",
+                    "huoying_wodi_info": "结束阶段，若你的装备区有牌，你可令一名其他角色与你各摸一张牌，然后你回复一点体力，若如此做，你须将装备区的牌收进手牌区",
                     "huoying_weishou": "伪兽",
                     "huoying_weishou_info": "当你受到伤害后，你可以选择一名其他角色，令其直到下个出牌阶段开始，不能使用或打出牌（<font color=#F0F>封印术•虎视眈弹</font>）然后你视为对其使用一张【杀】，结算后其随机使用一张装备牌",
                     "huoying_qianshou": "千手",
@@ -1039,7 +1033,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_xfengyin": "封印",
                     "huoying_xfengyin_info": "<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 回合结束阶段你可令任意一名角色永久失去当前的所有技能（若其体力上限大于4则调整为4），然后你进入濒死状态。",
                     "huoying_yuanmo": "猿魔",
-                    "huoying_yuanmo_info": "<font color=#F0F>召唤猿魔</font> <font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数",
+                    "huoying_yuanmo_info": "<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数",
                     "huoying_xmudun": "木遁",
                     "huoying_xmudun_info": "每回合限X次，当你需要使用或打出牌时，你可以观看牌堆或弃牌堆随机的X张牌，若其中有你可以使用或打出的牌，则你可以使用或打出之（X为你的体力值）",
                     "huoying_daiban": "代班",
@@ -1193,7 +1187,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_jizhu": "计诛",
                     "huoying_jizhu_info": "<font color=#F0F>克制宇智波带土</font> 当你受到伤害后，你可以依次弃置任意角色的共计X张牌。（X为你的装备区的牌数与损失的体力值之和） ",
                     "huoying_zhishu": "纸术",
-                    "huoying_zhishu_info": "<font color=#F0F>式纸之舞</font> 当一名其他角色翻面或判定牌生效后，你可以选择一项：1、将该角色装备区里的一张牌移动至你装备区里的相应位置（不可替换）；2、摸一张牌。<font color=#F0F>克制宇智波带土，配合漩涡长门</font> ",
+                    "huoying_zhishu_info": "<font color=#F0F>式纸之舞</font> 当一名其他角色翻面或判定牌生效后，你可以选择一项：1、将该角色装备区里的一张牌移动至你装备区里的相应位置（不可替换）；2、摸一张牌",
 
                 },
             };
@@ -1293,7 +1287,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_chunshu": "蜃术",
                     "huoying_chunshu_info": "<font color=#F0F>海市蜃楼</font>结束阶段，你可以进行一次判定，若判定结果为：黑色，你防止受到锦囊牌的伤害；红色：你不能成为【杀】的目标，且均防止受到属性伤害，直到下个出牌阶段开始为止",
                     "huoying_zhengbao": "蒸爆",
-                    "huoying_zhengbao_info": "<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
+                    "huoying_zhengbao_info": "<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点，然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
                     "huoying_shuipao": "水炮",
                     "huoying_shuipao_info": "<font color=#F0F>水铁炮之术</font> 出牌阶段限一次，你可以弃置一张装备区的牌，对一名其他角色造成1点伤害",
                     "huoying_lianbao": "循爆",
@@ -1333,7 +1327,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_chengshang": "承伤",
                     "huoying_chengshang_info": "当一名其他角色成为【杀】的目标后，若来源不为你且你的武将牌背面朝上，你可令目标改为你。若此【杀】造成伤害，你翻面",
                     "huoying_renzong": "忍宗",
-                    "huoying_renzong_info": "<font color=#f00>锁定技</font> 当一名其他角色进入濒死状态，你选择技能〖天眼〗或〖仙体〗令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能〖忍宗〗，体力上限和体力值改为6。当该被授予〖忍宗〗的角色造成或受到伤害后，你随机获得一张基本牌",
+                    "huoying_renzong_info": "<span class=greentext>觉醒技</span> 当一名其他角色进入濒死状态，你选择技能〖天眼〗或〖仙体〗令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能〖忍宗〗，体力上限和体力值改为6。当该被授予〖忍宗〗的角色造成或受到伤害后，你随机获得一张基本牌",
                     "huoying_tianyan": "天眼",
                     "huoying_tianyan_info": "回合开始阶段，你可以选择一名其他角色，然后获得其一项技能，直到回合结束",
                     "huoying_jitong": "极瞳",
@@ -1453,6 +1447,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         closeButton: (function () {
                                             var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
                                             button.addEventListener('click', function () {
+                                                game.playhyrz('hyrz_close');
                                                 router.huoyingrenzhePage.hide();
                                             });
                                             return button;
@@ -1482,6 +1477,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 }).init(),
                             };
                             gameHYRZIntro.addEventListener('click', function () {
+                                game.playhyrz('hyrz_danchuang');
                                 router.huoyingrenzhePage.show();
                             });
                             this.appendChild(gameHYRZIntro);
@@ -1676,7 +1672,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.hyrz_paiduikoujue = more;
                         this.innerHTML = '<div class="hyrz_menu">牌堆口诀<font size="3px">⇩</font></div>';
                     } else {
-                        game.playhyrz('hyrz_show');
+                        game.playhyrz('hyrz_close');
                         this.parentNode.removeChild(this.hyrz_paiduikoujue);
                         delete this.hyrz_paiduikoujue;
                         this.innerHTML = '<div class="hyrz_menu">牌堆口诀<font size="3px">⇨</font></div>';
@@ -3449,15 +3445,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 limited: true,
                                 mark: true,
                                 marktext: "瞳",
+                                $createButton(item, type, position, noclick, node) {
+                                    node = ui.create.identityCard(item, position, noclick);
+                                    node.link = item;
+                                    return node;
+                                },
                                 content: function () {
                                     'step 0'
                                     player.$fullscreenpop('究极瞳术', 'fire');
                                     player.awakenSkill("huoying_jitong");
+                                    /*//旧写法（会显示身份牌名称）
                                     event.num = 0;
                                     event.identitys = [];
                                     for (var i = 0; i < game.players.length; i++) {
+                                        if (game.players[i].identity == "mingzhong") game.players[i].identity = "zhong";
                                         if (game.players[i].identity != 'zhu') {
-                                            event.identitys.push(game.players[i].identity);
+                                            //event.identitys.push(game.players[i].identity);          
+                                            event.identitys.push('identity_'+game.players[i].identity);                                                                                       
                                         }
                                     }
                                     event.targets = game.filterPlayer(function (current) {
@@ -3466,33 +3470,102 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     event.targets.sort(lib.sort.seat);
                                     'step 1'
                                     if (event.num < event.targets.length) {
-                                        player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, 'vcard'], true), function (button) {
-                                            if (event.targets[event.num].hasSkill('huoying_tianyan') || event.targets[event.num].hasSkill('huoying_xianti')) return button.link[2] == player.identity;
+                                        if(event.identitys.length>1){
+                                        player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, 'vcard'], true), function (button) {                                            
                                             return Math.random();
                                             // return get.rank(button.link,true);
                                         });
+                                        }else{
+                                            game.delay();
+                                            var word = event.identitys[0];
+                                            var prefix = "identity_";
+                                            var newidentity = word.slice(prefix.length);                                            
+                                            player.line(event.targets[event.num], 'green');                                       
+                                            event.targets[event.num].identity = newidentity;
+                                            event.targets[event.num].setIdentity(newidentity);                                        
+                                            event.targets[event.num].update();
+                                            event.finish();
+                                        }
                                     } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false
                                         event.finish();
                                     }
                                     'step 2'
                                     if (result.bool) {
+                                        var word = result.links[0];
+                                        var prefix = "identity_";                                        
+                                        var newidentity = word.replace(prefix, "");                                        
                                         player.line(event.targets[event.num], 'green');
-                                        event.targets[event.num].identity = result.links[0][2];
-                                        event.targets[event.num].setIdentity(result.links[0][2]);
-                                        event.identitys.remove(result.links[0][2]);
+                                        //event.targets[event.num].identity = result.links[0];
+                                        //event.targets[event.num].setIdentity(result.links[0]);
+                                        event.targets[event.num].identity = newidentity;
+                                        event.targets[event.num].setIdentity(newidentity);
+                                        event.identitys.remove(result.links[0]);
                                         event.targets[event.num].update();
                                         event.num++;
                                         event.goto(1);
                                     } else {
                                         //game.showIdentity(false);								
                                         //_status.identityShown=false;
+                                        event.num++;
+                                        event.goto(1);                                        
+                                    }
+                                    */
+                                    event.num = 0;
+                                    event.identitys = [];
+                                    for (var i = 0; i < game.players.length; i++) {
+                                        if (game.players[i].identity == "mingzhong") game.players[i].identity = "zhong";
+                                        if (game.players[i].identity != 'zhu') {
+                                            event.identitys.push(game.players[i].identity);
+                                        }
+                                    }
+                                    event.targets = game.filterPlayer(function (current) {
+                                        return current.identity != 'zhu';
+                                    });
+                                    //event.targets.sort(lib.sort.seat);
+                                    'step 1'
+                                    if (event.num < event.targets.length) {
+                                        if (event.identitys.length > 1) {
+                                            player.chooseButton(ui.create.dialog('请您选择一张身份牌替换' + get.translation(event.targets[event.num]) + '的身份牌', [event.identitys, function (item, type, position, noclick, node) {
+                                                return lib.skill.huoying_jitong.$createButton(item, type, position, noclick, node);
+                                            },], true), function (button) {
+                                                if (event.targets[event.num].hasSkill('huoying_tianyan') || event.targets[event.num].hasSkill('huoying_xianti')) return button.link[2] == player.identity;
+                                                return Math.random();
+                                                // return get.rank(button.link,true);
+                                            });
+                                        } else {
+                                            game.delay();
+                                            player.line(event.targets[event.num], 'green');
+                                            event.targets[event.num].identity = event.identitys[0];
+                                            event.targets[event.num].setIdentity(event.identitys[0]);
+                                            event.targets[event.num].update();
+                                            event.finish();
+                                        }
+                                    } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false
                                         event.finish();
+                                    }
+                                    'step 2'
+                                    if (result.bool) {
+                                        player.line(event.targets[event.num], 'green');
+                                        event.targets[event.num].identity = result.links[0];
+                                        event.targets[event.num].setIdentity(result.links[0]);
+                                        event.identitys.remove(result.links[0]);
+                                        event.targets[event.num].update();
+                                        event.num++;
+                                        event.goto(1);
+                                    } else {
+                                        //game.showIdentity(false);								
+                                        //_status.identityShown=false;
+                                        event.num++;
+                                        event.goto(1);
                                     }
                                 },
                                 ai: {
                                     order: 2,
                                     result: {
-                                        //player: 1,
                                         player: function (player) {
                                             var num = game.countPlayer(function (current) {
                                                 return current.hasSkill('huoying_tianyan') || current.hasSkill('huoying_xianti');
@@ -5236,29 +5309,30 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 global: 'huoying_yingfu3',
                                 content: function () {
                                     'step 0'
-                                    var list = ['basic', 'trick', 'equip', 'delay'];
-                                    for (var i = 0; i < list.length; i++) {
+                                    //var list = ['basic', 'trick', 'equip', 'delay'];
+                                    //const list = ["basic", "trick", "equip"].map(i => `caoying_${i}`);
+                                    const list = ["basic", "trick", "equip"].map(type => ["", "", "caoying_" + type]);
+                                    /*for (var i = 0; i < list.length; i++) {
                                         list[i] = [get.translation(list[i]), '', list[i]];
-                                    }
+                                    }*/
                                     player.chooseButton(get.prompt('huoying_yingfu'), true, [[list, 'vcard']]).set('filterButton', function (button) {
                                         return true;
                                     }).set('ai', function (button) {
-                                        var rand = _status.event.rand * 2;
-                                        switch (button.link[2]) {
-                                            case 'basic': return 5 + rand[3];
-                                            case 'trick': return 3 + rand[3];
-                                            case 'equip': return 2 + rand[3];
-                                            case 'delay': return 1 + rand[3];
-                                            default: return rand[3];
+                                        switch (button.link[2].slice(8)) {
+                                            case 'basic': return 4 + 3 * Math.random();
+                                            case 'trick': return 3 + 3 * Math.random();
+                                            case 'equip': return 2 + 3 * Math.random();
+                                            default: return 3 * Math.random();
                                         }
                                     }).set('rand', [Math.random(), Math.random()], Math.random());
                                     'step 1'
                                     if (result.bool) {
-                                        player.storage.huoying_yingfu2 = result.links[0][2];
-                                        player.popup(result.links[0][2], 'soil');
+                                        //player.storage.huoying_yingfu2 = result.links[0][2];
+                                        player.storage.huoying_yingfu2 = result.links[0][2].slice(8);
+                                        player.popup(result.links[0][2].slice(8), 'soil');
                                         player.logSkill('huoying_yingfu');
                                         player.say(['影子模仿术，成功', '真麻烦！'].randomGet());
-                                        game.log(player, '选择了', '' + get.translation(result.links[0][2]));
+                                        game.log(player, '选择了', '' + get.translation(result.links[0][2].slice(8)));
                                     }
                                 },
                                 ai: {
@@ -9985,7 +10059,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 myid = 'zhong'
                                             };
                                             dead.identity = myid;
-                                            dead.setIdentity();
+                                            dead.setIdentity(myid);
                                         }
                                         player.logSkill('huoying_zhuansheng', dead);
                                         dead.revive(2);
@@ -10767,7 +10841,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_renquan": "忍犬",
                             "huoying_renquan_info": "</font><font color=#f00>锁定技</font> 你的锦囊牌均视为【决斗】",
                             "huoying_tongya": "通牙",
-                            "huoying_tongya_info": "出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃且你补摸两者差值张牌），若如此做，视为你对其使用一张【决斗】（<font color=#F0F>配合油女志乃</font>）",
+                            "huoying_tongya_info": "出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃且你补摸两者差值张牌），若如此做，视为你对其使用一张【决斗】",
                             "huoying_tiantian": "天天",
                             "huoying_jiju": "集具",
                             "huoying_jiju_info": "当其他角色使用武器牌或攻击马时，你可令视为你使用之",
@@ -10776,7 +10850,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_zuojin": "佐井",
                             "huoying_weishou": "伪兽",
                             "huoying_wodi": "卧底",
-                            "huoying_wodi_info": "结束阶段，若你的装备区有牌（有情报），你可令一名其他角色与你各摸一张牌，然后你回复一点体力，若如此做，你须将装备区的牌收进手牌区",
+                            "huoying_wodi_info": "结束阶段，若你的装备区有牌，你可令一名其他角色与你各摸一张牌，然后你回复一点体力，若如此做，你须将装备区的牌收进手牌区",
                             "huoying_weishou2": "虎眈",
                             "huoying_weishou2_info": "不能使用或打出牌",
                             "huoying_weishou_info": "当你受到伤害后，你可以选择一名其他角色，令其直到下个出牌阶段开始，不能使用或打出牌（<font color=#F0F>封印术•虎视眈弹</font>）然后你视为对其使用一张【杀】，结算后其随机使用一张装备牌（<font color=#F0F>配合团藏</font>）",
@@ -10787,9 +10861,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_xianti_info": "<font color=#f00>锁定技</font> 结束阶段，若你已受伤，你回复一点体力，否则你摸一张牌",
                             "huoying_liudaoxianren": "六道仙人",
                             "huoying_renzong": "忍宗",
-                            "huoying_renzong_info": "<font color=#f00>锁定技</font> 当一名其他角色进入濒死状态，你选择技能〖天眼〗或〖仙体〗令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能〖忍宗〗，体力上限和体力值改为6。当该被授予〖忍宗〗的角色造成或受到伤害后，你随机获得一张基本牌",
+                            "huoying_renzong_info": "<span class=greentext>觉醒技</span> 当一名其他角色进入濒死状态，你选择技能〖天眼〗或〖仙体〗令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能〖忍宗〗，体力上限和体力值改为6。当该被授予〖忍宗〗的角色造成或受到伤害后，你随机获得一张基本牌",
                             "huoying_renzong2": "忍宗",
-                            "huoying_renzong2_info": "<font color=#f00>锁定技</font> 当你造成或受到伤害后，你随机获得一张基本牌",
+                            "huoying_renzong2_info": "<font color=#f00>锁定技</font> 当你造成或受到伤害后，授予你〖忍宗〗的角色随机获得一张基本牌",
                             "huoying_tianyan": "天眼",
                             "huoying_tianyan_info": "回合开始阶段，你可以选择一名其他角色，然后获得其一项技能，直到回合结束",
                             "huoying_jitong": "极瞳",
@@ -10880,7 +10954,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_qianniao_info": "</font><font color=#f00>锁定技</font> 你的普通【杀】均视为雷【杀】且你的雷【杀】无距离限制",
                             "huoying_woailuo": "我爱罗",
                             "huoying_shazang": "沙葬",
-                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> （一尾守鹤）当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
+                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> 当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
                             "huoying_juefang": "绝防",
                             "huoying_juefang_info": "<font color=#f00>锁定技</font> 当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
                             "huoying_mingren": "漩涡鸣人",
@@ -10944,7 +11018,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_mudun": "木遁",
                             "huoying_mudun_info": "每回合限X次（X为你的体力值），当你需要使用或打出牌时，你可以观看牌堆与弃牌堆随机五张牌，若其中有你可以使用或打出的牌，则你可以使用或打出之",
                             "huoying_baihao": "百豪",
-                            "huoying_baihao_info": "<font color=#F0F>阴封印•百豪之术</font> 出牌阶段结束或濒死状态时，若你已受伤，你可选择回复体力至体力上限，然后失去一点体力上限（创造再生•百豪之术是能提高自愈能力但会减少寿命的禁术）",
+                            "huoying_baihao_info": "<font color=#F0F>阴封印•百豪之术</font> 出牌阶段结束或濒死状态时，若你已受伤，你可选择回复体力至体力上限，然后失去一点体力上限",
                             "huoying_xianren": "仙人",
                             "huoying_xianren_info": "<font color=#F0F>蛤蟆仙人</font> <span class=greentext>觉醒技</span> 准备阶段开始时，若你的“忍”的数量不小于3，你减1点体力上限，选择一项：1、回复1点体力；2、摸两张牌。然后你获得技能“仙术”",
                             "huoying_renfa": "忍法",
@@ -10952,7 +11026,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_renfa2": "忍法",
                             "huoying_renfa2_info": "你每受到一点伤害时，你可以摸一张牌并将一张手牌移出游戏，称为\"忍\"。然后为\"忍\"记录一个基本牌或锦囊牌名称（须与其他\"忍\"记录的名称均不同）。你的回合外，当有其他角色使用与你记录的\"忍\"牌名相同的牌时，你可以令此牌无效，然后移去该\"忍\"",
                             "huoying_citan": "刺探",
-                            "huoying_citan_info": "（偷窥美女、潜入雨忍村）出牌阶段开始时，你可以潜入偷窥其他角色的手牌",
+                            "huoying_citan_info": "出牌阶段开始时，你可以潜入偷窥其他角色的手牌",
                             "huoying_yongsheng": "永生",
                             "huoying_yongsheng_info": "濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
                             "huoying_rechendun": "尘遁",
@@ -11000,7 +11074,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_baiji": "百机",
                             "huoying_baiji_info": "<font color=#F0F>赤秘技•百机操演</font> 每当你造成或受到伤害后，你可从牌堆和弃牌堆中选择使用一张装备牌",
                             "huoying_shuidun": "水遁",
-                            "huoying_shuidun_info": "当一名角色受到火属性伤害时，你可防止此伤害（类似柱间的千手防御技）",
+                            "huoying_shuidun_info": "当一名角色受到火属性伤害时，你可防止此伤害",
                             "huoying_yiliao": "医疗",
                             "huoying_yiliao_info": "当一名角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之",
                             "huoying_jinshu": "禁术",
@@ -11014,9 +11088,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_baofu1": "爆符",
                             "huoying_baofu1_info": "出牌阶段限一次，你可以对一名其他角色造成1点火焰伤害。",
                             "huoying_baofu2": "爆符",
-                            "huoying_baofu2_info": "<font color=#F0F>互乘起爆符</font> 当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1以内的一名角色造成等量的火焰伤害。（单张起爆符即可无限连续通灵出起爆符集中于一点无限连续爆炸）",
+                            "huoying_baofu2_info": "<font color=#F0F>互乘起爆符</font> 当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1以内的一名角色造成等量的火焰伤害",
                             "huoying_baofu": "爆符",
-                            "huoying_baofu_info": "<font color=#F0F>互乘起爆符</font> 出牌阶段限一次，你可以对一名其他角色造成1点火焰伤害。每当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1的一名角色造成等量的火焰伤害。（单张起爆符即可无限连续通灵出起爆符集中于一点无限连续爆炸）",
+                            "huoying_baofu_info": "<font color=#F0F>互乘起爆符</font> 出牌阶段限一次，你可以对一名其他角色造成1点火焰伤害。每当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1的一名角色造成等量的火焰伤害",
                             "huoying_wuyin": "雾隐",
                             "huoying_wuyin_info": "<font color=#F0F>雾隐之术</font> <font color=#f00>锁定技</font> 当你的武将牌背面朝上时，你防止受到任何伤害",
                             "huoying_ansha": "暗杀",
@@ -11026,7 +11100,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_huadie": "化蝶",
                             "huoying_huadie_info": "<font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你使用【杀】造成的伤害+X并且弃牌阶段你的手牌上限-X（X为你本回合发动倍化的次数）",
                             "huoying_beihua": "倍化",
-                            "huoying_beihua_info": "<font color=#F0F>三色药丸 倍化之术</font> 出牌阶段限3次，你可以失去一点体力，展示牌堆顶的2X张牌（X为你本回合发动倍化的次数），其中每有一张梅花牌，你回复1点体力（梅花引蝶），然后你将这些牌收入手牌",
+                            "huoying_beihua_info": "<font color=#F0F>倍化之术</font> 出牌阶段限3次，你可以失去一点体力，展示牌堆顶的2X张牌（X为你本回合发动倍化的次数），其中每有一张梅花牌，你回复1点体力（梅花引蝶），然后你将这些牌收入手牌",
                             "huoying_beihua2": "倍化",
                             "huoying_beihua2_info": "",
                             "huoying_zhuanxin": "转心",
@@ -11049,7 +11123,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_newkuilei": "傀儡",
                             "huoying_newkuilei_info": "<font color=#F0F>傀儡术</font> 每当你失去一张装备区的牌，你可以获得至多X名其他角色的一张手牌或判定区的牌（X为你的体力值）",
                             "huoying_huomeng": "惑梦",
-                            "huoying_huomeng_info": "<font color=#F0F>伊邪那歧</font> 结束阶段，你可以弃置一张装备区的牌，对自己施加终极幻术，然后进入伊邪那歧梦境：直到下回合开始，你防止受到非属性伤害（佐助可破之）",
+                            "huoying_huomeng_info": "<font color=#F0F>伊邪那歧</font> 结束阶段，你可以弃置一张装备区的牌，对自己施加终极幻术，然后进入伊邪那歧梦境：直到下回合开始，你防止受到非属性伤害",
                             "huoying_huomeng2": "梦境",
                             "huoying_huomeng2_info": "（伊邪那歧）<font color=#f00>锁定技</font> 你防止受到非属性伤害",
                             "huoying_duoyang": "夺眼",
@@ -11071,17 +11145,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_duanbi": "断臂",
                             "huoying_duanbi_info": "<font color=#F0F>雷犁热刀</font> 出牌阶段，你可以流失一点体力并摸两张牌，若如此做，你获得以下效果：1、无视对方的防具，2、你使用的【决斗】造成的伤害+1",
                             "huoying_duanbi2": "断臂",
-                            "huoying_duanbi2_info": "（雷犁热刀）你无视对方防具，并且你使用的【决斗】造成的伤害+1",
+                            "huoying_duanbi2_info": "你无视对方防具，并且你使用的【决斗】造成的伤害+1",
                             "huoying_fuyou": "蜉蝣",
                             "huoying_fuyou_info": "<font color=#F0F>蜉蝣之术</font> <span class=greentext>觉醒技</span> 濒死阶段，你选择系统随机展示的五名【火影忍者】角色中的一名变身之，摸两张牌并回复体力至体力上限，若场上没有【大筒木辉夜】，你获得技能〖阴谋〗",
                             "huoying_juneng": "聚能",
-                            "huoying_juneng_info": "（查克拉之祖）<font color=#f00>锁定技</font> 每名角色的回合限一次：当一名角色受到伤害，你摸一张牌；当一名角色回复一点体力，若你已受伤，你回复一点体力",
+                            "huoying_juneng_info": "<font color=#f00>锁定技</font> 每名角色的回合限一次：当一名角色受到伤害，你摸一张牌；当一名角色回复一点体力，若你已受伤，你回复一点体力",
                             "huoying_yinmou": "阴谋",
                             "huoying_yinmou_info": "<span class=yellowtext>限定技</span> 出牌阶段，若场上没有【大筒木辉夜】，你可以弃置一张【闪电】，选择一名存活的其他角色，令其变身为【大筒木辉夜】，然后你与其各回复一点体力",
                             "huoying_zhongbao": "重瀑",
                             "huoying_zhongbao_info": "<font color=#F0F>雷我暴弹</font> <font color=#f00>锁定技</font> 当你于回合内重复使用同名卡牌时，你摸一张牌（每种牌至多以此法摸两张）",
                             "huoying_juneng2": "聚能",
-                            "huoying_juneng2_info": "（回收查克拉）<font color=#f00>锁定技</font> 每名角色的回合限一次，当一名角色受到伤害，你摸一张牌",
+                            "huoying_juneng2_info": "<font color=#f00>锁定技</font> 每名角色的回合限一次，当一名角色受到伤害，你摸一张牌",
                             "huoying_tianyu": "天御",
                             "huoying_tianyu_info": "<font color=#F0F>天之御中</font> 出牌阶段限一次，若存活人数大于2，你可以令所有其他角色与随机角色交换位置",
                             "huoying_baodun": "爆遁",
@@ -11105,7 +11179,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_bizhu": "臂助",
                             "huoying_bizhu_info": "每当一名角色流失体力后，你与其可以各摸一张牌。",
                             "huoying_landun": "岚遁",
-                            "huoying_landun_info": "<font color=#F0F>杀的集大成者</font>出牌阶段限一次，你可以进行一次判定，若判定结果为：黑桃，你使用的【杀】造成的伤害+1；红桃，你使用的【杀】可以额外指定一名角色成为目标；梅花，你使用【杀】后可弃置对方一张牌；方片，你使用【杀】的上限次数+1。然后你本回合使用的【杀】无距离限制且无法闪避",
+                            "huoying_landun_info": "出牌阶段限一次，你可以进行一次判定，若判定结果为：黑桃，你使用的【杀】造成的伤害+1；红桃，你使用的【杀】可以额外指定一名角色成为目标；梅花，你使用【杀】后可弃置对方一张牌；方片，你使用【杀】的上限次数+1。然后你本回合使用的【杀】无距离限制且无法闪避",
                             "huoying_landun3": "岚遁",
                             "huoying_landun3_info": "你使用【杀】后可弃置对方一张牌",
                             "huoying_landun1": "岚遁",
@@ -11119,13 +11193,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_landun6": "岚遁",
                             "huoying_landun6_info": "你使用的【杀】无法闪避",
                             "huoying_chunshu": "蜃术",
-                            "huoying_chunshu_info": "<font color=#F0F>海市蜃楼</font>结束阶段，你可以进行一次判定，若判定结果为：黑色，你防止受到锦囊牌的伤害；红色：你不能成为【杀】的目标，且均防止受到属性伤害，直到下个出牌阶段开始为止",
+                            "huoying_chunshu_info": "结束阶段，你可以进行一次判定，若判定结果为：黑色，你防止受到锦囊牌的伤害；红色：你不能成为【杀】的目标，且均防止受到属性伤害，直到下个出牌阶段开始为止",
                             "huoying_chunshu1": "锦囊",
                             "huoying_chunshu1_info": "<font color=#f00>锁定技</font> 你防止受到锦囊牌的伤害",
                             "huoying_chunshu2": "禁杀",
                             "huoying_chunshu2_info": "<font color=#f00>锁定技</font> 你不能成为【杀】的目标",
                             "huoying_zhengbao": "蒸爆",
-                            "huoying_zhengbao_info": "<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点（<font color=#F0F>令二代土影感到头痛的术，故调上限克尘遁</font>），然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
+                            "huoying_zhengbao_info": "<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点，然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
                             "huoying_chunshu3": "属性",
                             "huoying_chunshu3_info": "<font color=#f00>锁定技</font> 你防止受到属性伤害",
                             "huoying_shuipao": "水炮",
@@ -11149,9 +11223,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_xfengyin": "封印",
                             "huoying_xfengyin_info": "<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 回合结束阶段你可令任意一名角色永久失去当前的所有技能（若其体力上限大于4则调整为4），然后你进入濒死状态。",
                             "huoying_yuanmo": "猿魔",
-                            "huoying_yuanmo_info": "<font color=#F0F>召唤猿魔</font> <font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数",
+                            "huoying_yuanmo_info": "<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数",
                             "huoying_yan": "黑炎",
-                            "huoying_yan_info": "<font color=#f00>锁定技</font> 开始阶段，若你有此“黑炎”标记，你须进行判定，若判定结果为黑色，你受到一点无来源的火焰伤害（直到该角色阵亡，否则黑炎不会消失）",
+                            "huoying_yan_info": "<font color=#f00>锁定技</font> 开始阶段，若你有此“黑炎”标记，你须进行判定，若判定结果为黑色，你受到一点无来源的火焰伤害",
                             "huoying_tianzhao2": "天照",
                             "huoying_tianzhao2_info": "当你造成火属性伤害时，你可令该受伤害的角色获得“黑炎”标记",
                             "huoying_tianzhao1": "天照",
@@ -11161,9 +11235,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_tiancheng": "天秤",
                             "huoying_tiancheng_info": "当你亮出拼点牌后，你可令此牌点数+X（超重岩之术）或点数－X（超轻岩之术）。（X为场上存活角色数）",
                             "huoying_jizhu": "计诛",
-                            "huoying_jizhu_info": "<font color=#F0F>克制宇智波带土</font> 当你受到伤害后，你可以依次弃置任意角色的共计X张牌。（X为你的装备区的牌数与损失的体力值之和） ",
+                            "huoying_jizhu_info": "当你受到伤害后，你可以依次弃置任意角色的共计X张牌。（X为你的装备区的牌数与损失的体力值之和） ",
                             "huoying_zhishu": "纸术",
-                            "huoying_zhishu_info": "<font color=#F0F>式纸之舞</font> 当一名其他角色翻面或判定牌生效后，你可以选择一项：1、将该角色装备区里的一张牌移动至你装备区里的相应位置（不可替换）；2、摸一张牌。<font color=#F0F>克制宇智波带土，配合漩涡长门</font> ",
+                            "huoying_zhishu_info": "<font color=#F0F>式纸之舞</font> 当一名其他角色翻面或判定牌生效后，你可以选择一项：1、将该角色装备区里的一张牌移动至你装备区里的相应位置（不可替换）；2、摸一张牌",
                             "huoying_kuangbao": "狂暴",
                             "huoying_kuangbao_info": "<font color=#F0F>空气炮</font> 当一名角色受到火属性或雷属性伤害后，你可令其受到等量的无属性伤害",
                             "huoying_xmudun2": "木遁无懈",
@@ -11206,7 +11280,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_xiao": "晓组织",
                             "huoying_zhongren": "众忍村",
                             "huoying_liudaoxianren": "六道仙人",
-
+                            "identity_zhu": "主公",
+                            "identity_fan": "反贼",
+                            "identity_nei": "内奸",
+                            "identity_zhong": "忠臣",
+                            "caoying_basic": "基本牌",
+                            "caoying_trick": "锦囊牌",
+                            "caoying_equip": "装备牌",
+                            "lukai_spade": "黑桃",
+                            "lukai_heart": "红桃",
+                            "lukai_club": "草花",
+                            "lukai_diamond": "方片",
 
                         },
                     };
@@ -11955,9 +12039,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
-
             /*
-			decadeUI_imageLoad: {
+            decadeUI_imageLoad: {
                 name: '点击载入十周年UI素材',
                 clear: true,
                 onclick() {
@@ -11988,7 +12071,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     else alert('读取功能出现问题，无法载入文件');
                 },
             },
-			*/
+            */
             "hyrz_huaijiubanben": {
                 "name": "怀旧版本",
                 "intro": "开启后重启游戏生效。本扩展的部分角色的技能会回调旧版，建议根据游戏强度环境而选择是否开启。具体改动的角色可详看：其它→帮助",
@@ -12030,7 +12113,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.0",
+            version: "2.1",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

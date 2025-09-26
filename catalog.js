@@ -156,7 +156,7 @@ extension["文武英杰"] = {
 };
 extension["群英会"] = {
 	date: "2025/09/25",
-	intro: "<li>更新：将《火影忍者》独立了出去，并将代码进行全面翻新优化，更新前请先删除旧版，因为素材已改变  <li>本扩展包含部分<span class=bluetext>三国</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。素材为高清图片、高质配音。<li>欢迎加入无名杀扩展交流Q群：852740627<li>更新日期：2025-09-21",
+	intro: "<li>更新：将《火影忍者》独立了出去，并将代码进行全面翻新优化，更新前请先删除旧版，因为素材已改变  <li>本扩展包含部分<span class=bluetext>三国</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "",
 	forum: "",
@@ -189,7 +189,7 @@ extension["群英会"] = {
 		 "wugeng_kongjing2.mp3","wugeng_kongjing3.mp3","wugeng_poji3.mp3","wugeng_zhuzhan3.mp3","qunying_beihua2.mp3","wugeng_lunzhuan2.mp3","wugeng_xuemao3.mp3",
 		 "wugeng_yinguo1.mp3","wugeng_zhuzhan1.mp3","qunying_bianshen2.mp3","qunying_diwang1.mp3","qunying_diwang2.mp3","qunying_wanti1.mp3","qunying_wanti2.mp3",
 		 "qunying_xiaohan2.mp3","qunying_yiqu1.mp3","qunying_jilian.mp3","qunying_mingxiang1.mp3","qunying_mingxiang2.mp3","qunying_zhengyi1.mp3","qunying_zhengyi2.mp3",
-		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3"
+		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3","qyh_open.mp3","qyh_close.mp3"
 
 		]
 

@@ -636,6 +636,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.playAudio('..', 'extension', '文武英杰', fn);
                 }
             }
+            game.playWWYJAudio=function(skill,num){
+		        var ww=[];
+		        for(var i=1;i<=num;i++) {
+			        ww.push(i);
+		        }
+		        var yj=lt.randomGet();
+		        game.playAudio('..','extension','文武英杰',skill+yj);
+	        }	
             /*
             lib.arenaReady.push(function () {
                 for (var i in lib.characterPack['wenwuyingjie']) {
@@ -1548,17 +1556,24 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (tag == 'respondSha' || tag == 'respondShan') return true;
                                     //return false;							
                                 },
-                                result: {
-                                    //player:1,
+                                result: {                                    
                                     player: function (player, target) {
-                                        if (_status.event.dying) return get.attitude(player, _status.event.dying) > 0;
-                                        var target = game.findPlayer(function (current) {
-                                            return current.hp <= 0;
+                                        //var event = _status.event;
+                                        //if (_status.event.dying && get.attitude(player, _status.event.dying) <= 0) return 0;
+                                        /*
+                                        var num1 = game.countPlayer(function (current) {
+                                            return current.countCards('e', { subtype: ['equip1', 'equip4'] }) && get.attitude(player, current) <= 0;
                                         });
-                                        if ((target && get.attitude(player, target) <= 0)) return 0;
+                                        var num2 = game.countPlayer(function (current) {
+                                            return current.countCards('e', { subtype: ['equip2', 'equip3', 'equip5'] }) && get.attitude(player, current) <= 0;
+                                        });                                        
+                                        if (num1 < 1 && player.countCards('h', 'sha')) return 0;
+                                        if (num2 < 1 && player.countCards('h', 'shan')) return 0;                                        
+                                        */
+                                        if(!player.hasValueTarget({name:'sha'})) return 0;
                                         return 1;
                                     },
-                                },
+                                },                                                                    
                             },
                         },
                         lib.translate.wwyj_jiguang_info = '你可在合适的时机选择一名角色的装备区的一张牌并令其弃置之，若此牌为：<li>武器牌或攻击马，视为使用或打出一张【杀】<li>防具牌或防御马或宝物牌，视为使用或打出一张【闪】';
@@ -2946,7 +2961,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
             lib.skill._wwyj_AutomaticallyShowCards = {
                 trigger: {
-                    global: ['gameDrawEnd', 'drawEnd', 'judgeEnd', 'wuguAfter'],
+                    global: ['gameDrawEnd', 'drawEnd', 'judgeEnd', "useCardEnd", 'wuguAfter'],
                 },
                 forced: true,
                 unique: true,
@@ -3033,7 +3048,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         player.removeSkill('wwyj_likedead');
                         player.addSkill('baiban');
                         player.clearSkills();
-                        game.playwwyj(['wwyj_heimao1', 'wwyj_heimao2'].randomGet());
+                        //game.playwwyj(['wwyj_heimao1', 'wwyj_heimao2'].randomGet());
+                        game.playWWYJAudio('wwyj_heimao',2);
                         player.turnOver(true);
                     }
                 },
@@ -13834,7 +13850,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 return player.canUse({ name: 'sha' }, current) && get.attitude(player, current) <= 0;
                                             });
                                             if (num < 1 && num2 > 0 && !player.countCards('h', 'sha') && target.countCards('h') > 2) return Math.random();
-                                            return -target.countCards('h') - 3;
+                                            return -target.countCards('h') ;
                                         },
                                     },
                                     order: 6,
@@ -17374,6 +17390,27 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "intro": "开启后重启游戏生效。游戏开始后屏幕右下方会有个更新日志的按钮，点击后会打开更新日志",
                 init: false,
             },
+            decadeUI_imageLoad: {
+                name: '点击载入十周年UI素材',
+                clear: true,
+                onclick() {
+                    const decadeUIs = (lib.config.extensions && lib.config.extensions.includes('十周年UI') && lib.config['extension_十周年UI_enable']);
+                    const files = (game.getFileList && game.readFile && game.writeFile);
+                    if (decadeUIs && files) {
+                        //十周年样式
+                        game.getFileList('extension/十周年UI/image/decoration', (folders, files) => {
+                            if (!files.includes('name_wwyjsha.png')) {
+                                game.readFile('extension/文武英杰/name_wwyjsha.png', (data) => {
+                                    game.writeFile(data, 'extension/十周年UI/image/decoration', 'name_wwyjsha.png', () => { });
+                                });
+                            }                            
+                            alert('十周年UI/image/decoration素材已成功导入');
+                        }, () => { });
+                    }
+                    else if (!decadeUIs) alert('当前尚未开启《十周年UI》');
+                    else alert('读取功能出现问题，无法载入文件');
+                },
+            },
             "wwyj_xinname": {
                 name: '武将前缀',
                 intro: '选择是否显示★武将前缀',
@@ -17483,7 +17520,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     localStorage.setItem(lib.configprefix + 'directstart', true);
                     game.reload();
                 },
-            },
+            },            
 
         }, package: {
             character: {

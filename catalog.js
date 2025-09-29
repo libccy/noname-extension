@@ -7,7 +7,7 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2025/09/25",
+	date: "2025/09/29",
 	author: "小苏",
 	intro: "<li>从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式和乱斗图鉴功能",
 	size: "60MB",
@@ -84,13 +84,13 @@ extension["火影忍者"] = {
 		"huoying_xiezi.jpg","huoying_xinxuzuo1.mp3","huoying_xuzuo1.mp3","huoying_linyiliao2.mp3","hyrz_sidaihuoying.jpg","huoying_yuanfeirizhan.jpg",
 		"huoying_yuanmo1.mp3","huoying_yuedu2.mp3","huoying_zhengbao1.mp3","huoying_zhenxing2.mp3","huoying_zhishu1.mp3","huoying_zhongwu.jpg",
 		"huoying_zhoushu2.mp3","huoying_zhouyin2.mp3","huoying_zhuozhu.jpg","wms_wxyd_background.jpg","hyrz_kuwu1.mp3","hyrz_mianju.png","hyrz_shoulijian.png",
-		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3"
+		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png"
 	]
 };
 
 
 extension["文武英杰"] = {
-	date: "2025/09/25",
+	date: "2025/09/29",
 	intro: "<li>优化几个技能的代码等<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -151,7 +151,7 @@ extension["文武英杰"] = {
 		"wwyj_zhongchengpantu.jpg","wwyj_zhugejun.mp3","wwyj_zhulinqixian.mp3","wwyj_zhushan1.mp3","wwyj_zhuxiaoer.jpg","wwyj_xiaoSu.jpg",
 		"wwyj_jishouniancuihui.mp3","wwyj_jisha1.mp3","wwyj_jisha2.mp3","wwyj_jisha6.mp3","wwyj_rlvbao.mp3","wwyj_lvbao1.mp3","wwyj_lvbao2.mp3",
 		"wwyj_rshengma.jpg","wwyj_shengma1.mp3","wwyj_zhongge1.mp3","wwyj_coin.mp3","wwyj_rshengma.mp3","wwyj_fenghuitaichu.jpg","wwyj_youzi.jpg",
-		"wwyj_relvbao.jpg","wwyj_rweimu.mp3","wwyj_bingliangcunduan.png","wwyj_yishugaochao.mp3"
+		"wwyj_relvbao.jpg","wwyj_rweimu.mp3","wwyj_bingliangcunduan.png","wwyj_yishugaochao.mp3","name_wwyjsha.png"
 	]
 };
 extension["群英会"] = {

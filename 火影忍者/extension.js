@@ -21,6 +21,120 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         enable: "chooseToUse",
                     },
                         lib.translate.xxx_info = '技能描述';
+                        
+                    lib.skill.huoying_zhaohuan = {
+                        audio: "ext:火影忍者:2",
+                                trigger: {
+                                    player: "chooseCardBegin",
+                                },
+                                check: function (event, player) {
+                                    return player.hasCard(function (card) {
+                                        var val = get.value(card);
+                                        return val <= 4 && card.number >= 12;
+                                    });
+                                },
+                                filter: function (event, player) {
+                                    return event.type == 'compare' && !event.directresult;
+                                },
+                                content: function () {
+                                    var chat = ['万蛇，助我一臂之力', '养蛇千日，用在一时'].randomGet();
+                                    player.say(chat);
+                                    var cards = get.cards();
+                                    ui.discardPile.appendChild(cards[0]);
+                                    cards[0].vanishtag.add('huoying_zhaohuan');
+                                    trigger.directresult = cards;
+                                    trigger.untrigger();
+                                },
+                                group: "huoying_zhaohuan_number",
+                                subSkill: {
+                                    number: {
+                                        trigger: {
+                                            player: "compare",
+                                            target: "compare",
+                                        },
+                                        sub: true,
+                                        forced: true,
+                                        popup: false,
+                                        filter: function (event, player) {
+                                            if (event.iwhile) return false;
+                                            if (event.player == player) {
+                                                return get.suit(event.card1) != 'heart';
+                                            }
+                                            else {
+                                                return get.suit(event.card2) != 'heart';
+                                            }
+                                        },
+                                        silent: true,
+                                        content: function () {
+                                            game.log(player, '拼点牌点数视为', '#y13');
+                                            if (player == trigger.player) {
+                                                trigger.num1 = 13;
+                                            }
+                                            else {
+                                                trigger.num2 = 13;
+                                            }
+                                        },
+                                    },
+                                },
+                            },                    
+                        lib.translate.huoying_zhaohuan_info = '<font color=#F0F>通灵万蛇</font> 你拼点时，可以改为用牌堆顶的一张牌进行拼点；当你拼点的牌亮出后，若此牌的花色不为红桃，则点数视为K';
+                        
+                    lib.skill.huoying_yongsheng = {
+                        trigger: {
+                                    player: "dying",
+                                },
+                                audio: "ext:火影忍者:2",
+                                filter: function (event, player) {
+                                    if (player.maxHp < 1) return false;
+                                    return true;
+                                },
+                                content: function () {
+                                    'step 0'
+                                    player.draw();
+                                    'step 1'
+                                    player.chooseTarget(get.prompt2('huoying_yongsheng'), 1, function (card, player, target) {
+                                        return player != target && player.canCompare(target);
+                                    }, function (target) {
+                                        return get.attitude(player, target) < 0;
+                                    });
+                                    'step 2'
+                                    if (result.bool) {
+                                        var chat = ['人若死了，就什么都没了，只要活着，总会发现有趣的东西', '人，真是脆弱的生命！', '太完美了，果然，我还是想得到你的身体'].randomGet();
+                                        player.say(chat);
+                                        event.target = result.targets[0];
+                                        player.logSkill("wwyj_qunying", event.target);
+                                        player.chooseToCompare(event.target);
+                                    }
+                                    else {
+                                        event.finish();
+                                    }
+                                    'step 3'
+                                    if (!result.bool) {
+                                        player.recover(1 - player.hp);
+                                        player.loseMaxHp();
+                                        player.turnOver();
+                                        event.finish();
+                                    }
+                                    else {
+                                        event.num = event.target.hp - player.hp;
+                                    }
+                                    'step 4'
+                                    player.changeHp(event.num);
+                                    if (player.maxHp < 4) {
+                                        player.gainMaxHp();
+                                    }
+                                    'step 5'
+                                    event.target.changeHp(-event.num);
+                                    'step 6'
+                                    if (event.target.hp <= 0) {
+                                        event.target.dying({ source: player });
+                                    }
+                                },
+                                ai: {
+                                    order: 5,
+                                },
+                    },
+                        lib.translate.huoying_yongsheng_info = '濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面';            
 
                     lib.skill.huoying_lunmu = {
                         audio: "ext:火影忍者:2",
@@ -1263,9 +1377,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_duanbi": "断臂",
                     "huoying_duanbi_info": "<font color=#F0F>雷犁热刀</font> 出牌阶段，你可以流失一点体力并摸两张牌，若如此做，你获得以下效果：1、无视对方的防具，2、你使用的【决斗】造成的伤害+1",
                     "huoying_yongsheng": "永生",
-                    "huoying_yongsheng_info": "濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
+                    "huoying_yongsheng_info": "每回合限一次，濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
                     "huoying_zhaohuan": "召唤",
-                    "huoying_zhaohuan_info": "<font color=#F0F>通灵万蛇</font> 你拼点时，可以改为用牌堆顶的一张牌进行拼点；当你拼点的牌亮出后，若此牌的花色不为红桃，则点数视为K",
+                    "huoying_zhaohuan_info": "<font color=#F0F>通灵万蛇</font> 当你拼点的牌亮出后，你可与对方交换拼点牌",
                     "huoying_wuyin": "雾隐",
                     "huoying_wuyin_info": "<font color=#F0F>雾隐之术</font> <font color=#f00>锁定技</font> 当你的武将牌背面朝上时，你防止受到任何伤害",
                     "huoying_ansha": "暗杀",
@@ -1347,7 +1461,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_shazang": "沙葬",
                     "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> （一尾守鹤）当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
                     "huoying_juefang": "绝防",
-                    "huoying_juefang_info": "<font color=#f00>锁定技</font> 当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
+                    "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲",
                     "huoying_rechendun": "尘遁",
                     "huoying_rechendun_info": "出牌阶段限一次，你可与一名有未被废除的装备栏的角色进行拼点，若你赢，你选择废除其一个装备栏；若你没赢，目标角色受到一点伤害",
                     "huoying_wuchen": "无尘",
@@ -4602,60 +4716,42 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             "huoying_zhaohuan": {
-                                audio: "ext:火影忍者:2",
                                 trigger: {
-                                    player: "chooseCardBegin",
+                                    player: "compare",
+                                    target: "compare",
                                 },
+                                audio: "ext:火影忍者:2",
                                 check: function (event, player) {
-                                    return player.hasCard(function (card) {
-                                        var val = get.value(card);
-                                        return val <= 4 && card.number >= 12;
-                                    });
-                                },
-                                filter: function (event, player) {
-                                    return event.type == 'compare' && !event.directresult;
+                                    if (player == event.player&&event.num1>event.num2) return 0;
+                                    if (player != event.player&&event.num1<event.num2) return 0;    
+                                    return 1;    
                                 },
                                 content: function () {
-                                    var chat = ['万蛇，助我一臂之力', '养蛇千日，用在一时'].randomGet();
-                                    player.say(chat);
-                                    var cards = get.cards();
-                                    ui.discardPile.appendChild(cards[0]);
-                                    cards[0].vanishtag.add('huoying_zhaohuan');
-                                    trigger.directresult = cards;
-                                    trigger.untrigger();
-                                },
-                                group: "huoying_zhaohuan_number",
-                                subSkill: {
-                                    number: {
-                                        trigger: {
-                                            player: "compare",
-                                            target: "compare",
-                                        },
-                                        sub: true,
-                                        forced: true,
-                                        popup: false,
-                                        filter: function (event, player) {
-                                            if (event.iwhile) return false;
-                                            if (event.player == player) {
-                                                return get.suit(event.card1) != 'heart';
-                                            }
-                                            else {
-                                                return get.suit(event.card2) != 'heart';
-                                            }
-                                        },
-                                        silent: true,
-                                        content: function () {
-                                            game.log(player, '拼点牌点数视为', '#y13');
-                                            if (player == trigger.player) {
-                                                trigger.num1 = 13;
-                                            }
-                                            else {
-                                                trigger.num2 = 13;
-                                            }
-                                        },
-                                    },
+                                    /*
+                                    var number=Math.abs(trigger.num1-trigger.num2);
+                                        if (player == trigger.player) {                                            
+                                            trigger.num1 += number;
+                                            trigger.num2 -= number;  
+                                            game.log(player, "交换了拼点牌");                                           
+                                        }
+                                        else {
+                                            trigger.num2 += number;
+                                            trigger.num1 -= number;  
+                                            game.log(player, "交换了拼点牌");   
+                                        }  
+                                        */
+                                        const num1 = trigger.num1;
+                const num2 = trigger.num2;
+                const card1 = trigger.card1;
+                const card2 = trigger.card2;
+                trigger.num1 = num2;
+                trigger.num2 = num1;
+                trigger.card1 = card2;
+                trigger.card2 = card1;
+                game.log(player, "交换了拼点牌");                                                                      
                                 },
                             },
+                            
                             "huoying_yongsheng": {
                                 trigger: {
                                     player: "dying",
@@ -4664,10 +4760,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 filter: function (event, player) {
                                     if (player.maxHp < 1) return false;
                                     return true;
-                                },
-                                filterTarget: function (card, player, target) {
-                                    return player.canCompare(target) && target != player && target.countCards('h') > 0;
-                                },
+                                },                                
+                                usable: 1,
                                 content: function () {
                                     'step 0'
                                     player.draw();
@@ -4682,7 +4776,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         var chat = ['人若死了，就什么都没了，只要活着，总会发现有趣的东西', '人，真是脆弱的生命！', '太完美了，果然，我还是想得到你的身体'].randomGet();
                                         player.say(chat);
                                         event.target = result.targets[0];
-                                        player.logSkill("wwyj_qunying", event.target);
+                                        player.logSkill("huoying_yongsheng", event.target);
                                         player.chooseToCompare(event.target);
                                     }
                                     else {
@@ -9672,79 +9766,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             },
                             "huoying_juefang": {
                                 audio: "ext:火影忍者:2",
-                                group: ["huoying_juefang_less", "huoying_juefang_more"],
-                                subSkill: {
-                                    less: {
-                                        audio: "ext:火影忍者:1",
-                                        trigger: {
-                                            target: "useCardToBefore",
-                                        },
-                                        forced: true,
-                                        filter: function (event, player) {
-                                            return event.card.name == 'sha';
-                                        },
-                                        content: function () {
-                                            'step 0'
-                                            var eff = get.effect(player, trigger.card, trigger.player, trigger.player);
-                                            trigger.player.chooseToDiscard('绝防：弃置一张基本牌，否则此牌对' + get.translation(player) + '无效', function (card) {
-                                                return get.type(card) == 'basic';
-                                            }).set('ai', function (card) {
-                                                if (_status.event.eff > 0) {
-                                                    return 10 - get.value(card);
-                                                }
-                                                return 0;
-                                            }).set('eff', eff);
-                                            'step 1'
-                                            if (result.bool == false) {
-                                                trigger.cancel();
-                                            }
-                                        },
-                                        sub: true,
-                                    },
-                                    more: {
-                                        audio: "ext:火影忍者:1",
-                                        trigger: {
-                                            player: "damageBefore",
-                                        },
-                                        forced: true,
-                                        priority: 15,
-                                        check: function (event, player) {
-                                            if (player == event.player) return true;
-                                            return false;
-                                        },
-                                        filter: function (event, player) {
-                                            return get.type(event.card, 'trick') == 'trick';
-                                        },
-                                        content: function () {
-                                            trigger.cancel();
-                                        },
-                                        sub: true,
-                                    },
-                                    ai: {
-                                        order: 10,
-                                        maixie: true,
-                                        notrick: true,
-                                        effect: {
-                                            target: function (card, player, target, current) {
-                                                if (card.name == 'sha' && get.attitude(player, target) < 0) {
-                                                    if (_status.event.name == 'huoying_juefang') return;
-                                                    var bs = player.getCards('h', { type: 'basic' });
-                                                    if (bs.length < 2) return 0;
-
-                                                    if (bs.length <= 3 && player.countCards('h', 'sha') <= 1) {
-                                                        for (var i = 0; i < bs.length; i++) {
-                                                            if (bs[i].name != 'sha' && get.value(bs[i]) < 7) {
-                                                                return [1, 0, 1, -0.5];
-                                                            }
-                                                        }
-                                                        return 0;
-                                                    }
-                                                    return [1, 0, 1, -0.5];
-                                                }
-                                            },
-                                        },
-                                        sub: true,
-                                    },
+                                trigger: {
+                                    player: "damageEnd",
+                                    source: "damageEnd",
+                                },
+                                forced: true,
+                                content: function () {
+                                    player.changeHujia();                                    
+                                },
+                                ai: {
+                                    order: 6,
+                                    maixie: true,
+                                    threaten: 1.3,
                                 },
                             },
                             "huoying_xuhua": {
@@ -10956,7 +10989,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_shazang": "沙葬",
                             "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> 当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
                             "huoying_juefang": "绝防",
-                            "huoying_juefang_info": "<font color=#f00>锁定技</font> 当其他玩家使用【杀】指定你为目标时，需额外弃掉一张基本牌，否则该牌对你无效。你防止受到锦囊牌造成的伤害",
+                            "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲",
                             "huoying_mingren": "漩涡鸣人",
                             "huoying_xianshu": "仙术",
                             "huoying_xianshu_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，你回复一点体力并摸一张牌",
@@ -11028,7 +11061,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_citan": "刺探",
                             "huoying_citan_info": "出牌阶段开始时，你可以潜入偷窥其他角色的手牌",
                             "huoying_yongsheng": "永生",
-                            "huoying_yongsheng_info": "濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
+                            "huoying_yongsheng_info": "每回合限一次，濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
                             "huoying_rechendun": "尘遁",
                             "huoying_rechendun_info": "出牌阶段限一次，你可与一名有未被废除的装备栏的角色进行拼点，若你赢，你选择废除其一个装备栏；若你没赢，目标角色受到一点伤害",
                             "huoying_wuchen": "无尘",
@@ -11067,8 +11100,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_yingfu_info": "出牌阶段开始时，你可选择一种牌的类型，令所有已横置武将牌的其他角色不能使用或打出该类型的牌",
                             "huoying_zhimou": "智谋",
                             "huoying_zhimou_info": "当其他角色的出牌阶段开始时，若其有手牌且武将牌未横置，你可以猜测其手牌中的花色数，若猜对，你获得其随机的一张牌，若猜错，其横置武将牌",
+                            "huoying_zhaohuan_number": "召唤",
                             "huoying_zhaohuan": "召唤",
-                            "huoying_zhaohuan_info": "<font color=#F0F>通灵万蛇</font> 你拼点时，可以改为用牌堆顶的一张牌进行拼点；当你拼点的牌亮出后，若此牌的花色不为红桃，则点数视为K",
+                            "huoying_zhaohuan_info": "<font color=#F0F>通灵万蛇</font> 当你拼点的牌亮出后，你可与对方交换拼点牌",
                             "huoying_kuilei": "傀儡",
                             "huoying_kuilei_info": "回合开始和回合结束阶段，你可选择获得一名已阵亡角色的技能，直到再次发动此〖傀儡〗技能为止",
                             "huoying_baiji": "百机",
@@ -12006,7 +12040,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
             };
         }, help: {
-            "火影忍者": "<li>【编码】小苏<li>【配图】小苏<li>【录制配音】小苏<li>怀旧版本的角色：波风水门、漩涡鸣人、药师兜、白 <li>黑炎：锁定技，你的回合开始时进行判定，若为黑桃，则受到一点火属性伤害"
+            "火影忍者": "<li>【编码】小苏<li>【配图】小苏<li>【录制配音】小苏<li>怀旧版本的角色：千手柱间、波风水门、卡卡西、漩涡鸣人、药师兜、白、斑、绝、无、加藤断、李洛克、干杮鬼鲛、大蛇丸、赤沙之蝎、漩涡长门、奈良鹿丸 <li>黑炎：锁定技，你的回合开始时进行判定，若为黑桃，则受到一点火属性伤害"
         }, config: {
             "hyrz_help": {
                 "nopointer": true,
@@ -12039,7 +12073,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
-            /*
+            
             decadeUI_imageLoad: {
                 name: '点击载入十周年UI素材',
                 clear: true,
@@ -12050,17 +12084,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         //十周年样式
                         game.getFileList('extension/十周年UI/image/decoration', (folders, files) => {
                             if (!files.includes('name_hyrz_huo.png')) {
-                                game.readFile('extension/火影忍者/decadeUI-image/name_hyrz_huo.png', (data) => {
+                                game.readFile('extension/火影忍者/name_hyrz_huo.png', (data) => {
                                     game.writeFile(data, 'extension/十周年UI/image/decoration', 'name_hyrz_huo.png', () => { });
                                 });
                             }
                             if (!files.includes('name_hyrz_ren.png')) {
-                                game.readFile('extension/火影忍者/decadeUI-image/name_hyrz_ren.png', (data) => {
+                                game.readFile('extension/火影忍者/name_hyrz_ren.png', (data) => {
                                     game.writeFile(data, 'extension/十周年UI/image/decoration', 'name_hyrz_ren.png', () => { });
                                 });
                             }
                             if (!files.includes('name_hyrz_xiao.png')) {
-                                game.readFile('extension/火影忍者/decadeUI-image/name_hyrz_xiao.png', (data) => {
+                                game.readFile('extension/火影忍者/name_hyrz_xiao.png', (data) => {
                                     game.writeFile(data, 'extension/十周年UI/image/decoration', 'name_hyrz_xiao.png', () => { });
                                 });
                             }
@@ -12070,8 +12104,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     else if (!decadeUIs) alert('当前尚未开启《十周年UI》');
                     else alert('读取功能出现问题，无法载入文件');
                 },
-            },
-            */
+            },            
             "hyrz_huaijiubanben": {
                 "name": "怀旧版本",
                 "intro": "开启后重启游戏生效。本扩展的部分角色的技能会回调旧版，建议根据游戏强度环境而选择是否开启。具体改动的角色可详看：其它→帮助",

@@ -7,12 +7,12 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2025/09/29",
+	date: "2025/09/30",
 	author: "小苏",
-	intro: "<li>从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式和乱斗图鉴功能",
+	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式和乱斗图鉴功能<li>翻新【我爱罗】的技能",
 	size: "60MB",
 	netdisk: "",
-	version: 2.1,
+	version: 2.2,
 	files: [
 		"LICENSE","LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -34,7 +34,7 @@ extension["火影忍者"] = {
 		"huoying_haosheng2.mp3","huoying_hongjiao1.mp3","huoying_hongjiao2.mp3","huoying_huadie1.mp3","huoying_huadie2.mp3","huoying_huanyin1.mp3",
 		"huoying_huanyin2.mp3","huoying_huigu1.mp3","huoying_huitian2.mp3","huoying_huizhan2.mp3","huoying_huomeng1.mp3","huoying_itachi.mp3",
 		"huoying_jiaodan1.mp3","huoying_jiaodan3.mp3","huoying_jiaoji1.mp3","huoying_jihuai2.mp3","huoying_jinkui2.mp3","huoying_jinshao1.mp3",
-		"huoying_jinshu2.mp3","huoying_jizhu1.mp3","huoying_jizhu2.mp3","huoying_jue.jpg","huoying_juefang_less1.mp3","huoying_juefang_more1.mp3",
+		"huoying_jinshu2.mp3","huoying_jizhu1.mp3","huoying_jizhu2.mp3","huoying_jue.jpg","huoying_juefang1.mp3","huoying_juefang2.mp3",
 		"huoying_juneng1.mp3","huoying_kai.jpg","huoying_kakasi.mp3","huoying_kanjiulang.jpg","huoying_kongbo2.mp3","huoying_kuangbao2.mp3",
 		"huoying_landun2.mp3","huoying_landun3.mp3","huoying_landun31.mp3","huoying_landun61.mp3","huoying_landun62.mp3","huoying_leidao1.mp3",
 		"huoying_leidun1.mp3","huoying_leiying.jpg","huoying_lianyou2.mp3","huoying_liaoshang1.mp3","huoying_liudaoban.jpg","huoying_liudaoxianren.jpg",

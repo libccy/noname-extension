@@ -1309,7 +1309,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             var Zhuoyingrenzhes = {
                 character: {
                     "huoying_dayemu": ["male", "hyrz_ren", 3, ["huoying_chendun", "huoying_tiancheng", "huoying_feixian"], []],
-                    "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang"], []],
+                    "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang","huoying_jiamei"], []],
                     "huoying_wuren": ["male", "hyrz_ren", 3, ["huoying_rechendun", "huoying_xfenlie", "huoying_wuchen"], []],
                     "huoying_sanlei": ["male", "hyrz_ren", 1, ["huoying_tuci", "huoying_leidun"], []],
                     "huoying_zaibuzhan": ["male", "hyrz_ren", 3, ["huoying_ansha", "huoying_reshuilao", "huoying_wuyin"], []],
@@ -1459,9 +1459,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_zhuansheng": "转生",
                     "huoying_zhuansheng_info": "<font color=#F0F>秽土转生</font> 出牌阶段限一次，你可弃置一张【桃】并选择一名已阵亡角色，令其复活，其体力回复至2，摸两张的牌，并且若为身份局，其身份阵营与你一致（若你为主公则视阵营为忠臣），然后你失去一点体力上限",
                     "huoying_shazang": "沙葬",
-                    "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> （一尾守鹤）当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
+                    "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指点目标数限制（延时性锦囊牌除外）",
                     "huoying_juefang": "绝防",
-                    "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲",
+                    "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲（至多为1）",
+                    "huoying_jiamei2": "假寐",
+                    "huoying_jiamei": "假寐",
+                    "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，结束阶段，你回复体力至体力上限",
                     "huoying_rechendun": "尘遁",
                     "huoying_rechendun_info": "出牌阶段限一次，你可与一名有未被废除的装备栏的角色进行拼点，若你赢，你选择废除其一个装备栏；若你没赢，目标角色受到一点伤害",
                     "huoying_wuchen": "无尘",
@@ -1842,7 +1845,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_chutian": ["female", "hyrz_huo", 3, ["huoying_baiyan", "huoying_rouquan"], []],
                             "huoying_daitu": ["male", "hyrz_xiao", 3, ["huoying_xuhua", "huoying_shenwei", "huoying_xianyan"], []],
                             "huoying_zhuozhu": ["male", "hyrz_xiao", 3, ["huoying_yandun", "huoying_qianniao", "huoying_rexuzuo"], []],
-                            "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang"], []],
+                            "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang","huoying_jiamei"], []],
                             "huoying_mingren": ["male", "hyrz_huo", 3, ["huoying_fenshen", "huoying_xianshu"], []],
                             "huoying_shuimen": ["male", "hyrz_huo", 3, ["huoying_luoxuan", "huoying_shanguang", "huoying_fengyin"], []],
                             "huoying_changmen": ["male", "hyrz_xiao", 3, ["huoying_tianzheng", "huoying_tianyin", "huoying_baoxing", "huoying_lunhui"], []],
@@ -2245,7 +2248,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: "ext:火影忍者:2",
                                 forced: true,
                                 filter: function (event, player) {
-                                    return player.hp < 3 && event.target.isLinked();
+                                    return player.hp < 3 && event.player.isLinked();
                                 },
                                 content: function () {
                                     trigger.num++;
@@ -9727,23 +9730,66 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     noh: true,
                                 },
                             },
+                            "huoying_jiamei2": {
+                                audio: "ext:火影忍者:2",
+                                trigger: {
+                            player: "phaseEnd",
+                        },
+                        forced: true,                                                
+                        content: function () {
+                            player.recover(Infinity)                                                                           
+                        },
+                        },
+                            "huoying_jiamei": {
+                                audio: "ext:火影忍者:2",
+                                enable: "phaseUse",
+                                unique: true,
+                                limited: true,
+                                mark: true,
+                                marktext: "寐",
+                                init: function (player) {
+                                    player.storage.huoying_jiamei = false;
+                                },
+                                intro: {
+                                    content: "limited",
+                                },
+                                filter: function (event, player) {
+                                    return player.hp > 1;
+                                },
+                                content: function () {
+                                    player.$skill('假寐术', 'fire', 'red', 'avatar');
+                                    player.addTempSkill('huoying_jiamei2');
+                                    player.loseHp(player.hp-1);
+                                    player.draw(player.getDamagedHp());
+                                    player.storage.huoying_jiamei = true;
+                                    player.awakenSkill('huoying_jiamei');
+                                },
+                                ai: {
+                                    order: 9,
+                                    result: {
+                                        player: function (player) {
+                                            var num = game.countPlayer(function (current) {
+                                                return current.hp<2 && get.attitude(player, current) <= 0;
+                                            });
+                                            if (player.getStat().card.sha==0&&num>0&&game.roundNumber>1&&player.countCards('h') > 2&&player.countCards('h', { name: 'sha' })>0) return 1;
+                                            return 0;
+                                        },
+                                    },
+                                },
+                            },
                             "huoying_shazang": {
                                 audio: "ext:火影忍者:2",
                                 trigger: {
-                                    player: "shaBegin",
-                                },
-                                priority: 2017,
-                                filter: function (event, player) {
-                                    return player.hp == 1 || player.countCards('h') == 1;
-                                },
-                                check: function (event, player) {
-                                    return get.attitude(player, event.target) <= 0;
-                                },
-                                logTarget: "target",
-                                content: function () {
-                                    player.addTempSkill('unequip', 'shaAfter');
-                                    trigger.directHit = true;
-                                },
+                            source: "damageEnd",
+                        },
+                        forced: true,                        
+                        filter: function (event, player) {
+                            return event.card.name == 'sha' &&event.player.isAlive()&& !event.player.isTurnedOver();
+                        },
+                        content: function () {
+                            //trigger.num++;
+                            trigger.player.turnOver();                                                                             
+                        },
                                 mod: {
                                     globalFrom: function (from, to, distance) {
                                         if (from.hp == 1 || from.countCards('h') == 1) return distance - Infinity;
@@ -9771,6 +9817,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     source: "damageEnd",
                                 },
                                 forced: true,
+                                usable: 1,
+                                filter: function (event, player) {
+                                    return player.hujia<1;
+                                },
                                 content: function () {
                                     player.changeHujia();                                    
                                 },
@@ -10987,9 +11037,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_qianniao_info": "</font><font color=#f00>锁定技</font> 你的普通【杀】均视为雷【杀】且你的雷【杀】无距离限制",
                             "huoying_woailuo": "我爱罗",
                             "huoying_shazang": "沙葬",
-                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> 当你使用的牌为最后一张手牌或你的体力为1时：<li>你使用的【杀】可无视对方防具且不可闪避<li>你使用的牌可无视距离，且（非延时性锦囊牌除外）可指定任意名目标",
+                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指点目标数限制（延时性锦囊牌除外）",
                             "huoying_juefang": "绝防",
-                            "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲",
+                            "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲（至多为1）",
+                            "huoying_jiamei2": "假寐",
+                            "huoying_jiamei": "假寐",
+                            "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，结束阶段，你回复体力至体力上限",
                             "huoying_mingren": "漩涡鸣人",
                             "huoying_xianshu": "仙术",
                             "huoying_xianshu_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，你回复一点体力并摸一张牌",
@@ -12146,7 +12199,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.1",
+            version: "2.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

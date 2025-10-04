@@ -636,14 +636,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.playAudio('..', 'extension', '文武英杰', fn);
                 }
             }
-            game.playWWYJAudio=function(skill,num){
-		        var ww=[];
-		        for(var i=1;i<=num;i++) {
-			        ww.push(i);
-		        }
-		        var yj=lt.randomGet();
-		        game.playAudio('..','extension','文武英杰',skill+yj);
-	        }	
+            game.playWWYJAudio = function (skill, num) {
+                var ww = [];
+                for (var i = 1; i <= num; i++) {
+                    ww.push(i);
+                }
+                var yj = lt.randomGet();
+                game.playAudio('..', 'extension', '文武英杰', skill + yj);
+            }
             /*
             lib.arenaReady.push(function () {
                 for (var i in lib.characterPack['wenwuyingjie']) {
@@ -1556,7 +1556,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (tag == 'respondSha' || tag == 'respondShan') return true;
                                     //return false;							
                                 },
-                                result: {                                    
+                                result: {
                                     player: function (player, target) {
                                         //var event = _status.event;
                                         //if (_status.event.dying && get.attitude(player, _status.event.dying) <= 0) return 0;
@@ -1570,10 +1570,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         if (num1 < 1 && player.countCards('h', 'sha')) return 0;
                                         if (num2 < 1 && player.countCards('h', 'shan')) return 0;                                        
                                         */
-                                        if(!player.hasValueTarget({name:'sha'})) return 0;
+                                        if (!player.hasValueTarget({ name: 'sha' })) return 0;
                                         return 1;
                                     },
-                                },                                                                    
+                                },
                             },
                         },
                         lib.translate.wwyj_jiguang_info = '你可在合适的时机选择一名角色的装备区的一张牌并令其弃置之，若此牌为：<li>武器牌或攻击马，视为使用或打出一张【杀】<li>防具牌或防御马或宝物牌，视为使用或打出一张【闪】';
@@ -2663,7 +2663,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     trigger.player.useCard(result.links[0], trigger.target);
                                 }
                                 else {
-                                    for (i = 3; i >= 0; i--) {
+                                    for (var i = 3; i >= 0; i--) {
                                         ui.cardPile.insertBefore(event.cards[i], ui.cardPile.firstChild);
                                     }
                                     game.log(player, '#y观看牌堆顶四张牌');
@@ -3049,7 +3049,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         player.addSkill('baiban');
                         player.clearSkills();
                         //game.playwwyj(['wwyj_heimao1', 'wwyj_heimao2'].randomGet());
-                        game.playWWYJAudio('wwyj_heimao',2);
+                        game.playWWYJAudio('wwyj_heimao', 2);
                         player.turnOver(true);
                     }
                 },
@@ -9142,7 +9142,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     var list = ['零种', '一种', '两种', '三种', '四种'];
                                     var cards = player.getCards('h');
                                     var suits = [];
-                                    for (i = 0; i < cards.length; i++) {
+                                    for (var i = 0; i < cards.length; i++) {
                                         if (!suits.contains(get.suit(cards[i]))) {
                                             suits.push(get.suit(cards[i]));
                                         }
@@ -10411,7 +10411,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.isMine()) {
                                         var dialog = ui.create.dialog('forcebutton');
                                         dialog.add('选择获得一项技能');
-                                        for (i = 0; i < list.length; i++) {
+                                        for (var i = 0; i < list.length; i++) {
                                             if (lib.translate[list[i] + '_info']) {
                                                 var translation = get.translation(list[i]);
                                                 if (translation[0] == '新' && translation.length == 3) {
@@ -13317,7 +13317,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     var es = player.getCards('e');
                                     for (var i = 0; i < event.cards.length; i++) {
-                                        for (j = 0; j < es.length; j++) {
+                                        for (var j = 0; j < es.length; j++) {
                                             if (get.subtype(event.cards[i]) == get.subtype(es[j])) {
                                                 return game.hasPlayer(function (current) {
                                                     return current.hasSkill('wwyj_xuedao');
@@ -13850,7 +13850,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 return player.canUse({ name: 'sha' }, current) && get.attitude(player, current) <= 0;
                                             });
                                             if (num < 1 && num2 > 0 && !player.countCards('h', 'sha') && target.countCards('h') > 2) return Math.random();
-                                            return -target.countCards('h') ;
+                                            return -target.countCards('h');
                                         },
                                     },
                                     order: 6,
@@ -14281,7 +14281,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     'step 0'
                                     var cards = player.getCards('h');
                                     var suits = [];
-                                    for (i = 0; i < cards.length; i++) {
+                                    for (var i = 0; i < cards.length; i++) {
                                         if (!suits.contains(get.suit(cards[i]))) {
                                             suits.push(get.suit(cards[i]));
                                         }
@@ -17403,7 +17403,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 game.readFile('extension/文武英杰/name_wwyjsha.png', (data) => {
                                     game.writeFile(data, 'extension/十周年UI/image/decoration', 'name_wwyjsha.png', () => { });
                                 });
-                            }                            
+                            }
                             alert('十周年UI/image/decoration素材已成功导入');
                         }, () => { });
                     }
@@ -17502,16 +17502,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "clear":true,
                     "nopointer":true,
               },*/
+            /*
             "wwyj_tujian": {
-                "name": "图鉴模式",
+                "name": "乱斗图鉴",
                 "init": "1",
                 item: {
                     "1": "模式介绍",
-                    "2": "<li>点击下方的“图鉴模式”，会重启游戏并进入图鉴模式。本模式仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。点击“图鉴模式”前请先确保已将武将项的总开关打开",
+                    "2": "<li>点击下方的“乱斗图鉴”，会重启游戏并进入图鉴模式。本模式仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。点击“图鉴模式”前请先确保已将武将项的总开关打开",
                 },
-            },
+            },*/
             "openwwyj_tujian": {
-                "name": "图鉴模式<div>&gt;</div>",
+                "name": "乱斗图鉴<div>&gt;</div>",
                 "clear": true,
                 onclick: function () {
                     game.playwwyj('wwyj_close');
@@ -17520,7 +17521,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     localStorage.setItem(lib.configprefix + 'directstart', true);
                     game.reload();
                 },
-            },            
+            },
 
         }, package: {
             character: {
@@ -17555,7 +17556,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.1",
+            version: "5.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

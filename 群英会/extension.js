@@ -2377,7 +2377,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         for (var i = 0; i < bottom.length; i++) {
                                             ui.cardPile.appendChild(bottom[i]);
                                         }
-                                        for (vari = 0; i < event.cards.length; i++) {
+                                        for (var i = 0; i < event.cards.length; i++) {
                                             if (!top.contains(event.cards[i]) && !bottom.contains(event.cards[i])) {
                                                 ui.cardPile.appendChild(event.cards[i]);
                                             }
@@ -6156,6 +6156,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
+            
+            "openqyh_tujian": {
+                "name": "图鉴模式<div>&gt;</div>",
+                "clear": true,
+                onclick: function () {
+                    game.playSu('qyh_open');
+                    lib.config.characters.push('qunying');
+                    lib.config.characters.push('wugeng');
+                    game.saveConfig('mode', 'brawl');
+                    localStorage.setItem(lib.configprefix + 'directstart', true);
+                    game.reload();
+                },
+            },
 
         }, package: {
             character: {
@@ -6185,7 +6198,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.1",
+            version: "2.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

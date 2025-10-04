@@ -21,120 +21,120 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         enable: "chooseToUse",
                     },
                         lib.translate.xxx_info = '技能描述';
-                        
+
                     lib.skill.huoying_zhaohuan = {
                         audio: "ext:火影忍者:2",
+                        trigger: {
+                            player: "chooseCardBegin",
+                        },
+                        check: function (event, player) {
+                            return player.hasCard(function (card) {
+                                var val = get.value(card);
+                                return val <= 4 && card.number >= 12;
+                            });
+                        },
+                        filter: function (event, player) {
+                            return event.type == 'compare' && !event.directresult;
+                        },
+                        content: function () {
+                            var chat = ['万蛇，助我一臂之力', '养蛇千日，用在一时'].randomGet();
+                            player.say(chat);
+                            var cards = get.cards();
+                            ui.discardPile.appendChild(cards[0]);
+                            cards[0].vanishtag.add('huoying_zhaohuan');
+                            trigger.directresult = cards;
+                            trigger.untrigger();
+                        },
+                        group: "huoying_zhaohuan_number",
+                        subSkill: {
+                            number: {
                                 trigger: {
-                                    player: "chooseCardBegin",
+                                    player: "compare",
+                                    target: "compare",
                                 },
-                                check: function (event, player) {
-                                    return player.hasCard(function (card) {
-                                        var val = get.value(card);
-                                        return val <= 4 && card.number >= 12;
-                                    });
-                                },
+                                sub: true,
+                                forced: true,
+                                popup: false,
                                 filter: function (event, player) {
-                                    return event.type == 'compare' && !event.directresult;
+                                    if (event.iwhile) return false;
+                                    if (event.player == player) {
+                                        return get.suit(event.card1) != 'heart';
+                                    }
+                                    else {
+                                        return get.suit(event.card2) != 'heart';
+                                    }
                                 },
+                                silent: true,
                                 content: function () {
-                                    var chat = ['万蛇，助我一臂之力', '养蛇千日，用在一时'].randomGet();
-                                    player.say(chat);
-                                    var cards = get.cards();
-                                    ui.discardPile.appendChild(cards[0]);
-                                    cards[0].vanishtag.add('huoying_zhaohuan');
-                                    trigger.directresult = cards;
-                                    trigger.untrigger();
+                                    game.log(player, '拼点牌点数视为', '#y13');
+                                    if (player == trigger.player) {
+                                        trigger.num1 = 13;
+                                    }
+                                    else {
+                                        trigger.num2 = 13;
+                                    }
                                 },
-                                group: "huoying_zhaohuan_number",
-                                subSkill: {
-                                    number: {
-                                        trigger: {
-                                            player: "compare",
-                                            target: "compare",
-                                        },
-                                        sub: true,
-                                        forced: true,
-                                        popup: false,
-                                        filter: function (event, player) {
-                                            if (event.iwhile) return false;
-                                            if (event.player == player) {
-                                                return get.suit(event.card1) != 'heart';
-                                            }
-                                            else {
-                                                return get.suit(event.card2) != 'heart';
-                                            }
-                                        },
-                                        silent: true,
-                                        content: function () {
-                                            game.log(player, '拼点牌点数视为', '#y13');
-                                            if (player == trigger.player) {
-                                                trigger.num1 = 13;
-                                            }
-                                            else {
-                                                trigger.num2 = 13;
-                                            }
-                                        },
-                                    },
-                                },
-                            },                    
+                            },
+                        },
+                    },
                         lib.translate.huoying_zhaohuan_info = '<font color=#F0F>通灵万蛇</font> 你拼点时，可以改为用牌堆顶的一张牌进行拼点；当你拼点的牌亮出后，若此牌的花色不为红桃，则点数视为K';
-                        
+
                     lib.skill.huoying_yongsheng = {
                         trigger: {
-                                    player: "dying",
-                                },
-                                audio: "ext:火影忍者:2",
-                                filter: function (event, player) {
-                                    if (player.maxHp < 1) return false;
-                                    return true;
-                                },
-                                content: function () {
-                                    'step 0'
-                                    player.draw();
-                                    'step 1'
-                                    player.chooseTarget(get.prompt2('huoying_yongsheng'), 1, function (card, player, target) {
-                                        return player != target && player.canCompare(target);
-                                    }, function (target) {
-                                        return get.attitude(player, target) < 0;
-                                    });
-                                    'step 2'
-                                    if (result.bool) {
-                                        var chat = ['人若死了，就什么都没了，只要活着，总会发现有趣的东西', '人，真是脆弱的生命！', '太完美了，果然，我还是想得到你的身体'].randomGet();
-                                        player.say(chat);
-                                        event.target = result.targets[0];
-                                        player.logSkill("wwyj_qunying", event.target);
-                                        player.chooseToCompare(event.target);
-                                    }
-                                    else {
-                                        event.finish();
-                                    }
-                                    'step 3'
-                                    if (!result.bool) {
-                                        player.recover(1 - player.hp);
-                                        player.loseMaxHp();
-                                        player.turnOver();
-                                        event.finish();
-                                    }
-                                    else {
-                                        event.num = event.target.hp - player.hp;
-                                    }
-                                    'step 4'
-                                    player.changeHp(event.num);
-                                    if (player.maxHp < 4) {
-                                        player.gainMaxHp();
-                                    }
-                                    'step 5'
-                                    event.target.changeHp(-event.num);
-                                    'step 6'
-                                    if (event.target.hp <= 0) {
-                                        event.target.dying({ source: player });
-                                    }
-                                },
-                                ai: {
-                                    order: 5,
-                                },
+                            player: "dying",
+                        },
+                        audio: "ext:火影忍者:2",
+                        filter: function (event, player) {
+                            if (player.maxHp < 1) return false;
+                            return true;
+                        },
+                        content: function () {
+                            'step 0'
+                            player.draw();
+                            'step 1'
+                            player.chooseTarget(get.prompt2('huoying_yongsheng'), 1, function (card, player, target) {
+                                return player != target && player.canCompare(target);
+                            }, function (target) {
+                                return get.attitude(player, target) < 0;
+                            });
+                            'step 2'
+                            if (result.bool) {
+                                var chat = ['人若死了，就什么都没了，只要活着，总会发现有趣的东西', '人，真是脆弱的生命！', '太完美了，果然，我还是想得到你的身体'].randomGet();
+                                player.say(chat);
+                                event.target = result.targets[0];
+                                player.logSkill("wwyj_qunying", event.target);
+                                player.chooseToCompare(event.target);
+                            }
+                            else {
+                                event.finish();
+                            }
+                            'step 3'
+                            if (!result.bool) {
+                                player.recover(1 - player.hp);
+                                player.loseMaxHp();
+                                player.turnOver();
+                                event.finish();
+                            }
+                            else {
+                                event.num = event.target.hp - player.hp;
+                            }
+                            'step 4'
+                            player.changeHp(event.num);
+                            if (player.maxHp < 4) {
+                                player.gainMaxHp();
+                            }
+                            'step 5'
+                            event.target.changeHp(-event.num);
+                            'step 6'
+                            if (event.target.hp <= 0) {
+                                event.target.dying({ source: player });
+                            }
+                        },
+                        ai: {
+                            order: 5,
+                        },
                     },
-                        lib.translate.huoying_yongsheng_info = '濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面';            
+                        lib.translate.huoying_yongsheng_info = '濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面';
 
                     lib.skill.huoying_lunmu = {
                         audio: "ext:火影忍者:2",
@@ -1309,7 +1309,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             var Zhuoyingrenzhes = {
                 character: {
                     "huoying_dayemu": ["male", "hyrz_ren", 3, ["huoying_chendun", "huoying_tiancheng", "huoying_feixian"], []],
-                    "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang","huoying_jiamei"], []],
+                    "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang", "huoying_jiamei"], []],
                     "huoying_wuren": ["male", "hyrz_ren", 3, ["huoying_rechendun", "huoying_xfenlie", "huoying_wuchen"], []],
                     "huoying_sanlei": ["male", "hyrz_ren", 1, ["huoying_tuci", "huoying_leidun"], []],
                     "huoying_zaibuzhan": ["male", "hyrz_ren", 3, ["huoying_ansha", "huoying_reshuilao", "huoying_wuyin"], []],
@@ -1845,7 +1845,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_chutian": ["female", "hyrz_huo", 3, ["huoying_baiyan", "huoying_rouquan"], []],
                             "huoying_daitu": ["male", "hyrz_xiao", 3, ["huoying_xuhua", "huoying_shenwei", "huoying_xianyan"], []],
                             "huoying_zhuozhu": ["male", "hyrz_xiao", 3, ["huoying_yandun", "huoying_qianniao", "huoying_rexuzuo"], []],
-                            "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang","huoying_jiamei"], []],
+                            "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang", "huoying_jiamei"], []],
                             "huoying_mingren": ["male", "hyrz_huo", 3, ["huoying_fenshen", "huoying_xianshu"], []],
                             "huoying_shuimen": ["male", "hyrz_huo", 3, ["huoying_luoxuan", "huoying_shanguang", "huoying_fengyin"], []],
                             "huoying_changmen": ["male", "hyrz_xiao", 3, ["huoying_tianzheng", "huoying_tianyin", "huoying_baoxing", "huoying_lunhui"], []],
@@ -2031,7 +2031,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         if (event.isMine()) {
                                             var dialog = ui.create.dialog('forcebutton');
                                             dialog.add('技能列表');
-                                            for (i = 0; i < skills.length; i++) {
+                                            for (var i = 0; i < skills.length; i++) {
                                                 if (lib.translate[skills[i] + '_info']) {
                                                     var translation = get.translation(skills[i]);
                                                     if (translation[0] == '新' && translation.length == 3) {
@@ -4232,6 +4232,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 filter: function (event, player) {
                                     if (player.getStat().skill.huoying_mudun >= player.hp) return false;
                                     if (event.type == 'wuxie') return false;
+                                    var list = [];
+                                    for (var i = 0; i < ui.cardPile.childNodes.length; i++) {
+                                        list.push(ui.cardPile.childNodes[i]);
+                                    }
+                                    for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
+                                        list.push(ui.discardPile.childNodes[i]);
+                                    }
+                                    if(list.length==0) return false;
                                     for (var i of lib.inpile) {
                                         if (i == 'wuxie') return false;
                                         if (event.filterCard({ name: i }, player, event)) return true;
@@ -4250,8 +4258,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    //var cards = get.cards(get.mode() != "guozhan" && 2);
-                                    var cards = (list.randomGets(5));
+                                    if(list.length>0){                                    
+                                    var cards = list.randomGets(Math.min(list.length,5));
                                     //for (var i = cards.length - 1; i >= 0; i--) {
                                     //ui.cardPile.insertBefore(cards[i].fix(), ui.cardPile.firstChild);
                                     //}//删掉后每次完全随机不放回牌堆顶
@@ -4300,6 +4308,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             }
                                             return 1;
                                         });
+                                        }
                                     'step 1'
                                     var evt = event.getParent(2);
                                     if (result.bool && result.links && result.links.length) {
@@ -4725,9 +4734,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 audio: "ext:火影忍者:2",
                                 check: function (event, player) {
-                                    if (player == event.player&&event.num1>event.num2) return 0;
-                                    if (player != event.player&&event.num1<event.num2) return 0;    
-                                    return 1;    
+                                    if (player == event.player && event.num1 > event.num2) return 0;
+                                    if (player != event.player && event.num1 < event.num2) return 0;
+                                    return 1;
                                 },
                                 content: function () {
                                     /*
@@ -4743,18 +4752,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             game.log(player, "交换了拼点牌");   
                                         }  
                                         */
-                                        const num1 = trigger.num1;
-                const num2 = trigger.num2;
-                const card1 = trigger.card1;
-                const card2 = trigger.card2;
-                trigger.num1 = num2;
-                trigger.num2 = num1;
-                trigger.card1 = card2;
-                trigger.card2 = card1;
-                game.log(player, "交换了拼点牌");                                                                      
+                                    const num1 = trigger.num1;
+                                    const num2 = trigger.num2;
+                                    const card1 = trigger.card1;
+                                    const card2 = trigger.card2;
+                                    trigger.num1 = num2;
+                                    trigger.num2 = num1;
+                                    trigger.card1 = card2;
+                                    trigger.card2 = card1;
+                                    game.log(player, "交换了拼点牌");
                                 },
                             },
-                            
+
                             "huoying_yongsheng": {
                                 trigger: {
                                     player: "dying",
@@ -4763,7 +4772,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 filter: function (event, player) {
                                     if (player.maxHp < 1) return false;
                                     return true;
-                                },                                
+                                },
                                 usable: 1,
                                 content: function () {
                                     'step 0'
@@ -5455,7 +5464,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     'step 0'
                                     var cards = trigger.player.getCards('h');
                                     var suits = [];
-                                    for (i = 0; i < cards.length; i++) {
+                                    for (var i = 0; i < cards.length; i++) {
                                         if (!suits.contains(get.suit(cards[i]))) {
                                             suits.push(get.suit(cards[i]));
                                         }
@@ -5520,7 +5529,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     var list = ['一种', '两种', '三种', '四种'];
                                     var cards = trigger.player.getCards('h');
                                     var suits = [];
-                                    for (i = 0; i < cards.length; i++) {
+                                    for (var i = 0; i < cards.length; i++) {
                                         if (!suits.contains(get.suit(cards[i]))) {
                                             suits.push(get.suit(cards[i]));
                                         }
@@ -8720,6 +8729,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 filter: function (event, player) {
                                     if (player.getStat().skill.huoying_xmudun >= player.hp) return false;
                                     if (event.type == 'wuxie') return false;
+                                    var list = [];
+                                    for (var i = 0; i < ui.cardPile.childNodes.length; i++) {
+                                        list.push(ui.cardPile.childNodes[i]);
+                                    }
+                                    for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
+                                        list.push(ui.discardPile.childNodes[i]);
+                                    }
+                                    if(list.length==0) return false;
                                     for (var i of lib.inpile) {
                                         if (i == 'wuxie') return false;
                                         if (event.filterCard({ name: i }, player, event)) return true;
@@ -8738,7 +8755,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    var cards = (list.randomGets(player.hp));
+                                    if(list.length>0){
+                                    var cards = list.randomGets(Math.min(list.length,player.hp));
                                     var aozhan = player.hasSkill("aozhan");
                                     player
                                         .chooseButton(["木遁：选择要" + (evt.name == "chooseToUse" ? "使用" : "打出") + "的牌", cards])
@@ -8784,6 +8802,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             }
                                             return 1;
                                         });
+                                        }
                                     'step 1'
                                     var evt = event.getParent(2);
                                     if (result.bool && result.links && result.links.length) {
@@ -9733,13 +9752,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_jiamei2": {
                                 audio: "ext:火影忍者:2",
                                 trigger: {
-                            player: "phaseEnd",
-                        },
-                        forced: true,                                                
-                        content: function () {
-                            player.recover(Infinity)                                                                           
-                        },
-                        },
+                                    player: "phaseEnd",
+                                },
+                                forced: true,
+                                content: function () {
+                                    player.recover(Infinity)
+                                },
+                            },
                             "huoying_jiamei": {
                                 audio: "ext:火影忍者:2",
                                 enable: "phaseUse",
@@ -9757,9 +9776,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return player.hp > 1;
                                 },
                                 content: function () {
-                                    player.$skill('假寐术', 'fire', 'red', 'avatar');
+                                    //player.$skill('假寐术', 'fire', 'red', 'avatar');
                                     player.addTempSkill('huoying_jiamei2');
-                                    player.loseHp(player.hp-1);
+                                    player.loseHp(player.hp - 1);
                                     player.draw(player.getDamagedHp());
                                     player.storage.huoying_jiamei = true;
                                     player.awakenSkill('huoying_jiamei');
@@ -9769,9 +9788,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     result: {
                                         player: function (player) {
                                             var num = game.countPlayer(function (current) {
-                                                return current.hp<2 && get.attitude(player, current) <= 0;
+                                                return current.hp < 2 && get.attitude(player, current) <= 0;
                                             });
-                                            if (player.getStat().card.sha==0&&num>0&&game.roundNumber>1&&player.countCards('h') > 2&&player.countCards('h', { name: 'sha' })>0) return 1;
+                                            if (player.getStat().card.sha == 0 && num > 0 && game.roundNumber > 1 && player.countCards('h') > 2 && player.countCards('h', { name: 'sha' }) > 0) return 1;
                                             return 0;
                                         },
                                     },
@@ -9780,16 +9799,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_shazang": {
                                 audio: "ext:火影忍者:2",
                                 trigger: {
-                            source: "damageEnd",
-                        },
-                        forced: true,                        
-                        filter: function (event, player) {
-                            return event.card.name == 'sha' &&event.player.isAlive()&& !event.player.isTurnedOver();
-                        },
-                        content: function () {
-                            //trigger.num++;
-                            trigger.player.turnOver();                                                                             
-                        },
+                                    source: "damageEnd",
+                                },
+                                forced: true,
+                                filter: function (event, player) {
+                                    return event.card.name == 'sha' && event.player.isAlive() && !event.player.isTurnedOver();
+                                },
+                                content: function () {
+                                    //trigger.num++;
+                                    trigger.player.turnOver();
+                                },
                                 mod: {
                                     globalFrom: function (from, to, distance) {
                                         if (from.hp == 1 || from.countCards('h') == 1) return distance - Infinity;
@@ -9819,10 +9838,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 forced: true,
                                 usable: 1,
                                 filter: function (event, player) {
-                                    return player.hujia<1;
+                                    return player.hujia < 1;
                                 },
                                 content: function () {
-                                    player.changeHujia();                                    
+                                    player.changeHujia();
                                 },
                                 ai: {
                                     order: 6,
@@ -10202,7 +10221,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.isMine()) {
                                         var dialog = ui.create.dialog('forcebutton');
                                         dialog.add('选择获得一项技能');
-                                        for (i = 0; i < list.length; i++) {
+                                        for (var i = 0; i < list.length; i++) {
                                             if (lib.translate[list[i] + '_info']) {
                                                 var translation = get.translation(list[i]);
                                                 if (translation[0] == '新' && translation.length == 3) {
@@ -12126,7 +12145,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
-            
+
             decadeUI_imageLoad: {
                 name: '点击载入十周年UI素材',
                 clear: true,
@@ -12157,7 +12176,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     else if (!decadeUIs) alert('当前尚未开启《十周年UI》');
                     else alert('读取功能出现问题，无法载入文件');
                 },
-            },            
+            },
             "hyrz_huaijiubanben": {
                 "name": "怀旧版本",
                 "intro": "开启后重启游戏生效。本扩展的部分角色的技能会回调旧版，建议根据游戏强度环境而选择是否开启。具体改动的角色可详看：其它→帮助",
@@ -12172,6 +12191,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 name: '无限月读',
                 "intro": "无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
                 init: false
+            },
+            "openhyrz_tujian": {
+                "name": "图鉴模式<div>&gt;</div>",
+                "clear": true,
+                onclick: function () {
+                    game.playhyrz('hyrz_danchuang');
+                    lib.config.characters.push('huoyingrenzhe');
+                    game.saveConfig('mode', 'brawl');
+                    localStorage.setItem(lib.configprefix + 'directstart', true);
+                    game.reload();
+                },
             },
 
         }, package: {
@@ -12199,7 +12229,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.2",
+            version: "2.3",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

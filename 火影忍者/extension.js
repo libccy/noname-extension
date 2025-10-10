@@ -1481,6 +1481,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《火影忍者》扩展哦！',
+                            '致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -1603,6 +1604,166 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
+            
+            // 创建页面类
+            game.hyrzCharacter = function() {
+                //if (lib.brawl) {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+                //}
+                function Page() {
+                    this.body = ui.create.div().hide();
+                    this.comps = {};
+                    try {
+                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
+                        if (!this.paBody) {
+                            this.paBody = document.body;
+                        }
+                        this.paBody.appendChild(this.body);
+                    } catch (e) {
+                        this.paBody = document.body;
+                        this.paBody.appendChild(this.body);
+                    }
+                }
+
+                Page.prototype = {
+                    show: function() {
+                        if (!this.body.parentNode && this.paBody) {
+                            this.paBody.appendChild(this.body);
+                        }
+                        this.body.show();
+
+                        // 设置样式
+                        this.body.style.display = 'block';
+                        this.body.style.zIndex = '2025';
+                        this.body.style.position = 'fixed';
+                        this.body.style.top = '47.3%';
+                        this.body.style.left = '50%';
+                        this.body.style.transform = 'translate(-50%, -50%)';
+                        this.body.style.backgroundColor = '#1a1a1a';
+                        //this.body.style.backgroundColor = 'rgba(20,20,20,0.95)';
+                        this.body.style.padding = '20px';
+                        this.body.style.border = '2px solid black';
+                        this.body.style.borderRadius = '8px';
+                        this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+                        //this.body.style.maxWidth = '75%';
+                        //this.body.style.maxHeight = '72%';                                 
+                        this.body.style.width = '75%'; //fixed
+                        this.body.style.height = '72%'; //fixed
+                        this.body.style.overflow = 'auto';
+                        this.body.style.textAlign = 'left';
+
+                        return this;
+                    },
+
+                    hide: function() {
+                        this.body.hide();
+                        return this;
+                    }
+                };
+
+                // 创建角色介绍函数
+                function createCharacterIntro(name, pack) {
+                    var introClass = 'left';
+
+                    function intro(name, pack) {
+                        var div = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_' + introClass);
+                        introClass = introClass == 'left' ? 'right' : 'left';
+                        pack = pack || Mhuoyingrenzhes;
+                        var info = pack.character[name];
+                        if (!info) return null;
+
+                        var dComps = {
+                            header: (function() {
+                                var img = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_header');
+                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/火影忍者/' + name + '.jpg)';
+                                return img;
+                            })(),
+                            infos: (function(name, group, hp, sex) {
+                                var str = "";
+                                if (name) str += pack.translate[name] + '&nbsp;';
+                                if (sex) str += get.translation(sex) + '&nbsp;';
+                                if (group) str += get.translation(group) + '&nbsp;';
+                                if (hp) str += hp + '体力';
+                                return ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_infos', str);
+                            })(name, info[1], info[2], info[0]),
+                            skills: (function(list) {
+                                var str = "";
+                                if (!Array.isArray(list)) list = [];
+                                for (var i = 0; i < list.length; i++) {
+                                    if (i > 0) str += '<br><br>';
+                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
+                                }
+                                var skills = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_skills', str);
+                                lib.setScroll(skills);
+                                return skills;
+                            })(info[3]),
+                        };
+
+                        for (var i in dComps) {
+                            div.appendChild(dComps[i]);
+                        }
+                        return div;
+                    }
+
+                    return intro(name, pack);
+                }
+
+                // 创建角色选择页面
+                var characterPage = new Page();
+                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();
+
+                // 初始化页面内容
+                var comps = {
+                    closeButton: (function() {
+                        var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
+                        button.addEventListener('click', function() {
+                            game.playhyrz('hyrz_close');
+                            //if (lib.brawl) {
+                            ui.system.style.display = '';
+                            setTimeout(function() {
+                                ui.click.configMenu();
+                                ui.menuContainer.style.display = '';
+                            }, 500);
+                            //}
+                            characterPage.hide();
+                        });
+                        return button;
+                    })(),
+                    title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
+                };
+
+
+                for (var i in Mhuoyingrenzhes.character) {
+                    comps[i] = createCharacterIntro(i, Mhuoyingrenzhes);
+                }
+
+                comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
+                for (var i in Xhuoyingrenzhes.character) {
+                    comps[i] = createCharacterIntro(i, Xhuoyingrenzhes);
+                }
+
+                comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
+                for (var i in Zhuoyingrenzhes.character) {
+                    comps[i] = createCharacterIntro(i, Zhuoyingrenzhes);
+                }
+
+                // 将组件添加到页面
+                for (var i in comps) {
+                    if (comps[i]) {
+                        characterPage.body.appendChild(comps[i]);
+                    }
+                }
+
+                characterPage.comps = comps;
+
+                // 设置滚动并显示页面
+                lib.setScroll(characterPage.body);
+                characterPage.show();
+
+                return characterPage;
+            };
 
             // ---------------------------------------lunmu------------------------------------------//
             lib.skill._huoying_lunmu = {
@@ -1777,7 +1938,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
 
         }, precontent: function (hyrz) {
-            lib.init.css(lib.assetURL + 'extension/火影忍者', 'extension');
+            lib.init.css(lib.assetURL + 'extension/火影忍者', 'extension');            
             lib.extensionMenu.extension_火影忍者.hyrz_paiduikoujue = {
                 name: '<div class="hyrz_menu">牌堆口诀<font size="3px">⇨</font></div>',
                 clear: true,
@@ -1797,7 +1958,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 },
             };
             delete lib.extensionMenu.extension_火影忍者.delete;
-
             lib.extensionMenu['extension_' + '火影忍者'].delete = { name: '删除此扩展', clear: true, };
 
             if (hyrz.enable) {
@@ -12192,8 +12352,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "intro": "无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
                 init: false
             },
+            "hyrz_llwj": {            
+                "name": "浏览武将<div>&gt;</div>",
+                "clear": true,
+                "onclick": function () {                    
+                    game.playhyrz('hyrz_danchuang');
+                    game.hyrzCharacter();
+                },
+            },
             "openhyrz_tujian": {
-                "name": "图鉴模式<div>&gt;</div>",
+                "name": "乱斗图鉴<div>&gt;</div>",
                 "clear": true,
                 onclick: function () {
                     game.playhyrz('hyrz_danchuang');
@@ -12229,7 +12397,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.3",
+            version: "2.4",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

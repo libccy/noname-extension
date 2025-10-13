@@ -1447,7 +1447,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }
                             "step 2"
                             if (result.bool) {
-                                event.target.discard(result.links[0]);
+                                event.target.discard(result.links[0]);                                
                             }
                             else event.finish();
                         },
@@ -3934,7 +3934,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《文武英杰》扩展哦！',
-                            '致敬《狗年乱斗》作者橙续缘',
+                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -3964,11 +3964,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             };
                             var gameWWYJIntro = ui.create.div('#WWYJ_gameWWYJIntro', '文武英杰');
                             var router = {
-                                wenwuyingjiePage: new Page().set('body', ui.create.div('#WWYJ_router_wenwuyingjiePage').hide()).set('init', function () {
-                                    var introClass = 'left';
-                                    function intro(name, pack) {
-                                        var div = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_' + introClass);
-                                        introClass = introClass == 'left' ? 'right' : 'left';
+                                wenwuyingjiePage: new Page().set('body', ui.create.div('#WWYJ_router_wenwuyingjiePage').hide()).set('init', function () {                                    
+                                    function intro(name, pack, introClass) {
+                                        var div = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_' + introClass);                                
                                         pack = pack || Awenwuyingjies;
                                         var info = pack.character[name];
                                         if (!info) return null;
@@ -4025,17 +4023,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         })(),
                                         title: ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '至尊荣耀'),
                                     };
-                                    for (var i in Awenwuyingjies.character) {
-                                        comps[i] = intro(i);
-                                    }
-                                    comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
-                                    for (var i in Cwenwuyingjies.character) {
-                                        comps[i] = intro(i, Cwenwuyingjies);
+                                    var classState = 'left';
+                                    for (var i in Awenwuyingjies.character) {                                        
+                                        comps[i] = intro(i, Awenwuyingjies, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     comps.title2 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '扩展作者');
-                                    for (var i in Bwenwuyingjies.character) {
-                                        comps[i] = intro(i, Bwenwuyingjies);
+                                    var classState = 'left';
+                                    for (var i in Bwenwuyingjies.character) {                                     
+                                        comps[i] = intro(i, Bwenwuyingjies, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
                                     }
+                                    comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
+                                    var classState = 'left';
+                                    for (var i in Cwenwuyingjies.character) {                                        
+                                        comps[i] = intro(i, Cwenwuyingjies, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
+                                    }                                    
                                     for (var i in comps) {
                                         this.body.appendChild(comps[i]);
                                     }
@@ -4056,15 +4060,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     };
                     return brawl;
                 })();
-            }
-            
+            }            
             // 创建页面类
-            game.wwyjCharacter = function() {
-                //if (lib.brawl) {
+            game.wwyjCharacter = function() {             
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();
-                //}
+                ui.click.configMenu();               
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -4079,15 +4080,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.paBody.appendChild(this.body);
                     }
                 }
-
                 Page.prototype = {
                     show: function() {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
-
-                        // 设置样式
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4106,7 +4104,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.height = '72%'; //fixed
                         this.body.style.overflow = 'auto';
                         this.body.style.textAlign = 'left';
-
                         return this;
                     },
 
@@ -4114,19 +4111,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.hide();
                         return this;
                     }
-                };
-
-                // 创建角色介绍函数
+                };                
                 function createCharacterIntro(name, pack) {
                     var introClass = 'left';
-
                     function intro(name, pack) {
                         var div = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_' + introClass);
                         introClass = introClass == 'left' ? 'right' : 'left';
                         pack = pack || Awenwuyingjies;
                         var info = pack.character[name];
                         if (!info) return null;
-
                         var dComps = {
                             header: (function() {
                                 var img = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_header');
@@ -4153,67 +4146,50 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 return skills;
                             })(info[3]),
                         };
-
                         for (var i in dComps) {
                             div.appendChild(dComps[i]);
                         }
                         return div;
                     }
-
                     return intro(name, pack);
-                }
-
-                // 创建角色选择页面
+                }             
                 var characterPage = new Page();
                 characterPage.body = ui.create.div('#WWYJ_router_wenwuyingjiePage').hide();
-
-                // 初始化页面内容
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#WWYJ_router_wenwuyingjiePage_closeButton', '×');
                         button.addEventListener('click', function() {
-                            game.playwwyj('wwyj_close');
-                            //if (lib.brawl) {
+                            game.playwwyj('wwyj_close');                            
                             ui.system.style.display = '';
                             setTimeout(function() {
                                 ui.click.configMenu();
                                 ui.menuContainer.style.display = '';
-                            }, 500);
-                            //}
+                            }, 500);                           
                             characterPage.hide();
                         });
                         return button;
                     })(),
                     title: ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '至尊荣耀'),
                 };
-
                 for (var i in Awenwuyingjies.character) {
                     comps[i] = createCharacterIntro(i, Awenwuyingjies);
                 }
-
-                comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
-                for (var i in Cwenwuyingjies.character) {
-                    comps[i] = createCharacterIntro(i, Cwenwuyingjies);
-                }
-
                 comps.title2 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '扩展作者');
                 for (var i in Bwenwuyingjies.character) {
                     comps[i] = createCharacterIntro(i, Bwenwuyingjies);
                 }
-
-                // 将组件添加到页面
+                comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
+                for (var i in Cwenwuyingjies.character) {
+                    comps[i] = createCharacterIntro(i, Cwenwuyingjies);
+                }                
                 for (var i in comps) {
                     if (comps[i]) {
                         characterPage.body.appendChild(comps[i]);
                     }
                 }
-
                 characterPage.comps = comps;
-
-                // 设置滚动并显示页面
                 lib.setScroll(characterPage.body);
                 characterPage.show();
-
                 return characterPage;
             };
 
@@ -17677,7 +17653,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "name": "乱斗图鉴<div>&gt;</div>",
                 "clear": true,
                 onclick: function () {
-                    game.playwwyj('wwyj_close');
+                    game.playwwyj('wwyj_dansha');
                     lib.config.characters.push('wenwuyingjie');
                     game.saveConfig('mode', 'wenwuyingjiepicture');
                     localStorage.setItem(lib.configprefix + 'directstart', true);
@@ -17718,7 +17694,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.3",
+            version: "5.4",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

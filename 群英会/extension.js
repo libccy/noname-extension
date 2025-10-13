@@ -323,7 +323,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《群英会》扩展哦！',
-                            '致敬《狗年乱斗》作者橙续缘',
+                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -353,11 +353,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             };
                             var gameQYHIntro = ui.create.div('#QYH_gameQYHIntro', '群英会');
                             var router = {
-                                qunyinghuiPage: new Page().set('body', ui.create.div('#QYH_router_qunyinghuiPage').hide()).set('init', function () {
-                                    var introClass = 'left';
-                                    function intro(name, pack) {
-                                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);
-                                        introClass = introClass == 'left' ? 'right' : 'left';
+                                qunyinghuiPage: new Page().set('body', ui.create.div('#QYH_router_qunyinghuiPage').hide()).set('init', function () {                                    
+                                    function intro(name, pack, introClass) {
+                                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);                                        
                                         pack = pack || Aqunyin;
                                         var info = pack.character[name];
                                         if (!info) return null;
@@ -414,12 +412,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         })(),
                                         title: ui.create.div('#QYH_router_qunyinghuiPage_title', '群英会'),
                                     };
-                                    for (var i in Aqunyin.character) {
-                                        comps[i] = intro(i);
+                                    var classState = 'left';
+                                    for (var i in Aqunyin.character) {                                        
+                                        comps[i] = intro(i, Aqunyin, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
-                                    for (var i in Bwugeng.character) {
-                                        comps[i] = intro(i, Bwugeng);
+                                    var classState = 'left';
+                                    for (var i in Bwugeng.character) {                                        
+                                        comps[i] = intro(i, Bwugeng, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     for (var i in comps) {
                                         this.body.appendChild(comps[i]);
@@ -432,7 +434,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return this;
                                 }).init(),
                             };
-
                             gameQYHIntro.addEventListener('click', function () {
                                 game.playSu('qyh_open');
                                 router.qunyinghuiPage.show();
@@ -445,12 +446,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
             
             // 创建页面类
-            game.qyhCharacter = function() {
-                //if (lib.brawl) {
+            game.qyhCharacter = function() {                
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();
-                //}
+                ui.click.configMenu();               
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -465,15 +464,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.paBody.appendChild(this.body);
                     }
                 }
-
                 Page.prototype = {
                     show: function() {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-
-                        // 设置样式
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -495,24 +491,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                         return this;
                     },
-
                     hide: function() {
                         this.body.hide();
                         return this;
                     }
                 };
-
-                // 创建角色介绍函数
                 function createCharacterIntro(name, pack) {
                     var introClass = 'left';
-
                     function intro(name, pack) {
                         var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);
                         introClass = introClass == 'left' ? 'right' : 'left';
                         pack = pack || Aqunyin;
                         var info = pack.character[name];
                         if (!info) return null;
-
                         var dComps = {
                             header: (function() {
                                 var img = ui.create.div('.QYH_router_qunyinghuiPage_intro_header');
@@ -539,62 +530,47 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 return skills;
                             })(info[3]),
                         };
-
                         for (var i in dComps) {
                             div.appendChild(dComps[i]);
                         }
                         return div;
                     }
-
                     return intro(name, pack);
                 }
-
-                // 创建角色选择页面
                 var characterPage = new Page();
                 characterPage.body = ui.create.div('#QYH_router_qunyinghuiPage').hide();
 
-                // 初始化页面内容
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#QYH_router_qunyinghuiPage_closeButton', '×');
                         button.addEventListener('click', function() {
-                            game.playSu('qyh_close');
-                            //if (lib.brawl) {
+                            game.playSu('qyh_close');                  
                             ui.system.style.display = '';
                             setTimeout(function() {
                                 ui.click.configMenu();
                                 ui.menuContainer.style.display = '';
-                            }, 500);
-                            //}
+                            }, 500);                            
                             characterPage.hide();
                         });
                         return button;
                     })(),
                     title: ui.create.div('#QYH_router_qunyinghuiPage_title', '群英会'),
                 };
-
                 for (var i in Aqunyin.character) {
                     comps[i] = createCharacterIntro(i, Aqunyin);
                 }
-
                 comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
                 for (var i in Bwugeng.character) {
                     comps[i] = createCharacterIntro(i, Bwugeng);
-                }
-
-                // 将组件添加到页面
+                }                
                 for (var i in comps) {
                     if (comps[i]) {
                         characterPage.body.appendChild(comps[i]);
                     }
                 }
-
                 characterPage.comps = comps;
-
-                // 设置滚动并显示页面
                 lib.setScroll(characterPage.body);
                 characterPage.show();
-
                 return characterPage;
             };
 
@@ -6379,7 +6355,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.3",
+            version: "2.4",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

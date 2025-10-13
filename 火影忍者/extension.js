@@ -1459,12 +1459,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_zhuansheng": "转生",
                     "huoying_zhuansheng_info": "<font color=#F0F>秽土转生</font> 出牌阶段限一次，你可弃置一张【桃】并选择一名已阵亡角色，令其复活，其体力回复至2，摸两张的牌，并且若为身份局，其身份阵营与你一致（若你为主公则视阵营为忠臣），然后你失去一点体力上限",
                     "huoying_shazang": "沙葬",
-                    "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指点目标数限制（延时性锦囊牌除外）",
+                    "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指定目标数限制（延时性锦囊牌除外）",
                     "huoying_juefang": "绝防",
                     "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲（至多为1）",
                     "huoying_jiamei2": "假寐",
                     "huoying_jiamei": "假寐",
-                    "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，结束阶段，你回复体力至体力上限",
+                    "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，出牌阶段结束时，你回复体力至体力上限",
                     "huoying_rechendun": "尘遁",
                     "huoying_rechendun_info": "出牌阶段限一次，你可与一名有未被废除的装备栏的角色进行拼点，若你赢，你选择废除其一个装备栏；若你没赢，目标角色受到一点伤害",
                     "huoying_wuchen": "无尘",
@@ -1481,7 +1481,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《火影忍者》扩展哦！',
-                            '致敬《狗年乱斗》作者橙续缘',
+                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -1512,10 +1512,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             var gameHYRZIntro = ui.create.div('#HYRZ_gameHYRZIntro', '火影忍者');
                             var router = {
                                 huoyingrenzhePage: new Page().set('body', ui.create.div('#HYRZ_router_huoyingrenzhePage').hide()).set('init', function () {
-                                    var introClass = 'left';
-                                    function intro(name, pack) {
+                                    function intro(name, pack, introClass) {
                                         var div = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_' + introClass);
-                                        introClass = introClass == 'left' ? 'right' : 'left';
                                         pack = pack || Mhuoyingrenzhes;
                                         var info = pack.character[name];
                                         if (!info) return null;
@@ -1572,16 +1570,22 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         })(),
                                         title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
                                     };
-                                    for (var i in Mhuoyingrenzhes.character) {
-                                        comps[i] = intro(i);
+                                    var classState = 'left';
+                                    for (var i in Mhuoyingrenzhes.character) {                                        
+                                        comps[i] = intro(i, Mhuoyingrenzhes, classState);
+                                        classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
-                                    for (var i in Xhuoyingrenzhes.character) {
-                                        comps[i] = intro(i, Xhuoyingrenzhes);
+                                    var classState = 'left';
+                                    for (var i in Xhuoyingrenzhes.character) {                                       
+                                        comps[i] = intro(i, Xhuoyingrenzhes, classState);
+                                        classState = classState === 'left' ? 'right' : 'left';
                                     }
                                     comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
-                                    for (var i in Zhuoyingrenzhes.character) {
-                                        comps[i] = intro(i, Zhuoyingrenzhes);
+                                    var classState = 'left';
+                                    for (var i in Zhuoyingrenzhes.character) {                                    
+                                        comps[i] = intro(i, Zhuoyingrenzhes, classState);
+                                        classState = classState === 'left' ? 'right' : 'left';
                                     }
                                     for (var i in comps) {
                                         this.body.appendChild(comps[i]);
@@ -1606,12 +1610,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
             
             // 创建页面类
-            game.hyrzCharacter = function() {
-                //if (lib.brawl) {
+            game.hyrzCharacter = function() {                
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();
-                //}
+                ui.click.configMenu();                
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -1626,15 +1628,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.paBody.appendChild(this.body);
                     }
                 }
-
                 Page.prototype = {
                     show: function() {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
-
-                        // 设置样式
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1653,27 +1652,22 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.height = '72%'; //fixed
                         this.body.style.overflow = 'auto';
                         this.body.style.textAlign = 'left';
-
                         return this;
                     },
-
                     hide: function() {
                         this.body.hide();
                         return this;
                     }
                 };
-
-                // 创建角色介绍函数
+                
                 function createCharacterIntro(name, pack) {
                     var introClass = 'left';
-
                     function intro(name, pack) {
                         var div = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_' + introClass);
                         introClass = introClass == 'left' ? 'right' : 'left';
                         pack = pack || Mhuoyingrenzhes;
                         var info = pack.character[name];
                         if (!info) return null;
-
                         var dComps = {
                             header: (function() {
                                 var img = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_header');
@@ -1700,68 +1694,50 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 return skills;
                             })(info[3]),
                         };
-
                         for (var i in dComps) {
                             div.appendChild(dComps[i]);
                         }
                         return div;
                     }
-
                     return intro(name, pack);
-                }
-
-                // 创建角色选择页面
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();
-
-                // 初始化页面内容
+                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
                         button.addEventListener('click', function() {
-                            game.playhyrz('hyrz_close');
-                            //if (lib.brawl) {
+                            game.playhyrz('hyrz_close');                            
                             ui.system.style.display = '';
                             setTimeout(function() {
                                 ui.click.configMenu();
                                 ui.menuContainer.style.display = '';
                             }, 500);
-                            //}
                             characterPage.hide();
                         });
                         return button;
                     })(),
                     title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
                 };
-
-
                 for (var i in Mhuoyingrenzhes.character) {
                     comps[i] = createCharacterIntro(i, Mhuoyingrenzhes);
                 }
-
                 comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
                 for (var i in Xhuoyingrenzhes.character) {
                     comps[i] = createCharacterIntro(i, Xhuoyingrenzhes);
                 }
-
                 comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
                 for (var i in Zhuoyingrenzhes.character) {
                     comps[i] = createCharacterIntro(i, Zhuoyingrenzhes);
                 }
-
-                // 将组件添加到页面
                 for (var i in comps) {
                     if (comps[i]) {
                         characterPage.body.appendChild(comps[i]);
                     }
                 }
-
                 characterPage.comps = comps;
-
-                // 设置滚动并显示页面
                 lib.setScroll(characterPage.body);
                 characterPage.show();
-
                 return characterPage;
             };
 
@@ -9912,7 +9888,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_jiamei2": {
                                 audio: "ext:火影忍者:2",
                                 trigger: {
-                                    player: "phaseEnd",
+                                    player: "phaseUseEnd",
                                 },
                                 forced: true,
                                 content: function () {
@@ -11216,12 +11192,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_qianniao_info": "</font><font color=#f00>锁定技</font> 你的普通【杀】均视为雷【杀】且你的雷【杀】无距离限制",
                             "huoying_woailuo": "我爱罗",
                             "huoying_shazang": "沙葬",
-                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指点目标数限制（延时性锦囊牌除外）",
+                            "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指定目标数限制（延时性锦囊牌除外）",
                             "huoying_juefang": "绝防",
                             "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲（至多为1）",
                             "huoying_jiamei2": "假寐",
                             "huoying_jiamei": "假寐",
-                            "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，结束阶段，你回复体力至体力上限",
+                            "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，出牌阶段结束时，你回复体力至体力上限",
                             "huoying_mingren": "漩涡鸣人",
                             "huoying_xianshu": "仙术",
                             "huoying_xianshu_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，你回复一点体力并摸一张牌",
@@ -12397,7 +12373,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.4",
+            version: "2.5",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

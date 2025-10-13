@@ -7,12 +7,12 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2025/10/10",
+	date: "2025/10/13",
 	author: "小苏",
 	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式和乱斗图鉴功能<li>新增菜单打开武将图鉴功能",
 	size: "60MB",
 	netdisk: "",
-	version: 2.4,
+	version: 2.5,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -90,7 +90,7 @@ extension["火影忍者"] = {
 
 
 extension["文武英杰"] = {
-	date: "2025/10/10",
+	date: "2025/10/13",
 	intro: "<li>新增一个菜单打开武将图鉴功能<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -98,7 +98,7 @@ extension["文武英杰"] = {
 	author: "凉茶",
 	size: "54MB",
 	netdisk: "",
-	version: 5.3,
+	version: 5.4,
 	files: [
 	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
@@ -155,13 +155,13 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2025/10/10",
+	date: "2025/10/13",
 	intro: "<li>更新：新增菜单打开武将图鉴功能,更新前请先删除旧版，因为素材已改变  <li>本扩展包含部分<span class=bluetext>三国</span>  <span class=greentext>秦时明月</span> <span class=browntext>武庚纪</span>、龙珠、战国、武侠等作品或类别的人物（没图片的解决方法：开启武将项相应分扩展栏的总开关，然后重启游戏），个别武将的强度略高但彼此平衡。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "",
 	forum: "",
 	size: "43MB",
-	version: 2.3,
+	version: 2.4,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",

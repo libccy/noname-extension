@@ -90,7 +90,7 @@ extension["火影忍者"] = {
 
 
 extension["文武英杰"] = {
-	date: "2025/10/13",
+	date: "2025/10/16",
 	intro: "<li>新增一个菜单打开武将图鉴功能<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -98,7 +98,7 @@ extension["文武英杰"] = {
 	author: "凉茶",
 	size: "54MB",
 	netdisk: "",
-	version: 5.4,
+	version: 5.5,
 	files: [
 	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",

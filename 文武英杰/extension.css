@@ -253,3 +253,132 @@
   font-size: 12px;
   overflow: auto;
 }
+
+.wwyj_gallery_dialog {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif;
+}
+
+.wwyj_menu {
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.wwyj_gallery_title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.wwyj_char_card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wwyj_char_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3) !important;
+}
+
+.wwyj_nav_btn:hover {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.wwyj_indicator {
+    text-shadow: 1px 1px 2px #000;
+    font-weight: bold;
+}
+
+.wwyj-gallery-dialog {
+    display: block;
+    z-index: 2025;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1a1a1a;
+    padding: 0;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.wwyj-gallery-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffd700;
+    padding: 5px 0;
+    z-index: 100;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+.wwyj-gallery-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+    user-select: none;
+}
+
+.wwyj-gallery-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.wwyj-gallery-slider {
+    display: flex;
+    transition: transform 0.15s ease;
+    height: 100%;
+    align-items: center;
+    gap: 50px;
+    cursor: grab;
+}
+
+.wwyj-character-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+}
+
+.wwyj-character-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.wwyj-character-name {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    color: #ffd700;
+    padding: 10px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}

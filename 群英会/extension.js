@@ -482,8 +482,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.border = '2px solid black';
                         this.body.style.borderRadius = '8px';
                         this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-                        //this.body.style.maxWidth = '75%';
-                        //this.body.style.maxHeight = '72%';                                 
                         this.body.style.width = '75%'; //fixed
                         this.body.style.height = '72%'; //fixed
                         this.body.style.overflow = 'auto';
@@ -572,6 +570,247 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 lib.setScroll(characterPage.body);
                 characterPage.show();
                 return characterPage;
+            };
+            
+            
+            game.showQYHCharacterGallery = function() {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+                function Page() {
+                    this.body = ui.create.div().hide();
+                    this.comps = {};
+                    try {
+                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
+                        if (!this.paBody) {
+                            this.paBody = document.body;
+                        }
+                        this.paBody.appendChild(this.body);
+                    } catch (e) {
+                        this.paBody = document.body;
+                        this.paBody.appendChild(this.body);
+                    }
+                }
+                Page.prototype = {
+                    show: function() {
+                        if (!this.body.parentNode && this.paBody) {
+                            this.paBody.appendChild(this.body);
+                        }
+                        this.body.show();
+                        // 设置样式 - 调整为图鉴样式
+                        this.body.style.display = 'block';
+                        this.body.style.zIndex = '2025';
+                        this.body.style.position = 'fixed';
+                        this.body.style.top = '50%';
+                        this.body.style.left = '50%';
+                        this.body.style.transform = 'translate(-50%, -50%)';
+                        this.body.style.backgroundColor = '#1a1a1a'; // 接近黑色的背景
+                        this.body.style.padding = '0';
+                        this.body.style.border = '2px solid #ffd700';
+                        this.body.style.borderRadius = '10px';
+                        this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
+                        this.body.style.width = '100%'; // 宽度设为100%
+                        this.body.style.height = '75%'; // 高度设为75%
+                        this.body.style.overflow = 'hidden';
+                        this.body.style.textAlign = 'center';
+                        return this;
+                    },
+                    hide: function() {
+                        this.body.hide();
+                        return this;
+                    }
+                };
+                // 收集所有群英会角色
+                var characters = [];                
+                // 从各个势力包中收集角色
+                var packs = [Aqunyin, Bwugeng];
+                for (var p = 0; p < packs.length; p++) {
+                    var pack = packs[p];
+                    if (pack && pack.character) {
+                        for (var charId in pack.character) {
+                            if (pack.character.hasOwnProperty(charId)) {
+                                characters.push(charId);
+                            }
+                        }
+                    }
+                }                    
+                /*
+                for (var i in lib.characterPack['qunying']) {
+                    characters.push(i);
+                }                
+                for (var i in lib.characterPack['wugeng']) {
+                    characters.push(i);
+                }
+                */
+                if (characters.length == 0) {
+                    alert('未找到角色数据');
+                    return;
+                }
+                // 创建图鉴页面
+                var galleryPage = new Page();
+                galleryPage.body = ui.create.div('.qyh-gallery-content');
+                // 创建标题
+                var title = ui.create.div('.qyh-gallery-title', '群英会');
+                // 创建关闭按钮
+                var closeButton = ui.create.div('.qyh-gallery-close-btn', '×');
+                // 创建关闭函数
+                function closeGallery() {
+                    galleryPage.hide();
+                    ui.system.style.display = '';
+                    setTimeout(function() {
+                        game.playSu('qyh_close');
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                }
+                closeButton.addEventListener('click', closeGallery);
+                // 创建画廊容器 - 优化间距，使图片更大
+                var galleryContainer = ui.create.div('');
+                galleryContainer.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    height: calc(100% - 40px); /* 减少标题区域的高度 */
+                    position: relative;
+                    overflow: hidden;
+                    padding: 10px 30px; /* 上下边距相等，使图片上下对称 */
+                    box-sizing: border-box;
+                    margin-top: 10px; /* 减少上边距，使图片更大 */
+                `;
+                // 创建滑动容器
+                var slider = ui.create.div('');
+                slider.style.cssText = `
+                    display: flex;
+                    transition: transform 0.15s ease;
+                    height: 100%;
+                    align-items: center;
+                    gap: 50px;
+                    cursor: grab;
+                `;
+                // 计算卡片尺寸 - 优化尺寸计算，使图片更大
+                var containerWidth = window.innerWidth - 50; // 减去左右各50px间距
+                var containerHeight = window.innerHeight * 0.75 - 40; // 减去上下各30px间距和标题区域
+                var cardHeight = containerHeight * 1.5; // 直接使用容器高度的1.5倍，使图片最大化
+                var cardWidth = cardHeight * (3 / 4); // 3:4比例，宽度是高度的3/4
+                // 计算最大可滑动距离 - 确保最后一张图片右端离背景右边缘5px
+                var totalWidth = (cardWidth + 50) * characters.length - 50; // 所有卡片和间隙的总宽度
+                var containerVisibleWidth = containerWidth - 100; // 容器可见宽度（减去左右各50px）
+                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5); // 确保最后一张图片右端离背景右边缘5px
+                // 创建角色卡片
+                for (var i = 0; i < characters.length; i++) {
+                    var charId = characters[i];
+                    var charCard = ui.create.div('');
+                    charCard.style.cssText = `
+                        flex-shrink: 0;
+                        width: ${cardWidth}px;
+                        height: ${cardHeight}px;
+                        background: rgba(255, 255, 255, 0.05);
+                        border: 2px solid rgba(255, 215, 0, 0.5);//描边
+                        border-radius: 8px;
+                        overflow: hidden;
+                        position: relative;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                        margin: 0 auto; /* 居中 */
+                    `;
+                    // 创建角色图片
+                    var charImg = document.createElement('img');
+                    charImg.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    `;
+                    // 设置图片源
+                    var imgSrc = lib.assetURL + 'extension/群英会/' + charId + '.jpg';
+                    charImg.src = imgSrc;
+                    charImg.onerror = function() {
+                        console.log('图片加载失败:', this.src);
+                        this.style.background = 'linear-gradient(135deg, #1a1a1a, #333)';
+                        this.style.display = 'flex';
+                        this.style.alignItems = 'center';
+                        this.style.justifyContent = 'center';
+                        this.style.color = '#fff';
+                        this.style.fontSize = '18px';
+                        this.style.textAlign = 'center';
+                        this.innerHTML = '<div>暂无图片</div>';
+                    };
+                    // 创建角色名称 - 放在图片上偏下方，距离底部10px        
+                    var charName = ui.create.div('.qyh-character-name', get.translation(charId) || charId);
+                    charCard.appendChild(charImg);
+                    charCard.appendChild(charName);
+                    slider.appendChild(charCard);
+                }
+                // 当前滑动距离
+                var currentSlideDistance = 0;
+                // 更新显示
+                function updateDisplay() {
+                    slider.style.transform = 'translateX(-' + currentSlideDistance + 'px)';
+                }
+                // 触摸滑动支持
+                var startX = 0;
+                var currentX = 0;
+                var isDragging = false;
+                slider.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    slider.style.cursor = 'grabbing';
+                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                });
+                slider.addEventListener('touchmove', function(e) {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var newDistance = currentSlideDistance + diff;
+                    // 限制滑动范围
+                    if (newDistance < 0) newDistance = 0;
+                    if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+                    currentSlideDistance = newDistance;
+                    updateDisplay();
+                    startX = currentX;
+                });
+                slider.addEventListener('touchend', function() {
+                    isDragging = false;
+                    slider.style.cursor = 'grab';
+                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                });
+                // 鼠标拖动支持
+                slider.addEventListener('mousedown', function(e) {
+                    startX = e.clientX;
+                    isDragging = true;
+                    slider.style.cursor = 'grabbing';
+                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    e.preventDefault();
+                });
+                document.addEventListener('mousemove', function(e) {
+                    if (!isDragging) return;
+                    currentX = e.clientX;
+                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var newDistance = currentSlideDistance + diff;
+                    // 限制滑动范围
+                    if (newDistance < 0) newDistance = 0;
+                    if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+                    currentSlideDistance = newDistance;
+                    updateDisplay();
+                    startX = currentX;
+                });
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                    slider.style.cursor = 'grab';
+                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                });
+                // 组装组件
+                galleryContainer.appendChild(slider);
+                // 将标题添加到galleryPage.body，使其在图鉴背景内
+                galleryPage.body.appendChild(title);
+                galleryPage.body.appendChild(closeButton);
+                galleryPage.body.appendChild(galleryContainer);
+                // 显示页面
+                lib.setScroll(galleryPage.body);
+                galleryPage.show();
+                // 初始更新
+                setTimeout(function() {
+                    updateDisplay();
+                }, 100);
+                return galleryPage;
             };
 
             // ---------------------------------------Audio------------------------------------------//
@@ -670,7 +909,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
 
         }, precontent: function (qunyinghui) {
-                        
+            
             lib.extensionMenu.extension_群英会.qyh_paiduikoujue = {
                 name: '<div class="qyh_menu">牌堆口诀<font size="3px">⇨</font></div>',
                 clear: true,
@@ -6307,15 +6546,25 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             },
             "qyh_llwj": {            
-                "name": "浏览武将<div>&gt;</div>",
+                //"name": "浏览武将<div>&gt;</div>",
+                name: '<div class="zrsy_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {                    
                     game.playSu('qyh_open');
                     game.qyhCharacter();
                 },
             },
+            "qyh_character_gallery": {            
+                name: '<div class="qyh_menu">角色图鉴<font size="3px">⇨</font></div>',
+                clear: true,
+                onclick: function() {
+                    game.playSu('qyh_open');
+                    game.showQYHCharacterGallery();
+                },
+            },           
             "openqyh_tujian": {
-                "name": "乱斗图鉴<div>&gt;</div>",
+                //"name": "乱斗图鉴<div>&gt;</div>",
+                name: '<div class="zrsy_menu">乱斗图鉴<font size="3px">⇨</font></div>',
                 "clear": true,
                 onclick: function () {
                     game.playSu('qyh_open');
@@ -6355,7 +6604,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.4",
+            version: "2.5",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

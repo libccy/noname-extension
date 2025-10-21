@@ -5285,7 +5285,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             lib.extensionMenu.extension_文武英杰.BUG = {
                 //"name":"<span style='text-decoration: underline'>反馈BUG及投稿、提建议</span>",
                 //"name": "反馈BUG<div>&gt;</div>",
-                name: '<div class="zrsy_menu">反馈BUG<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">反馈BUG<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {
                     //game.playwwyj('wwyj_close');
@@ -17847,7 +17847,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },
             "wwyj_llwj": {            
                 //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="zrsy_menu">浏览武将<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {                    
                     game.playwwyj('wwyj_dansha');
@@ -17864,7 +17864,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },
             "newtujian": {            
                 //"name": "全新图鉴<div>&gt;</div>",
-                name: '<div class="zrsy_menu">全新图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">全新图鉴<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {
                     game.playwwyj('wwyj_dansha');
@@ -17874,7 +17874,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             "changelog": {            
                 //"name":"<span style='text-decoration: underline'>查看更新日志</span>",
                 //"name": "更新日志<div>&gt;</div>",
-                name: '<div class="zrsy_menu">更新日志<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">更新日志<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {
                     //game.playwwyj('wwyj_close');
@@ -17885,7 +17885,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },
             "openwwyj_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
-                name: '<div class="zrsy_menu">乱斗图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">乱斗图鉴<font size="3px">⇨</font></div>',
                 "clear": true,
                 onclick: function () {
                     game.playwwyj('wwyj_dansha');

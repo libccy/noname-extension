@@ -12572,7 +12572,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },
             "hyrz_llwj": {            
                 //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="zrsy_menu">浏览武将<font size="3px">⇨</font></div>',
+                name: '<div class="hyrz_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {                    
                     game.playhyrz('hyrz_danchuang');
@@ -12589,7 +12589,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },           
             "openhyrz_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
-                name: '<div class="zrsy_menu">乱斗图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="hyrz_menu">乱斗图鉴<font size="3px">⇨</font></div>',
                 "clear": true,
                 onclick: function () {
                     game.playhyrz('hyrz_danchuang');

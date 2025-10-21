@@ -6547,7 +6547,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },
             "qyh_llwj": {            
                 //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="zrsy_menu">浏览武将<font size="3px">⇨</font></div>',
+                name: '<div class="qyh_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
                 "onclick": function () {                    
                     game.playSu('qyh_open');
@@ -6564,7 +6564,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             },           
             "openqyh_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
-                name: '<div class="zrsy_menu">乱斗图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="qyh_menu">乱斗图鉴<font size="3px">⇨</font></div>',
                 "clear": true,
                 onclick: function () {
                     game.playSu('qyh_open');

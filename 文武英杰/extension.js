@@ -641,13 +641,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var yj = lt.randomGet();
                 game.playAudio('..', 'extension', '文武英杰', skill + yj);
             }
-            /*
-            lib.arenaReady.push(function () {
-                for (var i in lib.characterPack['wenwuyingjie']) {
-                    if (lib.character[i][3].indexOf("wwyj_zhwpy") < 0) lib.character[i][3].push("wwyj_zhwpy");
-                }
-            });
-            */
+            
             lib.skill._deletezhwpy = {
                 trigger: {
                     player: 'enterGame',
@@ -813,9 +807,137 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             }
+            
+            // 文武英杰扩展 - 阵亡配音播放功能
+            (function() {
+                'use strict';
+                // 动态阵亡台词配置
+                const dieAudioTexts = {
+                    // 格式: "角色ID": "阵亡台词"
+                    "wwyj_shuihu": "我是水乎，就这样吧……",
 
+                };
+
+                // 保存原始 charactercard 方法
+                const originalCharacterCard = ui.click.charactercard;
+
+                // 重写 charactercard 方法
+                ui.click.charactercard = function(name, sourcenode, noedit, resume, avatar, audioName) {
+                    const result = originalCharacterCard.call(this, name, sourcenode, noedit, resume, avatar, audioName);
+                    //延迟执行确保UI已创建
+                    setTimeout(() => {
+                        addDieAudioButton(name);
+                    }, 100);
+
+                    return result;
+                };
+
+                // 添加阵亡配音按钮
+                function addDieAudioButton(characterName) {
+                    //获取技能列表
+                    const skillsContainer = document.querySelector('.characterskill');
+                    if (!skillsContainer) return;
+
+                    if (skillsContainer.querySelector('.die-audio-button')) return;
+
+                    // 检查配音文件是否存在
+                    const audioFile = getDieAudioFile(characterName);
+                    if (!audioFile) return;
+
+                    // 创建阵亡按钮
+                    const dieAudioButton = ui.create.div('.menubutton large', skillsContainer, function() {                        
+                        // 设置选中状态
+                        const currentActive = skillsContainer.querySelector('.active');
+                        if (currentActive) currentActive.classList.remove('active');
+                        this.classList.add('active');
+
+                        // 播放配音并显示台词
+                        playDieAudio(audioFile);
+                        showDieAudioContent(characterName);
+                    }, "阵亡");
+                    //添加标识类
+                    dieAudioButton.classList.add('die-audio-button');
+                }
+
+                // 显示阵亡台词内容
+                function showDieAudioContent(characterName) {
+                    const intro2 = document.querySelector('.characterintro.intro2');
+                    if (!intro2) return;
+
+                    // 清空内容
+                    intro2.innerHTML = '';
+
+                    // 获取台词
+                    const dieText = dieAudioTexts[characterName] || '阵亡配音';
+
+                    // 创建显示内容
+                    const dieTitle = document.createElement('span');
+                    dieTitle.style.fontWeight = 'bold';
+                    dieTitle.style.marginRight = '5px';
+                    dieTitle.innerHTML = '阵亡';
+
+                    const textSpan = document.createElement('span');
+                    textSpan.innerHTML = `<br>${dieText}`;
+
+                    intro2.appendChild(dieTitle);
+                    intro2.appendChild(textSpan);
+                }
+
+                // 获取阵亡配音文件路径
+                function getDieAudioFile(characterName) {
+                    const fullPath = `${lib.assetURL}extension/文武英杰/${characterName}.mp3`;
+                    return checkAudioFileExists(fullPath) ? fullPath : null;
+                }
+
+                // 检查音频文件是否存在
+                function checkAudioFileExists(url) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', url, false);
+                    try {
+                        xhr.send();
+                        return xhr.status === 200;
+                    } catch (e) {
+                        return false;
+                    }
+                }
+
+                // 播放阵亡配音
+                function playDieAudio(audioFile) {
+                    if (!audioFile) return;
+
+                    try {
+                        // 优先使用游戏内置音频系统
+                        if (game.audio && typeof game.audio.play === 'function') {
+                            game.audio.play(audioFile);
+                            return;
+                        }
+
+                        // 备用方案：HTML5 Audio
+                        const audio = new Audio(audioFile);
+                        audio.play().catch(e => {
+                            console.error('播放音频失败:', e);
+                        });
+
+                    } catch (error) {
+                        console.error('播放阵亡配音时出错:', error);
+                    }
+                }
+
+                console.log('文武英杰扩展阵亡配音功能已加载');
+            })();
+            
+            //旧方法（适用于1.10.5及以下版本）：
+            /*
+            if (config.wwyj_zhwpyicon) {
+            
+            lib.arenaReady.push(function () {
+                for (var i in lib.characterPack['wenwuyingjie']) {
+                    if (lib.character[i][3].indexOf("wwyj_zhwpy") < 0) lib.character[i][3].push("wwyj_zhwpy");
+                }
+            });
+            
             //以下部分代码借鉴《玄武江湖》扩展
-
+            
             var windowsCharacters = pack.character;
             if (windowsCharacters) {
                 windowsCharacters = windowsCharacters.character;
@@ -913,6 +1035,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.window.appendChild(audio);
                 return audio;
             };
+            }
+            */
 
             //以上部分代码借鉴《玄武江湖》扩展
             // ---------------------------------------wwyj_hezizhashi------------------------------------------//  
@@ -5163,48 +5287,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 charactercard.apply(this, arguments);
                 lib.character[name][3] = skills;
             };
-
-            /*
-            var charactercard = ui.click.charactercard;
-            const MytryDieAudio = function (player) {
-                const audioList = get.Audio.die({ player }).fileList;
-                return audioList.length ? audioList[0] : true;
-            };
-            const MyDietext = function (name) {
-                let dieAudios = game.parseDieTextMap(name).filter(i => "text" in i).map(i => i.text);
-                if (!dieAudios.length) dieAudios = ["暂无台词！"];
-                return dieAudios.join('<br>');
-            };
-            ui.click.charactercard = function (name, sourcenode, noedit, resume, avatar) {
-                if (!lib.character[name]) lib.character[name] = get.character(name);
-                lib.skill["wwyjzhenwangpeiyin"] = {
-                    audio: MytryDieAudio({ name: name, name1: name, name2: name }),
-                };
-                lib.translate["wwyjzhenwangpeiyin"] = "阵亡";
-        
-                lib.translate["wwyjzhenwangpeiyin_info"] = MyDietext(name);
-                const skills = lib.character[name][3];
-                const skills2 = skills.slice(0);
-                skills2.push("wwyjzhenwangpeiyin");
-                lib.character[name][3] = skills2;
-        
-                const oldSkill_info = {};
-                skills.forEach(function (skill, index) {
-                    const key = `${skill}_info`;
-                    if (lib.translate[key + 'prompt']) return;
-                    lib.translate[key + 'prompt'] = true;
-                    oldSkill_info[key] = lib.translate[key];
-                    let str = `<button type="button" onclick="window.wwyjSkillPrompt('` + skill + `')">查看代码</button>`;
-                    lib.translate[key] = str + '<br>' + lib.translate[key];
-                });
-        
-                charactercard.apply(this, arguments);
-                //Object.keys(oldSkill_info).forEach(function(key){
-                //lib.translate[key]=oldSkill_info[key];
-                //});
-                lib.character[name][3] = skills;
-            };
-            */
+            
             //上边“查看代码”功能借鉴自《金庸群侠传》            
             window.wwyj_import = function (func) {
                 func(lib, game, ui, get, ai, _status);
@@ -17149,7 +17232,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "_changename": "更名改姓",
                             "wwyj_zhwpy": "阵亡",
                             "wwyj_jisha": "击杀",
-                            "wwyj_zhwpy_info": "该功能适用于无名杀1.10.5及以下版本，可在武将资料页试听本扩展的武将的阵亡配音，或安装《千幻聆音》扩展来点播",
+                            "wwyj_zhwpy_info": "该功能适用于无名杀1.10.5及以下版本，可在武将资料页试听本扩展的武将的阵亡配音，更高版本请安装《千幻聆音》扩展来点播",
                             "_wwyj_yinglingfuhun": "英灵附魂",
                             "wwyj_zhizun": "<font color=#f00>至尊荣耀</font>",
                             "wwyj_zuozhe": "<span class=yellowtext>扩展作者</span>",
@@ -17727,7 +17810,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "name": "诛天灭地",
                 "intro": "开启后重启游戏生效。所有武将的技能会被全部清空（慎用！此功能可克制99%的变态角色，比如弹丸杀的神座出流），关闭此开关再重启游戏后会恢复原样",
                 init: false,
-            },
+            },/*
+            "wwyj_zhwpyicon": {
+                "name": "阵亡按钮",
+                "intro": "开启后重启游戏生效。资料页会有个“阵亡”按钮，1.10.5版及之前版本可单扩展使用，之后要搭配《千幻聆音》使用",
+                init: false,
+            },*/
             "wwyj_newtujianicon": {
                 "name": "图鉴按钮",
                 "intro": "开启后重启游戏生效。游戏开始后屏幕右下方会有个全新图鉴的按钮，点击后会打开全新图鉴",
@@ -17929,7 +18017,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.6",
+            version: "5.7",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

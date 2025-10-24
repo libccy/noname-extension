@@ -807,20 +807,318 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             }
+            /*
+            // ==================== 文武英杰扩展 - 阵亡配音功能（防冲突版本） ====================
+            // 使用唯一命名空间，避免与其他扩展冲突，要借鉴的话抄这个！
+            // ===========================================================================
+
+            (function() {
+                'use strict';
+
+                // 唯一命名空间前缀
+                const NAMESPACE = 'wwyj_';
+
+                // 扩展配置
+                const CONFIG = {
+                    extensionName: '文武英杰',
+                    extensionPath: 'extension/文武英杰/'
+                };
+
+                // 阵亡台词配置
+                const dieAudioTexts = {
+                    "wwyj_shuihu": "无欲无求，常自在……",
+                    "wwyj_jiguangs": "遁入阴影之中……",
+                    "wwyj_chengxuyuan": "人为财死，鸟为食亡……",
+                    "wwyj_bohetang": "潜伏数载，终究劫数难逃",
+                    "wwyj_pipi": "说好的……一世……为我画眉呢？",
+                    "wwyj_limuzi": "人生如过客，放下皆自在",
+                    "wwyj_guihua": "长生不老，是对我最大的惩罚",
+                    "wwyj_yiwangs": "大哥……我死后……你还会记得我吗？",
+                    "wwyj_fux2": "聪明反被聪明误啊！",
+                    "wwyj_shenzuo": "我的时辰……也到了",
+                    "wwyj_guchengs": "打铁还需自身硬",
+                    "wwyj_hezifengyun": "有所得，必有所失！",
+                    "wwyj_qingzhongs": "时不予我，时不予我",
+                    "wwyj_liushas": "二十年后，又是一条……好汉",
+                    "wwyj_chansuideshengming": "欠你们的，我终于……还清了",
+                    "wwyj_duanges": "苦心经营王霸计，竹篮打水一场空",
+                    "wwyj_shennais": "大漠白雕，终抵不过江南的燕儿……",
+                    "wwyj_tianqikui": "原来，我亦在……棋局中",
+                    "wwyj_xiaoSu": "多少遗憾，俱随琴音去",
+                    "wwyj_liangchas": "曹魏天下存，魂归故土安",
+                    "wwyj_liangchax": "人生，若只如初见",
+                    "wwyj_yuhudie": "长相思兮长相忆，短相思兮无穷极",
+                    "wwyj_zhichitianya": "这世间的公道，都去了哪里？",
+                    "wwyj_shijian": "若有来世，不负前缘",
+                    "wwyj_xuebi": "大丈夫，不惧死亡",
+                    "wwyj_zhaonies": "生死……有命",
+                    "wwyj_niya": "满腔复燕梦，心中无儿女……",
+                    "wwyj_taishangdaniu": "四海若升平，谁愿当街乞……",
+                    "wwyj_xingyunnvshen": "我还想与你，共骑这雪花驹",
+                    "wwyj_feicheng": "我宁死于刀下，岂降汝乎？",
+                    "wwyj_zhugejun": "英雄气短，儿女情长",
+                    "wwyj_lengyus": "冷眼世间，最苦相思毒……",
+                    "wwyj_yanyumoran": "生生世世若梦，岁岁年年如斯……",
+                    "wwyj_wali": "悔不该差使小人，招此祸患",
+                    "wwyj_chenwus": "鸟飞猢狲散，龙倒众人剔",
+                    "wwyj_rongyaotaoge": "著作……还……没完成",
+                    "wwyj_yangguangweiliang": "玲珑华美，不可尽骞",
+                    "wwyj_anshas": "今病困若此，固命也",
+                    "wwyj_fanxings": "满手杀孽，早知会有此劫",
+                    "wwyj_zhuxiaoer": "世间再无擒虎客",
+                    "wwyj_ranqis": "旧梦重温，虽死无憾……",
+                    "wwyj_shenwangquanjian": "姑娘为何，从不对我正眼相看……",
+                    "wwyj_zhongchengpantu": "丞相，再给我一次机会啊",
+                    "wwyj_wuqinggezi": "看来，我命中注定将丧命于此",
+                    "wwyj_huanyuxingcheng": "将星陨落，天命难违",
+                    "wwyj_xuedaoshaozhu": "宁愿站着死，绝不……跪着生",
+                    "wwyj_yitiaoxianyu": "人固有一死，或重于泰山，或轻于鸿毛",
+                    "wwyj_zhulinqixian": "恨不能见，车同轨，书同文",
+                    "wwyj_Show-K": "奈何雄心壮志，尽付大漠黄沙",
+                    "wwyj_lei": "天书无效，人心难聚",
+                    "wwyj_mengxinzhuanxing": "难道真是……天命难违？",
+                    "wwyj_dasima": "盛只恨，不能再为主公破敌制胜了",
+                    "wwyj_rcanghai": "天书无效，人心难聚",
+                    "wwyj_remaliao": "知足常乐，随遇而安",
+                    "wwyj_lunhuizhong": "这风……太冷了",
+                    "wwyj_ciyage": "江湖险恶，不该如此张扬",
+                    "wwyj_kanpoyiqie": "尔等，皆是欺世盗名之辈",
+                    "wwyj_daxiongxiaimao": "请把这身残躯，带回我的家乡",
+                    "wwyj_kelejiabing": "感叹时事，何罪之有？",
+                    "wwyj_qianshangs": "覆巢之下，岂有完卵？",
+                    "wwyj_jishouniancuihui": "身陨外，愿魂归江东",
+                    "wwyj_rlvbao": "皇天，必不祚尔",
+                    "wwyj_relvbao": "韶华易老，佳容不再",
+                    "wwyj_guishenyi": "钱财……散尽……",
+                    "wwyj_rshengma": "虑有所能，成必为也",
+                    "wwyj_huihui": "大丈夫，死生何惧？",
+                    "wwyj_youzi": "腾云跨风，飞升太虚",
+                    "wwyj_rweimu": "我的时辰……也到了",
+                    "wwyj_yijilianggetao": "咳咳……咳咳咳……",
+                    "wwyj_qingyao": "幻化之物，终是算不得真啊",
+                    "wwyj_fenghuitaichu": "老夫采药修道去也",
+                    "wwyj_wangshiruyan": "别打脸，我投降还不行吗？",
+                    "wwyj_rshun": "瞬将军，已经安全了吧？",
+                    "wwyj_tilongjianiao": "来人，我的笔呢？",
+                    "wwyj_huijin": "败军之罪，万死难赎",
+                    "wwyj_danwuyunxi": "哼哼哈哈……这天地都容不下我",
+                    "wwyj_jianyaleishao": "尔辈怎会……越杀……越多？",
+                    "wwyj_hualuo": "义心如石，死节不移……",
+                    "wwyj_wzszhaoyun": "这……就是……多行不义必自毙吗？",
+
+                };
+
+                // 保存原始 charactercard 方法（使用唯一变量名）
+                const wwyj_originalCharacterCard = ui.click.charactercard;
+
+                // 重写 charactercard 方法（使用唯一函数名）
+                ui.click.charactercard = function(name, sourcenode, noedit, resume, avatar, audioName) {
+                    // 先调用原始方法
+                    const result = wwyj_originalCharacterCard.call(this, name, sourcenode, noedit, resume, avatar, audioName);
+
+                    // 延迟执行以确保UI已创建
+                    setTimeout(() => {
+                        // 只处理文武英杰扩展的角色
+                        if (name.startsWith('wwyj_')) {
+                            wwyj_addDieAudioButton(name);
+                        }
+                    }, 100);
+
+                    return result;
+                };
+
+                // 添加阵亡配音按钮（使用唯一函数名）
+                function wwyj_addDieAudioButton(characterName) {
+                    const skillsContainer = document.querySelector('.characterskill');
+                    if (!skillsContainer) return;
+
+                    // 检查是否已存在阵亡配音按钮（使用唯一类名）
+                    if (skillsContainer.querySelector('.wwyj-die-button')) return;
+
+                    // 检查配音文件是否存在
+                    const audioFile = wwyj_getDieAudioFile(characterName);
+
+                    // 只有当有配音文件时才创建按钮
+                    if (audioFile) {
+                        // 创建阵亡按钮
+                        const dieAudioButton = ui.create.div('.menubutton large', skillsContainer, function() {
+                            // 设置选中状态
+                            const currentActive = skillsContainer.querySelector('.active');
+                            if (currentActive) currentActive.classList.remove('active');
+                            this.classList.add('active');
+
+                            // 播放配音并显示台词
+                            wwyj_playDieAudio(audioFile);
+                            wwyj_showDieAudioContent(characterName);
+                        }, "阵亡");
+
+                        // 设置红色背景黑色文字
+                        //dieAudioButton.style.backgroundColor = 'red';
+                        dieAudioButton.style.color = '#ff0000';
+
+                        // 使用唯一类名
+                        dieAudioButton.classList.add('wwyj-die-button');
+                    }
+                }
+
+                // 显示阵亡台词内容（使用唯一函数名）
+                function wwyj_showDieAudioContent(characterName) {
+                    const intro2 = document.querySelector('.characterintro.intro2');
+                    if (!intro2) return;
+
+                    // 清空内容
+                    intro2.innerHTML = '';
+
+                    // 获取台词
+                    const dieText = dieAudioTexts[characterName] || '阵亡配音';
+
+                    // 创建显示内容
+                    const dieTitle = document.createElement('span');
+                    dieTitle.style.fontWeight = 'bold';
+                    dieTitle.style.marginRight = '5px';
+                    dieTitle.innerHTML = '阵亡台词';
+
+                    const textSpan = document.createElement('span');
+                    textSpan.innerHTML = `<br>${dieText}`;
+
+                    intro2.appendChild(dieTitle);
+                    intro2.appendChild(textSpan);
+                }
+
+                // 获取阵亡配音文件路径（使用唯一函数名）
+                function wwyj_getDieAudioFile(characterName) {
+                    const fullPath = `${lib.assetURL}${CONFIG.extensionPath}${characterName}.mp3`;
+                    return wwyj_checkAudioFileExists(fullPath) ? fullPath : null;
+                }
+
+                // 检查音频文件是否存在（使用唯一函数名）
+                function wwyj_checkAudioFileExists(url) {
+                    try {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('HEAD', url, false);
+                        xhr.send();
+                        return xhr.status === 200;
+                    } catch (e) {
+                        return false;
+                    }
+                }
+
+                // 播放阵亡配音（使用唯一函数名）
+                function wwyj_playDieAudio(audioFile) {
+                    if (!audioFile) return;
+
+                    try {
+                        // 优先使用游戏内置音频系统
+                        if (game.audio && typeof game.audio.play === 'function') {
+                            game.audio.play(audioFile);
+                            return;
+                        }
+
+                        // 备用方案：HTML5 Audio
+                        const audio = new Audio(audioFile);
+                        audio.play().catch(e => {
+                            console.error('播放音频失败:', e);
+                        });
+
+                    } catch (error) {
+                        console.error('播放阵亡配音时出错:', error);
+                    }
+                }
+
+                console.log('文武英杰扩展阵亡配音功能已加载（防冲突版本）');
+            })();
+            */            
             
-            // 文武英杰扩展 - 阵亡配音播放功能
+            // 阵亡配音播放功能按钮原写法（借鉴的话请抄上边已注释的写法，以免冲突↑）：
+            
             (function() {
                 'use strict';
                 // 动态阵亡台词配置
-                const dieAudioTexts = {
-                    // 格式: "角色ID": "阵亡台词"
-                    "wwyj_shuihu": "我是水乎，就这样吧……",
+                const dieAudioTexts = {                    
+                    "wwyj_shuihu": "无欲无求，常自在……",
+                    "wwyj_jiguangs": "遁入阴影之中……",
+                    "wwyj_chengxuyuan": "人为财死，鸟为食亡……",
+                    "wwyj_bohetang": "潜伏数载，终究劫数难逃",
+                    "wwyj_pipi": "说好的……一世……为我画眉呢？",
+                    "wwyj_limuzi": "人生如过客，放下皆自在",
+                    "wwyj_guihua": "长生不老，是对我最大的惩罚",
+                    "wwyj_yiwangs": "大哥……我死后……你还会记得我吗？",
+                    "wwyj_fux2": "聪明反被聪明误啊！",
+                    "wwyj_shenzuo": "我的时辰……也到了",
+                    "wwyj_guchengs": "打铁还需自身硬",
+                    "wwyj_hezifengyun": "有所得，必有所失！",
+                    "wwyj_qingzhongs": "时不予我，时不予我",
+                    "wwyj_liushas": "二十年后，又是一条……好汉",
+                    "wwyj_chansuideshengming": "欠你们的，我终于……还清了",
+                    "wwyj_duanges": "苦心经营王霸计，竹篮打水一场空",
+                    "wwyj_shennais": "大漠白雕，终抵不过江南的燕儿……",
+                    "wwyj_tianqikui": "原来，我亦在……棋局中",
+                    "wwyj_xiaoSu": "多少遗憾，俱随琴音去",
+                    "wwyj_liangchas": "曹魏天下存，魂归故土安",
+                    "wwyj_liangchax": "人生，若只如初见",
+                    "wwyj_yuhudie": "长相思兮长相忆，短相思兮无穷极",
+                    "wwyj_zhichitianya": "这世间的公道，都去了哪里？",
+                    "wwyj_shijian": "若有来世，不负前缘",
+                    "wwyj_xuebi": "大丈夫，不惧死亡",
+                    "wwyj_zhaonies": "生死……有命",
+                    "wwyj_niya": "满腔复燕梦，心中无儿女……",
+                    "wwyj_taishangdaniu": "四海若升平，谁愿当街乞……",
+                    "wwyj_xingyunnvshen": "我还想与你，共骑这雪花驹",
+                    "wwyj_feicheng": "我宁死于刀下，岂降汝乎？",
+                    "wwyj_zhugejun": "英雄气短，儿女情长",
+                    "wwyj_lengyus": "冷眼世间，最苦相思毒……",
+                    "wwyj_yanyumoran": "生生世世若梦，岁岁年年如斯……",
+                    "wwyj_wali": "悔不该差使小人，招此祸患",
+                    "wwyj_chenwus": "鸟飞猢狲散，龙倒众人剔",
+                    "wwyj_rongyaotaoge": "著作……还……没完成",
+                    "wwyj_yangguangweiliang": "玲珑华美，不可尽骞",
+                    "wwyj_anshas": "今病困若此，固命也",
+                    "wwyj_fanxings": "满手杀孽，早知会有此劫",
+                    "wwyj_zhuxiaoer": "世间再无擒虎客",
+                    "wwyj_ranqis": "旧梦重温，虽死无憾……",
+                    "wwyj_shenwangquanjian": "姑娘为何，从不对我正眼相看……",
+                    "wwyj_zhongchengpantu": "丞相，再给我一次机会啊",
+                    "wwyj_wuqinggezi": "看来，我命中注定将丧命于此",
+                    "wwyj_huanyuxingcheng": "将星陨落，天命难违",
+                    "wwyj_xuedaoshaozhu": "宁愿站着死，绝不……跪着生",
+                    "wwyj_yitiaoxianyu": "人固有一死，或重于泰山，或轻于鸿毛",
+                    "wwyj_zhulinqixian": "恨不能见，车同轨，书同文",
+                    "wwyj_Show-K": "奈何雄心壮志，尽付大漠黄沙",
+                    "wwyj_lei": "天书无效，人心难聚",
+                    "wwyj_mengxinzhuanxing": "难道真是……天命难违？",
+                    "wwyj_dasima": "盛只恨，不能再为主公破敌制胜了",
+                    "wwyj_rcanghai": "天书无效，人心难聚",
+                    "wwyj_remaliao": "知足常乐，随遇而安",
+                    "wwyj_lunhuizhong": "这风……太冷了",
+                    "wwyj_ciyage": "江湖险恶，不该如此张扬",
+                    "wwyj_kanpoyiqie": "尔等，皆是欺世盗名之辈",
+                    "wwyj_daxiongxiaimao": "请把这身残躯，带回我的家乡",
+                    "wwyj_kelejiabing": "感叹时事，何罪之有？",
+                    "wwyj_qianshangs": "覆巢之下，岂有完卵？",
+                    "wwyj_jishouniancuihui": "身陨外，愿魂归江东",
+                    "wwyj_rlvbao": "皇天，必不祚尔",
+                    "wwyj_relvbao": "韶华易老，佳容不再",
+                    "wwyj_guishenyi": "钱财……散尽……",
+                    "wwyj_rshengma": "虑有所能，成必为也",
+                    "wwyj_huihui": "大丈夫，死生何惧？",
+                    "wwyj_youzi": "腾云跨风，飞升太虚",
+                    "wwyj_rweimu": "我的时辰……也到了",
+                    "wwyj_yijilianggetao": "咳咳……咳咳咳……",
+                    "wwyj_qingyao": "幻化之物，终是算不得真啊",
+                    "wwyj_fenghuitaichu": "老夫采药修道去也",
+                    "wwyj_wangshiruyan": "别打脸，我投降还不行吗？",
+                    "wwyj_rshun": "瞬将军，已经安全了吧？",
+                    "wwyj_tilongjianiao": "来人，我的笔呢？",
+                    "wwyj_huijin": "败军之罪，万死难赎",
+                    "wwyj_danwuyunxi": "哼哼哈哈……这天地都容不下我",
+                    "wwyj_jianyaleishao": "尔辈怎会……越杀……越多？",
+                    "wwyj_hualuo": "义心如石，死节不移……",
+                    "wwyj_wzszhaoyun": "这……就是……多行不义必自毙吗？",
 
                 };
 
                 // 保存原始 charactercard 方法
                 const originalCharacterCard = ui.click.charactercard;
-
                 // 重写 charactercard 方法
                 ui.click.charactercard = function(name, sourcenode, noedit, resume, avatar, audioName) {
                     const result = originalCharacterCard.call(this, name, sourcenode, noedit, resume, avatar, audioName);
@@ -828,7 +1126,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     setTimeout(() => {
                         addDieAudioButton(name);
                     }, 100);
-
                     return result;
                 };
 
@@ -854,7 +1151,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         // 播放配音并显示台词
                         playDieAudio(audioFile);
                         showDieAudioContent(characterName);
-                    }, "阵亡");
+                    }, "阵亡");                        
+                        //dieAudioButton.style.border = '1px solid #ff0000';//按钮描边
+                        dieAudioButton.style.color = '#ff0000';//按钮颜色
                     //添加标识类
                     dieAudioButton.classList.add('die-audio-button');
                 }
@@ -874,7 +1173,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     const dieTitle = document.createElement('span');
                     dieTitle.style.fontWeight = 'bold';
                     dieTitle.style.marginRight = '5px';
-                    dieTitle.innerHTML = '阵亡';
+                    dieTitle.innerHTML = '阵亡台词';
 
                     const textSpan = document.createElement('span');
                     textSpan.innerHTML = `<br>${dieText}`;
@@ -882,13 +1181,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     intro2.appendChild(dieTitle);
                     intro2.appendChild(textSpan);
                 }
-
                 // 获取阵亡配音文件路径
                 function getDieAudioFile(characterName) {
                     const fullPath = `${lib.assetURL}extension/文武英杰/${characterName}.mp3`;
                     return checkAudioFileExists(fullPath) ? fullPath : null;
                 }
-
                 // 检查音频文件是否存在
                 function checkAudioFileExists(url) {
                     const xhr = new XMLHttpRequest();
@@ -900,29 +1197,24 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return false;
                     }
                 }
-
                 // 播放阵亡配音
                 function playDieAudio(audioFile) {
                     if (!audioFile) return;
-
                     try {
                         // 优先使用游戏内置音频系统
                         if (game.audio && typeof game.audio.play === 'function') {
                             game.audio.play(audioFile);
                             return;
                         }
-
                         // 备用方案：HTML5 Audio
                         const audio = new Audio(audioFile);
                         audio.play().catch(e => {
                             console.error('播放音频失败:', e);
                         });
-
                     } catch (error) {
                         console.error('播放阵亡配音时出错:', error);
                     }
                 }
-
                 console.log('文武英杰扩展阵亡配音功能已加载');
             })();
             
@@ -3082,7 +3374,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
             lib.skill._wwyj_AutomaticallyShowCards = {
                 trigger: {
-                    global: ['gameDrawEnd', 'drawEnd', 'judgeEnd', "useCardEnd", 'wuguAfter'],
+                    global: ['gameDrawEnd', 'drawEnd', 'judgeEnd', 'useCardEnd', 'wuguAfter'],
                 },
                 forced: true,
                 unique: true,
@@ -18017,7 +18309,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.7",
+            version: "5.8",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

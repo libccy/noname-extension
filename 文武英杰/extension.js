@@ -641,7 +641,21 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var yj = lt.randomGet();
                 game.playAudio('..', 'extension', '文武英杰', skill + yj);
             }
-            
+            game.playwwyjAudio = function (name, num, repeat) {
+                if (!repeat) {
+                    if (num === undefined || num === null) {
+                        game.playAudio('..', 'extension', '文武英杰', name);
+                    } else {
+                        game.playAudio('..', 'extension', '文武英杰', name + Math.ceil(Math.random() * num));
+                    }
+                } else {
+                    if (num === undefined || num === null) {
+                        game.wwyjPlayAudioRepeatable('..', 'extension', '文武英杰', name);
+                    } else {
+                        game.wwyjPlayAudioRepeatable('..', 'extension', '文武英杰', name + Math.ceil(Math.random() * num));
+                    }
+                }
+            }
             lib.skill._deletezhwpy = {
                 trigger: {
                     player: 'enterGame',
@@ -1445,17 +1459,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
             // ---------------------------------------wwyj_jishatexiao------------------------------------------//				   
             game.wwyjjishatexiaotext = function () {
-                text1 = document.createElement('div');
+                var text1 = document.createElement('div');
                 text1.innerHTML = '击';
                 text1.style.backgroundSize = 'cover';
                 text1.style.width = '100%';
-                text1.style.height = '100%';
-                //text1.style.left = '-150px';
+                text1.style.height = '100%';                
                 text1.style.top = 'calc(50% - 90px)';
                 text1.style.left = '62%';
                 text1.style.transform = 'scale(-100)';//缩放变化				 	
                 text1.style['font-size'] = '75px';
-                // text1.style['text-align']='center';
                 text1.style['font-family'] = 'xingkai';
                 text1.style['z-index'] = '60';//顶层		     	 
                 text1.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
@@ -1463,17 +1475,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.refresh(text1);
                 text1.style.transform = '';
                 game.playwwyj('wwyj_jishatexiao');
-                text2 = document.createElement('div');
+                var text2 = document.createElement('div');
                 text2.innerHTML = '杀';
                 text2.style.backgroundSize = 'cover';
                 text2.style.width = '100%';
-                text2.style.height = '100%';
-                //text2.style.left = '-150px';
+                text2.style.height = '100%';               
                 text2.style.top = 'calc(58% - 90px)';
                 text2.style.left = '68%';
                 text2.style.transform = 'scale(100)';//缩放变化				 				 
-                text2.style['font-size'] = '75px';
-                //text2.style['text-align']='center';
+                text2.style['font-size'] = '75px';                
                 text2.style['font-family'] = 'xingkai';
                 text2.style['z-index'] = '60';//顶层
                 text2.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
@@ -1511,8 +1521,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             Animation.style.top = 'calc(33.5% - 90px)';    //50%    
                             Animation.style.width = '270px';//120
                             Animation.style.height = '360px';//150   
-                            Animation.style.transition = 'all 2s';
-                            //Animation.style.position='relative';
+                            Animation.style.transition = 'all 2s';                            
                             Animation.style.transform = 'translateX(50px)';
                             Animation.style.transform = 'translateX(30px)';
                             Animation.style.transform = 'translateX(20px)';//减速
@@ -1520,24 +1529,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             Animation.style['z-index'] = '50';//顶层
                             ui.window.appendChild(Animation);
                             ui.refresh(Animation);
-
-                            /* var wwyj_kuang = ui.create.div();
-                             wwyj_kuang.setBackgroundImage('extension/文武英杰/wwyj_kuang.png');    					     	    
-                               wwyj_kuang.style.left = '2.5%';   	    	 
-                             wwyj_kuang.style.top = 'calc(18% - 90px)';    //50%    
-                             wwyj_kuang.style.width = '390px';//120
-                             wwyj_kuang.style.height = '520px';//150   
-                             //wwyj_kuang.style.transition = 'all 2s';
-                             //wwyj_kuang.style.position='relative';
-                             //wwyj_kuang.style.transform='translateX(50px)';
-                             //wwyj_kuang.style.transform='translateX(30px)';
-                             //wwyj_kuang.style.transform='translateX(20px)';//减速
-                             wwyj_kuang.style.backgroundSize = 'cover';       
-                             wwyj_kuang.style['z-index']='54';//顶层
-                             ui.window.appendChild(wwyj_kuang);
-                             ui.refresh(wwyj_kuang);             
-                             */
-                            name0 = document.createElement('div');
+                            
+                            var name0 = document.createElement('div');
                             name0.innerHTML = player.node.name.innerHTML;
                             name0.style.backgroundSize = 'cover';
                             name0.style.width = '100%';
@@ -1545,8 +1538,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             name0.style.top = 'calc(36% - 90px)';
                             name0.style.left = '12%';
                             name0.style['font-size'] = '36px';
-                            name0.style['font-family'] = 'xingkai';
-                            //name0.style['text-align']='center';
+                            name0.style['font-family'] = 'xingkai';                            
                             name0.style['z-index'] = '55';//顶层		     	 
                             name0.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                             ui.window.appendChild(name0);
@@ -1555,48 +1547,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 //ui.window.removeChild(name0);
                                 name0.delete();
                             }, 2400);
-
-                            /* var jisha = ui.create.div();        
-                            jisha.setBackgroundImage('extension/文武英杰/wwyj_jisha.png');             					     	    
-                            jisha.style.left = '5%';   	    	 
-                            jisha.style.top = 'calc(48% - 90px)';       
-                            jisha.style.width = '208px';
-                            jisha.style.height = '112px';            		
-                            jisha.style.position ='absolute';
-                            jisha.style.transition = 'all 0.5s';
-                            jisha.style.transform ='translateX(10px)';
-                             jisha.style.transform ='translateX(55px)';
-                            // jisha.style.transform ='translateX(50px)';
-                            jisha.style.backgroundSize = 'cover';      
-                            jisha.style["z-index"]='65';//顶层
-                            ui.window.appendChild(jisha);
-                            ui.refresh(jisha); 		
-                                jisha.style.left = '70%';   	    	 
-                                jisha.style.top = 'calc(48% - 90px)';       		    
-                                jisha.style["z-index"]='65';
-                                jisha.style.transform ='translateX(100px)'; 
-                                jisha.style.transition = 'all 0.5s';		       	           	  
-                            setTimeout(function(){
-                                ui.window.removeChild(jisha);            
-                                jisha.delete();			            
-                            },1000);
-                            */
-
+                            
                             var Animation1 = ui.create.div();
                             Animation1.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
                             Animation1.style.right = '18%';
                             Animation1.style.top = 'calc(36% - 90px)'; //40%       
                             Animation1.style.width = '240px';
-                            Animation1.style.height = '320px';
-                            //Animation1.style.position='relative';         
+                            Animation1.style.height = '320px';                           
                             Animation1.style.transition = 'all 2s';
                             Animation1.style.transform = 'translateX(-50px)';
                             Animation1.style.transform = 'translateX(-30px)';
                             Animation1.style.transform = 'translateX(-20px)';
                             Animation1.style.backgroundSize = 'cover';
                             Animation1.style['z-index'] = '50';//顶层
-                            //Animation1.style.webkitFilter="grayscale(100%)";//去色
-                            //Animation1.style.filter="grayscale(100%)";
 
                             ui.window.appendChild(Animation1);
                             ui.refresh(Animation1);
@@ -1606,7 +1569,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 Animation1.style.filter = "grayscale(100%)";
                             }, 300);
 
-                            name1 = document.createElement('div');
+                            var name1 = document.createElement('div');
                             name1.innerHTML = trigger.player.node.name.innerHTML;
                             name1.style.backgroundSize = 'cover';
                             name1.style.width = '100%';
@@ -1614,8 +1577,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             name1.style.top = 'calc(38.5% - 90px)';
                             name1.style.left = '60%';
                             name1.style['font-size'] = '36px';
-                            name1.style['font-family'] = 'xingkai';
-                            //name1.style['text-align']='center';
+                            name1.style['font-family'] = 'xingkai';                           
                             name1.style['z-index'] = '55';//顶层		     	 
                             name1.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                             ui.window.appendChild(name1);
@@ -1633,92 +1595,29 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             Animation2.style.top = 'calc(32% - 90px)'; //40%       
                             Animation2.style.width = '240px';
                             Animation2.style.height = '320px';
-                            //Animation2.style.position='relative';         
-                            // Animation2.style.transform='translate(3px)';	 
-                            // Animation2.style.transition = 'all 0.5s';
                             Animation2.style.backgroundSize = 'cover';
                             Animation2.style['z-index'] = '50';//顶层         
                             Animation2.style.webkitFilter = "grayscale(100%)";//去色
                             Animation2.style.filter = "grayscale(100%)";	//去色
-                            //Animation2.style.clip='rect(0px,202010px,170px,0px)';//平衡裁剪（上右下左）
                             Animation2.style.clipPath = 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';//斜面裁切from十周年UI
                             Animation2.style.WebkitClipPath = 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';
-
-                            //ui.window.appendChild(Animation2);
-                            //ui.refresh(Animation2);               
-                            /*  name2 = document.createElement('div');
-                                          name2.innerHTML=trigger.player.node.name.innerHTML;	
-                                          name2.style.backgroundSize='cover';
-                                          name2.style.width = '240px';
-                                      name2.style.height = '320px';  					 				 	     		 	    
-                                          //name2.style.width='100%';
-                                      //name2.style.height='100%';				 
-                                      name2.style.top = 'calc(34.5% - 90px)';
-                                      name2.style.left='62%';					 		 									 			 	
-                                      name2.style['font-size']='36px';			   
-                                        name2.style['font-family']='xingkai';
-                                        //name2.style['text-align']='center';
-                                        name2.style['z-index']='55';//顶层		     	 
-                                       // name2.style['text-shadow']='rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';	
-                                        //name2.style.webkitFilter="grayscale(100%)";//去色
-                                      //name2.style.filter="grayscale(100%)";	
-                                      name2.style.clipPath='polygon(0 0, 100% 0, 100% 65.5%, 0 25.5%)';//斜面裁切from十周年UI
-                                      name2.style.WebkitClipPath= 'polygon(0 0, 100% 0, 100% 65.5%, 0 25.5%)';
-                                                                                          
-                                      setTimeout(function(){
-                                    //	ui.window.removeChild(name2);
-                                 name2.delete();	            
-                            },2400);	  	
-                            */
+                            
                             var Animation3 = ui.create.div();
                             Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
                             Animation3.style.right = '20%';
                             Animation3.style.top = 'calc(40% - 90px)'; //40%       
                             Animation3.style.width = '240px';
                             Animation3.style.height = '320px';
-                            //Animation3.style.position='relative';         
-                            //Animation3.style.transform='translate(-3px)';	 
-                            //Animation3.style.transition = 'all 0.5s'
                             Animation3.style.backgroundSize = 'cover';
                             Animation3.style['z-index'] = '50';//顶层
                             Animation3.style.webkitFilter = "grayscale(100%)";//去色
                             Animation3.style.filter = "grayscale(100%)";	//去色
-                            //Animation3.style.clip='rect(170px,202010px,202010px,0px)';//平行分割		 
                             Animation3.style.clipPath = 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';//斜面裁切from十周年UI
                             Animation3.style.WebkitClipPath = 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';
-
-                            //ui.window.appendChild(Animation3);
-                            //ui.refresh(Animation3);        
-                            /* name3 = document.createElement('div');
-                                         name3.innerHTML=trigger.player.node.name.innerHTML;	
-                                         name3.style.backgroundSize='cover';
-                                         name3.style.width = '240px';
-                                     name3.style.height = '320px';  					 				 	     	 	    
-                                         //name3.style.width='100%';
-                                     //name3.style.height='100%';				 
-                                     name3.style.top = 'calc(42.5% - 90px)';
-                                     name3.style.left='58%';					 		 									 			 	
-                                     name3.style['font-size']='36px';			   
-                                       name3.style['font-family']='xingkai';
-                                       //name3.style['text-align']='center';
-                                       name3.style['z-index']='55';//顶层		     	 		     	
-                                       //name3.style.webkitFilter="grayscale(100%)";//去色
-                                     //name3.style.filter="grayscale(100%)";
-                                     name3.style.clipPath= 'polygon(0 26%, 100% 61%, 0 100%, 0 100%)';//斜面裁切from十周年UI
-                                     name3.style.WebkitClipPath= 'polygon(0 26%, 100% 61%, 0 100%, 0 100%)';
-                                                                                             
-                                     setTimeout(function(){
-                                          //ui.window.removeChild(name3);
-                                name3.delete();	            
-                           },2400);	  	
-                           */
+                           
                             setTimeout(function () {
-                                //ui.window.appendChild(name2);				
-                                //ui.refresh(name2);
                                 ui.window.appendChild(Animation2);
                                 ui.refresh(Animation2);
-                                // ui.window.appendChild(name3);				
-                                //ui.refresh(name3);
                                 ui.window.appendChild(Animation3);
                                 ui.refresh(Animation3);
                             }, 800);
@@ -1726,28 +1625,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             setTimeout(function () {
                                 Animation2.style.transform = 'translate(8px)';
                                 Animation2.style.transition = 'all 0.8s';
-                                //	name2.style.transform='translate(8px)';	 
-                                //	name2.style.transition = 'all 0.8s';
                                 Animation3.style.transform = 'translate(-8px)';
-                                Animation3.style.transition = 'all 0.8s';
-                                //	name3.style.transform='translate(-8px)';	 
-                                //	name3.style.transition = 'all 0.8s';
-
-                                /*	setInterval(
-                                 function () {                                              
-                                     Animation2.style.left = Animation2.offsetLeft + 25 + "px";
-                                     Animation2.style.top = Animation2.offsetTop - 10 + "px";
-                                     Animation3.style.left = Animation3.offsetLeft - 25 + "px";
-                                     Animation3.style.top = Animation3.offsetTop + 10 + "px";
-                                 },
-                                 50);*/
+                                Animation3.style.transition = 'all 0.8s';                                
+                                
                             }, 1200);
 
                             setTimeout(function () {
                                 ui.window.removeChild(Animation);
                                 Animation.delete();
-                                //ui.window.removeChild(wwyj_kuang);
-                                //wwyj_kuang.delete();	            
                                 ui.window.removeChild(Animation2);
                                 Animation2.delete();
                                 ui.window.removeChild(Animation3);
@@ -1758,6 +1643,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     },
                 }
             }
+                         
             // ---------------------------------------wwyj_yanjinfandu------------------------------------------//	           
             if (config.wwyj_yanjinfandu) {
                 lib.arenaReady.push(function () {
@@ -1956,7 +1842,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     var player = _status.event.player;
                                     var event = _status.event;
                                     if (event.filterCard({ name: 'sha' }, player, event) && get.effect(player, { name: 'sha' }) > 0) {
-                                        return 8;
+                                        return 2;
                                     }
                                     return 9;
                                 },
@@ -1967,21 +1853,22 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 skillTagFilter: function (player, tag, arg) {
                                     if (tag == 'fireAttack') return true;
                                     if (tag == 'respondSha' || tag == 'respondShan') return true;
-                                    //return false;							
                                 },
                                 result: {
                                     player: function (player, target) {
                                         var event = _status.event;
+                                        //var player = _status.event.player;
                                         if (_status.event.dying && get.attitude(player, _status.event.dying) <= 0) return 0;
-                                        
+                                        /*
                                         var num1 = game.countPlayer(function (current) {
                                             return current.countCards('e', { subtype: ['equip1', 'equip4'] }) && get.attitude(player, current) <= 0;
                                         });
                                         var num2 = game.countPlayer(function (current) {
                                             return current.countCards('e', { subtype: ['equip2', 'equip3', 'equip5'] }) && get.attitude(player, current) <= 0;
-                                        });                                        
-                                        if (num1 < 1 && player.countCards('h', 'sha') && event.filterCard({name:'sha'},player, event)) return 0;
-                                        if (num2 < 1 && player.countCards('h', 'shan')&& event.filterCard({name:'shan'},player, event)) return 0;                                        
+                                        });  
+										*/                                     
+                                        //if (num1 < 1 && player.countCards('h', 'sha') && event.filterCard({name:'sha'},player, event)) return 0;
+                                        //if (num2 < 1 && player.countCards('h', 'shan')&& event.filterCard({name:'shan'},player, event)) return 0;                                        
                                         
                                         //if (!player.hasValueTarget({ name: 'sha' })) return 0;
                                         return 1;
@@ -2584,6 +2471,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "step 1"
                             if (result.bool) {
                                 player.storage.wwyj_gainian = result.links[0][2];
+                                event.dialog = ui.create.dialog(get.translation(player)+'<div class="text center">选择了' + get.translation(result.links[0][2]) , [[result.links[0][2]], 'vcard']);
                                 if (player.hasSkill('wwyj_heimao')) {
                                     player.loseHp();
                                     player.turnOver();
@@ -2611,6 +2499,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }
                             else {
                                 player.storage.wwyj_gainian = [];
+                                event.dialog.close();
                                 event.finish();
                             }
                             "step 4"
@@ -3480,7 +3369,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 },
                 content: function () {
                     //game.playwwyj(['wwyj_gainian1','wwyj_gainian2'].randomGet());  
-                    game.playwwyjAudio('wwyj_gainian', 2);
+                    game.playWWYJAudio('wwyj_gainian', 2);
                     player.addSkill('wwyj_likedead');
                     player.loseMaxHp(trigger.num);
                     trigger.num = 2 * trigger.num;
@@ -7209,7 +7098,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 content: function () {
                                     target.draw();
-                                    game.playwwyjAudio('wwyj_lvbao', 2);
+                                    game.playWWYJAudio('wwyj_lvbao', 2);
                                     //game.playwwyj(['wwyj_lvbao1', 'wwyj_lvbao2'].randomGet());
                                     player.addTempSkill('wwyj_tianlao1');
                                 },
@@ -9418,7 +9307,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 content: function () {
                                     trigger.num++;
-                                    game.playwwyjAudio('wwyj_zhiguo', 2);
+                                    game.playWWYJAudio('wwyj_zhiguo', 2);
                                 },
                             },
                             "wwyj_pingfang": {
@@ -10335,7 +10224,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 content: function () {
                                     trigger.num++;
-                                    //game.playwwyjAudio('wwyj_gainian',2);
+                                    //game.playWWYJAudio('wwyj_gainian',2);
                                 },
                             },
                             "wwyj_tianya": {
@@ -12835,6 +12724,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 1"
                                     if (result.bool) {
                                         player.storage.wwyj_gainian = result.links[0][2];
+                                        event.dialog = ui.create.dialog(get.translation(player)+'<div class="text center">选择了' + get.translation(result.links[0][2]) , [[result.links[0][2]], 'vcard']);
                                         if (player.hasSkill('wwyj_heimao')) {
                                             player.loseHp();
                                             player.turnOver();
@@ -12862,6 +12752,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     }
                                     else {
                                         player.storage.wwyj_gainian = [];
+                                        event.dialog.close();
                                         event.finish();
                                     }
                                     "step 4"
@@ -13729,7 +13620,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                  content: function () {
                                      //player.draw(player.maxHp-player.countCards('h'));	
                                      //game.playwwyj(['wwyj_qisi1','wwyj_qisi2'].randomGet()); 
-                                     game.playwwyjAudio('wwyj_qisi', 2);
+                                     game.playWWYJAudio('wwyj_qisi', 2);
                                      player.turnOver();
                                      trigger.untrigger();
                                      trigger.responded = true;

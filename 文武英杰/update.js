@@ -1,8 +1,8 @@
-window.version='5.8';
+window.version='5.9';
 window.wwyjchangelog={
     '2025年10月':{
-    'version':'5.8',
-    'info':'<li>新增浏览武将功能（横拉大图），修复武将资料页阵亡配音按钮点播问题，并添加阵亡台词',
+    'version':'5.9',
+    'info':'<li>新增浏览武将功能（横拉大图），修复武将资料页阵亡配音按钮点播问题，并添加阵亡台词，修复击杀特效BUG',
     'players':[""],
     'cards':[],
   },

@@ -1857,7 +1857,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 result: {
                                     player: function (player, target) {
                                         var event = _status.event;
-                                        //var player = _status.event.player;
+                                        var player = _status.event.player;
                                         if (_status.event.dying && get.attitude(player, _status.event.dying) <= 0) return 0;
                                         /*
                                         var num1 = game.countPlayer(function (current) {
@@ -1865,8 +1865,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         });
                                         var num2 = game.countPlayer(function (current) {
                                             return current.countCards('e', { subtype: ['equip2', 'equip3', 'equip5'] }) && get.attitude(player, current) <= 0;
-                                        });  
-										*/                                     
+                                        });   */                                     
                                         //if (num1 < 1 && player.countCards('h', 'sha') && event.filterCard({name:'sha'},player, event)) return 0;
                                         //if (num2 < 1 && player.countCards('h', 'shan')&& event.filterCard({name:'shan'},player, event)) return 0;                                        
                                         
@@ -2293,6 +2292,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         check: function (event, player) {
                             return get.attitude(player, event.player) > 0;
                         },
+                        frequent: "check",
                         audio: ["songwei", 2],
                         filter: function (event, player) {
                             return player.countCards('e');
@@ -2776,6 +2776,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         check: function (event, player) {
                             return get.attitude(player, event.player) > 0;
                         },
+                        frequent: "check",
                         filter: function (event, player) {
                             return event.player.isAlive() && event.player.hp == 1;
                         },
@@ -2945,6 +2946,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             check: function (event, player) {
                                 return get.attitude(player, event.player) <= 0;
                             },
+                            frequent: "check",
                             prompt: function (event, player) {
                                 return '是否美化' + get.translation(event.player) + '对' + get.translation(event.target) + '使用的' + get.translation(event.card);
                             },
@@ -4137,7 +4139,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "wwyj_fengliu": "风流",
                     "wwyj_fengliu_info": "游戏开始时、你进入游戏（对决）、你的回合开始、结束时，你可从五名随机的女性中选择一位并获得其所有的技能，直至重新发动此技能",
                     "wwyj_baozao": "暴躁",
-                    "wwyj_baozao_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌",
+                    "wwyj_baozao_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张火【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌",
                     "wwyj_xipi": "嘻皮",
                     "wwyj_xipi_info": "</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌",
                     "wwyj_xiadan": "下单",
@@ -6143,6 +6145,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         return (get.attitude(player, event.player) > 0 && player.storage.wwyj_liangyan) || (get.attitude(player, event.player) < 0 && !player.storage.wwyj_liangyan);
                                     }
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.changeZhuanhuanji("wwyj_liangyan");
@@ -6741,6 +6744,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     player.removeMark("wwyj_kejin", player.countMark("wwyj_kejin"));
                                     //player.$fullscreenpop('破财消灾', 'fire');
@@ -7021,6 +7025,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     if (!event.source) return false;
                                     var list = [];
@@ -7263,6 +7268,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (((player.countCards('h', 'tao') || player.countCards('j', { name: 'lebu' })) && event.player == player && player.hp > 1) || event.player.isHealthy() || get.attitude(player, event.player) <= 0) return 0;
                                     return 1;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否获得' + get.translation(event.player) + '武将牌上的【桃】并令其回复一点体力？';
                                 },
@@ -7421,6 +7427,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (get.attitude(player, event.source) <= 0 && player.isHealthy() && event.num < 2) return 0;
                                     return 1;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     "step 0"
                                     var list = [];
@@ -7604,6 +7611,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (!player.isTurnedOver() || player.countCards('h') < 3) return 0;
                                     return 1;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否发动【道歉】，交给' + get.translation(event.player) + '一张牌？';
                                 },
@@ -7869,6 +7877,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player != event.source && event.source.countCards('h') > event.source.hp && event.source.group == 'wwyjsha' && get.attitude(player, event.source) > 0 && player.hasZhuSkill('wwyj_dujiao') && !event.source.hasSkill('wwyj_cuangai1')) return 1;
                                     return get.attitude(player, event.source) < 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否对' + get.translation(event.source) + '发动【篡改】，令其一张手牌转变为【毒】？';
                                 },
@@ -8089,8 +8098,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 usable: 1,
                                 audio: ["leiji", 2],
                                 check: function (event, player) {
-                                    return get.attitude(player, event.player) < 0;
+                                    return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否发动【义更】令' + get.translation(event.player) + '受到一点雷属性伤害？';
                                 },
@@ -8423,6 +8433,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (num > 0 && event.player.isLinked() && num2 < 1) return true;
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return !event.nature && event.card && event.card.name == 'sha';
                                 },
@@ -8576,6 +8587,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     global: "phaseDiscardBefore",
                                 },
                                 direct: true,
+                                frequent: "check",
                                 check: function (event, player) {
                                     if (get.attitude(player, event.player) > 0 && event.player.countCards('h') <= event.player.hp) return 0;
                                     return 1;
@@ -9321,6 +9333,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     }) == 0) return false;
                                     return true;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     "step 0"
                                     var chat = ["北方有佳人，绝世而独立。", "一顾倾人城，再顾倾人国。", "有美一人，清扬婉兮。"].randomGet();
@@ -10000,6 +10013,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.countCards('e') > _status.currentPhase.countCards('e')) return false;
                                     return get.attitude(player, _status.currentPhase) <= 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     game.wwyj_background();
                                     game.playAudio('..', 'extension', '文武英杰', 'wwyj_dansha');
@@ -10511,6 +10525,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         return player != current && current.isDamaged() && get.attitude(player, current) > 0;
                                     });
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player.isAlive() && player.countCards('he', { color: 'red' }) && game.hasPlayer(function (current) {
                                         return player != current && event.source != current && player.canUse({ name: 'taoyuan' }, current);
@@ -10682,6 +10697,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否对' + get.translation(event.player) + '发动琉璃，交给其任意张不同花色的牌？';
                                 },
@@ -10799,6 +10815,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.target) <= 0;
                                 },
+                                frequent: "check",
                                 audio: "ext:文武英杰:1",
                                 content: function () {
                                     // trigger.directHit=true;     
@@ -10823,6 +10840,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.card && event.card.isCard && get.type(event.card) == player.storage.wwyj_bohe;
                                 },
@@ -10911,6 +10929,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if ((event.card.name == 'sha' || event.card.name == 'guohe' || event.card.name == 'shunshou') && get.attitude(player, event.target) > 0) return 0;
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否视为对' + get.translation(event.target) + '使用' + get.translation(event.card);
                                 },
@@ -11068,6 +11087,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (num1 > num2) return 1;
                                     return 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     if (event.card.name != 'sha') return false;
                                     if (event.targets.length > 1) return false;
@@ -11213,6 +11233,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否美化' + get.translation(event.player) + '对' + get.translation(event.target) + '使用的' + get.translation(event.card);
                                 },
@@ -11649,6 +11670,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.hp < 2 && !player.countCards('h', 'shan')) return 0;
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player != event.player && event.player.countCards('h') > 0 && player.countCards('h') <= event.player.countCards('h');
                                 },
@@ -11831,6 +11853,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     if (event.player.isDead()) return false;
                                     return event.card && event.card.isCard && event.card.name == 'sha' && game.hasPlayer(function (current) {
@@ -12368,6 +12391,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.name == "damage" && (player.hp < 2 || player.countCards('h') > 2)) return 0;
                                     return 1;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     game.playwwyj('wwyj_xingcheng1');
                                     trigger.player.line(player, 'green');
@@ -12955,6 +12979,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.target.isTurnedOver()) return get.attitude(player, event.target) > 0;
                                     return get.attitude(player, event.target) < 0;
                                 },
+                                frequent: "check",
                                 audio: ["miji", 2],
                                 prompt: function (event, player) {
                                     return '是否令' + get.translation(event.target) + '翻面？';
@@ -13168,6 +13193,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 audio: ["jijiu", 2],
                                 prompt: function (event, player) {
                                     return '是否摸一张牌并翻面，令' + get.translation(event.player) + '回复一点体力？';
@@ -13192,6 +13218,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.player.countCards('e', { name: 'baiyin' }) > 0 && !player.countCards('e', { name: 'qinggang' })) return 0;
                                     return get.attitude(player, event.player) < 0;
                                 },
+                                frequent: "check",
                                 audio: ["qingnang", 2],
                                 filter: function (event, player) {
                                     return event.card.name == 'sha';
@@ -13312,6 +13339,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) < 0;
                                 },
+                                frequent: "check",
                                 audio: ["xianzhen", 2],
                                 filter: function (event, player) {
                                     return event.card.name == 'sha' && player.countCards('he', { type: 'equip' });
@@ -13756,6 +13784,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return game.hasPlayer(function (current) {
                                         return current != player && current.hp == 1;
@@ -13839,6 +13868,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     player.discard(player.getCards('h', { name: 'sha' }));
                                     player.useCard({ name: 'sha' }, trigger.player, false);
@@ -13906,6 +13936,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.countCards('h', 'shan')) return true;
                                     return false;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.chooseCardButton('选择获得其中一张基本牌', trigger.cards, 1).set('filterButton', function (button) {
@@ -13930,6 +13961,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 trigger: { global: 'loseAfter' },
                                 //direct:true,
                                 //usable:1,
+                                frequent: "check",
                                 check: function (event, player) {
                                     var es = player.getCards('e');
                                     for (var i = 0; i < event.cards.length; i++) {
@@ -14001,6 +14033,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.hp < 2) return 1;
                                     return 1;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player.storage.wwyj_toushi > 0;
                                 },
@@ -14156,6 +14189,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player != event.player && event.player.sex == 'male' && player.countCards('h') > 0;
                                 },
@@ -14242,6 +14276,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     event.cards = get.cards(2);
@@ -14332,6 +14367,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player.isAlive() && event.player.hp == 1;
                                 },
@@ -14826,6 +14862,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否令' + get.translation(event.player) + '额外摸一张牌？';
                                 },
@@ -15673,6 +15710,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.player.skills.length <= 0) return 0;
                                     return Math.random();
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.line(trigger.player, 'green');
@@ -15812,6 +15850,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     // if(get.attitude(player,event.player)>0&&event.card.name=='lebu'&&result.suit!='heart') return true;
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player != event.player && event.player.countCards('he');
                                 },
@@ -16388,10 +16427,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player.storage.wwyj_baozao = false;
                                 },
                                 check: function (event, player) {
-                                    if (!event.source.isEmpty(2)) return 0;
+                                    //if (!event.source.isEmpty(2)) return 0;
                                     if (!player.countCards('h', 'tao') && player.countCards('h') < 2 && get.attitude(player, event.source) <= 0) return 1;
-                                    return get.attitude(player, event.source) <= 0;
+                                    return 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.source && event.source.isAlive();
                                 },
@@ -16409,7 +16449,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         player.removeSkill('wwyj_baozaorecover');
                                         event.finish();
                                     } else {
-                                        event.current.useCard({ name: 'sha', isCard: true }, trigger.source, false);
+                                        event.current.useCard({ name: 'sha', nature: 'fire' }, trigger.source, false);
                                     }
                                     "step 2"
                                     if (event.current.next != trigger.source) {
@@ -16712,6 +16752,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.source && player != event.source && event.player.isAlive();
                                 },
@@ -17408,7 +17449,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_fengliu": "风流",
                             "wwyj_fengliu_info": "游戏开始时、你进入游戏（对决）、你的回合开始、结束时，你可从五名随机的女性中选择一位并获得其所有的技能，直至重新发动此技能",
                             "wwyj_baozao": "暴躁",
-                            "wwyj_baozao_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌",
+                            "wwyj_baozao_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张火【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌",
                             "wwyj_xipi": "嘻皮",
                             "wwyj_xipi_info": "</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌",
                             "wwyj_qianfu": "潜伏",
@@ -17820,7 +17861,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         ['<span class="bluetext">才智</span>：</font><font color=#f00>锁定技</font> 你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、对弈、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
                                         ['<span class="bluetext">咫尺</span>：</font><font color=#f00>锁定技</font> 你计算与体力值不等于其手牌数的角色的距离为1，你对距离为1的角色使用【杀】造成伤害时，此伤害+1 <br><span class="bluetext">天涯</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你选择X名其他角色，摸X张牌，并随机展示X名文武英杰扩展的角色（X为至少为1的任意整数），你回复体力至体力上限并随机变身为【凉茶】或【玉蝴蝶】并选择令这些角色逐一将武将牌替换为其中一张（体力上限、体力不变）'],
                                         ['<span class="bluetext">接单</span>：每名角色的出牌阶段限一次，其可以“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌'],
-                                        ['<span class="bluetext">嘻皮</span>：</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌<br><span class="bluetext">暴躁</span>：<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌'],
+                                        ['<span class="bluetext">嘻皮</span>：</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌<br><span class="bluetext">暴躁</span>：<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张火【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌'],
                                         ['<span class="bluetext">风流</span>：</font><font color=#f00>锁定技</font> 游戏开始时、你的回合开始、结束时，你可从五名随机的女性中选择一位并获得其所有的技能，直至重新发动此技能<br><span class="bluetext">群英</span>：结束阶段，你可以和一名其他角色交换手牌，若你们手牌数相同，你可以与其各摸一张牌。你与其交换的手牌差不得大于你与其的体力值之差 <font color=#F0F>可突破</font>'],
                                         ['<span class="bluetext">叫嚣</span>：</font><font color=#f00>锁定技</font> 当你受到【杀】造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一<br><span class="bluetext">罪魁</span>：</font><font color=#f00>锁定技</font> 当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌'],
                                         ['<span class="bluetext">签到</span>：当一名其他角色判定牌生效后，你可获得其一张牌<br><span class="bluetext">嘤怪</span>：当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（【闪电】、【乐不思蜀】、【兵粮寸断】）<br><span class="bluetext">潜追</span>：<span class=yellowtext>限定技</span> 当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能'],
@@ -18234,7 +18275,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.9.1",
+            version: "6.0",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

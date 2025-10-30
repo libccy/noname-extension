@@ -812,7 +812,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }, 100);
                 return galleryPage;
             };
-
+            
             // ---------------------------------------Audio------------------------------------------//
             game.playSu = function (fn, dir, sex) {
                 if (lib.config.background_speak) {
@@ -837,6 +837,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.playAudio('..', 'extension', '群英会', trigger.player.name);
                 },
             }
+            // ==================== 阵亡配音功能 - 通用版本 ====================
+
+                        
             // ---------------------------------------cancelwindow------------------------------------------//	  			
             if (config.cancelwindow) {
                 window.onerror = function (msg, src, line, column, err) { };
@@ -886,7 +889,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             // ---------------------------------------chooseTime------------------------------------------//									
             if (config._chooseTime) {
                 lib.skill._chooseTime = {
-                    trigger: { global: 'gameDrawBefore' },
+                    trigger: { player: 'phaseDrawBefore' },
                     direct: true,
                     content: function () {
                         player.forceCountChoose = { chooseToUse: 15, default: 15 };
@@ -1238,6 +1241,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: ["benyu", 2],
                                 enable: "phaseUse",
                                 limited: true,
+                                unique: true,
                                 mark: true,
                                 marktext: "定",
                                 content: function () {
@@ -1412,6 +1416,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: "ext:群英会:2",
                                 enable: "phaseUse",
                                 limited: true,
+                                unique: true,
                                 mark: true,
                                 marktext: "运",
                                 $createButton(item, type, position, noclick, node) {
@@ -2212,6 +2217,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     });
                                     return num > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     if (get.type(event.card) == 'delay') return false;
                                     return event.card && get.type(event.card, 'trick') == 'trick' && game.hasPlayer(function (current) {
@@ -2266,6 +2272,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, event.player) > 0;
                                 },
                                 logTarget: "player",
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     //  player.logSkill('sanguo_chuanshu',trigger.player);                       
@@ -2545,6 +2552,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.hp <= 1) return true;
                                     return player.hp < player.maxHp - 1;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     player.awakenSkill('sanguo_tishen');
                                     player.recover(Infinity);
@@ -2891,6 +2899,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.discard(player.getCards('e'));
@@ -3070,8 +3079,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 },
                                 viewAs: {
-                                    name: "sha",
-                                    cards: [{ "node": { "image": {}, "info": {}, "name": {}, "name2": {}, "background": {}, "intro": {}, "range": {} }, "storage": {}, "vanishtag": [], "_uncheck": [], "suit": "spade", "number": 4, "name": "sha", "nature": "thunder", "cardid": "2771745310", "clone": { "name": "sha", "suit": "spade", "number": 4, "node": { "name": {}, "info": {}, "intro": {}, "background": {}, "image": {} }, "_transitionEnded": true, "timeout": 1375 }, "timeout": 1313, "original": "h" }, { "node": { "image": {}, "info": {}, "name": {}, "name2": {}, "background": {}, "intro": {}, "range": {} }, "storage": {}, "vanishtag": [], "_uncheck": [], "suit": "spade", "number": 8, "name": "sha", "cardid": "6226101294", "clone": { "name": "sha", "suit": "spade", "number": 8, "node": { "name": {}, "info": {}, "intro": {}, "background": {}, "image": {} }, "_transitionEnded": true, "timeout": 1376 }, "timeout": 1314, "original": "h" }],
+                                    name: "sha",                                    
                                 },
                                 selectTarget: [1, Infinity],
                                 filterTarget: function (card, player, target) {
@@ -3220,6 +3228,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player: "shaBegin",
                                 },
                                 logTarget: "target",
+                                frequent: "check",
                                 check: function (event, player) {
                                     return get.attitude(player, event.target) <= 0;
                                 },
@@ -3783,6 +3792,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     });
                                     return num > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.card && event.card.name == 'sha' && game.hasPlayer(function (current) {
                                         return current != player && current.hasSkill('qunying_beihua');
@@ -3906,6 +3916,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) <= 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否令其他角色视为对' + get.translation(event.source) + '使用【杀】？';
                                 },
@@ -4131,6 +4142,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.card && event.card.isCard && (event.card.name == 'sha' || event.card.name == 'juedou');
                                 },
@@ -4663,6 +4675,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.source && !event.source.hasSkill('wugeng_xuelian2');
                                 },
@@ -4699,6 +4712,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player.isAlive();
                                 },
@@ -4867,6 +4881,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.countCards('h') < 2) return true;
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     player.logSkill('wugeng_qinhe', trigger.player);
                                     var card = player.getCards('h').randomGet();
@@ -5204,6 +5219,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return att > 0;
                                 },
                                 logTarget: 'player',
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.card && event.card.isCard && event.card.name == 'sha';
                                 },
@@ -5224,6 +5240,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
 
                                     return event.player.isAlive() && !event.player.countCards('e', { subtype: 'equip1' }) && !event.player.isDisabled(1);
@@ -5412,6 +5429,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (Math.random() < 0.4) return 1;
                                     return 0.8;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     "step 0"
                                     trigger.finish();
@@ -5498,10 +5516,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 filter: function (event, player) {
                                     return player.hp <= game.players.length;
-                                },
-                                intro: {
-                                    content: "limited",
-                                },
+                                },                                                                                                
                                 check: function (card) {
                                     return 8 - ai.get.value(card);
                                 },
@@ -6110,6 +6125,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 priority: 10,
                                 filter: function (event, player) {
                                     return event.player.hp <= 0;
@@ -6545,6 +6561,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
+            "qyh_character_gallery": {            
+                name: '<div class="qyh_menu">角色图鉴<font size="3px">⇨</font></div>',
+                clear: true,
+                onclick: function() {
+                    game.playSu('qyh_open');
+                    game.showQYHCharacterGallery();
+                },
+            },        
             "qyh_llwj": {            
                 //"name": "浏览武将<div>&gt;</div>",
                 name: '<div class="qyh_menu">浏览武将<font size="3px">⇨</font></div>',
@@ -6553,15 +6577,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.playSu('qyh_open');
                     game.qyhCharacter();
                 },
-            },
-            "qyh_character_gallery": {            
-                name: '<div class="qyh_menu">角色图鉴<font size="3px">⇨</font></div>',
-                clear: true,
-                onclick: function() {
-                    game.playSu('qyh_open');
-                    game.showQYHCharacterGallery();
-                },
-            },           
+            },               
             "openqyh_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
                 name: '<div class="qyh_menu">乱斗图鉴<font size="3px">⇨</font></div>',
@@ -6604,7 +6620,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.5",
+            version: "2.6",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

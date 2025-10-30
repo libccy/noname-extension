@@ -33,6 +33,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 return val <= 4 && card.number >= 12;
                             });
                         },
+                        frequent: "check",
                         filter: function (event, player) {
                             return event.type == 'compare' && !event.directresult;
                         },
@@ -102,7 +103,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 var chat = ['人若死了，就什么都没了，只要活着，总会发现有趣的东西', '人，真是脆弱的生命！', '太完美了，果然，我还是想得到你的身体'].randomGet();
                                 player.say(chat);
                                 event.target = result.targets[0];
-                                player.logSkill("wwyj_qunying", event.target);
+                                player.logSkill("huoying_yongsheng", event.target);
                                 player.chooseToCompare(event.target);
                             }
                             else {
@@ -145,6 +146,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         check: function (event, player) {
                             return get.attitude(player, event.player) <= 0;
                         },
+                        frequent: "check",
                         filter: function (event, player) {
                             return (event.player.countCards('he') > 0 && event.num > 0);
                         },
@@ -1779,7 +1781,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.borderRadius = '10px';
                         this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
                         this.body.style.width = '100%'; // 宽度设为100%
-                        this.body.style.height = '75%'; // 高度设为75%
+                        //this.body.style.height = '100%';
+                        this.body.style.height = '75%'; // 高度设为75%                        
                         this.body.style.overflow = 'hidden';
                         this.body.style.textAlign = 'center';
 
@@ -2077,6 +2080,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }, 3600)
                 },
             }
+                                 
             // ---------------------------------------New function------------------------------------------//	
             lib.element.player.replaceFujiang = function (name2) {
                 var hp = this.hp;
@@ -2383,6 +2387,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 unique: true,
                                 mark: true,
                                 juexingji: true,
+                                unique: true,
                                 intro: {
                                     content: "limited",
                                 },
@@ -2457,6 +2462,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.isDamaged() && !player.countCards('h', 'shan') && player.isEmpty(2) && event.player.isEmpty(2)) return 0;
                                     return get.attitude(player, event.target) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player, target) {
                                     return '是否代替' + get.translation(event.target) + '成为目标？';
                                 },
@@ -2491,6 +2497,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player.hp <= 0;
                                 },
@@ -2520,6 +2527,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.countCards('h', { name: 'tao' }) || (player.countCards('h', { name: 'jiu' }) && event.player == player)) return 0;
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player.hp <= 0 && player.countCards('h', { type: 'basic' });
                                 },
@@ -2926,6 +2934,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (num1 > num2) return 1;
                                     return 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     if (event.card.name != 'sha') return false;
                                     if (event.targets.length > 1) return false;
@@ -2981,6 +2990,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.hp < 2) return 0;
                                     return get.attitude(player, event.target) > 0;
                                 },
+                                frequent: "check",
                                 //	popup:false,
                                 prompt: function (event, player, target) {
                                     return '是否代替' + get.translation(event.target) + '成为目标';
@@ -3019,6 +3029,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (num2 == 0) return 1;
                                     return num >= 2;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     game.playhyrz(['huoying_xundao1', 'huoying_xundao2'].randomGet());
@@ -3263,6 +3274,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) <= 0;
                                 },
+                                frequent: "check",
                                 //	logTarget:'source',
                                 content: function () {
                                     var chat = ['敢惹我？让你尝尝我的厉害', '我长红色的头发又关你什么事？'].randomGet();
@@ -3373,6 +3385,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player) {
                                     return '是否对' + get.translation(event.source) + '发动疗伤？';
                                 },
@@ -3461,6 +3474,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player != player && player.getExpansions('huoying_chongyu').length > 0;
                                 },
@@ -3725,6 +3739,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (Math.random() < 0.4) return 1;
                                     return 0.5;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     event.current = player.next;
@@ -3817,6 +3832,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) < 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player != player && event.card && (get.equipNum(event.card) == 1 || get.equipNum(event.card) == 4);
                                 },
@@ -3938,6 +3954,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: "ext:火影忍者:2",
                                 enable: "phaseUse",
                                 limited: true,
+                                unique: true,
                                 mark: true,
                                 marktext: "瞳",
                                 $createButton(item, type, position, noclick, node) {
@@ -4280,6 +4297,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) < 0;
                                 },
+                                frequent: "check",
                                 init: function (player) {
                                     player.storage.huoying_zhoushu = false;
                                 },
@@ -4780,6 +4798,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player.maxHp == 1) return 0;
                                     return 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player.hp < player.maxHp || player.hp <= 0;
                                 },
@@ -4803,6 +4822,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player: "phaseBegin",
                                 },
                                 forced: true,
+                                unique: true,
                                 filter: function (event, player) {
                                     return !player.hasSkill('huoying_xianshu') && player.storage.huoying_renfa2 && player.storage.huoying_renfa2.length >= 3;
                                 },
@@ -5116,6 +5136,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player != event.player && event.num1 < event.num2) return 0;
                                     return 1;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     /*
                                     var number=Math.abs(trigger.num1-trigger.num2);
@@ -5528,6 +5549,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     game.asyncDraw([player, trigger.player]);
                                 },
@@ -5572,6 +5594,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 },
                                 logTarget: "player",
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player != player && player.canCompare(event.player) && player.countCards('h') > 0 && event.player.countCards('h') > 0;
                                 },
@@ -5831,6 +5854,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player != event.player && event.player.countCards('h') && !event.player.isLinked();
                                 },
@@ -6163,6 +6187,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     var chat = ['大禹也治不了我的水遁。让你见识一下木叶村第一水逼的厉害', '我不是针对谁，我是说……在座的各位，都是垃圾！'].randomGet();
                                     player.say(chat);
@@ -6189,6 +6214,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 prompt: function (event, player, target) {
                                     return '是否对' + get.translation(event.player) + '发动〖医疗〗？';
                                 },
@@ -6329,6 +6355,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.target) <= 0;
                                 },
+                                frequent: "check",
                                 logTarget: "target",
                                 content: function () {
                                     player.discardPlayerCard(trigger.target, 1, 'he', true);
@@ -6503,6 +6530,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return false;
                                 },
                                 logTarget: "player",
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return player.isTurnedOver() && event.player != player && player.canCompare(event.player) && player.countCards('h') > 0 && event.player.countCards('h') > 0;
                                 },
@@ -6662,6 +6690,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     var chat = ['趁你病，要你命', '你不能死，有我在，我绝不会让你轻易死的'].randomGet();
@@ -6799,6 +6828,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     });
                                     return num >= 2;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.$fullscreenpop('风遁•压害', 'thunder');
@@ -7187,6 +7217,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) <= 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     var chat = ['为了忍界，为了木叶，我不会让你们活着离开', '就算是死都要拉个人来陪葬'].randomGet();
                                     player.say(chat);
@@ -7918,6 +7949,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) > 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.draw();
@@ -7977,6 +8009,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return get.attitude(player, event.target) <= 0;
                                 },
                                 logTarget: "target",
+                                frequent: "check",
                                 content: function () {
                                     var chat = ['不管你镀金还是镀银，都得剥落', '告诫你：不要以貌取人'].randomGet();
                                     player.say(chat);
@@ -8083,6 +8116,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (player == event.player) return true;
                                     return false;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return get.type(event.card, 'trick') == 'trick';
                                 },
@@ -8108,6 +8142,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 mark: true,
                                 forced: true,
                                 juexingji: true,
+                                unique: true,
                                 intro: {
                                     content: "limited",
                                 },
@@ -8158,10 +8193,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     threaten: function (player, target) {
                                         if (!target.storage.huoying_zhengbao) return 0.6;
                                     },
-                                },
-                                intro: {
-                                    content: "limited",
-                                },
+                                },                                                                                                   
                             },
                             "huoying_chunshu3": {
                                 audio: "ext:火影忍者:1",
@@ -8762,6 +8794,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 1"
                                     if (result.bool) {
                                         event.result = result.links[0][2];
+                                        event.dialog = ui.create.dialog(get.translation(player)+'<div class="text center">选择了' + get.translation(result.links[0][2]) , [[result.links[0][2]], 'vcard']);
                                         if (player.hasSkill('huoying_lunhui')) {
                                             //player.loseHp();
                                             player.turnOver();
@@ -8786,6 +8819,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         };
                                     }
                                     else {
+                                        event.dialog.close();
                                         event.finish();
                                     }
                                     "step 4"
@@ -8843,6 +8877,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             if (player.isTurnedOver()) return 1;
                                             return get.attitude(player, event.player) < 0;
                                         },
+                                        frequent: "check",
                                         filter: function (event, player) {
                                             if (!player.countCards('h', { color: 'black' })) return false;
                                             return event.card && event.card.isCard && event.card.name == 'sha';
@@ -8871,6 +8906,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             if (player.isTurnedOver()) return 1;
                                             return 1;
                                         },
+                                        frequent: "check",
                                         content: function () {
                                             'step 0'
                                             player.turnOver();
@@ -8939,6 +8975,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.source) < 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     var chat = ['是神的指令杀了你', '你是黑暗，在没有光明的世界中花儿只能枯萎'].randomGet();
@@ -9039,28 +9076,29 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     global: "damageEnd",
                                 },
                                 filter: function (event, player) {
-                                    return event.nature == 'fire' || event.nature == 'thunder';
+                                    return event.nature/*&&(event.nature == 'fire' || event.nature == 'thunder')*/;
                                 },
-                                // check:function (event,player){
-                                //    return get.attitude(player,event.player)<0;
-                                //   },
+                                check:function (event,player){
+                                    return get.attitude(player,event.player)<=0;
+                                },
+                                frequent: "check",
                                 content: function () {
-                                    'step 0'
+                                    /*'step 0'
                                     player.chooseBool('是否对' + get.translation(trigger.player) + '发动〖狂暴〗？').set('ai', function () {
                                         if (get.attitude(player, trigger.player) <= 0) return true;
                                         return false;
                                     });
                                     'step 1'
-                                    if (result.bool) {
+                                    if (result.bool) {*/
                                         game.delay(1);
                                         var chat = ['杀……哈哈……把你们通通杀光', '君麻吕，佐助，你们都是我信赖的朋友'].randomGet();
                                         player.say(chat);
                                         trigger.player.damage(trigger.num);
                                         player.logSkill('huoying_kuangbao');
-                                    }
+                                    /*}
                                     else {
                                         event.finish();
-                                    }
+                                    }*/
                                 },
                                 ai: {
                                     order: 2,
@@ -9370,6 +9408,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             if (player.hp < 2 || event.player.hp > 2) return 0;
                                             return get.attitude(player, event.player) > 0;
                                         },
+                                        frequent: "check",
                                         content: function () {
                                             var chat = ['玉之义……代表着村里的小孩子们，他们是村子的未来与希望', '这一次，就让我来挡住狂风暴雨吧！'].randomGet();
                                             player.say(chat);
@@ -9512,6 +9551,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     return event.player != player;
                                 },
@@ -10411,6 +10451,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 filter: function (event, player) {
                                     return player.canMoveCard();
                                 },
+                                frequent: "check",
                                 content: function () {
                                     player.moveCard();
                                 },
@@ -10860,8 +10901,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 limited: true,
                                 intro: {
                                     content: "limited",
-                                },
-                                check: function () { return 0.3; },
+                                },                               
                                 content: function () {
                                     'step 0'
                                     player.chooseControl('死战', 'cancel2').set('ai', function () {
@@ -10954,6 +10994,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (num > 0 && event.player.isLinked()) return 0;
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 filter: function (event, player) {
                                     //return event.card && event.card.name == "wanjian";
                                     return event.parent.skill == "huoying_zhenxing";
@@ -12268,6 +12309,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) <= 0;
                                 },
+                                frequent: "check",
                                 content: function () {
                                     'step 0'
                                     player.$fullscreenpop('猴子偷桃', 'fire');
@@ -12570,15 +12612,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "intro": "无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
                 init: false
             },
-            "hyrz_llwj": {            
-                //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="hyrz_menu">浏览武将<font size="3px">⇨</font></div>',
-                "clear": true,
-                "onclick": function () {                    
-                    game.playhyrz('hyrz_danchuang');
-                    game.hyrzCharacter();
-                },
-            },
             "hyrz_character_gallery": {            
                 name: '<div class="hyrz_menu">角色图鉴<font size="3px">⇨</font></div>',
                 clear: true,
@@ -12587,6 +12620,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.showHYRZCharacterGallery();
                 },
             },           
+            "hyrz_llwj": {            
+                //"name": "浏览武将<div>&gt;</div>",
+                name: '<div class="hyrz_menu">浏览武将<font size="3px">⇨</font></div>',
+                "clear": true,
+                "onclick": function () {                    
+                    game.playhyrz('hyrz_danchuang');
+                    game.hyrzCharacter();
+                },
+            },            
             "openhyrz_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
                 name: '<div class="hyrz_menu">乱斗图鉴<font size="3px">⇨</font></div>',
@@ -12625,7 +12667,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.6",
+            version: "2.7",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

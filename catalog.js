@@ -12,6 +12,7 @@ extension["火影忍者"] = {
 	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为2.8，提取码：9r8v",
 	size: "60MB",
 	netdisk: "https://pan.baidu.com/s/1Yw6a6pC_Ll45jrXPsyQ1ig?pwd=9r8v",
+	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
 	version: 2.8,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
@@ -159,7 +160,6 @@ extension["群英会"] = {
 	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为2.7，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
-	forum: "",
 	size: "43MB",
 	version: 2.7,
 	files:

@@ -141,8 +141,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         audio: "ext:火影忍者:2",
                         trigger: {
                             source: "damageEnd",
-                        },
-                        //frequent: true,
+                        },                        
                         check: function (event, player) {
                             return get.attitude(player, event.player) <= 0;
                         },
@@ -1248,8 +1247,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "huoying_zhoushu": "咒术",
                     "huoying_zhoushu_info": "<font color=#F0F>死司凭血</font> 当你对任意一名其他角色造成伤害后，你可施展咒术诅咒该角色，然后技能〖咒术〗进入冷却状态，直到该被诅咒的角色死亡后方可再次发动。当你受到伤害后，同时该被诅咒的角色视为受到来源为你的等量的伤害，直到其死亡为止",
                     "huoying_lunmu": "轮墓",
-                    //"huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 你每造成1点伤害后，可以立即获得受到伤害的角色的一张牌",
-                    "huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 当你的手牌数少于你的体力值张时，你可以点击“轮墓分身”来摸一张牌",
+                    "huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 你每造成1点伤害后，可以立即获得受到伤害的角色的一张牌",
+                    //"huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 当你的手牌数少于你的体力值张时，你可以点击“轮墓分身”来摸一张牌",
                     "huoying_zhenxing": "震星",
                     "huoying_zhenxing_info": "<font color=#F0F>天碍震星  豪火灭却  龙炎放歌</font> 出牌阶段限一次，你可以将两张【杀】当作一张可附加火属性的【万箭齐发】使用",
                     "huoying_yiyuan": "遗愿",
@@ -1986,7 +1985,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
 
             // ---------------------------------------lunmu------------------------------------------//
-            lib.skill._huoying_lunmu = {
+            /*lib.skill._huoying_lunmu = {
                 trigger: {
                     player: ['dyingAfter'],
                 },
@@ -2014,7 +2013,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     ok = false;
                                 } else if (player.isOut() || !lib.filter.cardRespondable(card, player) ||
                                     card.classList.contains('uncheck') || !(evt && evt.filterCard && evt.filterCard(card, player))) ok = false;
-
+                                    
                                 if (ok) if (_status.event._cardChoice) _status.event._cardChoice.push(card);
                                 player.node.handcards1.appendChild(card);
                                 game.playhyrz(['huoying_lunmu1', 'huoying_lunmu2'].randomGet());
@@ -2053,7 +2052,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                     }
                 },
-            }
+            }*/
             // ---------------------------------------Audio------------------------------------------//
             game.playhyrz = function (fn, dir, sex) {
                 if (dir && sex) {
@@ -11051,8 +11050,25 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     },
                                 },
                             },
-                            "huoying_lunmu": {
-                                //此技能已被加密隐藏
+                            "huoying_lunmu": {                                
+                                audio: "ext:火影忍者:2",
+                                trigger: {
+                                    source: "damageEnd",
+                                },
+                                frequent: "check",
+                                check: function (event, player) {
+                                    return get.attitude(player, event.player) <= 0;
+                                },
+                                filter: function (event, player) {
+                                    return event.player.countCards('he') > 0 && event.num > 0;
+                                },
+                                content: function () {
+                                    player.gainPlayerCard(1, get.prompt('huoying_lunmu', trigger.player), trigger.player, get.buttonValue, 'he').set('logSkill', ['huoying_lunmu', trigger.player]);
+                                },
+                                ai: {
+                                    expose: 0.8,
+                                    order: 0.8,
+                                },
                             },
 
                             "huoying_yiyuan": {
@@ -11418,8 +11434,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_zhoushu2_info": "当你受到伤害后，同时被诅咒的角色视为受到来源为你的等量的伤害，直到其死亡",
                             "huoying_ban": "宇智波斑",
                             "huoying_lunmu": "轮墓",
-                            //"huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 你每造成1点伤害后，可以立即获得受到伤害的角色的一张牌",
-                            "huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 当你的手牌数少于你的体力值张时，你可以点击“轮墓分身”来摸一张牌",
+                            "huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 你每造成1点伤害后，可以立即获得受到伤害的角色的一张牌",
+                            //"huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 当你的手牌数少于你的体力值张时，你可以点击“轮墓分身”来摸一张牌",
                             "huoying_zhenxing2": "豪火灭却",
                             "huoying_zhenxing": "震星",
                             "huoying_zhenxing_info": "<font color=#F0F>天碍震星  豪火灭却  龙炎放歌</font> 出牌阶段限一次，你可以将两张【杀】当作一张可附加火属性的【万箭齐发】使用",
@@ -12667,7 +12683,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.8",
+            version: "2.9",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

@@ -1,4 +1,4 @@
-window.version = '6.0';
+window.version = '6.3';
 window.newtujian = {
   '水乎': {
     'version': '水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品',
@@ -33,7 +33,7 @@ window.newtujian = {
   '苏婆玛丽奥': {
     'version': '苏婆玛丽奥，一位热爱键社的中生代扩展大神，曾写过《新服杂碎》、《键杀》、《文和乱武》等扩展。水乎短暂回坑时，将无名杀的代更任务交给了他，其对无名杀的后续新发展作出了巨大的贡献，圈内声望颇高',
     'players': ["wwyj_remaliao"],
-    'info': '<span class="bluetext">键魂</span>：<font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能<li><span class="bluetext">承志</span>：非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之',
+    'info': '<span class="bluetext">键魂</span>：<font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启KEY包）<li><span class="bluetext">承志</span>：非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之',
     'cards': [],
   },
   'Show-K': {

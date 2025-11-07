@@ -3082,25 +3082,34 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                    var player=game.findPlayer(function(current){
                        return current.name=='wwyj_niya';
                    });		    		    				
-                   if(player.countCards('h')<4){
+                   if(player.countCards('h')<3){
                        player.draw();
                        player.update();
-                       game.playwwyj('wwyj_xugeng1');
-        
+                       game.playwwyj('wwyj_xugeng1');        
                        game.playAudio('..','extension','文武英杰','wwyj_dansha');		        
                    }		  				    		        
                    //game.me.draw();		   		     		     
                 }
                 });     
+                   }else{
+                   var player=game.findPlayer(function(current){
+                       return current.name=='wwyj_niya';
+                   });		
+                   if(player.countCards('h')<3){
+                       player.draw();
+                       player.update();
+                       game.playwwyj('wwyj_xugeng1');        
+                       game.playAudio('..','extension','文武英杰','wwyj_dansha');		        
+                   }		  				   
                    }
                }
             },     
             }	 
-            */
+            */            
             //niya的写法:
             lib.skill._Niya = {
                 trigger: {
-                    global: ['gameStart', 'phaseBegin'],
+                    global: ['gameStart'],
                     player: ['enterGame'],
                 },
                 forced: true,
@@ -3118,7 +3127,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     if (player.name == 'wwyj_niya') {
                         var AnimationClick = function () {
                             if (player.countCards('h') < 3) {
-                                var card = get.cards(0);
+                                player.draw();
+                                /*var card = get.cards(0);
                                 card.position = 'h';
                                 var evt = _status.event.getParent('chooseToUse'), ok = false;
                                 if (_status.event.isMine() && _status.event.name == 'chooseToUse' && _status.event.parent.name == 'phaseUse' && !_status.event.skill) evt = _status.event;
@@ -3129,14 +3139,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     card.classList.contains('uncheck') || !(evt && evt.filterCard && evt.filterCard(card, player))) ok = false;
 
                                 if (ok) if (_status.event._cardChoice) _status.event._cardChoice.push(card);
-                                player.node.handcards1.appendChild(card);
+                                player.node.handcards1.appendChild(card);*/
                                 game.playwwyj('wwyj_xugeng1');
                                 game.playAudio('..', 'extension', '文武英杰', 'wwyj_dansha');
                                 ui.updatehl();
                                 player.update();
                                 if (player == game.me) ui.updatehl();
-                            };
-                        };
+                            }
+                        }
                         if (event.isMine()) {
                             game.broadcastAll(function (player) {
                                 var Animation = ui.create.div();
@@ -3152,18 +3162,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 Animation.onclick = AnimationClick;
                             }, player);
                         } else {
-                            player.node.handcards1.addEventListener('DOMSubtreeModified', function () {
-                                if (player.countCards('h') < 3)
+                            if (player.countCards('h') < 3){
+                                player.node.handcards1.addEventListener('DOMSubtreeModified', function () {                                
                                     setTimeout(function () {
                                         AnimationClick();
-                                    }, Math.floor(Math.random() * 3000));
-                            }, true);
-                            player.node.handcards2.addEventListener('DOMSubtreeModified', function () {
-                                if (player.countCards('h') < 3)
+                                    }, Math.floor(Math.random() * 3000));                                    
+                                }, true);
+                                player.node.handcards2.addEventListener('DOMSubtreeModified', function () {                                
                                     setTimeout(function () {
                                         AnimationClick();
-                                    }, Math.floor(Math.random() * 3000));
-                            }, true);
+                                    }, Math.floor(Math.random() * 3000));                                    
+                                }, true);
+                            }
                         }
                     }
                 },
@@ -4073,7 +4083,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "wwyj_qiaoji": "巧技",
                     "wwyj_qiaoji_info": "当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张基本牌，或摸一张牌，若如此做，本回合内有角色使用【杀】时，你成为额外的目标",
                     "wwyj_jianghun": "键魂",
-                    "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能",
+                    "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）",
                     "wwyj_chengzhi": "承志",
                     "wwyj_chengzhi_info": "非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之",
                     "wwyj_yanyu": "烟雨",
@@ -17334,7 +17344,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_qiaoji": "巧技",
                             "wwyj_qiaoji_info": "当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张基本牌，或摸一张牌，若如此做，本回合内有角色使用【杀】时，你成为额外的目标",
                             "wwyj_jianghun": "键魂",
-                            "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能",
+                            "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）",
                             "wwyj_chengzhi": "承志",
                             "wwyj_chengzhi_info": "非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之",
                             "wwyj_yanyu": "烟雨",
@@ -17871,7 +17881,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         ['<span class="bluetext">极略</span>：出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除【无懈可击】外）使用<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
                                         ['<span class="bluetext">车祸</span>：</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],
                                         ['<span class="bluetext">代更</span>：每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合<br><span class="bluetext">流溪</span>：</font><font color=#f00>锁定技</font> 当你成为【杀】的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此【杀】造成伤害，该角色摸一张牌然后翻面'],
-                                        ['<span class="bluetext">键魂</span>：</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能<br><span class="bluetext">承志</span>：非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之'],
+                                        ['<span class="bluetext">键魂</span>：</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）<br><span class="bluetext">承志</span>：非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之'],
                                         ['<span class="bluetext">义写</span>：当一名其他角色的回合结束时，若其已受伤，你可交给其一张手牌，若此时其手牌数比你的多，你摸一张牌<br><span class="bluetext">谦虚</span>：</font><font color=#f00>锁定技</font> 你不能成为与你距离为1的角色使用的【杀】的目标，你使用的【杀】只能指定与你距离大于1的角色为目标，且你使用【杀】时至多额外指定一名目标'],
                                         ['<span class="bluetext">极光</span>：你可在合适的时机选择一名角色的装备区的一张牌并令其弃置之，若此牌为：<li>武器牌或攻击马，视为使用或打出一张【杀】，若为使用【杀】则不计入使用杀的次数上限且每回合限一次<li>防具牌或防御马或宝物牌，视为使用或打出一张【闪】<br><span class="bluetext">卡战</span>：当一名角色的体力发生变化后，若其体力值为1，你可令其随机使用一张装备牌 <font color=#F0F>可突破</font>'],
                                         ['<span class="bluetext">开车</span>：</font><font color=#f00>锁定技</font> 摸牌阶段摸牌时，你额外摸X张牌，你的手牌上限加X（X为场上女性角色数且至少为1）<br><span class="bluetext">圣神</span>：每轮限一次，当一名角色进入濒死状态时，你可以观看牌堆顶的两张牌，然后弃置其中一张红色牌视为对其使用一张【桃】。若其中没有红色牌且你有红色的手牌，你可以弃置你的所有红色手牌，视为对其使用一张【桃】'],
@@ -18275,7 +18285,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "6.2",
+            version: "6.3",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

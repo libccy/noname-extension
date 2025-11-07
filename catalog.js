@@ -7,13 +7,13 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 
 extension["火影忍者"] = {
-	date: "2025/11/3",
+	date: "2025/11/7",
 	author: "小苏",
-	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为2.8，提取码：9r8v",
+	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为2.9",
 	size: "60MB",
-	netdisk: "https://pan.baidu.com/s/1Yw6a6pC_Ll45jrXPsyQ1ig?pwd=9r8v",
+	netdisk: "",
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
-	version: 2.8,
+	version: 2.9,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -91,15 +91,15 @@ extension["火影忍者"] = {
 
 
 extension["文武英杰"] = {
-	date: "2025/11/6",
-	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.2，提取码:8293<li>"+
+	date: "2025/11/7",
+	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.3<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
 		"建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
 	author: "凉茶",
 	size: "60MB",
-	netdisk: "https://pan.baidu.com/s/1leBHQ9i3DP6nOXc4hd6Osg?pwd=8293",
-	version: 6.2,
+	netdisk: "",
+	version: 6.3,
 	files: [
 	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",

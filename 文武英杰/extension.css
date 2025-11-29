@@ -230,7 +230,8 @@
   box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size:100%;
+  /*background-size:100%;*/
+  background-size:cover;
 }
 .WWYJ_router_wenwuyingjiePage_intro_infos {
   position: absolute;
@@ -382,3 +383,4 @@
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
+

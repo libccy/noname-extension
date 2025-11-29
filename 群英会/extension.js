@@ -353,9 +353,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             };
                             var gameQYHIntro = ui.create.div('#QYH_gameQYHIntro', '群英会');
                             var router = {
-                                qunyinghuiPage: new Page().set('body', ui.create.div('#QYH_router_qunyinghuiPage').hide()).set('init', function () {                                    
+                                qunyinghuiPage: new Page().set('body', ui.create.div('#QYH_router_qunyinghuiPage').hide()).set('init', function () {
                                     function intro(name, pack, introClass) {
-                                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);                                        
+                                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);
                                         pack = pack || Aqunyin;
                                         var info = pack.character[name];
                                         if (!info) return null;
@@ -413,13 +413,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         title: ui.create.div('#QYH_router_qunyinghuiPage_title', '群英会'),
                                     };
                                     var classState = 'left';
-                                    for (var i in Aqunyin.character) {                                        
+                                    for (var i in Aqunyin.character) {
                                         comps[i] = intro(i, Aqunyin, classState);
                                         classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
                                     var classState = 'left';
-                                    for (var i in Bwugeng.character) {                                        
+                                    for (var i in Bwugeng.character) {
                                         comps[i] = intro(i, Bwugeng, classState);
                                         classState = classState == 'left' ? 'right' : 'left';
                                     }
@@ -444,12 +444,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-            
+
             // 创建页面类
-            game.qyhCharacter = function() {                
+            game.qyhCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();               
+                ui.click.configMenu();
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -465,7 +465,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -489,7 +489,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                         return this;
                     },
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
@@ -503,12 +503,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         var info = pack.character[name];
                         if (!info) return null;
                         var dComps = {
-                            header: (function() {
+                            header: (function () {
                                 var img = ui.create.div('.QYH_router_qunyinghuiPage_intro_header');
                                 img.style['background-image'] = 'url(' + lib.assetURL + 'extension/群英会/' + name + '.jpg)';
                                 return img;
                             })(),
-                            infos: (function(name, group, hp, sex) {
+                            infos: (function (name, group, hp, sex) {
                                 var str = "";
                                 if (name) str += pack.translate[name] + '&nbsp;';
                                 if (sex) str += get.translation(sex) + '&nbsp;';
@@ -516,7 +516,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (hp) str += hp + '体力';
                                 return ui.create.div('.QYH_router_qunyinghuiPage_intro_infos', str);
                             })(name, info[1], info[2], info[0]),
-                            skills: (function(list) {
+                            skills: (function (list) {
                                 var str = "";
                                 if (!Array.isArray(list)) list = [];
                                 for (var i = 0; i < list.length; i++) {
@@ -539,15 +539,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 characterPage.body = ui.create.div('#QYH_router_qunyinghuiPage').hide();
 
                 var comps = {
-                    closeButton: (function() {
+                    closeButton: (function () {
                         var button = ui.create.div('#QYH_router_qunyinghuiPage_closeButton', '×');
-                        button.addEventListener('click', function() {
-                            game.playSu('qyh_close');                  
+                        button.addEventListener('click', function () {
+                            game.playSu('qyh_close');
                             ui.system.style.display = '';
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 ui.click.configMenu();
                                 ui.menuContainer.style.display = '';
-                            }, 500);                            
+                            }, 500);
                             characterPage.hide();
                         });
                         return button;
@@ -560,7 +560,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
                 for (var i in Bwugeng.character) {
                     comps[i] = createCharacterIntro(i, Bwugeng);
-                }                
+                }
                 for (var i in comps) {
                     if (comps[i]) {
                         characterPage.body.appendChild(comps[i]);
@@ -571,9 +571,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-            
-            
-            game.showQYHCharacterGallery = function() {
+
+
+            game.showQYHCharacterGallery = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -592,7 +592,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -615,13 +615,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.textAlign = 'center';
                         return this;
                     },
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
                 // 收集所有群英会角色
-                var characters = [];                
+                var characters = [];
                 // 从各个势力包中收集角色
                 var packs = [Aqunyin, Bwugeng];
                 for (var p = 0; p < packs.length; p++) {
@@ -633,7 +633,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }
                         }
                     }
-                }                    
+                }
                 /*
                 for (var i in lib.characterPack['qunying']) {
                     characters.push(i);
@@ -657,7 +657,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         game.playSu('qyh_close');
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
@@ -722,7 +722,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     // 设置图片源
                     var imgSrc = lib.assetURL + 'extension/群英会/' + charId + '.jpg';
                     charImg.src = imgSrc;
-                    charImg.onerror = function() {
+                    charImg.onerror = function () {
                         console.log('图片加载失败:', this.src);
                         this.style.background = 'linear-gradient(135deg, #1a1a1a, #333)';
                         this.style.display = 'flex';
@@ -749,13 +749,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var startX = 0;
                 var currentX = 0;
                 var isDragging = false;
-                slider.addEventListener('touchstart', function(e) {
+                slider.addEventListener('touchstart', function (e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
                     slider.style.transition = 'none'; // 拖动时禁用过渡效果
                 });
-                slider.addEventListener('touchmove', function(e) {
+                slider.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
                     var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
@@ -767,20 +767,20 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     updateDisplay();
                     startX = currentX;
                 });
-                slider.addEventListener('touchend', function() {
+                slider.addEventListener('touchend', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
                     slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
                 });
                 // 鼠标拖动支持
-                slider.addEventListener('mousedown', function(e) {
+                slider.addEventListener('mousedown', function (e) {
                     startX = e.clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
                     slider.style.transition = 'none'; // 拖动时禁用过渡效果
                     e.preventDefault();
                 });
-                document.addEventListener('mousemove', function(e) {
+                document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     currentX = e.clientX;
                     var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
@@ -792,7 +792,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     updateDisplay();
                     startX = currentX;
                 });
-                document.addEventListener('mouseup', function() {
+                document.addEventListener('mouseup', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
                     slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
@@ -807,12 +807,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 lib.setScroll(galleryPage.body);
                 galleryPage.show();
                 // 初始更新
-                setTimeout(function() {
+                setTimeout(function () {
                     updateDisplay();
                 }, 100);
                 return galleryPage;
             };
-            
+
             // ---------------------------------------Audio------------------------------------------//
             game.playSu = function (fn, dir, sex) {
                 if (lib.config.background_speak) {
@@ -839,7 +839,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
             // ==================== 阵亡配音功能 - 通用版本 ====================
 
-                        
+
             // ---------------------------------------cancelwindow------------------------------------------//	  			
             if (config.cancelwindow) {
                 window.onerror = function (msg, src, line, column, err) { };
@@ -896,7 +896,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     },
                 }
             }
-            
+
             // ---------------------------------------wujianglang------------------------------------------//		
 
             if (config.qunying) {
@@ -912,7 +912,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
 
         }, precontent: function (qunyinghui) {
-            
+
             lib.extensionMenu.extension_群英会.qyh_paiduikoujue = {
                 name: '<div class="qyh_menu">牌堆口诀<font size="3px">⇨</font></div>',
                 clear: true,
@@ -931,11 +931,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 },
             };
-            
+
             lib.init.css(lib.assetURL + 'extension/群英会', 'extension');
             delete lib.extensionMenu.extension_群英会.delete;
             lib.extensionMenu['extension_' + '群英会'].delete = { name: '删除此扩展', clear: true, };
-            
+
             //动画：
             /*game.qyhGif=function(str,width,height,isAnimation){
     var str1='';
@@ -3079,7 +3079,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return 0;
                                 },
                                 viewAs: {
-                                    name: "sha",                                    
+                                    name: "sha",
                                 },
                                 selectTarget: [1, Infinity],
                                 filterTarget: function (card, player, target) {
@@ -3694,7 +3694,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 suit: "none",
                                                 number: null,
                                             },
-                                            async precontent(event, trigger, player) {
+                                            precontent: function () {
+                                            //async precontent(event, trigger, player) {
                                                 player.logSkill("qunying_zhengyi");
                                                 const [card] = event.result.cards;
                                                 event.result.card.suit = get.suit(card);
@@ -5326,13 +5327,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player: "damageBefore",
                                 },
                                 filter: function (event, player) {
-                                    return player.isAlive();
+                                    return event.source && event.source.isAlive();
                                 },
                                 content: function () {
                                     var chat = ['神力浩瀚无边，而神技则将神力发挥到极致', '你唯一能打败我的方法只有比我更快，但你能快到抓住划过天边的流星吗？'].randomGet();
                                     player.say(chat);
-                                    var chat = ['我已将元始界神力催到极致，却仍穿不透他的身体', '他的金刚霸气太强了，我已拼尽全力，却还伤不了他'].randomGet();
-                                    trigger.source.say(chat);
                                     if (trigger.num > 1) {
                                         trigger.num = 1;
                                         event.finish();
@@ -5516,7 +5515,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 filter: function (event, player) {
                                     return player.hp <= game.players.length;
-                                },                                                                                                
+                                },
                                 check: function (card) {
                                     return 8 - ai.get.value(card);
                                 },
@@ -6561,23 +6560,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
-            "qyh_character_gallery": {            
+            "qyh_character_gallery": {
                 name: '<div class="qyh_menu">角色图鉴<font size="3px">⇨</font></div>',
                 clear: true,
-                onclick: function() {
+                onclick: function () {
                     game.playSu('qyh_open');
                     game.showQYHCharacterGallery();
                 },
-            },        
-            "qyh_llwj": {            
+            },
+            "qyh_llwj": {
                 //"name": "浏览武将<div>&gt;</div>",
                 name: '<div class="qyh_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
-                "onclick": function () {                    
+                "onclick": function () {
                     game.playSu('qyh_open');
                     game.qyhCharacter();
                 },
-            },               
+            },
             "openqyh_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
                 name: '<div class="qyh_menu">乱斗图鉴<font size="3px">⇨</font></div>',

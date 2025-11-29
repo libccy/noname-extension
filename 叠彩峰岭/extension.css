@@ -1,0 +1,101 @@
+.dcfl_menu {
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+#dcfl_page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;
+  border-radius: 8px;
+  background-color: rgba(20,20,20,0.95);
+  text-align: left;
+  overflow: auto;
+  z-index: 2025;
+}
+#dcfl_title {
+  position: relative;
+  /*position: fixed;*/
+  width: calc(50% - 20px);
+  height: 36px;
+  left: 15px;
+  top: 20px;
+  border-radius: 2px;
+  background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0));
+  font-family: lishu;
+  font-size: 16px;
+  line-height: 36px;
+  text-indent: 2em;
+  color: #fff;
+  display: block;
+  z-index: 202511;
+}
+#dcfl_closeButton {
+  position: absolute;
+  /*position: fixed;*/ 
+  width: 65px;
+  height: 35px;
+  top: 0;
+  right: 5px;
+  border-left: 0.5px solid rgba(30,30,30,0.8);
+  border-right: 0.5px solid rgba(30,30,30,0.8);
+  text-align: center;
+  line-height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  z-index: 202511;
+}
+#dcfl_closeButton:hover {
+  background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0));
+}
+.dcfl_intro_left {
+  position: relative;
+  width: calc(50% - 20px);
+  height: 170px;
+  left: 15px;
+  top: 20px;
+}
+.dcfl_intro_right {
+  position: relative;
+  width: calc(50% - 20px);
+  height: 170px;
+  right: 15px;
+  top: 20px;
+}
+.dcfl_intro_header {
+  position: absolute;
+  width: 100px;
+  height: 140px;
+  left: 20px;
+  top: 15px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.dcfl_intro_infos {
+  position: absolute;
+  height: 20px;
+  left: 130px;
+  top: 15px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 14px;
+}
+.dcfl_intro_skills {
+  position: absolute;
+  width: calc(100% - 150px);
+  height: calc(100% - 60px);
+  right: 20px;
+  bottom: 5px;
+  letter-spacing: 2px;
+  font-family: lishu;
+  font-size: 12px;
+  overflow: auto;
+}
+
+

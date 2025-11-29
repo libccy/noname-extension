@@ -716,6 +716,18 @@ extension["辅助卡牌"] = {
 		"xr_gainMaxHp.mp3", "xr_loseMaxHp.mp3", "yr_loseMaxHp.mp3", "yr_recover.mp3",
 	]
 };
+extension["叠彩峰岭"] = {
+	date: "2025/11/28",
+	author: "小苏",
+	intro: "一个功能小扩展，方面查看武将的技能",
+	size: "0.3MB",
+	netdisk: "",
+	version: 1.0,
+	files: [
+		"extension.js", "extension.css",
+
+	]
+};
 extension["国战补充"] = {
 	date: "2022/01/11",
 	author: "我叫竹小二",

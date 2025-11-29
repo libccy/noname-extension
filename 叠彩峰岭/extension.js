@@ -1,9 +1,9 @@
 game.import("extension", function(lib, game, ui, get, ai, _status) {
     return {
         name: "叠彩峰岭",
-        editable: false,
+        editable: false, 
         content: function(config, pack) {
-
+            
             game.standardCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -30,7 +30,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -54,21 +53,17 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         this.body.hide();
                         return this;
                     }
-                };
-
+                };                
                 function createCharacterIntro(charName) {
                     var introClass = 'left';
-
                     function intro(name) {
                         var div = ui.create.div('.dcfl_intro_' + introClass);
-                        introClass = introClass == 'left' ? 'right' : 'left';
-
+                        introClass = introClass == 'left' ? 'right' : 'left';                        
                         var charData = lib.character[name];
                         if (!charData) return null;
-
                         var dComps = {
                             header: (function() {
-                                var img = ui.create.div('.dcfl_intro_header');
+                                var img = ui.create.div('.dcfl_intro_header');                                
                                 img.style['background-image'] = 'url(' + lib.assetURL + 'image/character/' + name + '.jpg)';
                                 return img;
                             })(),
@@ -78,11 +73,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 if (charData[0]) str += get.translation(charData[0]) + '&nbsp;'; 
                                 if (charData[1]) str += get.translation(charData[1]) + '&nbsp;'; 
                                 if (charData[2]) str += charData[2] + '体力'; 
-
                                 return ui.create.div('.dcfl_intro_infos', str);
                             })(),
                             skills: (function() {
-                                var str = "";                                
+                                var str = "";
                                 if (charData[3] && Array.isArray(charData[3])) {
                                     for (var j = 0; j < charData[3].length; j++) {
                                         if (j > 0) str += '<br><br>';
@@ -103,11 +97,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
 
                     return intro(charName);
-                }
-
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
-
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -123,7 +115,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     })(),
                     title: ui.create.div('#dcfl_title', '标准包'),
                 };
-
                 for (var charName in lib.characterPack['standard']) {
                     if (charName && lib.character[charName]) {
                         var charIntro = createCharacterIntro(charName);
@@ -132,22 +123,18 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                     }
                 }
-
                 for (var i in comps) {
                     if (comps[i]) {
                         characterPage.body.appendChild(comps[i]);
                     }
                 }
-
                 characterPage.comps = comps;
-
                 lib.setScroll(characterPage.body);
                 characterPage.show();
-
                 return characterPage;
             };
-
-                       
+            
+//===================================================//            
             game.refreshCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -173,7 +160,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -244,9 +231,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -280,9 +267,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.shenhuaCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -308,7 +295,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -379,9 +366,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -415,9 +402,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.yijiangCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -443,7 +430,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -514,9 +501,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -550,9 +537,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.extraCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -578,7 +565,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -649,9 +636,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -685,9 +672,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.spCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -713,7 +700,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -784,9 +771,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -820,9 +807,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.sp2Character = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -848,7 +835,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -919,9 +906,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -955,9 +942,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.newjiangCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -983,7 +970,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1054,9 +1041,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1090,9 +1077,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.onlyOLCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1118,7 +1105,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1189,9 +1176,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1225,9 +1212,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.yingbianCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1253,7 +1240,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1324,9 +1311,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1360,9 +1347,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.clanCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1388,7 +1375,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1459,9 +1446,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1495,9 +1482,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.huicuiCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1523,7 +1510,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1594,9 +1581,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1630,9 +1617,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.xiandingCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1658,7 +1645,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1729,9 +1716,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1765,9 +1752,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+            
+            
+//===================================================//            
             game.mobileCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1793,7 +1780,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1864,9 +1851,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -1900,8 +1887,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.shijiCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -1927,7 +1914,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1998,9 +1985,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2034,8 +2021,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.sbCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2061,7 +2048,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2132,9 +2119,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2168,8 +2155,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.twCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2195,7 +2182,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2266,9 +2253,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2302,8 +2289,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.collabCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2329,7 +2316,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2400,9 +2387,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2436,8 +2423,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.oldCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2463,7 +2450,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2534,9 +2521,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2570,8 +2557,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.offlineCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2597,7 +2584,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2668,9 +2655,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2704,8 +2691,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+                        
+//===================================================//            
             game.jsrgCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2731,7 +2718,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2802,9 +2789,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2838,8 +2825,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.sxrmCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2865,7 +2852,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -2936,9 +2923,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -2972,8 +2959,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.sixiangCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -2999,7 +2986,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3070,9 +3057,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3106,8 +3093,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.dddCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3133,7 +3120,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3204,9 +3191,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3240,9 +3227,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
-            game.yxsCharacter = function() {
+            //===================================================//            
+            game.wandianCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -3267,7 +3253,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3338,9 +3324,143 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
+                var comps = {
+                    closeButton: (function() {
+                        var button = ui.create.div('#dcfl_closeButton', '×');
+                        button.addEventListener('click', function() {
+                            characterPage.hide();
+                            ui.system.style.display = '';
+                            setTimeout(function() {
+                                ui.click.configMenu();
+                                ui.menuContainer.style.display = '';
+                            }, 500);
+                        });
+                        return button;
+                    })(),
+                    title: ui.create.div('#dcfl_title', '玩点论杀'),
+                };
+                for (var charName in lib.characterPack['wandian']) {
+                    if (charName && lib.character[charName]) {
+                        var charIntro = createCharacterIntro(charName);
+                        if (charIntro) {
+                            comps[charName] = charIntro;
+                        }
+                    }
+                }
+                for (var i in comps) {
+                    if (comps[i]) {
+                        characterPage.body.appendChild(comps[i]);
+                    }
+                }
+                characterPage.comps = comps;
+                lib.setScroll(characterPage.body);
+                characterPage.show();
+                return characterPage;
+            };
+            
+            //===================================================//            
+            game.yxsCharacter = function() {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+
+                function Page() {
+                    this.body = ui.create.div().hide();
+                    this.comps = {};
+                    try {
+                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
+                        if (!this.paBody) {
+                            this.paBody = document.body;
+                        }
+                        this.paBody.appendChild(this.body);
+                    } catch (e) {
+                        this.paBody = document.body;
+                        this.paBody.appendChild(this.body);
+                    }
+                }
+
+                Page.prototype = {
+                    show: function() {
+                        if (!this.body.parentNode && this.paBody) {
+                            this.paBody.appendChild(this.body);
+                        }
+                        this.body.show();                        
+                        this.body.style.display = 'block';
+                        this.body.style.zIndex = '2025';
+                        this.body.style.position = 'fixed';
+                        this.body.style.top = '47.3%';
+                        this.body.style.left = '50%';
+                        this.body.style.transform = 'translate(-50%, -50%)';
+                        this.body.style.backgroundColor = '#1a1a1a';
+                        this.body.style.padding = '20px';
+                        this.body.style.border = '2px solid black';
+                        this.body.style.borderRadius = '8px';
+                        this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+                        this.body.style.width = '75%';
+                        this.body.style.height = '72%';
+                        this.body.style.overflow = 'auto';
+                        this.body.style.textAlign = 'left';
+
+                        return this;
+                    },
+
+                    hide: function() {
+                        this.body.hide();
+                        return this;
+                    }
+                };
+
+                function createCharacterIntro(charName) {
+                    var introClass = 'left';
+
+                    function intro(name) {
+                        var div = ui.create.div('.dcfl_intro_' + introClass);
+                        introClass = introClass == 'left' ? 'right' : 'left';
+                        var charData = lib.character[name];
+                        if (!charData) return null;
+
+                        var dComps = {
+                            header: (function() {
+                                var img = ui.create.div('.dcfl_intro_header');
+                                img.style['background-image'] = 'url(' + lib.assetURL + 'image/character/' + name + '.jpg)';
+                                return img;
+                            })(),
+                            infos: (function() {
+                                var str = "";
+                                if (name) str += get.translation(name) + '&nbsp;';
+                                if (charData[0]) str += get.translation(charData[0]) + '&nbsp;'; 
+                                if (charData[1]) str += get.translation(charData[1]) + '&nbsp;'; 
+                                if (charData[2]) str += charData[2] + '体力'; 
+
+                                return ui.create.div('.dcfl_intro_infos', str);
+                            })(),
+                            skills: (function() {
+                                var str = "";
+                                if (charData[3] && Array.isArray(charData[3])) {
+                                    for (var j = 0; j < charData[3].length; j++) {
+                                        if (j > 0) str += '<br><br>';
+                                        var skillName = charData[3][j];
+                                        str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                    }
+                                }
+                                var skills = ui.create.div('.dcfl_intro_skills', str);
+                                lib.setScroll(skills);
+                                return skills;
+                            })(),
+                        };
+
+                        for (var i in dComps) {
+                            div.appendChild(dComps[i]);
+                        }
+                        return div;
+                    }
+                    return intro(charName);
+                }                
+                var characterPage = new Page();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3374,9 +3494,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
-                       
+                        
+            //===================================================//            
             game.diyCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3402,7 +3521,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3473,9 +3592,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3509,8 +3628,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.keyCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3536,7 +3655,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3607,9 +3726,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3643,8 +3762,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.xianjianCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3670,7 +3789,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3741,9 +3860,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3777,8 +3896,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.hearthCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3804,7 +3923,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -3875,9 +3994,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -3911,8 +4030,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.gujianCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -3938,7 +4057,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4009,9 +4128,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -4045,8 +4164,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.owCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -4072,7 +4191,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4143,9 +4262,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -4179,8 +4298,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.swdCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -4206,7 +4325,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4277,9 +4396,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -4313,8 +4432,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.gwentCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -4340,7 +4459,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4411,9 +4530,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -4447,8 +4566,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-                       
+            
+            //===================================================//            
             game.mtgCharacter = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
@@ -4474,7 +4593,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();
+                        this.body.show();                        
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -4545,9 +4664,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(charName);
-                }
+                }                
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#dcfl_page').hide();
+                characterPage.body = ui.create.div('#dcfl_page').hide();                
                 var comps = {
                     closeButton: (function() {
                         var button = ui.create.div('#dcfl_closeButton', '×');
@@ -4581,18 +4700,15 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-
-
+                       
+            
         },
         precontent: function() {
             lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
-            lib.extensionMenu['extension_' + '叠彩峰岭'].delete = {
-                name: '删除此扩展',
-                clear: true,
-            };
+            lib.extensionMenu['extension_' + '叠彩峰岭'].delete = { name: '删除此扩展', clear: true, };
         },
-        config: {
+        config: {                     
             "dcfl_standard": {
                 name: '<div class="dcfl_menu">标准包<font size="3px">⇨</font></div>',
                 "clear": true,
@@ -4761,6 +4877,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     game.dddCharacter();
                 },
             },
+            "dcfl_wandian": {
+                name: '<div class="dcfl_menu">玩点论杀<font size="3px">⇨</font></div>',
+                "clear": true,
+                "onclick": function() {
+                    game.wandianCharacter();
+                },
+            },
             "dcfl_yxs": {
                 name: '<div class="dcfl_menu">英雄杀<font size="3px">⇨</font></div>',
                 "clear": true,
@@ -4781,7 +4904,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 "onclick": function() {
                     game.keyCharacter();
                 },
-            },
+            },            
             "dcfl_xianjian": {
                 name: '<div class="dcfl_menu">仙剑奇侠传<font size="3px">⇨</font></div>',
                 "clear": true,
@@ -4831,6 +4954,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     game.mtgCharacter();
                 },
             },
+            
         },
         help: {},
         package: {

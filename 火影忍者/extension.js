@@ -141,7 +141,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         audio: "ext:火影忍者:2",
                         trigger: {
                             source: "damageEnd",
-                        },                        
+                        },
                         check: function (event, player) {
                             return get.attitude(player, event.player) <= 0;
                         },
@@ -538,7 +538,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             threaten: 1.3,
                             result: {
                                 target: function (player, target) {
-                                    return -target.countCards('he');;
+                                    return -target.countCards('e');
                                 },
                             },
                             order: 9,
@@ -1572,19 +1572,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
                                     };
                                     var classState = 'left';
-                                    for (var i in Mhuoyingrenzhes.character) {                                        
+                                    for (var i in Mhuoyingrenzhes.character) {
                                         comps[i] = intro(i, Mhuoyingrenzhes, classState);
                                         classState = classState == 'left' ? 'right' : 'left';
                                     }
                                     comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
                                     var classState = 'left';
-                                    for (var i in Xhuoyingrenzhes.character) {                                       
+                                    for (var i in Xhuoyingrenzhes.character) {
                                         comps[i] = intro(i, Xhuoyingrenzhes, classState);
                                         classState = classState === 'left' ? 'right' : 'left';
                                     }
                                     comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
                                     var classState = 'left';
-                                    for (var i in Zhuoyingrenzhes.character) {                                    
+                                    for (var i in Zhuoyingrenzhes.character) {
                                         comps[i] = intro(i, Zhuoyingrenzhes, classState);
                                         classState = classState === 'left' ? 'right' : 'left';
                                     }
@@ -1609,12 +1609,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-            
+
             // 创建页面类
-            game.hyrzCharacter = function() {                
+            game.hyrzCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();                
+                ui.click.configMenu();
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -1630,11 +1630,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
-                        this.body.show();                        
+                        this.body.show();
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
@@ -1653,12 +1653,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.textAlign = 'left';
                         return this;
                     },
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
-                
+
                 function createCharacterIntro(name, pack) {
                     var introClass = 'left';
                     function intro(name, pack) {
@@ -1668,12 +1668,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         var info = pack.character[name];
                         if (!info) return null;
                         var dComps = {
-                            header: (function() {
+                            header: (function () {
                                 var img = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_header');
                                 img.style['background-image'] = 'url(' + lib.assetURL + 'extension/火影忍者/' + name + '.jpg)';
                                 return img;
                             })(),
-                            infos: (function(name, group, hp, sex) {
+                            infos: (function (name, group, hp, sex) {
                                 var str = "";
                                 if (name) str += pack.translate[name] + '&nbsp;';
                                 if (sex) str += get.translation(sex) + '&nbsp;';
@@ -1681,7 +1681,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (hp) str += hp + '体力';
                                 return ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_infos', str);
                             })(name, info[1], info[2], info[0]),
-                            skills: (function(list) {
+                            skills: (function (list) {
                                 var str = "";
                                 if (!Array.isArray(list)) list = [];
                                 for (var i = 0; i < list.length; i++) {
@@ -1699,16 +1699,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return div;
                     }
                     return intro(name, pack);
-                }                
+                }
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();                
+                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();
                 var comps = {
-                    closeButton: (function() {
+                    closeButton: (function () {
                         var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
-                        button.addEventListener('click', function() {
-                            game.playhyrz('hyrz_close');                            
+                        button.addEventListener('click', function () {
+                            game.playhyrz('hyrz_close');
                             ui.system.style.display = '';
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 ui.click.configMenu();
                                 ui.menuContainer.style.display = '';
                             }, 500);
@@ -1739,9 +1739,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 characterPage.show();
                 return characterPage;
             };
-            
-            
-            game.showHYRZCharacterGallery = function() {
+
+
+            game.showHYRZCharacterGallery = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -1762,7 +1762,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
 
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -1788,16 +1788,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return this;
                     },
 
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
 
                 // 收集所有火影忍者角色
-                var characters = [];                
+                var characters = [];
                 // 从各个势力包中收集角色
-                var packs = [Mhuoyingrenzhes, Xhuoyingrenzhes, Zhuoyingrenzhes ];
+                var packs = [Mhuoyingrenzhes, Xhuoyingrenzhes, Zhuoyingrenzhes];
                 for (var p = 0; p < packs.length; p++) {
                     var pack = packs[p];
                     if (pack && pack.character) {
@@ -1807,7 +1807,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }
                         }
                     }
-                }                    
+                }
                 /*//以下写法也可以但可能会造成随机显示
                 for (var i in lib.characterPack['huoyingrenzhe']) {
                     characters.push(i);
@@ -1828,7 +1828,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         game.playhyrz('hyrz_close');
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
@@ -1893,7 +1893,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     // 设置图片源
                     var imgSrc = lib.assetURL + 'extension/火影忍者/' + charId + '.jpg';
                     charImg.src = imgSrc;
-                    charImg.onerror = function() {
+                    charImg.onerror = function () {
                         console.log('图片加载失败:', this.src);
                         this.style.background = 'linear-gradient(135deg, #1a1a1a, #333)';
                         this.style.display = 'flex';
@@ -1920,13 +1920,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var startX = 0;
                 var currentX = 0;
                 var isDragging = false;
-                slider.addEventListener('touchstart', function(e) {
+                slider.addEventListener('touchstart', function (e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
                     slider.style.transition = 'none'; // 拖动时禁用过渡效果
                 });
-                slider.addEventListener('touchmove', function(e) {
+                slider.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
                     var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
@@ -1938,20 +1938,20 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     updateDisplay();
                     startX = currentX;
                 });
-                slider.addEventListener('touchend', function() {
+                slider.addEventListener('touchend', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
                     slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
                 });
                 // 鼠标拖动支持
-                slider.addEventListener('mousedown', function(e) {
+                slider.addEventListener('mousedown', function (e) {
                     startX = e.clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
                     slider.style.transition = 'none'; // 拖动时禁用过渡效果
                     e.preventDefault();
                 });
-                document.addEventListener('mousemove', function(e) {
+                document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     currentX = e.clientX;
                     var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
@@ -1963,7 +1963,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     updateDisplay();
                     startX = currentX;
                 });
-                document.addEventListener('mouseup', function() {
+                document.addEventListener('mouseup', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
                     slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
@@ -1978,7 +1978,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 lib.setScroll(galleryPage.body);
                 galleryPage.show();
                 // 初始更新
-                setTimeout(function() {
+                setTimeout(function () {
                     updateDisplay();
                 }, 100);
                 return galleryPage;
@@ -2079,7 +2079,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }, 3600)
                 },
             }
-                                 
+
             // ---------------------------------------New function------------------------------------------//	
             lib.element.player.replaceFujiang = function (name2) {
                 var hp = this.hp;
@@ -2158,8 +2158,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
 
         }, precontent: function (hyrz) {
-            lib.init.css(lib.assetURL + 'extension/火影忍者', 'extension'); 
-            
+            lib.init.css(lib.assetURL + 'extension/火影忍者', 'extension');
+
             lib.extensionMenu.extension_火影忍者.hyrz_paiduikoujue = {
                 name: '<div class="hyrz_menu">牌堆口诀<font size="3px">⇨</font></div>',
                 clear: true,
@@ -4634,7 +4634,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    if(list.length==0) return false;
+                                    if (list.length == 0) return false;
                                     for (var i of lib.inpile) {
                                         if (i == 'wuxie') return false;
                                         if (event.filterCard({ name: i }, player, event)) return true;
@@ -4653,57 +4653,57 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    if(list.length>0){                                    
-                                    var cards = list.randomGets(Math.min(list.length,5));
-                                    //for (var i = cards.length - 1; i >= 0; i--) {
-                                    //ui.cardPile.insertBefore(cards[i].fix(), ui.cardPile.firstChild);
-                                    //}//删掉后每次完全随机不放回牌堆顶
-                                    var aozhan = player.hasSkill("aozhan");
-                                    player
-                                        .chooseButton(["木遁：选择要" + (evt.name == "chooseToUse" ? "使用" : "打出") + "的牌", cards])
-                                        .set("filterButton", function (button) {
-                                            return _status.event.cards.includes(button.link);
-                                        })
-                                        .set(
-                                            "cards",
-                                            cards.filter(function (card) {
-                                                if (aozhan && card.name == "tao") {
-                                                    return (
-                                                        evt.filterCard(
-                                                            {
-                                                                name: 'sha',
-                                                                isCard: true,
-                                                                cards: [card],
-                                                            },
-                                                            evt.player,
-                                                            evt
-                                                        ) ||
-                                                        evt.filterCard(
-                                                            {
-                                                                name: "shan",
-                                                                isCard: true,
-                                                                cards: [card],
-                                                            },
-                                                            evt.player,
-                                                            evt
-                                                        )
-                                                    );
-                                                }
-                                                return evt.filterCard(card, evt.player, evt);
+                                    if (list.length > 0) {
+                                        var cards = list.randomGets(Math.min(list.length, 5));
+                                        //for (var i = cards.length - 1; i >= 0; i--) {
+                                        //ui.cardPile.insertBefore(cards[i].fix(), ui.cardPile.firstChild);
+                                        //}//删掉后每次完全随机不放回牌堆顶
+                                        var aozhan = player.hasSkill("aozhan");
+                                        player
+                                            .chooseButton(["木遁：选择要" + (evt.name == "chooseToUse" ? "使用" : "打出") + "的牌", cards])
+                                            .set("filterButton", function (button) {
+                                                return _status.event.cards.includes(button.link);
                                             })
-                                        )
-                                        .set("ai", function (button) {
-                                            var evt = _status.event.getParent(3);
-                                            if (evt && evt.ai) {
-                                                var tmp = _status.event;
-                                                _status.event = evt;
-                                                var result = (evt.ai || event.ai1)(button.link, _status.event.player, evt);
-                                                _status.event = tmp;
-                                                return result;
-                                            }
-                                            return 1;
-                                        });
-                                        }
+                                            .set(
+                                                "cards",
+                                                cards.filter(function (card) {
+                                                    if (aozhan && card.name == "tao") {
+                                                        return (
+                                                            evt.filterCard(
+                                                                {
+                                                                    name: 'sha',
+                                                                    isCard: true,
+                                                                    cards: [card],
+                                                                },
+                                                                evt.player,
+                                                                evt
+                                                            ) ||
+                                                            evt.filterCard(
+                                                                {
+                                                                    name: "shan",
+                                                                    isCard: true,
+                                                                    cards: [card],
+                                                                },
+                                                                evt.player,
+                                                                evt
+                                                            )
+                                                        );
+                                                    }
+                                                    return evt.filterCard(card, evt.player, evt);
+                                                })
+                                            )
+                                            .set("ai", function (button) {
+                                                var evt = _status.event.getParent(3);
+                                                if (evt && evt.ai) {
+                                                    var tmp = _status.event;
+                                                    _status.event = evt;
+                                                    var result = (evt.ai || event.ai1)(button.link, _status.event.player, evt);
+                                                    _status.event = tmp;
+                                                    return result;
+                                                }
+                                                return 1;
+                                            });
+                                    }
                                     'step 1'
                                     var evt = event.getParent(2);
                                     if (result.bool && result.links && result.links.length) {
@@ -5246,7 +5246,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     threaten: 2.3,
                                     result: {
                                         target: function (player, target) {
-                                            return -target.countCards('he');;
+                                            return -target.maxHp;
                                         },
                                     },
                                     order: 9,
@@ -5303,7 +5303,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     threaten: 1.3,
                                     result: {
                                         target: function (player, target) {
-                                            return -target.countCards('he');;
+                                            return -target.countCards('e');
                                         },
                                     },
                                     order: 9,
@@ -6407,7 +6407,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             return get.damageEffect(target, player, player, 'fire');
                                         },
                                         position: 'he',
-                                        prompt: '互乘起爆符之术：弃置一张方片牌对目标或与其距离为1以内的目标造成等量火焰伤害'
+                                        prompt: '互乘起爆符之术：弃置一张方片牌对目标或与其距离为1以内的目标造成等量火焰伤害',
                                     });
                                     'step 1'
                                     if (result.bool) {
@@ -8192,7 +8192,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     threaten: function (player, target) {
                                         if (!target.storage.huoying_zhengbao) return 0.6;
                                     },
-                                },                                                                                                   
+                                },
                             },
                             "huoying_chunshu3": {
                                 audio: "ext:火影忍者:1",
@@ -8793,7 +8793,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 1"
                                     if (result.bool) {
                                         event.result = result.links[0][2];
-                                        event.dialog = ui.create.dialog(get.translation(player)+'<div class="text center">选择了' + get.translation(result.links[0][2]) , [[result.links[0][2]], 'vcard']);
+                                        event.dialog = ui.create.dialog(get.translation(player) + '<div class="text center">选择了' + get.translation(result.links[0][2]), [[result.links[0][2]], 'vcard']);
                                         if (player.hasSkill('huoying_lunhui')) {
                                             //player.loseHp();
                                             player.turnOver();
@@ -9069,16 +9069,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             "huoying_kuangbao": {
-                                audio: "ext:火影忍者:2",
-                                direct: true,
+                                audio: "ext:火影忍者:2",                                
                                 trigger: {
                                     global: "damageEnd",
                                 },
                                 filter: function (event, player) {
                                     return event.nature/*&&(event.nature == 'fire' || event.nature == 'thunder')*/;
                                 },
-                                check:function (event,player){
-                                    return get.attitude(player,event.player)<=0;
+                                check: function (event, player) {
+                                    return get.attitude(player, event.player) <= 0;
                                 },
                                 frequent: "check",
                                 content: function () {
@@ -9089,11 +9088,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     });
                                     'step 1'
                                     if (result.bool) {*/
-                                        game.delay(1);
-                                        var chat = ['杀……哈哈……把你们通通杀光', '君麻吕，佐助，你们都是我信赖的朋友'].randomGet();
-                                        player.say(chat);
-                                        trigger.player.damage(trigger.num);
-                                        player.logSkill('huoying_kuangbao');
+                                    game.delay(1);
+                                    var chat = ['杀……哈哈……把你们通通杀光', '君麻吕，佐助，你们都是我信赖的朋友'].randomGet();
+                                    player.say(chat);
+                                    trigger.player.damage(trigger.num);
+                                    player.logSkill('huoying_kuangbao');
                                     /*}
                                     else {
                                         event.finish();
@@ -9151,7 +9150,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    if(list.length==0) return false;
+                                    if (list.length == 0) return false;
                                     for (var i of lib.inpile) {
                                         if (i == 'wuxie') return false;
                                         if (event.filterCard({ name: i }, player, event)) return true;
@@ -9170,54 +9169,54 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < ui.discardPile.childNodes.length; i++) {
                                         list.push(ui.discardPile.childNodes[i]);
                                     }
-                                    if(list.length>0){
-                                    var cards = list.randomGets(Math.min(list.length,player.hp));
-                                    var aozhan = player.hasSkill("aozhan");
-                                    player
-                                        .chooseButton(["木遁：选择要" + (evt.name == "chooseToUse" ? "使用" : "打出") + "的牌", cards])
-                                        .set("filterButton", function (button) {
-                                            return _status.event.cards.includes(button.link);
-                                        })
-                                        .set(
-                                            "cards",
-                                            cards.filter(function (card) {
-                                                if (aozhan && card.name == "tao") {
-                                                    return (
-                                                        evt.filterCard(
-                                                            {
-                                                                name: 'sha',
-                                                                isCard: true,
-                                                                cards: [card],
-                                                            },
-                                                            evt.player,
-                                                            evt
-                                                        ) ||
-                                                        evt.filterCard(
-                                                            {
-                                                                name: "shan",
-                                                                isCard: true,
-                                                                cards: [card],
-                                                            },
-                                                            evt.player,
-                                                            evt
-                                                        )
-                                                    );
-                                                }
-                                                return evt.filterCard(card, evt.player, evt);
+                                    if (list.length > 0) {
+                                        var cards = list.randomGets(Math.min(list.length, player.hp));
+                                        var aozhan = player.hasSkill("aozhan");
+                                        player
+                                            .chooseButton(["木遁：选择要" + (evt.name == "chooseToUse" ? "使用" : "打出") + "的牌", cards])
+                                            .set("filterButton", function (button) {
+                                                return _status.event.cards.includes(button.link);
                                             })
-                                        )
-                                        .set("ai", function (button) {
-                                            var evt = _status.event.getParent(3);
-                                            if (evt && evt.ai) {
-                                                var tmp = _status.event;
-                                                _status.event = evt;
-                                                var result = (evt.ai || event.ai1)(button.link, _status.event.player, evt);
-                                                _status.event = tmp;
-                                                return result;
-                                            }
-                                            return 1;
-                                        });
-                                        }
+                                            .set(
+                                                "cards",
+                                                cards.filter(function (card) {
+                                                    if (aozhan && card.name == "tao") {
+                                                        return (
+                                                            evt.filterCard(
+                                                                {
+                                                                    name: 'sha',
+                                                                    isCard: true,
+                                                                    cards: [card],
+                                                                },
+                                                                evt.player,
+                                                                evt
+                                                            ) ||
+                                                            evt.filterCard(
+                                                                {
+                                                                    name: "shan",
+                                                                    isCard: true,
+                                                                    cards: [card],
+                                                                },
+                                                                evt.player,
+                                                                evt
+                                                            )
+                                                        );
+                                                    }
+                                                    return evt.filterCard(card, evt.player, evt);
+                                                })
+                                            )
+                                            .set("ai", function (button) {
+                                                var evt = _status.event.getParent(3);
+                                                if (evt && evt.ai) {
+                                                    var tmp = _status.event;
+                                                    _status.event = evt;
+                                                    var result = (evt.ai || event.ai1)(button.link, _status.event.player, evt);
+                                                    _status.event = tmp;
+                                                    return result;
+                                                }
+                                                return 1;
+                                            });
+                                    }
                                     'step 1'
                                     var evt = event.getParent(2);
                                     if (result.bool && result.links && result.links.length) {
@@ -10900,7 +10899,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 limited: true,
                                 intro: {
                                     content: "limited",
-                                },                               
+                                },
                                 content: function () {
                                     'step 0'
                                     player.chooseControl('死战', 'cancel2').set('ai', function () {
@@ -11050,7 +11049,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     },
                                 },
                             },
-                            "huoying_lunmu": {                                
+                            "huoying_lunmu": {
                                 audio: "ext:火影忍者:2",
                                 trigger: {
                                     source: "damageEnd",
@@ -12628,23 +12627,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "intro": "无限月读：灵感来源借鉴自《作者包》的“何子诈尸”，开启后重启游戏生效。每当一名角色阵亡后，若场上没有“辉夜”，则该阵亡角色将武将牌替换为“辉夜”并复活（3上限3体力），摸3张牌，且于当前角色的回合结束后立即开始回合",
                 init: false
             },
-            "hyrz_character_gallery": {            
+            "hyrz_character_gallery": {
                 name: '<div class="hyrz_menu">角色图鉴<font size="3px">⇨</font></div>',
                 clear: true,
-                onclick: function() {
+                onclick: function () {
                     game.playhyrz('hyrz_danchuang');
                     game.showHYRZCharacterGallery();
                 },
-            },           
-            "hyrz_llwj": {            
+            },
+            "hyrz_llwj": {
                 //"name": "浏览武将<div>&gt;</div>",
                 name: '<div class="hyrz_menu">浏览武将<font size="3px">⇨</font></div>',
                 "clear": true,
-                "onclick": function () {                    
+                "onclick": function () {
                     game.playhyrz('hyrz_danchuang');
                     game.hyrzCharacter();
                 },
-            },            
+            },
             "openhyrz_tujian": {
                 //"name": "乱斗图鉴<div>&gt;</div>",
                 name: '<div class="hyrz_menu">乱斗图鉴<font size="3px">⇨</font></div>',

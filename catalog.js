@@ -719,7 +719,7 @@ extension["辅助卡牌"] = {
 extension["叠彩峰岭"] = {
 	date: "2025/11/28",
 	author: "小苏",
-	intro: "一个功能小扩展，方面查看武将的技能",
+	intro: "一个功能小扩展，方便查看武将的技能",
 	size: "0.3MB",
 	netdisk: "",
 	version: 1.0,

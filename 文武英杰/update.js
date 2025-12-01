@@ -1,4 +1,4 @@
-window.version='6.3';
+window.version='6.4';
 window.wwyjchangelog={
     '2025年10月':{
     'version':'6.2',
@@ -111,7 +111,7 @@ window.wwyjchangelog={
   '2020年08月':{
     'version':'1.8',
     'info':'移植“何子诈尸”模式，新增“武将浏览”功能，新增武将：神王权笺、无情鸽子、短歌、孤城、何子风云、青冢；修改小苏、李木子',
-    'players':["wwyj_shenwangquanjian","wwyj_wuqinggezi","wwyj_duanges","wwyj_guchengs","wwyj_hezifengyun","wwyj_qingzhongs","wwyj_Sukincen","wwyj_limuzi"],
+    'players':["wwyj_shenwangquanjian","wwyj_wuqinggezi","wwyj_duanges","wwyj_guchengs","wwyj_hezifengyun","wwyj_qingzhongs","wwyj_xiaoSu","wwyj_limuzi"],
     'cards':[],
   },
   '2020年07月':{
@@ -159,7 +159,7 @@ window.wwyjchangelog={
   '2020年01月-2020年02月':{
     'version':'1.0',
     'info':'构思并开始制作扩展，此时扩展名为《无名风云录》<li>制作以下武将',
-    'players':["wwyj_shuihu","wwyj_chengxuyuan","wwyj_pipi","wwyj_Sukincen","wwyj_wzszhaoyun","wwyj_lunhuizhong","wwyj_ziyage","wwyj_kanpoyiqie","wwyj_daxiongxiaimao","wwyj_liangchas","wwyj_kelejiabing","wwyj_huijin","wwyj_maliao","wwyj_taishangdaniu","wwyj_shijian"],
+    'players':["wwyj_shuihu","wwyj_chengxuyuan","wwyj_pipi","wwyj_xiaoSu","wwyj_wzszhaoyun","wwyj_lunhuizhong","wwyj_ciyage","wwyj_kanpoyiqie","wwyj_daxiongxiaimao","wwyj_liangchas","wwyj_kelejiabing","wwyj_huijin","wwyj_maliao","wwyj_taishangdaniu","wwyj_shijian"],
     'cards':[],
   },
 }

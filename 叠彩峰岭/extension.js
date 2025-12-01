@@ -5110,7 +5110,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 skill: {},
                 translate: {},
             },
-            intro: "<font color=#f00>查看前须开启重启该武将包</font>",
+            intro: "<font color=#f00>查看前须开启重启武将包</font>",
             author: "山佬进城（小苏）",
             diskURL: "",
             forumURL: "",

@@ -3,7 +3,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         name: "叠彩峰岭",
         editable: false, 
         content: function(config, pack) {                        
-            // 武将包配置 - 全部武将包（36个）
             var characterPacks = [
                 { id: 'standard', name: '标准包', packKey: 'standard' },
                 { id: 'refresh', name: '界限突破', packKey: 'refresh' },
@@ -127,33 +126,33 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 var mainContainer = ui.create.div('#dcfl_mainContainer');
                 mainContainer.style.position = 'fixed';
                 mainContainer.style.top = '50%';
-                mainContainer.style.left = '62%';
-                mainContainer.style.transform = 'translate(-50%, -50%)';
-                mainContainer.style.width = '72%'; 
-                mainContainer.style.height = '88%'; 
+                mainContainer.style.left = 'calc(8% + 150px)';
+                mainContainer.style.transform = 'translateY(-50%)';
+                mainContainer.style.width = 'calc(84% - 150px)';
+                mainContainer.style.height = '88%';
                 mainContainer.style.backgroundColor = '#1a1a1a';
                 mainContainer.style.border = '2px solid #444';
-                mainContainer.style.borderRadius = '8px';
+                mainContainer.style.borderRadius = '0 8px 8px 0';
                 mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
                 mainContainer.style.zIndex = '2025';
                 mainContainer.style.overflow = 'hidden';
                 
                 var leftButtonPanel = ui.create.div('#dcfl_leftButtonPanel');
                 leftButtonPanel.style.position = 'fixed';
-                leftButtonPanel.style.left = '10%'; 
+                leftButtonPanel.style.left = '8%';
                 leftButtonPanel.style.top = '50%';
                 leftButtonPanel.style.transform = 'translateY(-50%)';
-                leftButtonPanel.style.width = '150px'; 
-                leftButtonPanel.style.height = '88%'; 
+                leftButtonPanel.style.width = '150px';
+                leftButtonPanel.style.height = '88%';
                 leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
                 leftButtonPanel.style.border = '2px solid #555';
-                leftButtonPanel.style.borderRadius = '8px';
+                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
                 leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
                 leftButtonPanel.style.overflowY = 'auto';
                 leftButtonPanel.style.overflowX = 'hidden';
                 leftButtonPanel.style.padding = '18px 12px';
                 leftButtonPanel.style.boxSizing = 'border-box';
-                leftButtonPanel.style.zIndex = '2026';
+                leftButtonPanel.style.zIndex = '2025';
                 
                 var rightPanel = ui.create.div('#dcfl_rightPanel');
                 rightPanel.style.width = '100%';
@@ -178,6 +177,17 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 title.innerHTML = '标准包';
                 rightPanel.appendChild(title);
                 
+                var contentContainer = ui.create.div('#dcfl_contentContainer');
+                contentContainer.style.position = 'absolute';
+                contentContainer.style.top = '60px';
+                contentContainer.style.left = '0';
+                contentContainer.style.width = '100%';
+                contentContainer.style.height = 'calc(100% - 60px)';
+                contentContainer.style.overflow = 'auto';
+                contentContainer.style.padding = '15px';
+                contentContainer.style.boxSizing = 'border-box';
+                rightPanel.appendChild(contentContainer);
+                
                 var buttonContainer = ui.create.div('#dcfl_buttonContainer');
                 buttonContainer.style.width = '100%';
                 buttonContainer.style.height = 'auto';
@@ -198,83 +208,41 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     button.innerHTML = pack.name;
                     button.style.width = '100%';
                     button.style.height = '100%';
-                    button.style.padding = '0';
-                    button.style.textAlign = 'center';
-                    button.style.cursor = 'pointer';
-                    button.style.borderRadius = '6px';
-                    button.style.border = '2px solid #666';
-                    button.style.backgroundColor = pack.id === currentPack ? 
-                        'rgba(120, 88, 75, 0.95)' : 'rgba(50, 50, 50, 0.9)';
-                    button.style.color = pack.id === currentPack ? '#ffd700' : '#ddd';
-                    button.style.fontFamily = 'lishu';
-                    button.style.fontSize = '16px';
-                    button.style.fontWeight = 'bold';
-                    button.style.transition = 'all 0.3s';
-                    button.style.boxShadow = pack.id === currentPack ? 
-                        '0 0 10px rgba(255, 215, 0, 0.5)' : '0 2px 8px rgba(0,0,0,0.4)';
-                    button.style.userSelect = 'none';
                     button.style.display = 'flex';
                     button.style.alignItems = 'center';
                     button.style.justifyContent = 'center';
-                    button.style.lineHeight = '1.2';
-                    button.style.letterSpacing = '1px';
                     
-                    button.onmouseenter = function() {
-                        var packId = this.getAttribute('data-pack');
-                        if (packId !== currentPack) {
-                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
-                            this.style.color = '#fff';
-                            this.style.borderColor = '#888';
-                            this.style.transform = 'translateY(-2px)';
-                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
-                        }
-                    };
-                    
-                    button.onmouseleave = function() {
-                        var packId = this.getAttribute('data-pack');
-                        if (packId !== currentPack) {
-                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
-                            this.style.color = '#ddd';
-                            this.style.borderColor = '#666';
-                            this.style.transform = 'translateY(0)';
-                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
-                        }
-                    };
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
+                    }
                     
                     button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', function() {
-                        var packId = this.getAttribute('data-pack');
-                        if (currentPack === packId) return;
-                        
-                        var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
-                        for (var j = 0; j < buttons.length; j++) {
-                            var btn = buttons[j];
-                            if (btn.getAttribute('data-pack') === packId) {
-                                btn.style.backgroundColor = 'rgba(120, 88, 75, 0.95)';
-                                btn.style.color = '#ffd700';
-                                btn.style.borderColor = '#ffd700';
-                                btn.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
-                                btn.style.transform = 'translateY(0)';
-                            } else {
-                                btn.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
-                                btn.style.color = '#ddd';
-                                btn.style.borderColor = '#666';
-                                btn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
-                                btn.style.transform = 'translateY(0)';
+                    button.addEventListener('click', (function(packId) {
+                        return function() {
+                            if (currentPack === packId) return;
+                            
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
                             }
-                        }
-                        
-                        currentPack = packId;
-                        
-                        for (var k = 0; k < characterPacks.length; k++) {
-                            if (characterPacks[k].id === packId) {
-                                title.innerHTML = characterPacks[k].name;
-                                break;
+                            
+                            currentPack = packId;
+                            
+                            for (var k = 0; k < characterPacks.length; k++) {
+                                if (characterPacks[k].id === packId) {
+                                    title.innerHTML = characterPacks[k].name;
+                                    break;
+                                }
                             }
-                        }
-                        
-                        updateCharacterList();
-                    });
+                            
+                            updateCharacterList();
+                        };
+                    })(pack.id));
                     
                     buttonWrapper.appendChild(button);
                     buttonContainer.appendChild(buttonWrapper);
@@ -282,19 +250,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 
                 leftButtonPanel.appendChild(buttonContainer);
                 
-                var contentContainer = ui.create.div('#dcfl_contentContainer');
-                contentContainer.style.position = 'absolute';
-                contentContainer.style.top = '60px';
-                contentContainer.style.left = '0';
-                contentContainer.style.width = '100%';
-                contentContainer.style.height = 'calc(100% - 60px)';
-                contentContainer.style.overflow = 'auto';
-                contentContainer.style.padding = '15px';
-                contentContainer.style.boxSizing = 'border-box';
-                rightPanel.appendChild(contentContainer);
-                
                 function updateCharacterList() {
-                    contentContainer.innerHTML = '';              
+                    contentContainer.innerHTML = '';
+                    
                     var packInfo;
                     for (var i = 0; i < characterPacks.length; i++) {
                         if (characterPacks[i].id === currentPack) {
@@ -316,7 +274,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                         
                         for (var i = 0; i < charList.length; i++) {
-                            var charName = charList[i];                            
+                            var charName = charList[i];
                             var introClass = (i % 2 === 0) ? 'left' : 'right';
                             var charIntro = createCharacterIntro(charName, introClass);
                             
@@ -357,7 +315,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 name: '<div class="dcfl_menu">查看信息</div>',
                 "clear": true,
                 "onclick": function() {
-                    game.showCharacterInfo();
+                    setTimeout(function() {
+                        game.showCharacterInfo();
+                    }, 100);
                 },
             }
         },

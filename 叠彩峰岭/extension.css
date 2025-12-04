@@ -1,101 +1,291 @@
+/* 菜单样式 */
 .dcfl_menu {
     color: #ffd700;
     font-weight: bold;
     text-shadow: 1px 1px 2px #000;
+    padding: 8px 15px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(120, 88, 75, 0.8), rgba(60, 60, 60, 0.8));
+    border: 1px solid #555;
+    display: inline-block;
+    transition: all 0.3s;
 }
+
+.dcfl_menu:hover {
+    background: linear-gradient(135deg, rgba(140, 108, 95, 0.9), rgba(80, 80, 80, 0.9));
+    transform: scale(1.05);
+}
+
+/* 主页面容器 */
 #dcfl_page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left:0;
-  border-radius: 8px;
-  background-color: rgba(20,20,20,0.95);
-  text-align: left;
-  overflow: auto;
-  z-index: 2025;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    background-color: rgba(20,20,20,0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2025;
 }
+
+/* 左侧按钮面板 - 紧贴武将信息页左侧 */
+#dcfl_leftButtonPanel {
+    position: fixed !important;
+    left: 8% !important; /* 调整左位置 */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 150px !important;
+    height: 88% !important;
+    background-color: rgba(30, 30, 30, 0.95) !important;
+    border: 2px solid #555 !important;
+    border-radius: 8px 0 0 8px !important; /* 左侧圆角，右侧直角 */
+    box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 18px 12px !important;
+    box-sizing: border-box !important;
+    z-index: 2025 !important;
+}
+
+/* 左侧按钮面板滚动条 */
+#dcfl_leftButtonPanel::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 3px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+/* 按钮容器 */
+#dcfl_buttonContainer {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+/* 按钮包装器 */
+.dcfl_buttonWrapper {
+    width: 100% !important;
+    height: 50px !important;
+    display: block !important;
+    position: relative !important;
+}
+
+/* 武将包按钮 */
+.dcfl_packButton {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    border: 2px solid #666 !important;
+    background-color: rgba(50, 50, 50, 0.9) !important;
+    color: #ddd !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1px !important;
+}
+
+.dcfl_packButton:hover {
+    background-color: rgba(70, 70, 70, 0.95) !important;
+    color: #fff !important;
+    border-color: #888 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+/* 主容器 - 武将信息页（紧贴按钮区右侧） */
+#dcfl_mainContainer {
+    position: fixed !important;
+    top: 50% !important;
+    left: calc(8% + 150px) !important; /* 紧贴按钮区右侧 */
+    transform: translateY(-50%) !important;
+    width: calc(84% - 150px) !important; /* 减去按钮区宽度 */
+    height: 88% !important;
+    background-color: #1a1a1a !important;
+    border: 2px solid #444 !important;
+    border-radius: 0 8px 8px 0 !important; /* 右侧圆角，左侧直角 */
+    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
+    z-index: 2025 !important;
+    overflow: hidden !important;
+}
+
+/* 右侧内容面板 */
+#dcfl_rightPanel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 标题 */
 #dcfl_title {
-  position: relative;
-  /*position: fixed;*/
-  width: calc(50% - 20px);
-  height: 36px;
-  left: 15px;
-  top: 20px;
-  border-radius: 2px;
-  background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0));
-  font-family: lishu;
-  font-size: 16px;
-  line-height: 36px;
-  text-indent: 2em;
-  color: #fff;
-  display: block;
-  z-index: 202511;
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    z-index: 202511 !important;
 }
+
+/* 关闭按钮 */
 #dcfl_closeButton {
-  position: absolute;
-  /*position: fixed;*/ 
-  width: 65px;
-  height: 35px;
-  top: 0;
-  right: 5px;
-  border-left: 0.5px solid rgba(30,30,30,0.8);
-  border-right: 0.5px solid rgba(30,30,30,0.8);
-  text-align: center;
-  line-height: 35px;
-  font-size: 18px;
-  cursor: pointer;
-  -webkit-transition: all 0.2s;
-  z-index: 202511;
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
+    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 202511 !important;
 }
+
 #dcfl_closeButton:hover {
-  background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0));
+    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
 }
+
+/* 内容容器 */
+#dcfl_contentContainer {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* 内容区域滚动条 */
+#dcfl_contentContainer::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#dcfl_contentContainer::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}
+
+/* 左侧武将介绍卡片 */
 .dcfl_intro_left {
-  position: relative;
-  width: calc(50% - 20px);
-  height: 170px;
-  left: 15px;
-  top: 20px;
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    left: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
 }
+
+/* 右侧武将介绍卡片 */
 .dcfl_intro_right {
-  position: relative;
-  width: calc(50% - 20px);
-  height: 170px;
-  right: 15px;
-  top: 20px;
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    right: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
 }
+
+/* 武将头像 - 放大尺寸，与卡片高度更匹配 */
 .dcfl_intro_header {
-  position: absolute;
-  width: 100px;
-  height: 140px;
-  left: 20px;
-  top: 15px;
-  border-radius: 2px;
-  box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size:cover;
+    position: absolute !important;
+    width: 125px !important; /* 增大宽度 */
+    height: 170px !important; /* 增大高度，与卡片高度更匹配 */
+    left: 20px !important;
+    top: 10px !important; /* 调整上边距 */
+    border-radius: 2px !important;
+    box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85) !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
+
+/* 武将信息 - 调整位置以适应更大的头像 */
 .dcfl_intro_infos {
-  position: absolute;
-  height: 20px;
-  left: 130px;
-  top: 15px;
-  line-height: 20px;
-  letter-spacing: 2px;
-  font-family: lishu;
-  font-size: 14px;
+    position: absolute !important;
+    height: 20px !important;
+    left: 155px !important; /* 调整左边距以适应更大的头像 */
+    top: 15px !important;
+    line-height: 20px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 14px !important;
+    color: #eee !important;
 }
+
+/* 武将技能 - 调整位置和尺寸以适应更大的头像 */
 .dcfl_intro_skills {
-  position: absolute;
-  width: calc(100% - 150px);
-  height: calc(100% - 60px);
-  right: 20px;
-  bottom: 5px;
-  letter-spacing: 2px;
-  font-family: lishu;
-  font-size: 12px;
-  overflow: auto;
+    position: absolute !important;
+    width: calc(100% - 175px) !important; /* 调整宽度以适应更大的头像 */
+    height: calc(100% - 50px) !important; /* 调整高度以适应新的布局 */
+    right: 20px !important;
+    bottom: 5px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 12px !important;
+    overflow: auto !important;
+    color: #ccc !important;
+    line-height: 1.4 !important;
 }
 
+/* 武将技能滚动条 */
+.dcfl_intro_skills::-webkit-scrollbar {
+    width: 5px !important;
+}
 
+.dcfl_intro_skills::-webkit-scrollbar-track {
+    background: rgba(30,30,30,0.5) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_intro_skills::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 80, 80, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+/* 绿色文本（技能名称） */
+.greentext {
+    color: #7cfc00 !important;
+}

@@ -3708,543 +3708,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
 
             // ---------------------------------------brawl------------------------------------------//
-            var Awenwuyingjies = {
-                character: {
-                    "wwyj_shuihu": ["male", "shen", 3, ["wwyj_chuangshi", "wwyj_qianfu", "wwyj_ancha", "wwyj_huikeng"], []],
-                    "wwyj_liangchax": ["female", "shen", Infinity, ["wwyj_liangcha", "wwyj_fanghua", "wwyj_meiying"], ["boss"]],
-                },
-                skill: {},
-                translate: {
-                    "wwyj_shuihu": "水乎",
-                    "wwyj_liangchax": "★凉茶",
-                    "wwyj_qianfu": "潜伏",
-                    "wwyj_qianfu_info": "</font><font color=#f00>锁定技</font> 回合结束时，若你的武将牌正面朝上，你翻面。当你的武将牌背面朝上，你的防御距离为无限",
-                    "wwyj_ancha": "暗察",
-                    "wwyj_ancha2": "暗察",
-                    "wwyj_ancha_info": "当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合",
-                    "wwyj_huikeng": "回坑",
-                    "wwyj_huikeng_info": "出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌",
-                    "wwyj_liangcha": "凉茶",
-                    "wwyj_liangcha_info": "</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2",
-                    "wwyj_fanghua": "芳华",
-                    "wwyj_fanghua_info": "</font><font color=#f00>锁定技</font> 你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）",
-                    "wwyj_meiying": "魅影",
-                    "wwyj_meiying_info": "</font><font color=#f00>锁定技</font> 你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应",
-                    "wwyj_chuangshi": "创世",
-                    "wwyj_chuangshi_info": "<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从十名备选角色（关羽、张飞、赵云、马超、马忠、公孙瓒、黄盖、吕蒙、仁王禁、许禇）中挑选一名并变身成为之 <font color=#F0F>可突破</font>",
-
-                },
-            };
-            var Bwenwuyingjies = {
-                character: {
-                    "wwyj_liangchas": ["female", "wwyjsha", 3, ["wwyj_caizhi", "wwyj_daixue"], []],
-                    "wwyj_zhichitianya": ["female", "wwyjsha", 3, ["wwyj_zhichi", "wwyj_tianya"], []],
-                    "wwyj_chengxuyuan": ["male", "wwyjsha", 4, ["wwyj_jiedan"], []],
-                    "wwyj_pipi": ["female", "wwyjsha", 3, ["wwyj_xipi", "wwyj_baozao"], []],
-                    "wwyj_xiaoSu": ["male", "wwyjsha", 3, ["wwyj_fengliu", "wwyj_qunying"], []],
-                    "wwyj_ciyage": ["male", "wwyjsha", 3, ["wwyj_ciya", "wwyj_jinxiu"], []],
-                    "wwyj_kanpoyiqie": ["male", "wwyjsha", 3, ["wwyj_lilun", "wwyj_yanguan"], []],
-                    "wwyj_kelejiabing": ["male", "wwyjsha", 3, ["wwyj_jilve", "wwyj_tuikeng"], []],
-                    "wwyj_huijin": ["male", "wwyjsha", 3, ["wwyj_chehuo", "wwyj_jinzhu", "wwyj_kangfu"], []],
-                    "wwyj_Show-K": ["male", "wwyjsha", 3, ["wwyj_daigeng", "wwyj_liuxi"], []],
-                    "wwyj_remaliao": ["male", "wwyjsha", 3, ["wwyj_jianghun", "wwyj_chengzhi"], []],
-                    "wwyj_taishangdaniu": ["male", "wwyjsha", 4, ["wwyj_yixue", "wwyj_qianxu"], []],
-                    "wwyj_jiguangs": ["female", "wwyjsha", 3, ["wwyj_jiguang", "wwyj_kazhan"], []],
-                    "wwyj_danwuyunxi": ["male", "wwyjsha", 3, ["wwyj_kaiche", "wwyj_shengshen"], []],
-                    "wwyj_wali": ["male", "wwyjsha", 4, ["wwyj_toushi", "wwyj_qiuxue"], []],
-                    "wwyj_yanyumoran": ["female", "wwyjsha", 4, ["wwyj_yanyu", "wwyj_bingmou"], []],
-                    "wwyj_shenzuo": ["male", "wwyjsha", 4, ["wwyj_jisi", "wwyj_qiangkang"], []],
-                    "wwyj_xuebi": ["male", "wwyjsha", 3, ["wwyj_qiaoji", "wwyj_fansha"], []],
-                    "wwyj_shijian": ["female", "wwyjsha", 3, ["wwyj_touliang", "wwyj_kangxing"], []],
-                    "wwyj_lengyus": ["female", "wwyjsha", 4, ["wwyj_lengyu", "wwyj_junshen"], []],
-                    "wwyj_zhaonies": ["male", "wwyjsha", 4, ["wwyj_zhaonie", "wwyj_peiyin", "wwyj_mingka"], []],
-                    "wwyj_qianshangs": ["male", "wwyjsha", 3, ["wwyj_qianshang", "wwyj_tuikeng"], []],
-                    "wwyj_yitiaoxianyu": ["male", "wwyjsha", 3, ["wwyj_xianyu", "wwyj_weixin"], []],
-                    "wwyj_shennais": ["female", "wwyjsha", 3, ["wwyj_shennai", "wwyj_keai"], []],
-                    "wwyj_yiwangs": ["female", "wwyjsha", 3, ["wwyj_fenghua", "wwyj_yiwang"], []],
-                    "wwyj_guihua": ["female", "wwyjsha", 3, ["wwyj_gainian", "wwyj_heimao"], []],
-                    "wwyj_huanyuxingcheng": ["male", "wwyjsha", 3, ["wwyj_huanyu", "wwyj_xingcheng", "wwyj_xuanxia"], []],
-                    "wwyj_fux2": ["male", "wwyjsha", 4, ["wwyj_dansha", "wwyj_lunpo"], []],
-                    "wwyj_shenwangquanjian": ["male", "wwyjsha", 3, ["wwyj_jieguan", "wwyj_sepi"], []],
-                    "wwyj_wuqinggezi": ["male", "wwyjsha", 3, ["wwyj_wuqing", "wwyj_gezi"], []],
-                    "wwyj_duanges": ["male", "wwyjsha", 4, ["wwyj_duange", "wwyj_meihua"], []],
-                    "wwyj_guchengs": ["male", "wwyjsha", 3, ["wwyj_gucheng", "wwyj_zangyue", "wwyj_feixue"], []],
-                    "wwyj_hezifengyun": ["male", "wwyjsha", 3, ["wwyj_fengyun"], []],
-                    "wwyj_qingzhongs": ["male", "wwyjsha", 3, ["wwyj_qingzhong", "wwyj_jiegeng"], []],
-                    "wwyj_bohetang": ["female", "wwyjsha", 3, ["wwyj_bohe", "wwyj_zhushan"], []],
-                    "wwyj_niya": ["female", "wwyjsha", 3, ["wwyj_xugeng", "wwyj_liuli"], []],
-                    "wwyj_zhongchengpantu": ["male", "wwyjsha", 3, ["wwyj_pantu", "wwyj_weiman"], []],
-                    "wwyj_tianqikui": ["male", "wwyjsha", 3, ["wwyj_duiyi", "wwyj_jitui"], []],
-                    "wwyj_jianyaleishao": ["male", "wwyjsha", 3, ["wwyj_jianya", "wwyj_leishao"], []],
-                    "wwyj_anshas": ["male", "wwyjsha", 3, ["wwyj_ansha", "wwyj_chaoyue"], []],
-                    "wwyj_zhuxiaoer": ["male", "wwyjsha", 4, ["wwyj_fuji", "wwyj_guozhan"], ["hiddenSkill"]],
-                    "wwyj_ranqis": ["female", "wwyjsha", 4, ["wwyj_ranqi", "wwyj_langsha"], []],
-                    "wwyj_chansuideshengming": ['male', 'wwyjsha', 3, ['wwyj_shengming', 'wwyj_chansui'], []],
-                    "wwyj_fanxings": ['male', 'wwyjsha', 3, ['wwyj_huayue', 'wwyj_fanxing'], []],
-                    "wwyj_yangguangweiliang": ["male", "wwyjsha", 3, ["wwyj_zhiguo", "wwyj_pingfang"], []],
-                    "wwyj_rongyaotaoge": ["male", "wwyjsha", 4, ["wwyj_rongyao", "wwyj_taoge"], []],
-                    "wwyj_chenwus": ["male", "wwyjsha", 3, ["wwyj_shengbei", "wwyj_chenwu"], []],
-                    "wwyj_lei": ["male", "wwyjsha", 3, ["wwyj_tongyu", "wwyj_leilao"], []],
-                    "wwyj_mengxinzhuanxing": ["male", "wwyjsha", 3, ["wwyj_qianzhan", "wwyj_zhuanxing"], []],
-                    "wwyj_dasima": ["male", "wwyjsha", 4, ["wwyj_qibing", "wwyj_sima"], []],
-                    "wwyj_rcanghai": ["male", "wwyjsha", 3, ["wwyj_canghai", "wwyj_yigeng"], []],
-                    "wwyj_rshun": ["male", "wwyjsha", 3, ["wwyj_fuhui", "wwyj_doupo"], []],
-                    "wwyj_qingyao": ["male", "wwyjsha", 3, ["wwyj_cuangai", "wwyj_chaoxi", "wwyj_dujiao"], []],
-                    "wwyj_wangshiruyan": ["male", "wwyjsha", 3, ["wwyj_wangfu", "wwyj_daoqian", "wwyj_ruyan"], []],
-                    "wwyj_jishouniancuihui": ["male", "wwyjsha", 3, ["wwyj_jishou", "wwyj_huainian", "wwyj_cuihui"], []],
-                    "wwyj_yijilianggetao": ["male", "wwyjsha", 3, ["wwyj_yitao", "wwyj_jieyi"], []],
-                    "wwyj_rlvbao": ["female", "wwyjsha", 3, ["wwyj_tianlao", "wwyj_lvbao"], []],
-                    "wwyj_rshengma": ["male", "wwyjsha", 4, ["wwyj_shengma", "wwyj_zhongge"], []],
-                    "wwyj_huihui": ["male", "wwyjsha", 4, ["wwyj_zhuan", "wwyj_kuangtu"], []],
-                    "wwyj_guishenyi": ["male", "wwyjsha", 3, ["wwyj_kejin", "wwyj_shenyi"], []],
-                    "wwyj_fenghuitaichu": ["male", "wwyjsha", 3, ["wwyj_raoshi", "wwyj_taichu"], []],
-                    "wwyj_youzi": ["male", "wwyjsha", 3, ["wwyj_yunjiang", "wwyj_shiqie"], []],
-                    "wwyj_relvbao": ["female", "wwyjsha", 4, ["wwyj_minghui", "wwyj_liangyan"], []],
-                    "wwyj_rweimu": ["male", "wwyjsha", 4, ["wwyj_shikong", "wwyj_weimu"], []],
-                    "wwyj_yuhudie": ["female", "wwyjsha", 3, ["wwyj_recaizhi", "wwyj_redaixue"], ["unseen"]],
-                    //"wwyj_xxxs": ["female", "wwyjsha", 3, ["wwyj_xxx", "wwyj_yyy"], ["unseen"]],
-                },
-                skill: {},
-                translate: {
-                    //"wwyj_xxxs": "xxxs",
-                    "wwyj_jiguangs": "极光",
-                    "wwyj_chengxuyuan": "橙续缘",
-                    "wwyj_bohetang": "薄荷糖",
-                    "wwyj_pipi": "皮皮",
-                    "wwyj_guihua": "松岛枫桂花",
-                    "wwyj_yiwangs": "一瞬间遗忘",
-                    "wwyj_fux2": "fux2",
-                    "wwyj_shenzuo": "神座",
-                    "wwyj_guchengs": "孤城",
-                    "wwyj_hezifengyun": "何子风云",
-                    "wwyj_qingzhongs": "青冢",
-                    "wwyj_chansuideshengming": "残碎的生命",
-                    "wwyj_duanges": "短歌",
-                    "wwyj_shennais": "神奈",
-                    "wwyj_tianqikui": "天气亏",
-                    "wwyj_xiaoSu": "小苏",
-                    "wwyj_liangchas": "凉茶",
-                    "wwyj_yuhudie": "玉蝴蝶",
-                    "wwyj_zhichitianya": "咫尺天涯",
-                    "wwyj_shijian": "诗笺",
-                    "wwyj_xuebi": "雪碧",
-                    "wwyj_niya": "夜洛樱琉璃",
-                    "wwyj_taishangdaniu": "太上大牛",
-                    "wwyj_lengyus": "冷雨",
-                    "wwyj_yanyumoran": "烟雨墨染",
-                    "wwyj_wali": "瓦力",
-                    "wwyj_chenwus": "辰午",
-                    "wwyj_rongyaotaoge": "荣耀套鸽",
-                    "wwyj_yangguangweiliang": "阳光微凉",
-                    "wwyj_anshas": "俺杀",
-                    "wwyj_fanxings": "繁星",
-                    "wwyj_zhuxiaoer": "竹小二",
-                    "wwyj_ranqis": "染柒",
-                    "wwyj_shenwangquanjian": "神王权笺",
-                    "wwyj_zhongchengpantu": "忠诚的叛徒",
-                    "wwyj_wuqinggezi": "无情鸽子",
-                    "wwyj_huanyuxingcheng": "寰宇星城",
-                    "wwyj_Show-K": "小溪",
-                    "wwyj_lei": "雷",
-                    "wwyj_yijilianggetao": "遗计两个桃",
-                    "wwyj_mengxinzhuanxing": "萌新转型",
-                    "wwyj_dasima": "大司马",
-                    "wwyj_rcanghai": "藏海",
-                    "wwyj_remaliao": "苏婆玛丽奥",
-                    "wwyj_ciyage": "呲牙哥",
-                    "wwyj_kanpoyiqie": "看破一切",
-                    "wwyj_yitiaoxianyu": "咸鱼",
-                    "wwyj_kelejiabing": "可乐加冰",
-                    "wwyj_qianshangs": "浅觞",
-                    "wwyj_jishouniancuihui": "棘手念摧毁",
-                    "wwyj_rlvbao": "★铝宝",
-                    "wwyj_relvbao": "铝宝",
-                    "wwyj_guishenyi": "鬼神易",
-                    "wwyj_rshengma": "升麻",
-                    "wwyj_huihui": "灰晖",
-                    "wwyj_youzi": "柚子",
-                    "wwyj_rweimu": "唯幕",
-                    "wwyj_qingyao": "清瑶",
-                    "wwyj_fenghuitaichu": "风回太初",
-                    "wwyj_wangshiruyan": "往事如烟",
-                    "wwyj_rshun": "瞬",
-                    "wwyj_huijin": "辉烬贺流年",
-                    "wwyj_danwuyunxi": "淡雾云曦",
-                    "wwyj_jianyaleishao": "剑牙雷少",
-
-                    "wwyj_jieyi": "解疑",
-                    "wwyj_jieyi_info": "</font><font color=#f00>锁定技</font> 武将牌上有因【遗桃】放置的【桃】的角色受到伤害后，所有此类角色各摸一张牌",
-                    "wwyj_yitao": "遗桃",
-                    "wwyj_yitao_info": "当你受到伤害时，若场上以此法放置的【桃】少于两张，你可以将牌堆或弃牌堆中随机的【桃】先后置于任一名角色的武将牌上，其回合开始时，你可以获得其武将牌上的一张【桃】并令其回复一点体力",
-                    "wwyj_weimu": "唯幕",
-                    "wwyj_weimu_info": "</font><font color=#f00>锁定技</font> 若你的防具栏没有牌，黑色锦囊牌对你无效，否则红色锦囊牌对你无效",
-                    "wwyj_shikong": "时空",
-                    "wwyj_shikong_info": "出牌阶段限一次，你可令全场所有角色分别随机与一名其他角色交换手牌",
-                    "wwyj_minghui": "明慧",
-                    "wwyj_minghui_info": "出牌阶段限一次，你可以将一名其他角色的一张手牌置于牌堆一端，并令其声明此牌的花色或类别，然后你猜测该牌的牌名或指出其撒谎，若你正确，你摸一张牌，否则其摸一张牌。",
-                    "wwyj_liangyan": "梁燕",
-                    "wwyj_liangyan_info": "<font color=#F0F>转换技</font> 当一名角色于你回合内摸牌时，你可以令其：①弃置两张牌，然后额外摸一张牌；②弃置一张牌，然后额外摸两张牌。",
-                    "wwyj_shiqie": "失窃",
-                    "wwyj_shiqie_info": "</font><font color=#f00>锁定技</font> 每轮开始时，若你的手牌数不为全场最少，你被随机一名其他角色获得一张手牌，若如此做，你获得一张【云将】牌，若该角色此时的手牌比你的多，你摸一张牌",
-                    "wwyj_yunjiang": "云将",
-                    "wwyj_yunjiang_info": "游戏开始或你进入游戏时，你可从武将牌堆中随机获得两张武将牌置于你的武将牌上，称之为【云将】；你每受到一点伤害时，你随机获得一张【云将】牌。你可以根据【云将】牌的势力将其当一种牌使用或打出：<br>蜀:【杀】<br>魏:【闪】<br>吴:【桃】<br>群:【酒】<br>其他:【无懈可击】",
-                    "wwyj_taichu": "太初",
-                    "wwyj_taichu_info": "<span class=greentext>觉醒技</span> 当你进入濒死状态时，你可增加一点体力上限，然后发动全场大涅槃：所有角色重置武将牌，体力回复至体力上限，弃置区域内所有牌并将手牌调整为4张",
-                    "wwyj_raoshi": "扰世",
-                    "wwyj_raoshi_info": "一名角色摸牌阶段摸牌时，你可制止其摸牌，然后扮演一名性感荷官发牌给该角色",
-                    "wwyj_shenyi": "神易",
-                    "wwyj_shenyi_info": "当一名角色濒死时，你可弃置所有的“金”，令其回复体力至1",
-                    "wwyj_kejin": "氪金",
-                    "wwyj_kejin_info": "当你使用或打出一张基本牌或普通锦囊牌后，你可获得X点“金”（X为场上角色数与此牌的点数相比的最小值）。出牌阶段，你可利用这些“金”购买牌堆或弃牌堆中的卡牌，每种卡牌每回合限购一次",
-                    "wwyj_kuangtu": "狂徒",
-                    "wwyj_kuangtu_info": "</font><font color=#f00>锁定技</font> 每回合限一次，当一名其他角色处于濒死状态时，若你已受伤，你回复一点体力，否则你摸一张牌",
-                    "wwyj_zhuan": "祖安",
-                    "wwyj_zhuan_info": "出牌阶段限一次，你可失去一点体力，视为对一名角色使用X张无视防具、无距离限制的【杀】（X为你已损失的体力值）",
-                    "wwyj_zhongge": "仲哥",
-                    "wwyj_zhongge_info": "当你使用【杀】造成伤害后，其他角色可以将其一张装备牌置入到你对应的空置装备栏，然后其摸一张牌",
-                    "wwyj_shengma": "升麻",
-                    "wwyj_shengma_info": "</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限和目标均+X，X为你装备区的牌数",
-                    "wwyj_lvbao2": "铝宝",
-                    "wwyj_lvbao_info": "出牌阶段，你可以令“天牢之主”摸一张牌，然后解除该阶段为“天牢”所困的状态",
-                    "wwyj_lvbao": "铝宝",
-                    "wwyj_lvbao_info": "其他角色的出牌阶段，其可以令你摸一张牌，然后解除该阶段为“天牢”所困的状态",
-                    "wwyj_tianlao": "天牢",
-                    "wwyj_tianlao_info": "出牌阶段开始时，你可选择一个基本牌或普通锦囊牌的牌名，令所有其他角色不能使用或打出这牌名的牌，直到你的下个回合开始",
-                    "wwyj_huainian": "怀念",
-                    "wwyj_huainian_info": "</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数）",
-                    "wwyj_cuihui": "摧毁",
-                    "wwyj_cuihui_info": "出牌阶段限X次（X为你的手牌数），你可与一名其他角色进行拼点，若你赢，你选择废除其一个装备栏，若你输，你摸一张牌",
-                    "wwyj_jishou": "棘手",
-                    "wwyj_jishou_info": "当你受到伤害时，若来源有已被废除的装备栏，你可选择恢复其中一个装备栏，然后取消此伤害",
-                    "wwyj_ruyan": "如烟",
-                    "wwyj_ruyan_info": "</font><font color=#f00>锁定技</font> 当你受到有来源的伤害时，若伤害来源没“烟”标记，你摸一张牌且此伤害-1，若其有“烟”标记，此伤害值+1",
-                    "wwyj_daoqian": "道歉",
-                    "wwyj_daoqian_info": "当有“烟”标记的角色受到伤害后，若你有手牌，你可交给其一张手牌并翻面，然后其移除“烟”标记",
-                    "wwyj_wangfu": "往复",
-                    "wwyj_wangfu_info": "</font><font color=#f00>锁定技</font> 当你对一名其他角色造成伤害时，若其没有“烟”标记，其获得一枚“烟”标记，然后你摸一张牌并翻面",
-                    "wwyj_dujiao": "毒教",
-                    "wwyj_dujiao_info": "<span class=yellowtext>主公技</span> 每回合限一次，其他杀势力的角色可以在其回合内将一张【毒】交给你",
-                    "wwyj_chaoxi": "抄袭",
-                    "wwyj_chaoxi_info": "</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】",
-                    "wwyj_cuangai": "篡改",
-                    "wwyj_cuangai_info": "每回合限一次，当一名角色受到伤害后，你可展示伤害来源的一张手牌并令其转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】",
-                    "wwyj_doupo": "斗破",
-                    "wwyj_doupo_info": "</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用【杀】的次数",
-                    "wwyj_fuhui": "浮慧",
-                    "wwyj_fuhui_info": "每当你使用或打出一张点数的奇偶性与X的奇偶性相同的牌后，你摸一张牌，否则你弃置一张牌，当你因此失去最后一张手牌时，你可选择一项：①对一名其他角色造成1点伤害；②恢复一点体力，将武将牌翻面并令X重置。（X为你发动此技能的次数）",
-                    "wwyj_yigeng": "义更",
-                    "wwyj_yigeng_info": "每回合限一次，当一名其他角色使用牌时，你可弃置一张你藏在武将牌上的其中一张与此牌花色相同的“海”，令此角色受到一点雷属性伤害",
-                    "wwyj_canghai": "藏海",
-                    "wwyj_canghai_info": "锁定技，当游戏开始时、你进入游戏时、一名角色进入濒死状态时，若你武将牌上的“海”不足五张，你摸一张牌并将牌堆顶的牌当“海”置于你的武将牌上，直至五张",
-                    "wwyj_sima": "司马",
-                    "wwyj_sima_info": "</font><font color=#f00>锁定技</font> 你的摸牌阶段摸牌时，摸牌数+X，你的进攻距离和防御距离均+X（X为你装备区的“马”数）",
-                    "wwyj_qibing": "奇兵",
-                    "wwyj_qibing_info": "当你使用【杀】即将造成伤害时，你可选择一项：<li>平西：令一名其他角色也受到一点伤害<li>镇北：令此伤害+1<li>征南：获得该角色的一张牌<li>破东：令该角色摸等同其当前已损失的体力值张牌（至少1张），然后翻面<li>定中：你回复一点体力或摸一张牌",
-                    "wwyj_qianzhan_backup": "前瞻",
-                    "wwyj_qianzhan": "前瞻",
-                    "wwyj_qianzhan_info": "牌堆顶的牌对你可见。每回合限X次（X为你的体力值），你可以使用或打出牌堆顶的牌（【无懈可击】除外），你以此法使用的牌无距离限制，若为【杀】则可额外指定一名目标 <font color=#F0F>可突破</font>",
-                    "wwyj_zhuanxing": "转型",
-                    "wwyj_zhuanxing_info": "当一名角色即将受到【杀】造成的非属性伤害时，你可令该伤害改为雷属性伤害，然后你摸一张牌",
-                    "wwyj_leilao": "雷佬",
-                    "wwyj_leilao_info": "</font><font color=#f00>锁定技</font> 雷属性伤害对你无效。场上其他角色受到雷属性伤害后，你选择一项：回复一点体力；摸一张牌；获得该角色一张牌",
-                    "wwyj_tongyu": "统驭",
-                    "wwyj_tongyu_info": "一名角色的回合开始时，你随机获得其一个技能，若为你的回合，你随机获得场上一名其他角色的一个技能，均直到回合结束",
-                    "wwyj_chenwu": "辰午",
-                    "wwyj_chenwu_info": "其他角色的弃牌阶段开始时，若其手牌数大于你的手牌数，你可选择展示其一张手牌，若此牌为基本牌或普通锦囊牌，你获得之，然后若为黑色牌，你可立即使用之",
-                    "wwyj_shengbei": "圣杯",
-                    "wwyj_shengbei_info": "每回合每种情况限一次，当你需要使用或打出一张【杀】/【闪】时，你可以展示你手牌中的一张，然后若其他角色展示一张同名的手牌，视为你使用或打出之。若为使用【杀】则不计入次数",
-                    "wwyj_rongyao": "荣耀",
-                    "wwyj_rongyao_info": "当你受到伤害后，你可将牌堆顶X（你已损失的体力值）张牌置于武将牌上，称为“耀”。若你有“耀”，你不能成为黑色非装备牌的目标",
-                    "wwyj_taoge": "套鸽",
-                    "wwyj_taoge_info": "回合结束时，你可选择一项：1、弃置任意张“耀”并令等量的其他角色各摸一张牌，然后你回复一点体力；2、将任意张“耀”交给等量的其他角色，然后该角色须弃置一张与之不同类别的手牌，否则其失去一点体力",
-                    "wwyj_zhiguo": "掷果",
-                    "wwyj_zhiguo_info": "</font><font color=#f00>锁定技</font> 场上女性角色摸牌阶段多摸一张牌并交给你一张牌，然后其回复1点体力",
-                    "wwyj_pingfang": "评芳",
-                    "wwyj_pingfang_info": "准备阶段开始时，你可观看随机六张未登场的女性武将牌并选择一张，然后你可用这张牌替换一名其他角色的武将牌",
-                    "wwyj_qingyan": "倾颜",
-                    "wwyj_qingyan_info": "出牌阶段每名角色限一次，你可失去1点体力或弃置一张【酒】，然后令你或一名女性角色摸三张牌",
-                    "wwyj_fanxing": "繁星",
-                    "wwyj_fanxing_info": "出牌阶段限一次，若你有“星”，你可以弃置所有的“星”，视为你使用了X张【万箭齐发】（X为你弃置的“星”的数量且至多为5）",
-                    "wwyj_huayue": "花月",
-                    "wwyj_huayue_info": "</font><font color=#f00>锁定技</font> 当你使用一张基本牌后，你将其置于武将牌上，称为“星”，然后摸一张牌；当你受到伤害后，若你有“星”，伤害来源获得你武将牌上的一张“星”牌，若该牌为红色，你回复1点体力，若为黑色，你对伤害来源造成1点伤害",
-                    "wwyj_chansui": "残碎",
-                    "wwyj_chansui_info": "</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌 <font color=#F0F>可突破</font>",
-                    "wwyj_shengming": "生命",
-                    "wwyj_shengming_info": "</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏时，将牌堆和弃牌堆的所有武器牌置于你的武将牌上，称为“命”，你的手牌上限+X（X为“命”数）",
-                    "wwyj_ranqi": "染柒",
-                    "wwyj_ranqi_info": "</font><font color=#f00>锁定技</font> 当你受到伤害后，伤害来源须猜你手牌中的花色数，若其猜对，你回复一点体力，若其猜错，其翻面",
-                    "wwyj_langsha": "狼杀",
-                    "wwyj_langsha_info": "</font><font color=#f00>锁定技</font> 你与已翻面的角色的距离为1，你使用【杀】的次数上限+X（X为场上已翻面的角色数）",
-                    "wwyj_fuji": "伏击",
-                    "wwyj_fuji_info": "<font color=#F0F>隐匿技</font> 当你于其他角色的回合登场后，你可与该角色交换装备牌，然后其翻面",
-                    "wwyj_guozhandraw": "国战",
-                    "wwyj_guozhandraw_info": "当你所选的势力的角色受到伤害或回复体力时，你摸一张牌",
-                    "wwyj_guozhanrespond": "国战",
-                    "wwyj_guozhanrespond_info": "当你需要打出【杀】或【闪】时，你可观看你所选择的势力的一名其他角色的手牌，选择打出一张符合情况的手牌",
-                    "wwyj_guozhan": "国战",
-                    "wwyj_guozhan_info": "回合结束时或一名角色阵亡后，你可以从场上除你之外的势力中选择其中一个，直到下次发动【国战】前，该势力的角色受到伤害或回复体力时，你摸一张牌，且当你需要打出【杀】或【闪】时，你可观看此势力的一名其他角色的手牌，选择打出一张符合情况的手牌",
-                    "wwyj_chaoyue": "超越",
-                    "wwyj_chaoyue_info": "</font><font color=#f00>锁定技</font> 你使用【杀】造成伤害时，若该角色未受伤或已翻面或已横置，则此伤害+1 <font color=#F0F>可突破</font>",
-                    "wwyj_ansha": "俺杀",
-                    "wwyj_ansha_info": "</font><font color=#f00>锁定技</font> 你的进攻距离-X，回合内使用【杀】的次数上限+X（X为游戏轮数）",
-                    "wwyj_leishao": "雷少",
-                    "wwyj_leishao_info": "</font><font color=#f00>锁定技</font> 你受到雷属性伤害时，伤害减一；你的草花非装备牌均视为雷【杀】且无距离和次数限制",
-                    "wwyj_jianya": "剑牙",
-                    "wwyj_jianya_info": "当你受到伤害或杀死一名角色后，你可以选择一种牌的类型，然后随机观看牌堆中该类型的两张牌，然后选择获得其中任意张颜色为黑色的牌",
-                    "wwyj_zhichi": "咫尺",
-                    "wwyj_zhichi_info": "</font><font color=#f00>锁定技</font> 你计算与体力值不等于其手牌数的角色的距离为1，你对距离为1的角色使用【杀】造成伤害时，此伤害+1",
-                    "wwyj_tianya": "天涯",
-                    "wwyj_tianya_info": "<span class=greentext>觉醒技</span> 当你进入濒死状态时，你选择X名其他角色，摸X张牌，并随机展示X名文武英杰扩展的角色（X为至少为1的任意整数），你回复体力至体力上限并随机变身为【凉茶】或【玉蝴蝶】并选择令这些角色逐一将武将牌替换为其中一张（体力上限、体力不变）",
-                    "wwyj_jitui": "急退",
-                    "wwyj_jitui_info": "当你成为【杀】的目标时，你可观看牌堆顶的5张牌并选择其中一张，然后你须补回一张花色或类型或点数与此牌相同的牌（置于最后），再将这些牌置回牌堆顶",
-                    "wwyj_duiyi": "对弈",
-                    "wwyj_duiyi_info": "出牌阶段限一次，你可以与一名其他角色进行“对弈”：将牌堆顶的七张牌背面朝上展开，你与其轮流翻开展示其中的4张牌，然后未被翻开的牌置回牌堆顶，若翻开的牌中只有一种花色或花色各不相同，你获得这些牌并回复一点体力，否则其受到一点火／雷属性伤害",
-                    "wwyj_weiman": "伪漫",
-                    "wwyj_weiman_info": "当你的体力值发生变化时，你可移动场上的一张牌",
-                    "wwyj_zhongcheng": "忠诚",
-                    "wwyj_zhongcheng_info": "出牌阶段限一次，若你有牌，你可发动“忠诚”令“叛徒”回复一点体力或令其摸一张牌，若如此做，其须弃置你的一张牌",
-                    "wwyj_pantu": "叛徒",
-                    "wwyj_pantu_info": "其他角色的出牌阶段限一次，若其有牌，其可发动“忠诚”令你回复一点体力或令你摸一张牌，若如此做，你须弃置其一张牌",
-                    "wwyj_liuli": "琉璃",
-                    "wwyj_liuli_info": "当一名其他角色失去最后一张手牌后，你可将不同花色的手牌各一张交给其，若你交出的手牌中包含4种花色，你回复一点体力",
-                    "wwyj_xugeng": "续更",
-                    "wwyj_xugeng_info": "当你的手牌数少于3张时，你可及时点击屏幕上牌桌区的小头像以摸一张牌",
-                    "wwyj_zhushan": "助善",
-                    "wwyj_zhushan_info": "当一名角色使用【杀】时，若其手牌数不大于目标角色的手牌数，你可令此【杀】不可闪避",
-                    "wwyj_bohe": "薄荷",
-                    "wwyj_bohe_info": "出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），你可令其摸一张牌 <font color=#F0F>可突破</font>",
-                    "wwyj_jiegeng": "接更",
-                    "wwyj_jiegeng_info": "每名角色的回合限一次，当一名其他角色使用一张单目标的基本牌或非延时性锦囊牌时（【借刀杀人】、【无懈可击】除外），你可视为你对目标角色也使用此牌",
-                    "wwyj_qingzhong": "青冢",
-                    "wwyj_qingzhong_info": "出牌阶段限一次，你可以弃置任意张基本牌，并指定你攻击范围内等量名其他角色，分别视为对这些角色使用了一张无次数限制的【杀】",
-                    "wwyj_fengyun": "风云",
-                    "wwyj_fengyun_info": "</font><font color=#f00>锁定技</font> 当你受到伤害后，你从随机展示的三个【文武英杰】扩展的技能中选择一个获得(本技能除外)",
-                    "wwyj_feixue": "飞雪",
-                    "wwyj_feixue_info": "当你使用【杀】时，你可令此【杀】额外指定所有武将牌背面朝上的角色，然后令这些角色翻面",
-                    "wwyj_zangyue": "葬月",
-                    "wwyj_zangyue_info": "</font><font color=#f00>锁定技</font> 回合结束阶段，你选择一种花色，然后令所有其他角色在其下个结束阶段前，其使用该花色的牌后将武将牌翻面",
-                    "wwyj_gucheng": "孤城",
-                    "wwyj_gucheng_info": "</font><font color=#f00>锁定技</font> 游戏轮数为奇数/偶数的回合，你不能成为点数为奇数/偶数的【杀】的目标",
-                    "wwyj_meihua": "美化",
-                    "wwyj_meihua_info": "每名角色的回合限一次，当一名角色使用一张单一目标的非装备牌、非延时锦囊牌的牌时，你可展示牌堆顶的两张牌，选择改用其中合理的一张牌 <font color=#F0F>可突破</font>",
-                    "wwyj_duange": "短歌",
-                    "wwyj_duange_info": "摸牌阶段摸牌时，你可放弃摸牌，改为展示牌堆顶的五张牌，然后选择获得其中任意张点数同为奇数或同为偶数的牌，再将剩下的牌按先后顺序置于牌堆顶",
-                    "wwyj_geziyin": "放鸽",
-                    "wwyj_geziyang": "放鸽",
-                    "wwyj_gezi": "鸽子",
-                    "wwyj_gezi_info": "<font color=#F0F>转换技</font> 出牌阶段限一次：<li>阳：你可弃置一张红色手牌并令任意名有手牌的角色各展示一张手牌，然后你可展示一张手牌，横置/重置展示牌与该牌颜色相同的角色。<li>阴：你交给一名其他角色一张黑色手牌，令其选择至少一名角色，然后你选择横置/重置其所选择的或未选择的角色。<br>若已横置的角色比未模置的多，你摸一张牌",
-                    "wwyj_wuqing": "无情",
-                    "wwyj_wuqing_info": "</font><font color=#f00>锁定技</font> 当一名角色受到属性伤害后，你摸一张牌",
-                    "wwyj_jieguan": "接管",
-                    "wwyj_jieguan_info": "一名其他角色出牌阶段开始时，若其有手牌且手牌数不小于你的，你可以获得其一张手牌。若如此做，此阶段结束时，若其造成过伤害，则视为其对你使用一张【杀】，否则你视为对其使用一张【杀】",
-                    "wwyj_sepi": "色批",
-                    "wwyj_sepi_info": "每名女性角色的出牌阶段限一次，其可弃置一张手牌，然后其弃置你的一张手牌，若这两张手牌颜色相同，其与你各选择摸一张牌或回复一点体力(若任一方没受伤则改为摸一张牌)，否则各摸一张牌",
-                    "wwyj_lunpo": "论破",
-                    "wwyj_lunpo_info": "任意有“丸”标记的角色弃牌阶段弃牌时，若其弃置的牌均为不同花色的牌时，你可选择一项：①回复一点体力并摸一张牌；②令该角色受到你造成的一点伤害，然后其弃置“丸”标记 <font color=#F0F>可突破</font>",
-                    "wwyj_dansha": "弹杀",
-                    "wwyj_dansha_info": "当你受到伤害时，你可先选择是否令一名没“丸”标记的其他角色获得“丸”标记，然后你再对场上随机一名有“丸”标记的角色造成等量点伤害并令其随机弃置一张牌",
-                    "wwyj_xuanxia": "玄侠",
-                    "wwyj_xuanxia_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】 <font color=#F0F>可突破</font>",
-                    "wwyj_huanyu": "寰宇",
-                    "wwyj_huanyu_info": "出牌阶段限一次，你可将场上所有有“星”的角色的“星”收为手牌，然后再逐一将一张手牌当“星”放置于这些角色的武将牌上",
-                    "wwyj_xingcheng": "星城",
-                    "wwyj_xingcheng_info": "当你受到伤害后，你可将牌堆顶的一张牌置于一名没有“星”的其他角色的武将牌上，称为“星”；当一名角色阵亡或受到你造成的伤害时，若其有“星”，你可以获得该角色的“星”",
-                    "wwyj_gainian": "概念",
-                    "wwyj_gainian_info": "出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌",
-                    "wwyj_heimao": "黑猫",
-                    "wwyj_heimao_info": "<span class=greentext>觉醒技</span> 当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌",
-                    "wwyj_yiwang": "遗忘",
-                    "wwyj_yiwang_info": "当你使用的【杀】被闪避时，你可令目标角色翻面",
-                    "wwyj_fenghua": "风华",
-                    "wwyj_fenghua_info": "出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1。若你没赢，你回复一点体力",
-                    "wwyj_shennai": "神奈",
-                    "wwyj_shennai_info": "</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限额外加X（你手牌中没带“伤害性”标签的牌的实时数量）",
-                    "wwyj_keai": "可爱",
-                    "wwyj_keai_info": "当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌",
-                    "wwyj_weixin": "伪新",
-                    "wwyj_weixin_info": "每名角色的回合限一次，当一名角色进入濒死状态时，你可以摸一张牌并翻面，令其回复一点体力",
-                    "wwyj_xianyu": "咸鱼",
-                    "wwyj_xianyu_info": "每回合限一次，当你使用非转化的【杀】造成伤害时，你可以翻面，令该角色横置且此伤害+1",
-                    "wwyj_qianshang": "浅觞",
-                    "wwyj_qianshang_info": "当一名其他角色弃牌阶段弃牌结束时，你可选择其所弃置的牌中合理的一张立即使用之（若为装备牌则对你使用）",
-                    "wwyj_peiyin": "配音",
-                    "wwyj_peiyin_info": "</font><font color=#f00>锁定技</font> 当你失去装备区的牌后，你回复一点体力且摸一张牌",
-                    "wwyj_mingka": "民卡",
-                    "wwyj_mingka_info": "你使用【杀】对其他角色造成伤害时，你可以弃置至多两张装备牌令增加等量点的伤害 ",
-                    "wwyj_zhaonies": "造孽",
-                    "wwyj_zhaonie": "造孽",
-                    "wwyj_zhaonie_info": "</font><font color=#f00>锁定技</font> 若你本回合击杀过角色，则下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）",
-                    "wwyj_lengyu": "冷雨",
-                    "wwyj_lengyu_info": "当你使用【杀】时，你可获得目标角色的一张手牌，若如此做，此【杀】造成伤害后，你须交给该角色一张手牌",
-                    "wwyj_junshen": "军神",
-                    "wwyj_junshen_info": "出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色【杀】无次数限制，你使用的黑色【杀】无距离限制；2.你使用的【杀】可指定任意名目标且无视目标的防具",
-                    "wwyj_jisi": "即死",
-                    "wwyj_jisi_info": "你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力 <font color=#F0F>可突破</font>",
-                    "wwyj_fansha": "反杀",
-                    "wwyj_fansha_info": "当你成为【杀】的目标时，你可弃置所有手牌中的【杀】，视为对来源使用一张【杀】",
-                    "wwyj_qiaoji": "巧技",
-                    "wwyj_qiaoji_info": "当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张基本牌，或摸一张牌，若如此做，本回合内有角色使用【杀】时，你成为额外的目标",
-                    "wwyj_jianghun": "键魂",
-                    "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）",
-                    "wwyj_chengzhi": "承志",
-                    "wwyj_chengzhi_info": "非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之",
-                    "wwyj_yanyu": "烟雨",
-                    "wwyj_yanyu_info": "当一名其他角色失去装备牌后，你可选择其中的一张立即使用之",
-                    "wwyj_bingmou": "兵谋",
-                    "wwyj_bingmou_info": "</font><font color=#f00>锁定技</font> 你的防御距离与你使用的【杀】的目标上限均等于你的攻击范围",
-                    "wwyj_gaochang": "高产",
-                    "wwyj_gaochang_info": "你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零",
-                    "wwyj_qiuxue": "求学",
-                    "wwyj_qiuxue_info": "<span class=greentext>觉醒技</span> 若你已发动至少3次【偷师】，你失去一点体力上限，回复1点体力并获得技能【高产】",
-                    "wwyj_toushi": "偷师",
-                    "wwyj_toushi_info": "出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记并摸一张牌，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始",
-                    "wwyj_kazhan": "卡战",
-                    "wwyj_kazhan_info": "当一名角色的体力变化至1后，你可令其随机使用一张装备牌 <font color=#F0F>可突破</font>",
-                    "wwyj_shengshen": "圣神",
-                    "wwyj_shengshen_info": "每轮限一次，当一名角色进入濒死状态时，你可以观看牌堆顶的两张牌，然后弃置其中一张红色牌视为对其使用一张【桃】。若其中没有红色牌且你有红色的手牌，你可以弃置你的所有红色手牌，视为对其使用一张【桃】",
-                    "wwyj_kaiche": "开车",
-                    "wwyj_kaiche_info": "</font><font color=#f00>锁定技</font> 摸牌阶段摸牌时，你额外摸X张牌，你的手牌上限加X（X为场上女性角色数且至少为1）",
-                    "wwyj_jiguang": "极光",
-                    "wwyj_jiguang_info": "你可在合适的时机选择一名角色的装备区的一张牌并令其弃置之，若此牌为：<li>武器牌或攻击马，视为使用或打出一张【杀】，若为使用【杀】则不计入使用杀的次数上限且每回合限一次<li>防具牌或防御马或宝物牌，视为使用或打出一张【闪】",
-                    "wwyj_qianxu": "谦虚",
-                    "wwyj_qianxu_info": "（隔山打牛）</font><font color=#f00>锁定技</font> 你不能成为与你距离为1的角色使用的【杀】的目标，你使用的【杀】只能指定与你距离大于1的角色为目标，且你使用【杀】时至多额外指定一名目标",
-                    "wwyj_yixue": "义写",
-                    "wwyj_yixue_info": "当一名其他角色的回合结束时，若其已受伤，你可交给其一张手牌，若此时其手牌数比你的多，你摸一张牌",
-                    "wwyj_liuxi": "流溪",
-                    "wwyj_liuxi_info": "</font><font color=#f00>锁定技</font> 当你成为【杀】的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此【杀】造成伤害，该角色摸一张牌然后翻面",
-                    "wwyj_daigeng": "代更",
-                    "wwyj_daigeng_info": "每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合",
-                    "wwyj_touliang": "透凉",
-                    "wwyj_touliang_info": "结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合结束时，不能使用或打出基本牌",
-                    "wwyj_kangxing": "抗性",
-                    "wwyj_kangxing_info": "当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调",
-                    "wwyj_qiangkang": "强抗",
-                    "wwyj_qiangkang_info": "</font><font color=#f00>锁定技</font> 你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌",
-                    "wwyj_tuikeng": "退坑",
-                    "wwyj_tuikeng_info": "</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>",
-                    "wwyj_chehuo": "车祸",
-                    "wwyj_chehuo_info": "</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏",
-                    "wwyj_kangfu": "康复",
-                    "wwyj_kangfu_info": "</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏",
-                    "wwyj_jinzhu": "烬铸",
-                    "wwyj_jinzhu_info": "你可以把你的装备牌当做任意基本牌（军争）使用或打出",
-                    "wwyj_jilve": "极略",
-                    "wwyj_jilve_info": "出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除【无懈可击】外）使用。",
-                    "wwyj_lilun": "理论",
-                    "wwyj_lilun_info": "每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶",
-                    "wwyj_yanguan": "严管",
-                    "wwyj_yanguan_info": "每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌",
-                    "wwyj_jinxiu": "进修",
-                    "wwyj_jinxiu_info": "</font><font color=#f00>锁定技</font> 结束阶段你摸X张牌（X为你本回合造成的伤害次数）",
-                    "wwyj_ciya": "呲牙",
-                    "wwyj_ciya_info": "摸牌阶段开始时，你可少摸一张牌，然后视为对攻击范围内包含有你的任意名其他角色各使用一张【杀】",
-                    "wwyj_daixue": "代写",
-                    "wwyj_daixue_info": "出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色",
-                    "wwyj_redaixue": "代写",
-                    "wwyj_redaixue_info": "出牌阶段限一次，若你已获得的【文武英杰】中的至少一项技能，你可选择其中一项交给一名没有【文武英杰】中任意一项与你相同的其他角色",
-                    "wwyj_caizhi": "才智",
-                    "wwyj_caizhi_info": "</font><font color=#f00>锁定技</font> 你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、对弈、极略、理论",
-                    "wwyj_recaizhi": "才智",
-                    "wwyj_recaizhi_info": "</font><font color=#f00>锁定技</font> 你的回合开始时，你随机从【文武英杰】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【文武英杰】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【文武英杰】分别对应：概念、咫尺、禁言、少主",
-                    "wwyj_qunying": "群英",
-                    "wwyj_qunying_info": "结束阶段，你可以和一名其他角色交换手牌，若你们手牌数相同，你可以与其各摸一张牌。你与其交换的手牌差不得大于你与其的体力值之差 <font color=#F0F>可突破</font>",
-                    "wwyj_fengliu": "风流",
-                    "wwyj_fengliu_info": "游戏开始时、你进入游戏（对决）、你的回合开始、结束时，你可从五名随机的女性中选择一位并获得其所有的技能，直至重新发动此技能",
-                    "wwyj_baozao": "暴躁",
-                    "wwyj_baozao_info": "<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张火【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌",
-                    "wwyj_xipi": "嘻皮",
-                    "wwyj_xipi_info": "</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌",
-                    "wwyj_xiadan": "下单",
-                    "wwyj_xiadan_info": "出牌阶段限一次，你可“下单”交给“接单者”一张牌，其回复一点体力且其可使用一张【杀】，然后你选择获得一张基本牌或非延时锦囊牌",
-                    "wwyj_jiedan": "接单",
-                    "wwyj_jiedan_info": "每名角色的出牌阶段限一次，其可以“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌",
-                    "wwyjsha": "杀",
-
-                },
-            };
-
-            var Cwenwuyingjies = {
-                character: {
-                    "wwyj_wzszhaoyun": ["male", "wwyjsha", 5, ["wwyj_jiaoxiao", "wwyj_zuikui"], []],
-                    "wwyj_lunhuizhong": ["male", "wwyjsha", 3, ["wwyj_qiandao", "wwyj_yingguai", "wwyj_qianzhui"], []],
-                    "wwyj_daxiongxiaimao": ["male", "wwyjsha", 4, ["wwyj_chengpiao", "wwyj_jipin"], []],
-                    "wwyj_xingyunnvshen": ["female", "wwyjsha", 3, ["wwyj_guanli", "wwyj_nvshen"], []],
-                    "wwyj_feicheng": ["male", "wwyjsha", 4, ["wwyj_juedi", "wwyj_qiusheng"], []],
-                    "wwyj_zhugejun": ["male", "wwyjsha", 3, ["wwyj_qisi", "wwyj_miaoji"], []],
-                    "wwyj_liushas": ["male", "wwyjsha", 4, ["wwyj_liusha"], []],
-                    "wwyj_tilongjianiao": ["male", "wwyjsha", 3, ["wwyj_gonggao", "wwyj_jinyan"], []],
-                    "wwyj_limuzi": ["male", "wwyjsha", 3, ["wwyj_shiyuan", "wwyj_qinyan"], []],
-                    "wwyj_xuedaoshaozhu": ["male", "wwyjsha", 3, ["wwyj_xuedao", "wwyj_shaozhu"], []],
-                    "wwyj_zhulinqixian": ["male", "wwyjsha", 4, ["wwyj_jieyuan", "wwyj_yangshan"], []],
-                    "wwyj_hualuo": ["male", "wwyjsha", 3, ["wwyj_luohua", "wwyj_yongji"], []],
-
-                },
-                skill: {},
-                translate: {
-                    "wwyj_hualuo": "花落",
-                    "wwyj_wzszhaoyun": "我只是赵云",
-                    "wwyj_daxiongxiaimao": "大熊小猫",
-                    "wwyj_lunhuizhong": "轮回消逝者",
-                    "wwyj_xuedaoshaozhu": "血刀少主",
-                    "wwyj_zhulinqixian": "竹林七贤",
-                    "wwyj_xingyunnvshen": "幸运女神",
-                    "wwyj_tilongjianiao": "提笼架鸟",
-                    "wwyj_liushas": "流沙",
-                    "wwyj_limuzi": "李木子",
-                    "wwyj_feicheng": "废城",
-                    "wwyj_zhugejun": "诸葛均",
-                    "wwyj_qianzhui": "潜追",
-                    "wwyj_qianzhui_info": "<span class=yellowtext>限定技</span> 当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能",
-                    "wwyj_yingguai": "嘤怪",
-                    "wwyj_yingguai_info": "当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（【闪电】、【乐不思蜀】、【兵粮寸断】）",
-                    "wwyj_qiandao": "签到",
-                    "wwyj_qiandao_info": "当一名其他角色判定牌生效后，你可获得其一张牌",
-                    "wwyj_zuikui": "罪魁",
-                    "wwyj_zuikui_info": "</font><font color=#f00>锁定技</font> 当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌",
-                    "wwyj_jiaoxiao": "叫嚣",
-                    "wwyj_jiaoxiao_info": "</font><font color=#f00>锁定技</font> 当你受到【杀】造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一",
-                    "wwyj_jipin": "济贫",
-                    "wwyj_jipin_info": "当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌",
-                    "wwyj_chengpiao": "诚嫖",
-                    "wwyj_chengpiao_info": "出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张",
-                    "wwyj_nvshen": "女神",
-                    "wwyj_nvshen_info": "当一名其他男性角色受到伤害后，你可令其观看你的手牌，若其没有手牌，其摸一张牌，若其有手牌，你观看其手牌，若其手牌与你的手牌花色数相同，其回复一点体力，否则其与你各摸一张牌",
-                    "wwyj_guanli": "管理",
-                    "wwyj_guanli_info": "出牌阶段限一次，你可令一名其他角色随机弃置一张手牌，若这张手牌为：基本牌，你视为对其使用一张不计次数限制的【杀】；锦囊牌，你视为对其使用一张不能被【无懈可击】响应的【决斗】；装备牌，你使用之",
-                    "wwyj_qiusheng": "求生",
-                    "wwyj_qiusheng_info": "</font><font color=#f00>锁定技</font> 每轮开始时或当你造成伤害后，你获得一个“废”标记 ",
-                    "wwyj_juedi": "绝地",
-                    "wwyj_juedi_info": "</font><font color=#f00>锁定技</font> 每当你进入濒死状态时，若你有“废”标记，你弃置一枚“废”标记，然后回复体力至1",
-                    "wwyj_miaoji": "妙计",
-                    "wwyj_miaoji_info": "回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之 <font color=#F0F>可突破</font>",
-                    "wwyj_qisi": "奇思",
-                    "wwyj_qisi_info": "当你需要使用或打出一张基本牌（军争）时，若你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌",
-                    "wwyj_liusha": "流沙",
-                    "wwyj_liusha_info": "回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌",
-                    "wwyj_gonggao": "公告",
-                    "wwyj_gonggao_info": "当你受到伤害后，你可声明一种牌的类型，然后令回合外曾对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张【杀】。若其交给你的牌与你声明的类型相同，其摸一张牌",
-                    "wwyj_jinyan": "禁言",
-                    "wwyj_jinyan_info": "出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态",
-                    "wwyj_qinyan": "勤言",
-                    "wwyj_qinyan_info": "</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值。你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制",
-                    "wwyj_shiyuan": "释援",
-                    "wwyj_shiyuan_info": "出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)",
-                    "wwyj_shaozhu": "少主",
-                    "wwyj_shaozhu_info": "当你成为【杀】的目标时，你可令攻击范围包含该角色的除了你与其的所有其他角色依次对该角色选择使用一张不计入次数限制的【杀】，否则你获得该应使用【杀】的角色一张牌",
-                    "wwyj_xuedao": "血刀",
-                    "wwyj_xuedao_info": "当一名角色使用一张武器牌后，你可弃置其攻击范围内的一名其他角色的一张手牌，若这张手牌的颜色为红色，则使用武器牌的角色视为对被弃置手牌的角色使用一张不计入次数限制的【杀】",
-                    "wwyj_yangshan": "扬善",
-                    "wwyj_yangshan_info": "当你受到伤害后，若你有红色牌，你可摸两张牌，然后将一张红色牌当不以你和伤害来源为目标的【桃园结义】使用",
-                    "wwyj_jieyuan": "结缘",
-                    "wwyj_jieyuan_info": "出牌阶段限一次，你可以将任意张黑色牌交给等量的没有『结缘』状态的角色各一张，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态 <font color=#F0F>可突破</font>",
-                    "wwyj_yongji": "涌技",
-                    "wwyj_yongji_info": "每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力 <font color=#F0F>可突破</font>",
-                    "wwyj_luohua": "落花",
-                    "wwyj_luohua_info": "</font><font color=#f00>锁定技</font> 准备阶段，你随机将场上其他角色的装备区的牌逐一装备到你的装备区（可替换，每个装备栏只触发一次）",
-
-                },
-            };
-
             if (lib.brawl) {
                 lib.brawl.wwyjBrawlMode = (function () {
 
@@ -4253,7 +3716,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《文武英杰》扩展哦！',
-                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -4281,98 +3743,315 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return this;
                                 },
                             };
+
                             var gameWWYJIntro = ui.create.div('#WWYJ_gameWWYJIntro', '文武英杰');
-                            var router = {
-                                wenwuyingjiePage: new Page().set('body', ui.create.div('#WWYJ_router_wenwuyingjiePage').hide()).set('init', function () {
-                                    function intro(name, pack, introClass) {
-                                        var div = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_' + introClass);
-                                        pack = pack || Awenwuyingjies;
-                                        var info = pack.character[name];
-                                        if (!info) return null;
-                                        var dComps = {
-                                            header: (function () {
-                                                var img = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_header');
-                                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/文武英杰/' + name + '.jpg)';
-                                                return img;
-                                            })(),
-                                            infos: (function (name, group, hp, sex) {
-                                                var str = "";
-                                                if (name) {
-                                                    str += pack.translate[name] + '&nbsp;';
-                                                }
-                                                if (sex) {
-                                                    str += get.translation(sex) + '&nbsp;';
-                                                }
-                                                if (group) {
-                                                    str += get.translation(group) + '&nbsp;';
-                                                }
-                                                if (hp) {
-                                                    str += hp + '体力';
-                                                }
-                                                var infos = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_infos', str);
-                                                return infos;
-                                            })(name, info[1], info[2], info[0]),
-                                            skills: (function (list) {
-                                                var str = "";
-                                                if (!Array.isArray(list)) list = [];
-                                                for (var i = 0; i < list.length; i++) {
-                                                    if (i > 0) {
-                                                        str += '<br><br>';
-                                                    }
-                                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
-                                                }
-                                                var skills = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_skills', str);
-                                                lib.setScroll(skills);
-                                                return skills;
-                                            })(info[3]),
-                                        };
-                                        for (var i in dComps) {
-                                            div.appendChild(dComps[i]);
-                                        }
-                                        return div;
-                                    };
-                                    var comps = {
-                                        closeButton: (function () {
-                                            var button = ui.create.div('#WWYJ_router_wenwuyingjiePage_closeButton', '×');
-                                            button.addEventListener('click', function () {
-                                                game.playwwyj('wwyj_close');
-                                                router.wenwuyingjiePage.hide();
-                                            });
-                                            return button;
+
+                            var createBrawlCharacterPage = function () {
+                                var currentPack = '';
+
+                                function createCharacterIntro(charName, introClass) {
+                                    var div = ui.create.div('.wwyj_intro_' + introClass);
+                                    var charData = lib.character[charName];
+                                    if (!charData) return null;
+
+                                    var dComps = {
+                                        header: (function () {
+                                            var img = ui.create.div('.wwyj_intro_header');
+                                            var imgPath = lib.assetURL + 'extension/文武英杰/' + charName + '.jpg';
+                                            img.style['background-image'] = 'url(' + imgPath + ')';
+                                            img.onerror = function () {
+                                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                                            };
+                                            return img;
                                         })(),
-                                        title: ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '至尊荣耀'),
+                                        infos: (function () {
+                                            var str = "";
+                                            if (charName) str += get.translation(charName) + '&nbsp;';
+                                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                                            if (charData[2]) str += charData[2] + '体力';
+                                            return ui.create.div('.wwyj_intro_infos', str);
+                                        })(),
+                                        skills: (function () {
+                                            var str = "";
+                                            if (charData[3] && Array.isArray(charData[3])) {
+                                                for (var j = 0; j < charData[3].length; j++) {
+                                                    if (j > 0) str += '<br><br>';
+                                                    var skillName = charData[3][j];
+                                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                                }
+                                            }
+                                            var skills = ui.create.div('.wwyj_intro_skills', str);
+                                            lib.setScroll(skills);
+                                            return skills;
+                                        })(),
                                     };
-                                    var classState = 'left';
-                                    for (var i in Awenwuyingjies.character) {
-                                        comps[i] = intro(i, Awenwuyingjies, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+
+                                    for (var i in dComps) {
+                                        div.appendChild(dComps[i]);
                                     }
-                                    comps.title2 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '扩展作者');
-                                    var classState = 'left';
-                                    for (var i in Bwenwuyingjies.character) {
-                                        comps[i] = intro(i, Bwenwuyingjies, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+                                    return div;
+                                }
+
+                                function createCharacterPacks() {
+                                    var packs = [];
+                                    var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
+
+                                    if (!characterSort) {
+                                        return [
+                                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
+                                        ];
                                     }
-                                    comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
-                                    var classState = 'left';
-                                    for (var i in Cwenwuyingjies.character) {
-                                        comps[i] = intro(i, Cwenwuyingjies, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+
+                                    for (var categoryId in characterSort) {
+                                        if (characterSort.hasOwnProperty(categoryId)) {
+                                            var categoryName = get.translation(categoryId) || categoryId;
+                                            packs.push({
+                                                id: categoryId,
+                                                name: categoryName,
+                                                packKey: 'wenwuyingjie',
+                                                charList: characterSort[categoryId]
+                                            });
+                                        }
                                     }
-                                    for (var i in comps) {
-                                        this.body.appendChild(comps[i]);
+
+                                    return packs;
+                                }
+
+                                var characterPacks = createCharacterPacks();
+                                if (characterPacks.length > 0) {
+                                    currentPack = characterPacks[0].id;
+                                }
+
+                                var page = new Page();
+                                page.body = ui.create.div('#wwyj_brawl_page');
+
+                                page.body.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.7);
+                        z-index: 2024;
+                        display: block;
+                    `;
+
+                                var mainContainer = ui.create.div('#wwyj_brawl_mainContainer');
+                                mainContainer.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: calc(8% + 150px);
+                        transform: translateY(-50%);
+                        width: calc(84% - 150px);
+                        height: 88%;
+                        background-color: #1a1a1a;
+                        border: 2px solid #444;
+                        border-radius: 0 8px 8px 0;
+                        box-shadow: 0 0 30px rgba(0,0,0,0.9);
+                        z-index: 2025;
+                        overflow: hidden;
+                    `;
+
+                                var leftButtonPanel = ui.create.div('#wwyj_brawl_leftButtonPanel');
+                                leftButtonPanel.style.cssText = `
+                        position: fixed;
+                        left: 8%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 150px;
+                        height: 88%;
+                        background-color: rgba(30, 30, 30, 0.95);
+                        border: 2px solid #555;
+                        border-radius: 8px 0 0 8px;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.8);
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        padding: 18px 12px;
+                        box-sizing: border-box;
+                        z-index: 2025;
+                    `;
+
+                                var rightPanel = ui.create.div('#wwyj_brawl_rightPanel');
+                                rightPanel.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        padding: 0;
+                        box-sizing: border-box;
+                    `;
+
+                                var closeButton = ui.create.div('#wwyj_brawl_closeButton', '×');
+                                closeButton.addEventListener('click', function () {
+                                    page.hide();
+                                });
+                                rightPanel.appendChild(closeButton);
+
+                                var title = ui.create.div('#wwyj_brawl_title');
+                                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '文武英杰武将';
+                                rightPanel.appendChild(title);
+
+                                var contentContainer = ui.create.div('#wwyj_brawl_contentContainer');
+                                contentContainer.style.cssText = `
+                        position: absolute;
+                        top: 60px;
+                        left: 0;
+                        width: 100%;
+                        height: calc(100% - 60px);
+                        overflow: auto;
+                        padding: 15px;
+                        box-sizing: border-box;
+                    `;
+                                rightPanel.appendChild(contentContainer);
+
+                                var buttonContainer = ui.create.div('#wwyj_brawl_buttonContainer');
+                                buttonContainer.style.cssText = `
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    `;
+
+                                for (var i = 0; i < characterPacks.length; i++) {
+                                    var pack = characterPacks[i];
+
+                                    var buttonWrapper = ui.create.div('.wwyj_brawl_buttonWrapper');
+                                    buttonWrapper.style.cssText = `
+                            width: 100%;
+                            height: 50px;
+                            display: block;
+                            position: relative;
+                        `;
+
+                                    var button = ui.create.div('.wwyj_brawl_packButton');
+                                    button.innerHTML = pack.name;
+                                    button.style.cssText = `
+                            width: 100%;
+                            height: 100%;
+                            padding: 0;
+                            text-align: center;
+                            cursor: pointer;
+                            border-radius: 6px;
+                            border: 2px solid #666;
+                            background-color: rgba(50, 50, 50, 0.9);
+                            color: #ddd;
+                            font-family: lishu;
+                            font-size: 16px;
+                            font-weight: bold;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+                            user-select: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            line-height: 1.2;
+                            letter-spacing: 1px;
+                            transition: all 0.3s ease;
+                        `;
+
+                                    if (pack.id === currentPack) {
+                                        button.classList.add('active');
                                     }
-                                    this.comps = comps;
-                                    try {
-                                        this.paBody.appendChild(this.body);
-                                    } catch (e) { };
-                                    lib.setScroll(this.body);
-                                    return this;
-                                }).init(),
+
+                                    button.setAttribute('data-pack', pack.id);
+                                    button.addEventListener('click', (function (packId, packName, packData) {
+                                        return function () {
+                                            if (currentPack === packId) return;
+
+                                            var buttons = leftButtonPanel.querySelectorAll('.wwyj_brawl_packButton');
+                                            for (var j = 0; j < buttons.length; j++) {
+                                                buttons[j].classList.remove('active');
+                                            }
+
+                                            this.classList.add('active');
+
+                                            currentPack = packId;
+                                            title.innerHTML = packName;
+                                            updateCharacterList(packData);
+                                        };
+                                    })(pack.id, pack.name, pack));
+
+                                    button.addEventListener('mouseover', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
+                                            this.style.color = '#fff';
+                                            this.style.borderColor = '#888';
+                                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
+                                        }
+                                    });
+
+                                    button.addEventListener('mouseout', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
+                                            this.style.color = '#ddd';
+                                            this.style.borderColor = '#666';
+                                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
+                                        }
+                                    });
+
+                                    buttonWrapper.appendChild(button);
+                                    buttonContainer.appendChild(buttonWrapper);
+                                }
+
+                                leftButtonPanel.appendChild(buttonContainer);
+
+                                function updateCharacterList(packInfo) {
+                                    contentContainer.innerHTML = '';
+
+                                    if (!packInfo) return;
+
+                                    var charList = packInfo.charList || [];
+
+                                    if (charList.length === 0) {
+                                        var characterPack = lib.characterPack['wenwuyingjie'];
+                                        if (characterPack) {
+                                            for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    charList.push(charName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    for (var i = 0; i < charList.length; i++) {
+                                        var charName = charList[i];
+                                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                        var charIntro = createCharacterIntro(charName, introClass);
+
+                                        if (charIntro) {
+                                            contentContainer.appendChild(charIntro);
+                                        }
+                                    }
+
+                                    var clearDiv = ui.create.div();
+                                    clearDiv.style.clear = 'both';
+                                    clearDiv.style.height = '0';
+                                    clearDiv.style.overflow = 'hidden';
+                                    contentContainer.appendChild(clearDiv);
+
+                                    lib.setScroll(contentContainer);
+                                }
+
+                                if (characterPacks.length > 0) {
+                                    updateCharacterList(characterPacks[0]);
+                                }
+
+                                page.body.appendChild(mainContainer);
+                                mainContainer.appendChild(rightPanel);
+                                page.body.appendChild(leftButtonPanel);
+
+                                return page;
                             };
+
+                            var router = {
+                                wenwuyingjiePage: createBrawlCharacterPage()
+                            };
+
                             gameWWYJIntro.addEventListener('click', function () {
-                                game.playwwyj('wwyj_dansha');
-                                router.wenwuyingjiePage.show();
+                                setTimeout(function () {
+                                    router.wenwuyingjiePage.show();
+                                }, 100);
                             });
                             this.appendChild(gameWWYJIntro);
                         },
@@ -4380,25 +4059,21 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-            // 创建页面类
+            // 菜单页面类浏览武将：
             game.wwyjCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
+                var currentPack = '';
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
-                    try {
-                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
-                        if (!this.paBody) {
-                            this.paBody = document.body;
-                        }
-                        this.paBody.appendChild(this.body);
-                    } catch (e) {
-                        this.paBody = document.body;
-                        this.paBody.appendChild(this.body);
-                    }
+                    this.paBody = document.body;
+                    this.paBody.appendChild(this.body);
                 }
+
                 Page.prototype = {
                     show: function () {
                         if (!this.body.parentNode && this.paBody) {
@@ -4406,21 +4081,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                         this.body.show();
                         this.body.style.display = 'block';
-                        this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
-                        this.body.style.top = '47.3%';
-                        this.body.style.left = '50%';
-                        this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a';
-                        //this.body.style.backgroundColor = 'rgba(20,20,20,0.95)';
-                        this.body.style.padding = '20px';
-                        this.body.style.border = '2px solid black';
-                        this.body.style.borderRadius = '8px';
-                        this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-                        this.body.style.width = '75%'; //fixed
-                        this.body.style.height = '72%'; //fixed
-                        this.body.style.overflow = 'auto';
-                        this.body.style.textAlign = 'left';
+                        this.body.style.top = '0';
+                        this.body.style.left = '0';
+                        this.body.style.width = '100%';
+                        this.body.style.height = '100%';
+                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        this.body.style.zIndex = '2024';
+
                         return this;
                     },
 
@@ -4429,92 +4097,266 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return this;
                     }
                 };
-                function createCharacterIntro(name, pack) {
-                    var introClass = 'left';
-                    function intro(name, pack) {
-                        var div = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_' + introClass);
-                        introClass = introClass == 'left' ? 'right' : 'left';
-                        pack = pack || Awenwuyingjies;
-                        var info = pack.character[name];
-                        if (!info) return null;
-                        var dComps = {
-                            header: (function () {
-                                var img = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_header');
-                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/文武英杰/' + name + '.jpg)';
-                                return img;
-                            })(),
-                            infos: (function (name, group, hp, sex) {
-                                var str = "";
-                                if (name) str += pack.translate[name] + '&nbsp;';
-                                if (sex) str += get.translation(sex) + '&nbsp;';
-                                if (group) str += get.translation(group) + '&nbsp;';
-                                if (hp) str += hp + '体力';
-                                return ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_infos', str);
-                            })(name, info[1], info[2], info[0]),
-                            skills: (function (list) {
-                                var str = "";
-                                if (!Array.isArray(list)) list = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    if (i > 0) str += '<br><br>';
-                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
+
+                function createCharacterIntro(charName, introClass) {
+                    var div = ui.create.div('.wwyj_intro_' + introClass);
+                    var charData = lib.character[charName];
+                    if (!charData) return null;
+
+                    var dComps = {
+                        header: (function () {
+                            var img = ui.create.div('.wwyj_intro_header');
+                       
+                            var imgPath = lib.assetURL + 'extension/文武英杰/' + charName + '.jpg';
+                            img.style['background-image'] = 'url(' + imgPath + ')';
+                            img.onerror = function () {
+                               
+                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                            };
+                            return img;
+                        })(),
+                        infos: (function () {
+                            var str = "";
+                            if (charName) str += get.translation(charName) + '&nbsp;';
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
+                            return ui.create.div('.wwyj_intro_infos', str);
+                        })(),
+                        skills: (function () {
+                            var str = "";
+                            if (charData[3] && Array.isArray(charData[3])) {
+                                for (var j = 0; j < charData[3].length; j++) {
+                                    if (j > 0) str += '<br><br>';
+                                    var skillName = charData[3][j];
+                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
                                 }
-                                var skills = ui.create.div('.WWYJ_router_wenwuyingjiePage_intro_skills', str);
-                                lib.setScroll(skills);
-                                return skills;
-                            })(info[3]),
-                        };
-                        for (var i in dComps) {
-                            div.appendChild(dComps[i]);
+                            }
+                            var skills = ui.create.div('.wwyj_intro_skills', str);
+                            lib.setScroll(skills);
+                            return skills;
+                        })(),
+                    };
+
+                    for (var i in dComps) {
+                        div.appendChild(dComps[i]);
+                    }
+                    return div;
+                }
+
+                function createCharacterPacks() {
+                    var packs = [];
+                    var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
+
+                    if (!characterSort) {
+                       
+                        return [
+                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
+                        ];
+                    }
+
+                   
+                    for (var categoryId in characterSort) {
+                        if (characterSort.hasOwnProperty(categoryId)) {
+                            var categoryName = get.translation(categoryId) || categoryId;
+                            packs.push({
+                                id: categoryId,
+                                name: categoryName,
+                                packKey: 'wenwuyingjie',
+                                charList: characterSort[categoryId] 
+                            });
                         }
-                        return div;
                     }
-                    return intro(name, pack);
+
+                    return packs;
                 }
+
+                var characterPacks = createCharacterPacks();
+
+                if (characterPacks.length > 0) {
+                    currentPack = characterPacks[0].id;
+                }
+
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#WWYJ_router_wenwuyingjiePage').hide();
-                var comps = {
-                    closeButton: (function () {
-                        var button = ui.create.div('#WWYJ_router_wenwuyingjiePage_closeButton', '×');
-                        button.addEventListener('click', function () {
-                            game.playwwyj('wwyj_close');
-                            ui.system.style.display = '';
-                            setTimeout(function () {
-                                ui.click.configMenu();
-                                ui.menuContainer.style.display = '';
-                            }, 500);
-                            characterPage.hide();
-                        });
-                        return button;
-                    })(),
-                    title: ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '至尊荣耀'),
-                };
-                for (var i in Awenwuyingjies.character) {
-                    comps[i] = createCharacterIntro(i, Awenwuyingjies);
-                }
-                comps.title2 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '扩展作者');
-                for (var i in Bwenwuyingjies.character) {
-                    comps[i] = createCharacterIntro(i, Bwenwuyingjies);
-                }
-                comps.title3 = ui.create.div('#WWYJ_router_wenwuyingjiePage_title', '粉丝玩家');
-                for (var i in Cwenwuyingjies.character) {
-                    comps[i] = createCharacterIntro(i, Cwenwuyingjies);
-                }
-                for (var i in comps) {
-                    if (comps[i]) {
-                        characterPage.body.appendChild(comps[i]);
+                characterPage.body = ui.create.div('#wwyj_page');
+
+                var mainContainer = ui.create.div('#wwyj_mainContainer');
+                mainContainer.style.position = 'fixed';
+                mainContainer.style.top = '50%';
+                mainContainer.style.left = 'calc(8% + 150px)';
+                mainContainer.style.transform = 'translateY(-50%)';
+                mainContainer.style.width = 'calc(84% - 150px)';
+                mainContainer.style.height = '88%';
+                mainContainer.style.backgroundColor = '#1a1a1a';
+                mainContainer.style.border = '2px solid #444';
+                mainContainer.style.borderRadius = '0 8px 8px 0';
+                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
+                mainContainer.style.zIndex = '2025';
+                mainContainer.style.overflow = 'hidden';
+
+                var leftButtonPanel = ui.create.div('#wwyj_leftButtonPanel');
+                leftButtonPanel.style.position = 'fixed';
+                leftButtonPanel.style.left = '8%';
+                leftButtonPanel.style.top = '50%';
+                leftButtonPanel.style.transform = 'translateY(-50%)';
+                leftButtonPanel.style.width = '150px';
+                leftButtonPanel.style.height = '88%';
+                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+                leftButtonPanel.style.border = '2px solid #555';
+                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
+                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
+                leftButtonPanel.style.overflowY = 'auto';
+                leftButtonPanel.style.overflowX = 'hidden';
+                leftButtonPanel.style.padding = '18px 12px';
+                leftButtonPanel.style.boxSizing = 'border-box';
+                leftButtonPanel.style.zIndex = '2025';
+
+                var rightPanel = ui.create.div('#wwyj_rightPanel');
+                rightPanel.style.width = '100%';
+                rightPanel.style.height = '100%';
+                rightPanel.style.position = 'relative';
+                rightPanel.style.overflow = 'hidden';
+                rightPanel.style.padding = '0';
+                rightPanel.style.boxSizing = 'border-box';
+
+                var closeButton = ui.create.div('#wwyj_closeButton', '×');
+                closeButton.addEventListener('click', function () {
+                    characterPage.hide();
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                rightPanel.appendChild(closeButton);
+
+                var title = ui.create.div('#wwyj_title');
+                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '文武英杰武将';
+                rightPanel.appendChild(title);
+
+                var contentContainer = ui.create.div('#wwyj_contentContainer');
+                contentContainer.style.position = 'absolute';
+                contentContainer.style.top = '60px';
+                contentContainer.style.left = '0';
+                contentContainer.style.width = '100%';
+                contentContainer.style.height = 'calc(100% - 60px)';
+                contentContainer.style.overflow = 'auto';
+                contentContainer.style.padding = '15px';
+                contentContainer.style.boxSizing = 'border-box';
+                rightPanel.appendChild(contentContainer);
+
+                var buttonContainer = ui.create.div('#wwyj_buttonContainer');
+                buttonContainer.style.width = '100%';
+                buttonContainer.style.height = 'auto';
+                buttonContainer.style.display = 'flex';
+                buttonContainer.style.flexDirection = 'column';
+                buttonContainer.style.gap = '10px';
+
+                for (var i = 0; i < characterPacks.length; i++) {
+                    var pack = characterPacks[i];
+
+                    var buttonWrapper = ui.create.div('.wwyj_buttonWrapper');
+                    buttonWrapper.style.width = '100%';
+                    buttonWrapper.style.height = '50px';
+                    buttonWrapper.style.display = 'block';
+                    buttonWrapper.style.position = 'relative';
+
+                    var button = ui.create.div('.wwyj_packButton');
+                    button.innerHTML = pack.name;
+                    button.style.width = '100%';
+                    button.style.height = '100%';
+                    button.style.display = 'flex';
+                    button.style.alignItems = 'center';
+                    button.style.justifyContent = 'center';
+
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
                     }
+
+                    button.setAttribute('data-pack', pack.id);
+                    button.addEventListener('click', (function (packId, packName, packData) {
+                        return function () {
+                            if (currentPack === packId) return;
+
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
+                            }
+
+                            currentPack = packId;
+                            title.innerHTML = packName;
+                            updateCharacterList(packData);
+                        };
+                    })(pack.id, pack.name, pack));
+
+                    buttonWrapper.appendChild(button);
+                    buttonContainer.appendChild(buttonWrapper);
                 }
-                characterPage.comps = comps;
-                lib.setScroll(characterPage.body);
+
+                leftButtonPanel.appendChild(buttonContainer);
+
+                function updateCharacterList(packInfo) {
+                    contentContainer.innerHTML = '';
+
+                    if (!packInfo) return;
+
+                    var charList = packInfo.charList || [];
+
+                    if (charList.length === 0) {
+                        
+                        var characterPack = lib.characterPack['wenwuyingjie'];
+                        if (characterPack) {
+                            for (var charName in characterPack) {
+                                if (charName && lib.character[charName]) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < charList.length; i++) {
+                        var charName = charList[i];
+                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                        var charIntro = createCharacterIntro(charName, introClass);
+
+                        if (charIntro) {
+                            contentContainer.appendChild(charIntro);
+                        }
+                    }
+
+                    var clearDiv = ui.create.div();
+                    clearDiv.style.clear = 'both';
+                    clearDiv.style.height = '0';
+                    clearDiv.style.overflow = 'hidden';
+                    contentContainer.appendChild(clearDiv);
+
+                    lib.setScroll(contentContainer);
+                }
+
+                if (characterPacks.length > 0) {
+                    updateCharacterList(characterPacks[0]);
+                }
+
+                characterPage.body.appendChild(mainContainer);
+                mainContainer.appendChild(rightPanel);
+                characterPage.body.appendChild(leftButtonPanel);
+
                 characterPage.show();
                 return characterPage;
             };
 
 
+            //横滑：
             game.showWWYJCharacterGallery = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -4529,26 +4371,27 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.paBody.appendChild(this.body);
                     }
                 }
+
                 Page.prototype = {
                     show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-                        // 设置样式 - 调整为图鉴样式
+
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
                         this.body.style.top = '50%';
                         this.body.style.left = '50%';
                         this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a'; // 接近黑色的背景
+                        this.body.style.backgroundColor = '#1a1a1a'; 
                         this.body.style.padding = '0';
                         this.body.style.border = '2px solid #ffd700';
                         this.body.style.borderRadius = '10px';
                         this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%'; // 宽度设为100%
-                        this.body.style.height = '75%'; // 高度设为75%
+                        this.body.style.width = '100%'; 
+                        this.body.style.height = '75%'; 
                         this.body.style.overflow = 'hidden';
                         this.body.style.textAlign = 'center';
                         return this;
@@ -4558,103 +4401,116 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return this;
                     }
                 };
-                // 收集所有文武英杰角色
+
                 var characters = [];
-                /*
-                for (var i in lib.characterPack['wenwuyingjie']) {
-                    characters.push(i);
+                var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
+
+                if (characterSort) {
+                    for (var categoryId in characterSort) {
+                        if (characterSort.hasOwnProperty(categoryId)) {
+                            var categoryChars = characterSort[categoryId];
+                            if (Array.isArray(categoryChars)) {
+                                for (var i = 0; i < categoryChars.length; i++) {
+                                    var charId = categoryChars[i];
+                                    if (lib.character[charId]) {
+                                        characters.push(charId);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                */
-                // 从各个势力包中收集角色
-                var packs = [Awenwuyingjies, Bwenwuyingjies, Cwenwuyingjies];
-                for (var p = 0; p < packs.length; p++) {
-                    var pack = packs[p];
-                    if (pack && pack.character) {
-                        for (var charId in pack.character) {
-                            if (pack.character.hasOwnProperty(charId)) {
+
+                if (characters.length === 0) {
+                    var characterPack = lib.characterPack['wenwuyingjie'];
+                    if (characterPack) {
+                        for (var charId in characterPack) {
+                            if (characterPack.hasOwnProperty(charId) && lib.character[charId]) {
                                 characters.push(charId);
                             }
                         }
                     }
                 }
+
                 if (characters.length == 0) {
                     alert('未找到角色数据');
                     return;
                 }
-                // 创建图鉴页面
+
                 var galleryPage = new Page();
                 galleryPage.body = ui.create.div('.wwyj-gallery-content');
-                // 创建标题
+
                 var title = ui.create.div('.wwyj-gallery-title', '文武英杰');
-                // 创建关闭按钮
+
                 var closeButton = ui.create.div('.wwyj-gallery-close-btn', '×');
-                // 创建关闭函数
+
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
                     setTimeout(function () {
-                        game.playwwyj('wwyj_close');
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
                 }
+
                 closeButton.addEventListener('click', closeGallery);
-                // 创建画廊容器 - 优化间距，使图片更大
+
                 var galleryContainer = ui.create.div('');
                 galleryContainer.style.cssText = `
-                    display: flex;
-                    align-items: center;
-                    height: calc(100% - 40px); /* 减少标题区域的高度 */
-                    position: relative;
-                    overflow: hidden;
-                    padding: 10px 30px; /* 上下边距相等，使图片上下对称 */
-                    box-sizing: border-box;
-                    margin-top: 10px; /* 减少上边距，使图片更大 */
-                `;
-                // 创建滑动容器
+        display: flex;
+        align-items: center;
+        height: calc(100% - 40px);
+        position: relative;
+        overflow: hidden;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    `;
+
                 var slider = ui.create.div('');
                 slider.style.cssText = `
-                    display: flex;
-                    transition: transform 0.15s ease;
-                    height: 100%;
-                    align-items: center;
-                    gap: 50px;
-                    cursor: grab;
-                `;
-                // 计算卡片尺寸 - 优化尺寸计算，使图片更大
-                var containerWidth = window.innerWidth - 50; // 减去左右各50px间距
-                var containerHeight = window.innerHeight * 0.75 - 40; // 减去上下各30px间距和标题区域
-                var cardHeight = containerHeight * 1.5; // 直接使用容器高度的1.5倍，使图片最大化
-                var cardWidth = cardHeight * (3 / 4); // 3:4比例，宽度是高度的3/4
-                // 计算最大可滑动距离 - 确保最后一张图片右端离背景右边缘5px
-                var totalWidth = (cardWidth + 50) * characters.length - 50; // 所有卡片和间隙的总宽度
-                var containerVisibleWidth = containerWidth - 100; // 容器可见宽度（减去左右各50px）
-                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5); // 确保最后一张图片右端离背景右边缘5px
-                // 创建角色卡片
+        display: flex;
+        transition: transform 0.15s ease;
+        height: 100%;
+        align-items: center;
+        gap: 50px;
+        cursor: grab;
+    `;
+
+                var containerWidth = window.innerWidth - 50;
+                var containerHeight = window.innerHeight * 0.75 - 40;
+                var cardHeight = containerHeight * 1.5;
+                var cardWidth = cardHeight * (3 / 4);
+
+                var totalWidth = (cardWidth + 50) * characters.length - 50;
+                var containerVisibleWidth = containerWidth - 100;
+                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5);
+
                 for (var i = 0; i < characters.length; i++) {
                     var charId = characters[i];
                     var charCard = ui.create.div('');
+
                     charCard.style.cssText = `
-                        flex-shrink: 0;
-                        width: ${cardWidth}px;
-                        height: ${cardHeight}px;
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 2px solid rgba(255, 215, 0, 0.5);//描边
-                        border-radius: 8px;
-                        overflow: hidden;
-                        position: relative;
-                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-                        margin: 0 auto; /* 居中 */
-                    `;
-                    // 创建角色图片
+            flex-shrink: 0;
+            width: ${cardWidth}px;
+            height: ${cardHeight}px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        `;
+
                     var charImg = document.createElement('img');
                     charImg.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                    `;
-                    // 设置图片源
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        `;
+
                     var imgSrc = lib.assetURL + 'extension/文武英杰/' + charId + '.jpg';
                     charImg.src = imgSrc;
                     charImg.onerror = function () {
@@ -4668,83 +4524,91 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.style.textAlign = 'center';
                         this.innerHTML = '<div>暂无图片</div>';
                     };
-                    // 创建角色名称 - 放在图片上偏下方，距离底部10px        
+
                     var charName = ui.create.div('.wwyj-character-name', get.translation(charId) || charId);
                     charCard.appendChild(charImg);
                     charCard.appendChild(charName);
                     slider.appendChild(charCard);
                 }
-                // 当前滑动距离
+
                 var currentSlideDistance = 0;
-                // 更新显示
+
                 function updateDisplay() {
                     slider.style.transform = 'translateX(-' + currentSlideDistance + 'px)';
                 }
-                // 触摸滑动支持
+
                 var startX = 0;
                 var currentX = 0;
                 var isDragging = false;
+
                 slider.addEventListener('touchstart', function (e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                 });
+
                 slider.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 slider.addEventListener('touchend', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 鼠标拖动支持
+
                 slider.addEventListener('mousedown', function (e) {
                     startX = e.clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                     e.preventDefault();
                 });
+
                 document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     currentX = e.clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 document.addEventListener('mouseup', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 组装组件
+
                 galleryContainer.appendChild(slider);
-                // 将标题添加到galleryPage.body，使其在图鉴背景内
+
                 galleryPage.body.appendChild(title);
                 galleryPage.body.appendChild(closeButton);
                 galleryPage.body.appendChild(galleryContainer);
-                // 显示页面
+
                 lib.setScroll(galleryPage.body);
                 galleryPage.show();
-                // 初始更新
+
                 setTimeout(function () {
                     updateDisplay();
                 }, 100);
+
                 return galleryPage;
             };
 
@@ -5442,7 +5306,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             //if(config.wwyj_wujiangpingji) {	
             //game.saveConfig('show_rarity');
             //普通
-            lib.rank.rarity.junk.addArray(['wwyj_fenghuitaichu', 'wwyj_wangshiruyan', 'wwyj_dasima', 'wwyj_Show-K', 'wwyj_ciyage', 'wwyj_kanpoyiqie', 'wwyj_danwuyunxi', 'wwyj_xingyunnvshen', 'wwyj_feicheng', 'wwyj_xuebi', 'wwyj_lengyus', 'wwyj_liushas', 'wwyj_wzszhaoyun', 'wwyj_anshas', 'wwyj_ranqis']);
+            lib.rank.rarity.junk.addArray(['wwyj_xkuangshen', 'wwyj_fenghuitaichu', 'wwyj_wangshiruyan', 'wwyj_dasima', 'wwyj_Show-K', 'wwyj_ciyage', 'wwyj_kanpoyiqie', 'wwyj_danwuyunxi', 'wwyj_xingyunnvshen', 'wwyj_feicheng', 'wwyj_xuebi', 'wwyj_lengyus', 'wwyj_liushas', 'wwyj_wzszhaoyun', 'wwyj_anshas', 'wwyj_ranqis']);
             //史诗
             lib.rank.rarity.rare.addArray(['wwyj_rweimu', 'wwyj_yijilianggetao', 'wwyj_huihui', 'wwyj_rshengma', 'wwyj_jishouniancuihui', 'wwyj_rshun', 'wwyj_rcanghai', 'wwyj_hualuo', 'wwyj_lunhuizhong', 'wwyj_lei', 'wwyj_daxiongxiaimao', 'wwyj_huijin', 'wwyj_taishangdaniu', 'wwyj_wali', 'wwyj_yanyumoran', 'wwyj_shijian', 'wwyj_shenzuo', 'wwyj_zhaonies', 'wwyj_qianshangs', 'wwyj_limuzi', 'wwyj_fux2', 'wwyj_shenwangquanjian', 'wwyj_wuqinggezi', 'wwyj_qingzhongs', 'wwyj_zhulinqixian', 'wwyj_jianyaleishao', 'wwyj_zhongchengpantu', 'wwyj_zhuxiaoer', 'wwyj_rongyaotaoge']);
             //传说
@@ -5708,7 +5572,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "wwyj_fanxings", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei",
                                     "wwyj_mengxinzhuanxing", "wwyj_dasima", "wwyj_rcanghai", "wwyj_qingyao", "wwyj_wangshiruyan",
                                     "wwyj_jishouniancuihui", "wwyj_rlvbao", "wwyj_rshengma", "wwyj_huihui", "wwyj_guishenyi", "wwyj_rshun",
-                                    "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_yijilianggetao"
+                                    "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_yijilianggetao", "wwyj_xkuangshen"
 
 
 
@@ -5801,7 +5665,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_youzi": ["male", "wwyjsha", 3, ["wwyj_yunjiang", "wwyj_shiqie"], []],
                             "wwyj_relvbao": ["female", "wwyjsha", 4, ["wwyj_minghui", "wwyj_liangyan"], []],
                             "wwyj_rweimu": ["male", "wwyjsha", 4, ["wwyj_shikong", "wwyj_weimu"], []],
-
+                            "wwyj_xkuangshen": ["male", "wwyjsha", 4, ["wwyj_kuangshen", "wwyj_yyy"], []],
 
                             "wwyj_yuhudie": ["female", "wwyjsha", 3, ["wwyj_recaizhi", "wwyj_redaixue"], ["unseen"]],
                         },
@@ -5936,6 +5800,43 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                         skill: {
 
+                            "wwyj_kuangshen2": {
+                                audio: "ext:文武英杰:1",
+                                trigger: {
+                                    global: "recoverEnd",
+                                },
+                                forced: true,
+                                priority: 2025,
+                                filter: function (event, player) {
+                                    return player != event.player;
+                                },
+                                content: function () {
+                                    if (player.isDamaged()) {
+                                        trigger.player.line(player, 'green');
+                                        player.recover();
+                                    } else {
+                                        trigger.player.line(player, 'green');
+                                        player.draw();
+                                    }
+                                },
+                            },
+                            "wwyj_kuangshen": {
+                                audio: "ext:文武英杰:1",
+                                trigger: {
+                                    player: "damage",
+                                },
+                                group: "wwyj_kuangshen2",
+                                forced: true,
+                                priority: 2025,
+                                content: function () {
+                                    var targets = game.filterPlayer(function (current) {
+                                        return current != player;
+                                    });
+                                    targets.sort(lib.sort.seat);
+                                    event.target = targets.randomGet();
+                                    event.target.damage(1, "nosource");
+                                },
+                            },
                             "wwyj_weimu": {
                                 trigger: { global: 'useCard1' },
                                 audio: ["weimu", 2],
@@ -16994,6 +16895,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_Show-K": "小溪",
                             "wwyj_lei": "雷",
                             "wwyj_mengxinzhuanxing": "萌新转型",
+                            "wwyj_xkuangshen": "狂神",
                             "wwyj_dasima": "大司马",
                             "wwyj_rcanghai": "藏海",
                             "wwyj_remaliao": "苏婆玛丽奥",
@@ -17027,6 +16929,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             //"wwyj_moban":"模板",
                             //  "wwyj_moban_info":"模板",
 
+                            "wwyj_kuangshen": "狂神",
+                            "wwyj_kuangshen_info": "</font><font color=#f00>锁定技</font> 当你受到伤害时，随机一名其他角色受到一点无来源伤害；当一名其他角色回复体力后，若你已受伤，你回复一点体力，否则摸一张牌",
                             "wwyj_weimu": "唯幕",
                             "wwyj_weimu_info": "</font><font color=#f00>锁定技</font> 若你的防具栏没有牌，黑色锦囊牌对你无效，否则红色锦囊牌对你无效",
                             "wwyj_shikong": "时空",
@@ -18213,7 +18117,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "clear": true,
                 "onclick": function () {
                     game.playwwyj('wwyj_dansha');
-                    game.wwyjCharacter();
+                    setTimeout(function () {
+                        game.wwyjCharacter();
+                    }, 100);
                 },
             },
             "wwyj_character_gallery": {
@@ -18291,7 +18197,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "6.4",
+            version: "6.5",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

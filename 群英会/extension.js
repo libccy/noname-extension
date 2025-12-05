@@ -2,319 +2,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
         name: "群英会", editable: false, content: function (config, pack) {
 
-            var Aqunyin = {
-                character: {
-                    "qunying_baiqi": ["male", "xqin", 4, ["qunying_shashen"], []],
-                    "qunying_qinshiwang": ["male", "xqin", 3, ["qunying_shaohe", "qunying_tongji", "qunying_wangxiao"], []],
-                    "qunying_frieza": ["male", "shen", 2, ["qunying_weishe", "qunying_diwang"], []],
-                    "qunying_frieza1": ["male", "shen", "2/3", ["qunying_beihua", "qunying_guanjue"], ["unseen"]],
-                    "qunying_frieza2": ["male", "shen", "3/4", ["qunying_xiaohan", "qunying_yiqu"], ["unseen"]],
-                    "qunying_frieza3": ["male", "shen", "4/5", ["qunying_kunxi", "qunying_wanti"], ["unseen"]],
-                    "qunying_jilian": ["male", "shen", 3, ["qunying_mingxiang", "qunying_zhengyi"], []],
-                    "qunying_weixiaobao": ["male", "qun", 3, ["qunying_haodu", "qunying_fengyuan"], []],
-
-                    "qinshi_genie": ["male", "qun", 3, ["qinshi_zongjian", "qinshi_jiansheng"], []],
-                    "qinshi_weizhuang": ["male", "qun", 4, ["qinshi_hengjian", "qinshi_jusha"], []],
-                    "qinshi_xiaoyaozi": ["male", "qun", 4, ["qinshi_renzhong", "qinshi_diedun"], []],
-                    "qinshi_mozi": ["male", "wu", 3, ["qinshi_jingxie", "qinshi_feigong", "qinshi_jianai"], []],
-
-                    "sanguo_zhihuaxiong": ["male", "qun", 4, ["sanguo_wenjiu", "sanguo_badao"], []],
-                    "sanguo_zhangfei": ["male", "shu", 4, ["paoxiao", "sanguo_tishen", "sanguo_tannan"], []],
-                    "sanguo_jiangwei": ["male", "shu", 4, ["sanguo_tiaoxin", "sanguo_guanxing"], []],
-                    "sanguo_menghuo": ["male", "qun", 1, ["sanguo_xiongqi", "sanguo_xiangfu", "sanguo_manwang"], []],
-                    "sanguo_nanhua": ["male", "qun", 3, ["sanguo_xiandao", "sanguo_xiuzheng", "sanguo_chuanshu"], []],
-                    "sanguo_simahui": ["male", "qun", 4, ["sanguo_shouye", "sanguo_jiehuo"], []],
-                    "sanguo_caomao": ["male", "wei", 3, ["sanguo_qianzhi", "sanguo_yanghui", "sanguo_juli"], []],
-                    "sanguo_miheng": ["male", "qun", 3, ["sanguo_kuangcai", "shejian"], []],
-                    "sanguo_qiaoguolao": ["male", "wu", 3, ["sanguo_naxian", "sanguo_zexu"], []],
-
-                    "xu_xiaosu": ["male", "shen", 3, ["xu_qingshang", "xu_xibie"], []],
-                    "xu_xiaoxu": ["male", "shen", 3, ["xu_yunchou", "xu_dingju", "xu_tuiyin"], []],
-                    "xu_cheng": ["male", "shen", 3, ["xu_tiandun"], []],
-                    "xu_SPxiaosu": ["male", "shen", 3, ["xu_huhua", "xu_shuangsu"], []],
-                    "xu_xiaohuan": ["female", "shen", 3, ["xu_lixing", "xu_choumou"], ["unseen"]],
-
-                },
-                skill: {},
-                translate: {
-                    "xu_SPxiaosu": "小苏",
-                    "xu_huhua": "护花",
-                    "xu_huhua_info": "<li>当一名女性角色受到来源不为你的伤害后，你可与其组成双将。然后其与伤害来源的原武牌先后随机替换为一张女性角色的武将牌<li>当你受到伤害后，你可令伤害来源的武将牌随机替换为一张女性角色的武将牌",
-                    "xu_shuangsu": "双宿",
-                    "xu_shuangsu_info": "<span class=greentext>觉醒技</span> 当你进入濒死状态时，你须失去技能【护花】，获得技能【栋梁】，与【小焕】组成双将，然后回复体力至3",
-                    "xu_dongliang": "栋梁",
-                    "xu_dongliang_info": "当你受到伤害时，你可以摸X张牌（X为场上女性角色数）",
-                    "xu_xiaohuan": "小焕",
-                    "xu_lixing": "厉行",
-                    "xu_lixing_info": "当你使用【杀】指定目标时，你可获得目标角色的一张手牌",
-                    "xu_choumou": "绸缪",
-                    "xu_choumou_info": "当一名其他角色使用的【杀】被响应后，你可随机使用一张装备牌",
-                    "xu_dingju": "定局",
-                    "xu_dingju_info": "<span class=yellowtext>限定技</span> 你可回收所有其他角色的武将牌，然后重新分配武将牌（原体力上限和体力均不变）",
-                    "xu_cheng": "小诚",
-                    "xu_tiandun": "天遁",
-                    "xu_tiandun_info": "<font color=#f00>锁定技</font> 当你受到其他角色使用卡牌所造成的伤害时，你随机获得伤害来源的一项技能，然后检索所有的武将牌牌堆，选择一张令伤害来源替换之，然后你再摸X张牌（X为对你造成伤害的牌的点数的三分之一进位取整）",
-                    "xu_xiaoxu": "小徐",
-                    "xu_tuiyin": "退隐",
-                    "xu_tuiyin_info": "<font color=#f00>锁定技</font> 当你受到伤害时，你可摸X张牌（X为游戏轮数的一半进位取整）",
-                    "xu_xiaosu": "小苏",
-                    "xu_xibie": "惜别",
-                    "xu_xibie_info": "当你失去装备区的牌时（包括替换和弃置等），你可以摸一张牌并弃置其他角色区域内的一张牌。",
-                    "xu_qingshang": "情殇",
-                    "xu_qingshang_info": "当你受到伤害后，你可以弃置一张牌并声明一种牌的类型，然后从牌堆顶亮出五张牌，获得其中与你所声明类型相同的牌，将其余的牌置入弃牌堆。",
-                    "xu_yunchou": "运筹",
-                    "xu_yunchou_info": "<span class=yellowtext>限定技</span> 你可回收除主公外的所有角色的身份牌，然后重新分配身份牌（限身份局）",
-                    "sanguo_qiaoguolao": "乔国老",
-                    "sanguo_naxian": "纳贤",
-                    "sanguo_naxian_info": "回合开始时，你可将任意张手牌置于武将牌上，称为“贤”。若你有“贤”，你不能成为基本牌的目标",
-                    "sanguo_zexu": "择婿",
-                    "sanguo_zexu_info": "回合结束时，你可选择一项：1、弃置任意张“贤”并令等量的其他角色各摸一张牌；2、将任意张“贤”交给等量的其他角色，然后该角色须弃置一张与之不同类别的手牌，否则其失去一点体力",
-                    "sanguo_miheng": "祢衡",
-                    "shejian": "舌剑",
-                    "shejian_info": "弃牌阶段结束时，若你于此阶段弃置过至少两张牌且这些牌花色均不相同，则你可以弃置一名其他角色的一张牌。",
-                    "sanguo_kuangcai": "狂才",
-                    "sanguo_kuangcai_info": "出牌阶段开始时，你可以进行判定，本回合中，你使用与判定牌颜色相同的牌没有距离和次数限制且摸一张牌。当你以此法获得第五张牌后，结束你的出牌阶段",
-                    "sanguo_caomao": "曹髦",
-                    "sanguo_qianzhi": "潜志",
-                    "sanguo_qianzhi_info": "准备阶段，若你已受伤，你可以观看牌堆的X张牌(X为你已损失的体力值)并且任意移动之",
-                    "sanguo_yanghui": "养晦",
-                    "sanguo_yanghui_info": "每当你受到伤害后，你可以增加一点体力上限",
-                    "sanguo_juli": "诛戾",
-                    "sanguo_juli_info": "出牌阶段开始时，若你已受伤且你的体力为全场最低，你可指定任意名“魏国”角色，令各摸X张牌（X为你损失的体力值），然后你的体力上限调整至当前体力值",
-                    "sanguo_xunyou": "荀攸",
-                    "sanguo_houlve": "后略",
-                    "sanguo_houlve_info": "若你没有手牌，你可以摸一张牌，然后视为你使用一张【无懈可击】",
-                    "sanguo_simahui": "智司马徽",
-                    "sanguo_shouye": "授业",
-                    "sanguo_shouye_info": "出牌阶段（解惑后限一次），你可以弃置一张手牌，指定至多两名其他角色令各摸一张牌",
-                    "sanguo_jiehuo": "解惑",
-                    "sanguo_jiehuo_info": "<span class=greentext>觉醒技</span> 当你发动“授业”目标累计至少6个时，你须减去一点体力上限，将技能“授业”改为每回合限一次，并获得技能“师恩”",
-                    "sanguo_shien": "师恩",
-                    "sanguo_shien_info": "其他角色使用非延时性锦囊牌时，可以让你摸一张牌",
-                    "sanguo_zhihuaxiong": "智华雄",
-                    "sanguo_wenjiu": "温酒",
-                    "sanguo_wenjiu_info": "</font><font color=#f00>锁定技</font> 你使用的黑色【杀】造成的伤害+1，你无法闪避红色【杀】",
-                    "sanguo_badao": "霸刀",
-                    "sanguo_badao_info": "当你成为黑色杀的目标时，你可以对你攻击范围内的一名其他角色使用一张【杀】",
-                    "sanguo_jiangwei": "姜伯约",
-                    "sanguo_guanxing": "继志",
-                    "sanguo_guanxing_info": "每当你受到一次伤害后，你可以观看牌堆顶的4张牌，并将其以任意顺序置于牌堆项或牌堆底，然后你摸一张牌。",
-                    "sanguo_tiaoxin": "挑衅",
-                    "sanguo_tiaoxin_info": "出牌阶段，你可以指定一名使用【杀】能攻击到你的角色，该角色需对你使用一张【杀】，若该角色不如此做，你弃掉他的一张牌，每回合限一次。",
-                    "sanguo_menghuo": "孟获",
-                    "sanguo_manwang": "蛮王",
-                    "sanguo_manwang_info": "<font color=#f00>锁定技</font> 你的手牌上限为3，你当主公时不增加体力上限。",
-                    "sanguo_xiangfu": "降服",
-                    "sanguo_xiangfu_info": "<span class=greentext>觉醒技</span> 当你的体力上限不少于7，你立即死亡。",
-                    "sanguo_xiongqi": "雄起",
-                    "sanguo_xiongqi_info": "<span class=yellowtext>非限定技</span>当你处于濒死状态时，你可以丢弃你判定区里的牌，并重置你的武将牌，然后摸1张牌且体力回至体力上限，然后加一体力上限。",
-                    "sanguo_zhangfei": "智张飞",
-                    "paoxiao": "咆哮",
-                    "paoxiao_info": "锁定技，出牌阶段，你使用【杀】没有数量限制。",
-                    "sanguo_tannan": "探囊",
-                    "sanguo_tannan_info": "<font color=#f00>锁定技</font> 若你已受伤，你的进攻距离+X（X为你已损失体力值）",
-                    "sanguo_tishen": "替身",
-                    "sanguo_tishen_info": "<span class=yellowtext>限定技</span> 准备阶段开始时，你可以将体力回复至体力上限，然后你每以此法回复1点体力，便摸一张牌。",
-                    "sanguo_yujin": "于禁",
-                    "sanguo_zhenjun": "镇军",
-                    "sanguo_zhenjun_info": "准备阶段，你可以弃置一名手牌数多于体力值的角色的X张牌（X为其手牌数和体力值之差），然后选择一项：1.你弃置等同于其中非装备牌数量的牌；2.其摸等量的牌。",
-                    "sanguo_nanhua": "南华老仙",
-                    "sanguo_chuanshu": "传术",
-                    "sanguo_chuanshu_info": "<span class=yellowtext>限定技</span> 当一名其他角色进入濒死状态时，你可以令其选择获得技能【雷击】或【鬼道】，其回复体力至1并摸两张牌。当该被【传术】的角色造成或受到一次伤害后，你摸一张牌。其阵亡后，你重置技能【传术】",
-                    "sanguo_xiandao": "仙道",
-                    "sanguo_xiandao_info": "<font color=#f00>锁定技</font> 游戏开始、你进入游戏时和回合结束阶段，你随机获得技能【雷击】或【鬼道】，直到下个出牌阶段阶段开始。你防止受到任何属性伤害",
-                    "sanguo_xiuzheng": "修真",
-                    "sanguo_xiuzheng_info": "出牌阶段限一次，你可选择一名其他角色，然后展示牌堆顶的两张牌，若同为红色，则其受到一点火焰伤害；若同为黑色，其受到一点雷电伤害；若颜色不相同，你弃置其一张牌。然后你获得这两张展示的牌后再弃置两张牌",
-                    "qinshi_mozi": "墨子",
-                    "qinshi_feigong": "非攻",
-                    "qinshi_feigong_info": "每当你受到【杀】造成的伤害时，你可以令伤害来源交给你一张其装备区的牌，否则此伤害-1。若其以此法交给你一张装备牌，你可立即使用之",
-                    "qinshi_jianai": "兼爱",
-                    "qinshi_jianai_info": "当一名角色进入濒死状态，你可以弃置当前装备区的所有牌，令其回复体力至1，然后你可切换一次装备区",
-                    "qinshi_jingxie": "精械",
-                    "qinshi_jingxie_info": "你同时拥有两个独立的装备区，出牌阶段（限一次）或你成为伤害性卡牌的目标时，你可以切换至另一个装备区",
-                    "qinshi_weizhuang": "卫庄",
-                    "qinshi_hengjian": "横剑",
-                    "qinshi_hengjian_info": "<font color=#F0F>横贯八方</font> 出牌阶段，你可以将两张杀当杀使用，此杀无视距离，可以指定任意名目标",
-                    "qinshi_jusha": "流沙",
-                    "qinshi_jusha_info": "聚散流沙，生死无踪。其他角色可在他们各自的回合里交给你一张【杀】或【酒】",
-                    "qinshi_genie": "盖聂",
-                    "qinshi_jiansheng": "剑圣",
-                    "qinshi_jiansheng_info": "每当你受到一点伤害时，若你没有手牌，你可以摸等同于现存势力数张牌；若你有手牌，你可以摸X张牌（X为此时你的手牌数）",
-                    "qinshi_zongjian": "纵剑",
-                    "qinshi_zongjian_info": "<font color=#F0F>百步飞剑</font> 你使用的【杀】无距离限制；当你使用【杀】指定一个目标后，你可以根据下列条件执行相应的效果：1.其手牌数小于你的手牌数，此【杀】不可被【闪】响应 2.其体力值大于你的体力值，此【杀】伤害+1",
-                    "qinshi_xiaoyaozi": "逍遥子",
-                    "qinshi_diedun": "蝶遁",
-                    "qinshi_diedun_info": "<font color=#F0F>梦蝶之遁</font> 当你的体力值小于2或手牌数小于体力值时，其他角色计算与你的距离为无限远",
-                    "qinshi_renzhong": "人宗",
-                    "qinshi_renzhong_info": "<font color=#F0F>万物回春</font> 出牌阶段限一次，你可以获得所有其他角色区域内的一张牌，然后你须为所有存活的角色每人逐个派发一张手牌",
-                    "qunying_weixiaobao": "韦小宝",
-                    "qunying_haodu": "豪赌",
-                    "qunying_haodu_info": "出牌阶段限一次，你可以令所有角色声明点数大（8~K）的牌较多（押大）还是点数小（A~6）的牌较多（押小）（点数为7的不计且你直接获得），然后你亮出牌堆顶的七张牌比较两者点数范围内的数量：猜对的角色摸一张牌，猜错的角色须弃置一张牌；然后你获得所有数量较少的牌；若数量一致，则仅执行你获得所有的这些牌 ",
-                    "qunying_fengyuan1": "逢源",
-                    "qunying_fengyuan1_info": "场上的女性角色每回复一点体力时，你若你已受伤，你可回复一点体力，否则摸一张牌。",
-                    "qunying_fengyuan": "逢源",
-                    "qunying_fengyuan_info": "场上的男性角色的回合可以交给你一张手牌，场上的女性角色每回复一点体力时，你若你已受伤，你可回复一点体力，否则摸一张牌。",
-                    "qunying_zhengyi": "正义",
-                    "qunying_zhengyi_info": "每回合限X次（X为你的体力值），当你需要使用或打出牌时，你可以视为使用或打出之（每回合每种牌名限一次）",
-                    "qunying_jilian": "吉连",
-                    "qunying_mingxiang": "冥想",
-                    "qunying_mingxiang_info": "<font color=#f00>锁定技</font> 回合结束后，若你本回合杀死过人，你进入冥想状态，直到下一轮次开始或有角色濒死时，你才能返回战场参战",
-                    "qunying_frieza3": "弗利萨",
-                    "qunying_frieza2": "弗利萨",
-                    "qunying_frieza1": "弗利萨",
-                    "qunying_frieza": "弗利萨",
-                    "_qunying_bianshen": "变身",
-                    "_qunying_bianshen_info": "</font><font color=#f00>锁定技</font> 你每次进入濒死状态便会变身",
-                    "qunying_weishe": "威慑",
-                    "qunying_weishe_info": "<font color=#f00>锁定技</font> 当你使用【杀】指定目标后，目标角色须展示其手牌，若其中有与此【杀】相同花色的手牌，此【杀】不可被响应",
-                    "qunying_diwang": "帝王",
-                    "qunying_diwang_info": "当你受到伤害来源不为你的伤害时，你可令场上除你与伤害来源外的所有其他角色依次视为对伤害来源使用一张【杀】",
-                    "qunying_beihua": "倍化",
-                    "qunying_beihua_info": "当一名其他角色使用【杀】时，其可以令你摸一张牌",
-                    "qunying_guanjue": "冠绝",
-                    "qunying_guanjue_info": "当你每回合首次成为【杀】的目标后，你可以令此【杀】无效且不计入使用次数，然后你可对该【杀】使用者使用一张【杀】",
-                    "qunying_xiaohan": "骁悍",
-                    "qunying_xiaohan_info": "当你使用【杀】指定目标后，你可以展示目标角色一张手牌。若该牌与此【杀】颜色不相同，此【杀】不可被响应，否则其弃置之",
-                    "qunying_yiqu": "异躯",
-                    "qunying_yiqu_info": "<font color=#f00>锁定技</font> 当你受到伤害后，若场上角色数不少于阵亡角色数，你摸X张牌（X为存活角色数）；否则你摸Y张牌（Y为已阵亡的角色数）。",
-                    "qunying_wanti": "完体",
-                    "qunying_wanti_info": "</font><font color=#f00>锁定技</font> 当你受到伤害时，若你的装备区没有防具牌，此伤害－1；当你造成伤害时，若你的装备区没有武器牌，此伤害＋1",
-                    "qunying_kunxi": "困袭",
-                    "qunying_kunxi_info": "结束阶段，你可以视为对一至X名其他角色使用一张【杀】（X为你装备区的牌数），然后你将装备区的所有牌收入手牌",
-                    "qunying_qinshiwang": "嬴政",
-                    "qunying_shaohe": "扫合",
-                    "qunying_shaohe_info": "<font color=#f00>锁定技</font> 当你对目标角色造成伤害时，若其势力与你不一致，则此伤害值+1",
-                    "qunying_tongji": "统集",
-                    "qunying_tongji_info": "<font color=#f00>锁定技</font> 结束阶段，你摸X张牌（X为【秦】势力的角色数）",
-                    "qunying_wangxiao": "往崤",
-                    "qunying_wangxiao_info": "<font color=#f00>锁定技</font> 当一名角色受到伤害时，若此伤害值大于1，则其势力改为【秦】",
-                    "qunying_baiqi": "白起",
-                    "qunying_shashen": "杀神",
-                    "qunying_shashen_info": "当你使用【杀】或【决斗】造成伤害后，若你体力值高/等/低于受伤的角色，你可令其失去1点体力/翻面/弃置所有手牌",
-                    "xqin": "秦",
-
-
-                },
-            };
-            var Bwugeng = {
-                character: {
-                    "wugeng_tian": ["male", "shen", 4, ["wugeng_xuemao", "wugeng_baiqian"], []],
-                    "wugeng_zhengchan": ["male", "shen", 3, ["wugeng_lunzhuan", "wugeng_kongjing", "wugeng_zhuzhan"], []],
-                    "wugeng_echan": ["male", "shen", 3, ["wugeng_zhuilun", "wugeng_jingang"], ["unseen"]],
-                    "wugeng_shixing": ["male", "shen", 3, ["wugeng_fuhuo", "wugeng_fuchou"], []],
-                    "wugeng_xuanfeng": ["male", "shen", 4, ["wugeng_shensu", "wugeng_baofeng", "wugeng_zhengkong"], []],
-                    "wugeng_tianwu": ["male", "shen", 3, ["wugeng_pili", "wugeng_zhengnu"], []],
-                    "wugeng_tiankui": ["male", "shen", 5, ["wugeng_suiyue", "wugeng_shenqu"], []],
-                    "wugeng_ziyu": ["male", "xrenlei", 4, ["wugeng_qijian", "wugeng_qiyi", "wugeng_zhutian"], []],
-                    "wugeng_wugeng": ["male", "xrenlei", 2, ["wugeng_zhouwen", "wugeng_tianqi"], []],
-                    "wugeng_baicai": ["female", "xrenlei", 3, ["wugeng_qinhe", "wugeng_dunkong"], []],
-                    "wugeng_bailian": ["male", "shen", 3, ["wugeng_xuelian", "wugeng_siling"], []],
-                    "wugeng_fuxi": ["male", "shen", 4, ["wugeng_dongshi", "wugeng_cizhou"], []],
-                    "wugeng_nitianerxing": ["male", "xming", 4, ["wugeng_tongming", "wugeng_poji"], []],
-                },
-                skill: {},
-                translate: {
-
-                    "wugeng_nitianerxing": "逆天而行",
-                    "wugeng_tongming": "统冥",
-                    "wugeng_tongming_info": "统一冥族。</font><font color=#f00>锁定技</font> 场上每有一名角色阵亡，你回复一点体力并选择恢复一个已被废除的装备栏",
-                    "wugeng_poji": "破极",
-                    "wugeng_poji_info": "限定技，出牌阶段，你可废除你的判定区和所有的装备栏并将体力值减至1并摸等同失去的体力值张牌，然后选择任意名其他角色，令其废除防具栏，然后你获得技能【聚义】、【暗月】，直到回合结束",
-                    "wugeng_juyi": "聚义",
-                    "wugeng_juyi_info": "</font><font color=#f00>锁定技</font> 你每使用一张牌后摸一张牌",
-                    "wugeng_anyue": "暗月",
-                    "wugeng_anyue_info": "暗月凶光。</font><font color=#f00>锁定技</font> 你对一名其他角色使用牌（借刀杀人除外）时，额外指定所有已废除防具栏的其他角色",
-                    "wugeng_bailian": "白莲圣王",
-                    "wugeng_xuelian": "血莲",
-                    "wugeng_xuelian_info": "<span class=yellowtext>限定技</span> 当你受到伤害后，若伤害来源未获得“血莲”标记，你令其获得九个“血莲”标记，其回合结束时，你摸等同其“血莲”标记个数的一半（向下取整）张牌，然后其须弃置一个“血莲”标记，并随机弃置一张装备区的牌，否则受到一点伤害。若其“血莲”标记不大于0或已阵亡，你重置本技能并失去一点体力上限",
-                    "wugeng_siling": "死灵",
-                    "wugeng_siling_info": "当你受到伤害时，若场上有角色有“血莲”标记，你可取消此伤害，然后该角色的“血莲”标记数量减一",
-                    "wugeng_fuxi": "伏羲",
-                    "wugeng_cizhou": "赐咒",
-                    "wugeng_cizhou_info": "<span class=yellowtext>限定技</span> 当一名角色脱离濒死状态时，你可令其获得技能【咒文】",
-                    "wugeng_dongshi": "洞识",
-                    "wugeng_dongshi_info": "当你使用【杀】／成为【杀】的目标时，你可以观看目标角色／来源的手牌，然后你可以获得其中一张奇数点数／偶数点数的手牌",
-                    "wugeng_anxie": "暗蝎",
-                    "wugeng_anxie_info": "结束阶段，你可声明一种锦囊牌的牌名，本局游戏你不能成为此牌的目标。",
-                    "wugeng_baicai": "白菜",
-                    "wugeng_qinhe": "亲和",
-                    "wugeng_qinhe_info": "其他角色出牌阶段开始时，你可以随机展示你的一张手牌。若如此做，每当该角色于此阶段内使用与此牌花色相同的牌时，其与你可各摸一张牌。",
-                    "wugeng_dunkong": "遁空",
-                    "wugeng_dunkong_info": "当你受到伤害时，若你有手牌，你可选择一种花色并弃置该花色的所有手牌，然后伤害值减一",
-                    "wugeng_wugeng": "武庚",
-                    "wugeng_zhouwen": "咒文",
-                    "wugeng_zhouwen_info": "<li></font><font color=#f00>锁定技</font> 当你受到伤害时，若你的装备区没有防具牌，此伤害减一<li></font><font color=#f00>锁定技</font> 当你造成伤害时，若目标角色体力值比你的高，此伤害值+1",
-                    "wugeng_fanji": "繁技",
-                    "wugeng_fanji_info": "</font><font color=#f00>锁定技</font> 回合内，你随机获得技能【冥炮】或【炼气】；回合外，你随机获得技能【无色】或【虚无】",
-                    "wugeng_tianqi": "天启",
-                    "wugeng_tianqi_info": "<span class=greentext>觉醒技</span> 当你进入濒死状态时，你令所有其他角色失去所有技能直到其受到伤害且不能使用或打出牌直到其回合开始，然后你须失去技能【咒文】，获得技能【暗狱】、【繁技】，增加一点体力上限并回复体力至体力上限，且直到你的下个回合开始，你不能成为【杀】的目标",
-                    "wugeng_anyu": "暗狱",
-                    "wugeng_anyu_info": "当你受到伤害时，你可令一名武将牌正面朝上的其他角色将其武将牌翻面，然后直到其受到伤害后，其所有技能失效且不能使用或打出牌",
-                    "wugeng_mingpao": "冥炮",
-                    "wugeng_mingpao_info": "</font><font color=#f00>锁定技</font> 你使用的【杀】可指定任意名目标",
-                    "wugeng_lianqi": "炼气",
-                    "wugeng_lianqi_info": "</font><font color=#f00>锁定技</font> 你使用的【杀】没距离与次数限制",
-                    "wugeng_wuse": "无色",
-                    "wugeng_wuse_info": "</font><font color=#f00>锁定技</font> 你不能成为【杀】的目标",
-                    "wugeng_xuwu": "虚无",
-                    "wugeng_xuwu_info": "</font><font color=#f00>锁定技</font> 你不能成为锦囊牌的目标",
-                    "wugeng_ziyu": "子羽",
-                    "wugeng_zhutian": "诛天",
-                    "wugeng_zhutian_info": "当你受到伤害后，你可以使用一张【杀】。若此【杀】造成伤害，你可防止之，改为令目标角色先失去一点体力上限，再受到一点火焰伤害【克制十刑】",
-                    "wugeng_qiyi": "起义",
-                    "wugeng_qiyi_info": "当一名角色受到伤害时，若其装备区中没有武器牌，你可令其随机使用一张武器牌",
-                    "wugeng_qijian": "气剑",
-                    "wugeng_qijian_info": "【剑气流星】出牌阶段限一次，你可以指定任意一名其他角色，然后你可依次弃置场上所有装备区有武器牌的角色的武器牌，并视为其对你指定的角色使用一张【杀】",
-                    "wugeng_tiankui": "天魁",
-                    "wugeng_shenqu": "神躯",
-                    "wugeng_shenqu_info": "<font color=#F0F>金刚界神力</font><font color=#f00>锁定技</font> 当你受到伤害时，若此伤害值大于1，则改为1；若伤害来源的体力值大于你的体力值，则取消此伤害",
-                    "wugeng_suiyue": "碎岳",
-                    "wugeng_suiyue_info": "<font color=#F0F>神技•天斗碎岳</font>出牌阶段限一次，你可选择一名其他角色并失去一点体力，然后视为对其连续使用X张无视防具的【杀】（X为你已损失的体力值）",
-                    "wugeng_tianwu": "天武圣王",
-                    "wugeng_pili": "霹雳",
-                    "wugeng_zhengnu": "震怒",
-                    "wugeng_zhengnu_info": "<font color=#F0F>万象界神力•天地震怒</font> 当你受到伤害后，你可令所有其他角色选择一项：①随机弃牌：该角色随机地弃置一张牌；②令其摸牌：你摸一张牌",
-                    "wugeng_pili_info": "<font color=#F0F>神技•真武大霹雳</font> 每两轮限一次，若你的体力值不大于当前存活的角色数，你可弃置X张相同花色的手牌，并对X名攻击范围内的其他角色各造成X点伤害（X为你以此法弃置的手牌数）",
-                    "wugeng_xuanfeng": "玄风圣王",
-                    "wugeng_shensu": "神速",
-                    "wugeng_shensu_info": "<font color=#f00>锁定技</font> 你的进攻距离＋X（X为你的体力值），你的防御距离+Y（Y为你损失的体力值）",
-                    "wugeng_baofeng": "暴风",
-                    "wugeng_baofeng_info": "当你受到伤害后，你可选择一项：<br><li><font color=#F0F>远逐</font> <font color=#F0F>银翼破空</font>令伤害来源的进攻距离－X（X为其体力值），<font color=#F0F>无形剑</font>并视为你对其使用一张【杀】<br><li><font color=#F0F>救护</font> 你选择一名其他角色，令其摸一张牌，且防御距离＋Y（Y为其损失的体力值）",
-                    "wugeng_zhengkong": "真空",
-                    "wugeng_zhengkong_info": "<font color=#F0F>神技•真空</font> 当你流失体力或一次受到大于一点的伤害后，你可选择令一名其他非主公角色进入倒计时，一分钟后，其因窒息而死亡。<font color=#F0F>与十刑互相克制</font> ",
-                    "wugeng_tian": "天",
-                    "wugeng_xuemao": "血矛",
-                    "wugeng_xuemao_info": "出牌阶段限一次，你可以展示牌堆顶的一张牌，若该牌为：装备牌，你回复一点体力并使用之；锦囊牌，你弃置此展示的牌后再摸两张牌；基本牌，你获得此牌，视为对任意一名其他角色使用一张不计距离、不计入次数限制的【杀】",
-                    "wugeng_xuemao2_info": "",
-                    "wugeng_baiqian": "白墙",
-                    "wugeng_baiqian_info": "<font color=#F0F>无色界神力</font><br><li> <font color=#f00>锁定技</font> 游戏开始阶段或你进入游戏时，你令所有其他角色的所有技能失效，直到其受到伤害为止<br><li>出牌阶段限一次，你可以选择攻击范围内的一名其他角色，令其所有技能失效（直到其回合结束）；且不能使用或打出牌（直到其回合开始）<br><li><font color=#f00>锁定技</font> ①你使用的【杀】可指定任意名角色; ②当你的手牌数与体力值不相等时，你不能成为【杀】或锦囊牌的目标",
-                    "wugeng_zhengchan": "真禅圣王",
-                    "wugeng_echan": "恶禅",
-                    "wugeng_yinguo": "因果",
-                    "wugeng_yinguo_info": "<font color=#f00>锁定技</font> 你使用的【杀】造成一次伤害后，你获得等同伤害值数量的“因果”标记",
-                    "wugeng_lunzhuan": "轮转",
-                    "wugeng_lunzhuan_info": "<font color=#F0F>因果轮转</font> <font color=#f00>锁定技</font>出牌阶段限一次，你可令场上所有因使用【杀】造成过伤害而拥有“因果”标记的其他角色受到一点来源为你的伤害，并弃置一个“因果”标记，然后你变身为“恶禅”",
-                    "wugeng_kongjing": "空镜",
-                    "wugeng_kongjing_info": "<font color=#F0F>空镜映月</font>每当你成为其他角色的某张卡牌的惟一目标时，你可以弃置一张手牌，将使用者与目标对调",
-                    "wugeng_zhuilun": "罪轮",
-                    "wugeng_zhuilun_info": "<font color=#F0F>罪业转轮</font>出牌阶段限一次，你可令场上任意一名拥有“因果”标记的角色受到X点伤害，若如此做，其“因果”标记数量清零（X为该角色的“因果”标记个数），然后你变身为“真禅圣王”，结算后立即结束当前回合",
-                    "wugeng_zhuzhan": "助战",
-                    "wugeng_zhuzhan_info": "<font color=#F0F>长生界神力•生死轮回限</font>当一名角色处于濒死状态时，你可以亮出牌堆顶的一张牌，若该牌为红色牌，则该角色回复一点体力，然后将这张红色牌置入弃牌堆；若该牌为黑色牌，你获得之",
-                    "wugeng_jingang": "金身",
-                    "wugeng_jingang_info": "<font color=#F0F>金刚不灭之身</font><font color=#f00>锁定技</font> 当你没装备防具时，你防止受到一切伤害",
-                    "wugeng_shixing": "十刑",
-                    "wugeng_fuhuo": "复活",
-                    "wugeng_fuhuo_info": "<font color=#F0F>亡者之印</font> <font color=#f00>锁定技</font> 当你阵亡七七四十九秒后，你自动复活，增加一点体力上限并回复体力至体力上限",
-                    "wugeng_fuchou": "复仇",
-                    "wugeng_fuchou_info": "<li><font color=#F0F>修罗界神力</font><font color=#f00>锁定技</font> 你的进攻距离+X，摸牌阶段摸牌时，你额外摸X张牌（X为你损失的体力值）；<br><li><font color=#F0F>元始界神力</font>你使用的【杀】额外造成Y点的伤害（Y为你的损失的体力值的一半向下取整）",
-                    "wugeng_shenzu": "神族",
-                    "wugeng_renlei": "人类",
-                    "wugeng_mingzu": "冥族",
-                    "xming": "冥",
-                    "xrenlei": "人",
-                },
-            };
-
             if (lib.brawl) {
                 lib.brawl.qyhBrawlMode = (function () {
 
@@ -323,7 +10,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《群英会》扩展哦！',
-                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -351,92 +37,412 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return this;
                                 },
                             };
+
                             var gameQYHIntro = ui.create.div('#QYH_gameQYHIntro', '群英会');
-                            var router = {
-                                qunyinghuiPage: new Page().set('body', ui.create.div('#QYH_router_qunyinghuiPage').hide()).set('init', function () {
-                                    function intro(name, pack, introClass) {
-                                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);
-                                        pack = pack || Aqunyin;
-                                        var info = pack.character[name];
-                                        if (!info) return null;
-                                        var dComps = {
-                                            header: (function () {
-                                                var img = ui.create.div('.QYH_router_qunyinghuiPage_intro_header');
-                                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/群英会/' + name + '.jpg)';
-                                                return img;
-                                            })(),
-                                            infos: (function (name, group, hp, sex) {
-                                                var str = "";
-                                                if (name) {
-                                                    str += pack.translate[name] + '&nbsp;';
-                                                }
-                                                if (sex) {
-                                                    str += get.translation(sex) + '&nbsp;';
-                                                }
-                                                if (group) {
-                                                    str += get.translation(group) + '&nbsp;';
-                                                }
-                                                if (hp) {
-                                                    str += hp + '体力';
-                                                }
-                                                var infos = ui.create.div('.QYH_router_qunyinghuiPage_intro_infos', str);
-                                                return infos;
-                                            })(name, info[1], info[2], info[0]),
-                                            skills: (function (list) {
-                                                var str = "";
-                                                if (!Array.isArray(list)) list = [];
-                                                for (var i = 0; i < list.length; i++) {
-                                                    if (i > 0) {
-                                                        str += '<br><br>';
-                                                    }
-                                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
-                                                }
-                                                var skills = ui.create.div('.QYH_router_qunyinghuiPage_intro_skills', str);
-                                                lib.setScroll(skills);
-                                                return skills;
-                                            })(info[3]),
-                                        };
-                                        for (var i in dComps) {
-                                            div.appendChild(dComps[i]);
-                                        }
-                                        return div;
-                                    };
-                                    var comps = {
-                                        closeButton: (function () {
-                                            var button = ui.create.div('#QYH_router_qunyinghuiPage_closeButton', '×');
-                                            button.addEventListener('click', function () {
-                                                game.playSu('qyh_close');
-                                                router.qunyinghuiPage.hide();
-                                            });
-                                            return button;
+
+                            var createBrawlCharacterPage = function () {
+                                var currentPack = '';
+
+                                function createCharacterIntro(charName, introClass) {
+                                    var div = ui.create.div('.qyh_intro_' + introClass);
+                                    var charData = lib.character[charName];
+                                    if (!charData) return null;
+
+                                    var dComps = {
+                                        header: (function () {
+                                            var img = ui.create.div('.qyh_intro_header');
+                                            var imgPath = lib.assetURL + 'extension/群英会/' + charName + '.jpg';
+                                            img.style['background-image'] = 'url(' + imgPath + ')';
+                                            img.onerror = function () {
+                                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                                            };
+                                            return img;
                                         })(),
-                                        title: ui.create.div('#QYH_router_qunyinghuiPage_title', '群英会'),
+                                        infos: (function () {
+                                            var str = "";
+                                            if (charName) str += get.translation(charName) + '&nbsp;';
+                                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                                            if (charData[2]) str += charData[2] + '体力';
+                                            return ui.create.div('.qyh_intro_infos', str);
+                                        })(),
+                                        skills: (function () {
+                                            var str = "";
+                                            if (charData[3] && Array.isArray(charData[3])) {
+                                                for (var j = 0; j < charData[3].length; j++) {
+                                                    if (j > 0) str += '<br><br>';
+                                                    var skillName = charData[3][j];
+                                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                                }
+                                            }
+                                            var skills = ui.create.div('.qyh_intro_skills', str);
+                                            lib.setScroll(skills);
+                                            return skills;
+                                        })(),
                                     };
-                                    var classState = 'left';
-                                    for (var i in Aqunyin.character) {
-                                        comps[i] = intro(i, Aqunyin, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+
+                                    for (var i in dComps) {
+                                        div.appendChild(dComps[i]);
                                     }
-                                    comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
-                                    var classState = 'left';
-                                    for (var i in Bwugeng.character) {
-                                        comps[i] = intro(i, Bwugeng, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+                                    return div;
+                                }
+
+                                function createCharacterPacks() {
+                                    var packs = [];
+                                    var allChars = []; 
+
+                                    packs.push({
+                                        id: 'all',
+                                        name: '全部武将',
+                                        packKey: 'all',
+                                        charList: [] 
+                                    });
+
+                                    var characterSort = lib.characterSort && lib.characterSort.qunying;
+                                    if (characterSort) {
+                                        for (var categoryId in characterSort) {
+                                            if (characterSort.hasOwnProperty(categoryId)) {
+                                                var categoryName = get.translation(categoryId) || categoryId;
+                                                var charList = characterSort[categoryId] || [];
+
+                                                for (var i = 0; i < charList.length; i++) {
+                                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                                        allChars.push(charList[i]);
+                                                    }
+                                                }
+
+                                                packs.push({
+                                                    id: 'qunying_' + categoryId,
+                                                    //name: '群英会 - ' + categoryName,
+                                                    name: categoryName,
+                                                    packKey: 'qunying',
+                                                    charList: charList
+                                                });
+                                            }
+                                        }
                                     }
-                                    for (var i in comps) {
-                                        this.body.appendChild(comps[i]);
+
+                                    var bcharacterSort = lib.characterSort && lib.characterSort.wugeng;
+                                    if (bcharacterSort) {
+                                        for (var categoryId in bcharacterSort) {
+                                            if (bcharacterSort.hasOwnProperty(categoryId)) {
+                                                var categoryName = get.translation(categoryId) || categoryId;
+                                                var charList = bcharacterSort[categoryId] || [];
+
+                                                for (var i = 0; i < charList.length; i++) {
+                                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                                        allChars.push(charList[i]);
+                                                    }
+                                                }
+
+                                                packs.push({
+                                                    id: 'wugeng_' + categoryId,
+                                                    //name: '武庚纪 - ' + categoryName,
+                                                    name: categoryName,
+                                                    packKey: 'wugeng',
+                                                    charList: charList
+                                                });
+                                            }
+                                        }
                                     }
-                                    this.comps = comps;
-                                    try {
-                                        this.paBody.appendChild(this.body);
-                                    } catch (e) { };
-                                    lib.setScroll(this.body);
-                                    return this;
-                                }).init(),
+
+                                    if (packs.length > 0) {
+                                        for (var i = 0; i < packs.length; i++) {
+                                            if (packs[i].id === 'all') {
+                                                packs[i].charList = allChars;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    return packs;
+                                }
+
+                                function updateCharacterList(packInfo) {
+                                    contentContainer.innerHTML = '';
+
+                                    if (!packInfo) return;
+
+                                    var charList = packInfo.charList || [];
+
+                                    if (charList.length === 0) {
+                                        
+                                        if (packInfo.packKey === 'qunying' || packInfo.packKey === 'all') {
+                                            var characterPack = lib.characterPack['qunying'];
+                                            if (characterPack) {
+                                                for (var charName in characterPack) {
+                                                    if (charName && lib.character[charName] && !charList.includes(charName)) {
+                                                        charList.push(charName);
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if (packInfo.packKey === 'wugeng' || packInfo.packKey === 'all') {
+                                            var bcharacterPack = lib.characterPack['wugeng'];
+                                            if (bcharacterPack) {
+                                                for (var charName in bcharacterPack) {
+                                                    if (charName && lib.character[charName] && !charList.includes(charName)) {
+                                                        charList.push(charName);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    for (var i = 0; i < charList.length; i++) {
+                                        var charName = charList[i];
+                                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                        var charIntro = createCharacterIntro(charName, introClass);
+
+                                        if (charIntro) {
+                                            contentContainer.appendChild(charIntro);
+                                        }
+                                    }
+
+                                    var clearDiv = ui.create.div();
+                                    clearDiv.style.clear = 'both';
+                                    clearDiv.style.height = '0';
+                                    clearDiv.style.overflow = 'hidden';
+                                    contentContainer.appendChild(clearDiv);
+
+                                    lib.setScroll(contentContainer);
+                                }
+
+                                var characterPacks = createCharacterPacks();
+                                if (characterPacks.length > 0) {
+                                    currentPack = characterPacks[0].id;
+                                }
+
+                                var page = new Page();
+                                page.body = ui.create.div('#qyh_brawl_page');
+
+                                page.body.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.7);
+                        z-index: 2024;
+                        display: block;
+                    `;
+
+                                var mainContainer = ui.create.div('#qyh_brawl_mainContainer');
+                                mainContainer.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: calc(8% + 150px);
+                        transform: translateY(-50%);
+                        width: calc(84% - 150px);
+                        height: 88%;
+                        background-color: #1a1a1a;
+                        border: 2px solid #444;
+                        border-radius: 0 8px 8px 0;
+                        box-shadow: 0 0 30px rgba(0,0,0,0.9);
+                        z-index: 2025;
+                        overflow: hidden;
+                    `;
+
+                                var leftButtonPanel = ui.create.div('#qyh_brawl_leftButtonPanel');
+                                leftButtonPanel.style.cssText = `
+                        position: fixed;
+                        left: 8%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 150px;
+                        height: 88%;
+                        background-color: rgba(30, 30, 30, 0.95);
+                        border: 2px solid #555;
+                        border-radius: 8px 0 0 8px;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.8);
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        padding: 18px 12px;
+                        box-sizing: border-box;
+                        z-index: 2025;
+                    `;
+
+                                var rightPanel = ui.create.div('#qyh_brawl_rightPanel');
+                                rightPanel.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        padding: 0;
+                        box-sizing: border-box;
+                    `;
+
+                                var closeButton = ui.create.div('#qyh_brawl_closeButton', '×');
+                                closeButton.addEventListener('click', function () {
+                                    page.hide();
+                                });
+                                rightPanel.appendChild(closeButton);
+
+                                var title = ui.create.div('#qyh_brawl_title');
+                                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '群英会武将';
+                                rightPanel.appendChild(title);
+
+                                var contentContainer = ui.create.div('#qyh_brawl_contentContainer');
+                                contentContainer.style.cssText = `
+                        position: absolute;
+                        top: 60px;
+                        left: 0;
+                        width: 100%;
+                        height: calc(100% - 60px);
+                        overflow: auto;
+                        padding: 15px;
+                        box-sizing: border-box;
+                    `;
+                                rightPanel.appendChild(contentContainer);
+
+                                var buttonContainer = ui.create.div('#qyh_brawl_buttonContainer');
+                                buttonContainer.style.cssText = `
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    `;
+
+                                for (var i = 0; i < characterPacks.length; i++) {
+                                    var pack = characterPacks[i];
+
+                                    var buttonWrapper = ui.create.div('.qyh_brawl_buttonWrapper');
+                                    buttonWrapper.style.cssText = `
+                            width: 100%;
+                            height: 50px;
+                            display: block;
+                            position: relative;
+                        `;
+
+                                    var button = ui.create.div('.qyh_brawl_packButton');
+                                    button.innerHTML = pack.name;
+                                    button.style.cssText = `
+                            width: 100%;
+                            height: 100%;
+                            padding: 0;
+                            text-align: center;
+                            cursor: pointer;
+                            border-radius: 6px;
+                            border: 2px solid #666;
+                            background-color: rgba(50, 50, 50, 0.9);
+                            color: #ddd;
+                            font-family: lishu;
+                            font-size: 16px;
+                            font-weight: bold;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+                            user-select: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            line-height: 1.2;
+                            letter-spacing: 1px;
+                            transition: all 0.3s ease;
+                        `;
+
+                                    if (pack.id === currentPack) {
+                                        button.classList.add('active');
+                                    }
+
+                                    button.setAttribute('data-pack', pack.id);
+                                    button.addEventListener('click', (function (packId, packName, packData) {
+                                        return function () {
+                                            if (currentPack === packId) return;
+
+                                            var buttons = leftButtonPanel.querySelectorAll('.qyh_brawl_packButton');
+                                            for (var j = 0; j < buttons.length; j++) {
+                                                buttons[j].classList.remove('active');
+                                            }
+
+                                            this.classList.add('active');
+
+                                            currentPack = packId;
+                                            title.innerHTML = packName;
+                                            updateCharacterList(packData);
+                                        };
+                                    })(pack.id, pack.name, pack));
+
+                                    button.addEventListener('mouseover', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
+                                            this.style.color = '#fff';
+                                            this.style.borderColor = '#888';
+                                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
+                                        }
+                                    });
+
+                                    button.addEventListener('mouseout', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
+                                            this.style.color = '#ddd';
+                                            this.style.borderColor = '#666';
+                                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
+                                        }
+                                    });
+
+                                    buttonWrapper.appendChild(button);
+                                    buttonContainer.appendChild(buttonWrapper);
+                                }
+
+                                leftButtonPanel.appendChild(buttonContainer);
+
+                                function updateCharacterList(packInfo) {
+                                    contentContainer.innerHTML = '';
+
+                                    if (!packInfo) return;
+
+                                    var charList = packInfo.charList || [];
+
+                                    if (charList.length === 0) {
+                                        var characterPack = lib.characterPack['qunying'];
+                                        if (characterPack) {
+                                            for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    charList.push(charName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    for (var i = 0; i < charList.length; i++) {
+                                        var charName = charList[i];
+                                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                        var charIntro = createCharacterIntro(charName, introClass);
+
+                                        if (charIntro) {
+                                            contentContainer.appendChild(charIntro);
+                                        }
+                                    }
+
+                                    var clearDiv = ui.create.div();
+                                    clearDiv.style.clear = 'both';
+                                    clearDiv.style.height = '0';
+                                    clearDiv.style.overflow = 'hidden';
+                                    contentContainer.appendChild(clearDiv);
+
+                                    lib.setScroll(contentContainer);
+                                }
+
+                                if (characterPacks.length > 0) {
+                                    updateCharacterList(characterPacks[0]);
+                                }
+
+                                page.body.appendChild(mainContainer);
+                                mainContainer.appendChild(rightPanel);
+                                page.body.appendChild(leftButtonPanel);
+
+                                return page;
                             };
+
+                            var router = {
+                                qunyingPage: createBrawlCharacterPage()
+                            };
+
                             gameQYHIntro.addEventListener('click', function () {
-                                game.playSu('qyh_open');
-                                router.qunyinghuiPage.show();
+                                setTimeout(function () {
+                                    router.qunyingPage.show();
+                                }, 100);
                             });
                             this.appendChild(gameQYHIntro);
                         },
@@ -444,26 +450,21 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-
-            // 创建页面类
+            // 菜单页面类浏览武将：
             game.qyhCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
+                var currentPack = '';
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
-                    try {
-                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
-                        if (!this.paBody) {
-                            this.paBody = document.body;
-                        }
-                        this.paBody.appendChild(this.body);
-                    } catch (e) {
-                        this.paBody = document.body;
-                        this.paBody.appendChild(this.body);
-                    }
+                    this.paBody = document.body;
+                    this.paBody.appendChild(this.body);
                 }
+
                 Page.prototype = {
                     show: function () {
                         if (!this.body.parentNode && this.paBody) {
@@ -471,103 +472,325 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                         this.body.show();
                         this.body.style.display = 'block';
-                        this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
-                        this.body.style.top = '47.3%';
-                        this.body.style.left = '50%';
-                        this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a';
-                        //this.body.style.backgroundColor = 'rgba(20,20,20,0.95)';
-                        this.body.style.padding = '20px';
-                        this.body.style.border = '2px solid black';
-                        this.body.style.borderRadius = '8px';
-                        this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-                        this.body.style.width = '75%'; //fixed
-                        this.body.style.height = '72%'; //fixed
-                        this.body.style.overflow = 'auto';
-                        this.body.style.textAlign = 'left';
+                        this.body.style.top = '0';
+                        this.body.style.left = '0';
+                        this.body.style.width = '100%';
+                        this.body.style.height = '100%';
+                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        this.body.style.zIndex = '2024';
 
                         return this;
                     },
+
                     hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
-                function createCharacterIntro(name, pack) {
-                    var introClass = 'left';
-                    function intro(name, pack) {
-                        var div = ui.create.div('.QYH_router_qunyinghuiPage_intro_' + introClass);
-                        introClass = introClass == 'left' ? 'right' : 'left';
-                        pack = pack || Aqunyin;
-                        var info = pack.character[name];
-                        if (!info) return null;
-                        var dComps = {
-                            header: (function () {
-                                var img = ui.create.div('.QYH_router_qunyinghuiPage_intro_header');
-                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/群英会/' + name + '.jpg)';
-                                return img;
-                            })(),
-                            infos: (function (name, group, hp, sex) {
-                                var str = "";
-                                if (name) str += pack.translate[name] + '&nbsp;';
-                                if (sex) str += get.translation(sex) + '&nbsp;';
-                                if (group) str += get.translation(group) + '&nbsp;';
-                                if (hp) str += hp + '体力';
-                                return ui.create.div('.QYH_router_qunyinghuiPage_intro_infos', str);
-                            })(name, info[1], info[2], info[0]),
-                            skills: (function (list) {
-                                var str = "";
-                                if (!Array.isArray(list)) list = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    if (i > 0) str += '<br><br>';
-                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
-                                }
-                                var skills = ui.create.div('.QYH_router_qunyinghuiPage_intro_skills', str);
-                                lib.setScroll(skills);
-                                return skills;
-                            })(info[3]),
-                        };
-                        for (var i in dComps) {
-                            div.appendChild(dComps[i]);
-                        }
-                        return div;
-                    }
-                    return intro(name, pack);
-                }
-                var characterPage = new Page();
-                characterPage.body = ui.create.div('#QYH_router_qunyinghuiPage').hide();
 
-                var comps = {
-                    closeButton: (function () {
-                        var button = ui.create.div('#QYH_router_qunyinghuiPage_closeButton', '×');
-                        button.addEventListener('click', function () {
-                            game.playSu('qyh_close');
-                            ui.system.style.display = '';
-                            setTimeout(function () {
-                                ui.click.configMenu();
-                                ui.menuContainer.style.display = '';
-                            }, 500);
-                            characterPage.hide();
-                        });
-                        return button;
-                    })(),
-                    title: ui.create.div('#QYH_router_qunyinghuiPage_title', '群英会'),
-                };
-                for (var i in Aqunyin.character) {
-                    comps[i] = createCharacterIntro(i, Aqunyin);
-                }
-                comps.title2 = ui.create.div('#QYH_router_qunyinghuiPage_title', '武庚纪');
-                for (var i in Bwugeng.character) {
-                    comps[i] = createCharacterIntro(i, Bwugeng);
-                }
-                for (var i in comps) {
-                    if (comps[i]) {
-                        characterPage.body.appendChild(comps[i]);
+                function createCharacterIntro(charName, introClass) {
+                    var div = ui.create.div('.qyh_intro_' + introClass);
+                    var charData = lib.character[charName];
+                    if (!charData) return null;
+
+                    var dComps = {
+                        header: (function () {
+                            var img = ui.create.div('.qyh_intro_header');
+                            
+                            var imgPath = lib.assetURL + 'extension/群英会/' + charName + '.jpg';
+                            img.style['background-image'] = 'url(' + imgPath + ')';
+                            img.onerror = function () {
+                                
+                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                            };
+                            return img;
+                        })(),
+                        infos: (function () {
+                            var str = "";
+                            if (charName) str += get.translation(charName) + '&nbsp;';
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
+                            return ui.create.div('.qyh_intro_infos', str);
+                        })(),
+                        skills: (function () {
+                            var str = "";
+                            if (charData[3] && Array.isArray(charData[3])) {
+                                for (var j = 0; j < charData[3].length; j++) {
+                                    if (j > 0) str += '<br><br>';
+                                    var skillName = charData[3][j];
+                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                }
+                            }
+                            var skills = ui.create.div('.qyh_intro_skills', str);
+                            lib.setScroll(skills);
+                            return skills;
+                        })(),
+                    };
+
+                    for (var i in dComps) {
+                        div.appendChild(dComps[i]);
                     }
+                    return div;
                 }
-                characterPage.comps = comps;
-                lib.setScroll(characterPage.body);
+
+                function createCharacterPacks() {
+                    var packs = [];
+                    var allChars = []; 
+
+                    packs.push({
+                        id: 'all',
+                        name: '全部武将',
+                        packKey: 'all',
+                        charList: [] 
+                    });
+
+                    var qunyingSort = lib.characterSort && lib.characterSort.qunying;
+                    if (qunyingSort) {
+                        for (var categoryId in qunyingSort) {
+                            if (qunyingSort.hasOwnProperty(categoryId)) {
+                                var categoryName = get.translation(categoryId) || categoryId;
+                                var charList = qunyingSort[categoryId] || [];
+
+                                for (var i = 0; i < charList.length; i++) {
+                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                        allChars.push(charList[i]);
+                                    }
+                                }
+
+                                packs.push({
+                                    id: 'qunying_' + categoryId,
+                                    //name: '群英会 - ' + categoryName,
+                                    name: categoryName,
+                                    packKey: 'qunying',
+                                    charList: charList
+                                });
+                            }
+                        }
+                    }
+
+                    var wugengSort = lib.characterSort && lib.characterSort.wugeng;
+                    if (wugengSort) {
+                        for (var categoryId in wugengSort) {
+                            if (wugengSort.hasOwnProperty(categoryId)) {
+                                var categoryName = get.translation(categoryId) || categoryId;
+                                var charList = wugengSort[categoryId] || [];
+
+                                for (var i = 0; i < charList.length; i++) {
+                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                        allChars.push(charList[i]);
+                                    }
+                                }
+
+                                packs.push({
+                                    id: 'wugeng_' + categoryId,
+                                    //name: '武庚纪 - ' + categoryName,
+                                    name: categoryName,
+                                    packKey: 'wugeng',
+                                    charList: charList
+                                });
+                            }
+                        }
+                    }
+
+                    if (packs.length > 0) {
+                        for (var i = 0; i < packs.length; i++) {
+                            if (packs[i].id === 'all') {
+                                packs[i].charList = allChars;
+                                break;
+                            }
+                        }
+                    }
+
+                    return packs;
+                }
+
+                var characterPacks = createCharacterPacks();
+
+                if (characterPacks.length > 0) {
+                    currentPack = characterPacks[0].id;
+                }
+
+                var characterPage = new Page();
+                characterPage.body = ui.create.div('#qyh_page');
+
+                var mainContainer = ui.create.div('#qyh_mainContainer');
+                mainContainer.style.position = 'fixed';
+                mainContainer.style.top = '50%';
+                mainContainer.style.left = 'calc(8% + 150px)';
+                mainContainer.style.transform = 'translateY(-50%)';
+                mainContainer.style.width = 'calc(84% - 150px)';
+                mainContainer.style.height = '88%';
+                mainContainer.style.backgroundColor = '#1a1a1a';
+                mainContainer.style.border = '2px solid #444';
+                mainContainer.style.borderRadius = '0 8px 8px 0';
+                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
+                mainContainer.style.zIndex = '2025';
+                mainContainer.style.overflow = 'hidden';
+
+                var leftButtonPanel = ui.create.div('#qyh_leftButtonPanel');
+                leftButtonPanel.style.position = 'fixed';
+                leftButtonPanel.style.left = '8%';
+                leftButtonPanel.style.top = '50%';
+                leftButtonPanel.style.transform = 'translateY(-50%)';
+                leftButtonPanel.style.width = '150px';
+                leftButtonPanel.style.height = '88%';
+                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+                leftButtonPanel.style.border = '2px solid #555';
+                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
+                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
+                leftButtonPanel.style.overflowY = 'auto';
+                leftButtonPanel.style.overflowX = 'hidden';
+                leftButtonPanel.style.padding = '18px 12px';
+                leftButtonPanel.style.boxSizing = 'border-box';
+                leftButtonPanel.style.zIndex = '2025';
+
+                var rightPanel = ui.create.div('#qyh_rightPanel');
+                rightPanel.style.width = '100%';
+                rightPanel.style.height = '100%';
+                rightPanel.style.position = 'relative';
+                rightPanel.style.overflow = 'hidden';
+                rightPanel.style.padding = '0';
+                rightPanel.style.boxSizing = 'border-box';
+
+                var closeButton = ui.create.div('#qyh_closeButton', '×');
+                closeButton.addEventListener('click', function () {
+                    characterPage.hide();
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                rightPanel.appendChild(closeButton);
+
+                var title = ui.create.div('#qyh_title');
+                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '群英会武将';
+                rightPanel.appendChild(title);
+
+                var contentContainer = ui.create.div('#qyh_contentContainer');
+                contentContainer.style.position = 'absolute';
+                contentContainer.style.top = '60px';
+                contentContainer.style.left = '0';
+                contentContainer.style.width = '100%';
+                contentContainer.style.height = 'calc(100% - 60px)';
+                contentContainer.style.overflow = 'auto';
+                contentContainer.style.padding = '15px';
+                contentContainer.style.boxSizing = 'border-box';
+                rightPanel.appendChild(contentContainer);
+
+                var buttonContainer = ui.create.div('#qyh_buttonContainer');
+                buttonContainer.style.width = '100%';
+                buttonContainer.style.height = 'auto';
+                buttonContainer.style.display = 'flex';
+                buttonContainer.style.flexDirection = 'column';
+                buttonContainer.style.gap = '10px';
+
+                for (var i = 0; i < characterPacks.length; i++) {
+                    var pack = characterPacks[i];
+
+                    var buttonWrapper = ui.create.div('.qyh_buttonWrapper');
+                    buttonWrapper.style.width = '100%';
+                    buttonWrapper.style.height = '50px';
+                    buttonWrapper.style.display = 'block';
+                    buttonWrapper.style.position = 'relative';
+
+                    var button = ui.create.div('.qyh_packButton');
+                    button.innerHTML = pack.name;
+                    button.style.width = '100%';
+                    button.style.height = '100%';
+                    button.style.display = 'flex';
+                    button.style.alignItems = 'center';
+                    button.style.justifyContent = 'center';
+
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
+                    }
+
+                    button.setAttribute('data-pack', pack.id);
+                    button.addEventListener('click', (function (packId, packName, packData) {
+                        return function () {
+                            if (currentPack === packId) return;
+
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
+                            }
+
+                            currentPack = packId;
+                            title.innerHTML = packName;
+                            updateCharacterList(packData);
+                        };
+                    })(pack.id, pack.name, pack));
+
+                    buttonWrapper.appendChild(button);
+                    buttonContainer.appendChild(buttonWrapper);
+                }
+
+                leftButtonPanel.appendChild(buttonContainer);
+
+                function updateCharacterList(packInfo) {
+                    contentContainer.innerHTML = '';
+
+                    if (!packInfo) return;
+
+                    var charList = packInfo.charList || [];
+
+                    if (charList.length === 0) {
+                        
+                        var qunyingPack = lib.characterPack['qunying'];
+                        var wugengPack = lib.characterPack['wugeng'];
+
+                        if (qunyingPack) {
+                            for (var charName in qunyingPack) {
+                                if (charName && lib.character[charName] && !charList.includes(charName)) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+
+                        if (wugengPack) {
+                            for (var charName in wugengPack) {
+                                if (charName && lib.character[charName] && !charList.includes(charName)) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < charList.length; i++) {
+                        var charName = charList[i];
+                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                        var charIntro = createCharacterIntro(charName, introClass);
+
+                        if (charIntro) {
+                            contentContainer.appendChild(charIntro);
+                        }
+                    }
+
+                    var clearDiv = ui.create.div();
+                    clearDiv.style.clear = 'both';
+                    clearDiv.style.height = '0';
+                    clearDiv.style.overflow = 'hidden';
+                    contentContainer.appendChild(clearDiv);
+
+                    lib.setScroll(contentContainer);
+                }
+
+                if (characterPacks.length > 0) {
+                    updateCharacterList(characterPacks[0]);
+                }
+
+                characterPage.body.appendChild(mainContainer);
+                mainContainer.appendChild(rightPanel);
+                characterPage.body.appendChild(leftButtonPanel);
+
                 characterPage.show();
                 return characterPage;
             };
@@ -577,6 +800,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
@@ -591,26 +815,26 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.paBody.appendChild(this.body);
                     }
                 }
+
                 Page.prototype = {
                     show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-                        // 设置样式 - 调整为图鉴样式
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
                         this.body.style.top = '50%';
                         this.body.style.left = '50%';
                         this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a'; // 接近黑色的背景
+                        this.body.style.backgroundColor = '#1a1a1a';
                         this.body.style.padding = '0';
                         this.body.style.border = '2px solid #ffd700';
                         this.body.style.borderRadius = '10px';
                         this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%'; // 宽度设为100%
-                        this.body.style.height = '75%'; // 高度设为75%
+                        this.body.style.width = '100%';
+                        this.body.style.height = '75%';
                         this.body.style.overflow = 'hidden';
                         this.body.style.textAlign = 'center';
                         return this;
@@ -620,106 +844,142 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return this;
                     }
                 };
-                // 收集所有群英会角色
+
                 var characters = [];
-                // 从各个势力包中收集角色
-                var packs = [Aqunyin, Bwugeng];
-                for (var p = 0; p < packs.length; p++) {
-                    var pack = packs[p];
-                    if (pack && pack.character) {
-                        for (var charId in pack.character) {
-                            if (pack.character.hasOwnProperty(charId)) {
+
+                var qunyingSort = lib.characterSort && lib.characterSort.qunying;
+                if (qunyingSort) {
+                    for (var categoryId in qunyingSort) {
+                        if (qunyingSort.hasOwnProperty(categoryId)) {
+                            var categoryChars = qunyingSort[categoryId];
+                            if (Array.isArray(categoryChars)) {
+                                for (var i = 0; i < categoryChars.length; i++) {
+                                    var charId = categoryChars[i];
+                                    if (lib.character[charId] && !characters.includes(charId)) {
+                                        characters.push(charId);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var wugengSort = lib.characterSort && lib.characterSort.wugeng;
+                if (wugengSort) {
+                    for (var categoryId in wugengSort) {
+                        if (wugengSort.hasOwnProperty(categoryId)) {
+                            var categoryChars = wugengSort[categoryId];
+                            if (Array.isArray(categoryChars)) {
+                                for (var i = 0; i < categoryChars.length; i++) {
+                                    var charId = categoryChars[i];
+                                    if (lib.character[charId] && !characters.includes(charId)) {
+                                        characters.push(charId);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (characters.length === 0) {
+                    var qunyingPack = lib.characterPack['qunying'];
+                    if (qunyingPack) {
+                        for (var charId in qunyingPack) {
+                            if (qunyingPack.hasOwnProperty(charId) && lib.character[charId] && !characters.includes(charId)) {
+                                characters.push(charId);
+                            }
+                        }
+                    }
+
+                    var wugengPack = lib.characterPack['wugeng'];
+                    if (wugengPack) {
+                        for (var charId in wugengPack) {
+                            if (wugengPack.hasOwnProperty(charId) && lib.character[charId] && !characters.includes(charId)) {
                                 characters.push(charId);
                             }
                         }
                     }
                 }
-                /*
-                for (var i in lib.characterPack['qunying']) {
-                    characters.push(i);
-                }                
-                for (var i in lib.characterPack['wugeng']) {
-                    characters.push(i);
-                }
-                */
+
                 if (characters.length == 0) {
                     alert('未找到角色数据');
                     return;
                 }
-                // 创建图鉴页面
+
                 var galleryPage = new Page();
                 galleryPage.body = ui.create.div('.qyh-gallery-content');
-                // 创建标题
-                var title = ui.create.div('.qyh-gallery-title', '群英会');
-                // 创建关闭按钮
+
+                var title = ui.create.div('.qyh-gallery-title', '群英会&武庚纪');
+
                 var closeButton = ui.create.div('.qyh-gallery-close-btn', '×');
-                // 创建关闭函数
+
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
                     setTimeout(function () {
-                        game.playSu('qyh_close');
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
                 }
+
                 closeButton.addEventListener('click', closeGallery);
-                // 创建画廊容器 - 优化间距，使图片更大
+
                 var galleryContainer = ui.create.div('');
                 galleryContainer.style.cssText = `
-                    display: flex;
-                    align-items: center;
-                    height: calc(100% - 40px); /* 减少标题区域的高度 */
-                    position: relative;
-                    overflow: hidden;
-                    padding: 10px 30px; /* 上下边距相等，使图片上下对称 */
-                    box-sizing: border-box;
-                    margin-top: 10px; /* 减少上边距，使图片更大 */
-                `;
-                // 创建滑动容器
+        display: flex;
+        align-items: center;
+        height: calc(100% - 40px);
+        position: relative;
+        overflow: hidden;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    `;
+
                 var slider = ui.create.div('');
                 slider.style.cssText = `
-                    display: flex;
-                    transition: transform 0.15s ease;
-                    height: 100%;
-                    align-items: center;
-                    gap: 50px;
-                    cursor: grab;
-                `;
-                // 计算卡片尺寸 - 优化尺寸计算，使图片更大
-                var containerWidth = window.innerWidth - 50; // 减去左右各50px间距
-                var containerHeight = window.innerHeight * 0.75 - 40; // 减去上下各30px间距和标题区域
-                var cardHeight = containerHeight * 1.5; // 直接使用容器高度的1.5倍，使图片最大化
-                var cardWidth = cardHeight * (3 / 4); // 3:4比例，宽度是高度的3/4
-                // 计算最大可滑动距离 - 确保最后一张图片右端离背景右边缘5px
-                var totalWidth = (cardWidth + 50) * characters.length - 50; // 所有卡片和间隙的总宽度
-                var containerVisibleWidth = containerWidth - 100; // 容器可见宽度（减去左右各50px）
-                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5); // 确保最后一张图片右端离背景右边缘5px
-                // 创建角色卡片
+        display: flex;
+        transition: transform 0.15s ease;
+        height: 100%;
+        align-items: center;
+        gap: 50px;
+        cursor: grab;
+    `;
+
+                var containerWidth = window.innerWidth - 50;
+                var containerHeight = window.innerHeight * 0.75 - 40;
+                var cardHeight = containerHeight * 1.5;
+                var cardWidth = cardHeight * (3 / 4);
+
+                var totalWidth = (cardWidth + 50) * characters.length - 50;
+                var containerVisibleWidth = containerWidth - 100;
+                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5);
+
                 for (var i = 0; i < characters.length; i++) {
                     var charId = characters[i];
                     var charCard = ui.create.div('');
+
                     charCard.style.cssText = `
-                        flex-shrink: 0;
-                        width: ${cardWidth}px;
-                        height: ${cardHeight}px;
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 2px solid rgba(255, 215, 0, 0.5);//描边
-                        border-radius: 8px;
-                        overflow: hidden;
-                        position: relative;
-                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-                        margin: 0 auto; /* 居中 */
-                    `;
-                    // 创建角色图片
+            flex-shrink: 0;
+            width: ${cardWidth}px;
+            height: ${cardHeight}px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        `;
+
                     var charImg = document.createElement('img');
                     charImg.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                    `;
-                    // 设置图片源
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        `;
+
                     var imgSrc = lib.assetURL + 'extension/群英会/' + charId + '.jpg';
                     charImg.src = imgSrc;
                     charImg.onerror = function () {
@@ -733,86 +993,93 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.style.textAlign = 'center';
                         this.innerHTML = '<div>暂无图片</div>';
                     };
-                    // 创建角色名称 - 放在图片上偏下方，距离底部10px        
+
                     var charName = ui.create.div('.qyh-character-name', get.translation(charId) || charId);
                     charCard.appendChild(charImg);
                     charCard.appendChild(charName);
                     slider.appendChild(charCard);
                 }
-                // 当前滑动距离
+
                 var currentSlideDistance = 0;
-                // 更新显示
+
                 function updateDisplay() {
                     slider.style.transform = 'translateX(-' + currentSlideDistance + 'px)';
                 }
-                // 触摸滑动支持
+
                 var startX = 0;
                 var currentX = 0;
                 var isDragging = false;
+
                 slider.addEventListener('touchstart', function (e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                 });
+
                 slider.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 slider.addEventListener('touchend', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 鼠标拖动支持
+
                 slider.addEventListener('mousedown', function (e) {
                     startX = e.clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                     e.preventDefault();
                 });
+
                 document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     currentX = e.clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 document.addEventListener('mouseup', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 组装组件
+
                 galleryContainer.appendChild(slider);
-                // 将标题添加到galleryPage.body，使其在图鉴背景内
+
                 galleryPage.body.appendChild(title);
                 galleryPage.body.appendChild(closeButton);
                 galleryPage.body.appendChild(galleryContainer);
-                // 显示页面
+
                 lib.setScroll(galleryPage.body);
                 galleryPage.show();
-                // 初始更新
+
                 setTimeout(function () {
                     updateDisplay();
                 }, 100);
+
                 return galleryPage;
             };
-
             // ---------------------------------------Audio------------------------------------------//
             game.playSu = function (fn, dir, sex) {
                 if (lib.config.background_speak) {
@@ -3279,31 +3546,20 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 animationColor: "water",
                                 filter: function (event, player) {
                                     return game.hasPlayer(function (current) {
-                                        return current.countCards('hej') > 0;
+                                        return current != player && current.countCards('hej') > 0;
                                     });
                                 },
                                 content: function () {
                                     "step 0"
-                                    var chat = ['人宗入世，为的是泽济苍生', '万物回春'].randomGet();
-                                    player.say(chat);
                                     event.num = 0;
                                     event.targets = game.filterPlayer(function (current) {
                                         return current != player && current.countCards('hej') > 0;
                                     });
                                     //event.targets.remove(player);
                                     //event.targets.sort(lib.sort.seat);
+                                    player.line(event.targets, "green");
+                                    player.gainMultiple(event.targets, "hej");
                                     "step 1"
-                                    if (event.num < event.targets.length) {
-                                        player.line(event.targets[event.num], 'fire');
-                                        player.gainPlayerCard(event.targets[event.num], 'hej', true);
-                                        event.num++;
-                                        event.redo();
-                                    }
-                                    else {
-                                        event.num = 0;
-                                        event.goto(2);
-                                    }
-                                    "step 2"
                                     if (event.num < event.targets.length) {
                                         player.chooseCard('选择一张手牌交给' + get.translation(event.targets[event.num]), 'h', 1, true).ai = function (card) {
                                             if (get.attitude(player, event.targets[event.num]) > 0) return get.value(card);
@@ -3312,12 +3568,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     } else {
                                         event.finish();
                                     }
-                                    "step 3"
+                                    "step 2"
                                     if (result.bool) {
                                         player.$give(result.cards, event.targets[event.num]);
                                         event.targets[event.num].gain(result.cards, player);
                                         event.num++;
-                                        event.goto(2);
+                                        event.goto(1);
                                     }
                                     else {
                                         event.finish();
@@ -3695,7 +3951,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 number: null,
                                             },
                                             precontent: function () {
-                                            //async precontent(event, trigger, player) {
+                                                //async precontent(event, trigger, player) {
                                                 player.logSkill("qunying_zhengyi");
                                                 const [card] = event.result.cards;
                                                 event.result.card.suit = get.suit(card);
@@ -6574,7 +6830,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "clear": true,
                 "onclick": function () {
                     game.playSu('qyh_open');
-                    game.qyhCharacter();
+                    setTimeout(function () {
+                        game.qyhCharacter();
+                    }, 100);
                 },
             },
             "openqyh_tujian": {
@@ -6619,7 +6877,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.7",
+            version: "2.8",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

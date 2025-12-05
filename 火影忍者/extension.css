@@ -394,3 +394,455 @@
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
+
+
+
+
+
+#hyrz_page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    background-color: rgba(20,20,20,0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2025;
+}
+
+#hyrz_leftButtonPanel {
+    position: fixed !important;
+    left: 8% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 150px !important;
+    height: 90% !important;
+    background-color: rgba(30, 30, 30, 0.95) !important;
+    /*border: 2px solid #555 !important;*/
+    border: none !important; /* 去掉边框 */
+    border-radius: 8px 0 0 8px !important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 18px 12px !important;
+    box-sizing: border-box !important;
+    z-index: 2025 !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 3px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+#hyrz_buttonContainer {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.hyrz_buttonWrapper {
+    width: 100% !important;
+    height: 50px !important;
+    display: block !important;
+    position: relative !important;
+}
+
+.hyrz_packButton {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    border: 2px solid #666 !important;
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #ddd !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    transition: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1px !important;
+}
+
+.hyrz_packButton.active {
+    background-color: rgba(144, 238, 144, 0.95) !important;
+    color: #ffd700 !important;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+.hyrz_packButton:not(.active):hover {
+    background-color: rgba(70, 70, 70, 0.95) !important;
+    color: #fff !important;
+    border-color: #888 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+#hyrz_mainContainer {
+    position: fixed !important;
+    top: 50% !important;
+    left: calc(8% + 150px) !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% - 150px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    /*border: 2px solid #444 !important;*/
+    border: none !important; /* 去掉边框 */
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
+    z-index: 2025 !important;
+    overflow: hidden !important;
+}
+
+#hyrz_rightPanel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#hyrz_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    z-index: 202511 !important;
+}
+
+#hyrz_closeButton {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
+    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 202511 !important;
+}
+
+#hyrz_closeButton:hover {
+    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
+}
+
+#hyrz_contentContainer {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 4px !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}
+
+.hyrz_intro_left {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    left: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.hyrz_intro_right {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    right: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.hyrz_intro_header {
+    position: absolute !important;
+    width: 125px !important;
+    height: 170px !important;
+    left: 20px !important;
+    top: 10px !important;
+    border-radius: 2px !important;
+    box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85) !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.hyrz_intro_infos {
+    position: absolute !important;
+    height: 20px !important;
+    left: 155px !important;
+    top: 15px !important;
+    line-height: 20px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 14px !important;
+    color: #eee !important;
+}
+
+.hyrz_intro_skills {
+    position: absolute !important;
+    width: calc(100% - 175px) !important;
+    height: calc(100% - 50px) !important;
+    right: 20px !important;
+    bottom: 5px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 12px !important;
+    overflow: auto !important;
+    color: #ccc !important;
+    line-height: 1.4 !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar-track {
+    background: rgba(30,30,30,0.5) !important;
+    border-radius: 3px !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 80, 80, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+/* 乱斗模式下的峥嵘岁月武将浏览页面样式 */
+#hyrz_brawl_page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    background-color: rgba(20,20,20,0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2025;
+}
+
+#hyrz_brawl_leftButtonPanel {
+    position: fixed !important;
+    left: 8% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 150px !important;
+    height: 90% !important;
+    background-color: rgba(30, 30, 30, 0.95) !important;
+    /*border: 2px solid #555 !important;*/
+    border: none !important; /* 去掉边框 */
+    border-radius: 8px 0 0 8px !important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 18px 12px !important;
+    box-sizing: border-box !important;
+    z-index: 2025 !important;
+}
+
+#hyrz_brawl_leftButtonPanel::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 3px !important;
+}
+
+#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+#hyrz_brawl_buttonContainer {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.hyrz_brawl_buttonWrapper {
+    width: 100% !important;
+    height: 50px !important;
+    display: block !important;
+    position: relative !important;
+}
+
+.hyrz_brawl_packButton {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    border: 2px solid #666 !important;
+    background-color: rgba(50, 50, 50, 0.9) !important;
+    color: #ddd !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
+}
+
+.hyrz_brawl_packButton.active {
+    background-color: rgba(144, 238, 144, 0.95) !important;
+    color: #ffd700 !important;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+.hyrz_brawl_packButton:not(.active):hover {
+    background-color: rgba(70, 70, 70, 0.95) !important;
+    color: #fff !important;
+    border-color: #888 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+#hyrz_brawl_mainContainer {
+    position: fixed !important;
+    top: 50% !important;
+    left: calc(8% + 150px) !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% - 150px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    /*border: 2px solid #444 !important;*/
+    border: none !important; /* 去掉边框 */
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
+    z-index: 2025 !important;
+    overflow: hidden !important;
+}
+
+#hyrz_brawl_rightPanel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#hyrz_brawl_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    z-index: 202511 !important;
+}
+
+#hyrz_brawl_closeButton {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
+    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 202511 !important;
+}
+
+#hyrz_brawl_closeButton:hover {
+    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
+}
+
+#hyrz_brawl_contentContainer {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+}
+
+#hyrz_brawl_contentContainer::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#hyrz_brawl_contentContainer::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 4px !important;
+}
+
+#hyrz_brawl_contentContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}

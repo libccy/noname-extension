@@ -955,525 +955,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             }
             // ---------------------------------------brawl------------------------------------------//
-            var Mhuoyingrenzhes = {
-                character: {
-                    "huoying_zhujian": ["male", "hyrz_huo", 3, ["huoying_mudun", "huoying_qianshou", "huoying_xianti"], []],
-                    "huoying_gangshou": ["female", "hyrz_huo", 4, ["huoying_guaili", "huoying_baihao"], []],
-                    "huoying_kai": ["male", "hyrz_huo", 5, ["huoying_bamen", "huoying_resizhan"], []],
-                    "huoying_zhilaiye": ["male", "hyrz_huo", 4, ["huoying_citan", "huoying_renfa", "huoying_xianren"], []],
-                    "huoying_zhishui": ["male", "hyrz_huo", 4, ["huoying_shunsheng", "huoying_reshouhu"], ["forbidai"]],
-                    "huoying_ningchi": ["male", "hyrz_huo", 3, ["huoying_xinbaiyan", "huoying_guazhang", "huoying_huitian"], []],
-                    "huoying_kakasi": ["male", "hyrz_huo", 3, ["huoying_leique", "huoying_fuzhi", "huoying_kkxkaiyan"], []],
-                    "huoying_chutian": ["female", "hyrz_huo", 3, ["huoying_baiyan", "huoying_rouquan"], []],
-                    "huoying_mingren": ["male", "hyrz_huo", 3, ["huoying_fenshen", "huoying_xianshu"], []],
-                    "huoying_shuimen": ["male", "hyrz_huo", 3, ["huoying_luoxuan", "huoying_shanguang", "huoying_fengyin"], []],
-                    "huoying_duan": ["male", "hyrz_huo", 3, ["huoying_linghua", "huoying_aiyuan"], ["forbidai"]],
-                    "huoying_liluoke": ["male", "hyrz_huo", 3, ["huoying_lianhua", "huoying_xuanfeng"], []],
-                    "huoying_luwan": ["male", "hyrz_huo", 3, ["huoying_zhimou", "huoying_yingfu"], []],
-                    "huoying_xiaoying": ["female", "hyrz_huo", 3, ["huoying_baoli", "huoying_yiliao"], []],
-                    "huoying_dingchi": ["male", "hyrz_huo", 3, ["huoying_beihua", "huoying_huadie"], []],
-                    "huoying_jinye": ["female", "hyrz_huo", 3, ["huoying_zhuanxin", "huoying_reyiliao"], []],
-                    "huoying_tuanzang": ["male", "hyrz_huo", 3, ["huoying_huomeng", "huoying_duoyang", "huoying_kongbo", "huoying_sixiang"], []],
-                    "huoying_yuanfeirizhan": ["male", "hyrz_huo", 3, ["huoying_huizhan", "huoying_yuanmo", "huoying_xfengyin"], []],
-                    "huoying_dahe": ["male", "hyrz_huo", 3, ["huoying_xmudun", "huoying_duizhang", "huoying_daiban"], []],
-                    "huoying_asima": ["male", "hyrz_huo", 4, ["huoying_fengdun", "huoying_shouyu", "huoying_jinshao"], []],
-                    "huoying_feijian": ["male", "hyrz_huo", 3, ["huoying_jinshu", "huoying_baofu", "huoying_shuidun"], []],
-                    "huoying_zuojin": ["male", "hyrz_huo", 3, ["huoying_weishou", "huoying_wodi"], []],
-                    "huoying_tiantian": ["female", "hyrz_huo", 3, ["huoying_jiju", "huoying_anqi"], []],
-                    "huoying_quanzhongya": ["male", "hyrz_huo", 3, ["huoying_tongya", "huoying_nishou"], []],
-                    "huoying_chiwan": ["male", "hyrz_huo", 4, ["huoying_renquan"], ["unseen"]],
-                    "huoying_zhinai": ["male", "hyrz_huo", 4, ["huoying_chongyu", "huoying_xishi"], []],
-                    "huoying_jiuxinnai": ["female", "hyrz_huo", 4, ["huoying_fenglian", "huoying_hongjiao"], []],
-                    "huoying_yeyuanlin": ["female", "hyrz_huo", 3, ["huoying_shangliang", "huoying_linyiliao", "huoying_yiyan"], []],
-
-                },
-                skill: {},
-                translate: {
-                    "hyrz_huo": "火",
-                    "huoying_muye": "木叶村",
-
-                    "huoying_jiuxinnai": "玖辛奈",
-                    "huoying_yeyuanlin": "野原琳",
-                    "huoying_gangshou": "千手纲手",
-                    "huoying_zhilaiye": "自来也",
-                    "huoying_zhishui": "止水",
-                    "huoying_ningchi": "日向宁次",
-                    "huoying_luwan": "奈良鹿丸",
-                    "huoying_zhinai": "油女志乃",
-                    "huoying_quanzhongya": "犬冢牙",
-                    "huoying_tiantian": "天天",
-                    "huoying_zuojin": "佐井",
-                    "huoying_zhujian": "千手柱间",
-                    "huoying_kai": "迈特凯",
-                    "huoying_kakasi": "旗木卡卡西",
-                    "huoying_shuimen": "波风水门",
-                    "huoying_chutian": "日向雏田",
-                    "huoying_mingren": "漩涡鸣人",
-                    "huoying_duan": "加藤断",
-                    "huoying_liluoke": "李洛克",
-                    "huoying_xiaoying": "春野樱",
-                    "huoying_feijian": "千手扉间",
-                    "huoying_dingchi": "秋道丁次",
-                    "huoying_jinye": "山中井野",
-                    "huoying_tuanzang": "志村团藏",
-                    "huoying_yuanfeirizhan": "猿飞日斩",
-                    "huoying_dahe": "大和",
-                    "huoying_asima": "阿斯玛",
-                    "huoying_chiwan": "赤丸",
-
-                    "huoying_yiyan": "移眼",
-                    "huoying_yiyan_info": "<span class=greentext>觉醒技</span> 当一名其他角色阵亡时，你可以选择另一名其他角色（A），然后选择该阵亡角色的一项技能令其（A）获得，若该阵亡角色为你，则令其（A）随机获得〖神威〗",
-                    "huoying_shangliang": "善良",
-                    "huoying_shangliang_info": "当一名其他角色（A）对另一名其他角色使用【杀】时，你可以将其（A）装备区的一张牌移到你的装备区（可替换），然后将此【杀】的目标改为你",
-                    "huoying_linyiliao": "医疗",
-                    "huoying_linyiliao_info": "每回合限一次，当一名角色进入濒死状态时，你可以令其翻面并回复体力至1，然后你与其各摸一张牌",
-                    "huoying_chongyu": "虫玉",
-                    "huoying_chongyu_info": "当其他角色的黑桃牌因弃牌进入弃牌堆时，若你武将牌上的“虫”数量不大于你的体力值，你可将其置于你的武将牌上，称为“虫”",
-                    "huoying_xishi": "吸食",
-                    "huoying_xishi_info": "每回合限一次，当一名其他角色回复体力时，你可以获得一张“虫”牌，改为你回复一点体力，若你未受伤，则改为你摸一张牌",
-                    "huoying_renquan": "忍犬",
-                    "huoying_renquan_info": "</font><font color=#f00>锁定技</font> 你的锦囊牌均视为【决斗】",
-                    "huoying_nishou": "拟兽",
-                    "huoying_nishou_info": "<span class=yellowtext>限定技</span> 当你受到伤害后，若你的体力值不大于2，你可以选择“召唤”随从忍兽“赤丸”（起始5体力上限3体力，起始手牌为4）替你作战，直到其死亡，才会切换你回到战场",
-                    "huoying_tongya": "通牙",
-                    "huoying_tongya_info": "出牌阶段限一次，若你有牌，你可以选择一名有牌的其他角色并弃置任意张牌，然后该角色须弃置等量张牌（不足则全弃且你补摸两者差值张牌），若如此做，视为你对其使用一张【决斗】",
-                    "huoying_jiju": "集具",
-                    "huoying_jiju_info": "当其他角色使用武器牌或攻击马时，你可令视为你使用之",
-                    "huoying_anqi": "暗器",
-                    "huoying_anqi_info": "当你失去一张装备区的牌时，你可视为对任意一名其他角色使用一张无距离【杀】，然后你摸一张牌",
-                    "huoying_wodi": "卧底",
-                    "huoying_wodi_info": "结束阶段，若你的装备区有牌，你可令一名其他角色与你各摸一张牌，然后你回复一点体力，若如此做，你须将装备区的牌收进手牌区",
-                    "huoying_weishou": "伪兽",
-                    "huoying_weishou_info": "当你受到伤害后，你可以选择一名其他角色，令其直到下个出牌阶段开始，不能使用或打出牌（<font color=#F0F>封印术•虎视眈弹</font>）然后你视为对其使用一张【杀】，结算后其随机使用一张装备牌",
-                    "huoying_qianshou": "千手",
-                    "huoying_qianshou_info": "<font color=#F0F>千手神通</font> 当一名角色使用的锦囊牌指定了至少两名角色为目标时，你可以令任意名目标角色摸一张牌",
-                    "huoying_xianti": "仙体",
-                    "huoying_xianti_info": "<font color=#f00>锁定技</font> 结束阶段，若你已受伤，你回复一点体力，否则你摸一张牌",
-                    "huoying_xinbaiyan": "白眼",
-                    "huoying_xinbaiyan_info": "出牌阶段限一次，你可以观看一名角色的手牌，然后你可以获得其中一张黑色手牌",
-                    "huoying_huitian": "回天",
-                    "huoying_huitian_info": "每当你距离1以内的角色成为【杀】或【决斗】的目标后，你可以摸一张牌。",
-                    "huoying_guazhang": "卦掌",
-                    "huoying_guazhang_info": "<font color=#F0F>八卦掌</font> <font color=#f00>锁定技</font> 你的回合内，【闪】视为【杀】，回合外，【杀】视为闪",
-                    "huoying_bamen": "八门",
-                    "huoying_bamen_info": "<font color=#F0F>八门遁甲</font> <font color=#f00>锁定技</font> 出牌阶段开始时，若你的体力值为4或更少，你视为拥有技能“马术”（朝孔雀）；若你的体力值为3或更少，你视为拥有技能“咆哮”（昼虎）；若你的体力值为2或更少；你视为拥有技能“伏骑”（夕象）；若你的体力值为1，你视为拥有技能“暗箭”（夜凯）",
-                    "huoying_resizhan": "死战",
-                    "huoying_resizhan_info": "<font color=#F0F>八门遁甲</font> <span class=yellowtext>限定技</span> 出牌阶段开始前，你可以摸8张牌，然后你的体力上限调整至1",
-                    "huoying_fuzhi": "复制",
-                    "huoying_fuzhi_info": "游戏开始所有角色摸牌后或你进入游戏时、你的回合开始前和结束阶段，你可以选择一名存活角色，获得其所有的技能，直到再次发动〖复制〗技能为止",
-                    "huoying_leique": "雷切",
-                    "huoying_leique_info": "你可将普通基本牌当无视防具的雷【杀】使用或打出",
-                    "huoying_kkxkaiyan": "开眼",
-                    "huoying_kkxkaiyan_info": "<span class=greentext>觉醒技</span> 当你杀死一名角色时，你获得技能〖神威〗",
-                    "huoying_baiyan": "白眼",
-                    "huoying_baiyan_info": "出牌阶段限一次，你可以观看一名角色的手牌，然后你可以获得其中一张红色手牌",
-                    "huoying_zhangshu": "掌术",
-                    "huoying_zhangshu_info": "你的回合外，每当你使用、打出、失去或被弃置一张牌时，你立即摸一张牌。",
-                    "huoying_rouquan": "柔拳",
-                    "huoying_rouquan_info": "回合外每当你因使用、打出或被弃置等方式失去一张手牌时，你立即摸一张牌",
-                    "huoying_kkxshenwei": "神威",
-                    "huoying_kkxshenwei_info": "准备阶段，你可以移动场上的一张牌",
-                    "huoying_xianshu": "仙术",
-                    "huoying_xianshu_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，你回复一点体力并摸一张牌",
-                    "huoying_fenshen": "分身",
-                    "huoying_fenshen_info": "<font color=#F0F>影分身之术</font> 出牌阶段限一次，你可以用一张手牌与一至X名角色同时拼点，然后依次结算拼点结果，若你赢，你视为对其使用一张【杀】；若你没赢，你获得一个“分身”标记。你的进攻距离+X（X为你的“分身”标记数，若你有：①至少6个分身，你获得技能〖螺旋〗；②至少9个分身，你立即死亡）",
-                    "huoying_shanguang": "闪光",
-                    "huoying_shanguang_info": "<font color=#F0F>飞雷神</font> <font color=#f00>锁定技</font> 你的防御距离始终+X（X为你已损失的体力值），你的进攻距离无限",
-                    "huoying_luoxuan": "螺旋",
-                    "huoying_luoxuan_info": "<font color=#F0F>螺旋丸</font> 出牌阶级限一次，你可以视为使用一张基本牌或普通锦囊牌",
-                    "huoying_mrluoxuan": "螺旋",
-                    "huoying_mrluoxuan_info": "<font color=#F0F>螺旋丸</font> 出牌阶级限一次，你可以视为使用一张基本牌或普通锦囊牌",
-                    "huoying_fengyin": "封印",
-                    "huoying_fengyin_info": "<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 出牌阶段，你可令任意一名角色永久失去当前的所有技能（若其体力上限大于4则调整为4），然后你进入濒死状态",
-                    "huoying_guaili": "怪力",
-                    "huoying_guaili_info": "每两轮限一次，你可以失去任意点体力并摸X张牌，然后直到回合结束，你使用的【杀】造成的伤害+1，你的进攻距离+X，且你可以额外使用X张【杀】（X为你以此法失去的体力值），若你在发动此技能后，每杀死一名其他角色，你增加一点体力上限",
-                    "huoying_mudun": "木遁",
-                    "huoying_mudun_info": "每回合限X次（X为你的体力值），当你需要使用或打出牌时，你可以观看牌堆与弃牌堆随机五张牌，若其中有你可以使用或打出的牌，则你可以使用或打出之",
-                    "huoying_baihao": "百豪",
-                    "huoying_baihao_info": "<font color=#F0F>阴封印•百豪之术</font> 出牌阶段结束或濒死状态时，若你已受伤，你可选择回复体力至体力上限，然后失去一点体力上限（创造再生•百豪之术是能提高自愈能力但会减少寿命的禁术）",
-                    "huoying_xianren": "仙人",
-                    "huoying_xianren_info": "<font color=#F0F>蛤蟆仙人</font> <span class=greentext>觉醒技</span> 准备阶段开始时，若你的“忍”的数量不小于3，你减1点体力上限，选择一项：1、回复1点体力；2、摸两张牌。然后你获得技能“仙术”",
-                    "huoying_renfa": "忍法",
-                    "huoying_renfa_info": "你每受到一点伤害时，你可以摸一张牌并将一张手牌移出游戏，称为\"忍\"。然后为\"忍\"记录一个基本牌或锦囊牌名称（须与其他\"忍\"记录的名称均不同）。出牌阶段，你可以用任意数量的手牌与等量的“忍”交换，每阶段限一次。你的回合外，当有其他角色使用与你记录的\"忍\"牌名相同的牌时，你可以令此牌无效，然后移去该\"忍\"，你的手牌上限+X（X为“忍”的数量）",
-                    "huoying_citan": "刺探",
-                    "huoying_citan_info": "出牌阶段开始时，你可以潜入偷窥其他角色的手牌",
-                    "huoying_rexianshu": "仙术",
-                    "huoying_rexianshu_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，若你已受伤，你回复一点体力，否则你摸一张牌",
-                    "huoying_shunsheng": "瞬身",
-                    "huoying_shunsheng_info": "<font color=#F0F>瞬身止水</font><font color=#f00>锁定技</font> 回合结束后， 你和一名随机角色交换位置",
-                    "huoying_reshouhu": "守护",
-                    "huoying_reshouhu_info": "<font color=#F0F>别天神</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以把所有手牌交给一名存活的非主公角色，若为身份局，其身份与你一致（你不为主公），并且其之后的一切行动受你控制，然后你（止水）自杀身亡",
-                    "huoying_linghua": "灵化",
-                    "huoying_linghua_info": "<font color=#F0F>灵化之术</font> 你的防御距离+X（X为你的体力值）。出牌阶段，你可弃置一张基本牌，选择一名存活角色，令其与你交换角色（仅游戏玩家交换，直到该角色的回合结束阶段你才能“回魂”）。然后你失去此技能（直到你“回魂”重新获得〖灵化〗），并对目标造成一点伤害，结算完后当前回合立即结束",
-                    "huoying_aiyuan": "爱愿",
-                    "huoying_aiyuan_info": "当一名其他角色失去体力、失去体力上限、受到伤害后，你可令你与其各摸一张牌",
-                    "huoying_huihun": "回魂",
-                    "huoying_huihun_info": "<font color=#f00>锁定技</font> 回合结束阶段，你与【加藤断】交换角色魂魄（其须存活），然后你失去此技能，其获得技能〖灵化〗",
-                    "huoying_lianhua": "莲华",
-                    "huoying_lianhua_info": "<font color=#f00>锁定技</font> 摸牌阶段摸牌时，你摸X张牌（X为游戏轮数，且 1 < X < 7）",
-                    "huoying_xuanfeng": "旋风",
-                    "huoying_xuanfeng_info": "<font color=#F0F>木叶旋风</font> <font color=#f00>锁定技</font> 你使用【杀】指定的目标数、攻击范围均+X（X为游戏轮数且至多为6）",
-                    "huoying_yingfu": "影缚",
-                    "huoying_yingfu_info": "出牌阶段开始时，你可选择一种牌的类型，令所有已横置武将牌的其他角色不能使用或打出该类型的牌",
-                    "huoying_zhimou": "智谋",
-                    "huoying_zhimou_info": "当其他角色的出牌阶段开始时，若其有手牌且武将牌未横置，你可以猜测其手牌中的花色数，若猜对，你获得其随机的一张牌，若猜错，其横置武将牌",
-                    "huoying_shuidun": "水遁",
-                    "huoying_shuidun_info": "当一名角色受到火属性伤害时，你可防止此伤害（类似柱间的千手防御技）",
-                    "huoying_yiliao": "医疗",
-                    "huoying_yiliao_info": "当一名角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之",
-                    "huoying_jinshu": "禁术",
-                    "huoying_jinshu_info": "<font color=#F0F>禁术宗师</font> <font color=#f00>锁定技</font> 回合开始阶段，你随机获得技能〖分身〗（鸣人）、〖闪光〗（波风水门）、〖转生〗（药师兜）中的一个，直到下一次回合开始。",
-                    "huoying_baoli": "爆力",
-                    "huoying_baoli_info": "出牌阶段限一次，你可与一名角色拼点，若你赢，你获得以下技能效果：1、直到你的下回合开始，你为伤害来源的【杀】或【决斗】造成的伤害+1；2、你使用【杀】指定一名角色为目标后，你可以弃置该角色一张牌。",
-                    "huoying_baofu": "爆符",
-                    "huoying_baofu_info": "<font color=#F0F>互乘起爆符</font> 出牌阶段限一次，你可以对一名其他角色造成1点火焰伤害。每当一名角色受到火焰伤害后，你可以弃置一张方片花色的牌，然后对该角色或与其距离为1的一名角色造成等量的火焰伤害。（单张起爆符即可无限连续通灵出起爆符集中于一点无限连续爆炸）",
-                    "huoying_huadie": "化蝶",
-                    "huoying_huadie_info": "<font color=#f00>锁定技</font> 若你的手牌数是全场唯一最多的，你使用【杀】造成的伤害+X并且弃牌阶段你的手牌上限-X（X为你本回合发动倍化的次数）",
-                    "huoying_beihua": "倍化",
-                    "huoying_beihua_info": "<font color=#F0F>三色药丸 倍化之术</font> 出牌阶段限3次，你可以失去一点体力，展示牌堆顶的2X张牌（X为你本回合发动倍化的次数），其中每有一张梅花牌，你回复1点体力（梅花引蝶），然后你将这些牌收入手牌",
-                    "huoying_zhuanxin": "转心",
-                    "huoying_zhuanxin_info": "<font color=#F0F>心转心之术</font> 出牌阶段限一次，你可以弃置一张红桃手牌，选择一名存活的其他角色，令其与你交换手牌",
-                    "huoying_reyiliao": "医疗",
-                    "huoying_reyiliao_info": "当一名角色进入濒死状态时，你可以展示该角色的一张牌：若此牌为装备牌，则该角色弃掉这张牌并回复体力至1，若为非装备牌，你获得之",
-                    "huoying_huomeng": "惑梦",
-                    "huoying_huomeng_info": "<font color=#F0F>伊邪那歧</font> 结束阶段，你可以弃置一张装备区的牌，对自己施加终极幻术，然后进入伊邪那歧梦境：直到下回合开始，你防止受到非属性伤害（佐助可破之）",
-                    "huoying_duoyang": "夺眼",
-                    "huoying_duoyang_info": "每当你造成伤害后，你可以选择一项：1、获得受到伤害的角色装备区里的一张牌（你的装备区相应位置不能有此类装备牌）；2、摸一张牌",
-                    "huoying_kongbo": "空波",
-                    "huoying_kongbo_info": "<font color=#F0F>风遁•真空波</font> <font color=#f00>锁定技</font> 若你的装备区有牌，你无视对方的防具",
-                    "huoying_sixiang": "四象",
-                    "huoying_sixiang_info": "<font color=#F0F>四象封印</font> 当你死亡时，若伤害来源与你距离为1，你可令其失去当前的所有技能（若其体力上限大于4则调整为4），直到游戏结束",
-                    "huoying_huizhan": "挥战",
-                    "huoying_huizhan_info": "每两轮的出牌阶段限一次，你可以弃置所有手牌，指定一个目标，从你下家开始场上所有角色依次视为对其使用一张【杀】，直到你或其体力值不大于1为止",
-                    "huoying_xfengyin": "封印",
-                    "huoying_xfengyin_info": "<font color=#F0F>尸鬼封尽</font> <span class=yellowtext>限定技</span> 回合结束阶段你可令任意一名角色永久失去当前的所有技能（若其体力上限大于4则调整为4），然后你进入濒死状态。",
-                    "huoying_yuanmo": "猿魔",
-                    "huoying_yuanmo_info": "<font color=#f00>锁定技</font> 结束阶段，你可以将手牌数补至当前体力的张数",
-                    "huoying_xmudun": "木遁",
-                    "huoying_xmudun_info": "每回合限X次，当你需要使用或打出牌时，你可以观看牌堆或弃牌堆随机的X张牌，若其中有你可以使用或打出的牌，则你可以使用或打出之（X为你的体力值）",
-                    "huoying_daiban": "代班",
-                    "huoying_daiban_info": "<font color=#f00>锁定技</font> 身份模式下，当你存活时，你先获得当前主公的主公技，然后主公的主公技失效",
-                    "huoying_duizhang": "领队",
-                    "huoying_duizhang_info": "<font color=#f00>锁定技</font> 当场上有角色拼点后，你摸一张牌",
-                    "huoying_shouyu": "守玉",
-                    "huoying_shouyu_info": "当其他角色受到伤害时，你可以令此伤害转移给你；当你受到伤害后，你可以摸X张牌(X为你已损失的体力值)",
-                    "huoying_fengdun": "风遁",
-                    "huoying_fengdun_info": "<font color=#f00>锁定技</font> 当你的手牌数大于你的体力值，你使用的【杀】无法闪避",
-                    "huoying_jinshao": "烬烧",
-                    "huoying_jinshao_info": "<font color=#F0F>灰烬烧</font> </font> <span class=yellowtext>限定技</span> 出牌阶段，你可令任意名其他角色依次选择一项：弃置X张牌；或受到一点火焰伤害。(X为你选择的角色数)",
-                    "huoying_fenglian": "封链",
-                    "huoying_fenglian_info": "回合开始阶段，你可选择一至X名角色（X为你的手牌数），令其横置武将牌。然后若其下回合没跳过回合开始阶段，其下个回合的出牌阶段不能使用或打出牌",
-                    "huoying_hongjiao": "红椒",
-                    "huoying_hongjiao_info": "<font color=#F0F>血红辣椒</font> 当你受到伤害时，你可立即令伤害来源受到等量的火焰伤害",
-
-                },
-            };
-            var Xhuoyingrenzhes = {
-                character: {
-                    "huoying_shuiyue": ["male", "hyrz_xiao", 3, ["huoying_xundao", "huoying_daoji", "huoying_yehua"], []],
-                    "huoying_itachi": ["male", "hyrz_xiao", 3, ["huoying_yuedu", "huoying_tianzhao", "huoying_xuzuo"], []],
-                    "huoying_daitu": ["male", "hyrz_xiao", 3, ["huoying_xuhua", "huoying_shenwei", "huoying_xianyan"], []],
-                    "huoying_zhuozhu": ["male", "hyrz_xiao", 3, ["huoying_yandun", "huoying_qianniao", "huoying_rexuzuo"], []],
-                    "huoying_guijiao": ["male", "hyrz_xiao", 3, ["huoying_jiaoji", "huoying_jiaodan", "huoying_shuilao"], []],
-                    "huoying_changmen": ["male", "hyrz_xiao", 3, ["huoying_tianzheng", "huoying_tianyin", "huoying_baoxing", "huoying_lunhui"], []],
-                    "huoying_xiezi": ["male", "hyrz_xiao", 3, ["huoying_baiji", "huoying_shayu", "huoying_kuilei"], []],
-                    "huoying_jiaodu": ["male", "hyrz_xiao", 3, ["huoying_yuanyu", "huoying_zhongquan"], []],
-                    "huoying_jue": ["male", "hyrz_xiao", 3, ["huoying_baozi", "huoying_fuyou", "huoying_yinmou"], []],
-                    "huoying_huiye": ["female", "hyrz_xiao", 3, ["huoying_tianyu", "huoying_huigu", "huoying_juneng"], []],
-                    "huoying_didala": ["male", "hyrz_xiao", 3, ["huoying_baodun", "huoying_zibao", "huoying_feiniao"], []],
-                    "huoying_xiaonan": ["female", "hyrz_xiao", 3, ["huoying_jizhu", "huoying_zhishu"], []],
-                    "huoying_zhongwu": ["male", "hyrz_xiao", 3, ["huoying_xianhua", "huoying_kuangbao"], []],
-                    "huoying_xianglin": ["female", "hyrz_xiao", 3, ["huoying_ganzhi", "huoying_liaoshang"], []],
-                    "huoying_feiduan": ["male", "hyrz_xiao", 3, ["huoying_rebusi", "huoying_zhoushu"], []],
-                    "huoying_ban": ["male", "hyrz_xiao", 2, ["huoying_zhenxing", "huoying_xinxuzuo", "huoying_yiyuan"], []],
-                },
-                skill: {},
-                translate: {
-                    "hyrz_xiao": "晓",
-                    "huoying_xiao": "晓组织",
-
-                    "huoying_ban": "宇智波斑",
-                    "huoying_daitu": "宇智波带土",
-                    "huoying_itachi": "宇智波鼬",
-                    "huoying_feiduan": "飞段",
-                    "huoying_xieshen": "飞段",
-                    "huoying_xiaonan": "小南",
-                    "huoying_jue": "绝",
-                    "huoying_huiye": "大筒木辉夜",
-                    "huoying_didala": "迪达拉",
-                    "huoying_xiezi": "赤砂之蝎",
-                    "huoying_guijiao": "鬼鲛",
-                    "huoying_jiaodu": "角都",
-                    "huoying_shuiyue": "鬼灯水月",
-                    "huoying_xianglin": "香燐",
-                    "huoying_zhuozhu": "宇智波佐助",
-                    "huoying_zhongwu": "重吾",
-
-                    "huoying_kuangbao": "狂暴",
-                    "huoying_kuangbao_info": "<font color=#F0F>空气炮</font> 当一名角色受到火属性或雷属性伤害后，你可令其受到等量的无属性伤害",
-                    "huoying_xianhua": "仙化",
-                    "huoying_xianhua_info": "<font color=#f00>锁定技</font> 其他角色在弃牌阶段若有弃牌，你摸一张牌，否则你回复一点体力",
-                    "huoying_yandun": "炎遁",
-                    "huoying_yandun_info": "出牌阶段限一次，你可与一名角色进行拼点，若你赢，你观看其手牌并对其造成一点火焰伤害，并令其获得“黑炎”标记。若你没赢，你获得一张【杀】，令其失去“黑炎”标记",
-                    "huoying_qianniao": "千鸟",
-                    "huoying_qianniao_info": "</font><font color=#f00>锁定技</font> 你的普通【杀】均视为雷【杀】且你的雷【杀】无距离限制",
-                    "huoying_rexuzuo": "须佐",
-                    "huoying_rexuzuo_info": "<font color=#f00>锁定技</font> 你的手牌上限+1，当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害",
-                    "huoying_changmen": "漩涡长门",
-                    "huoying_lunhui": "轮回",
-                    "huoying_lunhui_info": "<font color=#F0F>轮回天生</font> <span class=yellowtext>限定技</span> 出牌阶段，你可弃置两张【桃】并将你的武将牌翻面，令场上所有已阵亡的角色复活，其体力回复至1，并摸2张的牌",
-                    "huoying_baoxing": "爆星",
-                    "huoying_baoxing_info": "出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能〖轮回〗，你须翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌",
-                    "huoying_tianyin": "天引",
-                    "huoying_tianyin_info": "<font color=#F0F>万象天引</font> <font color=#f00>锁定技</font> 当你的武将牌翻至背面朝上，你的进攻距离无限",
-                    "huoying_tianzheng": "天征",
-                    "huoying_tianzheng_info": "<font color=#F0F>神罗天征</font> 当你受到【杀】造成的伤害时，你可翻面并弃置所有红色手牌令伤害-1；当你使用【杀】造成伤害时，你可翻面并弃置所有黑色手牌令此伤害+1",
-                    "huoying_xundao": "寻刀",
-                    "huoying_xundao_info": "准备阶段，你可以选择一个装备栏名，然后获得所有其他角色该装备栏里的装备牌",
-                    "huoying_yehua": "液化",
-                    "huoying_yehua_info": "</font><font color=#f00>锁定技</font> 你无法闪避雷【杀】；每当你受到非雷属性伤害伤害时，此伤害值-1",
-                    "huoying_daoji": "刀技",
-                    "huoying_daoji_info": "当你成为【杀】的目标时，你可使用一张装备牌，若此装备牌对应的装备栏已有牌，则先回收该装备栏的牌",
-                    "huoying_ganzhi": "感知",
-                    "huoying_ganzhi_info": "结束阶段，每有一名角色手牌中有【桃】或装备牌（<font color=#F0F>感知团藏</font>），你便摸一张牌",
-                    "huoying_liaoshang": "疗伤",
-                    "huoying_liaoshang_info": "当一名角色受到火属性或雷属性伤害后，你可令伤害来源回复等量的体力，若伤害来源未受伤，改为摸等量的牌",
-                    "huoying_yuanyu": "怨虞",
-                    "huoying_yuanyu_info": "<font color=#F0F>地怨虞</font> 你每杀死一名角色时，可随机获得其一项技能，并增加一点体力上限（不得超过5）和回复一点体力。然后你根据该角色的势力获得相应的限定技：<li>魏国：风遁-出牌阶段，你可弃置所有其他角色区域内的一张牌<li>蜀国：火遁-出牌阶段，你可选择至多五名其他角色，对其各造成一点火属性伤害<li>吴国：水遁-当你回复体力时，你可将体力回复至体力上限，并摸一张牌<li>群雄：土遁-当你即将受到任何伤害时，你可防止之，并回复一点体力<li>其它:雷遁-出牌阶段，你可选择一名其他角色，对其造成一点雷属性伤害并令其武将牌背面朝上",
-                    "huoying_zhongquan": "硬拳",
-                    "huoying_zhongquan_info": "<font color=#f00>锁定技</font> 若你的体力不是全场最高（含之一），你无视对方的防具，并且造成的伤害+1",
-                    "huoying_rebusi": "邪徒",
-                    "huoying_rebusi_info": "<font color=#F0F>不死之身</font> <font color=#f00>锁定技</font> 在你死亡前，若你的体力值不大于0，亮出牌堆顶的一张牌并置于你的武将牌上，若此牌的点数与你武将牌上已有的牌点数均不同，则你回复体力至2并摸一张牌，若出现重复点数则你死亡。只要你的武将牌上有牌，你的手牌上限便与这些牌数量相等",
-                    "huoying_zhoushu": "咒术",
-                    "huoying_zhoushu_info": "<font color=#F0F>死司凭血</font> 当你对任意一名其他角色造成伤害后，你可施展咒术诅咒该角色，然后技能〖咒术〗进入冷却状态，直到该被诅咒的角色死亡后方可再次发动。当你受到伤害后，同时该被诅咒的角色视为受到来源为你的等量的伤害，直到其死亡为止",
-                    "huoying_lunmu": "轮墓",
-                    "huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 你每造成1点伤害后，可以立即获得受到伤害的角色的一张牌",
-                    //"huoying_lunmu_info": "<font color=#F0F>轮墓边狱</font> 当你的手牌数少于你的体力值张时，你可以点击“轮墓分身”来摸一张牌",
-                    "huoying_zhenxing": "震星",
-                    "huoying_zhenxing_info": "<font color=#F0F>天碍震星  豪火灭却  龙炎放歌</font> 出牌阶段限一次，你可以将两张【杀】当作一张可附加火属性的【万箭齐发】使用",
-                    "huoying_yiyuan": "遗愿",
-                    "huoying_yiyuan_info": "<font color=#F0F>完全体须佐能乎</font>  <span class=greentext>觉醒技</span> 濒死阶段，你获得技能“轮墓”并摸一张牌，然后将所有手牌交给一名体力上限大于你的其他角色，调整你的体力上限至与该角色相同，回复体力至体力上限，然后获得场上所有其他角色的随机一张牌（回收尾兽）",
-                    "huoying_xinxuzuo": "须佐",
-                    "huoying_xinxuzuo_info": "<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 出牌阶段你使用的【杀】可指定的目标上限+1。当你有手牌时，防止受到属性伤害，无手牌时防止受到非属性伤害",
-                    "huoying_shenwei": "神威",
-                    "huoying_shenwei_info": "每回合限一次，当你需要使用【无懈可击】时，你可以选择翻面，视为使用了一张【无懈可击】",
-                    "huoying_xuhua": "虚化",
-                    "huoying_xuhua_info": "当你即将受到伤害时，若你的武将牌正面朝上，你可翻面，并获得伤害来源随机的一张牌（若有），然后取消此伤害",
-                    "huoying_xianyan": "献眼",
-                    "huoying_xianyan_info": "当你死亡时，你可将所有手牌交给一名其他角色，然后该角色随机获得〖虚化〗或〖神威〗，并回复一点体力",
-                    "huoying_jiaoji": "鲛肌",
-                    "huoying_jiaoji_info": "<font color=#F0F>无尾尾兽</font> <font color=#f00>锁定技</font> 每名角色的回合限一次，当你造成或受到伤害后，你选择回复1点体力或摸一张牌",
-                    "huoying_shuilao": "水牢",
-                    "huoying_shuilao_info": "<font color=#F0F>水牢之术</font> 一名其他角色的回合开始阶段，若你的手牌数大于其手牌数，你可以与该角色拼点，若你赢，该角色本回合使用的牌不能指定除该角色外的角色为目标",
-                    "huoying_jiaodan": "鲛弹",
-                    "huoying_jiaodan_info": "<font color=#F0F>水遁•水鲛弹之术</font> 出牌阶段限一次，你可以弃置X张牌对一名其他角色造成1点伤害(X为该角色的体力值)。若你以此法令该角色进入濒死状态，则濒死状态结算后你摸一张牌",
-                    "huoying_kuilei": "傀儡",
-                    "huoying_kuilei_info": "回合开始和回合结束阶段，你可选择获得一名已阵亡角色的技能，直到再次发动此〖傀儡〗技能为止",
-                    "huoying_baiji": "百机",
-                    "huoying_baiji_info": "<font color=#F0F>赤秘技•百机操演</font> 每当你造成或受到伤害后，你可从牌堆和弃牌堆中选择使用一张装备牌",
-                    "huoying_baozi": "孢子",
-                    "huoying_baozi_info": "<font color=#F0F>孢子之术</font> 每名角色的回合限一次，当你需要使用或打出一张牌时，你可以观看任意一名其他角色的手牌并选择一张使用或打出",
-                    "huoying_fuyou": "蜉蝣",
-                    "huoying_fuyou_info": "<font color=#F0F>蜉蝣之术</font> <span class=greentext>觉醒技</span> 濒死阶段，你选择系统随机展示的五名【火影忍者】角色中的一名变身之，摸两张牌并回复体力至体力上限，若场上没有【大筒木辉夜】，你获得技能〖阴谋〗",
-                    "huoying_yinmou": "阴谋",
-                    "huoying_yinmou_info": "<span class=yellowtext>限定技</span> 出牌阶段，若场上没有【大筒木辉夜】，你可以弃置一张【闪电】，选择一名存活的其他角色，令其变身为【大筒木辉夜】，然后你与其各回复一点体力",
-                    "huoying_tianyu": "天御",
-                    "huoying_tianyu_info": "<font color=#F0F>天之御中</font> 出牌阶段限一次，若存活人数大于2，你可以令所有其他角色与随机角色交换位置",
-                    "huoying_huigu": "灰骨",
-                    "huoying_huigu_info": "<font color=#F0F>共杀灰骨</font> 出牌阶段限一次，你可以令攻击范围内的一名有手牌的其他角色展示一下其手牌，该角色陷入瞳术中：直到回合结束，其不能使用或打出牌。然后你须弃置其一张牌",
-                    "huoying_juneng": "聚能",
-                    "huoying_juneng_info": "（查克拉之祖）<font color=#f00>锁定技</font> 每名角色的回合限一次：当一名角色受到伤害，你摸一张牌；当一名角色回复一点体力，若你已受伤，你回复一点体力",
-                    "huoying_baodun": "爆遁",
-                    "huoying_baodun_info": "出牌阶段限一次，你可以选择一名有手牌的其他角色，然后声名一种花色，并展示该角色随机一张手牌，若两者花色一致，你获得该手牌；若花色不一致，其受到一点火焰伤害，并且你弃置其一张牌",
-                    "huoying_zibao": "自爆",
-                    "huoying_zibao_info": "<span class=yellowtext>限定技</span> 出牌阶段，你可令所有其他角色受到一点火焰伤害，若如此做，与你距离为1的角色额外受到一点火焰伤害，然后你死亡。",
-                    "huoying_feiniao": "飞鸟",
-                    "huoying_feiniao_info": "<font color=#f00>锁定技</font> 你的防御距离+1",
-                    "huoying_lunxue": "轮写",
-                    "huoying_lunxue_info": "不能使用或打出牌",
-                    "huoying_shayu": "砂雨",
-                    "huoying_shayu_info": "<font color=#F0F>砂铁时雨</font> 当你失去一张装备区的牌后，你可以选择一项：1、摸一张牌；2、弃置一名其他角色的一张牌",
-                    "huoying_yuedu": "月读",
-                    "huoying_yuedu_info": "出牌阶段限一次，你可选择一名角色进行拼点，若你赢，则该角色翻面，并且直到回合结束，你与该角色距离为1，其非锁定技失效，不能使用或打出牌",
-                    "huoying_xuzuo": "须佐",
-                    "huoying_xuzuo_info": "<font color=#F0F>须佐能乎</font> <font color=#f00>锁定技</font> 你的防御距离+1，当你有手牌时，防止受到属性伤害，无手牌时，防止受到非属性伤害",
-                    "huoying_tianzhao": "天照",
-                    "huoying_tianzhao_info": "<font color=#f00>锁定技</font> 你的普通【杀】均视为火【杀】，当你造成火属性伤害时，该受伤害的角色获得“黑炎”标记",
-                    "huoying_jizhu": "计诛",
-                    "huoying_jizhu_info": "<font color=#F0F>克制宇智波带土</font> 当你受到伤害后，你可以依次弃置任意角色的共计X张牌。（X为你的装备区的牌数与损失的体力值之和） ",
-                    "huoying_zhishu": "纸术",
-                    "huoying_zhishu_info": "<font color=#F0F>式纸之舞</font> 当一名其他角色翻面或判定牌生效后，你可以选择一项：1、将该角色装备区里的一张牌移动至你装备区里的相应位置（不可替换）；2、摸一张牌",
-
-                },
-            };
-
-            var Zhuoyingrenzhes = {
-                character: {
-                    "huoying_dayemu": ["male", "hyrz_ren", 3, ["huoying_chendun", "huoying_tiancheng", "huoying_feixian"], []],
-                    "huoying_woailuo": ["male", "hyrz_ren", 3, ["huoying_shazang", "huoying_juefang", "huoying_jiamei"], []],
-                    "huoying_wuren": ["male", "hyrz_ren", 3, ["huoying_rechendun", "huoying_xfenlie", "huoying_wuchen"], []],
-                    "huoying_sanlei": ["male", "hyrz_ren", 1, ["huoying_tuci", "huoying_leidun"], []],
-                    "huoying_zaibuzhan": ["male", "hyrz_ren", 3, ["huoying_ansha", "huoying_reshuilao", "huoying_wuyin"], []],
-                    "huoying_kanjiulang": ["male", "hyrz_ren", 3, ["huoying_newkuilei", "huoying_chengyi"], []],
-                    "huoying_daluyi": ["male", "hyrz_ren", 4, ["huoying_landun", "huoying_bizhu"], []],
-                    "huoying_huanyue": ["male", "hyrz_ren", 3, ["huoying_chunshu", "huoying_zhengbao"], []],
-                    "huoying_junmalv": ["male", "hyrz_ren", 3, ["huoying_guwu", "huoying_zhouyin"], []],
-                    "huoying_qilabi": ["male", "hyrz_ren", 4, ["huoying_shuochang", "huoying_leidao"], []],
-                    "huoying_leiying": ["male", "hyrz_ren", 4, ["huoying_duanbi", "huoying_leisu", "huoying_zhongbao"], []],
-                    "huoying_zhaomeimeng": ["female", "hyrz_ren", 3, ["huoying_feidun", "huoying_rongdun"], []],
-                    "huoying_shouju": ["female", "hyrz_ren", 3, ["huoying_lianyou", "huoying_fengwang"], []],
-                    "huoying_bai": ["male", "hyrz_ren", 3, ["huoying_bingdun", "huoying_chengshang"], []],
-                    "huoying_guitongwan": ["male", "hyrz_ren", 3, ["huoying_zhuzheng", "huoying_qilie", "huoying_jinkui"], []],
-                    "huoying_chilangfang": ["male", "hyrz_ren", 3, ["huoying_zhouli", "huoying_tulao"], []],
-                    "huoying_zuojinyoujin": ["male", "hyrz_ren", 3, ["huoying_jihuai", "huoying_luosheng"], []],
-                    "huoying_tayuya": ["female", "hyrz_ren", 3, ["huoying_huanyin", "huoying_haosheng"], []],
-                    "huoying_dou": ["male", "hyrz_ren", 3, ["huoying_yizhi", "huoying_xinyiliao", "huoying_zhuansheng"], []],
-                    "huoying_dashewan": ["male", "hyrz_ren", 3, ["huoying_yongsheng", "huoying_zhaohuan"], []],
-                    "huoying_liudaoxianren": ["male", ["hyrz_huo", "hyrz_ren", "hyrz_xiao"].randomGet(), Infinity, ["huoying_renzong", "huoying_liudao", "huoying_jitong"], []],
-                },
-                skill: {},
-                translate: {
-
-                    "hyrz_ren": "忍",
-                    "huoying_zhongren": "众忍村",
-
-                    "huoying_liudaoxianren": "六道仙人",
-                    "huoying_dayemu": "大野木",
-                    "huoying_dou": "药师兜",
-                    "huoying_woailuo": "我爱罗",
-                    "huoying_wuren": "无",
-                    "huoying_bai": "白",
-                    "huoying_sanlei": "三代雷影",
-                    "huoying_zaibuzhan": "桃地再不斩",
-                    "huoying_kanjiulang": "勘九郞",
-                    "huoying_daluyi": "达鲁伊",
-                    "huoying_huanyue": "鬼灯幻月",
-                    "huoying_junmalv": "君麻吕",
-                    "huoying_qilabi": "奇拉比",
-                    "huoying_leiying": "夜月艾",
-                    "huoying_zhaomeimeng": "照美冥",
-                    "huoying_shouju": "手鞠",
-                    "huoying_dashewan": "大蛇丸",
-                    "huoying_tayuya": "多由也",
-                    "huoying_guitongwan": "鬼童丸",
-                    "huoying_chilangfang": "次郞访",
-                    "huoying_zuojinyoujin": "左近右近",
-
-                    "huoying_leisu": "雷速",
-                    "huoying_leisu_info": "<font color=#f00>锁定技</font> 你使用的任何卡牌无数量限制，可选择距离不大于此牌点数的目标",
-                    "huoying_zhongbao": "重瀑",
-                    "huoying_zhongbao_info": "<font color=#F0F>雷我暴弹</font> <font color=#f00>锁定技</font> 当你于回合内重复使用同名卡牌时，你摸一张牌（每种牌至多以此法摸两张）",
-                    "huoying_rongdun": "溶遁",
-                    "huoying_rongdun_info": "<font color=#F0F>溶怪之术</font> 每名角色的回合限一次，当其他角色使用装备牌时，你可取消之，然后你摸一张牌",
-                    "huoying_feidun": "沸遁",
-                    "huoying_feidun_info": "<font color=#F0F>沸遁•巧雾之术</font> 出牌阶段限一次，你可以观看一名其他角色的牌，然后你可以用一张手牌替换其中的一张牌，若如此做，该角色受到一点火焰伤害",
-                    "hyrz_zbfs": "蒸危暴威",
-                    "hyrz_zbfs_info": "延时性锦囊牌，若判定结果为方片，则目标角色受到X点无来源的火焰伤害并随机弃置X张牌（X为此锦囊判定结果为方片的次数）。判定完成后，将此牌移动到下家的判定区里。",
-                    "huoying_fengwang": "风网",
-                    "huoying_fengwang_info": "每当你翻面时，你可以弃置一名其他角色的一张牌",
-                    "huoying_lianyou": "镰鼬",
-                    "huoying_lianyou_info": "结束阶段时，你可令所有有牌的角色选择：弃置一张牌或令你获得其一张牌，然后你将武将牌背面朝上",
-                    "huoying_newkuilei": "傀儡",
-                    "huoying_newkuilei_info": "<font color=#F0F>傀儡术</font> 每当你失去一张装备区的牌，你可以获得至多X名其他角色的一张手牌或判定区的牌（X为你的体力值）",
-                    "huoying_duanbi": "断臂",
-                    "huoying_duanbi_info": "<font color=#F0F>雷犁热刀</font> 出牌阶段，你可以流失一点体力并摸两张牌，若如此做，你获得以下效果：1、无视对方的防具，2、你使用的【决斗】造成的伤害+1",
-                    "huoying_yongsheng": "永生",
-                    "huoying_yongsheng_info": "每回合限一次，濒死阶段，你可以摸一张牌，然后与一名其他角色拼点，若你赢，你与该角色交换体力值（伤害来源转为你）并且你增加一点体力上限（不得超过4）；若你拼点没赢，你回复体力至1，然后失去一点体力上限并翻面",
-                    "huoying_zhaohuan": "召唤",
-                    "huoying_zhaohuan_info": "<font color=#F0F>通灵万蛇</font> 当你拼点的牌亮出后，你可与对方交换拼点牌",
-                    "huoying_wuyin": "雾隐",
-                    "huoying_wuyin_info": "<font color=#F0F>雾隐之术</font> <font color=#f00>锁定技</font> 当你的武将牌背面朝上时，你防止受到任何伤害",
-                    "huoying_ansha": "暗杀",
-                    "huoying_ansha_info": "出牌阶段限一次，你可以选择弃置一名有牌的其他角色的一张牌，若如此做，你与其依次将武将牌翻面，然后你视为对其使用一张不计入次数限制的【杀】",
-                    "huoying_reshuilao": "水牢",
-                    "huoying_reshuilao_info": "<font color=#F0F>水牢之术</font> 一名其他角色的准备阶段，若你的武将牌背面朝上，你可以与该角色拼点，若你赢，你将你的武将牌翻面，该角色本回合使用的牌不能指定除该角色外的角色为目标",
-                    "huoying_chengyi": "承艺",
-                    "huoying_chengyi_info": "当其他角色的牌因弃置而进入弃牌堆时，若其中含有非梅花花色的装备牌，你可以获得所有这些非梅花的牌。",
-                    "huoying_tiancheng": "天秤",
-                    "huoying_tiancheng_info": "当你亮出拼点牌后，你可令此牌点数+X（超重岩之术）或点数－X（超轻岩之术）。（X为场上存活角色数）",
-                    "huoying_feixian": "飞翔",
-                    "huoying_feixian_info": "<font color=#f00>锁定技</font> 你的防御距离+X（X为你的体力值）",
-                    "huoying_xfenlie": "分裂",
-                    "huoying_xfenlie_info": "（分裂、通灵）出牌阶段限一次，你可以弃置所有手牌（没手牌则不须弃）并摸两张牌",
-                    "huoying_bizhu": "臂助",
-                    "huoying_bizhu_info": "每当一名角色流失体力后，你与其可以各摸一张牌。",
-                    "huoying_landun": "岚遁",
-                    "huoying_landun_info": "<font color=#F0F>杀的集大成者</font>出牌阶段限一次，你可以进行一次判定，若判定结果为：黑桃，你使用的【杀】造成的伤害+1；红桃，你使用的【杀】可以额外指定一名角色成为目标；梅花，你使用【杀】后可弃置对方一张牌；方片，你使用【杀】的上限次数+1。然后你本回合使用的【杀】无距离限制且无法闪避",
-                    "huoying_chunshu": "蜃术",
-                    "huoying_chunshu_info": "<font color=#F0F>海市蜃楼</font>结束阶段，你可以进行一次判定，若判定结果为：黑色，你防止受到锦囊牌的伤害；红色：你不能成为【杀】的目标，且均防止受到属性伤害，直到下个出牌阶段开始为止",
-                    "huoying_zhengbao": "蒸爆",
-                    "huoying_zhengbao_info": "<font color=#F0F>蒸危暴威</font> <span class=greentext>觉醒技</span> 当你处于濒死状态时，你丢弃你所有判定区的牌，并重置你的武将牌，摸两张牌，体力上限改为4点并回复体力至3点，然后你使用一张“蒸危暴威”卡牌，获得技能“循爆”、“水炮”",
-                    "huoying_shuipao": "水炮",
-                    "huoying_shuipao_info": "<font color=#F0F>水铁炮之术</font> 出牌阶段限一次，你可以弃置一张装备区的牌，对一名其他角色造成1点伤害",
-                    "huoying_lianbao": "循爆",
-                    "huoying_lianbao_info": "回合开始时，如果场上角色的判定区内没有【蒸危暴威】，你可以使用一张【蒸危暴威】",
-                    "huoying_tuci": "突刺",
-                    "huoying_tuci_info": "<font color=#F0F>地狱突刺</font><font color=#f00>锁定技</font> 你使用的杀造成的伤害+X（X为你损失的体力值的25%进位取整）",
-                    "huoying_leidun": "雷盾",
-                    "huoying_leidun_info": "<font color=#F0F>最强之盾</font> <font color=#f00>锁定技</font> 游戏开始或你进入游戏时，你的体力上限改为X（X为其他角色的体力上限之和的一半（向下取整））",
-                    "huoying_guwu": "骨舞",
-                    "huoying_guwu_info": "<font color=#F0F>尸骨脉</font> <font color=#f00>锁定技</font> 你使用【杀】的次数上限、攻击范围均为X（X为你的体力值），指定目标数+Y（Y为本回合你使用【杀】的次数）",
-                    "huoying_zhouyin": "咒印",
-                    "huoying_zhouyin_info": "<font color=#F0F>地之咒印</font> 当其他角色出牌阶段开始时，若其手牌数大于你的手牌数或其体力值大于你的体力值，且你的体力值：①大于2，你可以摸一张牌②小于3，你回复一点体力",
-                    "huoying_shuochang": "说唱",
-                    "huoying_shuochang_info": "出牌阶段开始时，你可以令你此阶段内每种牌名的牌限使用一次。若如此做，你使用的牌没距离限制，且每当你于此阶段内使用牌时，你摸一张牌",
-                    "huoying_leidao": "雷刀",
-                    "huoying_leidao_info": "<font color=#F0F>绝牛•雷犁热刀</font> 当其他角色使用一张非转化的【杀】指定目标且结算后，你可对其视为再使用一张【杀】",
-                    "huoying_qilie": "凄裂",
-                    "huoying_qilie_info": "<font color=#F0F>蜘蛛战弓•凄裂</font>  </font><font color=#f00>锁定技</font> 当你使用【杀】时，若目标角色的武将牌已横置，此【杀】无法闪避。<li>咒印化：若你的体力值小于3，你对已横置武将牌的角色使用【杀】没距离限制且伤害+1",
-                    "huoying_jinkui": "金铠",
-                    "huoying_jinkui_info": "<font color=#F0F>粘金之铠</font> 每名角色的回合限一次，当你受到伤害时，你可选择一名武将牌已横置的角色，令其重置武将牌，然后此伤害减一",
-                    "huoying_zhuzheng": "蛛阵",
-                    "huoying_zhuzheng_info": "出牌阶段限X次（X为你的体力值且平局不计入次数），你可选择一名未横置的其他角色，与其猜拳，若你赢，该角色横置武将牌且不能使用或打出牌，若你输，你横置你的武将牌，平局则继续猜拳直至分出胜负",
-                    "huoying_zhouli": "咒力",
-                    "huoying_zhouli_info": "出牌阶段限一次，你可以弃置任意张装备牌并摸等同于你弃置牌数两倍的牌。<li>咒印化：若你的体力值小于3，改为摸三倍的牌",
-                    "huoying_tulao": "土牢",
-                    "huoying_tulao_info": "当你成为【杀】的目标后，你可随机使用一张装备牌",
-                    "huoying_jihuai": "寄坏",
-                    "huoying_jihuai_info": "<font color=#F0F>寄生鬼坏</font> 回合开始阶段，你可选择一名未被“封印”、“白板”的其他角色，然后你与其组成双将，若你的体力值不小于3，其原武将非锁定技失效（被封印），否则你咒印化，其所有技能失效，直到其受到伤害后",
-                    "huoying_luosheng": "罗生",
-                    "huoying_luosheng_info": "<font color=#F0F>通灵罗生门</font> 每名角色的回合限一次，当你受到伤害时，你可以弃置一名角色的一张装备区的牌，然后此伤害值减一",
-                    "huoying_huanyin": "幻音",
-                    "huoying_huanyin_info": "回合结束阶段，你可以令至多X名未进入混乱状态的其他角色进入混乱状态（当你体力值：①不小于3，X为1；②小于3，咒印化，X为3）",
-                    "huoying_haosheng": "好胜",
-                    "huoying_haosheng_info": "</font><font color=#f00>锁定技</font> 当你受到伤害后，你摸1至X张牌（X为场上已进入疯癫混乱状态的角色数），若伤害来源武将牌背面朝上，其翻面",
-                    "huoying_bingdun": "冰遁",
-                    "huoying_bingdun_info": "<font color=#F0F>魔镜冰晶</font> <li>出牌阶段限一次，若你的武将牌正面朝上，你可以令至多两名其他角色翻面，然后你翻面<li>你与已翻面的角色的距离为1，若你的武将牌背面朝上，你的防御距离为无限<li>你对一名其他角色使用【杀】时，可令此【杀】额外指定所有其他已翻面的角色",
-                    "huoying_chengshang": "承伤",
-                    "huoying_chengshang_info": "当一名其他角色成为【杀】的目标后，若来源不为你且你的武将牌背面朝上，你可令目标改为你。若此【杀】造成伤害，你翻面",
-                    "huoying_renzong": "忍宗",
-                    "huoying_renzong_info": "<span class=greentext>觉醒技</span> 当一名其他角色进入濒死状态，你选择技能〖天眼〗或〖仙体〗令其永久获得之，其回复体力至1并摸两张牌，然后你失去技能〖忍宗〗，体力上限和体力值改为6。当该被授予〖忍宗〗的角色造成或受到伤害后，你随机获得一张基本牌",
-                    "huoying_tianyan": "天眼",
-                    "huoying_tianyan_info": "回合开始阶段，你可以选择一名其他角色，然后获得其一项技能，直到回合结束",
-                    "huoying_jitong": "极瞳",
-                    "huoying_jitong_info": "<span class=yellowtext>限定技</span> 【限身份局】出牌阶段，你重新分配除主公外的所有角色的身份牌",
-                    "huoying_liudao": "六道",
-                    "huoying_liudao_info": "<font color=#f00>锁定技</font> <font color=#F0F>阴遁</font>当你的体力不为全场最高之一，你不能成为【杀】的目标；<font color=#F0F>阳遁</font>若你的体力值为全场最高之一，则你不能成为其他角色使用的锦囊牌的目标",
-                    "huoying_chendun": "尘遁",
-                    "huoying_chendun_info": "出牌阶段限一次，你可与一名体力上限大于1的其他角色进行拼点，若你赢，目标角色失去一点体力上限，并摸一张牌；若你没赢，目标角色受到一点伤害",
-                    "huoying_yizhi": "移植",
-                    "huoying_yizhi_info": "<font color=#f00>锁定技</font> 当你每受到伤害后，你从三个随机的【火影忍者】扩展的技能中选择获得一个（主公技、觉醒技、限定技除外）。若你发动〖移植〗至少三次，你失去技能〖医疗〗，获得技能〖仙法〗、〖转生〗",
-                    "huoying_xinyiliao": "医疗",
-                    "huoying_xinyiliao_info": "当一名角色进入濒死状态时，若你手牌中有基本牌，你可以弃置之，然后其回复体力至1",
-                    "huoying_xianfa": "仙法",
-                    "huoying_xianfa_info": "<font color=#f00>锁定技</font> 当你失去最后的手牌时，若你已受伤，你回复一点体力，否则你摸一张牌",
-                    "huoying_zhuansheng": "转生",
-                    "huoying_zhuansheng_info": "<font color=#F0F>秽土转生</font> 出牌阶段限一次，你可弃置一张【桃】并选择一名已阵亡角色，令其复活，其体力回复至2，摸两张的牌，并且若为身份局，其身份阵营与你一致（若你为主公则视阵营为忠臣），然后你失去一点体力上限",
-                    "huoying_shazang": "沙葬",
-                    "huoying_shazang_info": "<font color=#F0F>沙瀑大葬</font> </font><font color=#f00>锁定技</font> 当你使用【杀】造成伤害后，若该目标角色未翻面，你令其翻面。当你的体力值为1或手牌数为1时，你使用的牌无距离和指定目标数限制（延时性锦囊牌除外）",
-                    "huoying_juefang": "绝防",
-                    "huoying_juefang_info": "<font color=#F0F>绝对防御</font> <font color=#f00>锁定技</font> 每回合限一次，当你造成或受到伤害后，你获得一点护甲（至多为1）",
-                    "huoying_jiamei2": "假寐",
-                    "huoying_jiamei": "假寐",
-                    "huoying_jiamei_info": "<font color=#F0F>假寐术</font> <span class=yellowtext>限定技</span> 出牌阶段，你可以将体力降至1，然后摸X张牌（X为你已损失的体力值），若如此做，出牌阶段结束时，你回复体力至体力上限",
-                    "huoying_rechendun": "尘遁",
-                    "huoying_rechendun_info": "出牌阶段限一次，你可与一名有未被废除的装备栏的角色进行拼点，若你赢，你选择废除其一个装备栏；若你没赢，目标角色受到一点伤害",
-                    "huoying_wuchen": "无尘",
-                    "huoying_wuchen_info": "<font color=#F0F>无尘迷塞</font> <font color=#f00>锁定技</font> 当你没有手牌时，你防止受到任何伤害",
-
-                },
-            };
-
             if (lib.brawl) {
                 lib.brawl.hyrzBrawlMode = (function () {
 
@@ -1482,7 +963,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         mode: 'identity',
                         intro: [
                             '嗨～' + lib.config.connect_nickname + '！欢迎您前来体验《火影忍者》扩展哦！',
-                            //'致敬《狗年乱斗》作者橙续缘',
                         ],
 
                         showcase: function (init) {
@@ -1510,98 +990,316 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return this;
                                 },
                             };
+
                             var gameHYRZIntro = ui.create.div('#HYRZ_gameHYRZIntro', '火影忍者');
-                            var router = {
-                                huoyingrenzhePage: new Page().set('body', ui.create.div('#HYRZ_router_huoyingrenzhePage').hide()).set('init', function () {
-                                    function intro(name, pack, introClass) {
-                                        var div = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_' + introClass);
-                                        pack = pack || Mhuoyingrenzhes;
-                                        var info = pack.character[name];
-                                        if (!info) return null;
-                                        var dComps = {
-                                            header: (function () {
-                                                var img = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_header');
-                                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/火影忍者/' + name + '.jpg)';
-                                                return img;
-                                            })(),
-                                            infos: (function (name, group, hp, sex) {
-                                                var str = "";
-                                                if (name) {
-                                                    str += pack.translate[name] + '&nbsp;';
-                                                }
-                                                if (sex) {
-                                                    str += get.translation(sex) + '&nbsp;';
-                                                }
-                                                if (group) {
-                                                    str += get.translation(group) + '&nbsp;';
-                                                }
-                                                if (hp) {
-                                                    str += hp + '体力';
-                                                }
-                                                var infos = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_infos', str);
-                                                return infos;
-                                            })(name, info[1], info[2], info[0]),
-                                            skills: (function (list) {
-                                                var str = "";
-                                                if (!Array.isArray(list)) list = [];
-                                                for (var i = 0; i < list.length; i++) {
-                                                    if (i > 0) {
-                                                        str += '<br><br>';
-                                                    }
-                                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
-                                                }
-                                                var skills = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_skills', str);
-                                                lib.setScroll(skills);
-                                                return skills;
-                                            })(info[3]),
-                                        };
-                                        for (var i in dComps) {
-                                            div.appendChild(dComps[i]);
-                                        }
-                                        return div;
-                                    };
-                                    var comps = {
-                                        closeButton: (function () {
-                                            var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
-                                            button.addEventListener('click', function () {
-                                                game.playhyrz('hyrz_close');
-                                                router.huoyingrenzhePage.hide();
-                                            });
-                                            return button;
+
+                            var createBrawlCharacterPage = function () {
+                                var currentPack = '';
+
+                                function createCharacterIntro(charName, introClass) {
+                                    var div = ui.create.div('.hyrz_intro_' + introClass);
+                                    var charData = lib.character[charName];
+                                    if (!charData) return null;
+
+                                    var dComps = {
+                                        header: (function () {
+                                            var img = ui.create.div('.hyrz_intro_header');
+                                            var imgPath = lib.assetURL + 'extension/火影忍者/' + charName + '.jpg';
+                                            img.style['background-image'] = 'url(' + imgPath + ')';
+                                            img.onerror = function () {
+                                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                                            };
+                                            return img;
                                         })(),
-                                        title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
+                                        infos: (function () {
+                                            var str = "";
+                                            if (charName) str += get.translation(charName) + '&nbsp;';
+                                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                                            if (charData[2]) str += charData[2] + '体力';
+                                            return ui.create.div('.hyrz_intro_infos', str);
+                                        })(),
+                                        skills: (function () {
+                                            var str = "";
+                                            if (charData[3] && Array.isArray(charData[3])) {
+                                                for (var j = 0; j < charData[3].length; j++) {
+                                                    if (j > 0) str += '<br><br>';
+                                                    var skillName = charData[3][j];
+                                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                                }
+                                            }
+                                            var skills = ui.create.div('.hyrz_intro_skills', str);
+                                            lib.setScroll(skills);
+                                            return skills;
+                                        })(),
                                     };
-                                    var classState = 'left';
-                                    for (var i in Mhuoyingrenzhes.character) {
-                                        comps[i] = intro(i, Mhuoyingrenzhes, classState);
-                                        classState = classState == 'left' ? 'right' : 'left';
+
+                                    for (var i in dComps) {
+                                        div.appendChild(dComps[i]);
                                     }
-                                    comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
-                                    var classState = 'left';
-                                    for (var i in Xhuoyingrenzhes.character) {
-                                        comps[i] = intro(i, Xhuoyingrenzhes, classState);
-                                        classState = classState === 'left' ? 'right' : 'left';
+                                    return div;
+                                }
+
+                                function createCharacterPacks() {
+                                    var packs = [];
+                                    var characterSort = lib.characterSort && lib.characterSort.huoyingrenzhe;
+
+                                    if (!characterSort) {
+                                        return [
+                                            { id: 'all', name: '全部武将', packKey: 'huoyingrenzhe' }
+                                        ];
                                     }
-                                    comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
-                                    var classState = 'left';
-                                    for (var i in Zhuoyingrenzhes.character) {
-                                        comps[i] = intro(i, Zhuoyingrenzhes, classState);
-                                        classState = classState === 'left' ? 'right' : 'left';
+
+                                    for (var categoryId in characterSort) {
+                                        if (characterSort.hasOwnProperty(categoryId)) {
+                                            var categoryName = get.translation(categoryId) || categoryId;
+                                            packs.push({
+                                                id: categoryId,
+                                                name: categoryName,
+                                                packKey: 'huoyingrenzhe',
+                                                charList: characterSort[categoryId]
+                                            });
+
+                                        }
                                     }
-                                    for (var i in comps) {
-                                        this.body.appendChild(comps[i]);
+
+                                    return packs;
+                                }
+
+                                var characterPacks = createCharacterPacks();
+                                if (characterPacks.length > 0) {
+                                    currentPack = characterPacks[0].id;
+                                }
+
+                                var page = new Page();
+                                page.body = ui.create.div('#hyrz_brawl_page');
+
+                                page.body.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.7);
+                        z-index: 2024;
+                        display: block;
+                    `;
+
+                                var mainContainer = ui.create.div('#hyrz_brawl_mainContainer');
+                                mainContainer.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: calc(8% + 150px);
+                        transform: translateY(-50%);
+                        width: calc(84% - 150px);
+                        height: 88%;
+                        background-color: #1a1a1a;
+                        border: 2px solid #444;
+                        border-radius: 0 8px 8px 0;
+                        box-shadow: 0 0 30px rgba(0,0,0,0.9);
+                        z-index: 2025;
+                        overflow: hidden;
+                    `;
+
+                                var leftButtonPanel = ui.create.div('#hyrz_brawl_leftButtonPanel');
+                                leftButtonPanel.style.cssText = `
+                        position: fixed;
+                        left: 8%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 150px;
+                        height: 88%;
+                        background-color: rgba(30, 30, 30, 0.95);
+                        border: 2px solid #555;
+                        border-radius: 8px 0 0 8px;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.8);
+                        overflow-y: auto;
+                        overflow-x: hidden;
+                        padding: 18px 12px;
+                        box-sizing: border-box;
+                        z-index: 2025;
+                    `;
+
+                                var rightPanel = ui.create.div('#hyrz_brawl_rightPanel');
+                                rightPanel.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        padding: 0;
+                        box-sizing: border-box;
+                    `;
+
+                                var closeButton = ui.create.div('#hyrz_brawl_closeButton', '×');
+                                closeButton.addEventListener('click', function () {
+                                    page.hide();
+                                });
+                                rightPanel.appendChild(closeButton);
+
+                                var title = ui.create.div('#hyrz_brawl_title');
+                                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '火影忍者武将';
+                                rightPanel.appendChild(title);
+
+                                var contentContainer = ui.create.div('#hyrz_brawl_contentContainer');
+                                contentContainer.style.cssText = `
+                        position: absolute;
+                        top: 60px;
+                        left: 0;
+                        width: 100%;
+                        height: calc(100% - 60px);
+                        overflow: auto;
+                        padding: 15px;
+                        box-sizing: border-box;
+                    `;
+                                rightPanel.appendChild(contentContainer);
+
+                                var buttonContainer = ui.create.div('#hyrz_brawl_buttonContainer');
+                                buttonContainer.style.cssText = `
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                    `;
+
+                                for (var i = 0; i < characterPacks.length; i++) {
+                                    var pack = characterPacks[i];
+
+                                    var buttonWrapper = ui.create.div('.hyrz_brawl_buttonWrapper');
+                                    buttonWrapper.style.cssText = `
+                            width: 100%;
+                            height: 50px;
+                            display: block;
+                            position: relative;
+                        `;
+
+                                    var button = ui.create.div('.hyrz_brawl_packButton');
+                                    button.innerHTML = pack.name;
+                                    button.style.cssText = `
+                            width: 100%;
+                            height: 100%;
+                            padding: 0;
+                            text-align: center;
+                            cursor: pointer;
+                            border-radius: 6px;
+                            border: 2px solid #666;
+                            background-color: rgba(50, 50, 50, 0.9);
+                            color: #ddd;
+                            font-family: lishu;
+                            font-size: 16px;
+                            font-weight: bold;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+                            user-select: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            line-height: 1.2;
+                            letter-spacing: 1px;
+                            transition: all 0.3s ease;
+                        `;
+
+                                    if (pack.id === currentPack) {
+                                        button.classList.add('active');
                                     }
-                                    this.comps = comps;
-                                    try {
-                                        this.paBody.appendChild(this.body);
-                                    } catch (e) { };
-                                    lib.setScroll(this.body);
-                                    return this;
-                                }).init(),
+
+                                    button.setAttribute('data-pack', pack.id);
+                                    button.addEventListener('click', (function (packId, packName, packData) {
+                                        return function () {
+                                            if (currentPack === packId) return;
+
+                                            var buttons = leftButtonPanel.querySelectorAll('.hyrz_brawl_packButton');
+                                            for (var j = 0; j < buttons.length; j++) {
+                                                buttons[j].classList.remove('active');
+                                            }
+
+                                            this.classList.add('active');
+
+                                            currentPack = packId;
+                                            title.innerHTML = packName;
+                                            updateCharacterList(packData);
+                                        };
+                                    })(pack.id, pack.name, pack));
+
+                                    button.addEventListener('mouseover', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
+                                            this.style.color = '#fff';
+                                            this.style.borderColor = '#888';
+                                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
+                                        }
+                                    });
+
+                                    button.addEventListener('mouseout', function () {
+                                        if (!this.classList.contains('active')) {
+                                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
+                                            this.style.color = '#ddd';
+                                            this.style.borderColor = '#666';
+                                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
+                                        }
+                                    });
+
+                                    buttonWrapper.appendChild(button);
+                                    buttonContainer.appendChild(buttonWrapper);
+                                }
+
+                                leftButtonPanel.appendChild(buttonContainer);
+
+                                function updateCharacterList(packInfo) {
+                                    contentContainer.innerHTML = '';
+
+                                    if (!packInfo) return;
+
+                                    var charList = packInfo.charList || [];
+
+                                    if (charList.length === 0) {
+                                        var characterPack = lib.characterPack['huoyingrenzhe'];
+                                        if (characterPack) {
+                                            for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    charList.push(charName);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    for (var i = 0; i < charList.length; i++) {
+                                        var charName = charList[i];
+                                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                        var charIntro = createCharacterIntro(charName, introClass);
+
+                                        if (charIntro) {
+                                            contentContainer.appendChild(charIntro);
+                                        }
+                                    }
+
+                                    var clearDiv = ui.create.div();
+                                    clearDiv.style.clear = 'both';
+                                    clearDiv.style.height = '0';
+                                    clearDiv.style.overflow = 'hidden';
+                                    contentContainer.appendChild(clearDiv);
+
+                                    lib.setScroll(contentContainer);
+                                }
+
+                                if (characterPacks.length > 0) {
+                                    updateCharacterList(characterPacks[0]);
+                                }
+
+                                page.body.appendChild(mainContainer);
+                                mainContainer.appendChild(rightPanel);
+                                page.body.appendChild(leftButtonPanel);
+
+                                return page;
                             };
+
+                            var router = {
+                                huoyingrenzhePage: createBrawlCharacterPage()
+                            };
+
                             gameHYRZIntro.addEventListener('click', function () {
-                                game.playhyrz('hyrz_danchuang');
-                                router.huoyingrenzhePage.show();
+                                setTimeout(function () {
+                                    router.huoyingrenzhePage.show();
+                                }, 100);
                             });
                             this.appendChild(gameHYRZIntro);
                         },
@@ -1609,26 +1307,21 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-
-            // 创建页面类
+            // 菜单页面类浏览武将：
             game.hyrzCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
+                var currentPack = '';
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
-                    try {
-                        this.paBody = document.getElementsByClassName('dialog fixed scroll1')[0];
-                        if (!this.paBody) {
-                            this.paBody = document.body;
-                        }
-                        this.paBody.appendChild(this.body);
-                    } catch (e) {
-                        this.paBody = document.body;
-                        this.paBody.appendChild(this.body);
-                    }
+                    this.paBody = document.body;
+                    this.paBody.appendChild(this.body);
                 }
+
                 Page.prototype = {
                     show: function () {
                         if (!this.body.parentNode && this.paBody) {
@@ -1636,110 +1329,273 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                         this.body.show();
                         this.body.style.display = 'block';
-                        this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
-                        this.body.style.top = '47.3%';
-                        this.body.style.left = '50%';
-                        this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a';
-                        //this.body.style.backgroundColor = 'rgba(20,20,20,0.95)';
-                        this.body.style.padding = '20px';
-                        this.body.style.border = '2px solid black';
-                        this.body.style.borderRadius = '8px';
-                        this.body.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
-                        this.body.style.width = '75%'; //fixed
-                        this.body.style.height = '72%'; //fixed
-                        this.body.style.overflow = 'auto';
-                        this.body.style.textAlign = 'left';
+                        this.body.style.top = '0';
+                        this.body.style.left = '0';
+                        this.body.style.width = '100%';
+                        this.body.style.height = '100%';
+                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        this.body.style.zIndex = '2024';
+
                         return this;
                     },
+
                     hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
 
-                function createCharacterIntro(name, pack) {
-                    var introClass = 'left';
-                    function intro(name, pack) {
-                        var div = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_' + introClass);
-                        introClass = introClass == 'left' ? 'right' : 'left';
-                        pack = pack || Mhuoyingrenzhes;
-                        var info = pack.character[name];
-                        if (!info) return null;
-                        var dComps = {
-                            header: (function () {
-                                var img = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_header');
-                                img.style['background-image'] = 'url(' + lib.assetURL + 'extension/火影忍者/' + name + '.jpg)';
-                                return img;
-                            })(),
-                            infos: (function (name, group, hp, sex) {
-                                var str = "";
-                                if (name) str += pack.translate[name] + '&nbsp;';
-                                if (sex) str += get.translation(sex) + '&nbsp;';
-                                if (group) str += get.translation(group) + '&nbsp;';
-                                if (hp) str += hp + '体力';
-                                return ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_infos', str);
-                            })(name, info[1], info[2], info[0]),
-                            skills: (function (list) {
-                                var str = "";
-                                if (!Array.isArray(list)) list = [];
-                                for (var i = 0; i < list.length; i++) {
-                                    if (i > 0) str += '<br><br>';
-                                    str += '<strong class="greentext">' + pack.translate[list[i]] + '</strong>：' + pack.translate[list[i] + '_info'];
+                function createCharacterIntro(charName, introClass) {
+                    var div = ui.create.div('.hyrz_intro_' + introClass);
+                    var charData = lib.character[charName];
+                    if (!charData) return null;
+
+                    var dComps = {
+                        header: (function () {
+                            var img = ui.create.div('.hyrz_intro_header');
+                          
+                            var imgPath = lib.assetURL + 'extension/火影忍者/' + charName + '.jpg';
+                            img.style['background-image'] = 'url(' + imgPath + ')';
+                            img.onerror = function () {
+                               
+                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                            };
+                            return img;
+                        })(),
+                        infos: (function () {
+                            var str = "";
+                            if (charName) str += get.translation(charName) + '&nbsp;';
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
+                            return ui.create.div('.hyrz_intro_infos', str);
+                        })(),
+                        skills: (function () {
+                            var str = "";
+                            if (charData[3] && Array.isArray(charData[3])) {
+                                for (var j = 0; j < charData[3].length; j++) {
+                                    if (j > 0) str += '<br><br>';
+                                    var skillName = charData[3][j];
+                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
                                 }
-                                var skills = ui.create.div('.HYRZ_router_huoyingrenzhePage_intro_skills', str);
-                                lib.setScroll(skills);
-                                return skills;
-                            })(info[3]),
-                        };
-                        for (var i in dComps) {
-                            div.appendChild(dComps[i]);
+                            }
+                            var skills = ui.create.div('.hyrz_intro_skills', str);
+                            lib.setScroll(skills);
+                            return skills;
+                        })(),
+                    };
+
+                    for (var i in dComps) {
+                        div.appendChild(dComps[i]);
+                    }
+                    return div;
+                }
+
+                function createCharacterPacks() {
+                    var packs = [];
+                    var characterSort = lib.characterSort && lib.characterSort.huoyingrenzhe;
+
+                    if (!characterSort) {
+                        
+                        return [
+                            { id: 'all', name: '全部武将', packKey: 'huoyingrenzhe' }
+                        ];
+                    }
+
+                    for (var categoryId in characterSort) {
+                        if (characterSort.hasOwnProperty(categoryId)) {
+                            var categoryName = get.translation(categoryId) || categoryId;
+                            packs.push({
+                                id: categoryId,
+                                name: categoryName,
+                                packKey: 'huoyingrenzhe',
+                                charList: characterSort[categoryId] 
+                            });
                         }
-                        return div;
                     }
-                    return intro(name, pack);
+
+                    return packs;
                 }
+
+                var characterPacks = createCharacterPacks();
+
+                if (characterPacks.length > 0) {
+                    currentPack = characterPacks[0].id;
+                }
+
                 var characterPage = new Page();
-                characterPage.body = ui.create.div('#HYRZ_router_huoyingrenzhePage').hide();
-                var comps = {
-                    closeButton: (function () {
-                        var button = ui.create.div('#HYRZ_router_huoyingrenzhePage_closeButton', '×');
-                        button.addEventListener('click', function () {
-                            game.playhyrz('hyrz_close');
-                            ui.system.style.display = '';
-                            setTimeout(function () {
-                                ui.click.configMenu();
-                                ui.menuContainer.style.display = '';
-                            }, 500);
-                            characterPage.hide();
-                        });
-                        return button;
-                    })(),
-                    title: ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '木叶村'),
-                };
-                for (var i in Mhuoyingrenzhes.character) {
-                    comps[i] = createCharacterIntro(i, Mhuoyingrenzhes);
-                }
-                comps.title2 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '晓组织');
-                for (var i in Xhuoyingrenzhes.character) {
-                    comps[i] = createCharacterIntro(i, Xhuoyingrenzhes);
-                }
-                comps.title3 = ui.create.div('#HYRZ_router_huoyingrenzhePage_title', '众忍村');
-                for (var i in Zhuoyingrenzhes.character) {
-                    comps[i] = createCharacterIntro(i, Zhuoyingrenzhes);
-                }
-                for (var i in comps) {
-                    if (comps[i]) {
-                        characterPage.body.appendChild(comps[i]);
+                characterPage.body = ui.create.div('#hyrz_page');
+
+                var mainContainer = ui.create.div('#hyrz_mainContainer');
+                mainContainer.style.position = 'fixed';
+                mainContainer.style.top = '50%';
+                mainContainer.style.left = 'calc(8% + 150px)';
+                mainContainer.style.transform = 'translateY(-50%)';
+                mainContainer.style.width = 'calc(84% - 150px)';
+                mainContainer.style.height = '88%';
+                mainContainer.style.backgroundColor = '#1a1a1a';
+                mainContainer.style.border = '2px solid #444';
+                mainContainer.style.borderRadius = '0 8px 8px 0';
+                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
+                mainContainer.style.zIndex = '2025';
+                mainContainer.style.overflow = 'hidden';
+
+                var leftButtonPanel = ui.create.div('#hyrz_leftButtonPanel');
+                leftButtonPanel.style.position = 'fixed';
+                leftButtonPanel.style.left = '8%';
+                leftButtonPanel.style.top = '50%';
+                leftButtonPanel.style.transform = 'translateY(-50%)';
+                leftButtonPanel.style.width = '150px';
+                leftButtonPanel.style.height = '88%';
+                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+                leftButtonPanel.style.border = '2px solid #555';
+                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
+                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
+                leftButtonPanel.style.overflowY = 'auto';
+                leftButtonPanel.style.overflowX = 'hidden';
+                leftButtonPanel.style.padding = '18px 12px';
+                leftButtonPanel.style.boxSizing = 'border-box';
+                leftButtonPanel.style.zIndex = '2025';
+
+                var rightPanel = ui.create.div('#hyrz_rightPanel');
+                rightPanel.style.width = '100%';
+                rightPanel.style.height = '100%';
+                rightPanel.style.position = 'relative';
+                rightPanel.style.overflow = 'hidden';
+                rightPanel.style.padding = '0';
+                rightPanel.style.boxSizing = 'border-box';
+
+                var closeButton = ui.create.div('#hyrz_closeButton', '×');
+                closeButton.addEventListener('click', function () {
+                    characterPage.hide();
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                rightPanel.appendChild(closeButton);
+
+                var title = ui.create.div('#hyrz_title');
+                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '火影忍者武将';
+                rightPanel.appendChild(title);
+
+                var contentContainer = ui.create.div('#hyrz_contentContainer');
+                contentContainer.style.position = 'absolute';
+                contentContainer.style.top = '60px';
+                contentContainer.style.left = '0';
+                contentContainer.style.width = '100%';
+                contentContainer.style.height = 'calc(100% - 60px)';
+                contentContainer.style.overflow = 'auto';
+                contentContainer.style.padding = '15px';
+                contentContainer.style.boxSizing = 'border-box';
+                rightPanel.appendChild(contentContainer);
+
+                var buttonContainer = ui.create.div('#hyrz_buttonContainer');
+                buttonContainer.style.width = '100%';
+                buttonContainer.style.height = 'auto';
+                buttonContainer.style.display = 'flex';
+                buttonContainer.style.flexDirection = 'column';
+                buttonContainer.style.gap = '10px';
+
+                for (var i = 0; i < characterPacks.length; i++) {
+                    var pack = characterPacks[i];
+
+                    var buttonWrapper = ui.create.div('.hyrz_buttonWrapper');
+                    buttonWrapper.style.width = '100%';
+                    buttonWrapper.style.height = '50px';
+                    buttonWrapper.style.display = 'block';
+                    buttonWrapper.style.position = 'relative';
+
+                    var button = ui.create.div('.hyrz_packButton');
+                    button.innerHTML = pack.name;
+                    button.style.width = '100%';
+                    button.style.height = '100%';
+                    button.style.display = 'flex';
+                    button.style.alignItems = 'center';
+                    button.style.justifyContent = 'center';
+
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
                     }
+
+                    button.setAttribute('data-pack', pack.id);
+                    button.addEventListener('click', (function (packId, packName, packData) {
+                        return function () {
+                            if (currentPack === packId) return;
+
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
+                            }
+
+                            currentPack = packId;
+                            title.innerHTML = packName;
+                            updateCharacterList(packData);
+                        };
+                    })(pack.id, pack.name, pack));
+
+                    buttonWrapper.appendChild(button);
+                    buttonContainer.appendChild(buttonWrapper);
                 }
-                characterPage.comps = comps;
-                lib.setScroll(characterPage.body);
+
+                leftButtonPanel.appendChild(buttonContainer);
+
+                function updateCharacterList(packInfo) {
+                    contentContainer.innerHTML = '';
+
+                    if (!packInfo) return;
+
+                    var charList = packInfo.charList || [];
+
+                    if (charList.length === 0) {
+                        
+                        var characterPack = lib.characterPack['huoyingrenzhe'];
+                        if (characterPack) {
+                            for (var charName in characterPack) {
+                                if (charName && lib.character[charName]) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < charList.length; i++) {
+                        var charName = charList[i];
+                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                        var charIntro = createCharacterIntro(charName, introClass);
+
+                        if (charIntro) {
+                            contentContainer.appendChild(charIntro);
+                        }
+                    }
+
+                    var clearDiv = ui.create.div();
+                    clearDiv.style.clear = 'both';
+                    clearDiv.style.height = '0';
+                    clearDiv.style.overflow = 'hidden';
+                    contentContainer.appendChild(clearDiv);
+
+                    lib.setScroll(contentContainer);
+                }
+
+                if (characterPacks.length > 0) {
+                    updateCharacterList(characterPacks[0]);
+                }
+
+                characterPage.body.appendChild(mainContainer);
+                mainContainer.appendChild(rightPanel);
+                characterPage.body.appendChild(leftButtonPanel);
+
                 characterPage.show();
                 return characterPage;
             };
-
 
             game.showHYRZCharacterGallery = function () {
                 ui.system.style.display = 'none';
@@ -1767,130 +1623,138 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-                        // 设置样式 - 调整为图鉴样式
                         this.body.style.display = 'block';
                         this.body.style.zIndex = '2025';
                         this.body.style.position = 'fixed';
                         this.body.style.top = '50%';
                         this.body.style.left = '50%';
                         this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a'; // 接近黑色的背景
+                        this.body.style.backgroundColor = '#1a1a1a'; 
                         this.body.style.padding = '0';
                         this.body.style.border = '2px solid #ffd700';
                         this.body.style.borderRadius = '10px';
                         this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%'; // 宽度设为100%
-                        //this.body.style.height = '100%';
-                        this.body.style.height = '75%'; // 高度设为75%                        
+                        this.body.style.width = '100%'; 
+                        this.body.style.height = '75%'; 
                         this.body.style.overflow = 'hidden';
                         this.body.style.textAlign = 'center';
-
                         return this;
                     },
-
                     hide: function () {
                         this.body.hide();
                         return this;
                     }
                 };
 
-                // 收集所有火影忍者角色
                 var characters = [];
-                // 从各个势力包中收集角色
-                var packs = [Mhuoyingrenzhes, Xhuoyingrenzhes, Zhuoyingrenzhes];
-                for (var p = 0; p < packs.length; p++) {
-                    var pack = packs[p];
-                    if (pack && pack.character) {
-                        for (var charId in pack.character) {
-                            if (pack.character.hasOwnProperty(charId)) {
+                var characterSort = lib.characterSort && lib.characterSort.huoyingrenzhe;
+
+                if (characterSort) {
+                    for (var categoryId in characterSort) {
+                        if (characterSort.hasOwnProperty(categoryId)) {
+                            var categoryChars = characterSort[categoryId];
+                            if (Array.isArray(categoryChars)) {
+                                for (var i = 0; i < categoryChars.length; i++) {
+                                    var charId = categoryChars[i];
+                                    if (lib.character[charId]) {
+                                        characters.push(charId);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (characters.length === 0) {
+                    var characterPack = lib.characterPack['huoyingrenzhe'];
+                    if (characterPack) {
+                        for (var charId in characterPack) {
+                            if (characterPack.hasOwnProperty(charId) && lib.character[charId]) {
                                 characters.push(charId);
                             }
                         }
                     }
                 }
-                /*//以下写法也可以但可能会造成随机显示
-                for (var i in lib.characterPack['huoyingrenzhe']) {
-                    characters.push(i);
-                }
-                */
+
                 if (characters.length == 0) {
                     alert('未找到角色数据');
                     return;
                 }
-                // 创建图鉴页面
+
                 var galleryPage = new Page();
                 galleryPage.body = ui.create.div('.hyrz-gallery-content');
-                // 创建标题
+
                 var title = ui.create.div('.hyrz-gallery-title', '火影忍者');
-                // 创建关闭按钮
+
                 var closeButton = ui.create.div('.hyrz-gallery-close-btn', '×');
-                // 创建关闭函数
+
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
                     setTimeout(function () {
-                        game.playhyrz('hyrz_close');
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
                 }
+
                 closeButton.addEventListener('click', closeGallery);
-                // 创建画廊容器 - 优化间距，使图片更大
+
                 var galleryContainer = ui.create.div('');
                 galleryContainer.style.cssText = `
-                    display: flex;
-                    align-items: center;
-                    height: calc(100% - 40px); /* 减少标题区域的高度 */
-                    position: relative;
-                    overflow: hidden;
-                    padding: 10px 30px; /* 上下边距相等，使图片上下对称 */
-                    box-sizing: border-box;
-                    margin-top: 10px; /* 减少上边距，使图片更大 */
-                `;
-                // 创建滑动容器
+        display: flex;
+        align-items: center;
+        height: calc(100% - 40px);
+        position: relative;
+        overflow: hidden;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    `;
+
                 var slider = ui.create.div('');
                 slider.style.cssText = `
-                    display: flex;
-                    transition: transform 0.15s ease;
-                    height: 100%;
-                    align-items: center;
-                    gap: 50px;
-                    cursor: grab;
-                `;
-                // 计算卡片尺寸 - 优化尺寸计算，使图片更大
-                var containerWidth = window.innerWidth - 50; // 减去左右各50px间距
-                var containerHeight = window.innerHeight * 0.75 - 40; // 减去上下各30px间距和标题区域
-                var cardHeight = containerHeight * 1.5; // 直接使用容器高度的1.5倍，使图片最大化
-                var cardWidth = cardHeight * (3 / 4); // 3:4比例，宽度是高度的3/4
-                // 计算最大可滑动距离 - 确保最后一张图片右端离背景右边缘5px
-                var totalWidth = (cardWidth + 50) * characters.length - 50; // 所有卡片和间隙的总宽度
-                var containerVisibleWidth = containerWidth - 100; // 容器可见宽度（减去左右各50px）
-                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5); // 确保最后一张图片右端离背景右边缘5px
-                // 创建角色卡片
+        display: flex;
+        transition: transform 0.15s ease;
+        height: 100%;
+        align-items: center;
+        gap: 50px;
+        cursor: grab;
+    `;
+
+                var containerWidth = window.innerWidth - 50;
+                var containerHeight = window.innerHeight * 0.75 - 40;
+                var cardHeight = containerHeight * 1.5;
+                var cardWidth = cardHeight * (3 / 4);
+
+                var totalWidth = (cardWidth + 50) * characters.length - 50;
+                var containerVisibleWidth = containerWidth - 100;
+                var maxSlideDistance = Math.max(0, totalWidth - containerVisibleWidth + 5);
+
                 for (var i = 0; i < characters.length; i++) {
                     var charId = characters[i];
                     var charCard = ui.create.div('');
+
                     charCard.style.cssText = `
-                        flex-shrink: 0;
-                        width: ${cardWidth}px;
-                        height: ${cardHeight}px;
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 2px solid rgba(255, 215, 0, 0.5);//描边
-                        border-radius: 8px;
-                        overflow: hidden;
-                        position: relative;
-                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-                        margin: 0 auto; /* 居中 */
-                    `;
-                    // 创建角色图片
+            flex-shrink: 0;
+            width: ${cardWidth}px;
+            height: ${cardHeight}px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        `;
+
                     var charImg = document.createElement('img');
                     charImg.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                    `;
-                    // 设置图片源
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        `;
+
                     var imgSrc = lib.assetURL + 'extension/火影忍者/' + charId + '.jpg';
                     charImg.src = imgSrc;
                     charImg.onerror = function () {
@@ -1904,86 +1768,93 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.style.textAlign = 'center';
                         this.innerHTML = '<div>暂无图片</div>';
                     };
-                    // 创建角色名称 - 放在图片上偏下方，距离底部10px        
+
                     var charName = ui.create.div('.hyrz-character-name', get.translation(charId) || charId);
                     charCard.appendChild(charImg);
                     charCard.appendChild(charName);
                     slider.appendChild(charCard);
                 }
-                // 当前滑动距离
+
                 var currentSlideDistance = 0;
-                // 更新显示
+
                 function updateDisplay() {
                     slider.style.transform = 'translateX(-' + currentSlideDistance + 'px)';
                 }
-                // 触摸滑动支持
+
                 var startX = 0;
                 var currentX = 0;
                 var isDragging = false;
+
                 slider.addEventListener('touchstart', function (e) {
                     startX = e.touches[0].clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                 });
+
                 slider.addEventListener('touchmove', function (e) {
                     if (!isDragging) return;
                     currentX = e.touches[0].clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 slider.addEventListener('touchend', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 鼠标拖动支持
+
                 slider.addEventListener('mousedown', function (e) {
                     startX = e.clientX;
                     isDragging = true;
                     slider.style.cursor = 'grabbing';
-                    slider.style.transition = 'none'; // 拖动时禁用过渡效果
+                    slider.style.transition = 'none';
                     e.preventDefault();
                 });
+
                 document.addEventListener('mousemove', function (e) {
                     if (!isDragging) return;
                     currentX = e.clientX;
-                    var diff = (startX - currentX) * 2.5; // 提高灵敏度系数
+                    var diff = (startX - currentX) * 2.5;
                     var newDistance = currentSlideDistance + diff;
-                    // 限制滑动范围
+
                     if (newDistance < 0) newDistance = 0;
                     if (newDistance > maxSlideDistance) newDistance = maxSlideDistance;
+
                     currentSlideDistance = newDistance;
                     updateDisplay();
                     startX = currentX;
                 });
+
                 document.addEventListener('mouseup', function () {
                     isDragging = false;
                     slider.style.cursor = 'grab';
-                    slider.style.transition = 'transform 0.15s ease'; // 恢复过渡效果
+                    slider.style.transition = 'transform 0.15s ease';
                 });
-                // 组装组件
+
                 galleryContainer.appendChild(slider);
-                // 将标题添加到galleryPage.body，使其在图鉴背景内
+
                 galleryPage.body.appendChild(title);
                 galleryPage.body.appendChild(closeButton);
                 galleryPage.body.appendChild(galleryContainer);
-                // 显示页面
+
                 lib.setScroll(galleryPage.body);
                 galleryPage.show();
-                // 初始更新
+
                 setTimeout(function () {
                     updateDisplay();
                 }, 100);
+
                 return galleryPage;
             };
-
             // ---------------------------------------lunmu------------------------------------------//
             /*lib.skill._huoying_lunmu = {
                 trigger: {
@@ -9069,7 +8940,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             "huoying_kuangbao": {
-                                audio: "ext:火影忍者:2",                                
+                                audio: "ext:火影忍者:2",
                                 trigger: {
                                     global: "damageEnd",
                                 },
@@ -12641,7 +12512,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 "clear": true,
                 "onclick": function () {
                     game.playhyrz('hyrz_danchuang');
-                    game.hyrzCharacter();
+                    setTimeout(function () {
+                        game.hyrzCharacter();
+                    }, 100);
                 },
             },
             "openhyrz_tujian": {
@@ -12682,7 +12555,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.9",
+            version: "3.0",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

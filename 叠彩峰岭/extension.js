@@ -1,61 +1,69 @@
 game.import("extension", function(lib, game, ui, get, ai, _status) {
     return {
         name: "叠彩峰岭",
-        editable: false, 
-        content: function(config, pack) {                        
-            var characterPacks = [
-                { id: 'standard', name: '标准包', packKey: 'standard' },
-                { id: 'refresh', name: '界限突破', packKey: 'refresh' },
-                { id: 'shenhua', name: '神话再临', packKey: 'shenhua' },
-                { id: 'yijiang', name: '一将成名', packKey: 'yijiang' },
-                { id: 'extra', name: '神将', packKey: 'extra' },
-                { id: 'sp', name: '璀璨星河', packKey: 'sp' },
-                { id: 'sp2', name: '系列专属', packKey: 'sp2' },
-                { id: 'newjiang', name: '新一将成名', packKey: 'newjiang' },
-                { id: 'onlyOL', name: 'OL专属', packKey: 'onlyOL' },
-                { id: 'yingbian', name: '文德武备', packKey: 'yingbian' },
-                { id: 'clan', name: '门阀士族', packKey: 'clan' },
-                { id: 'huicui', name: '群英荟萃', packKey: 'huicui' },
-                { id: 'xianding', name: '限定专属', packKey: 'xianding' },
-                { id: 'mobile', name: '移动版', packKey: 'mobile' },
-                { id: 'shiji', name: '始计篇', packKey: 'shiji' },
-                { id: 'sb', name: '谋攻篇', packKey: 'sb' },
-                { id: 'tw', name: '外服武将', packKey: 'tw' },
-                { id: 'collab', name: '联动卡', packKey: 'collab' },
-                { id: 'old', name: '怀旧', packKey: 'old' },
-                { id: 'offline', name: '线下武将', packKey: 'offline' },
-                { id: 'jsrg', name: '江山如故', packKey: 'jsrg' },
-                { id: 'sxrm', name: '蚀心入魔', packKey: 'sxrm' },
-                { id: 'sixiang', name: '四象封印', packKey: 'sixiang' },
-                { id: 'ddd', name: '3D精选', packKey: 'ddd' },
-                { id: 'wandian', name: '玩点论杀', packKey: 'wandian' },
-                { id: 'yunchou', name: '运筹帷幄', packKey: 'yunchou' },
-                { id: 'yxs', name: '英雄杀', packKey: 'yxs' },
-                { id: 'diy', name: 'DIY', packKey: 'diy' },
-                { id: 'key', name: 'KEY', packKey: 'key' },
-                { id: 'xianjian', name: '仙剑奇侠传', packKey: 'xianjian' },
-                { id: 'hearth', name: '炉石传说', packKey: 'hearth' },
-                { id: 'gujian', name: '古剑奇谭', packKey: 'gujian' },
-                { id: 'ow', name: '守望先锋', packKey: 'ow' },
-                { id: 'swd', name: '轩辕剑', packKey: 'swd' },
-                { id: 'gwent', name: '昆特牌', packKey: 'gwent' },
-                { id: 'mtg', name: '万智牌', packKey: 'mtg' }
-            ];
-            
+        editable: false,
+        content: function(config, pack) {
+
+            function getAvailableCharacterPacks() {
+                var availablePacks = [];
+                if (lib.characterPack) {
+                    for (var packKey in lib.characterPack) {
+                        if (!packKey || packKey === "mode_banned" || packKey === "mode_favourite" || packKey === 'character' || packKey === 'translate' || packKey === 'list' || packKey === 'card' || packKey === 'skill') {
+                            continue;
+                        }
+                        var packData = lib.characterPack[packKey];
+                        var hasValidCharacters = false;
+                        if (packData && typeof packData === 'object') {
+                            for (var charName in packData) {
+                                if (charName && lib.character[charName]) {
+                                    hasValidCharacters = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (hasValidCharacters) {
+                            var packName = lib.translate[packKey + '_character_config'];
+                            if (!packName) {
+                                packName = packKey;
+                            }
+                            var characterCount = 0;
+                            for (var charName in packData) {
+                                if (charName && lib.character[charName]) {
+                                    characterCount++;
+                                }
+                            }
+                            availablePacks.push({
+                                id: packKey,
+                                name: packName,
+                                packKey: packKey,
+                                count: characterCount
+                            });
+                        }
+                    }
+                }
+                return availablePacks;
+            }
+
             game.showCharacterInfo = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
-                
-                var currentPack = 'standard';
-                
+                var characterPacks = getAvailableCharacterPacks();
+                if (characterPacks.length === 0) {
+                    alert('未找到任何已安装的武将包！');
+                    ui.system.style.display = '';
+                    ui.menuContainer.style.display = '';
+                    return null;
+                }
+                var currentPack = characterPacks[0].id;
+                var currentPackName = characterPacks[0].name;
+
                 function Page() {
                     this.body = ui.create.div().hide();
                     this.comps = {};
                     this.paBody = document.body;
                     this.paBody.appendChild(this.body);
                 }
-
                 Page.prototype = {
                     show: function() {
                         if (!this.body.parentNode && this.paBody) {
@@ -70,16 +78,14 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         this.body.style.height = '100%';
                         this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
                         this.body.style.zIndex = '2024';
-
                         return this;
                     },
-
                     hide: function() {
                         this.body.hide();
                         return this;
                     }
                 };
-                
+
                 function createCharacterIntro(charName, introClass) {
                     var div = ui.create.div('.dcfl_intro_' + introClass);
                     var charData = lib.character[charName];
@@ -87,16 +93,94 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                     var dComps = {
                         header: (function() {
-                            var img = ui.create.div('.dcfl_intro_header');
-                            img.style['background-image'] = 'url(' + lib.assetURL + 'image/character/' + charName + '.jpg)';
-                            return img;
+                            var imgElement = ui.create.div('.dcfl_intro_header');
+                            var extNameWithTags = lib.translate[currentPack + '_character_config'];
+
+                            function stripHtmlTags(html) {
+                                if (!html) return '';
+                                var tempDiv = document.createElement('div');
+                                tempDiv.innerHTML = html;
+                                var text = tempDiv.textContent || tempDiv.innerText || '';
+                                return text.trim();
+                            }
+                            var extNameClean = stripHtmlTags(extNameWithTags);
+
+                            function getAllExtensionDirectories() {
+                                var directories = new Set();
+                                if (lib.characterPack) {
+                                    for (var packKey in lib.characterPack) {
+                                        if (!packKey || packKey === 'character' || packKey === 'translate' ||
+                                            packKey === 'list' || packKey === 'card' || packKey === 'skill') {
+                                            continue;
+                                        }
+                                        directories.add(packKey);
+                                        var packNameWithTags = lib.translate[packKey + '_character_config'];
+                                        if (packNameWithTags) {
+                                            var cleanName = stripHtmlTags(packNameWithTags);
+                                            if (cleanName && cleanName !== packKey) {
+                                                directories.add(cleanName);
+                                            }
+                                        }
+                                    }
+                                }
+                                return Array.from(directories);
+                            }
+
+                            var allExtensionDirs = getAllExtensionDirectories();
+
+                            var imagePaths = [];
+
+                            imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
+
+                            if (extNameClean) {
+                                imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/' + charName + '.jpg');
+                                imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/image/character/' + charName + '.jpg');
+                            }
+
+                            imagePaths.push(lib.assetURL + 'extension/' + currentPack + '/' + charName + '.jpg');
+                            imagePaths.push(lib.assetURL + 'extension/' + currentPack + '/image/character/' + charName + '.jpg');
+
+                            for (var i = 0; i < allExtensionDirs.length; i++) {
+                                var dirName = allExtensionDirs[i];
+
+                                if (dirName === extNameClean || dirName === currentPack) {
+                                    continue;
+                                }
+
+                                imagePaths.push(lib.assetURL + 'extension/' + dirName + '/' + charName + '.jpg');
+                                imagePaths.push(lib.assetURL + 'extension/' + dirName + '/image/character/' + charName + '.jpg');
+                            }
+
+                            function trySetBackgroundImage(pathIndex) {
+                                if (pathIndex >= imagePaths.length) {
+
+                                    imgElement.style.backgroundColor = '#333';
+                                    imgElement.style.backgroundImage = 'none';
+                                    imgElement.innerHTML = '<div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:#888; font-size:14px;">暂无图片</div>';
+                                    return;
+                                }
+                                var imagePath = imagePaths[pathIndex];
+                                var testImg = new Image();
+                                testImg.onload = function() {
+
+                                    imgElement.style['background-image'] = 'url(' + imagePath + ')';
+                                };
+                                testImg.onerror = function() {
+
+                                    trySetBackgroundImage(pathIndex + 1);
+                                };
+                                testImg.src = imagePath;
+                            }
+
+                            trySetBackgroundImage(0);
+                            return imgElement;
                         })(),
                         infos: (function() {
                             var str = "";
                             if (charName) str += get.translation(charName) + '&nbsp;';
-                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;'; 
-                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;'; 
-                            if (charData[2]) str += charData[2] + '体力'; 
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
                             return ui.create.div('.dcfl_intro_infos', str);
                         })(),
                         skills: (function() {
@@ -119,49 +203,12 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
                     return div;
                 }
-                
+
                 var characterPage = new Page();
                 characterPage.body = ui.create.div('#dcfl_page');
-                
                 var mainContainer = ui.create.div('#dcfl_mainContainer');
-                mainContainer.style.position = 'fixed';
-                mainContainer.style.top = '50%';
-                mainContainer.style.left = 'calc(8% + 150px)';
-                mainContainer.style.transform = 'translateY(-50%)';
-                mainContainer.style.width = 'calc(84% - 150px)';
-                mainContainer.style.height = '88%';
-                mainContainer.style.backgroundColor = '#1a1a1a';
-                mainContainer.style.border = '2px solid #444';
-                mainContainer.style.borderRadius = '0 8px 8px 0';
-                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
-                mainContainer.style.zIndex = '2025';
-                mainContainer.style.overflow = 'hidden';
-                
                 var leftButtonPanel = ui.create.div('#dcfl_leftButtonPanel');
-                leftButtonPanel.style.position = 'fixed';
-                leftButtonPanel.style.left = '8%';
-                leftButtonPanel.style.top = '50%';
-                leftButtonPanel.style.transform = 'translateY(-50%)';
-                leftButtonPanel.style.width = '150px';
-                leftButtonPanel.style.height = '88%';
-                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
-                leftButtonPanel.style.border = '2px solid #555';
-                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
-                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
-                leftButtonPanel.style.overflowY = 'auto';
-                leftButtonPanel.style.overflowX = 'hidden';
-                leftButtonPanel.style.padding = '18px 12px';
-                leftButtonPanel.style.boxSizing = 'border-box';
-                leftButtonPanel.style.zIndex = '2025';
-                
                 var rightPanel = ui.create.div('#dcfl_rightPanel');
-                rightPanel.style.width = '100%';
-                rightPanel.style.height = '100%';
-                rightPanel.style.position = 'relative';
-                rightPanel.style.overflow = 'hidden';
-                rightPanel.style.padding = '0';
-                rightPanel.style.boxSizing = 'border-box';
-                
                 var closeButton = ui.create.div('#dcfl_closeButton', '×');
                 closeButton.addEventListener('click', function() {
                     characterPage.hide();
@@ -172,55 +219,34 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }, 500);
                 });
                 rightPanel.appendChild(closeButton);
-                
+
                 var title = ui.create.div('#dcfl_title');
-                title.innerHTML = '标准包';
+                title.innerHTML = characterPacks[0].name;
                 rightPanel.appendChild(title);
-                
+
                 var contentContainer = ui.create.div('#dcfl_contentContainer');
-                contentContainer.style.position = 'absolute';
-                contentContainer.style.top = '60px';
-                contentContainer.style.left = '0';
-                contentContainer.style.width = '100%';
-                contentContainer.style.height = 'calc(100% - 60px)';
-                contentContainer.style.overflow = 'auto';
-                contentContainer.style.padding = '15px';
-                contentContainer.style.boxSizing = 'border-box';
                 rightPanel.appendChild(contentContainer);
-                
+
                 var buttonContainer = ui.create.div('#dcfl_buttonContainer');
-                buttonContainer.style.width = '100%';
-                buttonContainer.style.height = 'auto';
-                buttonContainer.style.display = 'flex';
-                buttonContainer.style.flexDirection = 'column';
-                buttonContainer.style.gap = '10px';
-                
+
                 for (var i = 0; i < characterPacks.length; i++) {
                     var pack = characterPacks[i];
-                    
+
                     var buttonWrapper = ui.create.div('.dcfl_buttonWrapper');
-                    buttonWrapper.style.width = '100%';
-                    buttonWrapper.style.height = '50px';
-                    buttonWrapper.style.display = 'block';
-                    buttonWrapper.style.position = 'relative';
-                    
+
                     var button = ui.create.div('.dcfl_packButton');
-                    button.innerHTML = pack.name;
-                    button.style.width = '100%';
-                    button.style.height = '100%';
-                    button.style.display = 'flex';
-                    button.style.alignItems = 'center';
-                    button.style.justifyContent = 'center';
-                    
+                    var buttonText = pack.name + '<span class="dcfl_count_badge">(' + pack.count + '名)</span>';
+                    button.innerHTML = buttonText;
+
                     if (pack.id === currentPack) {
                         button.classList.add('active');
                     }
-                    
+
                     button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function(packId) {
+                    button.addEventListener('click', (function(packId, packName) {
                         return function() {
                             if (currentPack === packId) return;
-                            
+
                             var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
                             for (var j = 0; j < buttons.length; j++) {
                                 var btn = buttons[j];
@@ -230,29 +256,23 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     btn.classList.remove('active');
                                 }
                             }
-                            
+
                             currentPack = packId;
-                            
-                            for (var k = 0; k < characterPacks.length; k++) {
-                                if (characterPacks[k].id === packId) {
-                                    title.innerHTML = characterPacks[k].name;
-                                    break;
-                                }
-                            }
-                            
+                            currentPackName = packName;
+                            title.innerHTML = packName;
                             updateCharacterList();
                         };
-                    })(pack.id));
-                    
+                    })(pack.id, pack.name));
+
                     buttonWrapper.appendChild(button);
                     buttonContainer.appendChild(buttonWrapper);
                 }
-                
+
                 leftButtonPanel.appendChild(buttonContainer);
-                
+
                 function updateCharacterList() {
                     contentContainer.innerHTML = '';
-                    
+
                     var packInfo;
                     for (var i = 0; i < characterPacks.length; i++) {
                         if (characterPacks[i].id === currentPack) {
@@ -260,11 +280,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             break;
                         }
                     }
-                    
+
                     if (!packInfo) return;
-                    
+
                     var characterPack = lib.characterPack[packInfo.packKey];
-                    
+
                     if (characterPack) {
                         var charList = [];
                         for (var charName in characterPack) {
@@ -272,45 +292,47 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 charList.push(charName);
                             }
                         }
-                        
+
                         for (var i = 0; i < charList.length; i++) {
                             var charName = charList[i];
                             var introClass = (i % 2 === 0) ? 'left' : 'right';
                             var charIntro = createCharacterIntro(charName, introClass);
-                            
+
                             if (charIntro) {
                                 contentContainer.appendChild(charIntro);
                             }
                         }
-                        
+
                         var clearDiv = ui.create.div();
                         clearDiv.style.clear = 'both';
                         clearDiv.style.height = '0';
                         clearDiv.style.overflow = 'hidden';
                         contentContainer.appendChild(clearDiv);
-                        
+
                         lib.setScroll(contentContainer);
                     }
                 }
-                
+
                 updateCharacterList();
-                
+
                 characterPage.body.appendChild(mainContainer);
                 mainContainer.appendChild(rightPanel);
-                
                 characterPage.body.appendChild(leftButtonPanel);
-                
+
                 characterPage.show();
                 return characterPage;
             };
-            
+
         },
         precontent: function() {
             lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
-            lib.extensionMenu['extension_' + '叠彩峰岭'].delete = { name: '删除此扩展', clear: true, };
+            lib.extensionMenu['extension_' + '叠彩峰岭'].delete = {
+                name: '删除此扩展',
+                clear: true,
+            };
         },
-        config: {                     
+        config: {
             "dcfl_viewinfo": {
                 name: '<div class="dcfl_menu">查看信息</div>',
                 "clear": true,
@@ -336,11 +358,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 skill: {},
                 translate: {},
             },
-            intro: "<font color=#f00>查看前须开启相应武将包</font>",
+            intro: "<font color=#4a9eff>自动检测并显示已安装的武将包信息</font>",
             author: "山佬进城（小苏）",
             diskURL: "",
             forumURL: "",
-            version: "2.0",
+            version: "3.0",
         },
         files: {
             "character": [],

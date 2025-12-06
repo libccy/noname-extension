@@ -29,10 +29,10 @@
 
 #dcfl_leftButtonPanel {
     position: fixed !important;
-    left: 8% !important;
+    left: 5% !important;/*按钮区起始位置*/
     top: 50% !important;
     transform: translateY(-50%) !important;
-    width: 150px !important;
+    width: 185px !important;
     height: 90% !important;
     background-color: rgba(30, 30, 30, 0.95) !important;
     /*border: 2px solid #555 !important;*/
@@ -119,7 +119,7 @@
 #dcfl_mainContainer {
     position: fixed !important;
     top: 50% !important;
-    left: calc(8% + 150px) !important;
+    left: calc(5% + 185px) !important;/*右页面起始+按钮区的位置+185px宽度*/
     transform: translateY(-50%) !important;
     width: calc(84% - 150px) !important;
     height: 90% !important;

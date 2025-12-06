@@ -1,8 +1,8 @@
-game.import("extension", function(lib, game, ui, get, ai, _status) {
+game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
         name: "叠彩峰岭",
         editable: false,
-        content: function(config, pack) {
+        content: function (config, pack) {
 
             function getAvailableCharacterPacks() {
                 var availablePacks = [];
@@ -44,7 +44,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 return availablePacks;
             }
 
-            game.showCharacterInfo = function() {
+            game.showCharacterInfo = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -65,7 +65,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     this.paBody.appendChild(this.body);
                 }
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -80,7 +80,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         this.body.style.zIndex = '2024';
                         return this;
                     },
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
@@ -92,7 +92,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     if (!charData) return null;
 
                     var dComps = {
-                        header: (function() {
+                        header: (function () {
                             var imgElement = ui.create.div('.dcfl_intro_header');
                             var extNameWithTags = lib.translate[currentPack + '_character_config'];
 
@@ -126,9 +126,42 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 return Array.from(directories);
                             }
 
+                            //==================//
+                            function extractAndConvertImagePaths(charData) {
+                                if (!charData || !Array.isArray(charData[4])) {
+                                    return [];
+                                }
+
+                                const extractedPaths = [];
+                                const pathArray = charData[4];
+
+                                for (let j = 0; j < pathArray.length; j++) {
+                                    const item = pathArray[j];
+
+                                    if (typeof item === 'string' && item.trim() !== '') {
+
+                                        if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
+                                            // 去除 'ext:' 前缀，然后加上 lib.assetURL + 'extension/'
+                                            const convertedPath = item.replace(/^ext:/, lib.assetURL + 'extension/');
+                                            extractedPaths.push(convertedPath);
+                                        }
+                                    }
+                                }
+
+                                return extractedPaths;
+                            }
+                            //==================//
                             var allExtensionDirs = getAllExtensionDirectories();
 
                             var imagePaths = [];
+
+                            //==================//
+                            if (lib.character && lib.character[charName]) {
+                                var charData = lib.character[charName];
+                                var convertedPaths = extractAndConvertImagePaths(charData);
+                                imagePaths = imagePaths.concat(convertedPaths);
+                            }
+                            //==================//
 
                             imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
 
@@ -161,11 +194,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 }
                                 var imagePath = imagePaths[pathIndex];
                                 var testImg = new Image();
-                                testImg.onload = function() {
+                                testImg.onload = function () {
 
                                     imgElement.style['background-image'] = 'url(' + imagePath + ')';
                                 };
-                                testImg.onerror = function() {
+                                testImg.onerror = function () {
 
                                     trySetBackgroundImage(pathIndex + 1);
                                 };
@@ -175,7 +208,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             trySetBackgroundImage(0);
                             return imgElement;
                         })(),
-                        infos: (function() {
+                        infos: (function () {
                             var str = "";
                             if (charName) str += get.translation(charName) + '&nbsp;';
                             if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
@@ -183,7 +216,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             if (charData[2]) str += charData[2] + '体力';
                             return ui.create.div('.dcfl_intro_infos', str);
                         })(),
-                        skills: (function() {
+                        skills: (function () {
                             var str = "";
                             if (charData[3] && Array.isArray(charData[3])) {
                                 for (var j = 0; j < charData[3].length; j++) {
@@ -210,10 +243,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 var leftButtonPanel = ui.create.div('#dcfl_leftButtonPanel');
                 var rightPanel = ui.create.div('#dcfl_rightPanel');
                 var closeButton = ui.create.div('#dcfl_closeButton', '×');
-                closeButton.addEventListener('click', function() {
+                closeButton.addEventListener('click', function () {
                     characterPage.hide();
                     ui.system.style.display = '';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
@@ -243,8 +276,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
 
                     button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function(packId, packName) {
-                        return function() {
+                    button.addEventListener('click', (function (packId, packName) {
+                        return function () {
                             if (currentPack === packId) return;
 
                             var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
@@ -324,7 +357,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             };
 
         },
-        precontent: function() {
+        precontent: function () {
             lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
             lib.extensionMenu['extension_' + '叠彩峰岭'].delete = {
@@ -336,8 +369,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             "dcfl_viewinfo": {
                 name: '<div class="dcfl_menu">查看信息</div>',
                 "clear": true,
-                "onclick": function() {
-                    setTimeout(function() {
+                "onclick": function () {
+                    setTimeout(function () {
                         game.showCharacterInfo();
                     }, 100);
                 },

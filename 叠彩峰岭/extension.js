@@ -359,7 +359,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 translate: {},
             },
             intro: "<font color=#4a9eff>自动检测并显示已安装的武将包信息</font>",
-            author: "山佬进城（小苏）",
+            author: "小苏",
             diskURL: "",
             forumURL: "",
             version: "3.0",

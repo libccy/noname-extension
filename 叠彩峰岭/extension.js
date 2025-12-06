@@ -140,7 +140,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                     if (typeof item === 'string' && item.trim() !== '') {
 
-                                        if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
+                                        if (item.startsWith('img:')) {
+
+                                            const actualPath = item.replace(/^img:/, '');
+                                            extractedPaths.push(actualPath);
+                                        }
+                                        else if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
                                             // 去除 'ext:' 前缀，然后加上 lib.assetURL + 'extension/'
                                             const convertedPath = item.replace(/^ext:/, lib.assetURL + 'extension/');
                                             extractedPaths.push(convertedPath);

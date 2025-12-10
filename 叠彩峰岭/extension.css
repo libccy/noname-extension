@@ -3,7 +3,7 @@
     font-weight: bold;
     text-shadow: 1px 1px 2px #000;
     padding: 8px 15px;
-    border-radius: 6px;
+    border-radius: 5px;
     background: linear-gradient(135deg, rgba(120, 88, 75, 0.8), rgba(60, 60, 60, 0.8));
     border: 1px solid #555;
     display: inline-block;
@@ -29,14 +29,13 @@
 
 #dcfl_leftButtonPanel {
     position: fixed !important;
-    left: 5% !important;/*按钮区起始位置*/
+    left: 6% !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     width: 185px !important;
     height: 90% !important;
     background-color: rgba(30, 30, 30, 0.95) !important;
-    /*border: 2px solid #555 !important;*/
-    border: none !important; /* 去掉边框 */
+    border: none !important; 
     border-radius: 8px 0 0 8px !important;
     box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
     overflow-y: auto !important;
@@ -119,12 +118,12 @@
 #dcfl_mainContainer {
     position: fixed !important;
     top: 50% !important;
-    left: calc(5% + 185px) !important;/*右页面起始+按钮区的位置+185px宽度*/
+    left: calc(6% + 185px) !important;
     transform: translateY(-50%) !important;
     width: calc(84% - 150px) !important;
     height: 90% !important;
     background-color: #1a1a1a !important;
-    border: none !important; /* 去掉边框 */
+    border: none !important;
     border-radius: 0 8px 8px 0 !important;
     box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
     z-index: 2025 !important;
@@ -209,6 +208,7 @@
     left: 15px !important;
     top: 20px !important;
     margin-bottom: 10px !important;
+    margin-top: 10px !important;
 }
 
 .dcfl_intro_right {
@@ -218,13 +218,14 @@
     right: 15px !important;
     top: 20px !important;
     margin-bottom: 10px !important;
+    margin-top: 10px !important;
 }
 
 .dcfl_intro_header {
     position: absolute !important;
     width: 125px !important;
     height: 170px !important;
-    left: 20px !important;
+    left: 18px !important;
     top: 10px !important;
     border-radius: 2px !important;
     box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85) !important;
@@ -273,6 +274,516 @@
     border-radius: 3px !important;
 }
 
+.dcfl_group_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    clear: both !important;
+    z-index: 202511 !important;
+}
+/*
+.dcfl_intro_left, .dcfl_intro_right {
+    margin-top: 10px !important;
+}
+*/
 .greentext {
     color: #7cfc00 !important;
 }
+
+.dcfl_skill_name {
+    color: #7cfc00 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    background-color: rgba(124, 252, 0, 0.1) !important;
+    border: 1px solid rgba(124, 252, 0, 0.3) !important;
+}
+
+.dcfl_skill_name:hover {
+    background-color: rgba(124, 252, 0, 0.2) !important;
+    border-color: rgba(124, 252, 0, 0.6) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+}
+
+.dcfl_skill_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('dcfl_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 8px !important;
+    margin-bottom: 3px !important;
+}
+
+.dcfl_intro_skills .dcfl_skill_icon {
+    width: 1em !important;
+    height: 1em !important;
+    margin-right: 6px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+}
+
+.dcfl_intro_skills strong.greentext {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-bottom: 3px !important;
+}
+
+.dcfl_intro_skills strong.greentext + span br + *,
+.dcfl_detail_skill_content .dcfl_skill_name + span br + * {
+    display: inline-block !important;
+    margin-left: calc(1.2em + 8px) !important;
+    text-indent: -8px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name + span br + * {
+    margin-left: calc(1.2em + 8px) !important;
+}
+
+.dcfl_intro_skills strong.greentext + span br + * {
+    margin-left: calc(1em + 6px) !important;
+}
+
+#dcfl_page.dcfl_detail_page {
+    z-index: 2026 !important;
+}
+
+#dcfl_mainContainer.dcfl_detail_container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 6% !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% + 35px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
+    z-index: 2026 !important;
+    overflow: hidden !important;
+}
+
+#dcfl_rightPanel.dcfl_detail_panel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_closeButton.dcfl_detail_close {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
+    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_closeButton.dcfl_detail_close:hover {
+    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
+}
+
+#dcfl_title.dcfl_detail_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    line-height: 36px !important;
+    text-indent: 1em !important;
+    color: #ffd700 !important;
+    display: block !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_contentContainer.dcfl_detail_content {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: hidden !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+.dcfl_detail_page_info_container {
+    position: absolute !important;
+    width: calc(67% - 60px) !important;
+    height: 50px !important;
+    left: calc(33% + 17px) !important;
+    top: 20px !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.dcfl_detail_page_info_text {
+    width: calc(100% - 2.4em - 12px) !important;
+    margin-left: calc(1.2em + 12px) !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #eee !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.dcfl_detail_image_area {
+    position: absolute !important;
+    width: calc(33% - 20px) !important;
+    height: calc(100% - 100px) !important;
+    left: 20px !important;
+    top: 20px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dcfl_detail_header {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 5px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
+.dcfl_detail_button_area {
+    position: absolute !important;
+    width: calc(33% - 20px) !important;
+    height: 36px !important;
+    left: 20px !important;
+    bottom: 20px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dcfl_detail_tab_buttons {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+.dcfl_tab_button {
+    width: 50% !important;
+    height: 100% !important;
+    line-height: 36px !important;
+    text-align: center !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #ccc !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    cursor: pointer !important;
+    transition: all 0.3s !important;
+    user-select: none !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    border: none !important;
+}
+
+.dcfl_tab_button:first-child {
+    border-right: 1px solid rgba(120, 88, 75, 0.8) !important;
+}
+
+.dcfl_tab_button.active {
+    background-color: rgba(64, 156, 255, 0.9) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+
+.dcfl_tab_button:hover:not(.active) {
+    background-color: rgba(60, 60, 60, 0.9) !important;
+    color: #fff !important;
+}
+
+.dcfl_detail_right_area {
+    position: absolute !important;
+    width: calc(67% - 60px) !important;
+    height: calc(100% - 100px) !important;
+    left: calc(33% + 17px) !important;
+    top: 85px !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+.dcfl_detail_intro_content,
+.dcfl_detail_skill_content {
+    width: 100% !important;
+    height: 100% !important;
+    letter-spacing: 1px !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #ccc !important;
+    line-height: 1.6 !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.3) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar-thumb {
+    background-color: rgba(144, 238, 144, 0.5) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name {
+    color: #7cfc00 !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    margin-right: 8px !important;
+    display: inline-block !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name:hover {
+    text-decoration: underline !important;
+}
+
+#dcfl_contentContainer.dcfl_detail_content::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+#dcfl_page.dcfl_code_page {
+    z-index: 2030 !important;
+}
+
+#dcfl_mainContainer.dcfl_code_container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 6% !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% + 35px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
+    z-index: 2028 !important;
+    overflow: hidden !important;
+}
+
+#dcfl_rightPanel.dcfl_code_panel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_closeButton.dcfl_code_close {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
+    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    z-index: 2029 !important;
+    color: #fff !important;
+}
+
+#dcfl_closeButton.dcfl_code_close:hover {
+    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
+    color: #ffd700 !important;
+}
+
+#dcfl_title.dcfl_code_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    line-height: 36px !important;
+    text-indent: 1em !important;
+    color: #ffd700 !important;
+    display: block !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    margin: 0 15px !important;
+    width: calc(100% - 30px) !important;
+    left: 15px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: lishu !important;
+    font-size: 28px !important;
+    color: #ccc !important;
+    line-height: 1.6 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: auto !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-track {
+    background: rgba(20,20,20,0.5) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+.dcfl_icon_button {
+    position: fixed !important;
+    left: 80% !important;
+    top: calc(72% - 90px) !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 2 !important;
+    cursor: pointer !important;
+    background-size: cover !important;
+    transition: all 0.3s !important;    
+}
+
+.dcfl_icon_button:hover,
+.dcfl_icon_button.dcfl_icon_hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4) !important;
+    border-color: rgba(255, 215, 0, 0.8) !important;
+}
+
+.dcfl_detail_page_info_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('dcfl_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 12px !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.dcfl_detail_page_info_icon_wrapper {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: 1.2em !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 1 !important;
+}
+
+.dcfl_detail_page_info_text {
+    width: calc(100% - 2.4em - 12px) !important;
+    margin-left: calc(1.2em + 12px) !important;
+}
+

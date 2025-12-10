@@ -717,14 +717,14 @@ extension["辅助卡牌"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2025/12/6",
+	date: "2025/12/10",
 	author: "小苏",
-	intro: "一个功能小扩展，方便查看本体和扩展的武将技能",
+	intro: "<font color=#4a9eff>一个功能小扩展，方便查看本体和扩展的武将技能，自动检测并显示已安装的武将包信息，单击列表页武将图片换肤，双击列表页的武将图片可放大查看详细页，单击详细页的技能名前的小喇叭图标可播放配音，单击详细页技能名可查看技能代码</font>",
 	size: "0.1MB",
 	netdisk: "",
-	version: 3.0,
+	version: 5.5,
 	files: [
-		"extension.js", "extension.css",
+		"extension.js", "extension.css","dcfl_icon.png","dcfl_bofanpeiyin.png"
 
 	]
 };

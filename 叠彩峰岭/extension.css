@@ -8,6 +8,15 @@
     border: 1px solid #555;
     display: inline-block;
     transition: all 0.3s;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: fit-content !important; 
+    min-width: 120px !important;    
+    padding: 8px 20px !important;  
 }
 
 .dcfl_menu:hover {

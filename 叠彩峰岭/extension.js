@@ -1083,11 +1083,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         },
         precontent: function() {            
             lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');            
-            delete lib.extensionMenu.extension_叠彩峰岭.delete;
-            lib.extensionMenu['extension_' + '叠彩峰岭'].delete = {
-                name: '删除此扩展',
-                clear: true,
-            };
+            delete lib.extensionMenu.extension_叠彩峰岭.delete;            
         },
         config: {
             "dcfl_viewinfo": {

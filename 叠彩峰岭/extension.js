@@ -3,6 +3,20 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         name: "叠彩峰岭",
         editable: false,
         content: function(config, pack) {
+            
+            game.playdcfl = function(fn, dir) {
+                try {
+                    if (!fn) {
+                        console.error('角色ID不能为空');
+                        return;
+                    }
+                    
+                    console.log('尝试播放扩展武将配音，角色:', fn, '扩展包:', dir);
+                    game.playAudio('..', 'extension', dir, fn);
+                } catch (error) {
+                    console.error('播放扩展配音出错:', error);
+                }
+            };
 
             function createIconButton() {
                 if (document.getElementById('dcfl_icon_button')) {
@@ -126,6 +140,32 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 img.src = skinPath;
             }
 
+            function extractAndConvertImagePaths(charData) {
+                if (!charData || !Array.isArray(charData[4])) {
+                    return [];
+                }
+                
+                var extractedPaths = [];
+                var pathArray = charData[4];
+                
+                for (var j = 0; j < pathArray.length; j++) {
+                    var item = pathArray[j];
+                    
+                    if (typeof item === 'string' && item.trim() !== '') {
+                        if (item.startsWith('img:')) {
+                            var actualPath = item.replace(/^img:/, '');
+                            extractedPaths.push(actualPath);
+                        }
+                        else if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
+                            var convertedPath = item.replace(/^ext:/, lib.assetURL + 'extension/');
+                            extractedPaths.push(convertedPath);
+                        }
+                    }
+                }
+                
+                return extractedPaths;
+            }
+
             function loadCharacterImage(imgElement, charName, packKey, extNameClean, isDetailPage) {
                 function getAllExtensionDirectories() {
                     var directories = new Set();
@@ -154,11 +194,23 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (skinName.startsWith("gz_")) {
                     skinName = skinName.slice(3);
                 }
-
+                
                 if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
                     var skinNum = lib.config.skin[skinName] + 1;
                     var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + skinNum + ".jpg";
                     imagePaths.unshift(skinPath);
+                }
+
+                var charData = lib.character[charName];
+                var specialPaths = extractAndConvertImagePaths(charData);
+                if (specialPaths.length > 0) {
+                    if (imagePaths.length > 0) {
+                        for (var i = specialPaths.length - 1; i >= 0; i--) {
+                            imagePaths.splice(1, 0, specialPaths[i]);
+                        }
+                    } else {
+                        imagePaths = specialPaths.concat(imagePaths);
+                    }
                 }
 
                 imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
@@ -309,6 +361,19 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             function playSkillAudio(charName, skillName) {
                 try {
+                    var playKey = charName + '_' + skillName;
+                    if (window._dcfl_skill_last_play && 
+                        window._dcfl_skill_last_play.key === playKey && 
+                        Date.now() - window._dcfl_skill_last_play.time < 500) {
+                        console.log('技能配音防重播：忽略重复播放', charName, skillName);
+                        return;
+                    }
+                    
+                    window._dcfl_skill_last_play = {
+                        key: playKey,
+                        time: Date.now()
+                    };
+                    
                     var skinName = charName;
                     if (skinName.startsWith("gz_")) {
                         skinName = skinName.slice(3);
@@ -345,20 +410,12 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         });
 
                         playAudio();
+                        console.log('技能配音播放成功:', charName, skillName);
+                    } else {
+                        console.log('未找到技能配音:', charName, skillName);
                     }
                 } catch (error) {
                     console.error('播放技能配音时出错:', error);
-                }
-            }
-
-            function checkAudioFileExists(url) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('HEAD', url, false);
-                try {
-                    xhr.send();
-                    return xhr.status === 200;
-                } catch (e) {
-                    return false;
                 }
             }
 
@@ -394,87 +451,100 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             function playDieAudio(charName, packKey, extNameWithTags) {
                 try {
-                    var skinName = charName;
-                    if (skinName.startsWith("gz_")) {
-                        skinName = skinName.slice(3);
+                    console.log('开始播放阵亡配音:', charName, '扩展包:', packKey);
+                    
+                    var cleanCharName = charName;
+                    if (cleanCharName && cleanCharName.startsWith("gz_")) {
+                        cleanCharName = cleanCharName.slice(3);
                     }
-
-                    if (lib.config.skin && lib.config.skin[skinName]) {
-                        var skinConfig = lib.config.skin[skinName];
-                        if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
-                            skinName = skinConfig[0];
-                        } else if (typeof skinConfig === 'string') {
-                            skinName = skinConfig;
-                        }
-                    }
-
-                    var audioData = get.Audio.die({
-                        player: {
-                            name: charName,
-                            skin: {
-                                name: skinName
-                            },
-                            tempname: [skinName]
-                        }
-                    });
-
-                    var audioList = audioData.fileList;
-
-                    if (audioList && audioList.length > 0) {
-                        var playAudio = game.tryAudio({
-                            audioList: audioList,
-                            addVideo: false,
-                            random: true,
-                            autoplay: false
-                        });
-
-                        playAudio();
+                    
+                    var playKey = 'die_' + charName;
+                    if (window._dcfl_last_die_play && 
+                        window._dcfl_last_die_play.key === playKey && 
+                        Date.now() - window._dcfl_last_die_play.time < 300) {
+                        console.log('阵亡配音防重播：短时间内重复点击，忽略');
                         return;
                     }
-
-                    var cleanExtNames = [];
                     
-                    if (packKey) {
-                        cleanExtNames.push(packKey);
-                    }
+                    window._dcfl_last_die_play = {
+                        key: playKey,
+                        time: Date.now()
+                    };
                     
-                    if (extNameWithTags) {
-                        var cleanName = getCleanExtensionName(extNameWithTags);
-                        if (cleanName && !cleanExtNames.includes(cleanName)) {
-                            cleanExtNames.push(cleanName);
-                        }
-                    }
-
-                    var possiblePaths = [];
-                    
-                    for (var i = 0; i < cleanExtNames.length; i++) {
-                        var extName = cleanExtNames[i];
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/' + charName + '.mp3');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/die/' + charName + '.mp3');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/' + charName + '.mp3');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/' + charName + '.ogg');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/die/' + charName + '.ogg');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/' + charName + '.ogg');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/' + charName + '.wav');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/die/' + charName + '.wav');
-                        possiblePaths.push(lib.assetURL + 'extension/' + extName + '/audio/' + charName + '.wav');
-                    }
-
-                    for (var i = 0; i < possiblePaths.length; i++) {
-                        var path = possiblePaths[i];
-                        if (checkAudioFileExists(path)) {
-                            if (game.audio && typeof game.audio.play === 'function') {
-                                game.audio.play(path);
-                            } else {
-                                var audio = new Audio(path);
-                                audio.play();
+                    setTimeout(function() {
+                        try {
+                            var skinName = charName;
+                            if (skinName.startsWith("gz_")) {
+                                skinName = skinName.slice(3);
                             }
-                            return;
-                        }
-                    }
 
-                    console.log('未找到角色 ' + charName + ' 的阵亡配音文件');
-                    console.log('尝试的扩展包名：', cleanExtNames);
+                            if (lib.config.skin && lib.config.skin[skinName]) {
+                                var skinConfig = lib.config.skin[skinName];
+                                if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
+                                    skinName = skinConfig[0];
+                                } else if (typeof skinConfig === 'string') {
+                                    skinName = skinConfig;
+                                }
+                            }
+
+                            var audioData = get.Audio.die({
+                                player: {
+                                    name: charName,
+                                    skin: {
+                                        name: skinName
+                                    },
+                                    tempname: [skinName]
+                                }
+                            });
+
+                            var audioList = audioData.fileList;
+
+                            if (audioList && audioList.length > 0) {
+                                var playAudio = game.tryAudio({
+                                    audioList: audioList,
+                                    addVideo: false,
+                                    random: true,
+                                    autoplay: false
+                                });
+
+                                playAudio();
+                                console.log('本体武将配音播放成功:', charName);
+                            } else {
+                                console.log('未找到本体武将配音:', charName);
+                            }
+                        } catch (error) {
+                            console.error('播放本体武将配音时出错:', error);
+                        }
+                    }, 0);
+                    
+                    setTimeout(function() {
+                        try {
+                            var cleanExtNames = [];
+                            
+                            if (packKey) {
+                                cleanExtNames.push(packKey);
+                            }
+                            
+                            if (extNameWithTags) {
+                                var cleanName = getCleanExtensionName(extNameWithTags);
+                                if (cleanName && cleanExtNames.indexOf(cleanName) === -1) {
+                                    cleanExtNames.push(cleanName);
+                                }
+                            }
+                            
+                            console.log('尝试的扩展包名列表:', cleanExtNames);
+                            
+                            for (var i = 0; i < cleanExtNames.length; i++) {
+                                var extName = cleanExtNames[i];
+                                console.log('播放扩展配音，角色:', cleanCharName, '扩展包:', extName);
+                                game.playdcfl(cleanCharName, extName);
+                            }
+                            
+                        } catch (error) {
+                            console.error('尝试扩展配音时出错:', error);
+                        }
+                    }, 100); 
+                    
                 } catch (error) {
                     console.error('播放阵亡配音时出错:', error);
                 }
@@ -765,12 +835,16 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                                 infoIcon.addEventListener('click', function(e) {
                                     e.stopPropagation();
+                                    e.preventDefault();
+                                    console.log('点击配音图标，角色:', charName, '扩展包:', currentPack);
                                     playDieAudio(charName, currentPack, extNameWithTags);
+                                    return false;
                                 });
 
                                 infoIcon.addEventListener('touchstart', function(e) {
                                     e.stopPropagation();
                                     e.preventDefault();
+                                    console.log('触摸配音图标，角色:', charName, '扩展包:', currentPack);
                                     playDieAudio(charName, currentPack, extNameWithTags);
                                     return false;
                                 }, {
@@ -865,7 +939,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                         skillContent.appendChild(skillNameElement);
 
                                         var descContainer = document.createElement('span');
-                                        descContainer.innerHTML = '：<br>' + get.translation(skillName + '_info');
+                                        descContainer.innerHTML = '：' + get.translation(skillName + '_info');
                                         skillContent.appendChild(descContainer);
                                     }
                                 } else {
@@ -1007,9 +1081,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             };
 
         },
-        precontent: function() {
-            lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
-            lib.init.css(lib.assetURL + 'extension/叠彩峰岭/dcfl_protected', 'extension');
+        precontent: function() {            
+            lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');            
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
             lib.extensionMenu['extension_' + '叠彩峰岭'].delete = {
                 name: '删除此扩展',
@@ -1051,7 +1124,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "5.5",
+            version: "6.0",
         },
         files: {
             "character": [],

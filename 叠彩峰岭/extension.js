@@ -3,7 +3,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         name: "叠彩峰岭",
         editable: false,
         content: function(config, pack) {
-            
+                                    
             game.playdcfl = function(fn, dir) {
                 try {
                     if (!fn) {
@@ -731,7 +731,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     ui.system.style.display = '';
                     setTimeout(function() {
                         ui.click.configMenu();
-                        ui.menuContainer.style.display = '';
+                        ui.menuContainer.style.display = '';                        
                     }, 100);
                 });
                 rightPanel.appendChild(closeButton);
@@ -1120,7 +1120,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "6.0",
+            version: "7.0",
         },
         files: {
             "character": [],

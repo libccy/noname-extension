@@ -2,6 +2,40 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
         name: "群英会", editable: false, content: function (config, pack) {
 
+            var qyhMusic = null;
+            var isQyhMusicPlaying = false;
+
+            function playQyhMusic() {
+               
+                if(ui.backgroundMusic) {
+                    ui.backgroundMusic.pause();
+                }
+                
+                if (!qyhMusic) {
+                    qyhMusic = new Audio(lib.assetURL + 'extension/群英会/wms_backgroundmusic.mp3');
+                    qyhMusic.loop = true;
+                }
+                
+                qyhMusic.play().catch(function(e) {
+                    console.log("播放群英会音乐失败:", e);
+                });
+                
+                isQyhMusicPlaying = true;
+            }
+
+            function stopQyhMusic() {
+                if (qyhMusic && isQyhMusicPlaying) {
+                    qyhMusic.pause();
+                    isQyhMusicPlaying = false;
+                    
+                    if(ui.backgroundMusic) {
+                        ui.backgroundMusic.play().catch(function(e) {
+                            console.log("恢复原背景音乐失败:", e);
+                        });
+                    }
+                }
+            }
+
             if (lib.brawl) {
                 lib.brawl.qyhBrawlMode = (function () {
 
@@ -454,6 +488,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             game.qyhCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
+                playQyhMusic();
                 ui.click.configMenu();
 
                 var currentPack = '';
@@ -659,6 +694,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     characterPage.hide();
                     ui.system.style.display = '';
                     setTimeout(function () {
+                        stopQyhMusic();
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
@@ -1227,7 +1263,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         characterSort: {
                             qunying: {
                                 "qunying_zhanguo": ["qunying_baiqi", "qunying_qinshiwang"],
-                                "qunying_longzhu": ["qunying_frieza", "qunying_jilian"],
+                                "qunying_longzhu": ["qunying_frieza", "qunying_frieza1", "qunying_frieza2", "qunying_frieza3", "qunying_jilian"],
                                 "qunying_wuxia": ["qunying_weixiaobao"],
                                 "qunying_qingshi": ["qinshi_genie", "qinshi_weizhuang", "qinshi_xiaoyaozi", "qinshi_mozi"],
                                 "qunying_sanguo": ["sanguo_zhihuaxiong", "sanguo_zhangfei", "sanguo_jiangwei", "sanguo_menghuo",
@@ -6877,7 +6913,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "2.8",
+            version: "3.0",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

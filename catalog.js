@@ -91,15 +91,15 @@ extension["火影忍者"] = {
 
 
 extension["文武英杰"] = {
-	date: "2025/12/5",
-	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.5<li>"+
+	date: "2025/12/15",
+	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.6<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
 		"建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
 	author: "凉茶",
 	size: "60MB",
 	netdisk: "",
-	version: 6.5,
+	version: 6.6,
 	files: [
 	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
@@ -156,12 +156,12 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2025/12/5",
-	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为2.8，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
+	date: "2025/12/15",
+	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为3.0，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
 	size: "43MB",
-	version: 2.8,
+	version: 3.0,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",

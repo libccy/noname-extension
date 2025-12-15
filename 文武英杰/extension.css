@@ -835,3 +835,333 @@
     background-color: rgba(120, 88, 75, 0.7) !important;
     border-radius: 4px !important;
 }
+
+/* 图鉴按钮的基础样式 */
+.wwyj_newtujianicon_button {
+    position: fixed !important;
+    left: 62% !important;
+    top: calc(70% - 90px) !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 2 !important;
+    cursor: pointer !important;
+    background-size: cover !important;
+    transition: all 0.3s !important;    
+}
+
+/* 图鉴按钮的悬停效果 */
+.wwyj_newtujianicon_button:hover,
+.wwyj_newtujianicon_button.wwyj_newtujianicon_hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4) !important;
+    border-color: rgba(255, 215, 0, 0.8) !important;
+}
+
+/* 更新按钮的基础样式 */
+.wwyj_updateicon_button {
+    position: fixed !important;
+    left: 70% !important;
+    top: calc(70% - 90px) !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 2 !important;
+    cursor: pointer !important;
+    background-size: cover !important;
+    transition: all 0.3s !important;    
+}
+
+/* 更新按钮的悬停效果 */
+.wwyj_updateicon_button:hover,
+.wwyj_updateicon_button.wwyj_updateicon_hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4) !important;
+    border-color: rgba(255, 215, 0, 0.8) !important;
+}
+
+/* 文武英杰动画背景样式 */
+.wwyj-background-animation {
+    position: absolute;
+    left: 54%;
+    top: calc(45% - 90px);
+    width: 401px;
+    height: 450px;
+    background-image: url('wwyj_diaochan.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+/* 文武英杰广播动画容器 */
+.wwyj-avatar-container {
+    position: absolute;
+    left: 42%;
+    top: calc(45% - 50px);
+    width: 180px;
+    height: 240px;
+    z-index: 40;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* 动画定义 */
+    opacity: 0;
+    transform: scale(10);
+    transition: all 0.5s ease;
+}
+
+/* 动画激活状态 */
+.wwyj-avatar-container.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* CSS 文件 */
+.wwyj-game-start-animation {
+    position: absolute;
+    top: 36%;
+    left: 40%;
+    width: 240px;
+    height: 240px;
+    background-image: url('extension/文武英杰/wwyj_kaichangtexiao.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 80;
+    
+    /* 初始状态 */
+    opacity: 0.2;
+    transform: scale(10);
+    
+    /* 动画定义 */
+    animation: wwyjStartEffect 1.3s ease forwards;
+    animation-delay: 0.05s; /* 对应50ms延迟 */
+}
+
+/* 定义关键帧动画 */
+@keyframes wwyjStartEffect {
+    0% {
+        opacity: 0.2;
+        transform: scale(10);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* 击杀特效文字基础 */
+.wwyj-kill-effect {
+    position: absolute;
+    font-size: 75px;
+    font-family: 'xingkai', cursive;
+    z-index: 60;
+    text-shadow: 
+        rgba(255, 0, 0, 1) 0 0 2px,
+        rgba(255, 128, 204, 1) 0 0 2px,
+        rgba(255, 128, 204, 1) 0 0 2px,
+        rgba(255, 0, 0, 1) 0 0 2px,
+        black 0 0 2px;
+    line-height: 1;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    
+    /* 动画 */
+    animation: wwyjKillTextAnimation 1.8s ease-out forwards;
+}
+
+/* 击 字 */
+.wwyj-kill-effect.ji {
+    top: calc(50% - 90px);
+    left: 62%;
+    animation-name: wwyjJiAnimation;
+}
+
+/* 杀 字 */
+.wwyj-kill-effect.sha {
+    top: calc(58% - 90px);
+    left: 68%;
+    animation-name: wwyjShaAnimation;
+    animation-delay: 0.1s;
+}
+
+/* 动画定义 */
+@keyframes wwyjJiAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(-100);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    85% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@keyframes wwyjShaAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(100);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    85% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* 动画容器基础样式 */
+.duel-animation {
+  background-size: cover;
+  transition: all 2s;
+  position: absolute;
+  z-index: 50;
+  background-size: cover;
+}
+
+/* 左侧玩家动画 */
+.duel-left-player {
+  left: 10%;
+  top: calc(33.5% - 90px);
+  width: 270px;
+  height: 360px;
+  z-index: 50;
+}
+
+/* 右侧玩家动画 */
+.duel-right-player {
+  right: 18%;
+  top: calc(36% - 90px);
+  width: 240px;
+  height: 320px;
+  z-index: 50;
+}
+
+/* 右侧玩家动画 - 第二部分 */
+.duel-right-player-2 {
+  right: 16%;
+  top: calc(32% - 90px);
+  width: 240px;
+  height: 320px;
+  z-index: 50;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 30%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 70%, 0 30%);
+}
+
+/* 右侧玩家动画 - 第三部分 */
+.duel-right-player-3 {
+  right: 20%;
+  top: calc(40% - 90px);
+  width: 240px;
+  height: 320px;
+  z-index: 50;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  clip-path: polygon(0 30%, 100% 70%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 30%, 100% 70%, 100% 100%, 0 100%);
+}
+
+/* 玩家名字样式 */
+.player-name {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-size: 36px;
+  font-family: 'xingkai', cursive;
+  z-index: 55;
+  text-shadow: 
+    rgba(255, 0, 0, 1) 0 0 2px,
+    rgba(255, 128, 204, 1) 0 0 2px,
+    rgba(255, 128, 204, 1) 0 0 2px,
+    rgba(255, 0, 0, 1) 0 0 2px,
+    black 0 0 2px;
+}
+
+/* 左侧玩家名字 */
+.player-name-left {
+  top: calc(36% - 90px);
+  left: 12%;
+}
+
+/* 右侧玩家名字 */
+.player-name-right {
+  top: calc(38.5% - 90px);
+  left: 60%;
+}
+
+/* 去色效果 */
+.grayscale-effect {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+/* 动画效果类 */
+.transition-slow {
+  transition: all 2s;
+}
+
+.transition-fast {
+  transition: all 0.8s;
+}
+
+/* 移动动画 */
+.move-right-slow {
+  transform: translateX(20px);
+}
+
+.move-left-slow {
+  transform: translateX(-20px);
+}
+
+/* 快速移动动画 */
+.move-right-fast {
+  transform: translate(8px);
+}
+
+.move-left-fast {
+  transform: translate(-8px);
+}
+
+.niya-icon {
+    left: 70%;
+    top: calc(64% - 90px);
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    position: absolute;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.niya-icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}

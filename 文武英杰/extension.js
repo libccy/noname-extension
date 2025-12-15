@@ -111,36 +111,48 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.window.appendChild(div);
             };
 
-            if (config.wwyj_updateicon) {
-                lib.skill._wwyj_updateicon = {
-                    trigger: { global: 'gameStart' },
-                    forced: true,
-                    unique: true,
-                    locked: true,
-                    charlotte: true,
-                    priority: 2020,
-                    content: function () {
-                        if (event.isMine()) {
-                            game.broadcastAll(function (player) {
-                                var Animation = ui.create.div();
-                                Animation.setBackgroundImage('extension/文武英杰/wwyj_updateicon.png');
-                                Animation.style.left = '70%';
-                                Animation.style.top = 'calc(80% - 90px)';
-                                Animation.style.width = '80px';//120
-                                Animation.style.height = '80px';//150            
-                                Animation.style.backgroundSize = 'cover';
-                                Animation.style['z-index'] = '2';
-                                ui.window.appendChild(Animation);
-                                ui.refresh(Animation);
-                                Animation.onclick = function () {
-                                    game.playwwyj('wwyj_dansha');
-                                    game.wwyj_showChangeLog();
-                                }
-                            });
-                        }
-                    },
+            function createupdateIconButton() {
+                if (document.getElementById('wwyj_updateicon_button')) {
+                    return;
+                }
+
+                var Animation = ui.create.div();
+                Animation.id = 'wwyj_updateicon_button';
+                Animation.className = 'wwyj_updateicon_button';
+                Animation.style.backgroundImage = 'url(' + lib.assetURL + 'extension/文武英杰/wwyj_updateicon.png)';
+                Animation.addEventListener('mouseover', function () {
+                    this.classList.add('wwyj_updateicon_hover');
+                });
+                Animation.addEventListener('mouseout', function () {
+                    this.classList.remove('wwyj_updateicon_hover');
+                });
+                Animation.addEventListener('click', function () {
+                    game.playwwyj('wwyj_dansha');
+                    game.wwyj_showChangeLog();
+                });
+                document.body.appendChild(Animation);
+                return Animation;
+            }
+
+            function removeupdateIconButton() {
+                var icon = document.getElementById('wwyj_updateicon_button');
+                if (icon && icon.parentNode) {
+                    icon.parentNode.removeChild(icon);
                 }
             }
+
+            function checkupdateAndUpdateIcon() {
+                if (config.wwyj_updateicon) {
+                    setTimeout(function () {
+                        createupdateIconButton();
+                    }, 1000);
+                } else {
+                    removeupdateIconButton();
+                }
+            }
+
+            checkupdateAndUpdateIcon();
+
             // ---------------------------------------Newtujian------------------------------------------// 		
             game.wwyj_showNewtujian = function () {
                 var dialog = ui.create.dialog('hidden');
@@ -201,46 +213,52 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.window.appendChild(div);
             };
 
-            if (config.wwyj_newtujianicon) {
-                lib.skill._wwyj_newtujianicon = {
-                    trigger: { global: 'gameStart' },
-                    forced: true,
-                    unique: true,
-                    locked: true,
-                    charlotte: true,
-                    priority: 2020,
-                    content: function () {
-                        if (event.isMine()) {
-                            game.broadcastAll(function (player) {
-                                var Animation = ui.create.div();
-                                Animation.setBackgroundImage('extension/文武英杰/wwyj_newtujianicon.png');
-                                Animation.style.left = '62%';
-                                Animation.style.top = 'calc(80% - 90px)';
-                                Animation.style.width = '80px';//120
-                                Animation.style.height = '80px';//150            
-                                Animation.style.backgroundSize = 'cover';
-                                Animation.style['z-index'] = '2';
-                                ui.window.appendChild(Animation);
-                                ui.refresh(Animation);
-                                Animation.onclick = function () {
-                                    game.playwwyj('wwyj_dansha');
-                                    game.wwyj_showNewtujian();
-                                }
-                            });
-                        }
-                    },
+            function createtujianIconButton() {
+                if (document.getElementById('wwyj_newtujianicon_button')) {
+                    return;
+                }
+
+                var Animation = ui.create.div();
+                Animation.id = 'wwyj_newtujianicon_button';
+                Animation.className = 'wwyj_newtujianicon_button';
+                Animation.style.backgroundImage = 'url(' + lib.assetURL + 'extension/文武英杰/wwyj_newtujianicon.png)';
+                Animation.addEventListener('mouseover', function () {
+                    this.classList.add('wwyj_newtujianicon_hover');
+                });
+                Animation.addEventListener('mouseout', function () {
+                    this.classList.remove('wwyj_newtujianicon_hover');
+                });
+                Animation.addEventListener('click', function () {
+                    game.playwwyj('wwyj_dansha');
+                    game.wwyjCharacter();
+                });
+                document.body.appendChild(Animation);
+                return Animation;
+            }
+
+            function removetujianIconButton() {
+                var icon = document.getElementById('wwyj_newtujianicon_button');
+                if (icon && icon.parentNode) {
+                    icon.parentNode.removeChild(icon);
                 }
             }
+
+            function checktujianAndUpdateIcon() {
+                if (config.wwyj_newtujianicon) {
+                    setTimeout(function () {
+                        createtujianIconButton();
+                    }, 1000);
+                } else {
+                    removetujianIconButton();
+                }
+            }
+
+            checktujianAndUpdateIcon();
+
             // ---------------------------------------background------------------------------------------//	 
             game.wwyj_background = function () {
                 var Animation = ui.create.div();
-                Animation.setBackgroundImage('extension/文武英杰/wwyj_diaochan.png');
-                Animation.style.left = '54%';
-                Animation.style.top = 'calc(45% - 90px)';
-                Animation.style.width = '401px';
-                Animation.style.height = '450px';
-                Animation.style.backgroundSize = 'cover';
-                Animation.style['z-index'] = '1';
+                Animation.className = 'wwyj-background-animation';
                 ui.window.appendChild(Animation);
                 ui.refresh(Animation);
             }
@@ -823,233 +841,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             }
-            /*
-            // ==================== 文武英杰扩展 - 阵亡配音功能（防冲突版本） ====================
-            // 使用唯一命名空间，避免与其他扩展冲突，要借鉴的话抄这个！
-            // ===========================================================================
-
-            (function() {
-                'use strict';
-
-                // 唯一命名空间前缀
-                const NAMESPACE = 'wwyj_';
-
-                // 扩展配置
-                const CONFIG = {
-                    extensionName: '文武英杰',
-                    extensionPath: 'extension/文武英杰/'
-                };
-
-                // 阵亡台词配置
-                const dieAudioTexts = {
-                    "wwyj_shuihu": "无欲无求，常自在……",
-                    "wwyj_jiguangs": "遁入阴影之中……",
-                    "wwyj_chengxuyuan": "人为财死，鸟为食亡……",
-                    "wwyj_bohetang": "潜伏数载，终究劫数难逃",
-                    "wwyj_pipi": "说好的……一世……为我画眉呢？",
-                    "wwyj_limuzi": "人生如过客，放下皆自在",
-                    "wwyj_guihua": "长生不老，是对我最大的惩罚",
-                    "wwyj_yiwangs": "大哥……我死后……你还会记得我吗？",
-                    "wwyj_fux2": "聪明反被聪明误啊！",
-                    "wwyj_shenzuo": "我的时辰……也到了",
-                    "wwyj_guchengs": "打铁还需自身硬",
-                    "wwyj_hezifengyun": "有所得，必有所失！",
-                    "wwyj_qingzhongs": "时不予我，时不予我",
-                    "wwyj_liushas": "二十年后，又是一条……好汉",
-                    "wwyj_chansuideshengming": "欠你们的，我终于……还清了",
-                    "wwyj_duanges": "苦心经营王霸计，竹篮打水一场空",
-                    "wwyj_shennais": "大漠白雕，终抵不过江南的燕儿……",
-                    "wwyj_tianqikui": "原来，我亦在……棋局中",
-                    "wwyj_xiaoSu": "多少遗憾，俱随琴音去",
-                    "wwyj_liangchas": "曹魏天下存，魂归故土安",
-                    "wwyj_liangchax": "人生，若只如初见",
-                    "wwyj_yuhudie": "长相思兮长相忆，短相思兮无穷极",
-                    "wwyj_zhichitianya": "这世间的公道，都去了哪里？",
-                    "wwyj_shijian": "若有来世，不负前缘",
-                    "wwyj_xuebi": "大丈夫，不惧死亡",
-                    "wwyj_zhaonies": "生死……有命",
-                    "wwyj_niya": "满腔复燕梦，心中无儿女……",
-                    "wwyj_taishangdaniu": "四海若升平，谁愿当街乞……",
-                    "wwyj_xingyunnvshen": "我还想与你，共骑这雪花驹",
-                    "wwyj_feicheng": "我宁死于刀下，岂降汝乎？",
-                    "wwyj_zhugejun": "英雄气短，儿女情长",
-                    "wwyj_lengyus": "冷眼世间，最苦相思毒……",
-                    "wwyj_yanyumoran": "生生世世若梦，岁岁年年如斯……",
-                    "wwyj_wali": "悔不该差使小人，招此祸患",
-                    "wwyj_chenwus": "鸟飞猢狲散，龙倒众人剔",
-                    "wwyj_rongyaotaoge": "著作……还……没完成",
-                    "wwyj_yangguangweiliang": "玲珑华美，不可尽骞",
-                    "wwyj_anshas": "今病困若此，固命也",
-                    "wwyj_fanxings": "满手杀孽，早知会有此劫",
-                    "wwyj_zhuxiaoer": "世间再无擒虎客",
-                    "wwyj_ranqis": "旧梦重温，虽死无憾……",
-                    "wwyj_shenwangquanjian": "姑娘为何，从不对我正眼相看……",
-                    "wwyj_zhongchengpantu": "丞相，再给我一次机会啊",
-                    "wwyj_wuqinggezi": "看来，我命中注定将丧命于此",
-                    "wwyj_huanyuxingcheng": "将星陨落，天命难违",
-                    "wwyj_xuedaoshaozhu": "宁愿站着死，绝不……跪着生",
-                    "wwyj_yitiaoxianyu": "人固有一死，或重于泰山，或轻于鸿毛",
-                    "wwyj_zhulinqixian": "恨不能见，车同轨，书同文",
-                    "wwyj_Show-K": "奈何雄心壮志，尽付大漠黄沙",
-                    "wwyj_lei": "天书无效，人心难聚",
-                    "wwyj_mengxinzhuanxing": "难道真是……天命难违？",
-                    "wwyj_dasima": "盛只恨，不能再为主公破敌制胜了",
-                    "wwyj_rcanghai": "天书无效，人心难聚",
-                    "wwyj_remaliao": "知足常乐，随遇而安",
-                    "wwyj_lunhuizhong": "这风……太冷了",
-                    "wwyj_ciyage": "江湖险恶，不该如此张扬",
-                    "wwyj_kanpoyiqie": "尔等，皆是欺世盗名之辈",
-                    "wwyj_daxiongxiaimao": "请把这身残躯，带回我的家乡",
-                    "wwyj_kelejiabing": "感叹时事，何罪之有？",
-                    "wwyj_qianshangs": "覆巢之下，岂有完卵？",
-                    "wwyj_jishouniancuihui": "身陨外，愿魂归江东",
-                    "wwyj_rlvbao": "皇天，必不祚尔",
-                    "wwyj_relvbao": "韶华易老，佳容不再",
-                    "wwyj_guishenyi": "钱财……散尽……",
-                    "wwyj_rshengma": "虑有所能，成必为也",
-                    "wwyj_huihui": "大丈夫，死生何惧？",
-                    "wwyj_youzi": "腾云跨风，飞升太虚",
-                    "wwyj_rweimu": "我的时辰……也到了",
-                    "wwyj_yijilianggetao": "咳咳……咳咳咳……",
-                    "wwyj_qingyao": "幻化之物，终是算不得真啊",
-                    "wwyj_fenghuitaichu": "老夫采药修道去也",
-                    "wwyj_wangshiruyan": "别打脸，我投降还不行吗？",
-                    "wwyj_rshun": "瞬将军，已经安全了吧？",
-                    "wwyj_tilongjianiao": "来人，我的笔呢？",
-                    "wwyj_huijin": "败军之罪，万死难赎",
-                    "wwyj_danwuyunxi": "哼哼哈哈……这天地都容不下我",
-                    "wwyj_jianyaleishao": "尔辈怎会……越杀……越多？",
-                    "wwyj_hualuo": "义心如石，死节不移……",
-                    "wwyj_wzszhaoyun": "这……就是……多行不义必自毙吗？",
-
-                };
-
-                // 保存原始 charactercard 方法（使用唯一变量名）
-                const wwyj_originalCharacterCard = ui.click.charactercard;
-
-                // 重写 charactercard 方法（使用唯一函数名）
-                ui.click.charactercard = function(name, sourcenode, noedit, resume, avatar, audioName) {
-                    // 先调用原始方法
-                    const result = wwyj_originalCharacterCard.call(this, name, sourcenode, noedit, resume, avatar, audioName);
-
-                    // 延迟执行以确保UI已创建
-                    setTimeout(() => {
-                        // 只处理文武英杰扩展的角色
-                        if (name.startsWith('wwyj_')) {
-                            wwyj_addDieAudioButton(name);
-                        }
-                    }, 100);
-
-                    return result;
-                };
-
-                // 添加阵亡配音按钮（使用唯一函数名）
-                function wwyj_addDieAudioButton(characterName) {
-                    const skillsContainer = document.querySelector('.characterskill');
-                    if (!skillsContainer) return;
-
-                    // 检查是否已存在阵亡配音按钮（使用唯一类名）
-                    if (skillsContainer.querySelector('.wwyj-die-button')) return;
-
-                    // 检查配音文件是否存在
-                    const audioFile = wwyj_getDieAudioFile(characterName);
-
-                    // 只有当有配音文件时才创建按钮
-                    if (audioFile) {
-                        // 创建阵亡按钮
-                        const dieAudioButton = ui.create.div('.menubutton large', skillsContainer, function() {
-                            // 设置选中状态
-                            const currentActive = skillsContainer.querySelector('.active');
-                            if (currentActive) currentActive.classList.remove('active');
-                            this.classList.add('active');
-
-                            // 播放配音并显示台词
-                            wwyj_playDieAudio(audioFile);
-                            wwyj_showDieAudioContent(characterName);
-                        }, "阵亡");
-
-                        // 设置红色背景黑色文字
-                        //dieAudioButton.style.backgroundColor = 'red';
-                        dieAudioButton.style.color = '#ff0000';
-
-                        // 使用唯一类名
-                        dieAudioButton.classList.add('wwyj-die-button');
-                    }
-                }
-
-                // 显示阵亡台词内容（使用唯一函数名）
-                function wwyj_showDieAudioContent(characterName) {
-                    const intro2 = document.querySelector('.characterintro.intro2');
-                    if (!intro2) return;
-
-                    // 清空内容
-                    intro2.innerHTML = '';
-
-                    // 获取台词
-                    const dieText = dieAudioTexts[characterName] || '阵亡配音';
-
-                    // 创建显示内容
-                    const dieTitle = document.createElement('span');
-                    dieTitle.style.fontWeight = 'bold';
-                    dieTitle.style.marginRight = '5px';
-                    dieTitle.innerHTML = '阵亡台词';
-
-                    const textSpan = document.createElement('span');
-                    textSpan.innerHTML = `<br>${dieText}`;
-
-                    intro2.appendChild(dieTitle);
-                    intro2.appendChild(textSpan);
-                }
-
-                // 获取阵亡配音文件路径（使用唯一函数名）
-                function wwyj_getDieAudioFile(characterName) {
-                    const fullPath = `${lib.assetURL}${CONFIG.extensionPath}${characterName}.mp3`;
-                    return wwyj_checkAudioFileExists(fullPath) ? fullPath : null;
-                }
-
-                // 检查音频文件是否存在（使用唯一函数名）
-                function wwyj_checkAudioFileExists(url) {
-                    try {
-                        const xhr = new XMLHttpRequest();
-                        xhr.open('HEAD', url, false);
-                        xhr.send();
-                        return xhr.status === 200;
-                    } catch (e) {
-                        return false;
-                    }
-                }
-
-                // 播放阵亡配音（使用唯一函数名）
-                function wwyj_playDieAudio(audioFile) {
-                    if (!audioFile) return;
-
-                    try {
-                        // 优先使用游戏内置音频系统
-                        if (game.audio && typeof game.audio.play === 'function') {
-                            game.audio.play(audioFile);
-                            return;
-                        }
-
-                        // 备用方案：HTML5 Audio
-                        const audio = new Audio(audioFile);
-                        audio.play().catch(e => {
-                            console.error('播放音频失败:', e);
-                        });
-
-                    } catch (error) {
-                        console.error('播放阵亡配音时出错:', error);
-                    }
-                }
-
-                console.log('文武英杰扩展阵亡配音功能已加载（防冲突版本）');
-            })();
-            */
-
-            // 阵亡配音播放功能按钮原写法（借鉴的话请抄上边已注释的写法，以免冲突↑）：
-
+            //==============阵亡按钮===============//
             (function () {
                 'use strict';
-                // 动态阵亡台词配置
                 const dieAudioTexts = {
                     "wwyj_shuihu": "无欲无求，常自在……",
                     "wwyj_jiguangs": "遁入阴影之中……",
@@ -1133,59 +927,48 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 };
 
-                // 保存原始 charactercard 方法
                 const originalCharacterCard = ui.click.charactercard;
-                // 重写 charactercard 方法
+
                 ui.click.charactercard = function (name, sourcenode, noedit, resume, avatar, audioName) {
                     const result = originalCharacterCard.call(this, name, sourcenode, noedit, resume, avatar, audioName);
-                    //延迟执行确保UI已创建
+
                     setTimeout(() => {
                         addDieAudioButton(name);
                     }, 100);
                     return result;
                 };
 
-                // 添加阵亡配音按钮
                 function addDieAudioButton(characterName) {
-                    //获取技能列表
+
                     const skillsContainer = document.querySelector('.characterskill');
                     if (!skillsContainer) return;
 
                     if (skillsContainer.querySelector('.die-audio-button')) return;
 
-                    // 检查配音文件是否存在
                     const audioFile = getDieAudioFile(characterName);
                     if (!audioFile) return;
 
-                    // 创建阵亡按钮
                     const dieAudioButton = ui.create.div('.menubutton large', skillsContainer, function () {
-                        // 设置选中状态
+
                         const currentActive = skillsContainer.querySelector('.active');
                         if (currentActive) currentActive.classList.remove('active');
                         this.classList.add('active');
 
-                        // 播放配音并显示台词
                         playDieAudio(audioFile);
                         showDieAudioContent(characterName);
                     }, "阵亡");
-                    //dieAudioButton.style.border = '1px solid #ff0000';//按钮描边
                     dieAudioButton.style.color = '#ff0000';//按钮颜色
-                    //添加标识类
                     dieAudioButton.classList.add('die-audio-button');
                 }
 
-                // 显示阵亡台词内容
                 function showDieAudioContent(characterName) {
                     const intro2 = document.querySelector('.characterintro.intro2');
                     if (!intro2) return;
 
-                    // 清空内容
                     intro2.innerHTML = '';
 
-                    // 获取台词
                     const dieText = dieAudioTexts[characterName] || '阵亡配音';
 
-                    // 创建显示内容
                     const dieTitle = document.createElement('span');
                     dieTitle.style.fontWeight = 'bold';
                     dieTitle.style.marginRight = '5px';
@@ -1197,12 +980,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     intro2.appendChild(dieTitle);
                     intro2.appendChild(textSpan);
                 }
-                // 获取阵亡配音文件路径
+
                 function getDieAudioFile(characterName) {
                     const fullPath = `${lib.assetURL}extension/文武英杰/${characterName}.mp3`;
                     return checkAudioFileExists(fullPath) ? fullPath : null;
                 }
-                // 检查音频文件是否存在
+
                 function checkAudioFileExists(url) {
                     const xhr = new XMLHttpRequest();
                     xhr.open('HEAD', url, false);
@@ -1213,16 +996,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return false;
                     }
                 }
-                // 播放阵亡配音
+
                 function playDieAudio(audioFile) {
                     if (!audioFile) return;
                     try {
-                        // 优先使用游戏内置音频系统
+
                         if (game.audio && typeof game.audio.play === 'function') {
                             game.audio.play(audioFile);
                             return;
                         }
-                        // 备用方案：HTML5 Audio
+
                         const audio = new Audio(audioFile);
                         audio.play().catch(e => {
                             console.error('播放音频失败:', e);
@@ -1234,119 +1017,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 console.log('文武英杰扩展阵亡配音功能已加载');
             })();
 
-            //旧方法（适用于1.10.5及以下版本）：
-            /*
-            if (config.wwyj_zhwpyicon) {
-            
-            lib.arenaReady.push(function () {
-                for (var i in lib.characterPack['wenwuyingjie']) {
-                    if (lib.character[i][3].indexOf("wwyj_zhwpy") < 0) lib.character[i][3].push("wwyj_zhwpy");
-                }
-            });
-            
-            //以下部分代码借鉴《玄武江湖》扩展
-            
-            var windowsCharacters = pack.character;
-            if (windowsCharacters) {
-                windowsCharacters = windowsCharacters.character;
-            }
-            var characters = pack.character;
-            if (characters) {
-                characters = characters.character;
-            } else {
-                return;
-            }
-            game.wwyjIntroduce = function (name) { };
-            var originCharacterIntro = get.characterIntro;
-            get.characterIntro = function (name) {
-                _status.wwyjCurrentViewIntro = name;
-                return originCharacterIntro(name);
-            };
-
-            game.originPlayAudio_wwyj = game.playAudio;
-
-            game.playAudio = function () {
-                var str1 = arguments[0];
-                var str2 = arguments[1];
-                var str3 = arguments[2];
-                var str4 = arguments[3];
-                if (str1 == '..' && str2 == 'extension' && str3 == '文武英杰') {
-                    if (str4 == 'wwyj_zhwpy') {
-                        if (_status.wwyjCurrentViewIntro) {
-                            game.playwwyjAudio(_status.wwyjCurrentViewIntro);
-                            return;
-                        }
-                    }
-                }
-                game.originPlayAudio_wwyj.apply(this, arguments);
-            };
-
-            game.playwwyjAudio = function (name, num, repeat) {
-                if (!repeat) {
-                    if (num === undefined || num === null) {
-                        game.playAudio('..', 'extension', '文武英杰', name);
-                    } else {
-                        game.playAudio('..', 'extension', '文武英杰', name + Math.ceil(Math.random() * num));
-                    }
-                } else {
-                    if (num === undefined || num === null) {
-                        game.wwyjPlayAudioRepeatable('..', 'extension', '文武英杰', name);
-                    } else {
-                        game.wwyjPlayAudioRepeatable('..', 'extension', '文武英杰', name + Math.ceil(Math.random() * num));
-                    }
-                }
-            };
-
-            game.wwyjPlayAudioRepeatable = function () {
-                if (_status.video && arguments[1] != 'video') return;
-                var str = '';
-                var onerror = null;
-                for (var i = 0; i < arguments.length; i++) {
-                    if (typeof arguments[i] === 'string' || typeof arguments[i] == 'number') {
-                        str += '/' + arguments[i];
-                    }
-                    else if (typeof arguments[i] == 'function') {
-                        onerror = arguments[i]
-                    }
-                    if (_status.video) break;
-                }
-                //if(!lib.config.repeat_audio&&_status.skillaudio.contains(str)) return;        
-                _status.skillaudio.add(str);
-                game.addVideo('playAudio', null, str);
-                setTimeout(function () {
-                    _status.skillaudio.remove(str);
-                }, 1000);
-                var audio = document.createElement('audio');
-                audio.autoplay = true;
-                audio.volume = lib.config.volumn_audio / 8;
-                if (str.indexOf('.mp3') != -1 || str.indexOf('.ogg') != -1) {
-                    audio.src = lib.assetURL + 'audio' + str;
-                }
-                else {
-                    audio.src = lib.assetURL + 'audio' + str + '.mp3';
-                }
-                audio.addEventListener('ended', function () {
-                    this.remove();
-                });
-                audio.onerror = function () {
-                    if (this._changed) {
-                        this.remove();
-                        if (onerror) {
-                            onerror();
-                        }
-                    }
-                    else {
-                        this.src = lib.assetURL + 'audio' + str + '.ogg';
-                        this._changed = true;
-                    }
-                };
-                ui.window.appendChild(audio);
-                return audio;
-            };
-            }
-            */
-
-            //以上部分代码借鉴《玄武江湖》扩展
             // ---------------------------------------wwyj_hezizhashi------------------------------------------//  
             if (config.wwyj_hezizhashi) {
                 lib.skill._wwyj_hezizhashi = {
@@ -1372,29 +1042,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         'step 1'
                         game.broadcastAll(function (player) {
                             var Animation = ui.create.div();
+                            Animation.className = 'wwyj-avatar-container';
                             Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;
-                            Animation.style.left = '42%';
-                            Animation.style.top = 'calc(45% - 50px)';
-                            Animation.style.width = '180px';
-                            Animation.style.height = '240px';
-                            Animation.style['z-index'] = '40';
-                            Animation.style.opacity = '0';
-                            Animation.style.transform = 'scale(10)';
-                            Animation.style.transition = 'all 0.5s';
-                            Animation.style.backgroundSize = 'cover';
+
                             ui.window.appendChild(Animation);
                             ui.refresh(Animation);
+
                             setTimeout(function () {
-                                Animation.style.opacity = '1';
-                                Animation.style.transform = 'scale(1)';
-                                Animation.style.transition = 'all 0.5s';
-                                Animation.style.width = '180px';
-                                Animation.style.height = '240px';
-                                Animation.style.left = '42%';
-                                Animation.style.top = 'calc(45% - 50px)';
-                                //Animation.style['z-index']='40';
+                                Animation.classList.add('active');
                                 game.playwwyj('wwyj_dansha');
                             }, 50);
+
                             setTimeout(function () {
                                 ui.window.removeChild(Animation);
                                 Animation.delete();
@@ -1423,82 +1081,45 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     },
                     content: function () {
                         if (player == game.me) {
-                            //game.broadcastAll(function(player){       	
-                            var Animation = ui.create.div();
-                            Animation.setBackgroundImage('extension/文武英杰/wwyj_kaichangtexiao.png');
-                            Animation.style.backgroundSize = 'cover';
-                            Animation.style.top = "36%";
-                            Animation.style.left = "40%";
-                            Animation.style["z-index"] = '80';
-                            Animation.style.opacity = '0.2';
-                            Animation.style.width = '240px';
-                            Animation.style.height = '240px';
-                            Animation.style.transform = 'scale(10)';
-                            Animation.style.transition = 'all 0.5s';
-                            ui.window.appendChild(Animation);
-                            ui.refresh(Animation);
-                            setTimeout(function () {
-                                Animation.style.opacity = '1';
-                                //Animation.style["z-index"] = '80';	  	   	
-                                Animation.style.transform = 'scale(1)';
-                                Animation.style.transition = 'all 0.5s';
-                                Animation.style.width = '240px';
-                                Animation.style.height = '240px';
-                                Animation.style.top = "36%";
-                                Animation.style.left = "40%";
-                                game.playwwyj('wwyj_gamestart');
-                            }, 50);
-                            //game.delay(0.5);            
-                            //player.$fullscreenpop('开始游戏','fire');	            			  					         
-                            setTimeout(function () {
-                                ui.window.removeChild(Animation);
-                                //Animation.delete();
-                            }, 1350);
-                            //},player);
+                            game.broadcastAll(function (player) {
+                                var Animation = ui.create.div();
+                                Animation.className = 'wwyj-game-start-animation';
+
+                                ui.window.appendChild(Animation);
+                                ui.refresh(Animation);
+
+                                setTimeout(function () {
+                                    game.playwwyj('wwyj_gamestart');
+                                }, 50);
+
+                                setTimeout(function () {
+                                    ui.window.removeChild(Animation);
+                                }, 1350);
+                            }, player);
                         }
                     },
                 }
             }
             // ---------------------------------------wwyj_jishatexiao------------------------------------------//				   
             game.wwyjjishatexiaotext = function () {
+
                 var text1 = document.createElement('div');
+                text1.className = 'wwyj-kill-effect ji';
                 text1.innerHTML = '击';
-                text1.style.backgroundSize = 'cover';
-                text1.style.width = '100%';
-                text1.style.height = '100%';
-                text1.style.top = 'calc(50% - 90px)';
-                text1.style.left = '62%';
-                text1.style.transform = 'scale(-100)';//缩放变化				 	
-                text1.style['font-size'] = '75px';
-                text1.style['font-family'] = 'xingkai';
-                text1.style['z-index'] = '60';//顶层		     	 
-                text1.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                 ui.window.appendChild(text1);
-                ui.refresh(text1);
-                text1.style.transform = '';
-                game.playwwyj('wwyj_jishatexiao');
+
                 var text2 = document.createElement('div');
+                text2.className = 'wwyj-kill-effect sha';
                 text2.innerHTML = '杀';
-                text2.style.backgroundSize = 'cover';
-                text2.style.width = '100%';
-                text2.style.height = '100%';
-                text2.style.top = 'calc(58% - 90px)';
-                text2.style.left = '68%';
-                text2.style.transform = 'scale(100)';//缩放变化				 				 
-                text2.style['font-size'] = '75px';
-                text2.style['font-family'] = 'xingkai';
-                text2.style['z-index'] = '60';//顶层
-                text2.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                 ui.window.appendChild(text2);
-                ui.refresh(text2);
-                text2.style.transform = '';
-                //计时关闭:
+
+                game.playwwyj('wwyj_jishatexiao');
+
                 setTimeout(function () {
-                    text1.delete();
-                    text2.delete();
+                    if (text1.parentNode) text1.remove();
+                    if (text2.parentNode) text2.remove();
                 }, 1800);
             };
-
             if (config.wwyj_jishatexiao) {
                 lib.skill._wwyj_jishatexiao = {
                     trigger: {
@@ -1518,70 +1139,33 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         'step 2'
                         game.broadcastAll(function (player) {
                             var Animation = ui.create.div();
+                            Animation.className = 'duel-animation duel-left-player';
                             Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;
-                            Animation.style.left = '10%';
-                            Animation.style.top = 'calc(33.5% - 90px)';    //50%    
-                            Animation.style.width = '270px';//120
-                            Animation.style.height = '360px';//150   
-                            Animation.style.transition = 'all 2s';
-                            Animation.style.transform = 'translateX(50px)';
-                            Animation.style.transform = 'translateX(30px)';
-                            Animation.style.transform = 'translateX(20px)';//减速
-                            Animation.style.backgroundSize = 'cover';
-                            Animation.style['z-index'] = '50';//顶层
                             ui.window.appendChild(Animation);
                             ui.refresh(Animation);
 
                             var name0 = document.createElement('div');
+                            name0.className = 'player-name player-name-left';
                             name0.innerHTML = player.node.name.innerHTML;
-                            name0.style.backgroundSize = 'cover';
-                            name0.style.width = '100%';
-                            name0.style.height = '100%';
-                            name0.style.top = 'calc(36% - 90px)';
-                            name0.style.left = '12%';
-                            name0.style['font-size'] = '36px';
-                            name0.style['font-family'] = 'xingkai';
-                            name0.style['z-index'] = '55';//顶层		     	 
-                            name0.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                             ui.window.appendChild(name0);
                             ui.refresh(name0);
                             setTimeout(function () {
-                                //ui.window.removeChild(name0);
                                 name0.delete();
                             }, 2400);
 
                             var Animation1 = ui.create.div();
+                            Animation1.className = 'duel-animation duel-right-player';
                             Animation1.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
-                            Animation1.style.right = '18%';
-                            Animation1.style.top = 'calc(36% - 90px)'; //40%       
-                            Animation1.style.width = '240px';
-                            Animation1.style.height = '320px';
-                            Animation1.style.transition = 'all 2s';
-                            Animation1.style.transform = 'translateX(-50px)';
-                            Animation1.style.transform = 'translateX(-30px)';
-                            Animation1.style.transform = 'translateX(-20px)';
-                            Animation1.style.backgroundSize = 'cover';
-                            Animation1.style['z-index'] = '50';//顶层
-
                             ui.window.appendChild(Animation1);
                             ui.refresh(Animation1);
 
                             setTimeout(function () {
-                                Animation1.style.webkitFilter = "grayscale(100%)";//去色
-                                Animation1.style.filter = "grayscale(100%)";
+                                Animation1.classList.add('grayscale-effect');
                             }, 300);
 
                             var name1 = document.createElement('div');
+                            name1.className = 'player-name player-name-right';
                             name1.innerHTML = trigger.player.node.name.innerHTML;
-                            name1.style.backgroundSize = 'cover';
-                            name1.style.width = '100%';
-                            name1.style.height = '100%';
-                            name1.style.top = 'calc(38.5% - 90px)';
-                            name1.style.left = '60%';
-                            name1.style['font-size'] = '36px';
-                            name1.style['font-family'] = 'xingkai';
-                            name1.style['z-index'] = '55';//顶层		     	 
-                            name1.style['text-shadow'] = 'rgba(255,0,0,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,128,204,1) 0 0 2px,rgba(255,0,0,1) 0 0 2px,black 0 0 2px';
                             ui.window.appendChild(name1);
                             ui.refresh(name1);
 
@@ -1592,30 +1176,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }, 800);
 
                             var Animation2 = ui.create.div();
+                            Animation2.className = 'duel-animation duel-right-player-2';
                             Animation2.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
-                            Animation2.style.right = '16%';
-                            Animation2.style.top = 'calc(32% - 90px)'; //40%       
-                            Animation2.style.width = '240px';
-                            Animation2.style.height = '320px';
-                            Animation2.style.backgroundSize = 'cover';
-                            Animation2.style['z-index'] = '50';//顶层         
-                            Animation2.style.webkitFilter = "grayscale(100%)";//去色
-                            Animation2.style.filter = "grayscale(100%)";	//去色
-                            Animation2.style.clipPath = 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';//斜面裁切from十周年UI
-                            Animation2.style.WebkitClipPath = 'polygon(0 0, 100% 0, 100% 70%, 0 30%)';
 
                             var Animation3 = ui.create.div();
+                            Animation3.className = 'duel-animation duel-right-player-3';
                             Animation3.style.backgroundImage = trigger.player.node.avatar.style.backgroundImage;
-                            Animation3.style.right = '20%';
-                            Animation3.style.top = 'calc(40% - 90px)'; //40%       
-                            Animation3.style.width = '240px';
-                            Animation3.style.height = '320px';
-                            Animation3.style.backgroundSize = 'cover';
-                            Animation3.style['z-index'] = '50';//顶层
-                            Animation3.style.webkitFilter = "grayscale(100%)";//去色
-                            Animation3.style.filter = "grayscale(100%)";	//去色
-                            Animation3.style.clipPath = 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';//斜面裁切from十周年UI
-                            Animation3.style.WebkitClipPath = 'polygon(0 30%, 100% 70%, 100% 100%, 0 100%)';
 
                             setTimeout(function () {
                                 ui.window.appendChild(Animation2);
@@ -1625,11 +1191,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             }, 800);
 
                             setTimeout(function () {
-                                Animation2.style.transform = 'translate(8px)';
-                                Animation2.style.transition = 'all 0.8s';
-                                Animation3.style.transform = 'translate(-8px)';
-                                Animation3.style.transition = 'all 0.8s';
-
+                                Animation2.classList.add('transition-fast', 'move-right-fast');
+                                Animation3.classList.add('transition-fast', 'move-left-fast');
                             }, 1200);
 
                             setTimeout(function () {
@@ -1645,7 +1208,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     },
                 }
             }
-
             // ---------------------------------------wwyj_yanjinfandu------------------------------------------//	           
             if (config.wwyj_yanjinfandu) {
                 lib.arenaReady.push(function () {
@@ -2523,94 +2085,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         },
                     },
                         lib.translate.wwyj_gainian_info = '回合结束时，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌 <font color=#F0F>已突破</font>';
-
-                    lib.skill.wwyj_chuangshi = {
-                        trigger: {
-                            global: "gameDrawAfter",
-                            player: "enterGame",
-                        },
-                        audio: "ext:文武英杰:1",
-                        unique: true,
-                        forced: true,
-                        juexingji: true,
-                        priority: Infinity,
-                        init: function (player) {
-                            player.storage.wwyj_chuangshi = false;
-                        },
-                        content: function () {
-                            "step 0"
-                            player.$fullscreenpop('水乎创世', 'fire');
-                            game.wwyj_background();
-                            game.broadcastAll(function (player) {
-
-                                var Animation = ui.create.div();
-                                //Animation.style.backgroundImage = player.node.avatar.style.backgroundImage;  
-                                Animation.setBackgroundImage('extension/文武英杰/wwyj_chuangshi.gif');
-                                Animation.style.backgroundSize = 'cover';
-                                Animation.style.backgroundPosition = 'center';
-                                Animation.style["z-index"] = 7;
-
-                                Animation.style.width = (360 / 715) * document.body.clientHeight + "px";
-                                Animation.style.height = (360 / 715) * document.body.clientHeight + "px";
-
-                                if (player == game.me) {
-                                    Animation.style.left = (document.body.clientWidth - 120) / 2.5 + "px";
-                                    Animation.style.top = "25%";
-                                    ui.window.appendChild(Animation);
-                                }
-                                else {
-                                    Animation.style.left = (document.body.clientWidth - 120) / 2.5 + "px";
-                                    Animation.style.top = "25%";
-                                    ui.window.appendChild(Animation);
-                                    /*Animation.style.left= "8%";
-                                    Animation.style.top = "25%";
-                                    player.appendChild(Animation);*/
-                                }
-
-                                setTimeout(function () {
-                                    ui.window.removeChild(Animation);
-                                    //Animation.delete();
-                                }, 3500);
-
-                            }, player);
-                            player.storage.wwyj_chuangshi = true;
-                            player.awakenSkill("wwyj_chuangshi");
-                            game.delay(2);
-                            event.current = player.next;
-                            event.list = [];
-                            for (var i in lib.characterPack['standard']) {
-                                event.list.push(i);
-                            }
-                            var players = game.players.concat(game.dead);
-                            for (var i = 0; i < players.length; i++) {
-                                event.list.remove(players[i].name);
-                                event.list.remove(players[i].name1);
-                                event.list.remove(players[i].name2);
-                            }
-                            "step 1"
-                            event.current.chooseButton(ui.create.dialog('请您选择一名武将牌替换你的武将牌', [event.list, 'character'], true), function (button) {
-                                return Math.random();
-                                // return get.rank(button.link,true);
-                            });
-                            "step 2"
-                            if (result.bool) {
-                                event.current.init(result.links[0]);
-                                event.list.remove(result.links[0]);
-                            }
-                            "step 3"
-                            if (event.current != player.previous) {
-                                event.current = event.current.next;
-                                event.goto(1);
-                            }
-                            else {
-                                event.finish();
-                            }
-                        },
-                        ai: {
-                            order: 9,
-                        },
-                    },
-                        lib.translate.wwyj_chuangshi_info = '<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从标准包中挑选一名角色并变身成为之 <font color=#F0F>已突破</font>';
 
                     lib.skill.wwyj_chaoyue = {
                         trigger: {
@@ -3708,6 +3182,46 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
 
             // ---------------------------------------brawl------------------------------------------//
+            // 添加音乐相关变量
+            var wwyjMusic = null;
+            var isWwyjMusicPlaying = false;
+
+            // 播放文武英杰背景音乐
+            function playWwyjMusic() {
+                // 暂停原背景音乐
+                if (ui.backgroundMusic) {
+                    ui.backgroundMusic.pause();
+                }
+
+                // 创建或获取文武英杰音乐
+                if (!wwyjMusic) {
+                    wwyjMusic = new Audio(lib.assetURL + 'extension/文武英杰/wwyj_music.mp3');
+                    wwyjMusic.loop = true; // 设置循环播放
+                }
+
+                // 播放音乐
+                wwyjMusic.play().catch(function (e) {
+                    console.log("播放音乐失败:", e);
+                });
+
+                isWwyjMusicPlaying = true;
+            }
+
+            // 停止文武英杰背景音乐
+            function stopWwyjMusic() {
+                if (wwyjMusic && isWwyjMusicPlaying) {
+                    wwyjMusic.pause();
+                    isWwyjMusicPlaying = false;
+
+                    // 恢复原背景音乐
+                    if (ui.backgroundMusic) {
+                        ui.backgroundMusic.play().catch(function (e) {
+                            console.log("恢复原背景音乐失败:", e);
+                        });
+                    }
+                }
+            }
+
             if (lib.brawl) {
                 lib.brawl.wwyjBrawlMode = (function () {
 
@@ -4064,6 +3578,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+                playWwyjMusic();
 
                 var currentPack = '';
 
@@ -4106,11 +3621,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     var dComps = {
                         header: (function () {
                             var img = ui.create.div('.wwyj_intro_header');
-                       
+
                             var imgPath = lib.assetURL + 'extension/文武英杰/' + charName + '.jpg';
                             img.style['background-image'] = 'url(' + imgPath + ')';
                             img.onerror = function () {
-                               
+
                                 this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
                             };
                             return img;
@@ -4149,13 +3664,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
 
                     if (!characterSort) {
-                       
+
                         return [
                             { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
                         ];
                     }
 
-                   
+
                     for (var categoryId in characterSort) {
                         if (characterSort.hasOwnProperty(categoryId)) {
                             var categoryName = get.translation(categoryId) || categoryId;
@@ -4163,7 +3678,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 id: categoryId,
                                 name: categoryName,
                                 packKey: 'wenwuyingjie',
-                                charList: characterSort[categoryId] 
+                                charList: characterSort[categoryId]
                             });
                         }
                     }
@@ -4225,6 +3740,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     ui.system.style.display = '';
                     setTimeout(function () {
                         ui.click.configMenu();
+                        stopWwyjMusic();
                         ui.menuContainer.style.display = '';
                     }, 500);
                 });
@@ -4308,7 +3824,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     var charList = packInfo.charList || [];
 
                     if (charList.length === 0) {
-                        
+
                         var characterPack = lib.characterPack['wenwuyingjie'];
                         if (characterPack) {
                             for (var charName in characterPack) {
@@ -4385,13 +3901,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.top = '50%';
                         this.body.style.left = '50%';
                         this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a'; 
+                        this.body.style.backgroundColor = '#1a1a1a';
                         this.body.style.padding = '0';
                         this.body.style.border = '2px solid #ffd700';
                         this.body.style.borderRadius = '10px';
                         this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%'; 
-                        this.body.style.height = '75%'; 
+                        this.body.style.width = '100%';
+                        this.body.style.height = '75%';
                         this.body.style.overflow = 'hidden';
                         this.body.style.textAlign = 'center';
                         return this;
@@ -16762,7 +16278,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     game.delay(2);
                                     event.current = player.next;
                                     event.list = [];
-                                    event.list = ['guanyu', 'zhangfei', 'zhaoyun', 'machao', 'mazhong', 'gongsunzan', 'huanggai', 'lvmeng', 'yujin', 'xuzhu'];
+                                    for (var i in lib.characterPack['standard']) {
+                                        event.list.push(i);
+                                    }
+                                    var players = game.players.concat(game.dead);
+                                    for (var i = 0; i < players.length; i++) {
+                                        event.list.remove(players[i].name);
+                                        event.list.remove(players[i].name1);
+                                        event.list.remove(players[i].name2);
+                                    }
                                     "step 1"
                                     event.current.chooseButton(ui.create.dialog('请您选择一名武将牌替换你的武将牌', [event.list, 'character'], true), function (button) {
                                         return Math.random();
@@ -17386,7 +16910,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_meiying": "魅影",
                             "wwyj_meiying_info": "</font><font color=#f00>锁定技</font> 你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应",
                             "wwyj_chuangshi": "创世",
-                            "wwyj_chuangshi_info": "<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从十名备选角色（关羽、张飞、赵云、马超、马忠、公孙瓒、黄盖、吕蒙、仁王禁、许禇）中挑选一名并变身成为之 <font color=#F0F>可突破</font>",
+                            "wwyj_chuangshi_info": "<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从标准包中挑选一名角色并变身成为之",
                             "wwyj_xiadan": "下单",
                             "wwyj_xiadan_info": "出牌阶段限一次，你可“下单”交给“接单者”一张牌，其回复一点体力且其可使用一张【杀】，然后你选择获得一张基本牌或非延时锦囊牌",
                             "wwyj_xiadan1": "单",
@@ -17776,7 +17300,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         if (wenwu.contains(i)) charalist.push(i);
                                     }
                                     var liblist = [
-                                        ['<span class="bluetext">创世</span>：<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从十名备选角色（关羽、张飞、赵云、马超、马忠、公孙瓒、黄盖、吕蒙、仁王禁、许禇）中挑选一名并变身成为之 <font color=#F0F>可突破</font><br><span class="bluetext">潜伏</span>：</font><font color=#f00>锁定技</font> 回合结束时，若你的武将牌正面朝上，你翻面。当你的武将牌背面朝上，你的防御距离为无限<br><span class="bluetext">暗察</span>：当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合<br><span class="bluetext">回坑</span>：出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌'],
+                                        ['<span class="bluetext">创世</span>：<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从标准包中挑选一名角色并变身成为之<br><span class="bluetext">潜伏</span>：</font><font color=#f00>锁定技</font> 回合结束时，若你的武将牌正面朝上，你翻面。当你的武将牌背面朝上，你的防御距离为无限<br><span class="bluetext">暗察</span>：当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合<br><span class="bluetext">回坑</span>：出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌'],
                                         ['<span class="bluetext">凉茶</span>：</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：</font><font color=#f00>锁定技</font> 你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：</font><font color=#f00>锁定技</font> 你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
                                         ['<span class="bluetext">才智</span>：</font><font color=#f00>锁定技</font> 你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、对弈、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
                                         ['<span class="bluetext">咫尺</span>：</font><font color=#f00>锁定技</font> 你计算与体力值不等于其手牌数的角色的距离为1，你对距离为1的角色使用【杀】造成伤害时，此伤害+1 <br><span class="bluetext">天涯</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你选择X名其他角色，摸X张牌，并随机展示X名文武英杰扩展的角色（X为至少为1的任意整数），你回复体力至体力上限并随机变身为【凉茶】或【玉蝴蝶】并选择令这些角色逐一将武将牌替换为其中一张（体力上限、体力不变）'],
@@ -17917,22 +17441,22 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             "wwyj_bingliangcunduan": {
                 "name": "兵粮寸断",
                 "intro": "开启后重启游戏生效",
-                init: false,
+                init: true,
             },
             "wwyj_tiesuolianhuan": {
                 "name": "铁索连环",
                 "intro": "开启后重启游戏生效。武将被横置时会有带锁铁链锁着",
                 init: true,
             },
-            "wwyj_chat": {
-                "name": "武将聊天",
-                "intro": "开启后重启游戏生效。武将偶然会说话",
-                init: false,
-            },
             "wwyj_huanleyinxiao": {
                 "name": "欢乐音效",
                 "intro": "开启后重启游戏生效。玩家角色的出牌阶段开始时，会有敲门音伴“该你了”的提示音；玩家角色阵亡时会有失败音效",
                 init: true,
+            },
+            "wwyj_chat": {
+                "name": "武将聊天",
+                "intro": "开启后重启游戏生效。武将偶然会说话",
+                init: false,
             },
             "wwyj_gengminggaixing": {
                 "name": '更名改姓',
@@ -18197,7 +17721,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "6.5",
+            version: "6.6",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

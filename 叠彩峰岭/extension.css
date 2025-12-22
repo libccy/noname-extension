@@ -752,7 +752,7 @@
     top: calc(72% - 90px) !important;
     width: 80px !important;
     height: 80px !important;
-    z-index: 2 !important;
+    z-index: 20 !important;
     cursor: pointer !important;
     background-size: cover !important;
     transition: all 0.3s !important;    

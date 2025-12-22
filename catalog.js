@@ -7,13 +7,13 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 
 extension["火影忍者"] = {
-	date: "2025/12/5",
+	date: "2025/12/22",
 	author: "小苏",
-	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为3.0",
+	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为3.1",
 	size: "60MB",
 	netdisk: "",
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
-	version: 3.0,
+	version: 3.1,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -85,21 +85,21 @@ extension["火影忍者"] = {
 		"huoying_xiezi.jpg","huoying_xinxuzuo1.mp3","huoying_xuzuo1.mp3","huoying_linyiliao2.mp3","hyrz_sidaihuoying.jpg","huoying_yuanfeirizhan.jpg",
 		"huoying_yuanmo1.mp3","huoying_yuedu2.mp3","huoying_zhengbao1.mp3","huoying_zhenxing2.mp3","huoying_zhishu1.mp3","huoying_zhongwu.jpg",
 		"huoying_zhoushu2.mp3","huoying_zhouyin2.mp3","huoying_zhuozhu.jpg","wms_wxyd_background.jpg","hyrz_kuwu1.mp3","hyrz_mianju.png","hyrz_shoulijian.png",
-		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png"
+		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png","hyrz_music.mp3"
 	]
 };
 
 
 extension["文武英杰"] = {
-	date: "2025/12/15",
-	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.6<li>"+
+	date: "2025/12/22",
+	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为6.7<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
 		"建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
 	author: "凉茶",
 	size: "60MB",
 	netdisk: "",
-	version: 6.6,
+	version: 6.7,
 	files: [
 	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
@@ -156,12 +156,12 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2025/12/15",
-	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为3.0，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
+	date: "2025/12/22",
+	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为3.1，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
 	size: "43MB",
-	version: 3.0,
+	version: 3.1,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
@@ -189,7 +189,7 @@ extension["群英会"] = {
 		 "wugeng_kongjing2.mp3","wugeng_kongjing3.mp3","wugeng_poji3.mp3","wugeng_zhuzhan3.mp3","qunying_beihua2.mp3","wugeng_lunzhuan2.mp3","wugeng_xuemao3.mp3",
 		 "wugeng_yinguo1.mp3","wugeng_zhuzhan1.mp3","qunying_bianshen2.mp3","qunying_diwang1.mp3","qunying_diwang2.mp3","qunying_wanti1.mp3","qunying_wanti2.mp3",
 		 "qunying_xiaohan2.mp3","qunying_yiqu1.mp3","qunying_jilian.mp3","qunying_mingxiang1.mp3","qunying_mingxiang2.mp3","qunying_zhengyi1.mp3","qunying_zhengyi2.mp3",
-		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3","qyh_open.mp3","qyh_close.mp3"
+		 "wugeng_zhuilun1.mp3","qunying_weishe2.mp3","qyh_open.mp3","qyh_close.mp3","wms_zhulin_background"
 
 		]
 
@@ -717,7 +717,7 @@ extension["辅助卡牌"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2025/12/15",
+	date: "2025/12/22",
 	author: "小苏",
 	intro: "<font color=#4a9eff>一个功能小扩展，方便查看本体和扩展的武将技能，自动检测并显示已安装的武将包信息，单击列表页武将图片换肤，双击列表页的武将图片可放大查看详细页，单击详细页的技能名前的小喇叭图标可播放配音，单击详细页技能名可查看技能代码</font><br>当前版本为7.0",
 	size: "0.5MB",

@@ -154,7 +154,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             checkupdateAndUpdateIcon();
 
             // ---------------------------------------Newtujian------------------------------------------// 		
-            game.wwyj_showNewtujian = function () {
+            game.wwyj_showOldtujian = function () {
                 var dialog = ui.create.dialog('hidden');
                 dialog.style.height = 'calc(70%)';
                 dialog.style.width = 'calc(70%)';
@@ -230,7 +230,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 });
                 Animation.addEventListener('click', function () {
                     game.playwwyj('wwyj_dansha');
-                    game.wwyjCharacter();
+                    game.wwyjCharacterCover();
                 });
                 document.body.appendChild(Animation);
                 return Animation;
@@ -924,7 +924,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     "wwyj_jianyaleishao": "尔辈怎会……越杀……越多？",
                     "wwyj_hualuo": "义心如石，死节不移……",
                     "wwyj_wzszhaoyun": "这……就是……多行不义必自毙吗？",
-
+                    "wwyj_xkuangshen": "若无粮草之急，何至有今日此败？",
                 };
 
                 const originalCharacterCard = ui.click.charactercard;
@@ -3182,38 +3182,31 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
 
             // ---------------------------------------brawl------------------------------------------//
-            // 添加音乐相关变量
+            
             var wwyjMusic = null;
-            var isWwyjMusicPlaying = false;
-
-            // 播放文武英杰背景音乐
-            function playWwyjMusic() {
-                // 暂停原背景音乐
+            var isWwyjMusicPlaying = false;            
+            function playWwyjMusic() {                
                 if (ui.backgroundMusic) {
                     ui.backgroundMusic.pause();
                 }
-
-                // 创建或获取文武英杰音乐
+               
                 if (!wwyjMusic) {
                     wwyjMusic = new Audio(lib.assetURL + 'extension/文武英杰/wwyj_music.mp3');
-                    wwyjMusic.loop = true; // 设置循环播放
+                    wwyjMusic.loop = true; 
                 }
-
-                // 播放音乐
+                
                 wwyjMusic.play().catch(function (e) {
                     console.log("播放音乐失败:", e);
                 });
 
                 isWwyjMusicPlaying = true;
             }
-
-            // 停止文武英杰背景音乐
+            
             function stopWwyjMusic() {
                 if (wwyjMusic && isWwyjMusicPlaying) {
                     wwyjMusic.pause();
                     isWwyjMusicPlaying = false;
-
-                    // 恢复原背景音乐
+                    
                     if (ui.backgroundMusic) {
                         ui.backgroundMusic.play().catch(function (e) {
                             console.log("恢复原背景音乐失败:", e);
@@ -3221,10 +3214,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             }
-
+//==========================乱斗=========================//
             if (lib.brawl) {
                 lib.brawl.wwyjBrawlMode = (function () {
-
                     var brawl = {
                         name: '文武英杰',
                         mode: 'identity',
@@ -3236,7 +3228,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             function Page() {
                                 this.body = ui.create.div().hide();
                                 this.comps = {};
-                            };
+                            }
+
                             Page.prototype = {
                                 paBody: null,
                                 set: function (attr, value) {
@@ -3272,9 +3265,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         header: (function () {
                                             var img = ui.create.div('.wwyj_intro_header');
                                             var imgPath = lib.assetURL + 'extension/文武英杰/' + charName + '.jpg';
-                                            img.style['background-image'] = 'url(' + imgPath + ')';
+                                            img.style.backgroundImage = 'url(' + imgPath + ')';
                                             img.onerror = function () {
-                                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                                                this.style.backgroundImage = 'url(' + lib.assetURL + 'image/character/default.jpg)';
                                             };
                                             return img;
                                         })(),
@@ -3340,65 +3333,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 var page = new Page();
                                 page.body = ui.create.div('#wwyj_brawl_page');
 
-                                page.body.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0,0,0,0.7);
-                        z-index: 2024;
-                        display: block;
-                    `;
-
                                 var mainContainer = ui.create.div('#wwyj_brawl_mainContainer');
-                                mainContainer.style.cssText = `
-                        position: fixed;
-                        top: 50%;
-                        left: calc(8% + 150px);
-                        transform: translateY(-50%);
-                        width: calc(84% - 150px);
-                        height: 88%;
-                        background-color: #1a1a1a;
-                        border: 2px solid #444;
-                        border-radius: 0 8px 8px 0;
-                        box-shadow: 0 0 30px rgba(0,0,0,0.9);
-                        z-index: 2025;
-                        overflow: hidden;
-                    `;
-
                                 var leftButtonPanel = ui.create.div('#wwyj_brawl_leftButtonPanel');
-                                leftButtonPanel.style.cssText = `
-                        position: fixed;
-                        left: 8%;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        width: 150px;
-                        height: 88%;
-                        background-color: rgba(30, 30, 30, 0.95);
-                        border: 2px solid #555;
-                        border-radius: 8px 0 0 8px;
-                        box-shadow: 0 0 15px rgba(0,0,0,0.8);
-                        overflow-y: auto;
-                        overflow-x: hidden;
-                        padding: 18px 12px;
-                        box-sizing: border-box;
-                        z-index: 2025;
-                    `;
-
                                 var rightPanel = ui.create.div('#wwyj_brawl_rightPanel');
-                                rightPanel.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        position: relative;
-                        overflow: hidden;
-                        padding: 0;
-                        box-sizing: border-box;
-                    `;
 
                                 var closeButton = ui.create.div('#wwyj_brawl_closeButton', '×');
                                 closeButton.addEventListener('click', function () {
                                     page.hide();
+                                    stopWwyjMusic();
                                 });
                                 rightPanel.appendChild(closeButton);
 
@@ -3407,62 +3349,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 rightPanel.appendChild(title);
 
                                 var contentContainer = ui.create.div('#wwyj_brawl_contentContainer');
-                                contentContainer.style.cssText = `
-                        position: absolute;
-                        top: 60px;
-                        left: 0;
-                        width: 100%;
-                        height: calc(100% - 60px);
-                        overflow: auto;
-                        padding: 15px;
-                        box-sizing: border-box;
-                    `;
                                 rightPanel.appendChild(contentContainer);
 
                                 var buttonContainer = ui.create.div('#wwyj_brawl_buttonContainer');
-                                buttonContainer.style.cssText = `
-                        width: 100%;
-                        height: auto;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 10px;
-                    `;
 
                                 for (var i = 0; i < characterPacks.length; i++) {
                                     var pack = characterPacks[i];
 
                                     var buttonWrapper = ui.create.div('.wwyj_brawl_buttonWrapper');
-                                    buttonWrapper.style.cssText = `
-                            width: 100%;
-                            height: 50px;
-                            display: block;
-                            position: relative;
-                        `;
-
                                     var button = ui.create.div('.wwyj_brawl_packButton');
                                     button.innerHTML = pack.name;
-                                    button.style.cssText = `
-                            width: 100%;
-                            height: 100%;
-                            padding: 0;
-                            text-align: center;
-                            cursor: pointer;
-                            border-radius: 6px;
-                            border: 2px solid #666;
-                            background-color: rgba(50, 50, 50, 0.9);
-                            color: #ddd;
-                            font-family: lishu;
-                            font-size: 16px;
-                            font-weight: bold;
-                            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-                            user-select: none;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            line-height: 1.2;
-                            letter-spacing: 1px;
-                            transition: all 0.3s ease;
-                        `;
 
                                     if (pack.id === currentPack) {
                                         button.classList.add('active');
@@ -3485,24 +3381,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             updateCharacterList(packData);
                                         };
                                     })(pack.id, pack.name, pack));
-
-                                    button.addEventListener('mouseover', function () {
-                                        if (!this.classList.contains('active')) {
-                                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
-                                            this.style.color = '#fff';
-                                            this.style.borderColor = '#888';
-                                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
-                                        }
-                                    });
-
-                                    button.addEventListener('mouseout', function () {
-                                        if (!this.classList.contains('active')) {
-                                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
-                                            this.style.color = '#ddd';
-                                            this.style.borderColor = '#666';
-                                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
-                                        }
-                                    });
 
                                     buttonWrapper.appendChild(button);
                                     buttonContainer.appendChild(buttonWrapper);
@@ -3565,6 +3443,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             gameWWYJIntro.addEventListener('click', function () {
                                 setTimeout(function () {
                                     router.wenwuyingjiePage.show();
+                                    playWwyjMusic();
                                 }, 100);
                             });
                             this.appendChild(gameWWYJIntro);
@@ -3573,305 +3452,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-            // 菜单页面类浏览武将：
-            game.wwyjCharacter = function () {
-                ui.system.style.display = 'none';
-                ui.menuContainer.style.display = 'none';
-                ui.click.configMenu();
-                playWwyjMusic();
 
-                var currentPack = '';
-
-                function Page() {
-                    this.body = ui.create.div().hide();
-                    this.comps = {};
-                    this.paBody = document.body;
-                    this.paBody.appendChild(this.body);
-                }
-
-                Page.prototype = {
-                    show: function () {
-                        if (!this.body.parentNode && this.paBody) {
-                            this.paBody.appendChild(this.body);
-                        }
-                        this.body.show();
-                        this.body.style.display = 'block';
-                        this.body.style.position = 'fixed';
-                        this.body.style.top = '0';
-                        this.body.style.left = '0';
-                        this.body.style.width = '100%';
-                        this.body.style.height = '100%';
-                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                        this.body.style.zIndex = '2024';
-
-                        return this;
-                    },
-
-                    hide: function () {
-                        this.body.hide();
-                        return this;
-                    }
-                };
-
-                function createCharacterIntro(charName, introClass) {
-                    var div = ui.create.div('.wwyj_intro_' + introClass);
-                    var charData = lib.character[charName];
-                    if (!charData) return null;
-
-                    var dComps = {
-                        header: (function () {
-                            var img = ui.create.div('.wwyj_intro_header');
-
-                            var imgPath = lib.assetURL + 'extension/文武英杰/' + charName + '.jpg';
-                            img.style['background-image'] = 'url(' + imgPath + ')';
-                            img.onerror = function () {
-
-                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
-                            };
-                            return img;
-                        })(),
-                        infos: (function () {
-                            var str = "";
-                            if (charName) str += get.translation(charName) + '&nbsp;';
-                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
-                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
-                            if (charData[2]) str += charData[2] + '体力';
-                            return ui.create.div('.wwyj_intro_infos', str);
-                        })(),
-                        skills: (function () {
-                            var str = "";
-                            if (charData[3] && Array.isArray(charData[3])) {
-                                for (var j = 0; j < charData[3].length; j++) {
-                                    if (j > 0) str += '<br><br>';
-                                    var skillName = charData[3][j];
-                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
-                                }
-                            }
-                            var skills = ui.create.div('.wwyj_intro_skills', str);
-                            lib.setScroll(skills);
-                            return skills;
-                        })(),
-                    };
-
-                    for (var i in dComps) {
-                        div.appendChild(dComps[i]);
-                    }
-                    return div;
-                }
-
-                function createCharacterPacks() {
-                    var packs = [];
-                    var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
-
-                    if (!characterSort) {
-
-                        return [
-                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
-                        ];
-                    }
-
-
-                    for (var categoryId in characterSort) {
-                        if (characterSort.hasOwnProperty(categoryId)) {
-                            var categoryName = get.translation(categoryId) || categoryId;
-                            packs.push({
-                                id: categoryId,
-                                name: categoryName,
-                                packKey: 'wenwuyingjie',
-                                charList: characterSort[categoryId]
-                            });
-                        }
-                    }
-
-                    return packs;
-                }
-
-                var characterPacks = createCharacterPacks();
-
-                if (characterPacks.length > 0) {
-                    currentPack = characterPacks[0].id;
-                }
-
-                var characterPage = new Page();
-                characterPage.body = ui.create.div('#wwyj_page');
-
-                var mainContainer = ui.create.div('#wwyj_mainContainer');
-                mainContainer.style.position = 'fixed';
-                mainContainer.style.top = '50%';
-                mainContainer.style.left = 'calc(8% + 150px)';
-                mainContainer.style.transform = 'translateY(-50%)';
-                mainContainer.style.width = 'calc(84% - 150px)';
-                mainContainer.style.height = '88%';
-                mainContainer.style.backgroundColor = '#1a1a1a';
-                mainContainer.style.border = '2px solid #444';
-                mainContainer.style.borderRadius = '0 8px 8px 0';
-                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
-                mainContainer.style.zIndex = '2025';
-                mainContainer.style.overflow = 'hidden';
-
-                var leftButtonPanel = ui.create.div('#wwyj_leftButtonPanel');
-                leftButtonPanel.style.position = 'fixed';
-                leftButtonPanel.style.left = '8%';
-                leftButtonPanel.style.top = '50%';
-                leftButtonPanel.style.transform = 'translateY(-50%)';
-                leftButtonPanel.style.width = '150px';
-                leftButtonPanel.style.height = '88%';
-                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
-                leftButtonPanel.style.border = '2px solid #555';
-                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
-                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
-                leftButtonPanel.style.overflowY = 'auto';
-                leftButtonPanel.style.overflowX = 'hidden';
-                leftButtonPanel.style.padding = '18px 12px';
-                leftButtonPanel.style.boxSizing = 'border-box';
-                leftButtonPanel.style.zIndex = '2025';
-
-                var rightPanel = ui.create.div('#wwyj_rightPanel');
-                rightPanel.style.width = '100%';
-                rightPanel.style.height = '100%';
-                rightPanel.style.position = 'relative';
-                rightPanel.style.overflow = 'hidden';
-                rightPanel.style.padding = '0';
-                rightPanel.style.boxSizing = 'border-box';
-
-                var closeButton = ui.create.div('#wwyj_closeButton', '×');
-                closeButton.addEventListener('click', function () {
-                    characterPage.hide();
-                    ui.system.style.display = '';
-                    setTimeout(function () {
-                        ui.click.configMenu();
-                        stopWwyjMusic();
-                        ui.menuContainer.style.display = '';
-                    }, 500);
-                });
-                rightPanel.appendChild(closeButton);
-
-                var title = ui.create.div('#wwyj_title');
-                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '文武英杰武将';
-                rightPanel.appendChild(title);
-
-                var contentContainer = ui.create.div('#wwyj_contentContainer');
-                contentContainer.style.position = 'absolute';
-                contentContainer.style.top = '60px';
-                contentContainer.style.left = '0';
-                contentContainer.style.width = '100%';
-                contentContainer.style.height = 'calc(100% - 60px)';
-                contentContainer.style.overflow = 'auto';
-                contentContainer.style.padding = '15px';
-                contentContainer.style.boxSizing = 'border-box';
-                rightPanel.appendChild(contentContainer);
-
-                var buttonContainer = ui.create.div('#wwyj_buttonContainer');
-                buttonContainer.style.width = '100%';
-                buttonContainer.style.height = 'auto';
-                buttonContainer.style.display = 'flex';
-                buttonContainer.style.flexDirection = 'column';
-                buttonContainer.style.gap = '10px';
-
-                for (var i = 0; i < characterPacks.length; i++) {
-                    var pack = characterPacks[i];
-
-                    var buttonWrapper = ui.create.div('.wwyj_buttonWrapper');
-                    buttonWrapper.style.width = '100%';
-                    buttonWrapper.style.height = '50px';
-                    buttonWrapper.style.display = 'block';
-                    buttonWrapper.style.position = 'relative';
-
-                    var button = ui.create.div('.wwyj_packButton');
-                    button.innerHTML = pack.name;
-                    button.style.width = '100%';
-                    button.style.height = '100%';
-                    button.style.display = 'flex';
-                    button.style.alignItems = 'center';
-                    button.style.justifyContent = 'center';
-
-                    if (pack.id === currentPack) {
-                        button.classList.add('active');
-                    }
-
-                    button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function (packId, packName, packData) {
-                        return function () {
-                            if (currentPack === packId) return;
-
-                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
-                            for (var j = 0; j < buttons.length; j++) {
-                                var btn = buttons[j];
-                                if (btn.getAttribute('data-pack') === packId) {
-                                    btn.classList.add('active');
-                                } else {
-                                    btn.classList.remove('active');
-                                }
-                            }
-
-                            currentPack = packId;
-                            title.innerHTML = packName;
-                            updateCharacterList(packData);
-                        };
-                    })(pack.id, pack.name, pack));
-
-                    buttonWrapper.appendChild(button);
-                    buttonContainer.appendChild(buttonWrapper);
-                }
-
-                leftButtonPanel.appendChild(buttonContainer);
-
-                function updateCharacterList(packInfo) {
-                    contentContainer.innerHTML = '';
-
-                    if (!packInfo) return;
-
-                    var charList = packInfo.charList || [];
-
-                    if (charList.length === 0) {
-
-                        var characterPack = lib.characterPack['wenwuyingjie'];
-                        if (characterPack) {
-                            for (var charName in characterPack) {
-                                if (charName && lib.character[charName]) {
-                                    charList.push(charName);
-                                }
-                            }
-                        }
-                    }
-
-                    for (var i = 0; i < charList.length; i++) {
-                        var charName = charList[i];
-                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                        var charIntro = createCharacterIntro(charName, introClass);
-
-                        if (charIntro) {
-                            contentContainer.appendChild(charIntro);
-                        }
-                    }
-
-                    var clearDiv = ui.create.div();
-                    clearDiv.style.clear = 'both';
-                    clearDiv.style.height = '0';
-                    clearDiv.style.overflow = 'hidden';
-                    contentContainer.appendChild(clearDiv);
-
-                    lib.setScroll(contentContainer);
-                }
-
-                if (characterPacks.length > 0) {
-                    updateCharacterList(characterPacks[0]);
-                }
-
-                characterPage.body.appendChild(mainContainer);
-                mainContainer.appendChild(rightPanel);
-                characterPage.body.appendChild(leftButtonPanel);
-
-                characterPage.show();
-                return characterPage;
-            };
-
-
-            //横滑：
+            //=====================画廊==========================//
             game.showWWYJCharacterGallery = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+                playWwyjMusic();
 
                 function Page() {
                     this.body = ui.create.div().hide();
@@ -3894,22 +3481,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-
-                        this.body.style.display = 'block';
-                        this.body.style.zIndex = '2025';
-                        this.body.style.position = 'fixed';
-                        this.body.style.top = '50%';
-                        this.body.style.left = '50%';
-                        this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a';
-                        this.body.style.padding = '0';
-                        this.body.style.border = '2px solid #ffd700';
-                        this.body.style.borderRadius = '10px';
-                        this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%';
-                        this.body.style.height = '75%';
-                        this.body.style.overflow = 'hidden';
-                        this.body.style.textAlign = 'center';
+                        this.body.classList.add('wwyj_gallery_dialog');
                         return this;
                     },
                     hide: function () {
@@ -3954,11 +3526,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
 
                 var galleryPage = new Page();
-                galleryPage.body = ui.create.div('.wwyj-gallery-content');
+                galleryPage.body = ui.create.div();
 
-                var title = ui.create.div('.wwyj-gallery-title', '文武英杰');
-
-                var closeButton = ui.create.div('.wwyj-gallery-close-btn', '×');
+                var title = ui.create.div('.wwyj_gallery_title', '文武英杰');
+                var closeButton = ui.create.div('.wwyj_gallery_close_btn', '×');
 
                 function closeGallery() {
                     galleryPage.hide();
@@ -3966,32 +3537,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     setTimeout(function () {
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
+                        stopWwyjMusic();
                     }, 500);
                 }
 
                 closeButton.addEventListener('click', closeGallery);
 
-                var galleryContainer = ui.create.div('');
-                galleryContainer.style.cssText = `
-        display: flex;
-        align-items: center;
-        height: calc(100% - 40px);
-        position: relative;
-        overflow: hidden;
-        padding: 10px 30px;
-        box-sizing: border-box;
-        margin-top: 10px;
-    `;
-
-                var slider = ui.create.div('');
-                slider.style.cssText = `
-        display: flex;
-        transition: transform 0.15s ease;
-        height: 100%;
-        align-items: center;
-        gap: 50px;
-        cursor: grab;
-    `;
+                var galleryContainer = ui.create.div('.wwyj_gallery_container');
+                var slider = ui.create.div('.wwyj_gallery_slider');
 
                 var containerWidth = window.innerWidth - 50;
                 var containerHeight = window.innerHeight * 0.75 - 40;
@@ -4004,28 +3557,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 for (var i = 0; i < characters.length; i++) {
                     var charId = characters[i];
-                    var charCard = ui.create.div('');
+                    var charCard = ui.create.div('.wwyj_gallery_char_card');
 
-                    charCard.style.cssText = `
-            flex-shrink: 0;
-            width: ${cardWidth}px;
-            height: ${cardHeight}px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
-        `;
+                    charCard.style.width = cardWidth + 'px';
+                    charCard.style.height = cardHeight + 'px';
 
                     var charImg = document.createElement('img');
-                    charImg.style.cssText = `
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        `;
+                    charImg.classList.add('wwyj_gallery_char_img');
 
                     var imgSrc = lib.assetURL + 'extension/文武英杰/' + charId + '.jpg';
                     charImg.src = imgSrc;
@@ -4041,7 +3579,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.innerHTML = '<div>暂无图片</div>';
                     };
 
-                    var charName = ui.create.div('.wwyj-character-name', get.translation(charId) || charId);
+                    var charName = ui.create.div('.wwyj_gallery_char_name', get.translation(charId) || charId);
                     charCard.appendChild(charImg);
                     charCard.appendChild(charName);
                     slider.appendChild(charCard);
@@ -4128,6 +3666,984 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 return galleryPage;
             };
 
+            //==========================================================//                        
+            // 菜单页面类浏览武将：
+            game.wwyjCharacterCover = function () {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+                playWwyjMusic();
+
+                // 创建封面页
+                var coverPage = ui.create.div('.wwyj-character-page.wwyj-cover-page');
+                coverPage.id = 'wwyj_cover_page';
+                document.body.appendChild(coverPage);
+
+                var coverContainer = ui.create.div('#wwyj_mainContainer.wwyj_cover_container');
+
+                var title = ui.create.div('#wwyj_title.wwyj_cover_title', '文武英杰');
+                coverContainer.appendChild(title);
+
+                var imageContainer = ui.create.div('.wwyj_cover_image_container');
+
+                var coverImage = ui.create.div('.wwyj_cover_image');
+                coverImage.style.backgroundImage = 'url(' + lib.assetURL + 'extension/文武英杰/wenwuyingjie.jpg)';
+
+                imageContainer.addEventListener('click', function () {
+
+                if (coverPage && coverPage.parentNode) {
+                    coverPage.parentNode.removeChild(coverPage);
+                }        
+                game.wwyjCharacter();
+            });
+
+                imageContainer.appendChild(coverImage);
+                coverContainer.appendChild(imageContainer);
+
+                var closeButton = ui.create.div('#wwyj_closeButton.wwyj_cover_close', '×');
+                closeButton.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (coverPage && coverPage.parentNode) {
+                        stopWwyjMusic();
+                        coverPage.parentNode.removeChild(coverPage);
+                    }
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                    coverContainer.appendChild(closeButton);
+                    coverPage.appendChild(coverContainer);
+                    return coverPage;
+            };
+            
+            game.wwyjCharacter = function () {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+                
+                var currentDetailPage = null;
+                var currentCodePage = null;
+                var currentPack = '';
+                
+                game.replaywwyj = function (fn, dir) {
+                    try {
+                        if (!fn) {
+                            console.error('角色ID不能为空');
+                            return;
+                        }
+
+                        console.log('尝试播放扩展武将配音，角色:', fn, '扩展包:', dir);
+                        game.playAudio('..', 'extension', dir, fn);
+                    } catch (error) {
+                        console.error('播放扩展配音出错:', error);
+                    }
+                };
+
+                function getCleanExtensionName(extNameWithTags) {
+                    if (!extNameWithTags) return '';
+
+                    var cleanName = extNameWithTags;
+
+                    cleanName = cleanName.replace(/<span[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/span>/gi, '');
+                    cleanName = cleanName.replace(/<font[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/font>/gi, '');
+                    cleanName = cleanName.replace(/<div[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/div>/gi, '');
+                    cleanName = cleanName.replace(/<p[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/p>/gi, '');
+                    cleanName = cleanName.replace(/<b[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/b>/gi, '');
+                    cleanName = cleanName.replace(/<strong[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/strong>/gi, '');
+                    cleanName = cleanName.replace(/<i[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/i>/gi, '');
+                    cleanName = cleanName.replace(/<em[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/em>/gi, '');
+                    cleanName = cleanName.replace(/<u[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/u>/gi, '');
+                    cleanName = cleanName.replace(/<[^>]*>/g, '');
+
+                    cleanName = cleanName.trim();
+
+                    return cleanName;
+                }
+
+                function playSkillAudio(charName, skillName) {
+                    try {
+                        var playKey = charName + '_' + skillName;
+                        if (window._wwyj_skill_last_play &&
+                            window._wwyj_skill_last_play.key === playKey &&
+                            Date.now() - window._wwyj_skill_last_play.time < 500) {
+                            console.log('技能配音防重播：忽略重复播放', charName, skillName);
+                            return;
+                        }
+
+                        window._wwyj_skill_last_play = {
+                            key: playKey,
+                            time: Date.now()
+                        };
+
+                        var skinName = charName;
+                        if (skinName.startsWith("gz_")) {
+                            skinName = skinName.slice(3);
+                        }
+
+                        if (lib.config.skin && lib.config.skin[skinName]) {
+                            var skinConfig = lib.config.skin[skinName];
+                            if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
+                                skinName = skinConfig[0];
+                            } else if (typeof skinConfig === 'string') {
+                                skinName = skinConfig;
+                            }
+                        }
+
+                        var audioData = get.Audio.skill({
+                            skill: skillName,
+                            player: {
+                                name: charName,
+                                skin: {
+                                    name: skinName
+                                },
+                                tempname: [skinName]
+                            }
+                        });
+
+                        var audioList = audioData.fileList;
+
+                        if (audioList && audioList.length > 0) {
+                            var playAudio = game.tryAudio({
+                                audioList: audioList,
+                                addVideo: false,
+                                random: true,
+                                autoplay: false
+                            });
+
+                            playAudio();
+                            console.log('技能配音播放成功:', charName, skillName);
+                        } else {
+                            console.log('未找到技能配音:', charName, skillName);
+                        }
+                    } catch (error) {
+                        console.error('播放技能配音时出错:', error);
+                    }
+                }
+
+                function playDieAudio(charName, packKey, extNameWithTags) {
+                    try {
+                        console.log('开始播放阵亡配音:', charName, '扩展包:', packKey);
+
+                        var cleanCharName = charName;
+                        if (cleanCharName && cleanCharName.startsWith("gz_")) {
+                            cleanCharName = cleanCharName.slice(3);
+                        }
+
+                        var playKey = 'die_' + charName;
+                        if (window._wwyj_last_die_play &&
+                            window._wwyj_last_die_play.key === playKey &&
+                            Date.now() - window._wwyj_last_die_play.time < 300) {
+                            console.log('阵亡配音防重播：短时间内重复点击，忽略');
+                            return;
+                        }
+
+                        window._wwyj_last_die_play = {
+                            key: playKey,
+                            time: Date.now()
+                        };
+
+                        setTimeout(function () {
+                            try {
+                                var skinName = charName;
+                                if (skinName.startsWith("gz_")) {
+                                    skinName = skinName.slice(3);
+                                }
+
+                                if (lib.config.skin && lib.config.skin[skinName]) {
+                                    var skinConfig = lib.config.skin[skinName];
+                                    if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
+                                        skinName = skinConfig[0];
+                                    } else if (typeof skinConfig === 'string') {
+                                        skinName = skinConfig;
+                                    }
+                                }
+
+                                var audioData = get.Audio.die({
+                                    player: {
+                                        name: charName,
+                                        skin: {
+                                            name: skinName
+                                        },
+                                        tempname: [skinName]
+                                    }
+                                });
+
+                                var audioList = audioData.fileList;
+
+                                if (audioList && audioList.length > 0) {
+                                    var playAudio = game.tryAudio({
+                                        audioList: audioList,
+                                        addVideo: false,
+                                        random: true,
+                                        autoplay: false
+                                    });
+
+                                    playAudio();
+                                    console.log('本体武将配音播放成功:', charName);
+                                } else {
+                                    console.log('未找到本体武将配音:', charName);
+                                }
+                            } catch (error) {
+                                console.error('播放本体武将配音时出错:', error);
+                            }
+                        }, 0);
+
+                        setTimeout(function () {
+                            try {
+                                var cleanExtNames = [];
+
+                                if (packKey) {
+                                    cleanExtNames.push(packKey);
+                                }
+
+                                if (extNameWithTags) {
+                                    var cleanName = getCleanExtensionName(extNameWithTags);
+                                    if (cleanName && cleanExtNames.indexOf(cleanName) === -1) {
+                                        cleanExtNames.push(cleanName);
+                                    }
+                                }
+
+                                console.log('尝试的扩展包名列表:', cleanExtNames);
+
+                                for (var i = 0; i < cleanExtNames.length; i++) {
+                                    var extName = cleanExtNames[i];
+                                    console.log('播放扩展配音，角色:', cleanCharName, '扩展包:', extName);
+                                    game.replaywwyj(cleanCharName, extName);
+                                }
+
+                            } catch (error) {
+                                console.error('尝试扩展配音时出错:', error);
+                            }
+                        }, 100);
+
+                    } catch (error) {
+                        console.error('播放阵亡配音时出错:', error);
+                    }
+                }
+
+                function addSkillAudioClick(iconElement, charName, skillName) {
+                    if (!iconElement || !charName || !skillName) return iconElement;
+
+                    iconElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playSkillAudio(charName, skillName);
+                        return false;
+                    });
+
+                    iconElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playSkillAudio(charName, skillName);
+                        return false;
+                    }, {
+                        passive: false
+                    });
+
+                    iconElement.style.cursor = 'pointer';
+
+                    return iconElement;
+                }
+
+                function addDieAudioClick(iconElement, charName, packKey, extNameWithTags) {
+                    if (!iconElement || !charName) return iconElement;
+
+                    iconElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playDieAudio(charName, packKey, extNameWithTags);
+                        return false;
+                    });
+
+                    iconElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playDieAudio(charName, packKey, extNameWithTags);
+                        return false;
+                    }, {
+                        passive: false
+                    });
+
+                    iconElement.style.cursor = 'pointer';
+
+                    return iconElement;
+                }
+
+                function applySkinChange(imgElement, charName) {
+                    var skinName = charName;
+                    if (skinName.startsWith("gz_")) {
+                        skinName = skinName.slice(3);
+                    }
+
+                    var num = 1;
+                    if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
+                        num = lib.config.skin[skinName] + 1;
+                    }
+
+                    var img = new Image();
+                    img.onload = function () {
+                        lib.config.skin = lib.config.skin || {};
+                        lib.config.skin[skinName] = num;
+                        game.saveConfig("skin", lib.config.skin);
+                        imgElement.style.backgroundImage = 'url("' + img.src + '")';
+                    };
+
+                    img.onerror = function () {
+                        if (lib.config.skin && lib.config.skin[skinName]) {
+                            delete lib.config.skin[skinName];
+                            game.saveConfig("skin", lib.config.skin);
+
+                            var defaultImg = new Image();
+                            defaultImg.onload = function () {
+                                imgElement.style.backgroundImage = 'url("' + defaultImg.src + '")';
+                            };
+                            defaultImg.onerror = function () {
+                                imgElement.style.backgroundImage = 'none';
+                                imgElement.style.backgroundColor = '#333';
+                            };
+
+                            var defaultPath = lib.assetURL + 'image/character/' + charName + '.jpg';
+                            defaultImg.src = defaultPath;
+                        }
+                    };
+
+                    var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + num + ".jpg";
+                    img.src = skinPath;
+                }
+
+                function loadCharacterImage(imgElement, charName, isDetailPage) {
+                    function getAllExtensionDirectories() {
+                        var directories = new Set();
+                        if (lib.characterPack) {
+                            for (var packKey in lib.characterPack) {
+                                if (!packKey || packKey === "mode_banned" || packKey === "mode_favourite" ||
+                                    packKey === 'character' || packKey === 'translate' ||
+                                    packKey === 'list' || packKey === 'card' || packKey === 'skill') {
+                                    continue;
+                                }
+                                directories.add(packKey);
+                                var packNameWithTags = lib.translate[packKey + '_character_config'];
+                                if (packNameWithTags) {
+                                    var cleanName = packNameWithTags.replace(/<[^>]*>/g, '').trim();
+                                    if (cleanName && cleanName !== packKey) {
+                                        directories.add(cleanName);
+                                    }
+                                }
+                            }
+                        }
+                        return Array.from(directories);
+                    }
+
+                    var allExtensionDirs = getAllExtensionDirectories();
+                    var imagePaths = [];
+
+                    var skinName = charName;
+                    if (skinName.startsWith("gz_")) {
+                        skinName = skinName.slice(3);
+                    }
+
+                    if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
+                        var skinNum = lib.config.skin[skinName] + 1;
+                        var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + skinNum + ".jpg";
+                        imagePaths.unshift(skinPath);
+                    }
+
+                    imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
+                    imagePaths.push(lib.assetURL + 'extension/文武英杰/' + charName + '.jpg');
+                    imagePaths.push(lib.assetURL + 'extension/文武英杰/image/character/' + charName + '.jpg');
+
+                    for (var i = 0; i < allExtensionDirs.length; i++) {
+                        var dirName = allExtensionDirs[i];
+
+                        if (dirName === '文武英杰') {
+                            continue;
+                        }
+
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/' + charName + '.jpg');
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/image/character/' + charName + '.jpg');
+                    }
+
+                    function trySetBackgroundImage(pathIndex) {
+                        if (pathIndex >= imagePaths.length) {
+                            if (isDetailPage) {
+                                imgElement.style.backgroundColor = '#333';
+                                imgElement.style.backgroundImage = 'none';
+                            } else {
+                                imgElement.style.backgroundColor = '#333';
+                                imgElement.style.backgroundImage = 'none';
+                            }
+                            return;
+                        }
+                        var imagePath = imagePaths[pathIndex];
+                        var testImg = new Image();
+                        testImg.onload = function () {
+                            imgElement.style['background-image'] = 'url(' + imagePath + ')';
+                        };
+                        testImg.onerror = function () {
+                            trySetBackgroundImage(pathIndex + 1);
+                        };
+                        testImg.src = imagePath;
+                    }
+
+                    trySetBackgroundImage(0);
+                }
+
+                function formatSkillCode(obj, indentLevel) {
+                    var result = '';
+                    var indent = '    '.repeat(indentLevel);
+
+                    for (var key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            var value = obj[key];
+                            var keyStr = indent + key + ': ';
+
+                            if (typeof value === 'function') {
+                                var funcStr = value.toString();
+                                var lines = funcStr.split('\n');
+                                var formattedFunc = '';
+
+                                var minIndent = Infinity;
+                                for (var i = 1; i < lines.length; i++) {
+                                    var line = lines[i];
+                                    if (line.trim() === '' || i === lines.length - 1) continue;
+                                    var leadingSpaces = line.match(/^\s*/)[0].length;
+                                    if (leadingSpaces < minIndent) {
+                                        minIndent = leadingSpaces;
+                                    }
+                                }
+                                if (minIndent === Infinity) minIndent = 0;
+
+                                for (var i = 0; i < lines.length; i++) {
+                                    var line = lines[i];
+                                    if (i === 0) {
+                                        formattedFunc += keyStr + line + '\n';
+                                    } else if (i === lines.length - 1) {
+                                        var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                        formattedFunc += indent + '    ' + trimmedLine;
+                                    } else {
+                                        var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                        formattedFunc += indent + '    ' + trimmedLine;
+                                        if (i < lines.length - 1) formattedFunc += '\n';
+                                    }
+                                }
+                                result += formattedFunc + ',\n';
+                            } else if (Array.isArray(value)) {
+                                result += keyStr + '[\n';
+                                for (var i = 0; i < value.length; i++) {
+                                    var item = value[i];
+                                    var itemIndent = indent + '    ';
+                                    if (typeof item === 'function') {
+                                        var funcStr = item.toString();
+                                        var lines = funcStr.split('\n');
+                                        var minIndent = Infinity;
+
+                                        for (var j = 1; j < lines.length; j++) {
+                                            var line = lines[j];
+                                            if (line.trim() === '' || j === lines.length - 1) continue;
+                                            var leadingSpaces = line.match(/^\s*/)[0].length;
+                                            if (leadingSpaces < minIndent) {
+                                                minIndent = leadingSpaces;
+                                            }
+                                        }
+                                        if (minIndent === Infinity) minIndent = 0;
+
+                                        result += itemIndent + lines[0] + '\n';
+
+                                        for (var j = 1; j < lines.length - 1; j++) {
+                                            var line = lines[j];
+                                            var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                            result += itemIndent + '    ' + trimmedLine + '\n';
+                                        }
+
+                                        if (lines.length > 1) {
+                                            var lastLine = lines[lines.length - 1];
+                                            var trimmedLastLine = lastLine.substring(Math.min(minIndent, lastLine.length));
+                                            result += itemIndent + '    ' + trimmedLastLine;
+                                        }
+                                    } else if (typeof item === 'object' && item !== null) {
+                                        result += formatSkillCode(item, indentLevel + 2).trim();
+                                    } else {
+                                        if (typeof item === 'string') {
+                                            result += itemIndent + '"' + item.replace(/"/g, '\\"') + '"';
+                                        } else {
+                                            result += itemIndent + item;
+                                        }
+                                    }
+                                    if (i < value.length - 1) result += ',';
+                                    result += '\n';
+                                }
+                                result += indent + '],\n';
+                            } else if (typeof value === 'object' && value !== null) {
+                                result += keyStr + '{\n' + formatSkillCode(value, indentLevel + 1) + indent + '},\n';
+                            } else {
+                                if (typeof value === 'string') {
+                                    result += keyStr + '"' + value.replace(/"/g, '\\"') + '",\n';
+                                } else {
+                                    result += keyStr + value + ',\n';
+                                }
+                            }
+                        }
+                    }
+
+                    return result;
+                }
+
+                function ensureSkillClickHandler(element, skillName, charName) {
+                    var newElement = element.cloneNode(true);
+                    if (element.parentNode) {
+                        element.parentNode.replaceChild(newElement, element);
+                    }
+
+                    newElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showSkillCode(skillName, charName);
+                        return false;
+                    });
+
+                    newElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showSkillCode(skillName, charName);
+                        return false;
+                    }, { passive: false });
+
+                    return newElement;
+                }
+
+                function showSkillCode(skillName, charName) {
+                    if (currentCodePage && currentCodePage.parentNode) {
+                        currentCodePage.parentNode.removeChild(currentCodePage);
+                    }
+
+                    var existingPage = document.querySelector('#wwyj_page.wwyj_code_page');
+                    if (existingPage) {
+                        existingPage.remove();
+                    }
+
+                    var skillPageBg = ui.create.div('#wwyj_page.wwyj_code_page');
+
+                    skillPageBg.addEventListener('click', function (e) {
+                        if (e.target === skillPageBg) {
+                            if (skillPageBg.parentNode) {
+                                skillPageBg.parentNode.removeChild(skillPageBg);
+                            }
+                            currentCodePage = null;
+                        }
+                    });
+
+                    var skillMainContainer = ui.create.div('#wwyj_mainContainer.wwyj_code_container');
+
+                    var skillRightPanel = ui.create.div('#wwyj_rightPanel.wwyj_code_panel');
+
+                    var skillCloseButton = ui.create.div('#wwyj_closeButton.wwyj_code_close', '×');
+                    skillCloseButton.addEventListener('click', function () {
+                        if (skillPageBg.parentNode) {
+                            skillPageBg.parentNode.removeChild(skillPageBg);
+                        }
+                        currentCodePage = null;
+                    });
+                    skillRightPanel.appendChild(skillCloseButton);
+
+                    var skillTitle = ui.create.div('#wwyj_title.wwyj_code_title');
+                    skillTitle.innerHTML = get.translation(charName) + ' - ' + get.translation(skillName) + ' 技能代码';
+                    skillTitle.setAttribute('data-translate-char', charName);
+                    skillTitle.setAttribute('data-translate-skill', skillName);
+                    skillRightPanel.appendChild(skillTitle);
+
+                    var skillContentContainer = ui.create.div('#wwyj_contentContainer.wwyj_code_content');
+
+                    var skillObj = lib.skill[skillName];
+                    var codeString = '';
+
+                    if (skillObj) {
+                        try {
+                            codeString = '{\n' + formatSkillCode(skillObj, 1) + '}';
+                        } catch (e) {
+                            codeString = '无法解析技能代码：' + e.message;
+                        }
+                    } else {
+                        codeString = '未找到技能代码';
+                    }
+
+                    var codeContainer = document.createElement('pre');
+                    codeContainer.textContent = codeString;
+
+                    skillContentContainer.appendChild(codeContainer);
+                    skillRightPanel.appendChild(skillContentContainer);
+                    skillMainContainer.appendChild(skillRightPanel);
+                    skillPageBg.appendChild(skillMainContainer);
+
+                    document.body.appendChild(skillPageBg);
+                    currentCodePage = skillPageBg;
+
+                    setTimeout(function () {
+                        skillPageBg.style.display = 'block';
+                    }, 10);
+                }
+
+                function Page() {
+                    this.body = ui.create.div().hide();
+                    this.comps = {};
+                    this.paBody = document.body;
+                    this.paBody.appendChild(this.body);
+                }
+
+                Page.prototype = {
+                    show: function () {
+                        if (!this.body.parentNode && this.paBody) {
+                            this.paBody.appendChild(this.body);
+                        }
+                        this.body.show();
+                        this.body.style.display = 'block';
+                        this.body.style.position = 'fixed';
+                        this.body.style.top = '0';
+                        this.body.style.left = '0';
+                        this.body.style.width = '100%';
+                        this.body.style.height = '100%';
+                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        this.body.style.zIndex = '2024';
+
+                        return this;
+                    },
+
+                    hide: function () {
+                        this.body.hide();
+                        return this;
+                    }
+                };
+
+                function createCharacterIntro(charName, introClass, packName) {
+                    var div = ui.create.div('.wwyj_intro_' + introClass);
+                    var charData = lib.character[charName];
+                    if (!charData) return null;
+
+                    var extNameWithTags = lib.translate['wenwuyingjie_character_config'];
+
+                    var dComps = {
+                        header: (function () {
+                            var imgElement = ui.create.div('.wwyj_intro_header');
+                            loadCharacterImage(imgElement, charName, false);
+                            imgElement.style.cursor = 'pointer';
+                            imgElement.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                if (currentDetailPage && currentDetailPage.body && currentDetailPage.body.parentNode) {
+                                    currentDetailPage.body.parentNode.removeChild(currentDetailPage.body);
+                                }
+
+                                var detailPage = new Page();
+                                detailPage.body = ui.create.div('#wwyj_page.wwyj_detail_page');
+                                var detailContainer = ui.create.div('#wwyj_mainContainer.wwyj_detail_container');
+                                var detailPanel = ui.create.div('#wwyj_rightPanel.wwyj_detail_panel');
+                                var closeButton = ui.create.div('#wwyj_closeButton.wwyj_detail_close', '×');
+                                closeButton.addEventListener('click', function () {
+                                    detailPage.hide();
+                                    if (detailPage.body && detailPage.body.parentNode) {
+                                        detailPage.body.parentNode.removeChild(detailPage.body);
+                                    }
+                                    currentDetailPage = null;
+                                });
+                                detailPanel.appendChild(closeButton);
+                                var title = ui.create.div('#wwyj_title.wwyj_detail_title');
+                                title.innerHTML = packName + ' - ' + get.translation(charName);
+                                detailPanel.appendChild(title);
+                                var contentContainer = ui.create.div('#wwyj_contentContainer.wwyj_detail_content');
+
+                                var infoContainer = ui.create.div('.wwyj_detail_page_info_container');
+                                var infoStr = "";
+                                if (charName) infoStr += get.translation(charName) + '&nbsp;';
+                                if (charData[0]) infoStr += get.translation(charData[0]) + '&nbsp;';
+                                if (charData[1]) infoStr += get.translation(charData[1]) + '&nbsp;';
+                                if (charData[2]) infoStr += charData[2] + '体力';
+                                var infoText = ui.create.div('.wwyj_detail_page_info_text', infoStr);
+                                infoContainer.appendChild(infoText);
+
+                                var infoIconWrapper = ui.create.div('.wwyj_detail_page_info_icon_wrapper');
+                                var infoIcon = ui.create.div('.wwyj_detail_page_info_icon');
+
+                                infoIcon = addDieAudioClick(infoIcon, charName, 'wenwuyingjie', extNameWithTags);
+
+                                infoIconWrapper.appendChild(infoIcon);
+                                infoContainer.appendChild(infoIconWrapper);
+                                contentContainer.appendChild(infoContainer);
+
+                                var headerContainer = ui.create.div('.wwyj_detail_header_container');
+                                var detailHeader = ui.create.div('.wwyj_detail_header');
+                                loadCharacterImage(detailHeader, charName, true);
+                                detailHeader.style.cursor = 'pointer';
+                                detailHeader.addEventListener('click', function (e) {
+                                    e.stopPropagation();
+                                    applySkinChange(this, charName);
+                                    applySkinChange(imgElement, charName);
+                                });
+                                headerContainer.appendChild(detailHeader);
+                                contentContainer.appendChild(headerContainer);
+
+                                var introContainer = ui.create.div('.wwyj_detail_page_intro_container');
+                                var introText = ui.create.div('.wwyj_detail_page_intro_text');
+                                try {
+                                    var introHtml = get.characterIntro(charName);
+                                    if (introHtml && introHtml.trim() !== '') {
+                                        var tempDiv = document.createElement('div');
+                                        tempDiv.innerHTML = introHtml;
+                                        Array.from(tempDiv.childNodes).forEach(function (node) {
+                                            if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
+                                                introText.appendChild(node.cloneNode(true));
+                                            }
+                                        });
+                                    } else {
+                                        introText.innerHTML = '暂无简介';
+                                    }
+                                } catch (error) {
+                                    introText.innerHTML = '获取简介失败';
+                                }
+                                introContainer.appendChild(introText);
+                                contentContainer.appendChild(introContainer);
+
+                                if (charData[3] && Array.isArray(charData[3])) {
+                                    var skillsContainer = ui.create.div('.wwyj_detail_page_skills_container');
+                                    var skillsText = ui.create.div('.wwyj_detail_page_skills_text');
+                                    if (charData[3] && Array.isArray(charData[3])) {
+                                        for (var j = 0; j < charData[3].length; j++) {
+                                            if (j > 0) {
+                                                skillsText.appendChild(document.createElement('br'));
+                                                skillsText.appendChild(document.createElement('br'));
+                                            }
+                                            var skillName = charData[3][j];
+
+                                            var skillIcon = document.createElement('span');
+                                            skillIcon.className = 'wwyj_skill_icon';
+                                            skillIcon = addSkillAudioClick(skillIcon, charName, skillName);
+                                            skillsText.appendChild(skillIcon);
+
+                                            var skillNameElement = document.createElement('strong');
+                                            skillNameElement.className = 'greentext wwyj_skill_name';
+                                            skillNameElement.textContent = get.translation(skillName);
+                                            skillNameElement.setAttribute('data-skill-name', skillName);
+                                            skillNameElement.setAttribute('data-char-name', charName);
+                                            skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
+                                            skillsText.appendChild(skillNameElement);
+
+                                            var descContainer = document.createElement('span');
+                                            descContainer.innerHTML = '：' + get.translation(skillName + '_info');
+                                            skillsText.appendChild(descContainer);
+                                        }
+                                    }
+                                    skillsContainer.appendChild(skillsText);
+                                    contentContainer.appendChild(skillsContainer);
+                                }
+                                detailPanel.appendChild(contentContainer);
+                                detailContainer.appendChild(detailPanel);
+                                detailPage.body.appendChild(detailContainer);
+                                detailPage.show();
+                                currentDetailPage = detailPage;
+                                return false;
+                            });
+                            return imgElement;
+                        })(),
+                        infos: (function () {
+                            var str = "";
+                            if (charName) str += get.translation(charName) + '&nbsp;';
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
+                            return ui.create.div('.wwyj_intro_infos', str);
+                        })(),
+                        skills: (function () {
+                            var str = "";
+                            if (charData[3] && Array.isArray(charData[3])) {
+                                for (var j = 0; j < charData[3].length; j++) {
+                                    if (j > 0) str += '<br><br>';
+                                    var skillName = charData[3][j];
+                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                }
+                            }
+                            var skills = ui.create.div('.wwyj_intro_skills', str);
+                            lib.setScroll(skills);
+                            return skills;
+                        })(),
+                    };
+
+                    for (var i in dComps) {
+                        div.appendChild(dComps[i]);
+                    }
+                    return div;
+                }
+
+                function createCharacterPacks() {
+                    var packs = [];
+                    var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
+
+                    if (!characterSort) {
+                        return [
+                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
+                        ];
+                    }
+
+                    for (var categoryId in characterSort) {
+                        if (characterSort.hasOwnProperty(categoryId)) {
+                            var categoryName = get.translation(categoryId) || categoryId;
+                            packs.push({
+                                id: categoryId,
+                                name: categoryName,
+                                packKey: 'wenwuyingjie',
+                                charList: characterSort[categoryId]
+                            });
+                        }
+                    }
+
+                    return packs;
+                }
+
+                var characterPacks = createCharacterPacks();
+
+                if (characterPacks.length > 0) {
+                    currentPack = characterPacks[0].id;
+                }
+
+                var characterPage = new Page();
+                characterPage.body = ui.create.div('#wwyj_page');
+
+                var mainContainer = ui.create.div('#wwyj_mainContainer');
+
+                var leftButtonPanel = ui.create.div('#wwyj_leftButtonPanel');
+
+                var rightPanel = ui.create.div('#wwyj_rightPanel');
+
+                var closeButton = ui.create.div('#wwyj_closeButton', '×');
+                closeButton.addEventListener('click', function () {
+                    characterPage.hide();
+                    if (characterPage.body && characterPage.body.parentNode) {
+                        characterPage.body.parentNode.removeChild(characterPage.body);
+                    }
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        stopWwyjMusic();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                rightPanel.appendChild(closeButton);
+
+                var title = ui.create.div('#wwyj_title');
+                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '文武英杰武将';
+                rightPanel.appendChild(title);
+
+                var contentContainer = ui.create.div('#wwyj_contentContainer');
+                rightPanel.appendChild(contentContainer);
+
+                var buttonContainer = ui.create.div('#wwyj_buttonContainer');
+
+                for (var i = 0; i < characterPacks.length; i++) {
+                    var pack = characterPacks[i];
+
+                    var buttonWrapper = ui.create.div('.wwyj_buttonWrapper');
+
+                    var button = ui.create.div('.wwyj_packButton');
+                    button.innerHTML = pack.name;
+
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
+                    }
+
+                    button.setAttribute('data-pack', pack.id);
+                    button.addEventListener('click', (function (packId, packName, packData) {
+                        return function () {
+                            if (currentPack === packId) return;
+
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
+                            }
+
+                            currentPack = packId;
+                            title.innerHTML = packName;
+                            updateCharacterList(packData, packName);
+                        };
+                    })(pack.id, pack.name, pack));
+
+                    button.addEventListener('mouseenter', function () {
+                        if (!this.classList.contains('active')) {
+                            this.classList.add('hover');
+                        }
+                    });
+
+                    button.addEventListener('mouseleave', function () {
+                        if (!this.classList.contains('active')) {
+                            this.classList.remove('hover');
+                        }
+                    });
+
+                    buttonWrapper.appendChild(button);
+                    buttonContainer.appendChild(buttonWrapper);
+                }
+
+                leftButtonPanel.appendChild(buttonContainer);
+
+                function updateCharacterList(packInfo, packName) {
+                    contentContainer.innerHTML = '';
+
+                    if (!packInfo) return;
+
+                    var charList = packInfo.charList || [];
+
+                    if (charList.length === 0) {
+                        var characterPack = lib.characterPack['wenwuyingjie'];
+                        if (characterPack) {
+                            for (var charName in characterPack) {
+                                if (charName && lib.character[charName]) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < charList.length; i++) {
+                        var charName = charList[i];
+                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                        var charIntro = createCharacterIntro(charName, introClass, packName);
+
+                        if (charIntro) {
+                            contentContainer.appendChild(charIntro);
+                        }
+                    }
+
+                    var clearDiv = ui.create.div();
+                    clearDiv.style.clear = 'both';
+                    clearDiv.style.height = '0';
+                    clearDiv.style.overflow = 'hidden';
+                    contentContainer.appendChild(clearDiv);
+
+                    lib.setScroll(contentContainer);
+                }
+
+                if (characterPacks.length > 0) {
+                    updateCharacterList(characterPacks[0], characterPacks[0].name);
+                }
+
+                characterPage.body.appendChild(mainContainer);
+                mainContainer.appendChild(rightPanel);
+                characterPage.body.appendChild(leftButtonPanel);
+
+                characterPage.show();
+                return characterPage;
+            };
             // ---------------------------------------wwyjwjl------------------------------------------//
             game.wwyjwjl_createButton = function (name, bool) {
                 var div = ui.create.button(name, 'character');
@@ -4952,7 +5468,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 },
             };
             delete lib.extensionMenu.extension_文武英杰.delete;
-            lib.extensionMenu['extension_' + '文武英杰'].delete = { name: '删除此扩展', clear: true, };
+            //lib.extensionMenu['extension_' + '文武英杰'].delete = { name: '删除此扩展', clear: true, };
             lib.extensionMenu.extension_文武英杰.wwyjwjl_title = {
                 "name": "<b><p align=center><span style=\"font-size:18px\">-----浏览武将-----</span></b>",
                 "clear": true,
@@ -5181,7 +5697,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_youzi": ["male", "wwyjsha", 3, ["wwyj_yunjiang", "wwyj_shiqie"], []],
                             "wwyj_relvbao": ["female", "wwyjsha", 4, ["wwyj_minghui", "wwyj_liangyan"], []],
                             "wwyj_rweimu": ["male", "wwyjsha", 4, ["wwyj_shikong", "wwyj_weimu"], []],
-                            "wwyj_xkuangshen": ["male", "wwyjsha", 4, ["wwyj_kuangshen", "wwyj_yyy"], []],
+                            "wwyj_xkuangshen": ["male", "wwyjsha", 4, ["wwyj_kuangshen"], []],
 
                             "wwyj_yuhudie": ["female", "wwyjsha", 3, ["wwyj_recaizhi", "wwyj_redaixue"], ["unseen"]],
                         },
@@ -5189,7 +5705,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_shuihu": "水乎，无名杀的创作者，圈内习惯称他为：老大、村长，传闻是北大的硕士研究生，于2013年底开始，以一己之力制作了一款叫无名杀的游戏，为三国杀爱好者开创了一片广阔的天地。同时还DIY了《炉石传说》、《昆特牌》、《万智牌》、《古剑奇潭》、《仙剑奇侠传》等多个扩展作品",
                             "wwyj_chengxuyuan": "橙续缘（程序猿），一位专业的付费代写的远古代扩展大神，代表扩展有《代码搜索器》、《特效扩展》、《势力边框》、《吧友列传》（第一代作者包）、《官渡之战》、《诸侯伐董》、《欢乐斗地主》、《狗年乱斗》、《圣者为王》以及仿手杀UI的《界面美化》等等，其中前三个扩展曾流传甚广，尤其是《代码搜索器》，圈内皆称之为“神器”，为制作扩展者必备。橙续缘为人非常低调，本人曾邀请他加群却遭到拒绝，另外开创了“无名杀DIY定制”微信公众号，公开收费代写扩展",
                             "wwyj_pipi": "皮皮……一位远古代扩展大神，擅长制作挑战boss类扩展，写过不少花里胡哨、强度高、搞怪、不按常理出牌的扩展，代表扩展有《神话》、《传说》、《暴躁AI》、《闯关模式》、《武林绝学》、《德玛西亚》等等。曾因制作了一个boss，玩家若挑战输了就会被惩罚——随机删除游戏中的扩展，虽然其本人也再三强调不要尝试挑战，但仍有人去玩，结果引起了不少争议，自此，皮皮隐退了",
-                            "wwyj_xiaoSu": "小苏，一位远古代扩展大神，圈内习惯称呼他为“小苏”，无名杀扩展交流群②(现名：无名杀官方扩展群)的首任群主，同时负责游戏内获取扩展(github端)的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能，人物技能新颖独特，契合度极高，同时配音齐全，还有击杀特效、新增卡牌等。技能强度方面，个别武将怼常规BOSS都不虚。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计",
+                            "wwyj_xiaoSu": "小苏，一位远古代扩展大神，圈内习惯称呼他为“小苏”，无名杀扩展交流群②(现名：无名杀官方扩展群)的首任群主，同时负责游戏内获取扩展(github端)的管理。代表扩展有《群英会》，该扩展高度还原了《火影忍者》等作品的人物，收集了各种类型的技能，人物技能新颖独特，契合度极高，同时配音齐全，还有击杀特效、新增卡牌等。技能强度方面，个别武将怼常规BOSS都不虚。同时小苏出过不少教程，后因工作繁忙逐渐隐退了。本作中的设计参照了《群英会》中其对本人的角色设计。从2019年隐退，直到2025年8月才逐渐回归，着手将《群英会》翻新并将《火影忍者》独立出来，另外还制作了《叠彩峰岭》（已终版）、《峥嵘岁月》（在更）两个新扩展",
                             "wwyj_liangchas": "凉茶，本扩展作者，现名：玉蝴蝶，小号：咫尺天涯。曾任无名杀扩展交流②群(现名：无名杀官方扩展群)的群主，主要的扩展作品有《文武英杰》以及代写的《三国遗卷》、《墨灵三国》、《将灵武将》等。玩过几年三国杀，接触无名杀后，在小苏的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过上百个小型扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）。另外早期的扩展作品还有《耀世三国》，后来因为懒直接“咕”了",
                             "wwyj_yuhudie": "玉蝴蝶，本扩展作者，现名：玉蝴蝶，小号：咫尺天涯。曾任无名杀扩展交流②群(现名：无名杀官方扩展群)的群主，主要的扩展作品有《文武英杰》以及代写的《三国遗卷》、《墨灵三国》、《将灵武将》等。玩过几年三国杀，接触无名杀后，在小苏的指点下，自学一个多月的扩展制作的代码教程，研究了不少扩展的代码，为实践而收费（均价5元／技能）帮人写技能代码。因技能DIY设计水平较低，所以一直没啥自创的扩展，但代写过上百个小型扩展，后期由于忙碌和懒惰，导致较少接单代写了。因在群里经常看到玩家们讨论一些已退玩的扩展作者，遂心血来潮，重新设计一个平衡的《作者包》，并征集意见起名为《无名风云录》，即为本扩展的前生，后来改名《文武英杰》，寓意本扩展的武将含有：文臣（辅助）、武将（爆发、攻击）、英明（骚操作）、俊杰（卖血）。另外早期的扩展作品还有《耀世三国》，后来因为懒直接“咕”了",
                             "wwyj_wzszhaoyun": "我只是赵云，简称：赵云。以下摘自本人的调查和一位老玩家的回忆：其为一代嚣张跋扈、自带嘲讽的传奇玩家，代更过《极略三国》（虽然只是说说而已），曾是水乎钦点的代更者，并被立为小吧主，而其却叫嚣要废除扩展功能，贴吧上到处胡乱禁言删帖……引起大家的不满与怨言。同时其恶语攻击一瞬间遗忘，却遭对方反击，双方阵营激烈互撕，引爆无名杀舆论，终日互相对骂，甚至将水乎老大也牵扯进来，最终导致水乎老大被气走，新版无名杀被放弃开发……可以说此人是间接导致水乎放弃写新版无名杀的罪魁祸首。后来又因针对呲牙哥，引起众怒，最终被撤销小吧主之职，并被逼退出贴吧群，自此，一代混世魔王才终于销声匿迹了。最近（2020年7月）又活跃了，一改以前的嚣张，变得随和了许多，有自我洗白的趋势",
@@ -5265,6 +5781,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_youzi": "柚子，全名：柚子丶奶茶丶猫，中生代扩展作者，扩展代表作品为《云将》。该扩展曾风靡一时，甚至被人拿去倒卖（据说是被诗筏倒卖？），柚子气愤之极，在无名杀贴吧发贴控告倒卖者，却被苏婆玛丽奥告知根据GPL协议，他无权干涉倒卖者的抄袭、倒卖行为……柚子为此与苏婆玛丽奥爆发矛盾，逐渐发展到事态失控，引发圈内大地震，多名扩展作者与玩家被牵扯进来，甚至惊动水乎出面解释。后来经诗笺多方调解，双方达成和解，苏婆玛丽奥发帖道歉，此事方慢慢平息，但柚子因此将《云将》扩展从各大平台删除然后销声匿迹了",
                             "wwyj_relvbao": "铝宝，又名：Bauxite_Al，中生代扩展作者，扩展作品有《天牢令》、《铝热反应》、《奇特物语》等，有丰富的代码知识。本武将由其本人设计技能并写代码投稿，感谢支持！",
                             "wwyj_rweimu": "唯幕，扩展作者，代表作为《时空枢纽》",
+                            "wwyj_xkuangshen": "狂神，苏婆退坑后，成为无名杀主要的代更者之一，虽然号称“狂神”，实则为人低调、谦逊，拥有不俗的代码实力，目前似乎身处澳洲。",
                             //"wwyj_moban":"简介模板",
 
 
@@ -5317,7 +5834,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         skill: {
 
                             "wwyj_kuangshen2": {
-                                audio: "ext:文武英杰:1",
+                                audio: ["kuanggu", 2],
                                 trigger: {
                                     global: "recoverEnd",
                                 },
@@ -5337,7 +5854,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                             },
                             "wwyj_kuangshen": {
-                                audio: "ext:文武英杰:1",
+                                audio: ["kuanggu", 2],
                                 trigger: {
                                     player: "damage",
                                 },
@@ -8755,18 +9272,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: "ext:文武英杰:2",
                                 trigger: {
                                     player: ["phaseZhunbei"],
-                                },
-                                check: function (event, player) {
-                                    if (game.countPlayer(function (current) {
-                                        return current != player && current.sex == 'male';
-                                    }) == 0) return false;
-                                    return true;
-                                },
-                                frequent: "check",
+                                },                                
+                                frequent: true,
                                 content: function () {
-                                    "step 0"
-                                    var chat = ["北方有佳人，绝世而独立。", "一顾倾人城，再顾倾人国。", "有美一人，清扬婉兮。"].randomGet();
-                                    player.say(chat);
+                                    "step 0"                                    
                                     var list;
                                     if (_status.characterlist) {
                                         list = [];
@@ -8795,21 +9304,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         return get.rank(button.link, true) - lib.character[button.link][2];
                                     }).set('createDialog', ['请选择一张武将牌', [list.randomGets(6), 'character']]);
                                     "step 1"
-                                    var link = result.links[0];
-                                    event.link = link;
+                                    event.link = result.links[0];                                    
                                     "step 2"
                                     player.chooseTarget('请选择要变更武将牌的角色', function (card, player, target) {
                                         return target != player;
                                     }).set('ai', function (target) {
-                                        if (get.attitude(player, target) > 0) return 10;
-                                        if (get.rank(link) > 6) return 1;
+                                        if (get.attitude(player, target) > 0) return 1;                                        
                                         return Math.random();
                                     });
                                     "step 3"
                                     if (result.bool) {
                                         var target = result.targets[0];
                                         player.line(target, 'green');
-                                        target.reinit(target.name1, event.link, false);
+                                        target.init(event.link);
                                         if (_status.characterlist) {
                                             _status.characterlist.add(target.name1);
                                             _status.characterlist.remove(event.link);
@@ -17295,7 +17802,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             "wwyj_zhichitianya", "wwyj_jianyaleishao", "wwyj_anshas", "wwyj_zhuxiaoer", "wwyj_ranqis", "wwyj_chansuideshengming", "wwyj_fanxings", "wwyj_xingyunnvshen",
                                             "wwyj_lunhuizhong", "wwyj_daxiongxiaimao", "wwyj_wzszhaoyun", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei", "wwyj_mengxinzhuanxing",
                                             "wwyj_hualuo", "wwyj_dasima", "wwyj_rcanghai", "wwyj_rshun", "wwyj_qingyao", "wwyj_wangshiruyan", "wwyj_jishouniancuihui", "wwyj_yijilianggetao", "wwyj_rlvbao", "wwyj_rshengma",
-                                            "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao"
+                                            "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_xkuangshen"
                                         ];
                                         if (wenwu.contains(i)) charalist.push(i);
                                     }
@@ -17378,6 +17885,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         ['<span class="bluetext">云将</span>：游戏开始或你进入游戏时，你可从武将牌堆中随机获得两张武将牌置于你的武将牌上，称之为【云将】；你每受到一点伤害时，你随机获得一张【云将】牌。你可以根据【云将】牌的势力将其当一种牌使用或打出：<br>蜀:【杀】<br>魏:【闪】<br>吴:【桃】<br>群:【酒】<br>其他:【无懈可击】<br><span class="bluetext">失窃</span>：</font><font color=#f00>锁定技</font> 每轮开始时，若你的手牌数不为全场最少，你被随机一名其他角色获得一张手牌，若如此做，你获得一张【云将】牌，若该角色此时的手牌比你的多，你摸一张牌'],
                                         ['<span class="bluetext">明慧</span>：出牌阶段限一次，你可以将一名其他角色的一张手牌置于牌堆一端，并令其声明此牌的花色或类别，然后你猜测该牌的牌名或指出其撒谎，若你正确，你摸一张牌，否则其摸一张牌 <br><span class="bluetext">梁燕</span>：<font color=#F0F>转换技</font> 当一名角色于你回合内摸牌时，你可以令其：①弃置两张牌，然后额外摸一张牌；②弃置一张牌，然后额外摸两张牌'],
                                         ['<span class="bluetext">时空</span>：出牌阶段限一次，你可令全场所有角色分别随机与一名其他角色交换手牌 <br><span class="bluetext">唯幕</span>：</font><font color=#f00>锁定技</font> 若你的防具栏没有牌，黑色锦囊牌对你无效，否则红色锦囊牌对你无效'],
+                                        ['<span class="bluetext">狂神</span>：</font><font color=#f00>锁定技</font> 当你受到伤害时，随机一名其他角色受到一点无来源伤害；当一名其他角色回复体力后，若你已受伤，你回复一点体力，否则摸一张牌 <br><span class="bluetext"></span>：'],
                                         //['<span class="bluetext">技能名</span>：技能描述 <br><span class="bluetext">技能名</span>：技能描述'],
 
 
@@ -17635,49 +18143,42 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             },
-            "wwyj_llwj": {
-                //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="wwyj_menu">浏览武将<font size="3px">⇨</font></div>',
+            "wwyj_tujian": {
+                name: '<div class="wwyj_menu">角色图鉴</div>',
                 "clear": true,
                 "onclick": function () {
                     game.playwwyj('wwyj_dansha');
                     setTimeout(function () {
-                        game.wwyjCharacter();
+                        game.wwyjCharacterCover();
                     }, 100);
                 },
             },
             "wwyj_character_gallery": {
-                name: '<div class="wwyj_menu">角色图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="wwyj_menu">角色画廊</div>',
                 clear: true,
                 onclick: function () {
                     game.playwwyj('wwyj_dansha');
                     game.showWWYJCharacterGallery();
                 },
             },
-            "newtujian": {
-                //"name": "全新图鉴<div>&gt;</div>",
-                name: '<div class="wwyj_menu">全新图鉴<font size="3px">⇨</font></div>',
+            "wwyj_oldtujian": {
+                name: '<div class="wwyj_menu">怀旧图鉴</div>',
                 "clear": true,
                 "onclick": function () {
                     game.playwwyj('wwyj_dansha');
-                    game.wwyj_showNewtujian();
+                    game.wwyj_showOldtujian();
                 },
             },
-            "changelog": {
-                //"name":"<span style='text-decoration: underline'>查看更新日志</span>",
-                //"name": "更新日志<div>&gt;</div>",
-                name: '<div class="wwyj_menu">更新日志<font size="3px">⇨</font></div>',
+            "wwyj_changelog": {
+                name: '<div class="wwyj_menu">更新日志</div>',
                 "clear": true,
                 "onclick": function () {
-                    //game.playwwyj('wwyj_close');
                     game.playwwyj('wwyj_dansha');
                     game.wwyj_showChangeLog();
-                    //alert('网络链接失败');
                 },
             },
-            "openwwyj_tujian": {
-                //"name": "乱斗图鉴<div>&gt;</div>",
-                name: '<div class="wwyj_menu">乱斗图鉴<font size="3px">⇨</font></div>',
+            "wwyj_brawltujian": {
+                name: '<div class="wwyj_menu">乱斗图鉴</div>',
                 "clear": true,
                 onclick: function () {
                     game.playwwyj('wwyj_dansha');
@@ -17721,7 +18222,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "6.6",
+            version: "6.7",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

@@ -6,20 +6,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             var isQyhMusicPlaying = false;
 
             function playQyhMusic() {
-               
-                if(ui.backgroundMusic) {
+                if (ui.backgroundMusic) {
                     ui.backgroundMusic.pause();
                 }
-                
+
                 if (!qyhMusic) {
                     qyhMusic = new Audio(lib.assetURL + 'extension/群英会/wms_backgroundmusic.mp3');
                     qyhMusic.loop = true;
                 }
-                
-                qyhMusic.play().catch(function(e) {
+
+                qyhMusic.play().catch(function (e) {
                     console.log("播放群英会音乐失败:", e);
                 });
-                
+
                 isQyhMusicPlaying = true;
             }
 
@@ -27,18 +26,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 if (qyhMusic && isQyhMusicPlaying) {
                     qyhMusic.pause();
                     isQyhMusicPlaying = false;
-                    
-                    if(ui.backgroundMusic) {
-                        ui.backgroundMusic.play().catch(function(e) {
+
+                    if (ui.backgroundMusic) {
+                        ui.backgroundMusic.play().catch(function (e) {
                             console.log("恢复原背景音乐失败:", e);
                         });
                     }
                 }
             }
 
+            // ---------------------------------------brawl------------------------------------------//
             if (lib.brawl) {
                 lib.brawl.qyhBrawlMode = (function () {
-
                     var brawl = {
                         name: '群英会',
                         mode: 'identity',
@@ -50,7 +49,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             function Page() {
                                 this.body = ui.create.div().hide();
                                 this.comps = {};
-                            };
+                            }
+
                             Page.prototype = {
                                 paBody: null,
                                 set: function (attr, value) {
@@ -86,9 +86,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         header: (function () {
                                             var img = ui.create.div('.qyh_intro_header');
                                             var imgPath = lib.assetURL + 'extension/群英会/' + charName + '.jpg';
-                                            img.style['background-image'] = 'url(' + imgPath + ')';
+                                            img.style.backgroundImage = 'url(' + imgPath + ')';
                                             img.onerror = function () {
-                                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
+                                                this.style.backgroundImage = 'url(' + lib.assetURL + 'image/character/default.jpg)';
                                             };
                                             return img;
                                         })(),
@@ -123,21 +123,21 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                 function createCharacterPacks() {
                                     var packs = [];
-                                    var allChars = []; 
+                                    var allChars = [];
 
                                     packs.push({
                                         id: 'all',
                                         name: '全部武将',
                                         packKey: 'all',
-                                        charList: [] 
+                                        charList: []
                                     });
 
-                                    var characterSort = lib.characterSort && lib.characterSort.qunying;
-                                    if (characterSort) {
-                                        for (var categoryId in characterSort) {
-                                            if (characterSort.hasOwnProperty(categoryId)) {
+                                    var qunyingSort = lib.characterSort && lib.characterSort.qunying;
+                                    if (qunyingSort) {
+                                        for (var categoryId in qunyingSort) {
+                                            if (qunyingSort.hasOwnProperty(categoryId)) {
                                                 var categoryName = get.translation(categoryId) || categoryId;
-                                                var charList = characterSort[categoryId] || [];
+                                                var charList = qunyingSort[categoryId] || [];
 
                                                 for (var i = 0; i < charList.length; i++) {
                                                     if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
@@ -147,7 +147,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                                 packs.push({
                                                     id: 'qunying_' + categoryId,
-                                                    //name: '群英会 - ' + categoryName,
                                                     name: categoryName,
                                                     packKey: 'qunying',
                                                     charList: charList
@@ -156,12 +155,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         }
                                     }
 
-                                    var bcharacterSort = lib.characterSort && lib.characterSort.wugeng;
-                                    if (bcharacterSort) {
-                                        for (var categoryId in bcharacterSort) {
-                                            if (bcharacterSort.hasOwnProperty(categoryId)) {
+                                    var wugengSort = lib.characterSort && lib.characterSort.wugeng;
+                                    if (wugengSort) {
+                                        for (var categoryId in wugengSort) {
+                                            if (wugengSort.hasOwnProperty(categoryId)) {
                                                 var categoryName = get.translation(categoryId) || categoryId;
-                                                var charList = bcharacterSort[categoryId] || [];
+                                                var charList = wugengSort[categoryId] || [];
 
                                                 for (var i = 0; i < charList.length; i++) {
                                                     if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
@@ -171,7 +170,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                                 packs.push({
                                                     id: 'wugeng_' + categoryId,
-                                                    //name: '武庚纪 - ' + categoryName,
                                                     name: categoryName,
                                                     packKey: 'wugeng',
                                                     charList: charList
@@ -192,57 +190,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return packs;
                                 }
 
-                                function updateCharacterList(packInfo) {
-                                    contentContainer.innerHTML = '';
-
-                                    if (!packInfo) return;
-
-                                    var charList = packInfo.charList || [];
-
-                                    if (charList.length === 0) {
-                                        
-                                        if (packInfo.packKey === 'qunying' || packInfo.packKey === 'all') {
-                                            var characterPack = lib.characterPack['qunying'];
-                                            if (characterPack) {
-                                                for (var charName in characterPack) {
-                                                    if (charName && lib.character[charName] && !charList.includes(charName)) {
-                                                        charList.push(charName);
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        if (packInfo.packKey === 'wugeng' || packInfo.packKey === 'all') {
-                                            var bcharacterPack = lib.characterPack['wugeng'];
-                                            if (bcharacterPack) {
-                                                for (var charName in bcharacterPack) {
-                                                    if (charName && lib.character[charName] && !charList.includes(charName)) {
-                                                        charList.push(charName);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    for (var i = 0; i < charList.length; i++) {
-                                        var charName = charList[i];
-                                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                                        var charIntro = createCharacterIntro(charName, introClass);
-
-                                        if (charIntro) {
-                                            contentContainer.appendChild(charIntro);
-                                        }
-                                    }
-
-                                    var clearDiv = ui.create.div();
-                                    clearDiv.style.clear = 'both';
-                                    clearDiv.style.height = '0';
-                                    clearDiv.style.overflow = 'hidden';
-                                    contentContainer.appendChild(clearDiv);
-
-                                    lib.setScroll(contentContainer);
-                                }
-
                                 var characterPacks = createCharacterPacks();
                                 if (characterPacks.length > 0) {
                                     currentPack = characterPacks[0].id;
@@ -251,64 +198,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 var page = new Page();
                                 page.body = ui.create.div('#qyh_brawl_page');
 
-                                page.body.style.cssText = `
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0,0,0,0.7);
-                        z-index: 2024;
-                        display: block;
-                    `;
-
                                 var mainContainer = ui.create.div('#qyh_brawl_mainContainer');
-                                mainContainer.style.cssText = `
-                        position: fixed;
-                        top: 50%;
-                        left: calc(8% + 150px);
-                        transform: translateY(-50%);
-                        width: calc(84% - 150px);
-                        height: 88%;
-                        background-color: #1a1a1a;
-                        border: 2px solid #444;
-                        border-radius: 0 8px 8px 0;
-                        box-shadow: 0 0 30px rgba(0,0,0,0.9);
-                        z-index: 2025;
-                        overflow: hidden;
-                    `;
-
                                 var leftButtonPanel = ui.create.div('#qyh_brawl_leftButtonPanel');
-                                leftButtonPanel.style.cssText = `
-                        position: fixed;
-                        left: 8%;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        width: 150px;
-                        height: 88%;
-                        background-color: rgba(30, 30, 30, 0.95);
-                        border: 2px solid #555;
-                        border-radius: 8px 0 0 8px;
-                        box-shadow: 0 0 15px rgba(0,0,0,0.8);
-                        overflow-y: auto;
-                        overflow-x: hidden;
-                        padding: 18px 12px;
-                        box-sizing: border-box;
-                        z-index: 2025;
-                    `;
-
                                 var rightPanel = ui.create.div('#qyh_brawl_rightPanel');
-                                rightPanel.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        position: relative;
-                        overflow: hidden;
-                        padding: 0;
-                        box-sizing: border-box;
-                    `;
 
                                 var closeButton = ui.create.div('#qyh_brawl_closeButton', '×');
                                 closeButton.addEventListener('click', function () {
+                                    stopQyhMusic();
                                     page.hide();
                                 });
                                 rightPanel.appendChild(closeButton);
@@ -318,62 +214,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 rightPanel.appendChild(title);
 
                                 var contentContainer = ui.create.div('#qyh_brawl_contentContainer');
-                                contentContainer.style.cssText = `
-                        position: absolute;
-                        top: 60px;
-                        left: 0;
-                        width: 100%;
-                        height: calc(100% - 60px);
-                        overflow: auto;
-                        padding: 15px;
-                        box-sizing: border-box;
-                    `;
                                 rightPanel.appendChild(contentContainer);
 
                                 var buttonContainer = ui.create.div('#qyh_brawl_buttonContainer');
-                                buttonContainer.style.cssText = `
-                        width: 100%;
-                        height: auto;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 10px;
-                    `;
 
                                 for (var i = 0; i < characterPacks.length; i++) {
                                     var pack = characterPacks[i];
 
                                     var buttonWrapper = ui.create.div('.qyh_brawl_buttonWrapper');
-                                    buttonWrapper.style.cssText = `
-                            width: 100%;
-                            height: 50px;
-                            display: block;
-                            position: relative;
-                        `;
-
                                     var button = ui.create.div('.qyh_brawl_packButton');
                                     button.innerHTML = pack.name;
-                                    button.style.cssText = `
-                            width: 100%;
-                            height: 100%;
-                            padding: 0;
-                            text-align: center;
-                            cursor: pointer;
-                            border-radius: 6px;
-                            border: 2px solid #666;
-                            background-color: rgba(50, 50, 50, 0.9);
-                            color: #ddd;
-                            font-family: lishu;
-                            font-size: 16px;
-                            font-weight: bold;
-                            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-                            user-select: none;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            line-height: 1.2;
-                            letter-spacing: 1px;
-                            transition: all 0.3s ease;
-                        `;
 
                                     if (pack.id === currentPack) {
                                         button.classList.add('active');
@@ -397,24 +247,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         };
                                     })(pack.id, pack.name, pack));
 
-                                    button.addEventListener('mouseover', function () {
-                                        if (!this.classList.contains('active')) {
-                                            this.style.backgroundColor = 'rgba(70, 70, 70, 0.95)';
-                                            this.style.color = '#fff';
-                                            this.style.borderColor = '#888';
-                                            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
-                                        }
-                                    });
-
-                                    button.addEventListener('mouseout', function () {
-                                        if (!this.classList.contains('active')) {
-                                            this.style.backgroundColor = 'rgba(50, 50, 50, 0.9)';
-                                            this.style.color = '#ddd';
-                                            this.style.borderColor = '#666';
-                                            this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.4)';
-                                        }
-                                    });
-
                                     buttonWrapper.appendChild(button);
                                     buttonContainer.appendChild(buttonWrapper);
                                 }
@@ -432,6 +264,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         var characterPack = lib.characterPack['qunying'];
                                         if (characterPack) {
                                             for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    charList.push(charName);
+                                                }
+                                            }
+                                        }
+
+                                        var wugengPack = lib.characterPack['wugeng'];
+                                        if (wugengPack) {
+                                            for (var charName in wugengPack) {
                                                 if (charName && lib.character[charName]) {
                                                     charList.push(charName);
                                                 }
@@ -476,6 +317,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             gameQYHIntro.addEventListener('click', function () {
                                 setTimeout(function () {
                                     router.qunyingPage.show();
+                                    playQyhMusic();
                                 }, 100);
                             });
                             this.appendChild(gameQYHIntro);
@@ -484,357 +326,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return brawl;
                 })();
             }
-            // 菜单页面类浏览武将：
-            game.qyhCharacter = function () {
-                ui.system.style.display = 'none';
-                ui.menuContainer.style.display = 'none';
-                playQyhMusic();
-                ui.click.configMenu();
 
-                var currentPack = '';
-
-                function Page() {
-                    this.body = ui.create.div().hide();
-                    this.comps = {};
-                    this.paBody = document.body;
-                    this.paBody.appendChild(this.body);
-                }
-
-                Page.prototype = {
-                    show: function () {
-                        if (!this.body.parentNode && this.paBody) {
-                            this.paBody.appendChild(this.body);
-                        }
-                        this.body.show();
-                        this.body.style.display = 'block';
-                        this.body.style.position = 'fixed';
-                        this.body.style.top = '0';
-                        this.body.style.left = '0';
-                        this.body.style.width = '100%';
-                        this.body.style.height = '100%';
-                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                        this.body.style.zIndex = '2024';
-
-                        return this;
-                    },
-
-                    hide: function () {
-                        this.body.hide();
-                        return this;
-                    }
-                };
-
-                function createCharacterIntro(charName, introClass) {
-                    var div = ui.create.div('.qyh_intro_' + introClass);
-                    var charData = lib.character[charName];
-                    if (!charData) return null;
-
-                    var dComps = {
-                        header: (function () {
-                            var img = ui.create.div('.qyh_intro_header');
-                            
-                            var imgPath = lib.assetURL + 'extension/群英会/' + charName + '.jpg';
-                            img.style['background-image'] = 'url(' + imgPath + ')';
-                            img.onerror = function () {
-                                
-                                this.style['background-image'] = 'url(' + lib.assetURL + 'image/character/default.jpg)';
-                            };
-                            return img;
-                        })(),
-                        infos: (function () {
-                            var str = "";
-                            if (charName) str += get.translation(charName) + '&nbsp;';
-                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
-                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
-                            if (charData[2]) str += charData[2] + '体力';
-                            return ui.create.div('.qyh_intro_infos', str);
-                        })(),
-                        skills: (function () {
-                            var str = "";
-                            if (charData[3] && Array.isArray(charData[3])) {
-                                for (var j = 0; j < charData[3].length; j++) {
-                                    if (j > 0) str += '<br><br>';
-                                    var skillName = charData[3][j];
-                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
-                                }
-                            }
-                            var skills = ui.create.div('.qyh_intro_skills', str);
-                            lib.setScroll(skills);
-                            return skills;
-                        })(),
-                    };
-
-                    for (var i in dComps) {
-                        div.appendChild(dComps[i]);
-                    }
-                    return div;
-                }
-
-                function createCharacterPacks() {
-                    var packs = [];
-                    var allChars = []; 
-
-                    packs.push({
-                        id: 'all',
-                        name: '全部武将',
-                        packKey: 'all',
-                        charList: [] 
-                    });
-
-                    var qunyingSort = lib.characterSort && lib.characterSort.qunying;
-                    if (qunyingSort) {
-                        for (var categoryId in qunyingSort) {
-                            if (qunyingSort.hasOwnProperty(categoryId)) {
-                                var categoryName = get.translation(categoryId) || categoryId;
-                                var charList = qunyingSort[categoryId] || [];
-
-                                for (var i = 0; i < charList.length; i++) {
-                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
-                                        allChars.push(charList[i]);
-                                    }
-                                }
-
-                                packs.push({
-                                    id: 'qunying_' + categoryId,
-                                    //name: '群英会 - ' + categoryName,
-                                    name: categoryName,
-                                    packKey: 'qunying',
-                                    charList: charList
-                                });
-                            }
-                        }
-                    }
-
-                    var wugengSort = lib.characterSort && lib.characterSort.wugeng;
-                    if (wugengSort) {
-                        for (var categoryId in wugengSort) {
-                            if (wugengSort.hasOwnProperty(categoryId)) {
-                                var categoryName = get.translation(categoryId) || categoryId;
-                                var charList = wugengSort[categoryId] || [];
-
-                                for (var i = 0; i < charList.length; i++) {
-                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
-                                        allChars.push(charList[i]);
-                                    }
-                                }
-
-                                packs.push({
-                                    id: 'wugeng_' + categoryId,
-                                    //name: '武庚纪 - ' + categoryName,
-                                    name: categoryName,
-                                    packKey: 'wugeng',
-                                    charList: charList
-                                });
-                            }
-                        }
-                    }
-
-                    if (packs.length > 0) {
-                        for (var i = 0; i < packs.length; i++) {
-                            if (packs[i].id === 'all') {
-                                packs[i].charList = allChars;
-                                break;
-                            }
-                        }
-                    }
-
-                    return packs;
-                }
-
-                var characterPacks = createCharacterPacks();
-
-                if (characterPacks.length > 0) {
-                    currentPack = characterPacks[0].id;
-                }
-
-                var characterPage = new Page();
-                characterPage.body = ui.create.div('#qyh_page');
-
-                var mainContainer = ui.create.div('#qyh_mainContainer');
-                mainContainer.style.position = 'fixed';
-                mainContainer.style.top = '50%';
-                mainContainer.style.left = 'calc(8% + 150px)';
-                mainContainer.style.transform = 'translateY(-50%)';
-                mainContainer.style.width = 'calc(84% - 150px)';
-                mainContainer.style.height = '88%';
-                mainContainer.style.backgroundColor = '#1a1a1a';
-                mainContainer.style.border = '2px solid #444';
-                mainContainer.style.borderRadius = '0 8px 8px 0';
-                mainContainer.style.boxShadow = '0 0 30px rgba(0,0,0,0.9)';
-                mainContainer.style.zIndex = '2025';
-                mainContainer.style.overflow = 'hidden';
-
-                var leftButtonPanel = ui.create.div('#qyh_leftButtonPanel');
-                leftButtonPanel.style.position = 'fixed';
-                leftButtonPanel.style.left = '8%';
-                leftButtonPanel.style.top = '50%';
-                leftButtonPanel.style.transform = 'translateY(-50%)';
-                leftButtonPanel.style.width = '150px';
-                leftButtonPanel.style.height = '88%';
-                leftButtonPanel.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
-                leftButtonPanel.style.border = '2px solid #555';
-                leftButtonPanel.style.borderRadius = '8px 0 0 8px';
-                leftButtonPanel.style.boxShadow = '0 0 15px rgba(0,0,0,0.8)';
-                leftButtonPanel.style.overflowY = 'auto';
-                leftButtonPanel.style.overflowX = 'hidden';
-                leftButtonPanel.style.padding = '18px 12px';
-                leftButtonPanel.style.boxSizing = 'border-box';
-                leftButtonPanel.style.zIndex = '2025';
-
-                var rightPanel = ui.create.div('#qyh_rightPanel');
-                rightPanel.style.width = '100%';
-                rightPanel.style.height = '100%';
-                rightPanel.style.position = 'relative';
-                rightPanel.style.overflow = 'hidden';
-                rightPanel.style.padding = '0';
-                rightPanel.style.boxSizing = 'border-box';
-
-                var closeButton = ui.create.div('#qyh_closeButton', '×');
-                closeButton.addEventListener('click', function () {
-                    characterPage.hide();
-                    ui.system.style.display = '';
-                    setTimeout(function () {
-                        stopQyhMusic();
-                        ui.click.configMenu();
-                        ui.menuContainer.style.display = '';
-                    }, 500);
-                });
-                rightPanel.appendChild(closeButton);
-
-                var title = ui.create.div('#qyh_title');
-                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '群英会武将';
-                rightPanel.appendChild(title);
-
-                var contentContainer = ui.create.div('#qyh_contentContainer');
-                contentContainer.style.position = 'absolute';
-                contentContainer.style.top = '60px';
-                contentContainer.style.left = '0';
-                contentContainer.style.width = '100%';
-                contentContainer.style.height = 'calc(100% - 60px)';
-                contentContainer.style.overflow = 'auto';
-                contentContainer.style.padding = '15px';
-                contentContainer.style.boxSizing = 'border-box';
-                rightPanel.appendChild(contentContainer);
-
-                var buttonContainer = ui.create.div('#qyh_buttonContainer');
-                buttonContainer.style.width = '100%';
-                buttonContainer.style.height = 'auto';
-                buttonContainer.style.display = 'flex';
-                buttonContainer.style.flexDirection = 'column';
-                buttonContainer.style.gap = '10px';
-
-                for (var i = 0; i < characterPacks.length; i++) {
-                    var pack = characterPacks[i];
-
-                    var buttonWrapper = ui.create.div('.qyh_buttonWrapper');
-                    buttonWrapper.style.width = '100%';
-                    buttonWrapper.style.height = '50px';
-                    buttonWrapper.style.display = 'block';
-                    buttonWrapper.style.position = 'relative';
-
-                    var button = ui.create.div('.qyh_packButton');
-                    button.innerHTML = pack.name;
-                    button.style.width = '100%';
-                    button.style.height = '100%';
-                    button.style.display = 'flex';
-                    button.style.alignItems = 'center';
-                    button.style.justifyContent = 'center';
-
-                    if (pack.id === currentPack) {
-                        button.classList.add('active');
-                    }
-
-                    button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function (packId, packName, packData) {
-                        return function () {
-                            if (currentPack === packId) return;
-
-                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
-                            for (var j = 0; j < buttons.length; j++) {
-                                var btn = buttons[j];
-                                if (btn.getAttribute('data-pack') === packId) {
-                                    btn.classList.add('active');
-                                } else {
-                                    btn.classList.remove('active');
-                                }
-                            }
-
-                            currentPack = packId;
-                            title.innerHTML = packName;
-                            updateCharacterList(packData);
-                        };
-                    })(pack.id, pack.name, pack));
-
-                    buttonWrapper.appendChild(button);
-                    buttonContainer.appendChild(buttonWrapper);
-                }
-
-                leftButtonPanel.appendChild(buttonContainer);
-
-                function updateCharacterList(packInfo) {
-                    contentContainer.innerHTML = '';
-
-                    if (!packInfo) return;
-
-                    var charList = packInfo.charList || [];
-
-                    if (charList.length === 0) {
-                        
-                        var qunyingPack = lib.characterPack['qunying'];
-                        var wugengPack = lib.characterPack['wugeng'];
-
-                        if (qunyingPack) {
-                            for (var charName in qunyingPack) {
-                                if (charName && lib.character[charName] && !charList.includes(charName)) {
-                                    charList.push(charName);
-                                }
-                            }
-                        }
-
-                        if (wugengPack) {
-                            for (var charName in wugengPack) {
-                                if (charName && lib.character[charName] && !charList.includes(charName)) {
-                                    charList.push(charName);
-                                }
-                            }
-                        }
-                    }
-
-                    for (var i = 0; i < charList.length; i++) {
-                        var charName = charList[i];
-                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                        var charIntro = createCharacterIntro(charName, introClass);
-
-                        if (charIntro) {
-                            contentContainer.appendChild(charIntro);
-                        }
-                    }
-
-                    var clearDiv = ui.create.div();
-                    clearDiv.style.clear = 'both';
-                    clearDiv.style.height = '0';
-                    clearDiv.style.overflow = 'hidden';
-                    contentContainer.appendChild(clearDiv);
-
-                    lib.setScroll(contentContainer);
-                }
-
-                if (characterPacks.length > 0) {
-                    updateCharacterList(characterPacks[0]);
-                }
-
-                characterPage.body.appendChild(mainContainer);
-                mainContainer.appendChild(rightPanel);
-                characterPage.body.appendChild(leftButtonPanel);
-
-                characterPage.show();
-                return characterPage;
-            };
-
+            //=======================画廊========================//
 
             game.showQYHCharacterGallery = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
+                playQyhMusic();
                 ui.click.configMenu();
 
                 function Page() {
@@ -858,21 +356,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             this.paBody.appendChild(this.body);
                         }
                         this.body.show();
-                        this.body.style.display = 'block';
-                        this.body.style.zIndex = '2025';
-                        this.body.style.position = 'fixed';
-                        this.body.style.top = '50%';
-                        this.body.style.left = '50%';
-                        this.body.style.transform = 'translate(-50%, -50%)';
-                        this.body.style.backgroundColor = '#1a1a1a';
-                        this.body.style.padding = '0';
-                        this.body.style.border = '2px solid #ffd700';
-                        this.body.style.borderRadius = '10px';
-                        this.body.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.3)';
-                        this.body.style.width = '100%';
-                        this.body.style.height = '75%';
-                        this.body.style.overflow = 'hidden';
-                        this.body.style.textAlign = 'center';
+                        this.body.classList.add('qyh_gallery_dialog');
                         return this;
                     },
                     hide: function () {
@@ -882,8 +366,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 };
 
                 var characters = [];
-
                 var qunyingSort = lib.characterSort && lib.characterSort.qunying;
+                var wugengSort = lib.characterSort && lib.characterSort.wugeng;
+
                 if (qunyingSort) {
                     for (var categoryId in qunyingSort) {
                         if (qunyingSort.hasOwnProperty(categoryId)) {
@@ -900,7 +385,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
 
-                var wugengSort = lib.characterSort && lib.characterSort.wugeng;
                 if (wugengSort) {
                     for (var categoryId in wugengSort) {
                         if (wugengSort.hasOwnProperty(categoryId)) {
@@ -943,16 +427,16 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
 
                 var galleryPage = new Page();
-                galleryPage.body = ui.create.div('.qyh-gallery-content');
+                galleryPage.body = ui.create.div();
 
-                var title = ui.create.div('.qyh-gallery-title', '群英会&武庚纪');
-
-                var closeButton = ui.create.div('.qyh-gallery-close-btn', '×');
+                var title = ui.create.div('.qyh_gallery_title', '群英会&武庚纪');
+                var closeButton = ui.create.div('.qyh_gallery_close_btn', '×');
 
                 function closeGallery() {
                     galleryPage.hide();
                     ui.system.style.display = '';
                     setTimeout(function () {
+                        stopQyhMusic();
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 500);
@@ -960,27 +444,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 closeButton.addEventListener('click', closeGallery);
 
-                var galleryContainer = ui.create.div('');
-                galleryContainer.style.cssText = `
-        display: flex;
-        align-items: center;
-        height: calc(100% - 40px);
-        position: relative;
-        overflow: hidden;
-        padding: 10px 30px;
-        box-sizing: border-box;
-        margin-top: 10px;
-    `;
-
-                var slider = ui.create.div('');
-                slider.style.cssText = `
-        display: flex;
-        transition: transform 0.15s ease;
-        height: 100%;
-        align-items: center;
-        gap: 50px;
-        cursor: grab;
-    `;
+                var galleryContainer = ui.create.div('.qyh_gallery_container');
+                var slider = ui.create.div('.qyh_gallery_slider');
 
                 var containerWidth = window.innerWidth - 50;
                 var containerHeight = window.innerHeight * 0.75 - 40;
@@ -993,28 +458,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 for (var i = 0; i < characters.length; i++) {
                     var charId = characters[i];
-                    var charCard = ui.create.div('');
+                    var charCard = ui.create.div('.qyh_gallery_char_card');
 
-                    charCard.style.cssText = `
-            flex-shrink: 0;
-            width: ${cardWidth}px;
-            height: ${cardHeight}px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
-        `;
+                    charCard.style.width = cardWidth + 'px';
+                    charCard.style.height = cardHeight + 'px';
 
                     var charImg = document.createElement('img');
-                    charImg.style.cssText = `
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        `;
+                    charImg.classList.add('qyh_gallery_char_img');
 
                     var imgSrc = lib.assetURL + 'extension/群英会/' + charId + '.jpg';
                     charImg.src = imgSrc;
@@ -1030,7 +480,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.innerHTML = '<div>暂无图片</div>';
                     };
 
-                    var charName = ui.create.div('.qyh-character-name', get.translation(charId) || charId);
+                    var charName = ui.create.div('.qyh_gallery_char_name', get.translation(charId) || charId);
                     charCard.appendChild(charImg);
                     charCard.appendChild(charName);
                     slider.appendChild(charCard);
@@ -1115,6 +565,1039 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }, 100);
 
                 return galleryPage;
+            };
+
+            //==========================================================//                        
+            // 菜单页面类浏览武将：
+            game.qyhCharacterCover = function () {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';
+                ui.click.configMenu();
+                playQyhMusic();
+
+                // 创建封面页
+                var coverPage = ui.create.div('.qyh-character-page.qyh-cover-page');
+                coverPage.id = 'qyh_cover_page';
+                document.body.appendChild(coverPage);
+
+                var coverContainer = ui.create.div('#qyh_mainContainer.qyh_cover_container');
+
+                var title = ui.create.div('#qyh_title.qyh_cover_title', '群英会');
+                coverContainer.appendChild(title);
+
+                var imageContainer = ui.create.div('.qyh_cover_image_container');
+
+                var coverImage = ui.create.div('.qyh_cover_image');
+                coverImage.style.backgroundImage = 'url(' + lib.assetURL + 'extension/群英会/wms_zhulin_background.jpg)';
+
+                imageContainer.addEventListener('click', function () {
+
+                    if (coverPage && coverPage.parentNode) {
+                        coverPage.parentNode.removeChild(coverPage);
+                    }
+        
+                    game.qyhCharacter();
+                });
+
+                imageContainer.appendChild(coverImage);
+                coverContainer.appendChild(imageContainer);
+
+                var closeButton = ui.create.div('#qyh_closeButton.qyh_cover_close', '×');
+                closeButton.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (coverPage && coverPage.parentNode) {
+                        stopQyhMusic();
+                        coverPage.parentNode.removeChild(coverPage);
+                    }
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                coverContainer.appendChild(closeButton);
+                coverPage.appendChild(coverContainer);
+                return coverPage;
+            };
+            game.qyhCharacter = function () {
+                ui.system.style.display = 'none';
+                ui.menuContainer.style.display = 'none';                
+                ui.click.configMenu();
+
+                var currentDetailPage = null;
+                var currentCodePage = null;
+                var currentPack = '';
+
+                game.replayqyh = function (fn, dir) {
+                    try {
+                        if (!fn) {
+                            console.error('角色ID不能为空');
+                            return;
+                        }
+
+                        console.log('尝试播放扩展武将配音，角色:', fn, '扩展包:', dir);
+                        game.playAudio('..', 'extension', dir, fn);
+                    } catch (error) {
+                        console.error('播放扩展配音出错:', error);
+                    }
+                };
+
+                function getCleanExtensionName(extNameWithTags) {
+                    if (!extNameWithTags) return '';
+
+                    var cleanName = extNameWithTags;
+
+                    cleanName = cleanName.replace(/<span[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/span>/gi, '');
+                    cleanName = cleanName.replace(/<font[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/font>/gi, '');
+                    cleanName = cleanName.replace(/<div[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/div>/gi, '');
+                    cleanName = cleanName.replace(/<p[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/p>/gi, '');
+                    cleanName = cleanName.replace(/<b[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/b>/gi, '');
+                    cleanName = cleanName.replace(/<strong[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/strong>/gi, '');
+                    cleanName = cleanName.replace(/<i[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/i>/gi, '');
+                    cleanName = cleanName.replace(/<em[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/em>/gi, '');
+                    cleanName = cleanName.replace(/<u[^>]*>/gi, '');
+                    cleanName = cleanName.replace(/<\/u>/gi, '');
+                    cleanName = cleanName.replace(/<[^>]*>/g, '');
+
+                    cleanName = cleanName.trim();
+
+                    return cleanName;
+                }
+
+                function playSkillAudio(charName, skillName) {
+                    try {
+                        var playKey = charName + '_' + skillName;
+                        if (window._qyh_skill_last_play &&
+                            window._qyh_skill_last_play.key === playKey &&
+                            Date.now() - window._qyh_skill_last_play.time < 500) {
+                            console.log('技能配音防重播：忽略重复播放', charName, skillName);
+                            return;
+                        }
+
+                        window._qyh_skill_last_play = {
+                            key: playKey,
+                            time: Date.now()
+                        };
+
+                        var skinName = charName;
+                        if (skinName.startsWith("gz_")) {
+                            skinName = skinName.slice(3);
+                        }
+
+                        if (lib.config.skin && lib.config.skin[skinName]) {
+                            var skinConfig = lib.config.skin[skinName];
+                            if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
+                                skinName = skinConfig[0];
+                            } else if (typeof skinConfig === 'string') {
+                                skinName = skinConfig;
+                            }
+                        }
+
+                        var audioData = get.Audio.skill({
+                            skill: skillName,
+                            player: {
+                                name: charName,
+                                skin: {
+                                    name: skinName
+                                },
+                                tempname: [skinName]
+                            }
+                        });
+
+                        var audioList = audioData.fileList;
+
+                        if (audioList && audioList.length > 0) {
+                            var playAudio = game.tryAudio({
+                                audioList: audioList,
+                                addVideo: false,
+                                random: true,
+                                autoplay: false
+                            });
+
+                            playAudio();
+                            console.log('技能配音播放成功:', charName, skillName);
+                        } else {
+                            console.log('未找到技能配音:', charName, skillName);
+                        }
+                    } catch (error) {
+                        console.error('播放技能配音时出错:', error);
+                    }
+                }
+
+                function playDieAudio(charName, packKey, extNameWithTags) {
+                    try {
+                        console.log('开始播放阵亡配音:', charName, '扩展包:', packKey);
+
+                        var cleanCharName = charName;
+                        if (cleanCharName && cleanCharName.startsWith("gz_")) {
+                            cleanCharName = cleanCharName.slice(3);
+                        }
+
+                        var playKey = 'die_' + charName;
+                        if (window._qyh_last_die_play &&
+                            window._qyh_last_die_play.key === playKey &&
+                            Date.now() - window._qyh_last_die_play.time < 300) {
+                            console.log('阵亡配音防重播：短时间内重复点击，忽略');
+                            return;
+                        }
+
+                        window._qyh_last_die_play = {
+                            key: playKey,
+                            time: Date.now()
+                        };
+
+                        setTimeout(function () {
+                            try {
+                                var skinName = charName;
+                                if (skinName.startsWith("gz_")) {
+                                    skinName = skinName.slice(3);
+                                }
+
+                                if (lib.config.skin && lib.config.skin[skinName]) {
+                                    var skinConfig = lib.config.skin[skinName];
+                                    if (Array.isArray(skinConfig) && skinConfig.length >= 1) {
+                                        skinName = skinConfig[0];
+                                    } else if (typeof skinConfig === 'string') {
+                                        skinName = skinConfig;
+                                    }
+                                }
+
+                                var audioData = get.Audio.die({
+                                    player: {
+                                        name: charName,
+                                        skin: {
+                                            name: skinName
+                                        },
+                                        tempname: [skinName]
+                                    }
+                                });
+
+                                var audioList = audioData.fileList;
+
+                                if (audioList && audioList.length > 0) {
+                                    var playAudio = game.tryAudio({
+                                        audioList: audioList,
+                                        addVideo: false,
+                                        random: true,
+                                        autoplay: false
+                                    });
+
+                                    playAudio();
+                                    console.log('本体武将配音播放成功:', charName);
+                                } else {
+                                    console.log('未找到本体武将配音:', charName);
+                                }
+                            } catch (error) {
+                                console.error('播放本体武将配音时出错:', error);
+                            }
+                        }, 0);
+
+                        setTimeout(function () {
+                            try {
+                                var cleanExtNames = [];
+
+                                if (packKey) {
+                                    cleanExtNames.push(packKey);
+                                }
+
+                                if (extNameWithTags) {
+                                    var cleanName = getCleanExtensionName(extNameWithTags);
+                                    if (cleanName && cleanExtNames.indexOf(cleanName) === -1) {
+                                        cleanExtNames.push(cleanName);
+                                    }
+                                }
+
+                                console.log('尝试的扩展包名列表:', cleanExtNames);
+
+                                for (var i = 0; i < cleanExtNames.length; i++) {
+                                    var extName = cleanExtNames[i];
+                                    console.log('播放扩展配音，角色:', cleanCharName, '扩展包:', extName);
+                                    game.replayqyh(cleanCharName, extName);
+                                }
+
+                            } catch (error) {
+                                console.error('尝试扩展配音时出错:', error);
+                            }
+                        }, 100);
+
+                    } catch (error) {
+                        console.error('播放阵亡配音时出错:', error);
+                    }
+                }
+
+                function addSkillAudioClick(iconElement, charName, skillName) {
+                    if (!iconElement || !charName || !skillName) return iconElement;
+
+                    iconElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playSkillAudio(charName, skillName);
+                        return false;
+                    });
+
+                    iconElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playSkillAudio(charName, skillName);
+                        return false;
+                    }, {
+                        passive: false
+                    });
+
+                    iconElement.style.cursor = 'pointer';
+
+                    return iconElement;
+                }
+
+                function addDieAudioClick(iconElement, charName, packKey, extNameWithTags) {
+                    if (!iconElement || !charName) return iconElement;
+
+                    iconElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playDieAudio(charName, packKey, extNameWithTags);
+                        return false;
+                    });
+
+                    iconElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        playDieAudio(charName, packKey, extNameWithTags);
+                        return false;
+                    }, {
+                        passive: false
+                    });
+
+                    iconElement.style.cursor = 'pointer';
+
+                    return iconElement;
+                }
+
+                function applySkinChange(imgElement, charName) {
+                    var skinName = charName;
+                    if (skinName.startsWith("gz_")) {
+                        skinName = skinName.slice(3);
+                    }
+
+                    var num = 1;
+                    if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
+                        num = lib.config.skin[skinName] + 1;
+                    }
+
+                    var img = new Image();
+                    img.onload = function () {
+                        lib.config.skin = lib.config.skin || {};
+                        lib.config.skin[skinName] = num;
+                        game.saveConfig("skin", lib.config.skin);
+                        imgElement.style.backgroundImage = 'url("' + img.src + '")';
+                    };
+
+                    img.onerror = function () {
+                        if (lib.config.skin && lib.config.skin[skinName]) {
+                            delete lib.config.skin[skinName];
+                            game.saveConfig("skin", lib.config.skin);
+
+                            var defaultImg = new Image();
+                            defaultImg.onload = function () {
+                                imgElement.style.backgroundImage = 'url("' + defaultImg.src + '")';
+                            };
+                            defaultImg.onerror = function () {
+                                imgElement.style.backgroundImage = 'none';
+                                imgElement.style.backgroundColor = '#333';
+                            };
+
+                            var defaultPath = lib.assetURL + 'image/character/' + charName + '.jpg';
+                            defaultImg.src = defaultPath;
+                        }
+                    };
+
+                    var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + num + ".jpg";
+                    img.src = skinPath;
+                }
+
+                function loadCharacterImage(imgElement, charName, isDetailPage) {
+                    function getAllExtensionDirectories() {
+                        var directories = new Set();
+                        if (lib.characterPack) {
+                            for (var packKey in lib.characterPack) {
+                                if (!packKey || packKey === "mode_banned" || packKey === "mode_favourite" ||
+                                    packKey === 'character' || packKey === 'translate' ||
+                                    packKey === 'list' || packKey === 'card' || packKey === 'skill') {
+                                    continue;
+                                }
+                                directories.add(packKey);
+                                var packNameWithTags = lib.translate[packKey + '_character_config'];
+                                if (packNameWithTags) {
+                                    var cleanName = packNameWithTags.replace(/<[^>]*>/g, '').trim();
+                                    if (cleanName && cleanName !== packKey) {
+                                        directories.add(cleanName);
+                                    }
+                                }
+                            }
+                        }
+                        return Array.from(directories);
+                    }
+
+                    var allExtensionDirs = getAllExtensionDirectories();
+                    var imagePaths = [];
+
+                    var skinName = charName;
+                    if (skinName.startsWith("gz_")) {
+                        skinName = skinName.slice(3);
+                    }
+
+                    if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
+                        var skinNum = lib.config.skin[skinName] + 1;
+                        var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + skinNum + ".jpg";
+                        imagePaths.unshift(skinPath);
+                    }
+
+                    //imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
+                    imagePaths.push(lib.assetURL + 'extension/群英会/' + charName + '.jpg');
+                    //imagePaths.push(lib.assetURL + 'extension/群英会/image/character/' + charName + '.jpg');
+
+                    for (var i = 0; i < allExtensionDirs.length; i++) {
+                        var dirName = allExtensionDirs[i];
+
+                        if (dirName === '群英会') {
+                            continue;
+                        }
+
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/' + charName + '.jpg');
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/image/character/' + charName + '.jpg');
+                    }
+
+                    function trySetBackgroundImage(pathIndex) {
+                        if (pathIndex >= imagePaths.length) {
+                            if (isDetailPage) {
+                                imgElement.style.backgroundColor = '#333';
+                                imgElement.style.backgroundImage = 'none';
+                            } else {
+                                imgElement.style.backgroundColor = '#333';
+                                imgElement.style.backgroundImage = 'none';
+                            }
+                            return;
+                        }
+                        var imagePath = imagePaths[pathIndex];
+                        var testImg = new Image();
+                        testImg.onload = function () {
+                            imgElement.style['background-image'] = 'url(' + imagePath + ')';
+                        };
+                        testImg.onerror = function () {
+                            trySetBackgroundImage(pathIndex + 1);
+                        };
+                        testImg.src = imagePath;
+                    }
+
+                    trySetBackgroundImage(0);
+                }
+
+                function formatSkillCode(obj, indentLevel) {
+                    var result = '';
+                    var indent = '    '.repeat(indentLevel);
+
+                    for (var key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            var value = obj[key];
+                            var keyStr = indent + key + ': ';
+
+                            if (typeof value === 'function') {
+                                var funcStr = value.toString();
+                                var lines = funcStr.split('\n');
+                                var formattedFunc = '';
+
+                                var minIndent = Infinity;
+                                for (var i = 1; i < lines.length; i++) {
+                                    var line = lines[i];
+                                    if (line.trim() === '' || i === lines.length - 1) continue;
+                                    var leadingSpaces = line.match(/^\s*/)[0].length;
+                                    if (leadingSpaces < minIndent) {
+                                        minIndent = leadingSpaces;
+                                    }
+                                }
+                                if (minIndent === Infinity) minIndent = 0;
+
+                                for (var i = 0; i < lines.length; i++) {
+                                    var line = lines[i];
+                                    if (i === 0) {
+                                        formattedFunc += keyStr + line + '\n';
+                                    } else if (i === lines.length - 1) {
+                                        var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                        formattedFunc += indent + '    ' + trimmedLine;
+                                    } else {
+                                        var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                        formattedFunc += indent + '    ' + trimmedLine;
+                                        if (i < lines.length - 1) formattedFunc += '\n';
+                                    }
+                                }
+                                result += formattedFunc + ',\n';
+                            } else if (Array.isArray(value)) {
+                                result += keyStr + '[\n';
+                                for (var i = 0; i < value.length; i++) {
+                                    var item = value[i];
+                                    var itemIndent = indent + '    ';
+                                    if (typeof item === 'function') {
+                                        var funcStr = item.toString();
+                                        var lines = funcStr.split('\n');
+                                        var minIndent = Infinity;
+
+                                        for (var j = 1; j < lines.length; j++) {
+                                            var line = lines[j];
+                                            if (line.trim() === '' || j === lines.length - 1) continue;
+                                            var leadingSpaces = line.match(/^\s*/)[0].length;
+                                            if (leadingSpaces < minIndent) {
+                                                minIndent = leadingSpaces;
+                                            }
+                                        }
+                                        if (minIndent === Infinity) minIndent = 0;
+
+                                        result += itemIndent + lines[0] + '\n';
+
+                                        for (var j = 1; j < lines.length - 1; j++) {
+                                            var line = lines[j];
+                                            var trimmedLine = line.substring(Math.min(minIndent, line.length));
+                                            result += itemIndent + '    ' + trimmedLine + '\n';
+                                        }
+
+                                        if (lines.length > 1) {
+                                            var lastLine = lines[lines.length - 1];
+                                            var trimmedLastLine = lastLine.substring(Math.min(minIndent, lastLine.length));
+                                            result += itemIndent + '    ' + trimmedLastLine;
+                                        }
+                                    } else if (typeof item === 'object' && item !== null) {
+                                        result += formatSkillCode(item, indentLevel + 2).trim();
+                                    } else {
+                                        if (typeof item === 'string') {
+                                            result += itemIndent + '"' + item.replace(/"/g, '\\"') + '"';
+                                        } else {
+                                            result += itemIndent + item;
+                                        }
+                                    }
+                                    if (i < value.length - 1) result += ',';
+                                    result += '\n';
+                                }
+                                result += indent + '],\n';
+                            } else if (typeof value === 'object' && value !== null) {
+                                result += keyStr + '{\n' + formatSkillCode(value, indentLevel + 1) + indent + '},\n';
+                            } else {
+                                if (typeof value === 'string') {
+                                    result += keyStr + '"' + value.replace(/"/g, '\\"') + '",\n';
+                                } else {
+                                    result += keyStr + value + ',\n';
+                                }
+                            }
+                        }
+                    }
+
+                    return result;
+                }
+
+                function ensureSkillClickHandler(element, skillName, charName) {
+                    var newElement = element.cloneNode(true);
+                    if (element.parentNode) {
+                        element.parentNode.replaceChild(newElement, element);
+                    }
+
+                    newElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showSkillCode(skillName, charName);
+                        return false;
+                    });
+
+                    newElement.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showSkillCode(skillName, charName);
+                        return false;
+                    }, { passive: false });
+
+                    return newElement;
+                }
+
+                function showSkillCode(skillName, charName) {
+                    if (currentCodePage && currentCodePage.parentNode) {
+                        currentCodePage.parentNode.removeChild(currentCodePage);
+                    }
+
+                    var existingPage = document.querySelector('#qyh_page.qyh_code_page');
+                    if (existingPage) {
+                        existingPage.remove();
+                    }
+
+                    var skillPageBg = ui.create.div('#qyh_page.qyh_code_page');
+
+                    skillPageBg.addEventListener('click', function (e) {
+                        if (e.target === skillPageBg) {
+                            if (skillPageBg.parentNode) {
+                                skillPageBg.parentNode.removeChild(skillPageBg);
+                            }
+                            currentCodePage = null;
+                        }
+                    });
+
+                    var skillMainContainer = ui.create.div('#qyh_mainContainer.qyh_code_container');
+
+                    var skillRightPanel = ui.create.div('#qyh_rightPanel.qyh_code_panel');
+
+                    var skillCloseButton = ui.create.div('#qyh_closeButton.qyh_code_close', '×');
+                    skillCloseButton.addEventListener('click', function () {
+                        if (skillPageBg.parentNode) {
+                            skillPageBg.parentNode.removeChild(skillPageBg);
+                        }
+                        currentCodePage = null;
+                    });
+                    skillRightPanel.appendChild(skillCloseButton);
+
+                    var skillTitle = ui.create.div('#qyh_title.qyh_code_title');
+                    skillTitle.innerHTML = get.translation(charName) + ' - ' + get.translation(skillName) + ' 技能代码';
+                    skillTitle.setAttribute('data-translate-char', charName);
+                    skillTitle.setAttribute('data-translate-skill', skillName);
+                    skillRightPanel.appendChild(skillTitle);
+
+                    var skillContentContainer = ui.create.div('#qyh_contentContainer.qyh_code_content');
+
+                    var skillObj = lib.skill[skillName];
+                    var codeString = '';
+
+                    if (skillObj) {
+                        try {
+                            codeString = '{\n' + formatSkillCode(skillObj, 1) + '}';
+                        } catch (e) {
+                            codeString = '无法解析技能代码：' + e.message;
+                        }
+                    } else {
+                        codeString = '未找到技能代码';
+                    }
+
+                    var codeContainer = document.createElement('pre');
+                    codeContainer.textContent = codeString;
+
+                    skillContentContainer.appendChild(codeContainer);
+                    skillRightPanel.appendChild(skillContentContainer);
+                    skillMainContainer.appendChild(skillRightPanel);
+                    skillPageBg.appendChild(skillMainContainer);
+
+                    document.body.appendChild(skillPageBg);
+                    currentCodePage = skillPageBg;
+
+                    setTimeout(function () {
+                        skillPageBg.style.display = 'block';
+                    }, 10);
+                }
+
+                function Page() {
+                    this.body = ui.create.div().hide();
+                    this.comps = {};
+                    this.paBody = document.body;
+                    this.paBody.appendChild(this.body);
+                }
+
+                Page.prototype = {
+                    show: function () {
+                        if (!this.body.parentNode && this.paBody) {
+                            this.paBody.appendChild(this.body);
+                        }
+                        this.body.show();
+                        this.body.style.display = 'block';
+                        this.body.style.position = 'fixed';
+                        this.body.style.top = '0';
+                        this.body.style.left = '0';
+                        this.body.style.width = '100%';
+                        this.body.style.height = '100%';
+                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                        this.body.style.zIndex = '2024';
+
+                        return this;
+                    },
+
+                    hide: function () {
+                        this.body.hide();
+                        return this;
+                    }
+                };
+
+                function createCharacterIntro(charName, introClass, packName) {
+                    var div = ui.create.div('.qyh_intro_' + introClass);
+                    var charData = lib.character[charName];
+                    if (!charData) return null;
+
+                    var extNameWithTags = lib.translate['qunying_character_config'];
+
+                    var dComps = {
+                        header: (function () {
+                            var imgElement = ui.create.div('.qyh_intro_header');
+                            loadCharacterImage(imgElement, charName, false);
+                            imgElement.style.cursor = 'pointer';
+                            imgElement.addEventListener('click', function (e) {
+                                e.stopPropagation();
+                                if (currentDetailPage && currentDetailPage.body && currentDetailPage.body.parentNode) {
+                                    currentDetailPage.body.parentNode.removeChild(currentDetailPage.body);
+                                }
+
+                                var detailPage = new Page();
+                                detailPage.body = ui.create.div('#qyh_page.qyh_detail_page');
+                                var detailContainer = ui.create.div('#qyh_mainContainer.qyh_detail_container');
+                                var detailPanel = ui.create.div('#qyh_rightPanel.qyh_detail_panel');
+                                var closeButton = ui.create.div('#qyh_closeButton.qyh_detail_close', '×');
+                                closeButton.addEventListener('click', function () {
+                                    detailPage.hide();
+                                    if (detailPage.body && detailPage.body.parentNode) {
+                                        detailPage.body.parentNode.removeChild(detailPage.body);
+                                    }
+                                    currentDetailPage = null;
+                                });
+                                detailPanel.appendChild(closeButton);
+                                var title = ui.create.div('#qyh_title.qyh_detail_title');
+                                title.innerHTML = packName + ' - ' + get.translation(charName);
+                                detailPanel.appendChild(title);
+                                var contentContainer = ui.create.div('#qyh_contentContainer.qyh_detail_content');
+
+                                var infoContainer = ui.create.div('.qyh_detail_page_info_container');
+                                var infoStr = "";
+                                if (charName) infoStr += get.translation(charName) + '&nbsp;';
+                                if (charData[0]) infoStr += get.translation(charData[0]) + '&nbsp;';
+                                if (charData[1]) infoStr += get.translation(charData[1]) + '&nbsp;';
+                                if (charData[2]) infoStr += charData[2] + '体力';
+                                var infoText = ui.create.div('.qyh_detail_page_info_text', infoStr);
+                                infoContainer.appendChild(infoText);
+
+                                var infoIconWrapper = ui.create.div('.qyh_detail_page_info_icon_wrapper');
+                                var infoIcon = ui.create.div('.qyh_detail_page_info_icon');
+
+                                infoIcon = addDieAudioClick(infoIcon, charName, 'qunying', extNameWithTags);
+
+                                infoIconWrapper.appendChild(infoIcon);
+                                infoContainer.appendChild(infoIconWrapper);
+                                contentContainer.appendChild(infoContainer);
+
+                                var headerContainer = ui.create.div('.qyh_detail_header_container');
+                                var detailHeader = ui.create.div('.qyh_detail_header');
+                                loadCharacterImage(detailHeader, charName, true);
+                                detailHeader.style.cursor = 'pointer';
+                                detailHeader.addEventListener('click', function (e) {
+                                    e.stopPropagation();
+                                    applySkinChange(this, charName);
+                                    applySkinChange(imgElement, charName);
+                                });
+                                headerContainer.appendChild(detailHeader);
+                                contentContainer.appendChild(headerContainer);
+
+                                var introContainer = ui.create.div('.qyh_detail_page_intro_container');
+                                var introText = ui.create.div('.qyh_detail_page_intro_text');
+                                try {
+                                    var introHtml = get.characterIntro(charName);
+                                    if (introHtml && introHtml.trim() !== '') {
+                                        var tempDiv = document.createElement('div');
+                                        tempDiv.innerHTML = introHtml;
+                                        Array.from(tempDiv.childNodes).forEach(function (node) {
+                                            if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
+                                                introText.appendChild(node.cloneNode(true));
+                                            }
+                                        });
+                                    } else {
+                                        introText.innerHTML = '暂无简介';
+                                    }
+                                } catch (error) {
+                                    introText.innerHTML = '获取简介失败';
+                                }
+                                introContainer.appendChild(introText);
+                                contentContainer.appendChild(introContainer);
+
+                                if (charData[3] && Array.isArray(charData[3])) {
+                                    var skillsContainer = ui.create.div('.qyh_detail_page_skills_container');
+                                    var skillsText = ui.create.div('.qyh_detail_page_skills_text');
+                                    if (charData[3] && Array.isArray(charData[3])) {
+                                        for (var j = 0; j < charData[3].length; j++) {
+                                            if (j > 0) {
+                                                skillsText.appendChild(document.createElement('br'));
+                                                skillsText.appendChild(document.createElement('br'));
+                                            }
+                                            var skillName = charData[3][j];
+
+                                            var skillIcon = document.createElement('span');
+                                            skillIcon.className = 'qyh_skill_icon';
+                                            skillIcon = addSkillAudioClick(skillIcon, charName, skillName);
+                                            skillsText.appendChild(skillIcon);
+
+                                            var skillNameElement = document.createElement('strong');
+                                            skillNameElement.className = 'greentext qyh_skill_name';
+                                            skillNameElement.textContent = get.translation(skillName);
+                                            skillNameElement.setAttribute('data-skill-name', skillName);
+                                            skillNameElement.setAttribute('data-char-name', charName);
+                                            skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
+                                            skillsText.appendChild(skillNameElement);
+
+                                            var descContainer = document.createElement('span');
+                                            descContainer.innerHTML = '：' + get.translation(skillName + '_info');
+                                            skillsText.appendChild(descContainer);
+                                        }
+                                    }
+                                    skillsContainer.appendChild(skillsText);
+                                    contentContainer.appendChild(skillsContainer);
+                                }
+                                detailPanel.appendChild(contentContainer);
+                                detailContainer.appendChild(detailPanel);
+                                detailPage.body.appendChild(detailContainer);
+                                detailPage.show();
+                                currentDetailPage = detailPage;
+                                return false;
+                            });
+                            return imgElement;
+                        })(),
+                        infos: (function () {
+                            var str = "";
+                            if (charName) str += get.translation(charName) + '&nbsp;';
+                            if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
+                            if (charData[1]) str += get.translation(charData[1]) + '&nbsp;';
+                            if (charData[2]) str += charData[2] + '体力';
+                            return ui.create.div('.qyh_intro_infos', str);
+                        })(),
+                        skills: (function () {
+                            var str = "";
+                            if (charData[3] && Array.isArray(charData[3])) {
+                                for (var j = 0; j < charData[3].length; j++) {
+                                    if (j > 0) str += '<br><br>';
+                                    var skillName = charData[3][j];
+                                    str += '<strong class="greentext">' + get.translation(skillName) + '</strong>：' + get.translation(skillName + '_info');
+                                }
+                            }
+                            var skills = ui.create.div('.qyh_intro_skills', str);
+                            lib.setScroll(skills);
+                            return skills;
+                        })(),
+                    };
+
+                    for (var i in dComps) {
+                        div.appendChild(dComps[i]);
+                    }
+                    return div;
+                }
+
+                function createCharacterPacks() {
+                    var packs = [];
+                    var allChars = [];
+
+                    packs.push({
+                        id: 'all',
+                        name: '全部武将',
+                        packKey: 'all',
+                        charList: []
+                    });
+
+                    var qunyingSort = lib.characterSort && lib.characterSort.qunying;
+                    if (qunyingSort) {
+                        for (var categoryId in qunyingSort) {
+                            if (qunyingSort.hasOwnProperty(categoryId)) {
+                                var categoryName = get.translation(categoryId) || categoryId;
+                                var charList = qunyingSort[categoryId] || [];
+
+                                for (var i = 0; i < charList.length; i++) {
+                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                        allChars.push(charList[i]);
+                                    }
+                                }
+
+                                packs.push({
+                                    id: 'qunying_' + categoryId,
+                                    name: categoryName,
+                                    packKey: 'qunying',
+                                    charList: charList
+                                });
+                            }
+                        }
+                    }
+
+                    var wugengSort = lib.characterSort && lib.characterSort.wugeng;
+                    if (wugengSort) {
+                        for (var categoryId in wugengSort) {
+                            if (wugengSort.hasOwnProperty(categoryId)) {
+                                var categoryName = get.translation(categoryId) || categoryId;
+                                var charList = wugengSort[categoryId] || [];
+
+                                for (var i = 0; i < charList.length; i++) {
+                                    if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                        allChars.push(charList[i]);
+                                    }
+                                }
+
+                                packs.push({
+                                    id: 'wugeng_' + categoryId,
+                                    name: categoryName,
+                                    packKey: 'wugeng',
+                                    charList: charList
+                                });
+                            }
+                        }
+                    }
+
+                    if (packs.length > 0) {
+                        for (var i = 0; i < packs.length; i++) {
+                            if (packs[i].id === 'all') {
+                                packs[i].charList = allChars;
+                                break;
+                            }
+                        }
+                    }
+
+                    return packs;
+                }
+
+                var characterPacks = createCharacterPacks();
+
+                if (characterPacks.length > 0) {
+                    currentPack = characterPacks[0].id;
+                }
+
+                var characterPage = new Page();
+                characterPage.body = ui.create.div('#qyh_page');
+
+                var mainContainer = ui.create.div('#qyh_mainContainer');
+
+                var leftButtonPanel = ui.create.div('#qyh_leftButtonPanel');
+
+                var rightPanel = ui.create.div('#qyh_rightPanel');
+
+                var closeButton = ui.create.div('#qyh_closeButton', '×');
+                closeButton.addEventListener('click', function () {
+                    characterPage.hide();
+                    if (characterPage.body && characterPage.body.parentNode) {
+                        characterPage.body.parentNode.removeChild(characterPage.body);
+                    }
+                    ui.system.style.display = '';
+                    setTimeout(function () {
+                        stopQyhMusic();
+                        ui.click.configMenu();
+                        ui.menuContainer.style.display = '';
+                    }, 500);
+                });
+                rightPanel.appendChild(closeButton);
+
+                var title = ui.create.div('#qyh_title');
+                title.innerHTML = characterPacks.length > 0 ? characterPacks[0].name : '群英会武将';
+                rightPanel.appendChild(title);
+
+                var contentContainer = ui.create.div('#qyh_contentContainer');
+                rightPanel.appendChild(contentContainer);
+
+                var buttonContainer = ui.create.div('#qyh_buttonContainer');
+
+                for (var i = 0; i < characterPacks.length; i++) {
+                    var pack = characterPacks[i];
+
+                    var buttonWrapper = ui.create.div('.qyh_buttonWrapper');
+
+                    var button = ui.create.div('.qyh_packButton');
+                    button.innerHTML = pack.name;
+
+                    if (pack.id === currentPack) {
+                        button.classList.add('active');
+                    }
+
+                    button.setAttribute('data-pack', pack.id);
+                    button.addEventListener('click', (function (packId, packName, packData) {
+                        return function () {
+                            if (currentPack === packId) return;
+
+                            var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
+                            for (var j = 0; j < buttons.length; j++) {
+                                var btn = buttons[j];
+                                if (btn.getAttribute('data-pack') === packId) {
+                                    btn.classList.add('active');
+                                } else {
+                                    btn.classList.remove('active');
+                                }
+                            }
+
+                            currentPack = packId;
+                            title.innerHTML = packName;
+                            updateCharacterList(packData, packName);
+                        };
+                    })(pack.id, pack.name, pack));
+
+                    button.addEventListener('mouseenter', function () {
+                        if (!this.classList.contains('active')) {
+                            this.classList.add('hover');
+                        }
+                    });
+
+                    button.addEventListener('mouseleave', function () {
+                        if (!this.classList.contains('active')) {
+                            this.classList.remove('hover');
+                        }
+                    });
+
+                    buttonWrapper.appendChild(button);
+                    buttonContainer.appendChild(buttonWrapper);
+                }
+
+                leftButtonPanel.appendChild(buttonContainer);
+
+                function updateCharacterList(packInfo, packName) {
+                    contentContainer.innerHTML = '';
+
+                    if (!packInfo) return;
+
+                    var charList = packInfo.charList || [];
+
+                    if (charList.length === 0) {
+                        var qunyingPack = lib.characterPack['qunying'];
+                        var wugengPack = lib.characterPack['wugeng'];
+
+                        if (qunyingPack) {
+                            for (var charName in qunyingPack) {
+                                if (charName && lib.character[charName]) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+
+                        if (wugengPack) {
+                            for (var charName in wugengPack) {
+                                if (charName && lib.character[charName]) {
+                                    charList.push(charName);
+                                }
+                            }
+                        }
+                    }
+
+                    for (var i = 0; i < charList.length; i++) {
+                        var charName = charList[i];
+                        var introClass = (i % 2 === 0) ? 'left' : 'right';
+                        var charIntro = createCharacterIntro(charName, introClass, packName);
+
+                        if (charIntro) {
+                            contentContainer.appendChild(charIntro);
+                        }
+                    }
+
+                    var clearDiv = ui.create.div();
+                    clearDiv.style.clear = 'both';
+                    clearDiv.style.height = '0';
+                    clearDiv.style.overflow = 'hidden';
+                    contentContainer.appendChild(clearDiv);
+
+                    lib.setScroll(contentContainer);
+                }
+
+                if (characterPacks.length > 0) {
+                    updateCharacterList(characterPacks[0], characterPacks[0].name);
+                }
+
+                characterPage.body.appendChild(mainContainer);
+                mainContainer.appendChild(rightPanel);
+                characterPage.body.appendChild(leftButtonPanel);
+
+                characterPage.show();
+                return characterPage;
             };
             // ---------------------------------------Audio------------------------------------------//
             game.playSu = function (fn, dir, sex) {
@@ -1237,7 +1720,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
             lib.init.css(lib.assetURL + 'extension/群英会', 'extension');
             delete lib.extensionMenu.extension_群英会.delete;
-            lib.extensionMenu['extension_' + '群英会'].delete = { name: '删除此扩展', clear: true, };
+            //lib.extensionMenu['extension_' + '群英会'].delete = { name: '删除此扩展', clear: true, };
 
             //动画：
             /*game.qyhGif=function(str,width,height,isAnimation){
@@ -6853,27 +7336,25 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             },
             "qyh_character_gallery": {
-                name: '<div class="qyh_menu">角色图鉴<font size="3px">⇨</font></div>',
+                name: '<div class="qyh_menu">角色画廊</div>',
                 clear: true,
                 onclick: function () {
                     game.playSu('qyh_open');
                     game.showQYHCharacterGallery();
                 },
             },
-            "qyh_llwj": {
-                //"name": "浏览武将<div>&gt;</div>",
-                name: '<div class="qyh_menu">浏览武将<font size="3px">⇨</font></div>',
+            "qyh_tujian": {
+                name: '<div class="qyh_menu">角色图鉴</div>',
                 "clear": true,
                 "onclick": function () {
                     game.playSu('qyh_open');
                     setTimeout(function () {
-                        game.qyhCharacter();
+                        game.qyhCharacterCover();
                     }, 100);
                 },
             },
-            "openqyh_tujian": {
-                //"name": "乱斗图鉴<div>&gt;</div>",
-                name: '<div class="qyh_menu">乱斗图鉴<font size="3px">⇨</font></div>',
+            "qyh_brawltujian": {
+                name: '<div class="qyh_menu">乱斗图鉴</div>',
                 "clear": true,
                 onclick: function () {
                     game.playSu('qyh_open');
@@ -6913,7 +7394,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.0",
+            version: "3.1",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

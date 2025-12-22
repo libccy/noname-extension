@@ -1,5 +1,6 @@
+/* === 基础阵营样式 === */
 .player > .camp-wrap[data-camp="hyrz_huo"] > .camp-back {
-	background: #cccc66
+	background: #cccc66;
 }
 .player > .camp-wrap[data-camp="hyrz_xiao"] > .camp-back {
 	background: #550000;
@@ -8,26 +9,30 @@
 	background: #707070;
 }
 
+/* === 对话框和提示组件 === */
 #HYRZAlert {
   position: absolute;
   width: 100%;
   height: 100%;
-  left:0;top:0;
-  background-color: rgba(20,20,20,0.8);
+  left: 0;
+  top: 0;
+  background-color: rgba(20, 20, 20, 0.8);
   z-index: 202509;
 }
+
 #HYRZAlert_body {
   position: absolute;
   width: 300px;
   height: 200px;
   left: calc(50% - 150px);
   top: calc(50% - 100px);
-  background-color: rgb(254,254,254);
+  background-color: rgb(254, 254, 254);
   border-radius: 8px;
-  border: 1px solid rgb(243,243,243);
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
-  -webkit-transition: all 0.2s;
+  border: 1px solid rgb(243, 243, 243);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
 }
+
 #HYRZAlert_body_title {
   position: absolute;
   width: calc(100% - 40px);
@@ -42,6 +47,7 @@
   font-size: 16px;
   color: #222;
 }
+
 #HYRZAlert_body_text {
   position: absolute;
   width: calc(100% - 40px);
@@ -55,6 +61,7 @@
   color: #aaa;
   overflow: auto;
 }
+
 #HYRZAlert_body_okButton {
   position: absolute;
   height: 30px;
@@ -66,7 +73,7 @@
   font-family: lishu;
   font-size: 16px;
   font-weight: bolder;
-  color: rgb(20,200,20);
+  color: rgb(20, 200, 20);
   cursor: pointer;
 }
 
@@ -74,22 +81,25 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  left:0;top:0;
-  background-color: rgba(20,20,20,0.8);
+  left: 0;
+  top: 0;
+  background-color: rgba(20, 20, 20, 0.8);
   z-index: 202509;
 }
+
 #HYRZPrompt_body {
   position: absolute;
   width: 300px;
   height: 200px;
   left: calc(50% - 150px);
   top: calc(50% - 100px);
-  background-color: rgb(254,254,254);
+  background-color: rgb(254, 254, 254);
   border-radius: 8px;
-  border: 1px solid rgb(243,243,243);
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
-  -webkit-transition: all 0.2s;
+  border: 1px solid rgb(243, 243, 243);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
 }
+
 #HYRZPrompt_body_title {
   position: absolute;
   width: calc(100% - 40px);
@@ -104,6 +114,7 @@
   font-size: 16px;
   color: #222;
 }
+
 #HYRZPrompt_body_input {
   position: absolute;
   width: calc(100% - 40px);
@@ -111,18 +122,20 @@
   left: 20px;
   top: 65px;
   border: none;
-  border-bottom: 1px solid rgb(180,180,180);
+  border-bottom: 1px solid rgb(180, 180, 180);
   outline: none;
-  background-color: rgb(254,254,254);
-  -webkit-transition: all 0.2s;
+  background-color: rgb(254, 254, 254);
+  transition: all 0.2s;
   text-align: center;
   font-family: lishu;
   font-size: 14px;
   letter-spacing: 2px;
 }
+
 #HYRZPrompt_body_input:focus {
-  border-bottom: 1px solid rgb(20,200,20);
+  border-bottom: 1px solid rgb(20, 200, 20);
 }
+
 #HYRZPrompt_body_cancelButton {
   position: absolute;
   height: 30px;
@@ -134,9 +147,10 @@
   font-family: lishu;
   font-size: 16px;
   font-weight: bolder;
-  color: rgb(20,200,20);
+  color: rgb(20, 200, 20);
   cursor: pointer;
 }
+
 #HYRZPrompt_body_okButton {
   position: absolute;
   height: 30px;
@@ -148,10 +162,11 @@
   font-family: lishu;
   font-size: 16px;
   font-weight: bolder;
-  color: rgb(20,200,20);
+  color: rgb(20, 200, 20);
   cursor: pointer;
 }
 
+/* === 游戏介绍入口按钮 === */
 #HYRZ_gameHYRZIntro {
   position: absolute;
   width: 120px;
@@ -159,650 +174,1172 @@
   right: calc(50% + 5px);
   top: 80px;
   border-radius: 4px;
-  background-color: rgba(80,80,80,0.8);
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.6),-1px 2px 5px rgba(0,0,0,0.6);
+  background-color: rgba(80, 80, 80, 0.8);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.6), -1px 2px 5px rgba(0, 0, 0, 0.6);
   font-size: 26px;
   font-family: xinwei;
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
 }
 
 #HYRZ_gameHYRZIntro:active {
-  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
 }
 
-#HYRZ_router_huoyingrenzhePage {
+/* === 火影忍者主页面样式 === */
+#hyrz_page {
   position: absolute;
   width: 100%;
   height: 100%;
-  left:0;
+  left: 0;
   border-radius: 8px;
-  background-color: rgba(20,20,20,0.95);
+  background-color: rgba(20, 20, 20, 0.95);
   text-align: left;
   overflow: auto;
   z-index: 2025;
 }
-#HYRZ_router_huoyingrenzhePage_title {
+
+/* 左侧按钮面板 */
+#hyrz_leftButtonPanel {
+  position: fixed !important;
+  left: 3% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 185px !important;
+  height: 90% !important;
+  background-color: rgba(30, 30, 30, 0.95) !important;
+  border: none !important;
+  border-radius: 8px 0 0 8px !important;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 18px 12px !important;
+  box-sizing: border-box !important;
+  z-index: 2025 !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 88, 75, 0.7) !important;
+  border-radius: 3px !important;
+}
+
+#hyrz_leftButtonPanel::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+#hyrz_buttonContainer {
+  width: 100% !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.hyrz_buttonWrapper {
+  width: 100% !important;
+  height: 50px !important;
+  display: block !important;
+  position: relative !important;
+}
+
+.hyrz_packButton {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  border-radius: 6px !important;
+  border: 2px solid #666 !important;
+  background-color: rgba(50, 50, 50, 0.9);
+  color: #ddd !important;
+  font-family: lishu !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  transition: all 0.3s !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  user-select: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.2 !important;
+  letter-spacing: 1px !important;
+}
+
+.hyrz_packButton.active {
+  background-color: rgba(144, 238, 144, 0.95) !important;
+  color: #ffd700 !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+.hyrz_packButton:not(.active):hover {
+  background-color: rgba(70, 70, 70, 0.95) !important;
+  color: #fff !important;
+  border-color: #888 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 主内容区域 */
+#hyrz_mainContainer {
+  position: fixed !important;
+  top: 50% !important;
+  left: calc(3% + 185px) !important; 
+  transform: translateY(-50%) !important;
+  width: calc(89% - 150px) !important;
+  height: 90% !important;
+  background-color: #1a1a1a !important;
+  border: none !important;
+  border-radius: 0 8px 8px 0 !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+  z-index: 2025 !important;
+  overflow: hidden !important;
+}
+
+#hyrz_rightPanel {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#hyrz_title {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 36px !important;
+  left: 15px !important;
+  top: 20px !important;
+  border-radius: 2px !important;
+  background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+  font-family: lishu !important;
+  font-size: 16px !important;
+  line-height: 36px !important;
+  text-indent: 2em !important;
+  color: #fff !important;
+  display: block !important;
+  z-index: 202511 !important;
+}
+
+#hyrz_closeButton {
+  position: absolute !important;
+  width: 65px !important;
+  height: 35px !important;
+  top: 0 !important;
+  right: 5px !important;
+  border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  text-align: center !important;
+  line-height: 35px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  z-index: 202511 !important;
+}
+
+#hyrz_closeButton:hover {
+  background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+}
+
+#hyrz_contentContainer {
+  position: absolute !important;
+  top: 60px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100% - 60px) !important;
+  overflow: auto !important;
+  padding: 15px !important;
+  box-sizing: border-box !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.5) !important;
+  border-radius: 4px !important;
+}
+
+#hyrz_contentContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 88, 75, 0.7) !important;
+  border-radius: 4px !important;
+}
+
+/* 角色介绍卡片 */
+.hyrz_intro_left {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 190px !important;
+  left: 15px !important;
+  top: 20px !important;
+  margin-bottom: 10px !important;
+  float: left !important;
+}
+
+.hyrz_intro_right {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 190px !important;
+  right: 15px !important;
+  top: 20px !important;
+  margin-bottom: 10px !important;
+  float: right !important;
+}
+
+.hyrz_intro_header {
+  position: absolute !important;
+  width: 125px !important;
+  height: 170px !important;
+  left: 18px !important;
+  top: 10px !important;
+  border-radius: 2px !important;
+  box-shadow: 2px 2px 4px rgba(180, 180, 180, 0.85), -2px 2px 4px rgba(180, 180, 180, 0.85) !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.hyrz_intro_infos {
+  position: absolute !important;
+  height: 20px !important;
+  left: 155px !important;
+  top: 15px !important;
+  line-height: 20px !important;
+  letter-spacing: 2px !important;
+  font-family: lishu !important;
+  font-size: 14px !important;
+  color: #eee !important;
+}
+
+.hyrz_intro_skills {
+  position: absolute !important;
+  width: calc(100% - 175px) !important;
+  height: calc(100% - 50px) !important;
+  right: 20px !important;
+  bottom: 5px !important;
+  letter-spacing: 2px !important;
+  font-family: lishu !important;
+  font-size: 12px !important;
+  overflow: auto !important;
+  color: #ccc !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+.hyrz_intro_skills::-webkit-scrollbar-thumb {
+  background-color: rgba(80, 80, 80, 0.7) !important;
+  border-radius: 3px !important;
+}
+
+/* 分组标题 */
+.hyrz_group_title {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 36px !important;
+  left: 15px !important;
+  top: 20px !important;
+  border-radius: 2px !important;
+  background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+  font-family: lishu !important;
+  font-size: 16px !important;
+  line-height: 36px !important;
+  text-indent: 2em !important;
+  color: #fff !important;
+  display: block !important;
+  clear: both !important;
+  z-index: 202511 !important;
+}
+
+.hyrz_intro_left, .hyrz_intro_right {
+  margin-top: 10px !important;
+}
+
+/* 特殊文本样式 */
+.greentext {
+  color: #7cfc00 !important;
+}
+
+/* === 火影忍者详细页样式 === */
+#hyrz_page.hyrz_detail_page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  border-radius: 8px;
+  background-color: rgba(20, 20, 20, 0.95);
+  text-align: left;
+  overflow: auto;
+  z-index: 2026 !important;
+  pointer-events: auto !important;
+}
+
+#hyrz_mainContainer.hyrz_detail_container {
+  position: fixed !important;
+  top: 50% !important;
+  left: 3% !important; 
+  transform: translateY(-50%) !important;
+  width: calc(89% + 35px) !important; 
+  height: 90% !important;
+  background-color: #1a1a1a !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+  z-index: 2026 !important;
+  overflow: hidden !important;
+}
+
+#hyrz_rightPanel.hyrz_detail_panel {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#hyrz_closeButton.hyrz_detail_close {
+  position: absolute !important;
+  width: 65px !important;
+  height: 35px !important;
+  top: 0 !important;
+  right: 5px !important;
+  border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  text-align: center !important;
+  line-height: 35px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  z-index: 2027 !important;
+  color: #fff !important;
+}
+
+#hyrz_closeButton.hyrz_detail_close:hover {
+  background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+  color: #ffd700 !important;
+}
+
+#hyrz_title.hyrz_detail_title {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 36px !important;
+  left: 15px !important;
+  top: 20px !important;
+  border-radius: 2px !important;
+  background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+  font-family: lishu !important;
+  font-size: 18px !important;
+  line-height: 36px !important;
+  text-indent: 1em !important;
+  color: #ffd700 !important;
+  display: block !important;
+  z-index: 2027 !important;
+}
+
+#hyrz_contentContainer.hyrz_detail_content {
+  position: absolute !important;
+  top: 60px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100% - 60px) !important;
+  overflow: hidden !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.hyrz_detail_header_container {
+  position: absolute !important;
+  width: calc(33% - 20px) !important;
+  height: calc(100% - 40px) !important;
+  left: 20px !important;
+  top: 20px !important;
+  overflow: visible !important;
+  border-radius: 5px !important;
+  box-sizing: border-box !important;
+  padding: 3px !important;
+}
+
+.hyrz_detail_header {
+  position: absolute !important;
+  width: calc(100% - 6px) !important;
+  height: calc(100% - 6px) !important;
+  left: 3px !important;
+  top: 3px !important;
+  border-radius: 5px !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  border: none !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+}
+
+.hyrz_detail_page_info_container {
+  position: absolute !important;
+  width: calc(67% - 60px) !important;
+  height: 50px !important;
+  left: calc(33% + 17px) !important;
+  top: 20px !important;
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  border-radius: 5px !important;
+  padding: 10px 15px !important;
+  border: none !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hyrz_detail_page_info_text {
+  width: calc(100% - 2.4em - 12px) !important;
+    margin-left: calc(1.2em + 12px) !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #eee !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.hyrz_detail_page_intro_container {
+  position: absolute !important;
+  width: calc(67% - 60px) !important;
+  height: 180px !important;
+  left: calc(33% + 17px) !important;
+  top: 85px !important;
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  border-radius: 5px !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.hyrz_detail_page_intro_text {
+  width: 100% !important;
+  height: 100% !important;
+  letter-spacing: 1px !important;
+  font-family: lishu !important;
+  font-size: 18px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  color: #ccc !important;
+  line-height: 1.5 !important;
+  padding-right: 5px !important;
+  box-sizing: border-box !important;
+}
+
+.hyrz_detail_page_skills_container {
+  position: absolute !important;
+  width: calc(67% - 60px) !important;
+  height: calc(100% - 305px) !important;
+  left: calc(33% + 17px) !important;
+  top: 280px !important;
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  border-radius: 5px !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.hyrz_detail_page_skills_text {
+  width: 100% !important;
+  height: 100% !important;
+  letter-spacing: 2px !important;
+  font-family: lishu !important;
+  font-size: 18px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  color: #ccc !important;
+  line-height: 1.6 !important;
+  padding-right: 5px !important;
+  box-sizing: border-box !important;
+}
+
+.hyrz_detail_page_intro_text::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.hyrz_detail_page_intro_text::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+.hyrz_detail_page_intro_text::-webkit-scrollbar-thumb {
+  background-color: rgba(144, 238, 144, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+.hyrz_detail_page_skills_text::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.hyrz_detail_page_skills_text::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+.hyrz_detail_page_skills_text::-webkit-scrollbar-thumb {
+  background-color: rgba(144, 238, 144, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+/* === 火影忍者技能代码页样式 === */
+#hyrz_page.hyrz_code_page {
+  z-index: 2030 !important;
+  pointer-events: auto !important;
+}
+
+#hyrz_mainContainer.hyrz_code_container {
+  position: fixed !important;
+  top: 50% !important;
+  left: 3% !important; 
+  transform: translateY(-50%) !important;
+  width: calc(89% + 35px) !important; 
+  height: 90% !important;
+  background-color: #1a1a1a !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+  z-index: 2028 !important;
+  overflow: hidden !important;
+}
+
+#hyrz_rightPanel.hyrz_code_panel {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#hyrz_closeButton.hyrz_code_close {
+  position: absolute !important;
+  width: 65px !important;
+  height: 35px !important;
+  top: 0 !important;
+  right: 5px !important;
+  border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+  text-align: center !important;
+  line-height: 35px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  z-index: 2029 !important;
+  color: #fff !important;
+}
+
+#hyrz_closeButton.hyrz_code_close:hover {
+  background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+  color: #ffd700 !important;
+}
+
+#hyrz_title.hyrz_code_title {
+  position: relative !important;
+  width: calc(50% - 20px) !important;
+  height: 36px !important;
+  left: 15px !important;
+  top: 20px !important;
+  border-radius: 2px !important;
+  background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+  font-family: lishu !important;
+  font-size: 18px !important;
+  line-height: 36px !important;
+  text-indent: 1em !important;
+  color: #ffd700 !important;
+  display: block !important;
+  z-index: 2027 !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content {
+  position: absolute !important;
+  top: 60px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(100% - 60px) !important;
+  overflow: auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  background-color: rgba(30, 30, 30, 0.8) !important;
+  border-radius: 5px !important;
+  margin: 0 15px !important;
+  width: calc(100% - 30px) !important;
+  left: 15px !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content pre {
+  margin: 0 !important;
+  padding: 20px !important;
+  font-family: lishu !important;
+  font-size: 28px !important;
+  color: #ccc !important;
+  line-height: 1.6 !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow: auto !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.5) !important;
+  border-radius: 4px !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 88, 75, 0.7) !important;
+  border-radius: 4px !important;
+}
+
+#hyrz_contentContainer.hyrz_code_content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+/* === 火影忍者技能名样式 === */
+.hyrz_skill_name {
+  color: #7cfc00 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  padding: 2px 4px !important;
+  border-radius: 3px !important;
+  transition: all 0.2s ease !important;
+  background-color: rgba(124, 252, 0, 0.1) !important;
+  border: 1px solid rgba(124, 252, 0, 0.3) !important;
+}
+
+.hyrz_skill_name:hover {
+  background-color: rgba(124, 252, 0, 0.2) !important;
+  border-color: rgba(124, 252, 0, 0.6) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.hyrz_detail_page_skills_text .hyrz_skill_name {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-right: 8px !important;
+  display: inline-block !important;
+    vertical-align: middle !important;
+    margin-bottom: 3px !important;
+}
+
+#hyrz_contentContainer.hyrz_detail_content .hyrz_detail_page_skills_text strong {
+  color: #7cfc00 !important;
+  cursor: pointer !important;
+}
+
+#hyrz_contentContainer.hyrz_detail_content .hyrz_detail_page_skills_text strong:hover {
+  text-decoration: underline !important;
+}
+
+/* === 图库相关样式 === */
+.hyrz_gallery_dialog {
+  font-family: "Microsoft YaHei", "SimHei", sans-serif;
+}
+
+.hyrz_menu {
+  color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(120, 88, 75, 0.8), rgba(60, 60, 60, 0.8));
+    border: 1px solid #555;
+    display: inline-block;
+    transition: all 0.3s;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: fit-content !important; 
+    min-width: 120px !important;    
+    padding: 8px 20px !important;  
+}
+
+.hyrz_gallery_title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hyrz_char_card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hyrz_char_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3) !important;
+}
+
+.hyrz_nav_btn:hover {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.hyrz_indicator {
+  text-shadow: 1px 1px 2px #000;
+  font-weight: bold;
+}
+
+/* 图库弹窗 */
+.hyrz_gallery_dialog {
+  display: block;
+  z-index: 2025;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1a1a1a;
+  padding: 0;
+  border: 2px solid #ffd700;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  width: 100%;
+  height: 75%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hyrz_gallery_title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffd700;
+  padding: 5px 0;
+  z-index: 100;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+.hyrz_gallery_close_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 100;
+  user-select: none;
+}
+
+.hyrz_gallery_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: calc(100% - 40px);
+  padding: 10px 30px;
+  margin-top: 10px;
+}
+
+.hyrz_gallery_slider {
+  display: flex;
+  transition: transform 0.15s ease;
+  height: 100%;
+  align-items: center;
+  gap: 50px;
+  cursor: grab;
+}
+
+.hyrz_gallery_char_card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.hyrz_gallery_char_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hyrz_gallery_char_name {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  color: #ffd700;
+  padding: 10px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* === 乱斗模式特定样式 === */
+/* 乱斗模式页面容器 */
+#hyrz_brawl_page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2024;
+  display: block;
+}
+
+/* 乱斗模式主容器 */
+#hyrz_brawl_mainContainer {
+  position: fixed;
+  top: 50%;
+  left: calc(6% + 150px); 
+  transform: translateY(-50%);
+  width: calc(89% - 150px); 
+  height: 90%; 
+  background-color: #1a1a1a;
+  border: 2px solid #444;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  z-index: 2025;
+  overflow: hidden;
+}
+
+/* 乱斗模式左侧按钮面板 */
+#hyrz_brawl_leftButtonPanel {
+  position: fixed;
+  left: 6%; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 90%;
+  background-color: rgba(30, 30, 30, 0.95);
+  border: 2px solid #555;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 12px;
+  box-sizing: border-box;
+  z-index: 2025;
+}
+
+/* 乱斗模式右侧面板 */
+#hyrz_brawl_rightPanel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 乱斗模式关闭按钮 */
+#hyrz_brawl_closeButton {
+  position: absolute;
+  width: 65px;
+  height: 35px;
+  top: 0;
+  right: 5px;
+  border-left: 0.5px solid rgba(30, 30, 30, 0.8);
+  border-right: 0.5px solid rgba(30, 30, 30, 0.8);
+  text-align: center;
+  line-height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #fff;
+}
+
+#hyrz_brawl_closeButton:hover {
+  background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0));
+  color: #ffd700;
+}
+
+/* 乱斗模式标题 */
+#hyrz_brawl_title {
   position: relative;
   width: calc(50% - 20px);
   height: 36px;
   left: 15px;
   top: 20px;
   border-radius: 2px;
-  background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0));
+  background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0));
   font-family: lishu;
   font-size: 16px;
   line-height: 36px;
   text-indent: 2em;
   color: #fff;
   display: block;
+  z-index: 202511;
+  text-align: left;
 }
-#HYRZ_router_huoyingrenzhePage_closeButton {
+
+/* 乱斗模式内容容器 */
+#hyrz_brawl_contentContainer {
   position: absolute;
-  width: 65px;
-  height: 35px;
-  top: 0;
-  right: 5px;
-  border-left: 0.5px solid rgba(30,30,30,0.8);
-  border-right: 0.5px solid rgba(30,30,30,0.8);
-  text-align: center;
-  line-height: 35px;
-  font-size: 18px;
-  cursor: pointer;
-  -webkit-transition: all 0.2s;
-}
-#HYRZ_router_huoyingrenzhePage_closeButton:hover {
-  background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0));
-}
-.HYRZ_router_huoyingrenzhePage_intro_left {
-  position: relative;
-  width: calc(50% - 20px);
-  height: 170px;
-  left: 15px;
-  top: 20px;
-}
-.HYRZ_router_huoyingrenzhePage_intro_right {
-  position: relative;
-  width: calc(50% - 20px);
-  height: 170px;
-  right: 15px;
-  top: 20px;
-}
-.HYRZ_router_huoyingrenzhePage_intro_header {
-  position: absolute;
-  width: 100px;
-  height: 140px;
-  left: 20px;
-  top: 15px;
-  border-radius: 2px;
-  box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85);
-  background-position: center center;
-  background-repeat: no-repeat;
-  /*background-size:100%;*/
-  background-size:cover;
-}
-.HYRZ_router_huoyingrenzhePage_intro_infos {
-  position: absolute;
-  height: 20px;
-  left: 130px;
-  top: 15px;
-  line-height: 20px;
-  letter-spacing: 2px;
-  font-family: lishu;
-  font-size: 14px;
-}
-.HYRZ_router_huoyingrenzhePage_intro_skills {
-  position: absolute;
-  width: calc(100% - 150px);
+  top: 60px;
+  left: 0;
+  width: 100%;
   height: calc(100% - 60px);
-  right: 20px;
-  bottom: 5px;
-  letter-spacing: 2px;
-  font-family: lishu;
-  font-size: 12px;
   overflow: auto;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
-
-.hyrz_gallery_dialog {
-    font-family: "Microsoft YaHei", "SimHei", sans-serif;
-}
-
-.hyrz_menu {
-    color: #ffd700;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #000;
-}
-
-.hyrz_gallery_title {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.hyrz_char_card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hyrz_char_card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3) !important;
-}
-
-.hyrz_nav_btn:hover {
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-}
-
-.hyrz_indicator {
-    text-shadow: 1px 1px 2px #000;
-    font-weight: bold;
-}
-
-.hyrz-gallery-dialog {
-    display: block;
-    z-index: 2025;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #1a1a1a;
-    padding: 0;
-    border: 2px solid #ffd700;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-    width: 100%;
-    height: 75%;
-    overflow: hidden;
-    text-align: center;
-}
-
-.hyrz-gallery-title {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffd700;
-    padding: 5px 0;
-    z-index: 100;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
-
-.hyrz-gallery-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 0, 0, 0.7);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    z-index: 100;
-    user-select: none;
-}
-
-.hyrz-gallery-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.hyrz-gallery-slider {
-    display: flex;
-    transition: transform 0.15s ease;
-    height: 100%;
-    align-items: center;
-    gap: 50px;
-    cursor: grab;
-}
-
-.hyrz-character-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
-}
-
-.hyrz-character-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hyrz-character-name {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    color: #ffd700;
-    padding: 10px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-
-
-
-
-#hyrz_page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    border-radius: 8px;
-    background-color: rgba(20,20,20,0.95);
-    text-align: left;
-    overflow: auto;
-    z-index: 2025;
-}
-
-#hyrz_leftButtonPanel {
-    position: fixed !important;
-    left: 8% !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 150px !important;
-    height: 90% !important;
-    background-color: rgba(30, 30, 30, 0.95) !important;
-    /*border: 2px solid #555 !important;*/
-    border: none !important; /* 去掉边框 */
-    border-radius: 8px 0 0 8px !important;
-    box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    padding: 18px 12px !important;
-    box-sizing: border-box !important;
-    z-index: 2025 !important;
-}
-
-#hyrz_leftButtonPanel::-webkit-scrollbar {
-    width: 6px !important;
-}
-
-#hyrz_leftButtonPanel::-webkit-scrollbar-track {
-    background: rgba(20,20,20,0.5) !important;
-    border-radius: 3px !important;
-}
-
-#hyrz_leftButtonPanel::-webkit-scrollbar-thumb {
-    background-color: rgba(120, 88, 75, 0.7) !important;
-    border-radius: 3px !important;
-}
-
-#hyrz_leftButtonPanel::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(140, 108, 95, 0.9) !important;
-}
-
-#hyrz_buttonContainer {
-    width: 100% !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-}
-
-.hyrz_buttonWrapper {
-    width: 100% !important;
-    height: 50px !important;
-    display: block !important;
-    position: relative !important;
-}
-
-.hyrz_packButton {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
-    text-align: center !important;
-    cursor: pointer !important;
-    border-radius: 6px !important;
-    border: 2px solid #666 !important;
-    background-color: rgba(50, 50, 50, 0.9);
-    color: #ddd !important;
-    font-family: lishu !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    transition: none !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
-    user-select: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1.2 !important;
-    letter-spacing: 1px !important;
-}
-
-.hyrz_packButton.active {
-    background-color: rgba(144, 238, 144, 0.95) !important;
-    color: #ffd700 !important;
-    border-color: #ffd700 !important;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
-}
-
-.hyrz_packButton:not(.active):hover {
-    background-color: rgba(70, 70, 70, 0.95) !important;
-    color: #fff !important;
-    border-color: #888 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
-}
-
-#hyrz_mainContainer {
-    position: fixed !important;
-    top: 50% !important;
-    left: calc(8% + 150px) !important;
-    transform: translateY(-50%) !important;
-    width: calc(84% - 150px) !important;
-    height: 90% !important;
-    background-color: #1a1a1a !important;
-    /*border: 2px solid #444 !important;*/
-    border: none !important; /* 去掉边框 */
-    border-radius: 0 8px 8px 0 !important;
-    box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
-    z-index: 2025 !important;
-    overflow: hidden !important;
-}
-
-#hyrz_rightPanel {
-    width: 100% !important;
-    height: 100% !important;
-    position: relative !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-}
-
-#hyrz_title {
-    position: relative !important;
-    width: calc(50% - 20px) !important;
-    height: 36px !important;
-    left: 15px !important;
-    top: 20px !important;
-    border-radius: 2px !important;
-    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
-    font-family: lishu !important;
-    font-size: 16px !important;
-    line-height: 36px !important;
-    text-indent: 2em !important;
-    color: #fff !important;
-    display: block !important;
-    z-index: 202511 !important;
-}
-
-#hyrz_closeButton {
-    position: absolute !important;
-    width: 65px !important;
-    height: 35px !important;
-    top: 0 !important;
-    right: 5px !important;
-    border-left: 0.5px solid rgba(30,30,30,0.8) !important;
-    border-right: 0.5px solid rgba(30,30,30,0.8) !important;
-    text-align: center !important;
-    line-height: 35px !important;
-    font-size: 18px !important;
-    cursor: pointer !important;
-    -webkit-transition: all 0.2s !important;
-    z-index: 202511 !important;
-}
-
-#hyrz_closeButton:hover {
-    background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
-}
-
-#hyrz_contentContainer {
-    position: absolute !important;
-    top: 60px !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: calc(100% - 60px) !important;
-    overflow: auto !important;
-    padding: 15px !important;
-    box-sizing: border-box !important;
-}
-
-#hyrz_contentContainer::-webkit-scrollbar {
-    width: 8px !important;
-}
-
-#hyrz_contentContainer::-webkit-scrollbar-track {
-    background: rgba(20,20,20,0.5) !important;
-    border-radius: 4px !important;
-}
-
-#hyrz_contentContainer::-webkit-scrollbar-thumb {
-    background-color: rgba(120, 88, 75, 0.7) !important;
-    border-radius: 4px !important;
-}
-
-.hyrz_intro_left {
-    position: relative !important;
-    width: calc(50% - 20px) !important;
-    height: 190px !important;
-    left: 15px !important;
-    top: 20px !important;
-    margin-bottom: 10px !important;
-}
-
-.hyrz_intro_right {
-    position: relative !important;
-    width: calc(50% - 20px) !important;
-    height: 190px !important;
-    right: 15px !important;
-    top: 20px !important;
-    margin-bottom: 10px !important;
-}
-
-.hyrz_intro_header {
-    position: absolute !important;
-    width: 125px !important;
-    height: 170px !important;
-    left: 20px !important;
-    top: 10px !important;
-    border-radius: 2px !important;
-    box-shadow: 2px 2px 4px rgba(180,180,180,0.85),-2px 2px 4px rgba(180,180,180,0.85) !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-}
-
-.hyrz_intro_infos {
-    position: absolute !important;
-    height: 20px !important;
-    left: 155px !important;
-    top: 15px !important;
-    line-height: 20px !important;
-    letter-spacing: 2px !important;
-    font-family: lishu !important;
-    font-size: 14px !important;
-    color: #eee !important;
-}
-
-.hyrz_intro_skills {
-    position: absolute !important;
-    width: calc(100% - 175px) !important;
-    height: calc(100% - 50px) !important;
-    right: 20px !important;
-    bottom: 5px !important;
-    letter-spacing: 2px !important;
-    font-family: lishu !important;
-    font-size: 12px !important;
-    overflow: auto !important;
-    color: #ccc !important;
-    line-height: 1.4 !important;
-}
-
-.hyrz_intro_skills::-webkit-scrollbar {
-    width: 5px !important;
-}
-
-.hyrz_intro_skills::-webkit-scrollbar-track {
-    background: rgba(30,30,30,0.5) !important;
-    border-radius: 3px !important;
-}
-
-.hyrz_intro_skills::-webkit-scrollbar-thumb {
-    background-color: rgba(80, 80, 80, 0.7) !important;
-    border-radius: 3px !important;
-}
-
-/* 乱斗模式下的峥嵘岁月武将浏览页面样式 */
-#hyrz_brawl_page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    border-radius: 8px;
-    background-color: rgba(20,20,20,0.95);
-    text-align: left;
-    overflow: auto;
-    z-index: 2025;
-}
-
-#hyrz_brawl_leftButtonPanel {
-    position: fixed !important;
-    left: 8% !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 150px !important;
-    height: 90% !important;
-    background-color: rgba(30, 30, 30, 0.95) !important;
-    /*border: 2px solid #555 !important;*/
-    border: none !important; /* 去掉边框 */
-    border-radius: 8px 0 0 8px !important;
-    box-shadow: 0 0 15px rgba(0,0,0,0.8) !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    padding: 18px 12px !important;
-    box-sizing: border-box !important;
-    z-index: 2025 !important;
-}
-
-#hyrz_brawl_leftButtonPanel::-webkit-scrollbar {
-    width: 6px !important;
-}
-
-#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-track {
-    background: rgba(20,20,20,0.5) !important;
-    border-radius: 3px !important;
-}
-
-#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-thumb {
-    background-color: rgba(120, 88, 75, 0.7) !important;
-    border-radius: 3px !important;
-}
-
-#hyrz_brawl_leftButtonPanel::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(140, 108, 95, 0.9) !important;
-}
-
+/* 乱斗模式按钮容器 */
 #hyrz_brawl_buttonContainer {
-    width: 100% !important;
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+/* 乱斗模式按钮包装器 */
 .hyrz_brawl_buttonWrapper {
-    width: 100% !important;
-    height: 50px !important;
-    display: block !important;
-    position: relative !important;
+  width: 100%;
+  height: 50px;
+  display: block;
+  position: relative;
 }
 
+/* 乱斗模式包按钮 */
 .hyrz_brawl_packButton {
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
-    text-align: center !important;
-    cursor: pointer !important;
-    border-radius: 6px !important;
-    border: 2px solid #666 !important;
-    background-color: rgba(50, 50, 50, 0.9) !important;
-    color: #ddd !important;
-    font-family: lishu !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
-    user-select: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1.2 !important;
-    letter-spacing: 1px !important;
-    transition: all 0.3s ease !important;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid #666;
+  background-color: rgba(50, 50, 50, 0.9);
+  color: #ddd;
+  font-family: lishu;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
 }
 
 .hyrz_brawl_packButton.active {
-    background-color: rgba(144, 238, 144, 0.95) !important;
-    color: #ffd700 !important;
-    border-color: #ffd700 !important;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+  background-color: rgba(144, 238, 144, 0.95);
+  color: #ffd700;
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .hyrz_brawl_packButton:not(.active):hover {
-    background-color: rgba(70, 70, 70, 0.95) !important;
-    color: #fff !important;
-    border-color: #888 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+  background-color: rgba(70, 70, 70, 0.95);
+  color: #fff;
+  border-color: #888;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-#hyrz_brawl_mainContainer {
+/* 技能配音图标 */
+.hyrz_skill_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('hyrz_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 8px !important;
+    margin-bottom: 3px !important;
+    cursor: pointer !important;
+}
+
+.hyrz_intro_skills .hyrz_skill_icon {
+    width: 1em !important;
+    height: 1em !important;
+    margin-right: 6px !important;
+}
+
+.hyrz_detail_page_skills_text .hyrz_skill_icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+}
+
+.hyrz_intro_skills strong.greentext {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.hyrz_detail_page_skills_text .hyrz_skill_name {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-bottom: 3px !important;
+}
+
+.hyrz_intro_skills strong.greentext + span br + *,
+.hyrz_detail_page_skills_text .hyrz_skill_name + span br + * {
+    display: inline-block !important;
+    margin-left: calc(1.2em + 8px) !important;
+    text-indent: -8px !important;
+}
+
+.hyrz_detail_page_skills_text .hyrz_skill_name + span br + * {
+    margin-left: calc(1.2em + 8px) !important;
+}
+
+.hyrz_intro_skills strong.greentext + span br + * {
+    margin-left: calc(1em + 6px) !important;
+}
+
+/* 阵亡配音图标 */
+.hyrz_detail_page_info_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('hyrz_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 12px !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.hyrz_detail_page_info_icon_wrapper {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: 1.2em !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 1 !important;
+}
+
+/* === 封面图页面样式 === */
+
+#hyrz_cover_page.hyrz-cover-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    background-color: rgba(20, 20, 20, 0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2025 !important;
+    pointer-events: auto !important;
+}
+
+/* 封面页主容器 - 与详细页容器样式一致 */
+#hyrz_mainContainer.hyrz_cover_container {
     position: fixed !important;
     top: 50% !important;
-    left: calc(8% + 150px) !important;
+    left: 3% !important; 
     transform: translateY(-50%) !important;
-    width: calc(84% - 150px) !important;
+    width: calc(89% + 35px) !important; 
     height: 90% !important;
-    background-color: #1a1a1a !important;
-    /*border: 2px solid #444 !important;*/
-    border: none !important; /* 去掉边框 */
-    border-radius: 0 8px 8px 0 !important;
+    background-color: rgba(20,20,20,0.95) !important; 
+    border: none !important;
+    border-radius: 8px !important;
     box-shadow: 0 0 30px rgba(0,0,0,0.9) !important;
-    z-index: 2025 !important;
-    overflow: hidden !important;
-}
-
-#hyrz_brawl_rightPanel {
-    width: 100% !important;
-    height: 100% !important;
-    position: relative !important;
+    z-index: 2027 !important; 
     overflow: hidden !important;
     padding: 0 !important;
-    box-sizing: border-box !important;
+    /*position: relative !important; 为内部绝对定位提供参考 */
+    cursor: pointer !important; /* 添加光标样式 */
 }
 
-#hyrz_brawl_title {
+/* 封面页标题 - 与列表页标题样式一致 */
+#hyrz_title.hyrz_cover_title {
     position: relative !important;
     width: calc(50% - 20px) !important;
     height: 36px !important;
     left: 15px !important;
     top: 20px !important;
     border-radius: 2px !important;
-    background: linear-gradient(to right, rgba(120,88,75,1), rgba(200,200,200,0)) !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
     font-family: lishu !important;
-    font-size: 16px !important;
+    font-size: 18px !important; 
     line-height: 36px !important;
-    text-indent: 2em !important;
-    color: #fff !important;
+    text-indent: 2em !important; 
+    color: #fff !important; 
     display: block !important;
-    z-index: 202511 !important;
+    z-index: 2028 !important; 
 }
 
-#hyrz_brawl_closeButton {
+/* 封面图片容器 - 从顶部开始显示 */
+.hyrz_cover_image_container {
+    position: absolute !important;
+    top: 0 !important; 
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    z-index: 2027 !important; 
+}
+
+/* 封面图片 */
+.hyrz_cover_image {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center top !important; 
+    background-repeat: no-repeat !important;
+    border-radius: 8px !important;
+}
+
+/* 封面页关闭按钮 - 与列表页关闭按钮一致 */
+#hyrz_closeButton.hyrz_cover_close {
     position: absolute !important;
     width: 65px !important;
     height: 35px !important;
@@ -814,35 +1351,27 @@
     line-height: 35px !important;
     font-size: 18px !important;
     cursor: pointer !important;
-    -webkit-transition: all 0.2s !important;
-    z-index: 202511 !important;
+    transition: all 0.2s !important;
+    z-index: 2029 !important; 
+    background: transparent !important;
+    color: #fff !important;
 }
 
-#hyrz_brawl_closeButton:hover {
+#hyrz_closeButton.hyrz_cover_close:hover {
     background: linear-gradient(to bottom, rgba(200,0,0,1), rgba(200,200,200,0)) !important;
 }
 
-#hyrz_brawl_contentContainer {
-    position: absolute !important;
-    top: 60px !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: calc(100% - 60px) !important;
-    overflow: auto !important;
-    padding: 15px !important;
-    box-sizing: border-box !important;
+/* 封面页响应式调整 */
+@media screen and (max-width: 1200px) {
+    #hyrz_mainContainer.hyrz_cover_container {
+        width: calc(89% + 35px) !important;
+        left: 3% !important;
+        transform: translateY(-50%) !important;
+    }
 }
 
-#hyrz_brawl_contentContainer::-webkit-scrollbar {
-    width: 8px !important;
-}
-
-#hyrz_brawl_contentContainer::-webkit-scrollbar-track {
-    background: rgba(20,20,20,0.5) !important;
-    border-radius: 4px !important;
-}
-
-#hyrz_brawl_contentContainer::-webkit-scrollbar-thumb {
-    background-color: rgba(120, 88, 75, 0.7) !important;
-    border-radius: 4px !important;
+@media screen and (max-width: 768px) {
+    #hyrz_title.hyrz_cover_title {
+        font-size: 16px !important;
+    }
 }

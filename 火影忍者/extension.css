@@ -868,10 +868,6 @@
   text-decoration: underline !important;
 }
 
-/* === 图库相关样式 === */
-.hyrz_gallery_dialog {
-  font-family: "Microsoft YaHei", "SimHei", sans-serif;
-}
 
 .hyrz_menu {
   color: #ffd700;
@@ -885,17 +881,10 @@
     transition: all 0.3s;
     display: block !important;
     margin: 0 auto !important;
-    text-align: center !important;
-    display: block !important;
-    margin: 0 auto !important;
-    text-align: center !important;
+    text-align: center !important;    
     width: fit-content !important; 
     min-width: 120px !important;    
     padding: 8px 20px !important;  
-}
-
-.hyrz_gallery_title {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hyrz_char_card {
@@ -916,8 +905,9 @@
   font-weight: bold;
 }
 
-/* 图库弹窗 */
-.hyrz_gallery_dialog {
+/* 画廊 */
+.hyrz_gallery_dialog {  
+  font-family: "Microsoft YaHei", "SimHei", sans-serif;
   display: block;
   z-index: 2025;
   position: fixed;
@@ -935,7 +925,8 @@
   text-align: center;
 }
 
-.hyrz_gallery_title {
+.hyrz_gallery_title {  
+  /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);*/
   position: absolute;
   top: 10px;
   left: 50%;

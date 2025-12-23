@@ -865,11 +865,6 @@
   text-decoration: underline !important;
 }
 
-/* === 图库相关样式 === */
-.qyh_gallery_dialog {
-  font-family: "Microsoft YaHei", "SimHei", sans-serif;
-}
-
 .qyh_menu {
   color: #ffd700;
     font-weight: bold;
@@ -882,17 +877,10 @@
     transition: all 0.3s;
     display: block !important;
     margin: 0 auto !important;
-    text-align: center !important;
-    display: block !important;
-    margin: 0 auto !important;
-    text-align: center !important;
+    text-align: center !important;    
     width: fit-content !important; 
     min-width: 120px !important;    
     padding: 8px 20px !important;  
-}
-
-.qyh_gallery_title {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .qyh_char_card {
@@ -930,6 +918,7 @@
   height: 75%;
   overflow: hidden;
   text-align: center;
+  font-family: "Microsoft YaHei", "SimHei", sans-serif;
 }
 
 .qyh_gallery_title {

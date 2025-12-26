@@ -1,4 +1,4 @@
-window.version='6.7';
+window.version='5.2';
 window.wwyjchangelog={
    '2025年12月':{
     'version':'5.2',

@@ -1,13 +1,13 @@
 window.version='6.7';
 window.wwyjchangelog={
    '2025年12月':{
-    'version':'6.7',
+    'version':'5.2',
     'info':'<li>新增武将【狂神】<li>对角色图鉴、画廊图鉴、乱斗图鉴进行大幅度优化、完善一系列功能',
     'players':["wwyj_xkuangshen"],
     'cards':[],
   },
    '2025年10月':{
-    'version':'6.2',
+    'version':'5.1',
     'info':'<li>新增浏览武将功能（横拉大图），修复武将资料页阵亡配音按钮点播问题，并添加阵亡台词，修复击杀特效BUG',
     'players':[""],
     'cards':[],

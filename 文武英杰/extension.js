@@ -18222,7 +18222,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "6.7",
+            version: "5.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

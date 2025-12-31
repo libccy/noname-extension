@@ -11065,7 +11065,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 popup: "wwyj_zangyue",
                                 //audio:"ext:文武英杰:1",                                
                                 filter: function (event, player) {
-                                    return event.card && event.card.isCard && get.suit(event.card) == player.storage.wwyj_zangyue2;
+                                    return event.card && event.card.isCard && get.suit(event.card) == player.storage.wwyj_zangyue2 && game.hasPlayer(function (current) {
+                                        return current.hasSkill('wwyj_zangyue');
+                                    });
                                 },
                                 content: function () {
                                     "step 0"

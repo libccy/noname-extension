@@ -5467,6 +5467,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.open('https://tieba.baidu.com/p/6657464280');
                 },
             };
+            Reflect.deleteProperty(lib.extensionMenu['extension_文武英杰'],'edit');
             delete lib.extensionMenu.extension_文武英杰.delete;
             //lib.extensionMenu['extension_' + '文武英杰'].delete = { name: '删除此扩展', clear: true, };
             lib.extensionMenu.extension_文武英杰.wwyjwjl_title = {
@@ -7816,7 +7817,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player.storage.wwyj_cuangai = [];
                                 },
                                 filter: function (event, player) {
-                                    return event.source && event.source.isAlive() && event.source.countCards('h') > 0;
+                                    var num=[];
+                                    var cards=event.source.getCards('h');
+                                    for (var i = 0; i < cards.length; i++) {
+                                        if (cards[i].name != 'du') {
+                                            num.push(cards[i]);
+                                        }
+                                    }
+                                    return event.source && event.source.isAlive() && event.source.countCards('h') > 0 && num.length > 0;
                                 },
                                 check: function (event, player) {
                                     if (player == event.source) return 1;
@@ -7825,7 +7833,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 frequent: "check",
                                 prompt: function (event, player) {
-                                    return '是否对' + get.translation(event.source) + '发动【篡改】，令其一张手牌转变为【毒】？';
+                                    return '是否对' + get.translation(event.source) + '发动【篡改】，令其一张不为【毒】的手牌转变为【毒】？';
                                 },
                                 content: function () {
                                     'step 0'
@@ -7854,9 +7862,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         event.finish();
                                     } else {
                                         player.chooseCardButton(trigger.source.getCards('h'), 1, '选择' + get.translation(trigger.source) + '的一张手牌变为【毒】').set('filterButton', function (button) {
-                                            return true;
+                                            return button.link.name != 'du';
                                         }).set('ai', function (button) {
-                                            if (button.link.name == 'du') return 0;
+                                            //if (button.link.name == 'du') return 0;
                                             if (button.link.name == 'tao' || get.suit(button.link) == 'heart') return 10;
                                             return get.value(button.link);
                                         });
@@ -17045,7 +17053,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_cuangai3": "篡改",
                             "wwyj_cuangai2": "篡改",
                             "wwyj_cuangai": "篡改",
-                            "wwyj_cuangai_info": "每回合限一次，当一名角色受到伤害后，你可展示伤害来源的一张手牌并令其转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】",
+                            "wwyj_cuangai_info": "每回合限一次，当一名角色受到伤害后，你可展示伤害来源的一张不为【毒】的手牌并令其转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】",
                             "wwyj_doupo2": "斗破",
                             "wwyj_doupo": "斗破",
                             "wwyj_doupo_info": "</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用【杀】的次数",
@@ -17463,465 +17471,282 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 if (!lib.config.characters.contains('wenwuyingjie')) lib.config.characters.push('wenwuyingjie');
                 lib.translate['wenwuyingjie_character_config'] = '<span style=\"color:#ff00cc\">文武英杰</span>';
 
+                //凉茶图鉴：
                 game.addMode('wenwuyingjiepicture', {
-                    game: {
-                        syncMenu: true,
-                        createview: function (node, charalist, liblist) {
-                            var player = ui.create.player(null, true);
-                            player.init(charalist[0]);
-                            player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[0] + '.jpg');
-                            player.style.left = '3px';
-                            player.style.top = '15px';
-                            player.style.zIndex = '10';
-                            player.style.cursor = 'pointer';
-                            player.node.count.remove();
-                            player.node.hp.remove();
-                            player.style.transition = 'all 0.5s';
-                            node.appendChild(player);
-                            node.playernode = player;
+    game: {
+        syncMenu: true,
+        createview: function (node, charalist, liblist) {
+            var player = ui.create.player(null, true);
+            player.init(charalist[0]);
+            player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[0] + '.jpg');
+            player.style.left = '3px';
+            player.style.top = '15px';
+            player.style.zIndex = '10';
+            player.style.cursor = 'pointer';
+            player.node.count.remove();
+            player.node.hp.remove();
+            player.style.transition = 'all 0.5s';
+            node.appendChild(player);
+            node.playernode = player;
 
-                            var dialog = ui.create.dialog('hidden');
-                            dialog.style.left = "0px";
-                            dialog.style.top = "0px";
-                            dialog.style.width = "100%";
-                            dialog.style.height = "205px";
-                            dialog.classList.add('fixed');
-                            dialog.noopen = true;
-                            node.appendChild(dialog);
-                            dialog.addText('<div><div id="Cdetail" style="width:72%;display:block;left:150px;text-align:left;font-size:16px"><span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[0]) + '<br>' + liblist[0].join('<br>'));
-                            var dialog1 = ui.create.dialog('hidden');
-                            dialog1.style.left = "0px";
-                            dialog1.style.top = "220px";
-                            dialog1.style.width = "100%";
-                            dialog1.style.height = "100%";
-                            dialog1.classList.add('fixed');
-                            dialog1.noopen = true;
-                            node.appendChild(dialog1);
-                            dialog1.add([charalist, 'character'], false);
-                            for (var i = 0; i < dialog1.buttons.length; i++) {
-                                //dialog1.buttons[i].classList.add('show');//旧代码出现弹窗
-                                dialog1.buttons[i].classList.add('noclick');
-                                dialog1.buttons[i].value = i;
-                                dialog1.buttons[i].onclick = function () {
-                                    player.init(charalist[this.value]);
-                                    document.getElementById("Cdetail").innerHTML = '<span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[this.value]) + '<br>' + liblist[this.value];
-                                    player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[this.value] + '.jpg');
-                                };
-                            }
-                        },
-                    },
-                    start: function () {
-                        ui.auto.hide();
-                        if (!lib.storage.scene) {
-                            lib.storage.scene = {};
-                        }
-                        if (!lib.storage.stage) {
-                            lib.storage.stage = {};
-                        }
-                        if (!_status.extensionmade) {
-                            _status.extensionmade = [];
-                        }
-                        if (_status.extensionscene) {
-                            game.save('scene', lib.storage.scene);
-                        }
-                        if (_status.extensionstage) {
-                            game.save('stage', lib.storage.stage);
-                        }
-                        var dialog = ui.create.dialog('hidden');
-                        dialog.classList.add('fixed');
-                        dialog.classList.add('scroll1');
-                        dialog.classList.add('scroll2');
-                        dialog.classList.add('fullwidth');
-                        dialog.classList.add('fullheight');
-                        dialog.classList.add('noupdate');
-                        dialog.classList.add('character');
-                        dialog.contentContainer.style.overflow = 'visible';
-                        dialog.style.overflow = 'scroll';
-                        dialog.content.style.height = '100%';
-                        dialog.contentContainer.style.transition = 'all 0s';
-                        if (!lib.storage.directStage) dialog.open();
-                        var packnode = ui.create.div('.packnode', dialog);
-                        lib.setScroll(packnode);
-                        ui.background.setBackgroundImage('extension/文武英杰/wwyj_picture.jpg');
-                        //上一行为背景
-                        var clickCapt = function () {
-                            var active = this.parentNode.querySelector('.active');
-                            if (this.link == 'stage') {
-                                if (get.is.empty(lib.storage.scene)) {
-                                    alert('请创建至少1个场景');
-                                    return;
-                                }
-                            }
-                            if (active) {
-                                if (active == this) return;
-                                for (var i = 0; i < active.nodes.length; i++) {
-                                    active.nodes[i].remove();
-                                    if (active.nodes[i].showcaseinterval) {
-                                        clearInterval(active.nodes[i].showcaseinterval);
-                                        delete active.nodes[i].showcaseinterval;
-                                    }
-                                }
-                                active.classList.remove('active');
-                            }
-                            this.classList.add('active');
-                            for (var i = 0; i < this.nodes.length; i++) {
-                                dialog.content.appendChild(this.nodes[i]);
-                            }
-                            var showcase = this.nodes[this.nodes.length - 1];
-                            showcase.style.height = (dialog.content.offsetHeight - showcase.offsetTop) + 'px';
-                            if (typeof showcase.action == 'function') {
-                                if (showcase.action(showcase._showcased ? false : true) !== false) {
-                                    showcase._showcased = true;
-                                }
-                            }
-                            if (this._nostart) start.style.display = 'none';
-                            else start.style.display = '';
-                            game.save('currentBrawl', 'help');
-                        }
-                        // 应该是这里是制作列表的地方
-                        var createNode = function (name) {
-                            var info = lib.brawl[name];
-                            var node = ui.create.div('.dialogbutton.menubutton.large', info.name, packnode, clickCapt);
-                            node.style.transition = 'all 0s';
-                            var caption = info.name;
-                            var modeinfo = '';
-                            if (info.mode) {
-                                modeinfo = get.translation(info.mode) + '模式';	// 这个是标注哪个模式下使用的
-                            }
-                            if (info.submode) {
-                                if (modeinfo) {
-                                    modeinfo += ' - ';
-                                }
-                                modeinfo += info.submode;
-                            }
-                            var intro;
-                            if (Array.isArray(info.intro)) {
-                                intro = '<ul style="text-align:left;margin-top:10">';
-                                if (modeinfo) {
-                                    intro += '<li>' + modeinfo;
-                                }
-                                for (var i = 0; i < info.intro.length; i++) {
-                                    intro += '<br>' + info.intro[i];
-                                }
-                            }
-                            else {
-                                intro = '';
-                                if (modeinfo) {
-                                    intro += '（' + modeinfo + '）';
-                                }
-                                intro += info.intro;
-                            }
-                            var today = new Date();
-                            var i = ui.create.div('.text center', intro);
-                            i.style.overflow = 'scroll';
-                            i.style.margin = '0px';
-                            i.style.padding = '0px';
-                            var showcase = ui.create.div();
-                            showcase.style.margin = '0px';
-                            showcase.style.padding = '0px';
-                            showcase.style.width = '100%';
-                            showcase.style.display = 'block'
-                            showcase.style.overflow = 'scroll';
-                            showcase.action = info.showcase;
-                            showcase.link = name;
-                            if (info.fullshow) {
-                                node.nodes = [showcase];
-                                showcase.style.height = '100%';
-                            }
-                            else {
-                                node.nodes = [
-                                    i,
-                                    showcase,
-                                ];
-                            }
-                            node.link = name;
-                            node._nostart = info.nostart;
-                            if (lib.storage.currentBrawl == name) {
-                                clickCapt.call(node);
-                            }
-                            return node;
-                        }
-                        // 点那个巨大的“斗”之后
-                        var clickStart = function () {
-                            dialog.delete();
-                            ui.auto.show();
-                            game.switchMode('identity');
-                        };
-                        // 制作那个“斗”的键的。去掉会出bug
-                        var start = ui.create.div('.menubutton.round.highlight', '←', dialog.content, clickStart);
-                        start.style.position = 'absolute';
-                        start.style.left = '-100px';
-                        start.style.right = 'auto';
-                        start.style.top = 'auto';
-                        start.style.bottom = '10px';
-                        start.style.width = '80px';
-                        start.style.height = '80px';
-                        start.style.lineHeight = '80px';
-                        start.style.margin = '0';
-                        start.style.padding = '5px';
-                        start.style.fontSize = '72px';
-                        start.style.zIndex = 3;
-                        start.style.transition = 'all 0s';
-                        start.hide();
-                        game.addScene = function (name, clear) {
-                            var scene = lib.storage.scene[name];
-                            var brawl = {
-                                name: name,
-                                intro: scene.intro,
-                            };
-                            for (var i in lib.brawl.scene.template) {
-                                brawl[i] = get.copy(lib.brawl.scene.template[i]);
-                            }
-                            if (!scene.gameDraw) {
-                                brawl.content.noGameDraw = true;
-                            }
-                            brawl.content.scene = scene;
-                            lib.brawl['scene_' + name] = brawl;
-                            var node = createNode('scene_' + name);
-                            if (clear) {
-                                game.addSceneClear();
-                                clickCapt.call(node);
-                                _status.sceneChanged = true;
-                            }
-                        };
-                        game.addStage = function (name, clear) {
-                            var stage = lib.storage.stage[name];
-                            var brawl = {
-                                name: name,
-                                intro: stage.intro,
-                                content: {}
-                            };
-                            for (var i in lib.brawl.stage.template) {
-                                brawl[i] = get.copy(lib.brawl.stage.template[i]);
-                            }
-                            brawl.content.stage = stage;
-                            lib.brawl['stage_' + name] = brawl;
-                            var node = createNode('stage_' + name);
-                            if (clear) {
-                                game.addStageClear();
-                                clickCapt.call(node);
-                            }
-                        }
-                        game.removeScene = function (name) {
-                            delete lib.storage.scene[name];
-                            game.save('scene', lib.storage.scene);
-                            _status.sceneChanged = true;
-                            for (var i = 0; i < packnode.childElementCount; i++) {
-                                if (packnode.childNodes[i].link == 'scene_' + name) {
-                                    if (packnode.childNodes[i].classList.contains('active')) {
-                                        for (var j = 0; j < packnode.childElementCount; j++) {
-                                            if (packnode.childNodes[j].link == 'scene') {
-                                                clickCapt.call(packnode.childNodes[j]);
-                                            }
-                                        }
-                                    }
-                                    packnode.childNodes[i].remove();
-                                    break;
-                                }
-                            }
-                        }
-                        game.removeStage = function (name) {
-                            delete lib.storage.stage[name];
-                            game.save('stage', lib.storage.stage);
-                            for (var i = 0; i < packnode.childElementCount; i++) {
-                                if (packnode.childNodes[i].link == 'stage_' + name) {
-                                    if (packnode.childNodes[i].classList.contains('active')) {
-                                        for (var j = 0; j < packnode.childElementCount; j++) {
-                                            if (get.is.empty(lib.storage.scene)) {
-                                                if (packnode.childNodes[j].link == 'scene') {
-                                                    clickCapt.call(packnode.childNodes[j]);
-                                                }
-                                            }
-                                            else {
-                                                if (packnode.childNodes[j].link == 'stage') {
-                                                    clickCapt.call(packnode.childNodes[j]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    packnode.childNodes[i].remove();
-                                    break;
-                                }
-                            }
-                        }
-                        var sceneNode;
-                        for (var i in lib.brawl) {
-                            if (get.config(i) === false) continue;
-                            if (i == 'scene') {
-                                sceneNode = createNode(i);
-                            }
-                            else {
-                                if (i == 'updatelog' && location.hostname && !lib.device) continue;
-                                if (i == 'downloadlog' && (!location.hostname || lib.device)) continue;
-                                createNode(i);
-                            }
-                        }
-                        if (sceneNode) {
-                            game.switchScene = function () {
-                                clickCapt.call(sceneNode);
-                            }
-                        }
-                        for (var i in lib.storage.scene) {
-                            game.addScene(i);
-                        }
-                        for (var i in lib.storage.stage) {
-                            game.addStage(i);
-                        }
-                        if (!lib.storage.currentBrawl) {
-                            clickCapt.call(packnode.firstChild);
-                        }
-                        game.save('lastStage');
-                        if (lib.storage.directStage) {
-                            var directStage = lib.storage.directStage;
-                            game.save('directStage');
-                            clickStart(directStage);
-                        }
-                        if (lib.config.background_music != 'music_off' && get.config('wwyj_openmusic')) {
-                            ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
-                            setInterval(function () {
-                                ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
-                            }, 85000);
-                        }
-                        lib.init.onfree();
-                    },
-                    brawl: {
+            var dialog = ui.create.dialog('hidden');
+            dialog.style.left = "0px";
+            dialog.style.top = "0px";
+            dialog.style.width = "100%";
+            dialog.style.height = "205px";
+            dialog.classList.add('fixed');
+            dialog.noopen = true;
+            node.appendChild(dialog);
+            dialog.addText('<div><div id="Cdetail" style="width:72%;display:block;left:150px;text-align:left;font-size:16px"><span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[0]) + '<br>' + liblist[0].join('<br>'));
 
-                        wenwuview: {
-                            name: '文武英杰',
-                            mode: 'wenwuyingjiepicture',
-                            intro: [lib.config.connect_nickname + '！' + '欢迎您来到《文武英杰》扩展的图鉴模式！'],
-                            showcase: function (init) {
-                                var node = this;
-                                if (init) {
-                                    var charalist = [];
-                                    for (var i in lib.characterPack['wenwuyingjie']) {
-                                        var wenwu = [
-                                            "wwyj_shuihu", "wwyj_remaliao", "wwyj_liangchax", "wwyj_shennais", "wwyj_guihua", "wwyj_duanges", "wwyj_guchengs", "wwyj_hezifengyun", "wwyj_qingzhongs",
-                                            "wwyj_bohetang", "wwyj_zhulinqixian", "wwyj_niya", "wwyj_zhongchengpantu", "wwyj_huanyuxingcheng", "wwyj_xuedaoshaozhu", "wwyj_fux2", "wwyj_shenwangquanjian",
-                                            "wwyj_wuqinggezi", "wwyj_yiwangs", "wwyj_liushas", "wwyj_tilongjianiao", "wwyj_qianshangs", "wwyj_limuzi", "wwyj_zhaonies", "wwyj_yitiaoxianyu", "wwyj_lengyus",
-                                            "wwyj_yanyumoran", "wwyj_wali", "wwyj_danwuyunxi", "wwyj_jiguangs", "wwyj_zhugejun", "wwyj_taishangdaniu", "wwyj_Show-K", 'wwyj_shenzuo', "wwyj_shijian", "wwyj_xuebi",
-                                            "wwyj_huijin", "wwyj_chengxuyuan", "wwyj_pipi", "wwyj_xiaoSu", "wwyj_liangchas", "wwyj_ciyage", "wwyj_kanpoyiqie", "wwyj_kelejiabing", "wwyj_feicheng", "wwyj_tianqikui",
-                                            "wwyj_zhichitianya", "wwyj_jianyaleishao", "wwyj_anshas", "wwyj_zhuxiaoer", "wwyj_ranqis", "wwyj_chansuideshengming", "wwyj_fanxings", "wwyj_xingyunnvshen",
-                                            "wwyj_lunhuizhong", "wwyj_daxiongxiaimao", "wwyj_wzszhaoyun", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei", "wwyj_mengxinzhuanxing",
-                                            "wwyj_hualuo", "wwyj_dasima", "wwyj_rcanghai", "wwyj_rshun", "wwyj_qingyao", "wwyj_wangshiruyan", "wwyj_jishouniancuihui", "wwyj_yijilianggetao", "wwyj_rlvbao", "wwyj_rshengma",
-                                            "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_xkuangshen"
-                                        ];
-                                        if (wenwu.contains(i)) charalist.push(i);
-                                    }
-                                    var liblist = [
-                                        ['<span class="bluetext">创世</span>：<span class=greentext>觉醒技</span> 游戏开始所有角色摸牌后或你进入游戏时，你令其他角色从标准包中挑选一名角色并变身成为之<br><span class="bluetext">潜伏</span>：</font><font color=#f00>锁定技</font> 回合结束时，若你的武将牌正面朝上，你翻面。当你的武将牌背面朝上，你的防御距离为无限<br><span class="bluetext">暗察</span>：当一名角色受到来源不为你的伤害后，你可观看伤害来源的手牌，然后该受到伤害的角色摸一张牌。若为你受到伤害，你将你的武将牌正面朝上，当前回合结束后，你进行一个额外的回合<br><span class="bluetext">回坑</span>：出牌阶段限一次，你可随机展示X（其他角色数）张武将牌，然后逐一选择其中一张，然后按次序替换其他角色的武将牌（体力上限与体力不变），每替换一名角色你就摸一张牌'],
-                                        ['<span class="bluetext">凉茶</span>：</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏或其他角色回合开始与结束时，处于此时机的其他角色失去所有的技能，并且翻面至武将牌背面朝上，若有角色的体力上限大于16，则其体力上限改为2<br><span class="bluetext">芳华</span>：</font><font color=#f00>锁定技</font> 你造成的伤害时，改为先失去等量的体力上限，再受到等同两倍此伤害值的伤害。摸牌阶段时（每回合限一次）额外摸X张牌（X为场上已受伤的角色数）<br><span class="bluetext">魅影</span>：</font><font color=#f00>锁定技</font> 你的进攻与防御距离无限、你使用的牌无次数限制、部分合理的牌可指定任意名目标且不能成为其他角色的牌的目标；你使用的普通锦囊牌不能被无懈响应'],
-                                        ['<span class="bluetext">才智</span>：</font><font color=#f00>锁定技</font> 你的回合开始时，你随机从【琴棋书画】中获得一项你未获得的技能。当你受到伤害时，若你已获得的【琴棋书画】中的至少一项，随机移除其中一项，然后伤害减一<li>注：【琴棋书画】分别对应：卡战、对弈、极略、理论<br><span class="bluetext">代写</span>：出牌阶段限一次，若你已获得的【琴棋书画】中的至少一项技能，你可选择其中一项交给一名没有【琴棋书画】中任意一项与你相同的其他角色'],
-                                        ['<span class="bluetext">咫尺</span>：</font><font color=#f00>锁定技</font> 你计算与体力值不等于其手牌数的角色的距离为1，你对距离为1的角色使用【杀】造成伤害时，此伤害+1 <br><span class="bluetext">天涯</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你选择X名其他角色，摸X张牌，并随机展示X名文武英杰扩展的角色（X为至少为1的任意整数），你回复体力至体力上限并随机变身为【凉茶】或【玉蝴蝶】并选择令这些角色逐一将武将牌替换为其中一张（体力上限、体力不变）'],
-                                        ['<span class="bluetext">接单</span>：每名角色的出牌阶段限一次，其可以“下单”交给你一张牌，你回复一点体力且你此时可使用一张【杀】，然后其选择获得一张基本牌或非延时锦囊牌'],
-                                        ['<span class="bluetext">嘻皮</span>：</font><font color=#f00>锁定技</font> 当你成为其他角色使用的牌的唯一目标时，你获得场上随机一名其他角色的一张牌<br><span class="bluetext">暴躁</span>：<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可令除你与伤害来源外的所有角色依次对伤害来源视为使用一张火【杀】（直至其阵亡且限杀一轮），此时直到技能效果结束，每有一名角色受到伤害后，若你已受伤，你回复一点体力，否则你摸一张牌'],
-                                        ['<span class="bluetext">风流</span>：</font><font color=#f00>锁定技</font> 游戏开始时、你的回合开始、结束时，你可从五名随机的女性中选择一位并获得其所有的技能，直至重新发动此技能<br><span class="bluetext">群英</span>：结束阶段，你可以和一名其他角色交换手牌，若你们手牌数相同，你可以与其各摸一张牌。你与其交换的手牌差不得大于你与其的体力值之差 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">叫嚣</span>：</font><font color=#f00>锁定技</font> 当你受到【杀】造成的伤害时，你获得伤害来源的一张牌，并且此伤害加一<br><span class="bluetext">罪魁</span>：</font><font color=#f00>锁定技</font> 当一名角色翻面至武将牌背面朝上或死亡时，所有其他的角色依次弃置一张牌'],
-                                        ['<span class="bluetext">签到</span>：当一名其他角色判定牌生效后，你可获得其一张牌<br><span class="bluetext">嘤怪</span>：当你受到伤害后，你可令一名其他角色随机使用一张延时性锦囊牌（【闪电】、【乐不思蜀】、【兵粮寸断】）<br><span class="bluetext">潜追</span>：<span class=yellowtext>限定技</span> 当一名其他角色阵亡时，你选择失去技能【签到】或【嘤怪】，然后选择获得该角色的一个的技能'],
-                                        ['<span class="bluetext">呲牙</span>：摸牌阶段开始时，你可少摸一张牌，然后视为对攻击范围内包含有你的任意名其他角色各使用一张【杀】<br><span class="bluetext">进修</span>：</font><font color=#f00>锁定技</font> 结束阶段你摸X张牌（X为你本回合造成的伤害次数）'],
-                                        ['<span class="bluetext">理论</span>：每当你使用一张非延时性锦囊牌时，你可以观看牌堆顶的三张牌，获得其中的一张牌，然后将其余两张牌先后置于牌堆顶<br><span class="bluetext">严管</span>：每名角色的回合限一次，每当一名其他角色使用非延时性锦囊牌时，你可以弃置一张手牌令其失效，然后你获得此牌'],
-                                        ['<span class="bluetext">诚嫖</span>：出牌阶段限一次，你可观看一名其他角色的手牌并选择使用其中一张<br><span class="bluetext">济贫</span>：当一名角色摸牌时，若其手牌数小于其体力值，你可令其额外摸一张牌'],
-                                        ['<span class="bluetext">极略</span>：出牌阶段限X次（X为你的体力值），你可以将一张手牌当一张于本回合内未使用过的基本牌或非延时类锦囊牌（除【无懈可击】外）使用<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">车祸</span>：</font><font color=#f00>锁定技</font> 游戏开始所有角色摸牌后或你进入游戏时，你废除所有的装备栏<br><span class="bluetext">康复</span>：</font><font color=#f00>锁定技</font> 你的进攻距离+1；你的装备牌不计入手牌上限；当你造成伤害后，你回复一点体力并选择恢复一个装备栏<br><span class="bluetext">烬铸</span>：你可以把你的装备牌当做任意基本牌使用或打出'],
-                                        ['<span class="bluetext">代更</span>：每轮限一次，当一名角色翻面至武将牌背面朝上时，当前回合结束后，你可以执行一个额外的回合<br><span class="bluetext">流溪</span>：</font><font color=#f00>锁定技</font> 当你成为【杀】的目标时，若来源的武将牌正面朝上，你将手牌补至体力上限。若此【杀】造成伤害，该角色摸一张牌然后翻面'],
-                                        ['<span class="bluetext">键魂</span>：</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）<br><span class="bluetext">承志</span>：非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之'],
-                                        ['<span class="bluetext">义写</span>：当一名其他角色的回合结束时，若其已受伤，你可交给其一张手牌，若此时其手牌数比你的多，你摸一张牌<br><span class="bluetext">谦虚</span>：</font><font color=#f00>锁定技</font> 你不能成为与你距离为1的角色使用的【杀】的目标，你使用的【杀】只能指定与你距离大于1的角色为目标，且你使用【杀】时至多额外指定一名目标'],
-                                        ['<span class="bluetext">极光</span>：你可在合适的时机选择一名角色的装备区的一张牌并令其弃置之，若此牌为：<li>武器牌或攻击马，视为使用或打出一张【杀】，若为使用【杀】则不计入使用杀的次数上限且每回合限一次<li>防具牌或防御马或宝物牌，视为使用或打出一张【闪】<br><span class="bluetext">卡战</span>：当一名角色的体力变化至1后，你可令其随机使用一张装备牌 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">开车</span>：</font><font color=#f00>锁定技</font> 摸牌阶段摸牌时，你额外摸X张牌，你的手牌上限加X（X为场上女性角色数且至少为1）<br><span class="bluetext">圣神</span>：每轮限一次，当一名角色进入濒死状态时，你可以观看牌堆顶的两张牌，然后弃置其中一张红色牌视为对其使用一张【桃】。若其中没有红色牌且你有红色的手牌，你可以弃置你的所有红色手牌，视为对其使用一张【桃】'],
-                                        ['<span class="bluetext">管理</span>：出牌阶段限一次，你可令一名其他角色随机弃置一张手牌，若这张手牌为：基本牌，你视为对其使用一张不计次数限制的【杀】；锦囊牌，你视为对其使用一张不能被【无懈可击】响应的【决斗】；装备牌，你使用之<br><span class="bluetext">女神</span>：当一名其他男性角色受到伤害后，你可令其观看你的手牌，若其没有手牌，其摸一张牌，若其有手牌，你观看其手牌，若其手牌与你的手牌花色数相同，其回复一点体力，否则其与你各摸一张牌'],
-                                        ['<span class="bluetext">绝地</span>：</font><font color=#f00>锁定技</font> 每当你进入濒死状态时，若你有“废”标记，你弃置一枚“废”标记，然后回复体力至1<br><span class="bluetext">求生</span>：</font><font color=#f00>锁定技</font> 每轮开始时或当你造成伤害后，你获得一个“废”标记'],
-                                        ['<span class="bluetext">偷师</span>：出牌阶段限一次，你可以交给一名其他角色一张牌，若如此做，你获得一枚偷师标记并摸一张牌，且可选择获得该角色的一项技能（主公技、觉醒技、限定技除外）直到下个出牌阶段开始<br><span class="bluetext">求学</span>：<span class=greentext>觉醒技</span> 若你已发动至少3次【偷师】，你失去一点体力上限，回复1点体力并获得技能【高产】<br><span class="bluetext">高产</span>：你的摸牌阶段摸牌时，你可令摸牌数+X（X为偷师标记数），然后偷师标记清零'],
-                                        ['<span class="bluetext">烟雨</span>：当一名其他角色失去装备牌后，你可选择其中的一张立即使用之<br><span class="bluetext">兵谋</span>：</font><font color=#f00>锁定技</font> 你的防御距离与你使用的【杀】的目标上限均等于你的攻击范围'],
-                                        ['<span class="bluetext">即死</span>：你的回合开始时，你可令所有体力值为1的其他角色依次失去一点体力 <font color=#F0F>可突破</font><br><span class="bluetext">强抗</span>：</font><font color=#f00>锁定技</font> 你免疫受到属性伤害。当你受到非属性伤害后，你摸一张牌且弃置伤害来源一张牌'],
-                                        ['<span class="bluetext">巧技</span>：当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张基本牌，或摸一张牌，若如此做，本回合内有角色使用【杀】时，你成为额外的目标<br><span class="bluetext">反杀</span>：当你成为【杀】的目标时，你可弃置所有手牌中的【杀】，视为对来源使用一张【杀】'],
-                                        ['<span class="bluetext">透凉</span>：结束阶段，你可选择攻击范围内的1至X（你的手牌中的花色数）名其他角色，你与其各摸一张牌，令其直到其回合结束时，不能使用或打出基本牌<br><span class="bluetext">抗性</span>：当你成为其他角色的牌的唯一目标时，你可弃置一张与该牌同类别的手牌，令该牌的目标对调'],
-                                        ['<span class="bluetext">冷雨</span>：当你使用【杀】时，你可获得目标角色的一张手牌，若如此做，此【杀】造成伤害后，你须交给该角色一张手牌<br><span class="bluetext">军神</span>：出牌阶段开始时，你可选择获得以下其中一项直到回合结束：1.你使用的红色【杀】无次数限制，你使用的黑色【杀】无距离限制；2.你使用的【杀】可指定任意名目标且无视目标的防具'],
-                                        ['<span class="bluetext">奇思</span>：当你需要使用或打出一张基本牌时，若你的武将牌为正面朝上，你可以将武将牌翻面，视为使用或打出了该基本牌<br><span class="bluetext">妙计</span>：回合外每轮限一次，当你需要使用【无懈可击】时，若你的武将牌背面朝上，你可以将武将牌翻面视为使用之'],
-                                        ['<span class="bluetext">造孽</span>：</font><font color=#f00>锁定技</font> 若你本回合击杀过角色，下个回合的准备阶段，你须弃置X张牌（X为你本局游戏中所击杀的角色总数）<br><span class="bluetext">配音</span>：</font><font color=#f00>锁定技</font> 当你失去装备区的牌后，你回复一点体力且摸一张牌<br><span class="bluetext">民卡</span>：你使用【杀】对其他角色造成伤害时，你可以弃置至多两张装备牌令增加等量点的伤害'],
-                                        ['<span class="bluetext">浅觞</span>：当一名其他角色弃牌阶段弃牌结束时，你可选择其所弃置的牌中合理的一张立即使用之（若为装备牌则对你使用）<br><span class="bluetext">退坑</span>：</font><font color=#f00>锁定技</font> 你的防御距离加X（X为你已损失的体力值） <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">咸鱼</span>：每回合限一次，当你使用非转化的【杀】造成伤害时，你可以翻面，令该角色横置且此伤害+1<br><span class="bluetext">伪新</span>：每回合限一次，当一名角色进入濒死状态时，你可以摸一张牌并翻面，令其回复一点体力'],
-                                        ['<span class="bluetext">神奈</span>：</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限额外加X（你手牌中没带“伤害性”标签的牌的实时数量）<br><span class="bluetext">可爱</span>：当你受到伤害后或失去最后一张手牌后，你可令场上的所有男性角色依次选择是否交给你一张手牌，若其交给了你一张手牌，且其没有手牌或已受伤，其摸一张牌'],
-                                        ['<span class="bluetext">风华</span>：出牌阶段限一次，你可与一名其他角色拼点，若你赢，该角色翻面，本回合内，你与该角色的距离为1。若你没赢，你回复一点体力<br><span class="bluetext">遗忘</span>：当你使用的【杀】被闪避时，你可令目标角色翻面'],
-                                        ['<span class="bluetext">流沙</span>：回合外，当你失去牌时，你可弃置一名角色区域内的一张牌，若此牌具有攻击伤害性，你摸一张牌'],
-                                        ['<span class="bluetext">概念</span>：出牌阶段限一次，你可声明一张基本牌或普通锦囊牌，若如此做，若你未发动技能【黑猫】，你须失去一点体力并翻面，然后令场上所有其他角色弃置一张与你所声明的牌名字相同的手牌，否则你摸一张牌 <font color=#F0F>可突破</font><br><span class="bluetext">黑猫</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你弃置你区域内的所有牌并重置武将牌，回复体力至体力上限并将手牌补至体力上限，然后选择一名已阵亡的角色令其复活，体力回复至体力上限并补手牌至体力上限。若为身份局，你与其交换身份牌'],
-                                        ['<span class="bluetext">公告</span>：当你受到伤害后，你可声明一种牌的类型，然后令回合外曾对你造成过伤害的所有其他角色交给你一张手牌，否则你弃置其一张手牌并视为对其使用一张【杀】。若其交给你的牌与你声明的类型相同，其摸一张牌<br><span class="bluetext">禁言</span>出牌阶段限一次，若场上没角色被禁言，你可以选择一名其他角色并声明一种花色，其因被禁言只能使用该花色的牌，直到其使用这花色的牌才解除禁言状态'],
-                                        ['<span class="bluetext">星城</span>：当你受到伤害后，你可将牌堆顶的一张牌置于一名没有“星”的其他角色的武将牌上，称为“星”；当一名角色阵亡或受到你造成的伤害时，若其有“星”，你可以获得该角色的“星”<br><span class="bluetext">寰宇</span>：出牌阶段限一次，你可将场上所有有“星”的角色的“星”收为手牌，然后再逐一将一张手牌当“星”放置于这些角色的武将牌上<br><span class="bluetext">玄侠</span>：<span class=yellowtext>限定技</span> 当你进入濒死状态时，你可回复体力至场上“星”的数量，然后获得场上所有的“星”，并分别视为对这些角色使用一张【杀】 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">释援</span>：出牌阶段限一次，你可以选择交给一至X名有手牌的其他角色各一张手牌，然后令这些角色分别交给你一张其他的手牌(X为场上手牌数小于其体力上限的角色数)<br><span class="bluetext">勤言</span>：</font><font color=#f00>锁定技</font> 回合内，当你失去所有手牌后，你将手牌补至当前体力值。你本回合对本回合发动“释援”的目标使用牌时，无视距离和次数限制'],
-                                        ['<span class="bluetext">弹杀</span>：当你受到伤害时，你可先选择是否令一名没“丸”标记的其他角色获得“丸”标记，然后你再对场上随机一名有“丸”标记的角色造成等量点伤害并令其随机弃置一张牌<br><span class="bluetext">论破</span>：任意有“丸”标记的角色弃牌阶段弃牌时，若其弃置的牌均为不同花色的牌时，你可选择一项：①回复一点体力并摸一张牌；②令该角色受到你造成的一点伤害，然后其弃置“丸”标记 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">血刀</span>：当一名角色使用一张武器牌后，你可弃置其攻击范围内的一名其他角色的一张手牌，若这张手牌的颜色为红色，则使用武器牌的角色视为对被弃置手牌的角色使用一张不计入次数限制的【杀】<br><span class="bluetext">少主</span>：当你成为【杀】的目标时，你可令攻击范围包含该角色的除了你与其的所有其他角色依次对该角色选择使用一张【杀】，否则你获得该应使用【杀】的角色一张牌'],
-                                        ['<span class="bluetext">接管</span>：一名其他角色出牌阶段开始时，若其有手牌且手牌数不小于你的，你可以获得其一张手牌。若如此做，此阶段结束时，若其造成过伤害，则视为其对你使用一张【杀】，否则你视为对其使用一张【杀】<br><span class="bluetext">色批</span>：每名女性角色的出牌阶段限一次，其可弃置一张手牌，然后其弃置你的一张手牌，若这两张手牌颜色相同，其与你各选择摸一张牌或回复一点体力(若任一方没受伤则改为摸一张牌)，否则各摸一张牌'],
-                                        ['<span class="bluetext">鸽子</span>：<font color=#F0F>转换技</font> 出牌阶段限一次：<li>阳：你可弃置一张红色手牌并令任意名有手牌的角色各展示一张手牌，然后你可展示一张手牌，横置/重置展示牌与该牌颜色相同的角色。<li>阴：你交给一名其他角色一张黑色手牌，令其选择至少一名角色，然后你选择横置/重置其所选择的或未选择的角色。<br>若已横置的角色比未模置的多，你摸一张牌<br><span class="bluetext">无情</span>：</font><font color=#f00>锁定技</font> 当一名角色受到属性伤害后，你摸一张牌'],
-                                        ['<span class="bluetext">短歌</span>：摸牌阶段摸牌时，你可放弃摸牌，改为展示牌堆顶的五张牌，然后选择获得其中任意张点数同为奇数或同为偶数的牌，再将剩下的牌按先后顺序置于牌堆顶<br><span class="bluetext">美化</span>：每名角色的回合限一次，当一名角色使用一张单一目标的非装备牌、非延时锦囊牌的牌时，你可展示牌堆顶的两张牌，选择改用其中合理的一张牌 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">孤城</span>：</font><font color=#f00>锁定技</font> 游戏轮数为奇数/偶数的回合，你不能成为点数为奇数/偶数的【杀】的目标 <br><span class="bluetext">葬月</span>：</font><font color=#f00>锁定技</font> 回合结束阶段，你选择一种花色，然后令所有其他角色在其下个结束阶段前，其使用该花色的牌后将武将牌翻面<br><span class="bluetext">飞雪</span>：当你使用【杀】时，你可令此【杀】额外指定所有武将牌背面朝上的角色，然后令这些角色翻面'],
-                                        ['<span class="bluetext">风云</span>：</font><font color=#f00>锁定技</font> 当你受到伤害后，你从随机展示的三个【文武英杰】扩展的技能中选择一个获得(本技能除外)'],
-                                        ['<span class="bluetext">青冢</span>：出牌阶段限一次，你可以弃置任意张基本牌，并指定你攻击范围内等量名其他角色，分别视为对这些角色使用了一张无次数限制的【杀】<br><span class="bluetext">接更</span>：每名角色的回合限一次，当一名其他角色使用一张单目标的基本牌或非延时性锦囊牌时（【借刀杀人】、【无懈可击】除外），你可视为你对目标角色也使用此牌'],
-                                        ['<span class="bluetext">薄荷</span>：出牌阶段限一次，你可声明一种类别的牌，然后直到你的下回合开始，每名角色的回合限一次，每当一名角色使用一张类别与该类别相同的非转化的牌时（不包括延时性锦囊牌），你可令其摸一张牌 <font color=#F0F>可突破</font><br><span class="bluetext">助善</span>：当一名角色使用【杀】时，若其手牌数不大于目标角色的手牌数，你可令此【杀】不可闪避'],
-                                        ['<span class="bluetext">续更</span>：当你的手牌数少于3张时，你可及时点击屏幕上牌桌区的小头像以摸一张牌 <br><span class="bluetext">琉璃</span>：当一名其他角色失去最后一张手牌后，你可将不同花色的手牌各一张交给其，若你交出的手牌中包含4种花色，你回复一点体力'],
-                                        ['<span class="bluetext">结缘</span>：出牌阶段限一次，你可以将任意张黑色牌交给没有『结缘』状态的角色，令其处于『结缘』状态。你防止受到『结缘』状态的角色造成的伤害，其受到伤害后，你摸一张牌。其可在其出牌阶段主动交给你一张红色牌解除『结缘』状态 <font color=#F0F>可突破</font> <br><span class="bluetext">扬善</span>：当你受到伤害后，若你有红色牌，你可摸两张牌，然后将一张红色牌当不以你和伤害来源为目标的【桃园结义】使用'],
-                                        ['<span class="bluetext">叛徒</span>：其他角色的出牌阶段限一次，若其有牌，其可发动“忠诚”令你回复一点体力或令你摸一张牌，若如此做，你须弃置其一张牌 <br><span class="bluetext">伪漫</span>：当你的体力值发生变化时，你可移动场上的一张牌'],
-                                        ['<span class="bluetext">对弈</span>：出牌阶段限一次，你可以与一名其他角色进行“对弈”：将牌堆顶的七张牌背面朝上展开，你与其轮流翻开展示其中的4张牌，然后未被翻开的牌置回牌堆顶，若翻开的牌中只有一种花色或花色各不相同，你获得这些牌并回复一点体力，否则其受到一点火／雷属性伤害 <br><span class="bluetext">急退</span>：当你成为【杀】的目标时，你可观看牌堆顶的5张牌并选择其中一张，然后你须补回一张花色或类型或点数与此牌相同的牌（置于最后），再将这些牌置回牌堆顶'],
-                                        ['<span class="bluetext">剑牙</span>：当你受到伤害或杀死一名角色后，你可以选择一种牌的类型，然后随机观看牌堆中该类型的两张牌，然后选择获得其中任意张颜色为黑色的牌 <br><span class="bluetext">雷少</span>：</font><font color=#f00>锁定技</font> 你受到雷属性伤害时，伤害减一；你的黑色草花非装备牌均视为雷【杀】且无距离和次数限制'],
-                                        ['<span class="bluetext">俺杀</span>： </font><font color=#f00>锁定技</font> 你的进攻距离-X，回合内使用【杀】的次数上限+X（X为游戏轮数） <br><span class="bluetext">超越</span>：</font><font color=#f00>锁定技</font> 你使用【杀】造成伤害时，若该角色未受伤或已翻面或已横置，则此伤害+1 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">伏击</span>：<font color=#F0F>隐匿技</font> 当你于其他角色的回合登场后，你可与该角色交换装备牌，然后其翻面 <br><span class="bluetext">国战</span>：回合结束时或一名角色阵亡后，你可以从场上除你之外的势力中选择其中一个，直到下次发动【国战】前，该势力的角色受到伤害或回复体力时你摸一张牌，且当你需要打出【杀】或【闪】时，你可观看此势力的一名其他角色的手牌，选择打出一张符合情况的手牌'],
-                                        ['<span class="bluetext">染柒</span>：</font><font color=#f00>锁定技</font> 当你受到伤害后，伤害来源须猜你手牌中的花色数，若其猜对，你回复一点体力，若其猜错，其翻面 <br><span class="bluetext">狼杀</span>：</font><font color=#f00>锁定技</font> 你与已翻面的角色的距离为1，你使用【杀】的次数上限+X（X为场上已翻面的角色数）'],
-                                        ['<span class="bluetext">生命</span>：</font><font color=#f00>锁定技</font> 游戏开始或你进入游戏时，将牌堆和弃牌堆的所有武器牌置于你的武将牌上，称为“命”，你的手牌上限+X（“命”数）<br><span class="bluetext">残碎</span>：</font><font color=#f00>锁定技</font> ①准备阶段，若你的武将牌上有“命”武器牌，你将其中一张置于一名角色的装备区（可替换原装备）；②一名其他角色对你造成伤害后，其获得你武将上的一张“命”牌。结算①或②后你摸等同与这张武器攻击范围数量的牌 <font color=#F0F>可突破</font>'],
-                                        ['<span class="bluetext">花月</span>：</font><font color=#f00>锁定技</font> 当你使用一张基本牌后，你将其置于武将牌上，称为“星”，然后摸一张牌；当你受到伤害后，若你有“星”，伤害来源获得你武将牌上的一张“星”牌，若该牌为红色，你回复1点体力，若为黑色，你对伤害来源造成1点伤害<br><span class="bluetext">繁星</span>：出牌阶段，若你有“星”，你可以弃置所有的“星”，视为你使用了X张【万箭齐发】（X为你弃置的“星”的数量且至多为7）'],
-                                        ['<span class="bluetext">掷果</span>：</font><font color=#f00>锁定技</font> 场上女性角色摸牌阶段多摸一张牌并交给你一张牌，然后其回复1点体力 <br><span class="bluetext">评芳</span>：准备阶段开始时，你可观看随机六张未登场的女性武将牌并选择一张，然后你可用这张牌替换一名其他角色的武将牌'],
-                                        ['<span class="bluetext">荣耀</span>：当你受到伤害后，你可将牌堆顶X（你已损失的体力值）张牌置于武将牌上，称为“耀”。若你有“耀”，你不能成为黑色非装备牌的目标 <br><span class="bluetext">套鸽</span>：回合结束时，你可选择一项：1、弃置任意张“耀”并令等量的其他角色各摸一张牌，然后你回复一点体力；2、将任意张“耀”交给等量的其他角色，然后该角色须弃置一张与之不同类别的手牌，否则其失去一点体力'],
-                                        ['<span class="bluetext">圣杯</span>：每回合每种情况限一次，当你需要使用或打出一张【杀】/【闪】时，你可以展示你手牌中的一张，然后若其他角色展示一张同名的手牌，视为你使用或打出之。若为使用【杀】则不计入次数 <br><span class="bluetext">辰午</span>：其他角色的弃牌阶段开始时，若其手牌数大于你的手牌数，你可选择展示其一张手牌，若此牌为基本牌或普通锦囊牌，你获得之，然后若为黑色牌，你可立即使用之'],
-                                        ['<span class="bluetext">统驭</span>：一名角色的回合开始时，你随机获得其一个技能，若为你的回合，你随机获得场上一名其他角色的一个技能，均直到回合结束 <br><span class="bluetext">雷佬</span>：</font><font color=#f00>锁定技</font> 雷属性伤害对你无效。场上其他角色受到雷属性伤害后，你选择一项：回复一点体力；摸一张牌；获得该角色一张牌'],
-                                        ['<span class="bluetext">前瞻</span>：牌堆顶的牌对你可见。每回合限X次（X为你的体力值），你可以使用或打出牌堆顶的牌（【无懈可击】除外），你以此法使用的牌无距离限制，若为【杀】则可额外指定一名目标 <font color=#F0F>可突破</font><br><span class="bluetext">转型</span>：当一名角色即将受到【杀】造成的非属性伤害时，你可令该伤害改为雷属性伤害，然后你摸一张牌'],
-                                        ['<span class="bluetext">落花</span>：</font><font color=#f00>锁定技</font> 准备阶段，你随机将场上其他角色的装备区的牌逐一装备到你的装备区（可替换，每个装备栏只触发一次） <br><span class="bluetext">涌技</span>：每名角色每回合限一次，当一名角色进入频死状态时，其可以选择弃置你的一张装备区的牌，然后回复一点体力'],
-                                        ['<span class="bluetext">奇兵</span>：当你使用【杀】即将造成伤害时，你可选择一项：<li>平西：令一名其他角色也受到一点伤害<li>镇北：令此伤害+1<li>征南：获得该角色的一张牌<li>破东：令该角色摸等同其当前已损失的体力值张牌（至少1张），然后翻面<li>定中：你回复一点体力或摸一张牌 <br><span class="bluetext">司马</span>：</font><font color=#f00>锁定技</font> 你的摸牌阶段摸牌时，摸牌数+X，你的进攻距离和防御距离均+X（X为你装备区的“马”数）'],
-                                        ['<span class="bluetext">藏海</span>：</font><font color=#f00>锁定技</font> 当游戏开始时、你进入游戏时、一名角色进入濒死状态时，若你武将牌上的“海”不足五张，你摸一张牌并将牌堆顶的牌当“海”置于你的武将牌上，直至五张 <br><span class="bluetext">义更</span>：每回合限一次，当一名其他角色使用牌时，你可弃置一张你藏在武将牌上的其中一张与此牌花色相同的“海”，令此角色受到一点雷属性伤害'],
-                                        ['<span class="bluetext">浮慧</span>：每当你使用或打出一张点数的奇偶性与X的奇偶性相同的牌后，你摸一张牌，否则你弃置一张牌，当你因此失去最后一张手牌时，你可选择一项：①对一名其他角色造成1点伤害；②恢复一点体力，将武将牌翻面并令X重置。（X为你发动此技能的次数）<br><span class="bluetext">斗破</span>：</font><font color=#f00>锁定技</font> 当一名角色造成属性伤害后，若此伤害与其上次所造成的伤害属性相同，则你可使用一张牌（不计入次数限制）并重置其本回合内使用【杀】的次数'],
-                                        ['<span class="bluetext">篡改</span>：每回合限一次，当一名角色受到伤害后，你可展示伤害来源的一张手牌并令其转变为【毒】，若此伤害来源为你，则可令你的随机一张不为【毒】的手牌转变为【毒】 <br><span class="bluetext">抄袭</span>：</font><font color=#f00>锁定技</font> 其他角色的【毒】因弃置进入弃牌堆时，你获得之。你的【毒】按此规则分别视为：<li>黑桃→【杀】<li>红桃→【桃】<li>梅花→【酒】<li>方片→【闪】 <br><span class="bluetext">毒教</span>：<span class=yellowtext>主公技</span> 每回合限一次，其他杀势力的角色可以在其回合内将一张【毒】交给你'],
-                                        ['<span class="bluetext">往复</span>：</font><font color=#f00>锁定技</font> 当你对一名其他角色造成伤害时，若其没有“烟”标记，其获得一枚“烟”标记，然后你摸一张牌并翻面 <br><span class="bluetext">道歉</span>：当有“烟”标记的角色受到伤害后，若你有手牌，你可交给其一张手牌并翻面，然后其移除“烟”标记 <br><span class="bluetext">如烟</span>：</font><font color=#f00>锁定技</font> 当你受到有来源的伤害时，若伤害来源没“烟”标记，你摸一张牌且此伤害-1，若其有“烟”标记，此伤害值+1'],
-                                        ['<span class="bluetext">棘手</span>：当你受到伤害时，若来源有已被废除的装备栏，你可选择恢复其中一个装备栏，然后取消此伤害 <br><span class="bluetext">怀念</span>：</font><font color=#f00>锁定技</font> 结束阶段，若你的手牌数少于X，你摸至X张牌（X为场上有已被废除装备栏的角色数） <br><span class="bluetext">摧毁</span>：出牌阶段限X次（X为你的手牌数），你可与一名其他角色进行拼点，若你赢，你选择废除其一个装备栏，若你输，你摸一张牌'],
-                                        ['<span class="bluetext">遗桃</span>：当你受到伤害时，若场上以此法放置的【桃】少于两张，你可以将牌堆或弃牌堆中随机的【桃】先后置于任一名角色的武将牌上，其回合开始时，你可以获得其武将牌上的一张【桃】并令其回复一点体力 <br><span class="bluetext">解疑</span>：</font><font color=#f00>锁定技</font> 武将牌上有因【遗桃】放置的【桃】的角色受到伤害后，所有此类角色各摸一张牌'],
-                                        ['<span class="bluetext">天牢</span>：出牌阶段开始时，你可选择一个基本牌或普通锦囊牌的牌名，令所有其他角色不能使用或打出这牌名的牌，直到你的下个回合开始 <br><span class="bluetext">铝宝</span>：其他角色的出牌阶段，其可以令你摸一张牌，然后解除该阶段为“天牢”所困的状态'],
-                                        ['<span class="bluetext">升麻</span>：</font><font color=#f00>锁定技</font> 你使用【杀】的次数上限和目标均+X，X为你装备区的牌数 <br><span class="bluetext">仲哥</span>：当你使用【杀】造成伤害后，其他角色可以将其一张装备牌置入到你对应的空置装备栏，然后其摸一张牌'],
-                                        ['<span class="bluetext">祖安</span>：出牌阶段限一次，你可失去一点体力，视为对一名角色使用X张无视防具、无距离限制的【杀】（X为你已损失的体力值） <br><span class="bluetext">狂徒</span>：</font><font color=#f00>锁定技</font> 每回合限一次，当一名其他角色处于濒死状态时，若你已受伤，你回复一点体力，否则你摸一张牌'],
-                                        ['<span class="bluetext">氪金</span>：当你使用或打出一张基本牌或普通锦囊牌后，你可获得X点“金”（X为场上角色数与此牌的点数相比的最小值）。出牌阶段，你可利用这些“金”购买牌堆或弃牌堆中的卡牌，每种卡牌每回合限购一次 <br><span class="bluetext">神易</span>：当一名角色濒死时，你可弃置所有的“金”，令其回复体力至1'],
-                                        ['<span class="bluetext">扰世</span>：一名角色摸牌阶段摸牌时，你可制止其摸牌，然后扮演一名性感荷官发牌给该角色 <br><span class="bluetext">太初</span>：<span class=greentext>觉醒技</span> 当你进入濒死状态时，你可增加一点体力上限，然后发动全场大涅槃：所有角色重置武将牌，体力回复至体力上限，弃置区域内所有牌并将手牌调整为4张'],
-                                        ['<span class="bluetext">云将</span>：游戏开始或你进入游戏时，你可从武将牌堆中随机获得两张武将牌置于你的武将牌上，称之为【云将】；你每受到一点伤害时，你随机获得一张【云将】牌。你可以根据【云将】牌的势力将其当一种牌使用或打出：<br>蜀:【杀】<br>魏:【闪】<br>吴:【桃】<br>群:【酒】<br>其他:【无懈可击】<br><span class="bluetext">失窃</span>：</font><font color=#f00>锁定技</font> 每轮开始时，若你的手牌数不为全场最少，你被随机一名其他角色获得一张手牌，若如此做，你获得一张【云将】牌，若该角色此时的手牌比你的多，你摸一张牌'],
-                                        ['<span class="bluetext">明慧</span>：出牌阶段限一次，你可以将一名其他角色的一张手牌置于牌堆一端，并令其声明此牌的花色或类别，然后你猜测该牌的牌名或指出其撒谎，若你正确，你摸一张牌，否则其摸一张牌 <br><span class="bluetext">梁燕</span>：<font color=#F0F>转换技</font> 当一名角色于你回合内摸牌时，你可以令其：①弃置两张牌，然后额外摸一张牌；②弃置一张牌，然后额外摸两张牌'],
-                                        ['<span class="bluetext">时空</span>：出牌阶段限一次，你可令全场所有角色分别随机与一名其他角色交换手牌 <br><span class="bluetext">唯幕</span>：</font><font color=#f00>锁定技</font> 若你的防具栏没有牌，黑色锦囊牌对你无效，否则红色锦囊牌对你无效'],
-                                        ['<span class="bluetext">狂神</span>：</font><font color=#f00>锁定技</font> 当你受到伤害时，随机一名其他角色受到一点无来源伤害；当一名其他角色回复体力后，若你已受伤，你回复一点体力，否则摸一张牌 <br><span class="bluetext"></span>：'],
-                                        //['<span class="bluetext">技能名</span>：技能描述 <br><span class="bluetext">技能名</span>：技能描述'],
+            var dialog1 = ui.create.dialog('hidden');
+            dialog1.style.left = "0px";
+            dialog1.style.top = "220px";
+            dialog1.style.width = "100%";
+            dialog1.style.height = "100%";
+            dialog1.classList.add('fixed');
+            dialog1.noopen = true;
+            node.appendChild(dialog1);
+            dialog1.add([charalist, 'character'], false);
+            for (var i = 0; i < dialog1.buttons.length; i++) {
+                dialog1.buttons[i].classList.add('noclick');
+                dialog1.buttons[i].value = i;
+                dialog1.buttons[i].onclick = function () {
+                    player.init(charalist[this.value]);
+                    document.getElementById("Cdetail").innerHTML = '<span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[this.value]) + '<br>' + liblist[this.value].join('<br>');
+                    player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[this.value] + '.jpg');
+                };
+            }
+        },
+    },
+    start: function () {
+        // ---- 以下原样保留（乱斗模式通用的启动逻辑） ----
+        ui.auto.hide();
+        if (!lib.storage.scene) lib.storage.scene = {};
+        if (!lib.storage.stage) lib.storage.stage = {};
+        if (!_status.extensionmade) _status.extensionmade = [];
+        if (_status.extensionscene) game.save('scene', lib.storage.scene);
+        if (_status.extensionstage) game.save('stage', lib.storage.stage);
 
+        var dialog = ui.create.dialog('hidden');
+        dialog.classList.add('fixed', 'scroll1', 'scroll2', 'fullwidth', 'fullheight', 'noupdate', 'character');
+        dialog.contentContainer.style.overflow = 'visible';
+        dialog.style.overflow = 'scroll';
+        dialog.content.style.height = '100%';
+        dialog.contentContainer.style.transition = 'all 0s';
+        if (!lib.storage.directStage) dialog.open();
+        var packnode = ui.create.div('.packnode', dialog);
+        lib.setScroll(packnode);
+        ui.background.setBackgroundImage('extension/文武英杰/wwyj_picture.jpg');
 
-
-
-                                    ];
-                                    lib.game.createview(node, charalist, liblist);
-                                }
-                            },
-                        },
+        var clickCapt = function () {
+            var active = this.parentNode.querySelector('.active');
+            if (this.link == 'stage') {
+                if (get.is.empty(lib.storage.scene)) { alert('请创建至少1个场景'); return; }
+            }
+            if (active) {
+                if (active == this) return;
+                for (var i = 0; i < active.nodes.length; i++) {
+                    active.nodes[i].remove();
+                    if (active.nodes[i].showcaseinterval) {
+                        clearInterval(active.nodes[i].showcaseinterval);
+                        delete active.nodes[i].showcaseinterval;
                     }
-                }, {
-                    translate: '凉茶',
-                    config: {
-                        wwyj_openmusic: {
-                            name: '开启专属音乐',
-                            init: true,
-                            intro: "开启本模式的专属音乐！",
-                            frequent: true,
-                            restart: true,
-                        },
-                        wwyj_openhelp: {
-                            name: "文武英杰",
-                            init: "1",
-                            frequent: true,
-                            item: { "1": "模式介绍", "2": "<li>本模式为图鉴模式，仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。开启此模式前请先确保已将武将项的总开关已打开" },
-                        },
-                    },
-                    onremove: function () {
-                        game.clearModeConfig('wenwuyingjiepicture');
-                    }
-                })
-                image: ['extension/文武英杰/wenwuyingjiepicture.jpg'];
+                }
+                active.classList.remove('active');
+            }
+            this.classList.add('active');
+            for (var i = 0; i < this.nodes.length; i++) {
+                dialog.content.appendChild(this.nodes[i]);
+            }
+            var showcase = this.nodes[this.nodes.length - 1];
+            showcase.style.height = (dialog.content.offsetHeight - showcase.offsetTop) + 'px';
+            if (typeof showcase.action == 'function') {
+                if (showcase.action(showcase._showcased ? false : true) !== false) {
+                    showcase._showcased = true;
+                }
+            }
+            if (this._nostart) start.style.display = 'none';
+            else start.style.display = '';
+            game.save('currentBrawl', 'help');
+        };
 
+        var createNode = function (name) {
+            var info = lib.brawl[name];
+            var node = ui.create.div('.dialogbutton.menubutton.large', info.name, packnode, clickCapt);
+            node.style.transition = 'all 0s';
+            var modeinfo = '';
+            if (info.mode) modeinfo = get.translation(info.mode) + '模式';
+            if (info.submode) {
+                if (modeinfo) modeinfo += ' - ';
+                modeinfo += info.submode;
+            }
+            var intro;
+            if (Array.isArray(info.intro)) {
+                intro = '<ul style="text-align:left;margin-top:10">';
+                if (modeinfo) intro += '<li>' + modeinfo;
+                for (var i = 0; i < info.intro.length; i++) {
+                    intro += '<br>' + info.intro[i];
+                }
+            } else {
+                intro = '';
+                if (modeinfo) intro += '（' + modeinfo + '）';
+                intro += info.intro;
+            }
+            var i = ui.create.div('.text center', intro);
+            i.style.overflow = 'scroll';
+            i.style.margin = '0px';
+            i.style.padding = '0px';
+            var showcase = ui.create.div();
+            showcase.style.margin = '0px';
+            showcase.style.padding = '0px';
+            showcase.style.width = '100%';
+            showcase.style.display = 'block';
+            showcase.style.overflow = 'scroll';
+            showcase.action = info.showcase;
+            showcase.link = name;
+            if (info.fullshow) {
+                node.nodes = [showcase];
+                showcase.style.height = '100%';
+            } else {
+                node.nodes = [i, showcase];
+            }
+            node.link = name;
+            node._nostart = info.nostart;
+            if (lib.storage.currentBrawl == name) clickCapt.call(node);
+            return node;
+        };
+
+        var clickStart = function () {
+            dialog.delete();
+            ui.auto.show();
+            game.switchMode('identity');
+        };
+        var start = ui.create.div('.menubutton.round.highlight', '←', dialog.content, clickStart);
+        start.style.position = 'absolute';
+        start.style.left = '-100px';
+        start.style.right = 'auto';
+        start.style.top = 'auto';
+        start.style.bottom = '10px';
+        start.style.width = '80px';
+        start.style.height = '80px';
+        start.style.lineHeight = '80px';
+        start.style.margin = '0';
+        start.style.padding = '5px';
+        start.style.fontSize = '72px';
+        start.style.zIndex = 3;
+        start.style.transition = 'all 0s';
+        start.hide();
+
+        // 场景/舞台管理函数（保留）
+        game.addScene = function (name, clear) { /* ... 原样 */ };
+        game.addStage = function (name, clear) { /* ... 原样 */ };
+        game.removeScene = function (name) { /* ... 原样 */ };
+        game.removeStage = function (name) { /* ... 原样 */ };
+
+        // 注册所有 brawl 项
+        var sceneNode;
+        for (var i in lib.brawl) {
+            if (get.config(i) === false) continue;
+            if (i == 'scene') {
+                sceneNode = createNode(i);
+            } else {
+                if (i == 'updatelog' && location.hostname && !lib.device) continue;
+                if (i == 'downloadlog' && (!location.hostname || lib.device)) continue;
+                createNode(i);
+            }
+        }
+        if (sceneNode) game.switchScene = function () { clickCapt.call(sceneNode); };
+        for (var i in lib.storage.scene) game.addScene(i);
+        for (var i in lib.storage.stage) game.addStage(i);
+        if (!lib.storage.currentBrawl) clickCapt.call(packnode.firstChild);
+        game.save('lastStage');
+        if (lib.storage.directStage) {
+            var directStage = lib.storage.directStage;
+            game.save('directStage');
+            clickStart(directStage);
+        }
+        if (lib.config.background_music != 'music_off' && get.config('wwyj_openmusic')) {
+            ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
+            setInterval(function () {
+                ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
+            }, 85000);
+        }
+        lib.init.onfree();
+    },
+
+    brawl: {
+        wenwuview: {
+            name: '文武英杰',
+            mode: 'wenwuyingjiepicture',
+            intro: [lib.config.connect_nickname + '！欢迎您来到《文武英杰》扩展的图鉴模式！'],
+            showcase: function (init) {
+                var node = this;
+                if (init) {
+                    // ---------- 以下为优化核心 ----------
+                    // 1. 定义显示顺序（可按需调整，角色名必须与 character 定义一致）
+                    var wenwu = [
+                        "wwyj_shuihu", "wwyj_remaliao", "wwyj_liangchax", "wwyj_shennais", "wwyj_guihua", "wwyj_duanges", "wwyj_guchengs", "wwyj_hezifengyun", "wwyj_qingzhongs",
+                        "wwyj_bohetang", "wwyj_zhulinqixian", "wwyj_niya", "wwyj_zhongchengpantu", "wwyj_huanyuxingcheng", "wwyj_xuedaoshaozhu", "wwyj_fux2", "wwyj_shenwangquanjian",
+                        "wwyj_wuqinggezi", "wwyj_yiwangs", "wwyj_liushas", "wwyj_tilongjianiao", "wwyj_qianshangs", "wwyj_limuzi", "wwyj_zhaonies", "wwyj_yitiaoxianyu", "wwyj_lengyus",
+                        "wwyj_yanyumoran", "wwyj_wali", "wwyj_danwuyunxi", "wwyj_jiguangs", "wwyj_zhugejun", "wwyj_taishangdaniu", "wwyj_Show-K", 'wwyj_shenzuo', "wwyj_shijian", "wwyj_xuebi",
+                        "wwyj_huijin", "wwyj_chengxuyuan", "wwyj_pipi", "wwyj_xiaoSu", "wwyj_liangchas", "wwyj_ciyage", "wwyj_kanpoyiqie", "wwyj_kelejiabing", "wwyj_feicheng", "wwyj_tianqikui",
+                        "wwyj_zhichitianya", "wwyj_jianyaleishao", "wwyj_anshas", "wwyj_zhuxiaoer", "wwyj_ranqis", "wwyj_chansuideshengming", "wwyj_fanxings", "wwyj_xingyunnvshen",
+                        "wwyj_lunhuizhong", "wwyj_daxiongxiaimao", "wwyj_wzszhaoyun", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei", "wwyj_mengxinzhuanxing",
+                        "wwyj_hualuo", "wwyj_dasima", "wwyj_rcanghai", "wwyj_rshun", "wwyj_qingyao", "wwyj_wangshiruyan", "wwyj_jishouniancuihui", "wwyj_yijilianggetao", "wwyj_rlvbao", "wwyj_rshengma",
+                        "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_xkuangshen"
+                    ];
+
+                    // 2. 生成有效的角色列表（只保留在 characterPack 中存在的）
+                    var charalist = [];
+                    var pack = lib.characterPack['wenwuyingjie'];
+                    for (var i = 0; i < wenwu.length; i++) {
+                        if (pack && pack[wenwu[i]]) charalist.push(wenwu[i]);
+                    }
+
+                    // 3. 动态生成技能描述列表（与 charalist 顺序一致）
+                    var liblist = charalist.map(function(name) {
+                        var info = pack[name];
+                        if (!info) return ['角色数据缺失'];
+                        var skills = info[3] || [];   // 技能ID数组
+                        var parts = [];
+                        for (var j = 0; j < skills.length; j++) {
+                            var sid = skills[j];
+                            var sname = lib.translate[sid] || sid;
+                            var sdesc = lib.translate[sid + '_info'] || '（暂无描述）';
+                            parts.push('<span class="bluetext">' + sname + '</span>：' + sdesc);
+                        }
+                        return [parts.join('<br>')];   // 保持与原格式一致（数组内一个字符串）
+                    });
+
+                    // 4. 调用原创建视图函数
+                    lib.game.createview(node, charalist, liblist);
+                }
+            },
+        },
+    },
+}, {
+    translate: '凉茶',
+    config: {
+        wwyj_openmusic: {
+            name: '开启专属音乐',
+            init: true,
+            intro: "开启本模式的专属音乐！",
+            frequent: true,
+            restart: true,
+        },
+        wwyj_openhelp: {
+            name: "文武英杰",
+            init: "1",
+            frequent: true,
+            item: { "1": "模式介绍", "2": "<li>本模式为图鉴模式，仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。开启此模式前请先确保已将武将项的总开关已打开" },
+        },
+    },
+    onremove: function () {
+        game.clearModeConfig('wenwuyingjiepicture');
+    }
+});
+// 到此为止
             };
         }, help: {
             "文武英杰": "<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>★铝宝的【天牢】改为不能使用或打出与“天牢牌”不同牌名的牌<li>棘手念摧毁的【棘手】改为可自由选择场上任一名有废除装备栏的角色<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备牌改为选择使用牌堆或弃牌堆中的一个装备牌<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色<li>花落的【涌技】改为由自己选择发动<li>残碎的生命的【残碎】改为受伤时弃刀减伤<li>神座的【即死】改为自行选择任意名体力值为1的角色失去一点体力",

@@ -1,0 +1,28 @@
+
+
+/*名将杀*/
+.player > .camp-wrap[data-camp="haitu_fire"] > .camp-name {
+    text-shadow:
+        1px 1px 0px #4a4b5f,
+        -1px -1px 0px #4a4b5f,
+        1px -1px 0px #4a4b5f,
+        -1px 1px 0px #4a4b5f;
+    color: #ff0000; /* 纯鲜红 */
+}
+.player > .camp-wrap[data-camp="haitu_fire"] > .camp-back {
+    background-image: url("../image/decadeUI-image/ui_s1_fight_guojia_haitu_fire.png");
+    width: 100%;
+    height: 90%;
+    top: 0px;
+    left: 0px;
+    background-size: 100% 100%;
+    pointer-events: none;
+}
+.player > .camp-wrap[data-camp="haitu_water"] > .camp-name {
+    text-shadow:
+        1px 1px 0px #4a4b5f,
+        -1px -1px 0px #4a4b5f,
+        1px -1px 0px #4a4b5f,
+        -1px 1px 0px #4a4a5f;
+    color: #87CEEB; /* 天蓝色 */
+}

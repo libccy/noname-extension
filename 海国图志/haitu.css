@@ -1,0 +1,86 @@
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_hua"]>.camp-back {
+	/* 使用中国传统的朱红到浅朱红渐变  */
+	background: linear-gradient(to bottom, rgb(255, 34, 0), rgb(255, 102, 51));
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_hua"]>.camp-name {
+	/* 使用中国传统的黛紫色彩效果  */
+	text-shadow: 0 0 5px rgb(153, 0, 204), 0 0 10px rgb(153, 0, 204), 0 0 15px rgb(153, 0, 204);
+}
+
+/*十周年样式＆手杀样式一（红蓝交融）*/
+.player>.camp-wrap[data-camp="haitu_mad"]>.camp-back {
+	background: linear-gradient(to bottom,
+			rgb(255, 0, 0),
+			/* 红色 */
+			rgb(128, 0, 128),
+			/* 紫红色，红蓝中间色 */
+			rgb(0, 0, 255)
+			/* 蓝色 */
+		);
+}
+
+/*手杀样式二（红蓝交融）*/
+.player>.camp-wrap[data-camp="haitu_mad"]>.camp-name {
+	text-shadow: 0 0 5px rgb(255, 0, 0),
+		/* 红色 */
+		0 0 10px rgb(128, 0, 128),
+		/* 紫红色，红蓝中间色 */
+		0 0 15px rgb(0, 0, 255);
+	/* 蓝色 */
+}
+
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_water"]>.camp-back {
+	background: linear-gradient(to bottom, rgb(173, 216, 230), rgb(173, 216, 230));
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_water"]>.camp-name {
+	text-shadow: 0 0 5px rgb(173, 216, 230), 0 0 10px rgb(173, 216, 230), 0 0 15px rgb(173, 216, 230);
+}
+
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_fire"]>.camp-back {
+	background: linear-gradient(to bottom, rgb(255, 0, 0), rgb(204, 0, 0));
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_fire"]>.camp-name {
+	text-shadow: 0 0 5px rgb(255, 50, 50), 0 0 10px rgb(255, 50, 50), 0 0 15px rgb(255, 50, 50);
+}
+
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_soil"]>.camp-back {
+	background: linear-gradient(to bottom, rgb(255, 223, 0), rgb(230, 173, 0));
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_soil"]>.camp-name {
+	text-shadow: 0 0 5px rgb(255, 180, 0), 0 0 10px rgb(255, 180, 0), 0 0 15px rgb(255, 180, 0);
+}
+
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_air"]>.camp-back {
+	background: linear-gradient(to bottom, #00FF7F, #00E676);
+	/* 将原来的渐变色改为科技感绿色系渐变 */
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_air"]>.camp-name {
+	text-shadow: 0 0 5px #00FF99, 0 0 10px #00FF99, 0 0 15px #00FF99;
+	/* 将原来的文字阴影颜色改为科技感绿色系 */
+}
+/*鎏银 深调高区分银渐变 十周年样式&手杀样式一*/
+.player>.camp-wrap[data-camp="haitu_none"]>.camp-back {
+    background: linear-gradient(to bottom, #B8C2CC, #9FAFBF);
+    /* 加深银灰、远离纯白，明暗层次清晰，鎏银质感稳重 */
+}
+
+/*鎏银 高亮银辉文字阴影 手杀样式二*/
+.player>.camp-wrap[data-camp="haitu_none"]>.camp-name {
+    text-shadow: 0 0 5px #C5D1DD, 0 0 10px #B2C2D2, 0 0 15px #9FB3C7;
+    /* 加深暗影基调，和白色底色强区分，发光不泛白 */
+}

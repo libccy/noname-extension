@@ -1,0 +1,9 @@
+/*十周年样式＆手杀样式一*/
+.player>.camp-wrap[data-camp="jy_lie"]>.camp-back {
+	background: linear-gradient(to bottom, rgb(204, 153, 0), rgb(153, 102, 0));
+}
+
+/*手杀样式二*/
+.player>.camp-wrap[data-camp="jy_lie"]>.camp-name {
+	text-shadow: 0 0 5px rgb(180, 100, 0), 0 0 10px rgb(180, 100, 0), 0 0 15px rgb(180, 100, 0);
+}

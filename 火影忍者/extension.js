@@ -1,6 +1,6 @@
 game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
-        name: "火影忍者", editable: false, content: function (config, pack) {
+        name: "火影忍者", content: function (config, pack) {
 
             // ---------------------------------------group------------------------------------------//
 
@@ -567,7 +567,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         content: function () {
                             'step 0'
                             event.targets = game.filterPlayer(function (current) {
-                                return current.isTurnedOver() && current != player;
+                                return current.isTurnedOver() && !trigger.targets.contains(current) && current != player;
                             });
                             event.targets.sort(lib.sort.seat);
                             'step 1'
@@ -985,7 +985,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             }
 
-//==============================//
+            //==============================//
             if (lib.brawl) {
                 lib.brawl.hyrzBrawlMode = (function () {
                     var brawl = {
@@ -1459,7 +1459,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var imageContainer = ui.create.div('.hyrz_detail_header_container.hyrz_cover_image_container');
 
                 var coverImage = ui.create.div('.hyrz_detail_header.hyrz_cover_image');
-                coverImage.style.backgroundImage = 'url(' + lib.assetURL + 'extension/火影忍者/hyrz_sidaihuoying.jpg)';
+                coverImage.style.backgroundImage = 'url(' + lib.assetURL + 'extension/火影忍者/hyrz_huoyingrenzhe.jpg)';
 
                 imageContainer.addEventListener('click', function () {
 
@@ -1497,7 +1497,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
-                
+
 
                 var currentDetailPage = null;
                 var currentCodePage = null;
@@ -2615,6 +2615,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 },
             };
+            Reflect.deleteProperty(lib.extensionMenu['extension_火影忍者'], 'edit');
             delete lib.extensionMenu.extension_火影忍者.delete;
             //lib.extensionMenu['extension_' + '火影忍者'].delete = { name: '删除此扩展', clear: true, };
 
@@ -2658,7 +2659,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_ban": ["male", "hyrz_xiao", 2, ["huoying_zhenxing", "huoying_xinxuzuo", "huoying_yiyuan"], []],
                             "huoying_dayemu": ["male", "hyrz_ren", 3, ["huoying_chendun", "huoying_tiancheng", "huoying_feixian"], []],
                             "huoying_kai": ["male", "hyrz_huo", 5, ["huoying_bamen", "huoying_resizhan"], []],
-                            "huoying_dou": ["male", "hyrz_ren", 3, ["huoying_yizhi", "huoying_xinyiliao", "huoying_zhuansheng"], []],
+                            "huoying_dou": ["male", "hyrz_ren", 3, ["huoying_yizhi", "huoying_xinyiliao"], []],
                             "huoying_kakasi": ["male", "hyrz_huo", 3, ["huoying_leique", "huoying_fuzhi", "huoying_kkxkaiyan"], []],
                             "huoying_chutian": ["female", "hyrz_huo", 3, ["huoying_baiyan", "huoying_rouquan"], []],
                             "huoying_daitu": ["male", "hyrz_xiao", 3, ["huoying_xuhua", "huoying_shenwei", "huoying_xianyan"], []],
@@ -2681,7 +2682,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "huoying_jiaodu": ["male", "hyrz_xiao", 3, ["huoying_yuanyu", "huoying_zhongquan"], []],
                             "huoying_kanjiulang": ["male", "hyrz_ren", 3, ["huoying_newkuilei", "huoying_chengyi"], []],
                             "huoying_tuanzang": ["male", "hyrz_huo", 3, ["huoying_huomeng", "huoying_duoyang", "huoying_kongbo", "huoying_sixiang"], []],
-                            "huoying_jue": ["male", "hyrz_xiao", 3, ["huoying_baozi", "huoying_fuyou", "huoying_yinmou"], []],
+                            "huoying_jue": ["male", "hyrz_xiao", 3, ["huoying_baozi", "huoying_fuyou"], []],
                             "huoying_huiye": ["female", "hyrz_xiao", 3, ["huoying_tianyu", "huoying_huigu", "huoying_juneng"], []],
                             "huoying_didala": ["male", "hyrz_xiao", 3, ["huoying_baodun", "huoying_zibao", "huoying_feiniao"], []],
                             "huoying_daluyi": ["male", "hyrz_ren", 4, ["huoying_landun", "huoying_bizhu"], []],
@@ -3381,7 +3382,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 content: function () {
                                     'step 0'
                                     event.targets = game.filterPlayer(function (current) {
-                                        return current.isTurnedOver() && !trigger.targets.contains(current);
+                                        return current.isTurnedOver() && !trigger.targets.contains(current) && current != player;
                                     });
                                     game.playhyrz(['huoying_bingdun1', 'huoying_bingdun2'].randomGet());
                                     player.say('别想能在我的术里逃出去');
@@ -4728,7 +4729,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     source: "damage",
                                 },
                                 filter: function (event, player) {
-                                    return (event.source != undefined);
+                                    return event.source && !player.hasSkill('huoying_zhoushu2');
                                 },
                                 check: function (event, player) {
                                     return get.attitude(player, event.player) < 0;
@@ -7879,6 +7880,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 intro: {
                                     content: "limited",
                                 },
+                                derivation: ['huoying_yinmou'],
                                 content: function () {
                                     'step 0'
                                     var chat = ['忍界的变化术，无人比得上我', '连感知型的忍者也分辨不出我的变化'].randomGet();
@@ -7903,19 +7905,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     };
                                     'step 1'
                                     if (result.bool) {
-                                        player.init(result.links[0], 'huoying_fuyou');
+                                        player.init(result.links[0]);
                                         player.hp = player.maxHp;
                                         player.draw(2);
-                                        player.update();
-                                    } else {
-                                        event.finish();
-                                    }
-                                    'step 2'
-                                    var num = game.countPlayer(function (current) {
-                                        return current != player && current.name == 'huoying_huiye';
-                                    });
-                                    if (num == 0) {
-                                        player.addSkill("huoying_yinmou");
+                                        var num = game.countPlayer(function (current) {
+                                            return current != player && current.name == 'huoying_huiye';
+                                        });
+                                        if (num == 0) {
+                                            player.addSkill("huoying_yinmou");
+                                            player.update();
+                                        } else {
+                                            player.update();
+                                            event.finish();
+                                        }
                                     } else {
                                         event.finish();
                                     }
@@ -10770,7 +10772,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     content: "limited",
                                 },
                                 content: function () {
-                                   
+
                                     game.delay();
                                     player.storage.huoying_fengyin = true;
                                     player.unmarkSkill('huoying_fengyin');
@@ -13001,7 +13003,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 init: '1',
                 item: {
                     '1': '默认背景',
-                    '2': '四代火影',
+                    '2': '火影忍者',
                 },
                 onclick: function (item) {
                     switch (item) {
@@ -13009,7 +13011,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             game.broadcastAll() + ui.background.setBackgroundImage('image/background/' + lib.config.image_background + '.jpg');
                             break;
                         case '2':
-                            game.broadcastAll() + ui.background.setBackgroundImage("extension/火影忍者/hyrz_sidaihuoying.jpg");
+                            game.broadcastAll() + ui.background.setBackgroundImage("extension/火影忍者/hyrz_huoyingrenzhe.jpg");
                             break;
                     }
                 }
@@ -13116,7 +13118,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.1",
+            version: "3.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

@@ -820,7 +820,7 @@
   border-radius: 5px !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-size: cover !important;
+  background-size: contain !important;
   border: none !important;
   box-sizing: border-box !important;
   cursor: pointer !important;

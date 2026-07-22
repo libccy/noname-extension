@@ -330,6 +330,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 lib.skill._lebusishujudgeafter = {
                     trigger: {
                         player: ['linkAfter', 'judgeAfter', 'turnOverAfter'],
+                        target: ['guoheAfter', 'shunshouAfter'],
                     },
                     priority: -2020,
                     forced: true,
@@ -440,6 +441,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 lib.skill._bingliancunduanjudgeafter = {
                     trigger: {
                         player: ['linkAfter', 'judgeAfter', 'turnOverAfter'],
+                        target: ['guoheAfter', 'shunshouAfter'],
                     },
                     priority: -2020,
                     forced: true,
@@ -3182,31 +3184,31 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
 
             // ---------------------------------------brawl------------------------------------------//
-            
+
             var wwyjMusic = null;
-            var isWwyjMusicPlaying = false;            
-            function playWwyjMusic() {                
+            var isWwyjMusicPlaying = false;
+            function playWwyjMusic() {
                 if (ui.backgroundMusic) {
                     ui.backgroundMusic.pause();
                 }
-               
+
                 if (!wwyjMusic) {
                     wwyjMusic = new Audio(lib.assetURL + 'extension/文武英杰/wwyj_music.mp3');
-                    wwyjMusic.loop = true; 
+                    wwyjMusic.loop = true;
                 }
-                
+
                 wwyjMusic.play().catch(function (e) {
                     console.log("播放音乐失败:", e);
                 });
 
                 isWwyjMusicPlaying = true;
             }
-            
+
             function stopWwyjMusic() {
                 if (wwyjMusic && isWwyjMusicPlaying) {
                     wwyjMusic.pause();
                     isWwyjMusicPlaying = false;
-                    
+
                     if (ui.backgroundMusic) {
                         ui.backgroundMusic.play().catch(function (e) {
                             console.log("恢复原背景音乐失败:", e);
@@ -3214,7 +3216,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                 }
             }
-//==========================乱斗=========================//
+            //==========================乱斗=========================//
             if (lib.brawl) {
                 lib.brawl.wwyjBrawlMode = (function () {
                     var brawl = {
@@ -3691,11 +3693,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 imageContainer.addEventListener('click', function () {
 
-                if (coverPage && coverPage.parentNode) {
-                    coverPage.parentNode.removeChild(coverPage);
-                }        
-                game.wwyjCharacter();
-            });
+                    if (coverPage && coverPage.parentNode) {
+                        coverPage.parentNode.removeChild(coverPage);
+                    }
+                    game.wwyjCharacter();
+                });
 
                 imageContainer.appendChild(coverImage);
                 coverContainer.appendChild(imageContainer);
@@ -3713,20 +3715,20 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         ui.menuContainer.style.display = '';
                     }, 500);
                 });
-                    coverContainer.appendChild(closeButton);
-                    coverPage.appendChild(coverContainer);
-                    return coverPage;
+                coverContainer.appendChild(closeButton);
+                coverPage.appendChild(coverContainer);
+                return coverPage;
             };
-            
+
             game.wwyjCharacter = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
-                
+
                 var currentDetailPage = null;
                 var currentCodePage = null;
                 var currentPack = '';
-                
+
                 game.replaywwyj = function (fn, dir) {
                     try {
                         if (!fn) {
@@ -5467,7 +5469,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     game.open('https://tieba.baidu.com/p/6657464280');
                 },
             };
-            Reflect.deleteProperty(lib.extensionMenu['extension_文武英杰'],'edit');
+            Reflect.deleteProperty(lib.extensionMenu['extension_文武英杰'], 'edit');
             delete lib.extensionMenu.extension_文武英杰.delete;
             //lib.extensionMenu['extension_' + '文武英杰'].delete = { name: '删除此扩展', clear: true, };
             lib.extensionMenu.extension_文武英杰.wwyjwjl_title = {
@@ -7817,8 +7819,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player.storage.wwyj_cuangai = [];
                                 },
                                 filter: function (event, player) {
-                                    var num=[];
-                                    var cards=event.source.getCards('h');
+                                    if (!event.source) return false;
+                                    var num = [];
+                                    var cards = event.source.getCards('h');
                                     for (var i = 0; i < cards.length; i++) {
                                         if (cards[i].name != 'du') {
                                             num.push(cards[i]);
@@ -8374,17 +8377,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return '是否对' + get.translation(event.player) + '发动【转型】？';
                                 },
                                 check: function (event, player) {
-                                    if (get.attitude(player, event.player) > 0 && (event.player.hasSkill('wwyj_leilao') || event.player.hasSkill('wwyj_leishao') || event.player.hasSkill('wwyj_qiangkang'))) return true;
-                                    if (get.attitude(player, event.player) <= 0 && !event.player.isLinked()) return true;
+                                    if (get.attitude(player, event.player) > 0 && (event.player.hasSkill('wwyj_leilao') || event.player.hasSkill('wwyj_leishao') || event.player.hasSkill('wwyj_qiangkang'))) return 1;
+                                    if (get.attitude(player, event.player) <= 0 && !event.player.isLinked()) return 1;
                                     var num = game.countPlayer(function (current) {
                                         return current.isLinked() && get.attitude(player, current) <= 0;
                                     });
                                     var num2 = game.countPlayer(function (current) {
                                         return current.hp < 2 && (!current.hasSkill('wwyj_leilao') || !current.hasSkill('wwyj_leishao') || !current.hasSkill('wwyj_qiangkang')) && current.isLinked() && get.attitude(player, current) > 0;
                                     });
-                                    if ((!event.player.hasSkill('wwyj_leilao') || !event.player.hasSkill('wwyj_leishao') || !event.player.hasSkill('wwyj_qiangkang')) && get.attitude(player, event.player) > 0 && num == 0) return false;
-                                    if (get.attitude(player, event.player) <= 0 && num2 > 0) return false;
-                                    if (num > 0 && event.player.isLinked() && num2 < 1) return true;
+                                    if ((!event.player.hasSkill('wwyj_leilao') || !event.player.hasSkill('wwyj_leishao') || !event.player.hasSkill('wwyj_qiangkang')) && get.attitude(player, event.player) > 0 && num == 0) return 0;
+                                    if (get.attitude(player, event.player) <= 0 && num2 > 0) return 0;
+                                    if (num > 0 && event.player.isLinked() && num2 < 1) return 1;
                                     return get.attitude(player, event.player) <= 0;
                                 },
                                 frequent: "check",
@@ -9280,10 +9283,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 audio: "ext:文武英杰:2",
                                 trigger: {
                                     player: ["phaseZhunbei"],
-                                },                                
+                                },
                                 frequent: true,
                                 content: function () {
-                                    "step 0"                                    
+                                    "step 0"
                                     var list;
                                     if (_status.characterlist) {
                                         list = [];
@@ -9312,12 +9315,12 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         return get.rank(button.link, true) - lib.character[button.link][2];
                                     }).set('createDialog', ['请选择一张武将牌', [list.randomGets(6), 'character']]);
                                     "step 1"
-                                    event.link = result.links[0];                                    
+                                    event.link = result.links[0];
                                     "step 2"
                                     player.chooseTarget('请选择要变更武将牌的角色', function (card, player, target) {
                                         return target != player;
                                     }).set('ai', function (target) {
-                                        if (get.attitude(player, target) > 0) return 1;                                        
+                                        if (get.attitude(player, target) > 0) return 1;
                                         return Math.random();
                                     });
                                     "step 3"
@@ -17473,280 +17476,280 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 //凉茶图鉴：
                 game.addMode('wenwuyingjiepicture', {
-    game: {
-        syncMenu: true,
-        createview: function (node, charalist, liblist) {
-            var player = ui.create.player(null, true);
-            player.init(charalist[0]);
-            player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[0] + '.jpg');
-            player.style.left = '3px';
-            player.style.top = '15px';
-            player.style.zIndex = '10';
-            player.style.cursor = 'pointer';
-            player.node.count.remove();
-            player.node.hp.remove();
-            player.style.transition = 'all 0.5s';
-            node.appendChild(player);
-            node.playernode = player;
+                    game: {
+                        syncMenu: true,
+                        createview: function (node, charalist, liblist) {
+                            var player = ui.create.player(null, true);
+                            player.init(charalist[0]);
+                            player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[0] + '.jpg');
+                            player.style.left = '3px';
+                            player.style.top = '15px';
+                            player.style.zIndex = '10';
+                            player.style.cursor = 'pointer';
+                            player.node.count.remove();
+                            player.node.hp.remove();
+                            player.style.transition = 'all 0.5s';
+                            node.appendChild(player);
+                            node.playernode = player;
 
-            var dialog = ui.create.dialog('hidden');
-            dialog.style.left = "0px";
-            dialog.style.top = "0px";
-            dialog.style.width = "100%";
-            dialog.style.height = "205px";
-            dialog.classList.add('fixed');
-            dialog.noopen = true;
-            node.appendChild(dialog);
-            dialog.addText('<div><div id="Cdetail" style="width:72%;display:block;left:150px;text-align:left;font-size:16px"><span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[0]) + '<br>' + liblist[0].join('<br>'));
+                            var dialog = ui.create.dialog('hidden');
+                            dialog.style.left = "0px";
+                            dialog.style.top = "0px";
+                            dialog.style.width = "100%";
+                            dialog.style.height = "205px";
+                            dialog.classList.add('fixed');
+                            dialog.noopen = true;
+                            node.appendChild(dialog);
+                            dialog.addText('<div><div id="Cdetail" style="width:72%;display:block;left:150px;text-align:left;font-size:16px"><span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[0]) + '<br>' + liblist[0].join('<br>'));
 
-            var dialog1 = ui.create.dialog('hidden');
-            dialog1.style.left = "0px";
-            dialog1.style.top = "220px";
-            dialog1.style.width = "100%";
-            dialog1.style.height = "100%";
-            dialog1.classList.add('fixed');
-            dialog1.noopen = true;
-            node.appendChild(dialog1);
-            dialog1.add([charalist, 'character'], false);
-            for (var i = 0; i < dialog1.buttons.length; i++) {
-                dialog1.buttons[i].classList.add('noclick');
-                dialog1.buttons[i].value = i;
-                dialog1.buttons[i].onclick = function () {
-                    player.init(charalist[this.value]);
-                    document.getElementById("Cdetail").innerHTML = '<span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[this.value]) + '<br>' + liblist[this.value].join('<br>');
-                    player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[this.value] + '.jpg');
-                };
-            }
-        },
-    },
-    start: function () {
-        // ---- 以下原样保留（乱斗模式通用的启动逻辑） ----
-        ui.auto.hide();
-        if (!lib.storage.scene) lib.storage.scene = {};
-        if (!lib.storage.stage) lib.storage.stage = {};
-        if (!_status.extensionmade) _status.extensionmade = [];
-        if (_status.extensionscene) game.save('scene', lib.storage.scene);
-        if (_status.extensionstage) game.save('stage', lib.storage.stage);
+                            var dialog1 = ui.create.dialog('hidden');
+                            dialog1.style.left = "0px";
+                            dialog1.style.top = "220px";
+                            dialog1.style.width = "100%";
+                            dialog1.style.height = "100%";
+                            dialog1.classList.add('fixed');
+                            dialog1.noopen = true;
+                            node.appendChild(dialog1);
+                            dialog1.add([charalist, 'character'], false);
+                            for (var i = 0; i < dialog1.buttons.length; i++) {
+                                dialog1.buttons[i].classList.add('noclick');
+                                dialog1.buttons[i].value = i;
+                                dialog1.buttons[i].onclick = function () {
+                                    player.init(charalist[this.value]);
+                                    document.getElementById("Cdetail").innerHTML = '<span class="bluetext">角色介绍</span>：' + get.characterIntro(charalist[this.value]) + '<br>' + liblist[this.value].join('<br>');
+                                    player.node.avatar.setBackgroundImage('extension/文武英杰/' + charalist[this.value] + '.jpg');
+                                };
+                            }
+                        },
+                    },
+                    start: function () {
+                        // ---- 以下原样保留（乱斗模式通用的启动逻辑） ----
+                        ui.auto.hide();
+                        if (!lib.storage.scene) lib.storage.scene = {};
+                        if (!lib.storage.stage) lib.storage.stage = {};
+                        if (!_status.extensionmade) _status.extensionmade = [];
+                        if (_status.extensionscene) game.save('scene', lib.storage.scene);
+                        if (_status.extensionstage) game.save('stage', lib.storage.stage);
 
-        var dialog = ui.create.dialog('hidden');
-        dialog.classList.add('fixed', 'scroll1', 'scroll2', 'fullwidth', 'fullheight', 'noupdate', 'character');
-        dialog.contentContainer.style.overflow = 'visible';
-        dialog.style.overflow = 'scroll';
-        dialog.content.style.height = '100%';
-        dialog.contentContainer.style.transition = 'all 0s';
-        if (!lib.storage.directStage) dialog.open();
-        var packnode = ui.create.div('.packnode', dialog);
-        lib.setScroll(packnode);
-        ui.background.setBackgroundImage('extension/文武英杰/wwyj_picture.jpg');
+                        var dialog = ui.create.dialog('hidden');
+                        dialog.classList.add('fixed', 'scroll1', 'scroll2', 'fullwidth', 'fullheight', 'noupdate', 'character');
+                        dialog.contentContainer.style.overflow = 'visible';
+                        dialog.style.overflow = 'scroll';
+                        dialog.content.style.height = '100%';
+                        dialog.contentContainer.style.transition = 'all 0s';
+                        if (!lib.storage.directStage) dialog.open();
+                        var packnode = ui.create.div('.packnode', dialog);
+                        lib.setScroll(packnode);
+                        ui.background.setBackgroundImage('extension/文武英杰/wwyj_picture.jpg');
 
-        var clickCapt = function () {
-            var active = this.parentNode.querySelector('.active');
-            if (this.link == 'stage') {
-                if (get.is.empty(lib.storage.scene)) { alert('请创建至少1个场景'); return; }
-            }
-            if (active) {
-                if (active == this) return;
-                for (var i = 0; i < active.nodes.length; i++) {
-                    active.nodes[i].remove();
-                    if (active.nodes[i].showcaseinterval) {
-                        clearInterval(active.nodes[i].showcaseinterval);
-                        delete active.nodes[i].showcaseinterval;
-                    }
-                }
-                active.classList.remove('active');
-            }
-            this.classList.add('active');
-            for (var i = 0; i < this.nodes.length; i++) {
-                dialog.content.appendChild(this.nodes[i]);
-            }
-            var showcase = this.nodes[this.nodes.length - 1];
-            showcase.style.height = (dialog.content.offsetHeight - showcase.offsetTop) + 'px';
-            if (typeof showcase.action == 'function') {
-                if (showcase.action(showcase._showcased ? false : true) !== false) {
-                    showcase._showcased = true;
-                }
-            }
-            if (this._nostart) start.style.display = 'none';
-            else start.style.display = '';
-            game.save('currentBrawl', 'help');
-        };
+                        var clickCapt = function () {
+                            var active = this.parentNode.querySelector('.active');
+                            if (this.link == 'stage') {
+                                if (get.is.empty(lib.storage.scene)) { alert('请创建至少1个场景'); return; }
+                            }
+                            if (active) {
+                                if (active == this) return;
+                                for (var i = 0; i < active.nodes.length; i++) {
+                                    active.nodes[i].remove();
+                                    if (active.nodes[i].showcaseinterval) {
+                                        clearInterval(active.nodes[i].showcaseinterval);
+                                        delete active.nodes[i].showcaseinterval;
+                                    }
+                                }
+                                active.classList.remove('active');
+                            }
+                            this.classList.add('active');
+                            for (var i = 0; i < this.nodes.length; i++) {
+                                dialog.content.appendChild(this.nodes[i]);
+                            }
+                            var showcase = this.nodes[this.nodes.length - 1];
+                            showcase.style.height = (dialog.content.offsetHeight - showcase.offsetTop) + 'px';
+                            if (typeof showcase.action == 'function') {
+                                if (showcase.action(showcase._showcased ? false : true) !== false) {
+                                    showcase._showcased = true;
+                                }
+                            }
+                            if (this._nostart) start.style.display = 'none';
+                            else start.style.display = '';
+                            game.save('currentBrawl', 'help');
+                        };
 
-        var createNode = function (name) {
-            var info = lib.brawl[name];
-            var node = ui.create.div('.dialogbutton.menubutton.large', info.name, packnode, clickCapt);
-            node.style.transition = 'all 0s';
-            var modeinfo = '';
-            if (info.mode) modeinfo = get.translation(info.mode) + '模式';
-            if (info.submode) {
-                if (modeinfo) modeinfo += ' - ';
-                modeinfo += info.submode;
-            }
-            var intro;
-            if (Array.isArray(info.intro)) {
-                intro = '<ul style="text-align:left;margin-top:10">';
-                if (modeinfo) intro += '<li>' + modeinfo;
-                for (var i = 0; i < info.intro.length; i++) {
-                    intro += '<br>' + info.intro[i];
-                }
-            } else {
-                intro = '';
-                if (modeinfo) intro += '（' + modeinfo + '）';
-                intro += info.intro;
-            }
-            var i = ui.create.div('.text center', intro);
-            i.style.overflow = 'scroll';
-            i.style.margin = '0px';
-            i.style.padding = '0px';
-            var showcase = ui.create.div();
-            showcase.style.margin = '0px';
-            showcase.style.padding = '0px';
-            showcase.style.width = '100%';
-            showcase.style.display = 'block';
-            showcase.style.overflow = 'scroll';
-            showcase.action = info.showcase;
-            showcase.link = name;
-            if (info.fullshow) {
-                node.nodes = [showcase];
-                showcase.style.height = '100%';
-            } else {
-                node.nodes = [i, showcase];
-            }
-            node.link = name;
-            node._nostart = info.nostart;
-            if (lib.storage.currentBrawl == name) clickCapt.call(node);
-            return node;
-        };
+                        var createNode = function (name) {
+                            var info = lib.brawl[name];
+                            var node = ui.create.div('.dialogbutton.menubutton.large', info.name, packnode, clickCapt);
+                            node.style.transition = 'all 0s';
+                            var modeinfo = '';
+                            if (info.mode) modeinfo = get.translation(info.mode) + '模式';
+                            if (info.submode) {
+                                if (modeinfo) modeinfo += ' - ';
+                                modeinfo += info.submode;
+                            }
+                            var intro;
+                            if (Array.isArray(info.intro)) {
+                                intro = '<ul style="text-align:left;margin-top:10">';
+                                if (modeinfo) intro += '<li>' + modeinfo;
+                                for (var i = 0; i < info.intro.length; i++) {
+                                    intro += '<br>' + info.intro[i];
+                                }
+                            } else {
+                                intro = '';
+                                if (modeinfo) intro += '（' + modeinfo + '）';
+                                intro += info.intro;
+                            }
+                            var i = ui.create.div('.text center', intro);
+                            i.style.overflow = 'scroll';
+                            i.style.margin = '0px';
+                            i.style.padding = '0px';
+                            var showcase = ui.create.div();
+                            showcase.style.margin = '0px';
+                            showcase.style.padding = '0px';
+                            showcase.style.width = '100%';
+                            showcase.style.display = 'block';
+                            showcase.style.overflow = 'scroll';
+                            showcase.action = info.showcase;
+                            showcase.link = name;
+                            if (info.fullshow) {
+                                node.nodes = [showcase];
+                                showcase.style.height = '100%';
+                            } else {
+                                node.nodes = [i, showcase];
+                            }
+                            node.link = name;
+                            node._nostart = info.nostart;
+                            if (lib.storage.currentBrawl == name) clickCapt.call(node);
+                            return node;
+                        };
 
-        var clickStart = function () {
-            dialog.delete();
-            ui.auto.show();
-            game.switchMode('identity');
-        };
-        var start = ui.create.div('.menubutton.round.highlight', '←', dialog.content, clickStart);
-        start.style.position = 'absolute';
-        start.style.left = '-100px';
-        start.style.right = 'auto';
-        start.style.top = 'auto';
-        start.style.bottom = '10px';
-        start.style.width = '80px';
-        start.style.height = '80px';
-        start.style.lineHeight = '80px';
-        start.style.margin = '0';
-        start.style.padding = '5px';
-        start.style.fontSize = '72px';
-        start.style.zIndex = 3;
-        start.style.transition = 'all 0s';
-        start.hide();
+                        var clickStart = function () {
+                            dialog.delete();
+                            ui.auto.show();
+                            game.switchMode('identity');
+                        };
+                        var start = ui.create.div('.menubutton.round.highlight', '←', dialog.content, clickStart);
+                        start.style.position = 'absolute';
+                        start.style.left = '-100px';
+                        start.style.right = 'auto';
+                        start.style.top = 'auto';
+                        start.style.bottom = '10px';
+                        start.style.width = '80px';
+                        start.style.height = '80px';
+                        start.style.lineHeight = '80px';
+                        start.style.margin = '0';
+                        start.style.padding = '5px';
+                        start.style.fontSize = '72px';
+                        start.style.zIndex = 3;
+                        start.style.transition = 'all 0s';
+                        start.hide();
 
-        // 场景/舞台管理函数（保留）
-        game.addScene = function (name, clear) { /* ... 原样 */ };
-        game.addStage = function (name, clear) { /* ... 原样 */ };
-        game.removeScene = function (name) { /* ... 原样 */ };
-        game.removeStage = function (name) { /* ... 原样 */ };
+                        // 场景/舞台管理函数（保留）
+                        game.addScene = function (name, clear) { /* ... 原样 */ };
+                        game.addStage = function (name, clear) { /* ... 原样 */ };
+                        game.removeScene = function (name) { /* ... 原样 */ };
+                        game.removeStage = function (name) { /* ... 原样 */ };
 
-        // 注册所有 brawl 项
-        var sceneNode;
-        for (var i in lib.brawl) {
-            if (get.config(i) === false) continue;
-            if (i == 'scene') {
-                sceneNode = createNode(i);
-            } else {
-                if (i == 'updatelog' && location.hostname && !lib.device) continue;
-                if (i == 'downloadlog' && (!location.hostname || lib.device)) continue;
-                createNode(i);
-            }
-        }
-        if (sceneNode) game.switchScene = function () { clickCapt.call(sceneNode); };
-        for (var i in lib.storage.scene) game.addScene(i);
-        for (var i in lib.storage.stage) game.addStage(i);
-        if (!lib.storage.currentBrawl) clickCapt.call(packnode.firstChild);
-        game.save('lastStage');
-        if (lib.storage.directStage) {
-            var directStage = lib.storage.directStage;
-            game.save('directStage');
-            clickStart(directStage);
-        }
-        if (lib.config.background_music != 'music_off' && get.config('wwyj_openmusic')) {
-            ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
-            setInterval(function () {
-                ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
-            }, 85000);
-        }
-        lib.init.onfree();
-    },
-
-    brawl: {
-        wenwuview: {
-            name: '文武英杰',
-            mode: 'wenwuyingjiepicture',
-            intro: [lib.config.connect_nickname + '！欢迎您来到《文武英杰》扩展的图鉴模式！'],
-            showcase: function (init) {
-                var node = this;
-                if (init) {
-                    // ---------- 以下为优化核心 ----------
-                    // 1. 定义显示顺序（可按需调整，角色名必须与 character 定义一致）
-                    var wenwu = [
-                        "wwyj_shuihu", "wwyj_remaliao", "wwyj_liangchax", "wwyj_shennais", "wwyj_guihua", "wwyj_duanges", "wwyj_guchengs", "wwyj_hezifengyun", "wwyj_qingzhongs",
-                        "wwyj_bohetang", "wwyj_zhulinqixian", "wwyj_niya", "wwyj_zhongchengpantu", "wwyj_huanyuxingcheng", "wwyj_xuedaoshaozhu", "wwyj_fux2", "wwyj_shenwangquanjian",
-                        "wwyj_wuqinggezi", "wwyj_yiwangs", "wwyj_liushas", "wwyj_tilongjianiao", "wwyj_qianshangs", "wwyj_limuzi", "wwyj_zhaonies", "wwyj_yitiaoxianyu", "wwyj_lengyus",
-                        "wwyj_yanyumoran", "wwyj_wali", "wwyj_danwuyunxi", "wwyj_jiguangs", "wwyj_zhugejun", "wwyj_taishangdaniu", "wwyj_Show-K", 'wwyj_shenzuo', "wwyj_shijian", "wwyj_xuebi",
-                        "wwyj_huijin", "wwyj_chengxuyuan", "wwyj_pipi", "wwyj_xiaoSu", "wwyj_liangchas", "wwyj_ciyage", "wwyj_kanpoyiqie", "wwyj_kelejiabing", "wwyj_feicheng", "wwyj_tianqikui",
-                        "wwyj_zhichitianya", "wwyj_jianyaleishao", "wwyj_anshas", "wwyj_zhuxiaoer", "wwyj_ranqis", "wwyj_chansuideshengming", "wwyj_fanxings", "wwyj_xingyunnvshen",
-                        "wwyj_lunhuizhong", "wwyj_daxiongxiaimao", "wwyj_wzszhaoyun", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei", "wwyj_mengxinzhuanxing",
-                        "wwyj_hualuo", "wwyj_dasima", "wwyj_rcanghai", "wwyj_rshun", "wwyj_qingyao", "wwyj_wangshiruyan", "wwyj_jishouniancuihui", "wwyj_yijilianggetao", "wwyj_rlvbao", "wwyj_rshengma",
-                        "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_xkuangshen"
-                    ];
-
-                    // 2. 生成有效的角色列表（只保留在 characterPack 中存在的）
-                    var charalist = [];
-                    var pack = lib.characterPack['wenwuyingjie'];
-                    for (var i = 0; i < wenwu.length; i++) {
-                        if (pack && pack[wenwu[i]]) charalist.push(wenwu[i]);
-                    }
-
-                    // 3. 动态生成技能描述列表（与 charalist 顺序一致）
-                    var liblist = charalist.map(function(name) {
-                        var info = pack[name];
-                        if (!info) return ['角色数据缺失'];
-                        var skills = info[3] || [];   // 技能ID数组
-                        var parts = [];
-                        for (var j = 0; j < skills.length; j++) {
-                            var sid = skills[j];
-                            var sname = lib.translate[sid] || sid;
-                            var sdesc = lib.translate[sid + '_info'] || '（暂无描述）';
-                            parts.push('<span class="bluetext">' + sname + '</span>：' + sdesc);
+                        // 注册所有 brawl 项
+                        var sceneNode;
+                        for (var i in lib.brawl) {
+                            if (get.config(i) === false) continue;
+                            if (i == 'scene') {
+                                sceneNode = createNode(i);
+                            } else {
+                                if (i == 'updatelog' && location.hostname && !lib.device) continue;
+                                if (i == 'downloadlog' && (!location.hostname || lib.device)) continue;
+                                createNode(i);
+                            }
                         }
-                        return [parts.join('<br>')];   // 保持与原格式一致（数组内一个字符串）
-                    });
+                        if (sceneNode) game.switchScene = function () { clickCapt.call(sceneNode); };
+                        for (var i in lib.storage.scene) game.addScene(i);
+                        for (var i in lib.storage.stage) game.addStage(i);
+                        if (!lib.storage.currentBrawl) clickCapt.call(packnode.firstChild);
+                        game.save('lastStage');
+                        if (lib.storage.directStage) {
+                            var directStage = lib.storage.directStage;
+                            game.save('directStage');
+                            clickStart(directStage);
+                        }
+                        if (lib.config.background_music != 'music_off' && get.config('wwyj_openmusic')) {
+                            ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
+                            setInterval(function () {
+                                ui.backgroundMusic.src = lib.assetURL + "extension/文武英杰/wwyj_music.mp3";
+                            }, 85000);
+                        }
+                        lib.init.onfree();
+                    },
 
-                    // 4. 调用原创建视图函数
-                    lib.game.createview(node, charalist, liblist);
-                }
-            },
-        },
-    },
-}, {
-    translate: '凉茶',
-    config: {
-        wwyj_openmusic: {
-            name: '开启专属音乐',
-            init: true,
-            intro: "开启本模式的专属音乐！",
-            frequent: true,
-            restart: true,
-        },
-        wwyj_openhelp: {
-            name: "文武英杰",
-            init: "1",
-            frequent: true,
-            item: { "1": "模式介绍", "2": "<li>本模式为图鉴模式，仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。开启此模式前请先确保已将武将项的总开关已打开" },
-        },
-    },
-    onremove: function () {
-        game.clearModeConfig('wenwuyingjiepicture');
-    }
-});
-// 到此为止
+                    brawl: {
+                        wenwuview: {
+                            name: '文武英杰',
+                            mode: 'wenwuyingjiepicture',
+                            intro: [lib.config.connect_nickname + '！欢迎您来到《文武英杰》扩展的图鉴模式！'],
+                            showcase: function (init) {
+                                var node = this;
+                                if (init) {
+                                    // ---------- 以下为优化核心 ----------
+                                    // 1. 定义显示顺序（可按需调整，角色名必须与 character 定义一致）
+                                    var wenwu = [
+                                        "wwyj_shuihu", "wwyj_remaliao", "wwyj_liangchax", "wwyj_shennais", "wwyj_guihua", "wwyj_duanges", "wwyj_guchengs", "wwyj_hezifengyun", "wwyj_qingzhongs",
+                                        "wwyj_bohetang", "wwyj_zhulinqixian", "wwyj_niya", "wwyj_zhongchengpantu", "wwyj_huanyuxingcheng", "wwyj_xuedaoshaozhu", "wwyj_fux2", "wwyj_shenwangquanjian",
+                                        "wwyj_wuqinggezi", "wwyj_yiwangs", "wwyj_liushas", "wwyj_tilongjianiao", "wwyj_qianshangs", "wwyj_limuzi", "wwyj_zhaonies", "wwyj_yitiaoxianyu", "wwyj_lengyus",
+                                        "wwyj_yanyumoran", "wwyj_wali", "wwyj_danwuyunxi", "wwyj_jiguangs", "wwyj_zhugejun", "wwyj_taishangdaniu", "wwyj_Show-K", 'wwyj_shenzuo', "wwyj_shijian", "wwyj_xuebi",
+                                        "wwyj_huijin", "wwyj_chengxuyuan", "wwyj_pipi", "wwyj_xiaoSu", "wwyj_liangchas", "wwyj_ciyage", "wwyj_kanpoyiqie", "wwyj_kelejiabing", "wwyj_feicheng", "wwyj_tianqikui",
+                                        "wwyj_zhichitianya", "wwyj_jianyaleishao", "wwyj_anshas", "wwyj_zhuxiaoer", "wwyj_ranqis", "wwyj_chansuideshengming", "wwyj_fanxings", "wwyj_xingyunnvshen",
+                                        "wwyj_lunhuizhong", "wwyj_daxiongxiaimao", "wwyj_wzszhaoyun", "wwyj_yangguangweiliang", "wwyj_rongyaotaoge", "wwyj_chenwus", "wwyj_lei", "wwyj_mengxinzhuanxing",
+                                        "wwyj_hualuo", "wwyj_dasima", "wwyj_rcanghai", "wwyj_rshun", "wwyj_qingyao", "wwyj_wangshiruyan", "wwyj_jishouniancuihui", "wwyj_yijilianggetao", "wwyj_rlvbao", "wwyj_rshengma",
+                                        "wwyj_huihui", "wwyj_guishenyi", "wwyj_fenghuitaichu", "wwyj_youzi", "wwyj_relvbao", "wwyj_rweimu", "wwyj_xkuangshen"
+                                    ];
+
+                                    // 2. 生成有效的角色列表（只保留在 characterPack 中存在的）
+                                    var charalist = [];
+                                    var pack = lib.characterPack['wenwuyingjie'];
+                                    for (var i = 0; i < wenwu.length; i++) {
+                                        if (pack && pack[wenwu[i]]) charalist.push(wenwu[i]);
+                                    }
+
+                                    // 3. 动态生成技能描述列表（与 charalist 顺序一致）
+                                    var liblist = charalist.map(function (name) {
+                                        var info = pack[name];
+                                        if (!info) return ['角色数据缺失'];
+                                        var skills = info[3] || [];   // 技能ID数组
+                                        var parts = [];
+                                        for (var j = 0; j < skills.length; j++) {
+                                            var sid = skills[j];
+                                            var sname = lib.translate[sid] || sid;
+                                            var sdesc = lib.translate[sid + '_info'] || '（暂无描述）';
+                                            parts.push('<span class="bluetext">' + sname + '</span>：' + sdesc);
+                                        }
+                                        return [parts.join('<br>')];   // 保持与原格式一致（数组内一个字符串）
+                                    });
+
+                                    // 4. 调用原创建视图函数
+                                    lib.game.createview(node, charalist, liblist);
+                                }
+                            },
+                        },
+                    },
+                }, {
+                    translate: '凉茶',
+                    config: {
+                        wwyj_openmusic: {
+                            name: '开启专属音乐',
+                            init: true,
+                            intro: "开启本模式的专属音乐！",
+                            frequent: true,
+                            restart: true,
+                        },
+                        wwyj_openhelp: {
+                            name: "文武英杰",
+                            init: "1",
+                            frequent: true,
+                            item: { "1": "模式介绍", "2": "<li>本模式为图鉴模式，仅用于展示《文武英杰》扩展中的角色信息，包括角色介绍、角色技能、角色分析等内容。开启此模式前请先确保已将武将项的总开关已打开" },
+                        },
+                    },
+                    onremove: function () {
+                        game.clearModeConfig('wenwuyingjiepicture');
+                    }
+                });
+                // 到此为止
             };
         }, help: {
             "文武英杰": "<li>特别鸣谢：极光、瓦力、短歌、诗笺、一条咸鱼、寰宇星城、无情鸽子<li>界限突破：<li>水乎的【创世】由从十个标包武将中选改为从标准包所有的武将里选<li>小苏的【群英】去掉体力差与手牌差的条件限制<li>★铝宝的【天牢】改为不能使用或打出与“天牢牌”不同牌名的牌<li>棘手念摧毁的【棘手】改为可自由选择场上任一名有废除装备栏的角色<li>寰宇星城的【玄侠】改为每两轮限一次<li>短歌的【短歌】改为展示牌堆顶九张牌并选择获得点数连续的牌、美化改为展示牌堆顶四张牌，但开局或进场时体力上限减一<li>可乐加冰、浅觞的【退坑】在体力值变化时摸X张牌（X为你已损失的体力值）<li>极光的【卡战】由随机使用装备牌改为选择使用牌堆或弃牌堆中的一个装备牌<li>fux2的【论破】改为锁定技且合并选项效果<li>薄荷糖的【薄荷】由“你令其摸一张牌”改为“其令你摸一张牌”<li>竹林七贤的【结缘】由交给对方黑色牌改为弃置黑色牌来发动<li>俺杀的【超越】有大改<li>松岛枫桂花的【概念】改为回合结束阶段发动<li>萌新转型的【前瞻】的牌加强至可选任意名角色<li>花落的【涌技】改为由自己选择发动<li>残碎的生命的【残碎】改为受伤时弃刀减伤<li>神座的【即死】改为自行选择任意名体力值为1的角色失去一点体力",

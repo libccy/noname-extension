@@ -85,7 +85,7 @@ extension["火影忍者"] = {
 		"huoying_xiezi.jpg","huoying_xinxuzuo1.mp3","huoying_xuzuo1.mp3","huoying_linyiliao2.mp3","hyrz_sidaihuoying.jpg","huoying_yuanfeirizhan.jpg",
 		"huoying_yuanmo1.mp3","huoying_yuedu2.mp3","huoying_zhengbao1.mp3","huoying_zhenxing2.mp3","huoying_zhishu1.mp3","huoying_zhongwu.jpg",
 		"huoying_zhoushu2.mp3","huoying_zhouyin2.mp3","huoying_zhuozhu.jpg","wms_wxyd_background.jpg","hyrz_kuwu1.mp3","hyrz_mianju.png","hyrz_shoulijian.png",
-		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png","hyrz_music.mp3"
+		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png","hyrz_music.mp3","hyrz_huoyingrenzhe.jpg"
 	]
 };
 

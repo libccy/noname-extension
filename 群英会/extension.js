@@ -595,7 +595,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     if (coverPage && coverPage.parentNode) {
                         coverPage.parentNode.removeChild(coverPage);
                     }
-        
+
                     game.qyhCharacter();
                 });
 
@@ -621,7 +621,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
             game.qyhCharacter = function () {
                 ui.system.style.display = 'none';
-                ui.menuContainer.style.display = 'none';                
+                ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
 
                 var currentDetailPage = null;
@@ -1719,6 +1719,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
 
             lib.init.css(lib.assetURL + 'extension/群英会', 'extension');
+            Reflect.deleteProperty(lib.extensionMenu['extension_群英会'], 'edit');
             delete lib.extensionMenu.extension_群英会.delete;
             //lib.extensionMenu['extension_' + '群英会'].delete = { name: '删除此扩展', clear: true, };
 
@@ -5167,7 +5168,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         connect: true,
                         characterSort: {
                             wugeng: {
-                                "wugeng_shenzu": ["wugeng_tian", "wugeng_zhengchan", "wugeng_shixing", "wugeng_xuanfeng", "wugeng_tianwu", "wugeng_tiankui", "wugeng_fuxi", "wugeng_bailian"],
+                                "wugeng_shenzu": ["wugeng_tian", "wugeng_zhengchan", "wugeng_echan", "wugeng_shixing", "wugeng_xuanfeng", "wugeng_tianwu", "wugeng_tiankui", "wugeng_fuxi", "wugeng_bailian"],
                                 "wugeng_renlei": ["wugeng_ziyu", "wugeng_wugeng", "wugeng_baicai"],
                                 "wugeng_mingzu": ["wugeng_nitianerxing"],
                             },

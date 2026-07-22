@@ -1,16 +1,254 @@
-game.import("extension", function(lib, game, ui, get, ai, _status) {
+game.import("extension", function (lib, game, ui, get, ai, _status) {
     return {
         name: "叠彩峰岭",
         editable: false,
-        content: function(config, pack) {
-                                    
-            game.playdcfl = function(fn, dir) {
+        content: function (config, pack) {
+
+            if (config.dcfl_wujiangkaiqi) {
+                // ========== 劫持“武将”Tab，改为调用 game.showCharacterInfo ==========
+                (function hijackCharacterTab() {
+                    function doHijack() {
+                        var menuTab = document.querySelector('.menu-tab');
+                        if (!menuTab) return false;
+                        var tabs = menuTab.children;
+                        for (var i = 0; i < tabs.length; i++) {
+                            var tab = tabs[i];
+                            if (tab.innerHTML.trim() === '武将') {
+                                if (tab._dcflHijacked) return true; // 已劫持
+                                // 在捕获阶段添加监听，阻止原有 clickTab 执行
+                                tab.addEventListener('click', function (e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    if (typeof game.showCharacterInfo === 'function') {
+                                        game.showCharacterInfo();
+                                    } else {
+                                        alert('叠彩峰岭扩展未正确加载');
+                                    }
+                                }, true); // 捕获阶段先于冒泡执行
+                                tab._dcflHijacked = true;
+                                console.log('[叠彩峰岭] 已劫持“武将”Tab点击');
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+
+                    function tryHijack() {
+                        if (doHijack()) return;
+                        setTimeout(tryHijack, 500);
+                    }
+                    // 等待菜单 DOM 出现
+                    setTimeout(tryHijack, 1000);
+                })();
+            }
+
+            // ========== 全新独立：替换菜单“武将”Tab ==========
+            if (config.dcfl_huangechuangkou) {
+                (function replaceCharacterTab() {
+                    // 1. 获取所有可用武将包（复用原扩展已有的函数，但为了独立，重新写一个简易版）
+                    function getPacks() {
+                        var packs = [];
+                        if (!lib.characterPack) return packs;
+                        for (var key in lib.characterPack) {
+                            if (key.startsWith('mode_')) continue; // 排除模式专用包
+                            var data = lib.characterPack[key];
+                            var hasChar = false;
+                            for (var name in data) {
+                                if (lib.character[name]) { hasChar = true; break; }
+                            }
+                            if (hasChar) {
+                                var count = 0;
+                                for (var name in data) if (lib.character[name]) count++;
+                                var displayName = lib.translate[key + '_character_config'] || key;
+                                displayName = displayName.replace(/<[^>]*>/g, '').trim();
+                                packs.push({ id: key, name: displayName, count: count });
+                            }
+                        }
+                        return packs;
+                    }
+
+                    // 2. 构建自定义页面（返回 HTMLDivElement）
+                    function buildCustomPage() {
+                        var container = ui.create.div();
+                        container.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;background:#1a1a2e;';
+
+                        var packs = getPacks();
+                        if (!packs.length) {
+                            container.innerHTML = '<div style="padding:20px;color:#aaa;">未找到武将包</div>';
+                            return container;
+                        }
+
+                        var currentPack = packs[0].id;
+                        var currentPackName = packs[0].name;
+
+                        // ---- 顶部：包切换按钮（横向滚动） ----
+                        var tabBar = ui.create.div();
+                        tabBar.style.cssText = 'display:flex;overflow-x:auto;padding:6px 8px;background:#16213e;border-bottom:1px solid #333;flex-shrink:0;';
+                        packs.forEach(function (pack) {
+                            var btn = ui.create.div();
+                            btn.innerHTML = pack.name + ' <span style="font-size:0.7em;opacity:0.6;">(' + pack.count + ')</span>';
+                            btn.style.cssText = 'padding:4px 12px;margin:0 4px;border-radius:4px;white-space:nowrap;cursor:pointer;transition:0.2s;';
+                            if (pack.id === currentPack) {
+                                btn.style.background = '#2a4a7f';
+                                btn.style.color = '#fff';
+                            } else {
+                                btn.style.background = 'rgba(255,255,255,0.05)';
+                                btn.style.color = '#aaa';
+                            }
+                            btn.addEventListener('click', function () {
+                                if (this.classList.contains('active')) return;
+                                tabBar.querySelectorAll('.pack-btn').forEach(function (b) {
+                                    b.style.background = 'rgba(255,255,255,0.05)';
+                                    b.style.color = '#aaa';
+                                    b.classList.remove('active');
+                                });
+                                this.style.background = '#2a4a7f';
+                                this.style.color = '#fff';
+                                this.classList.add('active');
+                                currentPack = pack.id;
+                                currentPackName = pack.name;
+                                renderGrid();
+                            });
+                            btn.classList.add('pack-btn');
+                            tabBar.appendChild(btn);
+                        });
+
+                        // ---- 主体：武将网格 ----
+                        var grid = ui.create.div();
+                        grid.style.cssText = 'flex:1;overflow-y:auto;padding:12px;display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;';
+
+                        function renderGrid() {
+                            grid.innerHTML = '';
+                            var packData = lib.characterPack[currentPack];
+                            if (!packData) return;
+                            var charNames = [];
+                            for (var name in packData) {
+                                if (lib.character[name]) charNames.push(name);
+                            }
+                            // 排序（可按分组，简化：直接按名称排序）
+                            charNames.sort(lib.sort.character || function (a, b) { return a.localeCompare(b); });
+
+                            charNames.forEach(function (charName) {
+                                var card = ui.create.div();
+                                card.style.cssText = 'width:110px;height:160px;border-radius:8px;background:#222;border:1px solid #444;overflow:hidden;cursor:pointer;position:relative;transition:0.2s;';
+                                card.addEventListener('mouseenter', function () { this.style.borderColor = '#8cf'; });
+                                card.addEventListener('mouseleave', function () { this.style.borderColor = '#444'; });
+
+                                // 头像
+                                var img = ui.create.div();
+                                img.style.cssText = 'width:100%;height:100%;background-size:cover;background-position:center;';
+                                // 尝试加载图片（简单：直接尝试默认路径和扩展路径）
+                                var extClean = currentPackName.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '');
+                                var paths = [
+                                    lib.assetURL + 'image/character/' + charName + '.jpg',
+                                    lib.assetURL + 'extension/' + currentPack + '/' + charName + '.jpg',
+                                    lib.assetURL + 'extension/' + extClean + '/' + charName + '.jpg'
+                                ];
+                                function tryLoad(index) {
+                                    if (index >= paths.length) { img.style.background = '#333'; return; }
+                                    var test = new Image();
+                                    test.onload = function () { img.style.backgroundImage = 'url(' + paths[index] + ')'; };
+                                    test.onerror = function () { tryLoad(index + 1); };
+                                    test.src = paths[index];
+                                }
+                                tryLoad(0);
+
+                                // 单击换肤（简单：使用默认皮肤机制，但这里只演示切换为默认，实际可调用原扩展的applySkinChange）
+                                img.addEventListener('click', function (e) {
+                                    e.stopPropagation();
+                                    // 简单切换至默认皮肤（若有皮肤配置则切换）
+                                    var skinName = charName;
+                                    if (lib.config.skin && lib.config.skin[skinName]) {
+                                        var num = lib.config.skin[skinName] + 1;
+                                        // 尝试加载皮肤
+                                        var skinPath = lib.assetURL + 'image/skin/' + skinName + '/' + num + '.jpg';
+                                        var test = new Image();
+                                        test.onload = function () {
+                                            lib.config.skin[skinName] = num;
+                                            game.saveConfig('skin', lib.config.skin);
+                                            img.style.backgroundImage = 'url(' + skinPath + ')';
+                                        };
+                                        test.src = skinPath;
+                                    } else {
+                                        // 无皮肤则尝试使用默认图片
+                                        var def = lib.assetURL + 'image/character/' + charName + '.jpg';
+                                        var test = new Image();
+                                        test.onload = function () { img.style.backgroundImage = 'url(' + def + ')'; };
+                                        test.src = def;
+                                    }
+                                });
+
+                                // 双击查看简单详情
+                                img.addEventListener('dblclick', function (e) {
+                                    e.stopPropagation();
+                                    var charData = lib.character[charName];
+                                    var info = get.translation(charName) + '\n';
+                                    if (charData) {
+                                        if (charData[0]) info += '势力：' + get.translation(charData[0]) + '\n';
+                                        if (charData[1]) info += '性别：' + get.translation(charData[1]) + '\n';
+                                        if (charData[2]) info += '体力：' + charData[2] + '\n';
+                                        if (charData[3] && charData[3].length) {
+                                            info += '技能：' + charData[3].map(function (s) { return get.translation(s); }).join('、');
+                                        }
+                                    }
+                                    alert(info);
+                                });
+
+                                card.appendChild(img);
+                                // 名字标签
+                                var nameLabel = ui.create.div();
+                                nameLabel.innerHTML = get.translation(charName);
+                                nameLabel.style.cssText = 'position:absolute;bottom:4px;left:4px;right:4px;text-align:center;background:rgba(0,0,0,0.6);border-radius:3px;padding:2px;font-size:0.8em;color:#eee;';
+                                card.appendChild(nameLabel);
+                                grid.appendChild(card);
+                            });
+                            lib.setScroll(grid);
+                        }
+                        renderGrid();
+
+                        container.appendChild(tabBar);
+                        container.appendChild(grid);
+                        return container;
+                    }
+
+                    // 3. 替换菜单中的“武将”Tab
+                    function doReplace() {
+                        var menuTab = document.querySelector('.menu-tab');
+                        if (!menuTab) return false;
+                        var tabs = menuTab.children;
+                        for (var i = 0; i < tabs.length; i++) {
+                            if (tabs[i].innerHTML.trim() === '武将') {
+                                var link = tabs[i]._link;
+                                if (link && !link._replacedByDCFL) {
+                                    link.innerHTML = '';
+                                    var page = buildCustomPage();
+                                    link.appendChild(page);
+                                    link._replacedByDCFL = true;
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+
+                    function tryReplace() {
+                        if (doReplace()) {
+                            console.log('[叠彩峰岭] 已替换“武将”菜单');
+                            return;
+                        }
+                        setTimeout(tryReplace, 500);
+                    }
+                    // 启动轮询（菜单可能延迟加载）
+                    setTimeout(tryReplace, 1000);
+                })();
+            }
+            game.playdcfl = function (fn, dir) {
                 try {
                     if (!fn) {
                         console.error('角色ID不能为空');
                         return;
                     }
-                    
+
                     console.log('尝试播放扩展武将配音，角色:', fn, '扩展包:', dir);
                     game.playAudio('..', 'extension', dir, fn);
                 } catch (error) {
@@ -27,13 +265,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 Animation.id = 'dcfl_icon_button';
                 Animation.className = 'dcfl_icon_button';
                 Animation.style.backgroundImage = 'url(' + lib.assetURL + 'extension/叠彩峰岭/dcfl_icon.png)';
-                Animation.addEventListener('mouseover', function() {
+                Animation.addEventListener('mouseover', function () {
                     this.classList.add('dcfl_icon_hover');
                 });
-                Animation.addEventListener('mouseout', function() {
+                Animation.addEventListener('mouseout', function () {
                     this.classList.remove('dcfl_icon_hover');
                 });
-                Animation.addEventListener('click', function() {
+                Animation.addEventListener('click', function () {
                     game.showCharacterInfo();
                 });
                 document.body.appendChild(Animation);
@@ -49,7 +287,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             function checkAndUpdateIcon() {
                 if (config.dcfl_icon) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         createIconButton();
                     }, 1000);
                 } else {
@@ -110,23 +348,23 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 }
 
                 var img = new Image();
-                img.onload = function() {
+                img.onload = function () {
                     lib.config.skin = lib.config.skin || {};
                     lib.config.skin[skinName] = num;
                     game.saveConfig("skin", lib.config.skin);
                     imgElement.style.backgroundImage = 'url("' + img.src + '")';
                 };
 
-                img.onerror = function() {
+                img.onerror = function () {
                     if (lib.config.skin && lib.config.skin[skinName]) {
                         delete lib.config.skin[skinName];
                         game.saveConfig("skin", lib.config.skin);
 
                         var defaultImg = new Image();
-                        defaultImg.onload = function() {
+                        defaultImg.onload = function () {
                             imgElement.style.backgroundImage = 'url("' + defaultImg.src + '")';
                         };
-                        defaultImg.onerror = function() {
+                        defaultImg.onerror = function () {
                             imgElement.style.backgroundImage = 'none';
                             imgElement.style.backgroundColor = '#333';
                         };
@@ -144,13 +382,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (!charData || !Array.isArray(charData[4])) {
                     return [];
                 }
-                
+
                 var extractedPaths = [];
                 var pathArray = charData[4];
-                
+
                 for (var j = 0; j < pathArray.length; j++) {
                     var item = pathArray[j];
-                    
+
                     if (typeof item === 'string' && item.trim() !== '') {
                         if (item.startsWith('img:')) {
                             var actualPath = item.replace(/^img:/, '');
@@ -162,7 +400,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                     }
                 }
-                
+
                 return extractedPaths;
             }
 
@@ -194,7 +432,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (skinName.startsWith("gz_")) {
                     skinName = skinName.slice(3);
                 }
-                
+
                 if (lib.config.skin && lib.config.skin[skinName] !== undefined) {
                     var skinNum = lib.config.skin[skinName] + 1;
                     var skinPath = lib.assetURL + "image/skin/" + skinName + "/" + skinNum + ".jpg";
@@ -247,10 +485,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
                     var imagePath = imagePaths[pathIndex];
                     var testImg = new Image();
-                    testImg.onload = function() {
+                    testImg.onload = function () {
                         imgElement.style['background-image'] = 'url(' + imagePath + ')';
                     };
-                    testImg.onerror = function() {
+                    testImg.onerror = function () {
                         trySetBackgroundImage(pathIndex + 1);
                     };
                     testImg.src = imagePath;
@@ -362,18 +600,18 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             function playSkillAudio(charName, skillName) {
                 try {
                     var playKey = charName + '_' + skillName;
-                    if (window._dcfl_skill_last_play && 
-                        window._dcfl_skill_last_play.key === playKey && 
+                    if (window._dcfl_skill_last_play &&
+                        window._dcfl_skill_last_play.key === playKey &&
                         Date.now() - window._dcfl_skill_last_play.time < 500) {
                         console.log('技能配音防重播：忽略重复播放', charName, skillName);
                         return;
                     }
-                    
+
                     window._dcfl_skill_last_play = {
                         key: playKey,
                         time: Date.now()
                     };
-                    
+
                     var skinName = charName;
                     if (skinName.startsWith("gz_")) {
                         skinName = skinName.slice(3);
@@ -421,9 +659,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             function getCleanExtensionName(extNameWithTags) {
                 if (!extNameWithTags) return '';
-                
+
                 var cleanName = extNameWithTags;
-                
+
                 cleanName = cleanName.replace(/<span[^>]*>/gi, '');
                 cleanName = cleanName.replace(/<\/span>/gi, '');
                 cleanName = cleanName.replace(/<font[^>]*>/gi, '');
@@ -443,35 +681,35 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 cleanName = cleanName.replace(/<u[^>]*>/gi, '');
                 cleanName = cleanName.replace(/<\/u>/gi, '');
                 cleanName = cleanName.replace(/<[^>]*>/g, '');
-                
+
                 cleanName = cleanName.trim();
-                
+
                 return cleanName;
             }
 
             function playDieAudio(charName, packKey, extNameWithTags) {
                 try {
                     console.log('开始播放阵亡配音:', charName, '扩展包:', packKey);
-                    
+
                     var cleanCharName = charName;
                     if (cleanCharName && cleanCharName.startsWith("gz_")) {
                         cleanCharName = cleanCharName.slice(3);
                     }
-                    
+
                     var playKey = 'die_' + charName;
-                    if (window._dcfl_last_die_play && 
-                        window._dcfl_last_die_play.key === playKey && 
+                    if (window._dcfl_last_die_play &&
+                        window._dcfl_last_die_play.key === playKey &&
                         Date.now() - window._dcfl_last_die_play.time < 300) {
                         console.log('阵亡配音防重播：短时间内重复点击，忽略');
                         return;
                     }
-                    
+
                     window._dcfl_last_die_play = {
                         key: playKey,
                         time: Date.now()
                     };
-                    
-                    setTimeout(function() {
+
+                    setTimeout(function () {
                         try {
                             var skinName = charName;
                             if (skinName.startsWith("gz_")) {
@@ -516,35 +754,35 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             console.error('播放本体武将配音时出错:', error);
                         }
                     }, 0);
-                    
-                    setTimeout(function() {
+
+                    setTimeout(function () {
                         try {
                             var cleanExtNames = [];
-                            
+
                             if (packKey) {
                                 cleanExtNames.push(packKey);
                             }
-                            
+
                             if (extNameWithTags) {
                                 var cleanName = getCleanExtensionName(extNameWithTags);
                                 if (cleanName && cleanExtNames.indexOf(cleanName) === -1) {
                                     cleanExtNames.push(cleanName);
                                 }
                             }
-                            
+
                             console.log('尝试的扩展包名列表:', cleanExtNames);
-                            
+
                             for (var i = 0; i < cleanExtNames.length; i++) {
                                 var extName = cleanExtNames[i];
                                 console.log('播放扩展配音，角色:', cleanCharName, '扩展包:', extName);
                                 game.playdcfl(cleanCharName, extName);
                             }
-                            
+
                         } catch (error) {
                             console.error('尝试扩展配音时出错:', error);
                         }
-                    }, 100); 
-                    
+                    }, 100);
+
                 } catch (error) {
                     console.error('播放阵亡配音时出错:', error);
                 }
@@ -553,14 +791,14 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             function addSkillAudioClick(iconElement, charName, skillName) {
                 if (!iconElement || !charName || !skillName) return iconElement;
 
-                iconElement.addEventListener('click', function(e) {
+                iconElement.addEventListener('click', function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     playSkillAudio(charName, skillName);
                     return false;
                 });
 
-                iconElement.addEventListener('touchstart', function(e) {
+                iconElement.addEventListener('touchstart', function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     playSkillAudio(charName, skillName);
@@ -583,14 +821,14 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     element.parentNode.replaceChild(newElement, element);
                 }
 
-                newElement.addEventListener('click', function(e) {
+                newElement.addEventListener('click', function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     showSkillCode(skillName, charName);
                     return false;
                 });
 
-                newElement.addEventListener('touchstart', function(e) {
+                newElement.addEventListener('touchstart', function (e) {
                     e.stopPropagation();
                     e.preventDefault();
                     showSkillCode(skillName, charName);
@@ -615,7 +853,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 var skillPageBg = ui.create.div('#dcfl_page.dcfl_code_page');
                 skillPageBg.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2030; display: block;';
 
-                skillPageBg.addEventListener('click', function(e) {
+                skillPageBg.addEventListener('click', function (e) {
                     if (e.target === skillPageBg) {
                         if (skillPageBg.parentNode) {
                             skillPageBg.parentNode.removeChild(skillPageBg);
@@ -629,7 +867,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 var skillRightPanel = ui.create.div('#dcfl_rightPanel.dcfl_code_panel');
 
                 var skillCloseButton = ui.create.div('#dcfl_closeButton.dcfl_code_close', '×');
-                skillCloseButton.addEventListener('click', function() {
+                skillCloseButton.addEventListener('click', function () {
                     if (skillPageBg.parentNode) {
                         skillPageBg.parentNode.removeChild(skillPageBg);
                     }
@@ -670,12 +908,12 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 document.body.appendChild(skillPageBg);
                 currentCodePage = skillPageBg;
 
-                setTimeout(function() {
+                setTimeout(function () {
                     skillPageBg.style.display = 'block';
                 }, 10);
             }
 
-            game.showCharacterInfo = function() {
+            game.showCharacterInfo = function () {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -696,7 +934,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     this.paBody.appendChild(this.body);
                 }
                 Page.prototype = {
-                    show: function() {
+                    show: function () {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -711,7 +949,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         this.body.style.zIndex = '2024';
                         return this;
                     },
-                    hide: function() {
+                    hide: function () {
                         this.body.hide();
                         return this;
                     }
@@ -723,15 +961,15 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 var leftButtonPanel = ui.create.div('#dcfl_leftButtonPanel');
                 var rightPanel = ui.create.div('#dcfl_rightPanel');
                 var closeButton = ui.create.div('#dcfl_closeButton', '×');
-                closeButton.addEventListener('click', function() {
+                closeButton.addEventListener('click', function () {
                     characterPage.hide();
                     if (characterPage.body && characterPage.body.parentNode) {
                         characterPage.body.parentNode.removeChild(characterPage.body);
                     }
                     ui.system.style.display = '';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         ui.click.configMenu();
-                        ui.menuContainer.style.display = '';                        
+                        ui.menuContainer.style.display = '';
                     }, 100);
                 });
                 rightPanel.appendChild(closeButton);
@@ -755,8 +993,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         button.classList.add('active');
                     }
                     button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function(packId, packName) {
-                        return function() {
+                    button.addEventListener('click', (function (packId, packName) {
+                        return function () {
                             if (currentPack === packId) return;
                             var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
                             for (var j = 0; j < buttons.length; j++) {
@@ -785,17 +1023,17 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     if (!charData) return null;
 
                     var dComps = {
-                        header: (function() {
+                        header: (function () {
                             var imgElement = ui.create.div('.dcfl_intro_header');
                             var extNameWithTags = lib.translate[currentPack + '_character_config'];
                             var extNameClean = extNameWithTags ? extNameWithTags.replace(/<[^>]*>/g, '').trim() : '';
                             loadCharacterImage(imgElement, charName, currentPack, extNameClean, false);
                             imgElement.style.cursor = 'pointer';
-                            imgElement.addEventListener('click', function(e) {
+                            imgElement.addEventListener('click', function (e) {
                                 e.stopPropagation();
                                 applySkinChange(this, charName);
                             });
-                            imgElement.addEventListener('dblclick', function(e) {
+                            imgElement.addEventListener('dblclick', function (e) {
                                 e.stopPropagation();
                                 e.preventDefault();
 
@@ -808,7 +1046,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 var detailContainer = ui.create.div('#dcfl_mainContainer.dcfl_detail_container');
                                 var detailPanel = ui.create.div('#dcfl_rightPanel.dcfl_detail_panel');
                                 var closeButton = ui.create.div('#dcfl_closeButton.dcfl_detail_close', '×');
-                                closeButton.addEventListener('click', function() {
+                                closeButton.addEventListener('click', function () {
                                     detailPage.hide();
                                     if (detailPage.body && detailPage.body.parentNode) {
                                         detailPage.body.parentNode.removeChild(detailPage.body);
@@ -833,7 +1071,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 var infoIconWrapper = ui.create.div('.dcfl_detail_page_info_icon_wrapper');
                                 var infoIcon = ui.create.div('.dcfl_detail_page_info_icon');
 
-                                infoIcon.addEventListener('click', function(e) {
+                                infoIcon.addEventListener('click', function (e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     console.log('点击配音图标，角色:', charName, '扩展包:', currentPack);
@@ -841,7 +1079,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     return false;
                                 });
 
-                                infoIcon.addEventListener('touchstart', function(e) {
+                                infoIcon.addEventListener('touchstart', function (e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     console.log('触摸配音图标，角色:', charName, '扩展包:', currentPack);
@@ -859,7 +1097,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 var detailHeader = ui.create.div('.dcfl_detail_header');
                                 loadCharacterImage(detailHeader, charName, currentPack, extNameClean, true);
                                 detailHeader.style.cursor = 'pointer';
-                                detailHeader.addEventListener('click', function(e) {
+                                detailHeader.addEventListener('click', function (e) {
                                     e.stopPropagation();
                                     applySkinChange(this, charName);
                                     applySkinChange(imgElement, charName);
@@ -872,7 +1110,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 var introButton = ui.create.div('.dcfl_tab_button.active', '简介');
                                 var skillButton = ui.create.div('.dcfl_tab_button', '技能');
 
-                                introButton.addEventListener('click', function() {
+                                introButton.addEventListener('click', function () {
                                     if (this.classList.contains('active')) return;
                                     this.classList.add('active');
                                     skillButton.classList.remove('active');
@@ -880,7 +1118,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     skillContent.style.display = 'none';
                                 });
 
-                                skillButton.addEventListener('click', function() {
+                                skillButton.addEventListener('click', function () {
                                     if (this.classList.contains('active')) return;
                                     this.classList.add('active');
                                     introButton.classList.remove('active');
@@ -902,7 +1140,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     if (introHtml && introHtml.trim() !== '') {
                                         var tempDiv = document.createElement('div');
                                         tempDiv.innerHTML = introHtml;
-                                        Array.from(tempDiv.childNodes).forEach(function(node) {
+                                        Array.from(tempDiv.childNodes).forEach(function (node) {
                                             if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
                                                 introContent.appendChild(node.cloneNode(true));
                                             }
@@ -958,7 +1196,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             });
                             return imgElement;
                         })(),
-                        infos: (function() {
+                        infos: (function () {
                             var str = "";
                             if (charName) str += get.translation(charName) + '&nbsp;';
                             if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
@@ -966,7 +1204,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             if (charData[2]) str += charData[2] + '体力';
                             return ui.create.div('.dcfl_intro_infos', str);
                         })(),
-                        skills: (function() {
+                        skills: (function () {
                             var str = "";
                             if (charData[3] && Array.isArray(charData[3])) {
                                 for (var j = 0; j < charData[3].length; j++) {
@@ -1081,16 +1319,17 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             };
 
         },
-        precontent: function() {            
-            lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');            
-            delete lib.extensionMenu.extension_叠彩峰岭.delete;            
+        precontent: function () {
+            lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
+            Reflect.deleteProperty(lib.extensionMenu['extension_叠彩峰岭'], 'edit');
+            delete lib.extensionMenu.extension_叠彩峰岭.delete;
         },
         config: {
             "dcfl_viewinfo": {
                 name: '<div class="dcfl_menu">查看信息</div>',
                 "clear": true,
-                "onclick": function() {
-                    setTimeout(function() {
+                "onclick": function () {
+                    setTimeout(function () {
                         game.showCharacterInfo();
                     }, 100);
                 },
@@ -1099,7 +1338,17 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 name: "图鉴按钮",
                 intro: "开启后重启游戏生效。游戏开始后屏幕右下方会有个全新图鉴的按钮，点击后会打开全新图鉴",
                 init: false,
-            }
+            },
+            "dcfl_wujiangkaiqi": {
+                "name": "武将开启",
+                "intro": "开启后重启游戏生效。点击菜单“武将”按钮即打开本扩展的武将信息页功能",
+                init: false,
+            },
+            "dcfl_huangechuangkou": {
+                "name": "换个窗口",
+                "intro": "开启后重启游戏生效。菜单“武将”界面有所改变",
+                init: false,
+            },
         },
         help: {},
         package: {

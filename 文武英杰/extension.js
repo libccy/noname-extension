@@ -2947,10 +2947,28 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
             // ---------------------------------------open boss------------------------------------------//				 
             if (config.wwyj_normalize) {
-                lib.arenaReady.push(function () {
+                /*lib.arenaReady.push(function () {
                     for (var i in lib.characterPack['wenwuyingjie']) {
                         if (lib.character[i][4].indexOf("boss") >= 0) lib.character[i][4].splice(0, 1);
                         //if (lib.character[i].name=="wwyj_youzi"&&lib.character[i][4].indexOf("boss") <= 0) lib.character[i][4].push("boss");
+                    }
+                });*/
+                lib.arenaReady.push(function () {
+                    var pack = lib.characterPack['wenwuyingjie'];
+                    for (var i in pack) {
+                        if (pack[i].isUnseen) {
+                            pack[i].isUnseen = false;
+                        }
+                        if (lib.character[i] && Array.isArray(lib.character[i][4])) {
+                            var arr = lib.character[i][4];
+                            var idx = arr.indexOf("boss");
+                            if (idx !== -1) {
+                                arr.splice(idx, 1);
+                            }
+                        }
+                    }
+                    if (window.ui && window.ui.update) {
+                        window.ui.update();
                     }
                 });
             }
@@ -7427,7 +7445,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 filter: function (event, player) {
                                     if (player.getStat().skill.wwyj_cuihui >= player.countCards('h')) return false;
-                                    return player.countCards('h') > 0;
+                                    return player.countCards('h') > 0 && game.hasPlayer(function (current) {
+                                        return current != player && current.countCards('h') > 0 && current.hasEnabledSlot() && !current.hasSkillTag('noCompareTarget');
+                                    });
                                 },
                                 content: function () {
                                     "step 0"

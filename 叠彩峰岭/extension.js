@@ -4,8 +4,98 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
         editable: false,
         content: function (config, pack) {
 
+            // ================= 固定菜单比例 + 修正指示器位置（微调版） =================
+            (function () {
+                if (window._dcfl_menu_fixed) return;
+                window._dcfl_menu_fixed = true;
+
+                if (!lib.arenaReady) lib.arenaReady = [];
+                lib.arenaReady.push(function () {
+                    var targetScale = 0.7; // 可修改，例如 0.8 为 80%
+
+                    var originalUpdatez = ui.updatez;
+
+                    function updateIndicator(menuContainer) {
+                        if (!menuContainer) return;
+                        var bar = menuContainer.querySelector('.menu-tab-bar');
+                        var tabs = menuContainer.querySelector('.menu-tab');
+                        if (!bar || !tabs) return;
+
+                        bar.style.left = '0px';
+
+                        var active = tabs.querySelector('.active');
+                        if (!active) active = tabs.firstChild;
+                        if (!active) return;
+
+                        var left = active.offsetLeft;
+                        bar.style.transform = 'translateX(' + left + 'px)';
+                    }
+
+                    function fixMenu(container) {
+                        if (!container) return;
+                        var zoom = game.documentZoom || 1;
+                        container.style.transform = 'scale(' + (targetScale / zoom) + ')';
+                        container.style.transformOrigin = 'top left';
+
+                        if (container._dcfl_indicator_bound) return;
+                        container._dcfl_indicator_bound = true;
+
+                        var tabs = container.querySelector('.menu-tab');
+                        if (!tabs) return;
+
+                        var observer = new MutationObserver(function () {
+                            updateIndicator(container);
+                        });
+                        observer.observe(tabs, {
+                            attributes: true,
+                            attributeFilter: ['class'],
+                            childList: true,
+                            subtree: true
+                        });
+
+                        var bar = container.querySelector('.menu-tab-bar');
+                        if (bar) {
+                            var barObserver = new MutationObserver(function () {
+                                updateIndicator(container);
+                            });
+                            barObserver.observe(bar, { attributes: true, attributeFilter: ['style'] });
+                        }
+
+                        updateIndicator(container);
+                    }
+
+                    function fixAllMenus() {
+                        var containers = [ui.menuContainer, ui.connectMenuContainer];
+                        for (var i = 0; i < containers.length; i++) {
+                            if (containers[i]) fixMenu(containers[i]);
+                        }
+                    }
+
+                    ui.updatez = function () {
+                        originalUpdatez.call(this);
+                        fixAllMenus();
+                    };
+
+                    var watcher = new MutationObserver(function (mutations) {
+                        for (var i = 0; i < mutations.length; i++) {
+                            var added = mutations[i].addedNodes;
+                            for (var j = 0; j < added.length; j++) {
+                                var node = added[j];
+                                if (node.nodeType === 1 && node.classList && node.classList.contains('menu-container')) {
+                                    fixMenu(node);
+                                }
+                            }
+                        }
+                    });
+                    watcher.observe(ui.window, { childList: true, subtree: false });
+
+                    fixAllMenus();
+                    console.log('[叠彩峰岭] 菜单固定 ' + (targetScale * 100) + '% 已生效，指示器已修正');
+                });
+            })();
+			
+    // ============================================================
             if (config.dcfl_wujiangkaiqi) {
-                // ========== 劫持“武将”Tab，改为调用 game.showCharacterInfo ==========
                 (function hijackCharacterTab() {
                     function doHijack() {
                         var menuTab = document.querySelector('.menu-tab');
@@ -14,8 +104,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         for (var i = 0; i < tabs.length; i++) {
                             var tab = tabs[i];
                             if (tab.innerHTML.trim() === '武将') {
-                                if (tab._dcflHijacked) return true; // 已劫持
-                                // 在捕获阶段添加监听，阻止原有 clickTab 执行
+                                if (tab._dcflHijacked) return true;
                                 tab.addEventListener('click', function (e) {
                                     e.stopPropagation();
                                     e.preventDefault();
@@ -24,7 +113,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     } else {
                                         alert('叠彩峰岭扩展未正确加载');
                                     }
-                                }, true); // 捕获阶段先于冒泡执行
+                                }, true);
                                 tab._dcflHijacked = true;
                                 console.log('[叠彩峰岭] 已劫持“武将”Tab点击');
                                 return true;
@@ -37,20 +126,18 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         if (doHijack()) return;
                         setTimeout(tryHijack, 500);
                     }
-                    // 等待菜单 DOM 出现
                     setTimeout(tryHijack, 1000);
                 })();
             }
 
-            // ========== 全新独立：替换菜单“武将”Tab ==========
+    // ========== 全新独立：替换菜单“武将”Tab ==========
             if (config.dcfl_huangechuangkou) {
                 (function replaceCharacterTab() {
-                    // 1. 获取所有可用武将包（复用原扩展已有的函数，但为了独立，重新写一个简易版）
                     function getPacks() {
                         var packs = [];
                         if (!lib.characterPack) return packs;
                         for (var key in lib.characterPack) {
-                            if (key.startsWith('mode_')) continue; // 排除模式专用包
+                            if (key.startsWith('mode_')) continue;
                             var data = lib.characterPack[key];
                             var hasChar = false;
                             for (var name in data) {
@@ -67,7 +154,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return packs;
                     }
 
-                    // 2. 构建自定义页面（返回 HTMLDivElement）
                     function buildCustomPage() {
                         var container = ui.create.div();
                         container.style.cssText = 'width:100%;height:100%;display:flex;flex-direction:column;background:#1a1a2e;';
@@ -113,7 +199,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             tabBar.appendChild(btn);
                         });
 
-                        // ---- 主体：武将网格 ----
                         var grid = ui.create.div();
                         grid.style.cssText = 'flex:1;overflow-y:auto;padding:12px;display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;';
 
@@ -125,7 +210,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             for (var name in packData) {
                                 if (lib.character[name]) charNames.push(name);
                             }
-                            // 排序（可按分组，简化：直接按名称排序）
+
                             charNames.sort(lib.sort.character || function (a, b) { return a.localeCompare(b); });
 
                             charNames.forEach(function (charName) {
@@ -134,10 +219,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 card.addEventListener('mouseenter', function () { this.style.borderColor = '#8cf'; });
                                 card.addEventListener('mouseleave', function () { this.style.borderColor = '#444'; });
 
-                                // 头像
                                 var img = ui.create.div();
                                 img.style.cssText = 'width:100%;height:100%;background-size:cover;background-position:center;';
-                                // 尝试加载图片（简单：直接尝试默认路径和扩展路径）
+
                                 var extClean = currentPackName.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '');
                                 var paths = [
                                     lib.assetURL + 'image/character/' + charName + '.jpg',
@@ -153,14 +237,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 }
                                 tryLoad(0);
 
-                                // 单击换肤（简单：使用默认皮肤机制，但这里只演示切换为默认，实际可调用原扩展的applySkinChange）
                                 img.addEventListener('click', function (e) {
                                     e.stopPropagation();
-                                    // 简单切换至默认皮肤（若有皮肤配置则切换）
+
                                     var skinName = charName;
                                     if (lib.config.skin && lib.config.skin[skinName]) {
                                         var num = lib.config.skin[skinName] + 1;
-                                        // 尝试加载皮肤
+
                                         var skinPath = lib.assetURL + 'image/skin/' + skinName + '/' + num + '.jpg';
                                         var test = new Image();
                                         test.onload = function () {
@@ -170,7 +253,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         };
                                         test.src = skinPath;
                                     } else {
-                                        // 无皮肤则尝试使用默认图片
                                         var def = lib.assetURL + 'image/character/' + charName + '.jpg';
                                         var test = new Image();
                                         test.onload = function () { img.style.backgroundImage = 'url(' + def + ')'; };
@@ -178,7 +260,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     }
                                 });
 
-                                // 双击查看简单详情
                                 img.addEventListener('dblclick', function (e) {
                                     e.stopPropagation();
                                     var charData = lib.character[charName];
@@ -195,7 +276,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 });
 
                                 card.appendChild(img);
-                                // 名字标签
                                 var nameLabel = ui.create.div();
                                 nameLabel.innerHTML = get.translation(charName);
                                 nameLabel.style.cssText = 'position:absolute;bottom:4px;left:4px;right:4px;text-align:center;background:rgba(0,0,0,0.6);border-radius:3px;padding:2px;font-size:0.8em;color:#eee;';
@@ -211,7 +291,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         return container;
                     }
 
-                    // 3. 替换菜单中的“武将”Tab
                     function doReplace() {
                         var menuTab = document.querySelector('.menu-tab');
                         if (!menuTab) return false;
@@ -238,10 +317,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                         setTimeout(tryReplace, 500);
                     }
-                    // 启动轮询（菜单可能延迟加载）
                     setTimeout(tryReplace, 1000);
                 })();
             }
+			
+    //===============================================================================			
             game.playdcfl = function (fn, dir) {
                 try {
                     if (!fn) {
@@ -1179,6 +1259,47 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         var descContainer = document.createElement('span');
                                         descContainer.innerHTML = '：' + get.translation(skillName + '_info');
                                         skillContent.appendChild(descContainer);
+                                        // ----- 处理派生技能（derivation）-----
+
+                                        var skillObj = lib.skill[skillName];
+                                        if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length) {
+
+                                            skillContent.appendChild(document.createElement('br'));
+                                            for (var d = 0; d < skillObj.derivation.length; d++) {
+                                                var derivedName = skillObj.derivation[d];
+
+                                                var derivedWrapper = document.createElement('span');
+
+                                                derivedWrapper.style.marginLeft = '20px';
+
+                                                // 配音图标
+                                                var derivedIcon = document.createElement('span');
+                                                derivedIcon.className = 'dcfl_skill_icon';
+                                                addSkillAudioClick(derivedIcon, charName, derivedName);
+                                                derivedWrapper.appendChild(derivedIcon);
+
+                                                // 技能名称（点击查看代码）
+                                                var derivedNameElement = document.createElement('strong');
+                                                derivedNameElement.className = 'greentext dcfl_skill_name';
+                                                derivedNameElement.textContent = get.translation(derivedName);
+                                                derivedNameElement.setAttribute('data-skill-name', derivedName);
+                                                derivedNameElement.setAttribute('data-char-name', charName);
+                                                derivedNameElement = ensureSkillClickHandler(derivedNameElement, derivedName, charName);
+                                                derivedWrapper.appendChild(derivedNameElement);
+
+                                                // 技能描述
+                                                var derivedDesc = document.createElement('span');
+                                                derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
+                                                derivedWrapper.appendChild(derivedDesc);
+
+                                                // 将整个派生技能行添加到 skillContent
+                                                skillContent.appendChild(derivedWrapper);
+                                                // 在派生技能后添加 <br> 换行（最后一个不加，避免多余空行）
+                                                if (d < skillObj.derivation.length - 1) {
+                                                    skillContent.appendChild(document.createElement('br'));
+                                                }
+                                            }
+                                        }
                                     }
                                 } else {
                                     skillContent.innerHTML = '暂无技能信息';

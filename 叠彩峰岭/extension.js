@@ -4,29 +4,29 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
         editable: false,
         content: function (config, pack) {
 
-            // ================= 固定菜单比例 + 修正指示器位置（微调版） =================
+            // ================= 固定菜单比例 + 修正指示器 + 弹出位置紧贴按钮右侧 =================
             (function () {
                 if (window._dcfl_menu_fixed) return;
                 window._dcfl_menu_fixed = true;
 
                 if (!lib.arenaReady) lib.arenaReady = [];
                 lib.arenaReady.push(function () {
-                    var targetScale = 0.7; // 可修改，例如 0.8 为 80%
+                    var targetScale = 0.7; // 菜单固定比例（0.7 = 70%，可自行调整）
+                    var offsetX = 48;      // 弹出窗口水平偏移（正数向右，紧贴按钮右侧）
+                    var offsetY = 20;       // 弹出窗口垂直微调（正数向下，负数向上）
 
                     var originalUpdatez = ui.updatez;
 
+                    // ----- 修正指示器位置 -----
                     function updateIndicator(menuContainer) {
                         if (!menuContainer) return;
                         var bar = menuContainer.querySelector('.menu-tab-bar');
                         var tabs = menuContainer.querySelector('.menu-tab');
                         if (!bar || !tabs) return;
-
                         bar.style.left = '0px';
-
                         var active = tabs.querySelector('.active');
                         if (!active) active = tabs.firstChild;
                         if (!active) return;
-
                         var left = active.offsetLeft;
                         bar.style.transform = 'translateX(' + left + 'px)';
                     }
@@ -36,22 +36,15 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         var zoom = game.documentZoom || 1;
                         container.style.transform = 'scale(' + (targetScale / zoom) + ')';
                         container.style.transformOrigin = 'top left';
-
                         if (container._dcfl_indicator_bound) return;
                         container._dcfl_indicator_bound = true;
 
                         var tabs = container.querySelector('.menu-tab');
                         if (!tabs) return;
-
                         var observer = new MutationObserver(function () {
                             updateIndicator(container);
                         });
-                        observer.observe(tabs, {
-                            attributes: true,
-                            attributeFilter: ['class'],
-                            childList: true,
-                            subtree: true
-                        });
+                        observer.observe(tabs, { attributes: true, attributeFilter: ['class'], childList: true, subtree: true });
 
                         var bar = container.querySelector('.menu-tab-bar');
                         if (bar) {
@@ -60,7 +53,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             });
                             barObserver.observe(bar, { attributes: true, attributeFilter: ['style'] });
                         }
-
                         updateIndicator(container);
                     }
 
@@ -68,6 +60,56 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         var containers = [ui.menuContainer, ui.connectMenuContainer];
                         for (var i = 0; i < containers.length; i++) {
                             if (containers[i]) fixMenu(containers[i]);
+                        }
+                    }
+
+                    // ----- 修正弹出窗口位置：基于原始坐标缩放并右移 -----
+                    function fixPopupNode(node) {
+                        if (!node) return;
+                        var left = parseFloat(node.style.left) || 0;
+                        var top = parseFloat(node.style.top) || 0;
+                        var newLeft = left * targetScale + offsetX;
+                        var newTop = top * targetScale + offsetY;
+
+                        var winWidth = ui.window.offsetWidth;
+                        var nodeWidth = node.offsetWidth || 200;
+                        if (newLeft + nodeWidth > winWidth) {
+                            newLeft = winWidth - nodeWidth - 10;
+                        }
+                        node.style.left = newLeft + 'px';
+                        node.style.top = newTop + 'px';
+                    }
+
+                    function watchPopupContainer() {
+                        var container = ui.window.querySelector('.popup-container');
+                        if (container) {
+                            var popupObserver = new MutationObserver(function (mutations) {
+                                for (var i = 0; i < mutations.length; i++) {
+                                    var added = mutations[i].addedNodes;
+                                    for (var j = 0; j < added.length; j++) {
+                                        var node = added[j];
+                                        if (node.nodeType === 1) {
+                                            setTimeout(function (n) {
+                                                fixPopupNode(n);
+                                            }, 0, node);
+                                        }
+                                    }
+                                }
+                            });
+                            popupObserver.observe(container, { childList: true });
+
+                            for (var child = container.firstChild; child; child = child.nextSibling) {
+                                if (child.nodeType === 1) fixPopupNode(child);
+                            }
+                        } else {
+                            var watcher = new MutationObserver(function () {
+                                var c = ui.window.querySelector('.popup-container');
+                                if (c) {
+                                    watcher.disconnect();
+                                    watchPopupContainer();
+                                }
+                            });
+                            watcher.observe(ui.window, { childList: true, subtree: false });
                         }
                     }
 
@@ -81,8 +123,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             var added = mutations[i].addedNodes;
                             for (var j = 0; j < added.length; j++) {
                                 var node = added[j];
-                                if (node.nodeType === 1 && node.classList && node.classList.contains('menu-container')) {
-                                    fixMenu(node);
+                                if (node.nodeType === 1) {
+                                    if (node.classList && node.classList.contains('menu-container')) {
+                                        fixMenu(node);
+                                    }
+                                    if (node.classList && node.classList.contains('popup-container')) {
+                                        watchPopupContainer();
+                                    }
                                 }
                             }
                         }
@@ -90,11 +137,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     watcher.observe(ui.window, { childList: true, subtree: false });
 
                     fixAllMenus();
-                    console.log('[叠彩峰岭] 菜单固定 ' + (targetScale * 100) + '% 已生效，指示器已修正');
+                    watchPopupContainer();
+
+                    console.log('[叠彩峰岭] 菜单固定 ' + (targetScale * 100) + '% 已生效，弹出位置已修正');
                 });
             })();
-			
-    // ============================================================
+
+            // ============================================================
             if (config.dcfl_wujiangkaiqi) {
                 (function hijackCharacterTab() {
                     function doHijack() {
@@ -130,7 +179,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 })();
             }
 
-    // ========== 全新独立：替换菜单“武将”Tab ==========
+            // ========== 全新独立：替换菜单“武将”Tab ==========
             if (config.dcfl_huangechuangkou) {
                 (function replaceCharacterTab() {
                     function getPacks() {
@@ -320,8 +369,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     setTimeout(tryReplace, 1000);
                 })();
             }
-			
-    //===============================================================================			
+
+            //===============================================================================			
             game.playdcfl = function (fn, dir) {
                 try {
                     if (!fn) {

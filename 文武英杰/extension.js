@@ -637,10 +637,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
             }
             // ---------------------------------------查看代码------------------------------------------//
-            window.wwyjSkillPrompt = function (name) {
+            /*window.wwyjSkillPrompt = function (name) {
                 game.playwwyj('wwyj_close');
                 alert(get.stringify(get.info(name)));
-            };
+            };*/
             // ---------------------------------------Audio------------------------------------------//
             game.playwwyj = function (fn, dir, sex) {
                 if (dir && sex) {
@@ -5381,7 +5381,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             lib.init.js(lib.assetURL + 'extension/文武英杰', 'newtujian', function () { });
             lib.init.js(lib.assetURL + 'extension/文武英杰', 'update', function () { });
 
-            var charactercard = ui.click.charactercard;
+            /*var charactercard = ui.click.charactercard;
             ui.click.charactercard = function (name, sourcenode, noedit, resume, avatar) {
                 if (!lib.character[name]) lib.character[name] = get.character(name);
                 var skills = lib.character[name][3];
@@ -5397,7 +5397,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 });
                 charactercard.apply(this, arguments);
                 lib.character[name][3] = skills;
-            };
+            };*/
 
             //上边“查看代码”功能借鉴自《金庸群侠传》            
             window.wwyj_import = function (func) {

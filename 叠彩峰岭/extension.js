@@ -1,149 +1,344 @@
-game.import("extension", function (lib, game, ui, get, ai, _status) {
+game.import("extension", function(lib, game, ui, get, ai, _status) {
     return {
         name: "叠彩峰岭",
         editable: false,
-        content: function (config, pack) {
+        content: function(config, pack) {
 
-            // ================= 固定菜单比例 + 修正指示器 + 弹出位置紧贴按钮右侧 =================
-            (function () {
-                if (window._dcfl_menu_fixed) return;
-                window._dcfl_menu_fixed = true;
+            // =====================弹窗强制居中=======================================
+            if (config.dcfl_biaojijuzhong) {
+                const extName = '十周年UI';
+                const installed = lib.config.extensions && lib.config.extensions.includes(extName);
+                const enabled = lib.config[`extension_${extName}_enable`] === true;
 
-                if (!lib.arenaReady) lib.arenaReady = [];
-                lib.arenaReady.push(function () {
-                    var targetScale = 0.7; // 菜单固定比例（0.7 = 70%，可自行调整）
-                    var offsetX = 48;      // 弹出窗口水平偏移（正数向右，紧贴按钮右侧）
-                    var offsetY = 20;       // 弹出窗口垂直微调（正数向下，负数向上）
+                if (installed && enabled) {
+                    (function() {
+                        // ---------- 判断是否为菜单 ----------
+                        function isMenu(node) {
+                            if (!node) return false;
+                            let el = node;
+                            while (el) {
+                                if (el.classList) {
+                                    if (el.classList.contains('menu') ||
+                                        el.classList.contains('menu-container') ||
+                                        (el.classList.contains('main') && el.classList.contains('menu'))) {
+                                        return true;
+                                    }
+                                }
+                                el = el.parentNode;
+                            }
+                            return false;
+                        }
+                        const originalPlace = lib.placePoppedDialog;
+                        lib.placePoppedDialog = function(dialog, e) {
+                            originalPlace.call(this, dialog, e);
+                            if (isMenu(dialog)) return;
+                            let parent = dialog.parentNode;
+                            while (parent && parent !== document.body) {
+                                const style = getComputedStyle(parent);
+                                if (style.transform && style.transform !== 'none') {
+                                    parent.style.transform = 'none';
+                                    break;
+                                }
+                                parent = parent.parentNode;
+                            }
+                            dialog.style.transition = 'none';
+                            dialog.style.position = 'fixed';
+                            dialog.style.left = '50%';
+                            dialog.style.top = '50%';
+                            dialog.style.transform = 'translate(-50%, -50%)';
+                            dialog.style.margin = '0';
+                            dialog.style.zIndex = 9999;
+                            void dialog.offsetHeight;
+                            dialog.style.transition = '';
+                        };
+                        console.log('[Fix] ✅ 已拦截 lib.placePoppedDialog，所有非菜单 dialog 将零跳动居中');
+                    })();
+                }
+            }
 
-                    var originalUpdatez = ui.updatez;
+            // ================= 固定菜单比例（独立模块） =================
+            if (config.dcfl_caidanbili) {
+                (function() {
+                    if (window._dcfl_scale_installed) return;
+                    window._dcfl_scale_installed = true;
 
-                    // ----- 修正指示器位置 -----
-                    function updateIndicator(menuContainer) {
-                        if (!menuContainer) return;
-                        var bar = menuContainer.querySelector('.menu-tab-bar');
-                        var tabs = menuContainer.querySelector('.menu-tab');
-                        if (!bar || !tabs) return;
-                        bar.style.left = '0px';
-                        var active = tabs.querySelector('.active');
-                        if (!active) active = tabs.firstChild;
-                        if (!active) return;
-                        var left = active.offsetLeft;
-                        bar.style.transform = 'translateX(' + left + 'px)';
-                    }
+                    // 等待游戏界面就绪
+                    if (!lib.arenaReady) lib.arenaReady = [];
+                    lib.arenaReady.push(function() {
+                        if (typeof ui === 'undefined' || !ui.window) return;
 
-                    function fixMenu(container) {
-                        if (!container) return;
-                        var zoom = game.documentZoom || 1;
-                        container.style.transform = 'scale(' + (targetScale / zoom) + ')';
-                        container.style.transformOrigin = 'top left';
-                        if (container._dcfl_indicator_bound) return;
-                        container._dcfl_indicator_bound = true;
+                        var targetScale = 0.7; // 固定比例，可自行调整
 
-                        var tabs = container.querySelector('.menu-tab');
-                        if (!tabs) return;
-                        var observer = new MutationObserver(function () {
-                            updateIndicator(container);
+                        // 对单个菜单容器应用缩放
+                        function applyScale(container) {
+                            if (!container) return;
+                            var zoom = game.documentZoom || 1;
+                            container.style.transform = 'scale(' + (targetScale / zoom) + ')';
+                            container.style.transformOrigin = 'top left';
+                        }
+
+                        // 对所有菜单容器应用缩放
+                        function fixAllMenusScale() {
+                            var containers = [ui.menuContainer, ui.connectMenuContainer];
+                            for (var i = 0; i < containers.length; i++) {
+                                if (containers[i]) applyScale(containers[i]);
+                            }
+                        }
+
+                        // 重写 ui.updatez，在原始逻辑后重新应用缩放，并触发内部回调
+                        var originalUpdatez = ui.updatez;
+                        ui.updatez = function() {
+                            originalUpdatez.call(this);
+                            fixAllMenusScale();
+                            // 调用其他模块注册的回调（供内部修正指示器使用）
+                            if (window._dcfl_update_callbacks) {
+                                for (var i = 0; i < window._dcfl_update_callbacks.length; i++) {
+                                    window._dcfl_update_callbacks[i]();
+                                }
+                            }
+                        };
+
+                        // 监听新添加的菜单容器，自动缩放
+                        var observer = new MutationObserver(function(mutations) {
+                            for (var i = 0; i < mutations.length; i++) {
+                                var added = mutations[i].addedNodes;
+                                for (var j = 0; j < added.length; j++) {
+                                    var node = added[j];
+                                    if (node.nodeType === 1 && node.classList && node.classList.contains('menu-container')) {
+                                        applyScale(node);
+                                    }
+                                }
+                            }
                         });
-                        observer.observe(tabs, { attributes: true, attributeFilter: ['class'], childList: true, subtree: true });
+                        observer.observe(ui.window, {
+                            childList: true,
+                            subtree: false
+                        });
 
-                        var bar = container.querySelector('.menu-tab-bar');
-                        if (bar) {
-                            var barObserver = new MutationObserver(function () {
+                        // 初始化执行
+                        fixAllMenusScale();
+
+                        // 初始化回调数组（供内部注册）
+                        if (!window._dcfl_update_callbacks) window._dcfl_update_callbacks = [];
+
+                        console.log('[叠彩峰岭] 固定菜单比例已生效 (scale=' + targetScale + ')');
+                    });
+                })();
+            }
+
+            // ================= 修正指示器 + 弹出位置（模块） =================
+            if (config.dcfl_caidancuowei) {
+                const extName = '十周年UI';
+                const installed = lib.config.extensions && lib.config.extensions.includes(extName);
+                const enabled = lib.config[`extension_${extName}_enable`] === true;
+
+                if (installed && enabled) {
+                    (function() {
+                        if (window._dcfl_menu_fixed) return;
+                        window._dcfl_menu_fixed = true;
+
+                        if (!lib.arenaReady) lib.arenaReady = [];
+                        lib.arenaReady.push(function() {
+                            // 使用外部定义的缩放系数（原为 var targetScale = 0.7;）
+                            var targetScale = window._dcfl_targetScale || 0.7;
+                            var offsetX = 48; // 弹出窗口水平偏移（正数向右，紧贴按钮右侧）
+                            var offsetY = 20; // 弹出窗口垂直微调（正数向下，负数向上）
+
+                            var originalUpdatez = ui.updatez;
+
+                            // ----- 修正指示器位置（完全不变）-----
+                            function updateIndicator(menuContainer) {
+                                if (!menuContainer) return;
+                                var bar = menuContainer.querySelector('.menu-tab-bar');
+                                var tabs = menuContainer.querySelector('.menu-tab');
+                                if (!bar || !tabs) return;
+                                bar.style.left = '0px';
+                                var active = tabs.querySelector('.active');
+                                if (!active) active = tabs.firstChild;
+                                if (!active) return;
+                                var left = active.offsetLeft;
+                                bar.style.transform = 'translateX(' + left + 'px)';
+                            }
+
+                            function fixMenu(container) {
+                                if (!container) return;
+                                if (container._dcfl_indicator_bound) return;
+                                container._dcfl_indicator_bound = true;
+
+                                var tabs = container.querySelector('.menu-tab');
+                                if (!tabs) return;
+                                var observer = new MutationObserver(function() {
+                                    updateIndicator(container);
+                                });
+                                observer.observe(tabs, {
+                                    attributes: true,
+                                    attributeFilter: ['class'],
+                                    childList: true,
+                                    subtree: true
+                                });
+
+                                var bar = container.querySelector('.menu-tab-bar');
+                                if (bar) {
+                                    var barObserver = new MutationObserver(function() {
+                                        updateIndicator(container);
+                                    });
+                                    barObserver.observe(bar, {
+                                        attributes: true,
+                                        attributeFilter: ['style']
+                                    });
+                                }
                                 updateIndicator(container);
-                            });
-                            barObserver.observe(bar, { attributes: true, attributeFilter: ['style'] });
-                        }
-                        updateIndicator(container);
-                    }
+                            }
 
-                    function fixAllMenus() {
-                        var containers = [ui.menuContainer, ui.connectMenuContainer];
-                        for (var i = 0; i < containers.length; i++) {
-                            if (containers[i]) fixMenu(containers[i]);
-                        }
-                    }
+                            function fixAllMenus() {
+                                var containers = [ui.menuContainer, ui.connectMenuContainer];
+                                for (var i = 0; i < containers.length; i++) {
+                                    if (containers[i]) fixMenu(containers[i]);
+                                }
+                            }
 
-                    // ----- 修正弹出窗口位置：基于原始坐标缩放并右移 -----
-                    function fixPopupNode(node) {
-                        if (!node) return;
-                        var left = parseFloat(node.style.left) || 0;
-                        var top = parseFloat(node.style.top) || 0;
-                        var newLeft = left * targetScale + offsetX;
-                        var newTop = top * targetScale + offsetY;
+                            // ----- 修正弹出窗口位置 -----
+                            function fixPopupNode(node) {
+                                if (!node) return;
+                                var left = parseFloat(node.style.left) || 0;
+                                var top = parseFloat(node.style.top) || 0;
+                                var newLeft = left * targetScale + offsetX;
+                                var newTop = top * targetScale + offsetY;
 
-                        var winWidth = ui.window.offsetWidth;
-                        var nodeWidth = node.offsetWidth || 200;
-                        if (newLeft + nodeWidth > winWidth) {
-                            newLeft = winWidth - nodeWidth - 10;
-                        }
-                        node.style.left = newLeft + 'px';
-                        node.style.top = newTop + 'px';
-                    }
+                                var winWidth = ui.window.offsetWidth;
+                                var nodeWidth = node.offsetWidth || 200;
+                                if (newLeft + nodeWidth > winWidth) {
+                                    newLeft = winWidth - nodeWidth - 10;
+                                }
+                                node.style.left = newLeft + 'px';
+                                node.style.top = newTop + 'px';
+                            }
 
-                    function watchPopupContainer() {
-                        var container = ui.window.querySelector('.popup-container');
-                        if (container) {
-                            var popupObserver = new MutationObserver(function (mutations) {
+                            function watchPopupContainer() {
+                                var container = ui.window.querySelector('.popup-container');
+                                if (container) {
+                                    var popupObserver = new MutationObserver(function(mutations) {
+                                        for (var i = 0; i < mutations.length; i++) {
+                                            var added = mutations[i].addedNodes;
+                                            for (var j = 0; j < added.length; j++) {
+                                                var node = added[j];
+                                                if (node.nodeType === 1) {
+                                                    setTimeout(function(n) {
+                                                        fixPopupNode(n);
+                                                    }, 0, node);
+                                                }
+                                            }
+                                        }
+                                    });
+                                    popupObserver.observe(container, {
+                                        childList: true
+                                    });
+
+                                    for (var child = container.firstChild; child; child = child.nextSibling) {
+                                        if (child.nodeType === 1) fixPopupNode(child);
+                                    }
+                                } else {
+                                    var watcher = new MutationObserver(function() {
+                                        var c = ui.window.querySelector('.popup-container');
+                                        if (c) {
+                                            watcher.disconnect();
+                                            watchPopupContainer();
+                                        }
+                                    });
+                                    watcher.observe(ui.window, {
+                                        childList: true,
+                                        subtree: false
+                                    });
+                                }
+                            }
+
+                            ui.updatez = function() {
+                                originalUpdatez.call(this);
+                                fixAllMenus();
+                            };
+
+                            var watcher = new MutationObserver(function(mutations) {
                                 for (var i = 0; i < mutations.length; i++) {
                                     var added = mutations[i].addedNodes;
                                     for (var j = 0; j < added.length; j++) {
                                         var node = added[j];
                                         if (node.nodeType === 1) {
-                                            setTimeout(function (n) {
-                                                fixPopupNode(n);
-                                            }, 0, node);
+                                            if (node.classList && node.classList.contains('menu-container')) {
+                                                fixMenu(node);
+                                            }
+                                            if (node.classList && node.classList.contains('popup-container')) {
+                                                watchPopupContainer();
+                                            }
                                         }
                                     }
                                 }
                             });
-                            popupObserver.observe(container, { childList: true });
-
-                            for (var child = container.firstChild; child; child = child.nextSibling) {
-                                if (child.nodeType === 1) fixPopupNode(child);
-                            }
-                        } else {
-                            var watcher = new MutationObserver(function () {
-                                var c = ui.window.querySelector('.popup-container');
-                                if (c) {
-                                    watcher.disconnect();
-                                    watchPopupContainer();
-                                }
+                            watcher.observe(ui.window, {
+                                childList: true,
+                                subtree: false
                             });
-                            watcher.observe(ui.window, { childList: true, subtree: false });
+
+                            fixAllMenus();
+                            watchPopupContainer();
+
+                            console.log('[叠彩峰岭] 菜单固定 ' + (targetScale * 100) + '% 已生效，弹出位置已修正');
+                        });
+                    })();
+                }
+            }
+
+            // ============结算界面兼容旧版=====================
+            if (config.dcfl_jxjm) {
+                (function() {
+                    if (window._oldHandDisplayInstalled) return;
+                    window._oldHandDisplayInstalled = true;
+
+                    lib.onover.push(function(resultbool) {
+
+                        let dialog = null;
+                        for (let i = ui.dialogs.length - 1; i >= 0; i--) {
+                            if (ui.dialogs[i].forcebutton && ui.dialogs[i].content) {
+                                dialog = ui.dialogs[i];
+                                break;
+                            }
                         }
-                    }
+                        if (!dialog) return;
+                        if (dialog._oldHandAdded) return;
+                        dialog._oldHandAdded = true;
 
-                    ui.updatez = function () {
-                        originalUpdatez.call(this);
-                        fixAllMenus();
-                    };
+                        dialog.add(ui.create.div(".placeholder"));
 
-                    var watcher = new MutationObserver(function (mutations) {
-                        for (var i = 0; i < mutations.length; i++) {
-                            var added = mutations[i].addedNodes;
-                            for (var j = 0; j < added.length; j++) {
-                                var node = added[j];
-                                if (node.nodeType === 1) {
-                                    if (node.classList && node.classList.contains('menu-container')) {
-                                        fixMenu(node);
-                                    }
-                                    if (node.classList && node.classList.contains('popup-container')) {
-                                        watchPopupContainer();
-                                    }
+
+                        for (let player of game.players) {
+                            let hs = player.getCards("h");
+                            if (hs.length) {
+                                dialog.add('<div class="text center">' + get.translation(player) + "</div>");
+                                dialog.addSmall(hs);
+                            }
+                        }
+
+                        for (let player of game.dead) {
+                            let hs = player.getCards("h");
+                            if (hs.length) {
+                                dialog.add('<div class="text center">' + get.translation(player) + "</div>");
+                                dialog.addSmall(hs);
+                            }
+                        }
+
+                        if (game.additionaldead && game.additionaldead.length) {
+                            for (let player of game.additionaldead) {
+                                let hs = player.getCards("h");
+                                if (hs.length) {
+                                    dialog.add('<div class="text center">' + get.translation(player) + "</div>");
+                                    dialog.addSmall(hs);
                                 }
                             }
                         }
                     });
-                    watcher.observe(ui.window, { childList: true, subtree: false });
+                })();
+            }
 
-                    fixAllMenus();
-                    watchPopupContainer();
-
-                    console.log('[叠彩峰岭] 菜单固定 ' + (targetScale * 100) + '% 已生效，弹出位置已修正');
-                });
-            })();
-
-            // ============================================================
+            // ============================武将开启================================
             if (config.dcfl_wujiangkaiqi) {
                 (function hijackCharacterTab() {
                     function doHijack() {
@@ -154,7 +349,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             var tab = tabs[i];
                             if (tab.innerHTML.trim() === '武将') {
                                 if (tab._dcflHijacked) return true;
-                                tab.addEventListener('click', function (e) {
+                                tab.addEventListener('click', function(e) {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     if (typeof game.showCharacterInfo === 'function') {
@@ -179,8 +374,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 })();
             }
 
-            // ========== 全新独立：替换菜单“武将”Tab ==========
-            if (config.dcfl_huangechuangkou) {
+            // ========== 换个窗口 ==========
+            if (config.dcfl_wujiangchuangkou) {
                 (function replaceCharacterTab() {
                     function getPacks() {
                         var packs = [];
@@ -190,14 +385,22 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             var data = lib.characterPack[key];
                             var hasChar = false;
                             for (var name in data) {
-                                if (lib.character[name]) { hasChar = true; break; }
+                                if (lib.character[name]) {
+                                    hasChar = true;
+                                    break;
+                                }
                             }
                             if (hasChar) {
                                 var count = 0;
-                                for (var name in data) if (lib.character[name]) count++;
+                                for (var name in data)
+                                    if (lib.character[name]) count++;
                                 var displayName = lib.translate[key + '_character_config'] || key;
                                 displayName = displayName.replace(/<[^>]*>/g, '').trim();
-                                packs.push({ id: key, name: displayName, count: count });
+                                packs.push({
+                                    id: key,
+                                    name: displayName,
+                                    count: count
+                                });
                             }
                         }
                         return packs;
@@ -219,7 +422,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         // ---- 顶部：包切换按钮（横向滚动） ----
                         var tabBar = ui.create.div();
                         tabBar.style.cssText = 'display:flex;overflow-x:auto;padding:6px 8px;background:#16213e;border-bottom:1px solid #333;flex-shrink:0;';
-                        packs.forEach(function (pack) {
+                        packs.forEach(function(pack) {
                             var btn = ui.create.div();
                             btn.innerHTML = pack.name + ' <span style="font-size:0.7em;opacity:0.6;">(' + pack.count + ')</span>';
                             btn.style.cssText = 'padding:4px 12px;margin:0 4px;border-radius:4px;white-space:nowrap;cursor:pointer;transition:0.2s;';
@@ -230,9 +433,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 btn.style.background = 'rgba(255,255,255,0.05)';
                                 btn.style.color = '#aaa';
                             }
-                            btn.addEventListener('click', function () {
+                            btn.addEventListener('click', function() {
                                 if (this.classList.contains('active')) return;
-                                tabBar.querySelectorAll('.pack-btn').forEach(function (b) {
+                                tabBar.querySelectorAll('.pack-btn').forEach(function(b) {
                                     b.style.background = 'rgba(255,255,255,0.05)';
                                     b.style.color = '#aaa';
                                     b.classList.remove('active');
@@ -260,13 +463,19 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (lib.character[name]) charNames.push(name);
                             }
 
-                            charNames.sort(lib.sort.character || function (a, b) { return a.localeCompare(b); });
+                            charNames.sort(lib.sort.character || function(a, b) {
+                                return a.localeCompare(b);
+                            });
 
-                            charNames.forEach(function (charName) {
+                            charNames.forEach(function(charName) {
                                 var card = ui.create.div();
                                 card.style.cssText = 'width:110px;height:160px;border-radius:8px;background:#222;border:1px solid #444;overflow:hidden;cursor:pointer;position:relative;transition:0.2s;';
-                                card.addEventListener('mouseenter', function () { this.style.borderColor = '#8cf'; });
-                                card.addEventListener('mouseleave', function () { this.style.borderColor = '#444'; });
+                                card.addEventListener('mouseenter', function() {
+                                    this.style.borderColor = '#8cf';
+                                });
+                                card.addEventListener('mouseleave', function() {
+                                    this.style.borderColor = '#444';
+                                });
 
                                 var img = ui.create.div();
                                 img.style.cssText = 'width:100%;height:100%;background-size:cover;background-position:center;';
@@ -277,16 +486,24 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     lib.assetURL + 'extension/' + currentPack + '/' + charName + '.jpg',
                                     lib.assetURL + 'extension/' + extClean + '/' + charName + '.jpg'
                                 ];
+
                                 function tryLoad(index) {
-                                    if (index >= paths.length) { img.style.background = '#333'; return; }
+                                    if (index >= paths.length) {
+                                        img.style.background = '#333';
+                                        return;
+                                    }
                                     var test = new Image();
-                                    test.onload = function () { img.style.backgroundImage = 'url(' + paths[index] + ')'; };
-                                    test.onerror = function () { tryLoad(index + 1); };
+                                    test.onload = function() {
+                                        img.style.backgroundImage = 'url(' + paths[index] + ')';
+                                    };
+                                    test.onerror = function() {
+                                        tryLoad(index + 1);
+                                    };
                                     test.src = paths[index];
                                 }
                                 tryLoad(0);
 
-                                img.addEventListener('click', function (e) {
+                                img.addEventListener('click', function(e) {
                                     e.stopPropagation();
 
                                     var skinName = charName;
@@ -295,7 +512,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                         var skinPath = lib.assetURL + 'image/skin/' + skinName + '/' + num + '.jpg';
                                         var test = new Image();
-                                        test.onload = function () {
+                                        test.onload = function() {
                                             lib.config.skin[skinName] = num;
                                             game.saveConfig('skin', lib.config.skin);
                                             img.style.backgroundImage = 'url(' + skinPath + ')';
@@ -304,12 +521,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     } else {
                                         var def = lib.assetURL + 'image/character/' + charName + '.jpg';
                                         var test = new Image();
-                                        test.onload = function () { img.style.backgroundImage = 'url(' + def + ')'; };
+                                        test.onload = function() {
+                                            img.style.backgroundImage = 'url(' + def + ')';
+                                        };
                                         test.src = def;
                                     }
                                 });
 
-                                img.addEventListener('dblclick', function (e) {
+                                img.addEventListener('dblclick', function(e) {
                                     e.stopPropagation();
                                     var charData = lib.character[charName];
                                     var info = get.translation(charName) + '\n';
@@ -318,7 +537,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         if (charData[1]) info += '性别：' + get.translation(charData[1]) + '\n';
                                         if (charData[2]) info += '体力：' + charData[2] + '\n';
                                         if (charData[3] && charData[3].length) {
-                                            info += '技能：' + charData[3].map(function (s) { return get.translation(s); }).join('、');
+                                            info += '技能：' + charData[3].map(function(s) {
+                                                return get.translation(s);
+                                            }).join('、');
                                         }
                                     }
                                     alert(info);
@@ -370,8 +591,930 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 })();
             }
 
-            //===============================================================================			
-            game.playdcfl = function (fn, dir) {
+            //==================骨骼小动画================    
+            (function() {
+                if (window._dcfl_bg_installed) {
+                    //console.log('[叠彩峰岭] 动态背景已安装，跳过');
+                    return;
+                }
+                window._dcfl_bg_installed = true;
+
+                // 1. 创建独立命名空间
+                const DCFL_BG = {
+                    config: config,
+                    helper: {
+                        bodySize: () => ({
+                            width: document.body.clientWidth,
+                            height: document.body.clientHeight
+                        }),
+                        bodySensor: {
+                            addListener: (cb) => {
+                                const handler = () => {
+                                    if (cb) cb();
+                                };
+                                window.addEventListener('resize', handler);
+                            }
+                        }
+                    },
+                    duilib: {},
+                    bgAnim: null,
+                    definedAssets: null
+                };
+
+                // 2. 定义 duilib 引擎（完整类定义，与新十周年完全一致）
+                const duilib = DCFL_BG.duilib;
+
+                // CubicBezierEase
+                duilib.CubicBezierEase = class {
+                    constructor(p1x, p1y, p2x, p2y) {
+                        this.cX = 3 * p1x;
+                        this.bX = 3 * (p2x - p1x) - this.cX;
+                        this.aX = 1 - this.cX - this.bX;
+                        this.cY = 3 * p1y;
+                        this.bY = 3 * (p2y - p1y) - this.cY;
+                        this.aY = 1 - this.cY - this.bY;
+                    }
+                    getX(t) {
+                        return t * (this.cX + t * (this.bX + t * this.aX));
+                    }
+                    getXDerivative(t) {
+                        return this.cX + t * (2 * this.bX + 3 * this.aX * t);
+                    }
+                    ease(x) {
+                        let prev, t = x;
+                        do {
+                            prev = t;
+                            t = t - ((this.getX(t) - x) / this.getXDerivative(t));
+                        } while (Math.abs(t - prev) > 1e-4);
+                        return t * (this.cY + t * (this.bY + t * this.aY));
+                    }
+                };
+                duilib.ease = function(fraction) {
+                    if (!duilib.b3ease) duilib.b3ease = new duilib.CubicBezierEase(0.25, 0.1, 0.25, 1);
+                    return duilib.b3ease.ease(fraction);
+                };
+                duilib.lerp = function(min, max, frac) {
+                    return (max - min) * frac + min;
+                };
+
+                // TimeStep
+                duilib.TimeStep = class {
+                    constructor(init) {
+                        this.start = init.start;
+                        this.current = init.start;
+                        this.end = init.end;
+                        this.time = 0;
+                        this.percent = 0;
+                        this.duration = init.duration;
+                        this.completed = false;
+                    }
+                    update(delta) {
+                        this.time += delta;
+                        this.percent = duilib.ease(Math.min(this.time / this.duration, 1));
+                        const start = Array.isArray(this.start) ? this.start : [this.start, 0];
+                        const end = Array.isArray(this.end) ? this.end : [this.end, 0];
+                        this.current = Array.isArray(this.start) ? [duilib.lerp(start[0], end[0], this.percent), duilib.lerp(start[1], end[1], this.percent)] :
+                            duilib.lerp(start[0], end[0], this.percent);
+                        if (this.time >= this.duration) this.completed = true;
+                    }
+                };
+
+                // APNode
+                duilib.APNode = class {
+                    constructor(init) {
+                        if (!init) init = {};
+                        this.id = undefined;
+                        this.x = init.x;
+                        this.y = init.y;
+                        this.height = init.height;
+                        this.width = init.width;
+                        this.angle = init.angle;
+                        this.scale = init.scale;
+                        this.opacity = init.opacity;
+                        this.clip = init.clip;
+                        this.hideSlots = init.hideSlots;
+                        this.clipSlots = init.clipSlots;
+                        this.disableMask = init.disableMask;
+                        this.renderX = this.renderY = this.renderAngle = this.renderScale = this.renderOpacity = this.renderClip = undefined;
+                        this.mvp = new spine.webgl.Matrix4();
+                        this.skeleton = init.skeleton;
+                        this.name = init.name;
+                        this.action = init.action;
+                        this.loop = init.loop;
+                        this.loopCount = init.loopCount;
+                        this.speed = init.speed;
+                        this.onupdate = init.onupdate;
+                        this.oncomplete = init.oncomplete;
+                        this.completed = true;
+                        this.referNode = init.referNode;
+                        this.referFollow = init.referFollow;
+                        this.referBounds = undefined;
+                        this.timestepMap = {};
+                        this.flipX = init.flipX;
+                        this.flipY = init.flipY;
+                        this.premultipliedAlpha = init.premultipliedAlpha;
+                    }
+                    fadeTo(opacity, duration) {
+                        if (opacity != null) {
+                            this.updateTimeStep('opacity', this.opacity == null ? 1 : this.opacity, opacity, duration);
+                            this.opacity = opacity;
+                        }
+                        return this;
+                    }
+                    moveTo(x, y, duration) {
+                        if (x != null) {
+                            this.updateTimeStep('x', this.x == null ? [0, 0.5] : this.x, x, duration);
+                            this.x = x;
+                        }
+                        if (y != null) {
+                            this.updateTimeStep('y', this.y == null ? [0, 0.5] : this.y, y, duration);
+                            this.y = y;
+                        }
+                        return this;
+                    }
+                    scaleTo(scale, duration) {
+                        if (scale != null) {
+                            this.updateTimeStep('scale', this.scale == null ? 1 : this.scale, scale, duration);
+                            this.scale = scale;
+                        }
+                        return this;
+                    }
+                    rotateTo(angle, duration) {
+                        if (angle != null) {
+                            this.updateTimeStep('angle', this.angle == null ? 0 : this.angle, angle, duration);
+                            this.angle = angle;
+                        }
+                        return this;
+                    }
+                    update(e) {
+                        const calc = (value, refer, dpr) => Array.isArray(value) ? value[0] * dpr + value[1] * refer : value * dpr;
+                        const dpr = e.dpr;
+                        let referSize = {
+                            width: e.canvas.width,
+                            height: e.canvas.height
+                        };
+                        const domNode = this.referNode instanceof HTMLElement ? this.referNode : undefined;
+                        if (domNode) {
+                            if (this.referFollow || !this.referBounds) {
+                                const rect = domNode.getBoundingClientRect();
+                                this.referBounds = {
+                                    x: rect.left,
+                                    y: window.innerHeight - rect.bottom,
+                                    width: rect.width,
+                                    height: rect.height
+                                };
+                            }
+                            referSize.height = this.referBounds.height * dpr;
+                            referSize.width = this.referBounds.width * dpr;
+                        }
+                        let timestep, renderX, renderY, renderScale, renderScaleX, renderScaleY;
+                        const skSize = this.skeleton.bounds.size;
+                        timestep = this.timestepMap.x;
+                        if (timestep && !timestep.completed) {
+                            timestep.update(e.delta);
+                            renderX = calc(timestep.current, referSize.width, dpr);
+                        } else if (this.x != null) renderX = calc(this.x, referSize.width, dpr);
+                        timestep = this.timestepMap.y;
+                        if (timestep && !timestep.completed) {
+                            timestep.update(e.delta);
+                            renderY = calc(timestep.current, referSize.height, dpr);
+                        } else if (this.y != null) renderY = calc(this.y, referSize.height, dpr);
+                        if (this.width != null) renderScaleX = calc(this.width, referSize.width, dpr) / skSize.x;
+                        if (this.height != null) renderScaleY = calc(this.height, referSize.height, dpr) / skSize.y;
+                        if (domNode) {
+                            if (renderX == null) renderX = (this.referBounds.x + this.referBounds.width / 2) * dpr;
+                            else renderX += this.referBounds.x * dpr;
+                            if (renderY == null) renderY = (this.referBounds.y + this.referBounds.height / 2) * dpr;
+                            else renderY += this.referBounds.y * dpr;
+                        }
+                        this.mvp.ortho2d(0, 0, e.canvas.width, e.canvas.height);
+                        if (renderX != null && renderY == null) {
+                            this.mvp.translate(renderX, 0, 0);
+                            this.mvp.setY(0);
+                        } else if (renderX == null && renderY != null) {
+                            this.mvp.translate(0, renderY, 0);
+                            this.mvp.setX(0);
+                        } else if (renderX != null && renderY != null) {
+                            this.mvp.translate(renderX, renderY, 0);
+                        } else {
+                            this.mvp.setPos2D(0, 0);
+                        }
+                        timestep = this.timestepMap.scale;
+                        if (timestep && !timestep.completed) {
+                            timestep.update(e.delta);
+                            renderScale = timestep.current;
+                        } else renderScale = this.scale == null ? 1 : this.scale;
+                        if (renderScaleX && !renderScaleY) renderScale *= renderScaleX;
+                        else if (!renderScaleX && renderScaleY) renderScale *= renderScaleY;
+                        else if (renderScaleX && renderScaleY) renderScale *= Math.min(renderScaleX, renderScaleY);
+                        else renderScale *= dpr;
+                        if (renderScale !== 1) this.mvp.scale(renderScale, renderScale, 0);
+                        timestep = this.timestepMap.angle;
+                        if (timestep && !timestep.completed) {
+                            timestep.update(e.delta);
+                            this.renderAngle = timestep.current;
+                        } else this.renderAngle = this.angle;
+                        if (this.renderAngle) this.mvp.rotate(this.renderAngle, 0, 0, 1);
+                        timestep = this.timestepMap.opacity;
+                        if (timestep && !timestep.completed) {
+                            timestep.update(e.delta);
+                            this.renderOpacity = timestep.current;
+                        } else this.renderOpacity = this.opacity;
+                        this.renderX = renderX;
+                        this.renderY = renderY;
+                        this.renderScale = renderScale;
+                        if (this.clip) {
+                            this.renderClip = {
+                                x: calc(this.clip.x, e.canvas.width, dpr),
+                                y: calc(this.clip.y, e.canvas.height, dpr),
+                                width: calc(this.clip.width, e.canvas.width, dpr),
+                                height: calc(this.clip.height, e.canvas.height, dpr)
+                            };
+                        }
+                        if (this.onupdate) this.onupdate();
+                    }
+                    setAction(action, transition) {
+                        if (this.skeleton && this.skeleton.node === this) {
+                            if (!this.skeleton.data.findAnimation(action)) return console.error('setAction: 未找到对应骨骼动作');
+                            transition = transition == null ? 0.5 : transition / 1000;
+                            const entry = this.skeleton.state.setAnimation(0, action, this.loop);
+                            entry.mixDuration = transition;
+                        } else console.error('setAction: 节点失去关联');
+                    }
+                    resetAction(transition) {
+                        if (this.skeleton && this.skeleton.node === this) {
+                            transition = transition == null ? 0.5 : transition / 1000;
+                            const entry = this.skeleton.state.setAnimation(0, this.skeleton.defaultAction, this.loop);
+                            entry.mixDuration = transition;
+                        } else console.error('resetAction: 节点失去关联');
+                    }
+                    complete() {
+                        if (!this.oncomplete) return;
+                        if (typeof this.oncomplete === 'string') {
+                            const a = this.oncomplete.indexOf('{');
+                            const b = this.oncomplete.lastIndexOf('}');
+                            if (a === -1 || b === -1) {
+                                this.oncomplete = undefined;
+                                return console.error(this.name + ' 的oncomplete函数语法错误');
+                            }
+                            this.oncomplete = new Function(this.oncomplete.substring(a + 1, b));
+                        }
+                        if (typeof this.oncomplete === 'function') this.oncomplete();
+                    }
+                    updateTimeStep(key, start, end, duration) {
+                        if (!duration || duration === 0) return;
+                        let ts = this.timestepMap[key];
+                        if (ts) {
+                            ts.start = ts.completed ? start : ts.current;
+                            ts.end = end;
+                            ts.time = 0;
+                            ts.percent = 0;
+                            ts.completed = false;
+                            ts.duration = duration;
+                        } else {
+                            ts = this.timestepMap[key] = new duilib.TimeStep({
+                                start,
+                                end,
+                                duration
+                            });
+                        }
+                        return ts;
+                    }
+                };
+
+                duilib.AnimationPlayer = class {
+                    constructor(pathPrefix, parentNode, elementId) {
+                        if (!window.spine) return console.error('[叠彩峰岭] spine 未定义.');
+                        let canvas;
+                        if (parentNode === 'offscreen') {
+                            canvas = elementId;
+                            this.offscreen = true;
+                        } else {
+                            canvas = document.createElement('canvas');
+                            canvas.className = 'dcfl-animation-player';
+                            if (elementId != null) canvas.id = elementId;
+                            if (parentNode != null) parentNode.appendChild(canvas);
+                        }
+                        const glOpts = {
+                            alpha: true
+                        };
+                        let gl = canvas.getContext('webgl2', glOpts);
+                        if (!gl) gl = canvas.getContext('webgl', glOpts) || canvas.getContext('experimental-webgl', glOpts);
+                        if (gl) {
+                            this.spine = {
+                                shader: spine.webgl.Shader.newTwoColoredTextured(gl),
+                                batcher: new spine.webgl.PolygonBatcher(gl),
+                                skeletonRenderer: new spine.webgl.SkeletonRenderer(gl),
+                                assetManager: new spine.webgl.AssetManager(gl, pathPrefix),
+                                assets: {},
+                                skeletons: []
+                            };
+                        } else {
+                            this.spine = {
+                                assets: {}
+                            };
+                            console.error('[叠彩峰岭] 当前设备不支持 WebGL.');
+                        }
+                        this.gl = gl;
+                        this.canvas = canvas;
+                        this.frameTime = undefined;
+                        this.running = false;
+                        this.resized = false;
+                        this.dpr = 1;
+                        this.nodes = [];
+                        this.BUILT_ID = 0;
+                        this._dprAdaptive = false;
+                        Object.defineProperties(this, {
+                            dprAdaptive: {
+                                get: () => this._dprAdaptive,
+                                set: (v) => {
+                                    if (this._dprAdaptive !== v) {
+                                        this._dprAdaptive = v;
+                                        this.resized = false;
+                                    }
+                                }
+                            },
+                            useMipMaps: {
+                                get: () => gl ? this.gl.useMipMaps : undefined,
+                                set: (v) => {
+                                    if (gl) this.gl.useMipMaps = v;
+                                }
+                            }
+                        });
+                        if (!this.offscreen) {
+                            this.canvas.width = canvas.clientWidth;
+                            this.canvas.height = canvas.clientHeight;
+                        }
+
+                        if (canvas.style) {
+                            canvas.style.position = 'fixed';
+                            canvas.style.top = '0';
+                            canvas.style.left = '0';
+                            canvas.style.width = '100%';
+                            canvas.style.height = '100%';
+                            canvas.style.pointerEvents = 'none';
+                            canvas.style.zIndex = '0';
+                            canvas.style.visibility = 'hidden';
+                        }
+                        this.check = function() {
+                            if (!this.gl) {
+                                const empty = () => {};
+                                for (let key in this.__proto__)
+                                    if (typeof this.__proto__[key] === 'function') this.__proto__[key] = empty;
+                                for (let key in this)
+                                    if (typeof this[key] === 'function' && key !== 'check') this[key] = empty;
+                            }
+                        };
+                        this.check();
+                    }
+
+                    hasSpine(filename) {
+                        return this.spine.assets[filename] != null;
+                    }
+                    loadSpine(filename, skelType, onload, onerror) {
+                        skelType = skelType || 'skel';
+                        const thisAnim = this;
+                        const reader = {
+                            name: filename,
+                            filename: filename,
+                            skelType: skelType,
+                            onsuccess: onload,
+                            onfailed: onerror,
+                            loaded: 0,
+                            errors: 0,
+                            toLoad: 2,
+                            onerror: function(path, msg) {
+                                this.toLoad--;
+                                this.errors++;
+                                if (this.toLoad === 0) {
+                                    console.error('loadSpine: [' + this.filename + '] 加载失败.');
+                                    if (this.onfailed) this.onfailed();
+                                }
+                            },
+                            onload: function(path, data) {
+                                this.toLoad--;
+                                this.loaded++;
+                                if (this.toLoad === 0) {
+                                    if (this.errors > 0) {
+                                        console.error('loadSpine: [' + this.filename + '] 加载失败.');
+                                        if (this.onfailed) this.onfailed();
+                                    } else {
+                                        thisAnim.spine.assets[this.filename] = {
+                                            name: this.filename,
+                                            skelType: this.skelType
+                                        };
+                                        if (this.onsuccess) this.onsuccess();
+                                    }
+                                }
+                            },
+                            ontextLoad: function(path, data) {
+                                let imageName = null;
+                                const atlasReader = new spine.TextureAtlasReader(data);
+                                let prefix = '';
+                                const a = this.name.lastIndexOf('/');
+                                const b = this.name.lastIndexOf('\\');
+                                if (a !== -1 || b !== -1) prefix = this.name.substring(0, (a > b ? a : b) + 1);
+                                while (true) {
+                                    let line = atlasReader.readLine();
+                                    if (line == null) break;
+                                    line = line.trim();
+                                    if (line.length === 0) {
+                                        imageName = null;
+                                    } else if (!imageName) {
+                                        imageName = line;
+                                        this.toLoad++;
+                                        thisAnim.spine.assetManager.loadTexture(prefix + imageName, reader.onload.bind(reader), reader.onerror.bind(reader));
+                                    }
+                                }
+                                reader.onload(path, data);
+                            }
+                        };
+                        if (skelType === 'json') {
+                            thisAnim.spine.assetManager.loadText(filename + '.json', reader.onload.bind(reader), reader.onerror.bind(reader));
+                        } else {
+                            thisAnim.spine.assetManager.loadBinary(filename + '.skel', reader.onload.bind(reader), reader.onerror.bind(reader));
+                        }
+                        thisAnim.spine.assetManager.loadText(filename + '.atlas', reader.ontextLoad.bind(reader), reader.onerror.bind(reader));
+                    }
+                    prepSpine(filename, autoLoad) {
+                        const assets = this.spine.assets;
+                        if (!assets[filename]) {
+                            if (autoLoad) {
+                                this.loadSpine(filename, 'skel', () => this.prepSpine(filename));
+                                return 'loading';
+                            }
+                            return console.error('prepSpine: [' + filename + '] 骨骼没有加载');
+                        }
+                        let skeleton;
+                        for (let s of this.spine.skeletons) {
+                            if (s.name === filename && s.completed) return s;
+                        }
+                        const asset = assets[filename];
+                        const manager = this.spine.assetManager;
+                        let skelRawData = asset.skelRawData;
+                        if (!skelRawData) {
+                            let prefix = '';
+                            const a = filename.lastIndexOf('/');
+                            const b = filename.lastIndexOf('\\');
+                            if (a !== -1 || b !== -1) prefix = filename.substring(0, (a > b ? a : b) + 1);
+                            const atlas = new spine.TextureAtlas(manager.get(filename + '.atlas'), path => manager.get(prefix + path));
+                            const loader = new spine.AtlasAttachmentLoader(atlas);
+                            if (asset.skelType.toLowerCase() === 'json') skelRawData = new spine.SkeletonJson(loader);
+                            else skelRawData = new spine.SkeletonBinary(loader);
+                            assets[filename].skelRawData = skelRawData;
+                            assets[filename].ready = true;
+                        }
+                        const data = skelRawData.readSkeletonData(manager.get(filename + '.' + asset.skelType));
+                        skeleton = new spine.Skeleton(data);
+                        skeleton.name = filename;
+                        skeleton.completed = true;
+                        skeleton.setSkinByName('default');
+                        skeleton.setToSetupPose();
+                        skeleton.updateWorldTransform();
+                        skeleton.state = new spine.AnimationState(new spine.AnimationStateData(skeleton.data));
+                        skeleton.state.addListener({
+                            complete: function(track) {
+                                const node = skeleton.node;
+                                if (node) {
+                                    track.loop = node.loop == null ? false : node.loop;
+                                    if (track.loop && node.loopCount > 0) {
+                                        node.loopCount--;
+                                        if (node.loopCount === 0) track.loop = false;
+                                    }
+                                    skeleton.completed = node.completed = !track.loop;
+                                    if (node.complete) node.complete();
+                                } else {
+                                    skeleton.completed = !track.loop;
+                                    console.error('skeleton complete: 超出预期的错误');
+                                }
+                            }
+                        });
+                        skeleton.bounds = {
+                            offset: new spine.Vector2(),
+                            size: new spine.Vector2()
+                        };
+                        skeleton.getBounds(skeleton.bounds.offset, skeleton.bounds.size, []);
+                        skeleton.defaultAction = data.animations[0].name;
+                        skeleton.node = undefined;
+                        this.spine.skeletons.push(skeleton);
+                        return skeleton;
+                    }
+                    playSpine(sprite, position) {
+                        if (!sprite) return console.error('playSpine: parameter undefined');
+                        if (typeof sprite === 'string') sprite = {
+                            name: sprite
+                        };
+                        if (!this.hasSpine(sprite.name)) return console.error('playSpine: [' + sprite.name + '] 骨骼没有加载');
+                        let skeleton;
+                        if (!(sprite instanceof duilib.APNode && sprite.skeleton && sprite.skeleton.completed)) {
+                            for (let s of this.spine.skeletons) {
+                                if (s.name === sprite.name && s.completed) {
+                                    skeleton = s;
+                                    break;
+                                }
+                            }
+                            if (!skeleton) skeleton = this.prepSpine(sprite.name);
+                            if (!(sprite instanceof duilib.APNode)) {
+                                const param = sprite;
+                                sprite = new duilib.APNode(param);
+                                sprite.id = param.id == null ? this.BUILT_ID++ : param.id;
+                                this.nodes.push(sprite);
+                            }
+                            sprite.skeleton = skeleton;
+                            skeleton.node = sprite;
+                        }
+                        sprite.completed = false;
+                        skeleton.completed = false;
+                        if (position != null) {
+                            sprite.x = position.x;
+                            sprite.y = position.y;
+                            sprite.height = position.height;
+                            sprite.width = position.width;
+                            sprite.scale = position.scale;
+                            sprite.angle = position.angle;
+                            sprite.referNode = position.parent;
+                            sprite.referFollow = position.follow;
+                        }
+                        const entry = skeleton.state.setAnimation(0, sprite.action || skeleton.defaultAction, sprite.loop);
+                        entry.mixDuration = 0;
+                        if (this.requestId == null) {
+                            this.running = true;
+                            if (!this.offscreen) this.canvas.style.visibility = 'visible';
+                            this.requestId = requestAnimationFrame(this.render.bind(this));
+                        }
+                        sprite.referBounds = undefined;
+                        return sprite;
+                    }
+                    loopSpine(sprite, position) {
+                        if (typeof sprite === 'string') sprite = {
+                            name: sprite,
+                            loop: true
+                        };
+                        else sprite.loop = true;
+                        return this.playSpine(sprite, position);
+                    }
+                    stopSpine(sprite) {
+                        const id = sprite.id == null ? sprite : sprite.id;
+                        for (let s of this.nodes) {
+                            if (s.id === id) {
+                                if (!s.completed) {
+                                    s.completed = true;
+                                    s.skeleton.state.setEmptyAnimation(0);
+                                }
+                                return s;
+                            }
+                        }
+                        return null;
+                    }
+                    stopSpineAll() {
+                        for (let s of this.nodes) {
+                            if (!s.completed) {
+                                s.completed = true;
+                                s.skeleton.state.setEmptyAnimation(0);
+                            }
+                        }
+                        this.nodes = [];
+                        this.frameTime = undefined;
+                        this.running = false;
+                        this.current = null;
+                    }
+                    render(timestamp) {
+                        const canvas = this.canvas;
+                        const offscreen = this.offscreen;
+                        let dpr = 1;
+                        if (this.dprAdaptive) {
+                            dpr = offscreen ? (this.dpr != null ? this.dpr : 1) : Math.max(window.devicePixelRatio * (window.documentZoom || 1), 1);
+                        }
+                        const delta = timestamp - (this.frameTime || timestamp);
+                        this.frameTime = timestamp;
+                        let erase = true;
+                        const resize = !this.resized || canvas.width === 0 || canvas.height === 0;
+                        if (resize) {
+                            this.resized = true;
+                            if (!offscreen) {
+                                canvas.width = dpr * canvas.clientWidth;
+                                canvas.height = dpr * canvas.clientHeight;
+                                erase = false;
+                            } else {
+                                if (this.width) {
+                                    canvas.width = dpr * this.width;
+                                    erase = false;
+                                }
+                                if (this.height) {
+                                    canvas.height = dpr * this.height;
+                                    erase = false;
+                                }
+                            }
+                        }
+                        const ea = {
+                            dpr,
+                            delta,
+                            canvas,
+                            frameTime: timestamp
+                        };
+                        for (let i = 0; i < this.nodes.length; i++) {
+                            if (!this.nodes[i].completed) this.nodes[i].update(ea);
+                            else {
+                                this.nodes.splice(i, 1);
+                                i--;
+                            }
+                        }
+                        const gl = this.gl;
+                        gl.viewport(0, 0, canvas.width, canvas.height);
+                        if (erase) {
+                            gl.clearColor(0, 0, 0, 0);
+                            gl.clear(gl.COLOR_BUFFER_BIT);
+                        }
+                        if (this.nodes.length === 0) {
+                            this.frameTime = undefined;
+                            this.requestId = undefined;
+                            this.running = false;
+                            return;
+                        }
+                        const shader = this.spine.shader;
+                        const batcher = this.spine.batcher;
+                        const renderer = this.spine.skeletonRenderer;
+                        gl.enable(gl.SCISSOR_TEST);
+                        gl.scissor(0, 0, canvas.width, canvas.height);
+                        if (!this.bindShader) {
+                            this.bindShader = shader;
+                            shader.bind();
+                            shader.setUniformi(spine.webgl.Shader.SAMPLER, 0);
+                        }
+                        for (let sprite of this.nodes) {
+                            if (sprite.renderClip) {
+                                gl.clipping = sprite.renderClip;
+                                gl.scissor(gl.clipping.x, gl.clipping.y, gl.clipping.width, gl.clipping.height);
+                            }
+                            const skel = sprite.skeleton;
+                            const state = skel.state;
+                            const speed = sprite.speed == null ? 1 : sprite.speed;
+                            skel.flipX = sprite.flipX;
+                            skel.flipY = sprite.flipY;
+                            skel.opacity = sprite.renderOpacity == null ? 1 : sprite.renderOpacity;
+                            state.hideSlots = sprite.hideSlots;
+                            state.update(delta / 1000 * speed);
+                            state.apply(skel);
+                            skel.updateWorldTransform();
+                            shader.setUniform4x4f(spine.webgl.Shader.MVP_MATRIX, sprite.mvp.values);
+                            batcher.begin(shader);
+                            renderer.premultipliedAlpha = sprite.premultipliedAlpha;
+                            renderer.outcropMask = this.outcropMask;
+                            if (renderer.outcropMask) {
+                                renderer.outcropX = sprite.renderX;
+                                renderer.outcropY = sprite.renderY;
+                                renderer.outcropScale = sprite.renderScale;
+                                renderer.outcropAngle = sprite.renderAngle;
+                                renderer.clipSlots = sprite.clipSlots;
+                            }
+                            renderer.hideSlots = sprite.hideSlots;
+                            renderer.disableMask = sprite.disableMask;
+                            renderer.draw(batcher, skel);
+                            batcher.end();
+                            if (gl.clipping) {
+                                gl.clipping = undefined;
+                                gl.scissor(0, 0, canvas.width, canvas.height);
+                            }
+                        }
+                        gl.disable(gl.SCISSOR_TEST);
+                        this.requestId = requestAnimationFrame(this.render.bind(this));
+                    }
+                };
+
+                // 3. 背景资源定义
+                const definedAssets = {
+                    skin_xiaosha: {
+                        default: {
+                            name: 'skin_xiaosha_default',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.35]
+                        }
+                    },
+                    skin_yan: {
+                        default: {
+                            name: 'skin_yan_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.55]
+                        }
+                    },
+                    skin_manman: {
+                        default: {
+                            name: 'skin_manman_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.39]
+                        }
+                    },
+                    skin_xuanwu: {
+                        default: {
+                            name: 'skin_xuanwu_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.39]
+                        }
+                    },
+                    skin_datong: {
+                        default: {
+                            name: 'skin_datong_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.4]
+                        }
+                    },
+                    skin_xueren: {
+                        default: {
+                            name: 'skin_xueren_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.375]
+                        }
+                    },
+                    skin_yueer: {
+                        default: {
+                            name: 'skin_yueer_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.45]
+                        }
+                    },
+                    skin_ale: {
+                        default: {
+                            name: 'skin_ale_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.4]
+                        }
+                    },
+                    skin_ahao: {
+                        default: {
+                            name: 'skin_ahao_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.52]
+                        }
+                    },
+                    skin_lulu: {
+                        default: {
+                            name: 'skin_lulu_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.36]
+                        }
+                    },
+                    skin_liuli: {
+                        default: {
+                            name: 'skin_liuli_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.52],
+                            height: [0, 0.35]
+                        }
+                    },
+                    skin_rui: {
+                        default: {
+                            name: 'skin_rui_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.46]
+                        }
+                    },
+                    skin_xiaoxiao: {
+                        default: {
+                            name: 'skin_xiaoxiao_default',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.27],
+                            height: [0, 0.4]
+                        }
+                    }
+                };
+                DCFL_BG.definedAssets = definedAssets;
+
+                // 4. 创建播放器实例
+                const bgAnim = new duilib.AnimationPlayer(lib.assetURL + 'extension/叠彩峰岭/', document.body, 'dcfl-bg-canvas');
+                bgAnim.dprAdaptive = true;
+                bgAnim.definedAssets = definedAssets;
+
+                // 5.  play 方法
+                bgAnim.play = function(name, skin) {
+                    const def = this.definedAssets;
+                    if (!def[name] || !def[name][skin]) {
+                        console.log('[叠彩峰岭] 没有预定义[asset:' + name + ', skin:' + skin + ']的动态背景.');
+                        return;
+                    }
+                    if (this.current && this.current.name === name) return;
+                    this.stopSpineAll();
+
+                    const playAsset = def[name][skin];
+                    if (this.hasSpine(playAsset.name)) {
+                        this.current = this.loopSpine(playAsset);
+                        return;
+                    }
+
+                    const _this = this;
+                    if (this._loading) {
+                        console.log('[叠彩峰岭] 已有背景正在加载，稍后重试');
+                        return;
+                    }
+                    this._loading = true;
+
+                    this.loadSpine(playAsset.name, 'skel',
+                        function() {
+                            _this._loading = false;
+                            if (_this.current && _this.current.name === playAsset.name) return;
+                            _this.current = _this.loopSpine(playAsset);
+                        },
+                        function(err) {
+                            _this._loading = false;
+                            console.warn('[叠彩峰岭] 加载背景失败:', playAsset.name, err);
+                            _this.current = null;
+                        }
+                    );
+                };
+
+                // 6. 增强 render（当节点为空时清除 current）
+                const originalRender = bgAnim.render;
+                bgAnim.render = function(timestamp) {
+                    originalRender.call(this, timestamp);
+                    if (this.nodes.length === 0 && this.current) {
+                        this.current = null;
+                    }
+                };
+
+                // 7. 保存实例
+                DCFL_BG.bgAnim = bgAnim;
+                window._dcfl_bg = DCFL_BG;
+
+                // 8. 配置更新函数
+                window._dcfl_bg_update = function() {
+                    const val = lib.config.extension_叠彩峰岭_dcfl_dynamicBackground || 'off';
+                    if (val && val !== 'off') {
+                        const parts = val.split('_');
+                        const skin = parts.pop();
+                        const name = parts.join('_');
+                        bgAnim.play(name, skin);
+                    } else {
+                        bgAnim.stopSpineAll();
+                    }
+                };
+
+                // 9. 初始化
+                const initVal = lib.config.extension_叠彩峰岭_dcfl_dynamicBackground || 'off';
+                if (initVal !== 'off') {
+                    const parts = initVal.split('_');
+                    const skin = parts.pop();
+                    const name = parts.join('_');
+                    bgAnim.play(name, skin);
+                } else {
+                    console.log('[叠彩峰岭] 动态背景初始为关闭状态');
+                }
+
+                // 10. 劫持 addOverDialog
+                const origAddOverDialog = game.addOverDialog;
+                game.addOverDialog = function(dialog, result) {
+                    if (typeof origAddOverDialog === 'function') origAddOverDialog.call(this, dialog, result);
+                    const bg = bgAnim;
+                    if (!bg) return;
+                    const sprite = bg.current;
+                    if (!sprite || sprite.name !== 'skin_xiaosha_default') return;
+                    bg.canvas.style.zIndex = 7;
+                    switch (result) {
+                        case '战斗胜利':
+                            sprite.scaleTo(1.8, 600);
+                            sprite.setAction('shengli');
+                            break;
+                        case '平局':
+                        case '战斗失败':
+                            sprite.moveTo([0, 0.5], [0, 0.25], 600);
+                            sprite.scaleTo(2.5, 600);
+                            sprite.setAction('gongji');
+                            break;
+                    }
+                };
+
+                // 11. 窗口自适应
+                DCFL_BG.helper.bodySensor.addListener(() => {
+                    bgAnim.resized = false;
+                });
+
+                console.log('[叠彩峰岭] 动态背景已加载（新十周年移植版），当前配置:', config.dcfl_dynamicBackground);
+            })();
+            // ========== 动态背景功能结束 ==========
+
+            //============================图鉴功能===================================================			
+            game.playdcfl = function(fn, dir) {
                 try {
                     if (!fn) {
                         console.error('角色ID不能为空');
@@ -394,13 +1537,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 Animation.id = 'dcfl_icon_button';
                 Animation.className = 'dcfl_icon_button';
                 Animation.style.backgroundImage = 'url(' + lib.assetURL + 'extension/叠彩峰岭/dcfl_icon.png)';
-                Animation.addEventListener('mouseover', function () {
+                Animation.addEventListener('mouseover', function() {
                     this.classList.add('dcfl_icon_hover');
                 });
-                Animation.addEventListener('mouseout', function () {
+                Animation.addEventListener('mouseout', function() {
                     this.classList.remove('dcfl_icon_hover');
                 });
-                Animation.addEventListener('click', function () {
+                Animation.addEventListener('click', function() {
                     game.showCharacterInfo();
                 });
                 document.body.appendChild(Animation);
@@ -416,7 +1559,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
             function checkAndUpdateIcon() {
                 if (config.dcfl_icon) {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         createIconButton();
                     }, 1000);
                 } else {
@@ -477,23 +1620,23 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
 
                 var img = new Image();
-                img.onload = function () {
+                img.onload = function() {
                     lib.config.skin = lib.config.skin || {};
                     lib.config.skin[skinName] = num;
                     game.saveConfig("skin", lib.config.skin);
                     imgElement.style.backgroundImage = 'url("' + img.src + '")';
                 };
 
-                img.onerror = function () {
+                img.onerror = function() {
                     if (lib.config.skin && lib.config.skin[skinName]) {
                         delete lib.config.skin[skinName];
                         game.saveConfig("skin", lib.config.skin);
 
                         var defaultImg = new Image();
-                        defaultImg.onload = function () {
+                        defaultImg.onload = function() {
                             imgElement.style.backgroundImage = 'url("' + defaultImg.src + '")';
                         };
-                        defaultImg.onerror = function () {
+                        defaultImg.onerror = function() {
                             imgElement.style.backgroundImage = 'none';
                             imgElement.style.backgroundColor = '#333';
                         };
@@ -522,8 +1665,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         if (item.startsWith('img:')) {
                             var actualPath = item.replace(/^img:/, '');
                             extractedPaths.push(actualPath);
-                        }
-                        else if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
+                        } else if (item.startsWith('ext:') && item.toLowerCase().endsWith('.jpg')) {
                             var convertedPath = item.replace(/^ext:/, lib.assetURL + 'extension/');
                             extractedPaths.push(convertedPath);
                         }
@@ -534,6 +1676,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             }
 
             function loadCharacterImage(imgElement, charName, packKey, extNameClean, isDetailPage) {
+
+                var isVirtual = (packKey === 'dcfl_players');
+
                 function getAllExtensionDirectories() {
                     var directories = new Set();
                     if (lib.characterPack) {
@@ -554,7 +1699,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return Array.from(directories);
                 }
 
-                var allExtensionDirs = getAllExtensionDirectories();
                 var imagePaths = [];
 
                 var skinName = charName;
@@ -582,23 +1726,24 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 imagePaths.push(lib.assetURL + 'image/character/' + charName + '.jpg');
 
-                if (extNameClean) {
-                    imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/' + charName + '.jpg');
-                    imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/image/character/' + charName + '.jpg');
-                }
-
-                imagePaths.push(lib.assetURL + 'extension/' + packKey + '/' + charName + '.jpg');
-                imagePaths.push(lib.assetURL + 'extension/' + packKey + '/image/character/' + charName + '.jpg');
-
-                for (var i = 0; i < allExtensionDirs.length; i++) {
-                    var dirName = allExtensionDirs[i];
-
-                    if (dirName === extNameClean || dirName === packKey) {
-                        continue;
+                if (!isVirtual) {
+                    if (extNameClean) {
+                        imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/' + charName + '.jpg');
+                        imagePaths.push(lib.assetURL + 'extension/' + extNameClean + '/image/character/' + charName + '.jpg');
                     }
 
-                    imagePaths.push(lib.assetURL + 'extension/' + dirName + '/' + charName + '.jpg');
-                    imagePaths.push(lib.assetURL + 'extension/' + dirName + '/image/character/' + charName + '.jpg');
+                    imagePaths.push(lib.assetURL + 'extension/' + packKey + '/' + charName + '.jpg');
+                    imagePaths.push(lib.assetURL + 'extension/' + packKey + '/image/character/' + charName + '.jpg');
+
+                    var allExtensionDirs = getAllExtensionDirectories();
+                    for (var i = 0; i < allExtensionDirs.length; i++) {
+                        var dirName = allExtensionDirs[i];
+                        if (dirName === extNameClean || dirName === packKey) {
+                            continue;
+                        }
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/' + charName + '.jpg');
+                        imagePaths.push(lib.assetURL + 'extension/' + dirName + '/image/character/' + charName + '.jpg');
+                    }
                 }
 
                 function trySetBackgroundImage(pathIndex) {
@@ -614,10 +1759,10 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     }
                     var imagePath = imagePaths[pathIndex];
                     var testImg = new Image();
-                    testImg.onload = function () {
+                    testImg.onload = function() {
                         imgElement.style['background-image'] = 'url(' + imagePath + ')';
                     };
-                    testImg.onerror = function () {
+                    testImg.onerror = function() {
                         trySetBackgroundImage(pathIndex + 1);
                     };
                     testImg.src = imagePath;
@@ -838,7 +1983,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         time: Date.now()
                     };
 
-                    setTimeout(function () {
+                    setTimeout(function() {
                         try {
                             var skinName = charName;
                             if (skinName.startsWith("gz_")) {
@@ -884,7 +2029,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         }
                     }, 0);
 
-                    setTimeout(function () {
+                    setTimeout(function() {
                         try {
                             var cleanExtNames = [];
 
@@ -920,14 +2065,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             function addSkillAudioClick(iconElement, charName, skillName) {
                 if (!iconElement || !charName || !skillName) return iconElement;
 
-                iconElement.addEventListener('click', function (e) {
+                iconElement.addEventListener('click', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     playSkillAudio(charName, skillName);
                     return false;
                 });
 
-                iconElement.addEventListener('touchstart', function (e) {
+                iconElement.addEventListener('touchstart', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     playSkillAudio(charName, skillName);
@@ -950,14 +2095,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     element.parentNode.replaceChild(newElement, element);
                 }
 
-                newElement.addEventListener('click', function (e) {
+                newElement.addEventListener('click', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     showSkillCode(skillName, charName);
                     return false;
                 });
 
-                newElement.addEventListener('touchstart', function (e) {
+                newElement.addEventListener('touchstart', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     showSkillCode(skillName, charName);
@@ -982,7 +2127,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var skillPageBg = ui.create.div('#dcfl_page.dcfl_code_page');
                 skillPageBg.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2030; display: block;';
 
-                skillPageBg.addEventListener('click', function (e) {
+                skillPageBg.addEventListener('click', function(e) {
                     if (e.target === skillPageBg) {
                         if (skillPageBg.parentNode) {
                             skillPageBg.parentNode.removeChild(skillPageBg);
@@ -996,7 +2141,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var skillRightPanel = ui.create.div('#dcfl_rightPanel.dcfl_code_panel');
 
                 var skillCloseButton = ui.create.div('#dcfl_closeButton.dcfl_code_close', '×');
-                skillCloseButton.addEventListener('click', function () {
+                skillCloseButton.addEventListener('click', function() {
                     if (skillPageBg.parentNode) {
                         skillPageBg.parentNode.removeChild(skillPageBg);
                     }
@@ -1037,16 +2182,31 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 document.body.appendChild(skillPageBg);
                 currentCodePage = skillPageBg;
 
-                setTimeout(function () {
+                setTimeout(function() {
                     skillPageBg.style.display = 'block';
                 }, 10);
             }
 
-            game.showCharacterInfo = function () {
+            game.showCharacterInfo = function() {
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
+
                 var characterPacks = getAvailableCharacterPacks();
+
+                // 新增：检查游戏是否进行中，若有玩家则生成“场上武将”虚拟包
+                var hasPlayers = (game.players && game.players.length > 0) || (game.dead && game.dead.length > 0);
+                if (hasPlayers) {
+                    var totalPlayers = (game.players ? game.players.length : 0) + (game.dead ? game.dead.length : 0);
+                    var virtualPack = {
+                        id: 'dcfl_players',
+                        name: '场上武将',
+                        count: totalPlayers,
+                        isVirtual: true
+                    };
+                    characterPacks.unshift(virtualPack); // 置顶显示
+                }
+
                 if (characterPacks.length === 0) {
                     alert('未找到任何已安装的武将包！');
                     ui.system.style.display = '';
@@ -1063,7 +2223,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     this.paBody.appendChild(this.body);
                 }
                 Page.prototype = {
-                    show: function () {
+                    show: function() {
                         if (!this.body.parentNode && this.paBody) {
                             this.paBody.appendChild(this.body);
                         }
@@ -1078,7 +2238,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         this.body.style.zIndex = '2024';
                         return this;
                     },
-                    hide: function () {
+                    hide: function() {
                         this.body.hide();
                         return this;
                     }
@@ -1090,13 +2250,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 var leftButtonPanel = ui.create.div('#dcfl_leftButtonPanel');
                 var rightPanel = ui.create.div('#dcfl_rightPanel');
                 var closeButton = ui.create.div('#dcfl_closeButton', '×');
-                closeButton.addEventListener('click', function () {
+                closeButton.addEventListener('click', function() {
                     characterPage.hide();
                     if (characterPage.body && characterPage.body.parentNode) {
                         characterPage.body.parentNode.removeChild(characterPage.body);
                     }
                     ui.system.style.display = '';
-                    setTimeout(function () {
+                    setTimeout(function() {
                         ui.click.configMenu();
                         ui.menuContainer.style.display = '';
                     }, 100);
@@ -1122,8 +2282,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                         button.classList.add('active');
                     }
                     button.setAttribute('data-pack', pack.id);
-                    button.addEventListener('click', (function (packId, packName) {
-                        return function () {
+                    button.addEventListener('click', (function(packId, packName) {
+                        return function() {
                             if (currentPack === packId) return;
                             var buttons = leftButtonPanel.querySelectorAll('[data-pack]');
                             for (var j = 0; j < buttons.length; j++) {
@@ -1152,17 +2312,17 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     if (!charData) return null;
 
                     var dComps = {
-                        header: (function () {
+                        header: (function() {
                             var imgElement = ui.create.div('.dcfl_intro_header');
                             var extNameWithTags = lib.translate[currentPack + '_character_config'];
                             var extNameClean = extNameWithTags ? extNameWithTags.replace(/<[^>]*>/g, '').trim() : '';
                             loadCharacterImage(imgElement, charName, currentPack, extNameClean, false);
                             imgElement.style.cursor = 'pointer';
-                            imgElement.addEventListener('click', function (e) {
+                            imgElement.addEventListener('click', function(e) {
                                 e.stopPropagation();
                                 applySkinChange(this, charName);
                             });
-                            imgElement.addEventListener('dblclick', function (e) {
+                            imgElement.addEventListener('dblclick', function(e) {
                                 e.stopPropagation();
                                 e.preventDefault();
 
@@ -1170,12 +2330,33 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     currentDetailPage.body.parentNode.removeChild(currentDetailPage.body);
                                 }
 
+                                var realPackName = '';
+                                var realPackKey = '';
+                                var realExtNameClean = '';
+                                for (var i = 0; i < characterPacks.length; i++) {
+                                    var p = characterPacks[i];
+                                    if (p.id === 'dcfl_players') continue;
+                                    var packData = lib.characterPack[p.packKey] || lib.characterPack[p.id];
+                                    if (packData && packData[charName]) {
+                                        realPackKey = p.id;
+                                        realPackName = p.name;
+                                        var extWithTags = lib.translate[realPackKey + '_character_config'];
+                                        realExtNameClean = extWithTags ? extWithTags.replace(/<[^>]*>/g, '').trim() : '';
+                                        break;
+                                    }
+                                }
+                                if (!realPackName) {
+                                    realPackName = currentPackName;
+                                    realPackKey = currentPack;
+                                    realExtNameClean = extNameClean;
+                                }
+
                                 var detailPage = new Page();
                                 detailPage.body = ui.create.div('#dcfl_page.dcfl_detail_page');
                                 var detailContainer = ui.create.div('#dcfl_mainContainer.dcfl_detail_container');
                                 var detailPanel = ui.create.div('#dcfl_rightPanel.dcfl_detail_panel');
                                 var closeButton = ui.create.div('#dcfl_closeButton.dcfl_detail_close', '×');
-                                closeButton.addEventListener('click', function () {
+                                closeButton.addEventListener('click', function() {
                                     detailPage.hide();
                                     if (detailPage.body && detailPage.body.parentNode) {
                                         detailPage.body.parentNode.removeChild(detailPage.body);
@@ -1184,7 +2365,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 });
                                 detailPanel.appendChild(closeButton);
                                 var title = ui.create.div('#dcfl_title.dcfl_detail_title');
-                                title.innerHTML = currentPackName + ' - ' + get.translation(charName);
+                                title.innerHTML = (realPackName ? realPackName + ' - ' : '') + get.translation(charName);
                                 detailPanel.appendChild(title);
                                 var contentContainer = ui.create.div('#dcfl_contentContainer.dcfl_detail_content');
 
@@ -1199,34 +2380,29 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                 var infoIconWrapper = ui.create.div('.dcfl_detail_page_info_icon_wrapper');
                                 var infoIcon = ui.create.div('.dcfl_detail_page_info_icon');
-
-                                infoIcon.addEventListener('click', function (e) {
+                                infoIcon.addEventListener('click', function(e) {
                                     e.stopPropagation();
                                     e.preventDefault();
-                                    console.log('点击配音图标，角色:', charName, '扩展包:', currentPack);
                                     playDieAudio(charName, currentPack, extNameWithTags);
                                     return false;
                                 });
-
-                                infoIcon.addEventListener('touchstart', function (e) {
+                                infoIcon.addEventListener('touchstart', function(e) {
                                     e.stopPropagation();
                                     e.preventDefault();
-                                    console.log('触摸配音图标，角色:', charName, '扩展包:', currentPack);
                                     playDieAudio(charName, currentPack, extNameWithTags);
                                     return false;
                                 }, {
                                     passive: false
                                 });
-
                                 infoIconWrapper.appendChild(infoIcon);
                                 infoContainer.appendChild(infoIconWrapper);
                                 contentContainer.appendChild(infoContainer);
 
                                 var leftImageArea = ui.create.div('.dcfl_detail_image_area');
                                 var detailHeader = ui.create.div('.dcfl_detail_header');
-                                loadCharacterImage(detailHeader, charName, currentPack, extNameClean, true);
+                                loadCharacterImage(detailHeader, charName, realPackKey, realExtNameClean, true);
                                 detailHeader.style.cursor = 'pointer';
-                                detailHeader.addEventListener('click', function (e) {
+                                detailHeader.addEventListener('click', function(e) {
                                     e.stopPropagation();
                                     applySkinChange(this, charName);
                                     applySkinChange(imgElement, charName);
@@ -1239,7 +2415,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 var introButton = ui.create.div('.dcfl_tab_button.active', '简介');
                                 var skillButton = ui.create.div('.dcfl_tab_button', '技能');
 
-                                introButton.addEventListener('click', function () {
+                                introButton.addEventListener('click', function() {
                                     if (this.classList.contains('active')) return;
                                     this.classList.add('active');
                                     skillButton.classList.remove('active');
@@ -1247,7 +2423,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     skillContent.style.display = 'none';
                                 });
 
-                                skillButton.addEventListener('click', function () {
+                                skillButton.addEventListener('click', function() {
                                     if (this.classList.contains('active')) return;
                                     this.classList.add('active');
                                     introButton.classList.remove('active');
@@ -1269,7 +2445,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (introHtml && introHtml.trim() !== '') {
                                         var tempDiv = document.createElement('div');
                                         tempDiv.innerHTML = introHtml;
-                                        Array.from(tempDiv.childNodes).forEach(function (node) {
+                                        Array.from(tempDiv.childNodes).forEach(function(node) {
                                             if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
                                                 introContent.appendChild(node.cloneNode(true));
                                             }
@@ -1308,26 +2484,20 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         var descContainer = document.createElement('span');
                                         descContainer.innerHTML = '：' + get.translation(skillName + '_info');
                                         skillContent.appendChild(descContainer);
-                                        // ----- 处理派生技能（derivation）-----
 
                                         var skillObj = lib.skill[skillName];
                                         if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length) {
-
                                             skillContent.appendChild(document.createElement('br'));
                                             for (var d = 0; d < skillObj.derivation.length; d++) {
                                                 var derivedName = skillObj.derivation[d];
-
                                                 var derivedWrapper = document.createElement('span');
-
                                                 derivedWrapper.style.marginLeft = '20px';
 
-                                                // 配音图标
                                                 var derivedIcon = document.createElement('span');
                                                 derivedIcon.className = 'dcfl_skill_icon';
                                                 addSkillAudioClick(derivedIcon, charName, derivedName);
                                                 derivedWrapper.appendChild(derivedIcon);
 
-                                                // 技能名称（点击查看代码）
                                                 var derivedNameElement = document.createElement('strong');
                                                 derivedNameElement.className = 'greentext dcfl_skill_name';
                                                 derivedNameElement.textContent = get.translation(derivedName);
@@ -1336,14 +2506,11 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                                 derivedNameElement = ensureSkillClickHandler(derivedNameElement, derivedName, charName);
                                                 derivedWrapper.appendChild(derivedNameElement);
 
-                                                // 技能描述
                                                 var derivedDesc = document.createElement('span');
                                                 derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
                                                 derivedWrapper.appendChild(derivedDesc);
 
-                                                // 将整个派生技能行添加到 skillContent
                                                 skillContent.appendChild(derivedWrapper);
-                                                // 在派生技能后添加 <br> 换行（最后一个不加，避免多余空行）
                                                 if (d < skillObj.derivation.length - 1) {
                                                     skillContent.appendChild(document.createElement('br'));
                                                 }
@@ -1355,7 +2522,6 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 }
 
                                 rightArea.appendChild(skillContent);
-
                                 contentContainer.appendChild(rightArea);
                                 detailPanel.appendChild(contentContainer);
                                 detailContainer.appendChild(detailPanel);
@@ -1366,7 +2532,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             });
                             return imgElement;
                         })(),
-                        infos: (function () {
+                        infos: (function() {
                             var str = "";
                             if (charName) str += get.translation(charName) + '&nbsp;';
                             if (charData[0]) str += get.translation(charData[0]) + '&nbsp;';
@@ -1374,7 +2540,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             if (charData[2]) str += charData[2] + '体力';
                             return ui.create.div('.dcfl_intro_infos', str);
                         })(),
-                        skills: (function () {
+                        skills: (function() {
                             var str = "";
                             if (charData[3] && Array.isArray(charData[3])) {
                                 for (var j = 0; j < charData[3].length; j++) {
@@ -1396,6 +2562,58 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                 }
 
                 function updateCharacterList() {
+
+                    // 场上武将虚拟包
+                    if (currentPack === 'dcfl_players') {
+                        contentContainer.innerHTML = '';
+                        var playerNames = [];
+                        var deadNames = [];
+
+                        if (game.players) {
+                            for (var i = 0; i < game.players.length; i++) {
+                                if (game.players[i] && game.players[i].name) {
+                                    playerNames.push(game.players[i].name);
+                                }
+                            }
+                        }
+                        if (game.dead) {
+                            for (var i = 0; i < game.dead.length; i++) {
+                                if (game.dead[i] && game.dead[i].name) {
+                                    deadNames.push(game.dead[i].name);
+                                }
+                            }
+                        }
+
+                        var allNames = playerNames.concat(deadNames);
+                        if (allNames.length === 0) {
+                            contentContainer.innerHTML = '<div class="dcfl_group_title">暂无角色</div>';
+                            lib.setScroll(contentContainer);
+                            return;
+                        }
+
+                        // 显示标题（含存活/阵亡人数）
+                        var groupTitle = ui.create.div('.dcfl_group_title');
+                        groupTitle.innerHTML = '场上武将 (存活 ' + playerNames.length + ' 人，阵亡 ' + deadNames.length + ' 人)';
+                        contentContainer.appendChild(groupTitle);
+
+                        for (var i = 0; i < allNames.length; i++) {
+                            var charName = allNames[i];
+                            var introClass = (i % 2 === 0) ? 'left' : 'right';
+                            var charIntro = createCharacterIntro(charName, introClass);
+                            if (charIntro) {
+                                contentContainer.appendChild(charIntro);
+                            }
+                        }
+
+                        var clearDiv = ui.create.div();
+                        clearDiv.style.clear = 'both';
+                        clearDiv.style.height = '0';
+                        clearDiv.style.overflow = 'hidden';
+                        contentContainer.appendChild(clearDiv);
+                        lib.setScroll(contentContainer);
+                        return;
+                    }
+
                     contentContainer.innerHTML = '';
                     var packInfo;
                     for (var i = 0; i < characterPacks.length; i++) {
@@ -1489,33 +2707,87 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             };
 
         },
-        precontent: function () {
+        precontent: function() {
             lib.init.css(lib.assetURL + 'extension/叠彩峰岭', 'extension');
             Reflect.deleteProperty(lib.extensionMenu['extension_叠彩峰岭'], 'edit');
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
+
+            if (typeof window.spine === 'undefined') {
+                try {
+                    const spineCode = lib.init.reqSync(`local:${lib.assetURL}extension/叠彩峰岭/spine.js`);
+                    eval(spineCode);
+                    console.log('[叠彩峰岭] spine.js 加载成功');
+                } catch (e) {
+                    console.error('[叠彩峰岭] 加载 spine.js 失败:', e);
+                }
+            }
+
         },
         config: {
             "dcfl_viewinfo": {
                 name: '<div class="dcfl_menu">查看信息</div>',
                 "clear": true,
-                "onclick": function () {
-                    setTimeout(function () {
+                "onclick": function() {
+                    setTimeout(function() {
                         game.showCharacterInfo();
                     }, 100);
                 },
             },
+            "dcfl_dynamicBackground": {
+                name: '背景动画',
+                init: 'off',
+                item: {
+                    off: '关闭',
+                    skin_xiaosha_default: '小杀',
+                    skin_yan_default: '侍灵-焱',
+                    skin_manman_default: '侍灵-蠻蠻',
+                    skin_xuanwu_default: '侍灵-玄武',
+                    skin_datong_default: '侍灵-大桶',
+                    skin_xueren_default: '侍灵-雪人',
+                    skin_yueer_default: '侍灵-玥儿',
+                    skin_ale_default: '侍灵-阿乐',
+                    skin_ahao_default: '侍灵-阿豪',
+                    skin_lulu_default: '侍灵-鲁鲁',
+                    skin_liuli_default: '侍灵-琉璃',
+                    skin_rui_default: '侍灵-瑞',
+                    skin_xiaoxiao_default: '侍灵-枭枭',
+                },
+                update: function() {
+                    if (window._dcfl_bg_update) window._dcfl_bg_update();
+                }
+            },
+            "dcfl_jxjm": {
+                "name": "旧版结算界面",
+                "intro": "开启后重启游戏生效。收录旧版结算界面往下拖拽页面查看所有角色剩余手牌的方式（新版点击查看仍在，与新版同时存在）",
+                init: false,
+            },
+            "dcfl_caidanbili": {
+                "name": "固定菜单比例",
+                "intro": "开启后重启游戏生效。固定菜单比例，不再随界面缩放而改变",
+                init: false,
+            },
+            "dcfl_caidancuowei": {
+                "name": "修正菜单错位",
+                "intro": "（慎用！）开启后重启游戏生效。修复部分机型的十周年UI的十周年样式下的菜单的光标错位、菜单按钮弹出的小对话框错位、技能标记对话框错位（居中处理）等问题",
+                init: false,
+            },
+            "dcfl_biaojijuzhong": {
+                "name": "标记弹窗居中",
+                "intro": "（慎用！）开启后重启游戏生效。修复部分机型的十周年UI的十周年样式下的技能标记对话框错位问题（所有的dialog强制居中处理）",
+                init: false,
+            },
             "dcfl_icon": {
-                name: "图鉴按钮",
+                name: "添加图鉴按钮",
                 intro: "开启后重启游戏生效。游戏开始后屏幕右下方会有个全新图鉴的按钮，点击后会打开全新图鉴",
                 init: false,
             },
             "dcfl_wujiangkaiqi": {
-                "name": "武将开启",
+                "name": "武将开启图鉴",
                 "intro": "开启后重启游戏生效。点击菜单“武将”按钮即打开本扩展的武将信息页功能",
                 init: false,
             },
-            "dcfl_huangechuangkou": {
-                "name": "换个窗口",
+            "dcfl_wujiangchuangkou": {
+                "name": "横向武将窗口",
                 "intro": "开启后重启游戏生效。菜单“武将”界面有所改变",
                 init: false,
             },
@@ -1539,7 +2811,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "8.0",
+            version: "9.0",
         },
         files: {
             "character": [],

@@ -3322,26 +3322,48 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                 function createCharacterPacks() {
                                     var packs = [];
+                                    var allChars = [];
                                     var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
 
+                                    packs.push({
+                                        id: 'all',
+                                        name: '全部武将',
+                                        packKey: 'wenwuyingjie',
+                                        charList: []
+                                    });
+
                                     if (!characterSort) {
-                                        return [
-                                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
-                                        ];
+                                        var characterPack = lib.characterPack['wenwuyingjie'];
+                                        if (characterPack) {
+                                            for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    allChars.push(charName);
+                                                }
+                                            }
+                                        }
+                                        packs[0].charList = allChars;
+                                        return packs;
                                     }
 
                                     for (var categoryId in characterSort) {
                                         if (characterSort.hasOwnProperty(categoryId)) {
                                             var categoryName = get.translation(categoryId) || categoryId;
+                                            var charList = characterSort[categoryId] || [];
+                                            for (var i = 0; i < charList.length; i++) {
+                                                if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                                    allChars.push(charList[i]);
+                                                }
+                                            }
                                             packs.push({
                                                 id: categoryId,
                                                 name: categoryName,
                                                 packKey: 'wenwuyingjie',
-                                                charList: characterSort[categoryId]
+                                                charList: charList
                                             });
                                         }
                                     }
 
+                                    packs[0].charList = allChars;
                                     return packs;
                                 }
 
@@ -4434,32 +4456,75 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (charData[3] && Array.isArray(charData[3])) {
                                     var skillsContainer = ui.create.div('.wwyj_detail_page_skills_container');
                                     var skillsText = ui.create.div('.wwyj_detail_page_skills_text');
-                                    if (charData[3] && Array.isArray(charData[3])) {
-                                        for (var j = 0; j < charData[3].length; j++) {
-                                            if (j > 0) {
-                                                skillsText.appendChild(document.createElement('br'));
-                                                skillsText.appendChild(document.createElement('br'));
+
+                                    for (var j = 0; j < charData[3].length; j++) {
+                                        if (j > 0) {
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+                                        }
+                                        var skillName = charData[3][j];
+
+                                        // ---- 主技能图标 + 名称 + 描述 ----
+                                        var skillIcon = document.createElement('span');
+                                        skillIcon.className = 'wwyj_skill_icon';
+                                        addSkillAudioClick(skillIcon, charName, skillName);
+                                        skillsText.appendChild(skillIcon);
+
+                                        var skillNameElement = document.createElement('strong');
+                                        skillNameElement.className = 'greentext wwyj_skill_name';
+                                        skillNameElement.textContent = get.translation(skillName);
+                                        skillNameElement.setAttribute('data-skill-name', skillName);
+                                        skillNameElement.setAttribute('data-char-name', charName);
+                                        ensureSkillClickHandler(skillNameElement, skillName, charName);
+                                        skillsText.appendChild(skillNameElement);
+
+                                        var descContainer = document.createElement('span');
+                                        descContainer.innerHTML = '：' + get.translation(skillName + '_info');
+                                        skillsText.appendChild(descContainer);
+
+                                        // ---- 参考叠彩峰岭：派生技能展示 ----
+                                        var skillObj = lib.skill[skillName];
+                                        if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length > 0) {
+                                            // 两个 <br> 与主技能隔开（空行）
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+
+                                            for (var d = 0; d < skillObj.derivation.length; d++) {
+                                                var derivedName = skillObj.derivation[d];
+
+                                                // 派生技能包装器（缩进 20px，类似叠彩峰岭的 marginLeft）
+                                                var derivedWrapper = document.createElement('span');
+                                                derivedWrapper.style.marginLeft = '20px';
+
+                                                // 派生技能图标（支持配音）
+                                                var derivedIcon = document.createElement('span');
+                                                derivedIcon.className = 'wwyj_skill_icon';
+                                                addSkillAudioClick(derivedIcon, charName, derivedName);
+                                                derivedWrapper.appendChild(derivedIcon);
+
+                                                // 派生技能名称（点击查看代码）
+                                                var derivedNameElement = document.createElement('strong');
+                                                derivedNameElement.className = 'greentext wwyj_skill_name';
+                                                derivedNameElement.textContent = get.translation(derivedName);
+                                                derivedNameElement.setAttribute('data-skill-name', derivedName);
+                                                derivedNameElement.setAttribute('data-char-name', charName);
+                                                ensureSkillClickHandler(derivedNameElement, derivedName, charName);
+                                                derivedWrapper.appendChild(derivedNameElement);
+
+                                                // 派生技能描述
+                                                var derivedDesc = document.createElement('span');
+                                                derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
+                                                derivedWrapper.appendChild(derivedDesc);
+
+                                                skillsText.appendChild(derivedWrapper);
+                                                // 派生技能之间用 <br> 分隔
+                                                if (d < skillObj.derivation.length - 1) {
+                                                    skillsText.appendChild(document.createElement('br'));
+                                                }
                                             }
-                                            var skillName = charData[3][j];
-
-                                            var skillIcon = document.createElement('span');
-                                            skillIcon.className = 'wwyj_skill_icon';
-                                            skillIcon = addSkillAudioClick(skillIcon, charName, skillName);
-                                            skillsText.appendChild(skillIcon);
-
-                                            var skillNameElement = document.createElement('strong');
-                                            skillNameElement.className = 'greentext wwyj_skill_name';
-                                            skillNameElement.textContent = get.translation(skillName);
-                                            skillNameElement.setAttribute('data-skill-name', skillName);
-                                            skillNameElement.setAttribute('data-char-name', charName);
-                                            skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
-                                            skillsText.appendChild(skillNameElement);
-
-                                            var descContainer = document.createElement('span');
-                                            descContainer.innerHTML = '：' + get.translation(skillName + '_info');
-                                            skillsText.appendChild(descContainer);
                                         }
                                     }
+
                                     skillsContainer.appendChild(skillsText);
                                     contentContainer.appendChild(skillsContainer);
                                 }
@@ -4503,26 +4568,48 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 function createCharacterPacks() {
                     var packs = [];
+                    var allChars = [];
                     var characterSort = lib.characterSort && lib.characterSort.wenwuyingjie;
 
+                    packs.push({
+                        id: 'all',
+                        name: '全部武将',
+                        packKey: 'wenwuyingjie',
+                        charList: []
+                    });
+
                     if (!characterSort) {
-                        return [
-                            { id: 'all', name: '全部武将', packKey: 'wenwuyingjie' }
-                        ];
+                        var characterPack = lib.characterPack['wenwuyingjie'];
+                        if (characterPack) {
+                            for (var charName in characterPack) {
+                                if (charName && lib.character[charName]) {
+                                    allChars.push(charName);
+                                }
+                            }
+                        }
+                        packs[0].charList = allChars;
+                        return packs;
                     }
 
                     for (var categoryId in characterSort) {
                         if (characterSort.hasOwnProperty(categoryId)) {
                             var categoryName = get.translation(categoryId) || categoryId;
+                            var charList = characterSort[categoryId] || [];
+                            for (var i = 0; i < charList.length; i++) {
+                                if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                    allChars.push(charList[i]);
+                                }
+                            }
                             packs.push({
                                 id: categoryId,
                                 name: categoryName,
                                 packKey: 'wenwuyingjie',
-                                charList: characterSort[categoryId]
+                                charList: charList
                             });
                         }
                     }
 
+                    packs[0].charList = allChars;
                     return packs;
                 }
 
@@ -5381,6 +5468,51 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             lib.init.js(lib.assetURL + 'extension/文武英杰', 'newtujian', function () { });
             lib.init.js(lib.assetURL + 'extension/文武英杰', 'update', function () { });
 
+            // 【键魂】检查 Key 包是否已加载
+            if (!lib.characterPack['key']) {
+                // 辅助函数：同步加载 JS 文件（使用 XMLHttpRequest）
+                function loadScriptSync(url) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, false);
+                    xhr.send();
+                    if (xhr.status === 200) {
+                        eval(xhr.responseText);
+                    } else {
+                        throw new Error('加载失败: ' + url);
+                    }
+                }
+
+                try {
+                    var baseUrl = lib.assetURL + 'extension/文武英杰/';
+                    loadScriptSync(baseUrl + 'keyCharacter.js');
+                    loadScriptSync(baseUrl + 'keySkill.js');
+                    loadScriptSync(baseUrl + 'keyTranslate.js');
+
+                    // 注册角色包
+                    lib.characterPack['key'] = window.keyCharacters;
+                    // 注册技能定义
+                    for (var sk in window.keySkills) {
+                        if (!lib.skill[sk]) {
+                            lib.skill[sk] = window.keySkills[sk];
+                        }
+                    }
+                    // 注册翻译
+                    for (var tr in window.keyTranslates) {
+                        if (!lib.translate[tr]) {
+                            lib.translate[tr] = window.keyTranslates[tr];
+                        }
+                    }
+                    // 注册角色信息（可选，便于其他扩展引用）
+                    for (var ch in window.keyCharacters) {
+                        if (!lib.character[ch]) {
+                            lib.character[ch] = window.keyCharacters[ch];
+                        }
+                    }
+                } catch (e) {
+                    console.warn('文武英杰：备用 Key 数据加载失败，【键魂】将无法生效', e);
+                }
+            }
+
             /*var charactercard = ui.click.charactercard;
             ui.click.charactercard = function (name, sourcenode, noedit, resume, avatar) {
                 if (!lib.character[name]) lib.character[name] = get.character(name);
@@ -5973,7 +6105,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                         if (typeof result.links[0] != "string") result.links.reverse();
                                         var card = result.links[1], choice = result.links[0];
                                         event.card = card;
-                                        var next = event.target.lose(event.card, ui.cardPile);
+                                        var next = target.lose(event.card, ui.cardPile);
                                         if (choice == "牌堆顶") next.insert_card = true;
                                         game.log(player, '将', target, '的一张手牌置于了', choice);
                                         game.broadcastAll(function (player) {
@@ -6052,13 +6184,13 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     if (event.bool) {
                                         player.draw();
                                         player.popup('正确', 'wood');
-                                        if (choose) player.chat('妾身慧眼已看透太多');
+                                        if (event.choose) player.chat('妾身慧眼已看透太多');
                                         else player.chat('你这点小心思，我还会猜不到嘛');
                                     }
                                     else {
                                         target.draw();
                                         player.popup('错误', 'fire');
-                                        if (choose) player.chat('明慧者弃短取长，以致其功，不以得失论其迹。');
+                                        if (event.choose) player.chat('明慧者弃短取长，以致其功，不以得失论其迹。');
                                         else player.chat('古语云智者乐水、仁者乐山，乐君者何？');
                                     }
                                 },
@@ -14646,7 +14778,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                             }
                                         }
                                     }
-                                    event.skills.removeArray(['wwyj_jianghun', 'wwyj_shiqie', 'wwyj_zhwpy', 'wwyj_jisha', 'yusa_misa', 'misa_yusa', 'sunohara_chengshuang', 'yuri_wangxi']);
+                                    event.skills.removeArray(['wwyj_jianghun', 'yusa_misa', 'misa_yusa', 'sunohara_chengshuang', 'yuri_wangxi']);
                                     var skills = player.skills.slice(0);
                                     for (var i = 0; i < skills.length; i++) {
                                         event.skills.remove(skills[i]);
@@ -17318,7 +17450,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "wwyj_qiaoji": "巧技",
                             "wwyj_qiaoji_info": "当一名其他角色摸牌阶段结束时，你可以观看其摸到的手牌并选择获得其中的一张基本牌，或摸一张牌，若如此做，本回合内有角色使用【杀】时，你成为额外的目标",
                             "wwyj_jianghun": "键魂",
-                            "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能（注意：本技能须开启key包）",
+                            "wwyj_jianghun_info": "</font><font color=#f00>锁定技</font> 每轮游戏开始时，你随机获得一名未获得过的【key】包角色的一个随机的技能",
                             "wwyj_chengzhi": "承志",
                             "wwyj_chengzhi_info": "非key势力的角色死亡时，你可以复制其所有技能和卡牌并获得之",
                             "wwyj_yanyu": "烟雨",
@@ -18072,7 +18204,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.2",
+            version: "5.3",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

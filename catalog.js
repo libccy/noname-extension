@@ -7,13 +7,13 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 
 extension["火影忍者"] = {
-	date: "2025/12/22",
+	date: "2026/8/8",
 	author: "小苏",
-	intro: "<li>时隔五年，从《群英会》扩展中独立出来的火影忍者扩展，将技能、代码全部翻新了一遍，有剧情模式，可联机，当前版本为3.1",
+	intro: "<li>火影忍者扩展，有图鉴功能，有剧情模式，可联机",
 	size: "60MB",
 	netdisk: "",
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
-	version: 3.1,
+	version: 3.3,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -88,20 +88,43 @@ extension["火影忍者"] = {
 		"huoying_fengyin2.mp3","huoying_zhaohuan1.mp3","name_hyrz_xiao.png","hyrz_music.mp3","hyrz_huoyingrenzhe.jpg"
 	]
 };
+extension["叠彩峰岭"] = {
+	date: "2026/8/8",
+	author: "小苏",
+	intro: "<font color=#4a9eff>一个功能小扩展，方便查看本体和扩展的武将技能。2026.08.08更新：收录旧版十周年UI的几个骨骼小动画",
+	size: "25MB",
+	netdisk: "",
+	version: 9.0,
+	files: [
+		"extension.js","extension.css","dcfl_icon.png","dcfl_bofanpeiyin.png","LICENSE","LICENSE","info.json","README.md","skin_ahao_default.atlas","skin_ahao_default.png",
+		"skin_ahao_default.skel","skin_ahao_default2.png","skin_ahao_default3.png","skin_ale_default.atlas","skin_ale_default.png",
+		"skin_ale_default.skel","skin_datong_default.atlas","skin_datong_default.png","skin_datong_default.skel","skin_liuli_default.atlas",
+		"skin_liuli_default.png","skin_liuli_default.skel","skin_liuli_default2.png","skin_liuli_default3.png","skin_liuli_default4.png",
+		"skin_liuli_default5.png","skin_lulu_default.atlas","skin_lulu_default.png","skin_lulu_default.skel","skin_lulu_default2.png",
+		"skin_manman_default.atlas","skin_manman_default.png","skin_manman_default.skel","skin_manman_default2.png","skin_rui_default.atlas",
+		"skin_rui_default.png","skin_rui_default.skel","skin_rui_default2.png","skin_rui_default3.png","skin_rui_default4.png",
+		"skin_xiaosha_default.atlas","skin_xiaosha_default.png","skin_xiaosha_default.skel","skin_xiaoxiao_default.atlas",
+		"skin_xiaoxiao_default.png","skin_xiaoxiao_default.skel","skin_xiaoxiao_default2.png","skin_xuanwu_default.atlas",
+		"skin_xuanwu_default.png","skin_xuanwu_default.skel","skin_xuanwu_default2.png","skin_xuanwu_default3.png","skin_xuanwu_default4.png",
+		"skin_xuanwu_default5.png","skin_xueren_default.atlas","skin_xueren_default.png","skin_xueren_default.skel","skin_xueren_default2.png",
+		"spine.js","skin_yan_default.atlas","skin_yan_default.png","skin_yan_default.skel","skin_yan_default2.png","skin_yan_default3.png",
+		"skin_yan_default4.png","skin_yueer_default.atlas","skin_yueer_default.png","skin_yueer_default.skel"
 
+	]
+};
 
 extension["文武英杰"] = {
-	date: "2025/12/26",
-	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。当前版本为5.2<li>"+
+	date: "2026/8/8",
+	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
 		"建议打开界限突破小开关，若发现BUG可到无名杀官方扩展群：852740627 反馈，有技能设计的建议也可联系作者",
 	author: "凉茶",
 	size: "60MB",
 	netdisk: "",
-	version: 5.2,
+	version: 5.4,
 	files: [
-	"LICENSE","newtujian.js","skin.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
+	"LICENSE","newtujian.js","skin.js","keyCharacter.js","keySkill.js","keyTranslate.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
 		"wwyj_bohe21.mp3","wwyj_bohetang.jpg","wwyj_bohetang.mp3","wwyj_chansui1.mp3","wwyj_chansuideshengming.jpg",
 		"wwyj_chansuideshengming.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg","wwyj_chengxuyuan.mp3",
@@ -156,12 +179,12 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2025/12/22",
-	intro: "<li>更新：新增菜单打开武将图鉴功能，优化ai，当前版本为3.1，提取码:9z52 <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
+	date: "2026/8/8",
+	intro: "<li>更新：修复白菜【亲和】、【遁空】的BUG <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
 	size: "43MB",
-	version: 3.1,
+	version: 3.2,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
@@ -716,18 +739,7 @@ extension["辅助卡牌"] = {
 		"xr_gainMaxHp.mp3", "xr_loseMaxHp.mp3", "yr_loseMaxHp.mp3", "yr_recover.mp3",
 	]
 };
-extension["叠彩峰岭"] = {
-	date: "2026/7/22",
-	author: "小苏",
-	intro: "<font color=#4a9eff>一个功能小扩展，方便查看本体和扩展的武将技能，自动检测并显示已安装的武将包信息，单击列表页武将图片换肤，双击列表页的武将图片可放大查看详细页，单击详细页的技能名前的小喇叭图标可播放配音，单击详细页技能名可查看技能代码</font><br>当前版本为8.0",
-	size: "0.5MB",
-	netdisk: "",
-	version: 8.0,
-	files: [
-		"extension.js", "extension.css","dcfl_icon.png","dcfl_bofanpeiyin.png"
 
-	]
-};
 extension["国战补充"] = {
 	date: "2022/01/11",
 	author: "我叫竹小二",

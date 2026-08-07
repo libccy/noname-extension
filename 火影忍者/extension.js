@@ -1073,26 +1073,49 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                                 function createCharacterPacks() {
                                     var packs = [];
+                                    var allChars = [];
                                     var characterSort = lib.characterSort && lib.characterSort.huoyingrenzhe;
 
+
+                                    packs.push({
+                                        id: 'all',
+                                        name: '全部武将',
+                                        packKey: 'huoyingrenzhe',
+                                        charList: []
+                                    });
+
                                     if (!characterSort) {
-                                        return [
-                                            { id: 'all', name: '全部武将', packKey: 'huoyingrenzhe' }
-                                        ];
+                                        var characterPack = lib.characterPack['huoyingrenzhe'];
+                                        if (characterPack) {
+                                            for (var charName in characterPack) {
+                                                if (charName && lib.character[charName]) {
+                                                    allChars.push(charName);
+                                                }
+                                            }
+                                        }
+                                        packs[0].charList = allChars;
+                                        return packs;
                                     }
 
                                     for (var categoryId in characterSort) {
                                         if (characterSort.hasOwnProperty(categoryId)) {
                                             var categoryName = get.translation(categoryId) || categoryId;
+                                            var charList = characterSort[categoryId] || [];
+                                            for (var i = 0; i < charList.length; i++) {
+                                                if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                                    allChars.push(charList[i]);
+                                                }
+                                            }
                                             packs.push({
                                                 id: categoryId,
                                                 name: categoryName,
                                                 packKey: 'huoyingrenzhe',
-                                                charList: characterSort[categoryId]
+                                                charList: charList
                                             });
                                         }
                                     }
 
+                                    packs[0].charList = allChars;
                                     return packs;
                                 }
 
@@ -2190,32 +2213,68 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (charData[3] && Array.isArray(charData[3])) {
                                     var skillsContainer = ui.create.div('.hyrz_detail_page_skills_container');
                                     var skillsText = ui.create.div('.hyrz_detail_page_skills_text');
-                                    if (charData[3] && Array.isArray(charData[3])) {
-                                        for (var j = 0; j < charData[3].length; j++) {
-                                            if (j > 0) {
-                                                skillsText.appendChild(document.createElement('br'));
-                                                skillsText.appendChild(document.createElement('br'));
+
+                                    for (var j = 0; j < charData[3].length; j++) {
+                                        if (j > 0) {
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+                                        }
+                                        var skillName = charData[3][j];
+                                        var skillIcon = document.createElement('span');
+                                        skillIcon.className = 'hyrz_skill_icon';
+                                        addSkillAudioClick(skillIcon, charName, skillName);
+                                        skillsText.appendChild(skillIcon);
+
+                                        var skillNameElement = document.createElement('strong');
+                                        skillNameElement.className = 'greentext hyrz_skill_name';
+                                        skillNameElement.textContent = get.translation(skillName);
+                                        skillNameElement.setAttribute('data-skill-name', skillName);
+                                        skillNameElement.setAttribute('data-char-name', charName);
+                                        ensureSkillClickHandler(skillNameElement, skillName, charName);
+                                        skillsText.appendChild(skillNameElement);
+
+                                        var descContainer = document.createElement('span');
+                                        descContainer.innerHTML = '：' + get.translation(skillName + '_info');
+                                        skillsText.appendChild(descContainer);
+
+                                        var skillObj = lib.skill[skillName];
+                                        if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length > 0) {
+
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+
+                                            for (var d = 0; d < skillObj.derivation.length; d++) {
+                                                var derivedName = skillObj.derivation[d];
+
+                                                var derivedWrapper = document.createElement('span');
+                                                derivedWrapper.style.marginLeft = '20px';
+
+                                                var derivedIcon = document.createElement('span');
+                                                derivedIcon.className = 'hyrz_skill_icon';
+                                                addSkillAudioClick(derivedIcon, charName, derivedName);
+                                                derivedWrapper.appendChild(derivedIcon);
+
+                                                var derivedNameElement = document.createElement('strong');
+                                                derivedNameElement.className = 'greentext hyrz_skill_name';
+                                                derivedNameElement.textContent = get.translation(derivedName);
+                                                derivedNameElement.setAttribute('data-skill-name', derivedName);
+                                                derivedNameElement.setAttribute('data-char-name', charName);
+                                                ensureSkillClickHandler(derivedNameElement, derivedName, charName);
+                                                derivedWrapper.appendChild(derivedNameElement);
+
+                                                var derivedDesc = document.createElement('span');
+                                                derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
+                                                derivedWrapper.appendChild(derivedDesc);
+
+                                                skillsText.appendChild(derivedWrapper);
+
+                                                if (d < skillObj.derivation.length - 1) {
+                                                    skillsText.appendChild(document.createElement('br'));
+                                                }
                                             }
-                                            var skillName = charData[3][j];
-
-                                            var skillIcon = document.createElement('span');
-                                            skillIcon.className = 'hyrz_skill_icon';
-                                            skillIcon = addSkillAudioClick(skillIcon, charName, skillName);
-                                            skillsText.appendChild(skillIcon);
-
-                                            var skillNameElement = document.createElement('strong');
-                                            skillNameElement.className = 'greentext hyrz_skill_name';
-                                            skillNameElement.textContent = get.translation(skillName);
-                                            skillNameElement.setAttribute('data-skill-name', skillName);
-                                            skillNameElement.setAttribute('data-char-name', charName);
-                                            skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
-                                            skillsText.appendChild(skillNameElement);
-
-                                            var descContainer = document.createElement('span');
-                                            descContainer.innerHTML = '：' + get.translation(skillName + '_info');
-                                            skillsText.appendChild(descContainer);
                                         }
                                     }
+
                                     skillsContainer.appendChild(skillsText);
                                     contentContainer.appendChild(skillsContainer);
                                 }
@@ -2259,26 +2318,49 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
 
                 function createCharacterPacks() {
                     var packs = [];
+                    var allChars = [];
                     var characterSort = lib.characterSort && lib.characterSort.huoyingrenzhe;
 
+
+                    packs.push({
+                        id: 'all',
+                        name: '全部武将',
+                        packKey: 'huoyingrenzhe',
+                        charList: []
+                    });
+
                     if (!characterSort) {
-                        return [
-                            { id: 'all', name: '全部武将', packKey: 'huoyingrenzhe' }
-                        ];
+                        var characterPack = lib.characterPack['huoyingrenzhe'];
+                        if (characterPack) {
+                            for (var charName in characterPack) {
+                                if (charName && lib.character[charName]) {
+                                    allChars.push(charName);
+                                }
+                            }
+                        }
+                        packs[0].charList = allChars;
+                        return packs;
                     }
 
                     for (var categoryId in characterSort) {
                         if (characterSort.hasOwnProperty(categoryId)) {
                             var categoryName = get.translation(categoryId) || categoryId;
+                            var charList = characterSort[categoryId] || [];
+                            for (var i = 0; i < charList.length; i++) {
+                                if (lib.character[charList[i]] && !allChars.includes(charList[i])) {
+                                    allChars.push(charList[i]);
+                                }
+                            }
                             packs.push({
                                 id: categoryId,
                                 name: categoryName,
                                 packKey: 'huoyingrenzhe',
-                                charList: characterSort[categoryId]
+                                charList: charList
                             });
                         }
                     }
 
+                    packs[0].charList = allChars;
                     return packs;
                 }
 
@@ -12278,7 +12360,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return huoyingrenzhe;
                 });
                 lib.config.all.characters.push('huoyingrenzhe');
-                if (!lib.config.characters.contains('huoyingrenzhe')) lib.config.characters.push('huoyingrenzhe');
+                if (!lib.config.characters.contains('huoyingrenzhe')) lib.config.characters.remove('huoyingrenzhe');
                 lib.translate['huoyingrenzhe_character_config'] = '<font color=#f00>火影忍者</font>';
 
                 // ---------------------------------------卡牌------------------------------------------//	

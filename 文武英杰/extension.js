@@ -1219,6 +1219,61 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     lib.translate.du_info = '当此牌正面向上离开你的手牌区，或作为你的拼点牌而亮出时，你失去1点体力';
                 });
             }
+            //====================【键魂】=======================            
+            // 在游戏开始时检查是否需要加载 Key 数据
+            lib.arenaReady.push(function () {
+                // 检查场上是否有角色拥有键魂技能
+                var hasKeySkill = game.players.some(function (player) {
+                    return player.hasSkill('wwyj_jianghun');
+                });
+
+                // 如果存在键魂且 Key 包未开启，则加载备用数据
+                if (hasKeySkill && !lib.characterPack['key']) {
+                    function loadScriptSync(url) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', url, false);
+                        xhr.send();
+                        if (xhr.status === 200) {
+                            eval(xhr.responseText);
+                        } else {
+                            throw new Error('HTTP ' + xhr.status + ': ' + url);
+                        }
+                    }
+
+                    try {
+                        var base = lib.assetURL + 'extension/文武英杰/';
+                        loadScriptSync(base + 'keyCharacter.js');
+                        loadScriptSync(base + 'keySkill.js');
+                        loadScriptSync(base + 'keyTranslate.js');
+
+                        // 注册技能到 lib.skill（键魂需要）
+                        for (var sk in window.keySkills) {
+                            if (!lib.skill[sk]) {
+                                lib.skill[sk] = window.keySkills[sk];
+                            }
+                        }
+                        // 注册翻译（显示技能名称和描述）
+                        for (var tr in window.keyTranslates) {
+                            if (!lib.translate[tr]) {
+                                lib.translate[tr] = window.keyTranslates[tr];
+                            }
+                        }
+                        // 将角色数据存入内部变量（供键魂遍历）
+                        window._keyData.characters = window.keyCharacters;
+
+                        console.log('文武英杰：键魂触发，备用 Key 数据加载成功，角色数 =', Object.keys(window.keyCharacters).length);
+                    } catch (e) {
+                        console.error('文武英杰：加载备用 Key 数据失败', e);
+                        window._keyData.characters = {}; // 防止键魂报错
+                    }
+                } else if (lib.characterPack['key']) {
+                    // 如果 Key 包已开启，直接使用真实数据
+                    window._keyData.characters = lib.characterPack['key'];
+                } else {
+                    // 没有键魂且 Key 包未开启，不做任何事
+                    window._keyData.characters = {};
+                }
+            });
             // ---------------------------------------wwyj_jiexiantupo------------------------------------------//	     
             if (config.wwyj_jiexiantupo) {
                 lib.arenaReady.push(function () {
@@ -5469,49 +5524,53 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             lib.init.js(lib.assetURL + 'extension/文武英杰', 'update', function () { });
 
             // 【键魂】检查 Key 包是否已加载
-            if (!lib.characterPack['key']) {
-                // 辅助函数：同步加载 JS 文件（使用 XMLHttpRequest）
-                function loadScriptSync(url) {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('GET', url, false);
-                    xhr.send();
-                    if (xhr.status === 200) {
-                        eval(xhr.responseText);
-                    } else {
-                        throw new Error('加载失败: ' + url);
-                    }
-                }
+            window._keyData = { characters: {} };//初始化
 
-                try {
-                    var baseUrl = lib.assetURL + 'extension/文武英杰/';
-                    loadScriptSync(baseUrl + 'keyCharacter.js');
-                    loadScriptSync(baseUrl + 'keySkill.js');
-                    loadScriptSync(baseUrl + 'keyTranslate.js');
-
-                    // 注册角色包
-                    lib.characterPack['key'] = window.keyCharacters;
-                    // 注册技能定义
-                    for (var sk in window.keySkills) {
-                        if (!lib.skill[sk]) {
-                            lib.skill[sk] = window.keySkills[sk];
-                        }
-                    }
-                    // 注册翻译
-                    for (var tr in window.keyTranslates) {
-                        if (!lib.translate[tr]) {
-                            lib.translate[tr] = window.keyTranslates[tr];
-                        }
-                    }
-                    // 注册角色信息（可选，便于其他扩展引用）
-                    for (var ch in window.keyCharacters) {
-                        if (!lib.character[ch]) {
-                            lib.character[ch] = window.keyCharacters[ch];
-                        }
-                    }
-                } catch (e) {
-                    console.warn('文武英杰：备用 Key 数据加载失败，【键魂】将无法生效', e);
-                }
-            }
+            /* //以下方法加载有用但关闭key包仍会有key角色，用这个就不能用 lib.arenaReady.push(function () {}那个，同时键魂要用第三个注释掉的代码          
+            
+                        if (!lib.characterPack['key']) {
+                            // 辅助函数：同步加载 JS 文件（使用 XMLHttpRequest）
+                            function loadScriptSync(url) {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('GET', url, false);
+                                xhr.send();
+                                if (xhr.status === 200) {
+                                    eval(xhr.responseText);
+                                } else {
+                                    throw new Error('加载失败: ' + url);
+                                }
+                            }
+            
+                            try {
+                                var baseUrl = lib.assetURL + 'extension/文武英杰/';
+                                loadScriptSync(baseUrl + 'keyCharacter.js');
+                                loadScriptSync(baseUrl + 'keySkill.js');
+                                loadScriptSync(baseUrl + 'keyTranslate.js');
+            
+                                // 注册角色包
+                                lib.characterPack['key'] = window.keyCharacters;
+                                // 注册技能定义
+                                for (var sk in window.keySkills) {
+                                    if (!lib.skill[sk]) {
+                                        lib.skill[sk] = window.keySkills[sk];
+                                    }
+                                }
+                                // 注册翻译
+                                for (var tr in window.keyTranslates) {
+                                    if (!lib.translate[tr]) {
+                                        lib.translate[tr] = window.keyTranslates[tr];
+                                    }
+                                }
+                                // 注册角色信息（可选，便于其他扩展引用）
+                                for (var ch in window.keyCharacters) {
+                                    if (!lib.character[ch]) {
+                                        lib.character[ch] = window.keyCharacters[ch];
+                                    }
+                                }
+                            } catch (e) {
+                                console.warn('文武英杰：备用 Key 数据加载失败，【键魂】将无法生效', e);
+                            }
+                        }*/
 
             /*var charactercard = ui.click.charactercard;
             ui.click.charactercard = function (name, sourcenode, noedit, resume, avatar) {
@@ -14740,6 +14799,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     content: "characters",
                                 },
                                 content: function () {
+                                    //苏婆原写法
                                     /*"step 0"
                                     var list = lib.characterSort.diy.diy_key.slice(0);
                                     list.remove('key_umi2');
@@ -14767,6 +14827,9 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 1"
                                     event.dialog.close();
                                     */
+
+                                    //我写的须开启key包旧写法
+                                    /*
                                     'step 0'
                                     event.skills = [];
                                     'step 1'
@@ -14783,6 +14846,73 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     for (var i = 0; i < skills.length; i++) {
                                         event.skills.remove(skills[i]);
                                         //if(event.skills.contains(skills[i])) event.skills.splice(i--,1);
+                                    }
+                                    if (event.skills.length > 0) {
+                                        var skill = event.skills.randomGet();
+                                        player.addSkill(skill);
+                                        player.flashAvatar('wwyj_jianghun', skill);
+                                        player.markSkill('wwyj_jianghun');
+                                        player.mark(skill, {
+                                            name: get.translation(skill),
+                                            content: lib.translate[skill + '_info']
+                                        });
+                                        game.log(player, '获得技能', '【' + get.translation(skill) + '】');
+                                    }
+                                    */
+                                    /*
+                                    //precontent直接加载3个文件时的写法：                                    
+                                    'step 0'
+                                    event.skills = [];
+                                    'step 1'
+                                    for (var i in lib.characterPack['key']) {
+                                        for (var j = 0; j < lib.character[i][3].length; j++) {
+                                            var info = lib.skill[lib.character[i][3][j]];
+                                            if (info && (info.gainable || !info.unique)) {
+                                                event.skills.push(lib.character[i][3][j]);
+                                            }
+                                        }
+                                    }
+                                    event.skills.removeArray(['wwyj_jianghun', 'yusa_misa', 'misa_yusa', 'sunohara_chengshuang', 'yuri_wangxi']);
+                                    var skills = player.skills.slice(0);
+                                    for (var i = 0; i < skills.length; i++) {
+                                        event.skills.remove(skills[i]);
+                                        //if(event.skills.contains(skills[i])) event.skills.splice(i--,1);
+                                    }
+                                    if (event.skills.length > 0) {
+                                        var skill = event.skills.randomGet();
+                                        player.addSkill(skill);
+                                        player.flashAvatar('wwyj_jianghun', skill);
+                                        player.markSkill('wwyj_jianghun');
+                                            player.mark(skill, {
+                                            name: get.translation(skill),
+                                            content: lib.translate[skill + '_info']
+                                        });
+                                        game.log(player, '获得技能', '【' + get.translation(skill) + '】');
+                                    }*/
+
+                                    'step 0'
+                                    event.skills = [];
+                                    'step 1'
+                                    var keyPack = window._keyData.characters || {};
+                                    for (var i in keyPack) {
+                                        var charData = keyPack[i];
+                                        if (!charData) continue;
+                                        var skills = charData[3] || [];
+                                        for (var j = 0; j < skills.length; j++) {
+                                            var skill = skills[j];
+                                            var info = lib.skill[skill];
+                                            if (info && info.unique && !info.gainable) continue;
+                                            if (!info) continue;
+                                            event.skills.push(skill);
+                                        }
+                                    }
+                                    // 移除黑名单
+                                    var blacklist = ['wwyj_jianghun', 'yusa_misa', 'misa_yusa', 'sunohara_chengshuang', 'yuri_wangxi'];
+                                    event.skills.removeArray(blacklist);
+                                    // 移除玩家已拥有的技能
+                                    var playerSkills = player.skills.slice(0);
+                                    for (var i = 0; i < playerSkills.length; i++) {
+                                        event.skills.remove(playerSkills[i]);
                                     }
                                     if (event.skills.length > 0) {
                                         var skill = event.skills.randomGet();
@@ -17623,7 +17753,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                     return wenwuyingjie;
                 });
                 lib.config.all.characters.push('wenwuyingjie');
-                if (!lib.config.characters.contains('wenwuyingjie')) lib.config.characters.push('wenwuyingjie');
+                if (!lib.config.characters.contains('wenwuyingjie')) lib.config.characters.remove('wenwuyingjie');
                 lib.translate['wenwuyingjie_character_config'] = '<span style=\"color:#ff00cc\">文武英杰</span>';
 
                 //凉茶图鉴：
@@ -18204,7 +18334,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.3",
+            version: "5.4",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

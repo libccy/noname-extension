@@ -2807,7 +2807,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 skill: {},
                 translate: {},
             },
-            intro: "<font color=#4a9eff>自动检测并显示已安装的武将包信息，单击列表页武将图片换肤，双击列表页的武将图片可放大查看详细页，单击详细页的技能名前的小喇叭图标可播放配音，单击详细页技能名可查看技能代码</font>",
+            intro: "<font color=#4a9eff>长按下面的选项开关可查看详细功能</font>",
             author: "小苏",
             diskURL: "",
             forumURL: "",

@@ -1315,32 +1315,69 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 if (charData[3] && Array.isArray(charData[3])) {
                                     var skillsContainer = ui.create.div('.qyh_detail_page_skills_container');
                                     var skillsText = ui.create.div('.qyh_detail_page_skills_text');
-                                    if (charData[3] && Array.isArray(charData[3])) {
-                                        for (var j = 0; j < charData[3].length; j++) {
-                                            if (j > 0) {
-                                                skillsText.appendChild(document.createElement('br'));
-                                                skillsText.appendChild(document.createElement('br'));
+
+                                    for (var j = 0; j < charData[3].length; j++) {
+                                        if (j > 0) {
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+                                        }
+                                        var skillName = charData[3][j];
+
+                                        var skillIcon = document.createElement('span');
+                                        skillIcon.className = 'qyh_skill_icon';
+                                        addSkillAudioClick(skillIcon, charName, skillName);
+                                        skillsText.appendChild(skillIcon);
+
+                                        var skillNameElement = document.createElement('strong');
+                                        skillNameElement.className = 'greentext qyh_skill_name';
+                                        skillNameElement.textContent = get.translation(skillName);
+                                        skillNameElement.setAttribute('data-skill-name', skillName);
+                                        skillNameElement.setAttribute('data-char-name', charName);
+                                        ensureSkillClickHandler(skillNameElement, skillName, charName);
+                                        skillsText.appendChild(skillNameElement);
+
+                                        var descContainer = document.createElement('span');
+                                        descContainer.innerHTML = '：' + get.translation(skillName + '_info');
+                                        skillsText.appendChild(descContainer);
+
+                                        var skillObj = lib.skill[skillName];
+                                        if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length > 0) {
+
+                                            skillsText.appendChild(document.createElement('br'));
+                                            skillsText.appendChild(document.createElement('br'));
+
+                                            for (var d = 0; d < skillObj.derivation.length; d++) {
+                                                var derivedName = skillObj.derivation[d];
+
+                                                var derivedWrapper = document.createElement('span');
+                                                derivedWrapper.style.marginLeft = '20px';
+
+                                                var derivedIcon = document.createElement('span');
+                                                derivedIcon.className = 'qyh_skill_icon';
+                                                addSkillAudioClick(derivedIcon, charName, derivedName);
+                                                derivedWrapper.appendChild(derivedIcon);
+
+                                                var derivedNameElement = document.createElement('strong');
+                                                derivedNameElement.className = 'greentext qyh_skill_name';
+                                                derivedNameElement.textContent = get.translation(derivedName);
+                                                derivedNameElement.setAttribute('data-skill-name', derivedName);
+                                                derivedNameElement.setAttribute('data-char-name', charName);
+                                                ensureSkillClickHandler(derivedNameElement, derivedName, charName);
+                                                derivedWrapper.appendChild(derivedNameElement);
+
+                                                var derivedDesc = document.createElement('span');
+                                                derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
+                                                derivedWrapper.appendChild(derivedDesc);
+
+                                                skillsText.appendChild(derivedWrapper);
+
+                                                if (d < skillObj.derivation.length - 1) {
+                                                    skillsText.appendChild(document.createElement('br'));
+                                                }
                                             }
-                                            var skillName = charData[3][j];
-
-                                            var skillIcon = document.createElement('span');
-                                            skillIcon.className = 'qyh_skill_icon';
-                                            skillIcon = addSkillAudioClick(skillIcon, charName, skillName);
-                                            skillsText.appendChild(skillIcon);
-
-                                            var skillNameElement = document.createElement('strong');
-                                            skillNameElement.className = 'greentext qyh_skill_name';
-                                            skillNameElement.textContent = get.translation(skillName);
-                                            skillNameElement.setAttribute('data-skill-name', skillName);
-                                            skillNameElement.setAttribute('data-char-name', charName);
-                                            skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
-                                            skillsText.appendChild(skillNameElement);
-
-                                            var descContainer = document.createElement('span');
-                                            descContainer.innerHTML = '：' + get.translation(skillName + '_info');
-                                            skillsText.appendChild(descContainer);
                                         }
                                     }
+
                                     skillsContainer.appendChild(skillsText);
                                     contentContainer.appendChild(skillsContainer);
                                 }
@@ -5619,28 +5656,53 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     player: "damageBegin",
                                 },
                                 filter: function (event, player) {
-                                    return player.countCards("h");
+                                    return player.countCards("h")>0;
                                 },
                                 content: function () {
                                     "step 0"
                                     event.list = [];
-                                    for (var i = 0; i < player.num("h"); i++) {
-                                        if (event.list.contains(get.suit(player.getCards('h')[i]))) continue;
-                                        event.list.push(get.suit(player.getCards('h')[i]));
-                                        game.print(event.list);
+                                    var cards=player.getCards("h");
+                                    for (var i = 0; i < cards.length; i++) {
+                                        if (!event.list.contains(get.suit(cards[i]))){
+                                            event.list.push(get.suit(cards[i]));
+                                            //game.print(event.list);
+                                        }
                                     }
-                                    //   player.showHandcards();
-                                    "step 1"
-                                    player.chooseControl(event.list, function (event, player) {
+                                    //   player.showHandcards();                                    
+                                    /*player.chooseControl(event.list, function (event, player) {
                                         return event.list.randomGet();
-                                    }).prompt = "遁空：请选择一种花色并弃置该花色的所有手牌";
-                                    "step 2"
-                                    //  player.storage.wugeng_dunkong = result.control;
-                                    player.discard(player.getCards("h", function (card) {
-                                        return get.suit(card) == result.control;
-                                    }));
-                                    "step 3"
-                                    trigger.num--;
+                                    }).prompt = "遁空：请选择一种花色并弃置该花色的所有手牌";*/
+                                    const list = event.list.map(i => `lukai_${i}`);
+                                    player.chooseButton(true, [[list, 'vcard']]).set('filterButton', function (button) {
+                                return true;
+                            }).set('ai', function (button) {
+                                switch (button.link[2].slice(6)) {
+                                    case 'spade': return 3 + 4 * Math.random();
+                                    case 'heart': return 1 + 4 * Math.random();
+                                    case 'club': return 3 + 4 * Math.random();
+                                    case 'diamond': return 2 + 4 * Math.random();
+                                    default: return 4 * Math.random();
+                                }
+                            }).set('rand', [Math.random(), Math.random(), Math.random()], Math.random());
+                            "step 1"
+                            if (result.bool) {
+                                player.popup(result.links[0][2].slice(6), 'soil');
+                                game.log(player, '选择了' + get.translation(result.links[0][2].slice(6)));
+                                /*var suits=[];
+                                var cards=player.getCards("h");
+                                    for (var i = 0; i < cards.length; i++) {
+                                        if (get.suit(cards[i])==result.links[0][2].slice(6)){
+                                            suits.push(cards[i]);
+                                            //game.print(event.list);
+                                        }
+                                    }
+                                player.discard(suits);*/
+                                player.discard(player.getCards("h", function (card) {
+                                    return get.suit(card) == result.links[0][2].slice(6);
+                                }));
+                                trigger.num--;
+                            }
+                            else event.finish();                            
                                 },
                             },
                             "wugeng_qinhe": {
@@ -5655,7 +5717,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     return event.player != player && player.countCards('h') > 0;
                                 },
                                 check: function (event, player) {
-                                    if (player.countCards('h') < 2) return true;
+                                    if (player.countCards('h') < 2) return 1;
                                     return get.attitude(player, event.player) > 0;
                                 },
                                 frequent: "check",
@@ -5674,11 +5736,8 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 group: ["wugeng_qinhe2", "wugeng_qinhe3"],
                                 ai: {
-                                    expose: 0.8,
-                                    order: 11,
-                                    result: {
-                                        player: 1,
-                                    },
+                                    //expose: 0.8,
+                                    order: 11,                                    
                                 },
                             },
                             "wugeng_qinhe2": {
@@ -5686,19 +5745,14 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     global: "useCard",
                                 },
                                 frequent: true,
-                                filter: function (event, player) {
-                                    if (event.player != _status.currentPhase) return false;
+                                filter: function (event, player) {                                    
                                     // return (get.type(event.card,'trick')==player.storage.wugeng_qinhe&&event.cards[0]&&event.cards[0]==event.card);
                                     return get.suit(event.card) == player.storage.wugeng_qinhe;
                                 },
                                 content: function () {
                                     game.playSu(['wugeng_qinhe1', 'wugeng_qinhe2'].randomGet());
-                                    trigger.player.draw();
-                                    player.draw();
-                                },
-                                ai: {
-                                    threaten: 0.4,
-                                },
+                                    game.asyncDraw([player, trigger.player]);                                    
+                                },                                
                             },
                             "wugeng_qinhe3": {
                                 trigger: {
@@ -5711,7 +5765,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 content: function () {
                                     delete player.storage.wugeng_qinhe;
                                     player.storage.wugeng_qinhe = [];
-                                    trigger.player.unmarkSkill('wugeng_qinhe');
+                                    player.unmarkSkill('wugeng_qinhe');
                                 },
                             },
 
@@ -7395,7 +7449,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.1",
+            version: "3.2",
         }, files: { "character": [], "card": [], "skill": [] }
     }
 })

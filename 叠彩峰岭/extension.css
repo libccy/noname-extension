@@ -1,0 +1,1219 @@
+.dcfl_menu {
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(120, 88, 75, 0.8), rgba(60, 60, 60, 0.8));
+    border: 1px solid #555;
+    display: inline-block;
+    transition: all 0.3s;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: fit-content !important;
+    min-width: 120px !important;
+    padding: 8px 20px !important;
+}
+
+.dcfl_menu:hover {
+    background: linear-gradient(135deg, rgba(140, 108, 95, 0.9), rgba(80, 80, 80, 0.9));
+    transform: scale(1.05);
+}
+
+#dcfl_page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 8px;
+    background-color: rgba(20, 20, 20, 0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2025;
+}
+
+#dcfl_leftButtonPanel {
+    position: fixed !important;
+    left: 6% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 185px !important;
+    height: 90% !important;
+    background-color: rgba(30, 30, 30, 0.95) !important;
+    border: none !important;
+    border-radius: 8px 0 0 8px !important;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 18px 12px !important;
+    box-sizing: border-box !important;
+    z-index: 2025 !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5) !important;
+    border-radius: 3px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+#dcfl_leftButtonPanel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+#dcfl_buttonContainer {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+.dcfl_buttonWrapper {
+    width: 100% !important;
+    height: 50px !important;
+    display: block !important;
+    position: relative !important;
+}
+
+.dcfl_packButton {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    border-radius: 6px !important;
+    border: 2px solid #666 !important;
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #ddd !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    transition: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    user-select: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1px !important;
+}
+
+.dcfl_packButton.active {
+    background-color: rgba(144, 238, 144, 0.95) !important;
+    color: #ffd700 !important;
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+.dcfl_packButton:not(.active):hover {
+    background-color: rgba(70, 70, 70, 0.95) !important;
+    color: #fff !important;
+    border-color: #888 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+#dcfl_mainContainer {
+    position: fixed !important;
+    top: 50% !important;
+    left: calc(6% + 185px) !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% - 150px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 2025 !important;
+    overflow: hidden !important;
+}
+
+#dcfl_rightPanel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    z-index: 202511 !important;
+}
+
+#dcfl_closeButton {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 202511 !important;
+}
+
+#dcfl_closeButton:hover {
+    background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+}
+
+#dcfl_contentContainer {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_contentContainer::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#dcfl_contentContainer::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}
+
+.dcfl_intro_left {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    left: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+}
+
+.dcfl_intro_right {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 190px !important;
+    right: 15px !important;
+    top: 20px !important;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+}
+
+.dcfl_intro_header {
+    position: absolute !important;
+    width: 125px !important;
+    height: 170px !important;
+    left: 18px !important;
+    top: 10px !important;
+    border-radius: 2px !important;
+    box-shadow: 2px 2px 4px rgba(180, 180, 180, 0.85), -2px 2px 4px rgba(180, 180, 180, 0.85) !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.dcfl_intro_infos {
+    position: absolute !important;
+    height: 20px !important;
+    left: 155px !important;
+    top: 15px !important;
+    line-height: 20px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 14px !important;
+    color: #eee !important;
+}
+
+.dcfl_intro_skills {
+    position: absolute !important;
+    width: calc(100% - 175px) !important;
+    height: calc(100% - 50px) !important;
+    right: 20px !important;
+    bottom: 5px !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 12px !important;
+    overflow: auto !important;
+    color: #ccc !important;
+    line-height: 1.4 !important;
+}
+
+.dcfl_intro_skills::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.dcfl_intro_skills::-webkit-scrollbar-track {
+    background: rgba(30, 30, 30, 0.5) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_intro_skills::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 80, 80, 0.7) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_group_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+    font-family: lishu !important;
+    font-size: 16px !important;
+    line-height: 36px !important;
+    text-indent: 2em !important;
+    color: #fff !important;
+    display: block !important;
+    clear: both !important;
+    z-index: 202511 !important;
+}
+
+/*
+.dcfl_intro_left, .dcfl_intro_right {
+    margin-top: 10px !important;
+}
+*/
+.greentext {
+    color: #7cfc00 !important;
+}
+
+.dcfl_skill_name {
+    color: #7cfc00 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    transition: all 0.2s ease !important;
+    background-color: rgba(124, 252, 0, 0.1) !important;
+    border: 1px solid rgba(124, 252, 0, 0.3) !important;
+}
+
+.dcfl_skill_name:hover {
+    background-color: rgba(124, 252, 0, 0.2) !important;
+    border-color: rgba(124, 252, 0, 0.6) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.dcfl_skill_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('dcfl_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 8px !important;
+    margin-bottom: 3px !important;
+}
+
+.dcfl_intro_skills .dcfl_skill_icon {
+    width: 1em !important;
+    height: 1em !important;
+    margin-right: 6px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+}
+
+.dcfl_intro_skills strong.greentext {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin-bottom: 3px !important;
+}
+
+.dcfl_intro_skills strong.greentext+span br+*,
+.dcfl_detail_skill_content .dcfl_skill_name+span br+* {
+    display: inline-block !important;
+    margin-left: calc(1.2em + 8px) !important;
+    text-indent: -8px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name+span br+* {
+    margin-left: calc(1.2em + 8px) !important;
+}
+
+.dcfl_intro_skills strong.greentext+span br+* {
+    margin-left: calc(1em + 6px) !important;
+}
+
+#dcfl_page.dcfl_detail_page {
+    z-index: 2026 !important;
+}
+
+#dcfl_mainContainer.dcfl_detail_container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 6% !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% + 35px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 2026 !important;
+    overflow: hidden !important;
+}
+
+#dcfl_rightPanel.dcfl_detail_panel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_closeButton.dcfl_detail_close {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_closeButton.dcfl_detail_close:hover {
+    background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+}
+
+#dcfl_title.dcfl_detail_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    line-height: 36px !important;
+    text-indent: 1em !important;
+    color: #ffd700 !important;
+    display: block !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_contentContainer.dcfl_detail_content {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: hidden !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+.dcfl_detail_page_info_container {
+    position: absolute !important;
+    width: calc(67% - 60px) !important;
+    height: 50px !important;
+    left: calc(33% + 17px) !important;
+    top: 20px !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.dcfl_detail_page_info_text {
+    width: calc(100% - 2.4em - 12px) !important;
+    margin-left: calc(1.2em + 12px) !important;
+    line-height: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    letter-spacing: 2px !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #eee !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.dcfl_detail_image_area {
+    position: absolute !important;
+    width: calc(33% - 20px) !important;
+    height: calc(100% - 100px) !important;
+    left: 20px !important;
+    top: 20px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dcfl_detail_header {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 5px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
+.dcfl_detail_button_area {
+    position: absolute !important;
+    width: calc(33% - 20px) !important;
+    height: 36px !important;
+    left: 20px !important;
+    bottom: 20px !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dcfl_detail_tab_buttons {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+.dcfl_tab_button {
+    width: 50% !important;
+    height: 100% !important;
+    line-height: 36px !important;
+    text-align: center !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #ccc !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    cursor: pointer !important;
+    transition: all 0.3s !important;
+    user-select: none !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    border: none !important;
+}
+
+.dcfl_tab_button:first-child {
+    border-right: 1px solid rgba(120, 88, 75, 0.8) !important;
+}
+
+.dcfl_tab_button.active {
+    background-color: rgba(64, 156, 255, 0.9) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+
+.dcfl_tab_button:hover:not(.active) {
+    background-color: rgba(60, 60, 60, 0.9) !important;
+    color: #fff !important;
+}
+
+.dcfl_detail_right_area {
+    position: absolute !important;
+    width: calc(67% - 60px) !important;
+    height: calc(100% - 100px) !important;
+    left: calc(33% + 17px) !important;
+    top: 85px !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    border: none !important;
+}
+
+.dcfl_detail_intro_content,
+.dcfl_detail_skill_content {
+    width: 100% !important;
+    height: 100% !important;
+    letter-spacing: 1px !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    color: #ccc !important;
+    line-height: 1.6 !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.3) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_detail_right_area::-webkit-scrollbar-thumb {
+    background-color: rgba(144, 238, 144, 0.5) !important;
+    border-radius: 3px !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name {
+    color: #7cfc00 !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    margin-right: 8px !important;
+    display: inline-block !important;
+}
+
+.dcfl_detail_skill_content .dcfl_skill_name:hover {
+    text-decoration: underline !important;
+}
+
+#dcfl_contentContainer.dcfl_detail_content::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+#dcfl_page.dcfl_code_page {
+    z-index: 2030 !important;
+}
+
+#dcfl_mainContainer.dcfl_code_container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 6% !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% + 35px) !important;
+    height: 90% !important;
+    background-color: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 2028 !important;
+    overflow: hidden !important;
+}
+
+#dcfl_rightPanel.dcfl_code_panel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dcfl_closeButton.dcfl_code_close {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    z-index: 2029 !important;
+    color: #fff !important;
+}
+
+#dcfl_closeButton.dcfl_code_close:hover {
+    background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+    color: #ffd700 !important;
+}
+
+#dcfl_title.dcfl_code_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    line-height: 36px !important;
+    text-indent: 1em !important;
+    color: #ffd700 !important;
+    display: block !important;
+    z-index: 2027 !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow: auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    background-color: rgba(30, 30, 30, 0.8) !important;
+    border-radius: 5px !important;
+    margin: 0 15px !important;
+    width: calc(100% - 30px) !important;
+    left: 15px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content pre {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: lishu !important;
+    font-size: 28px !important;
+    color: #ccc !important;
+    line-height: 1.6 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: auto !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7) !important;
+    border-radius: 4px !important;
+}
+
+#dcfl_contentContainer.dcfl_code_content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9) !important;
+}
+
+.dcfl_icon_button {
+    position: fixed !important;
+    left: 80% !important;
+    top: calc(72% - 90px) !important;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+    background-size: cover !important;
+    transition: all 0.3s !important;
+}
+
+.dcfl_icon_button:hover,
+.dcfl_icon_button.dcfl_icon_hover {
+    transform: scale(1.1) !important;
+    filter: brightness(1.2) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 215, 0, 0.8) !important;
+}
+
+.dcfl_detail_page_info_icon {
+    display: inline-block !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    background-image: url('dcfl_bofanpeiyin.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    vertical-align: middle !important;
+    margin-right: 12px !important;
+    cursor: pointer !important;
+    position: relative !important;
+}
+
+.dcfl_detail_page_info_icon_wrapper {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    height: 1.2em !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 1 !important;
+}
+
+.dcfl_detail_page_info_text {
+    width: calc(100% - 2.4em - 12px) !important;
+    margin-left: calc(1.2em + 12px) !important;
+}
+
+
+
+/* dcfl_protected.css 内容 */
+.dcfl_protected {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    pointer-events: auto !important;
+}
+
+.dcfl_noselect {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+.dcfl_prevent_copy {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+.dcfl_no_drag {
+    -webkit-user-drag: none !important;
+    -khtml-user-drag: none !important;
+    -moz-user-drag: none !important;
+    -o-user-drag: none !important;
+    user-drag: none !important;
+}
+
+/* ===== 搜索结果页面 ===== */
+.dcfl_search_result_page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2025;
+    display: block;
+}
+
+.dcfl_search_result_container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 6% !important;
+    transform: translateY(-50%) !important;
+    width: calc(84% + 35px) !important;
+    height: 90% !important;
+    background: #1a1a1a !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 2026 !important;
+    overflow: hidden !important;
+}
+
+.dcfl_search_result_panel {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.dcfl_search_result_close {
+    position: absolute !important;
+    width: 65px !important;
+    height: 35px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 2027 !important;
+}
+
+.dcfl_search_result_close:hover {
+    background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0)) !important;
+}
+
+.dcfl_search_result_title {
+    position: relative !important;
+    width: calc(50% - 20px) !important;
+    height: 36px !important;
+    left: 15px !important;
+    top: 20px !important;
+    border-radius: 2px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0)) !important;
+    font-family: lishu !important;
+    font-size: 18px !important;
+    line-height: 36px !important;
+    text-indent: 1em !important;
+    color: #ffd700 !important;
+    z-index: 2027 !important;
+}
+
+.dcfl_search_result_content {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 60px) !important;
+    overflow-y: auto !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    align-content: flex-start !important;
+}
+
+/* 滚动条样式（可选） */
+.dcfl_search_result_content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dcfl_search_result_content::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 4px;
+}
+
+.dcfl_search_result_content::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 88, 75, 0.7);
+    border-radius: 4px;
+}
+
+.dcfl_search_result_content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(140, 108, 95, 0.9);
+}
+
+/* 复制按钮默认样式（通用外观） */
+.dcfl_code_copy {
+    color: #fff;
+    cursor: pointer;
+    padding: 0 12px;
+    font-size: 18px;
+    font-family: lishu, 'Microsoft YaHei', sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    /* margin-right: 10px; 此处在绝对定位中不需要，可注释或删除 */
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+}
+
+.dcfl_code_copy:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 复制成功后的状态 */
+.dcfl_code_copy.copied {
+    background: rgba(100, 200, 100, 0.4);
+    color: #aaffaa;
+}
+
+/* ===== 侍灵图鉴页面 ===== */
+.sltj_tujian_page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 2040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sltj_tujian_container {
+    display: flex;
+    width: 100%;
+    /*90*/    
+    height: 100%;
+    /*85*/
+    background: #1a1a2e;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+}
+
+/* ===== 左侧列表 ===== */
+.sltj_tujian_list {
+    width: 180px;
+    height: 100%;
+    /*background: rgba(30,30,30,0.95);*/
+    background: #0a0a1a;
+    overflow-y: auto;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sltj_tujian_list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sltj_tujian_list::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5);
+}
+
+.sltj_tujian_list::-webkit-scrollbar-thumb {
+    background: rgba(120, 88, 75, 0.7);
+    border-radius: 3px;
+}
+
+.sltj_tujian_icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 12px;
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.sltj_tujian_icon:hover {
+    border-color: #8cf;
+}
+
+.sltj_tujian_icon.active {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.sltj_tujian_icon_img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.sltj_tujian_icon_fallback {
+    color: #ccc;
+    font-size: 16px;
+    font-family: lishu;
+    text-align: center;
+    padding: 4px;
+}
+
+/* ===== 右侧面板 ===== */
+.sltj_tujian_panel {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /*padding: 20px;*/
+    box-sizing: border-box;
+}
+
+.sltj_tujian_close {
+    /*position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s;*/
+
+    position: absolute !important;
+    width: 75px !important;
+    height: 50px !important;
+    top: 0 !important;
+    right: 5px !important;
+    border-left: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    border-right: 0.5px solid rgba(30, 30, 30, 0.8) !important;
+    text-align: center !important;
+    line-height: 35px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    -webkit-transition: all 0.2s !important;
+    z-index: 2026 !important;
+}
+
+.sltj_tujian_close:hover {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
+.sltj_tujian_title {
+    font-family: lishu;
+    font-size: 28px;
+    color: #ffd700;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* ===== 动画容器 ===== */
+.sltj_tujian_anim_container {
+    flex: 1;
+    position: relative;
+    background: #0a0a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.sltj_tujian_canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ========== 独立悬浮按钮样式========== */
+.sltj_float_btn {
+    position: absolute;
+    z-index: 20;
+    width: 60px;
+    height: 60px;
+    right: 12px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-family: lishu, sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid #444;
+    box-sizing: border-box;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.sltj_float_btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: #888;
+}
+
+.sltj_float_btn.active {
+    background: rgba(124, 252, 0, 0.35);
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.45);
+}
+
+/* 三个按钮垂直均分容器高度 */
+.sltj_float_btn1 {
+    top: calc(25%);
+}
+
+.sltj_float_btn2 {
+    top: calc(50%);
+}
+
+.sltj_float_btn3 {
+    top: calc(75%);
+}
+
+
+/* ===== 侍灵背景选择 - 网格容器 ===== */
+.dcfl_bg_select_grid {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+
+.sltj_tujianBgSelect_container {
+    display: flex;
+    width: 90%;        
+    height: 85%;    
+    background: #1a1a2e;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+}
+
+.dcfl_bg_select_grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dcfl_bg_select_grid::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.5);
+}
+
+.dcfl_bg_select_grid::-webkit-scrollbar-thumb {
+    background: rgba(120, 88, 75, 0.7);
+    border-radius: 3px;
+}
+
+.dcfl_bg_select_off {
+    background: rgba(60, 60, 60, 0.8);
+    border-color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dcfl_bg_select_off span {
+    color: #ff0000;
+    font-size: 24px;
+    font-family: lishu;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+.dcfl_bg_select_off.active {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}

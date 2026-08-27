@@ -1525,6 +1525,87 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.55]
                         }
                     },
+                    dundun: {
+                        default: {
+                            name: 'dundun',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.42]
+                        }
+                    },
+                    jinwu: {
+                        default: {
+                            name: 'jinwu',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.4]
+                        }
+                    },
+                    jiuwei: {
+                        default: {
+                            name: 'jiuwei',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.3],
+                            height: [0, 0.4]
+                        }
+                    },
+                    baize: {
+                        default: {
+                            name: 'baize',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.36]
+                        }
+                    },
+                    ahe: {
+                        default: {
+                            name: 'ahe',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.48],
+                            height: [0, 0.38]
+                        }
+                    },
+                    minmin: {
+                        default: {
+                            name: 'minmin',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.36]
+                        }
+                    },
+                    qiaoqiao: {
+                        default: {
+                            name: 'qiaoqiao',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.42]
+                        }
+                    },
+                    yuanyuan: {
+                        default: {
+                            name: 'yuanyuan',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.4]
+                        }
+                    },
+                    qiqi: {
+                        default: {
+                            name: 'qiqi',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.4]
+                        }
+                    },
                     manman: {
                         default: {
                             name: 'manman',
@@ -1543,13 +1624,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.39]
                         }
                     },
-                    datong: {
+                    tengshe: {
                         default: {
-                            name: 'datong',
+                            name: 'tengshe',
                             action: 'daiji1',
                             x: [0, 0.7],
-                            y: [0, 0.27],
-                            height: [0, 0.4]
+                            y: [0, 0.45],
+                            height: [0, 0.35]
                         }
                     },
                     xueren: {
@@ -1603,6 +1684,33 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             action: 'daiji1',
                             x: [0, 0.7],
                             y: [0, 0.52],
+                            height: [0, 0.35]
+                        }
+                    },
+                    xiongshi: {
+                        default: {
+                            name: 'xiongshi',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.4]
+                        }
+                    },
+                    qilin: {
+                        default: {
+                            name: 'qilin',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.4]
+                        }
+                    },
+                    diting: {
+                        default: {
+                            name: 'diting',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
                             height: [0, 0.35]
                         }
                     },
@@ -1660,78 +1768,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.4]
                         }
                     },
-                    kunpeng: {
-                        default: {
-                            name: 'kunpeng',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.4],
-                            height: [0, 0.4]
-                        }
-                    },
-                    baize: {
-                        default: {
-                            name: 'baize',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.36]
-                        }
-                    },
-                    kuiniu: {
-                        default: {
-                            name: 'kuiniu',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.36],
-                            height: [0, 0.25]
-                        }
-                    },
-                    yuanyuan: {
-                        default: {
-                            name: 'yuanyuan',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.4]
-                        }
-                    },
-                    qiqi: {
-                        default: {
-                            name: 'qiqi',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.4]
-                        }
-                    },
-                    ahe: {
-                        default: {
-                            name: 'ahe',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.48],
-                            height: [0, 0.38]
-                        }
-                    },
-                    dundun: {
-                        default: {
-                            name: 'dundun',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.42]
-                        }
-                    },
-                    jiuwei: {
-                        default: {
-                            name: 'jiuwei',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.3],
-                            height: [0, 0.4]
-                        }
-                    },
                     chunzhihua: {
                         default: {
                             name: 'chunzhihua',
@@ -1739,15 +1775,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             x: [0, 0.7],
                             y: [0, 0.25],
                             height: [0, 0.7]
-                        }
-                    },
-                    jinwu: {
-                        default: {
-                            name: 'jinwu',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.3],
-                            height: [0, 0.4]
                         }
                     },
                     canglong: {
@@ -1768,31 +1795,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.3]
                         }
                     },
-                    niuniu: {
+                    datong: {
                         default: {
-                            name: 'niuniu',
+                            name: 'datong',
                             action: 'daiji1',
                             x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.36]
-                        }
-                    },
-                    xiongshi: {
-                        default: {
-                            name: 'xiongshi',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
+                            y: [0, 0.27],
                             height: [0, 0.4]
-                        }
-                    },
-                    tengshe: {
-                        default: {
-                            name: 'tengshe',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.45],
-                            height: [0, 0.35]
                         }
                     },
                     yaya: {
@@ -1804,6 +1813,15 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.4]
                         }
                     },
+                    niuniu: {
+                        default: {
+                            name: 'niuniu',
+                            action: 'daiji1',
+                            x: [0, 0.7],
+                            y: [0, 0.28],
+                            height: [0, 0.36]
+                        }
+                    },
                     youyou: {
                         default: {
                             name: 'youyou',
@@ -1813,42 +1831,25 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.4]
                         }
                     },
-                    minmin: {
+                    kunpeng: {
                         default: {
-                            name: 'minmin',
+                            name: 'kunpeng',
                             action: 'daiji1',
                             x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.36]
-                        }
-                    },
-                    qiaoqiao: {
-                        default: {
-                            name: 'qiaoqiao',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.42]
-                        }
-                    },
-                    qilin: {
-                        default: {
-                            name: 'qilin',
-                            action: 'daiji1',
-                            x: [0, 0.7],
-                            y: [0, 0.28],
+                            y: [0, 0.4],
                             height: [0, 0.4]
                         }
                     },
-                    diting: {
+                    kuiniu: {
                         default: {
-                            name: 'diting',
+                            name: 'kuiniu',
                             action: 'daiji1',
                             x: [0, 0.7],
-                            y: [0, 0.28],
-                            height: [0, 0.35]
+                            y: [0, 0.36],
+                            height: [0, 0.25]
                         }
                     },
+
                 };
                 DCFL_BG.definedAssets = definedAssets;
 
@@ -2317,13 +2318,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.9]
                         }
                     },
-                    baize: {
+                    dundun: {
                         default: {
-                            name: 'baize',
+                            name: 'dundun',
                             action: 'daiji1',
                             x: [0, 0.5],
                             y: [0, 0.55],
-                            height: [0, 0.7]
+                            height: [0, 0.8]
                         }
                     },
                     jinwu: {
@@ -2342,6 +2343,24 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             x: [0, 0.5],
                             y: [0, 0.7],
                             height: [0, 0.7]
+                        }
+                    },
+                    baize: {
+                        default: {
+                            name: 'baize',
+                            action: 'daiji1',
+                            x: [0, 0.5],
+                            y: [0, 0.55],
+                            height: [0, 0.7]
+                        }
+                    },
+                    ahe: {
+                        default: {
+                            name: 'ahe',
+                            action: 'daiji1',
+                            x: [0, 0.5],
+                            y: [0, 0.95],
+                            height: [0, 0.8]
                         }
                     },
                     minmin: {
@@ -2380,30 +2399,12 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.7]
                         }
                     },
-                    ahe: {
+                    manman: {
                         default: {
-                            name: 'ahe',
-                            action: 'daiji1',
-                            x: [0, 0.5],
-                            y: [0, 0.95],
-                            height: [0, 0.8]
-                        }
-                    },
-                    dundun: {
-                        default: {
-                            name: 'dundun',
+                            name: 'manman',
                             action: 'daiji1',
                             x: [0, 0.5],
                             y: [0, 0.55],
-                            height: [0, 0.8]
-                        }
-                    },
-                    tengshe: {
-                        default: {
-                            name: 'tengshe',
-                            action: 'daiji1',
-                            x: [0, 0.5],
-                            y: [0, 0.9],
                             height: [0, 0.8]
                         }
                     },
@@ -2416,12 +2417,12 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             height: [0, 0.8]
                         }
                     },
-                    manman: {
+                    tengshe: {
                         default: {
-                            name: 'manman',
+                            name: 'tengshe',
                             action: 'daiji1',
                             x: [0, 0.5],
-                            y: [0, 0.55],
+                            y: [0, 0.9],
                             height: [0, 0.8]
                         }
                     },
@@ -5050,57 +5051,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         game.openServantTujian();
                     }, 100);
                 },
-            },
-            /*
-            "dcfl_dynamicBackground": {
-                 name: '侍灵背景动画',
-                 init: 'off',
-                 item: {
-                     off: '关闭',
-                     xiaosha_default: '小杀',
-                     yan_default: '侍灵-焱',
-                     jinwu_default: '侍灵-金乌',
-                     xuanwu_default: '侍灵-玄武',
-                     jiuwei_default: '侍灵-九尾',
-                     zhaocaitongzi_default: '招财童子',
-                     minmin_default: '侍灵-敏敏',
-                     qiaoqiao_default: '侍灵-乔乔',
-                     baize_default: '侍灵-白泽',
-                     ahe_default: '侍灵-阿贺',
-                     dundun_default: '侍灵-阿猛',
-                     kongquemingwang_default: '孔雀明王',
-                     yueling_default: '侍灵-月灵',
-                     yuanyuan_default: '侍灵-元元',
-                     qiqi_default: '侍灵-奇奇',
-                     axian_default: '侍灵-阿先',
-                     manman_default: '侍灵-蠻蠻',
-                     datong_default: '侍灵-大桶',
-                     xueren_default: '侍灵-雪人',
-                     yueer_default: '侍灵-玥儿',
-                     ale_default: '侍灵-阿乐',
-                     ahao_default: '侍灵-阿豪',
-                     lulu_default: '侍灵-鲁鲁',
-                     liuli_default: '侍灵-琉璃',
-                     rui_default: '侍灵-瑞',
-                     xiongshi_default: '侍灵-雄狮',
-                     tengshe_default: '侍灵-腾蛇',
-                     qilin_default: '侍灵-麒麟',
-                     diting_default: '侍灵-谛听',
-                     chunzhihua_default: '春之花',
-                     xiaoxiao_default: '侍灵-枭枭',
-                     canglong_default: '侍灵-苍龙',
-                     kangkang_default: '侍灵-皮皮',
-                     niuniu_default: '侍灵-牛牛',
-                     yaya_default: '侍灵-鸭鸭',
-                     youyou_default: '侍灵-佑佑',
-                     kuiniu_default: '侍灵-夔牛',
-                     kunpeng_default: '侍灵-鲲鹏',
-                 },
-                 update: function() {
-                     if (window._dcfl_bg_update) window._dcfl_bg_update();
-                 }
-             },
-             */
+            },            
             "dcfl_jxjm": {
                 "name": "旧版结算界面",
                 "intro": "开启后重启游戏生效。收录旧版结算界面往下拖拽页面查看所有角色剩余手牌的方式（新版点击查看仍在，与新版同时存在）",

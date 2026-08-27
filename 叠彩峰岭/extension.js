@@ -5107,7 +5107,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.6",
+            version: "9.7",
         },
         files: {
             "character": [],

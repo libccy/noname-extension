@@ -3847,6 +3847,74 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (existingPage) {
                     existingPage.remove();
                 }
+
+                // ---------- 递归收集依赖（通过 skill_id 识别内联子技能） ----------
+                function collectDependencies(name, collected, parentSkill) {
+                    if (!name || collected.has(name)) return;
+                    var skill = lib.skill[name];
+                    if (!skill) return;
+
+                    // 如果当前技能是父技能的内联子技能（通过 skill_id 匹配），则跳过
+                    if (parentSkill && parentSkill.subSkill) {
+                        var isSub = false;
+                        for (var subKey in parentSkill.subSkill) {
+                            var sub = parentSkill.subSkill[subKey];
+                            if (sub && sub.skill_id === name) {
+                                isSub = true;
+                                break;
+                            }
+                        }
+                        if (isSub) return;
+                    }
+
+                    collected.add(name);
+
+                    if (skill.global) {
+                        var deps = Array.isArray(skill.global) ? skill.global : [skill.global];
+                        deps.forEach(function(dep) {
+                            if (typeof dep === 'string') collectDependencies(dep, collected, skill);
+                        });
+                    }
+                    if (skill.group) {
+                        var deps = Array.isArray(skill.group) ? skill.group : [skill.group];
+                        deps.forEach(function(dep) {
+                            if (typeof dep === 'string') collectDependencies(dep, collected, skill);
+                        });
+                    }
+                }
+
+                var allSkillNames = new Set();
+                collectDependencies(skillName, allSkillNames, null);
+
+                var orderedNames = [skillName];
+                var rest = Array.from(allSkillNames).filter(function(name) {
+                    return name !== skillName;
+                });
+                rest.sort();
+                orderedNames = orderedNames.concat(rest);
+
+                var codeParts = [];
+                orderedNames.forEach(function(name, index) {
+                    var skillObj = lib.skill[name];
+                    if (!skillObj) {
+                        codeParts.push('// 技能 "' + name + '" 未找到');
+                        return;
+                    }
+                    try {
+                        var code = '{\n' + formatSkillCode(skillObj, 1) + '}';
+                    } catch (e) {
+                        code = '// 解析失败: ' + e.message;
+                    }
+                    if (index === 0) {
+                        codeParts.push(code);
+                    } else {
+                        codeParts.push('// =============== ' + name + ' ===============');
+                        codeParts.push(code);
+                    }
+                });
+                var fullCode = codeParts.join('\n\n');
+
+                // ---------- 创建 UI ----------
                 var skillPageBg = ui.create.div('#dcfl_page.dcfl_code_page');
                 skillPageBg.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2030; display: block;';
                 skillPageBg.addEventListener('click', function(e) {
@@ -3868,7 +3936,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 });
                 skillRightPanel.appendChild(skillCloseButton);
 
-                // 复制按钮（仅保留定位和尺寸，外观由 CSS 控制）
                 var copyButton = ui.create.div('.dcfl_code_copy', '复制代码');
                 copyButton.style.cssText = 'position: absolute; top: 0; right: 75px; height: 35px; line-height: 35px; z-index: 2031;';
                 copyButton.addEventListener('click', function() {
@@ -3914,21 +3981,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 skillTitle.setAttribute('data-translate-char', charName);
                 skillTitle.setAttribute('data-translate-skill', skillName);
                 skillRightPanel.appendChild(skillTitle);
+
                 var skillContentContainer = ui.create.div('#dcfl_contentContainer.dcfl_code_content');
-                var skillObj = lib.skill[skillName];
-                var codeString = '';
-                if (skillObj) {
-                    try {
-                        codeString = '{\n' + formatSkillCode(skillObj, 1) + '}';
-                    } catch (e) {
-                        codeString = '无法解析技能代码：' + e.message;
-                    }
-                } else {
-                    codeString = '未找到技能代码';
-                }
                 var codeContainer = document.createElement('pre');
                 codeContainer.style.cssText = 'margin: 0; padding: 20px; font-family: lishu !important; font-size: 28px !important; color: #ccc !important; line-height: 1.6 !important; white-space: pre-wrap !important; word-wrap: break-word !important; overflow: auto !important; height: 100% !important; box-sizing: border-box !important;';
-                codeContainer.textContent = codeString;
+                codeContainer.textContent = fullCode;
                 skillContentContainer.appendChild(codeContainer);
                 skillRightPanel.appendChild(skillContentContainer);
                 skillMainContainer.appendChild(skillRightPanel);
@@ -5051,7 +5108,57 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         game.openServantTujian();
                     }, 100);
                 },
-            },            
+            },
+            /*
+            "dcfl_dynamicBackground": {
+                 name: '侍灵背景动画',
+                 init: 'off',
+                 item: {
+                     off: '关闭',
+                     xiaosha_default: '小杀',
+                     yan_default: '侍灵-焱',
+                     jinwu_default: '侍灵-金乌',
+                     xuanwu_default: '侍灵-玄武',
+                     jiuwei_default: '侍灵-九尾',
+                     zhaocaitongzi_default: '招财童子',
+                     minmin_default: '侍灵-敏敏',
+                     qiaoqiao_default: '侍灵-乔乔',
+                     baize_default: '侍灵-白泽',
+                     ahe_default: '侍灵-阿贺',
+                     dundun_default: '侍灵-阿猛',
+                     kongquemingwang_default: '孔雀明王',
+                     yueling_default: '侍灵-月灵',
+                     yuanyuan_default: '侍灵-元元',
+                     qiqi_default: '侍灵-奇奇',
+                     axian_default: '侍灵-阿先',
+                     manman_default: '侍灵-蠻蠻',
+                     datong_default: '侍灵-大桶',
+                     xueren_default: '侍灵-雪人',
+                     yueer_default: '侍灵-玥儿',
+                     ale_default: '侍灵-阿乐',
+                     ahao_default: '侍灵-阿豪',
+                     lulu_default: '侍灵-鲁鲁',
+                     liuli_default: '侍灵-琉璃',
+                     rui_default: '侍灵-瑞',
+                     xiongshi_default: '侍灵-雄狮',
+                     tengshe_default: '侍灵-腾蛇',
+                     qilin_default: '侍灵-麒麟',
+                     diting_default: '侍灵-谛听',
+                     chunzhihua_default: '春之花',
+                     xiaoxiao_default: '侍灵-枭枭',
+                     canglong_default: '侍灵-苍龙',
+                     kangkang_default: '侍灵-皮皮',
+                     niuniu_default: '侍灵-牛牛',
+                     yaya_default: '侍灵-鸭鸭',
+                     youyou_default: '侍灵-佑佑',
+                     kuiniu_default: '侍灵-夔牛',
+                     kunpeng_default: '侍灵-鲲鹏',
+                 },
+                 update: function() {
+                     if (window._dcfl_bg_update) window._dcfl_bg_update();
+                 }
+             },
+             */
             "dcfl_jxjm": {
                 "name": "旧版结算界面",
                 "intro": "开启后重启游戏生效。收录旧版结算界面往下拖拽页面查看所有角色剩余手牌的方式（新版点击查看仍在，与新版同时存在）",
@@ -5107,7 +5214,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.7",
+            version: "9.8",
         },
         files: {
             "character": [],

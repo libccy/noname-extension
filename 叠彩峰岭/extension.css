@@ -1217,3 +1217,33 @@
     border-color: #ffd700;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
+
+/* 修改本体菜单资料页技能技能和阵亡按钮的位置 */
+/* 主介绍区（角色简介+技能描述） */
+.menubg.charactercard .characterintro:not(.intro2) {    
+    top: 2% !important;
+	bottom: auto !important;
+    height: 78% !important;    
+}
+
+/* 阵亡台词区 */
+.menubg.charactercard .characterintro.intro2 {    
+    top: 2% !important;
+	bottom: auto !important;
+    height: 78% !important;    
+}
+
+/* 技能栏（含“阵亡”按钮）置底 */
+.menubg.charactercard > .characterskill {    
+    z-index: 2 !important;    
+    left: 37% !important;
+	right: 0 !important;
+	padding-left: 9px !important;
+	padding-right: 10px !important;
+	width: auto !important;
+	box-sizing: border-box !important;
+	top: 85% !important;
+	height: 17% !important;
+	white-space: nowrap !important;
+	overflow-x: auto !important;
+}

@@ -4340,7 +4340,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 leftButtonPanel.appendChild(buttonContainer);
 
-                function createCharacterIntro(charName, introClass) {
+                function createCharacterIntro(charName, introClass, isDead) {
                     var div = ui.create.div('.dcfl_intro_' + introClass);
                     var charData = lib.character[charName];
                     if (!charData) return null;
@@ -4351,6 +4351,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             var extNameWithTags = lib.translate[currentPack + '_character_config'];
                             var extNameClean = extNameWithTags ? extNameWithTags.replace(/<[^>]*>/g, '').trim() : '';
                             loadCharacterImage(imgElement, charName, currentPack, extNameClean, false);
+                            //--------------------黑白滤镜---------------------                            
+                            if (isDead) {
+                                imgElement.style.filter = 'grayscale(100%)';
+                            }
                             imgElement.style.cursor = 'pointer';
                             imgElement.addEventListener('click', function(e) {
                                 e.stopPropagation();
@@ -4370,216 +4374,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 }
                                 createDetailPage(charName, info.packKey, info.packName, info.extNameClean);
                             });
-
-                            //以下为加功能前的旧写法：
-                            /*imgElement.addEventListener('dblclick', function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-
-                                if (currentDetailPage && currentDetailPage.body && currentDetailPage.body.parentNode) {
-                                    currentDetailPage.body.parentNode.removeChild(currentDetailPage.body);
-                                }
-
-                                var realPackName = '';
-                                var realPackKey = '';
-                                var realExtNameClean = '';
-                                for (var i = 0; i < characterPacks.length; i++) {
-                                    var p = characterPacks[i];
-                                    if (p.id === 'dcfl_players') continue;
-                                    var packData = lib.characterPack[p.packKey] || lib.characterPack[p.id];
-                                    if (packData && packData[charName]) {
-                                        realPackKey = p.id;
-                                        realPackName = p.name;
-                                        var extWithTags = lib.translate[realPackKey + '_character_config'];
-                                        realExtNameClean = extWithTags ? extWithTags.replace(/<[^>]*>/g, '').trim() : '';
-                                        break;
-                                    }
-                                }
-                                if (!realPackName) {
-                                    realPackName = currentPackName;
-                                    realPackKey = currentPack;
-                                    realExtNameClean = extNameClean;
-                                }
-
-                                var detailPage = new Page();
-                                detailPage.body = ui.create.div('#dcfl_page.dcfl_detail_page');
-                                var detailContainer = ui.create.div('#dcfl_mainContainer.dcfl_detail_container');
-                                var detailPanel = ui.create.div('#dcfl_rightPanel.dcfl_detail_panel');
-                                var closeButton = ui.create.div('#dcfl_closeButton.dcfl_detail_close', '×');
-                                closeButton.addEventListener('click', function() {
-                                    detailPage.hide();
-                                    if (detailPage.body && detailPage.body.parentNode) {
-                                        detailPage.body.parentNode.removeChild(detailPage.body);
-                                    }
-                                    currentDetailPage = null;
-                                });
-                                detailPanel.appendChild(closeButton);
-                                var title = ui.create.div('#dcfl_title.dcfl_detail_title');
-                                title.innerHTML = (realPackName ? realPackName + ' - ' : '') + get.translation(charName);
-                                detailPanel.appendChild(title);
-                                var contentContainer = ui.create.div('#dcfl_contentContainer.dcfl_detail_content');
-
-                                var infoContainer = ui.create.div('.dcfl_detail_page_info_container');
-                                var infoStr = "";
-                                if (charName) infoStr += get.translation(charName) + '&nbsp;';
-                                if (charData[0]) infoStr += get.translation(charData[0]) + '&nbsp;';
-                                if (charData[1]) infoStr += get.translation(charData[1]) + '&nbsp;';
-                                if (charData[2]) infoStr += charData[2] + '体力';
-                                var infoText = ui.create.div('.dcfl_detail_page_info_text', infoStr);
-                                infoContainer.appendChild(infoText);
-
-                                var infoIconWrapper = ui.create.div('.dcfl_detail_page_info_icon_wrapper');
-                                var infoIcon = ui.create.div('.dcfl_detail_page_info_icon');
-                                infoIcon.addEventListener('click', function(e) {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    playDieAudio(charName, currentPack, extNameWithTags);
-                                    return false;
-                                });
-                                infoIcon.addEventListener('touchstart', function(e) {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    playDieAudio(charName, currentPack, extNameWithTags);
-                                    return false;
-                                }, {
-                                    passive: false
-                                });
-                                infoIconWrapper.appendChild(infoIcon);
-                                infoContainer.appendChild(infoIconWrapper);
-                                contentContainer.appendChild(infoContainer);
-
-                                var leftImageArea = ui.create.div('.dcfl_detail_image_area');
-                                var detailHeader = ui.create.div('.dcfl_detail_header');
-                                loadCharacterImage(detailHeader, charName, realPackKey, realExtNameClean, true);
-                                detailHeader.style.cursor = 'pointer';
-                                detailHeader.addEventListener('click', function(e) {
-                                    e.stopPropagation();
-                                    applySkinChange(this, charName);
-                                    applySkinChange(imgElement, charName);
-                                });
-                                leftImageArea.appendChild(detailHeader);
-                                contentContainer.appendChild(leftImageArea);
-
-                                var leftButtonArea = ui.create.div('.dcfl_detail_button_area');
-                                var tabButtonContainer = ui.create.div('.dcfl_detail_tab_buttons');
-                                var introButton = ui.create.div('.dcfl_tab_button.active', '简介');
-                                var skillButton = ui.create.div('.dcfl_tab_button', '技能');
-
-                                introButton.addEventListener('click', function() {
-                                    if (this.classList.contains('active')) return;
-                                    this.classList.add('active');
-                                    skillButton.classList.remove('active');
-                                    introContent.style.display = 'block';
-                                    skillContent.style.display = 'none';
-                                });
-
-                                skillButton.addEventListener('click', function() {
-                                    if (this.classList.contains('active')) return;
-                                    this.classList.add('active');
-                                    introButton.classList.remove('active');
-                                    introContent.style.display = 'none';
-                                    skillContent.style.display = 'block';
-                                });
-
-                                tabButtonContainer.appendChild(introButton);
-                                tabButtonContainer.appendChild(skillButton);
-                                leftButtonArea.appendChild(tabButtonContainer);
-                                contentContainer.appendChild(leftButtonArea);
-
-                                var rightArea = ui.create.div('.dcfl_detail_right_area');
-
-                                var introContent = ui.create.div('.dcfl_detail_intro_content');
-                                introContent.style.display = 'block';
-                                try {
-                                    var introHtml = get.characterIntro(charName);
-                                    if (introHtml && introHtml.trim() !== '') {
-                                        var tempDiv = document.createElement('div');
-                                        tempDiv.innerHTML = introHtml;
-                                        Array.from(tempDiv.childNodes).forEach(function(node) {
-                                            if (node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE) {
-                                                introContent.appendChild(node.cloneNode(true));
-                                            }
-                                        });
-                                    } else {
-                                        introContent.innerHTML = '暂无简介';
-                                    }
-                                } catch (error) {
-                                    introContent.innerHTML = '获取简介失败';
-                                }
-                                rightArea.appendChild(introContent);
-
-                                var skillContent = ui.create.div('.dcfl_detail_skill_content');
-                                skillContent.style.display = 'none';
-                                if (charData[3] && Array.isArray(charData[3])) {
-                                    for (var j = 0; j < charData[3].length; j++) {
-                                        if (j > 0) {
-                                            skillContent.appendChild(document.createElement('br'));
-                                            skillContent.appendChild(document.createElement('br'));
-                                        }
-                                        var skillName = charData[3][j];
-
-                                        var skillIcon = document.createElement('span');
-                                        skillIcon.className = 'dcfl_skill_icon';
-                                        addSkillAudioClick(skillIcon, charName, skillName);
-                                        skillContent.appendChild(skillIcon);
-
-                                        var skillNameElement = document.createElement('strong');
-                                        skillNameElement.className = 'greentext dcfl_skill_name';
-                                        skillNameElement.textContent = get.translation(skillName);
-                                        skillNameElement.setAttribute('data-skill-name', skillName);
-                                        skillNameElement.setAttribute('data-char-name', charName);
-                                        skillNameElement = ensureSkillClickHandler(skillNameElement, skillName, charName);
-                                        skillContent.appendChild(skillNameElement);
-
-                                        var descContainer = document.createElement('span');
-                                        descContainer.innerHTML = '：' + get.translation(skillName + '_info');
-                                        skillContent.appendChild(descContainer);
-
-                                        var skillObj = lib.skill[skillName];
-                                        if (skillObj && skillObj.derivation && Array.isArray(skillObj.derivation) && skillObj.derivation.length) {
-                                            skillContent.appendChild(document.createElement('br'));
-                                            for (var d = 0; d < skillObj.derivation.length; d++) {
-                                                var derivedName = skillObj.derivation[d];
-                                                var derivedWrapper = document.createElement('span');
-                                                derivedWrapper.style.marginLeft = '20px';
-
-                                                var derivedIcon = document.createElement('span');
-                                                derivedIcon.className = 'dcfl_skill_icon';
-                                                addSkillAudioClick(derivedIcon, charName, derivedName);
-                                                derivedWrapper.appendChild(derivedIcon);
-
-                                                var derivedNameElement = document.createElement('strong');
-                                                derivedNameElement.className = 'greentext dcfl_skill_name';
-                                                derivedNameElement.textContent = get.translation(derivedName);
-                                                derivedNameElement.setAttribute('data-skill-name', derivedName);
-                                                derivedNameElement.setAttribute('data-char-name', charName);
-                                                derivedNameElement = ensureSkillClickHandler(derivedNameElement, derivedName, charName);
-                                                derivedWrapper.appendChild(derivedNameElement);
-
-                                                var derivedDesc = document.createElement('span');
-                                                derivedDesc.innerHTML = '：' + get.translation(derivedName + '_info');
-                                                derivedWrapper.appendChild(derivedDesc);
-
-                                                skillContent.appendChild(derivedWrapper);
-                                                if (d < skillObj.derivation.length - 1) {
-                                                    skillContent.appendChild(document.createElement('br'));
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    skillContent.innerHTML = '暂无技能信息';
-                                }
-
-                                rightArea.appendChild(skillContent);
-                                contentContainer.appendChild(rightArea);
-                                detailPanel.appendChild(contentContainer);
-                                detailContainer.appendChild(detailPanel);
-                                detailPage.body.appendChild(detailContainer);
-                                detailPage.show();
-                                currentDetailPage = detailPage;
-                                return false;
-                            });*/
+                            
                             return imgElement;
                         })(),
                         // 图鉴列表页 infos                                                
@@ -4623,8 +4418,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 }
 
                 function updateCharacterList() {
-
-                    // 场上武将虚拟包
                     if (currentPack === 'dcfl_players') {
                         contentContainer.innerHTML = '';
                         var playerNames = [];
@@ -4645,31 +4438,43 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             }
                         }
 
-                        var allNames = playerNames.concat(deadNames);
-                        if (allNames.length === 0) {
-                            contentContainer.innerHTML = '<div class="dcfl_group_title">暂无角色</div>';
-                            lib.setScroll(contentContainer);
-                            return;
-                        }
-
-                        var groupTitle = ui.create.div('.dcfl_group_title');
-                        groupTitle.innerHTML = '场上武将 (存活 ' + playerNames.length + ' 人，阵亡 ' + deadNames.length + ' 人)';
-                        contentContainer.appendChild(groupTitle);
-
-                        for (var i = 0; i < allNames.length; i++) {
-                            var charName = allNames[i];
-                            var introClass = (i % 2 === 0) ? 'left' : 'right';
-                            var charIntro = createCharacterIntro(charName, introClass);
-                            if (charIntro) {
-                                contentContainer.appendChild(charIntro);
+                        if (playerNames.length > 0) {
+                            var groupTitle = ui.create.div('.dcfl_group_title');
+                            groupTitle.innerHTML = '存活角色 (' + playerNames.length + ' 人)';
+                            contentContainer.appendChild(groupTitle);
+                            for (var i = 0; i < playerNames.length; i++) {
+                                var charName = playerNames[i];
+                                var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                var charIntro = createCharacterIntro(charName, introClass, false);
+                                if (charIntro) contentContainer.appendChild(charIntro);
                             }
+                            var clearDiv = ui.create.div();
+                            clearDiv.style.clear = 'both';
+                            clearDiv.style.height = '0';
+                            clearDiv.style.overflow = 'hidden';
+                            contentContainer.appendChild(clearDiv);
                         }
 
-                        var clearDiv = ui.create.div();
-                        clearDiv.style.clear = 'both';
-                        clearDiv.style.height = '0';
-                        clearDiv.style.overflow = 'hidden';
-                        contentContainer.appendChild(clearDiv);
+                        if (deadNames.length > 0) {
+                            var groupTitle = ui.create.div('.dcfl_group_title');
+                            groupTitle.innerHTML = '阵亡角色 (' + deadNames.length + ' 人)';
+                            contentContainer.appendChild(groupTitle);
+                            for (var i = 0; i < deadNames.length; i++) {
+                                var charName = deadNames[i];
+                                var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                var charIntro = createCharacterIntro(charName, introClass, true);
+                                if (charIntro) contentContainer.appendChild(charIntro);
+                            }
+                            var clearDiv = ui.create.div();
+                            clearDiv.style.clear = 'both';
+                            clearDiv.style.height = '0';
+                            clearDiv.style.overflow = 'hidden';
+                            contentContainer.appendChild(clearDiv);
+                        }
+
+                        if (playerNames.length === 0 && deadNames.length === 0) {
+                            contentContainer.innerHTML = '<div class="dcfl_group_title">暂无角色</div>';
+                        }
                         lib.setScroll(contentContainer);
                         return;
                     }
@@ -4725,7 +4530,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 for (var j = 0; j < groupChars.length; j++) {
                                     var charName = groupChars[j];
                                     var introClass = (j % 2 === 0) ? 'left' : 'right';
-                                    var charIntro = createCharacterIntro(charName, introClass);
+                                    var charIntro = createCharacterIntro(charName, introClass, false);
                                     if (charIntro) {
                                         contentContainer.appendChild(charIntro);
                                     }
@@ -4743,7 +4548,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             for (var i = 0; i < charList.length; i++) {
                                 var charName = charList[i];
                                 var introClass = (i % 2 === 0) ? 'left' : 'right';
-                                var charIntro = createCharacterIntro(charName, introClass);
+                                var charIntro = createCharacterIntro(charName, introClass, false);
                                 if (charIntro) {
                                     contentContainer.appendChild(charIntro);
                                 }
@@ -5214,7 +5019,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.8",
+            version: "9.9",
         },
         files: {
             "character": [],

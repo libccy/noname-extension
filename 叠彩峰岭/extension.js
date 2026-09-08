@@ -4,6 +4,69 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         editable: false,
         content: function(config, pack) {
 
+            //===================控制台显示角色名==================
+            (function() {
+                if (window._dcfl_control_names_installed) return;
+                window._dcfl_control_names_installed = true;
+
+                function addNamesToButtons(buttons) {
+                    if (!buttons) return;
+                    var list = buttons.length !== undefined ? buttons : [buttons];
+                    for (var i = 0; i < list.length; i++) {
+                        var btn = list[i];
+                        if (btn._nameAdded) continue;
+                        var player = btn.link;
+                        if (!player) continue;
+                        var nameDisplay;
+                        if (player.name1 && player.name2) {
+                            nameDisplay = (lib.translate[player.name1] || player.name1) + '&' +
+                                (lib.translate[player.name2] || player.name2);
+                        } else {
+                            nameDisplay = lib.translate[player.name] || player.name;
+                        }
+                        var nameDiv = document.createElement('div');
+                        nameDiv.className = 'dcfl-control-name';
+                        nameDiv.innerHTML = nameDisplay;
+                        btn.style.position = 'relative';
+                        btn.appendChild(nameDiv);
+                        btn._nameAdded = true;
+                    }
+                }
+
+                function observeControlButtons() {
+                    var row3 = document.querySelector('.menu-sym .menu-buttons.leftbutton.commandbutton');
+                    if (!row3) {
+                        setTimeout(observeControlButtons, 500);
+                        return;
+                    }
+                    addNamesToButtons(row3.children);
+                    var observer = new MutationObserver(function(mutations) {
+                        for (var i = 0; i < mutations.length; i++) {
+                            var mutation = mutations[i];
+                            if (mutation.type === 'childList') {
+                                var added = mutation.addedNodes;
+                                for (var j = 0; j < added.length; j++) {
+                                    var node = added[j];
+                                    if (node.nodeType === 1 && node.classList && node.classList.contains('menubutton')) {
+                                        addNamesToButtons(node);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    observer.observe(row3, {
+                        childList: true,
+                        subtree: false
+                    });
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', observeControlButtons);
+                } else {
+                    observeControlButtons();
+                }
+            })();
+
             // =====================弹窗强制居中=======================================
             if (config.dcfl_biaojijuzhong) {
                 const extName = '十周年UI';
@@ -4374,7 +4437,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 }
                                 createDetailPage(charName, info.packKey, info.packName, info.extNameClean);
                             });
-                            
+
                             return imgElement;
                         })(),
                         // 图鉴列表页 infos                                                
@@ -5019,7 +5082,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.9",
+            version: "9.10",
         },
         files: {
             "character": [],

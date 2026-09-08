@@ -1247,3 +1247,21 @@
 	white-space: nowrap !important;
 	overflow-x: auto !important;
 }
+
+/*控制台名字*/
+.dcfl-control-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 12px;
+    padding: 2px;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+}

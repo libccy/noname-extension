@@ -89,12 +89,12 @@ extension["火影忍者"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2026/9/1",
+	date: "2026/9/8",
 	author: "小苏",
-	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，部分美化效果，还有侍灵动画。",
+	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，有部分美化效果，还有侍灵动画等。",
 	size: "128MB",
 	netdisk: "",
-	version: 9.9,
+	version: 9.10,
 	files: [
 		"LICENSE","LICENSE","extension.css","info.json","README.md","ahao.atlas","ahao.mp3","ahao.png","ahao.skel","ahao2.png","ahao3.png","ahe.atlas","ahe.mp3","ahe.png","ahe.skel",
 		"ahe1.png","ale.atlas","ale.mp3","ale.png","ale.skel","axian.atlas","axian.mp3","axian.png","axian.skel","axian2.png","axian3.png","baize.atlas","baize.mp3","baize.png",

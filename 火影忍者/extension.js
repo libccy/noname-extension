@@ -1,6 +1,7 @@
 game.import("extension", function(lib, game, ui, get, ai, _status) {
     return {
         name: "火影忍者",
+        editable: false,
         content: function(config, pack) {
 
             // ---------------------------------------group------------------------------------------//
@@ -2476,11 +2477,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 function updateCharacterList(packInfo, packName) {
                     contentContainer.innerHTML = '';
-
                     if (!packInfo) return;
 
                     var charList = packInfo.charList || [];
-
                     if (charList.length === 0) {
                         var characterPack = lib.characterPack['huoyingrenzhe'];
                         if (characterPack) {
@@ -2492,22 +2491,66 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                     }
 
-                    for (var i = 0; i < charList.length; i++) {
-                        var charName = charList[i];
-                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                        var charIntro = createCharacterIntro(charName, introClass, packName);
+                    if (packInfo.id === 'all' && lib.characterSort && lib.characterSort.huoyingrenzhe) {
+                        var sortData = lib.characterSort.huoyingrenzhe;
+                        var allChars = charList;
+                        var grouped = {};
+                        var remaining = allChars.slice();
 
-                        if (charIntro) {
-                            contentContainer.appendChild(charIntro);
+                        for (var groupName in sortData) {
+                            var groupChars = sortData[groupName];
+                            if (Array.isArray(groupChars)) {
+                                grouped[groupName] = [];
+                                for (var j = 0; j < groupChars.length; j++) {
+                                    var name = groupChars[j];
+                                    if (allChars.indexOf(name) !== -1) {
+                                        grouped[groupName].push(name);
+                                        var idx = remaining.indexOf(name);
+                                        if (idx !== -1) remaining.splice(idx, 1);
+                                    }
+                                }
+                                if (grouped[groupName].length === 0) delete grouped[groupName];
+                            }
                         }
+                        if (remaining.length > 0) {
+                            grouped['其他'] = remaining;
+                        }
+
+                        for (var groupName in grouped) {
+                            var groupTitle = ui.create.div('.hyrz_group_title');
+                            groupTitle.innerHTML = get.translation(groupName) || groupName;
+                            contentContainer.appendChild(groupTitle);
+
+                            var groupChars = grouped[groupName];
+                            for (var i = 0; i < groupChars.length; i++) {
+                                var charName = groupChars[i];
+                                var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                var charIntro = createCharacterIntro(charName, introClass, groupName);
+                                if (charIntro) {
+                                    contentContainer.appendChild(charIntro);
+                                }
+                            }
+                            var clearDiv = ui.create.div();
+                            clearDiv.style.clear = 'both';
+                            clearDiv.style.height = '0';
+                            clearDiv.style.overflow = 'hidden';
+                            contentContainer.appendChild(clearDiv);
+                        }
+                    } else {
+                        for (var i = 0; i < charList.length; i++) {
+                            var charName = charList[i];
+                            var introClass = (i % 2 === 0) ? 'left' : 'right';
+                            var charIntro = createCharacterIntro(charName, introClass, packName);
+                            if (charIntro) {
+                                contentContainer.appendChild(charIntro);
+                            }
+                        }
+                        var clearDiv = ui.create.div();
+                        clearDiv.style.clear = 'both';
+                        clearDiv.style.height = '0';
+                        clearDiv.style.overflow = 'hidden';
+                        contentContainer.appendChild(clearDiv);
                     }
-
-                    var clearDiv = ui.create.div();
-                    clearDiv.style.clear = 'both';
-                    clearDiv.style.height = '0';
-                    clearDiv.style.overflow = 'hidden';
-                    contentContainer.appendChild(clearDiv);
-
                     lib.setScroll(contentContainer);
                 }
 
@@ -13424,7 +13467,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.3",
+            version: "3.5",
         },
         files: {
             "character": [],

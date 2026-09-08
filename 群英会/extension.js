@@ -1603,48 +1603,106 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 function updateCharacterList(packInfo, packName) {
                     contentContainer.innerHTML = '';
-
                     if (!packInfo) return;
-
-                    var charList = packInfo.charList || [];
-
-                    if (charList.length === 0) {
+                    if (packInfo.id === 'all') {
+                        var allCharNames = [];
                         var qunyingPack = lib.characterPack['qunying'];
                         var wugengPack = lib.characterPack['wugeng'];
-
                         if (qunyingPack) {
-                            for (var charName in qunyingPack) {
-                                if (charName && lib.character[charName]) {
-                                    charList.push(charName);
-                                }
+                            for (var name in qunyingPack) {
+                                if (lib.character[name] && !allCharNames.includes(name)) allCharNames.push(name);
                             }
                         }
-
                         if (wugengPack) {
-                            for (var charName in wugengPack) {
-                                if (charName && lib.character[charName]) {
-                                    charList.push(charName);
+                            for (var name in wugengPack) {
+                                if (lib.character[name] && !allCharNames.includes(name)) allCharNames.push(name);
+                            }
+                        }
+                        var qunyingSort = lib.characterSort && lib.characterSort.qunying || {};
+                        var wugengSort = lib.characterSort && lib.characterSort.wugeng || {};
+                        var grouped = {};
+                        var remaining = allCharNames.slice();
+                        for (var groupId in qunyingSort) {
+                            var groupChars = qunyingSort[groupId];
+                            if (Array.isArray(groupChars)) {
+                                grouped[groupId] = [];
+                                for (var j = 0; j < groupChars.length; j++) {
+                                    var name = groupChars[j];
+                                    if (allCharNames.indexOf(name) !== -1) {
+                                        grouped[groupId].push(name);
+                                        var idx = remaining.indexOf(name);
+                                        if (idx !== -1) remaining.splice(idx, 1);
+                                    }
+                                }
+                                if (grouped[groupId].length === 0) delete grouped[groupId];
+                            }
+                        }
+                        for (var groupId in wugengSort) {
+                            var groupChars = wugengSort[groupId];
+                            if (Array.isArray(groupChars)) {
+                                if (!grouped[groupId]) grouped[groupId] = [];
+                                for (var j = 0; j < groupChars.length; j++) {
+                                    var name = groupChars[j];
+                                    if (allCharNames.indexOf(name) !== -1) {
+                                        if (!grouped[groupId].includes(name)) {
+                                            grouped[groupId].push(name);
+                                            var idx = remaining.indexOf(name);
+                                            if (idx !== -1) remaining.splice(idx, 1);
+                                        }
+                                    }
+                                }
+                                if (grouped[groupId].length === 0) delete grouped[groupId];
+                            }
+                        }
+                        if (remaining.length > 0) {
+                            grouped['其他'] = remaining;
+                        }
+                        for (var groupName in grouped) {
+                            var displayName = get.translation(groupName) || groupName;
+                            var groupTitle = ui.create.div('.qyh_group_title');
+                            groupTitle.innerHTML = displayName;
+                            contentContainer.appendChild(groupTitle);
+                            var groupChars = grouped[groupName];
+                            for (var i = 0; i < groupChars.length; i++) {
+                                var charName = groupChars[i];
+                                var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                var charIntro = createCharacterIntro(charName, introClass, groupName);
+                                if (charIntro) {
+                                    contentContainer.appendChild(charIntro);
+                                }
+                            }
+                            var clearDiv = ui.create.div();
+                            clearDiv.style.clear = 'both';
+                            clearDiv.style.height = '0';
+                            clearDiv.style.overflow = 'hidden';
+                            contentContainer.appendChild(clearDiv);
+                        }
+                    } else {
+                        var charList = packInfo.charList || [];
+                        if (charList.length === 0) {
+                            var characterPack = lib.characterPack[packInfo.packKey];
+                            if (characterPack) {
+                                for (var charName in characterPack) {
+                                    if (charName && lib.character[charName]) {
+                                        charList.push(charName);
+                                    }
                                 }
                             }
                         }
-                    }
-
-                    for (var i = 0; i < charList.length; i++) {
-                        var charName = charList[i];
-                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                        var charIntro = createCharacterIntro(charName, introClass, packName);
-
-                        if (charIntro) {
-                            contentContainer.appendChild(charIntro);
+                        for (var i = 0; i < charList.length; i++) {
+                            var charName = charList[i];
+                            var introClass = (i % 2 === 0) ? 'left' : 'right';
+                            var charIntro = createCharacterIntro(charName, introClass, packName);
+                            if (charIntro) {
+                                contentContainer.appendChild(charIntro);
+                            }
                         }
+                        var clearDiv = ui.create.div();
+                        clearDiv.style.clear = 'both';
+                        clearDiv.style.height = '0';
+                        clearDiv.style.overflow = 'hidden';
+                        contentContainer.appendChild(clearDiv);
                     }
-
-                    var clearDiv = ui.create.div();
-                    clearDiv.style.clear = 'both';
-                    clearDiv.style.height = '0';
-                    clearDiv.style.overflow = 'hidden';
-                    contentContainer.appendChild(clearDiv);
-
                     lib.setScroll(contentContainer);
                 }
 
@@ -7579,7 +7637,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.2",
+            version: "3.3",
         },
         files: {
             "character": [],

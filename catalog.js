@@ -1,11 +1,11 @@
-
+/*
 if (!localStorage.getItem('old-extension-tip')) {
 	alert('下载前请注意扩展的更新日期，更新日期为2025年及之后的推荐下载，' +
 		'其他很久以前的扩展因年久失修，下载可能会导致游戏崩溃' +
 		'，另外，建议用流量下载，流量下载更稳定');
 	localStorage.setItem('old-extension-tip', 'true');
 };
-
+*/
 extension["火影忍者"] = {
 	date: "2026/9/8",
 	author: "小苏",
@@ -229,6 +229,7 @@ extension["群英会"] = {
 		]
 
 };
+/*
 extension["金庸群侠传"] = {
 	date: "2022/01/11",
 	author: "详看简介",
@@ -1535,6 +1536,7 @@ extension["异界四国"] = {
 		"zhumaxun.jpg"
 	]
 };
+*/
 extension["天气变化"] = {
 	date: "2022/01/11",
 	author: "水乎",

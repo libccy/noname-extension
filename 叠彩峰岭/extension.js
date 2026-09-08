@@ -653,6 +653,25 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (window._dcfl_bg_installed) return;
                 window._dcfl_bg_installed = true;
 
+                if (!window._dcfl_spine_loaded || typeof window.spine === 'undefined') {
+                    console.warn('[叠彩峰岭] Spine 未就绪，侍灵动画功能禁用。');
+                    window._dcfl_bg = {
+                        bgAnim: null,
+                        playAction: function() {},
+                        getActionCount: function() {
+                            return 0;
+                        },
+                        getCurrentServant: function() {
+                            return null;
+                        },
+                        getCurrentAssetName: function() {
+                            return null;
+                        }
+                    };
+                    window._dcfl_duilib = null;
+                    return;
+                }
+				
                 const DCFL_BG = {
                     config: config,
                     helper: {
@@ -1173,8 +1192,21 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 duilib.AnimationPlayer = class {
                     constructor(pathPrefix, parentNode, elementId) {
-                        if (!window.spine) return console.error('[叠彩峰岭] spine 未定义.');
-                        let canvas;
+                        this.nodes = [];
+                        this.canvas = null;
+                        this.gl = null;
+                        this.spine = {
+                            assets: {}
+                        };
+                        this.running = false;
+                        this.requestId = null;
+
+                        if (!window.spine) {
+                            console.warn('[叠彩峰岭] spine 未定义，AnimationPlayer 将不可用');
+                            return;
+                        }
+
+                        var canvas;
                         if (parentNode === 'offscreen') {
                             canvas = elementId;
                             this.offscreen = true;
@@ -1184,10 +1216,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             if (elementId != null) canvas.id = elementId;
                             if (parentNode != null) parentNode.appendChild(canvas);
                         }
-                        const glOpts = {
+                        var glOpts = {
                             alpha: true
                         };
-                        let gl = canvas.getContext('webgl2', glOpts);
+                        var gl = canvas.getContext('webgl2', glOpts);
                         if (!gl) gl = canvas.getContext('webgl', glOpts) || canvas.getContext('experimental-webgl', glOpts);
                         if (gl) {
                             this.spine = {
@@ -1215,8 +1247,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         this._dprAdaptive = false;
                         Object.defineProperties(this, {
                             dprAdaptive: {
-                                get: () => this._dprAdaptive,
-                                set: (v) => {
+                                get: function() {
+                                    return this._dprAdaptive;
+                                },
+                                set: function(v) {
                                     if (this._dprAdaptive !== v) {
                                         this._dprAdaptive = v;
                                         this.resized = false;
@@ -1224,8 +1258,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 }
                             },
                             useMipMaps: {
-                                get: () => gl ? this.gl.useMipMaps : undefined,
-                                set: (v) => {
+                                get: function() {
+                                    return gl ? this.gl.useMipMaps : undefined;
+                                },
+                                set: function(v) {
                                     if (gl) this.gl.useMipMaps = v;
                                 }
                             }
@@ -1246,10 +1282,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                         this.check = function() {
                             if (!this.gl) {
-                                const empty = () => {};
-                                for (let key in this.__proto__)
+                                var empty = function() {};
+                                for (var key in this.__proto__)
                                     if (typeof this.__proto__[key] === 'function') this.__proto__[key] = empty;
-                                for (let key in this)
+                                for (var key in this)
                                     if (typeof this[key] === 'function' && key !== 'check') this[key] = empty;
                             }
                         };
@@ -2072,7 +2108,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 const origAddOverDialog = game.addOverDialog;
                 game.addOverDialog = function(dialog, result) {
                     if (typeof origAddOverDialog === 'function') origAddOverDialog.call(this, dialog, result);
-                    var bg = bgAnim;
+                    /*var bg = bgAnim;
+                    if (!bg) return;*/
+                    var bg = window._dcfl_bg && window._dcfl_bg.bgAnim;
                     if (!bg) return;
                     var sprite = bg.current;
                     if (!sprite) return;
@@ -2109,7 +2147,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 // ==================== 注册动作触发技能 ====================
                 const bgEnabled = config.dcfl_dynamicBackground && config.dcfl_dynamicBackground !== 'off';
-                if (bgEnabled) {
+                if (bgEnabled && window._dcfl_bg && window._dcfl_bg.bgAnim) {
                     lib.skill._dcfl_slDamage = {
                         trigger: {
                             source: 'damageBegin',
@@ -2232,6 +2270,8 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             game.me.addSkill('_dcfl_slHurt');
                         }
                     });
+                } else if (bgEnabled) {
+                    console.warn('[叠彩峰岭] 动态背景已开启但 Spine 未就绪，技能动画失效。');
                 }
 
                 console.log('[叠彩峰岭] 动态背景已加载（独立完整模块），当前配置:', config.dcfl_dynamicBackground);
@@ -2239,6 +2279,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             // ========== 侍灵背景选择弹窗（头像网格选择侍灵动画） ==========
             game.openServantBgSelect = function() {
+                if (!window._dcfl_spine_loaded || !window._dcfl_bg || !window._dcfl_bg.definedAssets) {
+                    alert('侍灵动画功能需要 Spine 支持，请检查扩展文件完整性。');
+                    return;
+                }
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -2359,6 +2403,10 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
             // ===================== 侍灵图鉴 =====================
             game.openServantTujian = function() {
+                if (!window._dcfl_spine_loaded || !window._dcfl_duilib) {
+                    alert('侍灵图鉴需要 Spine 支持，请检查扩展文件完整性。');
+                    return;
+                }
                 ui.system.style.display = 'none';
                 ui.menuContainer.style.display = 'none';
                 ui.click.configMenu();
@@ -4929,15 +4977,26 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             Reflect.deleteProperty(lib.extensionMenu['extension_叠彩峰岭'], 'edit');
             delete lib.extensionMenu.extension_叠彩峰岭.delete;
 
+            var spineLoaded = false;
             if (typeof window.spine === 'undefined') {
                 try {
-                    const spineCode = lib.init.reqSync(`local:${lib.assetURL}extension/叠彩峰岭/spine.js`);
-                    eval(spineCode);
-                    console.log('[叠彩峰岭] spine.js 加载成功');
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', lib.assetURL + 'extension/叠彩峰岭/spine.js', false);
+                    xhr.send();
+                    if (xhr.status === 200 || xhr.status === 0) {
+                        (0, eval)(xhr.responseText);
+                        spineLoaded = typeof window.spine !== 'undefined';
+                        console.log('[叠彩峰岭] spine.js 加载' + (spineLoaded ? '成功' : '失败（未暴露 window.spine）'));
+                    } else {
+                        console.error('[叠彩峰岭] spine.js HTTP 状态错误:', xhr.status);
+                    }
                 } catch (e) {
-                    console.error('[叠彩峰岭] 加载 spine.js 失败:', e);
+                    console.error('[叠彩峰岭] 加载 spine.js 异常:', e);
                 }
+            } else {
+                spineLoaded = true;
             }
+            window._dcfl_spine_loaded = spineLoaded;
 
         },
         config: {

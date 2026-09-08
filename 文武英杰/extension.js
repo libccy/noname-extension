@@ -4961,11 +4961,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 function updateCharacterList(packInfo, packName) {
                     contentContainer.innerHTML = '';
-
                     if (!packInfo) return;
 
                     var charList = packInfo.charList || [];
-
                     if (charList.length === 0) {
                         var characterPack = lib.characterPack['wenwuyingjie'];
                         if (characterPack) {
@@ -4977,22 +4975,66 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         }
                     }
 
-                    for (var i = 0; i < charList.length; i++) {
-                        var charName = charList[i];
-                        var introClass = (i % 2 === 0) ? 'left' : 'right';
-                        var charIntro = createCharacterIntro(charName, introClass, packName);
+                    if (packInfo.id === 'all' && lib.characterSort && lib.characterSort.wenwuyingjie) {
+                        var sortData = lib.characterSort.wenwuyingjie;
+                        var allChars = charList;
+                        var grouped = {};
+                        var remaining = allChars.slice();
 
-                        if (charIntro) {
-                            contentContainer.appendChild(charIntro);
+                        for (var groupName in sortData) {
+                            var groupChars = sortData[groupName];
+                            if (Array.isArray(groupChars)) {
+                                grouped[groupName] = [];
+                                for (var j = 0; j < groupChars.length; j++) {
+                                    var name = groupChars[j];
+                                    if (allChars.indexOf(name) !== -1) {
+                                        grouped[groupName].push(name);
+                                        var idx = remaining.indexOf(name);
+                                        if (idx !== -1) remaining.splice(idx, 1);
+                                    }
+                                }
+                                if (grouped[groupName].length === 0) delete grouped[groupName];
+                            }
                         }
+                        if (remaining.length > 0) {
+                            grouped['其他'] = remaining;
+                        }
+
+                        for (var groupName in grouped) {
+                            var groupTitle = ui.create.div('.wwyj_group_title');
+                            groupTitle.innerHTML = get.translation(groupName) || groupName;
+                            contentContainer.appendChild(groupTitle);
+
+                            var groupChars = grouped[groupName];
+                            for (var i = 0; i < groupChars.length; i++) {
+                                var charName = groupChars[i];
+                                var introClass = (i % 2 === 0) ? 'left' : 'right';
+                                var charIntro = createCharacterIntro(charName, introClass, groupName);
+                                if (charIntro) {
+                                    contentContainer.appendChild(charIntro);
+                                }
+                            }
+                            var clearDiv = ui.create.div();
+                            clearDiv.style.clear = 'both';
+                            clearDiv.style.height = '0';
+                            clearDiv.style.overflow = 'hidden';
+                            contentContainer.appendChild(clearDiv);
+                        }
+                    } else {
+                        for (var i = 0; i < charList.length; i++) {
+                            var charName = charList[i];
+                            var introClass = (i % 2 === 0) ? 'left' : 'right';
+                            var charIntro = createCharacterIntro(charName, introClass, packName);
+                            if (charIntro) {
+                                contentContainer.appendChild(charIntro);
+                            }
+                        }
+                        var clearDiv = ui.create.div();
+                        clearDiv.style.clear = 'both';
+                        clearDiv.style.height = '0';
+                        clearDiv.style.overflow = 'hidden';
+                        contentContainer.appendChild(clearDiv);
                     }
-
-                    var clearDiv = ui.create.div();
-                    clearDiv.style.clear = 'both';
-                    clearDiv.style.height = '0';
-                    clearDiv.style.overflow = 'hidden';
-                    contentContainer.appendChild(clearDiv);
-
                     lib.setScroll(contentContainer);
                 }
 
@@ -18888,7 +18930,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.4",
+            version: "5.5",
         },
         files: {
             "character": [],

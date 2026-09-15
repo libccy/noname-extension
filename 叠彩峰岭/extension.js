@@ -4,6 +4,180 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         editable: false,
         content: function(config, pack) {
 
+            //===================随机播放所有背景音乐==================
+            (function() {
+                if (window._dcfl_bg_music_installed) return;
+                window._dcfl_bg_music_installed = true;
+
+                var bgmNode = null;
+
+                function isRandom() {
+                    return lib.config.background_music === "music_random";
+                }
+
+                function stopOurBgm() {
+                    try {
+                        if (bgmNode) {
+                            bgmNode.pause();
+                            bgmNode.currentTime = 0;
+                            if (bgmNode.parentNode) bgmNode.parentNode.removeChild(bgmNode);
+                            bgmNode = null;
+                        }
+                    } catch (e) {}
+                }
+
+                function stopOriginalBgm() {
+                    try {
+                        if (ui.backgroundMusic) {
+                            ui.backgroundMusic.pause();
+                            ui.backgroundMusic.currentTime = 0;
+                        }
+                    } catch (e) {}
+                    try {
+                        if (game.bgm && game.bgm !== bgmNode) {
+                            game.bgm.pause();
+                            game.bgm.currentTime = 0;
+                        }
+                    } catch (e) {}
+                    try {
+                        var audios = document.querySelectorAll("audio");
+                        for (var i = 0; i < audios.length; i++) {
+                            var a = audios[i];
+                            if (a === bgmNode) continue;
+                            var src = a.src || "";
+                            if (src.indexOf("/background/") !== -1) {
+                                try {
+                                    a.pause();
+                                    a.currentTime = 0;
+                                } catch (e) {}
+                            }
+                        }
+                    } catch (e) {}
+                }
+
+                function hookOriginalBgmPlay() {
+                    try {
+                        var node = ui.backgroundMusic;
+                        if (!node || node._dcfl_playHooked) return;
+                        node._dcfl_playHooked = true;
+                        var origPlay = node.play;
+                        node.play = function() {
+                            if (isRandom()) {
+                                try {
+                                    node.pause();
+                                } catch (e) {}
+                                return Promise.resolve();
+                            }
+                            return origPlay.apply(this, arguments);
+                        };
+                    } catch (e) {}
+                }
+
+                var hookTimer = setInterval(function() {
+                    hookOriginalBgmPlay();
+                    if (ui.backgroundMusic && ui.backgroundMusic._dcfl_playHooked) {
+                        clearInterval(hookTimer);
+                    }
+                }, 500);
+                hookOriginalBgmPlay();
+
+                function refresh(cb) {
+                    try {
+                        game.getFileList("audio/background", function(_, files) {
+                            var list = (files || []).filter(function(f) {
+                                return /\.(mp3|ogg)$/i.test(f);
+                            });
+                            cb(list);
+                        });
+                    } catch (e) {
+                        cb([]);
+                    }
+                }
+
+                function playRandom() {
+                    var list = lib.fullFolderRandomMusic;
+                    if (!list || !list.length) return;
+
+                    stopOurBgm();
+                    stopOriginalBgm();
+
+                    var file = list[Math.floor(Math.random() * list.length)];
+                    lib._currentRandomBackgroundMusic = file;
+                    console.log("[叠彩峰岭] 随机播放背景音乐: " + file);
+
+                    var audio = new Audio();
+                    audio.src = lib.assetURL + "audio/background/" + file;
+                    audio.autoplay = true;
+                    audio.addEventListener("ended", function() {
+                        if (bgmNode === audio) playRandom();
+                    });
+                    try {
+                        if (ui.window) ui.window.appendChild(audio);
+                        else document.body.appendChild(audio);
+                    } catch (e) {}
+                    bgmNode = audio;
+                    game.bgm = audio;
+                    var p = audio.play();
+                    if (p && p.catch) p.catch(function() {});
+                }
+
+                function install() {
+                    if (game._dcfl_randomPatched) return;
+                    game._dcfl_randomPatched = true;
+
+                    game._originalPlayBackgroundMusic = game.playBackgroundMusic;
+
+                    game.playBackgroundMusic = function() {
+                        if (isRandom() && lib.fullFolderRandomMusic && lib.fullFolderRandomMusic.length) {
+                            return playRandom();
+                        }
+                        stopOurBgm();
+                        return game._originalPlayBackgroundMusic.apply(this, arguments);
+                    };
+
+                    var origSaveConfig = game.saveConfig;
+                    game.saveConfig = function(key, value) {
+                        var result = origSaveConfig.apply(this, arguments);
+                        if (key === "background_music") {
+                            if (value === "music_random") {
+                                stopOriginalBgm();
+                                setTimeout(function() {
+                                    stopOriginalBgm();
+                                    playRandom();
+                                }, 0);
+                                setTimeout(stopOriginalBgm, 100);
+                                setTimeout(stopOriginalBgm, 400);
+                            } else {
+                                stopOurBgm();
+                            }
+                        }
+                        return result;
+                    };
+                }
+
+                function init(retry) {
+                    refresh(function(list) {
+                        if (list.length) {
+                            lib.fullFolderRandomMusic = list;
+                            console.log("[叠彩峰岭] 背景音乐曲池共 " + list.length + " 首");
+                            install();
+                            if (isRandom()) playRandom();
+                        } else if (retry > 0) {
+                            setTimeout(function() {
+                                init(retry - 1);
+                            }, 500);
+                        }
+                    });
+                }
+
+                if (!lib.arenaReady) lib.arenaReady = [];
+                lib.arenaReady.push(function() {
+                    init(20);
+                    setTimeout(hookOriginalBgmPlay, 1000);
+                    setTimeout(hookOriginalBgmPlay, 3000);
+                });
+            })();
+
             //===================控制台显示角色名==================
             (function() {
                 if (window._dcfl_control_names_installed) return;
@@ -671,7 +845,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     window._dcfl_duilib = null;
                     return;
                 }
-				
                 const DCFL_BG = {
                     config: config,
                     helper: {
@@ -5141,7 +5314,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.10",
+            version: "9.11",
         },
         files: {
             "character": [],

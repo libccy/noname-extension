@@ -10,6 +10,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 window._dcfl_bg_music_installed = true;
 
                 var bgmNode = null;
+                var bgmPausedByHidden = false;
 
                 function isRandom() {
                     return lib.config.background_music === "music_random";
@@ -24,6 +25,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             bgmNode = null;
                         }
                     } catch (e) {}
+                    bgmPausedByHidden = false;
                 }
 
                 function stopOriginalBgm() {
@@ -72,6 +74,49 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         };
                     } catch (e) {}
                 }
+
+                function pauseOurBgmByHidden() {
+                    if (!bgmNode) return;
+                    try {
+                        if (!bgmNode.paused) {
+                            bgmNode.pause();
+                            bgmPausedByHidden = true;
+                        }
+                    } catch (e) {}
+                }
+
+                function resumeOurBgmByHidden() {
+                    if (!bgmNode || !isRandom()) return;
+                    try {
+                        var p = bgmNode.play();
+                        if (p && p.catch) p.catch(function() {});
+                    } catch (e) {}
+                    bgmPausedByHidden = false;
+                }
+
+                document.addEventListener("visibilitychange", function() {
+                    if (document.hidden) {
+                        pauseOurBgmByHidden();
+                    } else if (isRandom()) {
+                        resumeOurBgmByHidden();
+                    }
+                });
+
+                window.addEventListener("pagehide", function() {
+                    pauseOurBgmByHidden();
+                });
+
+                window.addEventListener("pageshow", function() {
+                    if (isRandom()) resumeOurBgmByHidden();
+                });
+
+                window.addEventListener("blur", function() {
+                    pauseOurBgmByHidden();
+                });
+
+                window.addEventListener("focus", function() {
+                    if (isRandom()) resumeOurBgmByHidden();
+                });
 
                 var hookTimer = setInterval(function() {
                     hookOriginalBgmPlay();
@@ -524,8 +569,26 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     if (window._oldHandDisplayInstalled) return;
                     window._oldHandDisplayInstalled = true;
 
-                    lib.onover.push(function(resultbool) {
+                    const origOver = game.over;
+                    game.over = function(result, bool) {
+                        const fixPlayer = (p) => {
+                            if (p && typeof p.isOnline2 !== 'function') {
+                                p.isOnline2 = function() {
+                                    return false;
+                                };
+                                p.isOnline = function() {
+                                    return false;
+                                };
+                                p.send = function() {};
+                            }
+                        };
+                        if (game.players) game.players.forEach(fixPlayer);
+                        if (game.dead) game.dead.forEach(fixPlayer);
+                        if (game.additionaldead) game.additionaldead.forEach(fixPlayer);
+                        return origOver.apply(this, arguments);
+                    };
 
+                    lib.onover.push(function(resultbool) {
                         let dialog = null;
                         for (let i = ui.dialogs.length - 1; i >= 0; i--) {
                             if (ui.dialogs[i].forcebutton && ui.dialogs[i].content) {
@@ -539,31 +602,19 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                         dialog.add(ui.create.div(".placeholder"));
 
-
-                        for (let player of game.players) {
+                        const addPlayerCards = (player) => {
+                            if (!player || typeof player.getCards !== 'function') return;
                             let hs = player.getCards("h");
                             if (hs.length) {
                                 dialog.add('<div class="text center">' + get.translation(player) + "</div>");
                                 dialog.addSmall(hs);
                             }
-                        }
+                        };
 
-                        for (let player of game.dead) {
-                            let hs = player.getCards("h");
-                            if (hs.length) {
-                                dialog.add('<div class="text center">' + get.translation(player) + "</div>");
-                                dialog.addSmall(hs);
-                            }
-                        }
-
+                        for (let player of game.players) addPlayerCards(player);
+                        for (let player of game.dead) addPlayerCards(player);
                         if (game.additionaldead && game.additionaldead.length) {
-                            for (let player of game.additionaldead) {
-                                let hs = player.getCards("h");
-                                if (hs.length) {
-                                    dialog.add('<div class="text center">' + get.translation(player) + "</div>");
-                                    dialog.addSmall(hs);
-                                }
-                            }
+                            for (let player of game.additionaldead) addPlayerCards(player);
                         }
                     });
                 })();
@@ -5314,7 +5365,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.11",
+            version: "9.12",
         },
         files: {
             "character": [],

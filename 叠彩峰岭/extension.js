@@ -4,6 +4,131 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
         editable: false,
         content: function(config, pack) {
 
+            // ========== 对决自由模式 4v4 补丁 ==========
+            (function patchVersusMode4v4() {
+                if (window._dcfl_versus_4v4_patched) return;
+                window._dcfl_versus_4v4_patched = true;
+
+                function install() {
+                    if (typeof lib === 'undefined' || typeof game === 'undefined' || typeof ui === 'undefined') {
+                        setTimeout(install, 500);
+                        return;
+                    }
+                    if (!game.versusPhaseLoop || !ui.create || !ui.create.switcher) {
+                        setTimeout(install, 500);
+                        return;
+                    }
+
+                    var origSwitcher = ui.create.switcher;
+                    ui.create.switcher = function(name, list, value) {
+                        var args = Array.prototype.slice.call(arguments);
+                        if (name === "versus_number" && Array.isArray(list) && list.indexOf(4) === -1) {
+                            args[1] = list.concat([4]).sort(function(a, b) {
+                                return a - b;
+                            });
+                        }
+                        return origSwitcher.apply(this, args);
+                    };
+
+                    game.versusPhaseLoop = function(player) {
+                        const next = game.createEvent("phaseLoop");
+                        next.player = player;
+                        next.setContent([
+                            async (event, trigger, player) => {
+                                    if (game.players.includes(event.player)) {
+                                        lib.onphase.forEach(i => i());
+                                        const phase = event.player.phase();
+                                        event.next.remove(phase);
+                                        let isRoundEnd = false;
+                                        if (lib.onround.every(i => i(phase, event.player))) {
+                                            isRoundEnd = _status.roundSkipped;
+                                            if (_status.isRoundFilter) {
+                                                isRoundEnd = _status.isRoundFilter(phase, event.player);
+                                            } else if (_status.seatNumSettled) {
+                                                const seatNum = event.player.getSeatNum();
+                                                if (seatNum != 0) {
+                                                    if (get.itemtype(_status.lastPhasedPlayer) != "player" || seatNum < _status.lastPhasedPlayer.getSeatNum()) {
+                                                        isRoundEnd = true;
+                                                    }
+                                                }
+                                            } else if (event.player == _status.roundStart) {
+                                                isRoundEnd = true;
+                                            }
+                                            if (isRoundEnd && _status.globalHistory.some(i => i.isRound)) {
+                                                for (let i = 0; i < game.players.length; i++) {
+                                                    game.players[i].classList.remove("acted");
+                                                }
+                                                game.log();
+                                                await event.trigger("roundEnd");
+                                            }
+                                        }
+                                        event.next.push(phase);
+                                        if (lib.storage.zhu && lib.storage.number != 4) {
+                                            player.classList.add("acted");
+                                        }
+                                        await phase;
+                                    }
+                                    await event.trigger("phaseOver");
+                                },
+                                async (event, trigger, player) => {
+                                    if (lib.storage.number == 4) {
+                                        let nextPlayer = event.player.next;
+                                        let safety = 0;
+                                        while ((nextPlayer.isOut() || nextPlayer.isDead()) && safety < 16) {
+                                            nextPlayer = nextPlayer.next;
+                                            safety++;
+                                        }
+                                        event.player = nextPlayer;
+                                        event.goto(0);
+                                    } else if (lib.storage.zhu) {
+                                        _status.currentSide = !_status.currentSide;
+                                        _status.round++;
+                                        if (_status.round >= 2 * Math.max(game.friend.length, game.enemy.length)) {
+                                            _status.round = 0;
+                                            for (let i = 0; i < game.players.length; i++) {
+                                                game.players[i].classList.remove("acted");
+                                            }
+                                            delete _status.roundStart;
+                                        }
+                                        let list = _status.currentSide == game.me.side ? game.friend.slice(0) : game.enemy.slice(0);
+                                        for (let i = 0; i < list.length; i++) {
+                                            if (list[i].classList.contains("acted") || list[i].isOut()) {
+                                                list.splice(i, 1);
+                                                i--;
+                                            }
+                                        }
+                                        if (list.length == 0) {
+                                            event.redo();
+                                        } else if (list.length == 1 || (game.me != game.friendZhu && !lib.storage.single_control) || _status.currentSide != game.me.side) {
+                                            list.sort(function(a, b) {
+                                                if (a.countCards("j") > b.countCards("j")) {
+                                                    return 1;
+                                                }
+                                                return a.hp - b.hp;
+                                            });
+                                            event.player = list[0];
+                                            event.goto(0);
+                                        } else {
+                                            const result = await game.me
+                                                .chooseTarget("选择要行动的角色", true, function(card, player, target) {
+                                                    return target.classList.contains("acted") == false && target.side == game.me.side;
+                                                })
+                                                .set("includeOut", true)
+                                                .forResult();
+                                            event.player = result.targets[0];
+                                            event.goto(0);
+                                        }
+                                    } else {
+                                        event.player = event.player.next;
+                                        event.goto(0);
+                                    }
+                                },
+                        ]);
+                    };                    
+                }
+                install();
+            })();
+
             //===================随机播放所有背景音乐==================
             (function() {
                 if (window._dcfl_bg_music_installed) return;
@@ -640,8 +765,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                         alert('叠彩峰岭扩展未正确加载');
                                     }
                                 }, true);
-                                tab._dcflHijacked = true;
-                                console.log('[叠彩峰岭] 已劫持“武将”Tab点击');
+                                tab._dcflHijacked = true;                                
                                 return true;
                             }
                         }
@@ -863,8 +987,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
 
                     function tryReplace() {
-                        if (doReplace()) {
-                            console.log('[叠彩峰岭] 已替换“武将”菜单');
+                        if (doReplace()) {                            
                             return;
                         }
                         setTimeout(tryReplace, 500);
@@ -2251,7 +2374,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                     const _this = this;
                     if (this._loading) {
-                        console.log('[叠彩峰岭] 已有背景正在加载，稍后重试');
                         return;
                     }
                     this._loading = true;
@@ -4034,7 +4156,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     if (window._dcfl_last_die_play &&
                         window._dcfl_last_die_play.key === playKey &&
                         Date.now() - window._dcfl_last_die_play.time < 300) {
-                        console.log('阵亡配音防重播：短时间内重复点击，忽略');
                         return;
                     }
 
@@ -5365,7 +5486,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.12",
+            version: "9.13",
         },
         files: {
             "character": [],

@@ -249,7 +249,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 player.logSkill('huoying_kuilei');
                                 var skills = [];
                                 for (var i = 0; i < game.dead.length; i++) {
-                                    var skill = game.dead[i].get('s', false, false).randomGet();
+                                    var skill = game.dead[i].getCards('s', false, false).randomGet();
                                     skills.push(skill);
                                 }
                                 player.addAdditionalSkill('huoying_kuilei', skills);
@@ -5725,7 +5725,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                             if (game.players[i] == player) continue;
                                             if (game.players[i].countCards('h')) {
                                                 dialog.add(get.translation(game.players[i]) + '的' + '手牌');
-                                                var hs = game.players[i].get('h');
+                                                var hs = game.players[i].getCards('h');
                                                 dialog.add(hs);
                                             }
                                         }
@@ -8534,7 +8534,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 content: function() {
                                     var chat = ['这一次，不会再射不中', '你们会像他那样一块块地烂掉'].randomGet();
                                     player.say(chat);
-                                    target.showCards(target.get('h'));
+                                    target.showCards(target.getCards('h'));
                                     target.addTempSkill('huoying_lunxue', 'phaseAfter');
                                     player.discardPlayerCard(target, "he", true);
                                 },
@@ -9408,7 +9408,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 },
                                 limited: true,
                                 filter: function(event, player) {
-                                    return player.countCards('h', 'tao') > 1 && game.dead.length > 0;
+                                    return player.countCards('h', 'tao') > 1 && game.dead.length > 0 && get.mode() == 'identity';
                                 },
                                 content: function() {
                                     'step 0'
@@ -11319,7 +11319,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 },
                                 position: "h",
                                 filter: function(event, player) {
-                                    return game.dead.length > 0 && player.countCards('h', 'tao') > 0;
+                                    return game.dead.length > 0 && player.countCards('h', 'tao') > 0 && get.mode() == 'identity';
                                 },
                                 content: function() {
                                     'step 0'
@@ -13108,7 +13108,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 },
                                 audio: "ext:火影忍者:1",
                                 filter: function(event, player) {
-                                    var card = player.get('e', '5');
+                                    var card = player.getCards('e', '5');
                                     if (card) {
                                         var name = card.name;
                                         if (event.name == 'tao' && get.itemtype(event.cards) == 'cards' && get.position(event.cards[0]) == 'd' && event.player != player && name && name.indexOf('hyrz_houzi') != -1) return true;
@@ -13125,7 +13125,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     trigger.cancel();
                                     'step 1'
                                     // player.discard(player.getCards('e',{subtype:'equip:5'}));
-                                    player.discard(player.get('e', '5'));
+                                    player.discard(player.getCards('e', '5'));
                                     'step 2'
                                     player.gain(trigger.cards);
                                     player.$gain2(trigger.cards);
@@ -13467,7 +13467,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.5",
+            version: "3.6",
         },
         files: {
             "character": [],

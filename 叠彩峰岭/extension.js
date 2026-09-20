@@ -124,7 +124,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     }
                                 },
                         ]);
-                    };                    
+                    };
                 }
                 install();
             })();
@@ -765,7 +765,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                         alert('叠彩峰岭扩展未正确加载');
                                     }
                                 }, true);
-                                tab._dcflHijacked = true;                                
+                                tab._dcflHijacked = true;
                                 return true;
                             }
                         }
@@ -987,7 +987,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }
 
                     function tryReplace() {
-                        if (doReplace()) {                            
+                        if (doReplace()) {
                             return;
                         }
                         setTimeout(tryReplace, 500);
@@ -4705,35 +4705,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 }
                 var currentPack = characterPacks[0].id;
                 var currentPackName = characterPacks[0].name;
-                /*
-                                function Page() {
-                                    this.body = ui.create.div().hide();
-                                    this.comps = {};
-                                    this.paBody = document.body;
-                                    this.paBody.appendChild(this.body);
-                                }
-                                Page.prototype = {
-                                    show: function() {
-                                        if (!this.body.parentNode && this.paBody) {
-                                            this.paBody.appendChild(this.body);
-                                        }
-                                        this.body.show();
-                                        this.body.style.display = 'block';
-                                        this.body.style.position = 'fixed';
-                                        this.body.style.top = '0';
-                                        this.body.style.left = '0';
-                                        this.body.style.width = '100%';
-                                        this.body.style.height = '100%';
-                                        this.body.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                                        this.body.style.zIndex = '2024';
-                                        return this;
-                                    },
-                                    hide: function() {
-                                        this.body.hide();
-                                        return this;
-                                    }
-                                };
-                */
+
                 var characterPage = new Page();
                 characterPage.body = ui.create.div('#dcfl_page');
                 var mainContainer = ui.create.div('#dcfl_mainContainer');
@@ -5381,56 +5353,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     }, 100);
                 },
             },
-            /*
-            "dcfl_dynamicBackground": {
-                 name: '侍灵背景动画',
-                 init: 'off',
-                 item: {
-                     off: '关闭',
-                     xiaosha_default: '小杀',
-                     yan_default: '侍灵-焱',
-                     jinwu_default: '侍灵-金乌',
-                     xuanwu_default: '侍灵-玄武',
-                     jiuwei_default: '侍灵-九尾',
-                     zhaocaitongzi_default: '招财童子',
-                     minmin_default: '侍灵-敏敏',
-                     qiaoqiao_default: '侍灵-乔乔',
-                     baize_default: '侍灵-白泽',
-                     ahe_default: '侍灵-阿贺',
-                     dundun_default: '侍灵-阿猛',
-                     kongquemingwang_default: '孔雀明王',
-                     yueling_default: '侍灵-月灵',
-                     yuanyuan_default: '侍灵-元元',
-                     qiqi_default: '侍灵-奇奇',
-                     axian_default: '侍灵-阿先',
-                     manman_default: '侍灵-蠻蠻',
-                     datong_default: '侍灵-大桶',
-                     xueren_default: '侍灵-雪人',
-                     yueer_default: '侍灵-玥儿',
-                     ale_default: '侍灵-阿乐',
-                     ahao_default: '侍灵-阿豪',
-                     lulu_default: '侍灵-鲁鲁',
-                     liuli_default: '侍灵-琉璃',
-                     rui_default: '侍灵-瑞',
-                     xiongshi_default: '侍灵-雄狮',
-                     tengshe_default: '侍灵-腾蛇',
-                     qilin_default: '侍灵-麒麟',
-                     diting_default: '侍灵-谛听',
-                     chunzhihua_default: '春之花',
-                     xiaoxiao_default: '侍灵-枭枭',
-                     canglong_default: '侍灵-苍龙',
-                     kangkang_default: '侍灵-皮皮',
-                     niuniu_default: '侍灵-牛牛',
-                     yaya_default: '侍灵-鸭鸭',
-                     youyou_default: '侍灵-佑佑',
-                     kuiniu_default: '侍灵-夔牛',
-                     kunpeng_default: '侍灵-鲲鹏',
-                 },
-                 update: function() {
-                     if (window._dcfl_bg_update) window._dcfl_bg_update();
-                 }
-             },
-             */
             "dcfl_jxjm": {
                 "name": "旧版结算界面",
                 "intro": "开启后重启游戏生效。收录旧版结算界面往下拖拽页面查看所有角色剩余手牌的方式（新版点击查看仍在，与新版同时存在）",

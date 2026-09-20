@@ -7,13 +7,13 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2026/9/8",
+	date: "2026/9/20",
 	author: "小苏",
 	intro: "<li>火影忍者扩展，有图鉴功能，有剧情模式，可联机",
 	size: "60MB",
 	netdisk: "",
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
-	version: 3.5,
+	version: 3.6,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -89,12 +89,12 @@ extension["火影忍者"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2026/9/16",
+	date: "2026/9/20",
 	author: "小苏",
 	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，有部分美化效果，还有侍灵动画等。",
 	size: "128MB",
 	netdisk: "",
-	version: 9.12,
+	version: 9.13,
 	files: [
 		"LICENSE","LICENSE","extension.css","info.json","README.md","ahao.atlas","ahao.mp3","ahao.png","ahao.skel","ahao2.png","ahao3.png","ahe.atlas","ahe.mp3","ahe.png","ahe.skel",
 		"ahe1.png","ale.atlas","ale.mp3","ale.png","ale.skel","axian.atlas","axian.mp3","axian.png","axian.skel","axian2.png","axian3.png","baize.atlas","baize.mp3","baize.png",
@@ -126,7 +126,7 @@ extension["叠彩峰岭"] = {
 };
 
 extension["文武英杰"] = {
-	date: "2026/9/8",
+	date: "2026/9/20",
 	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -134,7 +134,7 @@ extension["文武英杰"] = {
 	author: "凉茶",
 	size: "60MB",
 	netdisk: "",
-	version: 5.5,
+	version: 5.6,
 	files: [
 	"LICENSE","newtujian.js","skin.js","keyCharacter.js","keySkill.js","keyTranslate.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
@@ -191,12 +191,12 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2026/9/8",
+	date: "2026/9/20",
 	intro: "<li>更新：修复BUG <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
 	size: "43MB",
-	version: 3.3,
+	version: 3.5,
 	files:
 
 		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",

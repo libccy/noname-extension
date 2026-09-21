@@ -1087,7 +1087,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                         player.$fullscreenpop('何子诈尸', 'fire');
                         player.revive();
                         player.init('wwyj_hezifengyun');
-                        player.recover(Infinity);
+                        player.recoverTo(player.maxHp);
                         game.playwwyj('wwyj_fengyun1');
                         player.update();
                         'step 1'
@@ -7119,7 +7119,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                         player.discard(player.getCards('hej'));
                                         player.turnOver(false);
                                         player.link(false);
-                                        player.recover(Infinity);
+                                        player.recoverTo(player.maxHp);
                                         player.update();
                                     }
                                     "step 4"

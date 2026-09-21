@@ -3459,7 +3459,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 frequent: "check",
                                 content: function() {
                                     player.awakenSkill('sanguo_tishen');
-                                    player.recover(Infinity);
+                                    player.recoverTo(player.maxHp);
                                     player.draw(player.maxHp - player.hp);
                                     player.storage.sanguo_tishen = true;
                                 },
@@ -6147,7 +6147,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                     "step 1"
                                     player.gainMaxHp();
                                     player.update();
-                                    player.recover(Infinity);
+                                    player.recoverTo(player.maxHp);
                                     //game.playSu(['sanguo_xushen1','sanguo_xushen2'].randomGet());  
                                     player.removeSkill('wugeng_zhouwen');
                                     player.addSkill('wugeng_fanji');
@@ -7262,7 +7262,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                         game.broadcastAll() + ui.background.setBackgroundImage("extension/群英会/wms_shixing_background.jpg");
                                         game.broadcastAll() + player.node.avatar.setBackgroundImage('extension/群英会/wugeng_xinshixing.jpg');
                                         player.revive(player.maxHp - player.hp);
-                                        player.recover(Infinity);
+                                        player.recoverTo(player.maxHp);
                                         player.update();
                                     }, 49000)
                                     player.logSkill('wugeng_fuhuo');
@@ -7637,7 +7637,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.5",
+            version: "3.6",
         },
         files: {
             "character": [],

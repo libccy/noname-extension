@@ -200,6 +200,41 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     } catch (e) {}
                 }
 
+                function hookOriginalBgmVolume() {
+                    try {
+                        var node = ui.backgroundMusic;
+                        if (!node || node._dcfl_volumeHooked) return;
+                        node._dcfl_volumeHooked = true;
+                        var currentVolume = node.volume;
+                        try {
+                            Object.defineProperty(node, "volume", {
+                                configurable: true,
+                                enumerable: true,
+                                get: function() {
+                                    return currentVolume;
+                                },
+                                set: function(v) {
+                                    currentVolume = v;
+                                    if (bgmNode) {
+                                        try {
+                                            bgmNode.volume = v;
+                                        } catch (e) {}
+                                    }
+                                }
+                            });
+                        } catch (e) {
+                            // 如果 defineProperty 失败，退化为定时轮询同步
+                            setInterval(function() {
+                                try {
+                                    if (bgmNode && bgmNode.volume !== node.volume) {
+                                        bgmNode.volume = node.volume;
+                                    }
+                                } catch (e) {}
+                            }, 300);
+                        }
+                    } catch (e) {}
+                }
+
                 function pauseOurBgmByHidden() {
                     if (!bgmNode) return;
                     try {
@@ -245,11 +280,15 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                 var hookTimer = setInterval(function() {
                     hookOriginalBgmPlay();
-                    if (ui.backgroundMusic && ui.backgroundMusic._dcfl_playHooked) {
+                    hookOriginalBgmVolume();
+                    if (ui.backgroundMusic &&
+                        ui.backgroundMusic._dcfl_playHooked &&
+                        ui.backgroundMusic._dcfl_volumeHooked) {
                         clearInterval(hookTimer);
                     }
                 }, 500);
                 hookOriginalBgmPlay();
+                hookOriginalBgmVolume();
 
                 function refresh(cb) {
                     try {
@@ -262,6 +301,22 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     } catch (e) {
                         cb([]);
                     }
+                }
+
+                function getCurrentVolume() {
+                    try {
+                        if (ui.backgroundMusic && typeof ui.backgroundMusic.volume === "number") {
+                            return ui.backgroundMusic.volume;
+                        }
+                    } catch (e) {}
+                    try {
+                        if (typeof lib.config.background_volume === "number") {
+                            return lib.config.background_volume > 1 ?
+                                lib.config.background_volume / 100 :
+                                lib.config.background_volume;
+                        }
+                    } catch (e) {}
+                    return 1;
                 }
 
                 function playRandom() {
@@ -278,6 +333,9 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                     var audio = new Audio();
                     audio.src = lib.assetURL + "audio/background/" + file;
                     audio.autoplay = true;
+                    try {
+                        audio.volume = getCurrentVolume();
+                    } catch (e) {}
                     audio.addEventListener("ended", function() {
                         if (bgmNode === audio) playRandom();
                     });
@@ -321,6 +379,14 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 stopOurBgm();
                             }
                         }
+                        if (key === "background_volume" && bgmNode) {
+                            try {
+                                var v = typeof value === "number" ?
+                                    (value > 1 ? value / 100 : value) :
+                                    getCurrentVolume();
+                                bgmNode.volume = v;
+                            } catch (e) {}
+                        }
                         return result;
                     };
                 }
@@ -343,8 +409,14 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                 if (!lib.arenaReady) lib.arenaReady = [];
                 lib.arenaReady.push(function() {
                     init(20);
-                    setTimeout(hookOriginalBgmPlay, 1000);
-                    setTimeout(hookOriginalBgmPlay, 3000);
+                    setTimeout(function() {
+                        hookOriginalBgmPlay();
+                        hookOriginalBgmVolume();
+                    }, 1000);
+                    setTimeout(function() {
+                        hookOriginalBgmPlay();
+                        hookOriginalBgmVolume();
+                    }, 3000);
                 });
             })();
 
@@ -5408,7 +5480,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏",
             diskURL: "",
             forumURL: "",
-            version: "9.13",
+            version: "9.15",
         },
         files: {
             "character": [],

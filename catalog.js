@@ -7,13 +7,13 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2026/9/21",
+	date: "2026/9/28",
 	author: "小苏",
 	intro: "<li>火影忍者扩展，有图鉴功能，有剧情模式，可联机",
 	size: "60MB",
 	netdisk: "",
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
-	version: 3.7,
+	version: 3.8,
 	files: [
 		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
@@ -89,12 +89,12 @@ extension["火影忍者"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2026/9/21",
+	date: "2026/9/28",
 	author: "小苏",
 	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，有部分美化效果，还有侍灵动画等。",
 	size: "128MB",
 	netdisk: "",
-	version: 9.13,
+	version: 9.15,
 	files: [
 		"LICENSE","LICENSE","extension.css","info.json","README.md","ahao.atlas","ahao.mp3","ahao.png","ahao.skel","ahao2.png","ahao3.png","ahe.atlas","ahe.mp3","ahe.png","ahe.skel",
 		"ahe1.png","ale.atlas","ale.mp3","ale.png","ale.skel","axian.atlas","axian.mp3","axian.png","axian.skel","axian2.png","axian3.png","baize.atlas","baize.mp3","baize.png",

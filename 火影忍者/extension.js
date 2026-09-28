@@ -640,7 +640,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                             audio: "ext:火影忍者:2",
                             unique: true,
                             mark: true,
-                            direct: true,
+                            check: function(event, player) {
+                                if (player.isHealthy() || !player.countCards('h', {name: ['tao', 'jiu']})) return 0;
+                                return 1;
+                            },
+                            frequent: "check",
                             marktext: "印",
                             trigger: {
                                 player: "phaseUseBegin",
@@ -3979,7 +3983,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
 
                             "huoying_liaoshang": {
                                 audio: "ext:火影忍者:1",
-                                direct: true,
                                 priority: 8,
                                 trigger: {
                                     global: "damageEnd",
@@ -4014,8 +4017,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 trigger: {
                                     global: "discardAfter",
                                 },
-                                priority: 8,
-                                direct: true,
+                                priority: 8,                                
                                 audio: "ext:火影忍者:2",
                                 filter: function(event, player) {
                                     if (player.getExpansions('huoying_chongyu').length >= player.hp) return false;
@@ -7719,7 +7721,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 trigger: {
                                     player: "phaseEnd",
                                 },
-                                direct: true,
+                                check: function(event, player) {
+                                if (player.isHealthy() || player.countCards('h', {name: ['shan', 'jiu']})) return 0;
+                                    return 1;
+                                },
+                                frequent: "check",
                                 audio: "ext:火影忍者:2",
                                 filter: function(event, player) {
                                     return player.countCards('e') > 0;
@@ -7786,11 +7792,13 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 trigger: {
                                     source: "damageEnd",
                                 },
-                                frequent: true,
-                                filter: function(event, player) {
-                                    return player.isAlive();
+                                check: function(event, player) {
+                                    return get.attitude(player, event.player) <= 0;
                                 },
-                                direct: true,
+                                frequent: "check",
+                                filter: function(event, player) {
+                                    return event.player.countCards('e')>0;
+                                },
                                 content: function() {
                                     'step 0'
                                     var next;
@@ -9238,7 +9246,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 audio: "ext:火影忍者:2",
                                 unique: true,
                                 mark: true,
-                                direct: true,
+                                check: function(event, player) {
+                                    if (player.isHealthy() || !player.countCards('h', {name: ['tao', 'jiu']})) return 0;
+                                    return 1;
+                                },
+                                frequent: "check",
                                 priority: 5,
                                 marktext: "印",
                                 trigger: {
@@ -9744,7 +9756,6 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 filter: function(event, player) {
                                     return event.player != player;
                                 },
-                                direct: true,
                                 content: function() {
                                     'step 0'
                                     var next;
@@ -11666,7 +11677,11 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
                                 },
                                 unique: true,
                                 mark: true,
-                                direct: true,
+                                check: function(event, player) {
+                                    if(player.hp>2 || player.countCards('h','sha')<3) return 0;
+                                    return 1;
+                                },
+                                frequent: "check",
                                 init: function(player) {
                                     player.storage.huoying_resizhan = false;
                                 },
@@ -13467,7 +13482,7 @@ game.import("extension", function(lib, game, ui, get, ai, _status) {
             author: "小苏<li><div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">点击此处</span></div><span style=\"font-style: oblique\">申请加入QQ群（852740627）参与讨论。</span>",
             diskURL: "",
             forumURL: "",
-            version: "3.7",
+            version: "3.8",
         },
         files: {
             "character": [],

@@ -7,7 +7,7 @@ if (!localStorage.getItem('old-extension-tip')) {
 };
 */
 extension["火影忍者"] = {
-	date: "2026/9/28",
+	date: "2026/10/23",
 	author: "小苏",
 	intro: "<li>火影忍者扩展，有图鉴功能，有剧情模式，可联机",
 	size: "60MB",
@@ -89,44 +89,28 @@ extension["火影忍者"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2026/9/28",
+	date: "2026/10/23",
 	author: "小苏",
-	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，有部分美化效果，还有侍灵动画等。",
-	size: "128MB",
+	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，更方便的禁将系统，有带素材列表package.js的导出扩展功能，有部分美化效果，还有侍灵动画等。",
+	size: "22MB",
 	netdisk: "",
-	version: 9.15,
+	version: 9.25,
 	files: [
-		"LICENSE","LICENSE","extension.css","info.json","README.md","ahao.atlas","ahao.mp3","ahao.png","ahao.skel","ahao2.png","ahao3.png","ahe.atlas","ahe.mp3","ahe.png","ahe.skel",
-		"ahe1.png","ale.atlas","ale.mp3","ale.png","ale.skel","axian.atlas","axian.mp3","axian.png","axian.skel","axian2.png","axian3.png","baize.atlas","baize.mp3","baize.png",
-		"baize.skel","baize12.png","baize13.png","baize14.png","baize15.png","canglong.atlas","canglong.mp3","canglong.png","canglong.skel","canglong1.png","canglong2.png",
-		"canglong3.png","chunzhihua.atlas","chunzhihua.mp3","chunzhihua.png","chunzhihua.skel","datong.atlas","datong.mp3","datong.png","datong.skel","diting.atlas","diting.mp3",
-		"diting.png","diting.skel","diting2.png","diting3.png","dundun.atlas","dundun.mp3","dundun.png","dundun.skel","dundun2.png","dundun3.png","dundun4.png","jinwu.atlas",
-		"jinwu.mp3","jinwu.png","jinwu.skel","jinwu1.png","jinwu2.png","jinwu3.png","jinwu4.png","jiuwei.atlas","jiuwei.mp3","jiuwei.png","jiuwei.skel","jiuwei2.png","jiuwei3.png",
-		"jiuwei4.png","kangkang.atlas","kangkang.mp3","kangkang.png","kangkang.skel","kangkang1.png","kongquemingwang.atlas","kongquemingwang.mp3","kongquemingwang.png",
-		"kongquemingwang.skel","kongquemingwang2.png","kongquemingwang3.png","kongquemingwang4.png","kuiniu.atlas","kuiniu.mp3","kuiniu.png","kuiniu.skel","kuiniu1.png",
-		"kuiniu2.png","kuiniu3.png","kunpeng.atlas","kunpeng.mp3","kunpeng.png","kunpeng.skel","kunpeng1.png","liuli.atlas","liuli.mp3","liuli.png","liuli.skel","liuli2.png",
-		"liuli3.png","liuli4.png","liuli5.png","lulu.atlas","lulu.mp3","lulu.png","lulu.skel","lulu2.png","manman.atlas","manman.mp3","manman.png","manman.skel","manman2.png",
-		"minmin.atlas","minmin.mp3","minmin.png","minmin.skel","minmin2.png","minmin3.png","minmin4.png","niuniu.atlas","niuniu.mp3","niuniu.png","niuniu.skel","niuniu1.png",
-		"qiaoqiao.atlas","qiaoqiao.mp3","qiaoqiao.png","qiaoqiao.skel","qiaoqiao2.png","qiaoqiao3.png","qiaoqiao4.png","qiaoqiao5.png","qilin.atlas","qilin.mp3","qilin.png",
-		"qilin.skel","qilin2.png","qilin3.png","qilin4.png","qilin5.png","qilin6.png","qiqi.atlas","qiqi.mp3","qiqi.png","qiqi.skel","qiqi1.png","rui.atlas","rui.mp3",
-		"rui.png","rui.skel","rui2.png","rui3.png","rui4.png","skin_xiaosha_default.atlas","skin_xiaosha_default.png","skin_xiaosha_default.skel","spine.js","tengshe.atlas",
-		"tengshe.mp3","tengshe.png","tengshe.skel","tengshe2.png","tengshe3.png","tengshe4.png","tengshe5.png","xiaoxiao.atlas","xiaoxiao.mp3","xiaoxiao.png","xiaoxiao.skel",
-		"xiaoxiao2.png","xiongshi.atlas","xiongshi.mp3","xiongshi.png","xiongshi.skel","xiongshi1.png","xiongshi2.png","xuanwu.atlas","xuanwu.mp3","xuanwu.png","xuanwu.skel",
-		"xuanwu2.png","xuanwu3.png","xuanwu4.png","xuanwu5.png","xuanwu6.png","xueren.atlas","xueren.mp3","xueren.png","xueren.skel","xueren2.png","yan.atlas","yan.mp3","yan.png",
-		"yan.skel","yan2.png","yan3.png","yan5.png","yaya.mp3","yaya4.png","yaya5.png","yaya7.png","yinghuo.mp3","youyou.mp3","youyou.png","yuanyuan.mp3","yuanyuan.png","yueer.png",
-		"yueer.skel","yueling.atlas","yueling.mp3","yueling.png","zhaocaitongzi.skel","zhaocaitongzi3.png","dcfl_ahao.png","dcfl_ale.png","dcfl_baize.png","dcfl_canglong.png",
-		"dcfl_chunzhihua.png","dcfl_diting.png","dcfl_jiuwei.png","dcfl_kuiniu.png","dcfl_kunpeng.png","dcfl_lulu.png","dcfl_manman.png","dcfl_minmin.png","dcfl_qiaoqiao.png",
-		"dcfl_qilin.png","dcfl_qiqi.png","dcfl_rui.png","dcfl_xiaoxiao.png","dcfl_xuanwu.png","dcfl_yaya.png","dcfl_yuanyuan.png","dcfl_yueer.png","dcfl_yueling.png","yan4.png",
-		"yaya.atlas","yaya.png","yaya.skel","yaya2.png","yaya3.png","yaya6.png","youyou.atlas","youyou.skel","youyou2.png","yuanyuan.atlas","yuanyuan.skel","yuanyuan1.png",
-		"yueer.atlas","yueer.mp3","yueling.skel","yueling2.png","yueling3.png","yueling4.png","zhaocaitongzi.atlas","zhaocaitongzi.mp3","zhaocaitongzi.png","zhaocaitongzi2.png",
-		"zhaocaitongzi4.png","dcfl_ahe.png","dcfl_axian.png","dcfl_datong.png","dcfl_dundun.png","dcfl_jinwu.png","dcfl_kangkang.png","dcfl_kongquemingwang.png","dcfl_liuli.png",
-		"dcfl_niuniu.png","dcfl_skin_xiaosha_default.png","dcfl_tengshe.png","dcfl_xiongshi.png","dcfl_xueren.png","dcfl_yan.png","dcfl_youyou.png","dcfl_zhaocaitongzi.png"
+		"baize.atlas","baize.mp3","baize.png","baize.skel","baize12.png","baize13.png","baize14.png",
+		"baize15.png","dao.atlas","dao.png","dao.skel","dcfl_baize.png","dcfl_dundun.png","dcfl_icon.png",
+		"dcfl_jinwu.png","dcfl_skin_xiaosha_default.png","dcfl_yan.png","dundun.atlas","dundun.mp3","dundun.png",
+		"dundun.skel","dundun2.png","dundun3.png","dundun4.png","jinwu.atlas","jinwu.mp3","jinwu.png",
+		"jinwu.skel","jinwu1.png","jinwu2.png","jinwu3.png","jinwu4.png","skin_xiaosha_default.atlas",
+		"yan.atlas","dcfl_bofanpeiyin.png","skin_xiaosha_default.png","skin_xiaosha_default.skel","yan.mp3",
+		"yan.png","yan.skel","yan2.png","yan3.png","yan4.png","yan5.png","dcfl_xuanwu.png","dcfl_ban.png",
+		"xuanwu.atlas","xuanwu.mp3","xuanwu.png","xuanwu.skel","xuanwu2.png","xuanwu3.png","xuanwu4.png",
+		"xuanwu5.png","xuanwu6.png","fuzi.skel","fuzi2.png","jian.png","fuzi.atlas","fuzi.png","jian.atlas","jian.skel"
 
 	]
 };
 
 extension["文武英杰"] = {
-	date: "2026/9/21",
+	date: "2026/10/23",
 	intro: "<li>新增一个菜单打开武将图鉴功能，修复菜单点播阵亡配音的功能。<li>"+
 		"本扩展旨在设计一个可玩性强的作者包，武将均为无名杀的扩展作者与玩家，强度平衡，可联机<li>"+
 		"若武将界面没显示图片，请先开启武将菜单右上角的总开关然后重启游戏<li>"+
@@ -134,7 +118,7 @@ extension["文武英杰"] = {
 	author: "凉茶",
 	size: "60MB",
 	netdisk: "",
-	version: 5.7,
+	version: 5.8,
 	files: [
 	"LICENSE","newtujian.js","skin.js","keyCharacter.js","keySkill.js","keyTranslate.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
@@ -191,7 +175,7 @@ extension["文武英杰"] = {
 	]
 };
 extension["群英会"] = {
-	date: "2026/9/21",
+	date: "2026/10/23",
 	intro: "<li>更新：修复BUG <li>本扩展包含多个作品的人物，可联机。<li>欢迎加入无名杀扩展交流Q群：852740627",
 	author: "小苏",
 	netdisk: "https://pan.baidu.com/s/13MCdIWZrcGeWOHWk4vrG8w?pwd=9z52",
@@ -229,6 +213,27 @@ extension["群英会"] = {
 		]
 
 };
+
+extension["拖拉机"] = {
+	date: "2026/10/23",
+	intro:"经典的民间扑克牌游戏，四人玩四副牌升级，在【乱斗】模式中打开游戏，AI出牌智商堪比人类",
+	author:"山佬进城",
+	netdisk:"",
+	forum:"",
+	version:"3.0",
+	files:["club1.png","club10.png","club11.png","club12.png","club13.png","club2.png",
+	"club3.png","club4.png","club5.png","club6.png","club7.png","club8.png","club9.png",
+	"diamond1.png","diamond10.png","diamond11.png","diamond12.png","diamond13.png",
+	"diamond2.png","diamond3.png","diamond4.png","diamond5.png","diamond6.png","diamond7.png",
+	"diamond8.png","diamond9.png","heart1.png","heart10.png","heart11.png","heart12.png",
+	"heart13.png","heart2.png","heart3.png","heart4.png","heart5.png","heart6.png",
+	"heart7.png","heart8.png","heart9.png","jokerbig.png","jokersmall.png","spade1.png",
+	"spade10.png","spade11.png","spade12.png","spade13.png","spade2.png","spade3.png",
+	"spade4.png","spade5.png","spade6.png","spade7.png","spade8.png","spade9.png",
+	"tlj_bei.jpg","tlj_dong.jpg","tlj_jilu.png","tlj_nan.jpg","tlj_xi.jpg"],
+	size:"1.5MB"
+};
+
 /*
 extension["金庸群侠传"] = {
 	date: "2022/01/11",

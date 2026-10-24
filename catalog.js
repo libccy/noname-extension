@@ -1,11 +1,9 @@
-/*
+
 if (!localStorage.getItem('old-extension-tip')) {
-	alert('下载前请注意扩展的更新日期，更新日期为2025年及之后的推荐下载，' +
-		'其他很久以前的扩展因年久失修，下载可能会导致游戏崩溃' +
-		'，另外，建议用流量下载，流量下载更稳定');
+	alert('建议只使用流量下载或更新，流量下载更稳定');
 	localStorage.setItem('old-extension-tip', 'true');
 };
-*/
+
 extension["火影忍者"] = {
 	date: "2026/10/23",
 	author: "小苏",
@@ -91,7 +89,7 @@ extension["火影忍者"] = {
 extension["叠彩峰岭"] = {
 	date: "2026/10/23",
 	author: "小苏",
-	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，更方便的禁将系统，有带素材列表package.js的导出扩展功能，有部分美化效果，还有侍灵动画等。",
+	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，更方便的禁将系统，有带素材列表package.js的导出扩展功能，有部分美化效果，还有侍灵动画等。若2026年10月23日之前有安装过此扩展，请务必先删除再重新下载",
 	size: "22MB",
 	netdisk: "",
 	version: 9.25,

@@ -1,0 +1,370 @@
+/* ============================================================
+   0. 扩展菜单按钮
+   ============================================================ */
+.tuolaji_menu {
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(120, 88, 75, 0.8), rgba(60, 60, 60, 0.8));
+    border: 1px solid #555;
+    transition: all 0.3s;
+    display: block !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: fit-content !important;
+    min-width: 120px !important;
+    padding: 8px 20px !important;
+    cursor: pointer;
+}
+
+.tuolaji_menu:hover {
+    background: linear-gradient(135deg, rgba(140, 108, 95, 0.9), rgba(80, 80, 80, 0.9));
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   1. 乱斗模式入口：游戏规则按钮
+   ============================================================ */
+.tuolaji-button {
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    top: 20px;
+    border-radius: 4px;
+    background-color: rgba(80, 80, 80, 0.8);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.6), -1px 2px 5px rgba(0, 0, 0, 0.6);
+    font-size: 26px;
+    font-family: xinwei;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    -webkit-transition: all 0.1s;
+}
+
+.tuolaji-button.tuolaji-rules {
+    right: calc(50% + 5px);
+}
+
+.tuolaji-button:active {
+    -webkit-transform: scale(0.9);
+}
+
+/* ============================================================
+   2. 规则说明页面
+   ============================================================ */
+#tuolajiRulesPage {
+    position: fixed;
+    width: 80%;
+    height: 88%;
+    left: 10%;
+    top: 5%;
+    border-radius: 8px;
+    background-color: rgba(20, 20, 20, 0.95);
+    text-align: left;
+    overflow: auto;
+    z-index: 2018;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+#tuolajiRulesPage_title {
+    position: relative;
+    width: calc(50% - 20px);
+    height: 40px;
+    left: 20px;
+    top: 20px;
+    border-radius: 4px;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(200, 200, 200, 0));
+    font-family: lishu, xinwei;
+    font-size: 20px;
+    line-height: 40px;
+    text-indent: 2em;
+    color: #fff;
+    display: block;
+}
+
+#tuolajiRulesPage_text {
+    position: relative;
+    width: calc(100% - 40px);
+    left: 20px;
+    top: 40px;
+    display: block;
+    padding-bottom: 40px;
+    text-indent: 0;
+}
+
+#tuolajiRulesPage_closeButton {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    background-color: rgba(80, 80, 80, 0.5);
+    border-bottom-left-radius: 8px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#tuolajiRulesPage_closeButton:hover {
+    background: linear-gradient(to bottom, rgba(200, 0, 0, 1), rgba(200, 200, 200, 0));
+}
+
+/* ---------- 规则正文：容器 ---------- */
+.tuolaji-rule-content {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #d2d2d2;
+    padding: 4px 8px 0 8px;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+/* 金黄色小标题 */
+.tuolaji-rule-content .tuolaji-rule-title {
+    position: relative;
+    color: #ffd75e;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-indent: 0;
+    margin: 26px 0 12px 0;
+    padding: 4px 0 8px 14px;
+    border-bottom: 1px solid rgba(255, 215, 94, 0.28);
+    text-shadow: 0 0 8px rgba(255, 215, 94, 0.22);
+}
+
+.tuolaji-rule-content .tuolaji-rule-title:first-child {
+    margin-top: 4px;
+}
+
+/* 标题左侧金色竖条 */
+.tuolaji-rule-content .tuolaji-rule-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 68%;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #ffe89b, #ffd75e 45%, #b8860b);
+    box-shadow: 0 0 6px rgba(255, 215, 94, 0.55);
+}
+
+/* 段落 */
+.tuolaji-rule-content p {
+    margin: 8px 0;
+    text-indent: 2em;
+}
+
+/* 列表 */
+.tuolaji-rule-content ul {
+    margin: 6px 0 12px 0;
+    padding-left: 2.4em;
+    list-style: disc;
+}
+
+.tuolaji-rule-content li {
+    margin: 4px 0;
+    text-indent: 0;
+    color: #c8c8c8;
+}
+
+.tuolaji-rule-content li::marker {
+    color: #b8963c;
+}
+
+/* 关键字强调（柔和金，不抢标题） */
+.tuolaji-rule-content b {
+    color: #f2d585;
+    font-weight: 600;
+}
+
+/* ============================================================
+   3. 对局内 UI 优化：隐藏装备/判定，缩放武将框并移位
+   ============================================================ */
+.player.tuolaji-hidden-equip .equips {
+    display: none !important;
+}
+
+.player.tuolaji-hidden-equip .judges {
+    display: none !important;
+}
+
+/* 非玩家自己的武将框缩小 */
+/*
+.player.tuolaji-small-player {
+    transform: scale(0.8) !important;
+    transform-origin: top center !important;
+    transition: transform 0.3s;
+}
+*/
+/* 左右两边（东、西）：使用 transform 强制向下位移 120px，避开左上角黑框 */
+.player[data-position="1"].tuolaji-small-player {
+    transform: translateX(20px)
+        translateY(60px) 
+        scale(0.8) !important;
+}
+
+.player[data-position="3"].tuolaji-small-player {
+    transform: translateX(-20px)
+        translateY(60px) 
+        scale(0.8) !important;
+}
+
+/* 北方（上）：通过 left 百分比，移动到屏幕左侧 25% 处（即左四分之一处） */
+.player[data-position="2"].tuolaji-small-player {
+    left: 25% !important;
+    right: auto !important;    
+    /* 配合 translateX(-50%) 让武将框本身的中心点对准 25% 的位置 */
+    transform: translateX(-50%) translateY(-20px) 
+    scale(0.8) !important;
+}
+
+/* ============================================================
+   4. 扑克牌样式
+   ============================================================ */
+.card.tuolaji-poker>* {
+    display: none !important;
+}
+
+.card.tuolaji-played {
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(255, 220, 100, 0.85);
+}
+
+/* 跟牌时高亮同花色的手牌 */
+.card.tuolaji-follow-target {
+    box-shadow: 0 0 6px 2px rgba(255, 215, 94, 0.9),
+        inset 0 0 6px rgba(255, 215, 94, 0.6) !important;
+    outline: 1px solid rgba(255, 215, 94, 0.8);
+    transform: translateY(-6px);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    z-index: 5;
+}
+
+/* ============================================================
+   5. 计分信息板
+   ============================================================ */
+#tuolajiScore {
+    position: fixed !important;
+    left: auto !important;
+    right: 10% !important;
+    top: 2% !important;
+    width: 250px !important;
+    background-color: #111111 !important;
+    /*金色#DAA520*/
+    border: 1px solid #555555 !important;
+    border-radius: 8px !important;
+    z-index: 50 !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) !important;
+    display: block !important;
+    line-height: 1.6 !important;
+}
+
+.score-text {
+    display: inline-block !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    color: #eeeeee !important;
+    font-family: "Microsoft YaHei", sans-serif !important;
+    margin-bottom: 4px !important;
+}
+
+.score-highlight {
+    color: #ffaa55 !important;
+    font-weight: bold !important;
+}
+
+/* 计分面板主牌花色符号的金色细描边 */
+#tuolajiScore .trump-suit-symbol {
+    text-shadow:
+        -0.7px -0.7px 0 #DAA520,
+        0.7px -0.7px 0 #DAA520,
+        -0.7px 0.7px 0 #DAA520,
+        0.7px 0.7px 0 #DAA520;
+}
+
+/* ============================================================
+   6. 武将牌内部的叫主牌背展示
+   ============================================================ */
+.tuolaji-bid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+    /* 一层深色半透明蒙版，让牌背在头像上更显眼 */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tuolaji-bid-card {
+    width: 40px !important;
+    height: 55px !important;
+    border-radius: 3px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8) !important;
+    /* 叫多张主时用负边距紧凑叠放，不超出头像边界 */
+    margin-left: -10px;
+    margin-right: -10px;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ============================================================
+   7. 火眼金睛：花色提示
+   ============================================================ */
+.tuolaji-suit-hints {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 215, 94, 0.5);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 20;
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.tuolaji-suit-hint {
+    display: inline-block;
+    width: 16px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 2px #000, 0 0 2px #000;
+    transition: opacity 0.25s, filter 0.25s;
+}
+
+.tuolaji-suit-hint[data-suit="spade"],
+.tuolaji-suit-hint[data-suit="club"] {
+    color: #ffffff;
+}
+
+.tuolaji-suit-hint[data-suit="heart"],
+.tuolaji-suit-hint[data-suit="diamond"] {
+    color: #ff4d4d;
+}
+
+.tuolaji-suit-hint.tuolaji-suit-hint-hidden {
+    opacity: 0.15;
+    filter: grayscale(1);
+}
+

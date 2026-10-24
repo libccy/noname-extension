@@ -6429,16 +6429,31 @@ async function playFullRound() {
 function saveGameProgress() {
     const g = game.tuolaji;
     if (!g) return;
-    const data = {
-        teamLevels: g.teamLevels,
-        matchRound: g.matchRound,
-        banker: g.banker,
-        bankerTeam: g.bankerTeam,
-        bottomPlayer: g.bottomPlayer
-    };
+
+    let data;
+    // 如果当前在结算底牌弹窗，保存下局就绪状态（已升级、已顺延）
+    if (g._nextState) {
+        data = {
+            teamLevels: g._nextState.teamLevels,
+            matchRound: g._nextState.matchRound,
+            banker: g._nextState.banker,
+            bankerTeam: g._nextState.bankerTeam,
+            bottomPlayer: g._nextState.bottomPlayer
+        };
+    } else {
+        // 否则保存当前全局状态
+        data = {
+            teamLevels: g.teamLevels,
+            matchRound: g.matchRound,
+            banker: g.banker,
+            bankerTeam: g.bankerTeam,
+            bottomPlayer: g.bottomPlayer
+        };
+    }
+
     try {
         localStorage.setItem("tuolaji_save_data", JSON.stringify(data));
-        game.print("【存档】游戏进度已成功保存！下次进入游戏可直接继续。");
+        game.print("【存档】游戏进度已成功保存（下一局已就绪）！下次进入游戏可直接继续。");
     } catch (e) {
         game.print("【存档】保存失败：本地存储不可用。");
     }
@@ -6450,42 +6465,20 @@ async function settleRound() {
     const bankerTeam = g.bankerTeam;
     const idleTeam = 1 - bankerTeam;
 
-    // 1. 揭底牌并展示
+    // 1. 揭底牌并算分
     const bottomPts = TuoLaJi.countPoints(g.bottom.map(c => c.name));
     const bottomStr = g.bottom.map(c => describeCard(c.name)).join("、");
     game.print(`【揭底】庄家底牌：${bottomStr}，共 ${bottomPts} 分`);
     game.log("揭底：底牌", g.bottom, "共", bottomPts, "分");
 
-    if (game.me && g.bottom && g.bottom.length > 0) {
-        const dialog = ui.create.dialog("本局底牌", g.bottom);
-        await new Promise(resolve => {
-            let resolved = false;
-            // ★ 新增：存档按钮
-            const btnSave = ui.create.control("存档", function() {
-                saveGameProgress();
-                btnSave.close(); // 保存后关闭该按钮，防止重复点击
-            });
-            // 原有的确定按钮
-            const button = ui.create.control("确定", function() {
-                if (!resolved) {
-                    resolved = true;
-                    dialog.close();
-                    button.close();
-                    if (btnSave.parentNode) {
-                        btnSave.close(); // 如果保存按钮还在，一并关闭
-                    }
-                    resolve();
-                }
-            });
-        });
-    }
-
+    // 2. 计算闲家抓分
     let baseScore = 0;
     game.players.forEach((p, i) => {
         if (i % 2 === idleTeam) baseScore += g.roundScores[i];
     });
     game.print(`【抓分】闲家本局抓分：${baseScore} 分`);
 
+    // 3. 抠底加成
     const lastTrick = g.trick[g.trick.length - 1];
     let bottomBonus = 0;
     let bonusDesc = "";
@@ -6501,6 +6494,7 @@ async function settleRound() {
     const idleScore = baseScore + bottomBonus;
     game.print(`【本局结算】闲家总得分 = 抓分 ${baseScore} + 抠底 ${bottomBonus} = ${idleScore} 分`);
 
+    // 4. 升级判断
     let winnerTeam, upgradeLevels, desc;
     if (idleScore >= 160) {
         winnerTeam = idleTeam;
@@ -6528,9 +6522,59 @@ async function settleRound() {
         }
     }
 
+    // ★ 提前计算：升级后的级别与顺延后的庄家
+    let nextTeamLevels = [g.teamLevels[0], g.teamLevels[1]];
+    nextTeamLevels[winnerTeam] += upgradeLevels;
+    if (nextTeamLevels[winnerTeam] > 13) nextTeamLevels[winnerTeam] = 13;
+
+    let nextBanker = g.banker;
+    let nextBankerTeam = g.bankerTeam;
+    let nextBottomPlayer = g.bottomPlayer;
+    if (winnerTeam === bankerTeam) {
+        nextBottomPlayer = (nextBottomPlayer + 2) % 4;
+    } else {
+        nextBanker = (nextBanker + 1) % 4;
+        nextBankerTeam = nextBanker % 2;
+        nextBottomPlayer = nextBanker;
+    }
+
+    // 暂存预备状态，供存档按钮使用
+    g._nextState = {
+        teamLevels: nextTeamLevels,
+        matchRound: g.matchRound,
+        banker: nextBanker,
+        bankerTeam: nextBankerTeam,
+        bottomPlayer: nextBottomPlayer
+    };
+
+    // 5. 弹窗展示底牌
+    if (game.me && g.bottom && g.bottom.length > 0) {
+        const dialog = ui.create.dialog("本局底牌", g.bottom);
+        await new Promise(resolve => {
+            let resolved = false;
+            // 存档按钮
+            const btnSave = ui.create.control("存档", function() {
+                saveGameProgress();
+                btnSave.close();
+            });
+            // 确定按钮
+            const button = ui.create.control("确定", function() {
+                if (!resolved) {
+                    resolved = true;
+                    dialog.close();
+                    button.close();
+                    if (btnSave.parentNode) btnSave.close();
+                    resolve();
+                }
+            });
+        });
+    }
+
+    // 6. 清理暂存，应用更新
+    delete g._nextState;
+
     game.print(`【升级】${desc}`);
-    g.teamLevels[winnerTeam] += upgradeLevels;
-    if (g.teamLevels[winnerTeam] > 13) g.teamLevels[winnerTeam] = 13;
+    g.teamLevels[winnerTeam] = nextTeamLevels[winnerTeam];
     game.print(`【级别】南北 ${LEVEL_NAMES[Math.min(g.teamLevels[0], 13)]} / 东西 ${LEVEL_NAMES[Math.min(g.teamLevels[1], 13)]}`);
 
     const matchWinnerTeam = (g.rank === 13 && winnerTeam === bankerTeam) ? winnerTeam : undefined;

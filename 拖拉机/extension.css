@@ -262,7 +262,7 @@
     /*金色#DAA520*/
     border: 1px solid #555555 !important;
     border-radius: 8px !important;
-    z-index: 50 !important;
+    z-index: 20 !important;
     padding: 12px 16px !important;
     box-sizing: border-box !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) !important;

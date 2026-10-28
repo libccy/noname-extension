@@ -254,20 +254,18 @@
    ============================================================ */
 #tuolajiScore {
     position: fixed !important;
-    left: auto !important;
-    right: 10% !important;
-    top: 2% !important;
-    width: 250px !important;
+    left: 12px !important;       
+    top: 12px !important;        
+    width: 250px !important;     
     background-color: #111111 !important;
-    /*金色#DAA520*/
     border: 1px solid #555555 !important;
     border-radius: 8px !important;
-    z-index: 20 !important;
-    padding: 12px 16px !important;
+    z-index: 50 !important;      
+    padding: 10px 12px !important;
     box-sizing: border-box !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9) !important;
     display: block !important;
-    line-height: 1.6 !important;
+    line-height: 1.5 !important;
 }
 
 .score-text {
@@ -368,3 +366,99 @@
     filter: grayscale(1);
 }
 
+/* ============================================================
+   8. 牌型文字特效
+   ============================================================ */
+.tuolaji-combo-text {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    /* 字体设置 */
+    font-family: shousha !important;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    will-change: transform, opacity;
+    /* 为所有动画提供初始定位基准 */
+    transform: translate(-50%, -50%);
+    --tlj-float-up: 32px;
+}
+
+/* 挂到 arena 上时（打出的牌堆位置）改为 absolute */
+.tuolaji-combo-text.tuolaji-combo-cards {
+    position: absolute;
+    --tlj-float-up: 22px;
+}
+
+/* ---------- 风格 1：金色 弹入-落定-停留-飘散（甩牌、四拖二、风车、连拖、炸弹） ---------- */
+.tuolaji-combo-normal {
+    color: #ffd700;
+    text-shadow: 0 0 4px #ffdd55, 0 0 10px #ff9900, 1px 1px 2px #000, -1px -1px 2px #000;
+    animation: tlj-combo-normal 1.6s forwards;
+}
+
+@keyframes tlj-combo-normal {
+    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0;
+           animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+    12%  { transform: translate(-50%, -50%) scale(1.18); opacity: 1;
+           animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+    20%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: linear; }
+    65%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: ease-out; }
+    100% { transform: translate(-50%, calc(-50% - var(--tlj-float-up))) scale(1.0); opacity: 0; }
+}
+
+/* ---------- 风格 2：翠绿 由中心向外放大（叫主） ---------- */
+.tuolaji-combo-rise {
+    color: #00ff66;
+    text-shadow: 0 0 8px #00ff66, 0 0 16px #009933, 1px 1px 2px #000, -1px -1px 2px #000;
+    animation: tlj-combo-zoom-out 1.6s forwards;
+}
+
+/* ---------- 风格 3：翠绿 由中心向外放大（反主） ---------- */
+.tuolaji-combo-counter {
+    color: #00ff66;
+    text-shadow: 0 0 8px #00ff66, 0 0 16px #009933, 1px 1px 2px #000, -1px -1px 2px #000;
+    animation: tlj-combo-zoom-out 1.6s forwards;
+}
+
+/* 风格2和风格3 共用的放大动画 */
+@keyframes tlj-combo-zoom-out {
+    0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0;
+           animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); } /* 弹性出现 */
+    20%  { transform: translate(-50%, -50%) scale(1.15); opacity: 1;
+           animation-timing-function: ease-out; }
+    35%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: linear; }
+    70%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: ease-in; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; } /* 向外扩散消失 */
+}
+
+/* ---------- 风格 4：深红 重击砸入+抖动（毙） ---------- */
+.tuolaji-combo-kill {
+    color: #ff2020;
+    text-shadow: 0 0 5px #ff2020, 0 0 12px #ff0000, 1px 1px 3px #000, -1px -1px 3px #000;
+    animation: tlj-combo-kill 1.9s forwards;
+}
+
+@keyframes tlj-combo-kill {
+    0%   { transform: translate(-50%, calc(-50% - 100px)) scale(2.4); opacity: 0;
+           animation-timing-function: cubic-bezier(0.7, 0, 0.9, 0.6); }
+    10%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: ease-out; }
+    12%  { transform: translate(calc(-50% + 5px), -50%) scale(1.0);
+           animation-timing-function: ease-out; }
+    15%  { transform: translate(calc(-50% - 5px), -50%) scale(1.0);
+           animation-timing-function: ease-out; }
+    18%  { transform: translate(calc(-50% + 3px), -50%) scale(1.0);
+           animation-timing-function: ease-out; }
+    21%  { transform: translate(calc(-50% - 2px), -50%) scale(1.0);
+           animation-timing-function: ease-out; }
+    25%  { transform: translate(-50%, -50%) scale(1.0);
+           animation-timing-function: linear; }
+    65%  { transform: translate(-50%, -50%) scale(1.0); opacity: 1;
+           animation-timing-function: ease-out; }
+    100% { transform: translate(-50%, calc(-50% - 40px)) scale(1.0); opacity: 0; }
+}

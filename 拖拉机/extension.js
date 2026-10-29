@@ -980,31 +980,33 @@ function triggerComboEffect(play, seat, i, leadPattern, g) {
     const pattern = play.pattern;
     if (!pattern)
         return;
-
-    // 1. 甩牌（首出成功）
+        // 1. 甩牌（首出成功）
     if (i === 0 && pattern.type === "throw" && pattern.valid) {
-        // 甩牌音效
-        if (seat === 0) game.playtlj('tlj_mansp');
-        else game.playtlj('tlj_womansp');
-        
+    // 甩牌音效
+        if (seat === 0)
+            game.playtlj('tlj_mansp');
+        else
+            game.playtlj('tlj_womansp');
         if (lib.config.extension_拖拉机_comboText)
             showComboText(seat, "甩牌", "normal", "avatar");
         return;
     }
-    
     // 2. 毙牌（跟牌，首出是副牌，自己全用主牌毙掉）
     if (i > 0 && leadPattern && !leadPattern.isTrump) {
         const cards = play.cards || [];
         if (cards.length > 0) {
             const allTrump = cards.every(c => TuoLaJi.isTrump(TuoLaJi.parseCard(c.name), g.rank, g.trumpSuit));
             if (allTrump) {
-                const testPattern = pattern.valid ? pattern : { valid: false };
+                const testPattern = pattern.valid ? pattern : {
+                    valid: false
+                };
                 testPattern.cards = cards;
                 if (TuoLaJi.structureMatch(testPattern, leadPattern)) {
-                    // 毙牌音效
-                    if (seat === 0) game.playtlj('tlj_manbp');
-                    else game.playtlj('tlj_womanbp');
-                    
+                // 毙牌音效
+                    if (seat === 0)
+                        game.playtlj('tlj_manbp');
+                    else
+                        game.playtlj('tlj_womanbp');
                     if (lib.config.extension_拖拉机_comboText)
                         showComboText(seat, "毙", "kill", "avatar");
                     return;
@@ -1012,36 +1014,44 @@ function triggerComboEffect(play, seat, i, leadPattern, g) {
             }
         }
     }
-
     if (!pattern.valid)
         return;
-
-    // 3. 四拖二
+        // 3. 四拖二
     if (pattern.type === "four_two") {
         if (lib.config.extension_拖拉机_comboText)
             showComboText(seat, "四拖二", "normal", "cards");
     }
     // 4. 风车
-    else if (pattern.type === "windmill") {
-        if (lib.config.extension_拖拉机_comboText)
-            showComboText(seat, "风车", "normal", "cards");
-    }
-    // 5. x 连拖拉机（普通对子连拖）
-    else if (pattern.type === "tractor") {
-        // ★ 新增：播放普通对子连拖音效
-        game.playtlj('tlj_tuolaji');
-        
-        if (lib.config.extension_拖拉机_comboText) {
-            const lenMap = { 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八" };
-            const num = lenMap[pattern.length] || pattern.length;
-            showComboText(seat, num + "连拖拉机", "normal", "cards");
+    else
+        if (pattern.type === "windmill") {
+            if (lib.config.extension_拖拉机_comboText)
+                showComboText(seat, "风车", "normal", "cards");
         }
-    }
-    // 6. 炸弹（四条）
-    else if (pattern.type === "bomb") {
-        if (lib.config.extension_拖拉机_comboText)
-            showComboText(seat, "炸弹", "normal", "cards");
-    }
+        // 5. x 连拖拉机（普通对子连拖）
+        else
+            if (pattern.type === "tractor") {
+            // ★ 新增：播放普通对子连拖音效
+                game.playtlj('tlj_tuolaji');
+                if (lib.config.extension_拖拉机_comboText) {
+                    const lenMap = {
+                        2: "二",
+                        3: "三",
+                        4: "四",
+                        5: "五",
+                        6: "六",
+                        7: "七",
+                        8: "八"
+                    };
+                    const num = lenMap[pattern.length] || pattern.length;
+                    showComboText(seat, num + "连拖拉机", "normal", "cards");
+                }
+            }
+            // 6. 炸弹（四条）
+            else
+                if (pattern.type === "bomb") {
+                    if (lib.config.extension_拖拉机_comboText)
+                        showComboText(seat, "炸弹", "normal", "cards");
+                }
 }
 // ============ 出牌展示 ============
 function displayPlayedCards(play, seat, playIndex) {
@@ -1624,7 +1634,11 @@ function handleQuickBidClick(suit) {
     game.log(me, "快捷叫主", targetCount, "张", SUIT_NAMES[suit], "级牌");
     showBidMarkers(me, targetCount);
     showComboText(meSeat, isCounter ? "反主" : "叫主", isCounter ? "counter" : "rise", "avatar"); // ★ 新增
-    game.playtlj('tlj_jiaozhu');
+    if (meSeat === 0) {
+        game.playtlj('tlj_manjiaozhu');
+    } else {
+        game.playtlj('tlj_womanjiaozhu');
+    }
     game.print(`你通过快捷面板叫主/反主了 ${targetCount} 张 ${SUIT_NAMES[suit]} 级牌！`);
     if (g._waitingForBidResolve) {
         g._waitingForBidResolve();
@@ -1757,7 +1771,11 @@ async function dealAndBid() {
                             game.log(p, "叫主", cnt, "张", SUIT_NAMES[suit], "级牌");
                             showBidMarkers(p, cnt);
                             showComboText(seat, "叫主", "rise", "avatar"); // ★ 新增
-                            game.playtlj('tlj_jiaozhu');
+                            if (seat === 0) {
+                                game.playtlj('tlj_manjiaozhu');
+                            } else {
+                                game.playtlj('tlj_womanjiaozhu');
+                            }
                             updateQuickBidPanel();
                             await game.delayx(Math.max(dealSpeed, 0.3));
                         }
@@ -1891,7 +1909,11 @@ async function dealAndBid() {
                         game.log(p, "反主", maxCnt, "张", SUIT_NAMES[maxSuit], "级牌");
                         showBidMarkers(p, maxCnt);
                         showComboText(seat, "反主", "counter", "avatar"); // ★ 新增
-                        game.playtlj('tlj_jiaozhu');
+                        if (seat === 0) {
+                            game.playtlj('tlj_manjiaozhu');
+                        } else {
+                            game.playtlj('tlj_womanjiaozhu');
+                        }
                         someoneChanged = true;
                         updateQuickBidPanel();
                         await game.delayx(Math.max(dealSpeed, 0.3));
@@ -1993,6 +2015,11 @@ async function dealAndBid() {
             "反主",
             "counter",
             "avatar"); // ★ 新增
+            if (jokerLord === 0) {
+                game.playtlj('tlj_manjiaozhu');
+            } else {
+                game.playtlj('tlj_womanjiaozhu');
+            }
             g._ntShowCards = jokerCardsToShow;
         }
     }
@@ -6309,6 +6336,25 @@ function aiPlay(seat, currentPlays, g) {
                 teammateLack = true;
     }
     const inSuit = parsed.filter(x => isInSuit(x.card, leadSuit, g));
+    // ★ 核心架构修改 1：先做规则判定。如果有必须跟的特定结构（如对子、三条、连拖），锁死候选池！
+    let hasRequiredStructure = false;
+    let requiredCombos = null;
+    if (inSuit.length >= actualSize) {
+        const inSuitCards = inSuit.map(x => x.card);
+        const step = getBestFollowStep(inSuitCards, leadPattern, g);
+        // 如果最优结构不是散牌，说明必须按特定牌型跟
+        if (step && !step.blocks.every(b => b === 1)) {
+            let rawCombos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
+            if (rawCombos) {
+            // 过滤出完全符合该结构的组合
+                rawCombos = rawCombos.filter(c => matchStructureOfCards(c, step.blocks, step.adjacent, g, step.partialAdjacent));
+            }
+            if (rawCombos && rawCombos.length > 0) {
+                hasRequiredStructure = true;
+                requiredCombos = rawCombos;
+            }
+        }
+    }
     // ===================== 甩牌特殊处理 =====================
     if (leadPattern.type === "throw") {
         const inSuitCards = inSuit.map(x => x.card);
@@ -6378,8 +6424,9 @@ function aiPlay(seat, currentPlays, g) {
             pattern: TuoLaJi.getPattern(discarded.map(c => c.name), g.rank, g.trumpSuit)
         };
     }
-    // ★ 末位灵活让牌逻辑（队友赢时送分 / 无强牌时让牌）—— 原逻辑保留
-    if (isLastPlayer && teammateWinning) {
+    // ★ 末位灵活让牌逻辑（队友赢时送分 / 无强牌时让牌）
+    // ★ 核心架构修改 2：如果有强制必须跟的牌型（hasRequiredStructure），绝对不能走这个捷径拆牌垫！
+    if (isLastPlayer && teammateWinning && !hasRequiredStructure) {
         let tractorCount = 0;
         if (findLongTractor(hand, g.rank, g.trumpSuit))
             tractorCount += 2;
@@ -6608,22 +6655,15 @@ function aiPlay(seat, currentPlays, g) {
     // ===================== 同花色跟牌 =====================
     if (inSuit.length >= actualSize) {
         const inSuitCards = inSuit.map(x => x.card);
-        let combos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
-        if (combos)
-            combos = combos.filter(c => c.length === actualSize);
-            // ★ 核心修复：强制牌形优先级，绝对禁止 AI 拆散三条/对子去出散牌垫牌
-        if (combos && combos.length > 0) {
-            const step = getBestFollowStep(inSuitCards, leadPattern, g);
-            if (step) {
-            // 如果最优结构不是全散，且 combos 里混入了散牌，就把散牌直接剔除
-                if (!step.blocks.every(b => b === 1)) {
-                    const validCombos = combos.filter(c => {
-                        return matchStructureOfCards(c, step.blocks, step.adjacent, g, step.partialAdjacent);
-                    });
-                    if (validCombos.length > 0) {
-                        combos = validCombos;
-                    }
-                }
+        let combos = null;
+        // ★ 核心架构修改 3：如果上面算出了强制结构，直接使用锁死的候选池，不再重新瞎算！
+        if (hasRequiredStructure) {
+            combos = requiredCombos;
+        } else {
+        // 只有确实没有强制结构（全是散牌）时，才允许 AI 自由发挥
+            combos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
+            if (combos) {
+                combos = combos.filter(c => c.length === actualSize);
             }
         }
         let mustPlayLegalCards = null;
@@ -8500,7 +8540,7 @@ export default function () {
             author: "山佬进城",
             diskURL: "",
             forumURL: "",
-            version: "3.5",
+            version: "3.6",
         },
         files: {
             "character":[],

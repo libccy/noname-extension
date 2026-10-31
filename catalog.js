@@ -215,12 +215,13 @@ extension["群英会"] = {
 
 extension["拖拉机"] = {
 	date: "2026/10/31",
-	intro:"经典的民间扑克牌游戏，四人玩四副牌升级，在【乱斗】模式中打开游戏，AI出牌智商堪比人类",
 	author:"山佬进城",
-	netdisk:"",
-	forum:"",
-	version:"3.6",
-	files:["extension.js","extension.css","info.json","README.md","LICENSE","club1.png","club10.png","club11.png","club12.png",
+	intro: "经典的民间扑克牌游戏，四人玩四副牌升级，在【乱斗】模式中打开游戏，AI出牌智商堪比人类",
+	size: "2MB",
+	netdisk: "",
+	version: 3.6,	
+	files:[
+		"extension.js","extension.css","info.json","README.md","LICENSE","club1.png","club10.png","club11.png","club12.png",
 	"club13.png","club2.png","club3.png","club4.png","club5.png",
 	"club6.png","club7.png","club8.png","club9.png","diamond1.png",
 	"diamond10.png","diamond11.png","diamond12.png","diamond13.png",
@@ -235,8 +236,10 @@ extension["拖拉机"] = {
 	"spade7.png","spade8.png","spade9.png","tlj_bei.jpg",
 	"tlj_dong.jpg","tlj_nan.jpg","tlj_xi.jpg","tlj_jilu.png",
 	"tlj_womansp.mp3","tlj_womanbp.mp3","tlj_mansp.mp3",
-	"tlj_manbp.mp3","tlj_manjiaozhu.mp3","tlj_womanjiaozhu.mp3","tlj_tuolaji.mp3"],
-	size:"1.5MB"
+	"tlj_manbp.mp3","tlj_manjiaozhu.mp3","tlj_womanjiaozhu.mp3","tlj_tuolaji.mp3"
+		  
+		  ],
+	
 };
 
 /*

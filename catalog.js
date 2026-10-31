@@ -94,7 +94,7 @@ extension["叠彩峰岭"] = {
 	netdisk: "",
 	version: 9.26,
 	files: [
-		"extension.js","extension.css","info.json","jszip.js","README.md","spine.js",
+		"extension.js","extension.css","info.json","jszip.js","README.md","spine.js","LICENSE",
 		"baize.atlas","baize.mp3","baize.png","baize.skel","baize12.png","baize13.png","baize14.png",
 		"baize15.png","dao.atlas","dao.png","dao.skel","dcfl_baize.png","dcfl_dundun.png","dcfl_icon.png",
 		"dcfl_jinwu.png","dcfl_skin_xiaosha_default.png","dcfl_yan.png","dundun.atlas","dundun.mp3","dundun.png",
@@ -220,7 +220,7 @@ extension["拖拉机"] = {
 	netdisk:"",
 	forum:"",
 	version:"3.6",
-	files:["extension.js","extension.css","info.json","README.md","club1.png","club10.png","club11.png","club12.png",
+	files:["extension.js","extension.css","info.json","README.md","LICENSE","club1.png","club10.png","club11.png","club12.png",
 	"club13.png","club2.png","club3.png","club4.png","club5.png",
 	"club6.png","club7.png","club8.png","club9.png","diamond1.png",
 	"diamond10.png","diamond11.png","diamond12.png","diamond13.png",

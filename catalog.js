@@ -13,7 +13,7 @@ extension["火影忍者"] = {
 	forum: "https://tieba.baidu.com/p/9943492696?share=9105&fr=sharewise&see_lz=0&share_from=post&sfc=copy&client_type=2&client_version=12.87.1.1&st=1762133673&is_video=false&unique=5FCB83A3A009242DCADC459B79F8C3BF",
 	version: 3.8,
 	files: [
-		"LICENSE","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
+		"LICENSE","extension.js","extension.css","info.json","README.md","huoying_yan.mp3","hyrz_zbfs.mp3","huoying_aiyuan1.mp3","huoying_aiyuan2.mp3","hyrz_close.mp3","hyrz_danchuang.mp3",
 		"huoying_anqi1.mp3","huoying_anqi2.mp3","huoying_ansha1.mp3","huoying_ansha2.mp3","huoying_asima.jpg","huoying_bai.jpg",
 		"huoying_baihao1.mp3","huoying_baihao2.mp3","huoying_baiji1.mp3","huoying_baiji2.mp3","huoying_baiyan1.mp3","huoying_baiyan2.mp3",
 		"huoying_ban.jpg","huoying_baodun1.mp3","huoying_baodun2.mp3","huoying_baofu11.mp3","huoying_baofu12.mp3","huoying_baofu21.mp3",
@@ -87,13 +87,14 @@ extension["火影忍者"] = {
 	]
 };
 extension["叠彩峰岭"] = {
-	date: "2026/10/23",
+	date: "2026/10/31",
 	author: "小苏",
 	intro: "<font color=#4a9eff>一个多功能小扩展，方便查看本体和扩展的武将技能，更方便的禁将系统，有带素材列表package.js的导出扩展功能，有部分美化效果，还有侍灵动画等。若2026年10月23日之前有安装过此扩展，请务必先删除再重新下载",
 	size: "22MB",
 	netdisk: "",
-	version: 9.25,
+	version: 9.26,
 	files: [
+		"extension.js","extension.css","info.json","jszip.js","README.md","spine.js",
 		"baize.atlas","baize.mp3","baize.png","baize.skel","baize12.png","baize13.png","baize14.png",
 		"baize15.png","dao.atlas","dao.png","dao.skel","dcfl_baize.png","dcfl_dundun.png","dcfl_icon.png",
 		"dcfl_jinwu.png","dcfl_skin_xiaosha_default.png","dcfl_yan.png","dundun.atlas","dundun.mp3","dundun.png",
@@ -118,7 +119,7 @@ extension["文武英杰"] = {
 	netdisk: "",
 	version: 5.8,
 	files: [
-	"LICENSE","newtujian.js","skin.js","keyCharacter.js","keySkill.js","keyTranslate.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
+	"LICENSE","extension.js","extension.css","info.json","README.md","newtujian.js","skin.js","keyCharacter.js","keySkill.js","keyTranslate.js","update.js","wenwuyingjie.jpg","wenwuyingjiepicture.jpg","wwyj_ancha1.mp3","wwyj_close.mp3",
 		"wwyj_anshas.jpg","wwyj_anshas.mp3","wwyj_baozao1.mp3","wwyj_baozaorecover1.mp3","wwyj_bingmou.mp3","wwyj_bohe1.mp3",
 		"wwyj_bohe21.mp3","wwyj_bohetang.jpg","wwyj_bohetang.mp3","wwyj_chansui1.mp3","wwyj_chansuideshengming.jpg",
 		"wwyj_chansuideshengming.mp3","wwyj_chehuo1.mp3","wwyj_chengpiao1.mp3","wwyj_chengxuyuan.jpg","wwyj_chengxuyuan.mp3",
@@ -181,7 +182,7 @@ extension["群英会"] = {
 	version: 3.6,
 	files:
 
-		["LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","LICENSE","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
+		["extension.js","extension.css","info.json","README.md","LICENSE","wugeng_poji1.mp3","wugeng_poji2.mp3","qinshi_feigong1.mp3","qinshi_feigong2.mp3","qinshi_genie.jpg","qinshi_hengjian1.mp3",
 		 "qinshi_hengjian2.mp3","qinshi_jianai1.mp3","qinshi_jianai2.mp3","qinshi_jiansheng1.mp3","qinshi_jiansheng2.mp3","qinshi_jingxie.mp3",
 		 "qinshi_jusha21.mp3","qinshi_jusha22.mp3","qinshi_mozi.jpg","qinshi_renzhong1.mp3","qinshi_renzhong2.mp3","qinshi_weizhuang.jpg","qinshi_xiaoyaozi.jpg",
 		 "qinshi_zongjian1.mp3","qinshi_zongjian2.mp3","qinshi_zongjian3.mp3","qunying_baiqi.jpg","qunying_fengyuan1.mp3","qunying_fengyuan2.mp3","qunying_frieza.jpg",
@@ -213,13 +214,13 @@ extension["群英会"] = {
 };
 
 extension["拖拉机"] = {
-	date: "2026/10/30",
+	date: "2026/10/31",
 	intro:"经典的民间扑克牌游戏，四人玩四副牌升级，在【乱斗】模式中打开游戏，AI出牌智商堪比人类",
 	author:"山佬进城",
 	netdisk:"",
 	forum:"",
 	version:"3.6",
-	files:["club1.png","club10.png","club11.png","club12.png",
+	files:["extension.js","extension.css","info.json","README.md","club1.png","club10.png","club11.png","club12.png",
 	"club13.png","club2.png","club3.png","club4.png","club5.png",
 	"club6.png","club7.png","club8.png","club9.png","diamond1.png",
 	"diamond10.png","diamond11.png","diamond12.png","diamond13.png",
@@ -234,7 +235,7 @@ extension["拖拉机"] = {
 	"spade7.png","spade8.png","spade9.png","tlj_bei.jpg",
 	"tlj_dong.jpg","tlj_nan.jpg","tlj_xi.jpg","tlj_jilu.png",
 	"tlj_womansp.mp3","tlj_womanbp.mp3","tlj_mansp.mp3",
-	"tlj_manbp.mp3","tlj_jiaozhu.mp3","tlj_womanjiaozhu.mp3","tlj_tuolaji.mp3"],
+	"tlj_manbp.mp3","tlj_manjiaozhu.mp3","tlj_womanjiaozhu.mp3","tlj_tuolaji.mp3"],
 	size:"1.5MB"
 };
 

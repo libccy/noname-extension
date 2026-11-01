@@ -8193,6 +8193,15 @@ game.import(
                         game.playAudio('..', 'extension', '拖拉机', fn);
                     }
             };
+            // ★ 开局自动开启手牌折叠            
+            const oldFoldCard = lib.config.fold_card;
+            let needRestoreFold = false;
+            if (!oldFoldCard) {
+                game.saveConfig('fold_card', true);
+                needRestoreFold = true;
+                if (typeof ui.update === 'function')
+                    ui.update();
+            }
             initMatchState();
             const g = game.tuolaji;
             const meSeat = game.players.indexOf(game.me);
@@ -8345,6 +8354,13 @@ game.import(
                 const btn = document.getElementById('tlj_jilu_button');
                 if (btn && btn.parentNode) {
                     btn.parentNode.removeChild(btn);
+                }
+                // ★ 恢复玩家原本的手牌折叠设置
+                if (needRestoreFold) {
+                    game.saveConfig('fold_card', false);
+                    if (typeof ui.update === 'function') {
+                        ui.update();
+                    }
                 }
             }
         }
@@ -8575,7 +8591,7 @@ game.import(
                     skill: {},
                     translate: {}
                 },
-                intro: "请在【乱斗】模式中启动游戏",
+                intro: "请在【乱斗】模式中启动游戏，建议将游戏缩放比例调整至80%",
                 author: "山佬进城",
                 diskURL: "",
                 forumURL: "",

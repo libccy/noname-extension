@@ -462,3 +462,16 @@
            animation-timing-function: ease-out; }
     100% { transform: translate(-50%, calc(-50% - 40px)) scale(1.0); opacity: 0; }
 }
+
+/* ============================================================
+   9. 当前最大牌的标记
+   ============================================================ */
+.tuolaji-played.tuolaji-big-mark {
+    box-shadow: 
+        0 0 2px 1px rgba(0, 255, 102, 1),
+        0 0 2px 1px rgba(0, 255, 102, 0.8),
+        0 0 12px 1px rgba(0, 255, 102, 0.4) !important;
+    border: 1px solid #00ff66 !important;
+    transition: all 0.3s ease-in-out !important;
+    z-index: 900 !important;
+}

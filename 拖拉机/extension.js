@@ -221,7 +221,7 @@ game.import(
             let lastSeat = null;
             g.history.forEach(
                 item => {
-                // ★ 核心修改：如果是缺门记录，直接贴在上一行
+                    // ★ 核心修改：如果是缺门记录，直接贴在上一行
                     if (item.type === "lack") {
                         if (lastRow && lastSeat === item.seat) {
                             const lackTag = document.createElement("div");
@@ -979,7 +979,7 @@ game.import(
         }
         // ★ 新增：在指定位置显示牌型文字特效
         function showComboText(seat, text, style, position) {
-        // 如果玩家在扩展设置里关闭了“牌型特效”，直接返回
+            // 如果玩家在扩展设置里关闭了“牌型特效”，直接返回
             if (!lib.config.extension_拖拉机_comboText)
                 return;
                 // 根据传入的 position 参数决定坐标计算方式
@@ -1021,7 +1021,7 @@ game.import(
                 return;
                 // 1. 甩牌（首出成功）
             if (i === 0 && pattern.type === "throw" && pattern.valid) {
-            // 甩牌音效
+                // 甩牌音效
                 if (seat === 0)
                     game.playtlj('tlj_mansp');
                 else
@@ -1041,7 +1041,7 @@ game.import(
                         };
                         testPattern.cards = cards;
                         if (TuoLaJi.structureMatch(testPattern, leadPattern)) {
-                        // 毙牌音效
+                            // 毙牌音效
                             if (seat === 0)
                                 game.playtlj('tlj_manbp');
                             else
@@ -1069,7 +1069,7 @@ game.import(
                 // 5. x 连拖拉机（普通对子连拖）
                 else
                     if (pattern.type === "tractor") {
-                    // ★ 新增：播放普通对子连拖音效
+                        // ★ 新增：播放普通对子连拖音效
                         game.playtlj('tlj_tuolaji');
                         if (lib.config.extension_拖拉机_comboText) {
                             const lenMap = {
@@ -1151,6 +1151,7 @@ game.import(
                 d.style.visibility = "visible";
                 d.style.transition = "none";
                 d.style.zIndex = 100 + playIndex * 30 + i;
+                d.dataset.tljCardId = String(orig.cardid);
                 copies.push(d);
             }
             for (const card of play.cards) {
@@ -1203,7 +1204,7 @@ game.import(
                 if (isMenuVisible || isPaused || isHistoryVisible) {
                     ui.tuolajiScore.style.setProperty("display", "none", "important");
                 } else {
-                // 都没触发，且不是在结算，恢复显示
+                    // 都没触发，且不是在结算，恢复显示
                     if (!isSettling) {
                         ui.tuolajiScore.style.setProperty("display", "block", "important");
                     }
@@ -1304,7 +1305,7 @@ game.import(
         }
         // ============ 火眼金睛：花色提示 ============
         function getSideSuits(g) {
-        // 如果是无主局，所有四种花色都是副牌，都需要显示
+            // 如果是无主局，所有四种花色都是副牌，都需要显示
             if (g.trumpSuit === "nt")
                 return SUITS;
                 // 当前主花色之外的三种副牌花色
@@ -1393,7 +1394,7 @@ game.import(
         // ============ 状态 ============
         // ============ 状态 ============
         function initMatchState() {
-        // ★ 新增：读取“从2打起”配置
+            // ★ 新增：读取“从2打起”配置
             const startLevel = lib.config.extension_拖拉机_startFromTwo ? 2 : 1;
             game.tuolaji = {
                 teamLevels:[startLevel, startLevel],
@@ -1491,7 +1492,7 @@ game.import(
             const container = ui.create.div(".tuolaji-bid-container");
             player.node.avatar.appendChild(container);
             for (let i = 0; i < count; i++) {
-            // 使用系统自带的 .infohidden 类，系统会自动渲染卡背
+                // 使用系统自带的 .infohidden 类，系统会自动渲染卡背
                 const card = ui.create.div(".card.infohidden.tuolaji-bid-card");
                 card.style.pointerEvents = "none"; // 防止影响鼠标点击头像
                 container.appendChild(card);
@@ -1763,7 +1764,7 @@ game.import(
                                     });
                                 }
                             } else {
-                            // ★ 细化 AI 评估副牌强度
+                                // ★ 细化 AI 评估副牌强度
                                 const hand = p.getCards("h");
                                 const suitCards = hand.filter(c => c.name.startsWith(suit));
                                 const nonRankCards = suitCards.filter(c => TuoLaJi.parseCard(c.name).number !== rank);
@@ -2196,7 +2197,7 @@ game.import(
                     g.bottom = res.cards;
                     banker.lose(res.cards, ui.special);
                 } else {
-                // 如果玩家取消，用 AI 的智能扣底逻辑
+                    // 如果玩家取消，用 AI 的智能扣底逻辑
                     g.bottom = autoPickBottom(banker, g);
                     banker.lose(g.bottom, ui.special);
                 }
@@ -3712,13 +3713,13 @@ game.import(
                     add("两散", [1, 1], false, (pool) => matchBlocksNoAdj(pool, [1, 1], rank, trumpSuit, false));
                 } else
                     if (t === "triple") {
-                    // 规则③：单三条首出，三条 -> 对+散 -> 三散
+                        // 规则③：单三条首出，三条 -> 对+散 -> 三散
                         add("三条", [3], false, (pool) => findTripleCards(pool, rank, trumpSuit));
                         add("对+散", [2, 1], false, (pool) => matchBlocksNoAdj(pool, [2, 1], rank, trumpSuit, false));
                         add("三散", [1, 1, 1], false, (pool) => matchBlocksNoAdj(pool, [1, 1, 1], rank, trumpSuit, false));
                     } else
                         if (t === "bomb") {
-                        // 规则②-①：四条首出，四条 -> 三条+散 -> 连拖 -> 对子 -> 散
+                            // 规则②-①：四条首出，四条 -> 三条+散 -> 连拖 -> 对子 -> 散
                             add("四条", [4], false, (pool) => findBombCards(pool, rank, trumpSuit));
                             add("三条+散", [3, 1], false, (pool) => matchBlocksNoAdj(pool, [3, 1], rank, trumpSuit, false));
                             add("两连拖", [2, 2], true, (pool) => findTractorCards(pool, 2, 2, rank, trumpSuit));
@@ -3732,9 +3733,12 @@ game.import(
                             );
                         } else
                             if (t === "windmill") {
-                            // 规则②-②：风车首出，风车/四拖二 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
+                                // 规则②-②：风车首出，风车/四拖二 -> 双三条 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
                                 add("风车", [3, 3], true, (pool) => findWindmillCards(pool, rank, trumpSuit));
                                 add("四拖二", [4, 2], true, (pool) => findFourTwoCards(pool, rank, trumpSuit));
+                                // ★ 新增：两个散的三条
+                                add("双三条", [3, 3], false, (pool) => matchBlocksNoAdj(pool, [3, 3], rank, trumpSuit, false));
+
                                 add("三条+对+散", [3, 2, 1], false, (pool) => matchBlocksNoAdj(pool, [3, 2, 1], rank, trumpSuit, false));
                                 add(
                                     "三条+三散",
@@ -3743,6 +3747,19 @@ game.import(
                                     (pool) => matchBlocksNoAdj(pool, [3, 1, 1, 1], rank, trumpSuit, false)
                                 );
                                 add("三连拖", [2, 2, 2], true, (pool) => findTractorCards(pool, 2, 3, rank, trumpSuit));
+                                // ★ 新增：两连拖+一对
+                                L.push(
+                                    {
+                                        label: "两连拖+一对",
+                                        blocks:[2, 2, 2],
+                                        adjacent: false,
+                                        partialAdjacent: 2,
+                                        finder: (pool) => {
+                                            const list = findAllTractorPlusFillers(pool, 2, 2, [2], rank, trumpSuit);
+                                            return list.length > 0 ? list[0] : null;
+                                        }
+                                    }
+                                );
                                 add("三对", [2, 2, 2], false, (pool) => matchBlocksNoAdj(pool, [2, 2, 2], rank, trumpSuit, false));
                                 add(
                                     "两对+两散",
@@ -3764,7 +3781,7 @@ game.import(
                                 );
                             } else
                                 if (t === "four_two") {
-                                // 规则②-①：四拖二首出，四拖二 -> 四条+对 -> 四条+两散 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
+                                    // 规则②-①：四拖二首出，四拖二 -> 四条+对 -> 四条+两散 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
                                     add("四拖二", [4, 2], true, (pool) => findFourTwoCards(pool, rank, trumpSuit));
                                     add("四条+对", [4, 2], false, (pool) => matchBlocksNoAdj(pool, [4, 2], rank, trumpSuit, false));
                                     add("四条+两散", [4, 1, 1], false, (pool) => matchBlocksNoAdj(pool, [4, 1, 1], rank, trumpSuit, false));
@@ -3776,7 +3793,33 @@ game.import(
                                         (pool) => matchBlocksNoAdj(pool, [3, 1, 1, 1], rank, trumpSuit, false)
                                     );
                                     add("三连拖", [2, 2, 2], true, (pool) => findTractorCards(pool, 2, 3, rank, trumpSuit));
+                                    // ★ 新增：两连拖+一对
+                                    L.push(
+                                        {
+                                            label: "两连拖+一对",
+                                            blocks:[2, 2, 2],
+                                            adjacent: false,
+                                            partialAdjacent: 2,
+                                            finder: (pool) => {
+                                                const list = findAllTractorPlusFillers(pool, 2, 2, [2], rank, trumpSuit);
+                                                return list.length > 0 ? list[0] : null;
+                                            }
+                                        }
+                                    );
                                     add("三对", [2, 2, 2], false, (pool) => matchBlocksNoAdj(pool, [2, 2, 2], rank, trumpSuit, false));
+                                    // ★ 新增：两连拖+两散
+                                    L.push(
+                                        {
+                                            label: "两连拖+两散",
+                                            blocks:[2, 2, 1, 1],
+                                            adjacent: false,
+                                            partialAdjacent: 2,
+                                            finder: (pool) => {
+                                                const list = findAllTractorPlusFillers(pool, 2, 2, [1, 1], rank, trumpSuit);
+                                                return list.length > 0 ? list[0] : null;
+                                            }
+                                        }
+                                    );
                                     add(
                                         "两对+两散",
                                         [2, 2, 1, 1],
@@ -3797,7 +3840,7 @@ game.import(
                                     );
                                 } else
                                     if (t === "four_four") {
-                                    // 规则②-①：四拖四首出，四拖四 -> 双四条 -> 四条+三条+散 -> 四条+对+两散 -> 四条+四散 -> 双三条+对 -> 双三条+两散 -> 四连拖 -> 四对...
+                                        // 规则②-①：四拖四首出，四拖四 -> 双四条 -> 四条+三条+散 -> 四条+对+两散 -> 四条+四散 -> 双三条+对 -> 双三条+两散 -> 四连拖 -> 四对...
                                         add("四拖四", [4, 4], true, (pool) => findFourFourCards(pool, rank, trumpSuit));
                                         add("双四条", [4, 4], false, (pool) => matchBlocksNoAdj(pool, [4, 4], rank, trumpSuit, false));
                                         add(
@@ -3826,6 +3869,32 @@ game.import(
                                             (pool) => matchBlocksNoAdj(pool, [3, 3, 1, 1], rank, trumpSuit, false)
                                         );
                                         add("四连拖", [2, 2, 2, 2], true, (pool) => findTractorCards(pool, 2, 4, rank, trumpSuit));
+                                        // ★ 新增：三连拖+一对
+                                        L.push(
+                                            {
+                                                label: "三连拖+一对",
+                                                blocks:[2, 2, 2, 2],
+                                                adjacent: false,
+                                                partialAdjacent: 3,
+                                                finder: (pool) => {
+                                                    const list = findAllTractorPlusFillers(pool, 2, 3, [2], rank, trumpSuit);
+                                                    return list.length > 0 ? list[0] : null;
+                                                }
+                                            }
+                                        );
+                                        // ★ 新增：两连拖+两对
+                                        L.push(
+                                            {
+                                                label: "两连拖+两对",
+                                                blocks:[2, 2, 2, 2],
+                                                adjacent: false,
+                                                partialAdjacent: 2,
+                                                finder: (pool) => {
+                                                    const list = findAllTractorPlusFillers(pool, 2, 2, [2, 2], rank, trumpSuit);
+                                                    return list.length > 0 ? list[0] : null;
+                                                }
+                                            }
+                                        );
                                         add(
                                             "四对",
                                             [2, 2, 2, 2],
@@ -3858,7 +3927,7 @@ game.import(
                                         );
                                     } else
                                         if (t === "tractor") {
-                                        // 规则①：普通对子连拖首出
+                                            // 规则①：普通对子连拖首出
                                             const size = leadPattern.size,
                                             length = leadPattern.length;
                                             const wantSize = TuoLaJi.getPatternSize(leadPattern);
@@ -4140,8 +4209,8 @@ game.import(
                         addToMap(findAllTractorPlusFillers(pool, size, length, fillerBlocks, g.rank, g.trumpSuit));
                     } else
                         if (!step.adjacent) {
-                        // ★ 核心修复：只有当手里凑不出同型连拖（即降级）时，才允许寻找散对子。
-                        // 如果有连拖（step.adjacent 为 true），绝不加入散对子，强制 AI 只能出连拖！
+                            // ★ 核心修复：只有当手里凑不出同型连拖（即降级）时，才允许寻找散对子。
+                            // 如果有连拖（step.adjacent 为 true），绝不加入散对子，强制 AI 只能出连拖！
                             const list = enumerateBlocksNoAdj(pool, step.blocks, g.rank, g.trumpSuit, 200);
                             addToMap(list);
                         }
@@ -4240,7 +4309,7 @@ game.import(
                 }
                 return true;
             } catch (e) {
-            // 兜底：任何异常都保守返回"不安全"，不甩牌，绝不带崩游戏
+                // 兜底：任何异常都保守返回"不安全"，不甩牌，绝不带崩游戏
                 console.error("[拖拉机] isThrowSafe 异常:", e);
                 return false;
             }
@@ -5295,7 +5364,7 @@ game.import(
                     }
                 }
                 if (!hasBigCard) {
-                // 尝试打队友缺门的花色，让他毙
+                    // 尝试打队友缺门的花色，让他毙
                     for (const s of SUITS) {
                         if (suitPools[s].length > 0 && g.lackSuit[teammateSeat][s]) {
                             const smallCard = suitPools[s].slice().sort(
@@ -5515,7 +5584,7 @@ game.import(
             throwPattern,
             g);
             if (possibleMatches.length > 0) {
-            // 如果有完整结构，必须原样跟
+                // 如果有完整结构，必须原样跟
                 const playedStruct = TuoLaJi.parseThrowStructure(cards, g.rank, g.trumpSuit).slice().sort((a, b) => b.count - a.count);
                 const targetStruct = (throwPattern.struct || []).slice().sort((a, b) => b.count - a.count);
                 if (playedStruct.length !== targetStruct.length)
@@ -5531,7 +5600,7 @@ game.import(
                         };
                 }
             } else {
-            // ★ 核心修复：凑不出完整结构，强制走对子降级策略
+                // ★ 核心修复：凑不出完整结构，强制走对子降级策略
                 const blocksList = buildPairLevelBlocks(totalSize); // 如 4张 -> [2,2], [2,1,1], [1,1,1,1]
                 let bestHandBlocks = null;
                 for (const blocks of blocksList) {
@@ -5541,7 +5610,7 @@ game.import(
                     }
                 }
                 if (bestHandBlocks) {
-                // 如果手牌能凑出对子级降级（如 [2,1,1]），那么玩家打出的牌里，对子数不能少
+                    // 如果手牌能凑出对子级降级（如 [2,1,1]），那么玩家打出的牌里，对子数不能少
                     const requiredPairs = bestHandBlocks.filter(x => x === 2).length;
                     const playedGroups = buildValueGroups(cards, g.rank, g.trumpSuit);
                     const playedPairCount = playedGroups.reduce((sum, grp) => sum + Math.floor(grp.cards.length / 2), 0);
@@ -5559,7 +5628,7 @@ game.import(
         }
         // ★ 新增：检测在降级出对子时，是否故意拆散手里的连拖
         function checkBreakTractorInFollow(cards, handInSuit, step, g) {
-        // 仅在要求出多个纯对子时检测
+            // 仅在要求出多个纯对子时检测
             if (!step.blocks.every(b => b === 2))
                 return null;
             const needPairs = step.blocks.length;
@@ -5671,7 +5740,8 @@ game.import(
                 if (SPECIAL.includes(leadPattern.type)) {
                     const step = getBestFollowStep(handInSuit, leadPattern, g);
                     if (step) {
-                        if (matchStructureOfCards(cards, step.blocks, step.adjacent, g))
+                        // ★ 核心修复：传递 partialAdjacent，防止两连拖+一对被当成三对放行
+                        if (matchStructureOfCards(cards, step.blocks, step.adjacent, g, step.partialAdjacent))
                             return {
                                 ok: true
                             };
@@ -5698,7 +5768,7 @@ game.import(
                     }
                     const step = getBestFollowStep(handInSuit, leadPattern, g);
                     if (step) {
-                    // ① 有同形式连拖 / 部分连拖，必须优先跟
+                        // ① 有同形式连拖 / 部分连拖，必须优先跟
                         if (step.adjacent || step.partialAdjacent) {
                             if (!matchStructureOfCards(cards, step.blocks, step.adjacent, g, step.partialAdjacent)) {
                                 return {
@@ -5892,7 +5962,7 @@ game.import(
                         let count = 0;
                         const lockInterval = setInterval(
                             () => {
-                            // 复位整个网页
+                                // 复位整个网页
                                 if (window.scrollX !== 0 || window.scrollY !== 0) {
                                     window.scrollTo(0, 0);
                                 }
@@ -6189,8 +6259,8 @@ game.import(
             for (const blocks of blocksList) {
                 const combos = enumerateBlocksNoAdj(inSuitCards, blocks, g.rank, g.trumpSuit, 60);
                 if (combos && combos.length > 0) {
-                // 找到能凑出的最高级降级组合
-                // 如果队友稳赢，尽量多送分；否则尽量打小牌
+                    // 找到能凑出的最高级降级组合
+                    // 如果队友稳赢，尽量多送分；否则尽量打小牌
                     combos.sort(
                         (a, b) => {
                             if (preferPoints) {
@@ -6251,7 +6321,7 @@ game.import(
                 }
                 const pairGroups = Object.values(groups).filter(grp => grp.length >= 2);
                 if (pairGroups.length > 0) {
-                // 非分牌优先、牌力最小优先
+                    // 非分牌优先、牌力最小优先
                     pairGroups.sort(
                         (a, b) => {
                             const ptsA = a.slice(0, 2).reduce((s, x) => s + (isPoint(x.p) ? 1 : 0), 0);
@@ -6385,7 +6455,7 @@ game.import(
                 if (step && !step.blocks.every(b => b === 1)) {
                     let rawCombos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
                     if (rawCombos) {
-                    // 过滤出完全符合该结构的组合
+                        // 过滤出完全符合该结构的组合
                         rawCombos = rawCombos.filter(c => matchStructureOfCards(c, step.blocks, step.adjacent, g, step.partialAdjacent));
                     }
                     if (rawCombos && rawCombos.length > 0) {
@@ -6573,7 +6643,7 @@ game.import(
                             best = beaters[0];
                         }
                     } else {
-                    // ★ 2、3号位（非末位）毙牌灵活策略
+                        // ★ 2、3号位（非末位）毙牌灵活策略
                         let hasStrongCombo = false;
                         if (findLongTractor(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findBomb(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findWindmill(trumpCards.map(x => x.card), g.rank, g.trumpSuit)) {
                             hasStrongCombo = true;
@@ -6699,7 +6769,7 @@ game.import(
                 if (hasRequiredStructure) {
                     combos = requiredCombos;
                 } else {
-                // 只有确实没有强制结构（全是散牌）时，才允许 AI 自由发挥
+                    // 只有确实没有强制结构（全是散牌）时，才允许 AI 自由发挥
                     combos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
                     if (combos) {
                         combos = combos.filter(c => c.length === actualSize);
@@ -6857,7 +6927,7 @@ game.import(
                                 pattern: best.pattern
                             };
                         } else {
-                        // ★ 2、3号位（非末位）同花色灵活抢大策略
+                            // ★ 2、3号位（非末位）同花色灵活抢大策略
                             let hasStrongCombo = false;
                             if (findLongTractor(inSuitCards, g.rank, g.trumpSuit) || findShortTractor(inSuitCards, g.rank, g.trumpSuit) || findBomb(inSuitCards, g.rank, g.trumpSuit) || findWindmill(inSuitCards, g.rank, g.trumpSuit)) {
                                 hasStrongCombo = true;
@@ -6996,7 +7066,7 @@ game.import(
                             winIdx = i;
                             winPattern = playedPattern;
                         } else {
-                        // ★ 核心修复：按牌型组优先级逐组比较大小，而不是简单取最大单张牌力
+                            // ★ 核心修复：按牌型组优先级逐组比较大小，而不是简单取最大单张牌力
                             const cmp = compareThrowPlays(pl.cards, plays[winIdx].cards, lead, g);
                             if (cmp > 0) {
                                 winIdx = i;
@@ -7532,6 +7602,31 @@ game.import(
                 };
             }
         }
+
+        // ★ 新增：更新场上最大牌的发光标记
+        function updateBigMark(winCards) {
+            // 1. 清除场上所有旧的发光标记
+            const oldMarked = ui.arena.querySelectorAll(".tuolaji-big-mark");
+            for (let i = 0; i < oldMarked.length; i++) {
+                oldMarked[i].classList.remove("tuolaji-big-mark");
+            }
+
+            // 2. 如果没有牌，直接返回
+            if (!winCards || winCards.length === 0)
+                return;
+
+                // 3. 提取当前最大牌组的所有 cardid
+            const winIds = new Set(winCards.map(c => String(c.cardid)));
+
+            // 4. 遍历场上所有打出的牌，ID对得上的就加上发光类名
+            const playedNodes = ui.arena.querySelectorAll(".tuolaji-played");
+            for (let i = 0; i < playedNodes.length; i++) {
+                const node = playedNodes[i];
+                if (winIds.has(String(node.dataset.tljCardId))) {
+                    node.classList.add("tuolaji-big-mark");
+                }
+            }
+        }
         // ============ 单轮出牌 ============
         async function playOneTrick(startSeat) {
             const g = game.tuolaji;
@@ -7573,12 +7668,12 @@ game.import(
                                 }
                             ).forResult();
                             if (!res.bool) {
-                            // ★ 兜底：如果玩家点了取消，系统自动帮他找一张能扣的牌
+                                // ★ 兜底：如果玩家点了取消，系统自动帮他找一张能扣的牌
                                 const combos = findAllCombosOfSize(game.me.getCards("h"), targetCards.length, g);
                                 let autoPlay = null;
                                 for (const c of combos) {
                                     if (TuoLaJi.structureMatch(c.pattern, targetPattern) && TuoLaJi.comparePatterns(c.pattern, targetPattern) > 0) {
-                                    // ★ 强制校验：副牌绝不能拿主牌扣
+                                        // ★ 强制校验：副牌绝不能拿主牌扣
                                         if (!targetPattern.isTrump && c.pattern.isTrump)
                                             continue;
                                         autoPlay = c;
@@ -7603,7 +7698,7 @@ game.import(
                             g.rank,
                             g.trumpSuit);
                             if (p.valid && TuoLaJi.structureMatch(p, targetPattern) && TuoLaJi.comparePatterns(p, targetPattern) > 0) {
-                            // ★ 强制校验：副牌绝不能拿主牌扣
+                                // ★ 强制校验：副牌绝不能拿主牌扣
                                 if (!targetPattern.isTrump && p.isTrump) {
                                     game.print("扣牌无效：不能用主牌扣副牌！");
                                     continue;
@@ -7624,7 +7719,7 @@ game.import(
                         const valid = [];
                         for (const c of combos) {
                             if (TuoLaJi.structureMatch(c.pattern, targetPattern) && TuoLaJi.comparePatterns(c.pattern, targetPattern) > 0) {
-                            // ★ 强制校验：副牌绝不能拿主牌扣
+                                // ★ 强制校验：副牌绝不能拿主牌扣
                                 if (!targetPattern.isTrump && c.pattern.isTrump)
                                     continue;
                                 valid.push(c);
@@ -7699,7 +7794,7 @@ game.import(
                     round: g.round
                 });
                 if (i > 0) {
-                // ★ 核心修复：用打出张数来判断，只要包含垫牌（张数少于出牌总数），说明该花色已彻底清空
+                    // ★ 核心修复：用打出张数来判断，只要包含垫牌（张数少于出牌总数），说明该花色已彻底清空
                     const playedInSuit = play.cards.filter(c => isInSuit(c, leadSuit, g));
                     if (playedInSuit.length < play.cards.length && leadSuit !== "trump") {
                         g.lackSuit[seat][leadSuit] = true;
@@ -7749,6 +7844,7 @@ game.import(
                         patternText(w.winPattern, plays[w.winIdx].cards)
                     );
                 }
+                updateBigMark(plays[w.winIdx].cards);
                 await game.delayx(1);
             }
             const { winIdx, winPattern } = determineWinner(plays, g);
@@ -7918,7 +8014,7 @@ game.import(
                     bottomPlayer: g._nextState.bottomPlayer
                 };
             } else {
-            // 否则保存当前全局状态
+                // 否则保存当前全局状态
                 data = {
                     teamLevels: g.teamLevels,
                     matchRound: g.matchRound,
@@ -8059,10 +8155,10 @@ game.import(
                 }
                 // 构造纯文字的 HTML 字符串
                 let textHtml = `
-            <div style="text-align: center; font-size: 15px; line-height: 1.8; color: #fff; padding: 10px 20px; width: 100%; box-sizing: border-box;">
+            <div style="text-align: center; font-size: 18px; line-height: 1.8; color: #fff; padding: 10px 20px; width: 100%; box-sizing: border-box;">
                 <div style="color: #ffd700; font-weight: bold; font-size: 18px; margin-bottom: 5px;">— 本局结算 —</div>
                 <div>闲家（${idleTeamName}）总得分：<span style="color: #4a9eff; font-weight: bold; font-size: 18px;">${idleScore}</span> 分</div>
-                <div style="font-size: 13px; color: #ccc;">抓分 ${baseScore} 分 + 抠底 ${bottomBonus} 分（${bottomResultText}）</div>
+                <div style="font-size: 15px; color: #ccc;">抓分 ${baseScore} 分 + 抠底 ${bottomBonus} 分（${bottomResultText}）</div>
                 <div style="margin-top: 8px; color: #ffd700; font-weight: bold;">【 ${scoreRangeText} 】</div>
                 <div style="color: #ffd700;">${desc}</div>
             </div>
@@ -8071,10 +8167,10 @@ game.import(
                 if (isMatchWin) {
                     const teamName = winnerTeam === 0 ? "南北" : "东西";
                     textHtml += `
-            <div style="text-align: center; font-size: 15px; line-height: 1.8; color: #ff4d4d; padding: 10px 20px; border-top: 1px dashed #ff4d4d; width: 100%; box-sizing: border-box;">
-                <div style="font-weight: bold; font-size: 16px;">【 恭喜！${teamName}方已升满级，赢得最终胜利！ 】</div>
+            <div style="text-align: center; font-size: 18px; line-height: 1.8; color: #ff4d4d; padding: 10px 20px; border-top: 1px dashed #ff4d4d; width: 100%; box-sizing: border-box;">
+                <div style="font-weight: bold; font-size: 20px;">【 恭喜！${teamName}方已升满级，赢得最终胜利！ 】</div>
                 <div>是否继续从下一圈 ${LEVEL_NAMES[nextTeamLevels[winnerTeam]]} 级打起？</div>
-                <div style="font-size: 13px; color: #ccc;">点击“确定”继续，点击“取消”结束并清空存档。</div>
+                <div style="font-size: 18px; color: #ccc;">点击“确定”继续，点击“取消”结束并清空存档。</div>
             </div>
             `;
                 }
@@ -8170,11 +8266,11 @@ game.import(
         function advanceBanker(winnerTeam, bankerTeam) {
             const g = game.tuolaji;
             if (winnerTeam === bankerTeam) {
-            // 庄家守庄成功：庄家不变，下底换给队友
+                // 庄家守庄成功：庄家不变，下底换给队友
                 g.bottomPlayer = (g.bottomPlayer + 2) % 4;
                 game.print(`【连庄】庄家守庄成功，由队友${SEAT_NAMES[g.bottomPlayer]}方下底并首出`);
             } else {
-            // 闲家上台：新庄家为原庄家的下家，由新庄家自己下底并首出
+                // 闲家上台：新庄家为原庄家的下家，由新庄家自己下底并首出
                 g.banker = (g.banker + 1) % 4;
                 g.bankerTeam = g.banker % 2;
                 g.bottomPlayer = g.banker; // ★ 修复：新庄家下底
@@ -8213,7 +8309,7 @@ game.import(
                     try {
                         const data = JSON.parse(savedData);
                         if (data.teamLevels && Array.isArray(data.teamLevels) && data.teamLevels.length === 2) {
-                        // 恢复状态
+                            // 恢复状态
                             g.teamLevels = data.teamLevels;
                             if (typeof data.matchRound === 'number')
                                 g.matchRound = data.matchRound;
@@ -8233,7 +8329,7 @@ game.import(
                         game.print("【存档】数据解析错误，将开启全新游戏。");
                     }
                 } else {
-                // 选了否，直接开始新游戏，但什么都不删（不覆盖旧存档）
+                    // 选了否，直接开始新游戏，但什么都不删（不覆盖旧存档）
                     game.print("【存档】已选择开启全新游戏。（旧存档已保留，下次启动仍可读取）");
                 }
             }
@@ -8267,24 +8363,24 @@ game.import(
                         () => {
                             const g = game.tuolaji;
                             if (g && g._inDealPhase) {
-                            // 如果当前正在等玩家处理叫主/反主，不准叠加暂停
+                                // 如果当前正在等玩家处理叫主/反主，不准叠加暂停
                                 if (g._waitingForBidResolve) {
                                     game.print("【提示】请先处理当前的叫主/反主询问。");
                                     return;
                                 }
                                 if (g._waitingForDealResolve) {
-                                // 恢复发牌
+                                    // 恢复发牌
                                     g._pauseDeal = false;
                                     g._waitingForDealResolve();
                                     g._waitingForDealResolve = null;
                                     game.print("【提示】发牌继续。");
                                 } else {
-                                // 执行暂停
+                                    // 执行暂停
                                     g._pauseDeal = true;
                                     game.print("【提示】发牌已暂停。再次点击图标恢复发牌。");
                                 }
                             } else {
-                            // 非发牌阶段，正常显示历史记录
+                                // 非发牌阶段，正常显示历史记录
                                 showHistoryPage();
                             }
                         }
@@ -8315,7 +8411,7 @@ game.import(
                         const teamName = result.matchWinnerTeam === 0 ? "南北" : "东西";
                         game.print(`${teamName}方打赢 K 局，获得整场胜利！`);
                         if (result.wantContinue) {
-                        // 选择继续，新一轮开启
+                            // 选择继续，新一轮开启
                             const startLevel = lib.config.extension_拖拉机_startFromTwo ? 2 : 1;
                             game.print(`【新一轮】${teamName}方从 ${LEVEL_NAMES[startLevel]} 级重新打起，闲家进度保留！`);
                             // 连庄换底
@@ -8595,7 +8691,7 @@ game.import(
                 author: "山佬进城",
                 diskURL: "",
                 forumURL: "",
-                version: "3.6",
+                version: "3.7",
             },
             files: {
                 "character":[],

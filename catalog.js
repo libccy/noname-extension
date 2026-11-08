@@ -219,7 +219,7 @@ extension["拖拉机"] = {
 	intro: "经典的民间扑克牌游戏，四人玩四副牌升级，在【乱斗】模式中打开游戏，AI出牌智商堪比人类",
 	size: "2MB",
 	netdisk: "",
-	version: 3.6,	
+	version: 3.7,	
 	files:[
 		"extension.js","extension.css","info.json","README.md","LICENSE","club1.png","club10.png","club11.png","club12.png",
 	"club13.png","club2.png","club3.png","club4.png","club5.png",

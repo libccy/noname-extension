@@ -254,8 +254,8 @@
    ============================================================ */
 #tuolajiScore {
     position: fixed !important;
-    left: 12px !important;       
-    top: 12px !important;        
+    left: 18px !important;       
+    top: 18px !important;        
     width: 250px !important;     
     background-color: #111111 !important;
     border: 1px solid #555555 !important;
@@ -475,3 +475,155 @@
     transition: all 0.3s ease-in-out !important;
     z-index: 900 !important;
 }
+
+
+/* ============================================================
+   10. 收集卡牌系统
+   ============================================================ */
+
+.tuolaji-button.tuolaji-cards {
+    left: calc(50% + 5px);
+}
+
+/* --- 遮罩与页面主容器 --- */
+#tuolajiCollectionPage {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    z-index: 10000 !important;
+}
+
+.tlj-col-page {
+    position: absolute !important;
+    left: 2% !important;
+    top: 3% !important;
+    width: 96% !important;
+    height: 94% !important;
+    background-color: #1a1a1a !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #555 !important;
+    overflow: hidden !important;
+}
+
+/* --- 顶部标题栏 --- */
+.tlj-col-header {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 50px !important;
+    background: linear-gradient(to right, rgba(120, 88, 75, 1), rgba(60, 60, 60, 1)) !important;
+    border-bottom: 1px solid #444 !important;
+    z-index: 10 !important;
+}
+
+.tlj-col-title {
+    width: 100% !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    text-align: center !important;
+    font-family: lishu, xinwei !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    color: #ffd700 !important;
+    letter-spacing: 2px !important;
+    text-shadow: 1px 1px 2px #000 !important;
+}
+
+.tlj-col-close {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 60px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    text-align: center !important;
+    font-size: 26px !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.tlj-col-close:hover {
+    background: rgba(200, 0, 0, 0.8) !important;
+}
+
+/* --- 内容区域与包裹层 --- */
+.tlj-col-content {
+    position: absolute !important;
+    top: 50px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    text-align: center !important;
+    display: block !important;
+}
+
+.tlj-col-wrapper {
+    display: block !important;
+    width: 96% !important;
+    height: 100% !important;
+    margin: 0 auto !important;
+    position: relative !important;
+}
+
+/* --- 进度文字与分割线 --- */
+.tlj-col-progress {
+    position: absolute !important;
+    left: 40px !important;
+    top: 0 !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-family: 'Microsoft YaHei', sans-serif !important;
+}
+
+.tlj-col-line {
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 1px !important;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2) !important;
+}
+
+/* --- 卡牌基础样式 --- */
+.tlj-col-card {
+    position: absolute !important;
+    border-radius: 4px !important;
+    background-color: #fff !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: none !important;
+    box-sizing: border-box !important;
+}
+
+/* 未点亮（黑白+变暗） */
+.tlj-col-card-unlit {
+    -webkit-filter: grayscale(1) brightness(0.5) !important;
+    filter: grayscale(1) brightness(0.5) !important;
+    opacity: 0.65 !important;
+}
+
+/* --- 已点亮的光效进阶系统 --- */
+/* 0: 初次获得 绿光 */
+.tlj-col-card-tier-0 { box-shadow: 0 0 8px 2px rgba(0, 255, 0, 0.6) !important; }
+/* 1: 全收集进阶1 蓝光 */
+.tlj-col-card-tier-1 { box-shadow: 0 0 8px 2px rgba(0, 191, 255, 0.6) !important; }
+/* 2: 全收集进阶2 紫光 */
+.tlj-col-card-tier-2 { box-shadow: 0 0 8px 2px rgba(160, 32, 240, 0.6) !important; }
+/* 3: 全收集进阶3 黄橙光 */
+.tlj-col-card-tier-3 { box-shadow: 0 0 8px 2px rgba(255, 165, 0, 0.6) !important; }
+/* 4: 全收集进阶4 红光 */
+.tlj-col-card-tier-4 { box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.6) !important; }
+/* 5: 全收集进阶5 铜光 */
+.tlj-col-card-tier-5 { box-shadow: 0 0 8px 2px rgba(205, 127, 50, 0.6) !important; }
+/* 6: 全收集进阶6 银光 */
+.tlj-col-card-tier-6 { box-shadow: 0 0 8px 2px rgba(192, 192, 192, 0.6) !important; }
+/* 7: 全收集进阶7 金光 */
+.tlj-col-card-tier-7 { box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.6) !important; }

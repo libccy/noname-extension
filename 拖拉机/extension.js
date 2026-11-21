@@ -36,7 +36,8 @@ game.import(
             10: "10",
             11: "J",
             12: "Q",
-            13: "K"
+            13: "K",
+            14: "A" // ★ 新增：从2打起时的最高级
         };
         function numText(n) {
             if (n === 1)
@@ -180,6 +181,235 @@ game.import(
             close.innerHTML = "×";
             close.addEventListener("click", () => page.remove());
             page.appendChild(close);
+        }
+
+        // ============ 收集卡牌 ============
+        const COLLECTION_NUMBER_ORDER = [1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+        const COLLECTION_SUIT_ORDER = ["spade", "heart", "club", "diamond"];
+        const COLLECTION_TOTAL = 54;
+        const COLLECTION_STORAGE_KEY = "tuolaji_collection_data";
+        const COLLECTION_TIER_KEY = "extension_拖拉机_collection_tier";
+        const TIER_NAMES = ["绿光", "蓝光", "紫光", "黄橙光", "红光", "铜光", "银光", "金光"];
+
+        function getCollectionLit() {
+            let fromConfig = [];
+            try {
+                const arr = lib.config["extension_拖拉机_collection"];
+                if (Array.isArray(arr))
+                    fromConfig = arr.slice();
+            } catch (e) {}
+            let fromLocal = [];
+            try {
+                const raw = localStorage.getItem(COLLECTION_STORAGE_KEY);
+                if (raw) {
+                    const arr = JSON.parse(raw);
+                    if (Array.isArray(arr))
+                        fromLocal = arr;
+                }
+            } catch (e) {}
+            const set = new Set(fromConfig);
+            for (const c of fromLocal)
+                set.add(c);
+            const merged = Array.from(set);
+            if (merged.length !== fromConfig.length) {
+                try {
+                    game.saveConfig("extension_拖拉机_collection", merged);
+                } catch (e) {}
+            }
+            if (merged.length !== fromLocal.length) {
+                try {
+                    localStorage.setItem(COLLECTION_STORAGE_KEY, JSON.stringify(merged));
+                } catch (e) {}
+            }
+            return merged;
+        }
+
+        function setCollectionLit(arr) {
+            const data = arr.slice();
+            try {
+                game.saveConfig("extension_拖拉机_collection", data);
+            } catch (e) {}
+            try {
+                localStorage.setItem(COLLECTION_STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {}
+        }
+
+        // 获取当前光效阶数 (0是绿光, 1是蓝光...7是金光)
+        function getCollectionTier() {
+            let t = parseInt(lib.config[COLLECTION_TIER_KEY]);
+            if (isNaN(t) || t < 0 || t > 7)
+                t = 0;
+            return t;
+        }
+
+        function setCollectionTier(t) {
+            try {
+                game.saveConfig(COLLECTION_TIER_KEY, t);
+            } catch (e) {}
+        }
+
+        // 触发奖励：如果是新卡牌返回 {type: "new", name: "..."}，如果是全收集进阶返回 {type: "tier", tier: 1~7}
+        function triggerCollectionReward() {
+            const lit = getCollectionLit();
+            const litSet = new Set(lit);
+            const normalCards = [];
+            for (const s of COLLECTION_SUIT_ORDER) {
+                for (let n = 1; n <= 13; n++)
+                    normalCards.push(s + n);
+            }
+            const unlitNormal = normalCards.filter(c => !litSet.has(c));
+
+            // 1. 优先点亮普通牌
+            if (unlitNormal.length > 0) {
+                const pick = unlitNormal[Math.floor(Math.random() * unlitNormal.length)];
+                lit.push(pick);
+                setCollectionLit(lit);
+                return {
+                    type: "new",
+                    name: pick
+                };
+            }
+            // 2. 其次点亮小王
+            if (!litSet.has("jokersmall")) {
+                lit.push("jokersmall");
+                setCollectionLit(lit);
+                return {
+                    type: "new",
+                    name: "jokersmall"
+                };
+            }
+            // 3. 最后点亮大王
+            if (!litSet.has("jokerbig")) {
+                lit.push("jokerbig");
+                setCollectionLit(lit);
+                return {
+                    type: "new",
+                    name: "jokerbig"
+                };
+            }
+            // 4. 已全收集，触发光效进阶 (蓝->紫->橙->红->铜->银->金->蓝循环)
+            let currentTier = getCollectionTier();
+            let nextTier = currentTier + 1;
+            if (nextTier > 7)
+                nextTier = 1;
+            setCollectionTier(nextTier);
+            return {
+                type: "tier",
+                tier: nextTier
+            };
+        }
+
+        function showCollectionPage() {
+            if (document.getElementById("tuolajiCollectionPage"))
+                return;
+            const lit = getCollectionLit();
+            const litSet = new Set(lit);
+
+            const overlay = document.createElement("div");
+            overlay.id = "tuolajiCollectionPage";
+            document.body.appendChild(overlay);
+
+            const page = document.createElement("div");
+            page.className = "tlj-col-page";
+            overlay.appendChild(page);
+
+            const header = document.createElement("div");
+            header.className = "tlj-col-header";
+            page.appendChild(header);
+
+            const title = document.createElement("div");
+            title.className = "tlj-col-title";
+            title.innerHTML = "收集卡牌";
+            header.appendChild(title);
+
+            const close = document.createElement("div");
+            close.className = "tlj-col-close";
+            close.innerHTML = "×";
+            close.onclick = () => overlay.remove();
+            header.appendChild(close);
+
+            const content = document.createElement("div");
+            content.className = "tlj-col-content";
+            page.appendChild(content);
+
+            const cardsWrapper = document.createElement("div");
+            cardsWrapper.className = "tlj-col-wrapper";
+            content.appendChild(cardsWrapper);
+
+            setTimeout(
+                () => {
+                    let availW = cardsWrapper.clientWidth;
+                    if (availW <= 0)
+                        availW = window.innerWidth * 0.9;
+                    let availH = cardsWrapper.clientHeight;
+                    if (availH <= 0)
+                        availH = (window.innerHeight * 0.94) - 50;
+
+                    const rowH = Math.floor(availH / 5);
+                    const maxW_by_width = Math.floor((availW - 80 - (12 * 4)) / 13);
+                    const maxH_by_height = rowH - 20;
+                    const maxW_by_height = Math.floor(maxH_by_height / 1.4);
+
+                    let normalW = Math.min(maxW_by_width, maxW_by_height);
+                    if (normalW < 30)
+                        normalW = 30;
+                    let normalH = Math.floor(normalW * 1.4);
+
+                    let jokerW = Math.floor(normalW * 1.15);
+                    let jokerH = Math.floor(normalH * 1.15);
+
+                    const leftPadding = 40;
+                    const usableW = availW - (leftPadding * 2);
+                    const actualGap = (usableW - (normalW * 13)) / 12;
+                    const startX = leftPadding;
+
+                    function createAbsCard(name, left, top, w, h) {
+                        const card = document.createElement("div");
+                        let glowClass = "";
+                        if (litSet.has(name)) {
+                            glowClass = "tlj-col-card-tier-" + getCollectionTier();
+                        } else {
+                            glowClass = "tlj-col-card-unlit";
+                        }
+                        card.className = "tlj-col-card " + glowClass;
+                        card.style.cssText = `left: ${left}px !important; top: ${top}px !important; width: ${w}px !important; height: ${h}px !important; background-image: url('${lib.assetURL}extension/拖拉机/${name}.png') !important;`;
+                        card.title = describeCard(name) + (litSet.has(name) ? "（已收集）" : "（未收集）");
+                        return card;
+                    }
+
+                    for (let i = 1; i <= 4; i++) {
+                        const line = document.createElement("div");
+                        line.className = "tlj-col-line";
+                        line.style.top = `${i * rowH}px`;
+                        cardsWrapper.appendChild(line);
+                    }
+
+                    const top0 = (rowH - jokerH) / 2;
+                    const centerX = availW / 2;
+                    cardsWrapper.appendChild(createAbsCard("jokerbig", centerX - jokerW - 10, top0, jokerW, jokerH));
+                    cardsWrapper.appendChild(createAbsCard("jokersmall", centerX + 10, top0, jokerW, jokerH));
+
+                    const progress = document.createElement("div");
+                    progress.className = "tlj-col-progress";
+                    progress.style.lineHeight = rowH + "px";
+                    const tierName = TIER_NAMES[getCollectionTier()];
+                    progress.innerHTML = `已收集：<span style="color:#ffd700; font-weight:bold; margin:0 4px;">${lit.length}</span> / ${COLLECTION_TOTAL} <span style="font-size:14px; color:#aaa; margin-left:10px;">(当前光效: <span style="color:#00ff00;">${tierName}</span>)</span>`;
+                    cardsWrapper.appendChild(progress);
+
+                    const order = [1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+                    const suits = ["spade", "heart", "club", "diamond"];
+
+                    for (let r = 0; r < 4; r++) {
+                        const s = suits[r];
+                        const top = (r + 1) * rowH + (rowH - normalH) / 2;
+                        for (let i = 0; i < order.length; i++) {
+                            const n = order[i];
+                            const left = startX + i * (normalW + actualGap);
+                            cardsWrapper.appendChild(createAbsCard(s + n, left, top, normalW, normalH));
+                        }
+                    }
+                }, 100
+            );
         }
         function showHistoryPage() {
             if (document.getElementById("tljHistoryPage"))
@@ -381,15 +611,9 @@ game.import(
                     const c = cards[0];
                     return {
                         type: "single",
-                        power: this.cardPower(c,
-                        rank,
-                        trumpSuit),
-                        suit: c.joker ? "joker" : (this.isTrump(c,
-                        rank,
-                        trumpSuit) ? "trump" : c.suit),
-                        isTrump: this.isTrump(c,
-                        rank,
-                        trumpSuit),
+                        power: this.cardPower(c, rank, trumpSuit),
+                        suit: c.joker ? "joker" : (this.isTrump(c, rank, trumpSuit) ? "trump" : c.suit),
+                        isTrump: this.isTrump(c, rank, trumpSuit),
                         valid: true
                     };
                 }
@@ -398,9 +622,7 @@ game.import(
                 if (allTrump)
                     groupSuit = "trump";
                 else {
-                    const non = cards.filter(c => !this.isTrump(c,
-                    rank,
-                    trumpSuit));
+                    const non = cards.filter(c => !this.isTrump(c, rank, trumpSuit));
                     if (non.length !== n)
                         return {
                             valid: false
@@ -428,9 +650,7 @@ game.import(
                     if ((bigs === 4 && smalls === 0) || (smalls === 4 && bigs === 0)) {
                         return {
                             type: "bomb",
-                            power: this.cardPower(cards[0],
-                            rank,
-                            trumpSuit),
+                            power: this.cardPower(cards[0], rank, trumpSuit),
                             suit: "joker",
                             isTrump: true,
                             valid: true
@@ -472,8 +692,7 @@ game.import(
                     const four = gl.find(g => g.length === 4);
                     if (four) {
                         const rest = cards.filter(c => !four.includes(c));
-                        if (rest.length === 2 && this.samePoint(rest[0],
-                        rest[1])) {
+                        if (rest.length === 2 && this.samePoint(rest[0], rest[1])) {
                             if (allTrump || rest[0].suit === four[0].suit) {
                                 const vFour = this.tractorValue(four[0], rank, trumpSuit);
                                 const vRest = this.tractorValue(rest[0], rank, trumpSuit);
@@ -494,12 +713,8 @@ game.import(
                     const fours = gl.filter(g => g.length === 4);
                     if (fours.length === 2) {
                         if (allTrump || fours[0][0].suit === fours[1][0].suit) {
-                            const v1 = this.tractorValue(fours[0][0],
-                            rank,
-                            trumpSuit);
-                            const v2 = this.tractorValue(fours[1][0],
-                            rank,
-                            trumpSuit);
+                            const v1 = this.tractorValue(fours[0][0], rank, trumpSuit);
+                            const v2 = this.tractorValue(fours[1][0], rank, trumpSuit);
                             if (Math.abs(v1 - v2) === 1) {
                                 let maxG = this.cardPower(fours[0][0], rank, trumpSuit) > this.cardPower(fours[1][0], rank, trumpSuit) ? fours[0] : fours[1];
                                 return {
@@ -516,14 +731,9 @@ game.import(
                 if (n >= 4 && gl.length >= 2) {
                     const size = gl[0].length;
                     if (size >= 2 && gl.every(g => g.length === size) && gl.every(g => g.every(c => this.samePoint(c, g[0])))) {
-                        const vals = gl.map(g => this.tractorValue(g[0],
-                        rank,
-                        trumpSuit)).sort((a,
-                        b) => a - b);
+                        const vals = gl.map(g => this.tractorValue(g[0], rank, trumpSuit)).sort((a, b) => a - b);
                         let ok = true;
-                        for (let i = 0;
-                        i < vals.length - 1;
-                        i++) {
+                        for (let i = 0; i < vals.length - 1; i++) {
                             if (vals[i + 1] - vals[i] !== 1) {
                                 ok = false;
                                 break;
@@ -532,9 +742,7 @@ game.import(
                         if (ok) {
                             const type = (size === 3 && gl.length === 2) ? "windmill" : "tractor";
                             let maxG = gl[0];
-                            for (let i = 1;
-                            i < gl.length;
-                            i++) {
+                            for (let i = 1; i < gl.length; i++) {
                                 if (this.cardPower(gl[i][0], rank, trumpSuit) > this.cardPower(maxG[0], rank, trumpSuit))
                                     maxG = gl[i];
                             }
@@ -577,10 +785,21 @@ game.import(
                         return 3;
                     case "tractor":
                         {
-                            if (p.size === 2 && p.length === 2)
-                                return 4;
-                            if (p.size === 2 && p.length === 3)
-                                return 5;
+                            if (p.size === 2) {
+                                if (p.length === 2)
+                                    return 4;
+                                if (p.length === 3)
+                                    return 5;
+                                return 5 + (p.length - 3) * 0.1;
+                            }
+                            if (p.size === 3) {
+                                // 三条连拖（如555666）大于风车(6)
+                                return 6 + (p.length - 2) * 0.1;
+                            }
+                            if (p.size === 4) {
+                                // 四条连拖（如55556666）大于四拖四(9)
+                                return 9 + (p.length - 2) * 0.1;
+                            }
                             return 5 + p.length * 0.1;
                         }
                     case "windmill":
@@ -725,32 +944,20 @@ game.import(
                     const allTrump = playedCards.every(
                         c => {
                             const cp = this.parseCard(typeof c === "string" ? c : c.name);
-                            return this.isTrump(cp,
-                            lead.rank,
-                            lead.trumpSuit);
+                            return this.isTrump(cp, lead.rank, lead.trumpSuit);
                         }
                     );
                     if (!allTrump)
                         return false;
                     const leadCards = lead.cards || [];
                     if (leadCards.length > 0) {
-                        const leadUnits = decomposeThrowIntoUnits(leadCards,
-                        lead.rank,
-                        lead.trumpSuit);
-                        const playedUnits = decomposeThrowIntoUnits(playedCards,
-                        lead.rank,
-                        lead.trumpSuit);
+                        const leadUnits = decomposeThrowIntoUnits(leadCards, lead.rank, lead.trumpSuit);
+                        const playedUnits = decomposeThrowIntoUnits(playedCards, lead.rank, lead.trumpSuit);
                         if (leadUnits.length !== playedUnits.length)
                             return false;
-                        for (let i = 0;
-                        i < leadUnits.length;
-                        i++) {
-                            const pA = this.getPattern(leadUnits[i].cards.map(c => c.name),
-                            lead.rank,
-                            lead.trumpSuit);
-                            const pB = this.getPattern(playedUnits[i].cards.map(c => c.name),
-                            lead.rank,
-                            lead.trumpSuit);
+                        for (let i = 0; i < leadUnits.length; i++) {
+                            const pA = this.getPattern(leadUnits[i].cards.map(c => c.name), lead.rank, lead.trumpSuit);
+                            const pB = this.getPattern(playedUnits[i].cards.map(c => c.name), lead.rank, lead.trumpSuit);
                             if (!pA.valid || !pB.valid)
                                 return false;
                             if (pA.type !== pB.type)
@@ -764,10 +971,8 @@ game.import(
                         }
                         return true;
                     }
-                    const leadStruct = (lead.struct || []).slice().sort((a,
-                    b) => b.count - a.count);
-                    const playedStruct = this.parseThrowStructure(playedCards, lead.rank, lead.trumpSuit).slice().sort((a,
-                    b) => b.count - a.count);
+                    const leadStruct = (lead.struct || []).slice().sort((a, b) => b.count - a.count);
+                    const playedStruct = this.parseThrowStructure(playedCards, lead.rank, lead.trumpSuit).slice().sort((a, b) => b.count - a.count);
                     if (leadStruct.length !== playedStruct.length)
                         return false;
                     for (let i = 0; i < leadStruct.length; i++) {
@@ -1244,7 +1449,6 @@ game.import(
                 ui.tuolajiScore = document.createElement("div");
                 ui.tuolajiScore.id = "tuolajiScore";
                 document.body.appendChild(ui.tuolajiScore);
-                // ★ 初始化菜单监听
                 initMenuObserver();
             }
             const t0 = g.roundScores[0] + g.roundScores[2];
@@ -1260,12 +1464,15 @@ game.import(
                 } else {
                     trumpStr = "无主";
                 }
+
+                // ★ 核心修改：动态计算最大级别
+            const maxLevel = lib.config.extension_拖拉机_startFromTwo ? 14 : 13;
             const lvl0 = LEVEL_NAMES[Math.min(g.teamLevels[0],
-            13)] || g.teamLevels[0];
+            maxLevel)] || g.teamLevels[0];
             const lvl1 = LEVEL_NAMES[Math.min(g.teamLevels[1],
-            13)] || g.teamLevels[1];
+            maxLevel)] || g.teamLevels[1];
+
             let line1 = `东西 ${lvl1}级，南北 ${lvl0}级`;
-            // ★ 修改1：组装亮主信息行，把花色图标（trumpStr）放到最后
             let lineBid = "";
             if (g.bidInfo && g.bidInfo.suit === "nt") {
                 const seatName = SEAT_NAMES[g.bidInfo.seat];
@@ -1281,8 +1488,7 @@ game.import(
                 } else {
                     lineBid = `<span class="score-text" style="margin-top: 4px;">亮主：无人亮主 ${trumpStr}</span><br>`;
                 }
-                // ★ 修改2：第三行显示庄家，并高亮下底首出的玩家
-            const teamSeats = bt === 0 ? [0, 2] : [1, 3]; // 0/2是南北，1/3是东西
+            const teamSeats = bt === 0 ? [0, 2] : [1, 3];
             const seat1 = teamSeats[0];
             const seat2 = teamSeats[1];
             let bankerNames = "";
@@ -1438,7 +1644,10 @@ game.import(
         }
         function initRoundState() {
             const g = game.tuolaji;
-            g.rank = Math.min(g.teamLevels[g.bankerTeam], 13);
+            // ★ 核心修改：如果当前级别是 14，实际上打的是 A（rank=1）
+            const lvl = g.teamLevels[g.bankerTeam];
+            g.rank = (lvl === 14) ? 1 : Math.min(lvl, 13);
+
             g.trumpSuit = null;
             g.bottom = [];
             g.roundScores = [0, 0, 0, 0];
@@ -1693,6 +1902,42 @@ game.import(
             const order = getSeatOrder(g.banker, "cw");
             // ★ 读取发牌速度配置（默认 0.5）
             const dealSpeed = parseFloat(lib.config.extension_拖拉机_dealSpeed) || 0.5;
+
+            // ★ 新增：AI 评估某花色强度的工具函数
+            function evalSuitStrength(cards, rank) {
+                const gl = buildValueGroups(cards, rank, null);
+                let pairCount = 0;
+                const pairGroups = [];
+                for (const grp of gl) {
+                    if (grp.cards.length >= 2) {
+                        pairCount++;
+                        pairGroups.push(grp);
+                    }
+                }
+                // 计算连拖数量
+                let tractorCount = 0;
+                let curLen = 1;
+                for (let i = 0; i < pairGroups.length; i++) {
+                    if (i > 0 && pairGroups[i].val === pairGroups[i - 1].val + 1) {
+                        curLen++;
+                    } else {
+                        if (curLen >= 2)
+                            tractorCount++;
+                        curLen = 1;
+                    }
+                }
+                if (curLen >= 2)
+                    tractorCount++;
+
+                const nonRankCards = cards.filter(c => TuoLaJi.parseCard(c.name).number !== rank);
+                return {
+                    total: cards.length,
+                    excludeRankCount: nonRankCards.length,
+                    pairCount: pairCount,
+                    tractorCount: tractorCount
+                };
+            }
+
             game.players.forEach(
                 p => {
                     p._tuolajiRankCount = {
@@ -1764,43 +2009,52 @@ game.import(
                                     });
                                 }
                             } else {
-                                // ★ 细化 AI 评估副牌强度
-                                const hand = p.getCards("h");
-                                const suitCards = hand.filter(c => c.name.startsWith(suit));
-                                const nonRankCards = suitCards.filter(c => TuoLaJi.parseCard(c.name).number !== rank);
-                                const excludeRankCount = nonRankCards.length;
-                                const gl = buildValueGroups(suitCards, rank, null);
-                                let pairCount = 0;
-                                for (const grp of gl)
-                                    if (grp.cards.length >= 2)
-                                        pairCount++;
-                                const hasTractor = findShortTractor(suitCards, rank, null) || findLongTractor(suitCards, rank, null);
-                                let strengthLevel = 0;
-                                if (excludeRankCount >= 12 || pairCount >= 3 || hasTractor) {
-                                    strengthLevel = 2;
+                                // ★ 核心修改：AI 评估副牌强度与策略
+                                const suitCards = p.getCards("h").filter(c => c.name.startsWith(suit));
+                                const stats = evalSuitStrength(suitCards, rank);
+
+                                let reveal = false;
+
+                                // 基础评估：极强牌必叫
+                                if (stats.excludeRankCount >= 13 || stats.pairCount >= 3 || stats.tractorCount >= 2 || (stats.tractorCount >= 1 && stats.excludeRankCount >= 8)) {
+                                    reveal = true;
                                 } else
-                                    if (excludeRankCount >= 8 || pairCount >= 2) {
-                                        strengthLevel = 1;
+                                    if (stats.excludeRankCount >= 8) {
+                                        // 8张以上尝试叫主
+                                        reveal = Math.random() < 0.75;
                                     } else
                                         if (cnt >= 4) {
-                                            strengthLevel = 1;
+                                            // 级牌很多尝试叫主
+                                            reveal = Math.random() < 0.8;
                                         }
-                                let reveal = false;
-                                if (strengthLevel === 0) {
-                                    const suitCnt = p._tuolajiSuitCount[suit];
-                                    if (cnt >= 2 && suitCnt >= 4)
-                                        reveal = Math.random() < 0.4;
-                                    else
-                                        if (!g._currentBid)
-                                            reveal = cnt >= 1 && Math.random() < 0.2;
-                                        else
-                                            reveal = Math.random() < 0.1;
-                                } else {
-                                    reveal = true;
-                                }
-                                if (g._currentBid && g._currentBid.suit !== suit && strengthLevel === 0) {
-                                    reveal = false;
-                                }
+
+                                        // 根据当前谁叫的牌决定是否反主
+                                if (g._currentBid && g._currentBid.seat !== seat) {
+                                    const isTeammate = (g._currentBid.seat % 2 === seat % 2);
+                                    if (isTeammate) {
+                                        // 队友叫的，除非自己这把牌是超级神仙牌（13张+或者双连拖），否则不反
+                                        if (stats.excludeRankCount >= 13 || stats.tractorCount >= 2) {
+                                            reveal = true;
+                                        } else {
+                                            reveal = false;
+                                        }
+                                    } else {
+                                        // 敌人叫的，如果牌多或拖多，坚决抢反
+                                        if (stats.excludeRankCount >= 8 || stats.tractorCount >= 1) {
+                                            reveal = Math.random() < 0.85;
+                                        } else
+                                            if (stats.excludeRankCount >= 6) {
+                                                reveal = Math.random() < 0.4;
+                                            }
+                                    }
+                                } else
+                                    if (g._currentBid && g._currentBid.seat === seat) {
+                                        // 自己叫的牌，看情况自反
+                                        if (stats.excludeRankCount >= 8 || stats.tractorCount >= 2) {
+                                            reveal = Math.random() < 0.6;
+                                        }
+                                    }
+
                                 if (reveal) {
                                     g._currentBid = {
                                         seat,
@@ -1810,12 +2064,12 @@ game.import(
                                     };
                                     game.log(p, "叫主", cnt, "张", SUIT_NAMES[suit], "级牌");
                                     showBidMarkers(p, cnt);
-                                    showComboText(seat, "叫主", "rise", "avatar"); // ★ 新增
-                                    if (seat === 0) {
+                                    showComboText(seat, "叫主", "rise", "avatar");
+                                    if (seat === 0)
                                         game.playtlj('tlj_manjiaozhu');
-                                    } else {
+                                    else
                                         game.playtlj('tlj_womanjiaozhu');
-                                    }
+
                                     updateQuickBidPanel();
                                     await game.delayx(Math.max(dealSpeed, 0.3));
                                 }
@@ -1880,80 +2134,92 @@ game.import(
                                 someoneChanged = true;
                         }
                     } else {
-                        let maxSuit = null,
-                        maxCnt = 0,
-                        maxStrength = 0;
+                        // ★ AI 最终决定
+                        let bestSuit = null;
+                        let bestStats = null;
+                        let bestCnt = 0;
+
                         for (const s of SUITS) {
                             const cnt = p.getCards("h").filter(c => c.name === s + rank).length;
                             if (cnt === 0)
                                 continue;
                             const suitCards = p.getCards("h").filter(c => c.name.startsWith(s));
-                            const nonRankCards = suitCards.filter(c => TuoLaJi.parseCard(c.name).number !== rank);
-                            const excludeRankCount = nonRankCards.length;
-                            const gl = buildValueGroups(suitCards, rank, null);
-                            let pairCount = 0;
-                            for (const grp of gl)
-                                if (grp.cards.length >= 2)
-                                    pairCount++;
-                            const hasTractor = findShortTractor(suitCards, rank, null) || findLongTractor(suitCards, rank, null);
-                            let strengthLevel = 0;
-                            if (excludeRankCount >= 12 || pairCount >= 3 || hasTractor)
-                                strengthLevel = 2;
-                            else
-                                if (excludeRankCount >= 8 || pairCount >= 2)
-                                    strengthLevel = 1;
-                                else
-                                    if (cnt >= 4)
-                                        strengthLevel = 1;
-                                    else
-                                        strengthLevel = 0;
-                            if (strengthLevel === 0)
-                                continue;
-                            if (cnt > maxCnt) {
-                                maxCnt = cnt;
-                                maxSuit = s;
-                                maxStrength = strengthLevel;
+                            const stats = evalSuitStrength(suitCards, rank);
+                            // 综合评分：主牌数 + 连拖*4 + 对子*1.5
+                            const score = stats.excludeRankCount + stats.tractorCount * 4 + stats.pairCount * 1.5;
+
+                            if (!bestStats || score > (bestStats.excludeRankCount + bestStats.tractorCount * 4 + bestStats.pairCount * 1.5)) {
+                                bestStats = stats;
+                                bestSuit = s;
+                                bestCnt = cnt;
                             }
                         }
+
                         let targetLayer = g._currentBid ? g._currentBid.count : 0;
                         let canReveal = false;
-                        if (maxSuit) {
+
+                        if (bestSuit) {
                             if (g._currentBid) {
                                 if (g._currentBid.seat === seat) {
-                                    if (lib.config.extension_拖拉机_allowSelfCounter && maxCnt > targetLayer)
+                                    if (lib.config.extension_拖拉机_allowSelfCounter && bestCnt > targetLayer)
                                         canReveal = true;
                                 } else {
-                                    if (maxCnt > targetLayer)
+                                    if (bestCnt > targetLayer)
                                         canReveal = true;
                                 }
                             } else {
-                                if (maxCnt > 0)
+                                if (bestCnt > 0)
                                     canReveal = true;
                             }
                         }
+
                         if (canReveal) {
                             let reveal = false;
-                            if (maxStrength === 2)
-                                reveal = true;
-                            else
-                                if (maxStrength === 1) {
-                                    reveal = maxCnt >= 2 || Math.random() < 0.8;
+
+                            if (g._currentBid && g._currentBid.seat !== seat) {
+                                const isTeammate = (g._currentBid.seat % 2 === seat % 2);
+                                if (isTeammate) {
+                                    if (bestStats.excludeRankCount >= 13 || bestStats.tractorCount >= 2)
+                                        reveal = true;
+                                    else
+                                        reveal = false;
+                                } else {
+                                    if (bestStats.excludeRankCount >= 8 || bestStats.tractorCount >= 1)
+                                        reveal = Math.random() < 0.85;
+                                    else
+                                        if (bestStats.excludeRankCount >= 6)
+                                            reveal = Math.random() < 0.5;
+                                        else
+                                            reveal = false;
                                 }
+                            } else {
+                                // 自己叫主
+                                if (bestStats.excludeRankCount >= 13 || bestStats.tractorCount >= 2)
+                                    reveal = true;
+                                else
+                                    if (bestStats.excludeRankCount >= 8)
+                                        reveal = Math.random() < 0.8;
+                                    else
+                                        if (bestCnt >= 4)
+                                            reveal = Math.random() < 0.7;
+                                        else
+                                            reveal = false;
+                            }
+
                             if (reveal) {
                                 g._currentBid = {
                                     seat,
-                                    suit: maxSuit,
-                                    count: maxCnt,
+                                    suit: bestSuit,
+                                    count: bestCnt,
                                     isJoker: false
                                 };
-                                game.log(p, "反主", maxCnt, "张", SUIT_NAMES[maxSuit], "级牌");
-                                showBidMarkers(p, maxCnt);
-                                showComboText(seat, "反主", "counter", "avatar"); // ★ 新增
-                                if (seat === 0) {
+                                game.log(p, "反主", bestCnt, "张", SUIT_NAMES[bestSuit], "级牌");
+                                showBidMarkers(p, bestCnt);
+                                showComboText(seat, "反主", "counter", "avatar");
+                                if (seat === 0)
                                     game.playtlj('tlj_manjiaozhu');
-                                } else {
+                                else
                                     game.playtlj('tlj_womanjiaozhu');
-                                }
                                 someoneChanged = true;
                                 updateQuickBidPanel();
                                 await game.delayx(Math.max(dealSpeed, 0.3));
@@ -1964,6 +2230,7 @@ game.import(
             }
             if (hintDiv.parentNode)
                 hintDiv.remove();
+
                 // ===================== 3. 王反无主询问阶段 =====================
             if (lib.config.extension_拖拉机_kingCounter) {
                 let jokerLord = null;
@@ -1988,6 +2255,7 @@ game.import(
                                 canNT = true;
                                 showCards = [...bigs.slice(0, 2), ...smalls.slice(0, 2)];
                             }
+
                     if (canNT) {
                         let wantNT = false;
                         if (p === game.me) {
@@ -1995,34 +2263,38 @@ game.import(
                             const res = await game.me.chooseBool(promptText).forResult();
                             wantNT = res.bool;
                         } else {
+                            // ★ 核心修改：无主局判断，级牌>5张高必反
+                            const totalRankCount = p.getCards("h").filter(c => TuoLaJi.parseCard(c.name).number === g.rank).length;
+
                             if (!g._currentBid) {
                                 wantNT = Math.random() < 0.8;
                             } else {
-                                const currentSuit = g._currentBid.suit;
-                                let hasBigCombo = false;
-                                if (currentSuit !== "nt") {
-                                    const suitCards = p.getCards("h").filter(c => c.name.startsWith(currentSuit));
-                                    if (suitCards.length >= 13) {
-                                        hasBigCombo = true;
-                                    } else {
-                                        const gl = buildValueGroups(suitCards, g.rank, currentSuit);
-                                        let pairCount = 0;
-                                        for (const grp of gl)
-                                            if (grp.cards.length >= 2)
-                                                pairCount++;
-                                        if (pairCount >= 3)
-                                            hasBigCombo = true;
-                                        if (findLongTractor(suitCards, g.rank, currentSuit) || findShortTractor(suitCards, g.rank, currentSuit))
-                                            hasBigCombo = true;
-                                    }
-                                }
-                                if (hasBigCombo) {
-                                    wantNT = false;
+                                // 如果自己级牌总数大于 5 张，极高概率反无主
+                                if (totalRankCount > 5) {
+                                    wantNT = Math.random() < 0.9;
                                 } else {
-                                    if (bigs.length >= 4 || smalls.length >= 4) {
-                                        wantNT = Math.random() < 0.95;
+                                    // 原有逻辑：判断当前花色是否够强，如果自己这花色一手遮天，就不反无主
+                                    const currentSuit = g._currentBid.suit;
+                                    let hasBigCombo = false;
+                                    if (currentSuit !== "nt") {
+                                        const suitCards = p.getCards("h").filter(c => c.name.startsWith(currentSuit));
+                                        if (suitCards.length >= 13) {
+                                            hasBigCombo = true;
+                                        } else {
+                                            const stats = evalSuitStrength(suitCards, g.rank);
+                                            if (stats.pairCount >= 3 || stats.tractorCount >= 1) {
+                                                hasBigCombo = true;
+                                            }
+                                        }
+                                    }
+                                    if (hasBigCombo) {
+                                        wantNT = false;
                                     } else {
-                                        wantNT = Math.random() < 0.9;
+                                        if (bigs.length >= 4 || smalls.length >= 4) {
+                                            wantNT = Math.random() < 0.95;
+                                        } else {
+                                            wantNT = Math.random() < 0.85;
+                                        }
                                     }
                                 }
                             }
@@ -2054,15 +2326,15 @@ game.import(
                     showComboText(jokerLord,
                     "反主",
                     "counter",
-                    "avatar"); // ★ 新增
-                    if (jokerLord === 0) {
+                    "avatar");
+                    if (jokerLord === 0)
                         game.playtlj('tlj_manjiaozhu');
-                    } else {
+                    else
                         game.playtlj('tlj_womanjiaozhu');
-                    }
                     g._ntShowCards = jokerCardsToShow;
                 }
             }
+
             // ===================== 发底牌及定主展示 =====================
             g.bottom = get.cards(8);
             game.log("底牌已入底（8张）");
@@ -2091,7 +2363,6 @@ game.import(
                     };
                     chosenCards = p.getCards("h").filter(c => c.name === g._currentBid.suit + rank).slice(0, g._currentBid.count);
                 }
-                // ★ 核心修复：在弹窗创建前，先进行排序
                 const cmp = makeComparator(g.rank, g.trumpSuit);
                 game.players.forEach(pp => {
                     sortHand(pp,
@@ -2099,7 +2370,6 @@ game.import(
                 });
                 if (chosenCards.length > 0) {
                     const dialog = ui.create.dialog(dialogTitle, chosenCards);
-                    // ★ 安全重排：延迟触发 resize 事件，让无名杀自动计算所有手牌的最左侧位置，避免 opacity 报错
                     setTimeout(() => {
                         window.dispatchEvent(new Event('resize'));
                     }, 50);
@@ -2110,7 +2380,6 @@ game.import(
                                 function () {
                                     dialog.close();
                                     button.close();
-                                    // 点击确定后，再次刷新并重排，确保百分百归位
                                     game.players.forEach(pp => {
                                         sortHand(pp, cmp);
                                         pp.$update();
@@ -2170,7 +2439,6 @@ game.import(
             }
             g.bankerTeam = g.banker % 2;
             game.log("庄家：", game.players[g.banker], "（" + (g.bankerTeam === 0 ? "南北队" : "东西队") + "）");
-            // ★ 结尾最后兜底排序
             const cmpEnd = makeComparator(g.rank, g.trumpSuit);
             game.players.forEach(p => {
                 sortHand(p, cmpEnd);
@@ -2728,6 +2996,7 @@ game.import(
             }
             return picked;
         }
+        // ★ 新增：对单个降级目标尝试匹配
         // ★ 新增：对单个降级目标尝试匹配
         function matchFollowTarget(gl, target, g, addResult) {
             const rank = g.rank,
@@ -3342,33 +3611,37 @@ game.import(
         }
         function findLongTractor(pool, rank, trumpSuit) {
             const gl = buildValueGroups(pool, rank, trumpSuit);
-            const pairGroups = gl.filter(g => g.cards.length >= 2);
-            let best = null,
-            bestLen = 0,
-            bestPower = -1;
-            for (let i = 0; i < pairGroups.length; i++) {
-                for (let len = 3; i + len <= pairGroups.length; len++) {
-                    let ok = true;
-                    for (let j = 0; j < len - 1; j++) {
-                        if (pairGroups[i + j + 1].val - pairGroups[i + j].val !== 1) {
-                            ok = false;
-                            break;
+            let best = null;
+            let bestScore = -1;
+
+            // 同时遍历对子(2条)、三条(3条)、四条(4条)连拖
+            for (let size = 2; size <= 4; size++) {
+                const validGroups = gl.filter(g => g.cards.length >= size);
+                for (let i = 0; i < validGroups.length; i++) {
+                    for (let len = 3; i + len <= validGroups.length; len++) {
+                        let ok = true;
+                        for (let j = 0; j < len - 1; j++) {
+                            if (validGroups[i + j + 1].val - validGroups[i + j].val !== 1) {
+                                ok = false;
+                                break;
+                            }
                         }
-                    }
-                    if (!ok)
-                        break;
-                    const cards = [];
-                    for (let j = 0; j < len; j++)
-                        cards.push(...pairGroups[i + j].cards.slice(0, 2));
-                    const pattern = TuoLaJi.getPattern(cards.map(c => c.name), rank, trumpSuit);
-                    if (pattern.valid && pattern.type === "tractor" && pattern.size === 2) {
-                        if (len > bestLen || (len === bestLen && pattern.power > bestPower)) {
-                            best = {
-                                cards,
-                                pattern
-                            };
-                            bestLen = len;
-                            bestPower = pattern.power;
+                        if (!ok)
+                            break;
+                        const cards = [];
+                        for (let j = 0; j < len; j++)
+                            cards.push(...validGroups[i + j].cards.slice(0, size));
+                        const pattern = TuoLaJi.getPattern(cards.map(c => c.name), rank, trumpSuit);
+                        if (pattern.valid && pattern.type === "tractor" && pattern.size === size) {
+                            // 长度越长越优先；长度相同时，张数(size)越多越优先（即优先四条拖、三条拖）
+                            const score = len * 100 + size * 10 + pattern.power;
+                            if (score > bestScore) {
+                                best = {
+                                    cards,
+                                    pattern
+                                };
+                                bestScore = score;
+                            }
                         }
                     }
                 }
@@ -3533,14 +3806,14 @@ game.import(
             const groups = {};
             for (const c of cards) {
                 const p = TuoLaJi.parseCard(c.name);
-                const key = p.joker ? "joker_" + p.joker : p.number;
+                // ★ 核心修复：必须用 suit + number 作为 key，不同花色的同点数不能当对子
+                const key = p.joker ? ("joker_" + p.joker) : (p.suit + "_" + p.number);
                 if (!groups[key])
                     groups[key] = [];
                 groups[key].push(c);
             }
             const groupKeys = Object.keys(groups);
             const remaining = groupKeys.map(k => groups[k].length);
-            // ★ 修复：使用回溯匹配，允许将三张 4 拆成一对 4 + 一张散牌 4
             function tryMatch(blockIdx) {
                 if (blockIdx >= blocks.length)
                     return remaining.every(r => r === 0);
@@ -3557,7 +3830,6 @@ game.import(
             }
             if (!tryMatch(0))
                 return false;
-                // 连拖检查
             if (adjacent) {
                 const gl = buildValueGroups(cards, g.rank, g.trumpSuit);
                 const sorted = gl.slice().sort((a, b) => a.val - b.val);
@@ -3566,7 +3838,6 @@ game.import(
                         return false;
                 }
             }
-            // 部分连拖检查
             if (partialAdjacentLength && partialAdjacentLength >= 2) {
                 const gl = buildValueGroups(cards, g.rank, g.trumpSuit);
                 const pairGroups = gl.filter(x => x.cards.length >= 2).sort((a, b) => a.val - b.val);
@@ -3713,13 +3984,11 @@ game.import(
                     add("两散", [1, 1], false, (pool) => matchBlocksNoAdj(pool, [1, 1], rank, trumpSuit, false));
                 } else
                     if (t === "triple") {
-                        // 规则③：单三条首出，三条 -> 对+散 -> 三散
                         add("三条", [3], false, (pool) => findTripleCards(pool, rank, trumpSuit));
                         add("对+散", [2, 1], false, (pool) => matchBlocksNoAdj(pool, [2, 1], rank, trumpSuit, false));
                         add("三散", [1, 1, 1], false, (pool) => matchBlocksNoAdj(pool, [1, 1, 1], rank, trumpSuit, false));
                     } else
                         if (t === "bomb") {
-                            // 规则②-①：四条首出，四条 -> 三条+散 -> 连拖 -> 对子 -> 散
                             add("四条", [4], false, (pool) => findBombCards(pool, rank, trumpSuit));
                             add("三条+散", [3, 1], false, (pool) => matchBlocksNoAdj(pool, [3, 1], rank, trumpSuit, false));
                             add("两连拖", [2, 2], true, (pool) => findTractorCards(pool, 2, 2, rank, trumpSuit));
@@ -3733,12 +4002,9 @@ game.import(
                             );
                         } else
                             if (t === "windmill") {
-                                // 规则②-②：风车首出，风车/四拖二 -> 双三条 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
                                 add("风车", [3, 3], true, (pool) => findWindmillCards(pool, rank, trumpSuit));
                                 add("四拖二", [4, 2], true, (pool) => findFourTwoCards(pool, rank, trumpSuit));
-                                // ★ 新增：两个散的三条
                                 add("双三条", [3, 3], false, (pool) => matchBlocksNoAdj(pool, [3, 3], rank, trumpSuit, false));
-
                                 add("三条+对+散", [3, 2, 1], false, (pool) => matchBlocksNoAdj(pool, [3, 2, 1], rank, trumpSuit, false));
                                 add(
                                     "三条+三散",
@@ -3747,7 +4013,6 @@ game.import(
                                     (pool) => matchBlocksNoAdj(pool, [3, 1, 1, 1], rank, trumpSuit, false)
                                 );
                                 add("三连拖", [2, 2, 2], true, (pool) => findTractorCards(pool, 2, 3, rank, trumpSuit));
-                                // ★ 新增：两连拖+一对
                                 L.push(
                                     {
                                         label: "两连拖+一对",
@@ -3781,7 +4046,6 @@ game.import(
                                 );
                             } else
                                 if (t === "four_two") {
-                                    // 规则②-①：四拖二首出，四拖二 -> 四条+对 -> 四条+两散 -> 3+2+1 -> 3+1+1+1 -> 对子连拖 -> 对子
                                     add("四拖二", [4, 2], true, (pool) => findFourTwoCards(pool, rank, trumpSuit));
                                     add("四条+对", [4, 2], false, (pool) => matchBlocksNoAdj(pool, [4, 2], rank, trumpSuit, false));
                                     add("四条+两散", [4, 1, 1], false, (pool) => matchBlocksNoAdj(pool, [4, 1, 1], rank, trumpSuit, false));
@@ -3793,7 +4057,6 @@ game.import(
                                         (pool) => matchBlocksNoAdj(pool, [3, 1, 1, 1], rank, trumpSuit, false)
                                     );
                                     add("三连拖", [2, 2, 2], true, (pool) => findTractorCards(pool, 2, 3, rank, trumpSuit));
-                                    // ★ 新增：两连拖+一对
                                     L.push(
                                         {
                                             label: "两连拖+一对",
@@ -3807,7 +4070,6 @@ game.import(
                                         }
                                     );
                                     add("三对", [2, 2, 2], false, (pool) => matchBlocksNoAdj(pool, [2, 2, 2], rank, trumpSuit, false));
-                                    // ★ 新增：两连拖+两散
                                     L.push(
                                         {
                                             label: "两连拖+两散",
@@ -3840,7 +4102,6 @@ game.import(
                                     );
                                 } else
                                     if (t === "four_four") {
-                                        // 规则②-①：四拖四首出，四拖四 -> 双四条 -> 四条+三条+散 -> 四条+对+两散 -> 四条+四散 -> 双三条+对 -> 双三条+两散 -> 四连拖 -> 四对...
                                         add("四拖四", [4, 4], true, (pool) => findFourFourCards(pool, rank, trumpSuit));
                                         add("双四条", [4, 4], false, (pool) => matchBlocksNoAdj(pool, [4, 4], rank, trumpSuit, false));
                                         add(
@@ -3869,7 +4130,6 @@ game.import(
                                             (pool) => matchBlocksNoAdj(pool, [3, 3, 1, 1], rank, trumpSuit, false)
                                         );
                                         add("四连拖", [2, 2, 2, 2], true, (pool) => findTractorCards(pool, 2, 4, rank, trumpSuit));
-                                        // ★ 新增：三连拖+一对
                                         L.push(
                                             {
                                                 label: "三连拖+一对",
@@ -3882,7 +4142,6 @@ game.import(
                                                 }
                                             }
                                         );
-                                        // ★ 新增：两连拖+两对
                                         L.push(
                                             {
                                                 label: "两连拖+两对",
@@ -3927,16 +4186,20 @@ game.import(
                                         );
                                     } else
                                         if (t === "tractor") {
-                                            // 规则①：普通对子连拖首出
+                                            // ★ 核心统一逻辑：所有多连拖（含2条、3条、4条，无限长）
                                             const size = leadPattern.size,
                                             length = leadPattern.length;
                                             const wantSize = TuoLaJi.getPatternSize(leadPattern);
+
+                                            // 1. 找同型连拖
                                             add(
                                                 "同型连拖",
                                                 Array(length).fill(size),
                                                 true,
                                                 (pool) => findTractorCards(pool, size, length, rank, trumpSuit)
                                             );
+
+                                            // 2. 特殊跨型互跟（例如：条数少一点但长度够，或者用同张数炸弹）
                                             if (size === 2) {
                                                 if (wantSize === 4)
                                                     add("四条", [4], false, (pool) => findBombCards(pool, rank, trumpSuit));
@@ -3947,44 +4210,60 @@ game.import(
                                                 if (wantSize === 8)
                                                     add("四拖四", [4, 4], true, (pool) => findFourFourCards(pool, rank, trumpSuit));
                                             } else
-                                                if (size === 3 && wantSize === 6) {
-                                                    add("风车", [3, 3], true, (pool) => findWindmillCards(pool, rank, trumpSuit));
-                                                }
-                                            if (size === 2 && length >= 3) {
-                                                for (let tLen = length - 1; tLen >= 2; tLen--) {
-                                                    const fillBlocks = [];
-                                                    let rem = wantSize - tLen * 2;
-                                                    while (rem >= 2) {
-                                                        fillBlocks.push(2);
-                                                        rem -= 2;
+                                                if (size === 3) {
+                                                    // 三条连拖，若总张数刚好是6，可以拿风车或四拖二去跟
+                                                    if (wantSize === 6) {
+                                                        add("风车", [3, 3], true, (pool) => findWindmillCards(pool, rank, trumpSuit));
+                                                        add("四拖二", [4, 2], true, (pool) => findFourTwoCards(pool, rank, trumpSuit));
                                                     }
-                                                    while (rem >= 1) {
-                                                        fillBlocks.push(1);
-                                                        rem -= 1;
-                                                    }
-                                                    if (fillBlocks.length === 0)
-                                                        continue;
-                                                    const blocks = [...Array(tLen).fill(2), ...fillBlocks];
-                                                    L.push(
-                                                        {
-                                                            label: `连拖${tLen}+补${fillBlocks.join("-")}`,
-                                                            blocks: blocks,
-                                                            adjacent: false,
-                                                            partialAdjacent: tLen,
-                                                            finder: (pool) => {
-                                                                const list = findAllTractorPlusFillers(pool,
-                                                                2,
-                                                                tLen,
-                                                                fillBlocks,
-                                                                rank,
-                                                                trumpSuit);
-                                                                return list.length > 0 ? list[0] : null;
-                                                            }
+                                                } else
+                                                    if (size === 4) {
+                                                        // 四条连拖，若总张数刚好是8，可以拿四拖四去跟
+                                                        if (wantSize === 8) {
+                                                            add("四拖四", [4, 4], true, (pool) => findFourFourCards(pool, rank, trumpSuit));
                                                         }
-                                                    );
+                                                    }
+
+                                                    // 3. 降级阶梯（通用，无论2条3条4条）
+                                                    // 优先找：短一节的同类连拖 + 散块补足
+                                            for (let tLen = length - 1; tLen >= 2; tLen--) {
+                                                const fillBlocks = [];
+                                                let rem = wantSize - tLen * size;
+                                                while (rem >= size) {
+                                                    fillBlocks.push(size);
+                                                    rem -= size;
                                                 }
+                                                while (rem >= 2) {
+                                                    fillBlocks.push(2);
+                                                    rem -= 2;
+                                                }
+                                                while (rem >= 1) {
+                                                    fillBlocks.push(1);
+                                                    rem -= 1;
+                                                }
+                                                if (fillBlocks.length === 0)
+                                                    continue;
+                                                const blocks = [...Array(tLen).fill(size), ...fillBlocks];
+                                                L.push(
+                                                    {
+                                                        label: `连拖${tLen}+补${fillBlocks.join("-")}`,
+                                                        blocks: blocks,
+                                                        adjacent: false,
+                                                        partialAdjacent: tLen,
+                                                        finder: (pool) => {
+                                                            const list = findAllTractorPlusFillers(pool,
+                                                            size,
+                                                            tLen,
+                                                            fillBlocks,
+                                                            rank,
+                                                            trumpSuit);
+                                                            return list.length > 0 ? list[0] : null;
+                                                        }
+                                                    }
+                                                );
                                             }
-                                            // 纯对子级降级，全散
+
+                                            // 4. 纯对子级降级，全散
                                             for (const b of buildPairLevelBlocks(wantSize)) {
                                                 if (b.every(x => x === 1))
                                                     continue;
@@ -4824,6 +5103,8 @@ game.import(
             const isLateGame = hand.length <= 15;
             // ★ 新增：判断上一次首出王是否拿到了足够分数（不足10分或队友没赢，则不再主动孤出大王）
             const lastWasJokerNoPoints = (g._lastLeadWasJoker && g._lastLeadWasJoker.seat === seat && !g._lastLeadWasJoker.gotPoints);
+            // ★ 新增：无主局且非打5、10、K级时，不主动首出大王（留作毙牌）
+            const isNTAndNotPointRank = (g.trumpSuit === "nt" && g.rank !== 5 && g.rank !== 10 && g.rank !== 13);
             const suitPools = {
                 spade:[],
                 heart:[],
@@ -5059,7 +5340,7 @@ game.import(
             }
             // ===================== 步骤 3：孤张大王/小王前期出 =====================
             // ★ 核心修复：改用 lastWasJokerNoPoints 拦截
-            if (!lastWasJokerNoPoints) {
+            if (!lastWasJokerNoPoints && !isNTAndNotPointRank) {
                 let playedTrumpCount = 0;
                 if (g.playedCards) {
                     for (let name of g.playedCards) {
@@ -5203,7 +5484,7 @@ game.import(
                 if (bestTrumpTractor)
                     return bestTrumpTractor;
                     // ★ 核心修复：加上 lastWasJokerNoPoints 拦截
-                if (!lastWasJokerNoPoints) {
+                if (!lastWasJokerNoPoints && !isNTAndNotPointRank) {
                     const bigJoker = trumpPool.find(c => TuoLaJi.parseCard(c.name).joker === "big");
                     if (bigJoker)
                         return {
@@ -5626,13 +5907,10 @@ game.import(
                 ok: true
             };
         }
-        // ★ 新增：检测在降级出对子时，是否故意拆散手里的连拖
         function checkBreakTractorInFollow(cards, handInSuit, step, g) {
-            // 仅在要求出多个纯对子时检测
             if (!step.blocks.every(b => b === 2))
                 return null;
             const needPairs = step.blocks.length;
-            // 1. 分析手牌，提取所有连拖的长度
             const handGL = buildValueGroups(handInSuit, g.rank, g.trumpSuit);
             const handPairs = handGL.filter(x => x.cards.length >= 2).map(x => x.val).sort((a, b) => a - b);
             let handTractors = [];
@@ -5649,9 +5927,8 @@ game.import(
             if (curLen >= 2)
                 handTractors.push(curLen);
             if (handTractors.length === 0)
-                return null; // 手里根本没连拖，随便拆
-                // 2. 计算在限定张数（needPairs）下，玩家最多能塞入几个完整的连拖
-            handTractors.sort((a, b) => b - a); // 优先用最长的连拖
+                return null;
+            handTractors.sort((a, b) => b - a);
             let maxPlayableTractorPairs = 0;
             let remainPairs = needPairs;
             for (const len of handTractors) {
@@ -5661,8 +5938,7 @@ game.import(
                 }
             }
             if (maxPlayableTractorPairs === 0)
-                return null; // 张数太少，连一个最小连拖都放不下
-                // 3. 分析玩家实际打出的牌，看包含了多少个完整的连拖
+                return null;
             const playedGL = buildValueGroups(cards, g.rank, g.trumpSuit);
             const playedPairs = playedGL.filter(x => x.cards.length >= 2).map(x => x.val).sort((a, b) => a - b);
             let playedTractors = [];
@@ -5679,7 +5955,6 @@ game.import(
             if (curLen >= 2)
                 playedTractors.push(curLen);
             let playedTractorPairs = playedTractors.reduce((sum, len) => sum + len, 0);
-            // 4. 比对：如果实际打出的连拖对数，小于理论上能打出的最大连拖对数，说明故意拆散了连拖
             if (playedTractorPairs < maxPlayableTractorPairs) {
                 return {
                     ok: false,
@@ -6402,6 +6677,59 @@ game.import(
             );
             return sorted.slice(0, actualSize).map(x => x.card);
         }
+        // ★ 新增：评估手牌是否有足够实力去强行“接棒”（盖过队友的牌）
+        function evalHandPower(pool, rank, trumpSuit) {
+            let score = 0;
+            // 连拖及特殊牌型加分
+            if (findFourFour(pool, rank, trumpSuit))
+                score += 5;
+            if (findFourTwo(pool, rank, trumpSuit))
+                score += 4;
+            if (findBomb(pool, rank, trumpSuit))
+                score += 3;
+            if (findWindmill(pool, rank, trumpSuit))
+                score += 3;
+            if (findLongTractor(pool, rank, trumpSuit))
+                score += 3;
+            if (findShortTractor(pool, rank, trumpSuit))
+                score += 2;
+
+                // 大对子加分（王、级牌、A）
+            const gl = buildValueGroups(pool, rank, trumpSuit);
+            for (const grp of gl) {
+                if (grp.cards.length >= 2) {
+                    const p = grp.p;
+                    if (p.joker || p.number === rank || TuoLaJi.cardPower(p, rank, trumpSuit) >= 14) {
+                        score += 2;
+                    }
+                }
+            }
+
+            // 单张大牌加分 (打A时有K，打其他时有A)
+            const topNum = rank === 1 ? 13 : 1;
+            if (pool.some(c => TuoLaJi.parseCard(c.name).number === topNum)) {
+                score += 1;
+            }
+
+            return score;
+        }
+
+        // ★ 新增：判断敌人手里是否有该首出花色的牌（有的话，他只能跟，不能毙）
+        function isInSuitEnemy(player, leadSuit, g) {
+            if (leadSuit === "trump")
+                return false;
+            const hand = player.getCards("h");
+            const seatIdx = game.players.indexOf(player);
+            if (seatIdx >= 0 && g.lackSuit[seatIdx][leadSuit])
+                return false;
+
+            return hand.some(
+                c => {
+                    const p = TuoLaJi.parseCard(c.name);
+                    return !p.joker && p.suit === leadSuit && !TuoLaJi.isTrump(p, g.rank, g.trumpSuit);
+                }
+            );
+        }
         // ============ AI 跟牌（规则优先级绝对最高） ============
         function aiPlay(seat, currentPlays, g) {
             const p = game.players[seat];
@@ -6419,6 +6747,11 @@ game.import(
             const leadSuit = leadPattern.isTrump ? "trump" : leadPattern.suit;
             const team = seat % 2;
             const isLastPlayer = currentPlays.length === 3;
+            // ★ 修复：完美识别甩牌被毙的复杂情况
+            const winnerResult = determineWinner(currentPlays, g);
+            const winningSeat = currentPlays[winnerResult.winIdx].seat;
+            const currentBestPattern = winnerResult.winPattern;
+            /*
             let winIdx = 0;
             for (let i = 1; i < currentPlays.length; i++) {
                 const pl = currentPlays[i];
@@ -6431,6 +6764,7 @@ game.import(
             }
             const winningSeat = currentPlays[winIdx].seat;
             const currentBestPattern = currentPlays[winIdx].pattern;
+            */
             const teammateWinning = currentPlays.length > 0 && (winningSeat % 2 === team);
             let teammateAbsolutelyWinning = false;
             if (teammateWinning && currentBestPattern) {
@@ -6445,17 +6779,29 @@ game.import(
                         teammateLack = true;
             }
             const inSuit = parsed.filter(x => isInSuit(x.card, leadSuit, g));
+
+            // ★ 新增：评估末位是否需要接棒
+            let wantToTakeOver = false;
+            if (isLastPlayer && teammateWinning) {
+                const powerScore = evalHandPower(hand, g.rank, g.trumpSuit);
+                const isEndGame = hand.length <= 10;
+                // 手牌很强（如连拖、大对子），或残局有大牌，或队友快跑完了（队友手牌极少且自己牌力尚可）
+                const teammateHandCount = game.players[winningSeat].getCards("h").length;
+                const needToTakeOver = (powerScore >= 4 || (isEndGame && powerScore >= 2) || (teammateHandCount < 8 && powerScore >= 3));
+                if (needToTakeOver) {
+                    wantToTakeOver = true;
+                }
+            }
+
             // ★ 核心架构修改 1：先做规则判定。如果有必须跟的特定结构（如对子、三条、连拖），锁死候选池！
             let hasRequiredStructure = false;
             let requiredCombos = null;
             if (inSuit.length >= actualSize) {
                 const inSuitCards = inSuit.map(x => x.card);
                 const step = getBestFollowStep(inSuitCards, leadPattern, g);
-                // 如果最优结构不是散牌，说明必须按特定牌型跟
                 if (step && !step.blocks.every(b => b === 1)) {
                     let rawCombos = getFollowCandidatesForAI(inSuitCards, leadPattern, g);
                     if (rawCombos) {
-                        // 过滤出完全符合该结构的组合
                         rawCombos = rawCombos.filter(c => matchStructureOfCards(c, step.blocks, step.adjacent, g, step.partialAdjacent));
                     }
                     if (rawCombos && rawCombos.length > 0) {
@@ -6534,8 +6880,8 @@ game.import(
                 };
             }
             // ★ 末位灵活让牌逻辑（队友赢时送分 / 无强牌时让牌）
-            // ★ 核心架构修改 2：如果有强制必须跟的牌型（hasRequiredStructure），绝对不能走这个捷径拆牌垫！
-            if (isLastPlayer && teammateWinning && !hasRequiredStructure) {
+            // ★ 核心架构修改 2：如果有强制必须跟的牌型，或者决定接棒，绝不走这个捷径拆牌垫！
+            if (isLastPlayer && teammateWinning && !hasRequiredStructure && !wantToTakeOver) {
                 let tractorCount = 0;
                 if (findLongTractor(hand, g.rank, g.trumpSuit))
                     tractorCount += 2;
@@ -6600,6 +6946,18 @@ game.import(
                 const isEnemyWinning = winningSeat % 2 !== team;
                 const isTeammateLead = currentPlays[0].seat !== seat && currentPlays[0].seat % 2 === team;
                 const teammateLeadingBig = isTeammateLead && teammateWinning && currentBestPattern && (currentBestPattern.power >= 13 || ["tractor", "four_two", "four_four", "windmill", "bomb"].includes(currentBestPattern.type));
+
+                // ★ 如果队友当前领先，且队友打出的牌极大
+                let teammatePlayedBigTrump = false;
+                if (teammateWinning && currentBestPattern && currentBestPattern.isTrump && currentBestPattern.power >= 8000) {
+                    teammatePlayedBigTrump = true;
+                }
+
+                // ★ 核心：如果决定接棒，那么无视队友的大牌，直接抢！
+                if (wantToTakeOver) {
+                    teammatePlayedBigTrump = false;
+                }
+
                 let teammatePlayedSmall = false;
                 for (const pl of currentPlays) {
                     if (pl.seat === seat || pl.seat % 2 !== team)
@@ -6617,8 +6975,19 @@ game.import(
                 for (const c of combos) {
                     if (!TuoLaJi.structureMatch(c.pattern, leadPattern))
                         continue;
-                    if (TuoLaJi.comparePatterns(c.pattern, currentBestPattern) <= 0)
-                        continue;
+
+                        // ★ 修复：如果是甩牌，必须比较结构大小，确保毙得过前面的人（如2号位）
+                    if (leadPattern.type === "throw") {
+                        // ★ 终极修复：使用 find 精准定位到那家出的牌，绝不能用座位号索引！
+                        const currentWinnerPlay = currentPlays.find(pl => pl.seat === winningSeat);
+                        const cmp = compareThrowPlays(c.cards, currentWinnerPlay.cards, leadPattern, g);
+                        if (cmp <= 0)
+                            continue; // 比不过真实的最大者，直接放弃毙牌
+                    } else {
+                        if (TuoLaJi.comparePatterns(c.pattern, currentBestPattern) <= 0)
+                            continue;
+                    }
+
                     const pts = TuoLaJi.countPoints(c.cards.map(cc => cc.name));
                     beaters.push({
                         ...c,
@@ -6628,119 +6997,156 @@ game.import(
                 if (beaters.length > 0 && !teammateAbsolutelyWinning) {
                     beaters.sort((a, b) => TuoLaJi.comparePatterns(a.pattern, b.pattern));
                     let best = null;
-                    if (isLastPlayer) {
-                        const smallestNonPoint = beaters.find(x => x.pts === 0);
-                        const smallestPoint = beaters.find(x => x.pts > 0);
-                        if (smallestPoint) {
-                            if (!smallestNonPoint)
-                                best = smallestPoint;
-                            else
-                                if (roundPoints > 0 && smallestPoint.pattern.power - smallestNonPoint.pattern.power <= 3)
-                                    best = smallestPoint;
-                                else
-                                    best = smallestNonPoint;
+
+                    // ★ 核心修复：如果末位，队友已经最大，且不想接棒
+                    if (isLastPlayer && teammateWinning && !wantToTakeOver) {
+                        const sideCards = parsed.filter(x => !TuoLaJi.isTrump(x.p, g.rank, g.trumpSuit));
+
+                        // 只要手里副牌数量够垫，就优先去垫副牌（绝不盖队友）
+                        if (sideCards.length >= actualSize) {
+                            const pointBeaters = beaters.filter(x => x.pts > 0);
+                            // 除非场上有分，且手里有带分的主牌组合，才考虑毙一下拿分
+                            if (pointBeaters.length > 0 && roundPoints > 0) {
+                                best = pointBeaters[0];
+                            } else {
+                                best = null; // 否则，直接去垫副牌
+                            }
                         } else {
+                            // 副牌不够垫，只能被迫盖队友
                             best = beaters[0];
                         }
-                    } else {
-                        // ★ 2、3号位（非末位）毙牌灵活策略
-                        let hasStrongCombo = false;
-                        if (findLongTractor(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findBomb(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findWindmill(trumpCards.map(x => x.card), g.rank, g.trumpSuit)) {
-                            hasStrongCombo = true;
-                        }
-                        let wantToGrab = false;
-                        let useBigTrump = false;
-                        if (!teammateWinning) {
-                            if (roundPoints >= 5) {
-                                wantToGrab = true;
-                                useBigTrump = true;
-                            } else
-                                if (hasStrongCombo) {
+                    } else
+                        if (teammatePlayedBigTrump) {
+                            best = null;
+                        } else
+                            if (isLastPlayer) {
+                                // 其他普通的末位情况（比如敌方大）
+                                const smallestNonPoint = beaters.find(x => x.pts === 0);
+                                const smallestPoint = beaters.find(x => x.pts > 0);
+                                if (smallestPoint) {
+                                    if (!smallestNonPoint)
+                                        best = smallestPoint;
+                                    else
+                                        if (roundPoints > 0 && smallestPoint.pattern.power - smallestNonPoint.pattern.power <= 3)
+                                            best = smallestPoint;
+                                        else
+                                            best = smallestNonPoint;
+                                } else {
+                                    best = beaters[0];
+                                }
+                            } else {
+                                let hasStrongCombo = false;
+                                if (findLongTractor(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findBomb(trumpCards.map(x => x.card), g.rank, g.trumpSuit) || findWindmill(trumpCards.map(x => x.card), g.rank, g.trumpSuit)) {
+                                    hasStrongCombo = true;
+                                }
+                                let wantToGrab = false;
+                                let useBigTrump = false;
+
+                                if (teammateWinning && teammatePlayedBigTrump) {
+                                    wantToGrab = false;
+                                } else
+                                    if (!teammateWinning) {
+                                        if (roundPoints >= 5) {
+                                            wantToGrab = true;
+                                            useBigTrump = true;
+                                        } else
+                                            if (hasStrongCombo) {
+                                                wantToGrab = true;
+                                                useBigTrump = true;
+                                            } else
+                                                if (isMidLateGame && enemyHasLeadSuit) {
+                                                    wantToGrab = false;
+                                                } else {
+                                                    wantToGrab = true;
+                                                    useBigTrump = true;
+                                                }
+                                    } else {
+                                        if (roundPoints >= 20) {
+                                            wantToGrab = true;
+                                            useBigTrump = true;
+                                        }
+                                    }
+                                if (hasEnemyThreat && roundPoints > 0) {
                                     wantToGrab = true;
                                     useBigTrump = true;
-                                } else
-                                    if (isMidLateGame && enemyHasLeadSuit) {
-                                        wantToGrab = false;
+                                }
+                                if (!enemyHasLeadSuit)
+                                    useBigTrump = true;
+                                if (wantToGrab) {
+                                    if (useBigTrump) {
+                                        best = beaters[beaters.length - 1];
                                     } else {
-                                        wantToGrab = true;
-                                        useBigTrump = true;
+                                        const pointBeaters = beaters.filter(x => x.pts > 0);
+                                        best = pointBeaters.length > 0 ? pointBeaters[0] : beaters[0];
                                     }
-                        } else {
-                            if (roundPoints >= 20) {
-                                wantToGrab = true;
-                                useBigTrump = true;
+                                } else {
+                                    const cheapBeater = beaters.find(x => x.pts > 0 || x.pattern.power <= 8);
+                                    best = cheapBeater || null;
+                                }
                             }
-                        }
-                        if (hasEnemyThreat && roundPoints > 0) {
-                            wantToGrab = true;
-                            useBigTrump = true;
-                        }
-                        if (!enemyHasLeadSuit)
-                            useBigTrump = true;
-                        if (wantToGrab) {
-                            if (useBigTrump) {
-                                best = beaters[beaters.length - 1];
-                            } else {
-                                const pointBeaters = beaters.filter(x => x.pts > 0);
-                                best = pointBeaters.length > 0 ? pointBeaters[0] : beaters[0];
-                            }
-                        } else {
-                            const cheapBeater = beaters.find(x => x.pts > 0 || x.pattern.power <= 8);
-                            best = cheapBeater || null;
-                        }
-                    }
                     if (best) {
                         const hasBigTrump = best.cards.some(c => TuoLaJi.cardPower(TuoLaJi.parseCard(c.name), g.rank, g.trumpSuit) >= 7000);
                         const trumpAfter = trumpCards.length - best.cards.length;
                         let shouldBite = false;
-                        if (isTeammateLead && !teammateAbsolutelyWinning && !teammateLeadingBig) {
-                            if (roundPoints > 0 || isEnemyWinning)
-                                shouldBite = true;
-                            else
-                                shouldBite = Math.random() < 0.7;
+
+                        // ★ 新增：针对上述末位情况的直接出牌判定
+                        if (isLastPlayer && teammateWinning && currentBestPattern.isTrump && !wantToTakeOver) {
+                            shouldBite = true; // 前面已经精挑细选过 best 了（带分的或者被迫的），直接出
                         } else
-                            if (teammateLeadingBig) {
+                            if (teammatePlayedBigTrump) {
                                 shouldBite = false;
                             } else
-                                if (roundPoints > 0) {
-                                    if (isEndGame && hasBigTrump && trumpAfter < 1)
-                                        shouldBite = false;
-                                    else
-                                        if (isEndGame && hasBigTrump && trumpAfter < 2 && roundPoints < 15)
-                                            shouldBite = false;
-                                        else
+                                if (wantToTakeOver) {
+                                    shouldBite = true;
+                                } else
+                                    if (isTeammateLead && !teammateAbsolutelyWinning && !teammateLeadingBig) {
+                                        if (roundPoints > 0 || isEnemyWinning)
                                             shouldBite = true;
-                                } else {
-                                    if (!isEnemyWinning)
-                                        shouldBite = false;
-                                    else
-                                        if (isEndGame)
-                                            shouldBite = false;
                                         else
-                                            if (teammatePlayedSmall) {
-                                                if (isLateGame && hasBigTrump && trumpAfter < 1)
-                                                    shouldBite = Math.random() < 0.5;
+                                            shouldBite = Math.random() < 0.7;
+                                    } else
+                                        if (teammateLeadingBig) {
+                                            shouldBite = false;
+                                        } else
+                                            if (roundPoints > 0) {
+                                                if (isEndGame && hasBigTrump && trumpAfter < 1)
+                                                    shouldBite = false;
                                                 else
-                                                    shouldBite = true;
-                                            } else
-                                                if (hasBigTrump && trumpAfter < 2) {
-                                                    if (handSize >= 30)
-                                                        shouldBite = Math.random() < 0.7;
+                                                    if (isEndGame && hasBigTrump && trumpAfter < 2 && roundPoints < 15)
+                                                        shouldBite = false;
                                                     else
-                                                        if (handSize >= 15)
-                                                            shouldBite = Math.random() < 0.5;
-                                                        else
-                                                            shouldBite = Math.random() < 0.3;
-                                                } else {
-                                                    if (handSize >= 30)
-                                                        shouldBite = Math.random() < 0.9;
+                                                        shouldBite = true;
+                                            } else {
+                                                if (!isEnemyWinning)
+                                                    shouldBite = false;
+                                                else
+                                                    if (isEndGame)
+                                                        shouldBite = false;
                                                     else
-                                                        if (handSize >= 15)
-                                                            shouldBite = Math.random() < 0.75;
-                                                        else
-                                                            shouldBite = Math.random() < 0.6;
-                                                }
-                                }
+                                                        if (teammatePlayedSmall) {
+                                                            if (isLateGame && hasBigTrump && trumpAfter < 1)
+                                                                shouldBite = Math.random() < 0.5;
+                                                            else
+                                                                shouldBite = true;
+                                                        } else
+                                                            if (hasBigTrump && trumpAfter < 2) {
+                                                                if (handSize >= 30)
+                                                                    shouldBite = Math.random() < 0.7;
+                                                                else
+                                                                    if (handSize >= 15)
+                                                                        shouldBite = Math.random() < 0.5;
+                                                                    else
+                                                                        shouldBite = Math.random() < 0.3;
+                                                            } else {
+                                                                if (handSize >= 30)
+                                                                    shouldBite = Math.random() < 0.9;
+                                                                else
+                                                                    if (handSize >= 15)
+                                                                        shouldBite = Math.random() < 0.75;
+                                                                    else
+                                                                        shouldBite = Math.random() < 0.6;
+                                                            }
+                                            }
                         if (shouldBite)
                             return {
                                 cards: best.cards,
@@ -6750,11 +7156,30 @@ game.import(
                 }
                 const sideCards = parsed.filter(x => !TuoLaJi.isTrump(x.p, g.rank, g.trumpSuit));
                 let discardPool = sideCards.length >= actualSize ? sideCards : parsed;
+
+                // ★ 新增：预判后续未出牌的敌人是否有毙牌威胁
+                let enemyThreat = false;
+                const playedSeats3 = new Set(currentPlays.map(pl => pl.seat));
+                for (let i = 0; i < 4; i++) {
+                    if (i === seat || i % 2 === team || playedSeats3.has(i))
+                        continue;
+                    if (!isInSuitEnemy(game.players[i], leadSuit, g) && !g.lackSuit[i]['trump']) {
+                        enemyThreat = true;
+                    }
+                }
+
                 let discarded;
-                if (isLastPlayer && !teammateWinning) {
+                // 只要敌方大，或敌人有毙牌威胁，绝不主动送分
+                if (!teammateWinning || enemyThreat) {
                     discarded = pickNoPointDiscard(discardPool, actualSize, g);
                 } else {
-                    discarded = pickDiscardCards(discardPool, actualSize, isPoint, teammateAbsolutelyWinning, teammateLack, g);
+                    // 确定安全后，才优先送散分或散对子分
+                    discarded = pickDiscardCards(discardPool, actualSize, isPoint, true, false, g);
+                }
+
+                // ★ 极端兜底：如果 AI 选牌失败，说明面临极端情况，直接按牌力强打！
+                if (!discarded || discarded.length === 0) {
+                    discarded = discardPool.slice(0, actualSize).map(x => x.card);
                 }
                 return {
                     cards: discarded,
@@ -6896,7 +7321,7 @@ game.import(
                             pattern: scored[0].pattern
                         };
                     }
-                    if (teammateWinning) {
+                    if (teammateWinning && !wantToTakeOver) {
                         scored.sort((a, b) => a.pts - b.pts || a.power - b.power);
                         return {
                             cards: scored[0].cards,
@@ -6978,11 +7403,29 @@ game.import(
             // 垫牌收尾
             const rest = parsed.filter(x => !inSuit.includes(x));
             const restNeed = actualSize - inSuit.length;
+
+            // ★ 新增：预判后续未出牌的敌人是否有毙牌威胁
+            let enemyThreat = false;
+            const playedSeats2 = new Set(currentPlays.map(pl => pl.seat));
+            for (let i = 0; i < 4; i++) {
+                if (i === seat || i % 2 === team || playedSeats2.has(i))
+                    continue;
+                if (!isInSuitEnemy(game.players[i], leadSuit, g) && !g.lackSuit[i]['trump']) {
+                    enemyThreat = true;
+                }
+            }
+
             let discarded;
-            if (isLastPlayer && !teammateWinning) {
+            // 只要敌方大，或敌人有毙牌威胁，绝不主动送分
+            if (!teammateWinning || enemyThreat) {
                 discarded = pickNoPointDiscard(rest, restNeed, g);
             } else {
-                discarded = pickDiscardCards(rest, restNeed, isPoint, teammateAbsolutelyWinning, teammateLack, g);
+                discarded = pickDiscardCards(rest, restNeed, isPoint, true, false, g);
+            }
+
+            // 加上兜底更安全
+            if (!discarded || discarded.length === 0) {
+                discarded = rest.slice(0, restNeed).map(x => x.card);
             }
             const picked = inSuit.map(x => x.card).concat(discarded);
             return {
@@ -7087,6 +7530,11 @@ game.import(
                     }
                 } else {
                     if (pl.pattern.isTrump) {
+                        // ★ 核心修复 1：首出是普通连拖时，主牌散牌（mixed）严禁毙牌成功
+                        if (lead.type === "tractor" && pl.pattern.type === "mixed") {
+                            continue;
+                        }
+
                         if (!TuoLaJi.structureMatch(pl.pattern, lead))
                             continue;
                         if (!winPattern.isTrump || TuoLaJi.comparePatterns(pl.pattern, winPattern) > 0) {
@@ -7998,8 +8446,8 @@ game.import(
             // ★ 火眼金睛：清理
             removeAllSuitHints();
         }
-        // ★ 新增：保存游戏进度到本地存储
-        function saveGameProgress() {
+        // ★ 保存游戏进度到本地存储
+        function saveGameProgress(silent = false) {
             const g = game.tuolaji;
             if (!g)
                 return;
@@ -8025,9 +8473,13 @@ game.import(
             }
             try {
                 localStorage.setItem("tuolaji_save_data", JSON.stringify(data));
-                game.print("【存档】游戏进度已成功保存（下一局已就绪）！下次进入游戏可直接继续。");
+                if (!silent) {
+                    game.print("【存档】游戏进度已成功保存（下一局已就绪）！下次进入游戏可直接继续。");
+                }
             } catch (e) {
-                game.print("【存档】保存失败：本地存储不可用。");
+                if (!silent) {
+                    game.print("【存档】保存失败：本地存储不可用。");
+                }
             }
         }
         // ============ 结算（揭底牌 + 完整计分） ============
@@ -8035,14 +8487,15 @@ game.import(
             const g = game.tuolaji;
             const bankerTeam = g.bankerTeam;
             const idleTeam = 1 - bankerTeam;
-            // ★ 提前定义队伍名称，方便后续复用
             const bankerTeamName = bankerTeam === 0 ? "南北" : "东西";
             const idleTeamName = idleTeam === 0 ? "南北" : "东西";
+
             // 1. 揭底牌并算分
             const bottomPts = TuoLaJi.countPoints(g.bottom.map(c => c.name));
             const bottomStr = g.bottom.map(c => describeCard(c.name)).join("、");
             game.print(`【揭底】庄家底牌：${bottomStr}，共 ${bottomPts} 分`);
             game.log("揭底：底牌", g.bottom, "共", bottomPts, "分");
+
             // 2. 计算闲家抓分
             let baseScore = 0;
             game.players.forEach((p,
@@ -8051,6 +8504,7 @@ game.import(
                     baseScore += g.roundScores[i];
             });
             game.print(`【抓分】闲家本局抓分：${baseScore} 分`);
+
             // 3. 抠底加成
             const lastTrick = g.trick[g.trick.length - 1];
             let bottomBonus = 0;
@@ -8065,6 +8519,7 @@ game.import(
             game.print(bonusDesc);
             const idleScore = baseScore + bottomBonus;
             game.print(`【本局结算】闲家总得分 = 抓分 ${baseScore} + 抠底 ${bottomBonus} = ${idleScore} 分`);
+
             // 4. 升级判断
             let winnerTeam, upgradeLevels, desc;
             if (idleScore >= 160) {
@@ -8094,17 +8549,25 @@ game.import(
                         desc = `庄家（${bankerTeamName}）升 1 级`;
                     }
             }
+
             // ★ 提前计算：升级后的级别与顺延后的庄家
             let nextTeamLevels = [g.teamLevels[0], g.teamLevels[1]];
             nextTeamLevels[winnerTeam] += upgradeLevels;
-            if (nextTeamLevels[winnerTeam] > 13)
-                nextTeamLevels[winnerTeam] = 13;
-                // ★ 判断是否打赢K局：只有打 K 局守庄成功，或者连升级直接爆掉 K 局（> 13）才算通关
-            const isMatchWin = ((g.rank + upgradeLevels > 13 || g.rank === 13) && winnerTeam === bankerTeam);
+
+            // ★ 核心修改：动态计算最大级别 (改名以防冲突)
+            const maxLevelLimit = lib.config.extension_拖拉机_startFromTwo ? 14 : 13;
+            if (nextTeamLevels[winnerTeam] > maxLevelLimit) {
+                nextTeamLevels[winnerTeam] = maxLevelLimit;
+            }
+
+            // ★ 核心修改：只有当前局已经打到了最大级别，并且守庄成功，才算通关
+            const isMatchWin = (g.teamLevels[winnerTeam] === maxLevelLimit && winnerTeam === bankerTeam);
+
             if (isMatchWin) {
                 const startLevel = lib.config.extension_拖拉机_startFromTwo ? 2 : 1;
                 nextTeamLevels[winnerTeam] = startLevel;
             }
+
             let nextBanker = g.banker;
             let nextBankerTeam = g.bankerTeam;
             let nextBottomPlayer = g.bottomPlayer;
@@ -8115,7 +8578,8 @@ game.import(
                 nextBankerTeam = nextBanker % 2;
                 nextBottomPlayer = nextBanker;
             }
-            // 暂存预备状态，供存档按钮使用
+
+            // 暂存预备状态
             g._nextState = {
                 teamLevels: nextTeamLevels,
                 matchRound: g.matchRound,
@@ -8123,18 +8587,75 @@ game.import(
                 bankerTeam: nextBankerTeam,
                 bottomPlayer: nextBottomPlayer
             };
+
+            // ★ 自动存档！不需要玩家手动点按钮了
+            saveGameProgress(true);
+
+            // ★ 核心新增：K局胜利且是南北队，触发收集卡牌/进阶系统
+            let collectionHtml = "";
+            let displayCards = g.bottom.slice(); // 复制一份底牌数组用于展示，避免影响真实底牌
+
+            if (isMatchWin && winnerTeam === 0) {
+                const res = triggerCollectionReward();
+                if (res) {
+                    if (res.type === "new") {
+                        game.print(`【收集卡牌】南北队通关 K 局，点亮新卡牌：${describeCard(res.name)}！`);
+                        collectionHtml = `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 10px; width: 100%;">
+                            <div style="color: #00ff00; font-size: 16px; font-weight: bold;">恭喜南北队通关K局，点亮新卡牌：${describeCard(res.name)}！</div>
+                        </div>`;
+                        const p = TuoLaJi.parseCard(res.name);
+                        let suit = p.joker ? "joker" : p.suit;
+                        let number = p.joker ? (p.joker === "big" ? 1 : 2) : p.number;
+                        let newCardObj = ui.create.card(null,
+                        "noclick");
+                        newCardObj.init([suit,
+                        number,
+                        res.name]);
+                        if (lib.card[res.name] && lib.card[res.name].pokerCard) {
+                            newCardObj.style.backgroundImage = 'url("' + lib.assetURL + "extension/拖拉机/" + res.name + '.png")';
+                            newCardObj.style.backgroundSize = "100% 100%";
+                            newCardObj.style.backgroundPosition = "center";
+                        }
+                        hideCardText(newCardObj);
+                        newCardObj.style.boxShadow = "0 0 15px 4px rgba(0, 255, 0, 0.9)";
+                        newCardObj.style.border = "2px solid #00ff00";
+                        newCardObj.style.borderRadius = "4px";
+                        displayCards.unshift(newCardObj);
+                    } else
+                        if (res.type === "tier") {
+                            const tierName = TIER_NAMES[res.tier];
+                            const colorMap = {
+                                1: "#00bfff",
+                                2: "#a020f0",
+                                3: "#ffa500",
+                                4: "#ff0000",
+                                5: "#cd7f32",
+                                6: "#c0c0c0",
+                                7: "#ffd700"
+                            };
+                            game.print(`【收集卡牌】南北队已全收集，光效进阶为【${tierName}】！`);
+                            collectionHtml = `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 10px; width: 100%;">
+                            <div style="color: #fff; font-size: 16px; font-weight: bold;">恭喜南北队通关K局，全收集光效进阶！</div>
+                            <div style="color: ${colorMap[res.tier]}; font-size: 20px; font-weight: bold; margin-top: 5px; text-shadow: 0 0 5px #000;">当前全场光效：【${tierName}】</div>
+                        </div>`;
+                        }
+                }
+            }
+
             // 5. 弹窗展示底牌与结算信息
-            let wantContinue = true; // 默认为继续
+            let wantContinue = true;
             if (game.me && g.bottom && g.bottom.length > 0) {
-                g._isSettling = true; // ★ 标记正在结算中
-                // 抠底判定文字
+                g._isSettling = true;
+
                 let bottomResultText = "";
                 if (lastTrick && lastTrick.winner % 2 === idleTeam) {
                     bottomResultText = `抠底成功！底牌 ${bottomPts} 分 × 4 = ${bottomBonus} 分`;
                 } else {
                     bottomResultText = "抠底失败，庄家守底，底牌分不计入闲家";
                 }
-                // 档位文字（与规则文本对应）
+
                 let scoreRangeText = "";
                 if (idleScore >= 160) {
                     if (idleScore < 240)
@@ -8153,46 +8674,54 @@ game.import(
                         else
                             scoreRangeText = "80~159分档：庄家升1级";
                 }
-                // 构造纯文字的 HTML 字符串
+
                 let textHtml = `
-            <div style="text-align: center; font-size: 18px; line-height: 1.8; color: #fff; padding: 10px 20px; width: 100%; box-sizing: border-box;">
-                <div style="color: #ffd700; font-weight: bold; font-size: 18px; margin-bottom: 5px;">— 本局结算 —</div>
-                <div>闲家（${idleTeamName}）总得分：<span style="color: #4a9eff; font-weight: bold; font-size: 18px;">${idleScore}</span> 分</div>
-                <div style="font-size: 15px; color: #ccc;">抓分 ${baseScore} 分 + 抠底 ${bottomBonus} 分（${bottomResultText}）</div>
-                <div style="margin-top: 8px; color: #ffd700; font-weight: bold;">【 ${scoreRangeText} 】</div>
-                <div style="color: #ffd700;">${desc}</div>
-            </div>
-        `;
-                // ★ 新增：终局提示
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; box-sizing: border-box; color: #fff;">
+        <div style="color: #ffd700; font-weight: bold; font-size: 18px; margin-bottom: 5px;">— 本局结算 —</div>
+        <div style="font-size: 18px;">闲家（${idleTeamName}）总得分：<span style="color: #4a9eff; font-weight: bold; font-size: 18px;">${idleScore}</span> 分</div>
+        <div style="font-size: 15px; color: #ccc; margin-top: 5px;">抓分 ${baseScore} 分 + 抠底 ${bottomBonus} 分（${bottomResultText}）</div>
+        <div style="margin-top: 8px; color: #ffd700; font-weight: bold;">【 ${scoreRangeText} 】</div>
+        <div style="color: #ffd700; margin-bottom: 10px;">${desc}</div>
+        ${collectionHtml}
+    </div>
+`;
                 if (isMatchWin) {
                     const teamName = winnerTeam === 0 ? "南北" : "东西";
                     textHtml += `
-            <div style="text-align: center; font-size: 18px; line-height: 1.8; color: #ff4d4d; padding: 10px 20px; border-top: 1px dashed #ff4d4d; width: 100%; box-sizing: border-box;">
-                <div style="font-weight: bold; font-size: 20px;">【 恭喜！${teamName}方已升满级，赢得最终胜利！ 】</div>
-                <div>是否继续从下一圈 ${LEVEL_NAMES[nextTeamLevels[winnerTeam]]} 级打起？</div>
-                <div style="font-size: 18px; color: #ccc;">点击“确定”继续，点击“取消”结束并清空存档。</div>
-            </div>
-            `;
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 18px; line-height: 1.8; color: #ff4d4d; padding: 10px 0 0 0; border-top: 1px dashed #ff4d4d; width: 100%; box-sizing: border-box; margin-top: 10px;">
+        <div style="font-weight: bold; font-size: 20px;">【 恭喜！${teamName}方已升满级，赢得最终胜利！ 】</div>
+        <div>是否继续从下一圈 ${LEVEL_NAMES[nextTeamLevels[winnerTeam]]} 级打起？</div>
+        <div style="font-size: 16px; color: #ccc;">点击“确定”继续，点击“取消”结束并清空存档。</div>
+    </div>
+    `;
                 }
+
                 const dialogTitle = isMatchWin ? "本局底牌与结算（终局）" : "本局底牌与结算";
-                // 使用系统对话框
                 const dialog = ui.create.dialog(dialogTitle, textHtml);
                 dialog.style.setProperty("z-index", "9999", "important");
                 dialog.style.setProperty("height", "auto", "important");
                 dialog.style.setProperty("min-height", "250px", "important");
                 dialog.style.setProperty("width", "70%", "important");
-                dialog.add(g.bottom);
-                // ★ 暂时隐藏右上角的计分板，防止挡住弹窗
+
+                displayCards.forEach(
+                    c => {
+                        if (c && c.style) {
+                            c.style.transform = "scale(0.85)";
+                            c.style.margin = "0 4px";
+                            c.style.flexShrink = "0";
+                        }
+                    }
+                );
+
+                dialog.add(displayCards);
+
                 if (ui.tuolajiScore) {
                     ui.tuolajiScore.style.setProperty("display", "none", "important");
                 }
+
                 await new Promise(
                     resolve => {
                         let resolved = false;
-                        const btnSave = ui.create.control("存档", function () {
-                            saveGameProgress();
-                            btnSave.close();
-                        });
                         if (isMatchWin) {
                             const btnContinue = ui.create.control(
                                 "确定",
@@ -8202,9 +8731,8 @@ game.import(
                                         wantContinue = true;
                                         dialog.close();
                                         btnContinue.close();
-                                        btnCancel.close();
-                                        if (btnSave.parentNode)
-                                            btnSave.close();
+                                        if (btnCancel && btnCancel.parentNode)
+                                            btnCancel.close();
                                         resolve();
                                     }
                                 }
@@ -8216,10 +8744,9 @@ game.import(
                                         resolved = true;
                                         wantContinue = false;
                                         dialog.close();
-                                        btnContinue.close();
+                                        if (btnContinue && btnContinue.parentNode)
+                                            btnContinue.close();
                                         btnCancel.close();
-                                        if (btnSave.parentNode)
-                                            btnSave.close();
                                         resolve();
                                     }
                                 }
@@ -8232,8 +8759,6 @@ game.import(
                                         resolved = true;
                                         dialog.close();
                                         button.close();
-                                        if (btnSave.parentNode)
-                                            btnSave.close();
                                         resolve();
                                     }
                                 }
@@ -8241,19 +8766,23 @@ game.import(
                         }
                     }
                 );
-                // ★ 弹窗关闭后，取消标记，并恢复计分板显示
-                delete g._isSettling; // ★ 取消结算标记
+
+                delete g._isSettling;
                 if (ui.tuolajiScore) {
                     ui.tuolajiScore.style.setProperty("display", "block", "important");
                 }
             }
+
             // 6. 清理暂存，应用更新
             delete g._nextState;
             game.print(`【升级】${desc}`);
             g.teamLevels[winnerTeam] = nextTeamLevels[winnerTeam];
+
+            // ★ 直接使用已经声明的 maxLevelLimit
             game.print(
-                `【级别】南北 ${LEVEL_NAMES[Math.min(g.teamLevels[0], 13)]} / 东西 ${LEVEL_NAMES[Math.min(g.teamLevels[1], 13)]}`
+                `【级别】南北 ${LEVEL_NAMES[Math.min(g.teamLevels[0], maxLevelLimit)]} / 东西 ${LEVEL_NAMES[Math.min(g.teamLevels[1], maxLevelLimit)]}`
             );
+
             const matchWinnerTeam = isMatchWin ? winnerTeam : undefined;
             return {
                 winnerTeam,
@@ -8349,38 +8878,33 @@ game.import(
                         p.node.name2.innerHTML = "";
                 }
             );
+
             // ★ 核心修复：直接读取 lib.config，并将按钮的所有样式写死在 JS 里
             if (lib.config.extension_拖拉机_dcfl_jilu === true) {
                 if (!document.getElementById('tlj_jilu_button')) {
                     const btn = document.createElement('div');
                     btn.id = 'tlj_jilu_button';
                     btn.style.cssText = "position: fixed !important; left: calc(80% + 90px) !important; top: calc(72% - 70px) !important; width: 80px !important; height: 80px !important; z-index: 10 !important; cursor: pointer !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center !important; transition: all 0.3s !important; background-image: url('" + lib.assetURL + "extension/拖拉机/tlj_jilu.png') !important;";
-                    //btn.title = '出牌记录';
-                    //btn.addEventListener('click', showHistoryPage);
                     btn.title = '发牌时点击可暂停/继续，出牌后点击查看记录';
                     btn.addEventListener(
                         'click',
                         () => {
                             const g = game.tuolaji;
                             if (g && g._inDealPhase) {
-                                // 如果当前正在等玩家处理叫主/反主，不准叠加暂停
                                 if (g._waitingForBidResolve) {
                                     game.print("【提示】请先处理当前的叫主/反主询问。");
                                     return;
                                 }
                                 if (g._waitingForDealResolve) {
-                                    // 恢复发牌
                                     g._pauseDeal = false;
                                     g._waitingForDealResolve();
                                     g._waitingForDealResolve = null;
                                     game.print("【提示】发牌继续。");
                                 } else {
-                                    // 执行暂停
                                     g._pauseDeal = true;
                                     game.print("【提示】发牌已暂停。再次点击图标恢复发牌。");
                                 }
                             } else {
-                                // 非发牌阶段，正常显示历史记录
                                 showHistoryPage();
                             }
                         }
@@ -8406,10 +8930,12 @@ game.import(
                     const result = await settleRound();
                     updateScoreDisplay();
                     await game.delayx(3);
-                    // ★ 只有 K 局结算后才判定整场胜利
+
+                    // ★ 只有满级通关后才判定整场胜利
                     if (result.matchWinnerTeam !== undefined) {
                         const teamName = result.matchWinnerTeam === 0 ? "南北" : "东西";
-                        game.print(`${teamName}方打赢 K 局，获得整场胜利！`);
+                        game.print(`${teamName}方打赢最高级，获得整场胜利！`);
+
                         if (result.wantContinue) {
                             // 选择继续，新一轮开启
                             const startLevel = lib.config.extension_拖拉机_startFromTwo ? 2 : 1;
@@ -8431,11 +8957,15 @@ game.import(
                             break;
                         }
                     }
+
                     advanceBanker(result.winnerTeam, result.bankerTeam);
+
+                    // ★ 核心修改：下一局提示，如果级别是 14 显示打 A
+                    let nextRank = g.teamLevels[g.bankerTeam] === 14 ? 1 : Math.min(g.teamLevels[g.bankerTeam], 13);
                     game.print(
-                        `【下一局】${SEAT_NAMES[g.banker]}方（${g.bankerTeam === 0 ? "南北队" : "东西队"}）坐庄，打 ${LEVEL_NAMES[Math.min(g.teamLevels[g.bankerTeam],
-                        13)]}`
+                        `【下一局】${SEAT_NAMES[g.banker]}方（${g.bankerTeam === 0 ? "南北队" : "东西队"}）坐庄，打 ${LEVEL_NAMES[nextRank]}`
                     );
+
                     await game.delayx(2);
                 }
             } catch (e) {
@@ -8454,9 +8984,8 @@ game.import(
                 // ★ 恢复玩家原本的手牌折叠设置
                 if (needRestoreFold) {
                     game.saveConfig('fold_card', false);
-                    if (typeof ui.update === 'function') {
+                    if (typeof ui.update === 'function')
                         ui.update();
-                    }
                 }
             }
         }
@@ -8514,7 +9043,11 @@ game.import(
                     name: "拖拉机",
                     mode: "versus",
                     submode: "2v2",
-                    intro:["四人四副牌升级", "请详看【游戏规则】或者“README.md”文件"],
+                    intro:[
+                        "四人四副牌升级",
+                        "规则请点击详看【游戏规则】或者“README.md”文件",
+                        "每打满K级通关一次，可随机点亮【收集卡牌】里的一张扑克牌，收集完所有花色的52张普通扑克牌后才会获得小王→大王（某种光效获满后点亮下一种光效，点亮顺序：绿光、蓝光、紫光、黄橙光、红光、铜光、银光、金光）"
+                    ],
                     showcase: function (init) {
                         if (init || !this.childElementCount) {
                             this.innerHTML = "";
@@ -8527,6 +9060,11 @@ game.import(
                             btn.innerHTML = "游戏规则";
                             btn.addEventListener("click", showTuolajiRules);
                             showcase.appendChild(btn);
+                            const btnCards = document.createElement("div");
+                            btnCards.classList.add("tuolaji-button", "tuolaji-cards");
+                            btnCards.innerHTML = "收集卡牌";
+                            btnCards.addEventListener("click", showCollectionPage);
+                            showcase.appendChild(btnCards);
                         }
                     },
                     init: function () {
@@ -8691,7 +9229,7 @@ game.import(
                 author: "山佬进城",
                 diskURL: "",
                 forumURL: "",
-                version: "3.7",
+                version: "3.9",
             },
             files: {
                 "character":[],

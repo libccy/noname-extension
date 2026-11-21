@@ -2565,7 +2565,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             "step 0"
                             player.storage.wwyj_xuanxia = true;
                             player.$fullscreenpop('寰宇星城', 'fire');
-                            game.wwyj_background();
+                            //game.wwyj_background();
                             var num = game.countPlayer(function (current) {
                                 return current != player && current.hasSkill('wwyj_xingcheng1') && current.getExpansions('wwyj_xingcheng1').length > 0;
                             });
@@ -10516,7 +10516,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 },
                                 frequent: "check",
                                 content: function () {
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     game.playAudio('..', 'extension', '文武英杰', 'wwyj_dansha');
                                     player.swapEquip(_status.currentPhase);
                                     _status.currentPhase.turnOver();
@@ -10771,7 +10771,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     'step 1'
                                     if (result.bool) {
                                         player.$fullscreenpop('文武英杰', 'fire');
-                                        game.wwyj_background();
+                                        //game.wwyj_background();
                                         player.init(["wwyj_yuhudie", "wwyj_liangchas"].randomGet());
                                         player.storage.wwyj_tianya = true;
                                         player.awakenSkill('wwyj_tianya');
@@ -12800,7 +12800,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 0"
                                     player.storage.wwyj_xuanxia = true;
                                     player.$fullscreenpop('寰宇星城', 'fire');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     var num = game.countPlayer(function (current) {
                                         return current != player && current.hasSkill('wwyj_xingcheng1') && current.getExpansions('wwyj_xingcheng1').length > 0;
                                     });
@@ -13379,7 +13379,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     'step 0'
                                     //trigger.cancel();
                                     player.$fullscreenpop('松岛枫桂花', 'fire');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     player.storage.wwyj_heimao = true;
                                     player.awakenSkill('wwyj_heimao');
                                     'step 1'
@@ -14664,7 +14664,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 content: function () {
                                     'step 0'
                                     //player.$fullscreenpop('瓦力','fire');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
                                     'step 1'
                                     player.loseMaxHp();
@@ -16509,7 +16509,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     'step 0'
                                     player.line(trigger.player, 'green');
                                     player.$fullscreenpop('( •̥́ ㉨ •̀ू )', 'fire');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');
                                     player.storage.wwyj_qianzhui = true;
                                     player.awakenSkill('wwyj_qianzhui');
@@ -17228,7 +17228,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                     "step 0"
                                     //ui.background.setBackgroundImage('extension/文武英杰/wenwuyingjie.jpg');  
                                     player.$fullscreenpop('暴躁AI', 'thunder');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     event.current = player.next;
                                     player.addTempSkill('wwyj_baozaorecover');
                                     player.storage.wwyj_baozao = true;
@@ -17601,7 +17601,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                                 content: function () {
                                     "step 0"
                                     player.$fullscreenpop('水乎创世', 'fire');
-                                    game.wwyj_background();
+                                    //game.wwyj_background();
                                     game.broadcastAll(function (player) {
 
                                         var Animation = ui.create.div();
@@ -18815,7 +18815,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
                             break;
                         case '2':
                             game.playwwyj('wwyj_dansha');
-                            //game.wwyj_background();			
+                            game.wwyj_background();			
                             var Animation = ui.create.div();
                             Animation.setBackgroundImage('extension/文武英杰/wwyj_diaochan.png');
                             Animation.style.left = '54%';
@@ -18911,7 +18911,7 @@ game.import("extension", function (lib, game, ui, get, ai, _status) {
             author: "凉茶<br>强烈建议打开下面的“界限突破”小开关⇩，提升本扩展个别武将的技能的体验感<br>加入<div onclick=window.open('https://jq.qq.com/?_wv=1027&k=5qvkVxl')><span style=\"color: green;text-decoration: underline;font-style: oblique\">无名杀官方扩展群</span></div><span style=\"font-style: oblique\">参与讨论</span>",
             diskURL: "",
             forumURL: "",
-            version: "5.8",
+            version: "5.9",
         },
         files: {
             "character": [],
